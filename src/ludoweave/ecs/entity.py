@@ -8,6 +8,56 @@ from ludoweave.ecs.errors import InvalidEntityIdError, StaleEntityError
 
 
 @dataclass(frozen=True, slots=True)
+class AllocatorCheckpoint:
+    """Complete deterministic allocator state for engine-owned checkpoints."""
+
+    generations: tuple[int, ...]
+    alive: tuple[bool, ...]
+    free: tuple[int, ...]
+
+    def __post_init__(self) -> None:
+        if len(self.generations) != len(self.alive):
+            raise InvalidEntityIdError(
+                "allocator checkpoint arrays must have equal lengths",
+                code="ecs.invalid_allocator_checkpoint",
+                subsystem="ecs",
+                phase="checkpoint",
+                details={"reason": "length_mismatch"},
+            )
+        if any(type(is_alive) is not bool for is_alive in self.alive):
+            raise InvalidEntityIdError(
+                "allocator checkpoint alive flags must be booleans",
+                code="ecs.invalid_allocator_checkpoint",
+                subsystem="ecs",
+                phase="checkpoint",
+                details={"reason": "invalid_alive_flag"},
+            )
+        for index, generation in enumerate(self.generations):
+            _validate_id_field("generation", generation)
+            if not self.alive[index] and generation == 0:
+                raise InvalidEntityIdError(
+                    "retired allocator slots must have an advanced generation",
+                    code="ecs.invalid_allocator_checkpoint",
+                    subsystem="ecs",
+                    phase="checkpoint",
+                    details={"reason": "retired_generation_not_advanced", "index": index},
+                )
+        expected_free = {index for index, is_alive in enumerate(self.alive) if not is_alive}
+        if (
+            any(type(index) is not int for index in self.free)
+            or len(set(self.free)) != len(self.free)
+            or set(self.free) != expected_free
+        ):
+            raise InvalidEntityIdError(
+                "allocator checkpoint free list must exactly name retired slots",
+                code="ecs.invalid_allocator_checkpoint",
+                subsystem="ecs",
+                phase="checkpoint",
+                details={"reason": "invalid_free_list"},
+            )
+
+
+@dataclass(frozen=True, slots=True)
 class EntityId:
     """Stable two-field identity for one allocation generation.
 
@@ -100,6 +150,25 @@ class EntityAllocator:
         duplicate._alive = list(self._alive)
         duplicate._free = list(self._free)
         return duplicate
+
+    def checkpoint(self) -> AllocatorCheckpoint:
+        """Capture complete future-allocation state without exposing mutable arrays."""
+
+        return AllocatorCheckpoint(
+            generations=tuple(self._generations),
+            alive=tuple(self._alive),
+            free=tuple(self._free),
+        )
+
+    @classmethod
+    def from_checkpoint(cls, checkpoint: AllocatorCheckpoint) -> EntityAllocator:
+        """Construct an allocator after checkpoint invariants have been validated."""
+
+        restored = cls()
+        restored._generations = list(checkpoint.generations)
+        restored._alive = list(checkpoint.alive)
+        restored._free = list(checkpoint.free)
+        return restored
 
     def _require_alive(self, entity_id: EntityId, *, operation: str) -> int:
         checked = _require_entity_id(entity_id, operation=operation)

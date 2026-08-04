@@ -9,6 +9,11 @@ from typing import Protocol, Self, TypeVar, cast, overload
 from uuid import UUID
 
 from ludoweave.core.errors import LudoWeaveError
+from ludoweave.ecs._checkpoint import (
+    ComponentRowCheckpoint,
+    ComponentTableCheckpoint,
+    EcsCheckpoint,
+)
 from ludoweave.ecs.commands import (
     AddCommand,
     CommandBackend,
@@ -35,6 +40,7 @@ from ludoweave.ecs.errors import (
     InvalidComponentValueError,
     InvalidDeferredEntityError,
     InvalidQueryError,
+    InvalidWorldCheckpointError,
     MissingComponentError,
 )
 from ludoweave.ecs.query import (
@@ -686,6 +692,137 @@ class World:
             )
         return duplicate
 
+    def _capture_checkpoint(self) -> EcsCheckpoint:
+        """Capture detached canonical state including allocator and change epochs."""
+
+        self._require_mutation_allowed(operation="capture_checkpoint")
+        tables: list[ComponentTableCheckpoint] = []
+        for component_type in self._registry.component_types:
+            schema = self._registry.schema_for_type(component_type)
+            table = self._tables[component_type]
+            rows = tuple(
+                ComponentRowCheckpoint(
+                    entity_id=entity_id,
+                    value=_copy_component(
+                        value,
+                        component_type,
+                        schema,
+                        operation="capture_checkpoint",
+                    ),
+                    changed_epoch=table.changed_epoch(entity_id),
+                )
+                for entity_id, value in sorted(table.items(), key=lambda item: item[0].as_tuple())
+            )
+            tables.append(
+                ComponentTableCheckpoint(
+                    component_type=component_type,
+                    structural_epoch=table.structural_epoch,
+                    rows=rows,
+                )
+            )
+        return EcsCheckpoint(
+            allocator=self._allocator.checkpoint(),
+            epoch=self._epoch,
+            structural_epoch=self._structural_epoch,
+            tables=tuple(tables),
+        )
+
+    def _restore_checkpoint(self, checkpoint: EcsCheckpoint) -> None:
+        """Atomically restore a validated storage-neutral in-memory checkpoint."""
+
+        self._require_mutation_allowed(operation="restore_checkpoint")
+        if (
+            type(checkpoint.epoch) is not int
+            or checkpoint.epoch < 0
+            or type(checkpoint.structural_epoch) is not int
+            or checkpoint.structural_epoch < 0
+            or checkpoint.structural_epoch > checkpoint.epoch
+            or (
+                checkpoint.allocator.generations
+                and (checkpoint.epoch == 0 or checkpoint.structural_epoch == 0)
+            )
+        ):
+            raise _invalid_checkpoint_error("checkpoint epochs are invalid", reason="epoch")
+        tables_by_type: dict[type[object], ComponentTableCheckpoint] = {}
+        for table in checkpoint.tables:
+            if table.component_type in tables_by_type:
+                raise _invalid_checkpoint_error(
+                    "checkpoint repeats a component table", reason="duplicate_table"
+                )
+            try:
+                self._registry.schema_for_type(table.component_type)
+            except ComponentError as error:
+                raise _invalid_checkpoint_error(
+                    "checkpoint contains an unknown component table", reason="unknown_table"
+                ) from error
+            tables_by_type[table.component_type] = table
+        if set(tables_by_type) != set(self._registry.component_types):
+            raise _invalid_checkpoint_error(
+                "checkpoint component table set is incomplete", reason="table_set"
+            )
+
+        allocator = EntityAllocator.from_checkpoint(checkpoint.allocator)
+        entities = {
+            EntityId(index, generation)
+            for index, (generation, alive) in enumerate(
+                zip(checkpoint.allocator.generations, checkpoint.allocator.alive, strict=True)
+            )
+            if alive
+        }
+        restored_tables: dict[type[object], DenseComponentTable] = {}
+        for component_type in self._registry.component_types:
+            table = tables_by_type[component_type]
+            if (
+                type(table.structural_epoch) is not int
+                or table.structural_epoch < 0
+                or (table.rows and table.structural_epoch == 0)
+                or table.structural_epoch > checkpoint.structural_epoch
+            ):
+                raise _invalid_checkpoint_error(
+                    "checkpoint table epoch is invalid", reason="table_epoch"
+                )
+            schema = self._registry.schema_for_type(component_type)
+            seen: set[EntityId] = set()
+            rows: list[tuple[EntityId, object, int]] = []
+            for row in table.rows:
+                if row.entity_id in seen or row.entity_id not in entities:
+                    raise _invalid_checkpoint_error(
+                        "checkpoint component row targets an invalid entity",
+                        reason="component_entity",
+                    )
+                if (
+                    type(row.changed_epoch) is not int
+                    or row.changed_epoch <= 0
+                    or row.changed_epoch > checkpoint.epoch
+                ):
+                    raise _invalid_checkpoint_error(
+                        "checkpoint component row epoch is invalid", reason="row_epoch"
+                    )
+                seen.add(row.entity_id)
+                rows.append(
+                    (
+                        row.entity_id,
+                        _copy_component(
+                            row.value,
+                            component_type,
+                            schema,
+                            operation="restore_checkpoint",
+                        ),
+                        row.changed_epoch,
+                    )
+                )
+            restored_tables[component_type] = DenseComponentTable.from_checkpoint_rows(
+                tuple(rows), structural_epoch=table.structural_epoch
+            )
+
+        self._allocator = allocator
+        self._entities = entities
+        self._tables = restored_tables
+        self._epoch = checkpoint.epoch
+        self._structural_epoch = checkpoint.structural_epoch
+        self._query_plans.clear()
+        self._check_invariants()
+
     def _validate_query_types(
         self, component_types: tuple[object, ...], *, role: str
     ) -> tuple[type[object], ...]:
@@ -825,6 +962,16 @@ class World:
             assert self._allocator.is_alive(entity_id)
         for table in self._tables.values():
             table.check_invariants()
+
+
+def _invalid_checkpoint_error(message: str, *, reason: str) -> InvalidWorldCheckpointError:
+    return InvalidWorldCheckpointError(
+        message,
+        code="ecs.invalid_world_checkpoint",
+        subsystem="ecs",
+        phase="restore_checkpoint",
+        details={"reason": reason},
+    )
 
 
 def _copy_component(

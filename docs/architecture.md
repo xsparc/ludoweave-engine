@@ -6,6 +6,11 @@ LudoWeave is designed around deterministic world operations. The ECS/world store
 
 M0 established lifecycle, time, error, rendering, packaging, and dependency contracts. M1-01 adds generational entity identity, M1-02 adds immutable component schemas and registries, M1-03 adds canonical world storage plus an independent reference model, M1-04 adds storage-neutral queries and local deferred structural commands, and M1-05 adds typed resources plus conflict-aware serial schedule planning.
 
+M2 introduces `ludoweave.world` as the simulation-protocol layer. It may
+depend on core and public ECS contracts, while application and tools may depend
+on it. Persistent command envelopes are explicitly distinct from M1 local ECS
+command buffers; see [the command protocol](commands.md) and ADR-0008.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -25,12 +30,19 @@ concrete adapter   ludoweave.render.backends.null
 
 - `ludoweave.core` imports only the Python standard library.
 - `ludoweave.ecs` may depend on core errors but not application, rendering, tools, or concrete backends.
+- `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
 - `ludoweave.render.api` may depend on core errors but not application or tools.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
 - The package root may re-export the deliberately small application API but never a concrete backend or third-party native object.
 - wgpu, GLFW, NumPy storage objects, and future native extension objects are forbidden from public APIs.
+
+The M2 CLI keeps filesystem policy in `ludoweave.tools`. Its data-only
+headless-project manifest cannot name Python modules or callables, and every
+artifact path is resolved beneath the explicitly selected project root before
+bounded I/O. World, snapshot, replay, ECS, and application packages remain
+path- and transport-agnostic.
 
 These rules are enforced by an AST-based test over the source tree. The test also analyzes a generated invalid fixture so a broken checker cannot silently pass.
 
@@ -57,6 +69,34 @@ Queries expose detached component values, never canonical table objects. Read-on
 
 Local `Commands` buffers copy values at enqueue time and identify deferred spawns with exact buffer-generation tokens. Flush applies operations to a clone and adopts it only after complete success. These in-process buffers and their `FlushResult` are not the persistent, versioned commands, transactions, and receipts reserved for M2.
 
+Persistent M2 transactions instead target a single-owner `WorldSession`.
+World, resources, and completed ticks are cloned and operated on as one staged
+record, then adopted with one pointer assignment only after complete success.
+Public world, resource, and random accessors return detached copies; mutating
+those views cannot bypass the persistent command/receipt boundary. Internal ECS
+checkpoint ports are private to engine-owned world services.
+The authority image includes allocator/free-list and epoch state, explicit
+codec-backed state resources, completed ticks, and engine-owned named random
+streams. Application tick execution
+is dependency-injected through a world-owned protocol and can run only against
+staged world, resources, and random state; the world layer never imports
+application code. Canonical snapshots rebuild this complete record before one
+safe-point adoption, preserving future allocation, changed-query, and random
+behavior without persisting private storage layout.
+
+Every resource in a `WorldSession` has exactly one explicit `STATE`, `INPUT`,
+or `RUNTIME_EXCLUDED` role. M2 persistent tick commands advance exactly one
+tick and are accepted only for state-only resource compositions. This makes
+every recorded tick a replay/branch boundary and prevents unrecorded input or
+runtime values from influencing M2 replay. Canonical per-tick input recording
+and application-runtime composition remain M4 work. Snapshot load replaces
+state resources while preserving destination-owned input/runtime resources.
+M2 `WorldSession` registries reject presentation schemas entirely and accept
+canonical authoritative components only; presentation components are not
+coerced into the authority hash. M3 owns presentation extraction. A later
+mixed authoritative/presentation composition must define a separate
+excluded-state store and reconstruction boundary before renderer integration.
+
 Resource keys are explicit composition-owned identities; registries and stores are never global. Resource stores copy values through per-key adapters at every public boundary. Adapters are trusted read-only-input copy functions; objects that cannot be copied without mutation, I/O, external state, or retained aliases are excluded from deterministic storage. System declarations are immutable metadata on module-level synchronous functions. The scheduler validates registered component/resource access, deterministic eligibility (including rejection of D0 component access in deterministic-required plans), same-phase dependencies, and write conflicts, then produces an input-order-independent serial plan without invoking application code. Fixed phases resolve cross-phase conflicts; same-phase conflicts require an explicit direct or transitive path. Python concurrency and non-Python execution classes are rejected in M1.
 
 `FixedStepApplication` is the single active mutation owner of its injected world and resources. Integer accumulator units preserve rational tick boundaries, catch-up backlog is retained, and immutable tick-indexed input is published as an explicit resource. Invocation-scoped query, resource, and command facades enforce declared access for normal system code. PRE/SIM commands share one buffer flushed before POST. Presentation occurs once per pump and cannot feed authoritative state. Tick failure is nontransactional until M2.
@@ -71,4 +111,9 @@ Fixed deadlines are derived from the initial time and tick number rather than ac
 
 ## Deferred architecture
 
-The following remain design constraints rather than implemented subsystems: persistent world commands and receipts, snapshots/replay files and rollback, platform device input, scenes, assets, audio, collision/physics, WebGPU, MCP, networking, editor tooling, and native acceleration. They will be added only with exercised milestone slices.
+Persistent command envelopes, canonical JSON, typed atomic application,
+receipts/diffs, state hashes, canonical snapshots, verified replay, checkpoints,
+immutable branch timelines, and project-confined workflow CLI adapters now
+exist. Platform device input, scenes, assets, audio, collision/physics, WebGPU, MCP, networking,
+editor tooling, and native acceleration remain deferred to their assigned
+exercised slices.

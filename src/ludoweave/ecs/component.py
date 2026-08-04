@@ -311,6 +311,16 @@ class ComponentRegistry:
             raise _unknown_error("component_type", _type_name(component_type))
         return schema
 
+    def component_type_for_id(self, type_id: UUID) -> type[object]:
+        """Resolve the Python authoring type for a persistent component UUID."""
+
+        schema = self.schema_for_id(type_id)
+        return next(
+            component_type
+            for component_type in self._component_types
+            if self._by_type[component_type] is schema
+        )
+
     def migrate(
         self,
         type_id: UUID,
@@ -681,9 +691,9 @@ def _require_type_id(type_id: object, *, phase: str) -> UUID:
 
 
 def _require_positive_version(value: object, *, phase: str, field: str) -> int:
-    if type(value) is not int or value < 1:
+    if type(value) is not int or value < 1 or value > 2**63 - 1:
         raise _schema_error(
-            "component versions must be positive integers",
+            "component versions must be positive integers within the signed 64-bit range",
             phase=phase,
             details={"field": field, "actual_type": type(value).__name__},
         )

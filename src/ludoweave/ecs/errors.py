@@ -55,6 +55,10 @@ class InvalidComponentValueError(WorldError):
     """Raised when a component instance or patch violates its schema."""
 
 
+class InvalidWorldCheckpointError(WorldError):
+    """Raised when an in-memory engine checkpoint violates world invariants."""
+
+
 class QueryError(LudoWeaveError):
     """Base class for query specification, iteration, and writeback failures."""
 

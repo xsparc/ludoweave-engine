@@ -234,3 +234,152 @@ GitHub-hosted Windows/macOS/Linux and Python 3.13/3.14 jobs have not run for the
 Independent architecture and quality reviews established cursor ownership, row-atomic writeback, mutation-guard precedence, buffer rollback, exact token identity, reference independence, and the M2 boundary before implementation. Findings-first code review then reproduced a value-equal deferred-token forgery and signed-zero change-detection loss, and identified five-plus query typing, frozen-write documentation, plan-driver coverage, and failed-queue wording gaps. Identity-only tokens, float-hex signatures, variadic fallback typing, focused regressions, and corrected documentation resolve every finding. The reviewer independently reran all gates and reported no remaining runtime, API, or architecture blocker.
 
 GitHub-hosted Windows/macOS/Linux and Python 3.13/3.14 jobs have not run for these changes. No cross-platform pass claim is made.
+## M2-01 full local validation — 2026-08-05, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen ruff format --check .` | 0 | 66 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 334 tests passed in 3.16 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.30 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The new focused canonical-command/architecture suite reported 45 passing tests
+in 0.50 seconds before the full gate. This evidence establishes M2-01 only; no
+atomic apply, receipt, snapshot, replay, or CLI pass claim is made yet.
+
+## M2-02 full local validation — 2026-08-05, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen ruff format --check .` | 0 | 73 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 351 tests passed in 3.44 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.31 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+Focused M2-02 transaction and generated reference-model tests passed before the
+full gate. They cover stale-hash rejection, invalid-middle rollback, dry-run,
+resource and tick staging, BaseException escape, allocator churn, limits,
+thread ownership, and production/reference authority hashes. This is not yet a
+receipt, snapshot, replay, CLI, package-build, or hosted-platform pass claim.
+
+## M2-03 full local validation — 2026-08-05, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen ruff format --check .` | 0 | 76 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 357 tests passed in 3.36 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.31 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+Focused receipt/diff tests passed before the full gate. They cover exact net
+created/destroyed/changed entities, component field and row-epoch changes,
+spawn-then-destroy audit behavior, dry-run/commit equivalence, canonical
+rejected receipts, resource/tick changes, and pre-adoption receipt/diff limits.
+This is not yet snapshot, replay, CLI, package-build, or hosted-platform
+evidence.
+
+## M2-04 full local validation — 2026-08-05, Windows, CPython 3.12
+
+The first sandboxed combined gate could not initialize uv's user cache and did
+not execute the uv-managed checks. The rerun used approved cache access. Its
+first full pytest execution found a missing reference-model error whitelist
+entry; that architecture-test defect was corrected, and the complete gate was
+rerun from the beginning.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile remained current; 39 packages resolved in 0.70 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | 80 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 373 tests passed in 3.64 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.33 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+Focused random/snapshot tests reported 16 passes before the final full gate.
+Coverage includes independent repeatable named streams, exact random
+checkpoint continuation, allocator churn and future allocation, change epochs,
+byte-identical round trips, resource/component migrations, malformed and
+hash-mismatched payloads, semantic limits, invalid resource/random state, and
+active-query atomic-load rejection. This is not yet replay, branch, CLI,
+package-build, wheel-smoke, or hosted-platform evidence.
+
+## M2-05 local validation — 2026-08-05, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen ruff format --check .` | 0 | 82 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 381 tests passed in 3.74 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.33 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+This evidence covers self-contained replay, checkpoints, hash divergence,
+immutable parent-bound branches, and repeated replay. Later independent review
+required additional one-tick branch-boundary and composition corrections, so
+the final M2 evidence supersedes this slice result.
+
+## M2 final review-candidate source gate — 2026-08-05, Windows, CPython 3.12.13
+
+Review-driven fixes added exact command equality and operation dispatch,
+exhaustive resource roles, detached session views, project-bound snapshots,
+excluded-resource preservation, strict checkpoint/schema invariants, one-tick
+replay boundaries, bounded handle reads, and stronger architecture guards.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen ruff format --check .` | 0 | 88 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 430 tests passed, 1 skipped in 8.46 seconds. The skip is the Windows symlink-capability test for an account that cannot create file symlinks. |
+
+This is source-gate evidence for the review candidate, not the final M2
+artifact/benchmark/hosted-platform claim. Documentation, build, wheel smoke,
+benchmark validation, scans, independent resnapshot, and hosted CI remain to be
+recorded after they execute on the final cut.
+
+## M2 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+The first full pytest attempt on the final review cut reported six failures
+because an established component-version error-message regex no longer matched.
+The signed-64 validation behavior was correct; stable wording was restored and
+the complete gate below was rerun. No pass is claimed for that failed attempt.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile remained current; 39 packages resolved in 0.74 milliseconds. |
+| `uv sync --frozen --all-groups` | 0 | Frozen environment checked 39 packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | 88 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 444 tests passed and one Windows symlink-capability test skipped in 8.15 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built in 0.36 seconds; Material printed its documented upstream MkDocs 2.0 warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0.dev0.tar.gz` and `ludoweave-0.1.0.dev0-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel version, doctor, headless, command, receipt, snapshot, replay, branch, and diff workflow smoke passed. |
+| `uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m2-benchmark.json` | 0 | Recorded 30 retained samples after three warmups for all four versioned informational workloads. |
+| `uv run --frozen python benchmarks/validate_m2_results.py .tmp/m2-benchmark.json` | 0 | Validated four informational M2 workloads with no timing targets. |
+| `git diff --check` | 0 | No whitespace errors. |
+| `git diff --cached --check` | 0 | The complete staged 61-file milestone diff has no whitespace errors. |
+| Credential-pattern scan | 1 | No private-key, AWS key, GitHub token, or Slack token pattern matched project files; ripgrep uses exit 1 for no matches. |
+| Backend/native import scan | 1 | No wgpu, GLFW, NumPy, Rust, Box2D, or MCP import matched source, tests, examples, benchmarks, or scripts; ripgrep uses exit 1 for no matches. |
+| Wheel content listing | 0 | Pure-Python wheel contains only the typed `ludoweave` package, distribution metadata, entry point, LICENSE, and NOTICE; no tests, generated docs, native objects, or credentials are packaged. |
+
+The final 30-sample local duration p50/p95 values were 30.2751/33.7076 ms
+for canonical 100-command round trips, 13.9896/16.9751 ms for atomic
+100-command apply, 17.1209/18.0412 ms for 1,000-entity snapshot round trips,
+and 216.5521/271.2240 ms for verified 100-batch replay. These are local
+profiling observations, not timing targets or cross-platform performance claims.
+
+Independent final code/security review reran Ruff, Pyright, the complete test
+suite, strict documentation, a minimal benchmark/validator, and diff checks. It
+reported no remaining P0, P1, or P2 actionable finding. Trusted author codecs,
+migrations, and tick executors plus a trusted/quiescent local project tree remain
+documented boundaries. Hosted M2 CI has not yet run, so no new hosted-platform
+claim is made.

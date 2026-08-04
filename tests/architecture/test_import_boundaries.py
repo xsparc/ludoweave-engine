@@ -64,6 +64,68 @@ def test_checker_rejects_ecs_importing_application(tmp_path: Path) -> None:
     assert "ludoweave.app" in violations[0].message
 
 
+@pytest.mark.parametrize(
+    "source",
+    [
+        "from ludoweave.app import Engine\n",
+        "from ludoweave.render.api import RenderBackend\n",
+        "from ludoweave.tools.cli import main\n",
+    ],
+)
+def test_world_protocol_rejects_upward_and_service_imports(tmp_path: Path, source: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "world" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "ludoweave.world.bad" in violations[0].message
+
+
+@pytest.mark.parametrize(
+    "call",
+    [
+        "eval('1')",
+        "exec('x = 1')",
+        "compile('1', '', 'eval')",
+        "import builtins\nbuiltins.eval('1')",
+        "import builtins as safe\nsafe.exec('x = 1')",
+        "from builtins import compile as build\nbuild('1', '', 'eval')",
+    ],
+)
+def test_world_protocol_rejects_arbitrary_python_evaluation(tmp_path: Path, call: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "world" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(f"{call}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "banned builtin" in violations[0].message
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "from ludoweave import Engine\n",
+        "from ludoweave import __version__\n",
+    ],
+)
+def test_world_protocol_rejects_package_root_imports(tmp_path: Path, source: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "world" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "may not import 'ludoweave'" in violations[0].message
+
+
 def test_application_may_compose_ecs_but_still_rejects_concrete_backends(
     tmp_path: Path,
 ) -> None:

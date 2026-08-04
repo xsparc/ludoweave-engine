@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. It is being designed so human-facing tools, tests, replay, and software agents can eventually operate the same canonical world through typed, validated commands.
 
-> Project status: pre-alpha. M0 and the pure-Python M1 deterministic world core are complete locally. APIs are experimental and may change without deprecation.
+> Project status: pre-alpha. M0, the pure-Python M1 deterministic world core, and the M2 typed command/snapshot/replay protocols are implemented locally. APIs and wire formats are experimental and may change without deprecation.
 
 ## What exists
 
@@ -22,8 +22,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Explicit copy-owned typed resources and deterministic conflict-aware serial schedule planning.
 - An additive fixed-step application runner with immutable virtual/recorded input and declared-access system contexts.
 - An independent dictionary reference world exercised by state-machine property tests.
+- Versioned canonical world commands with atomic transactions, optimistic hashes, dry-run, semantic diffs, and structured receipts.
+- Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
+- Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
+- Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
 
-Persistent commands and receipts, snapshots/replay, platform input, WebGPU rendering, physics, audio, networking, MCP, and editor tooling are not implemented yet.
+General game-project loading, scenes, platform input, WebGPU rendering, physics, audio, networking, MCP, and editor tooling are not implemented yet.
 
 ## Requirements
 
@@ -79,6 +83,7 @@ assert result.resolve(pending) in world.entities()
 ```
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), and [entity identity contract](docs/ecs.md) before depending on these experimental APIs.
+The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only project manifest and full CLI example.
 
 ## Quality commands
 
@@ -94,10 +99,12 @@ uv build
 uv run --frozen python scripts/smoke_wheel.py dist
 uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m1-benchmark.json
 uv run --frozen python benchmarks/validate_m1_results.py .tmp/m1-benchmark.json
+uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m2-benchmark.json
+uv run --frozen python benchmarks/validate_m2_results.py .tmp/m2-benchmark.json
 git diff --check
 ```
 
-Benchmark commands are required at M1 completion but are not part of every edit's fast gate. Passing status and local target observations are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md) and the [benchmark methodology](docs/benchmarks.md).
+Milestone benchmark commands are not part of every edit's fast gate. M1 records local target observations; M2 measurements are informational and have no timing pass threshold. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md) and the [benchmark methodology](docs/benchmarks.md).
 
 ## Contributing and project policy
 

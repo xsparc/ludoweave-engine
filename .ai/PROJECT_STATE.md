@@ -2,7 +2,7 @@
 
 ## Current milestone
 
-M0 — repository contract and walking skeleton — and M1 — deterministic world core — are complete locally. M1-01 through M1-06 implement entity allocation, component schemas/migrations, canonical and reference world storage, queries, local deferred commands, typed resources, deterministic schedule planning, immutable input, and fixed-step application execution.
+M0 — repository contract and walking skeleton — and M1 — deterministic world core — are complete. M2 — command, transaction, receipt, snapshot, replay, and data-only workflow protocols — is complete and independently accepted locally; publication and hosted CI are in progress.
 
 ## Repository identity
 
@@ -36,10 +36,17 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 - Exact integer-unit fixed-step accumulation, retained catch-up backlog, absolute virtual deadlines, immutable exact-value input snapshots, virtual/recorded input sources, and application-owned input publication.
 - Declaration-enforcing invocation contexts, canonical schedule revalidation, serial PRE/SIMULATE/flush/POST execution, structured failure attribution, BaseException-safe cleanup, and an additive installed-wheel fixed-step example.
 - Versioned M1 benchmark tooling for seven workloads with raw samples, nearest-rank p50/p95/p99, sanitized CPython/GIL/environment/commit metadata, exact artifact validation, and tamper regressions.
+- Bounded canonical JSON with exact finite-float tags, duplicate/Unicode/size validation, immutable command/transaction envelopes, and an explicit versioned operation registry with a compatibility fingerprint.
+- Single-owner authoritative world sessions, complete allocator/epoch logical images, explicit persistent resource schemas/codecs, SHA-256 state hashes, clone-staged entity/component/resource/tick transactions, optimistic pre-hash checks, dry-run, deterministic limits, and atomic pointer-swap adoption.
+- Canonical committed/dry-run/rejected transaction receipts with sanitized diagnostics, command outcomes, exact alias resolutions, and independent semantic diffs covering net entity/component/resource changes plus allocator, epoch, and tick behavior.
+- Canonical complete-authority snapshots with SHA-256 verification, bounded atomic restore, registered component/resource migrations, allocator/epoch preservation, and independently named deterministic PCG32 random streams.
+- Self-contained canonical replay timelines with compatibility headers, exact transaction/tick/hash batches, verified checkpoints, one-tick branch boundaries, and immutable parent-referenced branches.
+- Data-only project composition plus project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows with project-bound snapshots, handle-bounded input, and atomic output replacement.
+- Informational M2 benchmark/validator tooling for canonical transactions, atomic application, snapshot round trips, and replay verification.
 
 ## Next slice
 
-- M2-01 persistent typed command envelopes and schema registry; no M2 implementation has begun in this branch.
+- Publish the signed M2 candidate, open its stacked pull request, and require the complete hosted CI matrix. Begin M3 only after those hosted gates pass and final evidence is recorded.
 
 ## Validation state
 
@@ -48,6 +55,9 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 - The final 30-sample Windows/CPython 3.12.13 GIL-build benchmark artifact validates all seven versioned workloads. The 3,600-tick headless p95 was 26.8523 ms and observed the local 5×-real-time target. The representative 10,000-entity simulation-tick p95 was 196.8800 ms and did not observe the 4 ms engineering target. These are local observations, not cross-platform claims.
 - GitHub Actions run `30936533105` passed quality/documentation, Ubuntu Python 3.12/3.13/3.14, Windows Python 3.12/3.14, macOS Python 3.12/3.14, and installed-wheel smoke on all three operating systems after correcting the invalid planned `actions/checkout` v6.0.2 SHA.
 - MkDocs Material emits its upstream informational warning about the future MkDocs 2.0 project; the strict documentation build exits successfully.
+- The final M2 local gate on Windows/uv-managed CPython 3.12.13 reports 444 passing tests and one Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, successful sdist/wheel build, and successful isolated installed-wheel workflow smoke.
+- The final 30-sample M2 informational benchmark validated four workloads with no timing targets. Local p50/p95 durations were 30.2751/33.7076 ms for canonical 100-command round trips, 13.9896/16.9751 ms for atomic 100-command apply, 17.1209/18.0412 ms for 1,000-entity snapshot round trips, and 216.5521/271.2240 ms for verified 100-batch replay.
+- Independent final M2 code/security review found no remaining actionable findings and independently reproduced the 444-pass/one-skip suite. M2 hosted-platform CI has not yet run, so no new cross-platform claim is made.
 
 ## External follow-ups
 
@@ -55,4 +65,4 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 
 ## Deferred roadmap
 
-Persistent typed commands and receipts, snapshots/replay, random streams, WebGPU, MCP, physics, audio, networking, editor tooling, and native acceleration remain unimplemented. The measured 10,000-entity Python tick miss is profiling evidence only and does not satisfy the later native-code admission gate.
+General project/plugin loading, M4 recorded input, WebGPU, MCP, physics, audio, networking, editor tooling, and native acceleration remain unimplemented. The measured 10,000-entity Python tick miss is profiling evidence only and does not satisfy the later native-code admission gate.

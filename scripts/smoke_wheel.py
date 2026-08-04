@@ -300,6 +300,130 @@ def main(argv: Sequence[str] | None = None) -> int:
         if any(fixed_step.get(key) != value for key, value in fixed_expected.items()):
             raise RuntimeError(f"fixed-step example summary was invalid: {fixed_step!r}")
 
+        cli_project = temp_root / "cli-project"
+        cli_project.mkdir()
+        manifest = {
+            "protocol": "ludoweave.headless-project/1",
+            "world_id": "wheel-world",
+            "seed": "000000000000002a",
+            "platform_profile": "cpython-portable-empty-v1",
+            "dependency_lock_hash": "sha256:" + "0" * 64,
+        }
+        (cli_project / "ludoweave.project.json").write_text(
+            json.dumps(manifest, sort_keys=True, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        actor: dict[str, object] = {"kind": "test", "id": "wheel-smoke"}
+        transaction: dict[str, object] = {
+            "protocol": "ludoweave.transaction/1",
+            "world_id": "wheel-world",
+            "dry_run": False,
+            "commands": [
+                {
+                    "protocol": "ludoweave.command/1",
+                    "command_id": "wheel-spawn",
+                    "transaction_id": "wheel-transaction",
+                    "actor": actor,
+                    "operation": "entity.spawn",
+                    "operation_version": 1,
+                    "arguments": {"alias": "subject", "components": []},
+                },
+                {
+                    "protocol": "ludoweave.command/1",
+                    "command_id": "wheel-tick",
+                    "transaction_id": "wheel-transaction",
+                    "actor": actor,
+                    "operation": "world.tick",
+                    "operation_version": 1,
+                    "arguments": {"count": 1},
+                },
+            ],
+        }
+        (cli_project / "transaction.json").write_text(
+            json.dumps(transaction, sort_keys=True, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        apply_result = _run(
+            [
+                str(ludoweave),
+                "apply",
+                str(cli_project),
+                "transaction.json",
+                "--snapshot-out",
+                "after.lws",
+                "--receipt-out",
+                "receipt.json",
+                "--replay-out",
+                "run.lwr",
+                "--timeline-id",
+                "wheel-smoke",
+            ],
+            cwd=temp_root,
+        )
+        receipt = cast(dict[str, object], json.loads(apply_result.stdout))
+        if receipt.get("status") != "committed" or receipt.get("completed_ticks_after") != 1:
+            raise RuntimeError(f"installed CLI apply receipt was invalid: {receipt!r}")
+
+        _run(
+            [
+                str(ludoweave),
+                "snapshot",
+                str(cli_project),
+                "run.lwr",
+                "--tick",
+                "0",
+                "--out",
+                "before.lws",
+            ],
+            cwd=temp_root,
+        )
+        replay_result = _run(
+            [
+                str(ludoweave),
+                "replay",
+                str(cli_project),
+                "run.lwr",
+                "--verify-hashes",
+                "--snapshot-out",
+                "replayed.lws",
+            ],
+            cwd=temp_root,
+        )
+        replay_report = cast(dict[str, object], json.loads(replay_result.stdout))
+        if replay_report.get("status") != "verified" or replay_report.get("tick") != 1:
+            raise RuntimeError(f"installed CLI replay report was invalid: {replay_report!r}")
+        _run(
+            [
+                str(ludoweave),
+                "snapshot",
+                str(cli_project),
+                "run.lwr",
+                "--tick",
+                "1",
+                "--out",
+                "tick-1.lws",
+            ],
+            cwd=temp_root,
+        )
+        diff_result = _run(
+            [
+                str(ludoweave),
+                "diff",
+                str(cli_project),
+                "before.lws",
+                "after.lws",
+            ],
+            cwd=temp_root,
+        )
+        diff_report = cast(dict[str, object], json.loads(diff_result.stdout))
+        changes = cast(dict[str, object], diff_report.get("changes"))
+        if changes.get("created_entities") != ["0:0"]:
+            raise RuntimeError(f"installed CLI diff was invalid: {diff_report!r}")
+        if (cli_project / "after.lws").read_bytes() != (cli_project / "replayed.lws").read_bytes():
+            raise RuntimeError("installed CLI replay snapshot differs from apply snapshot")
+        if (cli_project / "after.lws").read_bytes() != (cli_project / "tick-1.lws").read_bytes():
+            raise RuntimeError("installed CLI extracted snapshot differs from apply snapshot")
+
     print(f"wheel smoke passed: {wheels[0].name}")
     return 0
 

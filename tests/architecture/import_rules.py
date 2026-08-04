@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rust", "wgpu"})
+_BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _REFERENCE_ALLOWED_IMPORTS = {
     "ludoweave.ecs.commands": frozenset(
         {
@@ -20,10 +21,13 @@ _REFERENCE_ALLOWED_IMPORTS = {
             "SpawnCommand",
         }
     ),
+    "ludoweave.ecs._checkpoint": frozenset(
+        {"ComponentRowCheckpoint", "ComponentTableCheckpoint", "EcsCheckpoint"}
+    ),
     "ludoweave.ecs.component": frozenset(
         {"ComponentField", "ComponentRegistry", "ComponentSchema", "ComponentValueType"}
     ),
-    "ludoweave.ecs.entity": frozenset({"EntityId"}),
+    "ludoweave.ecs.entity": frozenset({"AllocatorCheckpoint", "EntityId"}),
     "ludoweave.ecs.errors": frozenset(
         {
             "ComponentAlreadyPresentError",
@@ -34,6 +38,7 @@ _REFERENCE_ALLOWED_IMPORTS = {
             "InvalidComponentValueError",
             "InvalidEntityIdError",
             "InvalidQueryError",
+            "InvalidWorldCheckpointError",
             "MissingComponentError",
             "StaleEntityError",
         }
@@ -79,9 +84,9 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                         f"core module {module!r} imports non-core module {imported!r}",
                     )
                 )
-            if imported.startswith("ludoweave.") and not _internal_import_allowed(
-                source=module, imported=imported
-            ):
+            if (
+                imported == "ludoweave" or imported.startswith("ludoweave.")
+            ) and not _internal_import_allowed(source=module, imported=imported):
                 violations.append(
                     ImportViolation(
                         path,
@@ -89,6 +94,16 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                         f"module {module!r} may not import {imported!r}",
                     )
                 )
+        if _is_module_or_child(module, "ludoweave.world"):
+            for called, line in _resolved_calls(tree):
+                if called in _BANNED_WORLD_CALLS:
+                    violations.append(
+                        ImportViolation(
+                            path,
+                            line,
+                            f"world protocol module {module!r} calls banned builtin {called!r}",
+                        )
+                    )
     return violations
 
 
@@ -181,11 +196,15 @@ def _resolved_imports(
 
 def _internal_import_allowed(*, source: str, imported: str) -> bool:
     if source == "ludoweave":
-        return _is_module_or_child(imported, "ludoweave.app")
+        return _is_any_module_or_child(imported, ("ludoweave.app", "ludoweave.core"))
     if _is_module_or_child(source, "ludoweave.core"):
         return _is_module_or_child(imported, "ludoweave.core")
     if _is_module_or_child(source, "ludoweave.ecs"):
         return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.ecs"))
+    if _is_module_or_child(source, "ludoweave.world"):
+        return _is_any_module_or_child(
+            imported, ("ludoweave.core", "ludoweave.ecs", "ludoweave.world")
+        )
     if source == "ludoweave.render":
         return _is_any_module_or_child(
             imported, ("ludoweave.render.api", "ludoweave.render.backends")
@@ -199,7 +218,13 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
     if _is_module_or_child(source, "ludoweave.app"):
         return _is_any_module_or_child(
             imported,
-            ("ludoweave.app", "ludoweave.core", "ludoweave.ecs", "ludoweave.render.api"),
+            (
+                "ludoweave.app",
+                "ludoweave.core",
+                "ludoweave.ecs",
+                "ludoweave.render.api",
+                "ludoweave.world",
+            ),
         )
     return _is_module_or_child(source, "ludoweave.tools") or source == "ludoweave.__main__"
 
@@ -210,3 +235,39 @@ def _is_module_or_child(name: str, allowed: str) -> bool:
 
 def _is_any_module_or_child(name: str, allowed: tuple[str, ...]) -> bool:
     return any(_is_module_or_child(name, candidate) for candidate in allowed)
+
+
+def _resolved_calls(tree: ast.AST) -> list[tuple[str, int]]:
+    aliases: dict[str, str] = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                aliases[alias.asname or alias.name.partition(".")[0]] = alias.name
+        elif isinstance(node, ast.ImportFrom) and node.module is not None:
+            for alias in node.names:
+                aliases[alias.asname or alias.name] = f"{node.module}.{alias.name}"
+
+    calls: list[tuple[str, int]] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        name = _call_name(node.func)
+        if name is None:
+            continue
+        resolved = aliases.get(name, name)
+        if "." in name:
+            root, separator, remainder = name.partition(".")
+            resolved = f"{aliases.get(root, root)}{separator}{remainder}"
+        called = resolved.rpartition(".")[2]
+        if resolved == called or resolved == f"builtins.{called}":
+            calls.append((called, node.lineno))
+    return calls
+
+
+def _call_name(node: ast.expr) -> str | None:
+    if isinstance(node, ast.Name):
+        return node.id
+    if isinstance(node, ast.Attribute):
+        base = _call_name(node.value)
+        return None if base is None else f"{base}.{node.attr}"
+    return None

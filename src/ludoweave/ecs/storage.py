@@ -103,6 +103,22 @@ class DenseComponentTable:
         duplicate.structural_epoch = self.structural_epoch
         return duplicate
 
+    @classmethod
+    def from_checkpoint_rows(
+        cls,
+        rows: tuple[tuple[EntityId, object, int], ...],
+        *,
+        structural_epoch: int,
+    ) -> DenseComponentTable:
+        """Build private layout from storage-neutral canonical rows."""
+
+        restored = cls()
+        for entity_id, value, changed_epoch in rows:
+            restored.add(entity_id, value, epoch=changed_epoch)
+        restored.structural_epoch = structural_epoch
+        restored.check_invariants()
+        return restored
+
     def check_invariants(self) -> None:
         assert len(self._entities) == len(self._values) == len(self._changed_epochs)
         for row, entity_id in enumerate(self._entities):

@@ -6,12 +6,8 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
-from ludoweave.ecs import (
-    EntityAllocator,
-    EntityId,
-    InvalidEntityIdError,
-    StaleEntityError,
-)
+from ludoweave.ecs import EntityAllocator, EntityId, InvalidEntityIdError, StaleEntityError
+from ludoweave.ecs.entity import AllocatorCheckpoint
 
 
 def test_allocator_creates_distinct_live_ids() -> None:
@@ -102,6 +98,26 @@ def test_public_operations_reject_raw_indexes() -> None:
 
     with pytest.raises(InvalidEntityIdError, match="require an EntityId"):
         allocator.is_alive(cast(EntityId, 0))
+
+
+def test_checkpoint_rejects_retired_generation_zero_that_could_revive_a_handle() -> None:
+    with pytest.raises(InvalidEntityIdError) as raised:
+        AllocatorCheckpoint(generations=(0,), alive=(False,), free=(0,))
+
+    assert raised.value.code == "ecs.invalid_allocator_checkpoint"
+    assert raised.value.details == (
+        ("index", 0),
+        ("reason", "retired_generation_not_advanced"),
+    )
+
+
+@pytest.mark.parametrize("flag", [0, 1, "", "alive", None])
+def test_checkpoint_rejects_non_boolean_alive_flags(flag: object) -> None:
+    with pytest.raises(InvalidEntityIdError) as raised:
+        AllocatorCheckpoint(generations=(0,), alive=cast(tuple[bool, ...], (flag,)), free=())
+
+    assert raised.value.code == "ecs.invalid_allocator_checkpoint"
+    assert raised.value.details == (("reason", "invalid_alive_flag"),)
 
 
 @given(cycles=st.integers(min_value=1, max_value=500))
