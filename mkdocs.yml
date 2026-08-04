@@ -1,0 +1,29 @@
+site_name: LudoWeave Engine
+site_description: Deterministic, headless-first Python engine for agent-operable 2D worlds
+repo_name: ludoweave-engine
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Runtime contract: runtime-contract.md
+  - Decisions:
+      - ADR index: adr/index.md
+      - ADR-0001 — Product scope: adr/0001-deterministic-headless-agent-operable-2d.md
+      - ADR-0002 — Dependency direction: adr/0002-dependency-direction-and-backend-isolation.md
+      - ADR template: adr/template.md
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - tables

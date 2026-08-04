@@ -1,0 +1,113 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_NO_PROGRESS: "1"
+  UV_VERSION: "0.11.29"
+
+jobs:
+  quality:
+    name: Quality and documentation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e8f65f754d05d2b0f7a6 # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install uv and CPython
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Verify lockfile
+        run: uv lock --check
+      - name: Install locked environment
+        run: uv sync --frozen --all-groups
+      - name: Check formatting
+        run: uv run --frozen ruff format --check .
+      - name: Lint
+        run: uv run --frozen ruff check .
+      - name: Type check
+        run: uv run --frozen pyright
+      - name: Build documentation
+        run: uv run --frozen mkdocs build --strict
+
+  tests:
+    name: Tests (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: "3.12"
+          - os: ubuntu-latest
+            python: "3.13"
+          - os: ubuntu-latest
+            python: "3.14"
+          - os: windows-latest
+            python: "3.12"
+          - os: windows-latest
+            python: "3.14"
+          - os: macos-latest
+            python: "3.12"
+          - os: macos-latest
+            python: "3.14"
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e8f65f754d05d2b0f7a6 # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install uv and CPython
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Install locked environment
+        run: uv sync --frozen --all-groups --python ${{ matrix.python }}
+      - name: Run tests
+        run: uv run --frozen --python ${{ matrix.python }} pytest -q
+
+  wheel-smoke:
+    name: Installed wheel (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e8f65f754d05d2b0f7a6 # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install uv and baseline CPython
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Install locked environment
+        run: uv sync --frozen --all-groups
+      - name: Build sdist and wheel
+        run: uv build
+      - name: Smoke-test installed wheel
+        run: uv run --frozen python scripts/smoke_wheel.py dist

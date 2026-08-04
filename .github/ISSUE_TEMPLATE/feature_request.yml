@@ -1,0 +1,39 @@
+name: Feature request
+description: Propose a milestone-aligned capability or design change
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user outcome
+      description: Describe the user need, not only the proposed mechanism.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed capability
+      description: Explain the smallest useful behavior and its acceptance criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Scope and non-scope
+      description: Identify affected milestones, public APIs, schemas, determinism, security, and backend boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I reviewed the current roadmap, architecture, and accepted ADRs.
+          required: true
+        - label: This proposal does not depend on arbitrary Python evaluation or unauthenticated remote control.
+          required: true
