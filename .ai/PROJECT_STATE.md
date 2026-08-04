@@ -46,13 +46,12 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 - Local validation completed on Windows with uv-managed CPython 3.12.13.
 - The complete M1 final local suite reports 303 passing tests, zero Ruff/Pyright findings, a strict documentation build, successful sdist/wheel build, and successful isolated installed-wheel smoke covering both M0 and M1 examples.
 - The final 30-sample Windows/CPython 3.12.13 GIL-build benchmark artifact validates all seven versioned workloads. The 3,600-tick headless p95 was 26.8523 ms and observed the local 5×-real-time target. The representative 10,000-entity simulation-tick p95 was 196.8800 ms and did not observe the 4 ms engineering target. These are local observations, not cross-platform claims.
-- GitHub-hosted Windows/macOS/Linux and Python 3.13/3.14 jobs are configured but have not been executed in this working tree. Their status must not be reported as passing until CI runs.
+- GitHub Actions run `30936533105` passed quality/documentation, Ubuntu Python 3.12/3.13/3.14, Windows Python 3.12/3.14, macOS Python 3.12/3.14, and installed-wheel smoke on all three operating systems after correcting the invalid planned `actions/checkout` v6.0.2 SHA.
 - MkDocs Material emits its upstream informational warning about the future MkDocs 2.0 project; the strict documentation build exits successfully.
 
 ## External follow-ups
 
 - Verify and reserve the `ludoweave` name before publishing to PyPI.
-- Run the committed CI workflow after the changes are pushed through the maintainer's normal review process.
 
 ## Deferred roadmap
 

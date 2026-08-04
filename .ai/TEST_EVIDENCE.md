@@ -168,7 +168,21 @@ The benchmark miss is recorded without a performance pass claim. It authorizes p
 
 Findings-first review reproduced and drove regressions for forged schedule execution, incomplete flush diagnostics, noncanonical resource failure ordering, hostile input objects/mappings, BaseException query-lease leakage, unmodeled entity-set reads/writes, writable engine-owned input, exact bool/float and signed-zero equality, protocol/runtime surface mismatch, and underspecified benchmark validation/metadata. Canonical plan revalidation, exact input signatures, BaseException-safe cleanup, restricted M1 structural operations, exact public protocols, hostile-source wrapping, exact benchmark schemas, tamper tests, and GIL/free-threaded metadata resolve those findings. The reviewer independently reran 130 focused tests, the 303-test full suite, Ruff format/lint, strict Pyright, a minimal benchmark, and the official 30-sample artifact validator, then accepted M1-06 with no remaining blocking or non-blocking code finding.
 
-GitHub-hosted Windows/macOS/Linux and Python 3.13/3.14 jobs have not run for these changes. No hosted or cross-platform pass claim is made.
+### Hosted CI — PR #1
+
+The first PR run (`30936335552`) failed before checkout on every job because the planned `actions/checkout` v6.0.2 SHA `de0fac2e4500dabe0009e8f65f754d05d2b0f7a6` does not exist upstream. The official tag API resolved v6.0.2 to `de0fac2e4500dabe0009e67214ff5f5447ce83dd`; `astral-sh/setup-uv` v8.1.0 independently resolved to the already configured `08807647e7069bb48b6ef5acd8ec9567f424441b`. The three checkout references were corrected without changing workflow privileges or credential persistence.
+
+GitHub Actions run `30936533105` then completed successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed formatting, lint, strict Pyright, lock verification, and strict MkDocs build. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three matrix jobs passed. |
+| Tests — Windows, Python 3.12/3.14 | Both matrix jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both matrix jobs passed. |
+| Installed wheel — Ubuntu/Windows/macOS, Python 3.12 | All three build and isolated-wheel smoke jobs passed. |
+
+Some successful jobs emitted non-fatal setup-uv cache-reservation annotations because another matrix job created the same cache first. No test, build, documentation, or wheel-smoke step failed in the corrected run.
 
 ## M1-05 final local validation — 2026-08-05, Windows, CPython 3.12.13
 
