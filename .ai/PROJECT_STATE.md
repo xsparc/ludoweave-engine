@@ -6,7 +6,7 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 
 ## Repository identity
 
-- Canonical target repository: `ludoweave-engine`.
+- Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
 - Development version: `0.1.0.dev0`.
 - License and contribution model: Apache-2.0 with DCO sign-off.
@@ -51,7 +51,6 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 
 ## External follow-ups
 
-- Rename the current GitHub repository to `ludoweave-engine`.
 - Verify and reserve the `ludoweave` name before publishing to PyPI.
 - Run the committed CI workflow after the changes are pushed through the maintainer's normal review process.
 
