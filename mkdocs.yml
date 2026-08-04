@@ -13,6 +13,7 @@ nav:
   - ECS and world storage: ecs.md
   - Fixed-step application: fixed-step-application.md
   - Persistent commands: commands.md
+  - 2D rendering: rendering.md
   - Headless command workflow: cli-workflows.md
   - Benchmarks: benchmarks.md
   - Decisions:
@@ -29,6 +30,9 @@ nav:
       - ADR-0010 - Snapshots and random state: adr/0010-canonical-snapshots-hashes-and-random-streams.md
       - ADR-0011 - Replay and branches: adr/0011-replay-checkpoints-and-immutable-branches.md
       - ADR-0012 - CLI composition and paths: adr/0012-data-only-cli-composition-and-path-confinement.md
+      - ADR-0013 - Presentation ownership: adr/0013-presentation-extraction-and-render-resource-ownership.md
+      - ADR-0014 - Render graph: adr/0014-explicit-render-graph-dependencies-and-lifetimes.md
+      - ADR-0015 - Optional wgpu adapter: adr/0015-single-optional-wgpu-adapter-and-exact-pins.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

@@ -6,6 +6,10 @@ M0 — repository contract and walking skeleton — M1 — deterministic world c
 
 ## Repository identity
 
+M3 rendering is locally complete on `codex/m3-rendering-vertical-slice` and
+awaits DCO-signed publication plus hosted Windows/macOS/Linux graphics
+validation before the milestone is declared complete.
+
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
 - Development version: `0.1.0.dev0`.
@@ -43,10 +47,14 @@ M0 — repository contract and walking skeleton — M1 — deterministic world c
 - Self-contained canonical replay timelines with compatibility headers, exact transaction/tick/hash batches, verified checkpoints, one-tick branch boundaries, and immutable parent-referenced branches.
 - Data-only project composition plus project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows with project-bound snapshots, handle-bounded input, and atomic output replacement.
 - Informational M2 benchmark/validator tooling for canonical transactions, atomic application, snapshot round trips, and replay verification.
+- Frozen backend-neutral render descriptors, explicit target/camera command lists, scoped generational resource handles, deterministic presentation extraction, and graph dependency/lifetime validation.
+- A validation-only `NullRenderDevice` with fence-deferred physical reuse and an optional exact wgpu/rendercanvas/GLFW adapter isolated from package roots and canonical world state.
+- Instanced atlas sprites, translated/zoomed/rotated orthographic cameras, stable layer/z/entity ordering, tile batches, debug lines, built-in diagnostic glyphs, resize/minimize behavior, immutable offscreen RGBA capture, and typed device-loss diagnostics.
+- M3 renderer benchmark/validator tooling for 1k/10k extraction, Null submission, and wgpu CPU submission with raw p50/p95/p99 evidence and exact draw counts.
 
 ## Next slice
 
-- Begin M3 presentation extraction and rendering-contract work on a task-scoped branch from the validated M2 head. Preserve M2 authority boundaries and do not begin later milestone subsystems opportunistically.
+- After M3 hosted validation and publication, begin only the authorized M4 input, assets, collision, and Clockwork Arena slice on a new task-scoped branch from the validated M3 head.
 
 ## Validation state
 
@@ -59,6 +67,8 @@ M0 — repository contract and walking skeleton — M1 — deterministic world c
 - The final 30-sample M2 informational benchmark validated four workloads with no timing targets. Local p50/p95 durations were 30.2751/33.7076 ms for canonical 100-command round trips, 13.9896/16.9751 ms for atomic 100-command apply, 17.1209/18.0412 ms for 1,000-entity snapshot round trips, and 216.5521/271.2240 ms for verified 100-batch replay.
 - Independent final M2 code/security and quality reviews found no remaining actionable findings and independently reproduced the 444-pass/one-skip suite.
 - GitHub Actions run `30947073913` passed all 11 M2 jobs: quality/documentation; Ubuntu tests on Python 3.12/3.13/3.14; Windows and macOS tests on Python 3.12/3.14; and isolated installed-wheel smoke on Ubuntu, Windows, and macOS.
+- The final local M3 graphics gate on Windows/uv-managed CPython 3.12.13 reports 485 passing tests and one Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, and a successful no-dependency installed-wheel smoke. A separate frozen base sync removed all graphics packages and reported 479 passes with the symlink and graphics capability skips.
+- The real Windows GLFW example and the offscreen clear/sprite/capture fixtures completed. The 30-sample M3 artifact validated six workloads with one draw each. Local 10k extraction/packing p50/p95/p99 was 35.4460/41.9722/51.8362 ms; wgpu CPU submission was 5.3753/6.5363/6.9215 ms. Neither observed the 3 ms starting target; no target pass is claimed.
 
 ## External follow-ups
 
@@ -66,4 +76,4 @@ M0 — repository contract and walking skeleton — M1 — deterministic world c
 
 ## Deferred roadmap
 
-General project/plugin loading, M4 recorded input, WebGPU, MCP, physics, audio, networking, editor tooling, and native acceleration remain unimplemented. The measured 10,000-entity Python tick miss is profiling evidence only and does not satisfy the later native-code admission gate.
+General project/plugin loading, M4 recorded input/platform events, asset pipelines, MCP, physics, audio, networking, editor tooling, automatic device recovery, rich text, 3D, and native acceleration remain unimplemented. The measured M1 and M3 target misses are profiling evidence only and do not satisfy the later native-code admission gate.

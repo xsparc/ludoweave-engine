@@ -35,6 +35,13 @@ classifiers = [
 ]
 dependencies = []
 
+[project.optional-dependencies]
+graphics = [
+  "glfw==2.10.2",
+  "rendercanvas[glfw]==2.7.2",
+  "wgpu==0.32.0",
+]
+
 [project.scripts]
 ludoweave = "ludoweave.tools.cli:main"
 

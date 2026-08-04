@@ -26,7 +26,7 @@ class RenderDescriptor:
                     code="render.invalid_descriptor",
                     subsystem="render",
                     phase="descriptor",
-                    details={"field": field, "value": repr(value)},
+                    details={"field": field, "actual_type": type(value).__name__},
                 )
         label = self.label
         if type(label) is not str or not label.strip():

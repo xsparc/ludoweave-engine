@@ -14,4 +14,7 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0010: canonical snapshots, state hashes, and random streams](0010-canonical-snapshots-hashes-and-random-streams.md)
 - [ADR-0011: replay checkpoints and immutable timeline branches](0011-replay-checkpoints-and-immutable-branches.md)
 - [ADR-0012: data-only CLI composition and project-relative path confinement](0012-data-only-cli-composition-and-path-confinement.md)
+- [ADR-0013: presentation extraction and render-resource ownership](0013-presentation-extraction-and-render-resource-ownership.md)
+- [ADR-0014: explicit render-graph dependencies and lifetimes](0014-explicit-render-graph-dependencies-and-lifetimes.md)
+- [ADR-0015: single optional wgpu adapter and exact dependency pins](0015-single-optional-wgpu-adapter-and-exact-pins.md)
 - [ADR template](template.md)

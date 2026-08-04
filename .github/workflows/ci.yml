@@ -111,3 +111,28 @@ jobs:
         run: uv build
       - name: Smoke-test installed wheel
         run: uv run --frozen python scripts/smoke_wheel.py dist
+
+  graphics:
+    name: Graphics smoke (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install uv, CPython, and locked graphics extra
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Install locked graphics environment
+        run: uv sync --frozen --all-groups --extra graphics
+      - name: Run clear, sprite, capture, resize, and loss smoke
+        run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py

@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. It is being designed so human-facing tools, tests, replay, and software agents can eventually operate the same canonical world through typed, validated commands.
 
-> Project status: pre-alpha. M0, the pure-Python M1 deterministic world core, and the M2 typed command/snapshot/replay protocols are implemented locally. APIs and wire formats are experimental and may change without deprecation.
+> Project status: pre-alpha. M0, the pure-Python M1 deterministic world core, M2 typed command/snapshot/replay protocols, and the M3 isolated 2D rendering vertical slice are implemented. APIs and wire formats are experimental and may change without deprecation.
 
 ## What exists
 
@@ -26,8 +26,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
+- Immutable presentation extraction, backend-neutral descriptors and scoped generational render handles, explicit render-graph validation, and deferred destruction.
+- An optional exactly pinned wgpu/rendercanvas/GLFW adapter with orthographic instanced atlas sprites, tile/debug batches, resize, typed loss, and offscreen RGBA capture.
 
-General game-project loading, scenes, platform input, WebGPU rendering, physics, audio, networking, MCP, and editor tooling are not implemented yet.
+General game-project loading, scenes/assets, platform input, physics, audio, networking, MCP, editor tooling, 3D, and automatic GPU recovery are not implemented yet.
 
 ## Requirements
 
@@ -48,6 +50,15 @@ uv run python examples/fixed_step_world.py --ticks 6
 ```
 
 The example prints one JSON summary and uses virtual time plus the null renderer, so it does not open a window or wait in real time.
+
+GPU rendering is an optional locked extra and is selected only by a composition root:
+
+```console
+uv sync --frozen --all-groups --extra graphics
+uv run --frozen --extra graphics python examples/hello_sprite.py
+```
+
+The sprite example renders two atlas regions in one instanced draw and prints a versioned offscreen-capture summary. Add `--window` to exercise the rendercanvas/GLFW window surface on a desktop session.
 
 ## Public API
 
@@ -82,7 +93,7 @@ result = world.flush(commands)
 assert result.resolve(pending) in world.entities()
 ```
 
-See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), and [entity identity contract](docs/ecs.md) before depending on these experimental APIs.
+See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), and [2D rendering contract](docs/rendering.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only project manifest and full CLI example.
 
 ## Quality commands
@@ -101,10 +112,12 @@ uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-o
 uv run --frozen python benchmarks/validate_m1_results.py .tmp/m1-benchmark.json
 uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m2-benchmark.json
 uv run --frozen python benchmarks/validate_m2_results.py .tmp/m2-benchmark.json
+uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m3-benchmark.json
+uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m3-benchmark.json
 git diff --check
 ```
 
-Milestone benchmark commands are not part of every edit's fast gate. M1 records local target observations; M2 measurements are informational and have no timing pass threshold. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md) and the [benchmark methodology](docs/benchmarks.md).
+Milestone benchmark commands are not part of every edit's fast gate. M1 and M3 record local target observations; M2 measurements are informational and have no timing pass threshold. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md) and the [benchmark methodology](docs/benchmarks.md).
 
 ## Contributing and project policy
 

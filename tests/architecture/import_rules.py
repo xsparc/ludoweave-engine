@@ -5,7 +5,8 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-_BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rust", "wgpu"})
+_BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rendercanvas", "rust", "wgpu"})
+_GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _REFERENCE_ALLOWED_IMPORTS = {
     "ludoweave.ecs.commands": frozenset(
@@ -68,7 +69,10 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
             tree, source_module=module, is_package=path.name == "__init__.py"
         ):
             root = imported.partition(".")[0]
-            if root in _BANNED_EXTERNAL_ROOTS:
+            adapter_import = (
+                root in _GRAPHICS_ADAPTER_ROOTS and module == "ludoweave.render.backends.wgpu"
+            )
+            if root in _BANNED_EXTERNAL_ROOTS and not adapter_import:
                 violations.append(
                     ImportViolation(path, line, f"source imports banned dependency {root!r}")
                 )
@@ -206,15 +210,13 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
             imported, ("ludoweave.core", "ludoweave.ecs", "ludoweave.world")
         )
     if source == "ludoweave.render":
-        return _is_any_module_or_child(
-            imported, ("ludoweave.render.api", "ludoweave.render.backends")
-        )
-    if _is_module_or_child(source, "ludoweave.render.api"):
-        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.render.api"))
+        return _is_module_or_child(imported, "ludoweave.render")
+    if _is_module_or_child(source, "ludoweave.render") and not _is_module_or_child(
+        source, "ludoweave.render.backends"
+    ):
+        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.render"))
     if _is_module_or_child(source, "ludoweave.render.backends"):
-        return _is_any_module_or_child(
-            imported, ("ludoweave.core", "ludoweave.render.api", "ludoweave.render.backends")
-        )
+        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.render"))
     if _is_module_or_child(source, "ludoweave.app"):
         return _is_any_module_or_child(
             imported,
@@ -223,6 +225,8 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
                 "ludoweave.core",
                 "ludoweave.ecs",
                 "ludoweave.render.api",
+                "ludoweave.render.device",
+                "ludoweave.render.extraction",
                 "ludoweave.world",
             ),
         )

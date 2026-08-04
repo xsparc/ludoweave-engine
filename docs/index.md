@@ -2,7 +2,7 @@
 
 **Build worlds humans can play and agents can operate.**
 
-LudoWeave is a pre-alpha, deterministic, headless-first Python engine for 2D and layered-2D worlds. M0 established the repository contract and lifecycle skeleton. M1 added the deterministic world/application core. M2 adds typed persistent commands, atomic transactions and receipts, canonical authority snapshots and hashes, deterministic random streams, verified replay/checkpoints, immutable branches, and a data-only headless CLI workflow. This is not yet a complete game runtime.
+LudoWeave is a pre-alpha, deterministic, headless-first Python engine for 2D and layered-2D worlds. M0 established the repository contract and lifecycle skeleton. M1 added the deterministic world/application core. M2 added typed persistent commands, atomic transactions and receipts, canonical authority snapshots and hashes, deterministic random streams, verified replay/checkpoints, immutable branches, and a data-only headless CLI workflow. M3 adds isolated Null and wgpu 2D rendering. This is not yet a complete game runtime.
 
 ## Current capabilities
 
@@ -22,8 +22,10 @@ LudoWeave is a pre-alpha, deterministic, headless-first Python engine for 2D and
 - Complete snapshots and engine-owned deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` command workflows.
+- Backend-neutral render resources, immutable extraction, explicit render graphs, and deferred generational-handle destruction.
+- An optional wgpu/rendercanvas/GLFW adapter with instanced atlas sprites, tiles, orthographic cameras, debug fixtures, resize, and offscreen capture.
 
-Read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), and [accepted decisions](adr/index.md) before building on the experimental API.
+Read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [rendering contract](rendering.md), and [accepted decisions](adr/index.md) before building on the experimental API.
 
 ## Quick check
 
@@ -34,3 +36,10 @@ uv run python examples/hello_headless.py --ticks 120
 ```
 
 Neither command needs a display, GPU, native compiler, or network listener.
+
+The optional GPU slice has a separate locked install and smoke:
+
+```console
+uv sync --frozen --all-groups --extra graphics
+uv run --frozen --extra graphics python examples/hello_sprite.py
+```

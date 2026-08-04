@@ -20,23 +20,23 @@ composition roots  ludoweave.tools, examples
 
 application        ludoweave.app ----> world/runtime   ludoweave.ecs
                          |                    |
-service contract   ludoweave.render.api      |
+render contracts   ludoweave.render.api/device/contracts/extraction
                          |                    |
 core contracts     ludoweave.core <----------+
 
-concrete adapter   ludoweave.render.backends.null
-        -> implements ludoweave.render.api
+concrete adapters  ludoweave.render.backends.null[_device]
+                   ludoweave.render.backends.wgpu (optional exact module)
 ```
 
 - `ludoweave.core` imports only the Python standard library.
 - `ludoweave.ecs` may depend on core errors but not application, rendering, tools, or concrete backends.
 - `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
-- `ludoweave.render.api` may depend on core errors but not application or tools.
+- Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
 - The package root may re-export the deliberately small application API but never a concrete backend or third-party native object.
-- wgpu, GLFW, NumPy storage objects, and future native extension objects are forbidden from public APIs.
+- Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW. NumPy storage and future native extension objects are forbidden from engine source and public APIs.
 
 The M2 CLI keeps filesystem policy in `ludoweave.tools`. Its data-only
 headless-project manifest cannot name Python modules or callables, and every
@@ -107,13 +107,38 @@ Fixed deadlines are derived from the initial time and tick number rather than ac
 
 ## Backend isolation
 
-`RenderBackend` is owned by the engine, while concrete implementations live behind it. The M0 `NullRenderBackend` validates descriptors and lifecycle ordering without graphics libraries. A future wgpu backend must implement the same engine-owned boundary; wgpu objects may not appear in application configuration, components, commands, snapshots, examples, or root exports.
+`RenderBackend` is owned by the M0 engine lifecycle, while M3's
+`RenderDevice` owns resource creation, submission, fences, capture, and
+destruction. Both are engine protocols; neither creates a global singleton.
+The Null implementations validate lifecycle, resource generations, command
+targets, pipeline/texture use, graph hazards, and deferred destruction without
+graphics libraries.
+
+The optional production device lives only in
+`ludoweave.render.backends.wgpu`. Its provider imports and native objects do
+not enter package roots, application configuration, ECS/world state, command
+protocols, snapshots, replay, or captures. Composition roots explicitly
+select it. Provider capture arrays are immediately normalized to immutable
+RGBA bytes. Exact dependency pins and upgrade gates are recorded in ADR-0015.
+
+M3 presentation frames are immutable copies outside `WorldSession`. They may
+interpolate previous/current transforms and carry a camera, layers, tiles, and
+debug records. They identify a completed tick for diagnostics but cannot be
+serialized by the canonical authority codec and cannot affect hashes or
+future commands. Draw lists name an explicit target and camera matrix. Scoped
+generational handles are retired logically at once and destroyed physically
+only after their last referencing fence completes. See the
+[rendering contract](rendering.md) and ADR-0013.
+
+Render graphs use explicit reads, writes, dependency paths, and transient
+first/last passes. Stable topological compilation rejects cycles,
+read-before-write, lifetime escapes, and unordered writer hazards before any
+GPU submission. Physical transient allocation/aliasing is deferred.
 
 ## Deferred architecture
 
-Persistent command envelopes, canonical JSON, typed atomic application,
-receipts/diffs, state hashes, canonical snapshots, verified replay, checkpoints,
-immutable branch timelines, and project-confined workflow CLI adapters now
-exist. Platform device input, scenes, assets, audio, collision/physics, WebGPU, MCP, networking,
-editor tooling, and native acceleration remain deferred to their assigned
-exercised slices.
+Persistent commands/receipts, snapshots/hashes, replay/branches,
+project-confined workflow CLI, and the isolated M3 Null/wgpu 2D vertical slice
+now exist. Platform input, general scenes/assets, audio, collision/physics,
+MCP, networking, editor tooling, rich text, automatic device recovery, 3D, and
+native acceleration remain deferred to their assigned exercised slices.

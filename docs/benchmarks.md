@@ -43,3 +43,25 @@ No M2 timing or memory budget is defined. The validator therefore requires
 `target: null` and checks only artifact integrity. These measurements support
 future profiling; they do not constitute a performance pass, cross-platform
 claim, or evidence for native acceleration.
+
+## M3 renderer workloads
+
+M3 records extraction plus 64-byte instance packing and CPU submission through
+both the Null and wgpu devices at 1,000 and 10,000 visible sprites:
+
+```console
+uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m3-benchmark.json
+uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m3-benchmark.json
+```
+
+Every workload records raw `perf_counter_ns` samples and nearest-rank
+p50/p95/p99, exact visible-sprite and draw counts, warmups, dependency
+versions, sanitized machine metadata, engine version, commit/dirty state, and
+engine-owned render capability limits. The normal 1k and 10k workloads must
+report one draw, proving that results are not produced with per-sprite draws.
+
+The validator recomputes all distributions and the design's 3 ms p95 starting
+targets for 10k extraction/packing and wgpu CPU submission. It records whether
+each target was observed and validates that boolean against measured data; it
+does not turn an honest local miss into an artifact failure or a performance
+pass. Cross-platform timing claims require controlled runners.

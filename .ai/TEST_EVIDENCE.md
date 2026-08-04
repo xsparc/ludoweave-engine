@@ -401,3 +401,69 @@ run completed successfully:
 
 All 11 jobs in run `30947073913` passed. This supplies the cross-platform M2
 evidence that was deliberately not claimed by the local gate.
+
+## M3 local validation — 2026-08-05, Windows, CPython 3.12.13
+
+Development-focused renderer checks reached 51 passes, then the graphics-enabled
+full suite reached 484 passes and one existing Windows symlink-capability skip.
+The final cut added the rotated-camera regression and produced the complete gate
+below. An earlier real offscreen clear exposed wgpu-py 0.32's Windows queue
+callback ABI mismatch; the exact adapter now contains and documents the native
+device-poll workaround. The failing attempt raised typed
+`render.device_lost`; no pass was claimed for it.
+
+The first graphics-free `uv sync` attempt could not open uv's managed user cache
+inside the filesystem sandbox and did not execute tests. The approved rerun
+completed and removed `cffi`, `glfw`, `numpy`, `pycparser`, `rendercanvas`, and
+`wgpu`, proving the optional dependency boundary:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv sync --frozen --all-groups` | 0 | Removed six graphics/provider packages from the base environment. |
+| `uv run --frozen pytest -q` | 0 | 479 tests passed and two tests skipped: the Windows symlink capability and graphics-extra module capability. |
+
+The real window composition was also executed outside the sandbox:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen --extra graphics python examples/hello_sprite.py --width 16 --height 8 --window` | 0 | Created the rendercanvas/GLFW surface, submitted one draw with two sprite instances, completed the fence, emitted the versioned JSON summary, and closed. |
+
+The final local gate used the locked graphics extra:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile resolved 46 packages in 0.70 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Frozen environment checked 45 packages in 2 milliseconds. |
+| `uv run --frozen --extra graphics ruff format --check .` | 0 | 105 Python files were already formatted. |
+| `uv run --frozen --extra graphics ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen --extra graphics pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen --extra graphics pytest -q` | 0 | 485 tests passed and one Windows symlink-capability test skipped in 13.72 seconds. This includes five real offscreen wgpu/example tests. |
+| `uv run --frozen --extra graphics mkdocs build --strict` | 0 | Documentation built in 0.36 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0.dev0.tar.gz` and pure `ludoweave-0.1.0.dev0-py3-none-any.whl`. |
+| `uv run --frozen --extra graphics python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel smoke passed version, doctor, M0-M2 workflows, package/render imports, and structured missing-graphics diagnostics. |
+| `uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m3-benchmark-final.json` | 0 | Recorded 30 retained samples after three warmups for all six M3 workloads. |
+| `uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m3-benchmark-final.json` | 0 | Validated all workload schemas, distributions, exact dependency versions, sanitized metadata, one-draw invariants, and two target observations; zero targets were met. |
+| `git diff --check` | 0 | No whitespace errors in the tracked diff. |
+
+The final Windows/CPython 3.12.13 local duration observations were:
+
+| Workload | p50 | p95 | p99 | Draws | 3 ms target |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Extraction/packing, 1,000 sprites | 3.2777 ms | 3.6115 ms | 4.1763 ms | 1 | Not assigned |
+| Extraction/packing, 10,000 sprites | 35.4460 ms | 41.9722 ms | 51.8362 ms | 1 | Not observed |
+| Null submission, 1,000 sprites | 0.0081 ms | 0.0124 ms | 0.0465 ms | 1 | Not assigned |
+| Null submission, 10,000 sprites | 0.0077 ms | 0.0084 ms | 0.0085 ms | 1 | Not assigned |
+| wgpu CPU submission, 1,000 sprites | 0.5095 ms | 0.8001 ms | 0.8055 ms | 1 | Not assigned |
+| wgpu CPU submission, 10,000 sprites | 5.3753 ms | 6.5363 ms | 6.9215 ms | 1 | Not observed |
+
+The misses are recorded performance risks, not compatibility failures, target
+passes, cross-platform claims, or authorization for native acceleration.
+
+A separate final audit found no credential/private-key pattern. The backend
+import scan found only the three expected wgpu/rendercanvas imports inside
+`ludoweave.render.backends.wgpu`; no NumPy, MCP, Box2D, Rust/PyO3, or arbitrary
+evaluation import/call entered source/examples/benchmarks/scripts. The wheel
+listing contains only the typed package, metadata, entry point, LICENSE, and
+NOTICE; it contains no native objects, tests, generated docs, or credentials.
+Hosted Windows/macOS/Linux graphics validation has not yet run, so no hosted M3
+claim is made here.

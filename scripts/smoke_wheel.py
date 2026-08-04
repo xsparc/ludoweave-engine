@@ -90,6 +90,25 @@ def main(argv: Sequence[str] | None = None) -> int:
             cwd=temp_root,
         )
 
+        render_boundary_smoke = textwrap.dedent(
+            """
+            import sys
+
+            import ludoweave.render
+            from ludoweave.core.errors import RenderError
+            from ludoweave.render.backends.wgpu import WgpuRenderDevice
+
+            assert not ({"wgpu", "rendercanvas", "glfw", "numpy"} & set(sys.modules))
+            try:
+                WgpuRenderDevice()
+            except RenderError as error:
+                assert error.code == "render.backend_dependency_missing"
+            else:
+                raise AssertionError("no-dependency wheel unexpectedly initialized wgpu")
+            """
+        )
+        _run([str(python), "-I", "-c", render_boundary_smoke], cwd=temp_root)
+
         schema_smoke = textwrap.dedent(
             """
             from collections.abc import Mapping

@@ -45,6 +45,14 @@ class NullRenderBackend:
     def initialize(self, descriptor: RenderDescriptor) -> None:
         if self._state is not _NullState.CREATED:
             self._raise_ordering_error("initialize")
+        if type(descriptor) is not RenderDescriptor:
+            raise RenderError(
+                "null renderer requires an exact RenderDescriptor",
+                code="render.invalid_descriptor",
+                subsystem="render",
+                phase="initialize",
+                details={"actual_type": type(descriptor).__name__},
+            )
         self._descriptor = descriptor
         self._state = _NullState.READY
 

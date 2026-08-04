@@ -1,5 +1,7 @@
 """Dependency-direction and backend-isolation acceptance tests."""
 
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -62,6 +64,35 @@ def test_checker_rejects_ecs_importing_application(tmp_path: Path) -> None:
     assert len(violations) == 1
     assert "ludoweave.ecs.bad" in violations[0].message
     assert "ludoweave.app" in violations[0].message
+
+
+@pytest.mark.parametrize("provider", ["glfw", "rendercanvas", "wgpu", "numpy"])
+def test_provider_and_storage_imports_are_confined_to_exact_adapter(
+    tmp_path: Path, provider: str
+) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "render" / "api_leak.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(f"import {provider}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert f"banned dependency '{provider}'" in violations[0].message
+
+
+def test_package_and_render_contract_imports_do_not_eagerly_load_graphics_providers() -> None:
+    script = (
+        "import sys; import ludoweave; import ludoweave.render; "
+        "assert not ({'wgpu','rendercanvas','glfw','numpy'} & set(sys.modules))"
+    )
+    result = subprocess.run(
+        (sys.executable, "-I", "-c", script),
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
 
 
 @pytest.mark.parametrize(
