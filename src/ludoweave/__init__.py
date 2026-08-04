@@ -1,4 +1,4 @@
-"""Small experimental public surface for LudoWeave Engine M0."""
+"""Small experimental root surface for LudoWeave Engine."""
 
 from importlib.metadata import version as distribution_version
 from typing import Final

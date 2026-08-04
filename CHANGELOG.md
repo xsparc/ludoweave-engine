@@ -9,6 +9,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 ### Added
 
 - M0 repository contract and deterministic headless walking skeleton.
+- M1 generational entity IDs and deterministic slot allocator with structured stale-handle failures.
+- Explicit component UUIDs, immutable schema registries, validation metadata, and adjacent forward migrations.
+- Canonical dense/sparse world storage, copy-safe component ownership, change epochs, cloning, and an independent dictionary reference model.
+- Storage-neutral typed queries, changed-epoch filters, explicit writable row cursors, and private plan caching.
+- World-bound local structural command buffers with exact deferred-token ownership and atomic clone-staged flush.
+- Explicit typed resources with copy-owned singleton storage and deterministic conflict-aware serial schedule planning.
+- Additive fixed-step application runtime with immutable input, declaration-enforcing system contexts, retained catch-up backlog, and one PRE/SIM command flush before POST.
+- Sanitized M1 benchmark and validation tooling with raw samples, p50/p95/p99 distributions, environment metadata, and explicit local target observations.
 
 ## 0.1.0.dev0 - 2026-08-04
 

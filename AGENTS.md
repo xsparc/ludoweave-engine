@@ -11,7 +11,7 @@ This file is the operating contract for human and automated contributors to Ludo
 
 ## Authoritative rules
 
-1. Canonical runtime state belongs to the future ECS/world store.
+1. Canonical runtime state belongs to the ECS/world store as it is introduced through M1.
 2. Headless execution is first-class.
 3. Every externally initiated world mutation must eventually be a versioned command that produces a receipt.
 4. Public APIs must not expose wgpu, GLFW, NumPy storage, or native extension objects.
@@ -37,4 +37,4 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 contains configuration, clocks, lifecycle, structured errors, a null renderer, CLI diagnostics, and a headless example. ECS, commands/receipts, WebGPU, MCP, physics, audio, networking, editor work, benchmarks, and native code are out of scope.
+M0 and M1 are complete locally. The user has authorized milestone work through M6, but each milestone must still be implemented and fully validated on its own task-scoped branch before automatic commit, push, and pull-request creation. M2-01 persistent typed command envelopes and schema registry is next; snapshots, WebGPU, MCP, physics, audio, networking, editor work, and native code remain out of scope until their assigned roadmap slices. The complete-M1 benchmark records a substantial local 10,000-entity tick target miss; it does not authorize native acceleration.

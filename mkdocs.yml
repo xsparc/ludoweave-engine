@@ -10,10 +10,18 @@ nav:
   - Home: index.md
   - Architecture: architecture.md
   - Runtime contract: runtime-contract.md
+  - ECS and world storage: ecs.md
+  - Fixed-step application: fixed-step-application.md
+  - M1 benchmarks: benchmarks.md
   - Decisions:
       - ADR index: adr/index.md
       - ADR-0001 — Product scope: adr/0001-deterministic-headless-agent-operable-2d.md
       - ADR-0002 — Dependency direction: adr/0002-dependency-direction-and-backend-isolation.md
+      - ADR-0003 — Component identity: adr/0003-component-identity-and-migrations.md
+      - ADR-0004 — World storage: adr/0004-canonical-world-storage-and-epochs.md
+      - ADR-0005 — Queries and local commands: adr/0005-query-cursors-and-local-command-buffers.md
+      - ADR-0006 — Resources and scheduling: adr/0006-explicit-resources-and-conflict-aware-serial-scheduling.md
+      - ADR-0007 — Fixed-step application: adr/0007-fixed-step-application-input-and-system-context.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

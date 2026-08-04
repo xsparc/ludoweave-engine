@@ -1,6 +1,6 @@
 # Decisions Pending
 
-No M0 architecture decision is currently blocked.
+No architecture decision is currently blocked.
 
 Operational follow-ups outside repository implementation:
 

@@ -1,4 +1,4 @@
-"""Install the built wheel into a temporary environment and run M0 smoke checks."""
+"""Install the built wheel into a temporary environment and run public smoke checks."""
 
 import argparse
 import json
@@ -6,6 +6,7 @@ import os
 import shutil
 import subprocess
 import tempfile
+import textwrap
 from collections.abc import Sequence
 from pathlib import Path
 from typing import cast
@@ -72,6 +73,195 @@ def main(argv: Sequence[str] | None = None) -> int:
         if doctor.get("status") != "ok":
             raise RuntimeError(f"doctor did not report success: {doctor!r}")
 
+        _run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                (
+                    "from ludoweave.ecs import EntityAllocator; "
+                    "allocator = EntityAllocator(); stale = allocator.create(); "
+                    "allocator.destroy(stale); current = allocator.create(); "
+                    "assert not allocator.is_alive(stale); "
+                    "assert current.index == stale.index; "
+                    "assert current.generation == stale.generation + 1"
+                ),
+            ],
+            cwd=temp_root,
+        )
+
+        schema_smoke = textwrap.dedent(
+            """
+            from collections.abc import Mapping
+            from dataclasses import dataclass
+            from uuid import UUID
+
+            from ludoweave.ecs import ComponentMigration, ComponentRegistry, component
+
+            def migrate(values: Mapping[str, object]) -> Mapping[str, object]:
+                return {"value": int(values["value"]) + 1}
+
+            @component(
+                type_id=UUID("cccccccc-0000-0000-0000-000000000001"),
+                version=2,
+                migrations=(ComponentMigration(1, 2, migrate),),
+            )
+            @dataclass(slots=True)
+            class InstalledComponent:
+                value: int
+
+            registry = ComponentRegistry((InstalledComponent,))
+            source = {"value": 4}
+            migrated = registry.migrate(
+                UUID("cccccccc-0000-0000-0000-000000000001"),
+                from_version=1,
+                values=source,
+            )
+            assert migrated == {"value": 5}
+            assert source == {"value": 4}
+            """
+        )
+        _run([str(python), "-I", "-c", schema_smoke], cwd=temp_root)
+
+        world_smoke = textwrap.dedent(
+            """
+            from dataclasses import dataclass
+            from uuid import UUID
+
+            from ludoweave.ecs import (
+                ComponentRegistry,
+                StaleEntityError,
+                World,
+                component,
+            )
+
+            @component(type_id=UUID("cccccccc-0000-0000-0000-000000000002"))
+            @dataclass(slots=True)
+            class InstalledPosition:
+                x: int = 0
+
+            @component(type_id=UUID("cccccccc-0000-0000-0000-000000000003"))
+            @dataclass(slots=True)
+            class InstalledVelocity:
+                x: int = 0
+
+            @component(type_id=UUID("cccccccc-0000-0000-0000-000000000004"))
+            @dataclass(slots=True)
+            class InstalledHidden:
+                pass
+
+            registry = ComponentRegistry(
+                (InstalledPosition, InstalledVelocity, InstalledHidden)
+            )
+            world = World(registry)
+            source = InstalledPosition(1)
+            entity_id = world.spawn()
+            world.add(entity_id, source)
+            source.x = 99
+            assert world.get(entity_id, InstalledPosition) == InstalledPosition(1)
+            world.patch(entity_id, InstalledPosition, x=2)
+            returned = world.get(entity_id, InstalledPosition)
+            returned.x = 88
+            assert world.get(entity_id, InstalledPosition) == InstalledPosition(2)
+            assert world.remove(entity_id, InstalledPosition) == InstalledPosition(2)
+            world.destroy(entity_id)
+            replacement = world.spawn()
+            assert replacement.index == entity_id.index
+            assert replacement.generation == entity_id.generation + 1
+            try:
+                world.has(entity_id, InstalledPosition)
+            except StaleEntityError:
+                pass
+            else:
+                raise AssertionError("stale installed-wheel entity became valid")
+
+            world.add(replacement, InstalledPosition(3))
+            with world.query(InstalledPosition).writes(InstalledPosition).rows() as rows:
+                queried_id, position = next(rows)
+                assert queried_id == replacement
+                position.x = 4
+            assert world.get(replacement, InstalledPosition) == InstalledPosition(4)
+
+            world.spawn(InstalledPosition(9), InstalledVelocity(9), InstalledHidden())
+            changed_baseline = world.epoch
+            commands = world.commands()
+            pending = commands.spawn(InstalledPosition(5))
+            commands.add(pending, InstalledVelocity(6))
+            before_flush = world.entities()
+            assert list(
+                world.query(InstalledPosition, InstalledVelocity)
+                .without(InstalledHidden)
+                .changed_since(changed_baseline)
+                .stable()
+                .rows()
+            ) == []
+            assert world.entities() == before_flush
+            result = world.flush(commands)
+            spawned = result.resolve(pending)
+            assert result.command_count == 2
+            assert world.get(spawned, InstalledPosition) == InstalledPosition(5)
+            assert list(
+                world.query(InstalledPosition, InstalledVelocity)
+                .without(InstalledHidden)
+                .changed_since(changed_baseline)
+                .stable()
+                .rows()
+            ) == [(spawned, InstalledPosition(5), InstalledVelocity(6))]
+            """
+        )
+        _run([str(python), "-I", "-c", world_smoke], cwd=temp_root)
+
+        schedule_smoke = textwrap.dedent(
+            """
+            from dataclasses import dataclass
+
+            from ludoweave.ecs import (
+                ComponentRegistry,
+                ResourceRegistry,
+                ResourceSpec,
+                ResourceStore,
+                Scheduler,
+                SystemContext,
+                system,
+            )
+
+            @dataclass(slots=True)
+            class InstalledSettings:
+                fixed_hz: int
+
+            settings = ResourceSpec(
+                "simulation.settings",
+                InstalledSettings,
+                lambda value: InstalledSettings(value.fixed_hz),
+            )
+            resources = ResourceRegistry((settings,))
+            store = ResourceStore(resources, ((settings, InstalledSettings(60)),))
+            detached = store.require(settings)
+            detached.fixed_hz = 1
+            assert store.require(settings).fixed_hz == 60
+
+            @system(
+                name="installed.writer",
+                resource_writes=(settings,),
+                before=("installed.reader",),
+            )
+            def writer(context: SystemContext, delta: float) -> None:
+                del context, delta
+
+            @system(name="installed.reader", resource_reads=(settings,))
+            def reader(context: SystemContext, delta: float) -> None:
+                del context, delta
+
+            plan = Scheduler(ComponentRegistry(), resources).build((reader, writer))
+            assert [spec.name for spec in plan.systems] == [
+                "installed.writer",
+                "installed.reader",
+            ]
+            assert len(plan.conflicts) == 1
+            """
+        )
+        _run([str(python), "-I", "-c", schedule_smoke], cwd=temp_root)
+
         example_result = _run(
             [
                 str(python),
@@ -86,6 +276,29 @@ def main(argv: Sequence[str] | None = None) -> int:
         expected = {"ticks": 3, "frames": 3, "renderer": "null", "final_state": "closed"}
         if any(summary.get(key) != value for key, value in expected.items()):
             raise RuntimeError(f"headless example summary was invalid: {summary!r}")
+
+        fixed_step_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "fixed_step_world.py"),
+                "--ticks",
+                "6",
+            ],
+            cwd=temp_root,
+        )
+        fixed_step = cast(dict[str, object], json.loads(fixed_step_result.stdout))
+        fixed_expected = {
+            "ticks": 6,
+            "frames": 6,
+            "entities": 6,
+            "active": 3,
+            "elapsed_ns": 100_000_000,
+            "renderer": "null",
+            "final_state": "closed",
+        }
+        if any(fixed_step.get(key) != value for key, value in fixed_expected.items()):
+            raise RuntimeError(f"fixed-step example summary was invalid: {fixed_step!r}")
 
     print(f"wheel smoke passed: {wheels[0].name}")
     return 0

@@ -6,6 +6,42 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rust", "wgpu"})
+_REFERENCE_ALLOWED_IMPORTS = {
+    "ludoweave.ecs.commands": frozenset(
+        {
+            "AddCommand",
+            "CommandBackend",
+            "Commands",
+            "DeferredCommand",
+            "DeferredEntity",
+            "DestroyCommand",
+            "EntityTarget",
+            "FlushResult",
+            "SpawnCommand",
+        }
+    ),
+    "ludoweave.ecs.component": frozenset(
+        {"ComponentField", "ComponentRegistry", "ComponentSchema", "ComponentValueType"}
+    ),
+    "ludoweave.ecs.entity": frozenset({"EntityId"}),
+    "ludoweave.ecs.errors": frozenset(
+        {
+            "ComponentAlreadyPresentError",
+            "ActiveQueryError",
+            "ComponentError",
+            "DeferredCommandError",
+            "InvalidDeferredEntityError",
+            "InvalidComponentValueError",
+            "InvalidEntityIdError",
+            "InvalidQueryError",
+            "MissingComponentError",
+            "StaleEntityError",
+        }
+    ),
+    "ludoweave.ecs.query": frozenset(
+        {"Query", "QueryBackend", "QueryOrder", "QueryRowState", "QuerySpec"}
+    ),
+}
 
 
 @dataclass(frozen=True, slots=True)
@@ -29,12 +65,12 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
             root = imported.partition(".")[0]
             if root in _BANNED_EXTERNAL_ROOTS:
                 violations.append(
-                    ImportViolation(path, line, f"M0 source imports banned dependency {root!r}")
+                    ImportViolation(path, line, f"source imports banned dependency {root!r}")
                 )
             if (
-                module.startswith("ludoweave.core")
+                _is_module_or_child(module, "ludoweave.core")
                 and root not in sys.stdlib_module_names
-                and not imported.startswith("ludoweave.core")
+                and not _is_module_or_child(imported, "ludoweave.core")
             ):
                 violations.append(
                     ImportViolation(
@@ -54,6 +90,57 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                     )
                 )
     return violations
+
+
+def check_reference_imports(path: Path) -> list[ImportViolation]:
+    """Enforce the reference model's exact public-contract import whitelist."""
+
+    violations: list[ImportViolation] = []
+    tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    package_parts = ["ludoweave", "ecs"]
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if _is_module_or_child(alias.name, "ludoweave.ecs"):
+                    violations.append(
+                        ImportViolation(
+                            path,
+                            node.lineno,
+                            f"reference model may not import ECS module {alias.name!r}",
+                        )
+                    )
+            continue
+        if not isinstance(node, ast.ImportFrom):
+            continue
+        module = _reference_import_from_module(node, package_parts)
+        if module is None or not _is_module_or_child(module, "ludoweave.ecs"):
+            continue
+        allowed_names = _REFERENCE_ALLOWED_IMPORTS.get(module)
+        imported_names = {alias.name for alias in node.names}
+        if allowed_names is None or not imported_names <= allowed_names:
+            violations.append(
+                ImportViolation(
+                    path,
+                    node.lineno,
+                    f"reference model import {module!r} names {sorted(imported_names)!r} "
+                    "is outside its whitelist",
+                )
+            )
+    return violations
+
+
+def _reference_import_from_module(node: ast.ImportFrom, package_parts: list[str]) -> str | None:
+    if node.level == 0:
+        return node.module
+    parents_to_remove = node.level - 1
+    if parents_to_remove > len(package_parts):
+        return None
+    base_parts = package_parts[: len(package_parts) - parents_to_remove]
+    if node.module is not None:
+        return ".".join([*base_parts, *node.module.split(".")])
+    if len(node.names) == 1:
+        return ".".join([*base_parts, *node.names[0].name.split(".")])
+    return ".".join(base_parts)
 
 
 def _module_name(source_root: Path, path: Path) -> str:
@@ -94,17 +181,32 @@ def _resolved_imports(
 
 def _internal_import_allowed(*, source: str, imported: str) -> bool:
     if source == "ludoweave":
-        return imported.startswith("ludoweave.app")
-    if source.startswith("ludoweave.core"):
-        return imported.startswith("ludoweave.core")
+        return _is_module_or_child(imported, "ludoweave.app")
+    if _is_module_or_child(source, "ludoweave.core"):
+        return _is_module_or_child(imported, "ludoweave.core")
+    if _is_module_or_child(source, "ludoweave.ecs"):
+        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.ecs"))
     if source == "ludoweave.render":
-        return imported.startswith(("ludoweave.render.api", "ludoweave.render.backends"))
-    if source.startswith("ludoweave.render.api"):
-        return imported.startswith(("ludoweave.core", "ludoweave.render.api"))
-    if source.startswith("ludoweave.render.backends"):
-        return imported.startswith(
-            ("ludoweave.core", "ludoweave.render.api", "ludoweave.render.backends")
+        return _is_any_module_or_child(
+            imported, ("ludoweave.render.api", "ludoweave.render.backends")
         )
-    if source.startswith("ludoweave.app"):
-        return imported.startswith(("ludoweave.app", "ludoweave.core", "ludoweave.render.api"))
-    return source.startswith("ludoweave.tools") or source == "ludoweave.__main__"
+    if _is_module_or_child(source, "ludoweave.render.api"):
+        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.render.api"))
+    if _is_module_or_child(source, "ludoweave.render.backends"):
+        return _is_any_module_or_child(
+            imported, ("ludoweave.core", "ludoweave.render.api", "ludoweave.render.backends")
+        )
+    if _is_module_or_child(source, "ludoweave.app"):
+        return _is_any_module_or_child(
+            imported,
+            ("ludoweave.app", "ludoweave.core", "ludoweave.ecs", "ludoweave.render.api"),
+        )
+    return _is_module_or_child(source, "ludoweave.tools") or source == "ludoweave.__main__"
+
+
+def _is_module_or_child(name: str, allowed: str) -> bool:
+    return name == allowed or name.startswith(f"{allowed}.")
+
+
+def _is_any_module_or_child(name: str, allowed: tuple[str, ...]) -> bool:
+    return any(_is_module_or_child(name, candidate) for candidate in allowed)
