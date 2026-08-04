@@ -2,7 +2,7 @@
 
 ## Current milestone
 
-M0 — repository contract and walking skeleton — and M1 — deterministic world core — are complete. M2 — command, transaction, receipt, snapshot, replay, and data-only workflow protocols — is complete and independently accepted locally; publication and hosted CI are in progress.
+M0 — repository contract and walking skeleton — M1 — deterministic world core — and M2 — command, transaction, receipt, snapshot, replay, and data-only workflow protocols — are complete, independently accepted, published as stacked pull requests, and validated by hosted CI.
 
 ## Repository identity
 
@@ -46,7 +46,7 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 
 ## Next slice
 
-- Publish the signed M2 candidate, open its stacked pull request, and require the complete hosted CI matrix. Begin M3 only after those hosted gates pass and final evidence is recorded.
+- Begin M3 presentation extraction and rendering-contract work on a task-scoped branch from the validated M2 head. Preserve M2 authority boundaries and do not begin later milestone subsystems opportunistically.
 
 ## Validation state
 
@@ -57,7 +57,8 @@ M0 — repository contract and walking skeleton — and M1 — deterministic wor
 - MkDocs Material emits its upstream informational warning about the future MkDocs 2.0 project; the strict documentation build exits successfully.
 - The final M2 local gate on Windows/uv-managed CPython 3.12.13 reports 444 passing tests and one Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, successful sdist/wheel build, and successful isolated installed-wheel workflow smoke.
 - The final 30-sample M2 informational benchmark validated four workloads with no timing targets. Local p50/p95 durations were 30.2751/33.7076 ms for canonical 100-command round trips, 13.9896/16.9751 ms for atomic 100-command apply, 17.1209/18.0412 ms for 1,000-entity snapshot round trips, and 216.5521/271.2240 ms for verified 100-batch replay.
-- Independent final M2 code/security review found no remaining actionable findings and independently reproduced the 444-pass/one-skip suite. M2 hosted-platform CI has not yet run, so no new cross-platform claim is made.
+- Independent final M2 code/security and quality reviews found no remaining actionable findings and independently reproduced the 444-pass/one-skip suite.
+- GitHub Actions run `30947073913` passed all 11 M2 jobs: quality/documentation; Ubuntu tests on Python 3.12/3.13/3.14; Windows and macOS tests on Python 3.12/3.14; and isolated installed-wheel smoke on Ubuntu, Windows, and macOS.
 
 ## External follow-ups
 

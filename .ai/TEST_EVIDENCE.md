@@ -383,3 +383,21 @@ reported no remaining P0, P1, or P2 actionable finding. Trusted author codecs,
 migrations, and tick executors plus a trusted/quiescent local project tree remain
 documented boundaries. Hosted M2 CI has not yet run, so no new hosted-platform
 claim is made.
+
+## M2 hosted validation — GitHub Actions run 30947073913
+
+The DCO-signed M2 commit `6bf3f99e94e30e4204af221064331e4b01c487dc`
+was pushed to `codex/m2-command-transaction-replay` and published as stacked
+pull request #2 against the open M1 branch. The resulting least-privilege CI
+run completed successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed lock, formatting, lint, strict Pyright, and strict MkDocs gates. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three matrix jobs passed. |
+| Tests — Windows, Python 3.12/3.14 | Both matrix jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both matrix jobs passed. |
+| Installed wheel — Ubuntu/Windows/macOS, Python 3.12 | All three build and isolated installed-wheel workflow smoke jobs passed. |
+
+All 11 jobs in run `30947073913` passed. This supplies the cross-platform M2
+evidence that was deliberately not claimed by the local gate.
