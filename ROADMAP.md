@@ -22,7 +22,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M11 rich 2D authoring | Headless tick animation, bitmap text, immutable tilemaps, fixed-point particles, Null-audio mixing, installed showcase, and hosted validation |
 | Done | M12 plugin manifest compatibility | Canonical data-only manifests, deterministic environment/dependency checks, preview compatibility policy, installed CLI smoke, and hosted validation |
 | Done | M13 rollback/network-snapshot readiness | Hosted-validated bounded correction-branch evidence, explicit input-history gap, network deferral ADR, and no transport implementation |
-| Ready PR | M14 constrained 3D decision | Installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
+| Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -46,6 +46,9 @@ audio playback, font parsing/shaping, editor-scale tile import, particle DSLs,
 and provider objects remain deferred.
 M11 PR #12 passed the consolidated eight-job hosted matrix on implementation
 commit `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
+M14 PR #15 passed the unchanged eight-job hosted matrix on implementation
+commit `47443046834eb423be977973775f80494161533d`; layered 2D remains the
+accepted scope and no runtime or dependency was added.
 
 ## Good-first contribution queue
 

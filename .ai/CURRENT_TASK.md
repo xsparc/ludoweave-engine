@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M14 - Constrained 3D scope admission decision
-- **Status:** Locally complete and independently accepted on
-  `codex/m14-constrained-3d-decision`; awaiting signed commit, ready stacked
-  PR publication, and hosted validation.
+- **Status:** Complete, independently accepted, published as ready stacked PR
+  #15, and hosted-validated on `codex/m14-constrained-3d-decision`.
 - **Started:** 2026-08-06
 - **Base:** Exact final M13 hosted-evidence head
   `48f8f296113e3f2794bae7f4c67997d433e4dd36`; M14 will stack against
@@ -51,4 +50,6 @@
   strict docs, pure wheel/sdist build, exact installed-wheel evidence, fresh
   ten-artifact release smoke, nine real-wgpu tests, all inherited documented
   benchmark/profile validators, protected-scope/history checks, and independent
-  hostile review pass. No hosted M14 result is claimed yet.
+  hostile review pass. GitHub Actions run `31033924254` passed all eight
+  unchanged essential jobs on signed implementation commit
+  `47443046834eb423be977973775f80494161533d`.

@@ -1612,3 +1612,30 @@ Artifact, scope, history, and independent-review evidence:
 At this stage no M14 hosted/cross-platform pass, merge, tag, release, package
 publication, runtime/public/persistent-format change, 3D feature, provider
 dependency, or new performance-target claim is made.
+
+## M14 hosted validation - 2026-08-06
+
+Ready stacked PR #15 targets `codex/m13-rollback-network-readiness` from
+`codex/m14-constrained-3d-decision`. Its DCO-signed implementation commit is
+`47443046834eb423be977973775f80494161533d`. GitHub reports the PR open,
+ready, mergeable, and `CLEAN` against exact final M13 evidence head
+`48f8f296113e3f2794bae7f4c67997d433e4dd36`.
+
+GitHub Actions pull-request run `31033924254` executed the implementation
+commit from `2026-08-05T18:16:06Z` through `2026-08-05T18:18:37Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, exact isolated-wheel M14 evidence, release staging, and
+  complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file was unchanged by M14, and the branch has exactly this one
+pull-request CI run for the implementation commit. Hosted evidence confirms
+the supported installed/cross-platform/provider contracts; it does not merge
+PR #15, publish a package, create a tag or release, add 3D runtime behavior,
+change a public/persistent contract, or admit a new dependency/provider.

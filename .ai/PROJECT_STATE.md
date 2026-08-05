@@ -47,7 +47,7 @@ final complete local/artifact/provider gate passes and independent review
 reports no remaining finding. It is published as ready stacked PR #14; GitHub
 Actions run `31031590206` passed all eight essential hosted jobs on signed
 implementation commit `ba62b650191cfb982100692e7ec694da318956ae`.
-M14 is locally complete and independently accepted on
+M14 is complete and independently accepted on
 `codex/m14-constrained-3d-decision`, based on exact M13
 hosted-evidence head
 `48f8f296113e3f2794bae7f4c67997d433e4dd36`. Its bounded contract is an
@@ -60,7 +60,9 @@ layer/z ordering while every 3D admission gate remains false. The final local
 gate reports 809 passes and one existing Windows symlink-capability skip;
 independent hostile review reports no remaining finding. M14 changes no
 runtime package, public Python API, persistent format, dependency, version, or
-CI topology. No M14 hosted result is claimed yet.
+CI topology. It is published as ready stacked PR #15; GitHub Actions run
+`31033924254` passed all eight essential jobs on signed implementation commit
+`47443046834eb423be977973775f80494161533d`.
 
 ## Repository identity
 
