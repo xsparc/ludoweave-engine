@@ -104,6 +104,7 @@ class SpriteExtractionSource:
     tint: Color = dataclass_field(default_factory=lambda: Color(1.0, 1.0, 1.0, 1.0))
     layer: int = 0
     z: float = 0.0
+    _validated: bool = dataclass_field(init=False, repr=False, compare=False, default=False)
 
     def __post_init__(self) -> None:
         if type(self.texture) is not TextureHandle:
@@ -139,6 +140,7 @@ class SpriteExtractionSource:
             raise _extraction_error("sprite extraction dimensions must be positive", field="size")
         if type(self.tint) is not Color:
             raise _extraction_error("sprite extraction tint must be a Color", field="tint")
+        object.__setattr__(self, "_validated", True)
 
 
 @dataclass(frozen=True, slots=True)
@@ -285,31 +287,19 @@ class RenderExtractor:
             raise _extraction_error(
                 "sprite extraction source iteration failed", field="sources"
             ) from error
-        if any(type(source) is not SpriteExtractionSource for source in frozen_sources):
+        if any(
+            type(source) is not SpriteExtractionSource
+            or getattr(source, "_validated", False) is not True
+            for source in frozen_sources
+        ):
             raise _extraction_error(
-                "sprite extraction requires exact source records", field="sources"
+                "sprite extraction requires validated exact source records", field="sources"
             )
 
         grouped: dict[TextureHandle, list[SpriteInstance]] = {}
         alpha = interpolation_alpha
         for source in frozen_sources:
-            instance = SpriteInstance(
-                x=source.previous_x + (source.current_x - source.previous_x) * alpha,
-                y=source.previous_y + (source.current_y - source.previous_y) * alpha,
-                width=source.width,
-                height=source.height,
-                rotation_radians=source.previous_rotation
-                + (source.current_rotation - source.previous_rotation) * alpha,
-                uv_left=source.uv_left,
-                uv_top=source.uv_top,
-                uv_right=source.uv_right,
-                uv_bottom=source.uv_bottom,
-                tint=source.tint,
-                layer=source.layer,
-                z=source.z,
-                entity_index=source.entity_index,
-                entity_generation=source.entity_generation,
-            )
+            instance = _interpolate_validated_sprite(source, alpha)
             grouped.setdefault(source.texture, []).append(instance)
 
         groups = tuple(
@@ -368,6 +358,37 @@ class RenderExtractor:
         commands.extend(frame.debug_lines)
         commands.extend(frame.diagnostic_text)
         return CommandList(label, tuple(commands), target, frame.camera.orthographic_matrix())
+
+
+def _interpolate_validated_sprite(source: SpriteExtractionSource, alpha: float) -> SpriteInstance:
+    """Construct from one already validated source without rechecking copied fields."""
+
+    x = source.previous_x + (source.current_x - source.previous_x) * alpha
+    y = source.previous_y + (source.current_y - source.previous_y) * alpha
+    rotation = (
+        source.previous_rotation + (source.current_rotation - source.previous_rotation) * alpha
+    )
+    if not (isfinite(x) and isfinite(y) and isfinite(rotation)):
+        raise _extraction_error(
+            "interpolated sprite values must remain finite", field="interpolation"
+        )
+    instance = object.__new__(SpriteInstance)
+    set_attribute = object.__setattr__
+    set_attribute(instance, "x", x)
+    set_attribute(instance, "y", y)
+    set_attribute(instance, "width", source.width)
+    set_attribute(instance, "height", source.height)
+    set_attribute(instance, "rotation_radians", rotation)
+    set_attribute(instance, "uv_left", source.uv_left)
+    set_attribute(instance, "uv_top", source.uv_top)
+    set_attribute(instance, "uv_right", source.uv_right)
+    set_attribute(instance, "uv_bottom", source.uv_bottom)
+    set_attribute(instance, "tint", source.tint)
+    set_attribute(instance, "layer", source.layer)
+    set_attribute(instance, "z", source.z)
+    set_attribute(instance, "entity_index", source.entity_index)
+    set_attribute(instance, "entity_generation", source.entity_generation)
+    return instance
 
 
 def _extraction_error(message: str, *, field: str) -> RenderError:

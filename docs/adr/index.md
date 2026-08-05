@@ -23,4 +23,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0019: agent service capabilities and mutation safe points](0019-agent-service-capabilities-and-safe-points.md)
 - [ADR-0020: local stdio MCP adapter](0020-local-stdio-mcp-adapter.md)
 - [ADR-0021: explicit public API stability metadata](0021-explicit-public-api-stability-metadata.md)
+- [ADR-0022: defer native acceleration after profiling](0022-defer-native-acceleration-after-profiling.md)
 - [ADR template](template.md)

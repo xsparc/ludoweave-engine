@@ -27,6 +27,12 @@ public stability metadata describes exact exports; user, adapter, triage, and
 release guides document the existing boundaries. Release files and workflows
 never become canonical world input.
 
+M7 profiles the inherited M1/M3 target misses and retains the pure-Python
+boundary. Query/extraction/packing optimizations preserve detached ownership
+and backend-neutral bytes. No native module, compiler, NumPy storage, or new
+runtime dependency is introduced. See
+[RFC-0001](rfcs/0001-defer-first-native-kernel.md) and ADR-0022.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -204,14 +210,32 @@ listener, HTTP transport, authentication claim, dynamic import, shell access,
 or arbitrary evaluation. The Agent World Builder remains a trusted sample
 composition root whose canonical room objects live in the ECS/world store.
 
+## M7 performance boundary
+
+Profiler output is engineering evidence, not canonical state or a runtime API.
+The repository-only profiling tool imports benchmark composition helpers; the
+engine package does not depend on benchmarks. Artifacts normalize code
+locations to module names and never record workspace paths or environment
+values.
+
+The remaining ECS cost traverses detached Python component records for
+validation, copying, mutation detection, and writeback. The remaining
+extraction cost constructs immutable presentation records. Sprite packing has
+an owned `bytes` output, but its input remains nested Python objects that cannot
+be read by a native loop while releasing the GIL. These are not admitted native
+boundaries. A later proposal must first establish an internal contiguous scalar
+batch without exposing storage or native objects through public APIs.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
-and the M6 community-alpha distribution contract now exist. M6 does not add a
+the M6 community-alpha distribution contract, and the M7 native-code decision
+now exist. M6 does not add a
 plugin loader or dynamic data-selected code: adapter discovery remains explicit
 trusted composition. General scene importers, production audio, rigid-body
 physics, network transports, editor tooling, rich text, automatic device
-recovery, 3D, and native acceleration remain deferred to future assigned,
-exercised slices.
+recovery, and 3D remain deferred to future assigned, exercised slices. Native
+acceleration is specifically deferred under RFC-0001's measurable revisit
+gate rather than generally authorized by the recorded target misses.

@@ -15,6 +15,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M4 Clockwork Arena gameplay slice | 3,600-tick replay plus stress evidence |
 | Done | M5 local typed agent interface | Agent World Builder and local stdio acceptance |
 | Done | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
+| Active | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -39,5 +40,6 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 These areas remain uncommitted proposals and require milestone assignment plus the
 design process in `GOVERNANCE.md`: general scene importers, production audio,
 rigid-body physics, network transports, visual editor tooling, rich text, automatic GPU
-recovery, 3D, and native acceleration. Benchmark evidence is required before any native
-acceleration proposal.
+recovery, and 3D. Native acceleration is deferred under
+[RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md); its complete admission
+and quantified revisit gate applies before another proposal.

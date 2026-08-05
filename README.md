@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M6 are implemented: repository/runtime contracts, the deterministic world core, command/snapshot/replay protocols, isolated 2D rendering, the Clockwork Arena gameplay vertical slice, a local typed agent-control interface, and release/community hardening. Every current Python API and wire format remains experimental and may change without deprecation.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M6 are implemented, and M7 records the first post-alpha performance/native-code decision. Profiling led to ordinary Python improvements and an explicit decision to defer Rust/PyO3. Every current Python API and wire format remains experimental and may change without deprecation.
 
 ## What exists
 
@@ -37,6 +37,7 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - An Agent World Builder acceptance loop covering typed creation, validation, application, ticks, capture, query, adjustment, diff, telemetry, tests, and replay evidence.
 - Deterministic release staging with a pure wheel, source distribution, sample bundle, checksums, SPDX SBOM, notices, manifest, installed-artifact smoke, and a pinned provenance workflow.
 - Explicit stability metadata for every public Python export, community-alpha user/adapter/contribution guides, and a repository-native triage/roadmap queue.
+- Versioned, sanitized profiling for the representative M1/M3 misses plus an accepted RFC retaining the pure-Python/no-compiler baseline.
 
 General scene importers, production audio, rigid-body physics, networking or remote agent transport, editor tooling, 3D, and automatic GPU recovery are not implemented yet.
 
@@ -149,10 +150,14 @@ uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 
 uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m3-benchmark.json
 uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m4-benchmark.json
 uv run --frozen python benchmarks/validate_m4_results.py .tmp/m4-benchmark.json
+uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m7-profile-base.json
+uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-base.json
+uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m7-profile-graphics.json
+uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-graphics.json
 git diff --check
 ```
 
-Milestone benchmark commands are not part of every edit's fast gate. M1, M3, and M4 record local target observations; M2 measurements are informational and have no timing pass threshold. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md) and the [benchmark methodology](docs/benchmarks.md).
+Milestone benchmark/profile commands are not part of every edit's fast gate. M1, M3, and M4 record local target observations; M2 measurements are informational and have no timing pass threshold. M7 profile time is diagnostic rather than a benchmark. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md), the [benchmark methodology](docs/benchmarks.md), and [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md).
 
 Release staging requires a new empty output directory. The tag workflow is
 defined for a future maintainer-created `vVERSION` tag; this repository task

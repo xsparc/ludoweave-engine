@@ -45,6 +45,10 @@ jobs:
         run: uv run --frozen pyright
       - name: Build documentation
         run: uv run --frozen mkdocs build --strict
+      - name: Run base profiling contract smoke
+        run: |
+          uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m7-profile-base.json
+          uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-base.json
 
   tests:
     name: Tests (${{ matrix.os }}, Python ${{ matrix.python }})
@@ -145,6 +149,10 @@ jobs:
         run: uv sync --frozen --all-groups --extra graphics
       - name: Run clear, sprite, capture, resize, and loss smoke
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
+      - name: Run graphics profiling contract smoke
+        run: |
+          uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m7-profile-graphics.json
+          uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-graphics.json
       - name: Run Clockwork Arena wgpu vertical slice
         run: uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10
       - name: Run Agent World Builder typed-tool loop

@@ -143,6 +143,14 @@ def _extraction_operation(count: int) -> _Operation:
     return operation
 
 
+def extraction_profile_operation(count: int = 10_000) -> _Operation:
+    """Return the exact extraction-and-pack operation used by the M3 benchmark."""
+
+    if count <= 0:
+        raise ValueError("visible sprite count must be positive")
+    return _extraction_operation(count)
+
+
 def _instances(count: int) -> tuple[SpriteInstance, ...]:
     return tuple(
         SpriteInstance(
@@ -209,6 +217,16 @@ def _submission_operation(
             "timestamp_queries": capabilities.timestamp_queries,
         },
     )
+
+
+def submission_profile_fixture(
+    count: int = 10_000, *, graphics: bool
+) -> tuple[_Operation, Callable[[], None], Mapping[str, object]]:
+    """Return the exact M3 submission operation, cleanup, and capabilities."""
+
+    if count <= 0:
+        raise ValueError("visible sprite count must be positive")
+    return _submission_operation(count, graphics=graphics)
 
 
 def _package_version(name: str) -> str:

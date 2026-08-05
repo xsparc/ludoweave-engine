@@ -83,3 +83,33 @@ workload records whether its p95 was below one 60 Hz frame (16.666667 ms).
 Stress 4 and 8 deliberately have no target. Validation checks evidence
 integrity; an honest target miss remains profiling evidence rather than a
 release failure or native-code authorization.
+
+## M7 profiling and native-code decision
+
+M7 profiles the exact representative 10,000-entity simulation tick and
+10,000-sprite extraction/packing workloads. With the graphics extra it also
+profiles the exact 10,000-sprite wgpu CPU-submission workload:
+
+```console
+uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m7-profile-base.json
+uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-base.json
+uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m7-profile-graphics.json
+uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-graphics.json
+```
+
+Profile setup and warmup occur before `cProfile` begins. `profiled_repeats`
+states exactly how many workload operations are aggregated. Profile time
+includes deterministic instrumentation overhead and is diagnostic only: do not
+compare it directly with benchmark p50/p95/p99 values or report it as frame
+time.
+
+Schema `ludoweave.profile.m7/1` stores exact workload parameters, total calls,
+and the top 25 cumulative hotspots. Paths are normalized to module identities,
+raw memory addresses are removed, and the artifact excludes usernames,
+hostnames, environment values, and credentials. The validator enforces exact
+fields, workload order, parameters, result invariants, sanitized metadata, and
+canonical hotspot order.
+
+The associated [native-code RFC](rfcs/0001-defer-first-native-kernel.md)
+records the final 30-sample measurements and explains why M7 improves the
+ordinary Python paths but does not admit Rust/PyO3.

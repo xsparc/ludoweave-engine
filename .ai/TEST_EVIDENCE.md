@@ -687,3 +687,85 @@ All 14 jobs passed. Six jobs printed non-failing setup-uv annotations because a
 parallel job had already reserved the same cache key; no validation step or
 job failed. This supplies the cross-platform M6 artifact evidence deliberately
 not claimed by the local-only section.
+
+## M7 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+M7 profiles the inherited M1/M3 target misses and decides whether the first
+Rust/PyO3 kernel satisfies the project admission gate. The decision is a
+deferral: no native source, build tool, artifact, dependency, storage object,
+or public API was added.
+
+Development feedback was retained rather than reported as a pass:
+
+- The initial profiler quality check exited 1: two new files required Ruff
+  formatting and strict Pyright reported 11 `pstats`/unknown-container findings.
+  A typed protocol view and explicit container narrowing resolved them.
+- The first base-profile command in the default sandbox exited 1 because uv
+  could not open its existing user cache. The authorized rerun generated the
+  artifact, but its validator exited 1 on the profiler's `python.~` built-in
+  record. Built-ins and raw memory-address text are now normalized; the exact
+  base and graphics artifacts then validated.
+- The first new extraction regressions had two incorrect detail-container
+  assertions and four corresponding Pyright findings; they were corrected to
+  inspect the immutable detail pairs as a mapping before the focused pass.
+- One focused pytest invocation named a nonexistent property-test path and
+  exited before collection; the corrected real query/reference/property set
+  passed 20 tests.
+- The first sprite-packer quality command reported one Ruff import-order
+  finding. The mechanical import fix was applied before the final gate.
+
+The final executed command evidence is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the existing 46-package lock in 0.76 milliseconds; no dependency changed. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked the locked 45-package environment in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 148 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 564 tests passed and one existing Windows symlink-capability test skipped in 46.11 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.45 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m7-profile-base-final.json` | 0 | Recorded the exact 10,000-entity simulation and 10,000-sprite extraction/packing profiles under `ludoweave.profile.m7/1`. |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-base-final.json` | 0 | Validated both base workload identities, parameters, invariants, calls, sanitized metadata, and canonical hotspot order. |
+| `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m7-profile-graphics-final.json` | 0 | Recorded the two base workloads plus exact 10,000-sprite wgpu CPU submission with engine-owned capabilities. |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-graphics-final.json` | 0 | Validated all three graphics-profile workloads and sanitization contracts. |
+| `uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m7-m1-benchmark-final.json` | 0 | Recorded 30 retained samples for all seven M1 workloads after three warmups. |
+| `uv run --frozen python benchmarks/validate_m1_results.py .tmp/m7-m1-benchmark-final.json` | 0 | Validated seven workloads and two target records; only the 3,600-tick headless target was observed. |
+| `uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m7-m3-benchmark-final.json` | 0 | Recorded 30 retained samples for all six M3 workloads after three warmups. |
+| `uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m7-m3-benchmark-final.json` | 0 | Validated six workloads and two target records; neither 10,000-sprite target was observed. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and pure `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel smoke passed outside the source tree. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m7-release-candidate-final` | 0 | Staged the complete 10-file alpha candidate with deterministic sample ZIP, manifest, SPDX SBOM, notices, and checksums. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m7-release-candidate-final` | 0 | Release checksum/manifest/SBOM/notices/sample extraction, isolated install, CLI, doctor, and bundled M0-M5 scenario smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Six real wgpu clear/sprite/capture/resize/loss tests passed in 5.56 seconds. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu run completed 30 ticks with three draws and 16 submitted sprite instances. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `git diff --check` | 0 | No whitespace errors remained after the factual state update. |
+
+### M7 final local performance observations
+
+| Workload | p50 | p95 | p99 | Target observation |
+| --- | ---: | ---: | ---: | --- |
+| 10,000-entity simulation tick | 130.1806 ms | 144.0474 ms | 150.6699 ms | `< 4 ms`: not observed |
+| 10,000-sprite extraction/packing | 20.8641 ms | 30.6902 ms | 31.4777 ms | `< 3 ms`: not observed |
+| 10,000-sprite wgpu CPU submission | 2.8678 ms | 5.1918 ms | 5.2584 ms | `< 3 ms`: not observed |
+
+Against the earlier same-machine records, those p95 values are lower by
+26.83%, 26.88%, and 20.57%, respectively. They remain local observations and
+are not cross-platform timing claims. Profiler totals include instrumentation
+overhead and are not benchmark/frame durations.
+
+The five-repeat graphics profile attributes overlapping cumulative time as
+follows: simulation `_open_query` about 55% and component preparation about
+47%; extraction interpolation/record construction about 42% and packing about
+8%; wgpu submission packing about 86%. The strongest narrow-looking candidate
+still reads nested Python objects and cannot release the GIL without a prior
+scalar-buffer conversion. RFC-0001 records the missing build, owner, buffer,
+GIL, cross-platform, and conformance fields and defers native acceleration.
+
+The final repository/wheel audit found no Cargo manifest, Rust source, direct
+NumPy/PyO3/Rust import, credential/private-key literal, native artifact, or new
+mandatory dependency. Provider imports remain confined to the existing exact
+wgpu adapter. The wheel contains only the typed pure-Python package,
+distribution metadata/entry point, LICENSE, and NOTICE. Hosted M7 CI had not
+run at the time of this local section, so no cross-platform result is claimed.

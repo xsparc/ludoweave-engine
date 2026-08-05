@@ -276,6 +276,14 @@ def _simulation_operation(
     return operation
 
 
+def simulation_profile_fixture() -> tuple[_Operation, Callable[[], None]]:
+    """Return the exact 10k simulation operation and its required cleanup."""
+
+    world = _query_world()
+    application, clock = _simulation_application(world)
+    return _simulation_operation(application, clock), application.close
+
+
 def _percentile(values: Sequence[int], percentile: int) -> int:
     ordered = sorted(values)
     index = max(0, ((len(ordered) * percentile + 99) // 100) - 1)

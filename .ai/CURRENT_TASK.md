@@ -1,14 +1,39 @@
 # Current Task
 
-- **Task:** M6 — Community-alpha release hardening
-- **Status:** Complete; DCO-signed PR #6 is published and hosted run `31002365370` passed all 14 jobs
+- **Task:** M7 — Post-alpha performance and first-native-kernel decision
+- **Status:** Implementation and local validation complete; stacked PR and hosted CI pending
 - **Started:** 2026-08-05
-- **Acceptance gate:** A clean consumer must be able to verify and launch the pure wheel plus bundled M0-M5 headless scenarios on Windows, macOS, and Linux; public exports need explicit stability; release/security/community artifacts must be actionable and evidence-backed.
-- **Distribution outcome:** Version `0.1.0a1` stages a pure wheel, sdist, deterministic sample ZIP, Apache/project/optional-dependency notices, SPDX 2.3 SBOM, manifest, and exact SHA-256 inventory. The isolated release smoke verifies these artifacts before installing or extracting them.
-- **Release outcome:** The tag-only workflow validates source/docs/tests/artifacts, uses immutable action revisions and scoped attestation/release permissions, creates build-provenance and SBOM attestations, and stages a GitHub prerelease. No tag, release, or PyPI upload is created in this task.
-- **API/docs outcome:** Every supported export has exact `__stability__` metadata; all are experimental. User, adapter, release, contribution, triage, roadmap, release-note, and retrospective guides document the alpha boundary.
-- **Community outcome:** A declarative label catalog, focused issue forms, triage rules, repository-native roadmap board, and three issue-ready good-first cards define the contribution queue. The live repository still has only default labels and no issues until maintainers apply/open the checked-in queue.
-- **Local gate:** The complete frozen suite reports 552 passed and one existing Windows symlink-capability skip; Ruff, strict Pyright, strict MkDocs, pure-wheel build, isolated installed-wheel smoke, deterministic staging, checksum/SBOM validation, and bundled-sample acceptance all pass.
-- **Hosted gate:** PR #6 is published against the validated M5 branch. Run `31002365370` passed quality/docs, seven CPython/OS test jobs, three complete installed release-candidate smokes, and three real graphics smokes.
-- **Non-scope retained:** PyPI publication/name reservation, an actual release tag or GitHub release, dynamic plugin loading, remote/network agent transport, production audio, rigid-body physics, editor tooling, 3D, automatic device recovery, Rust, PyO3, and native acceleration.
-- **SemVer:** First community-alpha candidate `0.1.0a1`; every current Python export and persistent protocol remains experimental.
+- **Acceptance gate:** Profile the exact recorded M1/M3 misses, exhaust ordinary
+  Python/algorithm work justified by the evidence, assess every native-code
+  admission field in a public RFC, preserve deterministic and backend-isolated
+  semantics, and validate the decision across the normal platform matrix.
+- **Profiling outcome:** Schema `ludoweave.profile.m7/1` records exact
+  10,000-entity simulation, 10,000-sprite extraction/packing, and optional
+  10,000-sprite wgpu submission profiles with sanitized module identities,
+  exact invariants, and a strict tamper-tested validator.
+- **Implementation outcome:** Query metadata/signature work is reduced without
+  weakening detached ownership or production/reference parity. Extraction
+  reuses validated immutable source fields while checking interpolated
+  finiteness. Sprite packing uses fixed 64-byte standard-library records and
+  retains exact provider-neutral bytes and structured overflow errors.
+- **Decision outcome:** Accepted RFC-0001 and ADR-0022 defer Rust/PyO3. Current
+  ECS/extraction inputs are Python object graphs rather than a GIL-releasable
+  contiguous buffer; no native build matrix or maintenance owner exists. The
+  RFC gives quantified evidence and an exact revisit gate.
+- **Local performance evidence:** Official 30-sample local p95 is 144.0474 ms
+  for the representative simulation tick, 30.6902 ms for extraction/packing,
+  and 5.1918 ms for wgpu CPU submission. All remain honest target misses. The
+  same-machine reductions from prior recorded evidence are 26.83%, 26.88%, and
+  20.57%, respectively.
+- **Local quality gate:** Windows, uv-managed CPython 3.12.13 reports 564 passed
+  and one existing symlink-capability skip, 148 formatted Python files, zero
+  Ruff/Pyright findings, strict docs success, pure wheel/sdist, installed-wheel
+  smoke, complete release-candidate smoke, six real wgpu integration passes,
+  and successful Clockwork Arena/Agent World Builder runs.
+- **Hosted gate:** Pending after the DCO-signed implementation/evidence commits
+  and stacked PR against `codex/m6-release-hardening`.
+- **Non-scope retained:** No Rust, PyO3, Maturin, NumPy storage, native artifact,
+  public storage-layout exposure, release publication, networking, editor, 3D,
+  rigid-body physics, production audio, or remote agent transport.
+- **SemVer:** No public API or persistent-protocol addition; version remains
+  `0.1.0a1` and all current supported exports remain experimental.
