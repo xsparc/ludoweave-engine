@@ -1013,4 +1013,28 @@ review ran 54 focused tests, Ruff formatting/linting, strict Pyright,
 candidate probe. It verified the pre-import installed-file ownership check,
 post-import identity check, structured broken-install behavior, and
 non-executing shadow-module regression; no blocker remained and the reviewer
-recommended M9 for final sign-off. Hosted M9 CI has not run at this point.
+recommended M9 for final sign-off. Hosted M9 CI had not run at that point.
+
+## M9 hosted validation — 2026-08-06
+
+DCO-signed implementation commit
+`8b429aaf07684651f6d538419701c049ee55fc4f` was pushed to
+`codex/m9-box2d-plugin-evaluation` and published as ready stacked PR #10 against
+the hosted-validated M8 branch. GitHub Actions run `31015885190` completed with
+conclusion `success`; all 14 jobs passed:
+
+- quality, lock, formatting, lint, strict Pyright, strict documentation, and
+  base profiling-contract smoke on Ubuntu CPython 3.12;
+- tests on Ubuntu CPython 3.12, 3.13, and 3.14;
+- tests on Windows and macOS CPython 3.12 and 3.14;
+- pure build, isolated wheel smoke, complete release staging, and release smoke
+  on Ubuntu, Windows, and macOS; and
+- real graphics/gamepad, profiling-contract, Clockwork Arena, and Agent World
+  Builder smoke on Ubuntu, Windows, and macOS.
+
+GitHub reports PR #10 open, ready, mergeable, and `CLEAN` against
+`codex/m8-gamepad-sdl3-evaluation`, whose exact base is
+`187ad4503a40325a1e334da3cb4078969e2e043b`. The hosted result validates project
+execution and artifact contracts; it does not install the deferred candidate,
+exercise controller hardware, or create Box2D performance/cross-platform
+determinism claims. No merge, tag, release, or package publication occurred.

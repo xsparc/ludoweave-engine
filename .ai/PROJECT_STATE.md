@@ -9,7 +9,8 @@ independently accepted, published as PR #9 from
 M9 Box2D v3 plugin admission evaluation is locally complete on
 `codex/m9-box2d-plugin-evaluation`, stacked from the exact M8 head. ADR-0024
 defers the plugin; repeat independent review accepted the ownership correction
-with no remaining blockers. Hosted validation remains pending.
+with no remaining blockers. It is published as ready stacked PR #10 and GitHub
+Actions run `31015885190` passed all 14 hosted jobs.
 
 ## Repository identity
 
@@ -117,9 +118,8 @@ branch.
 
 ## Next slice
 
-- Publish the signed M9 stacked PR and require the full hosted matrix before
-  calling M9 complete.
-- Do not begin the live semantic inspector or another roadmap item during M9.
+- M9 is complete. Do not begin the live semantic inspector or another roadmap
+  item without assigning its acceptance boundary.
   Release publication, the deferred Box2D/SDL3 adapters, haptics/sensors, real
   audio, networking, editor work, 3D, and native code remain outside this
   milestone; RFC-0001 continues to govern Rust/PyO3.
@@ -145,6 +145,12 @@ branch.
   import and again afterward. Repeat review ran 54 focused tests, Ruff,
   Pyright, diff checks, and a real CPython 3.12 probe, found no remaining
   blocker, and recommended final sign-off.
+- GitHub Actions run `31015885190` passed all 14 M9 jobs for implementation
+  commit `8b429aaf07684651f6d538419701c049ee55fc4f`: strict quality/docs; Ubuntu
+  CPython 3.12/3.13/3.14; Windows and macOS CPython 3.12/3.14; complete
+  installed release-candidate smoke on Ubuntu/Windows/macOS; and real graphics
+  smoke on all three systems. PR #10 is open, ready, mergeable, and clean
+  against the exact validated M8 head.
 - A pre-review M8 gate completed on Windows with uv-managed CPython 3.12.13,
   but an independent review then found production focus propagation, GLFW
   error-disambiguation, and trigger-neutrality defects. Its 589-pass result is

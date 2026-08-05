@@ -37,10 +37,10 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M8 are complete and hosted-CI validated. M1-M7 are integrated into
-`main`; M8 is published as PR #9. M9's local Box2D v3 admission review is
-complete, independently accepted, and defers the plugin; hosted validation is
-still required. Do not implement or depend on a Box2D adapter, create a release
+M0 through M9 are complete, independently accepted, and hosted-CI validated.
+M1-M7 are integrated into `main`; M8 and M9 are published as stacked PRs #9
+and #10. M9 defers the Box2D v3 plugin. Stop at this boundary. Do not implement
+or depend on a Box2D adapter, create a release
 tag/GitHub release/PyPI publication, or begin the live semantic inspector. Real
 audio playback, network agent transports, editor work, 3D, SDL3, and native
 code remain out of scope. RFC-0001 records the evidence-based native-code

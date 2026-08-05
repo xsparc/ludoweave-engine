@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M9 — Box2D v3 plugin admission evaluation
-- **Status:** Local implementation, full gate, and repeat independent review
-  complete; signed commit, stacked PR publication, and hosted validation pending
+- **Status:** Complete; published as ready stacked PR #10 and validated by all
+  14 hosted CI jobs
 - **Started:** 2026-08-06
 - **Base:** Exact hosted-validated M8 head `187ad4503a40325a1e334da3cb4078969e2e043b`;
   the M9 PR will stack against `codex/m8-gamepad-sdl3-evaluation`.
@@ -33,3 +33,8 @@
   editor, 3D, SDL3, Rust/PyO3, or other native code.
 - **SemVer:** Evaluation tooling and documentation only; runtime version remains
   `0.1.0a1`.
+- **Hosted gate:** GitHub Actions run `31015885190` passed quality/docs; Ubuntu
+  CPython 3.12/3.13/3.14; Windows and macOS CPython 3.12/3.14; complete
+  installed release-candidate smoke on all three systems; and real graphics
+  smoke on all three systems. PR #10 is open, ready, mergeable, and clean
+  against `codex/m8-gamepad-sdl3-evaluation`.
