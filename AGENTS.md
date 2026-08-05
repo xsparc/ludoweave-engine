@@ -94,3 +94,12 @@ parsing/shaping, network agent transports, editor work, constrained/general 3D,
 SDL3, executable WASM, and native code remain out of scope.
 RFC-0001 records the evidence-based native-code deferral; local performance
 misses are not automatic authorization for acceleration.
+
+M18 is assigned only to an installed baseline conformance profile over the
+existing 12-tool transport-independent agent service. It must accept an
+explicit trusted factory, return sanitized versioned evidence, and pass through
+the existing direct service plus isolated wheel/release smoke without adding a
+CI job. It may not discover/import/install/launch provider code, add a transport
+or listener, change command/snapshot/replay formats, add a plugin field,
+dependency, lock, version, provider, or package-root export, or claim passing
+project-owned evidence as third-party adoption or manual-recovery telemetry.

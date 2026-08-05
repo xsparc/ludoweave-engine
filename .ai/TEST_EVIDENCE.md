@@ -2014,3 +2014,112 @@ reference evidence and does not increase independent third-party adoption.
 On the integration-evidence branch,
 `uv run --frozen mkdocs build --strict` exited 0 in 0.56 seconds with only the
 documented upstream Material MkDocs-2 warning, and `git diff --check` exited 0.
+
+PR #23 then squash-integrated the M17 repository-state evidence into `main` as
+GitHub-verified commit `ed65b12fa02f672113eac5939a0f616079fee44a` without a
+new Actions run. The retained M18 branch starts from that exact synchronized
+commit.
+
+## M18 installed agent-tool conformance - local final gate - 2026-08-06
+
+Branch `codex/m18-agent-tool-conformance` started from exact clean synchronized
+`main` commit `ed65b12fa02f672113eac5939a0f616079fee44a`. The bounded slice is
+one experimental installed 12-tool agent-service baseline over an explicitly
+supplied trusted factory. It adds no discovery, dynamic import, installation,
+subprocess, network transport, provider, plugin field, dependency, lock,
+version, persistent format, canonical state, package-root export, or CI job.
+
+Final Windows local gate used uv-managed CPython 3.12.13:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the unchanged 46-package lock. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked the locked 45-package environment. |
+| `uv run --frozen ruff format --check .` | 0 | All 196 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen pytest -q` | 0 | 925 tests passed and one existing Windows symlink-capability test skipped in 66.24 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built; the upstream Material MkDocs-2 warning remained informational. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency wheel passed inherited flows plus the exact 12-check direct agent-service profile. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m18-release-candidate-final-20260806-b` | 0 | Staged the complete deterministic ten-artifact candidate including the M18 sample. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m18-release-candidate-final-20260806-b` | 0 | Checksums, manifest, SBOM, notices, safe extraction, isolated install, inherited samples, and bundled agent conformance passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All 10 existing real-wgpu integration tests passed in 5.80 seconds. |
+| `uv run --frozen pytest -q tests/unit/test_agent_tool_conformance.py tests/architecture/test_m18_agent_conformance_boundary.py tests/integration/test_agent_tool_conformance_example.py tests/unit/test_release_artifacts.py tests/integration/test_visual_editor_decision.py tests/architecture/test_release_workflow.py tests/architecture/test_import_boundaries.py` | 0 | 145 focused success, adversarial-sanitization, receipt/atomicity, lifecycle, explicit-factory, release, and dependency-boundary tests passed in 3.91 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+| `git fsck --no-dangling` | 0 | Repository object/connectivity check reported no issue. |
+
+Artifact inspection found 93 wheel entries, including
+`ludoweave/agent/conformance.py`, and no `.pyd`, `.so`, `.dll`, `.dylib`, or
+`.wasm` entry. Metadata retains Python `>=3.12,<3.15`, no mandatory
+requirement, and only the exact existing optional graphics requirements:
+
+- `glfw==2.10.2; extra == 'graphics'`;
+- `rendercanvas[glfw]==2.7.2; extra == 'graphics'`; and
+- `wgpu==0.32.0; extra == 'graphics'`.
+
+The protected `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, package
+version, and package-root exports are unchanged. Source scans found no
+credential assignment, discovery/process/network import or call, or backend/
+native dependency in the conformance runtime/example. The M15 exact installed
+agent-export fingerprint was updated only with the seven experimental M18
+names; its visual-editor decision and admission gates are unchanged.
+
+All documented benchmark/profile validation contracts were executed on the
+dirty M18 working tree and validated:
+
+- M1: seven workloads; fixed-step p95 `39,482,100 ns` observed its target,
+  while 10,000-entity simulation p95 `122,772,500 ns` missed; 1 of 2 recorded
+  targets observed.
+- M2: four informational workloads validated with no timing threshold.
+- M3: six workloads; 10,000-sprite extraction p95 `23,673,400 ns` and wgpu
+  submission p95 `3,437,400 ns` both missed; 0 of 2 targets observed.
+- M4: baseline p95 `1,821,000 ns` observed its target; two stress workloads
+  remained informational.
+- M7: five-repeat base profile with two workloads and graphics profile with
+  three workloads both validated under `ludoweave.profile.m7/1`.
+
+Development checks first exposed import/export sorting, one unnecessary cast,
+and one unknown-result type issue; all were corrected and the focused/full
+static gates were rerun clean. Skeptical review then strengthened exact receipt
+identity/outcome validation, invalid-factory cleanup, control-flow cleanup
+during close, and nested forbidden-import fixtures before the final gate.
+One sandboxed `uv build` attempt exited 1 before project execution because
+access to uv's user cache was denied; the approved rerun and all final artifact
+commands above exited 0. No product failure remains unresolved.
+
+History review before publication reports `HEAD`, local `main`, `origin/main`,
+and the merge base at exact commit
+`ed65b12fa02f672113eac5939a0f616079fee44a`, with left/right count `0 0` and
+the intended linear squash-integrated milestone history. At this stage no M18
+commit, hosted/cross-platform pass, PR, merge, tag, release, or package
+publication is claimed.
+
+## M18 hosted validation - 2026-08-06
+
+Ready PR #24 targets `main` from
+`codex/m18-agent-tool-conformance`. GitHub reported exact base
+`ed65b12fa02f672113eac5939a0f616079fee44a`, DCO-signed implementation head
+`c4dde705393eebb7c99af428745e9383750f6b4d`, `MERGEABLE`, and `CLEAN` after
+checks completed.
+
+GitHub Actions pull-request run `31046172544` executed that implementation
+commit from `2026-08-05T20:52:57Z` through `2026-08-05T20:55:24Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence validates the supported installed,
+cross-platform, and existing-provider contracts. It does not discover, admit,
+certify, or count third-party adapter code; establish real-agent manual-
+recovery rates; publish a package; create a tag or release; add a transport,
+listener, provider, dependency, or CI job; or claim the locally missed M1/M3
+performance targets passed.

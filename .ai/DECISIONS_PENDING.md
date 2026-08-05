@@ -59,6 +59,13 @@ behavior is not security, provenance, cross-platform, performance, or provider
 admission evidence. No independently authored adapter is counted until
 external evidence is reviewed.
 
+ADR-0032 resolves the installed agent-adapter conformance boundary with one
+versioned 12-tool baseline over an explicitly supplied trusted factory. It
+forbids discovery, dynamic import, installation, subprocesses, networking, and
+global registration, and records that a project-owned pass is reference
+behavior rather than security, provenance, external adoption, cross-platform,
+performance, or manual-recovery evidence.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

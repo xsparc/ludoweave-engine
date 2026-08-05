@@ -33,6 +33,7 @@ python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python render_device_conformance.py
+python agent_tool_conformance.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -44,6 +45,8 @@ spans engine lifecycle, generational entities, fixed world ticks, Clockwork
 Arena, typed agent transactions, replay, tests, and owned capture cleanup.
 The render-device profile produces deterministic installed evidence for the
 explicit Null factory; it does not discover or certify executable providers.
+The agent-tool profile exercises the exact 12-tool direct-service contract
+against a fresh authority; it does not discover or certify adapters.
 
 The foundational application surface is deliberately small:
 
@@ -127,10 +130,14 @@ write capability. MCP is local stdio only:
 ```console
 ludoweave mcp --sample agent-world-builder
 ludoweave mcp --sample agent-world-builder --write
+python agent_tool_conformance.py
 ```
 
 There is no HTTP listener, remote authentication claim, arbitrary Python
 evaluation, shell tool, or dynamic project-module loader.
+The [agent-tool conformance guide](agent-tool-conformance.md) explains how an
+external local adapter can supply an explicitly imported trusted factory and
+what a passing installed report does not prove.
 
 ## Failure and compatibility expectations
 

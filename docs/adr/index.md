@@ -33,4 +33,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0029: retain the headless inspector and defer a visual editor](0029-retain-headless-inspector-and-defer-visual-editor.md)
 - [ADR-0030: retain data-only plugins and defer WASM mods](0030-retain-data-only-plugins-and-defer-wasm-mods.md)
 - [ADR-0031: explicit installed render-device conformance](0031-explicit-installed-render-device-conformance.md)
+- [ADR-0032: explicit installed agent-tool conformance](0032-explicit-installed-agent-tool-conformance.md)
 - [ADR template](template.md)

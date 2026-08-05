@@ -417,6 +417,26 @@ def main(argv: Sequence[str] | None = None) -> int:
         ):
             raise RuntimeError(f"render-device conformance report was invalid: {conformance!r}")
 
+        agent_conformance_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "agent_tool_conformance.py"),
+            ],
+            cwd=temp_root,
+        )
+        agent_conformance = cast(dict[str, object], json.loads(agent_conformance_result.stdout))
+        agent_checks = cast(list[dict[str, object]], agent_conformance.get("checks"))
+        if (
+            agent_conformance.get("protocol") != "ludoweave.agent-tool-conformance/1"
+            or agent_conformance.get("profile") != "agent-tool-baseline/1"
+            or agent_conformance.get("adapter_id") != "org.ludoweave.agent-service"
+            or agent_conformance.get("status") != "pass"
+            or len(agent_checks) != 12
+            or any(check.get("status") != "pass" for check in agent_checks)
+        ):
+            raise RuntimeError(f"agent-tool conformance report was invalid: {agent_conformance!r}")
+
         rollback_result = _run(
             [
                 str(python),
