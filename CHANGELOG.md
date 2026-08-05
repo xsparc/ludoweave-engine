@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M18 experimental installed agent-tool baseline conformance profile with a
+  fixed 12-check command/receipt path, frozen sanitized reports, and isolated
+  source/wheel/release-sample smoke.
+- ADR-0032 retaining explicit trusted composition: the agent conformance
+  runner performs no discovery, dynamic import, installation, subprocess,
+  networking, provider admission, or security certification.
 - M17 experimental installed `RenderDevice` baseline conformance profile with
   frozen versioned reports, sanitized failure codes, Null/real-wgpu evidence,
   and isolated wheel/release sample smoke.

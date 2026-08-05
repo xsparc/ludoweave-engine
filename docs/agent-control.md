@@ -167,3 +167,19 @@ uv run --frozen --extra graphics python examples/agent_world_builder.py
 The example has no editor, remote control, scene importer, arbitrary code
 execution, or parallel authority. It is an acceptance composition for the M5
 protocol boundary, not a general project/plugin format.
+
+## Installed adapter conformance
+
+M18 turns the exact 12-tool service path into protocol
+`ludoweave.agent-tool-conformance/1`, profile `agent-tool-baseline/1`. A caller
+explicitly imports a trusted local adapter factory and passes it to
+`run_agent_tool_conformance()`. The runner owns one fresh adapter, exercises
+detached reads, command validation/application and receipts, stale-hash
+atomicity, ticks, query/diff/provider result shapes, and close semantics, then
+emits a deterministic sanitized report.
+
+The profile performs no discovery, dynamic import, installation, filesystem
+scan, subprocess launch, network connection, or global registration. It is
+behavioral evidence rather than trust, transport security, provenance,
+performance, cross-platform, or real-agent recovery evidence. See the
+[agent-tool conformance guide](agent-tool-conformance.md).

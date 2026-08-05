@@ -12,6 +12,7 @@ nav:
   - Architecture: architecture.md
   - Adapter and extension guide: adapter-guide.md
   - Render-device conformance: render-device-conformance.md
+  - Agent-tool conformance: agent-tool-conformance.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
   - Constrained 3D scope decision: constrained-3d-decision.md
@@ -71,6 +72,7 @@ nav:
       - ADR-0029 - Defer visual editor: adr/0029-retain-headless-inspector-and-defer-visual-editor.md
       - ADR-0030 - Defer WASM mods: adr/0030-retain-data-only-plugins-and-defer-wasm-mods.md
       - ADR-0031 - Installed render conformance: adr/0031-explicit-installed-render-device-conformance.md
+      - ADR-0032 - Installed agent conformance: adr/0032-explicit-installed-agent-tool-conformance.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

@@ -125,6 +125,15 @@ commit `610261c8450afc3d7db6ebb2b0425a1829737aec`; both trees are
 `1e82568a463c62d0a1cf988b67eea09885ec50e3`, and the milestone branch is
 retained.
 
+M17 integration evidence was then squash-integrated through PR #23 as verified
+`main` commit `ed65b12fa02f672113eac5939a0f616079fee44a`. M18 is assigned on
+`codex/m18-agent-tool-conformance` from that exact clean base. Its bounded
+contract is one installed experimental 12-tool agent-service profile over an
+explicit trusted factory, with sanitized reports, source/wheel/release smoke,
+architecture guards, ADR-0032, and public guidance. It adds no discovery,
+dynamic import, installation, subprocess, network transport, provider,
+dependency, lock, version, persistent format, canonical state, or CI job.
+
 ## Repository identity
 
 M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
@@ -199,6 +208,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 - Clockwork Arena canonical world/resource gameplay, fixed-seed waves, projectiles, collision, score/restart behavior, immutable presentation extraction, and deterministic headless/offscreen/window examples.
 - Exact 3,600-tick Clockwork Arena fixture and independently recorded-input replay hash, plus M4 benchmark/validator tooling for baseline and informational stress workloads.
 - Transport-independent typed agent command/query service with 12 immutable tool schemas over canonical transactions, receipts, snapshots, diffs, replay, capture, telemetry, and registered tests.
+- An installed experimental 12-tool agent-service baseline conformance profile
+  that exercises explicit trusted factories and emits deterministic sanitized
+  evidence without discovery, loading, installation, transport selection, or
+  provider admission.
 - Default read-only capabilities, explicit write/capture/test grants, bounded requests/results/work, monotonic rate limiting, caller binding, recursive credential redaction, and non-blocking single-thread mutation safe points.
 - Project-confined `ludoweave agent` composition and local-only stdio MCP `2025-11-25` initialization, discovery, and tool calls without networking, shell access, arbitrary evaluation, dynamic project imports, or a new runtime dependency.
 - Agent World Builder acceptance composition with six typed ECS entities, real offscreen wgpu capture, exact query/adjust/diff/test/telemetry/replay coverage, and installed-wheel execution.
@@ -271,13 +284,27 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M17 is complete and integrated. No M18 slice is assigned in repository
-  state. Select and bound another adoption metric before implementation; do
-  not infer discovery/loading, a provider adapter, executable plugin, network,
-  editor, 3D, native code, dependency, or release publication from M17.
+- M17 is complete and integrated. M18 is in progress on
+  `codex/m18-agent-tool-conformance` from exact clean `main` commit
+  `ed65b12fa02f672113eac5939a0f616079fee44a`. It adds only an installed,
+  explicit-factory behavioral profile for the existing 12-tool agent service.
+  Implementation, focused adversarial coverage, strict docs/static checks,
+  the 925-test full suite, real-wgpu integration, isolated wheel smoke, and a
+  fresh ten-artifact release smoke pass locally; publication and hosted
+  validation remain pending. Do not
+  infer discovery/loading, a new transport or provider, executable plugin,
+  network, editor, 3D, native code, dependency, or release publication.
 
 ## Validation state
 
+- The final reviewed M18 local gate on Windows/uv-managed CPython 3.12.13
+  reports 925 passing tests and one existing symlink-capability skip, 196
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 93-entry wheel with no mandatory dependency or native/WASM file,
+  isolated-wheel smoke, fresh complete ten-artifact release smoke, 145 focused
+  conformance/release/architecture passes, and ten real-wgpu integration
+  passes. All inherited benchmark/profile artifacts validate; the existing M1
+  simulation and both M3 targets still miss and authorize no native work.
 - The final reviewed M16 local gate on Windows/uv-managed CPython 3.12.13
   reports 870 passing tests and one existing symlink-capability skip, 186
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a

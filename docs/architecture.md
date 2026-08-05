@@ -89,6 +89,12 @@ engine runner imports no backend and returns only frozen, sanitized evidence.
 See the [render-device conformance guide](render-device-conformance.md) and
 ADR-0031.
 
+M18 adds the corresponding installed behavioral profile over the existing
+12-tool `AgentCommandService`. Callers explicitly construct trusted adapters;
+the engine runner imports no transport or provider and returns only frozen,
+sanitized evidence. See the [agent-tool conformance
+guide](agent-tool-conformance.md) and ADR-0032.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -101,6 +107,7 @@ inspector parent   tools.inspector --stdio--> tools.mcp child
 agent service      ludoweave.agent ----> world/runtime   ludoweave.world
                          |
                          +--------------> core contracts ludoweave.core
+agent evidence     ludoweave.agent.conformance ---> agent service/contracts
 
 application        ludoweave.app ----> world/runtime   ludoweave.ecs
                          |                    |
@@ -123,7 +130,7 @@ sample composition ludoweave.samples.clockwork_arena
 - `ludoweave.core` imports only the Python standard library.
 - `ludoweave.ecs` may depend on core errors but not application, rendering, tools, or concrete backends.
 - `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
-- `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends.
+- `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends. Its conformance module may use only those same agent/core/world contracts and standard-library value helpers; it cannot discover or select adapters.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
 - Render conformance may depend on public render/platform/core contracts but
   never concrete backends, plugin discovery, filesystem/process/network
@@ -183,6 +190,13 @@ The M17 installed runner lives with render contracts and accepts only an
 explicit callable factory. Concrete adapter selection remains in examples or
 external composition roots. Its report is presentation evidence and cannot
 enter canonical world state or establish plugin trust.
+
+The M18 installed runner lives with agent contracts and accepts only an
+explicit callable factory. Adapter/transport selection remains in examples or
+external composition roots. The runner imports no tools, samples, rendering,
+plugin, provider, filesystem, process, network, discovery, or package-loading
+module. Its report is detached diagnostic evidence and cannot enter canonical
+world state or establish provider trust.
 
 ## Ownership and close order
 
@@ -493,6 +507,35 @@ device loss, and maintenance remain separate evidence gates. The M12 manifest
 stays inert and cannot name a factory. See
 [ADR-0031](adr/0031-explicit-installed-render-device-conformance.md).
 
+## M18 installed agent-tool-conformance boundary
+
+The second reusable conformance profile targets the existing
+`AgentCommandService` contract. A caller explicitly supplies a trusted factory
+for one fresh, clean, fully capable adapter. The runner performs no discovery,
+module lookup, installation, filesystem access, subprocess launch, networking,
+or global registration.
+
+One adapter is invoked synchronously on the caller thread. The fixed profile
+checks exact tool discovery and capabilities, detached reads, baseline
+snapshot/hash consistency, dry-run and committed receipts, stale-hash
+atomicity, entity query, per-tick receipts, semantic diff, capture/test/
+telemetry result shapes, idempotent close, and structured use-after-close
+rejection. All world mutations continue through the existing canonical
+commands and receipts.
+
+Reports contain fixed statuses and runner-owned codes, never provider
+messages/codes, paths, environment or platform metadata, timing, snapshots,
+captures, entity values, credentials, or provider-native objects. The runner
+attempts cleanup after interrupted stages but cannot contain malicious code.
+
+Conformance is a behavioral self-test, not provider trust or admission.
+Transport security, provenance, complete OS/Python support, performance,
+free-threaded behavior, maintenance, and real-agent manual-recovery rates
+remain separate evidence gates. The project-owned direct-service pass is
+reference evidence; external adoption remains zero until independently
+authored evidence is reviewed. See
+[ADR-0032](adr/0032-explicit-installed-agent-tool-conformance.md).
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -506,7 +549,9 @@ exist. M14 records the retained layered-2D boundary and defers constrained 3D
 without changing the runtime package. M15 retains the headless inspector and
 defers visual-editor implementation. M16 retains data-only plugins and defers
 WASM runtimes, guest execution, WASI, and host calls. M17 adds one explicit
-installed render-device baseline without admitting or discovering providers. M6
+installed render-device baseline without admitting or discovering providers.
+M18 adds one explicit installed agent-tool baseline without discovering a
+transport or admitting an adapter. M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network

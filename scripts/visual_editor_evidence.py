@@ -20,6 +20,8 @@ _AGENT_EXPORTS = [
     "AGENT_ERROR_PROTOCOL",
     "AGENT_SERVICE_PROTOCOL",
     "AGENT_TOOLS",
+    "AGENT_TOOL_CONFORMANCE_PROFILE",
+    "AGENT_TOOL_CONFORMANCE_PROTOCOL",
     "AGENT_TOOL_NAMES",
     "AgentCapabilities",
     "AgentCapabilityError",
@@ -27,6 +29,7 @@ _AGENT_EXPORTS = [
     "AgentCaptureProvider",
     "AgentCommandService",
     "AgentConcurrencyError",
+    "AgentConformanceStatus",
     "AgentError",
     "AgentLimitError",
     "AgentLimits",
@@ -37,6 +40,10 @@ _AGENT_EXPORTS = [
     "AgentTestProvider",
     "AgentTestResult",
     "AgentTool",
+    "AgentToolAdapter",
+    "AgentToolConformanceCheck",
+    "AgentToolConformanceReport",
+    "run_agent_tool_conformance",
 ]
 _FOUNDATIONS: dict[str, object] = {
     "agent_all_experimental": True,

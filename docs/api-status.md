@@ -23,7 +23,7 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.collision` | Deterministic bounded collision | Experimental |
 | `ludoweave.presentation` | Tick animation, bitmap text, tilemap, particle, and extraction contracts | Experimental |
 | `ludoweave.plugins` | Data-only plugin manifests and compatibility evaluation | Preview |
-| `ludoweave.agent` | Typed agent-control service | Experimental |
+| `ludoweave.agent` | Typed agent-control service and installed conformance evidence | Experimental |
 | `ludoweave.samples` | Exercised reference compositions | Experimental |
 
 Names from `ludoweave.tools` are composition-root internals unless a future

@@ -92,6 +92,23 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise RuntimeError(
                 f"bundled render-device conformance report was invalid: {conformance!r}"
             )
+        agent_conformance_result = _run(
+            [str(python), "-I", "agent_tool_conformance.py"],
+            cwd=sample_root,
+        )
+        agent_conformance = cast(dict[str, object], json.loads(agent_conformance_result.stdout))
+        agent_checks = cast(list[dict[str, object]], agent_conformance.get("checks"))
+        if (
+            agent_conformance.get("protocol") != "ludoweave.agent-tool-conformance/1"
+            or agent_conformance.get("profile") != "agent-tool-baseline/1"
+            or agent_conformance.get("adapter_id") != "org.ludoweave.agent-service"
+            or agent_conformance.get("status") != "pass"
+            or len(agent_checks) != 12
+            or any(check.get("status") != "pass" for check in agent_checks)
+        ):
+            raise RuntimeError(
+                f"bundled agent-tool conformance report was invalid: {agent_conformance!r}"
+            )
         _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
         rollback_result = _run(
             [
@@ -193,6 +210,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
     root = output / expected_root
     required = {
         "README.md",
+        "agent_tool_conformance.py",
         "alpha_acceptance.py",
         "clockwork_arena.py",
         "constrained_3d_decision.py",

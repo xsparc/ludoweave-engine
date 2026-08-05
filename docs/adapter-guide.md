@@ -88,6 +88,16 @@ discovers or imports the package from manifest data. See the
 baseline report complements rather than replaces the checklist above,
 provider-specific tests, provenance review, or the hosted support matrix.
 
+M18 applies the same explicit-composition rule to local adapters over the
+existing 12-tool `AgentCommandService`. An adapter package imports its trusted
+factory and calls `run_agent_tool_conformance()` against a fresh clean
+authority. The runner validates canonical receipts, stale-hash atomicity,
+query/diff/provider result shapes, and close behavior without discovering a
+module or transport. See the [agent-tool conformance
+guide](agent-tool-conformance.md). A passing report does not establish remote
+transport security, provenance, support-matrix coverage, performance, or
+unassisted agent success.
+
 ## Publishing and compatibility
 
 Third-party adapters should be separately distributed packages that require a

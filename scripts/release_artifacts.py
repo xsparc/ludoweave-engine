@@ -14,6 +14,7 @@ from typing import cast
 
 _SAMPLE_FILES = (
     "README.md",
+    "agent_tool_conformance.py",
     "agent_world_builder.py",
     "alpha_acceptance.py",
     "clockwork_arena.assets.json",

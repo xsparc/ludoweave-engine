@@ -13,6 +13,7 @@ python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
 python render_device_conformance.py
+python agent_tool_conformance.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -51,6 +52,11 @@ explicitly selected trusted adapter. The dependency-free default validates the
 Null device; `--backend wgpu` validates the optional production adapter. It
 does not discover, import by name, install, sandbox, or certify third-party
 code.
+
+`agent_tool_conformance.py` runs the versioned 12-tool baseline against an
+explicit built-in direct-service factory and a fresh clean authority. It does
+not accept a module name, discover a transport, install code, start a process,
+open a network connection, sandbox, or certify third-party code.
 
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:
