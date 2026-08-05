@@ -2,9 +2,8 @@
 
 ## Current milestone
 
-M0 through M4 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI. M5 implementation and local validation
-are complete; publication and hosted validation are pending.
+M0 through M5 are complete, independently accepted, published as stacked pull
+requests, and validated by hosted CI.
 
 ## Repository identity
 
@@ -13,6 +12,8 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 14-job quality, CPython/OS, wheel, and graphics matrix. M4 is complete on
 `codex/m4-clockwork-arena`, published as stacked PR #4, and validated by hosted
 run `30996905660` across the same 14-job matrix.
+M5 agent control is complete on `codex/m5-agent-control`, published as stacked
+PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -67,7 +68,7 @@ run `30996905660` across the same 14-job matrix.
 
 ## Next slice
 
-- Publish M5 as a DCO-signed stacked pull request, require the complete hosted matrix to pass, record that evidence, and only then begin the authorized M6 slice from the exact validated M5 evidence head.
+- Begin only the authorized M6 slice on a new task-scoped branch from the exact validated M5 evidence head.
 
 ## Validation state
 
@@ -88,7 +89,8 @@ run `30996905660` across the same 14-job matrix.
 - The local baseline Clockwork Arena benchmark p50/p95/p99 was 1.5228/2.1228/2.5898 ms and observed its 16.666667 ms p95 target. Stress 4 and 8 p95 values were 3.5029 ms and 4.8371 ms and have no assigned target. These are local observations, not cross-platform claims.
 - GitHub Actions run `30996905660` passed all 14 M4 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real graphics smoke, including Clockwork Arena wgpu execution, on Ubuntu software Vulkan, Windows, and macOS.
 - The final local M5 gate on Windows/uv-managed CPython 3.12.13 reports 545 passing tests and one existing Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, successful no-dependency installed-wheel smoke, and a real offscreen wgpu Agent World Builder run.
-- Direct Python, the actual `ludoweave agent` subprocess, and MCP return equivalent canonical transaction results/receipts. MCP lifecycle, malformed input, duplicate IDs/keys, capability denial, limits, atomic stale-hash rejection, reentrant/wrong-thread mutation rejection, redaction, provider close, and architecture bans are covered. No cross-platform M5 pass is claimed until hosted CI completes.
+- Direct Python, the actual `ludoweave agent` subprocess, and MCP return equivalent canonical transaction results/receipts. MCP lifecycle, malformed input, duplicate IDs/keys, capability denial, limits, atomic stale-hash rejection, reentrant/wrong-thread mutation rejection, redaction, provider close, and architecture bans are covered.
+- GitHub Actions run `30999777517` passed all 14 M5 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real graphics smoke, including the Agent World Builder typed-tool loop, on Ubuntu software Vulkan, Windows, and macOS.
 
 ## External follow-ups
 

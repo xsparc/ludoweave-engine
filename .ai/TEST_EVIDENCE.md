@@ -600,4 +600,25 @@ composition root. Wheel inspection found only pure Python package files,
 metadata, the console entry point, LICENSE, and NOTICE—no native objects, tests,
 generated docs, credentials, or mandatory graphics dependency.
 
-Hosted M5 CI has not yet run, so no cross-platform M5 pass is claimed here.
+Hosted M5 CI had not yet run at the time of the local gate, so that section made
+no cross-platform claim.
+
+## M5 hosted validation — GitHub Actions run 30999777517
+
+The DCO-signed M5 implementation commit
+`b85bfcd13c56d6ffcfc292823c6e0be33c78f945` was pushed to
+`codex/m5-agent-control` and published as stacked pull request #5 against the
+validated M4 branch. The resulting least-privilege CI run completed
+successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed lock, formatting, lint, strict Pyright with the optional graphics adapter installed, and strict MkDocs gates. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three base matrix jobs passed. |
+| Tests — Windows, Python 3.12/3.14 | Both base matrix jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both base matrix jobs passed. |
+| Installed wheel — Ubuntu/Windows/macOS, Python 3.12 | All three pure-wheel/no-dependency smokes passed, including installed agent receipt, MCP stdio, and Agent World Builder checks. |
+| Graphics smoke — Ubuntu/Windows/macOS, Python 3.12 | All three real graphics fixtures and the Agent World Builder wgpu composition passed; Ubuntu used the explicitly provisioned Mesa Vulkan software runtime. |
+
+All 14 jobs in run `30999777517` passed. This supplies the cross-platform M5
+evidence that was deliberately not claimed by the local gate.
