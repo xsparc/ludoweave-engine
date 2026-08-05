@@ -392,6 +392,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         if any(rich.get(key) != value for key, value in rich_expected.items()):
             raise RuntimeError(f"rich 2D example summary was invalid: {rich!r}")
 
+        plugin_manifest = temp_root / "example.plugin.json"
+        shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)
+        plugin_result = _run(
+            [str(ludoweave), "plugin", "check", str(plugin_manifest)],
+            cwd=temp_root,
+        )
+        plugin_report = cast(dict[str, object], json.loads(plugin_result.stdout))
+        if (
+            plugin_report.get("protocol") != "ludoweave.plugin-check/1"
+            or plugin_report.get("compatible") is not True
+            or plugin_report.get("plugin_count") != 1
+            or str(plugin_manifest) in plugin_result.stdout
+        ):
+            raise RuntimeError(f"plugin manifest smoke was invalid: {plugin_report!r}")
+
         arena_smoke = textwrap.dedent(
             """
             from ludoweave.audio import AudioClipDescriptor, NullAudioBackend

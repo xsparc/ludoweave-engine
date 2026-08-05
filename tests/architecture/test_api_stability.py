@@ -16,6 +16,7 @@ _MODULES = {
     "ludoweave.core",
     "ludoweave.ecs",
     "ludoweave.platform",
+    "ludoweave.plugins",
     "ludoweave.presentation",
     "ludoweave.render",
     "ludoweave.render.backends",

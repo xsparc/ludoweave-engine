@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M12 preview data-only plugin manifests with canonical v1 serialization,
+  deterministic engine/CPython/platform/capability/native/determinism and
+  dependency-graph compatibility checks, plus installed CLI/sample smoke.
+- RFC-0002 defining the persistent manifest schema, preview deprecation
+  promise, stable issue/report semantics, and prohibition on discovery,
+  loading, execution, installation, networking, or ambient registries.
 - M11 dependency-free headless 2D presentation authoring: exact-tick sprite
   animation, bitmap glyph layout/extraction, bounded immutable tilemaps,
   seeded fixed-point particles, and a lifecycle-validating audio mix graph.

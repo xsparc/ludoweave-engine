@@ -25,6 +25,14 @@ immutable tilemaps, and fixed-point particles through existing render records.
 It is published as ready stacked PR #12; GitHub Actions run `31024155710`
 passed all eight essential hosted jobs on signed implementation commit
 `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
+M12 is assigned on `codex/m12-plugin-manifest-compatibility`, based on exact
+M11 evidence head `840a8b06d461fa1d5e649911b22f5995154728a7`. Its bounded contract is a
+data-only preview plugin-manifest schema and deterministic compatibility
+evaluator. RFC-0002 is accepted and implementation plus focused review
+hardening are complete. Independent hostile review approved the corrected tree
+with no remaining finding, and the complete local/artifact/provider gate
+passed. Signed commit, stacked PR publication, and hosted CI remain pending;
+no M12 hosted or cross-platform pass claim is made.
 
 ## Repository identity
 
@@ -101,7 +109,10 @@ evidence head and is proposed against the M10 branch as PR #12.
 - Agent World Builder acceptance composition with six typed ECS entities, real offscreen wgpu capture, exact query/adjust/diff/test/telemetry/replay coverage, and installed-wheel execution.
 - Deterministic community-alpha release staging with a pure wheel, sdist, fixed-timestamp sample bundle, SHA-256 inventory, versioned manifest, SPDX 2.3 SBOM, and notice set.
 - Isolated release smoke that validates exact checksum coverage, SBOM/wheel identity, safe ZIP members, installed CLI/doctor, and bundled headless M0-M5 scenarios before success.
-- Explicit `__all__`/`__stability__` policy and architecture coverage for every supported Python export; all `0.1.0a1` symbols remain experimental.
+- Explicit `__all__`/`__stability__` policy and architecture coverage for every
+  supported Python export. Earlier `0.1.0a1` symbols remain experimental;
+  `ludoweave.plugins` is the first preview surface with a documented
+  deprecation promise.
 - Pinned tag-only provenance/prerelease workflow plus one complete baseline
   release-candidate smoke, compatibility coverage for every supported Python
   version/OS, and real graphics smoke on all three operating systems.
@@ -152,18 +163,35 @@ evidence head and is proposed against the M10 branch as PR #12.
   lifecycle-validating Null backend with category and effective-gain checks.
 - A dependency-free rich 2D showcase registered in source, isolated-wheel, and
   deterministic release sample-bundle validation paths.
+- Accepted RFC-0002 plus strict canonical plugin manifests, frozen explicit
+  compatibility contexts/reports, bounded dependency checks, a path-free local
+  CLI check, and source/wheel/release example coverage. The package owns no
+  discovery, import, execution, filesystem, networking, or mutable registry.
 
 ## Next slice
 
-- M11 publication and hosted evidence are complete. Before implementation,
-  turn authoritative post-alpha item 6, plugin-manifest stabilization and
-  compatibility checks, into a bounded M12 task contract based on the current
-  design, accepted ADRs, and existing plugin surfaces. Real audio providers,
-  font shaping, editor tooling, networking, 3D, deferred Box2D/SDL3 adapters,
-  and native code remain unassigned.
+- Create the DCO-signed M12 implementation commit, publish the ready stacked PR
+  against exact M11, and observe the unchanged essential hosted gate before
+  recording hosted evidence. Do not add discovery/loading/execution, package
+  resolution, a global registry, provider admission, runtime authority,
+  networking, editor/GUI, 3D, deferred Box2D/SDL3 adapters, or native code.
 
 ## Validation state
 
+- The final reviewed M12 local gate on Windows/uv-managed CPython 3.12.13
+  reports 741 passing tests and one existing symlink-capability skip, 170
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 91-entry wheel with four plugin-contract entries and zero native files,
+  isolated-wheel smoke, and fresh complete ten-artifact release smoke.
+- Nine real-wgpu integration tests, Null/wgpu Clockwork Arena, Agent World
+  Builder, alpha acceptance, rich-2D showcase, and the canonical example plugin
+  check passed. Every inherited README benchmark/profile artifact validated;
+  the existing M1 simulation and M3 renderer target misses remain recorded and
+  do not authorize native work.
+- Independent hostile review drove boundedness, exact-type, canonical-report,
+  sanitized-diagnostic, immutable-decision, import/global-state, I/O/eval, and
+  CLI regressions. Final re-review ran 138 focused tests with clean static,
+  docs, diff, and isolated CLI checks and reported no remaining finding.
 - The final reviewed M11 local gate on Windows/uv-managed CPython 3.12.13
   reports 663 passing tests and one existing symlink-capability skip, 164
   formatted Python files, zero Ruff/Pyright findings, strict documentation,

@@ -22,6 +22,10 @@ MCP child, detached semantic observations, explicit receipted writes, exact
 hash continuity, and no arbitrary process, network, remote-attach, or editor
 surface.
 
+RFC-0002 resolves the M12 plugin boundary with canonical inert manifests,
+explicit environment/policy/dependency checks, and no discovery, import,
+execution, installation, or ambient global registry.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

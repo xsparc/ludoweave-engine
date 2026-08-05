@@ -2,8 +2,8 @@
 
 LudoWeave Engine builds deterministic, headless-first 2D worlds whose mutations
 can be validated, receipted, replayed, and operated through the same typed
-protocol. Version `0.1.0a1` is useful for evaluation and contribution; every
-current Python export remains experimental.
+protocol. Version `0.1.0a1` is useful for evaluation and contribution; most
+Python exports remain experimental and the M12 plugin contract is preview.
 
 ## Install and verify
 
@@ -33,6 +33,7 @@ python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python alpha_acceptance.py
+ludoweave plugin check example.plugin.json
 ```
 
 Every command exits on its own and prints one JSON summary. The rich 2D
@@ -73,6 +74,21 @@ Read the [ECS/world guide](ecs.md), [fixed-step application guide](fixed-step-ap
 and [persistent command contract](commands.md) before choosing a layer. The
 canonical state rule is simple: presentation objects, GPU handles, input
 providers, clocks, paths, and audio handles never enter the authority image.
+
+## Check plugin metadata without loading code
+
+The sample bundle includes one inert `example.plugin.json`. Check it against
+the current engine, CPython minor, and desktop platform:
+
+```console
+ludoweave plugin check example.plugin.json
+```
+
+The checker reads only the explicitly named bounded JSON file. It does not
+discover installed packages, import a module, execute a hook, install a
+dependency, contact a network, or compose runtime state. Exit 0 is compatible,
+1 is valid but incompatible, and 2 is invalid input. Read the
+[plugin guide](plugins.md) before relying on this preview format.
 
 ## Optional presentation
 
@@ -118,9 +134,10 @@ codes and bounded context. A rejected transaction preserves its pre-hash and
 returns a rejected receipt. Resource-owning objects provide explicit close
 semantics and should be used as context managers where supported.
 
-All current exports are experimental. Inspect a package's `__all__` and
-`__stability__`, then read the [API status](api-status.md). Persistent protocol
-revision and Python symbol stability are separate contracts.
+Most exports are experimental; `ludoweave.plugins` is preview under RFC-0002.
+Inspect a package's `__all__` and `__stability__`, then read the
+[API status](api-status.md). Persistent protocol revision and Python symbol
+stability are separate contracts.
 
 If installation, doctor, headless samples, or a recorded replay fails, file a
 bug using the repository form with the exact version, OS, CPython version,

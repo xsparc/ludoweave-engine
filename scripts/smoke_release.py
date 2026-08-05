@@ -71,6 +71,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         _run([str(python), "-I", "hello_headless.py", "--ticks", "5"], cwd=sample_root)
         _run([str(python), "-I", "fixed_step_world.py", "--ticks", "6"], cwd=sample_root)
         _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
+        plugin_result = _run(
+            [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
+            cwd=sample_root,
+        )
+        plugin_report = cast(dict[str, object], json.loads(plugin_result.stdout))
+        if (
+            plugin_report.get("protocol") != "ludoweave.plugin-check/1"
+            or plugin_report.get("compatible") is not True
+            or plugin_report.get("plugin_count") != 1
+        ):
+            raise RuntimeError("bundled plugin manifest compatibility smoke failed")
         _run(
             [
                 str(python),

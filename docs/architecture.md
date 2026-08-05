@@ -58,6 +58,12 @@ render records. Audio gains use an immutable mix graph validated by the Null
 adapter; no real audio provider is admitted. See the
 [presentation guide](presentation.md) and ADR-0026.
 
+M12 adds a preview data-only plugin manifest and compatibility layer. It
+canonicalizes inert declarations and checks explicit environment, policy, and
+dependency facts without discovering, importing, installing, or executing
+plugin code. CLI filesystem access stays in tools. See the
+[plugin guide](plugins.md) and RFC-0002.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -82,6 +88,7 @@ concrete adapters  ludoweave.render.backends.null[_device]
 
 focused contracts  ludoweave.platform, assets, collision, audio
 presentation       ludoweave.presentation ---> render contracts/extraction
+plugin contracts   ludoweave.plugins ---> core version/errors + canonical JSON
 
 sample composition ludoweave.samples.clockwork_arena
                    ludoweave.samples.agent_world_builder
@@ -96,6 +103,10 @@ sample composition ludoweave.samples.clockwork_arena
 - Presentation authoring may depend on core plus exact render contracts,
   extraction records, and opaque handles. It may not import ECS/world,
   application/tools, samples, concrete backends, or third-party providers.
+- Plugin contracts may depend on core version/errors and world canonical-JSON
+  helpers only. They may not import application/tools, ECS authority, samples,
+  backends/providers, discovery/package metadata, process, or network modules,
+  and may not evaluate Python.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
@@ -119,6 +130,10 @@ The M5/M10 architecture checks additionally reject upward agent imports,
 Python-evaluation primitives in the agent package and inspector, and networking
 modules in both local stdio adapters. Agent tools expose provider-neutral JSON
 documents, not filesystem, ECS-storage, or GPU objects.
+
+The M12 checks reject discovery, import/execution, installation/process, and
+network facilities from `ludoweave.plugins`. Manifests contain no implementation
+locator, and no positive compatibility report mutates or composes runtime state.
 
 ## Ownership and close order
 

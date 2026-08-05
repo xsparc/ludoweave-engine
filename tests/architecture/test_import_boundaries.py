@@ -275,6 +275,88 @@ def test_presentation_authoring_rejects_authority_backends_and_tools(
     assert "ludoweave.presentation.bad" in violations[0].message
 
 
+@pytest.mark.parametrize(
+    "source",
+    [
+        "import ctypes\n",
+        "import ftplib\n",
+        "import importlib.metadata\n",
+        "import os\n",
+        "from pathlib import Path\n",
+        "import pickle\n",
+        "import pkg_resources\n",
+        "import pkgutil\n",
+        "import runpy\n",
+        "import subprocess\n",
+        "import socket\n",
+        "import third_party_plugin\n",
+        "from ludoweave.app import Engine\n",
+        "from ludoweave.core.clock import MonotonicClock\n",
+        "from ludoweave.tools.cli import main\n",
+    ],
+)
+def test_plugin_contract_rejects_discovery_execution_and_upward_imports(
+    tmp_path: Path, source: str
+) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "plugins" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert any(
+        marker in violations[0].message
+        for marker in ("ludoweave", "forbidden module", "arbitrary external")
+    )
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "PLUGIN_REGISTRY = {}\n",
+        "_handlers: dict[str, object] = dict()\n",
+        "class Registry: pass\nPLUGIN_REGISTRY = Registry()\n",
+        "from collections import UserDict\nPLUGIN_REGISTRY = UserDict()\n",
+    ],
+)
+def test_plugin_contract_rejects_module_level_mutable_state(tmp_path: Path, source: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "plugins" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "module-level mutable state" in violations[0].message
+
+
+@pytest.mark.parametrize(
+    "call",
+    [
+        "eval('1')",
+        "exec('x=1')",
+        "compile('1','','eval')",
+        "open('manifest.json', 'rb')",
+        "input('manifest: ')",
+        "loader = __import__\nloader('os')",
+        "runner = eval\nrunner('1')",
+    ],
+)
+def test_plugin_contract_rejects_arbitrary_python_evaluation(tmp_path: Path, call: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "plugins" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(f"{call}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert violations
+    assert any("banned builtin" in violation.message for violation in violations)
+
+
 def test_checker_rejects_near_prefix_module_names(tmp_path: Path) -> None:
     source_root = tmp_path / "src"
     bad_module = source_root / "ludoweave" / "ecs" / "bad.py"

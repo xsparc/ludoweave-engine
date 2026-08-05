@@ -42,11 +42,13 @@ M1-M7 are integrated into `main`; M8 through M11 are published as stacked PRs
 #9 through #12. M9 defers the Box2D v3 plugin. M10 adds only the headless
 owned-child semantic inspector. M11 adds bounded headless 2D audio-mix,
 bitmap-text, tick-animation, tilemap, and particle authoring through existing
-backend-neutral extraction. The next milestone is not assigned until the
-post-alpha plugin-manifest item has a bounded task contract. Do not add a
-GUI/editor, networking or remote attach, arbitrary child commands, another
-world store, a Box2D adapter, release tag, GitHub release, or PyPI publication.
-Real audio playback, font parsing/shaping, network agent transports, editor
-work, 3D, SDL3, and native code remain out of scope.
+backend-neutral extraction. M12 is assigned only to strict data-only preview
+plugin manifests, deterministic compatibility checks, and an explicitly
+invoked local validation CLI. Do not add discovery, imports, hook execution,
+installation/resolution, a global plugin registry, GUI/editor, networking or
+remote attach, arbitrary child commands, another world store, a Box2D adapter,
+release tag, GitHub release, or PyPI publication. Real audio playback, font
+parsing/shaping, network agent transports, editor work, 3D, SDL3, WASM, and
+native code remain out of scope.
 RFC-0001 records the evidence-based native-code deferral; local performance
 misses are not automatic authorization for acceleration.

@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M11 are hosted-validated; the next post-alpha slice is not yet assigned. Provider-neutral gamepad input and evidence-based SDL3, Box2D-plugin, and Rust/PyO3 deferrals use explicit admission gates. Every current Python API and wire format remains experimental and may change without deprecation.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M11 are hosted-validated; M12 data-only plugin manifests and compatibility checks are under development. Provider-neutral gamepad input and evidence-based SDL3, Box2D-plugin, and Rust/PyO3 deferrals use explicit admission gates. Existing APIs remain experimental; the M12 manifest surface is the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -36,6 +36,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Bounded tick animation, bitmap atlas text layout, immutable chunked tilemaps,
   seeded fixed-point particles, and a Null-audio acyclic mix graph, all
   exercised by one dependency-free headless showcase.
+- Preview canonical data-only plugin manifests with deterministic
+  environment/policy/dependency checks and no discovery or code execution.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
 - A transport-independent typed agent service with explicit capabilities, quotas, redaction, serialized mutations, and the same canonical command receipts used by direct Python.
 - Twelve observation/control tools exposed through Python, a project-confined CLI, and a local-only MCP `2025-11-25` stdio adapter with no network listener.
@@ -71,6 +73,7 @@ uv run python examples/hello_headless.py --ticks 120
 uv run python examples/fixed_step_world.py --ticks 6
 uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/alpha_acceptance.py
+uv run ludoweave plugin check examples/example.plugin.json
 uv run ludoweave inspect --sample agent-world-builder
 ```
 
@@ -134,6 +137,8 @@ The [live semantic inspector guide](docs/inspector.md) documents M10 local child
 ownership, observation events, explicit write receipts, bounds, and failures.
 The [rich 2D presentation guide](docs/presentation.md) documents M11 animation,
 bitmap text, tilemap, particle, and audio-mix ownership and determinism.
+The [plugin compatibility guide](docs/plugins.md) documents M12 inert manifests,
+preview compatibility, deterministic reports, and the explicit no-loader boundary.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

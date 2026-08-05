@@ -1,9 +1,11 @@
 # Adapter and extension guide
 
-LudoWeave community alpha supports explicit dependency injection, not a plugin
-loader. Project data cannot name Python modules or callables. There is no entry
-point discovery, hot-loaded code, sandbox, compatibility resolver, or promise
-that a third-party adapter is safe merely because it satisfies a protocol.
+LudoWeave supports explicit dependency injection plus M12 data-only plugin
+manifests, not a plugin loader. Project data and manifests cannot name Python
+modules or callables. There is no entry-point discovery, hot-loaded code,
+sandbox, package resolver, or promise that a third-party adapter is safe merely
+because its manifest and protocol checks pass. See the
+[plugin compatibility guide](plugins.md) and RFC-0002.
 
 ## Choose the correct boundary
 
@@ -85,8 +87,13 @@ bounded compatible LudoWeave version and document their own stability, licenses,
 native requirements, and support matrix. Do not use the reserved `ludoweave`
 top-level namespace without maintainer agreement.
 
+They may publish a `ludoweave.plugin-manifest/1` document containing only inert
+compatibility metadata. Applications must still select and import the package
+explicitly. A positive report does not replace adapter conformance, trust,
+ownership, provenance, or provider-admission review.
+
 Adding another official renderer/platform/physics backend, introducing plugin
-discovery, or changing a security/compatibility boundary requires an RFC. A
+discovery/loading, or changing a security/compatibility boundary requires an RFC. A
 small adapter should not become a route to networking, arbitrary evaluation,
 global mutable registries, or duplicate world state. See the
 [architecture overview](architecture.md), [API policy](api-status.md), and

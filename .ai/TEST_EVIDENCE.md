@@ -1279,3 +1279,105 @@ The workflow file was unchanged by M11. This run is the only hosted run created
 for the implementation commit. It validates the supported cross-platform
 matrix and distribution/provider contracts; it does not merge PR #12, publish
 a package, create a tag or release, or admit any deferred provider/native work.
+
+## M12 final reviewed local validation - 2026-08-06
+
+Environment: Windows 11, uv-managed CPython 3.12.13 with the exact locked
+graphics extra. Base and current pre-commit `HEAD`:
+`840a8b06d461fa1d5e649911b22f5995154728a7`. Branch:
+`codex/m12-plugin-manifest-compatibility`.
+
+The complete independently reviewed command sequence produced these results:
+
+- The first sandboxed `uv lock --check` attempt exited 1 because the workspace
+  sandbox denied access to uv's existing user cache. The approved exact rerun
+  exited 0 and resolved the unchanged 46-package lock.
+- `uv sync --frozen --all-groups --extra graphics` exited 0 and checked 45
+  packages.
+- `uv run --frozen ruff format --check .` exited 0; 170 Python files were
+  already formatted.
+- `uv run --frozen ruff check .` exited 0 with `All checks passed!`.
+- `uv run --frozen pyright` exited 0 with zero errors, warnings, or information
+  diagnostics.
+- `uv run --frozen pytest -q` exited 0 with 741 passing tests and one existing
+  Windows symlink-capability skip in 47.87 seconds.
+- `uv run --frozen mkdocs build --strict` exited 0 in 0.50 seconds. Material for
+  MkDocs emitted its existing upstream MkDocs 2.0 informational warning.
+- `uv build` exited 0 and rebuilt
+  `dist/ludoweave-0.1.0a1.tar.gz` plus the universal
+  `dist/ludoweave-0.1.0a1-py3-none-any.whl` from the sdist.
+- `uv run --frozen python scripts/smoke_wheel.py dist` exited 0 with
+  `wheel smoke passed: ludoweave-0.1.0a1-py3-none-any.whl`; the isolated wheel
+  check included the explicit M12 manifest and path-free compatible report.
+- `uv run --frozen python scripts/release_artifacts.py dist .tmp/m12-release-candidate-final-reviewed-20260806`
+  exited 0 with protocol `ludoweave.release-stage/1`, version `0.1.0a1`, ten
+  artifacts, the versioned sample bundle, and SPDX SBOM.
+- `uv run --frozen python scripts/smoke_release.py .tmp/m12-release-candidate-final-reviewed-20260806`
+  exited 0 with `release smoke passed: ludoweave 0.1.0a1`; the extracted bundle
+  checked `example.plugin.json` through the isolated installed wheel.
+- `git diff --check` exited 0.
+
+Provider and example acceptance:
+
+- `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py`
+  exited 0 with nine passes in 5.53 seconds.
+- Null and real-wgpu `examples/clockwork_arena.py --ticks 600` runs both exited
+  0 with the same authoritative state hash
+  `sha256:b7a77c7fa0f0bab668245723719a4e57c00f5f821b4df8cf013dcf9aaaf34c70`;
+  the wgpu run completed 600 draws and produced an offscreen capture.
+- `uv run --frozen --extra graphics python examples/agent_world_builder.py`
+  exited 0 with committed apply/adjust status, six query matches, three ticks,
+  five replay batches, and passing registered tests.
+- `uv run --frozen python examples/alpha_acceptance.py` exited 0 with protocol
+  `ludoweave.sample.alpha_acceptance/1` and status `ok`.
+- `uv run --frozen python examples/rich_2d_showcase.py --ticks 6` exited 0 with
+  schema `ludoweave.example.rich_2d/1`, nine glyphs, ten particles, 20 sprite
+  instances, eight tile instances, and two draw calls.
+- `uv run --frozen ludoweave plugin check examples/example.plugin.json` exited
+  0 with canonical protocol `ludoweave.plugin-check/1`, one compatible plugin,
+  no issues or path, and manifest-set fingerprint
+  `sha256:c2ed00ea4153e92aec46c5e80d22324656fe4009903c638544faa48cba9d24a2`.
+
+Every benchmark/profile command in the README quality suite was also rerun
+against uniquely named M12 artifacts and its validator exited 0:
+
+- M1 recorded seven workloads. The fixed 3,600-tick p95 was 35,648,600 ns and
+  observed its headless target; the 10,000-entity simulation p95 was
+  118,236,300 ns and did not observe its inherited 4 ms target. The validator
+  reported one of two recorded targets observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads with zero of its two inherited timing targets
+  observed.
+- M4 validated three workloads; the baseline p95 was 1,824,800 ns and observed
+  its 16,666,667 ns target.
+- The five-repeat M7 base and real-wgpu profile artifacts validated with two
+  and three workloads respectively. Profile timing is diagnostic only.
+
+Artifact, scope, and history audit:
+
+- the wheel contains 91 entries, including four `ludoweave/plugins` files and
+  zero `.pyd`, `.so`, `.dll`, `.dylib`, `.a`, or `.lib` entries;
+- wheel metadata has no mandatory dependency; its only `Requires-Dist` entries
+  are the unchanged exact `graphics` extra for GLFW, rendercanvas, and wgpu;
+- credential-assignment and plugin backend/discovery/evaluation/filesystem
+  scans found no matches; ripgrep exit 1 means no matches;
+- the CI workflow, `pyproject.toml`, and `uv.lock` are unchanged, retaining the
+  eight essential hosted jobs and pure-Python package contract; and
+- `HEAD`, local M11, and remote-tracking M11 all resolved to
+  `840a8b06d461fa1d5e649911b22f5995154728a7` before the M12 commit. Merge-base
+  matched exactly and the pre-commit left/right count was `0 0`, so the stack
+  contains no missing or unrelated commit.
+
+Independent findings-first review reproduced and drove regressions for bounded
+cycle diagnostics, canonical detail/report limits, exact error types and
+protocol values, mixed-key and pre-bound mapping validation, exact plugin
+identities, deterministic immutable decision state, path-free diagnostics,
+explicit import/global-state/I/O/evaluation architecture rules, and sanitized
+CLI parsing before file I/O. Final re-review reported no blocking or
+non-blocking finding; its corrected focused plugin/CLI/architecture/API/release
+suite passed 138 tests, with clean Ruff, Pyright, strict docs, diff, and
+isolated CLI checks.
+
+At this stage no M12 hosted or cross-platform pass, merge, tag, release, package
+publication, discovery/loading/execution, provider admission, networking,
+editor/GUI, deferred Box2D/SDL3 adapter, or native-code claim is made.

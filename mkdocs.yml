@@ -11,6 +11,7 @@ nav:
   - Community-alpha user guide: user-guide.md
   - Architecture: architecture.md
   - Adapter and extension guide: adapter-guide.md
+  - Plugin manifests and compatibility: plugins.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -18,6 +19,7 @@ nav:
   - Performance and native-code decision:
       - RFC index: rfcs/index.md
       - RFC-0001 - Defer first native kernel: rfcs/0001-defer-first-native-kernel.md
+      - RFC-0002 - Data-only plugin manifests: rfcs/0002-data-only-plugin-manifest-compatibility.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

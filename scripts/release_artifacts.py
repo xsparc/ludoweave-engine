@@ -18,6 +18,7 @@ _SAMPLE_FILES = (
     "alpha_acceptance.py",
     "clockwork_arena.assets.json",
     "clockwork_arena.py",
+    "example.plugin.json",
     "fixed_step_world.py",
     "hello_headless.py",
     "hello_sprite.py",

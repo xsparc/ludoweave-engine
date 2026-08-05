@@ -9,6 +9,7 @@ python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python alpha_acceptance.py
+ludoweave plugin check example.plugin.json
 ```
 
 `rich_2d_showcase.py` exercises animation, bitmap text, chunked tilemaps,
@@ -17,6 +18,10 @@ or audio device. `alpha_acceptance.py` checks engine lifecycle, stale entity gen
 Clockwork Arena, typed agent operations, replay evidence, provider ownership,
 and registered Agent World Builder tests without a display, network listener,
 or native compiler.
+
+`example.plugin.json` is inert compatibility metadata for the preview M12
+manifest protocol. The checker validates it against the current engine,
+CPython, and desktop platform without importing or executing plugin code.
 
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:
@@ -29,4 +34,5 @@ python clockwork_arena.py --ticks 600 --renderer wgpu
 
 Add `--window --interactive` to the final command for the desktop Clockwork
 Arena controls. The bundle is example source, not a plugin/project loader; read
-the version-matched user and adapter guides before reusing experimental APIs.
+the version-matched user, plugin, and adapter guides before reusing experimental
+or preview APIs.
