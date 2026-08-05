@@ -65,8 +65,10 @@ WASM-mod security admission decision. It must retain data-only plugins and add
 threat-model, installed evidence, tests, and documentation without selecting or
 adding a runtime, loader, executable manifest field, guest ABI, WASI, host
 function, public API, persistent format, dependency, lock, version, or CI job.
-Its implementation is locally complete and independently accepted on
-`codex/m16-wasm-mod-security-decision`; hosted validation is not yet claimed.
+Its implementation is complete and independently accepted on
+`codex/m16-wasm-mod-security-decision`. Ready PR #20 and GitHub Actions run
+`31039403209` validate all eight unchanged essential jobs on DCO-signed
+implementation commit `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
 Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, sockets,
 networking or remote attach, arbitrary child commands, another world store, a

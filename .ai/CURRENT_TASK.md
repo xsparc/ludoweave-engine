@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M16 - WASM-mod security admission decision
-- **Status:** Locally complete and independently accepted on
-  `codex/m16-wasm-mod-security-decision`; publication and hosted validation are
-  pending.
+- **Status:** Complete, independently accepted, and hosted-validated through
+  ready PR #20 on `codex/m16-wasm-mod-security-decision`; integration uses the
+  user-authorized squash-PR flow.
 - **Started:** 2026-08-06
 - **Base:** Exact clean, verified `main` integration commit
   `c013dad38b1b64f0f4ccddc19681d643f6414427` from squash PR #19. Its tree
@@ -57,3 +57,7 @@
   four evidence/threat-model gaps; after exact full-requirement validation,
   WebAssembly module/dynamic-load fixtures, explicit residual risk, and
   corrected current-flow wording, repeat review approved with no finding.
+- **Hosted gate:** GitHub Actions run `31039403209` passed all eight unchanged
+  essential jobs on DCO-signed implementation commit
+  `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce` through ready PR #20 against
+  exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`.

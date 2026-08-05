@@ -24,7 +24,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M13 rollback/network-snapshot readiness | Hosted-validated bounded correction-branch evidence, explicit input-history gap, network deferral ADR, and no transport implementation |
 | Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
 | Done | M15 visual-editor admission decision | Hosted-validated installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
-| In progress | M16 WASM-mod security admission decision | Installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
+| Done | M16 WASM-mod security admission decision | Hosted-validated installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -63,6 +63,9 @@ PR #19 squash-integrated the exact final M15 tree into `main` as verified
 commit `c013dad38b1b64f0f4ccddc19681d643f6414427`. M16 starts from that
 exact clean base and treats WASM mods as a separate security decision, not a
 runtime implementation.
+M16 ready PR #20 passed the unchanged eight-job hosted matrix as run
+`31039403209` on implementation commit
+`bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
 
 ## Good-first contribution queue
 

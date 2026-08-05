@@ -94,11 +94,13 @@ the M12 data-only plugin boundary, document the prospective threat surface and
 complete gate, and add deterministic source/wheel/release evidence plus
 architecture guards. It does not add a runtime, loader, guest ABI, WASI, host
 call, public API, persistent format, dependency, lock, version, or CI job.
-The implementation is locally complete and independently accepted. The final
+The implementation is complete and independently accepted. The final
 post-review gate reports 870 passes and one existing Windows symlink-capability
 skip, clean static/docs/build/artifact/provider checks, and successful
-validation of every inherited documented benchmark/profile. Publication and
-hosted validation remain pending and are not yet claimed.
+validation of every inherited documented benchmark/profile. It is published
+through ready PR #20; GitHub Actions run `31039403209` passed all eight
+unchanged essential jobs on DCO-signed implementation commit
+`bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
 
 ## Repository identity
 

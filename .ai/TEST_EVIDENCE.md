@@ -1835,3 +1835,31 @@ At this stage no M16 commit, hosted/cross-platform pass, PR, merge, tag,
 release, package publication, runtime/public/persistent-format change,
 executable mod, WASI/host-call surface, dependency, or new performance-target
 claim is made.
+
+## M16 hosted validation - 2026-08-06
+
+Ready PR #20 targets `main` from
+`codex/m16-wasm-mod-security-decision`. Before the evidence-only follow-up,
+GitHub reported exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`,
+implementation head `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`,
+`MERGEABLE`, and `CLEAN`. The implementation history contains one DCO-signed
+commit.
+
+GitHub Actions pull-request run `31039403209` executed that implementation
+commit from `2026-08-05T19:26:18Z` through `2026-08-05T19:28:52Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, exact isolated-wheel M16 evidence, release staging, and
+  complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence confirms the supported installed,
+cross-platform, and provider contracts; it does not publish a package, create
+a tag or release, add an executable mod/runtime/WASI/host-call surface, change
+a public or persistent contract, or admit a new dependency/provider.
