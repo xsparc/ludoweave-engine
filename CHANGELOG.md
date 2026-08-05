@@ -8,6 +8,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M15 deterministic installed-surface evidence for the visual-editor admission
+  decision, exercised from source, isolated wheel, and release sample bundle.
+- ADR-0029 retaining the bounded headless inspector and deferring a visual
+  editor until public compatibility, authoring, recovery, usability,
+  cross-platform packaging, resource-budget, and ownership gates are complete.
 - M14 deterministic installed-surface evidence for the constrained-3D scope
   decision, exercised from source, isolated wheel, and release sample bundle.
 - ADR-0028 retaining layered 2D and deferring constrained 3D until product,

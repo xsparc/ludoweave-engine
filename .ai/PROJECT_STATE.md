@@ -69,6 +69,23 @@ M14 evidence head `02426805a11712030b3082ec349696d6d94aca50` at tree
 `137a1870b0dd9034ad935b253a13186f6c7cc913`. Stacked PRs #9-#15 are closed as
 superseded, with branches retained for audit history.
 
+Repository-state evidence was then integrated through PR #18 as verified main
+commit `bfea67d2d922e8c591224d18f56c14d572d7f7da`. M15 is locally complete and
+independently accepted from that exact clean base on
+`codex/m15-visual-editor-admission`. Its bounded contract is
+an installed-surface product decision only: confirm the versioned
+command/receipt, typed-tool, local MCP, and read-only inspector foundation;
+retain the headless inspector; and defer visual-editor implementation until
+the complete ADR-0029 compatibility, authoring, recovery, usability,
+cross-platform packaging, resource-budget, and maintenance gate is satisfied.
+The final local gate reports 834 passes and one existing Windows
+symlink-capability skip, clean static/docs/build/artifact/provider checks, and
+successful validation of every inherited documented benchmark/profile. No
+GUI/TUI, runtime package, public API, persistent format, dependency, lock,
+version, or CI change is introduced. It is published through ready PR #19;
+GitHub Actions run `31036925179` passed all eight unchanged essential jobs on
+DCO-signed implementation commit `7e85570056dde3678aaeee13eee4036067876d8c`.
+
 ## Repository identity
 
 M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
@@ -90,6 +107,8 @@ The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
 squash-integrated by PR #16 as commit
 `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`. The milestone branches and
 hosted-run records remain the audit trail; superseded stacked PRs are closed.
+Repository-state evidence is integrated by PR #18 as main commit
+`bfea67d2d922e8c591224d18f56c14d572d7f7da`.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -210,11 +229,15 @@ hosted-run records remain the audit trail; superseded stacked PRs are closed.
 
 ## Next slice
 
-- M13 publication and hosted evidence are complete. Before implementation,
-  turn the next authoritative post-alpha item into a bounded task contract
-  based on the current design and accepted decisions. Do not infer 3D runtime,
-  sockets, remote authority, a live rollback API, editor/GUI, WASM, provider
-  adapters, native code, or a persistent format change from roadmap proximity.
+- M15 is the assigned bounded visual-editor admission decision. The current
+  evidence confirms the installed versioned command/receipt, exact public
+  agent stability, typed-tool, local MCP, and finite read-only inspector
+  foundation with one actual committed semantic mutation. ADR-0029 retains the
+  headless inspector and defers GUI/editor implementation until every
+  compatibility, authoring, recovery, accessibility/usability, packaging,
+  budget, and ownership gate is satisfied. Do not add a toolkit, runtime
+  editor API, project/scene format, GUI/TUI, network/remote attach, arbitrary
+  child command, 3D, provider adapter, WASM, native code, or dependency.
 
 ## Validation state
 
@@ -392,7 +415,8 @@ hosted-run records remain the audit trail; superseded stacked PRs are closed.
 ## Deferred roadmap
 
 Remote/network agent transport, real audio playback, Box2D/rigid-body physics,
-networking, editor tooling, automatic device recovery, international text shaping, 3D, and
+networking, visual-editor implementation, automatic device recovery,
+international text shaping, 3D, and
 native acceleration remain unimplemented. RFC-0001 records that the improved
 M1/M3 workloads still miss their targets and defines the complete quantified
 admission gate before a native proposal may return.

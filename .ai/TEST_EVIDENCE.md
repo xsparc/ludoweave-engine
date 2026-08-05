@@ -1662,3 +1662,102 @@ run IDs.
 Stacked PRs #9-#15 were closed as superseded after the exact-tree check;
 branches were retained. The integration creates no tag, release, package
 publication, new runtime/provider behavior, or additional Actions run.
+
+## M15 final local validation - 2026-08-06
+
+M15 was evaluated on Windows 11 with uv-managed CPython 3.12.13. It changes
+repository evidence, tests, and documentation only. Its deterministic installed
+document derives the exact four-name root export surface, empty tools exports,
+the exact 20-name all-experimental agent surface, twelve tools, seven world
+operations, command/transaction/receipt/agent/inspector/MCP revisions, and
+inspector configuration/read-only facts. It also executes one ephemeral
+six-command write-enabled agent transaction and verifies a committed v1
+receipt, six committed outcomes, pre/post/authority hash continuity, unchanged
+tick count, and six resulting entities. All twelve editor-admission gates
+remain false.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | The existing lock resolved 46 packages and remained current. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | The existing frozen environment checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 0 | All 182 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 834 tests passed and one existing Windows symlink-capability test skipped in 62.59 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.52 seconds; Material emitted its documented upstream MkDocs 2.0 warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency wheel install passed the exact M15 installed document plus inherited public smokes. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m15-release-candidate-r2` | 0 | Staged the complete deterministic ten-artifact candidate including the M15 sample. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m15-release-candidate-r2` | 0 | Checksums, manifest, SBOM, installed wheel, and every bundled sample including exact M15 evidence passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Nine real-wgpu integration tests passed in 5.59 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The first sandboxed attempt to start the complete uv gate could not access the
+user-managed uv cache and therefore ran no check; the authorized rerun above
+completed successfully. The corrected focused review suite reported 120 passes,
+clean Ruff/Pyright, and strict docs before the final full gate.
+
+Every inherited README benchmark/profile command ran against uniquely named
+M15 artifacts and its validator exited 0:
+
+- M1 validated seven workloads. Fixed 3,600-tick p95 was 35,317,100 ns and
+  observed its target; 10,000-entity simulation p95 was 158,073,300 ns and did
+  not observe the inherited 4 ms target. One of two targets was observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads. The 10,000-sprite extraction p95 was 24,263,200
+  ns and real-wgpu 10,000-instance submission p95 was 3,057,200 ns; neither
+  observed its inherited target in this local run. Zero of two targets was
+  observed.
+- M4 validated three workloads; baseline p95 was 1,885,700 ns and observed its
+  16,666,667 ns target.
+- Five-repeat M7 base and real-wgpu profile artifacts validated with two and
+  three workloads respectively. Profile timing remains diagnostic only.
+
+Artifact, scope, history, and independent-review evidence:
+
+- the exact alpha wheel contains 91 entries and zero `.pyd`, `.so`, `.dll`, or
+  `.dylib` entries;
+- `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, and all `src/` files
+  are byte-unchanged from exact base
+  `bfea67d2d922e8c591224d18f56c14d572d7f7da`;
+- merge-base equals that exact base and the pre-commit left/right count is
+  `0 0`; deferred-interface import and credential-assignment scans found no
+  match; and
+- independent review initially blocked hard-coded inspector-public status,
+  shallow agent stability evidence, non-executed receipt claims, narrow root
+  export/dependency guards, formatting, and stale roadmap/state text. After
+  correction, the reviewer independently reproduced 120 focused and 834 full
+  passes, static/docs/build/wheel/release success, protected scope, history,
+  and credential scans and approved with no remaining finding.
+
+At this stage no M15 commit, hosted/cross-platform pass, PR, merge, tag,
+release, package publication, runtime/public/persistent-format change,
+GUI/editor implementation, toolkit/dependency, or new performance-target claim
+is made.
+
+## M15 hosted validation - 2026-08-06
+
+Ready PR #19 targets `main` from `codex/m15-visual-editor-admission`. Before
+the evidence-only follow-up, GitHub reported exact base
+`bfea67d2d922e8c591224d18f56c14d572d7f7da`, implementation head
+`7e85570056dde3678aaeee13eee4036067876d8c`, `MERGEABLE`, and `CLEAN`. The
+implementation history contains one DCO-signed commit.
+
+GitHub Actions pull-request run `31036925179` executed that implementation
+commit from `2026-08-05T18:54:18Z` through `2026-08-05T18:56:30Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, exact isolated-wheel M15 evidence, release staging, and
+  complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence confirms the supported installed,
+cross-platform, and provider contracts; it does not publish a package, create
+a tag or release, add a GUI/editor/runtime API, promote the experimental agent
+surface, change a persistent format, or admit a new dependency/provider.

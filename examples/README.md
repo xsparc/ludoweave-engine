@@ -10,6 +10,7 @@ python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python rollback_readiness.py --ticks 120 --branch-tick 60
 python constrained_3d_decision.py
+python visual_editor_decision.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -33,6 +34,11 @@ or live rollback service.
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds
 no 3D API, provider, asset loader, or runtime implementation.
+
+`visual_editor_decision.py` audits the installed command, receipt, agent-tool,
+MCP, and inspector foundation. It records a deterministic deferred admission
+decision and adds no GUI, editor runtime, public API, dependency, or project
+format.
 
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:
