@@ -37,7 +37,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M15 are complete, independently accepted, hosted-CI validated, and
+M0 through M16 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
@@ -69,6 +69,11 @@ Its implementation is complete and independently accepted on
 `codex/m16-wasm-mod-security-decision`. Ready PR #20 and GitHub Actions run
 `31039403209` validate all eight unchanged essential jobs on DCO-signed
 implementation commit `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
+PR #20 squash-integrates exact final head
+`808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` into `main` as GitHub-verified
+commit `e2bd57c057c0c16861953c0702b2012c4cabfe90` with the exact final tree.
+The authoritative post-alpha sequence ends at M16; no M17 is assigned. Do not
+invent the next milestone from a deferred proposal or adoption metric.
 Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, sockets,
 networking or remote attach, arbitrary child commands, another world store, a

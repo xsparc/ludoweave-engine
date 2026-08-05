@@ -101,6 +101,11 @@ validation of every inherited documented benchmark/profile. It is published
 through ready PR #20; GitHub Actions run `31039403209` passed all eight
 unchanged essential jobs on DCO-signed implementation commit
 `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
+PR #20 then squash-integrated exact final M16 head
+`808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` into `main` as GitHub-verified
+commit `e2bd57c057c0c16861953c0702b2012c4cabfe90`. Both trees are
+`05367be9bd85014fe6c70995ac1a69a39f90ef1e`; the milestone branch remains the
+audit trail.
 
 ## Repository identity
 
@@ -245,15 +250,13 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M16 is the assigned bounded WASM-mod security admission decision. Current
-  evidence confirms that installed M12 manifests are inert exact-schema
-  metadata, executable fields fail closed, and no runtime requirement or
-  public guest-execution export exists. ADR-0030 retains that boundary and
-  defers executable mods until every least-privilege, resource, determinism,
-  lifecycle, persistence, isolation, adversarial conformance, cross-platform,
-  supply-chain, and maintenance gate is satisfied. Do not add a runtime,
-  compiler, loader, WASI context, host call, guest state, executable plugin,
-  network, editor, 3D, provider adapter, native code, or dependency.
+- No M17 is assigned. The authoritative post-alpha sequence ends at item 10,
+  now completed by M16. A maintainer must assign the next bounded outcome and
+  acceptance criteria before implementation resumes; adoption metrics and the
+  repository proposal backlog are inputs, not automatic authorization. Do not
+  infer a runtime, compiler, loader, WASI context, host call, guest state,
+  executable plugin, network, editor, 3D, provider adapter, native code, or
+  dependency as the next slice.
 
 ## Validation state
 
