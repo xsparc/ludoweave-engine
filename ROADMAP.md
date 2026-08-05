@@ -94,6 +94,10 @@ direct-service evidence does not count as independent adoption.
 Ready PR #24 passed the unchanged eight-job hosted matrix as run
 `31046172544` on DCO-signed implementation commit
 `c4dde705393eebb7c99af428745e9383750f6b4d`.
+PR #24 squash-integrated exact final evidence head
+`cb617be0f678528fadc82877ec6910e42c6daf6b` into `main` as GitHub-verified
+commit `1000d362432f19c912edf51c67e29c79bf444443`; both trees are
+`1b6676ca7c1a6aaa223057a35e0c95242f4e9462`.
 
 ## Good-first contribution queue
 

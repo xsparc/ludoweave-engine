@@ -2123,3 +2123,24 @@ certify, or count third-party adapter code; establish real-agent manual-
 recovery rates; publish a package; create a tag or release; add a transport,
 listener, provider, dependency, or CI job; or claim the locally missed M1/M3
 performance targets passed.
+
+## M18 main integration - 2026-08-06
+
+PR #24 used exact base `ed65b12fa02f672113eac5939a0f616079fee44a`
+and final evidence head `cb617be0f678528fadc82877ec6910e42c6daf6b`.
+The two-commit branch history contains a DCO trailer on both commits. The final
+evidence commit contains `[skip ci]`, and GitHub lists only implementation run
+`31046172544` for the branch.
+
+The user-authorized squash merge completed at `2026-08-05T20:57:29Z` as
+GitHub-verified `main` commit
+`1000d362432f19c912edf51c67e29c79bf444443` with verification reason `valid`.
+Its sole parent is the exact base, its DCO trailer is a real commit-message
+trailer, and tree `1b6676ca7c1a6aaa223057a35e0c95242f4e9462`
+exactly equals the final M18 branch tree. The milestone branch is retained.
+
+The integration creates no tag, release, package publication, adapter
+discovery/loading/installation, transport, provider admission, dependency,
+workflow change, or additional Actions run. Project-owned direct-service
+conformance remains reference evidence and does not increase independently
+authored adapter adoption or establish real-agent manual-recovery rates.

@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M18 - installed agent-tool conformance
-- **Status:** Complete and hosted-validated on ready PR #24 from
-  `codex/m18-agent-tool-conformance`; squash integration remains pending.
+- **Status:** Complete, hosted-validated, and squash-integrated into `main` by
+  PR #24 as GitHub-verified commit
+  `1000d362432f19c912edf51c67e29c79bf444443`.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `ed65b12fa02f672113eac5939a0f616079fee44a`.
