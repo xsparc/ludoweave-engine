@@ -663,5 +663,27 @@ editor, native object, or mandatory runtime dependency was introduced.
 
 No M6 benchmark was run because the milestone changes distribution,
 compatibility metadata, documentation, and community workflow rather than a
-performance-sensitive runtime path. No new timing claim is made. Hosted M6 CI
-has not yet run, so no new cross-platform result is claimed here.
+performance-sensitive runtime path. No new timing claim is made. At the time
+of this local section, hosted M6 CI had not run, so no cross-platform result was
+claimed there.
+
+## M6 hosted validation — GitHub Actions run 31002365370
+
+The DCO-signed M6 implementation commit
+`84cc318c7c14ccbd2efbda6b61e19cec7c375612` was pushed to
+`codex/m6-release-hardening` and published as stacked pull request #6 against
+the validated M5 branch. The least-privilege CI run completed successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed lock, formatting, lint, strict Pyright with the optional adapter installed, and strict MkDocs. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three jobs passed. |
+| Tests — Windows, Python 3.12/3.14 | Both jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both jobs passed. |
+| Installed release candidate — Ubuntu/Windows/macOS, Python 3.12 | All three built the pure wheel/sdist, passed installed-wheel smoke, staged the 10-file candidate, and passed checksum/manifest/SBOM/notice/bundled-sample smoke. |
+| Graphics smoke — Ubuntu/Windows/macOS, Python 3.12 | All three real graphics fixtures, Clockwork Arena wgpu run, and Agent World Builder loop passed; Ubuntu used the explicitly provisioned Mesa Vulkan software runtime. |
+
+All 14 jobs passed. Six jobs printed non-failing setup-uv annotations because a
+parallel job had already reserved the same cache key; no validation step or
+job failed. This supplies the cross-platform M6 artifact evidence deliberately
+not claimed by the local-only section.

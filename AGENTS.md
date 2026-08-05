@@ -37,4 +37,4 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M5 are complete and hosted-CI validated. M6 community-alpha release hardening is the active boundary and must be fully validated on its task-scoped branch before automatic commit, push, and pull-request creation. Do not create a release tag, GitHub release, or PyPI publication without a separate maintainer release decision. Real audio playback, network agent transports, editor work, 3D, and native code remain out of scope. Local performance misses are evidence for profiling, not automatic authorization for native acceleration.
+M0 through M6 are complete and hosted-CI validated as stacked pull requests. Stop at this boundary. Do not create a release tag, GitHub release, PyPI publication, or begin another milestone without a separate maintainer decision. Real audio playback, network agent transports, editor work, 3D, and native code remain out of scope. Local performance misses are evidence for profiling, not automatic authorization for native acceleration.

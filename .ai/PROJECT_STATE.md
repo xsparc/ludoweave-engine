@@ -2,10 +2,8 @@
 
 ## Current milestone
 
-M0 through M5 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI. M6 community-alpha hardening has passed
-its complete local gate and awaits its DCO commit, stacked pull request, and
-hosted matrix.
+M0 through M6 are complete, independently accepted, published as stacked pull
+requests, and validated by hosted CI.
 
 ## Repository identity
 
@@ -16,6 +14,9 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 run `30996905660` across the same 14-job matrix.
 M5 agent control is complete on `codex/m5-agent-control`, published as stacked
 PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
+M6 community-alpha hardening is complete on `codex/m6-release-hardening`,
+published as stacked PR #6, and validated by hosted run `31002365370` across the
+same 14-job matrix, including complete candidate smoke on all three platforms.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -75,10 +76,9 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 
 ## Next slice
 
-- Publish the fully validated M6 branch as a DCO-signed stacked pull request,
-  wait for every hosted job, and record the exact hosted result. Do not create a
-  release tag, GitHub release, or PyPI publication without a separate
-  maintainer release decision.
+- Stop at the authorized M6 boundary. Do not create a release tag, GitHub
+  release, PyPI publication, or begin another milestone without a separate
+  maintainer decision.
 
 ## Validation state
 
@@ -103,7 +103,7 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 - GitHub Actions run `30999777517` passed all 14 M5 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real graphics smoke, including the Agent World Builder typed-tool loop, on Ubuntu software Vulkan, Windows, and macOS.
 - The final local M6 gate on Windows/uv-managed CPython 3.12.13 reports 552 passing tests and one existing Windows symlink-capability skip, 143 formatted Python files, zero Ruff/Pyright findings, strict documentation success, a pure `0.1.0a1` wheel, successful no-dependency installed-wheel smoke, and a complete 10-file staged candidate whose checksum/manifest/SBOM/sample smoke passed.
 - M6 changes release/community surfaces rather than simulation performance. No new benchmark or performance pass is claimed; inherited M1/M3 misses and M4 observation remain unchanged.
-- M6 hosted results are not yet available, so no new cross-platform pass is claimed.
+- GitHub Actions run `31002365370` passed all 14 M6 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; complete installed release-candidate smoke on all three operating systems; and real graphics smoke, including Clockwork Arena and Agent World Builder, on Ubuntu software Vulkan, Windows, and macOS.
 
 ## External follow-ups
 

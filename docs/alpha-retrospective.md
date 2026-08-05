@@ -29,9 +29,10 @@ PyPI upload is created by the milestone implementation itself.
 ## Evidence and misses
 
 M5's inherited hosted baseline passed 14 jobs across CPython 3.12-3.14 and all
-three desktop operating systems. The final M6 local and hosted command records
-belong in `.ai/TEST_EVIDENCE.md`; this retrospective does not pre-claim their
-result.
+three desktop operating systems. M6 run `31002365370` also passed all 14 jobs,
+including complete release-candidate smoke and real graphics acceptance on
+Windows, macOS, and Linux. Exact local and hosted command records live in
+`.ai/TEST_EVIDENCE.md`.
 
 Recorded local benchmarks observed the M1 3,600-tick headless target and the M4
 Clockwork Arena baseline target. The representative M1 10,000-entity tick and

@@ -1,7 +1,7 @@
 # Current Task
 
 - **Task:** M6 — Community-alpha release hardening
-- **Status:** Implementation and complete local gate passed; DCO commit, push, stacked PR, and hosted CI are pending
+- **Status:** Complete; DCO-signed PR #6 is published and hosted run `31002365370` passed all 14 jobs
 - **Started:** 2026-08-05
 - **Acceptance gate:** A clean consumer must be able to verify and launch the pure wheel plus bundled M0-M5 headless scenarios on Windows, macOS, and Linux; public exports need explicit stability; release/security/community artifacts must be actionable and evidence-backed.
 - **Distribution outcome:** Version `0.1.0a1` stages a pure wheel, sdist, deterministic sample ZIP, Apache/project/optional-dependency notices, SPDX 2.3 SBOM, manifest, and exact SHA-256 inventory. The isolated release smoke verifies these artifacts before installing or extracting them.
@@ -9,6 +9,6 @@
 - **API/docs outcome:** Every supported export has exact `__stability__` metadata; all are experimental. User, adapter, release, contribution, triage, roadmap, release-note, and retrospective guides document the alpha boundary.
 - **Community outcome:** A declarative label catalog, focused issue forms, triage rules, repository-native roadmap board, and three issue-ready good-first cards define the contribution queue. The live repository still has only default labels and no issues until maintainers apply/open the checked-in queue.
 - **Local gate:** The complete frozen suite reports 552 passed and one existing Windows symlink-capability skip; Ruff, strict Pyright, strict MkDocs, pure-wheel build, isolated installed-wheel smoke, deterministic staging, checksum/SBOM validation, and bundled-sample acceptance all pass.
-- **Hosted gate:** Pending publication of the stacked M6 pull request. Regular CI now stages and smokes the complete release candidate in its Windows, macOS, and Linux wheel jobs.
+- **Hosted gate:** PR #6 is published against the validated M5 branch. Run `31002365370` passed quality/docs, seven CPython/OS test jobs, three complete installed release-candidate smokes, and three real graphics smokes.
 - **Non-scope retained:** PyPI publication/name reservation, an actual release tag or GitHub release, dynamic plugin loading, remote/network agent transport, production audio, rigid-body physics, editor tooling, 3D, automatic device recovery, Rust, PyO3, and native acceleration.
 - **SemVer:** First community-alpha candidate `0.1.0a1`; every current Python export and persistent protocol remains experimental.

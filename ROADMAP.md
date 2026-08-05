@@ -14,10 +14,10 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M3 isolated 2D presentation | Null/wgpu vertical slice and graphics CI |
 | Done | M4 Clockwork Arena gameplay slice | 3,600-tick replay plus stress evidence |
 | Done | M5 local typed agent interface | Agent World Builder and local stdio acceptance |
-| Candidate | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
+| Done | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
 
-M6 is complete only after its pull request passes hosted Windows, macOS, and Linux CI.
-Creating or publishing the `v0.1.0a1` tag is a separate maintainer release action.
+M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
+or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
 
 ## Good-first contribution queue
 
