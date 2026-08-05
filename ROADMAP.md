@@ -18,6 +18,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
 | Done | M8 gamepad/SDL3 evaluation | Provider-neutral gamepad mapping, pinned GLFW smoke, SDL3 maturity ADR, and cross-platform validation |
 | Done | M9 Box2D v3 plugin evaluation | Binding/wheel/lifecycle/headless/API/threading/determinism/conformance admission evidence, ADR, and hosted validation |
+| In progress | M10 live semantic inspector | Separate local process, versioned semantic stream, command/query reuse, explicit write receipts, lifecycle/security bounds, and quota-conscious essential CI |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -31,6 +32,8 @@ and canonical-physics integration remain absent unless every admission gate is
 evidenced.
 M9 PR #10 passed the same 14-job hosted matrix against the validated M8 branch.
 The binding remains deferred and no dependency changed.
+M10 is a headless protocol client, not a visual editor. It may spawn only the
+built-in local stdio composition and cannot listen on a network interface.
 
 ## Good-first contribution queue
 

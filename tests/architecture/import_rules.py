@@ -22,6 +22,7 @@ _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_AGENT_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_MCP_ROOTS = frozenset({"aiohttp", "fastapi", "http", "socket", "starlette", "urllib"})
+_LOCAL_STDIO_MODULES = frozenset({"ludoweave.tools.inspector", "ludoweave.tools.mcp"})
 _REFERENCE_ALLOWED_IMPORTS = {
     "ludoweave.ecs.commands": frozenset(
         {
@@ -92,12 +93,12 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                 violations.append(
                     ImportViolation(path, line, f"source imports banned dependency {root!r}")
                 )
-            if module == "ludoweave.tools.mcp" and root in _BANNED_MCP_ROOTS:
+            if module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS:
                 violations.append(
                     ImportViolation(
                         path,
                         line,
-                        f"local MCP adapter imports network module {root!r}",
+                        f"local stdio adapter imports network module {root!r}",
                     )
                 )
             if (
@@ -140,6 +141,16 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                             path,
                             line,
                             f"agent service module {module!r} calls banned builtin {called!r}",
+                        )
+                    )
+        if module == "ludoweave.tools.inspector":
+            for called, line in _resolved_calls(tree):
+                if called in _BANNED_AGENT_CALLS:
+                    violations.append(
+                        ImportViolation(
+                            path,
+                            line,
+                            f"local inspector calls banned builtin {called!r}",
                         )
                     )
     return violations

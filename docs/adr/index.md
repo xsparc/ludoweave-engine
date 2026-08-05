@@ -26,4 +26,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0022: defer native acceleration after profiling](0022-defer-native-acceleration-after-profiling.md)
 - [ADR-0023: provider-neutral gamepads and SDL3 adapter deferral](0023-gamepad-contract-and-sdl3-deferral.md)
 - [ADR-0024: defer a Box2D v3 plugin after admission review](0024-defer-box2d-v3-plugin-after-admission-review.md)
+- [ADR-0025: owned local semantic inspector over typed stdio tools](0025-owned-local-semantic-inspector.md)
 - [ADR template](template.md)

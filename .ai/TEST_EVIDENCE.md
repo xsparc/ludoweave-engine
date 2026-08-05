@@ -1038,3 +1038,79 @@ GitHub reports PR #10 open, ready, mergeable, and `CLEAN` against
 execution and artifact contracts; it does not install the deferred candidate,
 exercise controller hardware, or create Box2D performance/cross-platform
 determinism claims. No merge, tag, release, or package publication occurred.
+
+## M10 final local validation - 2026-08-06, Windows, CPython 3.12.13
+
+M10 adds one finite headless semantic inspector over an owned local MCP child.
+It introduces no runtime dependency, listener, arbitrary process command,
+editor, second world store, native code, or release publication.
+
+Development and review feedback is retained rather than reported as a pass:
+
+- The first focused Ruff run found one set-comparison simplification and the
+  first focused Pyright run found 19 strict typing issues in decoded JSON.
+  Both were corrected before focused tests.
+- After the CI job consolidation, the existing release-workflow architecture
+  test failed because it still required three redundant wheel jobs. The test
+  now asserts one complete distribution gate, the reduced compatibility
+  matrix, and retained three-OS graphics coverage.
+- Independent review blocked publication on four trust-boundary defects:
+  inherited cwd/`PYTHONPATH` could shadow the child package, dash-prefixed
+  project names could become child options, a top-level tick result could omit
+  a valid receipt, and stream decode/read errors escaped structured handling.
+  The child now uses `-I`, binds variable options with `=`, places the project
+  after `--`, requires exactly one committed receipt with exact hash/tick
+  continuity, and translates Unicode/I/O/closed-stream failures. Source and
+  installed-wheel adversarial regressions cover every correction.
+- During the adversarial correction pass, one import-order finding and three
+  strict typing findings were corrected. The repeat focused gate then passed.
+- Final CI review found that the consolidated baseline would duplicate real
+  wgpu execution without the dedicated Linux job's Mesa/Vulkan installation.
+  Baseline pytest now excludes exactly `test_wgpu_render.py`; the three-OS
+  graphics matrix remains its sole gate. Architecture assertions now protect
+  least privilege, pins, timeouts, caching, no credential persistence,
+  fail-fast policy, cancellation, matrix size, and distribution commands.
+- A default-sandbox `uv lock --check` attempt exited 1 because access to uv's
+  existing user cache was denied. The approved exact rerun exited 0; this was
+  an environment permission failure, not a lock failure.
+
+Final executed repository gate:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.79 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | The locked environment checked 45 packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 154 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 642 tests passed and one existing Windows symlink-capability test skipped in 49.09 seconds. |
+| `uv run --frozen pytest -q --ignore=tests/integration/test_wgpu_render.py` | 0 | The exact consolidated baseline command passed 634 non-provider tests with one skip in 52.39 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | The final documentation build completed in 0.48 seconds with only the known Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installation passed all inherited smoke plus M10 bootstrap/tick receipts and proved a cwd-shadowed `ludoweave` package was not executed. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m10-release-candidate-final-reviewed-20260806` | 0 | Staged the complete 10-file `ludoweave.release-stage/1` candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m10-release-candidate-final-reviewed-20260806` | 0 | Checksum, manifest, SPDX SBOM, notices, sample bundle, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m10-profile-base.json` plus validator | 0 | The retained two-workload base profiling contract validated. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu/GLFW integration tests passed in 5.51 seconds. |
+| `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m10-profile-graphics.json` plus validator | 0 | The retained three-workload graphics profiling contract validated. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprites, and the expected deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320x180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | Dependency-free acceptance returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| CI workflow YAML parse and quota contract | 0 | The workflow parsed with exactly eight jobs: one complete baseline, four compatibility, and three graphics jobs. Five focused release/workflow tests passed. |
+| Wheel ZIP/metadata inventory | 0 | The wheel contains 80 entries, zero native entries, no mandatory runtime dependency, and only the three exact optional graphics requirements. |
+| Local stdio network-import scan | 1 | No network-module import matched the inspector or MCP adapter; ripgrep exit 1 means no matches. |
+| Local stdio dynamic-evaluation scan | 1 | No `eval`, `exec`, or `__import__` call matched the inspector or MCP adapter; ripgrep exit 1 means no matches. |
+| Deferred-provider scan | 1 | No Box2D or SDL3 binding name matched package source, project metadata, or the lock; ripgrep exit 1 means no matches. |
+| Credential-assignment scan | 1 | No credential assignment matched the reviewed M10 source, tests, scripts, docs, or workflow; ripgrep exit 1 means no matches. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The final focused inspector, architecture, and trust-boundary suite reported 81
+passes. Repeat independent review reran that suite, Ruff, strict Pyright, and
+diff checks, found no remaining implementation blocker, and approved the
+corrected M10 head. The exact quota-conscious baseline and separately gated
+graphics commands were then executed locally after CI review.
+
+M10 has no benchmark or performance threshold. The retained M7 profiling
+commands validate artifact behavior only; no timing result or performance pass
+is claimed. Hosted M10 CI has not run, so no M10 cross-platform/hosted pass is
+claimed at this stage.

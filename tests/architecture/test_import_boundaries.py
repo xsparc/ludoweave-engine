@@ -205,10 +205,13 @@ def test_agent_service_rejects_arbitrary_python_evaluation(tmp_path: Path, call:
     assert "banned builtin" in violations[0].message
 
 
+@pytest.mark.parametrize("adapter", ["inspector.py", "mcp.py"])
 @pytest.mark.parametrize("module", ["socket", "http.server", "urllib.request", "fastapi"])
-def test_local_mcp_adapter_rejects_network_modules(tmp_path: Path, module: str) -> None:
+def test_local_stdio_adapters_reject_network_modules(
+    tmp_path: Path, adapter: str, module: str
+) -> None:
     source_root = tmp_path / "src"
-    bad_module = source_root / "ludoweave" / "tools" / "mcp.py"
+    bad_module = source_root / "ludoweave" / "tools" / adapter
     bad_module.parent.mkdir(parents=True)
     bad_module.write_text(f"import {module}\n", encoding="utf-8")
 
@@ -216,6 +219,19 @@ def test_local_mcp_adapter_rejects_network_modules(tmp_path: Path, module: str) 
 
     assert len(violations) == 1
     assert "network module" in violations[0].message
+
+
+@pytest.mark.parametrize("call", ["eval('1')", "exec('x=1')", "compile('1','','eval')"])
+def test_local_inspector_rejects_arbitrary_python_evaluation(tmp_path: Path, call: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "tools" / "inspector.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(f"{call}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "banned builtin" in violations[0].message
 
 
 def test_application_may_compose_ecs_but_still_rejects_concrete_backends(

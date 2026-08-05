@@ -17,6 +17,11 @@ stale-object soak, documented GIL/thread ownership, cross-platform
 snapshot/replay classification, copied engine adapter conformance, and a named
 maintenance owner are evidenced.
 
+ADR-0025 resolves the M10 inspector boundary with one isolated, owned local
+MCP child, detached semantic observations, explicit receipted writes, exact
+hash continuity, and no arbitrary process, network, remote-attach, or editor
+surface.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

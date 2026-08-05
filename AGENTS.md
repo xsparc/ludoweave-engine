@@ -39,10 +39,12 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 M0 through M9 are complete, independently accepted, and hosted-CI validated.
 M1-M7 are integrated into `main`; M8 and M9 are published as stacked PRs #9
-and #10. M9 defers the Box2D v3 plugin. Stop at this boundary. Do not implement
-or depend on a Box2D adapter, create a release
-tag/GitHub release/PyPI publication, or begin the live semantic inspector. Real
-audio playback, network agent transports, editor work, 3D, SDL3, and native
-code remain out of scope. RFC-0001 records the evidence-based native-code
-deferral; local performance misses are not automatic authorization for
-acceleration.
+and #10. M9 defers the Box2D v3 plugin. M10's headless owned-child semantic
+inspector is locally complete and independently accepted; publication and
+hosted validation remain. Do not begin M11 before the M10 hosted gate and an
+explicit repository-state assignment. Do not add a GUI/editor, networking or
+remote attach, arbitrary child commands, another world store, a Box2D adapter,
+release tag, GitHub release, or PyPI publication. Real audio playback, network
+agent transports, editor work, 3D, SDL3, and native code remain out of scope.
+RFC-0001 records the evidence-based native-code deferral; local performance
+misses are not automatic authorization for acceleration.

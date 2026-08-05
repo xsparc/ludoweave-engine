@@ -583,6 +583,57 @@ def main(argv: Sequence[str] | None = None) -> int:
         if len(mcp_responses) != 2 or len(mcp_responses[1]["result"]["tools"]) != 12:
             raise RuntimeError(f"installed MCP stdio lifecycle was invalid: {mcp_responses!r}")
 
+        shadow_package = temp_root / "ludoweave"
+        shadow_package.mkdir()
+        (shadow_package / "__init__.py").write_text("", encoding="utf-8")
+        (shadow_package / "__main__.py").write_text(
+            "from pathlib import Path\n"
+            "Path('shadow-ludoweave-executed').write_text('unsafe', encoding='utf-8')\n"
+            "raise SystemExit('shadow ludoweave executed')\n",
+            encoding="utf-8",
+        )
+        inspector_result = _run(
+            [
+                str(ludoweave),
+                "inspect",
+                "--sample",
+                "agent-world-builder",
+                "--write",
+                "--bootstrap",
+                "--ticks",
+                "1",
+            ],
+            cwd=temp_root,
+        )
+        inspector_events = [
+            cast(dict[str, object], json.loads(line))
+            for line in inspector_result.stdout.splitlines()
+        ]
+        if len(inspector_events) != 3:
+            raise RuntimeError(
+                f"installed inspector emitted an invalid event count: {inspector_events!r}"
+            )
+        if [event.get("cause") for event in inspector_events] != [
+            "initial",
+            "bootstrap",
+            "tick",
+        ]:
+            raise RuntimeError(f"installed inspector emitted invalid causes: {inspector_events!r}")
+        for sequence, event in enumerate(inspector_events):
+            if (
+                event.get("protocol") != "ludoweave.inspector.event/1"
+                or event.get("sequence") != sequence
+            ):
+                raise RuntimeError(f"installed inspector emitted an invalid envelope: {event!r}")
+        final_world = cast(dict[str, object], inspector_events[-1].get("world"))
+        final_transition = cast(dict[str, object], inspector_events[-1].get("transition"))
+        if final_world.get("completed_ticks") != 1 or final_transition.get("status") != "committed":
+            raise RuntimeError(
+                f"installed inspector did not emit a receipted tick: {inspector_events[-1]!r}"
+            )
+        if (temp_root / "shadow-ludoweave-executed").exists():
+            raise RuntimeError("installed inspector child executed a cwd-shadowed package")
+
         builder_smoke = textwrap.dedent(
             """
             from ludoweave.agent import AgentCapture

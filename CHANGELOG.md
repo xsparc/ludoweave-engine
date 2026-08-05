@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M10 owned local semantic inspector over the existing MCP stdio tools with a
+  read-only default, explicit receipted bootstrap/ticks, versioned NDJSON
+  observations, semantic diffs, and exact authority-hash continuity checks.
+- ADR-0025 recording the finite headless child-process boundary, pipe
+  ownership, protocol validation, architecture bans, and deliberate deferral
+  of GUI/editor, network, remote-attach, and arbitrary process-launch features.
 - M9 bounded isolated Box2D-candidate lifecycle/repeat-trace probe and
   architecture fixtures that keep the native binding out of engine source.
 - ADR-0024 recording the evidence-based Box2D v3 plugin deferral and complete
@@ -26,6 +32,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Consolidated pull-request CI from 14 to 8 essential jobs: one complete
+  Ubuntu 3.12 quality/test/distribution gate, four Python/OS compatibility
+  jobs, and three real cross-platform graphics jobs. Universal-wheel and
+  release smoke now run once instead of redundantly on every operating system.
 - Reduced detached query overhead by resolving column metadata once, skipping
   unused read-only signatures, and sharing copy/signature traversals.
 - Reduced presentation extraction and float32 sprite-packing allocations while

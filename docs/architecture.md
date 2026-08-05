@@ -46,12 +46,19 @@ The base lock and package remain pure Python. ADR-0024 records failed and
 incomplete wheel, stability, ownership, threading, determinism, conformance,
 and maintenance gates.
 
+M10 adds an owned local inspector process over the existing MCP tools. It keeps
+no canonical state and emits only detached semantic observations, receipts,
+and diffs after verifying exact authority-hash continuity. See the
+[live semantic inspector](inspector.md) and ADR-0025.
+
 ## Dependency direction
 
 The active packages follow these rules:
 
 ```text
 composition roots  ludoweave.tools, examples
+                          |
+inspector parent   tools.inspector --stdio--> tools.mcp child
 
 agent service      ludoweave.agent ----> world/runtime   ludoweave.world
                          |
@@ -82,6 +89,7 @@ sample composition ludoweave.samples.clockwork_arena
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
 - MCP exists only as a local stdio composition adapter in `ludoweave.tools.mcp`; it may not import networking modules or implement a listener.
+- The inspector exists only in `ludoweave.tools.inspector`; it may launch the built-in MCP composition, retain detached JSON plus one prior snapshot for a diff, and must not import networking modules or evaluate Python.
 - The package root may re-export the deliberately small application API but never a concrete backend or third-party native object.
 - Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW.
   SDL/PySDL3 remains forbidden until ADR-0023's adapter gate is accepted by a
@@ -96,10 +104,10 @@ path- and transport-agnostic.
 
 These rules are enforced by an AST-based test over the source tree. The test also analyzes a generated invalid fixture so a broken checker cannot silently pass.
 
-The M5 architecture checks additionally reject upward agent imports, Python
-evaluation primitives in the agent package, and networking modules in the MCP
-adapter. Agent tools expose provider-neutral JSON documents, not filesystem,
-ECS-storage, or GPU objects.
+The M5/M10 architecture checks additionally reject upward agent imports,
+Python-evaluation primitives in the agent package and inspector, and networking
+modules in both local stdio adapters. Agent tools expose provider-neutral JSON
+documents, not filesystem, ECS-storage, or GPU objects.
 
 ## Ownership and close order
 
@@ -280,16 +288,39 @@ module fails before import and is never attributed to the candidate version.
 Engine source imports of Box2D names are architecture violations. See
 [ADR-0024](adr/0024-defer-box2d-v3-plugin-after-admission-review.md).
 
+## M10 inspector boundary
+
+The inspector parent owns exactly one child launched through the current
+interpreter, its three pipes, and its bounded shutdown. It cannot accept an
+executable, shell command, dynamic module, remote endpoint, process ID, or
+provider selection. The child owns the live `AgentCommandService` and canonical
+`WorldSession`; the parent owns only detached JSON documents and one ephemeral
+snapshot string used to request the next semantic diff.
+
+Read access is the default. Every requested bootstrap or tick requires an
+explicit write grant and crosses the existing transaction/tick safe point with
+a receipt and optimistic hash. The inspector verifies MCP lifecycle, response
+identity, typed tool discovery, transition commitment, completed ticks, and
+snapshot/world/query/telemetry/diff hash continuity before emitting each
+post-transition observation.
+
+No observation contains the snapshot itself, a path, environment value,
+process identifier, provider-native object, or mutable world alias. Service
+telemetry and child lifecycle timing remain non-authoritative. The finite
+caller-driven stream is not a visual editor, network transport, remote attach,
+or wall-clock watcher. See [ADR-0025](adr/0025-owned-local-semantic-inspector.md).
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
 the M6 community-alpha distribution contract, the M7 native-code decision, and
-the M8 gamepad contract/SDL3 deferral, and the M9 Box2D deferral now exist. M6 does not add a
-plugin loader or dynamic data-selected code: adapter discovery remains explicit
-trusted composition. General scene importers, production audio, rigid-body
-physics, network transports, editor tooling, rich text, automatic device
-recovery, and 3D remain deferred to future assigned, exercised slices. Native
-acceleration is specifically deferred under RFC-0001's measurable revisit
-gate rather than generally authorized by the recorded target misses.
+the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, and the M10 owned
+local semantic inspector now exist. M6 does not add a plugin loader or dynamic
+data-selected code: adapter discovery remains explicit trusted composition.
+General scene importers, production audio, rigid-body physics, network
+transports, visual editor tooling, rich text, automatic device recovery, and 3D
+remain deferred to future assigned, exercised slices. Native acceleration is
+specifically deferred under RFC-0001's measurable revisit gate rather than
+generally authorized by the recorded target misses.

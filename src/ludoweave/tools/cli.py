@@ -16,6 +16,7 @@ from ludoweave.samples import create_agent_world_builder
 from ludoweave.tools.agent_service import headless_agent_service
 from ludoweave.tools.doctor import run_doctor
 from ludoweave.tools.headless_project import HeadlessProject
+from ludoweave.tools.inspector import InspectorConfig, run_inspector
 from ludoweave.tools.mcp import McpServer, run_stdio
 from ludoweave.world import (
     CommandActor,
@@ -110,6 +111,24 @@ def _build_parser() -> argparse.ArgumentParser:
         default="none",
         help="optional built-in sample capture provider",
     )
+
+    inspect_parser = subparsers.add_parser(
+        "inspect",
+        help="stream semantic observations from an owned local MCP child",
+    )
+    inspect_parser.add_argument("project", type=Path, nargs="?", help="data-only project directory")
+    inspect_parser.add_argument("--sample", choices=("agent-world-builder",))
+    inspect_parser.add_argument("--state", help="project-relative input snapshot")
+    inspect_parser.add_argument("--write", action="store_true", help="enable world mutations")
+    inspect_parser.add_argument(
+        "--bootstrap",
+        action="store_true",
+        help="create the built-in sample through a receipted transaction",
+    )
+    inspect_parser.add_argument("--ticks", type=int, default=0)
+    inspect_parser.add_argument("--query-limit", type=int, default=32)
+    inspect_parser.add_argument("--actor-kind", default="inspector")
+    inspect_parser.add_argument("--actor-id", default="local-inspector")
     return parser
 
 
@@ -136,6 +155,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _run_agent(args)
         if command == "mcp":
             return _run_mcp(args)
+        if command == "inspect":
+            return _run_inspect(args)
     except LudoWeaveError as error:
         _print_error(error)
         return 2
@@ -356,6 +377,26 @@ def _run_mcp(args: argparse.Namespace) -> int:
     session = _agent_session(project, _optional_text_argument(args, "state"))
     service = headless_agent_service(project, session, actor=actor, write=write)
     return run_stdio(McpServer(service))
+
+
+def _run_inspect(args: argparse.Namespace) -> int:
+    project_value: object = getattr(args, "project", None)
+    project = project_value if isinstance(project_value, Path) else None
+    config = InspectorConfig(
+        actor=CommandActor(
+            _text_argument(args, "actor_kind"),
+            _text_argument(args, "actor_id"),
+        ),
+        project=project,
+        sample=_optional_text_argument(args, "sample"),
+        state=_optional_text_argument(args, "state"),
+        write=_bool_argument(args, "write"),
+        bootstrap=_bool_argument(args, "bootstrap"),
+        ticks=_int_argument(args, "ticks"),
+        query_limit=_int_argument(args, "query_limit"),
+    )
+    run_inspector(config, output=sys.stdout)
+    return 0
 
 
 def _agent_session(project: HeadlessProject, state_name: str | None):

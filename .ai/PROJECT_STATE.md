@@ -11,6 +11,11 @@ M9 Box2D v3 plugin admission evaluation is locally complete on
 defers the plugin; repeat independent review accepted the ownership correction
 with no remaining blockers. It is published as ready stacked PR #10 and GitHub
 Actions run `31015885190` passed all 14 hosted jobs.
+M10's headless semantic inspector is locally complete and independently
+accepted on `codex/m10-live-semantic-inspector`, based on exact M9 final head
+`22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. ADR-0025 accepts one isolated,
+owned local MCP child with detached observations and receipted writes. Signed
+publication and the consolidated eight-job hosted gate remain pending.
 
 ## Repository identity
 
@@ -31,8 +36,8 @@ real-wgpu profiling-contract smokes.
 The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
 `0237b2bfb11c6032d030dada639c7dbe439e5089`. M8 is based directly on that
 mainline commit. M9 is based on the hosted-validated M8 head
-`187ad4503a40325a1e334da3cb4078969e2e043b` and will be proposed against the M8
-branch.
+`187ad4503a40325a1e334da3cb4078969e2e043b`; M10 is based on the final hosted
+M9 head and will be proposed against the M9 branch.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -87,7 +92,9 @@ branch.
 - Deterministic community-alpha release staging with a pure wheel, sdist, fixed-timestamp sample bundle, SHA-256 inventory, versioned manifest, SPDX 2.3 SBOM, and notice set.
 - Isolated release smoke that validates exact checksum coverage, SBOM/wheel identity, safe ZIP members, installed CLI/doctor, and bundled headless M0-M5 scenarios before success.
 - Explicit `__all__`/`__stability__` policy and architecture coverage for every supported Python export; all `0.1.0a1` symbols remain experimental.
-- Pinned tag-only provenance/prerelease workflow plus complete release-candidate smoke in all three regular cross-platform wheel jobs.
+- Pinned tag-only provenance/prerelease workflow plus one complete baseline
+  release-candidate smoke, compatibility coverage for every supported Python
+  version/OS, and real graphics smoke on all three operating systems.
 - Community-alpha user, architecture, adapter, release, first-contribution, API, triage, release-note, roadmap, and retrospective material with declarative labels and issue-ready starter cards.
 - Versioned M7 base/graphics `cProfile` tooling with exact workload invariants,
   sanitized module/function records, strict validation, and tamper regressions.
@@ -115,17 +122,51 @@ branch.
 - Architecture fixtures reject case-insensitive Box2D/native-binding imports
   from engine source; the base project metadata, uv lock, wheel, and runtime
   remain unchanged and pure Python.
+- `ludoweave inspect` owns one isolated `python -I -m ludoweave mcp` child,
+  defaults to read-only, emits bounded `ludoweave.inspector.event/1` semantic
+  observations, and verifies MCP identity, typed tools, receipts, completed
+  ticks, and exact snapshot/diff/world/query/telemetry hash continuity.
+- Inspector sample bootstrap and ticks require explicit write capability and
+  reuse existing versioned transaction/tick tools. Child commands, module
+  shadowing, option injection, network listeners, remote attach, parallel
+  authority, paths, environment values, process IDs, and provider objects are
+  excluded and covered by adversarial tests.
+- Pull-request CI is consolidated from 14 to eight essential jobs: one complete
+  Ubuntu 3.12 quality/test/distribution gate, four compatibility jobs spanning
+  CPython 3.13/3.14 and Windows/macOS, and three real cross-platform graphics
+  jobs. Superseded runs remain cancelled.
 
 ## Next slice
 
-- M9 is complete. Do not begin the live semantic inspector or another roadmap
-  item without assigning its acceptance boundary.
-  Release publication, the deferred Box2D/SDL3 adapters, haptics/sensors, real
-  audio, networking, editor work, 3D, and native code remain outside this
-  milestone; RFC-0001 continues to govern Rust/PyO3.
+- Publish M10 as a signed PR stacked on the exact M9 head and require the new
+  eight-job hosted gate to pass. Do not assign M11 until that evidence is
+  reconciled. Release publication, deferred Box2D/SDL3 adapters,
+  haptics/sensors, real audio, networking, editor work, 3D, and native code
+  remain outside M10; RFC-0001 continues to govern Rust/PyO3.
 
 ## Validation state
 
+- The final reviewed M10 local gate on Windows/uv-managed CPython 3.12.13
+  reports 642 passing tests and one existing symlink-capability skip, 154
+  formatted Python files, zero Ruff/Pyright findings, strict documentation
+  success, a pure 80-entry wheel with no native entries or mandatory runtime
+  dependency, installed-wheel shadow-isolation smoke, and complete 10-artifact
+  release smoke.
+- Eight real wgpu/GLFW integration tests, base/graphics one-repeat profiling
+  contract smokes, Clockwork Arena, Agent World Builder, and alpha acceptance
+  passed. M10 defines no performance target and makes no timing claim.
+- Independent review first blocked publication on child import shadowing,
+  dash-prefixed project option injection, incomplete tick receipt validation,
+  and unstructured stream failures. `-I`, option termination/binding, exact
+  receipt/hash/tick validation, structured read errors, and adversarial source
+  and installed-wheel regressions resolved all findings. Repeat review ran 81
+  focused tests with clean Ruff/Pyright/diff checks and approved publication.
+- The consolidated eight-job CI workflow parses and its architecture contract
+  passes locally. Its exact baseline test command excludes the separately
+  gated wgpu integration file and passed 634 tests with one skip; real provider
+  execution remains confined to the three jobs that install platform runtime
+  prerequisites. Hosted M10 CI has not run, so no M10 cross-platform or hosted
+  pass is claimed yet.
 - The corrected M9 local gate on Windows/uv-managed CPython 3.12.13 reports 606 passing
   tests and one existing symlink-capability skip, 151 formatted Python files,
   zero Ruff/Pyright findings, strict documentation success, a 79-entry pure

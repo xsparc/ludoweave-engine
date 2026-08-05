@@ -115,6 +115,21 @@ wire behavior follows the official [MCP transport](https://modelcontextprotocol.
 and [tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
 contracts without adding an MCP runtime dependency.
 
+## Owned semantic inspector
+
+`ludoweave inspect` is an M10 client of this same local MCP surface. It starts
+only the built-in `python -I -m ludoweave mcp` child, observes through typed tools,
+and emits a versioned newline-delimited stream of world descriptions, stable
+queries, telemetry, transition receipts, and semantic diffs. It does not read
+ECS storage directly or keep another world model.
+
+The inspector is read-only unless `--write` is present. Its optional sample
+bootstrap and tick advancement use `transaction_apply` and one-tick
+`world_tick` calls with exact hash chaining. It cannot select an arbitrary
+child command, capture provider, registered test, network endpoint, or remote
+process. See the [live semantic inspector guide](inspector.md) and ADR-0025 for
+the complete stream, ownership, failure, and non-scope contract.
+
 ## Limits and data handling
 
 Default service bounds include a 1 MiB request, 8 MiB result, 256 commands per
