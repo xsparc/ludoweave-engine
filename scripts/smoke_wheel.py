@@ -12,8 +12,20 @@ from pathlib import Path
 from typing import cast
 
 
-def _run(command: Sequence[str], *, cwd: Path) -> subprocess.CompletedProcess[str]:
-    result = subprocess.run(command, cwd=cwd, check=False, capture_output=True, text=True)
+def _run(
+    command: Sequence[str],
+    *,
+    cwd: Path,
+    input_text: str | None = None,
+) -> subprocess.CompletedProcess[str]:
+    result = subprocess.run(
+        command,
+        cwd=cwd,
+        check=False,
+        capture_output=True,
+        text=True,
+        input=input_text,
+    )
     if result.returncode != 0:
         rendered = subprocess.list2cmdline(command)
         raise RuntimeError(
@@ -464,6 +476,103 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise RuntimeError("installed CLI replay snapshot differs from apply snapshot")
         if (cli_project / "after.lws").read_bytes() != (cli_project / "tick-1.lws").read_bytes():
             raise RuntimeError("installed CLI extracted snapshot differs from apply snapshot")
+
+        agent_request = {"transaction": transaction}
+        (cli_project / "agent-request.json").write_text(
+            json.dumps(agent_request, sort_keys=True, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        agent_validation = _run(
+            [
+                str(ludoweave),
+                "agent",
+                str(cli_project),
+                "transaction_validate",
+                "agent-request.json",
+                "--actor-kind",
+                "test",
+                "--actor-id",
+                "wheel-smoke",
+            ],
+            cwd=temp_root,
+        )
+        validation = cast(dict[str, object], json.loads(agent_validation.stdout))
+        validation_receipt = cast(dict[str, object], validation.get("receipt"))
+        if validation_receipt.get("status") != "dry_run":
+            raise RuntimeError(f"installed agent validation was invalid: {validation!r}")
+        agent_apply = _run(
+            [
+                str(ludoweave),
+                "agent",
+                str(cli_project),
+                "transaction_apply",
+                "agent-request.json",
+                "--write",
+                "--actor-kind",
+                "test",
+                "--actor-id",
+                "wheel-smoke",
+            ],
+            cwd=temp_root,
+        )
+        agent_result = cast(dict[str, object], json.loads(agent_apply.stdout))
+        agent_receipt = cast(dict[str, object], agent_result.get("receipt"))
+        if agent_receipt.get("status") != "committed":
+            raise RuntimeError(f"installed agent apply was invalid: {agent_result!r}")
+
+        mcp_input = "\n".join(
+            (
+                json.dumps(
+                    {
+                        "jsonrpc": "2.0",
+                        "id": 1,
+                        "method": "initialize",
+                        "params": {
+                            "protocolVersion": "2025-11-25",
+                            "capabilities": {},
+                            "clientInfo": {"name": "wheel-smoke", "version": "1"},
+                        },
+                    }
+                ),
+                '{"jsonrpc":"2.0","method":"notifications/initialized"}',
+                '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}',
+                "",
+            )
+        )
+        mcp_result = _run(
+            [str(ludoweave), "mcp", str(cli_project)],
+            cwd=temp_root,
+            input_text=mcp_input,
+        )
+        mcp_responses = [json.loads(line) for line in mcp_result.stdout.splitlines()]
+        if len(mcp_responses) != 2 or len(mcp_responses[1]["result"]["tools"]) != 12:
+            raise RuntimeError(f"installed MCP stdio lifecycle was invalid: {mcp_responses!r}")
+
+        builder_smoke = textwrap.dedent(
+            """
+            from ludoweave.agent import AgentCapture
+            from ludoweave.samples import (
+                create_agent_world_builder,
+                run_agent_world_builder_acceptance,
+            )
+
+            class Capture:
+                def capture(self, width: int, height: int) -> AgentCapture:
+                    return AgentCapture(width, height, b"\\x00\\x00\\x00\\xff" * (width * height))
+
+                def close(self) -> None:
+                    pass
+
+            builder = create_agent_world_builder(write=True, capture_provider=Capture())
+            result = run_agent_world_builder_acceptance(builder.service)
+            assert result["apply_status"] == "committed"
+            assert result["adjust_status"] == "committed"
+            assert result["tests_passed"] is True
+            assert result["replay_batches"] == 5
+            builder.close()
+            """
+        )
+        _run([str(python), "-I", "-c", builder_smoke], cwd=temp_root)
 
     print(f"wheel smoke passed: {wheels[0].name}")
     return 0

@@ -8,6 +8,8 @@ from pathlib import Path
 _BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rendercanvas", "rust", "wgpu"})
 _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
+_BANNED_AGENT_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
+_BANNED_MCP_ROOTS = frozenset({"aiohttp", "fastapi", "http", "socket", "starlette", "urllib"})
 _REFERENCE_ALLOWED_IMPORTS = {
     "ludoweave.ecs.commands": frozenset(
         {
@@ -76,6 +78,14 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                 violations.append(
                     ImportViolation(path, line, f"source imports banned dependency {root!r}")
                 )
+            if module == "ludoweave.tools.mcp" and root in _BANNED_MCP_ROOTS:
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"local MCP adapter imports network module {root!r}",
+                    )
+                )
             if (
                 _is_module_or_child(module, "ludoweave.core")
                 and root not in sys.stdlib_module_names
@@ -106,6 +116,16 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                             path,
                             line,
                             f"world protocol module {module!r} calls banned builtin {called!r}",
+                        )
+                    )
+        if _is_module_or_child(module, "ludoweave.agent"):
+            for called, line in _resolved_calls(tree):
+                if called in _BANNED_AGENT_CALLS:
+                    violations.append(
+                        ImportViolation(
+                            path,
+                            line,
+                            f"agent service module {module!r} calls banned builtin {called!r}",
                         )
                     )
     return violations
@@ -216,6 +236,10 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
     if _is_module_or_child(source, "ludoweave.world"):
         return _is_any_module_or_child(
             imported, ("ludoweave.core", "ludoweave.ecs", "ludoweave.world")
+        )
+    if _is_module_or_child(source, "ludoweave.agent"):
+        return _is_any_module_or_child(
+            imported, ("ludoweave.agent", "ludoweave.core", "ludoweave.world")
         )
     if source == "ludoweave.render":
         return _is_module_or_child(imported, "ludoweave.render")

@@ -565,3 +565,39 @@ successfully:
 
 All 14 jobs in run `30996905660` passed. This supplies the cross-platform M4
 evidence that was deliberately not claimed by the local gate.
+
+## M5 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+Focused service, MCP, CLI, architecture, and real graphics tests were run while
+the slice was developed. One initial rate-window assertion exposed an incorrect
+zero-time threshold and one initial sample composition exposed postponed
+component annotations; both attempts failed and were corrected before any pass
+was claimed. The final audit also found that successful-result redaction covered
+tokens/passwords but not API-key and authorization-shaped fields explicitly;
+the redactor and regression test were strengthened, then the entire gate was
+rerun on the exact final tree.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile resolved 46 packages in 0.76 milliseconds. No dependency change was required. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Frozen environment checked 45 packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 137 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 545 tests passed and one existing Windows symlink-capability test skipped in 51.70 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Final documentation built successfully in 0.47 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0.dev0.tar.gz` and pure `ludoweave-0.1.0.dev0-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel smoke passed existing workflows plus installed `agent` receipt equivalence, MCP stdio lifecycle/discovery, and the full Agent World Builder loop with a provider-neutral fake capture. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The real wgpu composition created six entities, committed create/adjust transactions and three ticks, captured 320x180 RGBA8, passed all registered checks, and recorded five replay batches. Final state hash: `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`; replay hash: `sha256:95d9c87ecd826c1bf33b72ded0779fff02488c08c169735f6c3083638eb45893`. |
+| `git diff --check` | 0 | No whitespace errors in the complete tracked diff. |
+
+The final source scan found no credential/private-key literal; matches were
+policy text, redaction fixtures, or existing token terminology. Agent source
+contains no evaluation primitive. The MCP adapter contains no socket, HTTP, or
+network-framework import. Provider imports remain confined to
+`ludoweave.render.backends.wgpu`; the sample selects that adapter only at its
+composition root. Wheel inspection found only pure Python package files,
+metadata, the console entry point, LICENSE, and NOTICE—no native objects, tests,
+generated docs, credentials, or mandatory graphics dependency.
+
+Hosted M5 CI has not yet run, so no cross-platform M5 pass is claimed here.

@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. It is being designed so human-facing tools, tests, replay, and software agents can eventually operate the same canonical world through typed, validated commands.
 
-> Project status: pre-alpha. M0 through M4 are implemented: repository/runtime contracts, the deterministic world core, command/snapshot/replay protocols, isolated 2D rendering, and the Clockwork Arena gameplay vertical slice. APIs and wire formats are experimental and may change without deprecation.
+> Project status: pre-alpha. M0 through M5 are implemented: repository/runtime contracts, the deterministic world core, command/snapshot/replay protocols, isolated 2D rendering, the Clockwork Arena gameplay vertical slice, and a local typed agent-control interface. APIs and wire formats are experimental and may change without deprecation.
 
 ## What exists
 
@@ -32,8 +32,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Project-confined `asset://` manifests, content-addressed dependency caching, bounded PNG loading, and retained safe texture replacement.
 - Deterministic AABB/circle collision, a property-tested spatial grid, documented kinematic resolution, and a minimal owned Null audio adapter.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
+- A transport-independent typed agent service with explicit capabilities, quotas, redaction, serialized mutations, and the same canonical command receipts used by direct Python.
+- Twelve observation/control tools exposed through Python, a project-confined CLI, and a local-only MCP `2025-11-25` stdio adapter with no network listener.
+- An Agent World Builder acceptance loop covering typed creation, validation, application, ticks, capture, query, adjustment, diff, telemetry, tests, and replay evidence.
 
-General scene importers, production audio, rigid-body physics, networking, MCP, editor tooling, 3D, and automatic GPU recovery are not implemented yet.
+General scene importers, production audio, rigid-body physics, networking or remote agent transport, editor tooling, 3D, and automatic GPU recovery are not implemented yet.
 
 ## Requirements
 
@@ -61,6 +64,7 @@ GPU rendering is an optional locked extra and is selected only by a composition 
 ```console
 uv sync --frozen --all-groups --extra graphics
 uv run --frozen --extra graphics python examples/hello_sprite.py
+uv run --frozen --extra graphics python examples/agent_world_builder.py
 ```
 
 The sprite example renders two atlas regions in one instanced draw and prints a versioned offscreen-capture summary. Add `--window` to exercise the rendercanvas/GLFW window surface on a desktop session.
@@ -107,6 +111,17 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only project manifest and full CLI example.
+The [agent control interface](docs/agent-control.md) documents M5 tools, capabilities, limits, Python/CLI/MCP composition, and the Agent World Builder loop.
+
+Agent mutation is disabled unless the trusted composition root explicitly
+enables it. For example, these launch the built-in sample over local stdio:
+
+```console
+uv run ludoweave mcp --sample agent-world-builder
+uv run ludoweave mcp --sample agent-world-builder --write --renderer wgpu
+```
+
+The first process is read-only. Neither command opens a network listener.
 
 ## Quality commands
 

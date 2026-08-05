@@ -227,3 +227,25 @@ def test_hello_sprite_example_emits_versioned_capture_summary() -> None:
     assert document["draw_calls"] == 1
     assert document["sprite_instances"] == 2
     assert document["fence_complete"] is True
+
+
+def test_agent_world_builder_example_completes_real_capture_and_typed_loop() -> None:
+    example = Path(__file__).parents[2] / "examples" / "agent_world_builder.py"
+    result = subprocess.run(
+        (sys.executable, str(example)),
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    document = json.loads(result.stdout)
+    assert document["protocol"] == "ludoweave.sample.agent_world_builder/1"
+    assert document["validation_status"] == "dry_run"
+    assert document["apply_status"] == document["adjust_status"] == "committed"
+    assert document["ticks"] == 3
+    assert document["query_matches"] == 6
+    assert document["capture_width"] == 320
+    assert document["capture_height"] == 180
+    assert document["capture_sha256"].startswith("sha256:")
+    assert document["tests_passed"] is True
+    assert document["replay_batches"] == 5

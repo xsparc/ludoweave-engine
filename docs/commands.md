@@ -166,3 +166,22 @@ The world package contains domain data and validation only. It may import core
 and public ECS contracts, but not application, rendering, concrete backends,
 tools, or transport/path code. Architecture tests also reject direct
 `eval`, `exec`, and `compile` calls in this package.
+
+## M5 agent adapters
+
+M5 does not define another command language. `transaction_validate` and
+`transaction_apply` accept the same `ludoweave.transaction/1` document described
+above and return the same canonical receipt dictionaries as direct
+`TransactionService` calls. The project-confined `ludoweave agent` adapter and
+the local stdio MCP adapter both delegate to one transport-independent
+`AgentCommandService`.
+
+`world_tick` is convenience composition over ordinary transactions. It emits
+one actor-attributed `world.tick` command and receipt per requested tick, stops
+at the first rejected safe point, and records every committed transaction in
+its replay timeline. It therefore preserves exact replay/branch boundaries but
+does not make the entire requested count atomic.
+
+Read, write, capture, and test behavior, quotas, concurrency, redaction, and
+transport details are documented in the [agent control interface](agent-control.md)
+and ADR-0019/ADR-0020.

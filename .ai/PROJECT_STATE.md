@@ -3,7 +3,8 @@
 ## Current milestone
 
 M0 through M4 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI.
+requests, and validated by hosted CI. M5 implementation and local validation
+are complete; publication and hosted validation are pending.
 
 ## Repository identity
 
@@ -59,10 +60,14 @@ run `30996905660` across the same 14-job matrix.
 - Deterministic AABB/circle overlap, stable exact-filter spatial grids, bounded axis-ordered kinematic movement, and a minimal engine-owned null audio backend.
 - Clockwork Arena canonical world/resource gameplay, fixed-seed waves, projectiles, collision, score/restart behavior, immutable presentation extraction, and deterministic headless/offscreen/window examples.
 - Exact 3,600-tick Clockwork Arena fixture and independently recorded-input replay hash, plus M4 benchmark/validator tooling for baseline and informational stress workloads.
+- Transport-independent typed agent command/query service with 12 immutable tool schemas over canonical transactions, receipts, snapshots, diffs, replay, capture, telemetry, and registered tests.
+- Default read-only capabilities, explicit write/capture/test grants, bounded requests/results/work, monotonic rate limiting, caller binding, recursive credential redaction, and non-blocking single-thread mutation safe points.
+- Project-confined `ludoweave agent` composition and local-only stdio MCP `2025-11-25` initialization, discovery, and tool calls without networking, shell access, arbitrary evaluation, dynamic project imports, or a new runtime dependency.
+- Agent World Builder acceptance composition with six typed ECS entities, real offscreen wgpu capture, exact query/adjust/diff/test/telemetry/replay coverage, and installed-wheel execution.
 
 ## Next slice
 
-- Begin only the authorized M5 agent-control slice on a new task-scoped branch from the exact validated M4 evidence head.
+- Publish M5 as a DCO-signed stacked pull request, require the complete hosted matrix to pass, record that evidence, and only then begin the authorized M6 slice from the exact validated M5 evidence head.
 
 ## Validation state
 
@@ -82,6 +87,8 @@ run `30996905660` across the same 14-job matrix.
 - The final local M4 gate on Windows/uv-managed CPython 3.12.13 reports 516 passing tests and one existing Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, successful no-dependency installed-wheel smoke, real offscreen and GLFW Clockwork Arena runs, exact 3,600-tick deterministic fixture/replay agreement, and a valid 300-sample three-workload benchmark artifact.
 - The local baseline Clockwork Arena benchmark p50/p95/p99 was 1.5228/2.1228/2.5898 ms and observed its 16.666667 ms p95 target. Stress 4 and 8 p95 values were 3.5029 ms and 4.8371 ms and have no assigned target. These are local observations, not cross-platform claims.
 - GitHub Actions run `30996905660` passed all 14 M4 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real graphics smoke, including Clockwork Arena wgpu execution, on Ubuntu software Vulkan, Windows, and macOS.
+- The final local M5 gate on Windows/uv-managed CPython 3.12.13 reports 545 passing tests and one existing Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, successful no-dependency installed-wheel smoke, and a real offscreen wgpu Agent World Builder run.
+- Direct Python, the actual `ludoweave agent` subprocess, and MCP return equivalent canonical transaction results/receipts. MCP lifecycle, malformed input, duplicate IDs/keys, capability denial, limits, atomic stale-hash rejection, reentrant/wrong-thread mutation rejection, redaction, provider close, and architecture bans are covered. No cross-platform M5 pass is claimed until hosted CI completes.
 
 ## External follow-ups
 
@@ -89,8 +96,8 @@ run `30996905660` across the same 14-job matrix.
 
 ## Deferred roadmap
 
-MCP/agent control, real audio playback, Box2D/rigid-body physics, networking,
-editor tooling, automatic device recovery, rich text, 3D, and native
-acceleration remain unimplemented. The measured M1 and M3 target misses are
-profiling evidence only and do not satisfy the later native-code admission
+Remote/network agent transport, real audio playback, Box2D/rigid-body physics,
+networking, editor tooling, automatic device recovery, rich text, 3D, and
+native acceleration remain unimplemented. The measured M1 and M3 target misses
+are profiling evidence only and do not satisfy the later native-code admission
 gate.

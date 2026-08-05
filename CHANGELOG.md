@@ -30,6 +30,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Validated `asset://` manifests, project path confinement, content-addressed dependency invalidation, bounded PNG decoding, and safe retained texture replacement.
 - Pure-Python AABB/circle overlap, a property-tested deterministic spatial grid, documented kinematic resolution, and a lifecycle-validating Null audio backend.
 - ECS-authoritative Clockwork Arena gameplay with deterministic waves, enemies, projectiles, health, score, restart, exact 3,600-tick fixture/replay evidence, optional wgpu rendering, and stress benchmark tooling.
+- M5 transport-independent typed agent service with immutable tool schemas, explicit read/write/capture/test capabilities, quotas, redaction, mutation serialization, and provider ownership.
+- Equivalent direct Python, project-confined CLI, and local stdio MCP `2025-11-25` tool calls over the existing transaction, receipt, snapshot, diff, replay, capture, telemetry, and acceptance-test contracts.
+- Agent World Builder acceptance composition exercising describe, validate, apply, fixed ticks, offscreen capture, query, adjustment, semantic diff, replay evidence, telemetry, and registered in-process checks.
 
 ## 0.1.0.dev0 - 2026-08-04
 

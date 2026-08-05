@@ -16,11 +16,13 @@ Maintainers will acknowledge the report through the same private channel, assess
 
 ## Initial security boundaries
 
-- The engine provides no remote control or network listener through M2.
+- The M5 agent interface is local-only and provides no network listener or remote-control claim. MCP is confined to process stdio.
 - The CLI performs no arbitrary Python evaluation.
 - M2 artifact paths are bounded, project-relative, resolved beneath an explicitly selected project root, and reported only by stable roles in expected diagnostics.
 - Input files are read through one bounded open handle; stale size metadata cannot cause an unbounded read.
 - Project confinement protects normal workflows and static symlink/traversal mistakes. It is not a sandbox against a hostile local principal concurrently replacing files, directories, junctions, or symlinks inside the selected project tree; run commands only against a locally trusted, quiescent project directory.
 - The M2 CLI project manifest is data-only and cannot select Python modules, callables, components, or plugins.
 - Diagnostics must not expose environment variables or credentials.
-- Future agent-facing mutations must be typed, validated, capability-gated, and auditable.
+- Agent-facing mutations are typed, validated, capability-gated, caller-attributed, serialized at safe points, and return canonical receipts. Write access is disabled by default.
+- Agent requests, results, transactions, ticks, queries, snapshots, captures, tests, and call rates are bounded. Credential-shaped diagnostics and telemetry values are redacted.
+- The MCP adapter cannot launch a shell, evaluate Python, load a module named by request data, or open a socket. Anyone able to launch the process and access its stdio has the capabilities granted by that composition root.

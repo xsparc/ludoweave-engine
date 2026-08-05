@@ -16,12 +16,21 @@ events, project-confined content-addressed assets, bounded deterministic 2D
 collision, minimal audio ownership, and the ECS-backed Clockwork Arena sample.
 See [the M4 gameplay vertical slice](gameplay.md).
 
+M5 adds `ludoweave.agent` as a transport-independent typed observation and
+control service over the existing world protocol. Python, the project-confined
+CLI, and the local stdio MCP adapter all reach the same transaction service and
+receipts. See [the agent control interface](agent-control.md).
+
 ## Dependency direction
 
 The active packages follow these rules:
 
 ```text
 composition roots  ludoweave.tools, examples
+
+agent service      ludoweave.agent ----> world/runtime   ludoweave.world
+                         |
+                         +--------------> core contracts ludoweave.core
 
 application        ludoweave.app ----> world/runtime   ludoweave.ecs
                          |                    |
@@ -35,16 +44,19 @@ concrete adapters  ludoweave.render.backends.null[_device]
 focused contracts  ludoweave.platform, assets, collision, audio
 
 sample composition ludoweave.samples.clockwork_arena
+                   ludoweave.samples.agent_world_builder
 ```
 
 - `ludoweave.core` imports only the Python standard library.
 - `ludoweave.ecs` may depend on core errors but not application, rendering, tools, or concrete backends.
 - `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
+- `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
 - Platform, asset, collision, and audio contracts depend only on their own package and core errors. Render adapters may emit engine-owned platform events.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
+- MCP exists only as a local stdio composition adapter in `ludoweave.tools.mcp`; it may not import networking modules or implement a listener.
 - The package root may re-export the deliberately small application API but never a concrete backend or third-party native object.
 - Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW. NumPy storage and future native extension objects are forbidden from engine source and public APIs.
 
@@ -55,6 +67,11 @@ bounded I/O. World, snapshot, replay, ECS, and application packages remain
 path- and transport-agnostic.
 
 These rules are enforced by an AST-based test over the source tree. The test also analyzes a generated invalid fixture so a broken checker cannot silently pass.
+
+The M5 architecture checks additionally reject upward agent imports, Python
+evaluation primitives in the agent package, and networking modules in the MCP
+adapter. Agent tools expose provider-neutral JSON documents, not filesystem,
+ECS-storage, or GPU objects.
 
 ## Ownership and close order
 
@@ -161,11 +178,31 @@ presentation frames remain outside canonical state. Logical asset URIs and
 action values may be recorded, but provider/native objects may not. Collision
 uses copied scalar values and returns deterministic sorted IDs.
 
+## M5 agent-control boundary
+
+`AgentCommandService` observes detached authority documents and submits
+mutations only through the existing versioned command protocol. It never owns a
+parallel world. Read is implicit; write, capture, and registered-test access are
+separate immutable capabilities disabled by default. Requests, results,
+transactions, query counts, ticks, snapshots, captures, tests, and rate are
+bounded, and credential-shaped diagnostic values are redacted.
+
+The constructing thread owns the service. Mutations use a non-blocking gate and
+reject wrong-thread or reentrant access. Each requested tick is one atomic,
+receipted transaction; a multi-tick request is a sequence of safe points rather
+than one atomic batch. The service owns and closes its optional capture provider
+but does not own the session, clock, telemetry provider, or test provider.
+
+The MCP adapter implements a small local-only stdio subset. It has no remote
+listener, HTTP transport, authentication claim, dynamic import, shell access,
+or arbitrary evaluation. The Agent World Builder remains a trusted sample
+composition root whose canonical room objects live in the ECS/world store.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
-project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, and
-the bounded M4 gameplay contracts now exist. General scene importers, production
-audio, rigid-body physics, MCP, networking, editor tooling, rich text, automatic
-device recovery, 3D, and native acceleration remain deferred to their assigned
-exercised slices.
+project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
+bounded M4 gameplay contracts, and the local M5 typed agent/stdio MCP interface
+now exist. General scene importers, production audio, rigid-body physics,
+network transports, editor tooling, rich text, automatic device recovery, 3D,
+and native acceleration remain deferred to their assigned exercised slices.

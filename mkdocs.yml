@@ -15,6 +15,7 @@ nav:
   - Persistent commands: commands.md
   - 2D rendering: rendering.md
   - M4 gameplay vertical slice: gameplay.md
+  - Agent control interface: agent-control.md
   - Headless command workflow: cli-workflows.md
   - Benchmarks: benchmarks.md
   - Decisions:
@@ -37,6 +38,8 @@ nav:
       - ADR-0016 - Platform input: adr/0016-provider-neutral-platform-events-and-action-snapshots.md
       - ADR-0017 - Content-addressed assets: adr/0017-content-addressed-project-confined-assets.md
       - ADR-0018 - Collision and audio: adr/0018-bounded-deterministic-collision-and-minimal-audio.md
+      - ADR-0019 - Agent service and safe points: adr/0019-agent-service-capabilities-and-safe-points.md
+      - ADR-0020 - Local stdio MCP: adr/0020-local-stdio-mcp-adapter.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

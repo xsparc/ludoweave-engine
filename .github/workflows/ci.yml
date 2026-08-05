@@ -143,3 +143,5 @@ jobs:
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
       - name: Run Clockwork Arena wgpu vertical slice
         run: uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10
+      - name: Run Agent World Builder typed-tool loop
+        run: uv run --frozen --extra graphics python examples/agent_world_builder.py

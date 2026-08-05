@@ -20,4 +20,6 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0016: provider-neutral platform events and action snapshots](0016-provider-neutral-platform-events-and-action-snapshots.md)
 - [ADR-0017: content-addressed, project-confined assets](0017-content-addressed-project-confined-assets.md)
 - [ADR-0018: bounded deterministic collision and minimal audio](0018-bounded-deterministic-collision-and-minimal-audio.md)
+- [ADR-0019: agent service capabilities and mutation safe points](0019-agent-service-capabilities-and-safe-points.md)
+- [ADR-0020: local stdio MCP adapter](0020-local-stdio-mcp-adapter.md)
 - [ADR template](template.md)
