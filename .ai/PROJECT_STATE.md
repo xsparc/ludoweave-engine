@@ -2,10 +2,8 @@
 
 ## Current milestone
 
-M0 through M6 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI. M7 implementation and local validation
-are complete on `codex/m7-performance-decision`; its stacked PR and hosted CI
-are pending.
+M0 through M7 are complete, independently accepted, published as stacked pull
+requests, and validated by hosted CI.
 
 ## Repository identity
 
@@ -19,8 +17,10 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 M6 community-alpha hardening is complete on `codex/m6-release-hardening`,
 published as stacked PR #6, and validated by hosted run `31002365370` across the
 same 14-job matrix, including complete candidate smoke on all three platforms.
-M7 profiles the inherited performance misses, applies ordinary Python
-optimizations, and accepts RFC-0001/ADR-0022 deferring the first native kernel.
+M7 performance/native decision is complete on
+`codex/m7-performance-decision`, published as stacked PR #7, and validated by
+hosted run `31005165849` across all 14 jobs, including the new base and
+real-wgpu profiling-contract smokes.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -88,11 +88,11 @@ optimizations, and accepts RFC-0001/ADR-0022 deferring the first native kernel.
 
 ## Next slice
 
-- Publish the DCO-signed stacked M7 pull request and require the complete hosted
-  CI matrix, including base and real-wgpu profiling-contract smokes, to pass.
-- Do not add Rust/PyO3 under M7. After M7 acceptance, the next authorized
-  post-alpha question is gamepad/SDL3 evaluation as its own evidence-bounded
-  milestone.
+- Stop at the accepted M7 boundary. Do not create a release tag, publish a
+  package/release, or begin M8 without a separate maintainer decision.
+- The next design-sequenced question is gamepad/SDL3 evaluation as its own
+  evidence-bounded milestone. RFC-0001 continues to prohibit Rust/PyO3 until
+  its complete revisit gate is satisfied.
 
 ## Validation state
 
@@ -133,6 +133,12 @@ optimizations, and accepts RFC-0001/ADR-0022 deferring the first native kernel.
   Remaining simulation cost spans detached query copy/writeback; presentation
   cost spans immutable record construction; packing consumes Python objects
   even where it dominates submission. RFC-0001 therefore defers native code.
+- GitHub Actions run `31005165849` passed all 14 M7 jobs: strict
+  quality/documentation plus base profile validation; Ubuntu Python
+  3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; complete installed
+  release-candidate smoke on Ubuntu/Windows/macOS; and real graphics plus wgpu
+  profile smoke on all three operating systems. PR #7 is open, mergeable, and
+  reports clean merge state against the validated M6 branch.
 
 ## External follow-ups
 

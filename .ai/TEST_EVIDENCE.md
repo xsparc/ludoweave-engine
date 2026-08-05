@@ -769,3 +769,30 @@ mandatory dependency. Provider imports remain confined to the existing exact
 wgpu adapter. The wheel contains only the typed pure-Python package,
 distribution metadata/entry point, LICENSE, and NOTICE. Hosted M7 CI had not
 run at the time of this local section, so no cross-platform result is claimed.
+
+## M7 hosted validation — GitHub Actions run 31005165849
+
+The DCO-signed M7 implementation commit
+`b14e6c5581e2ca797adc9d71e46d460b941005b8` was pushed to
+`codex/m7-performance-decision` and published as stacked pull request #7
+against the validated M6 branch. The least-privilege pull-request run completed
+successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed lock, formatting, lint, strict Pyright, strict MkDocs, and the exact base profiling-contract smoke. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three base matrix jobs passed. |
+| Tests — Windows, Python 3.12/3.14 | Both base matrix jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both base matrix jobs passed. |
+| Installed release candidate — Ubuntu/Windows/macOS, Python 3.12 | All three built the pure wheel/sdist, passed installed-wheel smoke, staged the complete candidate, and passed release smoke. |
+| Graphics smoke — Ubuntu/Windows/macOS, Python 3.12 | All three passed real clear/sprite/capture/resize/loss tests, exact wgpu profiling-contract smoke, Clockwork Arena, and Agent World Builder; Ubuntu used Mesa Vulkan. |
+
+All 14 jobs passed. Run `31005165849` completed with conclusion `success` for
+head `b14e6c5581e2ca797adc9d71e46d460b941005b8`. GitHub reports PR #7 open,
+mergeable, and `CLEAN` against `codex/m6-release-hardening`. The hosted
+profiling steps validate portable execution and artifact contracts only; they
+do not create uncontrolled cross-platform timing claims.
+
+Before the hosted-evidence commit, `uv run --frozen mkdocs build --strict` and
+`git diff --check` both exited 0; documentation built in 0.55 seconds with only
+the already-recorded upstream Material/MkDocs 2.0 informational warning.

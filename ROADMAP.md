@@ -15,10 +15,12 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M4 Clockwork Arena gameplay slice | 3,600-tick replay plus stress evidence |
 | Done | M5 local typed agent interface | Agent World Builder and local stdio acceptance |
 | Done | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
-| Active | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
+| Done | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
+M7's implementation head passed the same 14-job hosted matrix, including base
+and real-wgpu profiling-contract smokes on all three operating systems.
 
 ## Good-first contribution queue
 

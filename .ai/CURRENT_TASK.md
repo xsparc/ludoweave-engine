@@ -1,7 +1,7 @@
 # Current Task
 
 - **Task:** M7 — Post-alpha performance and first-native-kernel decision
-- **Status:** Implementation and local validation complete; stacked PR and hosted CI pending
+- **Status:** Complete; DCO-signed PR #7 is published and hosted run `31005165849` passed all 14 jobs
 - **Started:** 2026-08-05
 - **Acceptance gate:** Profile the exact recorded M1/M3 misses, exhaust ordinary
   Python/algorithm work justified by the evidence, assess every native-code
@@ -30,8 +30,10 @@
   Ruff/Pyright findings, strict docs success, pure wheel/sdist, installed-wheel
   smoke, complete release-candidate smoke, six real wgpu integration passes,
   and successful Clockwork Arena/Agent World Builder runs.
-- **Hosted gate:** Pending after the DCO-signed implementation/evidence commits
-  and stacked PR against `codex/m6-release-hardening`.
+- **Hosted gate:** PR #7 is mergeable with clean merge state against
+  `codex/m6-release-hardening`. Run `31005165849` passed strict quality/docs,
+  all seven CPython/OS test jobs, all three installed release-candidate smokes,
+  and all three real graphics/profile smokes.
 - **Non-scope retained:** No Rust, PyO3, Maturin, NumPy storage, native artifact,
   public storage-layout exposure, release publication, networking, editor, 3D,
   rigid-body physics, production audio, or remote agent transport.
