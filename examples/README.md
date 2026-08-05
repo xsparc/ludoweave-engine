@@ -12,6 +12,7 @@ python rollback_readiness.py --ticks 120 --branch-tick 60
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
+python render_device_conformance.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -44,6 +45,12 @@ format.
 `wasm_mod_security_decision.py` audits the installed data-only plugin boundary,
 proves that executable manifest fields remain rejected, and records a deferred
 WASM-mod decision. It does not compile, instantiate, or execute guest code.
+
+`render_device_conformance.py` runs the versioned baseline profile against an
+explicitly selected trusted adapter. The dependency-free default validates the
+Null device; `--backend wgpu` validates the optional production adapter. It
+does not discover, import by name, install, sandbox, or certify third-party
+code.
 
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:

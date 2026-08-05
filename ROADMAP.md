@@ -25,6 +25,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
 | Done | M15 visual-editor admission decision | Hosted-validated installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
 | Done | M16 WASM-mod security admission decision | Hosted-validated installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
+| Ready to merge | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -70,6 +71,16 @@ PR #20 squash-integrated exact final M16 head
 `808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` into `main` as verified commit
 `e2bd57c057c0c16861953c0702b2012c4cabfe90`; both trees are
 `05367be9bd85014fe6c70995ac1a69a39f90ef1e`.
+M17 starts from integrated `main` commit
+`27d2ee9d1f7f75dacc17568650f00ce833ef4fce`. It turns the existing
+`RenderDevice` checklist into one installed baseline profile. The profile
+executes only an explicitly supplied trusted factory and does not discover,
+load, install, sandbox, or certify third-party code. Project-owned Null/wgpu
+passes do not count as independent third-party adoption.
+Ready PR #22 passed the unchanged eight-job hosted matrix as run
+`31042903689` on DCO-signed implementation commit
+`8e592f329424719214239bf97bd85dad9c9c5928`; squash integration remains
+pending.
 
 ## Good-first contribution queue
 

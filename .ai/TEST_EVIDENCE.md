@@ -1883,3 +1883,104 @@ The integration creates no tag, release, package publication, executable mod,
 runtime/provider/dependency behavior, or additional Actions run. The
 authoritative post-alpha sequence ends with M16 item 10; no M17 milestone or
 acceptance criteria are assigned by the current plan.
+
+## M17 installed render-device conformance - local final gate - 2026-08-06
+
+M17 was subsequently assigned from the design plan's longer-term metric for
+third-party adapters/plugins passing conformance. Branch
+`codex/m17-render-device-conformance` started from exact clean synchronized
+`main` commit `27d2ee9d1f7f75dacc17568650f00ce833ef4fce` (`main...origin/main`
+left/right count `0 0`). The bounded slice is one experimental installed
+`RenderDevice` baseline over an explicitly supplied trusted factory. It adds
+no adapter discovery/loading/installation, provider dependency, plugin field,
+canonical/persistent world state, version change, or CI job.
+
+Final Windows local gate used uv-managed CPython 3.12.13:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the unchanged 46-package lock. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked the locked 45-package environment. |
+| `uv run --frozen ruff format --check .` | 0 | All 191 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen pytest -q` | 0 | 895 passed and one existing Windows symlink-capability test skipped in 64.75 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built; the upstream Material MkDocs-2 warning remained informational. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency wheel passed all inherited flows plus the nine-check Null render-device profile. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m17-release-candidate-final-reviewed` | 0 | Staged the complete deterministic ten-artifact candidate including the updated sample bundle. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m17-release-candidate-final-reviewed` | 0 | Exact checksums/manifest/SBOM/notices, safe extraction, isolated install, inherited samples, and bundled Null conformance passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All 10 real-wgpu tests passed in 5.87 seconds, including the shared baseline. |
+| `uv run --frozen --extra graphics python examples/render_device_conformance.py --backend wgpu` | 0 | Protocol `ludoweave.render-device-conformance/1`, profile `render-device-baseline/1`, adapter `wgpu`, all nine checks `pass`. |
+| `uv run --frozen pytest -q tests/unit/test_render_device_conformance.py tests/architecture/test_m17_conformance_boundary.py tests/architecture/test_import_boundaries.py` | 0 | 121 focused success, failure-sanitization, lifecycle, explicit-factory, and dependency-boundary tests passed. |
+
+Artifact inspection found 92 wheel entries, including
+`ludoweave/render/conformance.py`, and zero `.pyd`, `.so`, `.dll`, `.dylib`,
+or `.wasm` entries. Installed metadata retains no mandatory requirement and
+the exact existing graphics extra only:
+
+- `glfw==2.10.2; extra == 'graphics'`;
+- `rendercanvas[glfw]==2.7.2; extra == 'graphics'`; and
+- `wgpu==0.32.0; extra == 'graphics'`.
+
+The protected `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, package
+version, and package-root exports are unchanged. M14's installed render-export
+fingerprint was updated from 47 to the exact 53-name surface by adding only the
+two conformance constants, status enum, two frozen report records, and runner;
+its layered-2D facts and every 3D admission gate remain unchanged.
+
+All documented benchmark/profile validation contracts were executed on the
+dirty M17 working tree and validated:
+
+- M1: seven workloads; fixed-step p95 `54,750,000 ns` observed its target,
+  while 10,000-entity simulation p95 `126,505,000 ns` missed; 1 of 2 recorded
+  targets observed.
+- M2: four informational workloads validated with no timing threshold.
+- M3: six workloads; 10,000-sprite extraction p95 `24,179,800 ns` and wgpu
+  submission p95 `3,735,200 ns` both missed; 0 of 2 targets observed.
+- M4: baseline p95 `1,863,200 ns` observed its target; two stress workloads
+  remained informational.
+- M7: five-repeat base profile with two workloads and graphics profile with
+  three workloads both validated under `ludoweave.profile.m7/1`.
+
+Two sandboxed command attempts failed before executing project code because
+the managed sandbox denied uv cache access at
+`C:\Users\louij\AppData\Local\uv\cache`; the same commands were rerun with
+approved cache access and passed as recorded above. One earlier wheel smoke
+correctly failed after the additive public render exports changed M14's exact
+installed-surface fixture. The fixture was updated to the six exact M17 names,
+then focused M14/M15/M16 tests, final wheel smoke, and final release smoke all
+passed. No product failure remains unresolved.
+
+## M17 hosted validation - 2026-08-06
+
+Ready PR #22 targets `main` from
+`codex/m17-render-device-conformance`. GitHub reported exact base
+`27d2ee9d1f7f75dacc17568650f00ce833ef4fce`, implementation head
+`8e592f329424719214239bf97bd85dad9c9c5928`, `MERGEABLE`, and `CLEAN`. The
+implementation history contains one DCO-signed commit.
+
+GitHub Actions pull-request run `31042903689` executed that implementation
+commit from `2026-08-05T20:11:26Z` through `2026-08-05T20:13:48Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence validates supported installed,
+cross-platform, and existing-provider behavior; it does not certify or admit
+third-party code, count project-owned adapters as independent adoption,
+publish a package, create a tag or release, add discovery/loading/install
+behavior, change a public or persistent format, or claim the locally missed
+M1/M3 performance targets passed.
+
+After recording these hosted facts, `uv run --frozen mkdocs build --strict`
+exited 0 in 0.58 seconds with only the documented upstream Material MkDocs-2
+warning, and `git diff --check` exited 0.

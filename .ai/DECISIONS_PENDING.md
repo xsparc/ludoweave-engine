@@ -52,6 +52,13 @@ deterministic replay, guest-state migration, isolation, adversarial
 conformance, cross-platform installation, and named security/update ownership
 are evidenced together.
 
+ADR-0031 resolves the first external-adapter conformance boundary with one
+versioned installed `RenderDevice` baseline over an explicitly supplied trusted
+factory. It forbids discovery/loading/installation and records that passing
+behavior is not security, provenance, cross-platform, performance, or provider
+admission evidence. No independently authored adapter is counted until
+external evidence is reviewed.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

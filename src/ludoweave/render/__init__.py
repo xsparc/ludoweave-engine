@@ -2,6 +2,14 @@
 
 from ludoweave.render.api import RenderBackend, RenderDescriptor
 from ludoweave.render.backends import NullRenderBackend, NullRenderDevice
+from ludoweave.render.conformance import (
+    RENDER_DEVICE_CONFORMANCE_PROFILE,
+    RENDER_DEVICE_CONFORMANCE_PROTOCOL,
+    ConformanceStatus,
+    RenderDeviceConformanceCheck,
+    RenderDeviceConformanceReport,
+    run_render_device_conformance,
+)
 from ludoweave.render.contracts import (
     BlendMode,
     BufferData,
@@ -55,6 +63,8 @@ from ludoweave.render.handles import (
 )
 
 __all__ = [
+    "RENDER_DEVICE_CONFORMANCE_PROFILE",
+    "RENDER_DEVICE_CONFORMANCE_PROTOCOL",
     "BlendMode",
     "BufferData",
     "BufferDescriptor",
@@ -66,6 +76,7 @@ __all__ = [
     "Color",
     "CommandList",
     "CompiledRenderGraph",
+    "ConformanceStatus",
     "DebugLineCommand",
     "DiagnosticTextCommand",
     "FenceHandle",
@@ -82,6 +93,8 @@ __all__ = [
     "RenderCapabilities",
     "RenderDescriptor",
     "RenderDevice",
+    "RenderDeviceConformanceCheck",
+    "RenderDeviceConformanceReport",
     "RenderExtractor",
     "RenderGraph",
     "RenderPass",
@@ -102,5 +115,6 @@ __all__ = [
     "TileBatchCommand",
     "TileDrawGroup",
     "TileInstance",
+    "run_render_device_conformance",
 ]
 __stability__ = {name: "experimental" for name in __all__}

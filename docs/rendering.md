@@ -32,6 +32,11 @@ finally:
 `ludoweave.render`, or `ludoweave.render.backends`. Importing those public
 packages does not import wgpu, rendercanvas, GLFW, or NumPy.
 
+The installed [render-device conformance profile](render-device-conformance.md)
+can exercise either Null or the explicitly selected wgpu device through the
+same engine-owned descriptors and handles. It performs no provider discovery
+and is not a security or cross-platform certification.
+
 ## Descriptors, handles, and ownership
 
 Descriptors, commands, capabilities, captures, and handles are immutable

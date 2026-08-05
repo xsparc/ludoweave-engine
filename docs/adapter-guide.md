@@ -80,6 +80,14 @@ Rendering providers additionally need clear, resource, capture, resize/minimize,
 device-loss, batching, camera/layer, and deferred-destruction coverage. Exact
 dependency upgrades follow the gates in the rendering guide and ADR-0015.
 
+M17 turns the minimum `RenderDevice` lifecycle/resource subset into an
+installed, versioned baseline. An adapter package explicitly imports its own
+trusted factory and calls `run_render_device_conformance()`; LudoWeave never
+discovers or imports the package from manifest data. See the
+[render-device conformance guide](render-device-conformance.md). A passing
+baseline report complements rather than replaces the checklist above,
+provider-specific tests, provenance review, or the hosted support matrix.
+
 ## Publishing and compatibility
 
 Third-party adapters should be separately distributed packages that require a

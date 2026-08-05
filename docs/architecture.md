@@ -83,6 +83,12 @@ runtime, loader, guest ABI, WASI context, host call, public export, dependency,
 or canonical guest state. See the [WASM-mod security
 decision](wasm-mod-security-decision.md) and ADR-0030.
 
+M17 adds a reusable installed behavioral profile over the existing
+`RenderDevice` protocol. Callers explicitly construct trusted adapters; the
+engine runner imports no backend and returns only frozen, sanitized evidence.
+See the [render-device conformance guide](render-device-conformance.md) and
+ADR-0031.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -99,6 +105,7 @@ agent service      ludoweave.agent ----> world/runtime   ludoweave.world
 application        ludoweave.app ----> world/runtime   ludoweave.ecs
                          |                    |
 render contracts   ludoweave.render.api/device/contracts/extraction
+render evidence    ludoweave.render.conformance ---> render contracts/device
                          |                    |
 core contracts     ludoweave.core <----------+
 
@@ -118,6 +125,9 @@ sample composition ludoweave.samples.clockwork_arena
 - `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
 - `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
+- Render conformance may depend on public render/platform/core contracts but
+  never concrete backends, plugin discovery, filesystem/process/network
+  facilities, or provider packages.
 - Platform, asset, collision, and audio contracts depend only on their own package and core errors. Render adapters may emit engine-owned platform events.
 - Presentation authoring may depend on core plus exact render contracts,
   extraction records, and opaque handles. It may not import ECS/world,
@@ -168,6 +178,11 @@ The M16 evidence composition also lives under `examples/`; its validator is
 repository tooling. The AST checker explicitly rejects common WASM runtime
 imports even inside plugin contracts, while exact dependency tests keep both
 the baseline and graphics-extra requirement sets unchanged.
+
+The M17 installed runner lives with render contracts and accepts only an
+explicit callable factory. Concrete adapter selection remains in examples or
+external composition roots. Its report is presentation evidence and cannot
+enter canonical world state or establish plugin trust.
 
 ## Ownership and close order
 
@@ -457,6 +472,27 @@ persistence, isolation, adversarial-conformance, cross-platform,
 supply-chain, and maintenance evidence before these guards may change. Core
 memory isolation or a successful guest prototype is insufficient.
 
+## M17 installed adapter-conformance boundary
+
+The first reusable conformance profile targets the existing `RenderDevice`
+contract because it is shared by the Null reference and production wgpu
+adapter. A caller explicitly supplies a trusted factory. The runner imports no
+concrete backend and performs no discovery, module lookup, installation,
+filesystem access, subprocess launch, networking, or global registration.
+
+Each run owns one device on the calling thread, uses only engine descriptors,
+handles, commands, events, capabilities, captures, and structured errors, and
+closes the device twice before probing use-after-close. Versioned reports
+contain stable check status/error codes but no exception messages, paths,
+environment values, timing, capture bytes, or provider-native objects.
+
+Conformance is a behavioral self-test, not trust or admission. Provider code
+runs in-process and can still block, crash, consume resources, or exercise
+ambient authority. Security, provenance, full OS/Python support, performance,
+device loss, and maintenance remain separate evidence gates. The M12 manifest
+stays inert and cannot name a factory. See
+[ADR-0031](adr/0031-explicit-installed-render-device-conformance.md).
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -469,7 +505,8 @@ plugin manifest contract, and the M13 offline rollback-readiness decision now
 exist. M14 records the retained layered-2D boundary and defers constrained 3D
 without changing the runtime package. M15 retains the headless inspector and
 defers visual-editor implementation. M16 retains data-only plugins and defers
-WASM runtimes, guest execution, WASI, and host calls. M6
+WASM runtimes, guest execution, WASI, and host calls. M17 adds one explicit
+installed render-device baseline without admitting or discovering providers. M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network
