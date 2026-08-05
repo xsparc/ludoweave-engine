@@ -1112,5 +1112,30 @@ graphics commands were then executed locally after CI review.
 
 M10 has no benchmark or performance threshold. The retained M7 profiling
 commands validate artifact behavior only; no timing result or performance pass
-is claimed. Hosted M10 CI has not run, so no M10 cross-platform/hosted pass is
-claimed at this stage.
+is claimed. Before PR publication, hosted M10 CI had not run and no M10
+cross-platform or hosted pass was claimed.
+
+## M10 hosted validation - 2026-08-06
+
+DCO-signed implementation commit
+`2e60b3f1c4884dba71df5f23b779bc49187d68c6` was pushed to
+`codex/m10-live-semantic-inspector` and published as ready stacked PR #11
+against exact final M9 head
+`22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. GitHub Actions run
+`31020096463` completed with conclusion `success`; all eight jobs passed:
+
+- the Ubuntu CPython 3.12 quality/test/distribution job passed lock,
+  formatting, lint, strict Pyright, strict docs, 634-test baseline, base profile
+  contract, pure build, isolated wheel smoke, release staging, and release
+  smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profile contract, Clockwork Arena, and Agent World
+  Builder passed on Ubuntu software Vulkan, Windows, and macOS.
+
+GitHub reports PR #11 open, ready, mergeable, and `CLEAN` against
+`codex/m9-box2d-plugin-evaluation`. This is the first run of the consolidated
+eight-job topology; it replaces the former 14-job topology without dropping a
+supported Python version, desktop operating system, complete distribution
+gate, or real three-OS graphics gate. No merge, tag, release, or package
+publication occurred.

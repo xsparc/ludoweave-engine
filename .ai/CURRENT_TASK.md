@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M10 - Headless live semantic inspector
-- **Status:** Locally complete and independently accepted; DCO-signed commit,
-  stacked PR publication, and hosted validation remain pending
+- **Status:** Complete; published as ready stacked PR #11 and validated by all
+  eight essential hosted CI jobs
 - **Started:** 2026-08-06
 - **Base:** Exact final-head hosted-validated M9 commit
   `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`; M10 will stack against
@@ -53,3 +53,8 @@
   consolidated baseline duplicated real graphics without installing its Linux
   runtime; the baseline now excludes that separately gated file and the
   architecture test locks the eight-job quota/security contract.
+- **Hosted gate:** GitHub Actions run `31020096463` passed the complete Ubuntu
+  3.12 quality/test/distribution gate; Ubuntu 3.13/3.14, Windows 3.14, and macOS
+  3.14 compatibility; and real graphics on Linux, Windows, and macOS. PR #11 is
+  open, ready, mergeable, and clean against
+  `codex/m9-box2d-plugin-evaluation`.

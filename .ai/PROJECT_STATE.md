@@ -11,11 +11,12 @@ M9 Box2D v3 plugin admission evaluation is locally complete on
 defers the plugin; repeat independent review accepted the ownership correction
 with no remaining blockers. It is published as ready stacked PR #10 and GitHub
 Actions run `31015885190` passed all 14 hosted jobs.
-M10's headless semantic inspector is locally complete and independently
-accepted on `codex/m10-live-semantic-inspector`, based on exact M9 final head
+M10's headless semantic inspector is complete, independently accepted, and
+published as ready stacked PR #11 from `codex/m10-live-semantic-inspector`,
+based on exact M9 final head
 `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. ADR-0025 accepts one isolated,
-owned local MCP child with detached observations and receipted writes. Signed
-publication and the consolidated eight-job hosted gate remain pending.
+owned local MCP child with detached observations and receipted writes. GitHub
+Actions run `31020096463` passed all eight essential hosted jobs.
 
 ## Repository identity
 
@@ -138,11 +139,11 @@ M9 head and will be proposed against the M9 branch.
 
 ## Next slice
 
-- Publish M10 as a signed PR stacked on the exact M9 head and require the new
-  eight-job hosted gate to pass. Do not assign M11 until that evidence is
-  reconciled. Release publication, deferred Box2D/SDL3 adapters,
-  haptics/sensors, real audio, networking, editor work, 3D, and native code
-  remain outside M10; RFC-0001 continues to govern Rust/PyO3.
+- M10 is complete. Assign M11 from the authoritative post-alpha sequence before
+  implementation and stop at its acceptance boundary. Release publication,
+  deferred Box2D/SDL3 adapters, haptics/sensors, real audio, networking, editor
+  work, 3D, and native code remain outside M10; RFC-0001 continues to govern
+  Rust/PyO3.
 
 ## Validation state
 
@@ -165,8 +166,8 @@ M9 head and will be proposed against the M9 branch.
   passes locally. Its exact baseline test command excludes the separately
   gated wgpu integration file and passed 634 tests with one skip; real provider
   execution remains confined to the three jobs that install platform runtime
-  prerequisites. Hosted M10 CI has not run, so no M10 cross-platform or hosted
-  pass is claimed yet.
+  prerequisites. GitHub Actions run `31020096463` passed that exact topology on
+  implementation commit `2e60b3f1c4884dba71df5f23b779bc49187d68c6`.
 - The corrected M9 local gate on Windows/uv-managed CPython 3.12.13 reports 606 passing
   tests and one existing symlink-capability skip, 151 formatted Python files,
   zero Ruff/Pyright findings, strict documentation success, a 79-entry pure
