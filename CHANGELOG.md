@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M17 experimental installed `RenderDevice` baseline conformance profile with
+  frozen versioned reports, sanitized failure codes, Null/real-wgpu evidence,
+  and isolated wheel/release sample smoke.
+- ADR-0031 retaining explicit trusted composition: the conformance runner
+  performs no discovery, dynamic import, installation, provider admission, or
+  security certification.
 - M16 deterministic installed security evidence for the WASM-mod admission
   decision, exercised from source, isolated wheel, and release sample bundle.
 - ADR-0030 and a prospective threat model retaining the data-only plugin

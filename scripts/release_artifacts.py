@@ -23,6 +23,7 @@ _SAMPLE_FILES = (
     "fixed_step_world.py",
     "hello_headless.py",
     "hello_sprite.py",
+    "render_device_conformance.py",
     "rich_2d_showcase.py",
     "rollback_readiness.py",
     "visual_editor_decision.py",

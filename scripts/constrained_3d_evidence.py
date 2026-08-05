@@ -3,6 +3,8 @@
 from typing import cast
 
 _RENDER_EXPORTS = [
+    "RENDER_DEVICE_CONFORMANCE_PROFILE",
+    "RENDER_DEVICE_CONFORMANCE_PROTOCOL",
     "BlendMode",
     "BufferData",
     "BufferDescriptor",
@@ -14,6 +16,7 @@ _RENDER_EXPORTS = [
     "Color",
     "CommandList",
     "CompiledRenderGraph",
+    "ConformanceStatus",
     "DebugLineCommand",
     "DiagnosticTextCommand",
     "FenceHandle",
@@ -30,6 +33,8 @@ _RENDER_EXPORTS = [
     "RenderCapabilities",
     "RenderDescriptor",
     "RenderDevice",
+    "RenderDeviceConformanceCheck",
+    "RenderDeviceConformanceReport",
     "RenderExtractor",
     "RenderGraph",
     "RenderPass",
@@ -50,6 +55,7 @@ _RENDER_EXPORTS = [
     "TileBatchCommand",
     "TileDrawGroup",
     "TileInstance",
+    "run_render_device_conformance",
 ]
 _FACTS: dict[str, object] = {
     "builtin_operations": [
@@ -69,7 +75,7 @@ _FACTS: dict[str, object] = {
         "timestamp_queries",
         "surface_formats",
     ],
-    "render_export_count": 47,
+    "render_export_count": 53,
     "render_exports": _RENDER_EXPORTS,
     "texture_descriptor_fields": [
         "width",

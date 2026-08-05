@@ -72,7 +72,7 @@ def test_installed_surface_evidence_is_repeatable_and_defers_3d() -> None:
         "resource.patch",
         "world.tick",
     ]
-    assert facts["render_export_count"] == 47
+    assert facts["render_export_count"] == 53
     assert document["ludoweave_version"] == __version__
     assert facts["pipeline_fields"] == ["color_format", "topology", "blend", "label"]
     assert facts["render_capability_fields"] == [

@@ -396,6 +396,27 @@ def main(argv: Sequence[str] | None = None) -> int:
         if any(rich.get(key) != value for key, value in rich_expected.items()):
             raise RuntimeError(f"rich 2D example summary was invalid: {rich!r}")
 
+        conformance_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "render_device_conformance.py"),
+            ],
+            cwd=temp_root,
+        )
+        conformance = cast(dict[str, object], json.loads(conformance_result.stdout))
+        checks = cast(list[dict[str, object]], conformance.get("checks"))
+        if (
+            conformance.get("protocol") != "ludoweave.render-device-conformance/1"
+            or conformance.get("profile") != "render-device-baseline/1"
+            or conformance.get("adapter_id") != "org.ludoweave.null"
+            or conformance.get("adapter_name") != "null-device"
+            or conformance.get("status") != "pass"
+            or len(checks) != 9
+            or any(check.get("status") != "pass" for check in checks)
+        ):
+            raise RuntimeError(f"render-device conformance report was invalid: {conformance!r}")
+
         rollback_result = _run(
             [
                 str(python),

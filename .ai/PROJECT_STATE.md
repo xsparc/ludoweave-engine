@@ -107,6 +107,18 @@ commit `e2bd57c057c0c16861953c0702b2012c4cabfe90`. Both trees are
 `05367be9bd85014fe6c70995ac1a69a39f90ef1e`; the milestone branch remains the
 audit trail.
 
+M16 integration evidence was then squash-integrated through PR #21 as verified
+`main` commit `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`. M17 is assigned on
+`codex/m17-render-device-conformance` from that exact clean base. Its bounded
+contract is one installed experimental `RenderDevice` baseline profile over an
+explicit trusted factory. It adds sanitized versioned reports, Null/wgpu
+evidence, artifact smoke, architecture guards, ADR-0031, and public guidance.
+It adds no discovery, dynamic import, installation, provider adapter,
+dependency, lock, version, canonical/persistent world format, or CI job. The
+complete local quality/artifact/provider gate passes with 895 tests and one
+existing symlink skip; final diff review, hosted validation, and integration
+remain pending.
+
 ## Repository identity
 
 M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
@@ -170,6 +182,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 - Informational M2 benchmark/validator tooling for canonical transactions, atomic application, snapshot round trips, and replay verification.
 - Frozen backend-neutral render descriptors, explicit target/camera command lists, scoped generational resource handles, deterministic presentation extraction, and graph dependency/lifetime validation.
 - A validation-only `NullRenderDevice` with fence-deferred physical reuse and an optional exact wgpu/rendercanvas/GLFW adapter isolated from package roots and canonical world state.
+- An installed experimental `RenderDevice` baseline conformance profile that
+  exercises explicit trusted factories and emits deterministic sanitized
+  evidence without discovery, loading, installation, or provider admission.
 - Instanced atlas sprites, translated/zoomed/rotated orthographic cameras, stable layer/z/entity ordering, tile batches, debug lines, built-in diagnostic glyphs, resize/minimize behavior, immutable offscreen RGBA capture, and typed device-loss diagnostics.
 - M3 renderer benchmark/validator tooling for 1k/10k extraction, Null submission, and wgpu CPU submission with raw p50/p95/p99 evidence and exact draw counts.
 - Frozen provider-neutral platform events, immutable action snapshots with transition metadata, deterministic recorded input, and isolated render-surface event draining.
@@ -250,13 +265,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- No M17 is assigned. The authoritative post-alpha sequence ends at item 10,
-  now completed by M16. A maintainer must assign the next bounded outcome and
-  acceptance criteria before implementation resumes; adoption metrics and the
-  repository proposal backlog are inputs, not automatic authorization. Do not
-  infer a runtime, compiler, loader, WASI context, host call, guest state,
-  executable plugin, network, editor, 3D, provider adapter, native code, or
-  dependency as the next slice.
+- M17 is the only assigned slice. Complete the installed render-device
+  conformance acceptance gate, independent review, one quota-conscious hosted
+  run, and PR integration before selecting another adoption metric. Do not
+  infer discovery/loading, a provider adapter, executable plugin, network,
+  editor, 3D, native code, dependency, or release publication from this work.
 
 ## Validation state
 

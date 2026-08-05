@@ -53,6 +53,7 @@ from ludoweave.render import (
     TextureUsage,
     TileBatchCommand,
     TileInstance,
+    run_render_device_conformance,
 )
 from ludoweave.render.backends.wgpu import WgpuRenderDevice
 
@@ -79,6 +80,16 @@ def _camera(width: int, height: int) -> tuple[float, ...]:
 
 def test_gamepad_poll_without_window_is_empty(device: WgpuRenderDevice) -> None:
     assert device.poll_gamepads() == ()
+
+
+def test_real_wgpu_adapter_passes_installed_baseline_conformance() -> None:
+    report = run_render_device_conformance(
+        "org.ludoweave.wgpu",
+        WgpuRenderDevice,
+    )
+
+    assert report.passed
+    assert report.adapter_name == "wgpu"
 
 
 def test_real_glfw_null_platform_gamepad_poll_is_bounded() -> None:

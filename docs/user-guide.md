@@ -32,6 +32,7 @@ python hello_headless.py --ticks 120
 python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
+python render_device_conformance.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -41,6 +42,8 @@ showcase exercises animation, bitmap text, tilemaps, particles, and Null-audio
 mixing without a device. The alpha acceptance
 spans engine lifecycle, generational entities, fixed world ticks, Clockwork
 Arena, typed agent transactions, replay, tests, and owned capture cleanup.
+The render-device profile produces deterministic installed evidence for the
+explicit Null factory; it does not discover or certify executable providers.
 
 The foundational application surface is deliberately small:
 
@@ -99,6 +102,7 @@ downloaded wheel. They are not required for any headless workflow:
 python -m pip install glfw==2.10.2 "rendercanvas[glfw]==2.7.2" wgpu==0.32.0
 python hello_sprite.py
 python clockwork_arena.py --ticks 600 --renderer wgpu
+python render_device_conformance.py --backend wgpu
 ```
 
 The locked adapter uses wgpu-py/rendercanvas/GLFW behind engine-owned
@@ -111,7 +115,8 @@ python clockwork_arena.py --ticks 36000 --renderer wgpu --window --interactive
 
 Use WASD/arrows to move, the pointer and primary button to aim/fire, and R to
 restart. Provider/native objects are not public API and must not be saved in
-world state.
+world state. The [conformance guide](render-device-conformance.md) explains
+what the baseline does and does not prove.
 
 ## Typed local agent control
 

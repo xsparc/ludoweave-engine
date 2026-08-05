@@ -1,68 +1,50 @@
 # Current Task
 
-- **Task:** M16 - WASM-mod security admission decision
-- **Status:** Complete, independently accepted, hosted-validated, and
-  squash-integrated into `main` through PR #20 as verified commit
-  `e2bd57c057c0c16861953c0702b2012c4cabfe90`.
+- **Task:** M17 - installed render-device conformance
+- **Status:** Implementation and complete local validation finished on
+  `codex/m17-render-device-conformance`.
 - **Started:** 2026-08-06
-- **Base:** Exact clean, verified `main` integration commit
-  `c013dad38b1b64f0f4ccddc19681d643f6414427` from squash PR #19. Its tree
-  exactly matches the final M15 evidence head.
-- **Outcome:** Treat executable WebAssembly mods as a separate security
-  workstream, retain the M12 data-only plugin boundary, and defer runtime or
-  guest execution until a complete least-privilege, resource, determinism,
-  lifecycle, persistence, isolation, conformance, supply-chain, and ownership
-  gate is satisfied.
+- **Base:** Exact clean `main` commit
+  `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`, synchronized with
+  `origin/main` before branching.
+- **Outcome:** Give external render-adapter authors one small, versioned,
+  installed behavioral profile over the existing engine-owned `RenderDevice`
+  boundary so comparable evidence can be produced without copying private
+  repository fixtures.
 - **Acceptance gate:**
-  - A dependency-free example audits exact installed root/plugin exports,
-    preview stability, manifest fields/capabilities, and distribution
-    requirements; positively proves representative executable manifest fields
-    fail closed; emits deterministic versioned JSON; and records no credential,
-    environment, secret, or token data.
-  - The exact evidence runs from source, an isolated universal wheel, and the
-    deterministic release sample bundle.
-  - A prospective threat model identifies assets, actors, entry points, trust
-    boundaries, privileged operations, blocking severity, remediation,
-    verification, defense in depth, and residual risk.
-  - ADR-0030 records the evidence-to-decision chain, tradeoffs, non-goals, and
-    complete testable admission gate.
-  - Architecture tests keep common WASM runtime imports, runtime modules,
-    public execution exports, and dependencies absent and prove the import
-    guard with synthetic invalid fixtures.
-  - Full local quality/artifact/provider and independent security review gates
-    pass before signed commit, PR, hosted-success, or integration claims.
-  - The existing eight-job essential CI topology remains unchanged.
-- **Architecture:** M16 adds repository evidence, tests, and documentation
-  only. The example is a composition root over installed inert metadata. It
-  compiles or executes no guest and adds no runtime source, public API,
-  persistent format, dependency, lock, version, or CI change.
-- **Non-scope:** WASM runtime selection or dependency, compilation/JIT/AOT,
-  instantiation, WASI, host functions, guest ABI/memory/state, mod package or
-  loader, discovery/import/hook execution, executable Python plugins, network,
-  GUI/editor, 3D, Box2D, SDL3, Rust/native code, release tag, GitHub release,
+  - The public experimental runner accepts a bounded adapter ID and an
+    explicitly supplied trusted factory; it performs no discovery, dynamic
+    import, install, filesystem scan, subprocess launch, network request, or
+    global registration.
+  - Fixed checks cover identity/capabilities, engine-owned resource handles,
+    offscreen clear submission, fence completion, capability-consistent
+    capture, copied events, resize, stale-handle rejection, idempotent close,
+    and use-after-close rejection.
+  - Frozen reports use protocol `ludoweave.render-device-conformance/1` and
+    profile `render-device-baseline/1`, with stable ordered statuses/error
+    codes and no exception text, path, environment, timing, capture, or native
+    values.
+  - Null passes from source, an isolated dependency-free wheel, and the
+    deterministic release sample bundle. The existing real wgpu adapter passes
+    in the graphics suite.
+  - Negative fixtures prove invalid identity, unstructured failure,
+    capability mismatch, prerequisite, cleanup, immutability, and no-discovery
+    behavior.
+  - ADR-0031 and public guides record trust, ownership, limitations, evidence
+    meaning, and the fact that accepted third-party adoption remains zero.
+  - The existing eight essential CI jobs remain unchanged.
+- **Non-scope:** Adapter discovery/loading/installation, manifest execution or
+  new fields, sandboxing, security certification, provider admission, a new
+  backend, audio/physics conformance, network, editor, 3D, WASM execution,
+  native code, dependency/lock/version changes, release tag, GitHub release,
   or package publication.
-- **SemVer:** Repository decision evidence and documentation only; no public
-  Python API, persistent schema, dependency, runtime version, or compatibility
-  surface changes.
-- **Current evidence:** No executable mod path or WASM runtime dependency is
-  present. M12 manifests are exact-schema inert metadata and reject unknown
-  executable fields. WebAssembly core host authority belongs to the embedder,
-  so memory isolation alone cannot establish LudoWeave's command/receipt,
-  determinism, resource, lifecycle, persistence, or supply-chain contract.
-- **Final local gate:** 870 tests pass with one existing Windows
-  symlink-capability skip; 186 Python files are formatted; Ruff, Pyright,
-  strict docs, universal wheel/sdist build, exact installed-wheel evidence,
-  fresh ten-artifact release smoke, nine real-wgpu tests, and every inherited
-  documented benchmark/profile validator pass. Independent review first found
-  four evidence/threat-model gaps; after exact full-requirement validation,
-  WebAssembly module/dynamic-load fixtures, explicit residual risk, and
-  corrected current-flow wording, repeat review approved with no finding.
-- **Hosted gate:** GitHub Actions run `31039403209` passed all eight unchanged
-  essential jobs on DCO-signed implementation commit
-  `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce` through ready PR #20 against
-  exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`.
-- **Integration gate:** PR #20 squash-merged exact final head
-  `808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` at
-  `2026-08-05T19:31:34Z`. The GitHub-verified main commit has tree
-  `05367be9bd85014fe6c70995ac1a69a39f90ef1e`, exactly matching the final
-  branch head, and retains a valid DCO trailer.
+- **SemVer:** Additive experimental `ludoweave.render` exports and a versioned
+  report/profile; no stable API, canonical/persistent world format, runtime
+  dependency, or package version change.
+- **Current evidence:** The final local gate reports 895 passes and one existing
+  Windows symlink-capability skip, 191 formatted Python files, no Ruff/Pyright
+  findings, strict docs, a 92-entry universal wheel with no native/WASM files,
+  isolated wheel and ten-artifact release smoke, and 10 real-wgpu tests. Every
+  documented benchmark/profile validator passed with the existing M1/M3 target
+  misses recorded. Final diff review, hosted validation, and integration remain
+  pending and must not be claimed early.

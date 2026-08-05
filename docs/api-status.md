@@ -14,7 +14,7 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.ecs` | Entity, component, query, resource, schedule, and world contracts | Experimental |
 | `ludoweave.app` | Lifecycle, fixed-step application, and input contracts | Experimental |
 | `ludoweave.world` | Persistent commands, receipts, snapshots, replay, and authority | Experimental |
-| `ludoweave.render` | Backend-neutral 2D rendering contracts | Experimental |
+| `ludoweave.render` | Backend-neutral 2D rendering contracts and installed conformance evidence | Experimental |
 | `ludoweave.render.backends` | Null validation adapters | Experimental |
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
 | `ludoweave.platform` | Provider-neutral events and gamepad-provider protocol | Experimental |

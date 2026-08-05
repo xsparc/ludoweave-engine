@@ -32,4 +32,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0028: retain layered 2D and defer constrained 3D](0028-retain-layered-2d-and-defer-constrained-3d.md)
 - [ADR-0029: retain the headless inspector and defer a visual editor](0029-retain-headless-inspector-and-defer-visual-editor.md)
 - [ADR-0030: retain data-only plugins and defer WASM mods](0030-retain-data-only-plugins-and-defer-wasm-mods.md)
+- [ADR-0031: explicit installed render-device conformance](0031-explicit-installed-render-device-conformance.md)
 - [ADR template](template.md)

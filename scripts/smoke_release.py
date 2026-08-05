@@ -74,6 +74,24 @@ def main(argv: Sequence[str] | None = None) -> int:
         sample_root = _extract_bundle(bundle, samples, version=version)
         _run([str(python), "-I", "hello_headless.py", "--ticks", "5"], cwd=sample_root)
         _run([str(python), "-I", "fixed_step_world.py", "--ticks", "6"], cwd=sample_root)
+        conformance_result = _run(
+            [str(python), "-I", "render_device_conformance.py"],
+            cwd=sample_root,
+        )
+        conformance = cast(dict[str, object], json.loads(conformance_result.stdout))
+        conformance_checks = cast(list[dict[str, object]], conformance.get("checks"))
+        if (
+            conformance.get("protocol") != "ludoweave.render-device-conformance/1"
+            or conformance.get("profile") != "render-device-baseline/1"
+            or conformance.get("adapter_id") != "org.ludoweave.null"
+            or conformance.get("adapter_name") != "null-device"
+            or conformance.get("status") != "pass"
+            or len(conformance_checks) != 9
+            or any(check.get("status") != "pass" for check in conformance_checks)
+        ):
+            raise RuntimeError(
+                f"bundled render-device conformance report was invalid: {conformance!r}"
+            )
         _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
         rollback_result = _run(
             [
@@ -178,6 +196,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "alpha_acceptance.py",
         "clockwork_arena.py",
         "constrained_3d_decision.py",
+        "render_device_conformance.py",
         "rollback_readiness.py",
         "visual_editor_decision.py",
         "wasm_mod_security_decision.py",

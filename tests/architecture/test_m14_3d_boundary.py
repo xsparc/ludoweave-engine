@@ -15,6 +15,8 @@ from ludoweave.render import (
 
 _ROOT = Path(__file__).parents[2]
 _EXPECTED_RENDER_EXPORTS = (
+    "RENDER_DEVICE_CONFORMANCE_PROFILE",
+    "RENDER_DEVICE_CONFORMANCE_PROTOCOL",
     "BlendMode",
     "BufferData",
     "BufferDescriptor",
@@ -26,6 +28,7 @@ _EXPECTED_RENDER_EXPORTS = (
     "Color",
     "CommandList",
     "CompiledRenderGraph",
+    "ConformanceStatus",
     "DebugLineCommand",
     "DiagnosticTextCommand",
     "FenceHandle",
@@ -42,6 +45,8 @@ _EXPECTED_RENDER_EXPORTS = (
     "RenderCapabilities",
     "RenderDescriptor",
     "RenderDevice",
+    "RenderDeviceConformanceCheck",
+    "RenderDeviceConformanceReport",
     "RenderExtractor",
     "RenderGraph",
     "RenderPass",
@@ -62,6 +67,7 @@ _EXPECTED_RENDER_EXPORTS = (
     "TileBatchCommand",
     "TileDrawGroup",
     "TileInstance",
+    "run_render_device_conformance",
 )
 _FORBIDDEN_EXPORT_TOKENS = (
     "3d",

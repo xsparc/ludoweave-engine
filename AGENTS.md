@@ -72,9 +72,14 @@ implementation commit `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
 PR #20 squash-integrates exact final head
 `808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` into `main` as GitHub-verified
 commit `e2bd57c057c0c16861953c0702b2012c4cabfe90` with the exact final tree.
-The authoritative post-alpha sequence ends at M16; no M17 is assigned. Do not
-invent the next milestone from a deferred proposal or adoption metric.
-Do not add discovery, imports, hook execution,
+M17 is assigned only to an installed `RenderDevice` baseline conformance
+profile derived from the design plan's third-party-adoption metric. It accepts
+an explicitly supplied trusted factory, returns sanitized versioned evidence,
+and must pass against Null plus the existing optional wgpu adapter through the
+unchanged essential CI topology. It may not discover, dynamically import,
+install, sandbox, certify, or admit provider code, change plugin manifests, or
+add a concrete provider, dependency, lock, version, persistent world format,
+canonical state, or package-root export. Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, sockets,
 networking or remote attach, arbitrary child commands, another world store, a
 Box2D adapter,
