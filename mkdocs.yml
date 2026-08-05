@@ -14,6 +14,7 @@ nav:
   - Fixed-step application: fixed-step-application.md
   - Persistent commands: commands.md
   - 2D rendering: rendering.md
+  - M4 gameplay vertical slice: gameplay.md
   - Headless command workflow: cli-workflows.md
   - Benchmarks: benchmarks.md
   - Decisions:
@@ -33,6 +34,9 @@ nav:
       - ADR-0013 - Presentation ownership: adr/0013-presentation-extraction-and-render-resource-ownership.md
       - ADR-0014 - Render graph: adr/0014-explicit-render-graph-dependencies-and-lifetimes.md
       - ADR-0015 - Optional wgpu adapter: adr/0015-single-optional-wgpu-adapter-and-exact-pins.md
+      - ADR-0016 - Platform input: adr/0016-provider-neutral-platform-events-and-action-snapshots.md
+      - ADR-0017 - Content-addressed assets: adr/0017-content-addressed-project-confined-assets.md
+      - ADR-0018 - Collision and audio: adr/0018-bounded-deterministic-collision-and-minimal-audio.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

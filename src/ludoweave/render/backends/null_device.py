@@ -10,6 +10,7 @@ from typing import cast
 from uuid import UUID, uuid4
 
 from ludoweave.core.errors import RenderError
+from ludoweave.platform import PlatformEvent
 from ludoweave.render.contracts import (
     BufferData,
     BufferDescriptor,
@@ -324,6 +325,20 @@ class NullRenderDevice:
             descriptor.kind,
             descriptor.label,
         )
+
+    def drain_surface_events(self, handle: SurfaceHandle) -> tuple[PlatformEvent, ...]:
+        """Validate the surface and return no events for the headless device."""
+
+        self._guard("drain_surface_events")
+        if type(handle) is not SurfaceHandle:
+            raise _device_error(
+                "surface event drain requires an exact surface handle",
+                code="render.wrong_handle_kind",
+                phase="events",
+                details={"actual_type": type(handle).__name__},
+            )
+        self._slot_for(handle)
+        return ()
 
     def poll(self) -> None:
         self._guard("poll")

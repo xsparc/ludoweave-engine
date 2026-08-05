@@ -3,6 +3,7 @@
 from collections.abc import Sequence
 from typing import Protocol
 
+from ludoweave.platform import PlatformEvent
 from ludoweave.render.contracts import (
     BufferData,
     BufferDescriptor,
@@ -53,6 +54,8 @@ class RenderDevice(Protocol):
     def capture_surface(self, handle: SurfaceHandle) -> CaptureImage: ...
 
     def resize_surface(self, handle: SurfaceHandle, width: int, height: int) -> None: ...
+
+    def drain_surface_events(self, handle: SurfaceHandle) -> tuple[PlatformEvent, ...]: ...
 
     def poll(self) -> None: ...
 

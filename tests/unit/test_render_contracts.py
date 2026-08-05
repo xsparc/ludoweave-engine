@@ -345,3 +345,14 @@ def test_unknown_usage_bits_and_non_triangle_sprite_pipeline_are_rejected() -> N
     with pytest.raises(RenderError) as raised:
         device.submit((commands,))
     assert raised.value.code == "render.invalid_usage"
+
+
+def test_null_surface_event_drain_is_empty_and_rejects_wrong_handle_kind() -> None:
+    device = NullRenderDevice(scope=SCOPE)
+    surface = device.create_surface(SurfaceDescriptor(4, 4, TextureFormat.RGBA8_UNORM))
+    texture = device.create_texture(_texture_descriptor())
+
+    assert device.drain_surface_events(surface) == ()
+    with pytest.raises(RenderError) as raised:
+        device.drain_surface_events(texture)  # type: ignore[arg-type]
+    assert raised.value.code == "render.wrong_handle_kind"

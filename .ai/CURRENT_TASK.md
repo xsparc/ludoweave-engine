@@ -1,17 +1,15 @@
 # Current Task
 
-- **Task:** M3 — Null and WebGPU 2D rendering vertical slice
-- **Status:** Complete; DCO-signed PR #3 is published and corrected hosted run 30993554807 passed all 14 jobs
+- **Task:** M4 — Clockwork Arena playable vertical slice
+- **Status:** Implementation and complete local validation are green; DCO-signed publication and hosted validation are pending
 - **Started:** 2026-08-05
-- **Acceptance gate:** Backend types remain isolated; Null and wgpu consume equivalent immutable commands; clear, instanced atlas sprites, cameras, tiles, debug fixtures, resize, capture, loss, resource lifetime, graphs, examples, docs, packages, and 1k/10k evidence pass their executable checks.
-- **M3-01 outcome:** Frozen backend-neutral descriptors, scoped generational handles, immutable completed-tick presentation frames, camera interpolation, deterministic texture/layer/z/entity grouping, and explicit target/camera command lists are implemented.
-- **M3-02 outcome:** Null resource/command validation, logical retirement, fence-deferred physical reuse, stable render-graph compilation, and deterministic dependency/hazard/lifetime failures are implemented.
-- **M3-03 outcome:** Exactly pinned optional wgpu/rendercanvas/GLFW dependencies, isolated imports, structured adapter/device/surface failures, real offscreen and Windows GLFW clear paths, and base-install optionality are implemented.
-- **M3-04 outcome:** Built-in WGSL instanced quads, normalized texture-atlas UVs, 64-byte pure-Python instance packing, one draw per normal batch, and 1k/10k benchmark/validator tooling are implemented.
-- **M3-05 outcome:** Translated/zoomed/rotated orthographic cameras, stable layers/z, tile batches, debug lines, and built-in 5x7 diagnostic glyphs are implemented and exercised by semantic/GPU fixtures.
-- **M3-06 outcome:** Immutable normalized offscreen RGBA capture, resize/minimize/restore/destroy behavior, typed fatal device-loss injection, explicit close, deferred provider destruction, rendering documentation, and ADR-0013 through ADR-0015 are complete.
-- **Local gate:** Frozen graphics validation reports 485 passed and one Windows symlink-capability skip; the graphics-free base reports 479 passed and two capability skips; strict quality/docs, pure wheel build, no-dependency installed-wheel smoke, real Windows GLFW example, scans, and the 30-sample M3 artifact/validator pass.
-- **Hosted gate:** Initial run 30951328011 exposed missing optional packages in the quality type-check job and no Ubuntu graphics runtime. CI now installs the locked graphics extra for strict provider typing and Mesa Vulkan only for Ubuntu graphics smoke. Corrected run 30993554807 passed quality/docs, seven CPython/OS test jobs, three wheel smokes, and real graphics smoke on Ubuntu/Windows/macOS.
-- **Known performance result:** Local 10k extraction/packing p95 is 41.9722 ms and wgpu CPU submission p95 is 6.5363 ms; neither observes the 3 ms starting target. Both keep one normal draw. This is profiling evidence, not a pass claim or native-code authorization.
-- **Non-scope retained:** General project/plugin loading, asset pipelines, M4 recorded input/platform events, MCP, physics, audio, networking, editor tooling, automatic device recovery, rich text, 3D, and native acceleration.
-- **SemVer:** Additive and corrective experimental `0.1.0.dev0` surface; no compatibility promise or version bump.
+- **Acceptance gate:** Provider-neutral input, project-confined content-addressed assets, bounded deterministic collision, a minimal engine-owned audio contract, and the Clockwork Arena sample must remain deterministic, headless-first, backend-isolated, packaged, documented, and executable through source and installed-wheel paths.
+- **Input outcome:** Immutable keyboard, mouse, pointer, focus, resize, and close events feed action maps and exact-tick snapshots with pressed, just-pressed, and just-released semantics. The interactive wgpu composition root handles movement, aim, fire, restart, resize, and close without provider objects crossing public APIs.
+- **Asset outcome:** Strict `asset://` manifests confine sources to a project root, content-address cache keys include transitive dependencies, PNG decoding is bounded and deterministic, and immutable texture revisions support explicit retirement.
+- **Collision/audio outcome:** Deterministic AABB/circle overlap, a sorted exact-filter spatial grid, bounded X-then-Y kinematic movement, and a strict lifecycle-validating null audio backend are implemented without Box2D or provider dependencies.
+- **Sample outcome:** Clockwork Arena owns canonical gameplay state in the world/resource stores, advances through ordinary versioned transactions and receipts, uses fixed-seed random streams and exact-tick input, extracts immutable presentation, and supports deterministic headless, stress, offscreen wgpu, and interactive window runs.
+- **Local gate:** The complete frozen suite reports 516 passed and one existing Windows symlink-capability skip; Ruff, strict Pyright, strict MkDocs, pure wheel build, installed-wheel smoke, architecture checks, real offscreen and GLFW examples, exact 3,600-tick replay/hash evidence, and the 300-sample M4 benchmark artifact/validator all pass.
+- **Hosted gate:** Pending publication of `codex/m4-clockwork-arena` as a stacked PR against the validated M3 branch and completion of its 14-job matrix.
+- **Known performance result:** The local baseline workload recorded p50/p95/p99 of 1.5228/2.1228/2.5898 ms and observed the 16.666667 ms p95 target. Stress levels 4 and 8 recorded informational p95 values of 3.5029 ms and 4.8371 ms; no targets are assigned to them.
+- **Non-scope retained:** MCP/agent control, real audio playback, Box2D, networking, editor tooling, 3D, automatic device recovery, native acceleration, Rust, and PyO3.
+- **SemVer:** Additive experimental `0.1.0.dev0` surface; no compatibility promise or version bump.

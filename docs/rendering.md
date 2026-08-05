@@ -110,12 +110,19 @@ unordered read/write hazards. Declaration order does not affect the stable
 topological result. The Null device can submit a compiled graph to exercise
 the same command validation without a GPU.
 
-GPU scheduling, rasterization, timestamps, window events, interpolation, and
+GPU scheduling, rasterization, timestamps, raw window events, interpolation, and
 captures are non-authoritative. They must never affect simulation commands,
 receipts, snapshots, replay hashes, or random streams. Render ordering is
 stable for equivalent extraction data; byte-identical captures across
 different GPU implementations are not promised, so fixtures inspect tolerant
 interior colors and semantic counters.
+
+M4 adds `drain_surface_events(surface)`. Null devices return an empty tuple.
+The optional wgpu adapter converts key, pointer, resize, and close data into
+immutable `ludoweave.platform` records before returning. Provider dictionaries,
+GLFW codes, native windows, and event timestamps do not cross the public
+boundary. The Clockwork Arena example demonstrates action mapping; see
+[the gameplay guide](gameplay.md).
 
 M3 benchmark artifacts use CPU submission timing. Although some adapters
 report native timestamp-query support, the engine capability remains false

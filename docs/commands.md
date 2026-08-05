@@ -72,7 +72,9 @@ Every session resource must have exactly one explicit role. Only `STATE`
 resource schemas participate in authority hashes and patches. Input and
 runtime/presentation resources remain outside the hash, are preserved when a
 snapshot is loaded into an existing session, and make M2 persistent ticks
-ineligible until M4 supplies canonical recorded input.
+ineligible. M4 samples instead inject immutable tick-indexed action snapshots
+into the staged executor and require replay callers to provide the equivalent
+recorded stream; action snapshots are not silently persisted as resources.
 Allocator churn and change epochs remain inside it because they affect future
 allocation and changed-query behavior. See ADR-0009 for ownership, trusted
 callback, and failure semantics.

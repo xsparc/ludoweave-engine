@@ -17,4 +17,7 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0013: presentation extraction and render-resource ownership](0013-presentation-extraction-and-render-resource-ownership.md)
 - [ADR-0014: explicit render-graph dependencies and lifetimes](0014-explicit-render-graph-dependencies-and-lifetimes.md)
 - [ADR-0015: single optional wgpu adapter and exact dependency pins](0015-single-optional-wgpu-adapter-and-exact-pins.md)
+- [ADR-0016: provider-neutral platform events and action snapshots](0016-provider-neutral-platform-events-and-action-snapshots.md)
+- [ADR-0017: content-addressed, project-confined assets](0017-content-addressed-project-confined-assets.md)
+- [ADR-0018: bounded deterministic collision and minimal audio](0018-bounded-deterministic-collision-and-minimal-audio.md)
 - [ADR template](template.md)

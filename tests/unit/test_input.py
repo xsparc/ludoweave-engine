@@ -10,10 +10,17 @@ import pytest
 from ludoweave.app.errors import InputError
 from ludoweave.app.input import (
     INPUT_SNAPSHOT_RESOURCE,
+    ActionBinding,
+    ActionMap,
+    FocusEvent,
     InputAction,
     InputSnapshot,
     InputSource,
+    KeyEvent,
+    MappedInputSource,
+    MouseButtonEvent,
     NullInputSource,
+    PointerEvent,
     RecordedInputSource,
     VirtualInputSource,
 )
@@ -158,3 +165,57 @@ def test_input_resource_copier_returns_an_equal_detached_snapshot() -> None:
 
     assert copied == source
     assert copied is not source
+
+
+def test_mapped_keyboard_mouse_transitions_axes_pointer_and_focus_loss() -> None:
+    source = MappedInputSource(
+        ActionMap(
+            (
+                ActionBinding("move.x", "key:a", -1.0),
+                ActionBinding("move.x", "key:d", 1.0),
+                ActionBinding("fire", "mouse:primary"),
+            )
+        )
+    )
+    source.feed(KeyEvent("D", True))
+    source.feed(MouseButtonEvent("PRIMARY", True))
+    source.feed(PointerEvent(75.0, 25.0, 100, 100))
+
+    first = source.snapshot_for_tick(0)
+    assert first.axis2d("move") == (1.0, 0.0)
+    assert first.pressed("fire")
+    assert first.just_pressed("fire")
+    assert first.value("pointer.x") == 0.5
+    assert first.value("pointer.y") == 0.5
+
+    second = source.snapshot_for_tick(1)
+    assert second.pressed("fire")
+    assert not second.just_pressed("fire")
+
+    source.feed(FocusEvent(False))
+    third = source.snapshot_for_tick(2)
+    assert third.just_released("fire")
+    assert third.axis2d("move") == (0.0, 0.0)
+
+
+def test_recorded_source_preserves_transition_metadata_from_virtual_capture() -> None:
+    mapped = MappedInputSource(ActionMap((ActionBinding("restart", "key:r"),)))
+    mapped.feed(KeyEvent("r", True))
+    captured = mapped.snapshot_for_tick(0)
+    replayed = RecordedInputSource((captured,)).snapshot_for_tick(0)
+
+    assert replayed == captured
+    assert replayed.just_pressed("restart")
+
+
+def test_mapped_source_requires_sequential_sampling_and_valid_bindings() -> None:
+    with pytest.raises(InputError):
+        ActionMap(
+            (
+                ActionBinding("mixed", "key:a", True),
+                ActionBinding("mixed", "key:b", 1.0),
+            )
+        )
+    source = MappedInputSource(ActionMap(()))
+    with pytest.raises(InputError):
+        source.snapshot_for_tick(1)

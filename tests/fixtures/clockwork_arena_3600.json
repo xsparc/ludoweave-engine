@@ -1,0 +1,15 @@
+{
+  "damage_taken": 8,
+  "enemies_active": 24,
+  "enemies_destroyed": 3,
+  "enemies_spawned": 35,
+  "game_over": false,
+  "player_health": 12,
+  "projectiles_active": 0,
+  "restarts": 0,
+  "score": 300,
+  "shots_fired": 360,
+  "state_hash": "sha256:4243defe548ba6e36b6bec93b45f266d2ad48e74c24efc2856d3f7c6197a3b6e",
+  "ticks": 3600,
+  "wave": 12
+}

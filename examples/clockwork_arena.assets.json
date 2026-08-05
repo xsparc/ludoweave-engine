@@ -1,0 +1,12 @@
+{
+  "protocol": "ludoweave.assets/1",
+  "assets": [
+    {
+      "uri": "asset://scenes/clockwork-arena.json",
+      "kind": "json",
+      "source": "assets/clockwork_arena.scene.json",
+      "settings": {},
+      "dependencies": []
+    }
+  ]
+}

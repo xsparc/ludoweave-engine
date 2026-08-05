@@ -65,3 +65,21 @@ targets for 10k extraction/packing and wgpu CPU submission. It records whether
 each target was observed and validates that boolean against measured data; it
 does not turn an honest local miss into an artifact failure or a performance
 pass. Cross-platform timing claims require controlled runners.
+
+## M4 Clockwork Arena stress workloads
+
+M4 measures canonical transaction-backed Arena ticks after one deterministic
+wave has been composed, at stress levels 1, 4, and 8:
+
+```console
+uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m4-benchmark.json
+uv run --frozen python benchmarks/validate_m4_results.py .tmp/m4-benchmark.json
+```
+
+Each workload records every raw duration, nearest-rank p50/p95/p99, the fixed
+seed and stress level, final exact gameplay metrics and state hash, sanitized
+CPython/GIL/platform metadata, and commit/dirty state. The baseline stress-1
+workload records whether its p95 was below one 60 Hz frame (16.666667 ms).
+Stress 4 and 8 deliberately have no target. Validation checks evidence
+integrity; an honest target miss remains profiling evidence rather than a
+release failure or native-code authorization.

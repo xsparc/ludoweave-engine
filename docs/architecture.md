@@ -11,6 +11,11 @@ depend on core and public ECS contracts, while application and tools may depend
 on it. Persistent command envelopes are explicitly distinct from M1 local ECS
 command buffers; see [the command protocol](commands.md) and ADR-0008.
 
+M3 adds the isolated 2D presentation device. M4 adds provider-neutral platform
+events, project-confined content-addressed assets, bounded deterministic 2D
+collision, minimal audio ownership, and the ECS-backed Clockwork Arena sample.
+See [the M4 gameplay vertical slice](gameplay.md).
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -26,12 +31,17 @@ core contracts     ludoweave.core <----------+
 
 concrete adapters  ludoweave.render.backends.null[_device]
                    ludoweave.render.backends.wgpu (optional exact module)
+
+focused contracts  ludoweave.platform, assets, collision, audio
+
+sample composition ludoweave.samples.clockwork_arena
 ```
 
 - `ludoweave.core` imports only the Python standard library.
 - `ludoweave.ecs` may depend on core errors but not application, rendering, tools, or concrete backends.
 - `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
+- Platform, asset, collision, and audio contracts depend only on their own package and core errors. Render adapters may emit engine-owned platform events.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
@@ -88,8 +98,11 @@ Every resource in a `WorldSession` has exactly one explicit `STATE`, `INPUT`,
 or `RUNTIME_EXCLUDED` role. M2 persistent tick commands advance exactly one
 tick and are accepted only for state-only resource compositions. This makes
 every recorded tick a replay/branch boundary and prevents unrecorded input or
-runtime values from influencing M2 replay. Canonical per-tick input recording
-and application-runtime composition remain M4 work. Snapshot load replaces
+runtime values from influencing M2 replay. M4 gameplay composition injects an
+immutable tick-indexed action source into the staged executor; replay callers
+must inject the equivalent recorded snapshots, and checkpoint hashes detect any
+divergence. Input resources themselves remain outside persistent ticks until a
+future command/replay codec explicitly embeds them. Snapshot load replaces
 state resources while preserving destination-owned input/runtime resources.
 M2 `WorldSession` registries reject presentation schemas entirely and accept
 canonical authoritative components only; presentation components are not
@@ -135,10 +148,24 @@ first/last passes. Stable topological compilation rejects cycles,
 read-before-write, lifetime escapes, and unordered writer hazards before any
 GPU submission. Physical transient allocation/aliasing is deferred.
 
+## M4 gameplay boundary
+
+Clockwork Arena is a composition root over `WorldSession`; it does not create a
+parallel gameplay store. Each fixed tick is a received `world.tick` command and
+receipt. The tick kernel mutates only staged ECS components, the staged Arena
+state resource, and staged named random streams. Live and replay kernels receive
+equivalent immutable action snapshots.
+
+Asset cache payloads, audio handles, window events, render handles, and
+presentation frames remain outside canonical state. Logical asset URIs and
+action values may be recorded, but provider/native objects may not. Collision
+uses copied scalar values and returns deterministic sorted IDs.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
-project-confined workflow CLI, and the isolated M3 Null/wgpu 2D vertical slice
-now exist. Platform input, general scenes/assets, audio, collision/physics,
-MCP, networking, editor tooling, rich text, automatic device recovery, 3D, and
-native acceleration remain deferred to their assigned exercised slices.
+project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, and
+the bounded M4 gameplay contracts now exist. General scene importers, production
+audio, rigid-body physics, MCP, networking, editor tooling, rich text, automatic
+device recovery, 3D, and native acceleration remain deferred to their assigned
+exercised slices.

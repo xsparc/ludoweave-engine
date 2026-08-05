@@ -141,3 +141,5 @@ jobs:
         run: uv sync --frozen --all-groups --extra graphics
       - name: Run clear, sprite, capture, resize, and loss smoke
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
+      - name: Run Clockwork Arena wgpu vertical slice
+        run: uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10

@@ -494,3 +494,54 @@ Local strict Pyright remained green before publication. Corrected run
 
 All 14 jobs in run `30993554807` passed. This supplies the cross-platform M3
 evidence that was deliberately not claimed by the local gate.
+
+## M4 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+Focused input, asset, audio, collision, and architecture tests passed 73 tests.
+The Clockwork Arena integration suite passed four tests in 28.70 seconds,
+including the exact 3,600-tick fixture, an independently recorded 3,600-tick
+input replay with the same state hash, replay checkpoints, and presentation
+nonmutation.
+
+The real renderer compositions were executed with the locked graphics extra:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu submitted three draws containing 16 total sprite instances. The capture SHA-256 was `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; the exact final state hash was `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 10 --renderer wgpu --window --interactive` | 0 | The GLFW window path processed platform input, submitted 10 draws containing 40 total sprite instances, and closed with state hash `sha256:8dec596fd7492b86e30a4c00409ce447c515548b79005a544ef8a2af8bd39fa6`. |
+
+The complete local quality and package gate then passed:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile resolved 46 packages in 0.72 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Frozen environment checked 45 packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | 125 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 516 tests passed and one existing Windows symlink-capability test skipped in 45.39 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.44 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0.dev0.tar.gz` and pure `ludoweave-0.1.0.dev0-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel smoke passed version, doctor, existing workflows, and M4 Arena/audio/collision checks outside the source tree. |
+| `uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m4-benchmark.json` | 0 | Recorded 300 retained samples after 60 warmups at stress levels 1, 4, and 8 with fixed seed, raw durations, final metrics, and state hashes. |
+| `uv run --frozen python benchmarks/validate_m4_results.py .tmp/m4-benchmark.json` | 0 | Validated artifact schema, sample distributions, metadata, workload integrity, and all three final summaries; the baseline target observation was true. |
+| `git diff --check` | 0 | No whitespace errors in the complete tracked diff. |
+
+The final M4 benchmark retained 300 samples after 60 warmups for each workload.
+Its artifact validator returned
+`{"baseline_target_observed":true,"schema":"ludoweave.benchmark.m4/1","valid":true,"workloads":3}`.
+
+| Workload | p50 | p95 | p99 | Target |
+| --- | ---: | ---: | ---: | --- |
+| Clockwork Arena, stress 1 | 1.5228 ms | 2.1228 ms | 2.5898 ms | p95 < 16.666667 ms observed |
+| Clockwork Arena, stress 4 | 2.1822 ms | 3.5029 ms | 4.3358 ms | Not assigned |
+| Clockwork Arena, stress 8 | 2.6362 ms | 4.8371 ms | 5.7986 ms | Not assigned |
+
+The exact 3,600-tick fixture records 35 enemies spawned, three destroyed, 300
+score, 360 shots, 12 waves, 12 remaining player health, and state hash
+`sha256:4243defe548ba6e36b6bec93b45f266d2ad48e74c24efc2856d3f7c6197a3b6e`.
+Architecture, credential, dynamic-evaluation, native/backend, Box2D, MCP,
+network, and editor scans found no unapproved dependency or capability. Wheel
+inspection found the new assets, audio, collision, platform, and sample modules
+as pure Python, with no provider objects, tests, docs, or native artifacts.
+M4 hosted CI has not yet run, so no cross-platform M4 pass is claimed here.

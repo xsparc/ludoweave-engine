@@ -319,6 +319,28 @@ def main(argv: Sequence[str] | None = None) -> int:
         if any(fixed_step.get(key) != value for key, value in fixed_expected.items()):
             raise RuntimeError(f"fixed-step example summary was invalid: {fixed_step!r}")
 
+        arena_smoke = textwrap.dedent(
+            """
+            from ludoweave.audio import AudioClipDescriptor, NullAudioBackend
+            from ludoweave.collision import Aabb, Vec2, overlaps
+            from ludoweave.samples import clockwork_input, create_clockwork_arena
+
+            arena = create_clockwork_arena(clockwork_input(30))
+            summary = arena.run(30)
+            assert summary.ticks == 30
+            assert summary.enemies_spawned == 3
+            assert summary.state_hash.startswith("sha256:")
+            assert overlaps(Aabb(Vec2(0.0, 0.0), 1.0, 1.0), Aabb(Vec2(1.0, 0.0), 1.0, 1.0))
+            audio = NullAudioBackend()
+            audio.initialize()
+            clip = audio.load_clip(AudioClipDescriptor("smoke", 0.1), b"pcm")
+            playback = audio.play(clip)
+            audio.stop(playback)
+            audio.close()
+            """
+        )
+        _run([str(python), "-I", "-c", arena_smoke], cwd=temp_root)
+
         cli_project = temp_root / "cli-project"
         cli_project.mkdir()
         manifest = {

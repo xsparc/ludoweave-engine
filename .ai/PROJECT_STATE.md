@@ -2,13 +2,18 @@
 
 ## Current milestone
 
-M0 — repository contract and walking skeleton — M1 — deterministic world core — and M2 — command, transaction, receipt, snapshot, replay, and data-only workflow protocols — are complete, independently accepted, published as stacked pull requests, and validated by hosted CI.
+M0 through M3 are complete, independently accepted, published as stacked pull
+requests, and validated by hosted CI. M4 — provider-neutral input, assets,
+collision/audio contracts, and the Clockwork Arena vertical slice — is
+implemented and fully validated locally; milestone publication and hosted CI
+are pending.
 
 ## Repository identity
 
 M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
 stacked PR #3, and validated by corrected hosted run `30993554807` across the
-14-job quality, CPython/OS, wheel, and graphics matrix.
+14-job quality, CPython/OS, wheel, and graphics matrix. M4 is implemented on
+`codex/m4-clockwork-arena` from the exact validated M3 evidence head.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -51,10 +56,15 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 - A validation-only `NullRenderDevice` with fence-deferred physical reuse and an optional exact wgpu/rendercanvas/GLFW adapter isolated from package roots and canonical world state.
 - Instanced atlas sprites, translated/zoomed/rotated orthographic cameras, stable layer/z/entity ordering, tile batches, debug lines, built-in diagnostic glyphs, resize/minimize behavior, immutable offscreen RGBA capture, and typed device-loss diagnostics.
 - M3 renderer benchmark/validator tooling for 1k/10k extraction, Null submission, and wgpu CPU submission with raw p50/p95/p99 evidence and exact draw counts.
+- Frozen provider-neutral platform events, immutable action snapshots with transition metadata, deterministic recorded input, and isolated render-surface event draining.
+- Strict project-root-confined asset manifests, transitive content-addressed cache keys, bounded pure-Python PNG decoding, and explicitly retired immutable texture revisions.
+- Deterministic AABB/circle overlap, stable exact-filter spatial grids, bounded axis-ordered kinematic movement, and a minimal engine-owned null audio backend.
+- Clockwork Arena canonical world/resource gameplay, fixed-seed waves, projectiles, collision, score/restart behavior, immutable presentation extraction, and deterministic headless/offscreen/window examples.
+- Exact 3,600-tick Clockwork Arena fixture and independently recorded-input replay hash, plus M4 benchmark/validator tooling for baseline and informational stress workloads.
 
 ## Next slice
 
-- Begin only the authorized M4 input, assets, collision, and Clockwork Arena slice on a new task-scoped branch from the validated M3 head.
+- Publish and host-validate M4. Begin M5 agent-control work only from the exact M4 evidence-bearing head after all hosted jobs pass.
 
 ## Validation state
 
@@ -71,6 +81,9 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 - The real Windows GLFW example and the offscreen clear/sprite/capture fixtures completed. The 30-sample M3 artifact validated six workloads with one draw each. Local 10k extraction/packing p50/p95/p99 was 35.4460/41.9722/51.8362 ms; wgpu CPU submission was 5.3753/6.5363/6.9215 ms. Neither observed the 3 ms starting target; no target pass is claimed.
 - Initial M3 hosted run `30951328011` passed all base test and wheel jobs plus Windows/macOS graphics, but failed the quality type check because optional providers were not installed and failed Ubuntu graphics because no driver was present. The correction installs the exact graphics extra for quality and Mesa Vulkan only for the Ubuntu graphics job.
 - Corrected GitHub Actions run `30993554807` passed all 14 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real clear/sprite/capture/resize/loss graphics smoke on Ubuntu software Vulkan, Windows, and macOS.
+- The final local M4 gate on Windows/uv-managed CPython 3.12.13 reports 516 passing tests and one existing Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, successful no-dependency installed-wheel smoke, real offscreen and GLFW Clockwork Arena runs, exact 3,600-tick deterministic fixture/replay agreement, and a valid 300-sample three-workload benchmark artifact.
+- The local baseline Clockwork Arena benchmark p50/p95/p99 was 1.5228/2.1228/2.5898 ms and observed its 16.666667 ms p95 target. Stress 4 and 8 p95 values were 3.5029 ms and 4.8371 ms and have no assigned target. These are local observations, not cross-platform claims.
+- M4 hosted CI has not run yet, so no M4 cross-platform claim is made.
 
 ## External follow-ups
 
@@ -78,4 +91,8 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 
 ## Deferred roadmap
 
-General project/plugin loading, M4 recorded input/platform events, asset pipelines, MCP, physics, audio, networking, editor tooling, automatic device recovery, rich text, 3D, and native acceleration remain unimplemented. The measured M1 and M3 target misses are profiling evidence only and do not satisfy the later native-code admission gate.
+MCP/agent control, real audio playback, Box2D/rigid-body physics, networking,
+editor tooling, automatic device recovery, rich text, 3D, and native
+acceleration remain unimplemented. The measured M1 and M3 target misses are
+profiling evidence only and do not satisfy the later native-code admission
+gate.

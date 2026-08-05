@@ -1,4 +1,4 @@
-"""Immutable deterministic action snapshots and in-memory input sources."""
+"""Immutable deterministic action snapshots and backend-neutral input mapping."""
 
 from __future__ import annotations
 
@@ -11,10 +11,18 @@ from typing import Protocol
 
 from ludoweave.app.errors import InputError
 from ludoweave.ecs.resources import ResourceSpec
+from ludoweave.platform import (
+    FocusEvent,
+    InputEvent,
+    KeyEvent,
+    MouseButtonEvent,
+    PointerEvent,
+)
 
 type ActionValue = bool | float
 
 _ACTION_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_.:-]*\Z")
+_CONTROL_NAME = re.compile(r"(?:key|mouse):[A-Za-z0-9_.-]+\Z")
 
 
 @dataclass(frozen=True, slots=True, eq=False)
@@ -60,8 +68,17 @@ class InputSnapshot:
 
     tick: int
     actions: tuple[InputAction, ...]
+    just_pressed_actions: tuple[str, ...]
+    just_released_actions: tuple[str, ...]
 
-    def __init__(self, tick: int, actions: Iterable[InputAction] = ()) -> None:
+    def __init__(
+        self,
+        tick: int,
+        actions: Iterable[InputAction] = (),
+        *,
+        just_pressed: Iterable[str] = (),
+        just_released: Iterable[str] = (),
+    ) -> None:
         checked_tick = _require_tick(tick, phase="snapshot")
         try:
             candidates = tuple(actions)
@@ -90,6 +107,17 @@ class InputSnapshot:
             checked.append(InputAction(action.name, action.value))
         object.__setattr__(self, "tick", checked_tick)
         object.__setattr__(self, "actions", tuple(sorted(checked, key=lambda item: item.name)))
+        pressed = _transition_names(just_pressed, field="just_pressed")
+        released = _transition_names(just_released, field="just_released")
+        overlap = set(pressed) & set(released)
+        if overlap:
+            raise _input_error(
+                "an action cannot be pressed and released in the same snapshot",
+                phase="snapshot",
+                details={"action": min(overlap)},
+            )
+        object.__setattr__(self, "just_pressed_actions", pressed)
+        object.__setattr__(self, "just_released_actions", released)
 
     @classmethod
     def from_mapping(cls, tick: int, actions: Mapping[str, ActionValue]) -> InputSnapshot:
@@ -129,6 +157,173 @@ class InputSnapshot:
                 details={"actual_type": type(default).__name__},
             )
         return default
+
+    def pressed(self, name: str) -> bool:
+        """Return whether a digital action is currently pressed."""
+
+        return self.value(name) is True
+
+    def just_pressed(self, name: str) -> bool:
+        """Return whether a digital action became pressed on this tick."""
+
+        return _require_action_lookup(name) in self.just_pressed_actions
+
+    def just_released(self, name: str) -> bool:
+        """Return whether a digital action became released on this tick."""
+
+        return _require_action_lookup(name) in self.just_released_actions
+
+    def axis2d(self, name: str) -> tuple[float, float]:
+        """Return ``<name>.x`` and ``<name>.y`` finite analog values."""
+
+        checked = _require_action_lookup(name)
+        x = self.value(f"{checked}.x", 0.0)
+        y = self.value(f"{checked}.y", 0.0)
+        return (
+            x if type(x) is float else 0.0,
+            y if type(y) is float else 0.0,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class ActionBinding:
+    """Map one provider-neutral control to a digital or analog action value."""
+
+    action: str
+    control: str
+    value: ActionValue = True
+
+    def __post_init__(self) -> None:
+        _require_action_lookup(self.action)
+        _require_control_name(self.control)
+        if type(self.value) is bool:
+            return
+        if type(self.value) is not float or not isfinite(self.value) or self.value == 0.0:
+            raise _input_error(
+                "analog binding value must be a finite nonzero exact float",
+                phase="binding",
+                details={"action": self.action},
+            )
+
+
+class ActionMap:
+    """Immutable canonical set of keyboard and mouse action bindings."""
+
+    __slots__ = ("_bindings",)
+
+    def __init__(self, bindings: Iterable[ActionBinding]) -> None:
+        try:
+            values = tuple(bindings)
+        except Exception as error:
+            raise _input_error(
+                "action bindings could not be materialized",
+                phase="binding",
+                details={"cause_type": type(error).__name__},
+            ) from error
+        if any(type(item) is not ActionBinding for item in values):
+            raise _input_error(
+                "action map entries must be exact ActionBinding values",
+                phase="binding",
+                details={"field": "bindings"},
+            )
+        signatures = {(item.action, item.control) for item in values}
+        if len(signatures) != len(values):
+            raise _input_error(
+                "action map repeats an action/control pair",
+                phase="binding",
+                details={"field": "bindings"},
+            )
+        kinds: dict[str, type[bool] | type[float]] = {}
+        for item in values:
+            kind = bool if type(item.value) is bool else float
+            previous = kinds.setdefault(item.action, kind)
+            if previous is not kind:
+                raise _input_error(
+                    "one action cannot mix digital and analog bindings",
+                    phase="binding",
+                    details={"action": item.action},
+                )
+        self._bindings = tuple(sorted(values, key=lambda item: (item.action, item.control)))
+
+    @property
+    def bindings(self) -> tuple[ActionBinding, ...]:
+        return self._bindings
+
+
+class MappedInputSource:
+    """Single-thread event accumulator sampled exactly once per sequential tick."""
+
+    __slots__ = ("_action_map", "_controls", "_last_actions", "_next_tick", "_pointer")
+
+    def __init__(self, action_map: ActionMap) -> None:
+        if type(action_map) is not ActionMap:
+            raise _input_error(
+                "mapped input requires an exact ActionMap",
+                phase="binding",
+                details={"actual_type": type(action_map).__name__},
+            )
+        self._action_map = action_map
+        self._controls: set[str] = set()
+        self._pointer = (0.0, 0.0)
+        self._last_actions: dict[str, ActionValue] = {}
+        self._next_tick = 0
+
+    def feed(self, event: InputEvent) -> None:
+        """Apply one copied provider-neutral event before the next sample."""
+
+        if type(event) is KeyEvent:
+            self._set_control(_control("key", event.key), event.pressed)
+        elif type(event) is MouseButtonEvent:
+            self._set_control(_control("mouse", event.button), event.pressed)
+        elif type(event) is PointerEvent:
+            self._pointer = event.normalized
+        elif type(event) is FocusEvent:
+            if not event.focused:
+                self._controls.clear()
+        else:
+            raise _input_error(
+                "mapped input requires a provider-neutral input event",
+                phase="event",
+                details={"actual_type": type(event).__name__},
+            )
+
+    def snapshot_for_tick(self, tick: int) -> InputSnapshot:
+        checked = _require_tick(tick, phase="sample")
+        if checked != self._next_tick:
+            raise _input_error(
+                "mapped input must be sampled at sequential ticks",
+                phase="sample",
+                details={"expected_tick": self._next_tick, "actual_tick": checked},
+            )
+        actions = self._resolve_actions()
+        snapshot = _snapshot_with_previous(checked, actions, self._last_actions)
+        self._last_actions = actions
+        self._next_tick += 1
+        return snapshot
+
+    def _set_control(self, control: str, pressed: bool) -> None:
+        if pressed:
+            self._controls.add(control)
+        else:
+            self._controls.discard(control)
+
+    def _resolve_actions(self) -> dict[str, ActionValue]:
+        digital: dict[str, bool] = {}
+        analog: dict[str, float] = {
+            "pointer.x": self._pointer[0],
+            "pointer.y": self._pointer[1],
+        }
+        for binding in self._action_map.bindings:
+            if binding.control not in self._controls:
+                continue
+            if type(binding.value) is bool:
+                digital[binding.action] = digital.get(binding.action, False) or binding.value
+            else:
+                analog[binding.action] = min(
+                    1.0,
+                    max(-1.0, analog.get(binding.action, 0.0) + binding.value),
+                )
+        return {**digital, **analog}
 
 
 class InputSource(Protocol):
@@ -187,7 +382,12 @@ class VirtualInputSource:
         snapshot = self._snapshots.get(checked)
         if snapshot is None:
             return InputSnapshot(checked)
-        return InputSnapshot(snapshot.tick, snapshot.actions)
+        return InputSnapshot(
+            snapshot.tick,
+            snapshot.actions,
+            just_pressed=snapshot.just_pressed_actions,
+            just_released=snapshot.just_released_actions,
+        )
 
 
 class RecordedInputSource:
@@ -218,7 +418,12 @@ class RecordedInputSource:
                     phase="timeline",
                     details={"tick": candidate.tick},
                 )
-            copied[candidate.tick] = InputSnapshot(candidate.tick, candidate.actions)
+            copied[candidate.tick] = InputSnapshot(
+                candidate.tick,
+                candidate.actions,
+                just_pressed=candidate.just_pressed_actions,
+                just_released=candidate.just_released_actions,
+            )
         self._snapshots = MappingProxyType(copied)
 
     def snapshot_for_tick(self, tick: int) -> InputSnapshot:
@@ -226,11 +431,45 @@ class RecordedInputSource:
         snapshot = self._snapshots.get(checked)
         if snapshot is None:
             return InputSnapshot(checked)
-        return InputSnapshot(snapshot.tick, snapshot.actions)
+        return InputSnapshot(
+            snapshot.tick,
+            snapshot.actions,
+            just_pressed=snapshot.just_pressed_actions,
+            just_released=snapshot.just_released_actions,
+        )
 
 
 def _copy_input_snapshot(snapshot: InputSnapshot) -> InputSnapshot:
-    return InputSnapshot(snapshot.tick, snapshot.actions)
+    return InputSnapshot(
+        snapshot.tick,
+        snapshot.actions,
+        just_pressed=snapshot.just_pressed_actions,
+        just_released=snapshot.just_released_actions,
+    )
+
+
+def _snapshot_with_previous(
+    tick: int,
+    actions: Mapping[str, ActionValue],
+    previous: Mapping[str, ActionValue],
+) -> InputSnapshot:
+    pressed = tuple(
+        name
+        for name, value in actions.items()
+        if value is True and previous.get(name, False) is not True
+    )
+    released = tuple(
+        name
+        for name, value in previous.items()
+        if value is True and actions.get(name, False) is not True
+    )
+    snapshot = InputSnapshot.from_mapping(tick, actions)
+    return InputSnapshot(
+        snapshot.tick,
+        snapshot.actions,
+        just_pressed=pressed,
+        just_released=released,
+    )
 
 
 def _action_value_signature(value: ActionValue) -> tuple[str, bool | str]:
@@ -261,6 +500,46 @@ def _require_action_lookup(value: object) -> str:
         raise _input_error(
             "input action lookup requires a stable identifier",
             phase="lookup",
+            details={"actual_type": type(value).__name__},
+        )
+    return value
+
+
+def _transition_names(values: Iterable[str], *, field: str) -> tuple[str, ...]:
+    try:
+        checked = tuple(_require_action_lookup(value) for value in values)
+    except InputError:
+        raise
+    except Exception as error:
+        raise _input_error(
+            "input transition names could not be materialized",
+            phase="snapshot",
+            details={"field": field, "cause_type": type(error).__name__},
+        ) from error
+    if len(set(checked)) != len(checked):
+        raise _input_error(
+            "input transition names must be unique",
+            phase="snapshot",
+            details={"field": field},
+        )
+    return tuple(sorted(checked))
+
+
+def _control(prefix: str, value: object) -> str:
+    if type(value) is not str or not value:
+        raise _input_error(
+            "input control must use stable nonempty text",
+            phase="event",
+            details={"actual_type": type(value).__name__},
+        )
+    return _require_control_name(f"{prefix}:{value.lower()}")
+
+
+def _require_control_name(value: object) -> str:
+    if type(value) is not str or _CONTROL_NAME.fullmatch(value) is None:
+        raise _input_error(
+            "input control must be a canonical key: or mouse: identifier",
+            phase="binding",
             details={"actual_type": type(value).__name__},
         )
     return value

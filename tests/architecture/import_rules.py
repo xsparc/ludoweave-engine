@@ -205,6 +205,14 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
         return _is_module_or_child(imported, "ludoweave.core")
     if _is_module_or_child(source, "ludoweave.ecs"):
         return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.ecs"))
+    if _is_module_or_child(source, "ludoweave.assets"):
+        return _is_any_module_or_child(imported, ("ludoweave.assets", "ludoweave.core"))
+    if _is_module_or_child(source, "ludoweave.audio"):
+        return _is_any_module_or_child(imported, ("ludoweave.audio", "ludoweave.core"))
+    if _is_module_or_child(source, "ludoweave.collision"):
+        return _is_any_module_or_child(imported, ("ludoweave.collision", "ludoweave.core"))
+    if _is_module_or_child(source, "ludoweave.platform"):
+        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.platform"))
     if _is_module_or_child(source, "ludoweave.world"):
         return _is_any_module_or_child(
             imported, ("ludoweave.core", "ludoweave.ecs", "ludoweave.world")
@@ -214,9 +222,13 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
     if _is_module_or_child(source, "ludoweave.render") and not _is_module_or_child(
         source, "ludoweave.render.backends"
     ):
-        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.render"))
+        return _is_any_module_or_child(
+            imported, ("ludoweave.core", "ludoweave.platform", "ludoweave.render")
+        )
     if _is_module_or_child(source, "ludoweave.render.backends"):
-        return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.render"))
+        return _is_any_module_or_child(
+            imported, ("ludoweave.core", "ludoweave.platform", "ludoweave.render")
+        )
     if _is_module_or_child(source, "ludoweave.app"):
         return _is_any_module_or_child(
             imported,
@@ -224,13 +236,18 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
                 "ludoweave.app",
                 "ludoweave.core",
                 "ludoweave.ecs",
+                "ludoweave.platform",
                 "ludoweave.render.api",
                 "ludoweave.render.device",
                 "ludoweave.render.extraction",
                 "ludoweave.world",
             ),
         )
-    return _is_module_or_child(source, "ludoweave.tools") or source == "ludoweave.__main__"
+    return (
+        _is_module_or_child(source, "ludoweave.samples")
+        or _is_module_or_child(source, "ludoweave.tools")
+        or source == "ludoweave.__main__"
+    )
 
 
 def _is_module_or_child(name: str, allowed: str) -> bool:

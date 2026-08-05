@@ -7,11 +7,19 @@ from __future__ import annotations
 
 import struct
 from collections.abc import Callable, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Never, Protocol, cast
 from uuid import UUID, uuid4
 
 from ludoweave.core.errors import RenderError
+from ludoweave.platform import (
+    CloseEvent,
+    KeyEvent,
+    MouseButtonEvent,
+    PlatformEvent,
+    PointerEvent,
+    ResizeEvent,
+)
 from ludoweave.render._sprite import (
     SPRITE_INSTANCE_STRIDE,
     SPRITE_SHADER,
@@ -90,6 +98,10 @@ class _Canvas(Protocol):
 
     def set_logical_size(self, width: float, height: float) -> None: ...
 
+    def add_event_handler(
+        self, callback: Callable[[Mapping[str, object]], None], *types: str
+    ) -> object: ...
+
     def close(self) -> None: ...
 
 
@@ -102,6 +114,7 @@ class _Surface:
     width: int = 0
     height: int = 0
     suspended: bool = False
+    events: list[PlatformEvent] = field(default_factory=list)
 
 
 @dataclass(slots=True)
@@ -410,13 +423,20 @@ class WgpuRenderDevice:
                 phase="create_surface",
                 details={"kind": descriptor.kind.value},
             ) from error
-        self._surfaces[(handle.index, handle.generation)] = _Surface(
+        surface = _Surface(
             descriptor,
             canvas,
             context,
             width=descriptor.width,
             height=descriptor.height,
         )
+        if descriptor.kind is SurfaceKind.WINDOW:
+
+            def receive_event(event: Mapping[str, object]) -> None:
+                surface.events.extend(_translate_surface_event(event, surface))
+
+            canvas.add_event_handler(receive_event, "*")
+        self._surfaces[(handle.index, handle.generation)] = surface
         self._native[_key(handle)] = canvas
         return handle
 
@@ -533,6 +553,23 @@ class WgpuRenderDevice:
         surface.height = height
         surface.suspended = False
         surface.capture = None
+
+    def drain_surface_events(self, handle: SurfaceHandle) -> tuple[PlatformEvent, ...]:
+        """Return copied engine-owned events without exposing canvas/provider values."""
+
+        self._guard("drain_surface_events")
+        if type(handle) is not SurfaceHandle:
+            raise _backend_error(
+                "surface event drain requires an exact surface handle",
+                code="render.wrong_handle_kind",
+                phase="events",
+                details={"actual_type": type(handle).__name__},
+            )
+        self._validator.validate_handle(handle)
+        surface = self._surfaces[(handle.index, handle.generation)]
+        events = tuple(surface.events)
+        surface.events.clear()
+        return events
 
     def simulate_device_loss(self) -> None:
         """Inject a deterministic fatal loss for adapter conformance tests."""
@@ -830,6 +867,57 @@ class WgpuRenderDevice:
                 phase=operation,
                 details={"backend": "wgpu", "recoverable": False, "reason": self._loss_reason},
             )
+
+
+def _translate_surface_event(
+    event: Mapping[str, object], surface: _Surface
+) -> tuple[PlatformEvent, ...]:
+    """Validate one provider mapping and project only engine-owned values."""
+
+    event_type = event.get("event_type")
+    if event_type in ("key_down", "key_up"):
+        key = event.get("key")
+        if type(key) is str and key:
+            return (KeyEvent(key, event_type == "key_down"),)
+        return ()
+    if event_type in ("pointer_down", "pointer_up", "pointer_move"):
+        x = _event_float(event.get("x"))
+        y = _event_float(event.get("y"))
+        translated: list[PlatformEvent] = []
+        if x is not None and y is not None and surface.width > 0 and surface.height > 0:
+            translated.append(PointerEvent(x, y, surface.width, surface.height))
+        if event_type in ("pointer_down", "pointer_up"):
+            button = event.get("button")
+            if type(button) is int and button > 0:
+                name = {1: "primary", 2: "secondary", 3: "middle"}.get(button, f"button{button}")
+                translated.append(MouseButtonEvent(name, event_type == "pointer_down"))
+        return tuple(translated)
+    if event_type == "resize":
+        width = _event_size(event.get("width"))
+        height = _event_size(event.get("height"))
+        if width is not None and height is not None:
+            surface.width = width
+            surface.height = height
+            return (ResizeEvent(width, height),)
+        return ()
+    if event_type == "close":
+        return (CloseEvent(),)
+    return ()
+
+
+def _event_float(value: object) -> float | None:
+    if type(value) not in (int, float):
+        return None
+    checked = float(cast(int | float, value))
+    return checked if checked == checked and abs(checked) != float("inf") else None
+
+
+def _event_size(value: object) -> int | None:
+    number = _event_float(value)
+    if number is None:
+        return None
+    checked = round(number)
+    return checked if checked > 0 else None
 
 
 def _key(
