@@ -13,6 +13,7 @@ nav:
   - Adapter and extension guide: adapter-guide.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
+  - Constrained 3D scope decision: constrained-3d-decision.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -63,6 +64,7 @@ nav:
       - ADR-0025 - Local semantic inspector: adr/0025-owned-local-semantic-inspector.md
       - ADR-0026 - Rich 2D authoring: adr/0026-bounded-headless-rich-2d-authoring.md
       - ADR-0027 - Rollback readiness deferral: adr/0027-defer-network-rollback-after-readiness-evaluation.md
+      - ADR-0028 - Retain layered 2D: adr/0028-retain-layered-2d-and-defer-constrained-3d.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

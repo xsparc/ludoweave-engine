@@ -38,6 +38,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 ## Current boundary
 
 M0 through M13 are complete, independently accepted, and hosted-CI validated.
+M14 is locally complete and independently accepted but not yet hosted-validated.
 M1-M7 are integrated into `main`; M8 through M13 are published as stacked PRs
 #9 through #14. M13 is only a bounded offline rollback/network-snapshot
 readiness evaluation. M9 defers the Box2D v3 plugin. M10 adds only the headless
@@ -47,13 +48,15 @@ backend-neutral extraction. M12 adds only strict data-only preview plugin
 manifests, deterministic compatibility checks, and an explicitly invoked local
 validation CLI. M13 proves immutable local correction branches and records the
 external tick-input limitation; it may not add a transport or live
-rollback service. The next milestone is unassigned until the next post-alpha
-item has a bounded task contract. Do not add discovery, imports, hook execution,
+rollback service. M14 is only the installed-surface constrained-3D decision.
+It retains layered 2D and adds evidence, tests, and documentation, but no
+runtime package, public 3D contract, persistent format, provider, or dependency.
+Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, sockets,
 networking or remote attach, arbitrary child commands, another world store, a
 Box2D adapter,
 release tag, GitHub release, or PyPI publication. Real audio playback, font
-parsing/shaping, network agent transports, editor work, 3D, SDL3, WASM, and
-native code remain out of scope.
+parsing/shaping, network agent transports, editor work, constrained/general 3D,
+SDL3, WASM, and native code remain out of scope.
 RFC-0001 records the evidence-based native-code deferral; local performance
 misses are not automatic authorization for acceleration.

@@ -47,6 +47,20 @@ final complete local/artifact/provider gate passes and independent review
 reports no remaining finding. It is published as ready stacked PR #14; GitHub
 Actions run `31031590206` passed all eight essential hosted jobs on signed
 implementation commit `ba62b650191cfb982100692e7ec694da318956ae`.
+M14 is locally complete and independently accepted on
+`codex/m14-constrained-3d-decision`, based on exact M13
+hosted-evidence head
+`48f8f296113e3f2794bae7f4c67997d433e4dd36`. Its bounded contract is an
+installed-surface audit and product-scope decision only. ADR-0028 retains
+layered 2D and defers constrained 3D behind a complete product, engine-contract,
+agent-semantic, headless-conformance, cross-platform, resource-budget,
+lifecycle, and maintenance gate. Exact source, isolated-wheel, and release
+bundle evidence confirms the current orthographic camera and canonical
+layer/z ordering while every 3D admission gate remains false. The final local
+gate reports 809 passes and one existing Windows symlink-capability skip;
+independent hostile review reports no remaining finding. M14 changes no
+runtime package, public Python API, persistent format, dependency, version, or
+CI topology. No M14 hosted result is claimed yet.
 
 ## Repository identity
 

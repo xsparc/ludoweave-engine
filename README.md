@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M13 are hosted-validated; M13's rollback/network-snapshot readiness decision defers networking. Provider-neutral gamepad input and evidence-based SDL3, Box2D-plugin, and Rust/PyO3 deferrals use explicit admission gates. Existing APIs remain experimental; the M12 manifest surface is the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M13 are hosted-validated. M14 retains the layered-2D product boundary and defers constrained 3D behind a complete admission gate. Provider-neutral gamepad input and evidence-based networking, SDL3, Box2D-plugin, and Rust/PyO3 deferrals use the same evidence-first approach. Existing APIs remain experimental; the M12 manifest surface is the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -40,6 +40,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   environment/policy/dependency checks and no discovery or code execution.
 - Bounded offline correction-branch evidence that records the current replay
   input-history gap and defers networking/live rollback under ADR-0027.
+- Deterministic installed-surface evidence that retains layered 2D and defers
+  constrained 3D under ADR-0028 without adding runtime contracts or providers.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
 - A transport-independent typed agent service with explicit capabilities, quotas, redaction, serialized mutations, and the same canonical command receipts used by direct Python.
 - Twelve observation/control tools exposed through Python, a project-confined CLI, and a local-only MCP `2025-11-25` stdio adapter with no network listener.
@@ -55,7 +57,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 
 General scene importers, production audio, international text shaping,
 rigid-body physics, networking or remote agent transport, visual editor
-tooling, 3D, and automatic GPU recovery are not implemented yet.
+tooling, constrained or general 3D, and automatic GPU recovery are not
+implemented.
 
 ## Requirements
 
@@ -75,6 +78,7 @@ uv run python examples/hello_headless.py --ticks 120
 uv run python examples/fixed_step_world.py --ticks 6
 uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/rollback_readiness.py --ticks 120 --branch-tick 60
+uv run python examples/constrained_3d_decision.py
 uv run python examples/alpha_acceptance.py
 uv run ludoweave plugin check examples/example.plugin.json
 uv run ludoweave inspect --sample agent-world-builder
@@ -145,6 +149,9 @@ preview compatibility, deterministic reports, and the explicit no-loader boundar
 The [rollback-readiness guide](docs/rollback-readiness.md) documents M13's
 offline correction proof, external input-history limitation, network deferral,
 and complete revisit gate.
+The [constrained 3D decision](docs/constrained-3d-decision.md) documents M14's
+installed-surface evidence, retained layered-2D scope, and complete revisit
+gate.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

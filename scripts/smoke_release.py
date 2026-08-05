@@ -15,6 +15,8 @@ from collections.abc import Iterable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import cast
 
+from constrained_3d_evidence import validate_constrained_3d_evidence
+
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -92,6 +94,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             is not True
         ):
             raise RuntimeError(f"rollback readiness summary was invalid: {rollback!r}")
+        constrained_3d_result = _run(
+            [str(python), "-I", "constrained_3d_decision.py"],
+            cwd=sample_root,
+        )
+        constrained_3d = cast(dict[str, object], json.loads(constrained_3d_result.stdout))
+        validate_constrained_3d_evidence(constrained_3d, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -155,6 +163,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "README.md",
         "alpha_acceptance.py",
         "clockwork_arena.py",
+        "constrained_3d_decision.py",
         "rollback_readiness.py",
     }
     if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:

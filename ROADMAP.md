@@ -22,6 +22,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M11 rich 2D authoring | Headless tick animation, bitmap text, immutable tilemaps, fixed-point particles, Null-audio mixing, installed showcase, and hosted validation |
 | Done | M12 plugin manifest compatibility | Canonical data-only manifests, deterministic environment/dependency checks, preview compatibility policy, installed CLI smoke, and hosted validation |
 | Done | M13 rollback/network-snapshot readiness | Hosted-validated bounded correction-branch evidence, explicit input-history gap, network deferral ADR, and no transport implementation |
+| Ready PR | M14 constrained 3D decision | Installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -66,6 +67,8 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 These areas remain uncommitted proposals and require milestone assignment plus the
 design process in `GOVERNANCE.md`: general scene importers, production audio,
 rigid-body physics, network transports, visual editor tooling, international text shaping, automatic GPU
-recovery, and 3D. Native acceleration is deferred under
+recovery. Constrained and general 3D are deferred under
+[ADR-0028](docs/adr/0028-retain-layered-2d-and-defer-constrained-3d.md).
+Native acceleration is deferred under
 [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md); its complete admission
 and quantified revisit gate applies before another proposal.

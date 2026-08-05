@@ -365,6 +365,31 @@ listener, remote attach, replication store, or background authority is
 authorized by a successful local proof. ADR-0027's complete gate must be
 superseded before those boundaries change.
 
+## M14 constrained-3D boundary
+
+Layered 2D is the accepted rendering and product boundary. The public engine
+owns an orthographic `Camera2D`, color-only texture and pipeline descriptors,
+a 2D texture limit, and sprite/tile/debug extraction records. Array texture
+layers, draw ordering, parallax, and presentation layers do not establish a
+third spatial axis. The built-in sprite shader uses fixed presentation depth,
+and no command operation gives an external actor 3D world semantics.
+
+WebGPU depth/stencil and 3D-coordinate capability remains behind the optional
+adapter boundary. Provider capability cannot enter core/application APIs or
+become canonical state without an engine-owned contract that Null/headless
+execution can validate. The M14 composition-root evidence inspects the
+installed public descriptors and operation registry; it neither imports a
+provider nor adds an authority format.
+
+Architecture tests close source imports to the standard library and
+engine-owned modules, except for the exact existing wgpu/rendercanvas/GLFW
+imports inside the one adapter. They also lock the exact public render exports,
+descriptor fields, positive orthographic camera/layer ordering, fixed-depth
+shader, and absence of a 3D runtime module. A superseding proposal must change
+these guards intentionally only after satisfying the product,
+spatial/asset/render, agent/replay, headless-conformance, cross-platform,
+resource-budget, lifecycle, and maintenance gates together.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -374,11 +399,13 @@ the M6 community-alpha distribution contract, the M7 native-code decision, and
 the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, the M10 owned
 local semantic inspector, the M11 rich 2D authoring records, the M12 inert
 plugin manifest contract, and the M13 offline rollback-readiness decision now
-exist. M6
+exist. M14 records the retained layered-2D boundary and defers constrained 3D
+without changing the runtime package. M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network
-transports, visual editor tooling, international text shaping, automatic device recovery, and 3D
-remain deferred to future assigned, exercised slices. Native acceleration is
+transports, visual editor tooling, international text shaping, automatic
+device recovery, and constrained/general 3D remain deferred to future
+assigned, exercised slices. Native acceleration is
 specifically deferred under RFC-0001's measurable revisit gate rather than
 generally authorized by the recorded target misses.

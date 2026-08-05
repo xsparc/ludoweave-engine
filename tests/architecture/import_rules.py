@@ -5,19 +5,6 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-_BANNED_EXTERNAL_ROOTS = frozenset(
-    {
-        "box2d",
-        "box2d_python",
-        "glfw",
-        "numpy",
-        "pysdl3",
-        "rendercanvas",
-        "rust",
-        "sdl3",
-        "wgpu",
-    }
-)
 _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_AGENT_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
@@ -118,9 +105,23 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                 normalized_root in _GRAPHICS_ADAPTER_ROOTS
                 and module == "ludoweave.render.backends.wgpu"
             )
-            if normalized_root in _BANNED_EXTERNAL_ROOTS and not adapter_import:
+            plugin_contract = _is_module_or_child(module, "ludoweave.plugins")
+            dedicated_network_import = module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS
+            external_import = (
+                normalized_root != "ludoweave" and normalized_root not in sys.stdlib_module_names
+            )
+            if (
+                external_import
+                and not adapter_import
+                and not plugin_contract
+                and not dedicated_network_import
+            ):
                 violations.append(
-                    ImportViolation(path, line, f"source imports banned dependency {root!r}")
+                    ImportViolation(
+                        path,
+                        line,
+                        f"source imports unsupported external dependency {root!r}",
+                    )
                 )
             if module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS:
                 violations.append(

@@ -12,6 +12,8 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import cast
 
+from constrained_3d_evidence import validate_constrained_3d_evidence
+
 
 def _run(
     command: Sequence[str],
@@ -414,6 +416,17 @@ def main(argv: Sequence[str] | None = None) -> int:
             or rollback_proof.get("input_rehydration_required") is not True
         ):
             raise RuntimeError(f"rollback readiness summary was invalid: {rollback!r}")
+
+        constrained_3d_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "constrained_3d_decision.py"),
+            ],
+            cwd=temp_root,
+        )
+        constrained_3d = cast(dict[str, object], json.loads(constrained_3d_result.stdout))
+        validate_constrained_3d_evidence(constrained_3d, version=version)
 
         plugin_manifest = temp_root / "example.plugin.json"
         shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)

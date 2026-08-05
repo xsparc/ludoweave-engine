@@ -8,6 +8,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M14 deterministic installed-surface evidence for the constrained-3D scope
+  decision, exercised from source, isolated wheel, and release sample bundle.
+- ADR-0028 retaining layered 2D and deferring constrained 3D until product,
+  engine-contract, agent-semantic, headless, cross-platform, resource-budget,
+  lifecycle, and maintenance gates are complete.
 - M13 bounded offline rollback-readiness evidence over existing canonical
   snapshots and immutable replay branches, with strict artifact validation and
   source/wheel/release-bundle smoke.

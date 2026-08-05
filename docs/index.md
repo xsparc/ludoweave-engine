@@ -2,7 +2,7 @@
 
 **Build worlds humans can play and agents can operate.**
 
-LudoWeave is a community-alpha release candidate for deterministic, headless-first Python 2D and layered-2D worlds. M0 established the repository contract and lifecycle skeleton. M1 added the deterministic world/application core. M2 added typed persistent commands, atomic transactions and receipts, canonical authority snapshots and hashes, deterministic random streams, verified replay/checkpoints, immutable branches, and a data-only headless CLI workflow. M3 added isolated Null and wgpu 2D rendering. M4 added provider-neutral input, content-addressed assets, bounded collision/audio contracts, and Clockwork Arena. M5 added typed capability-gated agent control through Python, CLI, and local stdio MCP. M6 added deterministic release artifacts, explicit API status, contribution guides, and release provenance staging. M7-M10 recorded native/SDL3/Box2D deferrals and added a bounded semantic inspector. M11 adds headless rich 2D authoring records. M12 adds preview data-only plugin manifests and deterministic compatibility checks without a plugin loader. M13 evaluates offline correction branches, records the replay input-history gap, and defers network rollback. This is not yet a complete game runtime; most APIs remain experimental and the M12 plugin surface is preview.
+LudoWeave is a community-alpha release candidate for deterministic, headless-first Python 2D and layered-2D worlds. M0 established the repository contract and lifecycle skeleton. M1 added the deterministic world/application core. M2 added typed persistent commands, atomic transactions and receipts, canonical authority snapshots and hashes, deterministic random streams, verified replay/checkpoints, immutable branches, and a data-only headless CLI workflow. M3 added isolated Null and wgpu 2D rendering. M4 added provider-neutral input, content-addressed assets, bounded collision/audio contracts, and Clockwork Arena. M5 added typed capability-gated agent control through Python, CLI, and local stdio MCP. M6 added deterministic release artifacts, explicit API status, contribution guides, and release provenance staging. M7-M10 recorded native/SDL3/Box2D deferrals and added a bounded semantic inspector. M11 adds headless rich 2D authoring records. M12 adds preview data-only plugin manifests and deterministic compatibility checks without a plugin loader. M13 evaluates offline correction branches, records the replay input-history gap, and defers network rollback. M14 retains layered 2D and defers constrained 3D after an installed-surface audit. This is not yet a complete game runtime; most APIs remain experimental and the M12 plugin surface is preview.
 
 ## Current capabilities
 
@@ -33,9 +33,11 @@ LudoWeave is a community-alpha release candidate for deterministic, headless-fir
 - Canonical inert plugin manifests, deterministic environment/dependency
   compatibility reports, and an explicitly invoked local checker with no
   discovery or code execution.
+- Deterministic constrained-3D decision evidence that leaves the public and
+  provider-neutral runtime surfaces layered-2D-only.
 - A pure-wheel community-alpha candidate with a deterministic sample bundle, checksums, SPDX SBOM, notices, explicit stability metadata, and cross-platform release smoke.
 
-Start with the [community-alpha user guide](user-guide.md), then read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [rendering contract](rendering.md), [rich 2D presentation guide](presentation.md), [plugin compatibility guide](plugins.md), [gameplay guide](gameplay.md), [agent control interface](agent-control.md), [API status](api-status.md), and [accepted decisions](adr/index.md) before building on the experimental and preview APIs.
+Start with the [community-alpha user guide](user-guide.md), then read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [rendering contract](rendering.md), [rich 2D presentation guide](presentation.md), [plugin compatibility guide](plugins.md), [constrained 3D decision](constrained-3d-decision.md), [gameplay guide](gameplay.md), [agent control interface](agent-control.md), [API status](api-status.md), and [accepted decisions](adr/index.md) before building on the experimental and preview APIs.
 
 ## Quick check
 
@@ -45,6 +47,7 @@ uv run ludoweave doctor
 uv run python examples/hello_headless.py --ticks 120
 uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/rich_2d_showcase.py --ticks 6
+uv run python examples/constrained_3d_decision.py
 uv run ludoweave plugin check examples/example.plugin.json
 uv run python examples/alpha_acceptance.py
 uv run ludoweave mcp --sample agent-world-builder

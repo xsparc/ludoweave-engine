@@ -73,11 +73,21 @@ def test_checker_rejects_ecs_importing_application(tmp_path: Path) -> None:
         "rendercanvas",
         "wgpu",
         "numpy",
+        "moderngl",
+        "open3d",
+        "panda3d",
+        "pyassimp",
+        "pygltflib",
+        "pygfx",
+        "pyrender",
         "sdl3",
         "pysdl3",
         "box2d",
         "Box2D",
         "box2d_python",
+        "trimesh",
+        "ursina",
+        "vtk",
     ],
 )
 def test_provider_and_storage_imports_are_confined_to_exact_adapter(
@@ -91,7 +101,24 @@ def test_provider_and_storage_imports_are_confined_to_exact_adapter(
     violations = check_source_tree(source_root)
 
     assert len(violations) == 1
-    assert f"banned dependency '{provider}'" in violations[0].message
+    assert f"unsupported external dependency '{provider}'" in violations[0].message
+
+
+def test_graphics_adapter_allows_only_its_three_exact_external_roots(
+    tmp_path: Path,
+) -> None:
+    source_root = tmp_path / "src"
+    adapter = source_root / "ludoweave" / "render" / "backends" / "wgpu.py"
+    adapter.parent.mkdir(parents=True)
+    adapter.write_text("import glfw\nimport rendercanvas\nimport wgpu\n", encoding="utf-8")
+
+    assert check_source_tree(source_root) == []
+
+    adapter.write_text("import moderngl\n", encoding="utf-8")
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "unsupported external dependency 'moderngl'" in violations[0].message
 
 
 def test_package_and_render_contract_imports_do_not_eagerly_load_graphics_providers() -> None:

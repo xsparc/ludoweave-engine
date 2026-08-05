@@ -9,6 +9,7 @@ python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python rollback_readiness.py --ticks 120 --branch-tick 60
+python constrained_3d_decision.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -28,6 +29,10 @@ CPython, and desktop platform without importing or executing plugin code.
 future input, records the still-external input-history dependency, and emits a
 deferred networking decision. It opens no listener and implements no transport
 or live rollback service.
+
+`constrained_3d_decision.py` audits the installed public render and built-in
+world-operation surfaces. It emits a deterministic deferred decision and adds
+no 3D API, provider, asset loader, or runtime implementation.
 
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:

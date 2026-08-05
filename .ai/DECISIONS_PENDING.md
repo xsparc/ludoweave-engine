@@ -32,6 +32,12 @@ until canonical tick-input history, protocol/security, cross-platform network
 simulation, resource budgets, lifecycle ownership, and maintenance gates are
 complete.
 
+ADR-0028 resolves the M14 constrained-3D question by retaining layered 2D and
+deferring any 3D runtime until a bounded product slice, provider-neutral
+spatial/render/asset contracts, canonical agent/replay semantics, equivalent
+Null behavior, cross-platform installed conformance, measured resource
+budgets, lifecycle ownership, and a named maintainer are evidenced together.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

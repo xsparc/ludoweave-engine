@@ -1551,3 +1551,64 @@ distribution, and provider contracts; it does not merge PR #14, publish a
 package, create a tag or release, or authorize sockets, remote authority, live
 rollback, a network protocol, editor/GUI, 3D, provider/native work, or a
 persistent-format change.
+
+## M14 final local validation - 2026-08-06
+
+M14 was evaluated on Windows 11 with uv-managed CPython 3.12.13. It changes
+repository evidence, tests, and documentation only. Its installed JSON confirms
+the exact 47-name public render export list, orthographic `Camera2D` fields and
+matrix, canonical sprite `(layer, z, entity)` ordering, the tile layer field,
+color-only descriptors, 2D limits, and the seven existing world operations.
+All nine constrained-3D admission gates are false.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | The existing lock resolved 46 packages and remained current. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | The existing frozen environment checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 0 | All 178 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 809 tests passed and one existing Windows symlink-capability test skipped in 69.68 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.51 seconds; Material emitted its documented upstream MkDocs 2.0 warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel install passed the exact M14 installed-surface document plus the inherited public smokes. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m14-release-candidate-r2` | 0 | Staged the complete deterministic ten-artifact candidate including the M14 sample. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m14-release-candidate-r2` | 0 | Checksums, manifest, SBOM, installed wheel, and every bundled sample including exact M14 evidence passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Nine real-wgpu integration tests passed in 5.51 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+Every inherited benchmark/profile command in the README quality suite ran
+against uniquely named M14 artifacts and its validator exited 0:
+
+- M1 validated seven workloads. Fixed 3,600-tick p95 was 35,706,500 ns and
+  observed its target; 10,000-entity simulation p95 was 128,658,700 ns and did
+  not observe the inherited 4 ms target. One of two targets was observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads. The 10,000-sprite extraction p95 was 28,468,500
+  ns and missed its inherited target; real-wgpu 10,000-instance submission p95
+  was 2,835,700 ns and observed its target. One of two targets was observed.
+- M4 validated three workloads; baseline p95 was 1,877,900 ns and observed its
+  16,666,667 ns target.
+- Five-repeat M7 base and real-wgpu profile artifacts validated with two and
+  three workloads respectively. Profile timing remains diagnostic only.
+
+Artifact, scope, history, and independent-review evidence:
+
+- the wheel contains 91 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib`
+  entries; metadata retains Apache-2.0, Python `>=3.12,<3.15`, no mandatory
+  dependency, and only the unchanged exact `graphics` extra;
+- `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, and all `src/` files
+  are byte-unchanged from exact M13 evidence head
+  `48f8f296113e3f2794bae7f4c67997d433e4dd36`;
+- merge-base equals that exact M13 head and the pre-commit left/right count was
+  `0 0`; focused credential assignment scanning returned no matches (ripgrep
+  exit 1); and
+- independent hostile review first blocked positive layered-2D evidence,
+  exact artifact validation, and closed import/export guards. After correction,
+  it independently reproduced lock/static/full-test/docs/build/wheel/release
+  success, rejected tampered sorting/version/export/gate documents, found no
+  credential match, and approved with no remaining finding.
+
+At this stage no M14 hosted/cross-platform pass, merge, tag, release, package
+publication, runtime/public/persistent-format change, 3D feature, provider
+dependency, or new performance-target claim is made.

@@ -29,4 +29,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0025: owned local semantic inspector over typed stdio tools](0025-owned-local-semantic-inspector.md)
 - [ADR-0026: bounded headless-first rich 2D authoring modules](0026-bounded-headless-rich-2d-authoring.md)
 - [ADR-0027: defer network rollback after readiness evaluation](0027-defer-network-rollback-after-readiness-evaluation.md)
+- [ADR-0028: retain layered 2D and defer constrained 3D](0028-retain-layered-2d-and-defer-constrained-3d.md)
 - [ADR template](template.md)

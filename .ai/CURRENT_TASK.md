@@ -1,50 +1,54 @@
 # Current Task
 
-- **Task:** M13 - Rollback and network-snapshot readiness evaluation
-- **Status:** Complete, independently accepted, DCO-signed, published as ready
-  stacked PR #14, and validated by all eight essential hosted CI jobs
+- **Task:** M14 - Constrained 3D scope admission decision
+- **Status:** Locally complete and independently accepted on
+  `codex/m14-constrained-3d-decision`; awaiting signed commit, ready stacked
+  PR publication, and hosted validation.
 - **Started:** 2026-08-06
-- **Base:** Exact final M12 hosted-evidence head
-  `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`; M13 will stack against
-  `codex/m12-plugin-manifest-compatibility`.
-- **Outcome:** Evaluate authoritative post-alpha item 7 with one bounded,
-  dependency-free offline correction-branch proof and an evidence-based
-  admission decision. Do not implement a transport or live rollback service.
+- **Base:** Exact final M13 hosted-evidence head
+  `48f8f296113e3f2794bae7f4c67997d433e4dd36`; M14 will stack against
+  `codex/m13-rollback-network-readiness`.
+- **Outcome:** Decide authoritative post-alpha item 8 using reproducible
+  installed-surface evidence. Retain the differentiated layered-2D scope and
+  defer constrained 3D unless a later RFC satisfies a complete admission gate.
 - **Acceptance gate:**
-  - A Clockwork Arena parent timeline repeats through exact checkpoints and
-    canonical state hashes.
-  - A child timeline branches at an exact completed-tick boundary, references
-    the immutable parent hash/state, consumes a corrected future input stream,
-    and repeatably reaches a different final state.
-  - The proof demonstrates that current replay still requires equivalent input
-    snapshots to be injected externally.
-  - Evidence is versioned, sanitized, strictly fielded, work-bounded, and
-    validated against inconsistent or false transport/admission claims.
-  - The proof runs from source, an isolated pure wheel, and the deterministic
-    release sample bundle without a new runtime dependency.
-  - ADR-0027 records the deferral and measurable canonical-input, protocol,
-    security, cross-platform simulation, resource, lifecycle, and ownership
-    revisit gates.
+  - A dependency-free example audits the installed engine-owned render and
+    command surfaces, emits deterministic versioned JSON, and reports no path,
+    host, environment, provider, timing, or credential data.
+  - Evidence distinguishes layered/z-sorted 2D from perspective, mesh,
+    depth/stencil, 3D texture, material/light, agent-semantic, Null-conformance,
+    product-slice, and cross-platform-budget contracts.
+  - The same evidence runs from source, an isolated universal wheel, and the
+    deterministic release sample bundle.
+  - ADR-0028 records why WebGPU provider capability does not imply an
+    engine-owned 3D feature and defines the complete revisit gate.
+  - Architecture tests keep 3D provider dependencies and public 3D contracts
+    out until a superseding decision intentionally changes the boundary.
   - Full local quality/artifact/provider and independent review gates pass
     before signed commit, PR, or hosted-success claims.
   - The existing eight-job essential CI topology remains unchanged.
-- **Architecture:** M13 composes existing public snapshot/replay and sample
-  contracts from an example. It adds no engine runtime package and leaves the
-  persistent snapshot, replay, command, and input formats unchanged. The
-  single `WorldSession` remains canonical.
-- **Non-scope:** Sockets/listeners, network or remote-agent transports, peer
-  identities, replication or prediction stores, live rollback APIs,
-  authentication/encryption implementation, background mutation, protocol
-  format changes, another world store, GUI/editor, 3D, Box2D/SDL3 adapters,
-  real audio, WASM, Rust/PyO3, tags, releases, or package publication.
-- **SemVer:** Repository evidence and documentation only; no public Python API,
-  persistent runtime schema, mandatory dependency, or version change.
-- **Current evidence:** The final reviewed local gate reports 793 passes and
-  one existing Windows symlink-capability skip, 174 formatted files, zero
-  Ruff/Pyright findings, strict docs, rebuilt pure artifacts, isolated wheel
-  and fresh ten-artifact release smoke, and nine real-wgpu passes. The 120/60
-  proof and strict validator pass with exact parent/child checkpoint evidence;
-  independent review also passed the maximum 600/300 proof and reports no
-  remaining finding. Ready stacked PR #14 targets exact M12; GitHub Actions run
-  `31031590206` passed the unchanged eight-job topology on signed implementation
-  commit `ba62b650191cfb982100692e7ec694da318956ae`.
+- **Architecture:** M14 adds repository evidence, tests, and documentation
+  only. It introspects existing public contracts from a composition-root
+  example; `src/`, persistent formats, engine protocols, and public exports do
+  not change. Provider capability remains isolated behind engine contracts.
+- **Non-scope:** Perspective/3D cameras, Vec3/quaternion/3D transform types,
+  meshes, models, materials, lights, depth/stencil attachments, 3D textures,
+  general asset import, terrain, skeletal animation, PBR, 3D physics, picking,
+  scene graphs, editor/GUI, networking, WASM, provider dependencies, native
+  code, tags, releases, or package publication.
+- **SemVer:** Repository decision evidence and documentation only; no public
+  Python API, persistent schema, dependency, runtime version, or compatibility
+  surface changes.
+- **Current evidence:** The design spec explicitly limits layered 2D to
+  orthographic sprites/tiles/layers and asks for a later decision rather than
+  automatic expansion. Current public descriptors expose only color textures,
+  a color-only pipeline, `Camera2D`, 2D device limits, and sprite/tile/debug
+  records. The built-in sprite shader fixes vertex depth at zero. WebGPU itself
+  supports 3D clip coordinates and optional depth/stencil state, but those
+  provider capabilities are not LudoWeave contracts.
+- **Final local gate:** 809 tests pass with one existing Windows
+  symlink-capability skip; 178 Python files are formatted; Ruff, Pyright,
+  strict docs, pure wheel/sdist build, exact installed-wheel evidence, fresh
+  ten-artifact release smoke, nine real-wgpu tests, all inherited documented
+  benchmark/profile validators, protected-scope/history checks, and independent
+  hostile review pass. No hosted M14 result is claimed yet.
