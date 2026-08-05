@@ -23,6 +23,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M12 plugin manifest compatibility | Canonical data-only manifests, deterministic environment/dependency checks, preview compatibility policy, installed CLI smoke, and hosted validation |
 | Done | M13 rollback/network-snapshot readiness | Hosted-validated bounded correction-branch evidence, explicit input-history gap, network deferral ADR, and no transport implementation |
 | Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
+| Review | M15 visual-editor admission decision | Exact installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -52,6 +53,8 @@ accepted scope and no runtime or dependency was added.
 PR #16 squash-integrated the exact validated M8-M14 tree into `main` as
 verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`. Stacked PRs
 #9-#15 are closed as superseded; their branches remain as audit history.
+PR #18 integrated the repository-state evidence as verified main commit
+`bfea67d2d922e8c591224d18f56c14d572d7f7da`; M15 starts from that exact base.
 
 ## Good-first contribution queue
 
@@ -72,9 +75,11 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 
 These areas remain uncommitted proposals and require milestone assignment plus the
 design process in `GOVERNANCE.md`: general scene importers, production audio,
-rigid-body physics, network transports, visual editor tooling, international text shaping, automatic GPU
+rigid-body physics, network transports, international text shaping, automatic GPU
 recovery. Constrained and general 3D are deferred under
 [ADR-0028](docs/adr/0028-retain-layered-2d-and-defer-constrained-3d.md).
+Visual-editor implementation is deferred under
+[ADR-0029](docs/adr/0029-retain-headless-inspector-and-defer-visual-editor.md).
 Native acceleration is deferred under
 [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md); its complete admission
 and quantified revisit gate applies before another proposal.

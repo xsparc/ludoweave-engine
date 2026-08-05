@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import cast
 
 from constrained_3d_evidence import validate_constrained_3d_evidence
+from visual_editor_evidence import validate_visual_editor_evidence
 
 
 def _run(
@@ -427,6 +428,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         constrained_3d = cast(dict[str, object], json.loads(constrained_3d_result.stdout))
         validate_constrained_3d_evidence(constrained_3d, version=version)
+
+        visual_editor_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "visual_editor_decision.py"),
+            ],
+            cwd=temp_root,
+        )
+        visual_editor = cast(dict[str, object], json.loads(visual_editor_result.stdout))
+        validate_visual_editor_evidence(visual_editor, version=version)
 
         plugin_manifest = temp_root / "example.plugin.json"
         shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)

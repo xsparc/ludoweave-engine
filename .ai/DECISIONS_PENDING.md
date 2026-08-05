@@ -38,6 +38,12 @@ spatial/render/asset contracts, canonical agent/replay semantics, equivalent
 Null behavior, cross-platform installed conformance, measured resource
 budgets, lifecycle ownership, and a named maintainer are evidenced together.
 
+ADR-0029 resolves the M15 visual-editor question by retaining the finite
+headless inspector and deferring GUI/editor implementation until public
+compatibility, document/scene, selection/hierarchy, undo/conflict, property,
+viewport, asset, recovery, accessibility/usability, cross-platform packaging,
+resource-budget, and maintenance-owner gates are evidenced together.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

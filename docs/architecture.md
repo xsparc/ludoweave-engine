@@ -390,6 +390,30 @@ these guards intentionally only after satisfying the product,
 spatial/asset/render, agent/replay, headless-conformance, cross-platform,
 resource-budget, lifecycle, and maintenance gates together.
 
+## M15 visual-editor admission boundary
+
+The existing typed command/receipt protocols, twelve semantic tools, local
+stdio MCP adapter, and owned inspector are necessary foundations for human and
+agent authoring. They are not an editor contract. The agent surface remains
+experimental, the inspector remains an internal finite composition, and no
+document/scene, selection/hierarchy, undo/conflict, property metadata,
+viewport/picking, asset-authoring, dirty-state recovery, accessibility,
+desktop packaging, or operational-budget contract exists.
+
+M15 therefore composes installed facts only under `examples/` and validates
+their exact deterministic JSON from source, the isolated pure wheel, and the
+release sample bundle. It adds no engine module, API, persistent format,
+dependency, lock change, toolkit, background process, or CI job. Architecture
+checks reject standard-library GUI/TUI/browser-launch imports in engine source;
+the existing closed external-import policy rejects third-party GUI frameworks.
+Editor-named runtime modules and root exports remain absent.
+
+Any future editor must preserve one ECS/world authority, use versioned commands
+and receipts for every mutation, and retain a headless Null conformance path.
+ADR-0029 requires the complete product, compatibility, authoring, recovery,
+accessibility, packaging, performance, and ownership gate before these guards
+may change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -400,7 +424,8 @@ the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, the M10 owned
 local semantic inspector, the M11 rich 2D authoring records, the M12 inert
 plugin manifest contract, and the M13 offline rollback-readiness decision now
 exist. M14 records the retained layered-2D boundary and defers constrained 3D
-without changing the runtime package. M6
+without changing the runtime package. M15 retains the headless inspector and
+defers visual-editor implementation. M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network

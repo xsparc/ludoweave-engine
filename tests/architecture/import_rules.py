@@ -6,6 +6,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
+_BANNED_INTERFACE_ROOTS = frozenset(
+    {"_tkinter", "curses", "idlelib", "tkinter", "turtle", "webbrowser"}
+)
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_AGENT_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_PLUGIN_CALLS = frozenset({"__import__", "compile", "eval", "exec", "input", "open"})
@@ -121,6 +124,14 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                         path,
                         line,
                         f"source imports unsupported external dependency {root!r}",
+                    )
+                )
+            if normalized_root in _BANNED_INTERFACE_ROOTS:
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"source imports deferred interface module {root!r}",
                     )
                 )
             if module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS:

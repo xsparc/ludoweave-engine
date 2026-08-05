@@ -29,6 +29,22 @@ def test_checker_rejects_intentionally_forbidden_dependency(tmp_path: Path) -> N
     assert any("may not import" in item.message for item in violations)
 
 
+@pytest.mark.parametrize(
+    "module", ["_tkinter", "curses", "idlelib", "tkinter", "turtle", "webbrowser"]
+)
+def test_checker_rejects_deferred_interface_imports(tmp_path: Path, module: str) -> None:
+    source_root = tmp_path / "src"
+    package = source_root / "ludoweave"
+    package.mkdir(parents=True)
+    (package / "__init__.py").write_text(f"import {module}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert [item.message for item in violations] == [
+        f"source imports deferred interface module {module!r}"
+    ]
+
+
 def test_checker_resolves_forbidden_relative_dependency(tmp_path: Path) -> None:
     source_root = tmp_path / "src"
     bad_module = source_root / "ludoweave" / "core" / "bad.py"

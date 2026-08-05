@@ -52,6 +52,13 @@ external tick-input limitation; it may not add a transport or live
 rollback service. M14 is only the installed-surface constrained-3D decision.
 It retains layered 2D and adds evidence, tests, and documentation, but no
 runtime package, public 3D contract, persistent format, provider, or dependency.
+Repository-state evidence is integrated in `main` by PR #18 at
+`bfea67d2d922e8c591224d18f56c14d572d7f7da`. M15 is assigned only to a
+visual-editor admission decision. It may confirm the installed
+command/receipt, typed-tool, MCP, and inspector foundation, but it must retain
+the headless inspector and add no GUI/TUI, editor runtime, public editor API,
+project/scene format, toolkit, or dependency unless ADR-0029's complete gate is
+superseded.
 Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, sockets,
 networking or remote attach, arbitrary child commands, another world store, a

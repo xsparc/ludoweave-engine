@@ -16,6 +16,7 @@ from pathlib import Path, PurePosixPath
 from typing import cast
 
 from constrained_3d_evidence import validate_constrained_3d_evidence
+from visual_editor_evidence import validate_visual_editor_evidence
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -100,6 +101,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         constrained_3d = cast(dict[str, object], json.loads(constrained_3d_result.stdout))
         validate_constrained_3d_evidence(constrained_3d, version=version)
+        visual_editor_result = _run(
+            [str(python), "-I", "visual_editor_decision.py"],
+            cwd=sample_root,
+        )
+        visual_editor = cast(dict[str, object], json.loads(visual_editor_result.stdout))
+        validate_visual_editor_evidence(visual_editor, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -165,6 +172,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "clockwork_arena.py",
         "constrained_3d_decision.py",
         "rollback_readiness.py",
+        "visual_editor_decision.py",
     }
     if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:
         raise RuntimeError("sample bundle is incomplete")
