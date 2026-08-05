@@ -26,6 +26,12 @@ RFC-0002 resolves the M12 plugin boundary with canonical inert manifests,
 explicit environment/policy/dependency checks, and no discovery, import,
 execution, installation, or ambient global registry.
 
+ADR-0027 resolves the M13 rollback/network-snapshot question by admitting only
+a bounded offline correction-branch proof and deferring transport/live rollback
+until canonical tick-input history, protocol/security, cross-platform network
+simulation, resource budgets, lifecycle ownership, and maintenance gates are
+complete.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

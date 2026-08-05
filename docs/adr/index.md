@@ -28,4 +28,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0024: defer a Box2D v3 plugin after admission review](0024-defer-box2d-v3-plugin-after-admission-review.md)
 - [ADR-0025: owned local semantic inspector over typed stdio tools](0025-owned-local-semantic-inspector.md)
 - [ADR-0026: bounded headless-first rich 2D authoring modules](0026-bounded-headless-rich-2d-authoring.md)
+- [ADR-0027: defer network rollback after readiness evaluation](0027-defer-network-rollback-after-readiness-evaluation.md)
 - [ADR template](template.md)

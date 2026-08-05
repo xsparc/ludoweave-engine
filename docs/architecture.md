@@ -64,6 +64,13 @@ dependency facts without discovering, importing, installing, or executing
 plugin code. CLI filesystem access stays in tools. See the
 [plugin guide](plugins.md) and RFC-0002.
 
+M13 evaluates existing snapshot/replay readiness from a dependency-free
+example. It proves bounded local correction branches and exact immutable
+lineage, then records that tick input remains an external replay dependency.
+No runtime package, persistent protocol change, listener, or remote authority
+is added. See the [rollback-readiness guide](rollback-readiness.md) and
+ADR-0027.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -134,6 +141,12 @@ documents, not filesystem, ECS-storage, or GPU objects.
 The M12 checks reject discovery, import/execution, installation/process, and
 network facilities from `ludoweave.plugins`. Manifests contain no implementation
 locator, and no positive compatibility report mutates or composes runtime state.
+
+The M13 evidence composition lives under `examples/` and imports existing
+application, sample, and world contracts. Its validator is repository tooling.
+Neither is a runtime dependency, and architecture checks continue to prohibit
+network facilities from local stdio/inspector boundaries and provider objects
+from canonical state.
 
 ## Ownership and close order
 
@@ -336,6 +349,22 @@ telemetry and child lifecycle timing remain non-authoritative. The finite
 caller-driven stream is not a visual editor, network transport, remote attach,
 or wall-clock watcher. See [ADR-0025](adr/0025-owned-local-semantic-inspector.md).
 
+## M13 rollback-readiness boundary
+
+The existing replay branch is an immutable offline child timeline, not a live
+rollback service. A composition root may replay a parent to an exact boundary,
+construct a child recorder, and inject a different future `TickExecutor`, but
+the recorded `world.tick` transactions do not own the action snapshots that
+executor consumes. Equivalent tick input must be supplied independently or
+checkpoint verification diverges.
+
+Canonical input history, full/delta correction envelopes, peer authority,
+sequence/acknowledgement/reorder semantics, transport security, abuse limits,
+loss/latency simulation, and bounded catch-up budgets remain absent. No socket,
+listener, remote attach, replication store, or background authority is
+authorized by a successful local proof. ADR-0027's complete gate must be
+superseded before those boundaries change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -343,7 +372,9 @@ project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
 the M6 community-alpha distribution contract, the M7 native-code decision, and
 the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, the M10 owned
-local semantic inspector, and the M11 rich 2D authoring records now exist. M6
+local semantic inspector, the M11 rich 2D authoring records, the M12 inert
+plugin manifest contract, and the M13 offline rollback-readiness decision now
+exist. M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network

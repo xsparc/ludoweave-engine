@@ -71,6 +71,27 @@ def main(argv: Sequence[str] | None = None) -> int:
         _run([str(python), "-I", "hello_headless.py", "--ticks", "5"], cwd=sample_root)
         _run([str(python), "-I", "fixed_step_world.py", "--ticks", "6"], cwd=sample_root)
         _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
+        rollback_result = _run(
+            [
+                str(python),
+                "-I",
+                "rollback_readiness.py",
+                "--ticks",
+                "24",
+                "--branch-tick",
+                "12",
+            ],
+            cwd=sample_root,
+        )
+        rollback = cast(dict[str, object], json.loads(rollback_result.stdout))
+        if (
+            rollback.get("schema") != "ludoweave.evaluation.rollback-readiness/1"
+            or rollback.get("status") != "deferred"
+            or rollback.get("transport_implemented") is not False
+            or cast(dict[str, object], rollback.get("proof", {})).get("input_rehydration_required")
+            is not True
+        ):
+            raise RuntimeError(f"rollback readiness summary was invalid: {rollback!r}")
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -130,7 +151,12 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             if not info.is_dir():
                 destination.write_bytes(archive.read(info))
     root = output / expected_root
-    required = {"README.md", "alpha_acceptance.py", "clockwork_arena.py"}
+    required = {
+        "README.md",
+        "alpha_acceptance.py",
+        "clockwork_arena.py",
+        "rollback_readiness.py",
+    }
     if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:
         raise RuntimeError("sample bundle is incomplete")
     return root

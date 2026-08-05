@@ -1408,3 +1408,118 @@ the implementation commit. It validates the supported cross-platform,
 distribution, and provider contracts; it does not merge PR #13, publish a
 package, create a tag or release, load plugin code, admit a provider, or
 authorize any deferred networking/editor/native work.
+
+## M13 final reviewed local validation - 2026-08-06
+
+Environment: Windows 11, uv-managed CPython 3.12.13 with the exact locked
+graphics extra. Base and current pre-commit `HEAD`:
+`7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Branch:
+`codex/m13-rollback-network-readiness`.
+
+The complete post-review command sequence produced these results:
+
+- The first sandboxed `uv lock --check` / `uv sync --frozen --all-groups
+  --extra graphics` attempt exited 1 because the workspace sandbox denied
+  access to uv's existing user cache. The approved exact rerun exited 0:
+  `uv lock --check` resolved the unchanged 46-package lock and sync checked 45
+  packages. An initial sandboxed `uv build` had the same cache denial; its
+  approved exact rerun and final post-review rebuild both exited 0.
+- `uv run --frozen ruff format --check .` exited 0; all 174 Python files were
+  already formatted.
+- `uv run --frozen ruff check .` exited 0 with `All checks passed!`.
+- `uv run --frozen pyright` exited 0 with zero errors, warnings, or information
+  diagnostics.
+- `uv run --frozen mkdocs build --strict` exited 0 in 0.51 seconds. Material
+  for MkDocs emitted its existing upstream MkDocs 2.0 informational warning.
+- `uv run --frozen pytest -q` exited 0 with 793 passing tests and one existing
+  Windows symlink-capability skip in 60.05 seconds.
+- `uv build` exited 0 and rebuilt
+  `dist/ludoweave-0.1.0a1.tar.gz` plus the universal
+  `dist/ludoweave-0.1.0a1-py3-none-any.whl` from the sdist.
+- `uv run --frozen python scripts/smoke_wheel.py dist` exited 0 with
+  `wheel smoke passed: ludoweave-0.1.0a1-py3-none-any.whl`; the isolated wheel
+  ran the M13 24/12 readiness proof and required deferred/no-transport gates.
+- `uv run --frozen python scripts/release_artifacts.py dist
+  .tmp/m13-release-candidate-final-20260806` exited 0 with protocol
+  `ludoweave.release-stage/1`, version `0.1.0a1`, ten artifacts, the versioned
+  sample bundle, and SPDX SBOM.
+- `uv run --frozen python scripts/smoke_release.py
+  .tmp/m13-release-candidate-final-20260806` exited 0 with
+  `release smoke passed: ludoweave 0.1.0a1`; the isolated installed wheel ran
+  the bundled readiness example.
+- `git diff --check` exited 0.
+
+M13 evidence and provider acceptance:
+
+- `uv run --frozen python examples/rollback_readiness.py --ticks 120
+  --branch-tick 60 --output .tmp/m13-readiness-final.json` exited 0 with schema
+  `ludoweave.evaluation.rollback-readiness/1`, status `deferred`, no transport,
+  120 parent batches/121 verified checkpoints, 60 child batches/61 verified
+  checkpoints, immutable parent timeline hash
+  `sha256:c4650d3173a0b62eb9e65e1a49f8e90fa90c9268b56ab9000fb75b096ec0e515`,
+  parent final hash
+  `sha256:9d4b4f5e81ed1ac487f83ae742ce41cfb27f2a0da652a43c33c74e5571cd3026`,
+  and repeatable corrected final hash
+  `sha256:2708c1bb1df45adaca0eb095242f12b96837493e2bd06cd8a3c78b45742af7b2`.
+  The informational canonical sizes were 2,793 snapshot bytes, 95,118 parent
+  timeline bytes, and 51,160 child timeline bytes; M13 defines no timing or
+  bandwidth target.
+- `uv run --frozen python scripts/validate_rollback_readiness.py
+  .tmp/m13-readiness-final.json` exited 0 with
+  `rollback readiness evidence valid`.
+- The final hostile integration/architecture/release focus exited 0 with 54
+  passes in 13.01 seconds. It covers direct-call work bounds, exact checkpoint
+  counts, root/nested duplicate JSON, non-finite numbers, non-regular and
+  oversized files, exact root types/version, Boolean/integer ambiguity,
+  hashes/counts/metrics, false admission, and closed import/member aliases.
+- `uv run --frozen --extra graphics pytest -q
+  tests/integration/test_wgpu_render.py` exited 0 with nine passes in 5.65
+  seconds.
+- Clockwork Arena wgpu, Agent World Builder, alpha acceptance, rich-2D
+  showcase, and the path-free compatible example plugin check all exited 0.
+
+Every benchmark/profile command in the README quality suite was also rerun
+against uniquely named M13 artifacts and its validator exited 0:
+
+- M1 recorded seven workloads. The fixed 3,600-tick p95 was 35,707,100 ns and
+  observed its headless target; the 10,000-entity simulation p95 was
+  136,388,500 ns and did not observe its inherited 4 ms target. The validator
+  reported one of two recorded targets observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads. The 10,000-sprite extraction p95 was 24,154,400
+  ns and missed its inherited target; the wgpu submit p95 was 2,747,400 ns and
+  observed its target. One of two recorded targets was observed.
+- M4 validated three workloads; the baseline p95 was 1,840,000 ns and observed
+  its 16,666,667 ns target.
+- The five-repeat M7 base and real-wgpu profile artifacts validated with two
+  and three workloads respectively. Profile timing is diagnostic only.
+
+Artifact, scope, and history audit:
+
+- the wheel contains 91 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib`
+  entries;
+- wheel metadata has no mandatory dependency; its only `Requires-Dist` entries
+  are the unchanged exact `graphics` extra for GLFW, rendercanvas, and wgpu;
+- `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, and all `src/` files
+  are unchanged from the exact M12 base, retaining the eight essential jobs,
+  persistent formats, public Python surfaces, and pure-Python package contract;
+- focused secret-assignment and network/provider import scans found no match;
+  ripgrep exit 1 means no matches; and
+- merge-base equals exact M12 head
+  `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f` and the pre-commit left/right
+  count was `0 0`, so no unrelated commit entered the stack.
+
+Independent hostile review reproduced and drove fixes for pre-read byte caps,
+regular-file pre/post-open checks, canonical duplicate/non-finite JSON,
+version/path spoofing, exact Boolean/integer/count types, direct-call work
+bounds, complete parent/child checkpoint verification, closed exact
+module/member import allowlists, and dynamic-builtin aliases. Final review
+reported no blocking or non-blocking finding. It independently passed Ruff,
+Pyright, strict docs, 54 focused tests, a generated/validated 24/12 artifact,
+and the advertised maximum 600/300 proof in 19.1 seconds with deferred and
+no-transport gates. Diff and secret scans were clean.
+
+At this stage no M13 hosted or cross-platform pass, merge, tag, release,
+package publication, socket/listener, peer authority, live rollback service,
+network protocol, persistent-format change, editor/GUI, 3D, provider adapter,
+or native-code claim is made.

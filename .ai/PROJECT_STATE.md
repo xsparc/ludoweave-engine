@@ -34,6 +34,18 @@ with no remaining finding, and the complete local/artifact/provider gate
 passed. It is published as ready stacked PR #13; GitHub Actions run
 `31028863469` passed all eight essential hosted jobs on signed implementation
 commit `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.
+M13 is locally complete and independently accepted on
+`codex/m13-rollback-network-readiness`, based on exact
+M12 hosted-evidence head
+`7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Its bounded contract is an
+offline Clockwork Arena correction-branch proof plus an evidence-based network
+rollback admission decision. ADR-0027 defers networking/live rollback because
+canonical tick input is not replay-owned and protocol, security, simulation,
+resource, lifecycle, and maintenance gates remain incomplete. No runtime
+package, persistent format, listener, transport, or dependency is added. The
+final complete local/artifact/provider gate passes and independent review
+reports no remaining finding; signed commit, stacked PR, and hosted validation
+remain pending.
 
 ## Repository identity
 
@@ -168,17 +180,37 @@ evidence head and is proposed against the M10 branch as PR #12.
   compatibility contexts/reports, bounded dependency checks, a path-free local
   CLI check, and source/wheel/release example coverage. The package owns no
   discovery, import, execution, filesystem, networking, or mutable registry.
+- Bounded M13 parent/correction replay evidence with exact parent lineage,
+  repeatable divergent resimulation, explicit external input rehydration, a
+  strict sanitized validator, and source/wheel/release-bundle composition.
+- Accepted ADR-0027 deferring network rollback and remote authority until the
+  complete canonical-input, protocol, security, cross-platform simulation,
+  resource-budget, lifecycle, artifact, and maintenance gate is met.
 
 ## Next slice
 
-- M12 publication and hosted evidence are complete. Before implementation,
-  turn the next authoritative post-alpha item into a bounded task contract
-  based on the current design, accepted decisions, and existing surfaces. Do
-  not infer networking, remote authority, plugin loading, editor/GUI, 3D,
-  deferred Box2D/SDL3 adapters, or native code from roadmap proximity.
+- Publish the independently accepted M13 tree as one ready PR stacked on the
+  exact M12 evidence head, then require the unchanged essential hosted gate.
+  Do not infer sockets, remote authority, a live rollback API, peer/replication
+  state, or a persistent format change from the successful offline proof.
 
 ## Validation state
 
+- The final reviewed M13 local gate on Windows/uv-managed CPython 3.12.13
+  reports 793 passing tests and one existing symlink-capability skip, 174
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 91-entry wheel with zero native files and no mandatory dependency,
+  isolated-wheel smoke, and fresh complete ten-artifact release smoke.
+- Nine real-wgpu integration tests, the versioned 120/60 correction proof,
+  strict evidence validation, Clockwork Arena, Agent World Builder, alpha
+  acceptance, rich-2D showcase, and plugin compatibility passed. Every
+  inherited README benchmark/profile artifact validated; the existing M1 and
+  M3 target misses remain recorded and do not authorize acceleration.
+- Independent hostile review drove pre/post-open file bounds, canonical JSON,
+  exact types/counts/checkpoints, direct-call work limits, closed import/member
+  allowlists, and alias/tamper regressions. Final review ran 54 focused tests,
+  the maximum 600/300 proof, strict docs/static/diff/secret checks, and reported
+  no blocking or non-blocking finding.
 - The final reviewed M12 local gate on Windows/uv-managed CPython 3.12.13
   reports 741 passing tests and one existing symlink-capability skip, 170
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a

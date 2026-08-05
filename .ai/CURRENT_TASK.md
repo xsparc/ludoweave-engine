@@ -1,59 +1,48 @@
 # Current Task
 
-- **Task:** M12 - Preview plugin manifests and deterministic compatibility checks
-- **Status:** Complete, independently accepted, DCO-signed, published as ready
-  stacked PR #13, and validated by all eight essential hosted CI jobs
+- **Task:** M13 - Rollback and network-snapshot readiness evaluation
+- **Status:** Locally complete, independently accepted, and ready for a
+  DCO-signed commit plus stacked pull request
 - **Started:** 2026-08-06
-- **Base:** Exact final M11 evidence head
-  `840a8b06d461fa1d5e649911b22f5995154728a7`; M12 will stack against
-  `codex/m11-rich-2d-modules`.
-- **Outcome:** Implement authoritative post-alpha item 6 as one data-only,
-  headless plugin-manifest protocol plus deterministic compatibility evaluator
-  that trusted composition roots and local tooling can use before injection.
+- **Base:** Exact final M12 hosted-evidence head
+  `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`; M13 will stack against
+  `codex/m12-plugin-manifest-compatibility`.
+- **Outcome:** Evaluate authoritative post-alpha item 7 with one bounded,
+  dependency-free offline correction-branch proof and an evidence-based
+  admission decision. Do not implement a transport or live rollback service.
 - **Acceptance gate:**
-  - `ludoweave.plugins` exports frozen, slotted preview values for an exact
-    versioned manifest, dependency requirements, compatibility context,
-    issues, reports, and evaluation.
-  - Manifest JSON is canonical, strictly fielded, size/count bounded, and
-    contains no Python module, callable, entry-point, path, URL, environment,
-    credential, or provider object.
-  - Compatibility checks cover engine release ranges, CPython minor ranges,
-    desktop platform families, known engine-owned capability IDs, explicit
-    native-code policy, minimum determinism tier, duplicate identities,
-    dependency presence/ranges, and dependency cycles.
-  - Results and issue order are repeatable across manifest input order and
-    expose stable machine-readable codes plus a content fingerprint.
-  - `ludoweave plugin check` reads only explicitly named bounded JSON files,
-    emits one versioned JSON report without paths/environment values, returns
-    0 for compatible, 1 for valid-but-incompatible, and 2 for invalid input.
-  - A checked example manifest runs from source, isolated wheel, and the
-    deterministic release sample bundle.
-  - An accepted RFC records the persistent schema and preview compatibility
-    promise; architecture tests reject discovery, imports, execution, package
-    installation, networking, subprocesses, or global mutable registration.
-  - Full local quality, package, release, example, provider, and independent
-    review gates pass before signed commit, PR, or hosted-success claims.
+  - A Clockwork Arena parent timeline repeats through exact checkpoints and
+    canonical state hashes.
+  - A child timeline branches at an exact completed-tick boundary, references
+    the immutable parent hash/state, consumes a corrected future input stream,
+    and repeatably reaches a different final state.
+  - The proof demonstrates that current replay still requires equivalent input
+    snapshots to be injected externally.
+  - Evidence is versioned, sanitized, strictly fielded, work-bounded, and
+    validated against inconsistent or false transport/admission claims.
+  - The proof runs from source, an isolated pure wheel, and the deterministic
+    release sample bundle without a new runtime dependency.
+  - ADR-0027 records the deferral and measurable canonical-input, protocol,
+    security, cross-platform simulation, resource, lifecycle, and ownership
+    revisit gates.
+  - Full local quality/artifact/provider and independent review gates pass
+    before signed commit, PR, or hosted-success claims.
   - The existing eight-job essential CI topology remains unchanged.
-- **Architecture:** The plugin package is a pure data/contracts layer. It may
-  depend on core version/errors and canonical JSON helpers but owns no world,
-  runtime lifecycle, filesystem policy, provider, imported implementation, or
-  mutable registry. CLI file access remains in `ludoweave.tools`.
-- **Non-scope:** Entry-point discovery, module imports, hook execution, package
-  installation/resolution, hot reload, sandboxing, plugin workers, arbitrary
-  Python evaluation, project-authored module names, runtime global registries,
-  provider admission, another world store, networking/rollback, GUI/editor,
-  Box2D/SDL3 adapters, real audio, font shaping, 3D, WASM, Rust/PyO3, tags,
-  releases, or package publication.
-- **SemVer:** Additive preview Python surface and persistent
-  `ludoweave.plugin-manifest/1` schema under RFC governance; runtime version
-  remains `0.1.0a1` and no mandatory dependency is added.
-- **Current evidence:** RFC-0002 is accepted and final independent review found
-  no remaining finding. The complete local gate reports 741 passes and one
-  existing Windows symlink-capability skip, 170 formatted files, zero
+- **Architecture:** M13 composes existing public snapshot/replay and sample
+  contracts from an example. It adds no engine runtime package and leaves the
+  persistent snapshot, replay, command, and input formats unchanged. The
+  single `WorldSession` remains canonical.
+- **Non-scope:** Sockets/listeners, network or remote-agent transports, peer
+  identities, replication or prediction stores, live rollback APIs,
+  authentication/encryption implementation, background mutation, protocol
+  format changes, another world store, GUI/editor, 3D, Box2D/SDL3 adapters,
+  real audio, WASM, Rust/PyO3, tags, releases, or package publication.
+- **SemVer:** Repository evidence and documentation only; no public Python API,
+  persistent runtime schema, mandatory dependency, or version change.
+- **Current evidence:** The final reviewed local gate reports 793 passes and
+  one existing Windows symlink-capability skip, 174 formatted files, zero
   Ruff/Pyright findings, strict docs, rebuilt pure artifacts, isolated wheel
-  and fresh ten-artifact release smoke, nine real-wgpu integration passes,
-  deterministic source examples, a compatible path-free manifest report, and
-  valid inherited benchmark/profile artifacts. Ready stacked PR #13 targets
-  exact M11; GitHub Actions run `31028863469` passed the unchanged eight-job
-  topology on signed implementation commit
-  `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.
+  and fresh ten-artifact release smoke, and nine real-wgpu passes. The 120/60
+  proof and strict validator pass with exact parent/child checkpoint evidence;
+  independent review also passed the maximum 600/300 proof and reports no
+  remaining finding. Hosted validation is not yet claimed.

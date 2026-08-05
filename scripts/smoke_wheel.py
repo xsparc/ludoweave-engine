@@ -392,6 +392,29 @@ def main(argv: Sequence[str] | None = None) -> int:
         if any(rich.get(key) != value for key, value in rich_expected.items()):
             raise RuntimeError(f"rich 2D example summary was invalid: {rich!r}")
 
+        rollback_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "rollback_readiness.py"),
+                "--ticks",
+                "24",
+                "--branch-tick",
+                "12",
+            ],
+            cwd=temp_root,
+        )
+        rollback = cast(dict[str, object], json.loads(rollback_result.stdout))
+        rollback_proof = cast(dict[str, object], rollback.get("proof", {}))
+        if (
+            rollback.get("schema") != "ludoweave.evaluation.rollback-readiness/1"
+            or rollback.get("status") != "deferred"
+            or rollback.get("transport_implemented") is not False
+            or rollback_proof.get("lineage_verified") is not True
+            or rollback_proof.get("input_rehydration_required") is not True
+        ):
+            raise RuntimeError(f"rollback readiness summary was invalid: {rollback!r}")
+
         plugin_manifest = temp_root / "example.plugin.json"
         shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)
         plugin_result = _run(

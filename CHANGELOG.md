@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M13 bounded offline rollback-readiness evidence over existing canonical
+  snapshots and immutable replay branches, with strict artifact validation and
+  source/wheel/release-bundle smoke.
+- ADR-0027 deferring networking and live rollback until canonical tick-input
+  history, protocol/security semantics, cross-platform network simulation,
+  resource budgets, lifecycle ownership, and maintenance gates are complete.
 - M12 preview data-only plugin manifests with canonical v1 serialization,
   deterministic engine/CPython/platform/capability/native/determinism and
   dependency-graph compatibility checks, plus installed CLI/sample smoke.

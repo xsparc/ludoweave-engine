@@ -23,6 +23,7 @@ _SAMPLE_FILES = (
     "hello_headless.py",
     "hello_sprite.py",
     "rich_2d_showcase.py",
+    "rollback_readiness.py",
 )
 _COPY_FILES = ("LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md")
 _ZIP_TIME = (1980, 1, 1, 0, 0, 0)
