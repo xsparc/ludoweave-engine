@@ -83,6 +83,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                 ActionBinding("move.y", "key:arrowup", 1.0),
                 ActionBinding("fire", "mouse:primary"),
                 ActionBinding("restart", "key:r"),
+                ActionBinding("move.x", "gamepad:0:axis:left_x", 1.0, 0.15),
+                ActionBinding("move.y", "gamepad:0:axis:left_y", -1.0, 0.15),
+                ActionBinding("aim.x", "gamepad:0:axis:right_x", 1.0, 0.15),
+                ActionBinding("aim.y", "gamepad:0:axis:right_y", -1.0, 0.15),
+                ActionBinding("fire", "gamepad:0:button:a"),
+                ActionBinding("restart", "gamepad:0:button:start"),
             )
         )
     )
@@ -127,6 +133,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                         device.resize_surface(surface, event.width, event.height)
                     elif type(event) is CloseEvent:
                         should_close = True
+                for event in device.poll_gamepads():
+                    mapped.feed(event)
                 if should_close:
                     break
             arena.tick()

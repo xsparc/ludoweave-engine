@@ -6,3 +6,4 @@ decision and its evidence are authoritative, not that the proposed technology
 was adopted.
 
 - [RFC-0001: defer the first native acceleration kernel](0001-defer-first-native-kernel.md)
+- [RFC-0002: data-only plugin manifests and compatibility checks](0002-data-only-plugin-manifest-compatibility.md)

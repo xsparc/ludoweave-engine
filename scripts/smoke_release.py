@@ -15,6 +15,8 @@ from collections.abc import Iterable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import cast
 
+from constrained_3d_evidence import validate_constrained_3d_evidence
+
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -70,6 +72,45 @@ def main(argv: Sequence[str] | None = None) -> int:
         sample_root = _extract_bundle(bundle, samples, version=version)
         _run([str(python), "-I", "hello_headless.py", "--ticks", "5"], cwd=sample_root)
         _run([str(python), "-I", "fixed_step_world.py", "--ticks", "6"], cwd=sample_root)
+        _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
+        rollback_result = _run(
+            [
+                str(python),
+                "-I",
+                "rollback_readiness.py",
+                "--ticks",
+                "24",
+                "--branch-tick",
+                "12",
+            ],
+            cwd=sample_root,
+        )
+        rollback = cast(dict[str, object], json.loads(rollback_result.stdout))
+        if (
+            rollback.get("schema") != "ludoweave.evaluation.rollback-readiness/1"
+            or rollback.get("status") != "deferred"
+            or rollback.get("transport_implemented") is not False
+            or cast(dict[str, object], rollback.get("proof", {})).get("input_rehydration_required")
+            is not True
+        ):
+            raise RuntimeError(f"rollback readiness summary was invalid: {rollback!r}")
+        constrained_3d_result = _run(
+            [str(python), "-I", "constrained_3d_decision.py"],
+            cwd=sample_root,
+        )
+        constrained_3d = cast(dict[str, object], json.loads(constrained_3d_result.stdout))
+        validate_constrained_3d_evidence(constrained_3d, version=version)
+        plugin_result = _run(
+            [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
+            cwd=sample_root,
+        )
+        plugin_report = cast(dict[str, object], json.loads(plugin_result.stdout))
+        if (
+            plugin_report.get("protocol") != "ludoweave.plugin-check/1"
+            or plugin_report.get("compatible") is not True
+            or plugin_report.get("plugin_count") != 1
+        ):
+            raise RuntimeError("bundled plugin manifest compatibility smoke failed")
         _run(
             [
                 str(python),
@@ -118,7 +159,13 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             if not info.is_dir():
                 destination.write_bytes(archive.read(info))
     root = output / expected_root
-    required = {"README.md", "alpha_acceptance.py", "clockwork_arena.py"}
+    required = {
+        "README.md",
+        "alpha_acceptance.py",
+        "clockwork_arena.py",
+        "constrained_3d_decision.py",
+        "rollback_readiness.py",
+    }
     if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:
         raise RuntimeError("sample bundle is incomplete")
     return root

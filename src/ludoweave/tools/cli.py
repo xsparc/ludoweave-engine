@@ -12,10 +12,18 @@ from typing import cast
 from ludoweave import __version__
 from ludoweave.agent import AGENT_TOOL_NAMES
 from ludoweave.core.errors import LudoWeaveError
+from ludoweave.plugins import (
+    PluginDeterminism,
+    PluginManifest,
+    PluginManifestError,
+    check_plugin_compatibility,
+    current_plugin_context,
+)
 from ludoweave.samples import create_agent_world_builder
 from ludoweave.tools.agent_service import headless_agent_service
 from ludoweave.tools.doctor import run_doctor
 from ludoweave.tools.headless_project import HeadlessProject
+from ludoweave.tools.inspector import InspectorConfig, run_inspector
 from ludoweave.tools.mcp import McpServer, run_stdio
 from ludoweave.world import (
     CommandActor,
@@ -33,6 +41,8 @@ _MAX_TRANSACTION_BYTES = 1_048_576
 _MAX_SNAPSHOT_BYTES = 67_108_864
 _MAX_REPLAY_BYTES = 134_217_728
 _MAX_AGENT_REQUEST_BYTES = 1_048_576
+_MAX_PLUGIN_MANIFEST_BYTES = 65_536
+_MAX_PLUGIN_MANIFESTS = 64
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -110,6 +120,45 @@ def _build_parser() -> argparse.ArgumentParser:
         default="none",
         help="optional built-in sample capture provider",
     )
+
+    inspect_parser = subparsers.add_parser(
+        "inspect",
+        help="stream semantic observations from an owned local MCP child",
+    )
+    inspect_parser.add_argument("project", type=Path, nargs="?", help="data-only project directory")
+    inspect_parser.add_argument("--sample", choices=("agent-world-builder",))
+    inspect_parser.add_argument("--state", help="project-relative input snapshot")
+    inspect_parser.add_argument("--write", action="store_true", help="enable world mutations")
+    inspect_parser.add_argument(
+        "--bootstrap",
+        action="store_true",
+        help="create the built-in sample through a receipted transaction",
+    )
+    inspect_parser.add_argument("--ticks", type=int, default=0)
+    inspect_parser.add_argument("--query-limit", type=int, default=32)
+    inspect_parser.add_argument("--actor-kind", default="inspector")
+    inspect_parser.add_argument("--actor-id", default="local-inspector")
+
+    plugin_parser = subparsers.add_parser(
+        "plugin",
+        help="validate explicit data-only plugin manifests",
+    )
+    plugin_subparsers = plugin_parser.add_subparsers(dest="plugin_command", required=True)
+    plugin_check_parser = plugin_subparsers.add_parser(
+        "check",
+        help="check manifests against the current CPython and desktop platform",
+    )
+    plugin_check_parser.add_argument("manifests", type=Path, nargs="+")
+    plugin_check_parser.add_argument(
+        "--minimum-determinism",
+        default=PluginDeterminism.D0.value,
+        metavar="{d0,d1,d2}",
+    )
+    plugin_check_parser.add_argument(
+        "--allow-native",
+        action="store_true",
+        help="allow manifests that declare native implementation code",
+    )
     return parser
 
 
@@ -136,6 +185,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _run_agent(args)
         if command == "mcp":
             return _run_mcp(args)
+        if command == "inspect":
+            return _run_inspect(args)
+        if command == "plugin":
+            return _run_plugin(args)
     except LudoWeaveError as error:
         _print_error(error)
         return 2
@@ -358,6 +411,68 @@ def _run_mcp(args: argparse.Namespace) -> int:
     return run_stdio(McpServer(service))
 
 
+def _run_inspect(args: argparse.Namespace) -> int:
+    project_value: object = getattr(args, "project", None)
+    project = project_value if isinstance(project_value, Path) else None
+    config = InspectorConfig(
+        actor=CommandActor(
+            _text_argument(args, "actor_kind"),
+            _text_argument(args, "actor_id"),
+        ),
+        project=project,
+        sample=_optional_text_argument(args, "sample"),
+        state=_optional_text_argument(args, "state"),
+        write=_bool_argument(args, "write"),
+        bootstrap=_bool_argument(args, "bootstrap"),
+        ticks=_int_argument(args, "ticks"),
+        query_limit=_int_argument(args, "query_limit"),
+    )
+    run_inspector(config, output=sys.stdout)
+    return 0
+
+
+def _run_plugin(args: argparse.Namespace) -> int:
+    if _text_argument(args, "plugin_command") != "check":
+        raise _argument_error("plugin_command")
+    determinism_text = _text_argument(args, "minimum_determinism")
+    try:
+        minimum_determinism = PluginDeterminism(determinism_text)
+    except ValueError as error:
+        raise _argument_error("minimum_determinism") from error
+    paths = _path_arguments(args, "manifests", maximum=_MAX_PLUGIN_MANIFESTS)
+    manifests = tuple(PluginManifest.from_json(_read_plugin_manifest(path)) for path in paths)
+    context = current_plugin_context(
+        minimum_determinism=minimum_determinism,
+        allow_native=_bool_argument(args, "allow_native"),
+    )
+    report = check_plugin_compatibility(manifests, context)
+    _write_stdout(report.canonical_bytes())
+    return 0 if report.compatible else 1
+
+
+def _read_plugin_manifest(path: Path) -> bytes:
+    try:
+        with path.open("rb") as stream:
+            document = stream.read(_MAX_PLUGIN_MANIFEST_BYTES + 1)
+    except OSError as error:
+        raise PluginManifestError(
+            "plugin manifest file could not be read",
+            code="plugins.manifest_read_failed",
+            subsystem="plugins",
+            phase="read",
+            details={"cause_type": type(error).__name__},
+        ) from error
+    if len(document) > _MAX_PLUGIN_MANIFEST_BYTES:
+        raise PluginManifestError(
+            "plugin manifest file exceeds its byte limit",
+            code="plugins.manifest_too_large",
+            subsystem="plugins",
+            phase="read",
+            details={"limit": _MAX_PLUGIN_MANIFEST_BYTES},
+        )
+    return document
+
+
 def _agent_session(project: HeadlessProject, state_name: str | None):
     if state_name is None:
         return project.new_session()
@@ -375,6 +490,18 @@ def _path_argument(args: argparse.Namespace, name: str) -> Path:
     if not isinstance(value, Path):
         raise _argument_error(name)
     return value
+
+
+def _path_arguments(args: argparse.Namespace, name: str, *, maximum: int) -> tuple[Path, ...]:
+    value = getattr(args, name, None)
+    if not isinstance(value, list):
+        raise _argument_error(name)
+    items = cast(list[object], value)
+    if not items or len(items) > maximum:
+        raise _argument_error(name)
+    if any(not isinstance(item, Path) for item in items):
+        raise _argument_error(name)
+    return tuple(cast(Path, item) for item in items)
 
 
 def _text_argument(args: argparse.Namespace, name: str) -> str:

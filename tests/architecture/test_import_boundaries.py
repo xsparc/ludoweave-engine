@@ -66,7 +66,30 @@ def test_checker_rejects_ecs_importing_application(tmp_path: Path) -> None:
     assert "ludoweave.app" in violations[0].message
 
 
-@pytest.mark.parametrize("provider", ["glfw", "rendercanvas", "wgpu", "numpy"])
+@pytest.mark.parametrize(
+    "provider",
+    [
+        "glfw",
+        "rendercanvas",
+        "wgpu",
+        "numpy",
+        "moderngl",
+        "open3d",
+        "panda3d",
+        "pyassimp",
+        "pygltflib",
+        "pygfx",
+        "pyrender",
+        "sdl3",
+        "pysdl3",
+        "box2d",
+        "Box2D",
+        "box2d_python",
+        "trimesh",
+        "ursina",
+        "vtk",
+    ],
+)
 def test_provider_and_storage_imports_are_confined_to_exact_adapter(
     tmp_path: Path, provider: str
 ) -> None:
@@ -78,7 +101,24 @@ def test_provider_and_storage_imports_are_confined_to_exact_adapter(
     violations = check_source_tree(source_root)
 
     assert len(violations) == 1
-    assert f"banned dependency '{provider}'" in violations[0].message
+    assert f"unsupported external dependency '{provider}'" in violations[0].message
+
+
+def test_graphics_adapter_allows_only_its_three_exact_external_roots(
+    tmp_path: Path,
+) -> None:
+    source_root = tmp_path / "src"
+    adapter = source_root / "ludoweave" / "render" / "backends" / "wgpu.py"
+    adapter.parent.mkdir(parents=True)
+    adapter.write_text("import glfw\nimport rendercanvas\nimport wgpu\n", encoding="utf-8")
+
+    assert check_source_tree(source_root) == []
+
+    adapter.write_text("import moderngl\n", encoding="utf-8")
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "unsupported external dependency 'moderngl'" in violations[0].message
 
 
 def test_package_and_render_contract_imports_do_not_eagerly_load_graphics_providers() -> None:
@@ -192,10 +232,13 @@ def test_agent_service_rejects_arbitrary_python_evaluation(tmp_path: Path, call:
     assert "banned builtin" in violations[0].message
 
 
+@pytest.mark.parametrize("adapter", ["inspector.py", "mcp.py"])
 @pytest.mark.parametrize("module", ["socket", "http.server", "urllib.request", "fastapi"])
-def test_local_mcp_adapter_rejects_network_modules(tmp_path: Path, module: str) -> None:
+def test_local_stdio_adapters_reject_network_modules(
+    tmp_path: Path, adapter: str, module: str
+) -> None:
     source_root = tmp_path / "src"
-    bad_module = source_root / "ludoweave" / "tools" / "mcp.py"
+    bad_module = source_root / "ludoweave" / "tools" / adapter
     bad_module.parent.mkdir(parents=True)
     bad_module.write_text(f"import {module}\n", encoding="utf-8")
 
@@ -203,6 +246,19 @@ def test_local_mcp_adapter_rejects_network_modules(tmp_path: Path, module: str) 
 
     assert len(violations) == 1
     assert "network module" in violations[0].message
+
+
+@pytest.mark.parametrize("call", ["eval('1')", "exec('x=1')", "compile('1','','eval')"])
+def test_local_inspector_rejects_arbitrary_python_evaluation(tmp_path: Path, call: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "tools" / "inspector.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(f"{call}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "banned builtin" in violations[0].message
 
 
 def test_application_may_compose_ecs_but_still_rejects_concrete_backends(
@@ -221,6 +277,111 @@ def test_application_may_compose_ecs_but_still_rejects_concrete_backends(
     violations = check_source_tree(source_root)
     assert len(violations) == 1
     assert "ludoweave.render.backends.null" in violations[0].message
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "from ludoweave.ecs import World\n",
+        "from ludoweave.world import WorldSession\n",
+        "from ludoweave.render.backends.wgpu import WgpuRenderDevice\n",
+        "from ludoweave.tools.cli import main\n",
+    ],
+)
+def test_presentation_authoring_rejects_authority_backends_and_tools(
+    tmp_path: Path, source: str
+) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "presentation" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "ludoweave.presentation.bad" in violations[0].message
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "import ctypes\n",
+        "import ftplib\n",
+        "import importlib.metadata\n",
+        "import os\n",
+        "from pathlib import Path\n",
+        "import pickle\n",
+        "import pkg_resources\n",
+        "import pkgutil\n",
+        "import runpy\n",
+        "import subprocess\n",
+        "import socket\n",
+        "import third_party_plugin\n",
+        "from ludoweave.app import Engine\n",
+        "from ludoweave.core.clock import MonotonicClock\n",
+        "from ludoweave.tools.cli import main\n",
+    ],
+)
+def test_plugin_contract_rejects_discovery_execution_and_upward_imports(
+    tmp_path: Path, source: str
+) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "plugins" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert any(
+        marker in violations[0].message
+        for marker in ("ludoweave", "forbidden module", "arbitrary external")
+    )
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "PLUGIN_REGISTRY = {}\n",
+        "_handlers: dict[str, object] = dict()\n",
+        "class Registry: pass\nPLUGIN_REGISTRY = Registry()\n",
+        "from collections import UserDict\nPLUGIN_REGISTRY = UserDict()\n",
+    ],
+)
+def test_plugin_contract_rejects_module_level_mutable_state(tmp_path: Path, source: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "plugins" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "module-level mutable state" in violations[0].message
+
+
+@pytest.mark.parametrize(
+    "call",
+    [
+        "eval('1')",
+        "exec('x=1')",
+        "compile('1','','eval')",
+        "open('manifest.json', 'rb')",
+        "input('manifest: ')",
+        "loader = __import__\nloader('os')",
+        "runner = eval\nrunner('1')",
+    ],
+)
+def test_plugin_contract_rejects_arbitrary_python_evaluation(tmp_path: Path, call: str) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "plugins" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(f"{call}\n", encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert violations
+    assert any("banned builtin" in violation.message for violation in violations)
 
 
 def test_checker_rejects_near_prefix_module_names(tmp_path: Path) -> None:

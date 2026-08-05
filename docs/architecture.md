@@ -33,12 +33,52 @@ and backend-neutral bytes. No native module, compiler, NumPy storage, or new
 runtime dependency is introduced. See
 [RFC-0001](rfcs/0001-defer-first-native-kernel.md) and ADR-0022.
 
+M8 adds standardized gamepad input without changing the authority boundary.
+Engine-owned connection, button, and axis values map into the existing
+tick-indexed action snapshots. The optional wgpu adapter polls its already
+pinned GLFW provider; the Null device remains empty and headless. ADR-0023
+defers an SDL3 adapter until its Python binding, binary delivery, ownership,
+and cross-platform conformance meet explicit gates.
+
+M9 evaluates the current Box2D v3 Python candidate and defers admission. The
+evaluation script is repository tooling, not an engine dependency or adapter.
+The base lock and package remain pure Python. ADR-0024 records failed and
+incomplete wheel, stability, ownership, threading, determinism, conformance,
+and maintenance gates.
+
+M10 adds an owned local inspector process over the existing MCP tools. It keeps
+no canonical state and emits only detached semantic observations, receipts,
+and diffs after verifying exact authority-hash continuity. See the
+[live semantic inspector](inspector.md) and ADR-0025.
+
+M11 adds bounded headless-first rich 2D authoring without another world store.
+Tick animation, bitmap text, immutable tilemaps, and fixed-point particles live
+in `ludoweave.presentation` and translate only into existing backend-neutral
+render records. Audio gains use an immutable mix graph validated by the Null
+adapter; no real audio provider is admitted. See the
+[presentation guide](presentation.md) and ADR-0026.
+
+M12 adds a preview data-only plugin manifest and compatibility layer. It
+canonicalizes inert declarations and checks explicit environment, policy, and
+dependency facts without discovering, importing, installing, or executing
+plugin code. CLI filesystem access stays in tools. See the
+[plugin guide](plugins.md) and RFC-0002.
+
+M13 evaluates existing snapshot/replay readiness from a dependency-free
+example. It proves bounded local correction branches and exact immutable
+lineage, then records that tick input remains an external replay dependency.
+No runtime package, persistent protocol change, listener, or remote authority
+is added. See the [rollback-readiness guide](rollback-readiness.md) and
+ADR-0027.
+
 ## Dependency direction
 
 The active packages follow these rules:
 
 ```text
 composition roots  ludoweave.tools, examples
+                          |
+inspector parent   tools.inspector --stdio--> tools.mcp child
 
 agent service      ludoweave.agent ----> world/runtime   ludoweave.world
                          |
@@ -54,6 +94,8 @@ concrete adapters  ludoweave.render.backends.null[_device]
                    ludoweave.render.backends.wgpu (optional exact module)
 
 focused contracts  ludoweave.platform, assets, collision, audio
+presentation       ludoweave.presentation ---> render contracts/extraction
+plugin contracts   ludoweave.plugins ---> core version/errors + canonical JSON
 
 sample composition ludoweave.samples.clockwork_arena
                    ludoweave.samples.agent_world_builder
@@ -65,12 +107,23 @@ sample composition ludoweave.samples.clockwork_arena
 - `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
 - Platform, asset, collision, and audio contracts depend only on their own package and core errors. Render adapters may emit engine-owned platform events.
+- Presentation authoring may depend on core plus exact render contracts,
+  extraction records, and opaque handles. It may not import ECS/world,
+  application/tools, samples, concrete backends, or third-party providers.
+- Plugin contracts may depend on core version/errors and world canonical-JSON
+  helpers only. They may not import application/tools, ECS authority, samples,
+  backends/providers, discovery/package metadata, process, or network modules,
+  and may not evaluate Python.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
 - MCP exists only as a local stdio composition adapter in `ludoweave.tools.mcp`; it may not import networking modules or implement a listener.
+- The inspector exists only in `ludoweave.tools.inspector`; it may launch the built-in MCP composition, retain detached JSON plus one prior snapshot for a diff, and must not import networking modules or evaluate Python.
 - The package root may re-export the deliberately small application API but never a concrete backend or third-party native object.
-- Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW. NumPy storage and future native extension objects are forbidden from engine source and public APIs.
+- Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW.
+  SDL/PySDL3 remains forbidden until ADR-0023's adapter gate is accepted by a
+  superseding decision. NumPy storage and future native extension objects are
+  forbidden from engine source and public APIs.
 
 The M2 CLI keeps filesystem policy in `ludoweave.tools`. Its data-only
 headless-project manifest cannot name Python modules or callables, and every
@@ -80,10 +133,20 @@ path- and transport-agnostic.
 
 These rules are enforced by an AST-based test over the source tree. The test also analyzes a generated invalid fixture so a broken checker cannot silently pass.
 
-The M5 architecture checks additionally reject upward agent imports, Python
-evaluation primitives in the agent package, and networking modules in the MCP
-adapter. Agent tools expose provider-neutral JSON documents, not filesystem,
-ECS-storage, or GPU objects.
+The M5/M10 architecture checks additionally reject upward agent imports,
+Python-evaluation primitives in the agent package and inspector, and networking
+modules in both local stdio adapters. Agent tools expose provider-neutral JSON
+documents, not filesystem, ECS-storage, or GPU objects.
+
+The M12 checks reject discovery, import/execution, installation/process, and
+network facilities from `ludoweave.plugins`. Manifests contain no implementation
+locator, and no positive compatibility report mutates or composes runtime state.
+
+The M13 evidence composition lives under `examples/` and imports existing
+application, sample, and world contracts. Its validator is repository tooling.
+Neither is a runtime dependency, and architecture checks continue to prohibit
+network facilities from local stdio/inspector boundaries and provider objects
+from canonical state.
 
 ## Ownership and close order
 
@@ -226,16 +289,123 @@ be read by a native loop while releasing the GIL. These are not admitted native
 boundaries. A later proposal must first establish an internal contiguous scalar
 batch without exposing storage or native objects through public APIs.
 
+## M8 gamepad boundary
+
+Gamepad providers own polling and native state. Public events contain only a
+bounded logical player slot, a standardized engine enum, and an exact normalized
+value. Polling is ordered by slot, then button, then axis for every control the
+provider can represent without ambiguity; connection loss clears all state for
+that slot. Focus loss suppresses live controls until focus and a current state
+sample return. A provider must omit an indeterminate control rather than
+synthesize an active value.
+
+Action-map deadzones and scales are presentation/input policy. They become
+simulation-relevant only after mapping into an immutable `InputSnapshot` for an
+exact tick. Raw provider events, device names, GUIDs, mapping databases,
+timestamps, haptics, and hardware capabilities are non-canonical and are not
+serialized into world snapshots, commands, receipts, or replay headers.
+
+## M9 external-physics boundary
+
+An external solver cannot become a second canonical world. A future adapter
+may receive copied engine-owned descriptors only at explicit safe points and
+may return copied observations or command proposals. Provider bodies, shapes,
+contacts, callbacks, allocators, pointers, and snapshots cannot enter public
+APIs, ECS records, commands, receipts, authority snapshots, or replays.
+
+External physics is D0 by default. Same-process repeated traces do not prove
+cross-platform determinism, rollback, snapshot/restore, contact ordering, or
+upgrade compatibility. A stronger classification needs exact provider-version
+identity and cross-platform snapshot/replay/hash conformance. Explicit close,
+failure reconciliation, bounded work, and single-owner threading must be
+exercised before a runtime protocol is introduced.
+
+The M9 candidate probe lives under `scripts/`, imports no LudoWeave module, and
+loads the candidate only from an isolated caller environment after matching the
+resolved module file to the distribution's installed-file inventory. A shadow
+module fails before import and is never attributed to the candidate version.
+Engine source imports of Box2D names are architecture violations. See
+[ADR-0024](adr/0024-defer-box2d-v3-plugin-after-admission-review.md).
+
+## M10 inspector boundary
+
+The inspector parent owns exactly one child launched through the current
+interpreter, its three pipes, and its bounded shutdown. It cannot accept an
+executable, shell command, dynamic module, remote endpoint, process ID, or
+provider selection. The child owns the live `AgentCommandService` and canonical
+`WorldSession`; the parent owns only detached JSON documents and one ephemeral
+snapshot string used to request the next semantic diff.
+
+Read access is the default. Every requested bootstrap or tick requires an
+explicit write grant and crosses the existing transaction/tick safe point with
+a receipt and optimistic hash. The inspector verifies MCP lifecycle, response
+identity, typed tool discovery, transition commitment, completed ticks, and
+snapshot/world/query/telemetry/diff hash continuity before emitting each
+post-transition observation.
+
+No observation contains the snapshot itself, a path, environment value,
+process identifier, provider-native object, or mutable world alias. Service
+telemetry and child lifecycle timing remain non-authoritative. The finite
+caller-driven stream is not a visual editor, network transport, remote attach,
+or wall-clock watcher. See [ADR-0025](adr/0025-owned-local-semantic-inspector.md).
+
+## M13 rollback-readiness boundary
+
+The existing replay branch is an immutable offline child timeline, not a live
+rollback service. A composition root may replay a parent to an exact boundary,
+construct a child recorder, and inject a different future `TickExecutor`, but
+the recorded `world.tick` transactions do not own the action snapshots that
+executor consumes. Equivalent tick input must be supplied independently or
+checkpoint verification diverges.
+
+Canonical input history, full/delta correction envelopes, peer authority,
+sequence/acknowledgement/reorder semantics, transport security, abuse limits,
+loss/latency simulation, and bounded catch-up budgets remain absent. No socket,
+listener, remote attach, replication store, or background authority is
+authorized by a successful local proof. ADR-0027's complete gate must be
+superseded before those boundaries change.
+
+## M14 constrained-3D boundary
+
+Layered 2D is the accepted rendering and product boundary. The public engine
+owns an orthographic `Camera2D`, color-only texture and pipeline descriptors,
+a 2D texture limit, and sprite/tile/debug extraction records. Array texture
+layers, draw ordering, parallax, and presentation layers do not establish a
+third spatial axis. The built-in sprite shader uses fixed presentation depth,
+and no command operation gives an external actor 3D world semantics.
+
+WebGPU depth/stencil and 3D-coordinate capability remains behind the optional
+adapter boundary. Provider capability cannot enter core/application APIs or
+become canonical state without an engine-owned contract that Null/headless
+execution can validate. The M14 composition-root evidence inspects the
+installed public descriptors and operation registry; it neither imports a
+provider nor adds an authority format.
+
+Architecture tests close source imports to the standard library and
+engine-owned modules, except for the exact existing wgpu/rendercanvas/GLFW
+imports inside the one adapter. They also lock the exact public render exports,
+descriptor fields, positive orthographic camera/layer ordering, fixed-depth
+shader, and absence of a 3D runtime module. A superseding proposal must change
+these guards intentionally only after satisfying the product,
+spatial/asset/render, agent/replay, headless-conformance, cross-platform,
+resource-budget, lifecycle, and maintenance gates together.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
-the M6 community-alpha distribution contract, and the M7 native-code decision
-now exist. M6 does not add a
-plugin loader or dynamic data-selected code: adapter discovery remains explicit
-trusted composition. General scene importers, production audio, rigid-body
-physics, network transports, editor tooling, rich text, automatic device
-recovery, and 3D remain deferred to future assigned, exercised slices. Native
-acceleration is specifically deferred under RFC-0001's measurable revisit
-gate rather than generally authorized by the recorded target misses.
+the M6 community-alpha distribution contract, the M7 native-code decision, and
+the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, the M10 owned
+local semantic inspector, the M11 rich 2D authoring records, the M12 inert
+plugin manifest contract, and the M13 offline rollback-readiness decision now
+exist. M14 records the retained layered-2D boundary and defers constrained 3D
+without changing the runtime package. M6
+does not add a plugin loader or dynamic
+data-selected code: adapter discovery remains explicit trusted composition.
+General scene importers, production audio, rigid-body physics, network
+transports, visual editor tooling, international text shaping, automatic
+device recovery, and constrained/general 3D remain deferred to future
+assigned, exercised slices. Native acceleration is
+specifically deferred under RFC-0001's measurable revisit gate rather than
+generally authorized by the recorded target misses.

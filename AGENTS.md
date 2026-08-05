@@ -37,9 +37,25 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M7 are complete and hosted-CI validated as stacked pull requests.
-Stop at this boundary. Do not create a release tag, GitHub release, PyPI
-publication, or begin another milestone without a separate maintainer decision.
-Real audio playback, network agent transports, editor work, 3D, and native code
-remain out of scope. RFC-0001 records the evidence-based native-code deferral;
-local performance misses are not automatic authorization for acceleration.
+M0 through M14 are complete, independently accepted, and hosted-CI validated.
+M1-M7 are integrated into `main`; M8 through M14 are published as stacked PRs
+#9 through #15. M13 is only a bounded offline rollback/network-snapshot
+readiness evaluation. M9 defers the Box2D v3 plugin. M10 adds only the headless
+owned-child semantic inspector. M11 adds bounded headless 2D audio-mix,
+bitmap-text, tick-animation, tilemap, and particle authoring through existing
+backend-neutral extraction. M12 adds only strict data-only preview plugin
+manifests, deterministic compatibility checks, and an explicitly invoked local
+validation CLI. M13 proves immutable local correction branches and records the
+external tick-input limitation; it may not add a transport or live
+rollback service. M14 is only the installed-surface constrained-3D decision.
+It retains layered 2D and adds evidence, tests, and documentation, but no
+runtime package, public 3D contract, persistent format, provider, or dependency.
+Do not add discovery, imports, hook execution,
+installation/resolution, a global plugin registry, GUI/editor, sockets,
+networking or remote attach, arbitrary child commands, another world store, a
+Box2D adapter,
+release tag, GitHub release, or PyPI publication. Real audio playback, font
+parsing/shaping, network agent transports, editor work, constrained/general 3D,
+SDL3, WASM, and native code remain out of scope.
+RFC-0001 records the evidence-based native-code deferral; local performance
+misses are not automatic authorization for acceleration.

@@ -2,8 +2,67 @@
 
 ## Current milestone
 
-M0 through M7 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI.
+M0 through M7 are complete, independently accepted, integrated into `main`,
+and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
+independently accepted, published as PR #9 from
+`codex/m8-gamepad-sdl3-evaluation`, and validated across all 14 hosted jobs.
+M9 Box2D v3 plugin admission evaluation is locally complete on
+`codex/m9-box2d-plugin-evaluation`, stacked from the exact M8 head. ADR-0024
+defers the plugin; repeat independent review accepted the ownership correction
+with no remaining blockers. It is published as ready stacked PR #10 and GitHub
+Actions run `31015885190` passed all 14 hosted jobs.
+M10's headless semantic inspector is complete, independently accepted, and
+published as ready stacked PR #11 from `codex/m10-live-semantic-inspector`,
+based on exact M9 final head
+`22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. ADR-0025 accepts one isolated,
+owned local MCP child with detached observations and receipted writes. GitHub
+Actions run `31020096463` passed all eight essential hosted jobs.
+M11 is complete and independently accepted on
+`codex/m11-rich-2d-modules`, based on exact M10
+evidence head `bae799900671481cfd6f03fe502dea95b2c7f96c`. ADR-0026 bounds it
+to dependency-free headless audio mixing, bitmap text, tick animation,
+immutable tilemaps, and fixed-point particles through existing render records.
+It is published as ready stacked PR #12; GitHub Actions run `31024155710`
+passed all eight essential hosted jobs on signed implementation commit
+`aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
+M12 is assigned on `codex/m12-plugin-manifest-compatibility`, based on exact
+M11 evidence head `840a8b06d461fa1d5e649911b22f5995154728a7`. Its bounded contract is a
+data-only preview plugin-manifest schema and deterministic compatibility
+evaluator. RFC-0002 is accepted and implementation plus focused review
+hardening are complete. Independent hostile review approved the corrected tree
+with no remaining finding, and the complete local/artifact/provider gate
+passed. It is published as ready stacked PR #13; GitHub Actions run
+`31028863469` passed all eight essential hosted jobs on signed implementation
+commit `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.
+M13 is complete and independently accepted on
+`codex/m13-rollback-network-readiness`, based on exact
+M12 hosted-evidence head
+`7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Its bounded contract is an
+offline Clockwork Arena correction-branch proof plus an evidence-based network
+rollback admission decision. ADR-0027 defers networking/live rollback because
+canonical tick input is not replay-owned and protocol, security, simulation,
+resource, lifecycle, and maintenance gates remain incomplete. No runtime
+package, persistent format, listener, transport, or dependency is added. The
+final complete local/artifact/provider gate passes and independent review
+reports no remaining finding. It is published as ready stacked PR #14; GitHub
+Actions run `31031590206` passed all eight essential hosted jobs on signed
+implementation commit `ba62b650191cfb982100692e7ec694da318956ae`.
+M14 is complete and independently accepted on
+`codex/m14-constrained-3d-decision`, based on exact M13
+hosted-evidence head
+`48f8f296113e3f2794bae7f4c67997d433e4dd36`. Its bounded contract is an
+installed-surface audit and product-scope decision only. ADR-0028 retains
+layered 2D and defers constrained 3D behind a complete product, engine-contract,
+agent-semantic, headless-conformance, cross-platform, resource-budget,
+lifecycle, and maintenance gate. Exact source, isolated-wheel, and release
+bundle evidence confirms the current orthographic camera and canonical
+layer/z ordering while every 3D admission gate remains false. The final local
+gate reports 809 passes and one existing Windows symlink-capability skip;
+independent hostile review reports no remaining finding. M14 changes no
+runtime package, public Python API, persistent format, dependency, version, or
+CI topology. It is published as ready stacked PR #15; GitHub Actions run
+`31033924254` passed all eight essential jobs on signed implementation commit
+`47443046834eb423be977973775f80494161533d`.
 
 ## Repository identity
 
@@ -21,6 +80,12 @@ M7 performance/native decision is complete on
 `codex/m7-performance-decision`, published as stacked PR #7, and validated by
 hosted run `31005165849` across all 14 jobs, including the new base and
 real-wgpu profiling-contract smokes.
+The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
+`0237b2bfb11c6032d030dada639c7dbe439e5089`. M8 is based directly on that
+mainline commit. M9 is based on the hosted-validated M8 head
+`187ad4503a40325a1e334da3cb4078969e2e043b`; M10 is based on the final hosted
+M9 head and is proposed against the M9 branch. M11 is based on the final M10
+evidence head and is proposed against the M10 branch as PR #12.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -74,8 +139,13 @@ real-wgpu profiling-contract smokes.
 - Agent World Builder acceptance composition with six typed ECS entities, real offscreen wgpu capture, exact query/adjust/diff/test/telemetry/replay coverage, and installed-wheel execution.
 - Deterministic community-alpha release staging with a pure wheel, sdist, fixed-timestamp sample bundle, SHA-256 inventory, versioned manifest, SPDX 2.3 SBOM, and notice set.
 - Isolated release smoke that validates exact checksum coverage, SBOM/wheel identity, safe ZIP members, installed CLI/doctor, and bundled headless M0-M5 scenarios before success.
-- Explicit `__all__`/`__stability__` policy and architecture coverage for every supported Python export; all `0.1.0a1` symbols remain experimental.
-- Pinned tag-only provenance/prerelease workflow plus complete release-candidate smoke in all three regular cross-platform wheel jobs.
+- Explicit `__all__`/`__stability__` policy and architecture coverage for every
+  supported Python export. Earlier `0.1.0a1` symbols remain experimental;
+  `ludoweave.plugins` is the first preview surface with a documented
+  deprecation promise.
+- Pinned tag-only provenance/prerelease workflow plus one complete baseline
+  release-candidate smoke, compatibility coverage for every supported Python
+  version/OS, and real graphics smoke on all three operating systems.
 - Community-alpha user, architecture, adapter, release, first-contribution, API, triage, release-note, roadmap, and retrospective material with declarative labels and issue-ready starter cards.
 - Versioned M7 base/graphics `cProfile` tooling with exact workload invariants,
   sanitized module/function records, strict validation, and tamper regressions.
@@ -85,18 +155,187 @@ real-wgpu profiling-contract smokes.
 - Accepted RFC-0001 and ADR-0022: no native kernel is admitted; measurable
   cross-platform, contiguous-buffer, GIL, owner, build, fuzz, fallback, and
   improvement gates govern any future proposal.
+- Frozen standardized gamepad connection/button/axis records, bounded logical
+  slots, normalized stick/trigger domains, and an engine-owned provider
+  protocol implemented by Null and the optional render device.
+- Gamepad action bindings with explicit analog scale/deadzone semantics,
+  supported-control focus recovery, hotplug cleanup, stable GLFW polling, and
+  installed-wheel/Clockwork Arena coverage without provider-object leakage.
+- Accepted ADR-0023: the existing pinned GLFW adapter supplies M8 input while
+  SDL3 is deferred until its Python binding, binary delivery, ownership,
+  cross-platform conformance, and maintenance gates are satisfied.
+- A bounded isolated Box2D-candidate probe with versioned sanitized JSON,
+  exact single-thread fixed-step traces, repeated lifecycle churn, double
+  destruction, strict workload bounds, and no LudoWeave/runtime import.
+- Accepted ADR-0024: `box2d-python==0.1.2` is deferred after failing the complete
+  CPython/platform wheel and stable-API gates and lacking sufficient
+  ownership, GIL/thread, replay, adapter-conformance, and maintenance evidence.
+- Architecture fixtures reject case-insensitive Box2D/native-binding imports
+  from engine source; the base project metadata, uv lock, wheel, and runtime
+  remain unchanged and pure Python.
+- `ludoweave inspect` owns one isolated `python -I -m ludoweave mcp` child,
+  defaults to read-only, emits bounded `ludoweave.inspector.event/1` semantic
+  observations, and verifies MCP identity, typed tools, receipts, completed
+  ticks, and exact snapshot/diff/world/query/telemetry hash continuity.
+- Inspector sample bootstrap and ticks require explicit write capability and
+  reuse existing versioned transaction/tick tools. Child commands, module
+  shadowing, option injection, network listeners, remote attach, parallel
+  authority, paths, environment values, process IDs, and provider objects are
+  excluded and covered by adversarial tests.
+- Pull-request CI is consolidated from 14 to eight essential jobs: one complete
+  Ubuntu 3.12 quality/test/distribution gate, four compatibility jobs spanning
+  CPython 3.13/3.14 and Windows/macOS, and three real cross-platform graphics
+  jobs. Superseded runs remain cancelled.
+- `ludoweave.presentation` frozen animation, bitmap-glyph, tilemap, and
+  fixed-point particle records with exact-tick sampling, integer layout/culling,
+  stable seeded stepping/digests, and existing render extraction.
+- A bounded acyclic audio mix graph rooted at `master`, enforced by the
+  lifecycle-validating Null backend with category and effective-gain checks.
+- A dependency-free rich 2D showcase registered in source, isolated-wheel, and
+  deterministic release sample-bundle validation paths.
+- Accepted RFC-0002 plus strict canonical plugin manifests, frozen explicit
+  compatibility contexts/reports, bounded dependency checks, a path-free local
+  CLI check, and source/wheel/release example coverage. The package owns no
+  discovery, import, execution, filesystem, networking, or mutable registry.
+- Bounded M13 parent/correction replay evidence with exact parent lineage,
+  repeatable divergent resimulation, explicit external input rehydration, a
+  strict sanitized validator, and source/wheel/release-bundle composition.
+- Accepted ADR-0027 deferring network rollback and remote authority until the
+  complete canonical-input, protocol, security, cross-platform simulation,
+  resource-budget, lifecycle, artifact, and maintenance gate is met.
 
 ## Next slice
 
-- Stop at the accepted M7 boundary. Do not create a release tag, publish a
-  package/release, or begin M8 without a separate maintainer decision.
-- The next design-sequenced question is gamepad/SDL3 evaluation as its own
-  evidence-bounded milestone. RFC-0001 continues to prohibit Rust/PyO3 until
-  its complete revisit gate is satisfied.
+- M13 publication and hosted evidence are complete. Before implementation,
+  turn the next authoritative post-alpha item into a bounded task contract
+  based on the current design and accepted decisions. Do not infer 3D runtime,
+  sockets, remote authority, a live rollback API, editor/GUI, WASM, provider
+  adapters, native code, or a persistent format change from roadmap proximity.
 
 ## Validation state
 
-- Local validation completed on Windows with uv-managed CPython 3.12.13.
+- The final reviewed M13 local gate on Windows/uv-managed CPython 3.12.13
+  reports 793 passing tests and one existing symlink-capability skip, 174
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 91-entry wheel with zero native files and no mandatory dependency,
+  isolated-wheel smoke, and fresh complete ten-artifact release smoke.
+- Nine real-wgpu integration tests, the versioned 120/60 correction proof,
+  strict evidence validation, Clockwork Arena, Agent World Builder, alpha
+  acceptance, rich-2D showcase, and plugin compatibility passed. Every
+  inherited README benchmark/profile artifact validated; the existing M1 and
+  M3 target misses remain recorded and do not authorize acceleration.
+- Independent hostile review drove pre/post-open file bounds, canonical JSON,
+  exact types/counts/checkpoints, direct-call work limits, closed import/member
+  allowlists, and alias/tamper regressions. Final review ran 54 focused tests,
+  the maximum 600/300 proof, strict docs/static/diff/secret checks, and reported
+  no blocking or non-blocking finding.
+- GitHub Actions run `31031590206` passed the unchanged essential eight-job
+  topology on M13 implementation commit
+  `ba62b650191cfb982100692e7ec694da318956ae`: the complete Ubuntu 3.12
+  quality/test/distribution job, Ubuntu 3.13/3.14 plus Windows/macOS 3.14
+  compatibility jobs, and real graphics jobs on Ubuntu, Windows, and macOS.
+- The final reviewed M12 local gate on Windows/uv-managed CPython 3.12.13
+  reports 741 passing tests and one existing symlink-capability skip, 170
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 91-entry wheel with four plugin-contract entries and zero native files,
+  isolated-wheel smoke, and fresh complete ten-artifact release smoke.
+- Nine real-wgpu integration tests, Null/wgpu Clockwork Arena, Agent World
+  Builder, alpha acceptance, rich-2D showcase, and the canonical example plugin
+  check passed. Every inherited README benchmark/profile artifact validated;
+  the existing M1 simulation and M3 renderer target misses remain recorded and
+  do not authorize native work.
+- Independent hostile review drove boundedness, exact-type, canonical-report,
+  sanitized-diagnostic, immutable-decision, import/global-state, I/O/eval, and
+  CLI regressions. Final re-review ran 138 focused tests with clean static,
+  docs, diff, and isolated CLI checks and reported no remaining finding.
+- GitHub Actions run `31028863469` passed the unchanged essential eight-job
+  topology on M12 implementation commit
+  `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`: the complete Ubuntu 3.12
+  quality/test/distribution job, Ubuntu 3.13/3.14 plus Windows/macOS 3.14
+  compatibility jobs, and real graphics jobs on Ubuntu, Windows, and macOS.
+- The final reviewed M11 local gate on Windows/uv-managed CPython 3.12.13
+  reports 663 passing tests and one existing symlink-capability skip, 164
+  formatted Python files, zero Ruff/Pyright findings, strict documentation,
+  a pure 87-entry wheel with seven presentation entries and zero native files,
+  isolated-wheel smoke, and complete ten-artifact release smoke.
+- Nine real-wgpu integration tests, base/graphics one-repeat profiling-contract
+  smokes, Clockwork Arena, Agent World Builder, alpha acceptance, and the
+  repeatable rich-2D showcase passed. M11 defines no timing target and makes no
+  performance claim.
+- Independent review found exclusive tile-bound, pre-bound traversal, runtime
+  parent-fader, bounded-sequence, particle-work/state, and generic-style issues
+  during development. The corrected edge/work/iterator/gain regressions passed;
+  final re-review ran 78 focused tests plus 58 architecture/API tests with clean
+  Ruff/Pyright/provider/diff/credential checks and reported no remaining
+  finding.
+- GitHub Actions run `31024155710` passed the unchanged essential eight-job
+  topology on M11 implementation commit
+  `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`: the complete Ubuntu 3.12
+  quality/test/distribution job, Ubuntu 3.13/3.14 plus Windows/macOS 3.14
+  compatibility jobs, and real graphics jobs on Ubuntu, Windows, and macOS.
+- The final reviewed M10 local gate on Windows/uv-managed CPython 3.12.13
+  reports 642 passing tests and one existing symlink-capability skip, 154
+  formatted Python files, zero Ruff/Pyright findings, strict documentation
+  success, a pure 80-entry wheel with no native entries or mandatory runtime
+  dependency, installed-wheel shadow-isolation smoke, and complete 10-artifact
+  release smoke.
+- Eight real wgpu/GLFW integration tests, base/graphics one-repeat profiling
+  contract smokes, Clockwork Arena, Agent World Builder, and alpha acceptance
+  passed. M10 defines no performance target and makes no timing claim.
+- Independent review first blocked publication on child import shadowing,
+  dash-prefixed project option injection, incomplete tick receipt validation,
+  and unstructured stream failures. `-I`, option termination/binding, exact
+  receipt/hash/tick validation, structured read errors, and adversarial source
+  and installed-wheel regressions resolved all findings. Repeat review ran 81
+  focused tests with clean Ruff/Pyright/diff checks and approved publication.
+- The consolidated eight-job CI workflow parses and its architecture contract
+  passes locally. Its exact baseline test command excludes the separately
+  gated wgpu integration file and passed 634 tests with one skip; real provider
+  execution remains confined to the three jobs that install platform runtime
+  prerequisites. GitHub Actions run `31020096463` passed that exact topology on
+  implementation commit `2e60b3f1c4884dba71df5f23b779bc49187d68c6`.
+- The corrected M9 local gate on Windows/uv-managed CPython 3.12.13 reports 606 passing
+  tests and one existing symlink-capability skip, 151 formatted Python files,
+  zero Ruff/Pyright findings, strict documentation success, a 79-entry pure
+  wheel with zero native entries, installed-wheel and complete 10-artifact
+  release smoke, eight real wgpu integration passes, and successful Clockwork
+  Arena, Agent World Builder, and alpha-acceptance executions.
+- Isolated `box2d-python==0.1.2` probes on Windows CPython 3.12.13 and 3.13.13
+  each created/stepped/destroyed 25 worlds, repeated their exact traces, and
+  produced trace digest
+  `c9e299e715c5f7a3654d7c5794d75347d765cc029b7991d4c8066dfaf7abdfc5`.
+  CPython 3.14 resolution failed because the release has only `cp312` and
+  `cp313` wheels. These are candidate-admission facts, not performance,
+  cross-platform determinism, or runtime-support claims.
+- Independent review initially blocked sign-off because the metadata version
+  was not linked to the imported module. The corrected probe validates the
+  resolved module against the distribution's installed-file inventory before
+  import and again afterward. Repeat review ran 54 focused tests, Ruff,
+  Pyright, diff checks, and a real CPython 3.12 probe, found no remaining
+  blocker, and recommended final sign-off.
+- GitHub Actions run `31015885190` passed all 14 M9 jobs for implementation
+  commit `8b429aaf07684651f6d538419701c049ee55fc4f`: strict quality/docs; Ubuntu
+  CPython 3.12/3.13/3.14; Windows and macOS CPython 3.12/3.14; complete
+  installed release-candidate smoke on Ubuntu/Windows/macOS; and real graphics
+  smoke on all three systems. PR #10 is open, ready, mergeable, and clean
+  against the exact validated M8 head.
+- A pre-review M8 gate completed on Windows with uv-managed CPython 3.12.13,
+  but an independent review then found production focus propagation, GLFW
+  error-disambiguation, and trigger-neutrality defects. Its 589-pass result is
+  retained as historical evidence, not accepted as the final M8 gate.
+- The corrected final M8 gate reports 594 passing tests and one existing
+  Windows symlink-capability skip, 149 formatted Python files, zero
+  Ruff/Pyright findings, strict documentation success, a 79-entry pure wheel
+  with zero native entries, installed-wheel and complete release-candidate
+  smoke, eight real wgpu/GLFW integration passes, and successful Clockwork
+  Arena, Agent World Builder, and alpha-acceptance executions. Repeat
+  independent review found no blocking findings and recommended PR
+  publication. M8 adds no dependency or benchmark; no timing result is
+  claimed.
+- GitHub Actions run `31012696753` passed all 14 M8 jobs: strict quality/docs;
+  Ubuntu CPython 3.12/3.13/3.14; Windows and macOS CPython 3.12/3.14;
+  installed-wheel smoke on Ubuntu, Windows, and macOS; and real graphics/GLFW
+  gamepad smoke on all three operating systems.
 - The complete M1 final local suite reports 303 passing tests, zero Ruff/Pyright findings, a strict documentation build, successful sdist/wheel build, and successful isolated installed-wheel smoke covering both M0 and M1 examples.
 - The final 30-sample Windows/CPython 3.12.13 GIL-build benchmark artifact validates all seven versioned workloads. The 3,600-tick headless p95 was 26.8523 ms and observed the local 5×-real-time target. The representative 10,000-entity simulation-tick p95 was 196.8800 ms and did not observe the 4 ms engineering target. These are local observations, not cross-platform claims.
 - GitHub Actions run `30936533105` passed quality/documentation, Ubuntu Python 3.12/3.13/3.14, Windows Python 3.12/3.14, macOS Python 3.12/3.14, and installed-wheel smoke on all three operating systems after correcting the invalid planned `actions/checkout` v6.0.2 SHA.
@@ -149,7 +388,7 @@ real-wgpu profiling-contract smokes.
 ## Deferred roadmap
 
 Remote/network agent transport, real audio playback, Box2D/rigid-body physics,
-networking, editor tooling, automatic device recovery, rich text, 3D, and
+networking, editor tooling, automatic device recovery, international text shaping, 3D, and
 native acceleration remain unimplemented. RFC-0001 records that the improved
 M1/M3 workloads still miss their targets and defines the complete quantified
 admission gate before a native proposal may return.

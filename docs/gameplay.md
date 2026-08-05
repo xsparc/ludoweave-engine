@@ -29,7 +29,9 @@ uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 3600
 ```
 
 Use WASD or arrows to move, the pointer to aim, the primary mouse button to
-fire, and R to restart after game over. Closing the window ends the loop. The
+fire, and R to restart after game over. Gamepad slot 0 uses the left stick to
+move, right stick to aim, A to fire, and Start to restart. Closing the window
+ends the loop. The
 wgpu adapter translates provider events before returning them; no rendercanvas
 dictionary, GLFW key, or native window enters the application API.
 
@@ -47,11 +49,23 @@ reads `move.x` and `move.y`. Virtual and recorded sources copy their inputs.
 `MappedInputSource` is a single-owner accumulator that must be sampled at
 sequential ticks.
 
-`ludoweave.platform` owns key, mouse-button, pointer, focus, resize, and close
-records. Pointer positions use logical surface dimensions and normalize to
-[-1, 1]. Focus loss releases held controls. Platform processing, timestamps,
-and window size are not authoritative until an application deliberately maps
-an event to a recorded action snapshot.
+`ludoweave.platform` owns key, mouse-button, pointer, gamepad, focus, resize,
+and close records. Pointer positions use logical surface dimensions and
+normalize to `[-1, 1]`. Standardized gamepad sticks use `[-1, 1]`; triggers use
+`[0, 1]`. Axis bindings require a finite scale and may apply an explicit axial
+deadzone. Focus loss releases and suppresses held controls; disconnect clears
+one complete logical slot. Platform processing, timestamps, provider IDs,
+device names, and window size are not authoritative until an application
+deliberately maps input to a recorded action snapshot.
+
+The wgpu composition polls GLFW gamepad states in stable order while a window
+exists. GLFW supplies all standardized buttons and four stick axes; its trigger
+axes are omitted because unavailable and legitimate half-pressed states are
+indistinguishable. Window focus is sampled at the same private adapter boundary
+so focus loss reaches the mapper before queued input. Null/headless runs return
+no hardware events and can feed the same typed records directly in tests. SDL3
+is not an alpha dependency; the binding and binary-delivery revisit gate is recorded in
+[ADR-0023](adr/0023-gamepad-contract-and-sdl3-deferral.md).
 
 ## Asset identity and cache
 
@@ -87,6 +101,14 @@ no impulse, mass, rotation, rigid-body solver, or Box2D integration. Clockwork
 Arena uses the grid for projectile/enemy candidates and the axis policy for
 arena bounds.
 
+M9 evaluated `box2d-python==0.1.2` without adding it to the package or lock.
+Bounded isolated Windows CPython 3.12/3.13 headless traces repeated exactly,
+but the preview binding has no CPython 3.14 wheel, incomplete platform/source
+coverage, undocumented GIL/thread and cross-platform replay behavior, and no
+engine adapter conformance. ADR-0024 therefore defers the plugin. The local
+trace result does not upgrade the existing collision contract or establish a
+determinism tier.
+
 ## Audio ownership
 
 `AudioBackend` defines initialize, immutable clip load, play, stop,
@@ -95,6 +117,10 @@ lifecycle and opaque handle ownership while producing no sound. The owner
 closes an injected backend; close is idempotent and invalid/foreign handles are
 typed failures. No Python real-time audio callback or provider dependency is
 introduced in M4.
+
+M11 adds a maximum-64-bus immutable acyclic mix graph rooted at `master`.
+The Null adapter validates clip categories and effective gain while still
+opening no audio device. See the [presentation guide](presentation.md).
 
 ## Stress evidence and limits
 

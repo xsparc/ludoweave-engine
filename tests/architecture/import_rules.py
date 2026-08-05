@@ -5,11 +5,40 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-_BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rendercanvas", "rust", "wgpu"})
 _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_AGENT_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
+_BANNED_PLUGIN_CALLS = frozenset({"__import__", "compile", "eval", "exec", "input", "open"})
+_PLUGIN_METADATA_GLOBALS = frozenset({"__all__", "__stability__"})
+_PLUGIN_ALLOWED_GLOBAL_CALLS = {
+    "ludoweave.plugins.compatibility": {
+        "_DETAIL_KEY": "re.compile",
+        "_ISSUE_CODE": "re.compile",
+        "_PLUGIN_CHECK_LIMITS": "JsonLimits",
+    },
+    "ludoweave.plugins.manifest": {
+        "PLUGIN_MANIFEST_LIMITS": "JsonLimits",
+        "_PLUGIN_ID": "re.compile",
+        "_PYTHON_VERSION": "re.compile",
+        "_VERSION": "re.compile",
+    },
+}
+_PLUGIN_ALLOWED_STDLIB_ROOTS = frozenset(
+    {
+        "__future__",
+        "collections",
+        "dataclasses",
+        "enum",
+        "hashlib",
+        "itertools",
+        "math",
+        "re",
+        "sys",
+        "typing",
+    }
+)
 _BANNED_MCP_ROOTS = frozenset({"aiohttp", "fastapi", "http", "socket", "starlette", "urllib"})
+_LOCAL_STDIO_MODULES = frozenset({"ludoweave.tools.inspector", "ludoweave.tools.mcp"})
 _REFERENCE_ALLOWED_IMPORTS = {
     "ludoweave.ecs.commands": frozenset(
         {
@@ -71,19 +100,47 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
             tree, source_module=module, is_package=path.name == "__init__.py"
         ):
             root = imported.partition(".")[0]
+            normalized_root = root.casefold()
             adapter_import = (
-                root in _GRAPHICS_ADAPTER_ROOTS and module == "ludoweave.render.backends.wgpu"
+                normalized_root in _GRAPHICS_ADAPTER_ROOTS
+                and module == "ludoweave.render.backends.wgpu"
             )
-            if root in _BANNED_EXTERNAL_ROOTS and not adapter_import:
-                violations.append(
-                    ImportViolation(path, line, f"source imports banned dependency {root!r}")
-                )
-            if module == "ludoweave.tools.mcp" and root in _BANNED_MCP_ROOTS:
+            plugin_contract = _is_module_or_child(module, "ludoweave.plugins")
+            dedicated_network_import = module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS
+            external_import = (
+                normalized_root != "ludoweave" and normalized_root not in sys.stdlib_module_names
+            )
+            if (
+                external_import
+                and not adapter_import
+                and not plugin_contract
+                and not dedicated_network_import
+            ):
                 violations.append(
                     ImportViolation(
                         path,
                         line,
-                        f"local MCP adapter imports network module {root!r}",
+                        f"source imports unsupported external dependency {root!r}",
+                    )
+                )
+            if module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS:
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"local stdio adapter imports network module {root!r}",
+                    )
+                )
+            if (
+                _is_module_or_child(module, "ludoweave.plugins")
+                and root != "ludoweave"
+                and root not in _PLUGIN_ALLOWED_STDLIB_ROOTS
+            ):
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"plugin contract imports forbidden module {root!r}",
                     )
                 )
             if (
@@ -126,6 +183,34 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                             path,
                             line,
                             f"agent service module {module!r} calls banned builtin {called!r}",
+                        )
+                    )
+        if _is_module_or_child(module, "ludoweave.plugins"):
+            for referenced, line in _loaded_banned_names(tree, _BANNED_PLUGIN_CALLS):
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"plugin contract references banned builtin {referenced!r}",
+                    )
+                )
+            for name, line in _module_mutable_assignments(tree, module=module):
+                if name not in _PLUGIN_METADATA_GLOBALS:
+                    violations.append(
+                        ImportViolation(
+                            path,
+                            line,
+                            f"plugin contract defines module-level mutable state {name!r}",
+                        )
+                    )
+        if module == "ludoweave.tools.inspector":
+            for called, line in _resolved_calls(tree):
+                if called in _BANNED_AGENT_CALLS:
+                    violations.append(
+                        ImportViolation(
+                            path,
+                            line,
+                            f"local inspector calls banned builtin {called!r}",
                         )
                     )
     return violations
@@ -233,6 +318,24 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
         return _is_any_module_or_child(imported, ("ludoweave.collision", "ludoweave.core"))
     if _is_module_or_child(source, "ludoweave.platform"):
         return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.platform"))
+    if _is_module_or_child(source, "ludoweave.presentation"):
+        return _is_any_module_or_child(
+            imported,
+            (
+                "ludoweave.core",
+                "ludoweave.presentation",
+                "ludoweave.render.contracts",
+                "ludoweave.render.extraction",
+                "ludoweave.render.handles",
+            ),
+        )
+    if _is_module_or_child(source, "ludoweave.plugins"):
+        return (
+            _is_module_or_child(imported, "ludoweave.plugins")
+            or imported == "ludoweave.core.errors"
+            or imported == "ludoweave.core.version"
+            or imported == "ludoweave.world.canonical"
+        )
     if _is_module_or_child(source, "ludoweave.world"):
         return _is_any_module_or_child(
             imported, ("ludoweave.core", "ludoweave.ecs", "ludoweave.world")
@@ -316,3 +419,62 @@ def _call_name(node: ast.expr) -> str | None:
         base = _call_name(node.value)
         return None if base is None else f"{base}.{node.attr}"
     return None
+
+
+def _module_mutable_assignments(tree: ast.Module, *, module: str) -> list[tuple[str, int]]:
+    assignments: list[tuple[str, int]] = []
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            value = node.value
+            targets = node.targets
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            value = node.value
+            targets = [node.target]
+        else:
+            continue
+        for target in targets:
+            for name in _assignment_names(target):
+                if name not in _PLUGIN_METADATA_GLOBALS and not _is_allowed_plugin_global(
+                    module, name, value
+                ):
+                    assignments.append((name, node.lineno))
+    return assignments
+
+
+def _is_allowed_plugin_global(module: str, name: str, node: ast.expr) -> bool:
+    if _is_immutable_literal_expression(node):
+        return True
+    if not isinstance(node, ast.Call):
+        return False
+    called = _call_name(node.func)
+    return _PLUGIN_ALLOWED_GLOBAL_CALLS.get(module, {}).get(name) == called
+
+
+def _is_immutable_literal_expression(node: ast.expr) -> bool:
+    if isinstance(node, ast.Constant):
+        return True
+    if isinstance(node, ast.Tuple):
+        return all(_is_immutable_literal_expression(item) for item in node.elts)
+    if isinstance(node, ast.UnaryOp):
+        return _is_immutable_literal_expression(node.operand)
+    if isinstance(node, ast.BinOp):
+        return _is_immutable_literal_expression(node.left) and _is_immutable_literal_expression(
+            node.right
+        )
+    return False
+
+
+def _assignment_names(node: ast.expr) -> list[str]:
+    if isinstance(node, ast.Name):
+        return [node.id]
+    if isinstance(node, (ast.Tuple, ast.List)):
+        return [name for item in node.elts for name in _assignment_names(item)]
+    return []
+
+
+def _loaded_banned_names(tree: ast.AST, banned: frozenset[str]) -> list[tuple[str, int]]:
+    return sorted(
+        (node.id, node.lineno)
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Load) and node.id in banned
+    )

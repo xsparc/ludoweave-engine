@@ -11,6 +11,9 @@ nav:
   - Community-alpha user guide: user-guide.md
   - Architecture: architecture.md
   - Adapter and extension guide: adapter-guide.md
+  - Plugin manifests and compatibility: plugins.md
+  - Rollback and network-snapshot readiness: rollback-readiness.md
+  - Constrained 3D scope decision: constrained-3d-decision.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -18,6 +21,7 @@ nav:
   - Performance and native-code decision:
       - RFC index: rfcs/index.md
       - RFC-0001 - Defer first native kernel: rfcs/0001-defer-first-native-kernel.md
+      - RFC-0002 - Data-only plugin manifests: rfcs/0002-data-only-plugin-manifest-compatibility.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
@@ -26,6 +30,8 @@ nav:
   - 2D rendering: rendering.md
   - M4 gameplay vertical slice: gameplay.md
   - Agent control interface: agent-control.md
+  - Live semantic inspector: inspector.md
+  - Rich 2D presentation authoring: presentation.md
   - API status and compatibility: api-status.md
   - Headless command workflow: cli-workflows.md
   - Benchmarks: benchmarks.md
@@ -53,6 +59,12 @@ nav:
       - ADR-0020 - Local stdio MCP: adr/0020-local-stdio-mcp-adapter.md
       - ADR-0021 - API stability metadata: adr/0021-explicit-public-api-stability-metadata.md
       - ADR-0022 - Defer native acceleration: adr/0022-defer-native-acceleration-after-profiling.md
+      - ADR-0023 - Gamepads and SDL3 deferral: adr/0023-gamepad-contract-and-sdl3-deferral.md
+      - ADR-0024 - Box2D plugin deferral: adr/0024-defer-box2d-v3-plugin-after-admission-review.md
+      - ADR-0025 - Local semantic inspector: adr/0025-owned-local-semantic-inspector.md
+      - ADR-0026 - Rich 2D authoring: adr/0026-bounded-headless-rich-2d-authoring.md
+      - ADR-0027 - Rollback readiness deferral: adr/0027-defer-network-rollback-after-readiness-evaluation.md
+      - ADR-0028 - Retain layered 2D: adr/0028-retain-layered-2d-and-defer-constrained-3d.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

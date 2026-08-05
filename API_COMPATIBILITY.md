@@ -22,10 +22,13 @@ name public. The sole concrete-adapter entry point is explicitly exported from
 `ludoweave.render.backends.wgpu`; provider-native objects are still forbidden
 from its engine-facing API.
 
-All exports in `0.1.0a1` are `experimental`. CI imports every exporting module,
-requires exact export/metadata agreement, validates the allowed vocabulary, and
-checks that every named export exists. Adding or removing a public export must
-update its module metadata, documentation, tests, and changelog.
+Exports introduced through M11 are `experimental`. The M12
+`ludoweave.plugins` exports are the first `preview` surface under RFC-0002: an
+incompatible removal requires a documented deprecation in at least one feature
+release. CI imports every exporting module, requires exact export/metadata
+agreement, validates the allowed vocabulary, and checks that every named export
+exists. Adding or removing a public export must update its module metadata,
+documentation, tests, and changelog.
 
 ## Package versions
 
@@ -46,6 +49,10 @@ are versioned independently from the Python package. Their documented readers
 determine compatibility. Package-version changes do not silently reinterpret
 canonical bytes. The alpha snapshot/replay policy remains deliberately strict
 where the protocol documents require an exact engine version.
+
+Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
+RFC-0002. A breaking wire change requires another protocol identifier and RFC;
+the v1 fields and fingerprint semantics are not reinterpreted in place.
 
 Component UUIDs are persistent identities and released versions never move
 backward. Compatible schema evolution keeps explicit adjacent migrations. A

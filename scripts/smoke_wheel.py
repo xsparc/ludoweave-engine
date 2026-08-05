@@ -12,6 +12,8 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import cast
 
+from constrained_3d_evidence import validate_constrained_3d_evidence
+
 
 def _run(
     command: Sequence[str],
@@ -298,6 +300,36 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         _run([str(python), "-I", "-c", schedule_smoke], cwd=temp_root)
 
+        gamepad_smoke = textwrap.dedent(
+            """
+            from ludoweave.app import ActionBinding, ActionMap, MappedInputSource
+            from ludoweave.platform import (
+                GamepadAxis,
+                GamepadAxisEvent,
+                GamepadButton,
+                GamepadButtonEvent,
+                GamepadConnectionEvent,
+            )
+            from ludoweave.render import NullRenderDevice
+
+            source = MappedInputSource(ActionMap((
+                ActionBinding("move.x", "gamepad:0:axis:left_x", 1.0, 0.2),
+                ActionBinding("fire", "gamepad:0:button:a"),
+            )))
+            source.feed(GamepadConnectionEvent(0, True))
+            source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, 0.6))
+            source.feed(GamepadButtonEvent(0, GamepadButton.A, True))
+            snapshot = source.snapshot_for_tick(0)
+            assert abs(snapshot.value("move.x") - 0.5) < 1e-12
+            assert snapshot.pressed("fire")
+            assert snapshot.just_pressed("fire")
+            device = NullRenderDevice()
+            assert device.poll_gamepads() == ()
+            device.close()
+            """
+        )
+        _run([str(python), "-I", "-c", gamepad_smoke], cwd=temp_root)
+
         example_result = _run(
             [
                 str(python),
@@ -335,6 +367,81 @@ def main(argv: Sequence[str] | None = None) -> int:
         }
         if any(fixed_step.get(key) != value for key, value in fixed_expected.items()):
             raise RuntimeError(f"fixed-step example summary was invalid: {fixed_step!r}")
+
+        rich_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "rich_2d_showcase.py"),
+                "--ticks",
+                "6",
+            ],
+            cwd=temp_root,
+        )
+        rich = cast(dict[str, object], json.loads(rich_result.stdout))
+        rich_expected = {
+            "schema": "ludoweave.example.rich_2d/1",
+            "ticks": 6,
+            "animation_frame": 0,
+            "audio_gain": 0.2,
+            "glyphs": 9,
+            "particles": 10,
+            "tile_instances": 8,
+            "sprite_instances": 20,
+            "draw_calls": 2,
+            "renderer": "null-device",
+        }
+        if any(rich.get(key) != value for key, value in rich_expected.items()):
+            raise RuntimeError(f"rich 2D example summary was invalid: {rich!r}")
+
+        rollback_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "rollback_readiness.py"),
+                "--ticks",
+                "24",
+                "--branch-tick",
+                "12",
+            ],
+            cwd=temp_root,
+        )
+        rollback = cast(dict[str, object], json.loads(rollback_result.stdout))
+        rollback_proof = cast(dict[str, object], rollback.get("proof", {}))
+        if (
+            rollback.get("schema") != "ludoweave.evaluation.rollback-readiness/1"
+            or rollback.get("status") != "deferred"
+            or rollback.get("transport_implemented") is not False
+            or rollback_proof.get("lineage_verified") is not True
+            or rollback_proof.get("input_rehydration_required") is not True
+        ):
+            raise RuntimeError(f"rollback readiness summary was invalid: {rollback!r}")
+
+        constrained_3d_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "constrained_3d_decision.py"),
+            ],
+            cwd=temp_root,
+        )
+        constrained_3d = cast(dict[str, object], json.loads(constrained_3d_result.stdout))
+        validate_constrained_3d_evidence(constrained_3d, version=version)
+
+        plugin_manifest = temp_root / "example.plugin.json"
+        shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)
+        plugin_result = _run(
+            [str(ludoweave), "plugin", "check", str(plugin_manifest)],
+            cwd=temp_root,
+        )
+        plugin_report = cast(dict[str, object], json.loads(plugin_result.stdout))
+        if (
+            plugin_report.get("protocol") != "ludoweave.plugin-check/1"
+            or plugin_report.get("compatible") is not True
+            or plugin_report.get("plugin_count") != 1
+            or str(plugin_manifest) in plugin_result.stdout
+        ):
+            raise RuntimeError(f"plugin manifest smoke was invalid: {plugin_report!r}")
 
         arena_smoke = textwrap.dedent(
             """
@@ -552,6 +659,57 @@ def main(argv: Sequence[str] | None = None) -> int:
         mcp_responses = [json.loads(line) for line in mcp_result.stdout.splitlines()]
         if len(mcp_responses) != 2 or len(mcp_responses[1]["result"]["tools"]) != 12:
             raise RuntimeError(f"installed MCP stdio lifecycle was invalid: {mcp_responses!r}")
+
+        shadow_package = temp_root / "ludoweave"
+        shadow_package.mkdir()
+        (shadow_package / "__init__.py").write_text("", encoding="utf-8")
+        (shadow_package / "__main__.py").write_text(
+            "from pathlib import Path\n"
+            "Path('shadow-ludoweave-executed').write_text('unsafe', encoding='utf-8')\n"
+            "raise SystemExit('shadow ludoweave executed')\n",
+            encoding="utf-8",
+        )
+        inspector_result = _run(
+            [
+                str(ludoweave),
+                "inspect",
+                "--sample",
+                "agent-world-builder",
+                "--write",
+                "--bootstrap",
+                "--ticks",
+                "1",
+            ],
+            cwd=temp_root,
+        )
+        inspector_events = [
+            cast(dict[str, object], json.loads(line))
+            for line in inspector_result.stdout.splitlines()
+        ]
+        if len(inspector_events) != 3:
+            raise RuntimeError(
+                f"installed inspector emitted an invalid event count: {inspector_events!r}"
+            )
+        if [event.get("cause") for event in inspector_events] != [
+            "initial",
+            "bootstrap",
+            "tick",
+        ]:
+            raise RuntimeError(f"installed inspector emitted invalid causes: {inspector_events!r}")
+        for sequence, event in enumerate(inspector_events):
+            if (
+                event.get("protocol") != "ludoweave.inspector.event/1"
+                or event.get("sequence") != sequence
+            ):
+                raise RuntimeError(f"installed inspector emitted an invalid envelope: {event!r}")
+        final_world = cast(dict[str, object], inspector_events[-1].get("world"))
+        final_transition = cast(dict[str, object], inspector_events[-1].get("transition"))
+        if final_world.get("completed_ticks") != 1 or final_transition.get("status") != "committed":
+            raise RuntimeError(
+                f"installed inspector did not emit a receipted tick: {inspector_events[-1]!r}"
+            )
+        if (temp_root / "shadow-ludoweave-executed").exists():
+            raise RuntimeError("installed inspector child executed a cwd-shadowed package")
 
         builder_smoke = textwrap.dedent(
             """

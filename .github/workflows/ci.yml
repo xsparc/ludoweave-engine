@@ -17,10 +17,10 @@ env:
   UV_VERSION: "0.11.29"
 
 jobs:
-  quality:
-    name: Quality and documentation
+  verify:
+    name: Quality, tests, and distribution
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Check out source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -45,13 +45,23 @@ jobs:
         run: uv run --frozen pyright
       - name: Build documentation
         run: uv run --frozen mkdocs build --strict
+      - name: Run baseline tests
+        run: uv run --frozen pytest -q --ignore=tests/integration/test_wgpu_render.py
       - name: Run base profiling contract smoke
         run: |
           uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m7-profile-base.json
           uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-base.json
+      - name: Build sdist and wheel
+        run: uv build
+      - name: Smoke-test installed wheel
+        run: uv run --frozen python scripts/smoke_wheel.py dist
+      - name: Stage release candidate
+        run: uv run --frozen python scripts/release_artifacts.py dist .tmp/ci-release
+      - name: Smoke-test release candidate
+        run: uv run --frozen python scripts/smoke_release.py .tmp/ci-release
 
   tests:
-    name: Tests (${{ matrix.os }}, Python ${{ matrix.python }})
+    name: Compatibility (${{ matrix.os }}, Python ${{ matrix.python }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     strategy:
@@ -59,17 +69,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            python: "3.12"
-          - os: ubuntu-latest
             python: "3.13"
           - os: ubuntu-latest
             python: "3.14"
           - os: windows-latest
-            python: "3.12"
-          - os: windows-latest
             python: "3.14"
-          - os: macos-latest
-            python: "3.12"
           - os: macos-latest
             python: "3.14"
     steps:
@@ -88,37 +92,6 @@ jobs:
         run: uv sync --frozen --all-groups --python ${{ matrix.python }}
       - name: Run tests
         run: uv run --frozen --python ${{ matrix.python }} pytest -q
-
-  wheel-smoke:
-    name: Installed wheel (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - name: Check out source
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-      - name: Install uv and baseline CPython
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
-        with:
-          version: ${{ env.UV_VERSION }}
-          python-version: "3.12"
-          enable-cache: true
-          cache-dependency-glob: uv.lock
-      - name: Install locked environment
-        run: uv sync --frozen --all-groups
-      - name: Build sdist and wheel
-        run: uv build
-      - name: Smoke-test installed wheel
-        run: uv run --frozen python scripts/smoke_wheel.py dist
-      - name: Stage release candidate
-        run: uv run --frozen python scripts/release_artifacts.py dist .tmp/ci-release
-      - name: Smoke-test release candidate
-        run: uv run --frozen python scripts/smoke_release.py .tmp/ci-release
 
   graphics:
     name: Graphics smoke (${{ matrix.os }})
@@ -147,7 +120,7 @@ jobs:
           sudo apt-get install --yes --no-install-recommends libvulkan1 mesa-vulkan-drivers
       - name: Install locked graphics environment
         run: uv sync --frozen --all-groups --extra graphics
-      - name: Run clear, sprite, capture, resize, and loss smoke
+      - name: Run clear, sprite, capture, resize, loss, and gamepad smoke
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
       - name: Run graphics profiling contract smoke
         run: |

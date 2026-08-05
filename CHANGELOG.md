@@ -8,6 +8,45 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M14 deterministic installed-surface evidence for the constrained-3D scope
+  decision, exercised from source, isolated wheel, and release sample bundle.
+- ADR-0028 retaining layered 2D and deferring constrained 3D until product,
+  engine-contract, agent-semantic, headless, cross-platform, resource-budget,
+  lifecycle, and maintenance gates are complete.
+- M13 bounded offline rollback-readiness evidence over existing canonical
+  snapshots and immutable replay branches, with strict artifact validation and
+  source/wheel/release-bundle smoke.
+- ADR-0027 deferring networking and live rollback until canonical tick-input
+  history, protocol/security semantics, cross-platform network simulation,
+  resource budgets, lifecycle ownership, and maintenance gates are complete.
+- M12 preview data-only plugin manifests with canonical v1 serialization,
+  deterministic engine/CPython/platform/capability/native/determinism and
+  dependency-graph compatibility checks, plus installed CLI/sample smoke.
+- RFC-0002 defining the persistent manifest schema, preview deprecation
+  promise, stable issue/report semantics, and prohibition on discovery,
+  loading, execution, installation, networking, or ambient registries.
+- M11 dependency-free headless 2D presentation authoring: exact-tick sprite
+  animation, bitmap glyph layout/extraction, bounded immutable tilemaps,
+  seeded fixed-point particles, and a lifecycle-validating audio mix graph.
+- ADR-0026 plus an installed-wheel/release-bundle rich 2D showcase covering all
+  five M11 module areas through the existing Null render/audio boundaries.
+- M10 owned local semantic inspector over the existing MCP stdio tools with a
+  read-only default, explicit receipted bootstrap/ticks, versioned NDJSON
+  observations, semantic diffs, and exact authority-hash continuity checks.
+- ADR-0025 recording the finite headless child-process boundary, pipe
+  ownership, protocol validation, architecture bans, and deliberate deferral
+  of GUI/editor, network, remote-attach, and arbitrary process-launch features.
+- M9 bounded isolated Box2D-candidate lifecycle/repeat-trace probe and
+  architecture fixtures that keep the native binding out of engine source.
+- ADR-0024 recording the evidence-based Box2D v3 plugin deferral and complete
+  wheel, ownership, headless, stability, threading, determinism, conformance,
+  authority, and maintenance revisit gate.
+- M8 provider-neutral gamepad connection/button/axis events, explicit
+  deadzone/scale action bindings, Null/GLFW providers, and Clockwork Arena
+  controls. The GLFW adapter deliberately omits ambiguous trigger axes instead
+  of converting an unavailable axis into false input.
+- ADR-0023 recording the evidence-based SDL3 adapter deferral and measurable
+  binding/binary/ownership/conformance revisit gate.
 - M7 versioned, sanitized `cProfile` evidence and strict tamper-resistant
   validation for the representative 10,000-entity and 10,000-sprite workloads.
 - RFC-0001 and ADR-0022 recording the evidence-based decision to defer the
@@ -15,6 +54,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Consolidated pull-request CI from 14 to 8 essential jobs: one complete
+  Ubuntu 3.12 quality/test/distribution gate, four Python/OS compatibility
+  jobs, and three real cross-platform graphics jobs. Universal-wheel and
+  release smoke now run once instead of redundantly on every operating system.
 - Reduced detached query overhead by resolving column metadata once, skipping
   unused read-only signatures, and sharing copy/signature traversals.
 - Reduced presentation extraction and float32 sprite-packing allocations while

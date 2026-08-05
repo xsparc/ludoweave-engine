@@ -6,6 +6,8 @@ from math import inf, nan
 from typing import TYPE_CHECKING, assert_type, cast
 
 import pytest
+from hypothesis import given
+from hypothesis import strategies as st
 
 from ludoweave.app.errors import InputError
 from ludoweave.app.input import (
@@ -13,6 +15,11 @@ from ludoweave.app.input import (
     ActionBinding,
     ActionMap,
     FocusEvent,
+    GamepadAxis,
+    GamepadAxisEvent,
+    GamepadButton,
+    GamepadButtonEvent,
+    GamepadConnectionEvent,
     InputAction,
     InputSnapshot,
     InputSource,
@@ -25,6 +32,7 @@ from ludoweave.app.input import (
     VirtualInputSource,
 )
 from ludoweave.ecs import ResourceRegistry, ResourceStore
+from ludoweave.platform import PlatformEventError
 
 if TYPE_CHECKING:
     assert_type(INPUT_SNAPSHOT_RESOURCE.value_type, type[InputSnapshot])
@@ -219,3 +227,115 @@ def test_mapped_source_requires_sequential_sampling_and_valid_bindings() -> None
     source = MappedInputSource(ActionMap(()))
     with pytest.raises(InputError):
         source.snapshot_for_tick(1)
+
+
+def test_gamepad_events_are_frozen_bounded_and_normalized() -> None:
+    connection = GamepadConnectionEvent(0, True)
+    button = GamepadButtonEvent(0, GamepadButton.A, True)
+    stick = GamepadAxisEvent(0, GamepadAxis.LEFT_X, -1.0)
+    trigger = GamepadAxisEvent(0, GamepadAxis.RIGHT_TRIGGER, 1.0)
+
+    assert connection.connected
+    assert button.button is GamepadButton.A
+    assert stick.value == -1.0
+    assert trigger.value == 1.0
+    with pytest.raises(FrozenInstanceError):
+        connection.slot = 1  # type: ignore[misc]
+
+
+def test_gamepad_events_require_exact_identities_and_boolean_flags() -> None:
+    with pytest.raises(PlatformEventError, match="exact engine-owned identity"):
+        GamepadButtonEvent(0, cast(GamepadButton, "a"), True)
+    with pytest.raises(PlatformEventError, match="exact engine-owned identity"):
+        GamepadAxisEvent(0, cast(GamepadAxis, "left_x"), 0.0)
+    with pytest.raises(PlatformEventError, match="exact booleans"):
+        GamepadConnectionEvent(0, cast(bool, 1))
+    with pytest.raises(PlatformEventError, match="exact booleans"):
+        GamepadButtonEvent(0, GamepadButton.A, cast(bool, 1))
+
+
+@pytest.mark.parametrize("slot", [-1, 16, True, 1.0, "0"])
+def test_gamepad_events_reject_invalid_slots(slot: object) -> None:
+    with pytest.raises(PlatformEventError, match="gamepad slots"):
+        GamepadConnectionEvent(cast(int, slot), True)
+
+
+@pytest.mark.parametrize("value", [nan, inf, -inf, -1.1, 1.1, 0, True])
+def test_gamepad_stick_rejects_invalid_axis_values(value: object) -> None:
+    with pytest.raises(PlatformEventError, match="gamepad axis"):
+        GamepadAxisEvent(0, GamepadAxis.LEFT_X, cast(float, value))
+
+
+@pytest.mark.parametrize("value", [-1.0, -0.1, 1.1])
+def test_gamepad_trigger_rejects_values_outside_zero_to_one(value: float) -> None:
+    with pytest.raises(PlatformEventError, match="gamepad axis"):
+        GamepadAxisEvent(0, GamepadAxis.LEFT_TRIGGER, value)
+
+
+def test_mapped_gamepad_axes_buttons_focus_and_hotplug() -> None:
+    source = MappedInputSource(
+        ActionMap(
+            (
+                ActionBinding("move.x", "gamepad:0:axis:left_x", 1.0, 0.2),
+                ActionBinding("move.y", "gamepad:0:axis:left_y", -1.0, 0.2),
+                ActionBinding("fire", "gamepad:0:button:a"),
+            )
+        )
+    )
+    source.feed(GamepadConnectionEvent(0, True))
+    source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, 0.1))
+    assert source.snapshot_for_tick(0).axis2d("move") == (0.0, 0.0)
+
+    source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, 0.6))
+    source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_Y, -1.0))
+    source.feed(GamepadButtonEvent(0, GamepadButton.A, True))
+    active = source.snapshot_for_tick(1)
+    assert active.axis2d("move") == pytest.approx((0.5, 1.0))
+    assert active.pressed("fire")
+    assert active.just_pressed("fire")
+
+    source.feed(FocusEvent(False))
+    source.feed(GamepadButtonEvent(0, GamepadButton.A, True))
+    source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, 1.0))
+    unfocused = source.snapshot_for_tick(2)
+    assert unfocused.axis2d("move") == (0.0, 0.0)
+    assert unfocused.just_released("fire")
+
+    source.feed(FocusEvent(True))
+    source.feed(GamepadButtonEvent(0, GamepadButton.A, True))
+    source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, 1.0))
+    assert source.snapshot_for_tick(3).pressed("fire")
+    source.feed(GamepadConnectionEvent(0, False))
+    disconnected = source.snapshot_for_tick(4)
+    assert disconnected.axis2d("move") == (0.0, 0.0)
+    assert disconnected.just_released("fire")
+
+
+def test_gamepad_axis_bindings_require_analog_scale_and_scoped_deadzone() -> None:
+    with pytest.raises(InputError, match="axis binding scale"):
+        ActionBinding("move.x", "gamepad:0:axis:left_x")
+    with pytest.raises(InputError, match="deadzones"):
+        ActionBinding("jump", "gamepad:0:button:a", True, 0.1)
+    with pytest.raises(InputError, match="deadzone"):
+        ActionBinding("move.x", "gamepad:0:axis:left_x", 1.0, 1.0)
+    with pytest.raises(InputError, match="canonical"):
+        ActionBinding("move.x", "gamepad:00:axis:left_x", 1.0)
+
+
+@given(
+    value=st.floats(min_value=-1.0, max_value=1.0, allow_nan=False, allow_infinity=False),
+    deadzone=st.floats(
+        min_value=0.0,
+        max_value=0.99,
+        allow_nan=False,
+        allow_infinity=False,
+    ),
+)
+def test_gamepad_deadzone_mapping_remains_normalized(value: float, deadzone: float) -> None:
+    source = MappedInputSource(
+        ActionMap((ActionBinding("move.x", "gamepad:0:axis:left_x", 1.0, deadzone),))
+    )
+    source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, value))
+    mapped = source.snapshot_for_tick(0).value("move.x", 0.0)
+    assert type(mapped) is float
+    assert -1.0 <= mapped <= 1.0

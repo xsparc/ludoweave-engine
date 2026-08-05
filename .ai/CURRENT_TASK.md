@@ -1,41 +1,55 @@
 # Current Task
 
-- **Task:** M7 — Post-alpha performance and first-native-kernel decision
-- **Status:** Complete; DCO-signed PR #7 is published and hosted run `31005165849` passed all 14 jobs
-- **Started:** 2026-08-05
-- **Acceptance gate:** Profile the exact recorded M1/M3 misses, exhaust ordinary
-  Python/algorithm work justified by the evidence, assess every native-code
-  admission field in a public RFC, preserve deterministic and backend-isolated
-  semantics, and validate the decision across the normal platform matrix.
-- **Profiling outcome:** Schema `ludoweave.profile.m7/1` records exact
-  10,000-entity simulation, 10,000-sprite extraction/packing, and optional
-  10,000-sprite wgpu submission profiles with sanitized module identities,
-  exact invariants, and a strict tamper-tested validator.
-- **Implementation outcome:** Query metadata/signature work is reduced without
-  weakening detached ownership or production/reference parity. Extraction
-  reuses validated immutable source fields while checking interpolated
-  finiteness. Sprite packing uses fixed 64-byte standard-library records and
-  retains exact provider-neutral bytes and structured overflow errors.
-- **Decision outcome:** Accepted RFC-0001 and ADR-0022 defer Rust/PyO3. Current
-  ECS/extraction inputs are Python object graphs rather than a GIL-releasable
-  contiguous buffer; no native build matrix or maintenance owner exists. The
-  RFC gives quantified evidence and an exact revisit gate.
-- **Local performance evidence:** Official 30-sample local p95 is 144.0474 ms
-  for the representative simulation tick, 30.6902 ms for extraction/packing,
-  and 5.1918 ms for wgpu CPU submission. All remain honest target misses. The
-  same-machine reductions from prior recorded evidence are 26.83%, 26.88%, and
-  20.57%, respectively.
-- **Local quality gate:** Windows, uv-managed CPython 3.12.13 reports 564 passed
-  and one existing symlink-capability skip, 148 formatted Python files, zero
-  Ruff/Pyright findings, strict docs success, pure wheel/sdist, installed-wheel
-  smoke, complete release-candidate smoke, six real wgpu integration passes,
-  and successful Clockwork Arena/Agent World Builder runs.
-- **Hosted gate:** PR #7 is mergeable with clean merge state against
-  `codex/m6-release-hardening`. Run `31005165849` passed strict quality/docs,
-  all seven CPython/OS test jobs, all three installed release-candidate smokes,
-  and all three real graphics/profile smokes.
-- **Non-scope retained:** No Rust, PyO3, Maturin, NumPy storage, native artifact,
-  public storage-layout exposure, release publication, networking, editor, 3D,
-  rigid-body physics, production audio, or remote agent transport.
-- **SemVer:** No public API or persistent-protocol addition; version remains
-  `0.1.0a1` and all current supported exports remain experimental.
+- **Task:** M14 - Constrained 3D scope admission decision
+- **Status:** Complete, independently accepted, published as ready stacked PR
+  #15, and hosted-validated on `codex/m14-constrained-3d-decision`.
+- **Started:** 2026-08-06
+- **Base:** Exact final M13 hosted-evidence head
+  `48f8f296113e3f2794bae7f4c67997d433e4dd36`; M14 will stack against
+  `codex/m13-rollback-network-readiness`.
+- **Outcome:** Decide authoritative post-alpha item 8 using reproducible
+  installed-surface evidence. Retain the differentiated layered-2D scope and
+  defer constrained 3D unless a later RFC satisfies a complete admission gate.
+- **Acceptance gate:**
+  - A dependency-free example audits the installed engine-owned render and
+    command surfaces, emits deterministic versioned JSON, and reports no path,
+    host, environment, provider, timing, or credential data.
+  - Evidence distinguishes layered/z-sorted 2D from perspective, mesh,
+    depth/stencil, 3D texture, material/light, agent-semantic, Null-conformance,
+    product-slice, and cross-platform-budget contracts.
+  - The same evidence runs from source, an isolated universal wheel, and the
+    deterministic release sample bundle.
+  - ADR-0028 records why WebGPU provider capability does not imply an
+    engine-owned 3D feature and defines the complete revisit gate.
+  - Architecture tests keep 3D provider dependencies and public 3D contracts
+    out until a superseding decision intentionally changes the boundary.
+  - Full local quality/artifact/provider and independent review gates pass
+    before signed commit, PR, or hosted-success claims.
+  - The existing eight-job essential CI topology remains unchanged.
+- **Architecture:** M14 adds repository evidence, tests, and documentation
+  only. It introspects existing public contracts from a composition-root
+  example; `src/`, persistent formats, engine protocols, and public exports do
+  not change. Provider capability remains isolated behind engine contracts.
+- **Non-scope:** Perspective/3D cameras, Vec3/quaternion/3D transform types,
+  meshes, models, materials, lights, depth/stencil attachments, 3D textures,
+  general asset import, terrain, skeletal animation, PBR, 3D physics, picking,
+  scene graphs, editor/GUI, networking, WASM, provider dependencies, native
+  code, tags, releases, or package publication.
+- **SemVer:** Repository decision evidence and documentation only; no public
+  Python API, persistent schema, dependency, runtime version, or compatibility
+  surface changes.
+- **Current evidence:** The design spec explicitly limits layered 2D to
+  orthographic sprites/tiles/layers and asks for a later decision rather than
+  automatic expansion. Current public descriptors expose only color textures,
+  a color-only pipeline, `Camera2D`, 2D device limits, and sprite/tile/debug
+  records. The built-in sprite shader fixes vertex depth at zero. WebGPU itself
+  supports 3D clip coordinates and optional depth/stencil state, but those
+  provider capabilities are not LudoWeave contracts.
+- **Final local gate:** 809 tests pass with one existing Windows
+  symlink-capability skip; 178 Python files are formatted; Ruff, Pyright,
+  strict docs, pure wheel/sdist build, exact installed-wheel evidence, fresh
+  ten-artifact release smoke, nine real-wgpu tests, all inherited documented
+  benchmark/profile validators, protected-scope/history checks, and independent
+  hostile review pass. GitHub Actions run `31033924254` passed all eight
+  unchanged essential jobs on signed implementation commit
+  `47443046834eb423be977973775f80494161533d`.

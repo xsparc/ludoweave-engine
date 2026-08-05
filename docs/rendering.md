@@ -80,7 +80,9 @@ Tile batches expand to sprite instances inside one draw. Layer/z/entity order
 is deterministic before submission. Basic debug lines become white-texture
 quads. Minimal diagnostic text uses an uppercase built-in 5x7 glyph set with a
 question-mark fallback; it is intended for diagnostics, not game typography.
-Fonts, asset loading, and rich text belong to later milestones.
+M11 bitmap atlas layout and glyph-sprite extraction are documented in the
+[rich 2D presentation guide](presentation.md). Font parsing, international
+shaping, and rich markup remain deferred.
 
 ## Surfaces, capture, and failure behavior
 

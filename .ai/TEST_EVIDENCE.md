@@ -796,3 +796,846 @@ do not create uncontrolled cross-platform timing claims.
 Before the hosted-evidence commit, `uv run --frozen mkdocs build --strict` and
 `git diff --check` both exited 0; documentation built in 0.55 seconds with only
 the already-recorded upstream Material/MkDocs 2.0 informational warning.
+
+## M8 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+This executed gate was superseded after independent review found three
+blocking adapter defects: production window focus was not translated, a GLFW
+C-level query error could be mistaken for disconnection, and an unavailable
+trigger axis could become a false half press. Its results remain factual
+historical evidence but are not the final M8 acceptance evidence.
+
+M8 adds provider-neutral standardized gamepad input and decides whether an
+SDL3 adapter is mature enough for the supported alpha baseline. ADR-0023
+defers SDL3: the current SDL-listed Python binding is Beta and downloads native
+binaries on first use by default, while the already-pinned GLFW dependency
+supplies bounded standardized state without a new dependency.
+
+Development feedback was retained rather than reported as a pass:
+
+- The first focused Ruff invocation exited 1 on one export ordering and one
+  import ordering finding; Ruff's deterministic fixes resolved both.
+- The first focused gamepad test run reported 47 passes and one failure because
+  structured error details are immutable pairs rather than a mapping; the
+  assertion now copies them through `dict()`.
+- The first strict Pyright run after that correction reported two protocol
+  return-variance findings in the fake provider; exact `Sequence` annotations
+  resolved them.
+- A later format check exited 1 on one architecture-test layout and the file
+  was formatted before the final gate.
+- The first default-sandbox `uv lock --check` and `uv build` invocations each
+  exited 1 because the sandbox could not open uv's existing user cache. The
+  exact commands were rerun with access to that cache and passed. This was an
+  execution-environment restriction, not a project failure.
+
+The final executed command evidence is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Authorized rerun resolved the unchanged 46-package lock in 1 millisecond. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked all 45 locked environment packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 149 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 589 tests passed and one existing Windows symlink-capability test skipped in 48.24 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.53 seconds with only the already-recorded upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Authorized rerun built `ludoweave-0.1.0a1.tar.gz` and pure `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency installed-wheel smoke passed, including typed gamepad events, deadzone mapping, and Null-provider lifecycle. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m8-release-candidate-local` | 0 | Staged the complete 10-file `ludoweave.release-stage/1` alpha candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m8-release-candidate-local` | 0 | Checksum, manifest, SPDX SBOM, notice, sample, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu tests passed, including the provider-free device result and a real GLFW null-platform gamepad poll. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprite instances, and deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | The dependency-free acceptance composition returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| `git diff --check` | 0 | No whitespace errors existed before the factual state/evidence update. |
+
+The final source scan found no introduced credential value, SDL/PySDL3 import,
+native artifact, or new dependency. The only provider imports remain inside
+`ludoweave.render.backends.wgpu`; architecture fixtures now reject SDL and
+PySDL3 imports as well as the existing banned roots. Gamepad events carry only
+bounded slots, engine enums, booleans, and normalized floats. Provider names,
+GUIDs, timestamps, native objects, and hardware capabilities remain outside
+canonical state and public values.
+
+No M8 benchmark was run because polling is bounded to 16 logical slots and the
+milestone adds input contracts/adapter translation rather than a frame-scale
+simulation or extraction workload. No timing claim is made. Hosted M8 CI has
+not run, so no cross-platform M8 pass is claimed here.
+
+## M8 corrected final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+The review-blocking focus, provider-error, and trigger-neutrality defects were
+corrected before publication. GLFW focus transitions are prepended during
+production surface draining, gamepad and focus queries clear and check the
+calling-thread GLFW error state, and GLFW emits only its unambiguous buttons
+and four stick axes. The public provider contract retains trigger events for a
+future provider that can distinguish capability and neutral state safely.
+
+Development feedback in the corrected pass was retained:
+
+- The first focused Ruff check exited 1 for an import-order finding and one
+  stale internal protocol name. Ruff organized the imports and the cast now
+  uses `_GlfwGamepadApi`.
+- The first strict Pyright pass after adding the focus fake exited 1 with five
+  invariant protocol-constant findings. Explicit `ClassVar[int]` annotations
+  resolved them.
+- The default-sandbox `uv lock --check` and
+  `uv sync --frozen --all-groups --extra graphics` commands exited 1 because
+  uv's existing user cache was inaccessible. The exact commands passed when
+  rerun with authorized cache access; no lock or dependency changed.
+
+The corrected final executed command evidence is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Authorized rerun resolved the unchanged 46-package lock in 0.72 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Authorized rerun checked all 45 locked environment packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 149 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 594 tests passed and one existing Windows symlink-capability test skipped in 45.16 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.53 seconds with only the already-recorded upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Authorized run built `ludoweave-0.1.0a1.tar.gz` and `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency installed-wheel smoke passed, including the M8 gamepad contract. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m8-release-candidate-corrected` | 0 | Staged the complete 10-file `ludoweave.release-stage/1` candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m8-release-candidate-corrected` | 0 | Checksum, manifest, SPDX SBOM, notice, sample, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu tests passed, including provider-free and real GLFW null-platform gamepad polling. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprite instances, and deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | The dependency-free acceptance composition returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| PowerShell wheel ZIP inventory | 0 | The built wheel contained 79 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib` entries. |
+| `git diff --check` | 0 | No whitespace errors existed after final evidence reconciliation. |
+
+Repeat independent review executed 113 focused unit/architecture tests, two
+real gamepad integration selections, Ruff formatting/linting, Pyright, and
+`git diff --check`; all passed. It also reproduced an uninitialized pinned
+GLFW query becoming structured `platform.gamepad_provider_failure` code 65537.
+The reviewer found no remaining blocker, provider/native leakage, credential
+exposure, authority violation, dependency drift, or lifecycle/concurrency
+regression and recommended M8 for commit and PR.
+
+No M8 benchmark was run and no performance statement is made.
+
+## M8 hosted validation — 2026-08-05
+
+Commit `2a654e03005481d61c6cbeb054b31e260b960659` was pushed to
+`codex/m8-gamepad-sdl3-evaluation` and published as ready PR #9 against
+`main`. GitHub reported the PR mergeable. Actions run `31012696753` completed
+successfully with all 14 jobs passing:
+
+- quality and strict documentation;
+- Ubuntu CPython 3.12, 3.13, and 3.14;
+- Windows CPython 3.12 and 3.14;
+- macOS CPython 3.12 and 3.14;
+- isolated installed-wheel smoke on Ubuntu, Windows, and macOS; and
+- real graphics/gamepad smoke on Ubuntu, Windows, and macOS.
+
+The hosted result validates execution and artifact contracts, not controller
+hardware coverage or a performance target. PR #9 remains open and no merge,
+tag, release, or package publication is claimed.
+
+## M9 local validation — 2026-08-06, Windows, CPython 3.12.13
+
+M9 evaluates `box2d-python==0.1.2` as an isolated candidate and does not add it
+to project metadata, the uv lock, the package, or release dependencies. Primary
+package evidence shows an early-development CFFI preview with partial Box2D
+v3.0 functionality, no source distribution, CPython 3.12/3.13 wheels only,
+macOS ARM64 wheels only, and no Trusted Publishing upload. Official Box2D is
+now 3.1.0 and documents cross-platform determinism beginning in 3.1; that claim
+is not attributed to this partial v3.0 community binding.
+
+Development feedback is retained rather than reported as a pass:
+
+- An initial CPython 3.12 candidate command used the tuple-position call shown
+  on the PyPI example and exited 1 because the installed wheel required two
+  position arguments. The corrected isolated call stepped successfully and
+  also tolerated repeated `destroy()`.
+- The first focused Ruff check found import ordering, a mutable test class
+  attribute, and a missing exception import. These were corrected.
+- The first focused pytest collection failed because the repository's
+  `scripts` directory is not an import package. The test now invokes the real
+  script in an isolated subprocess with a fake distribution instead of changing
+  project import behavior.
+- The first focused Pyright pass found two unsafe `object`-to-float conversions.
+  The probe now explicitly validates finite numeric position values.
+- A default-sandbox base-environment probe could not open uv's existing cache.
+  The authorized exact rerun produced the expected structured `unavailable`
+  document with child exit 2 and did not install the candidate.
+- Independent review found that distribution metadata and the imported module
+  were not yet linked, allowing a shadow `box2d.py` to be misattributed to
+  version 0.1.2. The probe now matches the resolved module to the
+  distribution's installed-file inventory before import, checks identity again
+  after import, fails closed without paths, and has a shadow-module regression.
+  It also requires at least one observed position change.
+
+Candidate probe evidence:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --no-project --python 3.12 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py --iterations 25 --steps 120` | 0 | Windows CPython 3.12.13 completed 25 single-thread create/step/double-destroy repetitions; exact traces matched with SHA-256 `c9e299e715c5f7a3654d7c5794d75347d765cc029b7991d4c8066dfaf7abdfc5`. |
+| `uv run --no-project --python 3.13 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py --iterations 25 --steps 120` | 0 | Windows CPython 3.13.13 produced the same exact bounded trace digest. |
+| `uv run --no-project --python 3.14 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py --iterations 25 --steps 120` | 1 | Resolution failed: the release has no matching `cp314` wheel and publishes only `cp312`/`cp313` ABI wheels. The probe did not run. |
+| `uv run --frozen python scripts/probe_box2d_candidate.py --iterations 2 --steps 1` | 2 | The locked base environment emitted sanitized schema `ludoweave.evaluation.box2d/1` with status `unavailable`, confirming Box2D is not installed. |
+
+The full executed repository gate is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the unchanged 46-package lock in 0.73 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked all 45 locked environment packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 151 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | The ownership-corrected final run reported 606 tests passed and one existing Windows symlink-capability test skipped in 46.57 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.55 seconds with only the known upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the pure `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel smoke passed. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m9-release-candidate-reviewed-20260806` | 0 | The final post-review build staged the complete 10-file `ludoweave.release-stage/1` candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m9-release-candidate-reviewed-20260806` | 0 | The final post-review checksum, manifest, SPDX SBOM, notice, sample, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu/GLFW integration tests passed. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprite instances, and deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | The dependency-free acceptance composition returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| PowerShell wheel ZIP inventory | 0 | The built wheel contained 79 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib` entries. |
+| Runtime dependency scan | 1 | No case-insensitive Box2D name matched `src`, `pyproject.toml`, or `uv.lock`; ripgrep exit 1 means no matches. |
+| Credential-pattern scan | 1 | No private-key header or simple credential assignment matched the reviewed M9 repository surfaces; ripgrep exit 1 means no matches. |
+| `git diff --check` | 0 | No whitespace errors existed before factual evidence reconciliation. |
+
+The Windows traces establish only bounded same-binary headless/lifecycle smoke.
+No performance benchmark, cross-platform determinism, rollback, snapshot,
+contact-order, GIL-release, thread-safety, free-threaded, or provider-support
+claim is made.
+
+Independent review initially blocked sign-off because metadata identity did not
+prove ownership of the imported top-level module. After correction, repeat
+review ran 54 focused tests, Ruff formatting/linting, strict Pyright,
+`git diff --check`, the runtime/dependency scan, and an actual CPython 3.12
+candidate probe. It verified the pre-import installed-file ownership check,
+post-import identity check, structured broken-install behavior, and
+non-executing shadow-module regression; no blocker remained and the reviewer
+recommended M9 for final sign-off. Hosted M9 CI had not run at that point.
+
+## M9 hosted validation — 2026-08-06
+
+DCO-signed implementation commit
+`8b429aaf07684651f6d538419701c049ee55fc4f` was pushed to
+`codex/m9-box2d-plugin-evaluation` and published as ready stacked PR #10 against
+the hosted-validated M8 branch. GitHub Actions run `31015885190` completed with
+conclusion `success`; all 14 jobs passed:
+
+- quality, lock, formatting, lint, strict Pyright, strict documentation, and
+  base profiling-contract smoke on Ubuntu CPython 3.12;
+- tests on Ubuntu CPython 3.12, 3.13, and 3.14;
+- tests on Windows and macOS CPython 3.12 and 3.14;
+- pure build, isolated wheel smoke, complete release staging, and release smoke
+  on Ubuntu, Windows, and macOS; and
+- real graphics/gamepad, profiling-contract, Clockwork Arena, and Agent World
+  Builder smoke on Ubuntu, Windows, and macOS.
+
+GitHub reports PR #10 open, ready, mergeable, and `CLEAN` against
+`codex/m8-gamepad-sdl3-evaluation`, whose exact base is
+`187ad4503a40325a1e334da3cb4078969e2e043b`. The hosted result validates project
+execution and artifact contracts; it does not install the deferred candidate,
+exercise controller hardware, or create Box2D performance/cross-platform
+determinism claims. No merge, tag, release, or package publication occurred.
+
+## M10 final local validation - 2026-08-06, Windows, CPython 3.12.13
+
+M10 adds one finite headless semantic inspector over an owned local MCP child.
+It introduces no runtime dependency, listener, arbitrary process command,
+editor, second world store, native code, or release publication.
+
+Development and review feedback is retained rather than reported as a pass:
+
+- The first focused Ruff run found one set-comparison simplification and the
+  first focused Pyright run found 19 strict typing issues in decoded JSON.
+  Both were corrected before focused tests.
+- After the CI job consolidation, the existing release-workflow architecture
+  test failed because it still required three redundant wheel jobs. The test
+  now asserts one complete distribution gate, the reduced compatibility
+  matrix, and retained three-OS graphics coverage.
+- Independent review blocked publication on four trust-boundary defects:
+  inherited cwd/`PYTHONPATH` could shadow the child package, dash-prefixed
+  project names could become child options, a top-level tick result could omit
+  a valid receipt, and stream decode/read errors escaped structured handling.
+  The child now uses `-I`, binds variable options with `=`, places the project
+  after `--`, requires exactly one committed receipt with exact hash/tick
+  continuity, and translates Unicode/I/O/closed-stream failures. Source and
+  installed-wheel adversarial regressions cover every correction.
+- During the adversarial correction pass, one import-order finding and three
+  strict typing findings were corrected. The repeat focused gate then passed.
+- Final CI review found that the consolidated baseline would duplicate real
+  wgpu execution without the dedicated Linux job's Mesa/Vulkan installation.
+  Baseline pytest now excludes exactly `test_wgpu_render.py`; the three-OS
+  graphics matrix remains its sole gate. Architecture assertions now protect
+  least privilege, pins, timeouts, caching, no credential persistence,
+  fail-fast policy, cancellation, matrix size, and distribution commands.
+- A default-sandbox `uv lock --check` attempt exited 1 because access to uv's
+  existing user cache was denied. The approved exact rerun exited 0; this was
+  an environment permission failure, not a lock failure.
+
+Final executed repository gate:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.79 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | The locked environment checked 45 packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 154 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 642 tests passed and one existing Windows symlink-capability test skipped in 49.09 seconds. |
+| `uv run --frozen pytest -q --ignore=tests/integration/test_wgpu_render.py` | 0 | The exact consolidated baseline command passed 634 non-provider tests with one skip in 52.39 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | The final documentation build completed in 0.48 seconds with only the known Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installation passed all inherited smoke plus M10 bootstrap/tick receipts and proved a cwd-shadowed `ludoweave` package was not executed. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m10-release-candidate-final-reviewed-20260806` | 0 | Staged the complete 10-file `ludoweave.release-stage/1` candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m10-release-candidate-final-reviewed-20260806` | 0 | Checksum, manifest, SPDX SBOM, notices, sample bundle, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m10-profile-base.json` plus validator | 0 | The retained two-workload base profiling contract validated. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu/GLFW integration tests passed in 5.51 seconds. |
+| `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m10-profile-graphics.json` plus validator | 0 | The retained three-workload graphics profiling contract validated. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprites, and the expected deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320x180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | Dependency-free acceptance returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| CI workflow YAML parse and quota contract | 0 | The workflow parsed with exactly eight jobs: one complete baseline, four compatibility, and three graphics jobs. Five focused release/workflow tests passed. |
+| Wheel ZIP/metadata inventory | 0 | The wheel contains 80 entries, zero native entries, no mandatory runtime dependency, and only the three exact optional graphics requirements. |
+| Local stdio network-import scan | 1 | No network-module import matched the inspector or MCP adapter; ripgrep exit 1 means no matches. |
+| Local stdio dynamic-evaluation scan | 1 | No `eval`, `exec`, or `__import__` call matched the inspector or MCP adapter; ripgrep exit 1 means no matches. |
+| Deferred-provider scan | 1 | No Box2D or SDL3 binding name matched package source, project metadata, or the lock; ripgrep exit 1 means no matches. |
+| Credential-assignment scan | 1 | No credential assignment matched the reviewed M10 source, tests, scripts, docs, or workflow; ripgrep exit 1 means no matches. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The final focused inspector, architecture, and trust-boundary suite reported 81
+passes. Repeat independent review reran that suite, Ruff, strict Pyright, and
+diff checks, found no remaining implementation blocker, and approved the
+corrected M10 head. The exact quota-conscious baseline and separately gated
+graphics commands were then executed locally after CI review.
+
+M10 has no benchmark or performance threshold. The retained M7 profiling
+commands validate artifact behavior only; no timing result or performance pass
+is claimed. Before PR publication, hosted M10 CI had not run and no M10
+cross-platform or hosted pass was claimed.
+
+## M10 hosted validation - 2026-08-06
+
+DCO-signed implementation commit
+`2e60b3f1c4884dba71df5f23b779bc49187d68c6` was pushed to
+`codex/m10-live-semantic-inspector` and published as ready stacked PR #11
+against exact final M9 head
+`22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. GitHub Actions run
+`31020096463` completed with conclusion `success`; all eight jobs passed:
+
+- the Ubuntu CPython 3.12 quality/test/distribution job passed lock,
+  formatting, lint, strict Pyright, strict docs, 634-test baseline, base profile
+  contract, pure build, isolated wheel smoke, release staging, and release
+  smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profile contract, Clockwork Arena, and Agent World
+  Builder passed on Ubuntu software Vulkan, Windows, and macOS.
+
+GitHub reports PR #11 open, ready, mergeable, and `CLEAN` against
+`codex/m9-box2d-plugin-evaluation`. This is the first run of the consolidated
+eight-job topology; it replaces the former 14-job topology without dropping a
+supported Python version, desktop operating system, complete distribution
+gate, or real three-OS graphics gate. No merge, tag, release, or package
+publication occurred.
+
+## M11 focused development validation - 2026-08-06
+
+Environment: Windows, uv-managed CPython 3.12.13. M11 is based on exact M10
+evidence head `bae799900671481cfd6f03fe502dea95b2c7f96c` and is not yet
+published. No hosted or milestone-complete claim is made.
+
+- `uv run --frozen ruff format src/ludoweave/presentation src/ludoweave/audio examples/rich_2d_showcase.py scripts/smoke_wheel.py scripts/release_artifacts.py scripts/smoke_release.py tests`
+  exited 0; 76 files were already formatted.
+- `uv run --frozen ruff check src/ludoweave/presentation src/ludoweave/audio examples/rich_2d_showcase.py scripts/smoke_wheel.py scripts/release_artifacts.py scripts/smoke_release.py tests/unit/test_presentation.py tests/unit/test_audio.py tests/integration/test_rich_2d_showcase.py tests/architecture`
+  exited 0 with `All checks passed!`.
+- `uv run --frozen pyright src/ludoweave/presentation src/ludoweave/audio examples/rich_2d_showcase.py scripts/smoke_wheel.py scripts/release_artifacts.py scripts/smoke_release.py tests/unit/test_presentation.py tests/unit/test_audio.py tests/integration/test_rich_2d_showcase.py`
+  exited 0 with zero errors, warnings, or information diagnostics.
+- `uv run --frozen pytest -q tests/unit/test_presentation.py tests/unit/test_audio.py tests/integration/test_rich_2d_showcase.py tests/architecture`
+  exited 0 with 76 passing tests in 1.40 seconds.
+
+An earlier focused run exposed three lint defaults, one tuple return-type
+annotation, and an incorrect newly authored particle digest fixture; a second
+integration run corrected its expected lifetime count from eight to ten. Those
+development failures are not pass evidence. The corrected commands above are
+the current focused evidence. Full suite, strict docs, distribution/release,
+graphics, independent review, and hosted validation remain pending.
+
+## M11 final reviewed local validation - 2026-08-06
+
+Environment: Windows, uv-managed CPython 3.12.13 with the exact locked graphics
+extra. Base: `bae799900671481cfd6f03fe502dea95b2c7f96c`. Branch:
+`codex/m11-rich-2d-modules`.
+
+The final independently reviewed command sequence produced these results:
+
+- `uv lock --check` exited 0; the 46-package lock was unchanged.
+- `uv sync --frozen --all-groups --extra graphics` exited 0; 45 packages were
+  checked.
+- `uv run --frozen ruff format --check .` exited 0; 164 Python files were
+  already formatted.
+- `uv run --frozen ruff check .` exited 0 with `All checks passed!`.
+- `uv run --frozen pyright` exited 0 with zero errors, warnings, or information
+  diagnostics.
+- `uv run --frozen pytest -q` exited 0 with 663 passing tests and one existing
+  Windows symlink-capability skip in 46.37 seconds.
+- `uv run --frozen mkdocs build --strict` exited 0 in 0.47 seconds. Material for
+  MkDocs emitted its existing upstream MkDocs 2.0 informational warning.
+- `uv build` exited 0 and rebuilt
+  `dist/ludoweave-0.1.0a1.tar.gz` plus the universal
+  `dist/ludoweave-0.1.0a1-py3-none-any.whl` from the sdist.
+- `uv run --frozen python scripts/smoke_wheel.py dist` exited 0 with
+  `wheel smoke passed: ludoweave-0.1.0a1-py3-none-any.whl`. The isolated
+  no-dependency environment ran CLI/doctor, inherited scenarios, inspector,
+  agent builder, and the M11 rich-2D example.
+- `uv run --frozen python scripts/release_artifacts.py dist .tmp/m11-release-candidate-reviewed-20260806`
+  exited 0 with protocol `ludoweave.release-stage/1`, version `0.1.0a1`, ten
+  artifacts, the sample bundle, and SPDX SBOM.
+- `uv run --frozen python scripts/smoke_release.py .tmp/m11-release-candidate-reviewed-20260806`
+  exited 0 with `release smoke passed: ludoweave 0.1.0a1`; the extracted
+  versioned bundle ran `rich_2d_showcase.py` from the installed wheel.
+- `git diff --check` exited 0.
+
+Additional retained-gate execution:
+
+- `uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m11-profile-base.json`
+  and its validator exited 0 with schema `ludoweave.profile.m7/1`, two valid
+  workloads.
+- `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m11-profile-graphics.json`
+  and its validator exited 0 with the same schema and three valid workloads.
+  These validate inherited artifact contracts only; M11 assigns no timing
+  target and makes no performance claim.
+- `uv run --frozen pytest -q tests/integration/test_wgpu_render.py` exited 0
+  with nine passes in 5.52 seconds, including M11 animation/text/tile/particle
+  extraction through the real provider.
+- `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10`
+  exited 0 with 30 ticks, three draws, 16 sprites, and capture SHA-256
+  `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`.
+- `uv run --frozen --extra graphics python examples/agent_world_builder.py`
+  exited 0 with committed apply/adjust status, six query matches, three ticks,
+  five replay batches, and passing registered tests.
+- `uv run --frozen python examples/alpha_acceptance.py` exited 0 with protocol
+  `ludoweave.sample.alpha_acceptance/1` and status `ok`.
+- `uv run --frozen python examples/rich_2d_showcase.py --ticks 6` exited 0 with
+  schema `ludoweave.example.rich_2d/1`, animation frame 0, audio gain 0.2, nine
+  glyphs, ten particles, 20 sprite instances, eight tile instances, two draw
+  calls, and particle digest
+  `d3bb0b7050ec5f841de9f0b12997c9e9f4bdeb88f6a14024cd4554103beaa546`.
+
+Artifact and scope audit:
+
+- the wheel contains 87 entries, including all seven
+  `ludoweave/presentation` files and zero `.pyd`, `.so`, `.dll`, `.dylib`,
+  `.a`, or `.lib` entries;
+- metadata has no mandatory `Requires-Dist`; only the unchanged exact graphics
+  extra (`glfw`, `rendercanvas[glfw]`, `wgpu`) is present;
+- the final release sample ZIP contains `rich_2d_showcase.py`;
+- `.github/workflows/ci.yml` is unchanged, so the eight-job essential topology
+  remains the only pull-request gate;
+- focused scans found no M11 native/provider imports, presentation clock/global
+  RNG/thread/network imports, high-confidence credentials, or new-file trailing
+  whitespace; and architecture tests passed.
+
+Independent findings-first review initially identified unreachable maximum
+tile coordinates, unbounded/quadratic layer traversal, unbounded public
+sequence freezing, missing runtime parent-bus fader propagation, particle
+work/state bounds, and Ruff generic syntax. The fixes add edge, infinite-
+iterator, work-budget, state-lifetime, canonical-order, and nested-gain
+regressions. Final re-review reported no blocking, non-blocking, or open finding:
+format and Ruff passed, Pyright reported zero, 78 focused tests and 58
+architecture/API tests passed, provider isolation and deterministic showcase
+passed, and diff/credential checks were clean. One parallel review invocation
+collided with the root process on shared `.pytest-tmp` and produced 55 setup
+errors; the isolated rerun passed all 78, so that collision is not pass
+evidence.
+
+An initial sandboxed full-gate attempt could not read the existing uv user
+cache and therefore produced no check evidence. The exact approved reruns above
+completed successfully. At this local-gate stage no M11 hosted, cross-platform,
+merge, tag, release, or package-publication claim was made.
+
+## M11 hosted validation - 2026-08-06
+
+Ready stacked PR #12 targets `codex/m10-live-semantic-inspector` from
+`codex/m11-rich-2d-modules`. GitHub Actions pull-request run `31024155710`
+executed signed implementation commit
+`aca6d93165a52d88451e8e06d5f1aa8d2e323f1d` and completed successfully from
+`2026-08-05T16:12:36Z` through `2026-08-05T16:14:40Z`.
+
+All eight essential jobs concluded `success`:
+
+- `Quality, tests, and distribution` on Ubuntu with CPython 3.12 ran the
+  lockfile, formatting, Ruff, Pyright, strict documentation, baseline tests,
+  base profiling-contract smoke, sdist/wheel build, isolated-wheel smoke,
+  release staging, and release smoke gates.
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14;
+- real graphics smoke passed on Ubuntu, Windows, and macOS, including inherited
+  clear/sprite/capture/resize/loss/gamepad coverage, graphics profiling,
+  Clockwork Arena, and Agent World Builder.
+
+The workflow file was unchanged by M11. This run is the only hosted run created
+for the implementation commit. It validates the supported cross-platform
+matrix and distribution/provider contracts; it does not merge PR #12, publish
+a package, create a tag or release, or admit any deferred provider/native work.
+
+## M12 final reviewed local validation - 2026-08-06
+
+Environment: Windows 11, uv-managed CPython 3.12.13 with the exact locked
+graphics extra. Base and current pre-commit `HEAD`:
+`840a8b06d461fa1d5e649911b22f5995154728a7`. Branch:
+`codex/m12-plugin-manifest-compatibility`.
+
+The complete independently reviewed command sequence produced these results:
+
+- The first sandboxed `uv lock --check` attempt exited 1 because the workspace
+  sandbox denied access to uv's existing user cache. The approved exact rerun
+  exited 0 and resolved the unchanged 46-package lock.
+- `uv sync --frozen --all-groups --extra graphics` exited 0 and checked 45
+  packages.
+- `uv run --frozen ruff format --check .` exited 0; 170 Python files were
+  already formatted.
+- `uv run --frozen ruff check .` exited 0 with `All checks passed!`.
+- `uv run --frozen pyright` exited 0 with zero errors, warnings, or information
+  diagnostics.
+- `uv run --frozen pytest -q` exited 0 with 741 passing tests and one existing
+  Windows symlink-capability skip in 47.87 seconds.
+- `uv run --frozen mkdocs build --strict` exited 0 in 0.50 seconds. Material for
+  MkDocs emitted its existing upstream MkDocs 2.0 informational warning.
+- `uv build` exited 0 and rebuilt
+  `dist/ludoweave-0.1.0a1.tar.gz` plus the universal
+  `dist/ludoweave-0.1.0a1-py3-none-any.whl` from the sdist.
+- `uv run --frozen python scripts/smoke_wheel.py dist` exited 0 with
+  `wheel smoke passed: ludoweave-0.1.0a1-py3-none-any.whl`; the isolated wheel
+  check included the explicit M12 manifest and path-free compatible report.
+- `uv run --frozen python scripts/release_artifacts.py dist .tmp/m12-release-candidate-final-reviewed-20260806`
+  exited 0 with protocol `ludoweave.release-stage/1`, version `0.1.0a1`, ten
+  artifacts, the versioned sample bundle, and SPDX SBOM.
+- `uv run --frozen python scripts/smoke_release.py .tmp/m12-release-candidate-final-reviewed-20260806`
+  exited 0 with `release smoke passed: ludoweave 0.1.0a1`; the extracted bundle
+  checked `example.plugin.json` through the isolated installed wheel.
+- `git diff --check` exited 0.
+
+Provider and example acceptance:
+
+- `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py`
+  exited 0 with nine passes in 5.53 seconds.
+- Null and real-wgpu `examples/clockwork_arena.py --ticks 600` runs both exited
+  0 with the same authoritative state hash
+  `sha256:b7a77c7fa0f0bab668245723719a4e57c00f5f821b4df8cf013dcf9aaaf34c70`;
+  the wgpu run completed 600 draws and produced an offscreen capture.
+- `uv run --frozen --extra graphics python examples/agent_world_builder.py`
+  exited 0 with committed apply/adjust status, six query matches, three ticks,
+  five replay batches, and passing registered tests.
+- `uv run --frozen python examples/alpha_acceptance.py` exited 0 with protocol
+  `ludoweave.sample.alpha_acceptance/1` and status `ok`.
+- `uv run --frozen python examples/rich_2d_showcase.py --ticks 6` exited 0 with
+  schema `ludoweave.example.rich_2d/1`, nine glyphs, ten particles, 20 sprite
+  instances, eight tile instances, and two draw calls.
+- `uv run --frozen ludoweave plugin check examples/example.plugin.json` exited
+  0 with canonical protocol `ludoweave.plugin-check/1`, one compatible plugin,
+  no issues or path, and manifest-set fingerprint
+  `sha256:c2ed00ea4153e92aec46c5e80d22324656fe4009903c638544faa48cba9d24a2`.
+
+Every benchmark/profile command in the README quality suite was also rerun
+against uniquely named M12 artifacts and its validator exited 0:
+
+- M1 recorded seven workloads. The fixed 3,600-tick p95 was 35,648,600 ns and
+  observed its headless target; the 10,000-entity simulation p95 was
+  118,236,300 ns and did not observe its inherited 4 ms target. The validator
+  reported one of two recorded targets observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads with zero of its two inherited timing targets
+  observed.
+- M4 validated three workloads; the baseline p95 was 1,824,800 ns and observed
+  its 16,666,667 ns target.
+- The five-repeat M7 base and real-wgpu profile artifacts validated with two
+  and three workloads respectively. Profile timing is diagnostic only.
+
+Artifact, scope, and history audit:
+
+- the wheel contains 91 entries, including four `ludoweave/plugins` files and
+  zero `.pyd`, `.so`, `.dll`, `.dylib`, `.a`, or `.lib` entries;
+- wheel metadata has no mandatory dependency; its only `Requires-Dist` entries
+  are the unchanged exact `graphics` extra for GLFW, rendercanvas, and wgpu;
+- credential-assignment and plugin backend/discovery/evaluation/filesystem
+  scans found no matches; ripgrep exit 1 means no matches;
+- the CI workflow, `pyproject.toml`, and `uv.lock` are unchanged, retaining the
+  eight essential hosted jobs and pure-Python package contract; and
+- `HEAD`, local M11, and remote-tracking M11 all resolved to
+  `840a8b06d461fa1d5e649911b22f5995154728a7` before the M12 commit. Merge-base
+  matched exactly and the pre-commit left/right count was `0 0`, so the stack
+  contains no missing or unrelated commit.
+
+Independent findings-first review reproduced and drove regressions for bounded
+cycle diagnostics, canonical detail/report limits, exact error types and
+protocol values, mixed-key and pre-bound mapping validation, exact plugin
+identities, deterministic immutable decision state, path-free diagnostics,
+explicit import/global-state/I/O/evaluation architecture rules, and sanitized
+CLI parsing before file I/O. Final re-review reported no blocking or
+non-blocking finding; its corrected focused plugin/CLI/architecture/API/release
+suite passed 138 tests, with clean Ruff, Pyright, strict docs, diff, and
+isolated CLI checks.
+
+At this stage no M12 hosted or cross-platform pass, merge, tag, release, package
+publication, discovery/loading/execution, provider admission, networking,
+editor/GUI, deferred Box2D/SDL3 adapter, or native-code claim is made.
+
+## M12 hosted validation - 2026-08-06
+
+Ready stacked PR #13 targets `codex/m11-rich-2d-modules` from
+`codex/m12-plugin-manifest-compatibility`. Its one DCO-signed implementation
+commit is `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`; GitHub reports the PR open,
+ready, mergeable, and `CLEAN` against exact final M11 evidence head
+`840a8b06d461fa1d5e649911b22f5995154728a7`.
+
+GitHub Actions pull-request run `31028863469` executed the implementation
+commit from `2026-08-05T17:11:37Z` through `2026-08-05T17:13:23Z` and concluded
+`success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profiling
+  contract, sdist/wheel build, isolated-wheel smoke including the explicit
+  plugin manifest, release staging, and complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file was unchanged by M12. This is the only hosted run created for
+the implementation commit. It validates the supported cross-platform,
+distribution, and provider contracts; it does not merge PR #13, publish a
+package, create a tag or release, load plugin code, admit a provider, or
+authorize any deferred networking/editor/native work.
+
+## M13 final reviewed local validation - 2026-08-06
+
+Environment: Windows 11, uv-managed CPython 3.12.13 with the exact locked
+graphics extra. Base and current pre-commit `HEAD`:
+`7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Branch:
+`codex/m13-rollback-network-readiness`.
+
+The complete post-review command sequence produced these results:
+
+- The first sandboxed `uv lock --check` / `uv sync --frozen --all-groups
+  --extra graphics` attempt exited 1 because the workspace sandbox denied
+  access to uv's existing user cache. The approved exact rerun exited 0:
+  `uv lock --check` resolved the unchanged 46-package lock and sync checked 45
+  packages. An initial sandboxed `uv build` had the same cache denial; its
+  approved exact rerun and final post-review rebuild both exited 0.
+- `uv run --frozen ruff format --check .` exited 0; all 174 Python files were
+  already formatted.
+- `uv run --frozen ruff check .` exited 0 with `All checks passed!`.
+- `uv run --frozen pyright` exited 0 with zero errors, warnings, or information
+  diagnostics.
+- `uv run --frozen mkdocs build --strict` exited 0 in 0.51 seconds. Material
+  for MkDocs emitted its existing upstream MkDocs 2.0 informational warning.
+- `uv run --frozen pytest -q` exited 0 with 793 passing tests and one existing
+  Windows symlink-capability skip in 60.05 seconds.
+- `uv build` exited 0 and rebuilt
+  `dist/ludoweave-0.1.0a1.tar.gz` plus the universal
+  `dist/ludoweave-0.1.0a1-py3-none-any.whl` from the sdist.
+- `uv run --frozen python scripts/smoke_wheel.py dist` exited 0 with
+  `wheel smoke passed: ludoweave-0.1.0a1-py3-none-any.whl`; the isolated wheel
+  ran the M13 24/12 readiness proof and required deferred/no-transport gates.
+- `uv run --frozen python scripts/release_artifacts.py dist
+  .tmp/m13-release-candidate-final-20260806` exited 0 with protocol
+  `ludoweave.release-stage/1`, version `0.1.0a1`, ten artifacts, the versioned
+  sample bundle, and SPDX SBOM.
+- `uv run --frozen python scripts/smoke_release.py
+  .tmp/m13-release-candidate-final-20260806` exited 0 with
+  `release smoke passed: ludoweave 0.1.0a1`; the isolated installed wheel ran
+  the bundled readiness example.
+- `git diff --check` exited 0.
+
+M13 evidence and provider acceptance:
+
+- `uv run --frozen python examples/rollback_readiness.py --ticks 120
+  --branch-tick 60 --output .tmp/m13-readiness-final.json` exited 0 with schema
+  `ludoweave.evaluation.rollback-readiness/1`, status `deferred`, no transport,
+  120 parent batches/121 verified checkpoints, 60 child batches/61 verified
+  checkpoints, immutable parent timeline hash
+  `sha256:c4650d3173a0b62eb9e65e1a49f8e90fa90c9268b56ab9000fb75b096ec0e515`,
+  parent final hash
+  `sha256:9d4b4f5e81ed1ac487f83ae742ce41cfb27f2a0da652a43c33c74e5571cd3026`,
+  and repeatable corrected final hash
+  `sha256:2708c1bb1df45adaca0eb095242f12b96837493e2bd06cd8a3c78b45742af7b2`.
+  The informational canonical sizes were 2,793 snapshot bytes, 95,118 parent
+  timeline bytes, and 51,160 child timeline bytes; M13 defines no timing or
+  bandwidth target.
+- `uv run --frozen python scripts/validate_rollback_readiness.py
+  .tmp/m13-readiness-final.json` exited 0 with
+  `rollback readiness evidence valid`.
+- The final hostile integration/architecture/release focus exited 0 with 54
+  passes in 13.01 seconds. It covers direct-call work bounds, exact checkpoint
+  counts, root/nested duplicate JSON, non-finite numbers, non-regular and
+  oversized files, exact root types/version, Boolean/integer ambiguity,
+  hashes/counts/metrics, false admission, and closed import/member aliases.
+- `uv run --frozen --extra graphics pytest -q
+  tests/integration/test_wgpu_render.py` exited 0 with nine passes in 5.65
+  seconds.
+- Clockwork Arena wgpu, Agent World Builder, alpha acceptance, rich-2D
+  showcase, and the path-free compatible example plugin check all exited 0.
+
+Every benchmark/profile command in the README quality suite was also rerun
+against uniquely named M13 artifacts and its validator exited 0:
+
+- M1 recorded seven workloads. The fixed 3,600-tick p95 was 35,707,100 ns and
+  observed its headless target; the 10,000-entity simulation p95 was
+  136,388,500 ns and did not observe its inherited 4 ms target. The validator
+  reported one of two recorded targets observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads. The 10,000-sprite extraction p95 was 24,154,400
+  ns and missed its inherited target; the wgpu submit p95 was 2,747,400 ns and
+  observed its target. One of two recorded targets was observed.
+- M4 validated three workloads; the baseline p95 was 1,840,000 ns and observed
+  its 16,666,667 ns target.
+- The five-repeat M7 base and real-wgpu profile artifacts validated with two
+  and three workloads respectively. Profile timing is diagnostic only.
+
+Artifact, scope, and history audit:
+
+- the wheel contains 91 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib`
+  entries;
+- wheel metadata has no mandatory dependency; its only `Requires-Dist` entries
+  are the unchanged exact `graphics` extra for GLFW, rendercanvas, and wgpu;
+- `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, and all `src/` files
+  are unchanged from the exact M12 base, retaining the eight essential jobs,
+  persistent formats, public Python surfaces, and pure-Python package contract;
+- focused secret-assignment and network/provider import scans found no match;
+  ripgrep exit 1 means no matches; and
+- merge-base equals exact M12 head
+  `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f` and the pre-commit left/right
+  count was `0 0`, so no unrelated commit entered the stack.
+
+Independent hostile review reproduced and drove fixes for pre-read byte caps,
+regular-file pre/post-open checks, canonical duplicate/non-finite JSON,
+version/path spoofing, exact Boolean/integer/count types, direct-call work
+bounds, complete parent/child checkpoint verification, closed exact
+module/member import allowlists, and dynamic-builtin aliases. Final review
+reported no blocking or non-blocking finding. It independently passed Ruff,
+Pyright, strict docs, 54 focused tests, a generated/validated 24/12 artifact,
+and the advertised maximum 600/300 proof in 19.1 seconds with deferred and
+no-transport gates. Diff and secret scans were clean.
+
+At this stage no M13 hosted or cross-platform pass, merge, tag, release,
+package publication, socket/listener, peer authority, live rollback service,
+network protocol, persistent-format change, editor/GUI, 3D, provider adapter,
+or native-code claim is made.
+
+## M13 hosted validation - 2026-08-06
+
+Ready stacked PR #14 targets `codex/m12-plugin-manifest-compatibility` from
+`codex/m13-rollback-network-readiness`. Its one DCO-signed implementation
+commit is `ba62b650191cfb982100692e7ec694da318956ae`; GitHub reports the PR open,
+ready, mergeable, and `CLEAN` against exact final M12 evidence head
+`7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`.
+
+GitHub Actions pull-request run `31031590206` executed the implementation
+commit from `2026-08-05T17:46:38Z` through `2026-08-05T17:48:41Z` and concluded
+`success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profiling
+  contract, sdist/wheel build, isolated-wheel smoke including the M13
+  readiness proof, release staging, and complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file was unchanged by M13. This is the only hosted run created for
+the implementation commit. It validates the supported cross-platform,
+distribution, and provider contracts; it does not merge PR #14, publish a
+package, create a tag or release, or authorize sockets, remote authority, live
+rollback, a network protocol, editor/GUI, 3D, provider/native work, or a
+persistent-format change.
+
+## M14 final local validation - 2026-08-06
+
+M14 was evaluated on Windows 11 with uv-managed CPython 3.12.13. It changes
+repository evidence, tests, and documentation only. Its installed JSON confirms
+the exact 47-name public render export list, orthographic `Camera2D` fields and
+matrix, canonical sprite `(layer, z, entity)` ordering, the tile layer field,
+color-only descriptors, 2D limits, and the seven existing world operations.
+All nine constrained-3D admission gates are false.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | The existing lock resolved 46 packages and remained current. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | The existing frozen environment checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 0 | All 178 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 809 tests passed and one existing Windows symlink-capability test skipped in 69.68 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.51 seconds; Material emitted its documented upstream MkDocs 2.0 warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel install passed the exact M14 installed-surface document plus the inherited public smokes. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m14-release-candidate-r2` | 0 | Staged the complete deterministic ten-artifact candidate including the M14 sample. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m14-release-candidate-r2` | 0 | Checksums, manifest, SBOM, installed wheel, and every bundled sample including exact M14 evidence passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Nine real-wgpu integration tests passed in 5.51 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+Every inherited benchmark/profile command in the README quality suite ran
+against uniquely named M14 artifacts and its validator exited 0:
+
+- M1 validated seven workloads. Fixed 3,600-tick p95 was 35,706,500 ns and
+  observed its target; 10,000-entity simulation p95 was 128,658,700 ns and did
+  not observe the inherited 4 ms target. One of two targets was observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads. The 10,000-sprite extraction p95 was 28,468,500
+  ns and missed its inherited target; real-wgpu 10,000-instance submission p95
+  was 2,835,700 ns and observed its target. One of two targets was observed.
+- M4 validated three workloads; baseline p95 was 1,877,900 ns and observed its
+  16,666,667 ns target.
+- Five-repeat M7 base and real-wgpu profile artifacts validated with two and
+  three workloads respectively. Profile timing remains diagnostic only.
+
+Artifact, scope, history, and independent-review evidence:
+
+- the wheel contains 91 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib`
+  entries; metadata retains Apache-2.0, Python `>=3.12,<3.15`, no mandatory
+  dependency, and only the unchanged exact `graphics` extra;
+- `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, and all `src/` files
+  are byte-unchanged from exact M13 evidence head
+  `48f8f296113e3f2794bae7f4c67997d433e4dd36`;
+- merge-base equals that exact M13 head and the pre-commit left/right count was
+  `0 0`; focused credential assignment scanning returned no matches (ripgrep
+  exit 1); and
+- independent hostile review first blocked positive layered-2D evidence,
+  exact artifact validation, and closed import/export guards. After correction,
+  it independently reproduced lock/static/full-test/docs/build/wheel/release
+  success, rejected tampered sorting/version/export/gate documents, found no
+  credential match, and approved with no remaining finding.
+
+At this stage no M14 hosted/cross-platform pass, merge, tag, release, package
+publication, runtime/public/persistent-format change, 3D feature, provider
+dependency, or new performance-target claim is made.
+
+## M14 hosted validation - 2026-08-06
+
+Ready stacked PR #15 targets `codex/m13-rollback-network-readiness` from
+`codex/m14-constrained-3d-decision`. Its DCO-signed implementation commit is
+`47443046834eb423be977973775f80494161533d`. GitHub reports the PR open,
+ready, mergeable, and `CLEAN` against exact final M13 evidence head
+`48f8f296113e3f2794bae7f4c67997d433e4dd36`.
+
+GitHub Actions pull-request run `31033924254` executed the implementation
+commit from `2026-08-05T18:16:06Z` through `2026-08-05T18:18:37Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, exact isolated-wheel M14 evidence, release staging, and
+  complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file was unchanged by M14, and the branch has exactly this one
+pull-request CI run for the implementation commit. Hosted evidence confirms
+the supported installed/cross-platform/provider contracts; it does not merge
+PR #15, publish a package, create a tag or release, add 3D runtime behavior,
+change a public/persistent contract, or admit a new dependency/provider.

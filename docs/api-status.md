@@ -17,10 +17,12 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.render` | Backend-neutral 2D rendering contracts | Experimental |
 | `ludoweave.render.backends` | Null validation adapters | Experimental |
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
-| `ludoweave.platform` | Provider-neutral events | Experimental |
+| `ludoweave.platform` | Provider-neutral events and gamepad-provider protocol | Experimental |
 | `ludoweave.assets` | Project-confined asset contracts | Experimental |
-| `ludoweave.audio` | Audio protocol and Null adapter | Experimental |
+| `ludoweave.audio` | Audio protocol, mix graph, and Null adapter | Experimental |
 | `ludoweave.collision` | Deterministic bounded collision | Experimental |
+| `ludoweave.presentation` | Tick animation, bitmap text, tilemap, particle, and extraction contracts | Experimental |
+| `ludoweave.plugins` | Data-only plugin manifests and compatibility evaluation | Preview |
 | `ludoweave.agent` | Typed agent-control service | Experimental |
 | `ludoweave.samples` | Exercised reference compositions | Experimental |
 
@@ -36,4 +38,8 @@ import ludoweave.ecs as ecs
 
 assert set(ecs.__all__) == set(ecs.__stability__)
 assert ecs.__stability__["World"] == "experimental"
+
+import ludoweave.plugins as plugins
+
+assert plugins.__stability__["PluginManifest"] == "preview"
 ```

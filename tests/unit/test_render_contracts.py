@@ -189,6 +189,9 @@ def test_foreign_wrong_kind_stale_closed_and_thread_failures_are_structured() ->
     with pytest.raises(RenderError) as closed:
         device.create_texture(_texture_descriptor())
     assert closed.value.code == "render.device_closed"
+    with pytest.raises(RenderError) as closed_gamepads:
+        device.poll_gamepads()
+    assert closed_gamepads.value.code == "render.device_closed"
 
 
 def test_python_handle_gc_does_not_release_resources() -> None:
@@ -385,6 +388,7 @@ def test_null_surface_event_drain_is_empty_and_rejects_wrong_handle_kind() -> No
     texture = device.create_texture(_texture_descriptor())
 
     assert device.drain_surface_events(surface) == ()
+    assert device.poll_gamepads() == ()
     with pytest.raises(RenderError) as raised:
         device.drain_surface_events(texture)  # type: ignore[arg-type]
     assert raised.value.code == "render.wrong_handle_kind"
