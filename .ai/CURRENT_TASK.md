@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M13 - Rollback and network-snapshot readiness evaluation
-- **Status:** Locally complete, independently accepted, and ready for a
-  DCO-signed commit plus stacked pull request
+- **Status:** Complete, independently accepted, DCO-signed, published as ready
+  stacked PR #14, and validated by all eight essential hosted CI jobs
 - **Started:** 2026-08-06
 - **Base:** Exact final M12 hosted-evidence head
   `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`; M13 will stack against
@@ -45,4 +45,6 @@
   and fresh ten-artifact release smoke, and nine real-wgpu passes. The 120/60
   proof and strict validator pass with exact parent/child checkpoint evidence;
   independent review also passed the maximum 600/300 proof and reports no
-  remaining finding. Hosted validation is not yet claimed.
+  remaining finding. Ready stacked PR #14 targets exact M12; GitHub Actions run
+  `31031590206` passed the unchanged eight-job topology on signed implementation
+  commit `ba62b650191cfb982100692e7ec694da318956ae`.

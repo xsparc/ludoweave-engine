@@ -34,7 +34,7 @@ with no remaining finding, and the complete local/artifact/provider gate
 passed. It is published as ready stacked PR #13; GitHub Actions run
 `31028863469` passed all eight essential hosted jobs on signed implementation
 commit `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.
-M13 is locally complete and independently accepted on
+M13 is complete and independently accepted on
 `codex/m13-rollback-network-readiness`, based on exact
 M12 hosted-evidence head
 `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Its bounded contract is an
@@ -44,8 +44,9 @@ canonical tick input is not replay-owned and protocol, security, simulation,
 resource, lifecycle, and maintenance gates remain incomplete. No runtime
 package, persistent format, listener, transport, or dependency is added. The
 final complete local/artifact/provider gate passes and independent review
-reports no remaining finding; signed commit, stacked PR, and hosted validation
-remain pending.
+reports no remaining finding. It is published as ready stacked PR #14; GitHub
+Actions run `31031590206` passed all eight essential hosted jobs on signed
+implementation commit `ba62b650191cfb982100692e7ec694da318956ae`.
 
 ## Repository identity
 
@@ -189,10 +190,11 @@ evidence head and is proposed against the M10 branch as PR #12.
 
 ## Next slice
 
-- Publish the independently accepted M13 tree as one ready PR stacked on the
-  exact M12 evidence head, then require the unchanged essential hosted gate.
-  Do not infer sockets, remote authority, a live rollback API, peer/replication
-  state, or a persistent format change from the successful offline proof.
+- M13 publication and hosted evidence are complete. Before implementation,
+  turn the next authoritative post-alpha item into a bounded task contract
+  based on the current design and accepted decisions. Do not infer 3D runtime,
+  sockets, remote authority, a live rollback API, editor/GUI, WASM, provider
+  adapters, native code, or a persistent format change from roadmap proximity.
 
 ## Validation state
 
@@ -211,6 +213,11 @@ evidence head and is proposed against the M10 branch as PR #12.
   allowlists, and alias/tamper regressions. Final review ran 54 focused tests,
   the maximum 600/300 proof, strict docs/static/diff/secret checks, and reported
   no blocking or non-blocking finding.
+- GitHub Actions run `31031590206` passed the unchanged essential eight-job
+  topology on M13 implementation commit
+  `ba62b650191cfb982100692e7ec694da318956ae`: the complete Ubuntu 3.12
+  quality/test/distribution job, Ubuntu 3.13/3.14 plus Windows/macOS 3.14
+  compatibility jobs, and real graphics jobs on Ubuntu, Windows, and macOS.
 - The final reviewed M12 local gate on Windows/uv-managed CPython 3.12.13
   reports 741 passing tests and one existing symlink-capability skip, 170
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a

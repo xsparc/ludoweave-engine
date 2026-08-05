@@ -1523,3 +1523,31 @@ At this stage no M13 hosted or cross-platform pass, merge, tag, release,
 package publication, socket/listener, peer authority, live rollback service,
 network protocol, persistent-format change, editor/GUI, 3D, provider adapter,
 or native-code claim is made.
+
+## M13 hosted validation - 2026-08-06
+
+Ready stacked PR #14 targets `codex/m12-plugin-manifest-compatibility` from
+`codex/m13-rollback-network-readiness`. Its one DCO-signed implementation
+commit is `ba62b650191cfb982100692e7ec694da318956ae`; GitHub reports the PR open,
+ready, mergeable, and `CLEAN` against exact final M12 evidence head
+`7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`.
+
+GitHub Actions pull-request run `31031590206` executed the implementation
+commit from `2026-08-05T17:46:38Z` through `2026-08-05T17:48:41Z` and concluded
+`success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profiling
+  contract, sdist/wheel build, isolated-wheel smoke including the M13
+  readiness proof, release staging, and complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file was unchanged by M13. This is the only hosted run created for
+the implementation commit. It validates the supported cross-platform,
+distribution, and provider contracts; it does not merge PR #14, publish a
+package, create a tag or release, or authorize sockets, remote authority, live
+rollback, a network protocol, editor/GUI, 3D, provider/native work, or a
+persistent-format change.
