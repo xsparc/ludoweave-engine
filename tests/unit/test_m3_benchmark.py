@@ -71,7 +71,7 @@ def _document() -> dict[str, object]:
             "python_implementation": "CPython",
             "python_version": "3.12.13",
             "python_build_mode": "release",
-            "ludoweave_version": "0.1.0.dev0",
+            "ludoweave_version": "0.1.0a1",
             "dependency_versions": {
                 "glfw": "2.10.2",
                 "rendercanvas": "2.7.2",

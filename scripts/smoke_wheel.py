@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import tempfile
 import textwrap
+import tomllib
 from collections.abc import Sequence
 from pathlib import Path
 from typing import cast
@@ -54,7 +55,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     dist: object = getattr(args, "dist", None)
     if not isinstance(dist, Path):
         parser.error("dist must be a directory path")
-    wheels = sorted(dist.resolve().glob("ludoweave-*.whl"))
+    project_root = Path(__file__).resolve().parents[1]
+    project = tomllib.loads((project_root / "pyproject.toml").read_text(encoding="utf-8"))
+    version = cast(dict[str, object], project["project"])["version"]
+    if not isinstance(version, str) or not version:
+        raise RuntimeError("project.version must be non-empty text")
+    wheels = sorted(dist.resolve().glob(f"ludoweave-{version}-*.whl"))
     if len(wheels) != 1:
         parser.error(f"expected exactly one LudoWeave wheel in {dist}, found {len(wheels)}")
 
@@ -62,7 +68,6 @@ def main(argv: Sequence[str] | None = None) -> int:
     if uv is None:
         raise RuntimeError("uv is required for the isolated wheel smoke test")
 
-    project_root = Path(__file__).resolve().parents[1]
     local_temp = project_root / ".tmp"
     local_temp.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="ludoweave-wheel-smoke-", dir=local_temp) as temp_name:
@@ -77,7 +82,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         ludoweave = _ludoweave_in(environment)
         version_result = _run([str(ludoweave), "--version"], cwd=temp_root)
-        if version_result.stdout.strip() != "ludoweave 0.1.0.dev0":
+        if version_result.stdout.strip() != f"ludoweave {version}":
             raise RuntimeError(f"unexpected version output: {version_result.stdout!r}")
 
         doctor_result = _run([str(ludoweave), "doctor"], cwd=temp_root)

@@ -22,4 +22,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0018: bounded deterministic collision and minimal audio](0018-bounded-deterministic-collision-and-minimal-audio.md)
 - [ADR-0019: agent service capabilities and mutation safe points](0019-agent-service-capabilities-and-safe-points.md)
 - [ADR-0020: local stdio MCP adapter](0020-local-stdio-mcp-adapter.md)
+- [ADR-0021: explicit public API stability metadata](0021-explicit-public-api-stability-metadata.md)
 - [ADR template](template.md)

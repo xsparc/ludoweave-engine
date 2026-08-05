@@ -42,7 +42,7 @@ def _document() -> dict[str, object]:
             "architecture": "test64",
             "free_threaded_build": False,
             "gil_enabled": True,
-            "ludoweave_version": "0.1.0.dev0",
+            "ludoweave_version": "0.1.0a1",
             "os": "TestOS",
             "os_release": "1",
             "processor": "test processor",

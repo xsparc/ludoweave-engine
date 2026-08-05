@@ -124,7 +124,7 @@ component/resource records move forward only through registered adjacent
 migrations. `load_into()` fully constructs a candidate and then performs one
 safe-point record adoption; a migration failure or active query leaves the
 destination unchanged. Exact engine-version matching is intentionally strict
-during pre-alpha development.
+during community-alpha development.
 
 `RandomStreams` owns explicit unsigned 64-bit seed state and independent named
 PCG32/1 streams. Stream creation order does not couple sequences. Snapshot

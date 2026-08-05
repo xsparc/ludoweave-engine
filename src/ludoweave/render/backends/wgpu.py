@@ -5,6 +5,9 @@
 
 from __future__ import annotations
 
+__all__ = ["WgpuRenderDevice"]
+__stability__ = {name: "experimental" for name in __all__}
+
 import struct
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field

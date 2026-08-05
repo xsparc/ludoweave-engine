@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ludoweave"
-version = "0.1.0.dev0"
+version = "0.1.0a1"
 description = "Deterministic, headless-first Python engine for agent-operable 2D worlds"
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
@@ -19,7 +19,7 @@ keywords = [
   "python",
 ]
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 3 - Alpha",
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Operating System :: MacOS",
@@ -59,6 +59,9 @@ docs = [
 [tool.uv]
 required-version = ">=0.11.16,<0.12"
 default-groups = ["dev", "docs"]
+
+[tool.ludoweave.release]
+date = "2026-08-05"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ludoweave"]

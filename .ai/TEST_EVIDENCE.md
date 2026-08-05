@@ -622,3 +622,46 @@ successfully:
 
 All 14 jobs in run `30999777517` passed. This supplies the cross-platform M5
 evidence that was deliberately not claimed by the local gate.
+
+## M6 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+Focused development checks first passed the deterministic artifact, API
+metadata, and release-workflow contracts: five release/workflow tests passed,
+two API-stability tests passed, strict Pyright reported no findings, and the
+dependency-free `examples/alpha_acceptance.py` returned status `ok` with four
+engine ticks, 120 Arena ticks, three agent ticks, five replay batches, and all
+registered agent tests passing.
+
+The first default-sandbox invocations of `uv lock --check`, `uv sync`, and
+`uv build` each exited 1 because the sandbox could not open uv's managed user
+cache. The exact commands were rerun with access to that existing cache and
+passed. This was an execution-environment restriction, not recorded as a
+project pass.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Final rerun resolved 46 packages in 0.77 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Final frozen rerun checked 45 packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 143 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 552 tests passed and one existing Windows symlink-capability test skipped in 45.79 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.44 seconds; Material printed its upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and pure `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel version, doctor, M0-M5 workflow, agent, MCP, and sample checks passed outside the source tree. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate-final --tag v0.1.0a1` | 0 | Staged ten files: wheel, sdist, fixed-timestamp sample ZIP, LICENSE, NOTICE, optional-dependency notices, release notes, manifest, SPDX SBOM, and exact checksum inventory. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/release-candidate-final` | 0 | Exact checksum and manifest coverage, SBOM identity, required notices, safe sample extraction, isolated wheel install, CLI/doctor, and bundled headless examples passed for `0.1.0a1`. |
+| `git diff --check` | 0 | No whitespace errors in the complete tracked diff before the factual evidence update. |
+
+Wheel inspection found only the typed pure-Python `ludoweave` package,
+distribution metadata, console entry point, LICENSE, and NOTICE. The sample ZIP
+contains the eight documented example files plus the Clockwork Arena asset,
+all beneath one versioned directory with fixed timestamps. A credential-prefix
+scan found no key/token/private-key material. Provider imports remain confined
+to `ludoweave.render.backends.wgpu`; no Rust, PyO3, Box2D, new networking,
+editor, native object, or mandatory runtime dependency was introduced.
+
+No M6 benchmark was run because the milestone changes distribution,
+compatibility metadata, documentation, and community workflow rather than a
+performance-sensitive runtime path. No new timing claim is made. Hosted M6 CI
+has not yet run, so no new cross-platform result is claimed here.

@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-LudoWeave is pre-alpha and has no supported release line yet. Security fixes are applied to the default branch until a version-support policy is announced.
+LudoWeave `0.1.0a1` is a community-alpha candidate, not a long-term support line. Security fixes are applied on a best-effort basis to the default branch and the current alpha until a version-support policy is announced. Older development snapshots are unsupported.
 
 ## Reporting a vulnerability
 
@@ -12,7 +12,15 @@ Use the repository's **Security** tab and choose **Report a vulnerability** to c
 
 If private vulnerability reporting is unavailable, use GitHub Support to contact the repository owner rather than disclosing the report publicly.
 
-Maintainers will acknowledge the report through the same private channel, assess impact, coordinate a fix when warranted, and credit reporters who request attribution. No response or remediation deadline is guaranteed during pre-alpha.
+Maintainers will acknowledge the report through the same private channel, assess impact, coordinate a fix when warranted, and credit reporters who request attribution. No response or remediation deadline is guaranteed during community alpha.
+
+## Release supply chain
+
+- The baseline wheel has no runtime dependencies and is built as `py3-none-any`.
+- Release candidates include SHA-256 checksums, an SPDX SBOM, Apache/project notices, and a versioned manifest.
+- The tag workflow uses immutable action revisions and grants write, identity-token, and attestation permissions only to the release job.
+- Official tagged artifacts receive GitHub build-provenance and SBOM attestations. Consumers should verify both the local checksums and hosted attestations as documented in `docs/release-process.md`.
+- No PyPI trusted-publishing or upload step exists in community alpha.
 
 ## Initial security boundaries
 

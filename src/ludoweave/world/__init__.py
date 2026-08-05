@@ -169,3 +169,4 @@ __all__ = [
     "canonical_loads",
     "semantic_diff",
 ]
+__stability__ = {name: "experimental" for name in __all__}

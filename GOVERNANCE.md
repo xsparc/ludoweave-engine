@@ -17,8 +17,8 @@ Routine changes use issue and pull-request review. Maintainers seek consensus an
 
 Accepted Architecture Decision Records govern local architectural choices. A public RFC is required before changing compatibility policy, persistent schemas, native languages, renderer or platform backends, licensing, governance, security boundaries, networking, editor scope, or 3D scope.
 
-Stable public APIs and persistent schemas should receive two maintainer approvals once the maintainer pool supports that rule. During pre-alpha, no symbol is implicitly stable.
+Stable public APIs and persistent schemas should receive two maintainer approvals once the maintainer pool supports that rule. During community alpha, no symbol is implicitly stable; `API_COMPATIBILITY.md` defines the explicit metadata policy.
 
 ## Releases and conflicts
 
-Only maintainers may publish official releases. A reviewer must recuse themselves from decisions where they have a material conflict of interest. Security and conduct reports follow their dedicated private policies.
+Only maintainers may publish official releases, following the checked-in release process and evidence gates. Maintainers triage public work under `docs/triage.md` and the repository roadmap. A reviewer must recuse themselves from decisions where they have a material conflict of interest. Security and conduct reports follow their dedicated private policies.

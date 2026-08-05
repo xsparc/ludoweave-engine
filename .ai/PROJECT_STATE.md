@@ -3,7 +3,9 @@
 ## Current milestone
 
 M0 through M5 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI.
+requests, and validated by hosted CI. M6 community-alpha hardening has passed
+its complete local gate and awaits its DCO commit, stacked pull request, and
+hosted matrix.
 
 ## Repository identity
 
@@ -17,7 +19,7 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
-- Development version: `0.1.0.dev0`.
+- Alpha candidate version: `0.1.0a1`.
 - License and contribution model: Apache-2.0 with DCO sign-off.
 - Supported baseline: standard CPython 3.12-3.14 on Windows, macOS, and Linux; no mandatory native compiler.
 
@@ -65,10 +67,18 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 - Default read-only capabilities, explicit write/capture/test grants, bounded requests/results/work, monotonic rate limiting, caller binding, recursive credential redaction, and non-blocking single-thread mutation safe points.
 - Project-confined `ludoweave agent` composition and local-only stdio MCP `2025-11-25` initialization, discovery, and tool calls without networking, shell access, arbitrary evaluation, dynamic project imports, or a new runtime dependency.
 - Agent World Builder acceptance composition with six typed ECS entities, real offscreen wgpu capture, exact query/adjust/diff/test/telemetry/replay coverage, and installed-wheel execution.
+- Deterministic community-alpha release staging with a pure wheel, sdist, fixed-timestamp sample bundle, SHA-256 inventory, versioned manifest, SPDX 2.3 SBOM, and notice set.
+- Isolated release smoke that validates exact checksum coverage, SBOM/wheel identity, safe ZIP members, installed CLI/doctor, and bundled headless M0-M5 scenarios before success.
+- Explicit `__all__`/`__stability__` policy and architecture coverage for every supported Python export; all `0.1.0a1` symbols remain experimental.
+- Pinned tag-only provenance/prerelease workflow plus complete release-candidate smoke in all three regular cross-platform wheel jobs.
+- Community-alpha user, architecture, adapter, release, first-contribution, API, triage, release-note, roadmap, and retrospective material with declarative labels and issue-ready starter cards.
 
 ## Next slice
 
-- Begin only the authorized M6 slice on a new task-scoped branch from the exact validated M5 evidence head.
+- Publish the fully validated M6 branch as a DCO-signed stacked pull request,
+  wait for every hosted job, and record the exact hosted result. Do not create a
+  release tag, GitHub release, or PyPI publication without a separate
+  maintainer release decision.
 
 ## Validation state
 
@@ -91,10 +101,15 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 - The final local M5 gate on Windows/uv-managed CPython 3.12.13 reports 545 passing tests and one existing Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, successful no-dependency installed-wheel smoke, and a real offscreen wgpu Agent World Builder run.
 - Direct Python, the actual `ludoweave agent` subprocess, and MCP return equivalent canonical transaction results/receipts. MCP lifecycle, malformed input, duplicate IDs/keys, capability denial, limits, atomic stale-hash rejection, reentrant/wrong-thread mutation rejection, redaction, provider close, and architecture bans are covered.
 - GitHub Actions run `30999777517` passed all 14 M5 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real graphics smoke, including the Agent World Builder typed-tool loop, on Ubuntu software Vulkan, Windows, and macOS.
+- The final local M6 gate on Windows/uv-managed CPython 3.12.13 reports 552 passing tests and one existing Windows symlink-capability skip, 143 formatted Python files, zero Ruff/Pyright findings, strict documentation success, a pure `0.1.0a1` wheel, successful no-dependency installed-wheel smoke, and a complete 10-file staged candidate whose checksum/manifest/SBOM/sample smoke passed.
+- M6 changes release/community surfaces rather than simulation performance. No new benchmark or performance pass is claimed; inherited M1/M3 misses and M4 observation remain unchanged.
+- M6 hosted results are not yet available, so no new cross-platform pass is claimed.
 
 ## External follow-ups
 
 - Verify and reserve the `ludoweave` name before publishing to PyPI.
+- Apply `.github/labels.yml` through GitHub settings and open the issue-ready
+  starter cards when maintainers are ready to review community contributions.
 
 ## Deferred roadmap
 

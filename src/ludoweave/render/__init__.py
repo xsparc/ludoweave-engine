@@ -103,3 +103,4 @@ __all__ = [
     "TileDrawGroup",
     "TileInstance",
 ]
+__stability__ = {name: "experimental" for name in __all__}

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+No changes yet.
+
+## 0.1.0a1 - 2026-08-05
+
 ### Added
 
 - M0 repository contract and deterministic headless walking skeleton.
@@ -33,6 +37,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - M5 transport-independent typed agent service with immutable tool schemas, explicit read/write/capture/test capabilities, quotas, redaction, mutation serialization, and provider ownership.
 - Equivalent direct Python, project-confined CLI, and local stdio MCP `2025-11-25` tool calls over the existing transaction, receipt, snapshot, diff, replay, capture, telemetry, and acceptance-test contracts.
 - Agent World Builder acceptance composition exercising describe, validate, apply, fixed ticks, offscreen capture, query, adjustment, semantic diff, replay evidence, telemetry, and registered in-process checks.
+- M6 deterministic release staging with a pure wheel, source distribution, sample bundle, SPDX 2.3 SBOM, checksums, notices, manifest, and isolated cross-platform artifact smoke.
+- Explicit `internal`, `experimental`, `preview`, and `stable` compatibility policy with exact `__all__`/`__stability__` metadata validation for every public Python export.
+- Community-alpha user, adapter, release, contribution, triage, roadmap, and retrospective documentation.
+- Tag-only, immutable-action release automation for build-provenance and SBOM attestations plus staged GitHub prerelease creation; no PyPI publishing step.
+- Declarative triage labels, focused issue forms, and an issue-ready good-first contribution queue.
 
 ## 0.1.0.dev0 - 2026-08-04
 

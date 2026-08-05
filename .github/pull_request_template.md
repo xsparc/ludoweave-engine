@@ -24,5 +24,7 @@
 - [ ] Tests and documentation cover changed behavior.
 - [ ] No backend object leaks through public APIs.
 - [ ] No credentials, private prompts, or personal data are included.
+- [ ] Added/removed public exports update `__all__`, `__stability__`, API docs, tests, and changelog.
+- [ ] Packaging/release changes preserve checksum, SBOM, notice, provenance, and installed-artifact gates.
 - [ ] User-visible changes are recorded in `CHANGELOG.md`.
 - [ ] Every commit includes a valid DCO `Signed-off-by` line.

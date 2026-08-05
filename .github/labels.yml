@@ -1,0 +1,59 @@
+# Declarative label catalog. Maintainers synchronize this file before using labels
+# in issue forms; it is intentionally not coupled to a write-enabled workflow.
+- name: triage
+  color: "ededed"
+  description: Awaiting maintainer classification and next action
+- name: bug
+  color: "d73a4a"
+  description: Reproducible incorrect behavior
+- name: enhancement
+  color: "a2eeef"
+  description: Proposed capability or behavior change
+- name: documentation
+  color: "0075ca"
+  description: Documentation-only or documentation-led work
+- name: good first issue
+  color: "7057ff"
+  description: Bounded task with acceptance checks and maintainer guidance
+- name: help wanted
+  color: "008672"
+  description: Maintainers welcome community implementation help
+- name: area:agent
+  color: "5319e7"
+  description: Typed agent service, local adapters, and safety boundaries
+- name: area:architecture
+  color: "5319e7"
+  description: Dependency rules, ADRs, compatibility, and design contracts
+- name: area:community
+  color: "5319e7"
+  description: Contribution experience, governance, and project policy
+- name: area:docs
+  color: "5319e7"
+  description: User, contributor, and architecture documentation
+- name: area:ecs
+  color: "5319e7"
+  description: ECS, scheduling, resources, and deterministic world storage
+- name: area:packaging
+  color: "5319e7"
+  description: Builds, releases, dependencies, provenance, and SBOMs
+- name: area:rendering
+  color: "5319e7"
+  description: Presentation contracts and isolated render adapters
+- name: area:world-protocol
+  color: "5319e7"
+  description: Commands, receipts, snapshots, replay, and branches
+- name: priority:high
+  color: "b60205"
+  description: Time-sensitive correctness, security, or release blocker
+- name: priority:normal
+  color: "fbca04"
+  description: Normal planned work with no release-blocking urgency
+- name: status:blocked
+  color: "d93f0b"
+  description: Cannot proceed until a named dependency or decision is resolved
+- name: status:needs-design
+  color: "c2e0c6"
+  description: Requires an issue design, RFC, or ADR before implementation
+- name: status:ready
+  color: "0e8a16"
+  description: Scope and acceptance checks are ready for implementation

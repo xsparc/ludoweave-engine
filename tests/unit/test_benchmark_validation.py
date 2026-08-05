@@ -49,7 +49,7 @@ def _valid_document() -> dict[str, object]:
             "python_build_mode": "release",
             "python_threading_build": "gil",
             "python_gil_enabled": True,
-            "ludoweave_version": "0.1.0.dev0",
+            "ludoweave_version": "0.1.0a1",
             "dependency_versions": {
                 "hatchling": "not-installed",
                 "hypothesis": "6.160.0",

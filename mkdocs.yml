@@ -8,7 +8,14 @@ theme:
     - content.code.copy
 nav:
   - Home: index.md
+  - Community-alpha user guide: user-guide.md
   - Architecture: architecture.md
+  - Adapter and extension guide: adapter-guide.md
+  - First contribution: first-contribution.md
+  - Release process: release-process.md
+  - Alpha release notes: releases/0.1.0a1.md
+  - Alpha retrospective: alpha-retrospective.md
+  - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
   - Fixed-step application: fixed-step-application.md
@@ -16,6 +23,7 @@ nav:
   - 2D rendering: rendering.md
   - M4 gameplay vertical slice: gameplay.md
   - Agent control interface: agent-control.md
+  - API status and compatibility: api-status.md
   - Headless command workflow: cli-workflows.md
   - Benchmarks: benchmarks.md
   - Decisions:
@@ -40,6 +48,7 @@ nav:
       - ADR-0018 - Collision and audio: adr/0018-bounded-deterministic-collision-and-minimal-audio.md
       - ADR-0019 - Agent service and safe points: adr/0019-agent-service-capabilities-and-safe-points.md
       - ADR-0020 - Local stdio MCP: adr/0020-local-stdio-mcp-adapter.md
+      - ADR-0021 - API stability metadata: adr/0021-explicit-public-api-stability-metadata.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

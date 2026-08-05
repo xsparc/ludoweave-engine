@@ -62,7 +62,7 @@ another stream's sequence.
 - Component migrations, resource migrations, and codecs are trusted local code;
   their external side effects cannot be rolled back.
 - Exact engine-version compatibility is deliberately conservative in the
-  pre-alpha protocol. Future compatibility widening requires a new decision.
+  community-alpha protocol. Future compatibility widening requires a new decision.
 - Snapshot size/count limits and correctness-first reconstruction may be
   expensive. Benchmark evidence may justify internal optimization without
   changing the public format.

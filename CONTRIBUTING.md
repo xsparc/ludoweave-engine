@@ -9,12 +9,15 @@ Thank you for helping build LudoWeave. The project welcomes focused bug fixes, t
 3. Discuss public API, persistent schema, security model, native-code, renderer-backend, networking, editor, or 3D changes before implementation.
 4. Do not include credentials, private prompts, model transcripts, or proprietary assets.
 
+For a start-to-finish setup, validation, DCO, and pull-request walkthrough, use
+the [first-contribution guide](docs/first-contribution.md).
+
 ## Development setup
 
 Install [uv](https://docs.astral.sh/uv/), then run:
 
 ```console
-uv sync --frozen --all-groups
+uv sync --frozen --all-groups --extra graphics
 ```
 
 Run the complete quality suite documented in [README.md](README.md) before requesting review. Include exact commands and results; do not report unexecuted checks as passing.

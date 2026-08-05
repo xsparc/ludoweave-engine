@@ -27,3 +27,4 @@ __all__ = [
     "overlaps",
     "resolve_kinematic_aabb",
 ]
+__stability__ = {name: "experimental" for name in __all__}

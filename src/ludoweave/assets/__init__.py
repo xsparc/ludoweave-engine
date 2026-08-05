@@ -27,3 +27,4 @@ __all__ = [
     "TextureSlot",
     "decode_png",
 ]
+__stability__ = {name: "experimental" for name in __all__}

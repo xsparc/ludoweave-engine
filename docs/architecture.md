@@ -2,7 +2,7 @@
 
 ## Product boundary
 
-LudoWeave is designed around deterministic world operations. The ECS/world store is the only canonical runtime state as its M1 slices are introduced. Human tools, tests, CLI adapters, replay, and software-agent adapters must eventually submit the same versioned, validated world commands and receive receipts.
+LudoWeave is designed around deterministic world operations. The ECS/world store is the only canonical runtime state. Human tools, tests, CLI adapters, replay, and software-agent adapters submit the same versioned, validated world commands and receive receipts.
 
 M0 established lifecycle, time, error, rendering, packaging, and dependency contracts. M1-01 adds generational entity identity, M1-02 adds immutable component schemas and registries, M1-03 adds canonical world storage plus an independent reference model, M1-04 adds storage-neutral queries and local deferred structural commands, and M1-05 adds typed resources plus conflict-aware serial schedule planning.
 
@@ -20,6 +20,12 @@ M5 adds `ludoweave.agent` as a transport-independent typed observation and
 control service over the existing world protocol. Python, the project-confined
 CLI, and the local stdio MCP adapter all reach the same transaction service and
 receipts. See [the agent control interface](agent-control.md).
+
+M6 hardens distribution and contribution surfaces without adding another
+runtime subsystem. Deterministic release tooling consumes built artifacts;
+public stability metadata describes exact exports; user, adapter, triage, and
+release guides document the existing boundaries. Release files and workflows
+never become canonical world input.
 
 ## Dependency direction
 
@@ -202,7 +208,10 @@ composition root whose canonical room objects live in the ECS/world store.
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
-bounded M4 gameplay contracts, and the local M5 typed agent/stdio MCP interface
-now exist. General scene importers, production audio, rigid-body physics,
-network transports, editor tooling, rich text, automatic device recovery, 3D,
-and native acceleration remain deferred to their assigned exercised slices.
+bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
+and the M6 community-alpha distribution contract now exist. M6 does not add a
+plugin loader or dynamic data-selected code: adapter discovery remains explicit
+trusted composition. General scene importers, production audio, rigid-body
+physics, network transports, editor tooling, rich text, automatic device
+recovery, 3D, and native acceleration remain deferred to future assigned,
+exercised slices.
