@@ -1,7 +1,8 @@
 # Current Task
 
 - **Task:** M12 - Preview plugin manifests and deterministic compatibility checks
-- **Status:** Final local gate and independent review complete; publication pending
+- **Status:** Complete, independently accepted, DCO-signed, published as ready
+  stacked PR #13, and validated by all eight essential hosted CI jobs
 - **Started:** 2026-08-06
 - **Base:** Exact final M11 evidence head
   `840a8b06d461fa1d5e649911b22f5995154728a7`; M12 will stack against
@@ -52,5 +53,7 @@
   Ruff/Pyright findings, strict docs, rebuilt pure artifacts, isolated wheel
   and fresh ten-artifact release smoke, nine real-wgpu integration passes,
   deterministic source examples, a compatible path-free manifest report, and
-  valid inherited benchmark/profile artifacts. Hosted CI, PR status, and any
-  cross-platform M12 pass remain unclaimed until publication and observation.
+  valid inherited benchmark/profile artifacts. Ready stacked PR #13 targets
+  exact M11; GitHub Actions run `31028863469` passed the unchanged eight-job
+  topology on signed implementation commit
+  `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.

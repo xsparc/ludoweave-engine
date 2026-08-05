@@ -31,8 +31,9 @@ data-only preview plugin-manifest schema and deterministic compatibility
 evaluator. RFC-0002 is accepted and implementation plus focused review
 hardening are complete. Independent hostile review approved the corrected tree
 with no remaining finding, and the complete local/artifact/provider gate
-passed. Signed commit, stacked PR publication, and hosted CI remain pending;
-no M12 hosted or cross-platform pass claim is made.
+passed. It is published as ready stacked PR #13; GitHub Actions run
+`31028863469` passed all eight essential hosted jobs on signed implementation
+commit `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.
 
 ## Repository identity
 
@@ -170,11 +171,11 @@ evidence head and is proposed against the M10 branch as PR #12.
 
 ## Next slice
 
-- Create the DCO-signed M12 implementation commit, publish the ready stacked PR
-  against exact M11, and observe the unchanged essential hosted gate before
-  recording hosted evidence. Do not add discovery/loading/execution, package
-  resolution, a global registry, provider admission, runtime authority,
-  networking, editor/GUI, 3D, deferred Box2D/SDL3 adapters, or native code.
+- M12 publication and hosted evidence are complete. Before implementation,
+  turn the next authoritative post-alpha item into a bounded task contract
+  based on the current design, accepted decisions, and existing surfaces. Do
+  not infer networking, remote authority, plugin loading, editor/GUI, 3D,
+  deferred Box2D/SDL3 adapters, or native code from roadmap proximity.
 
 ## Validation state
 
@@ -192,6 +193,11 @@ evidence head and is proposed against the M10 branch as PR #12.
   sanitized-diagnostic, immutable-decision, import/global-state, I/O/eval, and
   CLI regressions. Final re-review ran 138 focused tests with clean static,
   docs, diff, and isolated CLI checks and reported no remaining finding.
+- GitHub Actions run `31028863469` passed the unchanged essential eight-job
+  topology on M12 implementation commit
+  `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`: the complete Ubuntu 3.12
+  quality/test/distribution job, Ubuntu 3.13/3.14 plus Windows/macOS 3.14
+  compatibility jobs, and real graphics jobs on Ubuntu, Windows, and macOS.
 - The final reviewed M11 local gate on Windows/uv-managed CPython 3.12.13
   reports 663 passing tests and one existing symlink-capability skip, 164
   formatted Python files, zero Ruff/Pyright findings, strict documentation,

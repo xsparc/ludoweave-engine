@@ -1381,3 +1381,30 @@ isolated CLI checks.
 At this stage no M12 hosted or cross-platform pass, merge, tag, release, package
 publication, discovery/loading/execution, provider admission, networking,
 editor/GUI, deferred Box2D/SDL3 adapter, or native-code claim is made.
+
+## M12 hosted validation - 2026-08-06
+
+Ready stacked PR #13 targets `codex/m11-rich-2d-modules` from
+`codex/m12-plugin-manifest-compatibility`. Its one DCO-signed implementation
+commit is `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`; GitHub reports the PR open,
+ready, mergeable, and `CLEAN` against exact final M11 evidence head
+`840a8b06d461fa1d5e649911b22f5995154728a7`.
+
+GitHub Actions pull-request run `31028863469` executed the implementation
+commit from `2026-08-05T17:11:37Z` through `2026-08-05T17:13:23Z` and concluded
+`success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profiling
+  contract, sdist/wheel build, isolated-wheel smoke including the explicit
+  plugin manifest, release staging, and complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file was unchanged by M12. This is the only hosted run created for
+the implementation commit. It validates the supported cross-platform,
+distribution, and provider contracts; it does not merge PR #13, publish a
+package, create a tag or release, load plugin code, admit a provider, or
+authorize any deferred networking/editor/native work.

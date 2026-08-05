@@ -37,14 +37,15 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M11 are complete, independently accepted, and hosted-CI validated.
-M1-M7 are integrated into `main`; M8 through M11 are published as stacked PRs
-#9 through #12. M9 defers the Box2D v3 plugin. M10 adds only the headless
+M0 through M12 are complete, independently accepted, and hosted-CI validated.
+M1-M7 are integrated into `main`; M8 through M12 are published as stacked PRs
+#9 through #13. M9 defers the Box2D v3 plugin. M10 adds only the headless
 owned-child semantic inspector. M11 adds bounded headless 2D audio-mix,
 bitmap-text, tick-animation, tilemap, and particle authoring through existing
-backend-neutral extraction. M12 is assigned only to strict data-only preview
-plugin manifests, deterministic compatibility checks, and an explicitly
-invoked local validation CLI. Do not add discovery, imports, hook execution,
+backend-neutral extraction. M12 adds only strict data-only preview plugin
+manifests, deterministic compatibility checks, and an explicitly invoked local
+validation CLI. The next milestone is not assigned until the next post-alpha
+item has a bounded task contract. Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, networking or
 remote attach, arbitrary child commands, another world store, a Box2D adapter,
 release tag, GitHub release, or PyPI publication. Real audio playback, font
