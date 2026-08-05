@@ -118,8 +118,12 @@ dependency, lock, version, canonical/persistent world format, or CI job. The
 complete local quality/artifact/provider gate passes with 895 tests and one
 existing symlink skip. Ready PR #22 targets `main` from DCO-signed
 implementation commit `8e592f329424719214239bf97bd85dad9c9c5928`; GitHub
-Actions run `31042903689` passed all eight unchanged essential jobs. Squash
-integration remains pending.
+Actions run `31042903689` passed all eight unchanged essential jobs. PR #22
+then squash-integrated exact final evidence head
+`148600cdaf9c419fbf552c68f833e0d55655731f` into `main` as GitHub-verified
+commit `610261c8450afc3d7db6ebb2b0425a1829737aec`; both trees are
+`1e82568a463c62d0a1cf988b67eea09885ec50e3`, and the milestone branch is
+retained.
 
 ## Repository identity
 
@@ -267,11 +271,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M17 is the only assigned slice. Complete the installed render-device
-  conformance acceptance gate, independent review, one quota-conscious hosted
-  run, and PR integration before selecting another adoption metric. Do not
-  infer discovery/loading, a provider adapter, executable plugin, network,
-  editor, 3D, native code, dependency, or release publication from this work.
+- M17 is complete and integrated. No M18 slice is assigned in repository
+  state. Select and bound another adoption metric before implementation; do
+  not infer discovery/loading, a provider adapter, executable plugin, network,
+  editor, 3D, native code, dependency, or release publication from M17.
 
 ## Validation state
 

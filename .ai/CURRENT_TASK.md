@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M17 - installed render-device conformance
-- **Status:** Implementation, complete local validation, and the unchanged
-  eight-job hosted matrix passed on `codex/m17-render-device-conformance`.
-  Ready PR #22 targets `main`; squash integration remains pending.
+- **Status:** Complete. PR #22 squash-integrated the exact hosted-validated
+  M17 tree into `main` as GitHub-verified commit
+  `610261c8450afc3d7db6ebb2b0425a1829737aec`.
 - **Started:** 2026-08-06
 - **Base:** Exact clean `main` commit
   `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`, synchronized with
@@ -49,5 +49,8 @@
   documented benchmark/profile validator passed with the existing M1/M3 target
   misses recorded. GitHub Actions run `31042903689` passed all eight unchanged
   essential jobs on DCO-signed implementation commit
-  `8e592f329424719214239bf97bd85dad9c9c5928`. Final integration remains
-  pending and must not be claimed early.
+  `8e592f329424719214239bf97bd85dad9c9c5928`. PR #22 then squash-integrated
+  final evidence head `148600cdaf9c419fbf552c68f833e0d55655731f`
+  as verified one-parent `main` commit
+  `610261c8450afc3d7db6ebb2b0425a1829737aec`; its tree exactly matches the
+  retained milestone branch.

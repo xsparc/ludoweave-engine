@@ -37,7 +37,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M16 are complete, independently accepted, hosted-CI validated, and
+M0 through M17 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
@@ -78,7 +78,10 @@ an explicitly supplied trusted factory, returns sanitized versioned evidence,
 and passes against Null plus the existing optional wgpu adapter through the
 unchanged essential CI topology. Ready PR #22 and GitHub Actions run
 `31042903689` validate all eight jobs on DCO-signed implementation commit
-`8e592f329424719214239bf97bd85dad9c9c5928`; squash integration is pending.
+`8e592f329424719214239bf97bd85dad9c9c5928`. PR #22 squash-integrates final
+evidence head `148600cdaf9c419fbf552c68f833e0d55655731f` into `main` as
+GitHub-verified commit `610261c8450afc3d7db6ebb2b0425a1829737aec`
+with the exact final tree.
 It may not discover, dynamically import,
 install, sandbox, certify, or admit provider code, change plugin manifests, or
 add a concrete provider, dependency, lock, version, persistent world format,
