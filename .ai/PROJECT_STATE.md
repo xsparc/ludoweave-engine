@@ -2,18 +2,16 @@
 
 ## Current milestone
 
-M0 through M3 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI. M4 — provider-neutral input, assets,
-collision/audio contracts, and the Clockwork Arena vertical slice — is
-implemented and fully validated locally; milestone publication and hosted CI
-are pending.
+M0 through M4 are complete, independently accepted, published as stacked pull
+requests, and validated by hosted CI.
 
 ## Repository identity
 
 M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
 stacked PR #3, and validated by corrected hosted run `30993554807` across the
-14-job quality, CPython/OS, wheel, and graphics matrix. M4 is implemented on
-`codex/m4-clockwork-arena` from the exact validated M3 evidence head.
+14-job quality, CPython/OS, wheel, and graphics matrix. M4 is complete on
+`codex/m4-clockwork-arena`, published as stacked PR #4, and validated by hosted
+run `30996905660` across the same 14-job matrix.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -64,7 +62,7 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 
 ## Next slice
 
-- Publish and host-validate M4. Begin M5 agent-control work only from the exact M4 evidence-bearing head after all hosted jobs pass.
+- Begin only the authorized M5 agent-control slice on a new task-scoped branch from the exact validated M4 evidence head.
 
 ## Validation state
 
@@ -83,7 +81,7 @@ stacked PR #3, and validated by corrected hosted run `30993554807` across the
 - Corrected GitHub Actions run `30993554807` passed all 14 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real clear/sprite/capture/resize/loss graphics smoke on Ubuntu software Vulkan, Windows, and macOS.
 - The final local M4 gate on Windows/uv-managed CPython 3.12.13 reports 516 passing tests and one existing Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, successful no-dependency installed-wheel smoke, real offscreen and GLFW Clockwork Arena runs, exact 3,600-tick deterministic fixture/replay agreement, and a valid 300-sample three-workload benchmark artifact.
 - The local baseline Clockwork Arena benchmark p50/p95/p99 was 1.5228/2.1228/2.5898 ms and observed its 16.666667 ms p95 target. Stress 4 and 8 p95 values were 3.5029 ms and 4.8371 ms and have no assigned target. These are local observations, not cross-platform claims.
-- M4 hosted CI has not run yet, so no M4 cross-platform claim is made.
+- GitHub Actions run `30996905660` passed all 14 M4 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real graphics smoke, including Clockwork Arena wgpu execution, on Ubuntu software Vulkan, Windows, and macOS.
 
 ## External follow-ups
 

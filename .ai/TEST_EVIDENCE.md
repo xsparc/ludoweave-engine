@@ -545,3 +545,23 @@ network, and editor scans found no unapproved dependency or capability. Wheel
 inspection found the new assets, audio, collision, platform, and sample modules
 as pure Python, with no provider objects, tests, docs, or native artifacts.
 M4 hosted CI has not yet run, so no cross-platform M4 pass is claimed here.
+
+## M4 hosted validation — GitHub Actions run 30996905660
+
+The DCO-signed M4 implementation commit
+`e46bceec62fb20886fbb705149b07d083f4a46de` was pushed to
+`codex/m4-clockwork-arena` and published as stacked pull request #4 against the
+validated M3 branch. The resulting least-privilege CI run completed
+successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed lock, formatting, lint, strict Pyright with the optional graphics adapter installed, and strict MkDocs gates. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three base matrix jobs passed. |
+| Tests — Windows, Python 3.12/3.14 | Both base matrix jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both base matrix jobs passed. |
+| Installed wheel — Ubuntu/Windows/macOS, Python 3.12 | All three pure-wheel/no-dependency workflow smokes passed, including the installed M4 Arena/audio/collision checks. |
+| Graphics smoke — Ubuntu/Windows/macOS, Python 3.12 | All three real graphics fixtures and the Clockwork Arena wgpu vertical-slice command passed; Ubuntu used the explicitly provisioned Mesa Vulkan software runtime. |
+
+All 14 jobs in run `30996905660` passed. This supplies the cross-platform M4
+evidence that was deliberately not claimed by the local gate.
