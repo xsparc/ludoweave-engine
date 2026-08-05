@@ -2,7 +2,7 @@
 
 ## Current milestone
 
-M0 through M6 are complete, independently accepted, published as stacked pull
+M0 through M7 are complete, independently accepted, published as stacked pull
 requests, and validated by hosted CI.
 
 ## Repository identity
@@ -17,6 +17,10 @@ PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
 M6 community-alpha hardening is complete on `codex/m6-release-hardening`,
 published as stacked PR #6, and validated by hosted run `31002365370` across the
 same 14-job matrix, including complete candidate smoke on all three platforms.
+M7 performance/native decision is complete on
+`codex/m7-performance-decision`, published as stacked PR #7, and validated by
+hosted run `31005165849` across all 14 jobs, including the new base and
+real-wgpu profiling-contract smokes.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -73,12 +77,22 @@ same 14-job matrix, including complete candidate smoke on all three platforms.
 - Explicit `__all__`/`__stability__` policy and architecture coverage for every supported Python export; all `0.1.0a1` symbols remain experimental.
 - Pinned tag-only provenance/prerelease workflow plus complete release-candidate smoke in all three regular cross-platform wheel jobs.
 - Community-alpha user, architecture, adapter, release, first-contribution, API, triage, release-note, roadmap, and retrospective material with declarative labels and issue-ready starter cards.
+- Versioned M7 base/graphics `cProfile` tooling with exact workload invariants,
+  sanitized module/function records, strict validation, and tamper regressions.
+- Query metadata/signature traversal reductions mirrored independently in the
+  production and reference worlds, validated presentation reconstruction, and
+  fixed-record provider-neutral sprite packing.
+- Accepted RFC-0001 and ADR-0022: no native kernel is admitted; measurable
+  cross-platform, contiguous-buffer, GIL, owner, build, fuzz, fallback, and
+  improvement gates govern any future proposal.
 
 ## Next slice
 
-- Stop at the authorized M6 boundary. Do not create a release tag, GitHub
-  release, PyPI publication, or begin another milestone without a separate
-  maintainer decision.
+- Stop at the accepted M7 boundary. Do not create a release tag, publish a
+  package/release, or begin M8 without a separate maintainer decision.
+- The next design-sequenced question is gamepad/SDL3 evaluation as its own
+  evidence-bounded milestone. RFC-0001 continues to prohibit Rust/PyO3 until
+  its complete revisit gate is satisfied.
 
 ## Validation state
 
@@ -104,6 +118,27 @@ same 14-job matrix, including complete candidate smoke on all three platforms.
 - The final local M6 gate on Windows/uv-managed CPython 3.12.13 reports 552 passing tests and one existing Windows symlink-capability skip, 143 formatted Python files, zero Ruff/Pyright findings, strict documentation success, a pure `0.1.0a1` wheel, successful no-dependency installed-wheel smoke, and a complete 10-file staged candidate whose checksum/manifest/SBOM/sample smoke passed.
 - M6 changes release/community surfaces rather than simulation performance. No new benchmark or performance pass is claimed; inherited M1/M3 misses and M4 observation remain unchanged.
 - GitHub Actions run `31002365370` passed all 14 M6 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; complete installed release-candidate smoke on all three operating systems; and real graphics smoke, including Clockwork Arena and Agent World Builder, on Ubuntu software Vulkan, Windows, and macOS.
+- The final local M7 gate on Windows/uv-managed CPython 3.12.13 reports 564
+  passing tests and one existing Windows symlink-capability skip, 148 formatted
+  Python files, zero Ruff/Pyright findings, strict documentation success, a
+  pure wheel/sdist, successful no-dependency wheel smoke, complete 10-file
+  release smoke, six real wgpu integration passes, and successful wgpu sample
+  compositions.
+- Final valid 30-sample M7 observations are 130.1806/144.0474/150.6699 ms
+  p50/p95/p99 for the 10,000-entity simulation tick, 20.8641/30.6902/31.4777 ms
+  for 10,000-sprite extraction/packing, and 2.8678/5.1918/5.2584 ms for wgpu
+  CPU submission. None observed its starting target; these are local, not
+  cross-platform, timing claims.
+- Five-repeat `ludoweave.profile.m7/1` base and graphics artifacts validate.
+  Remaining simulation cost spans detached query copy/writeback; presentation
+  cost spans immutable record construction; packing consumes Python objects
+  even where it dominates submission. RFC-0001 therefore defers native code.
+- GitHub Actions run `31005165849` passed all 14 M7 jobs: strict
+  quality/documentation plus base profile validation; Ubuntu Python
+  3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; complete installed
+  release-candidate smoke on Ubuntu/Windows/macOS; and real graphics plus wgpu
+  profile smoke on all three operating systems. PR #7 is open, mergeable, and
+  reports clean merge state against the validated M6 branch.
 
 ## External follow-ups
 
@@ -115,6 +150,6 @@ same 14-job matrix, including complete candidate smoke on all three platforms.
 
 Remote/network agent transport, real audio playback, Box2D/rigid-body physics,
 networking, editor tooling, automatic device recovery, rich text, 3D, and
-native acceleration remain unimplemented. The measured M1 and M3 target misses
-are profiling evidence only and do not satisfy the later native-code admission
-gate.
+native acceleration remain unimplemented. RFC-0001 records that the improved
+M1/M3 workloads still miss their targets and defines the complete quantified
+admission gate before a native proposal may return.

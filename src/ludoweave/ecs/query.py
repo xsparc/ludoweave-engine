@@ -37,11 +37,11 @@ class QuerySpec:
 
 @dataclass(slots=True)
 class QueryRowState:
-    """Detached values plus captured scalar signatures for one candidate row."""
+    """Detached values plus signatures captured only for writable columns."""
 
     entity_id: EntityId
     values: tuple[object, ...]
-    signatures: tuple[tuple[object, ...], ...]
+    signatures: tuple[tuple[object, ...] | None, ...]
 
 
 class QueryBackend(Protocol):

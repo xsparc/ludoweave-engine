@@ -36,9 +36,11 @@ Windows, macOS, and Linux. Exact local and hosted command records live in
 
 Recorded local benchmarks observed the M1 3,600-tick headless target and the M4
 Clockwork Arena baseline target. The representative M1 10,000-entity tick and
-M3 10,000-sprite extraction/wgpu CPU-submission targets were not observed.
-Those misses remain profiling evidence and do not authorize Rust, PyO3, or
-another native boundary. M2 timings are informational and have no threshold.
+M3 10,000-sprite extraction/wgpu CPU-submission targets were not observed. M7
+subsequently profiled and reduced all three local p95 values, but none met its
+starting target. [RFC-0001](rfcs/0001-defer-first-native-kernel.md) records why
+those residual costs still do not authorize Rust, PyO3, or another native
+boundary. M2 timings are informational and have no threshold.
 
 No external-contributor first-contribution usability study has been recorded.
 The repository now supplies a complete walkthrough and issue-ready starter
@@ -60,7 +62,7 @@ fabricated acceptance result.
 
 Future work begins with evidence and an assigned milestone, not automatically
 from this alpha. Priority questions are contributor rehearsal feedback,
-profiling the recorded M1/M3 misses, defining any preview/stable API candidates,
-and deciding whether a PyPI release channel is warranted. Scene importers,
+controlled cross-platform performance evidence, defining any preview/stable API
+candidates, and deciding whether a PyPI release channel is warranted. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.

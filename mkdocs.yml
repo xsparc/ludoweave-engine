@@ -15,6 +15,9 @@ nav:
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
   - Alpha retrospective: alpha-retrospective.md
+  - Performance and native-code decision:
+      - RFC index: rfcs/index.md
+      - RFC-0001 - Defer first native kernel: rfcs/0001-defer-first-native-kernel.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
@@ -49,6 +52,7 @@ nav:
       - ADR-0019 - Agent service and safe points: adr/0019-agent-service-capabilities-and-safe-points.md
       - ADR-0020 - Local stdio MCP: adr/0020-local-stdio-mcp-adapter.md
       - ADR-0021 - API stability metadata: adr/0021-explicit-public-api-stability-metadata.md
+      - ADR-0022 - Defer native acceleration: adr/0022-defer-native-acceleration-after-profiling.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

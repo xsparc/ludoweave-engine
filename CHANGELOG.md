@@ -6,7 +6,20 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
-No changes yet.
+### Added
+
+- M7 versioned, sanitized `cProfile` evidence and strict tamper-resistant
+  validation for the representative 10,000-entity and 10,000-sprite workloads.
+- RFC-0001 and ADR-0022 recording the evidence-based decision to defer the
+  first Rust/PyO3 kernel.
+
+### Changed
+
+- Reduced detached query overhead by resolving column metadata once, skipping
+  unused read-only signatures, and sharing copy/signature traversals.
+- Reduced presentation extraction and float32 sprite-packing allocations while
+  preserving exact validation, error, ownership, and provider-neutral layout
+  behavior.
 
 ## 0.1.0a1 - 2026-08-05
 

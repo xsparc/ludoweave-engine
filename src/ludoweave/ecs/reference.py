@@ -481,21 +481,37 @@ class ReferenceWorld:
             if spec.order is QueryOrder.STABLE:
                 matched = tuple(sorted(matched, key=EntityId.as_tuple))
             rows: list[QueryRowState] = []
+            writable_types = set(spec.writable)
+            columns = tuple(
+                (
+                    component_type,
+                    self._registry.schema_for_type(component_type),
+                    component_type in writable_types,
+                )
+                for component_type in spec.included
+            )
             for entity_id in matched:
                 values: list[object] = []
-                signatures: list[tuple[object, ...]] = []
-                for component_type in spec.included:
-                    schema = self._registry.schema_for_type(component_type)
-                    value = _reference_copy_component(
-                        self._values[component_type][entity_id],
-                        component_type,
-                        schema,
-                        operation="query_read",
-                    )
+                signatures: list[tuple[object, ...] | None] = []
+                for component_type, schema, capture_signature in columns:
+                    stored = self._values[component_type][entity_id]
+                    if capture_signature:
+                        value, signature = _reference_copy_component_with_signature(
+                            stored,
+                            component_type,
+                            schema,
+                            operation="query_read",
+                        )
+                    else:
+                        value = _reference_copy_component(
+                            stored,
+                            component_type,
+                            schema,
+                            operation="query_read",
+                        )
+                        signature = None
                     values.append(value)
-                    signatures.append(
-                        _reference_component_signature(value, schema, operation="query_read")
-                    )
+                    signatures.append(signature)
                 rows.append(QueryRowState(entity_id, tuple(values), tuple(signatures)))
             return tuple(rows)
         except Exception:
@@ -509,16 +525,16 @@ class ReferenceWorld:
         for component_type in spec.writable:
             index = included_indexes[component_type]
             schema = self._registry.schema_for_type(component_type)
-            canonical = _reference_copy_component(
+            canonical, signature = _reference_copy_component_with_signature(
                 row.values[index],
                 component_type,
                 schema,
                 operation="query_writeback",
             )
-            signature = _reference_component_signature(
-                canonical, schema, operation="query_writeback"
-            )
-            if signature != row.signatures[index]:
+            baseline = row.signatures[index]
+            if baseline is None:
+                raise RuntimeError("writable query row is missing its captured signature")
+            if signature != baseline:
                 prepared.append((component_type, canonical))
         if not prepared:
             return
@@ -901,6 +917,43 @@ def _reference_copy_component(
     *,
     operation: str,
 ) -> object:
+    copied, _signature = _reference_prepare_component_copy(
+        value,
+        component_type,
+        schema,
+        operation=operation,
+        capture_signature=False,
+    )
+    return copied
+
+
+def _reference_copy_component_with_signature(
+    value: object,
+    component_type: type[object],
+    schema: ComponentSchema,
+    *,
+    operation: str,
+) -> tuple[object, tuple[object, ...]]:
+    copied, signature = _reference_prepare_component_copy(
+        value,
+        component_type,
+        schema,
+        operation=operation,
+        capture_signature=True,
+    )
+    if signature is None:
+        raise RuntimeError("reference component signature capture invariant failed")
+    return copied, signature
+
+
+def _reference_prepare_component_copy(
+    value: object,
+    component_type: type[object],
+    schema: ComponentSchema,
+    *,
+    operation: str,
+    capture_signature: bool,
+) -> tuple[object, tuple[object, ...] | None]:
     if type(value) is not component_type:
         raise _reference_invalid_value_error(
             "component instance must have its exact registered type",
@@ -919,7 +972,12 @@ def _reference_copy_component(
         copied = object.__new__(component_type)
         for name, field_value in captured:
             object.__setattr__(copied, name, field_value)
-        return copied
+        signature = (
+            tuple(_reference_signature_value(field_value) for _name, field_value in captured)
+            if capture_signature
+            else None
+        )
+        return copied, signature
     except Exception as error:
         raise _reference_invalid_value_error(
             "component value could not be copied",
@@ -1037,17 +1095,6 @@ def _reference_stale_error(
             "current_generation": current_generation,
             "reason": reason,
         },
-    )
-
-
-def _reference_component_signature(
-    value: object, schema: ComponentSchema, *, operation: str
-) -> tuple[object, ...]:
-    return tuple(
-        _reference_signature_value(
-            _reference_read_field(value, field, schema=schema, operation=operation)
-        )
-        for field in schema.fields
     )
 
 

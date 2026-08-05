@@ -275,6 +275,38 @@ def test_extraction_rejects_invalid_interpolation_without_state(alpha: object) -
         )
 
 
+def test_extraction_rejects_forged_unvalidated_source_record() -> None:
+    forged = object.__new__(SpriteExtractionSource)
+    with pytest.raises(RenderError) as raised:
+        RenderExtractor().extract_sprites(
+            (forged,), completed_ticks=0, interpolation_alpha=0.5, camera=Camera2D()
+        )
+    assert raised.value.code == "render.invalid_extraction"
+    assert dict(raised.value.details)["field"] == "sources"
+
+
+def test_extraction_rejects_finite_endpoints_whose_interpolation_overflows() -> None:
+    source = SpriteExtractionSource(
+        TextureHandle(SCOPE, 0, 0),
+        0,
+        0,
+        -1e308,
+        0.0,
+        1e308,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+    )
+    with pytest.raises(RenderError) as raised:
+        RenderExtractor().extract_sprites(
+            (source,), completed_ticks=0, interpolation_alpha=0.5, camera=Camera2D()
+        )
+    assert raised.value.code == "render.invalid_extraction"
+    assert dict(raised.value.details)["field"] == "interpolation"
+
+
 def test_camera_matrix_includes_translation_zoom_and_rotation() -> None:
     matrix = Camera2D(
         x=2.0,

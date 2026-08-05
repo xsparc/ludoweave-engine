@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import math
-import struct
 from collections.abc import Iterable, Sequence
+from struct import Struct
+from struct import error as StructError
 from typing import cast
 
 from ludoweave.core.errors import RenderError
@@ -18,6 +19,7 @@ from ludoweave.render.contracts import (
 
 SPRITE_INSTANCE_FLOATS = 16
 SPRITE_INSTANCE_STRIDE = SPRITE_INSTANCE_FLOATS * 4
+_SPRITE_INSTANCE_STRUCT = Struct("<16f")
 
 SPRITE_SHADER = """
 struct Camera {
@@ -122,10 +124,10 @@ _GLYPHS: dict[str, tuple[str, ...]] = {
 def pack_sprite_instances(instances: Sequence[SpriteInstance]) -> bytes:
     """Pack records into the provider-independent 64-byte instance layout."""
 
-    values: list[float] = []
-    for instance in instances:
-        values.extend(
-            (
+    pack = _SPRITE_INSTANCE_STRUCT.pack
+    try:
+        return b"".join(
+            pack(
                 instance.x,
                 instance.y,
                 instance.width,
@@ -143,10 +145,9 @@ def pack_sprite_instances(instances: Sequence[SpriteInstance]) -> bytes:
                 instance.z,
                 0.0,
             )
+            for instance in instances
         )
-    try:
-        return struct.pack(f"<{len(values)}f", *values)
-    except (OverflowError, struct.error) as error:
+    except (OverflowError, StructError) as error:
         raise RenderError(
             "sprite instance values cannot be represented as float32",
             code="render.instance_pack_failed",
