@@ -1639,3 +1639,26 @@ pull-request CI run for the implementation commit. Hosted evidence confirms
 the supported installed/cross-platform/provider contracts; it does not merge
 PR #15, publish a package, create a tag or release, add 3D runtime behavior,
 change a public/persistent contract, or admit a new dependency/provider.
+
+## M8-M14 main integration - 2026-08-06
+
+Direct-main integration PR #16 used exact base
+`0237b2bfb11c6032d030dada639c7dbe439e5089` and final M14 evidence head
+`02426805a11712030b3082ec349696d6d94aca50`. The pre-merge audit found 14
+linear commits, zero merge commits, and DCO sign-off in all 14. The M8-M14
+implementation runs `31012696753`, `31015885190`, `31020096463`,
+`31024155710`, `31028863469`, `31031590206`, and `31033924254` were all
+re-queried from GitHub and reported completed `success`.
+
+PR #16 was open, ready, `MERGEABLE`, and `CLEAN`. Its final evidence head
+contained `[skip ci]`, so opening the integration PR created no redundant
+matrix. The user-authorized squash merge completed at
+`2026-08-05T18:22:37Z` as GitHub-verified main commit
+`2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`. Its tree
+`137a1870b0dd9034ad935b253a13186f6c7cc913` exactly equals the validated M14
+head tree. The squash message includes the DCO sign-off and all seven hosted
+run IDs.
+
+Stacked PRs #9-#15 were closed as superseded after the exact-tree check;
+branches were retained. The integration creates no tag, release, package
+publication, new runtime/provider behavior, or additional Actions run.
