@@ -26,7 +26,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M15 visual-editor admission decision | Hosted-validated installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
 | Done | M16 WASM-mod security admission decision | Hosted-validated installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
 | Done | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
-| In progress | M18 installed agent-tool conformance | Versioned explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
+| Done | M18 installed agent-tool conformance | Hosted-validated explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -91,6 +91,9 @@ agent-service acceptance loop into one installed baseline for an explicitly
 supplied trusted adapter factory. It does not discover, load, install, launch,
 connect to, sandbox, certify, or admit third-party code, and project-owned
 direct-service evidence does not count as independent adoption.
+Ready PR #24 passed the unchanged eight-job hosted matrix as run
+`31046172544` on DCO-signed implementation commit
+`c4dde705393eebb7c99af428745e9383750f6b4d`.
 
 ## Good-first contribution queue
 

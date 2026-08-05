@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M18 - installed agent-tool conformance
-- **Status:** Locally complete and validated on
-  `codex/m18-agent-tool-conformance`; publication and hosted validation remain
-  pending.
+- **Status:** Complete and hosted-validated on ready PR #24 from
+  `codex/m18-agent-tool-conformance`; squash integration remains pending.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `ed65b12fa02f672113eac5939a0f616079fee44a`.
@@ -51,4 +50,6 @@
   skip, 145 focused tests, ten real-wgpu tests, strict Ruff/Pyright/docs, a pure
   93-entry isolated wheel, and a complete ten-artifact release smoke. All
   inherited benchmark/profile validators pass while the existing M1/M3 target
-  misses remain explicit. No hosted M18 result is claimed yet.
+  misses remain explicit. GitHub Actions run `31046172544` passed all eight
+  unchanged essential jobs on implementation commit
+  `c4dde705393eebb7c99af428745e9383750f6b4d`.

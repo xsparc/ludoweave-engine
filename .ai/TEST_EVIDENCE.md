@@ -2094,3 +2094,32 @@ and the merge base at exact commit
 the intended linear squash-integrated milestone history. At this stage no M18
 commit, hosted/cross-platform pass, PR, merge, tag, release, or package
 publication is claimed.
+
+## M18 hosted validation - 2026-08-06
+
+Ready PR #24 targets `main` from
+`codex/m18-agent-tool-conformance`. GitHub reported exact base
+`ed65b12fa02f672113eac5939a0f616079fee44a`, DCO-signed implementation head
+`c4dde705393eebb7c99af428745e9383750f6b4d`, `MERGEABLE`, and `CLEAN` after
+checks completed.
+
+GitHub Actions pull-request run `31046172544` executed that implementation
+commit from `2026-08-05T20:52:57Z` through `2026-08-05T20:55:24Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence validates the supported installed,
+cross-platform, and existing-provider contracts. It does not discover, admit,
+certify, or count third-party adapter code; establish real-agent manual-
+recovery rates; publish a package; create a tag or release; add a transport,
+listener, provider, dependency, or CI job; or claim the locally missed M1/M3
+performance targets passed.

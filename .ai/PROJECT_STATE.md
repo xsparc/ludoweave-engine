@@ -133,6 +133,9 @@ explicit trusted factory, with sanitized reports, source/wheel/release smoke,
 architecture guards, ADR-0032, and public guidance. It adds no discovery,
 dynamic import, installation, subprocess, network transport, provider,
 dependency, lock, version, persistent format, canonical state, or CI job.
+The final local gate passes, ready PR #24 targets `main` from DCO-signed
+implementation commit `c4dde705393eebb7c99af428745e9383750f6b4d`, and GitHub
+Actions run `31046172544` passed all eight unchanged essential jobs.
 
 ## Repository identity
 
@@ -290,8 +293,8 @@ Repository-state evidence is integrated by PR #18 as main commit
   explicit-factory behavioral profile for the existing 12-tool agent service.
   Implementation, focused adversarial coverage, strict docs/static checks,
   the 925-test full suite, real-wgpu integration, isolated wheel smoke, and a
-  fresh ten-artifact release smoke pass locally; publication and hosted
-  validation remain pending. Do not
+  fresh ten-artifact release smoke pass locally, and all eight unchanged
+  hosted jobs pass as run `31046172544`; squash integration remains pending. Do not
   infer discovery/loading, a new transport or provider, executable plugin,
   network, editor, 3D, native code, dependency, or release publication.
 
