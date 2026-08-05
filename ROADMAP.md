@@ -25,7 +25,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
 | Done | M15 visual-editor admission decision | Hosted-validated installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
 | Done | M16 WASM-mod security admission decision | Hosted-validated installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
-| Ready to merge | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
+| Done | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -79,8 +79,11 @@ load, install, sandbox, or certify third-party code. Project-owned Null/wgpu
 passes do not count as independent third-party adoption.
 Ready PR #22 passed the unchanged eight-job hosted matrix as run
 `31042903689` on DCO-signed implementation commit
-`8e592f329424719214239bf97bd85dad9c9c5928`; squash integration remains
-pending.
+`8e592f329424719214239bf97bd85dad9c9c5928`. PR #22 squash-integrated exact
+final evidence head `148600cdaf9c419fbf552c68f833e0d55655731f` into
+`main` as GitHub-verified commit
+`610261c8450afc3d7db6ebb2b0425a1829737aec`; both trees are
+`1e82568a463c62d0a1cf988b67eea09885ec50e3`.
 
 ## Good-first contribution queue
 

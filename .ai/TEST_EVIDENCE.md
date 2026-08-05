@@ -1984,3 +1984,33 @@ M1/M3 performance targets passed.
 After recording these hosted facts, `uv run --frozen mkdocs build --strict`
 exited 0 in 0.58 seconds with only the documented upstream Material MkDocs-2
 warning, and `git diff --check` exited 0.
+
+## M17 main integration - 2026-08-06
+
+PR #22 used exact base `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`
+and final evidence head `148600cdaf9c419fbf552c68f833e0d55655731f`.
+The two-commit branch history contains a DCO trailer on both commits. The final
+evidence commit contains `[skip ci]`; GitHub lists only implementation run
+`31042903689` for the branch.
+
+The user-authorized squash merge completed at `2026-08-05T20:17:17Z` as
+GitHub-verified `main` commit
+`610261c8450afc3d7db6ebb2b0425a1829737aec` with verification reason `valid`.
+Its sole parent is the exact base, its DCO trailer is a real commit-message
+trailer, and tree `1e82568a463c62d0a1cf988b67eea09885ec50e3`
+exactly equals the final M17 branch tree. The milestone branch is retained.
+
+The first local tree comparison used unquoted PowerShell revision braces and
+failed before comparing with an encoded-argument parsing error. The corrected
+quoted `git rev-parse "HEAD^{tree}"` and
+`git rev-parse "origin/main^{tree}"` commands both returned the exact tree
+above, and `git diff --exit-code HEAD origin/main` exited 0.
+
+The integration creates no tag, release, package publication, adapter
+discovery/loading/installation, provider admission, dependency, workflow
+change, or additional Actions run. Project-owned Null/wgpu conformance remains
+reference evidence and does not increase independent third-party adoption.
+
+On the integration-evidence branch,
+`uv run --frozen mkdocs build --strict` exited 0 in 0.56 seconds with only the
+documented upstream Material MkDocs-2 warning, and `git diff --check` exited 0.
