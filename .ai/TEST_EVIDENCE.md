@@ -465,5 +465,32 @@ import scan found only the three expected wgpu/rendercanvas imports inside
 evaluation import/call entered source/examples/benchmarks/scripts. The wheel
 listing contains only the typed package, metadata, entry point, LICENSE, and
 NOTICE; it contains no native objects, tests, generated docs, or credentials.
-Hosted Windows/macOS/Linux graphics validation has not yet run, so no hosted M3
-claim is made here.
+## M3 hosted validation — GitHub Actions runs 30951328011 and 30993554807
+
+The DCO-signed M3 implementation commit
+`230687b16dfc02a8d2762af66f6bf2db4ef87f21` was pushed to
+`codex/m3-rendering-vertical-slice` and published as stacked PR #3 against the
+M2 branch. Initial run `30951328011` was not green and is not reported as a
+pass: all base test and wheel jobs plus Windows/macOS graphics passed, while
+strict Pyright failed because the quality job had not installed optional
+provider packages and Ubuntu graphics failed with the typed
+`render.adapter_unavailable` outcome because the runner had no usable graphics
+driver.
+
+Correction commit `6e6cea0bd80450a4d5b59cc1ff2e9f27a4195a92`
+installs the already locked `graphics` extra in the quality job and installs
+`libvulkan1` plus `mesa-vulkan-drivers` only on the Ubuntu graphics runner.
+Local strict Pyright remained green before publication. Corrected run
+`30993554807` then completed successfully:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality and documentation — Ubuntu, Python 3.12 | Passed lock, formatting, lint, strict Pyright with the optional adapter installed, and strict MkDocs. |
+| Tests — Ubuntu, Python 3.12/3.13/3.14 | All three base jobs passed without the graphics extra. |
+| Tests — Windows, Python 3.12/3.14 | Both base jobs passed. |
+| Tests — macOS, Python 3.12/3.14 | Both base jobs passed. |
+| Installed wheel — Ubuntu/Windows/macOS, Python 3.12 | All three pure-wheel/no-dependency workflow smokes passed. |
+| Graphics smoke — Ubuntu/Windows/macOS, Python 3.12 | All three real clear, instanced sprite, capture, resize/minimize, and loss fixtures passed; Ubuntu used the explicitly provisioned Mesa Vulkan software runtime. |
+
+All 14 jobs in run `30993554807` passed. This supplies the cross-platform M3
+evidence that was deliberately not claimed by the local gate.

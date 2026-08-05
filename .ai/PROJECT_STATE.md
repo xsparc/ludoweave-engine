@@ -6,9 +6,9 @@ M0 — repository contract and walking skeleton — M1 — deterministic world c
 
 ## Repository identity
 
-M3 rendering is locally complete on `codex/m3-rendering-vertical-slice` and
-awaits DCO-signed publication plus hosted Windows/macOS/Linux graphics
-validation before the milestone is declared complete.
+M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
+stacked PR #3, and validated by corrected hosted run `30993554807` across the
+14-job quality, CPython/OS, wheel, and graphics matrix.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -54,7 +54,7 @@ validation before the milestone is declared complete.
 
 ## Next slice
 
-- After M3 hosted validation and publication, begin only the authorized M4 input, assets, collision, and Clockwork Arena slice on a new task-scoped branch from the validated M3 head.
+- Begin only the authorized M4 input, assets, collision, and Clockwork Arena slice on a new task-scoped branch from the validated M3 head.
 
 ## Validation state
 
@@ -69,6 +69,8 @@ validation before the milestone is declared complete.
 - GitHub Actions run `30947073913` passed all 11 M2 jobs: quality/documentation; Ubuntu tests on Python 3.12/3.13/3.14; Windows and macOS tests on Python 3.12/3.14; and isolated installed-wheel smoke on Ubuntu, Windows, and macOS.
 - The final local M3 graphics gate on Windows/uv-managed CPython 3.12.13 reports 485 passing tests and one Windows symlink-capability skip, zero Ruff/Pyright findings, strict documentation success, a pure wheel, and a successful no-dependency installed-wheel smoke. A separate frozen base sync removed all graphics packages and reported 479 passes with the symlink and graphics capability skips.
 - The real Windows GLFW example and the offscreen clear/sprite/capture fixtures completed. The 30-sample M3 artifact validated six workloads with one draw each. Local 10k extraction/packing p50/p95/p99 was 35.4460/41.9722/51.8362 ms; wgpu CPU submission was 5.3753/6.5363/6.9215 ms. Neither observed the 3 ms starting target; no target pass is claimed.
+- Initial M3 hosted run `30951328011` passed all base test and wheel jobs plus Windows/macOS graphics, but failed the quality type check because optional providers were not installed and failed Ubuntu graphics because no driver was present. The correction installs the exact graphics extra for quality and Mesa Vulkan only for the Ubuntu graphics job.
+- Corrected GitHub Actions run `30993554807` passed all 14 jobs: strict quality/documentation; Ubuntu Python 3.12/3.13/3.14; Windows and macOS Python 3.12/3.14; isolated wheel smoke on all three operating systems; and real clear/sprite/capture/resize/loss graphics smoke on Ubuntu software Vulkan, Windows, and macOS.
 
 ## External follow-ups
 
