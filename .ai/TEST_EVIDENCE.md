@@ -1863,3 +1863,23 @@ the implementation commit. Hosted evidence confirms the supported installed,
 cross-platform, and provider contracts; it does not publish a package, create
 a tag or release, add an executable mod/runtime/WASI/host-call surface, change
 a public or persistent contract, or admit a new dependency/provider.
+
+## M16 main integration - 2026-08-06
+
+PR #20 used exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`
+and final evidence head `808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a`.
+The two-commit branch history contains a DCO trailer on both commits. The final
+evidence commit contains `[skip ci]`, and GitHub lists only implementation run
+`31039403209` for the branch.
+
+The user-authorized squash merge completed at `2026-08-05T19:31:34Z` as
+GitHub-verified main commit `e2bd57c057c0c16861953c0702b2012c4cabfe90`
+with verification reason `valid`. Its sole parent is the exact base, its DCO
+trailer is a real commit-message trailer, and tree
+`05367be9bd85014fe6c70995ac1a69a39f90ef1e` exactly equals the final M16
+branch tree. The milestone branch is retained.
+
+The integration creates no tag, release, package publication, executable mod,
+runtime/provider/dependency behavior, or additional Actions run. The
+authoritative post-alpha sequence ends with M16 item 10; no M17 milestone or
+acceptance criteria are assigned by the current plan.

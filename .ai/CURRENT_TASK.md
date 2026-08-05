@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M16 - WASM-mod security admission decision
-- **Status:** Complete, independently accepted, and hosted-validated through
-  ready PR #20 on `codex/m16-wasm-mod-security-decision`; integration uses the
-  user-authorized squash-PR flow.
+- **Status:** Complete, independently accepted, hosted-validated, and
+  squash-integrated into `main` through PR #20 as verified commit
+  `e2bd57c057c0c16861953c0702b2012c4cabfe90`.
 - **Started:** 2026-08-06
 - **Base:** Exact clean, verified `main` integration commit
   `c013dad38b1b64f0f4ccddc19681d643f6414427` from squash PR #19. Its tree
@@ -61,3 +61,8 @@
   essential jobs on DCO-signed implementation commit
   `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce` through ready PR #20 against
   exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`.
+- **Integration gate:** PR #20 squash-merged exact final head
+  `808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` at
+  `2026-08-05T19:31:34Z`. The GitHub-verified main commit has tree
+  `05367be9bd85014fe6c70995ac1a69a39f90ef1e`, exactly matching the final
+  branch head, and retains a valid DCO trailer.

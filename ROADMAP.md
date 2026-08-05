@@ -66,6 +66,10 @@ runtime implementation.
 M16 ready PR #20 passed the unchanged eight-job hosted matrix as run
 `31039403209` on implementation commit
 `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
+PR #20 squash-integrated exact final M16 head
+`808e48a5cb2727c8e1f4d7e896c4f8c7d41bfe1a` into `main` as verified commit
+`e2bd57c057c0c16861953c0702b2012c4cabfe90`; both trees are
+`05367be9bd85014fe6c70995ac1a69a39f90ef1e`.
 
 ## Good-first contribution queue
 
