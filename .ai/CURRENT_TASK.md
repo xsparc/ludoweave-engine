@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M14 - Constrained 3D scope admission decision
-- **Status:** Complete, independently accepted, published as ready stacked PR
-  #15, and hosted-validated on `codex/m14-constrained-3d-decision`.
+- **Status:** Complete, independently accepted, hosted-validated, and
+  squash-integrated with M8-M14 into `main` by PR #16. Stacked PR #15 is
+  closed as superseded; its branch remains for audit history.
 - **Started:** 2026-08-06
 - **Base:** Exact final M13 hosted-evidence head
   `48f8f296113e3f2794bae7f4c67997d433e4dd36`; M14 will stack against

@@ -60,9 +60,14 @@ layer/z ordering while every 3D admission gate remains false. The final local
 gate reports 809 passes and one existing Windows symlink-capability skip;
 independent hostile review reports no remaining finding. M14 changes no
 runtime package, public Python API, persistent format, dependency, version, or
-CI topology. It is published as ready stacked PR #15; GitHub Actions run
-`31033924254` passed all eight essential jobs on signed implementation commit
-`47443046834eb423be977973775f80494161533d`.
+CI topology. GitHub Actions run `31033924254` passed all eight essential jobs
+on signed implementation commit
+`47443046834eb423be977973775f80494161533d`. M8-M14 were then
+squash-integrated into `main` by PR #16 as verified commit
+`2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`; its tree exactly matches final
+M14 evidence head `02426805a11712030b3082ec349696d6d94aca50` at tree
+`137a1870b0dd9034ad935b253a13186f6c7cc913`. Stacked PRs #9-#15 are closed as
+superseded, with branches retained for audit history.
 
 ## Repository identity
 
@@ -81,11 +86,10 @@ M7 performance/native decision is complete on
 hosted run `31005165849` across all 14 jobs, including the new base and
 real-wgpu profiling-contract smokes.
 The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
-`0237b2bfb11c6032d030dada639c7dbe439e5089`. M8 is based directly on that
-mainline commit. M9 is based on the hosted-validated M8 head
-`187ad4503a40325a1e334da3cb4078969e2e043b`; M10 is based on the final hosted
-M9 head and is proposed against the M9 branch. M11 is based on the final M10
-evidence head and is proposed against the M10 branch as PR #12.
+`0237b2bfb11c6032d030dada639c7dbe439e5089`. The validated M8-M14 tree was
+squash-integrated by PR #16 as commit
+`2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`. The milestone branches and
+hosted-run records remain the audit trail; superseded stacked PRs are closed.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.

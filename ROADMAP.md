@@ -49,6 +49,9 @@ commit `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
 M14 PR #15 passed the unchanged eight-job hosted matrix on implementation
 commit `47443046834eb423be977973775f80494161533d`; layered 2D remains the
 accepted scope and no runtime or dependency was added.
+PR #16 squash-integrated the exact validated M8-M14 tree into `main` as
+verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`. Stacked PRs
+#9-#15 are closed as superseded; their branches remain as audit history.
 
 ## Good-first contribution queue
 
