@@ -116,8 +116,10 @@ evidence, artifact smoke, architecture guards, ADR-0031, and public guidance.
 It adds no discovery, dynamic import, installation, provider adapter,
 dependency, lock, version, canonical/persistent world format, or CI job. The
 complete local quality/artifact/provider gate passes with 895 tests and one
-existing symlink skip; final diff review, hosted validation, and integration
-remain pending.
+existing symlink skip. Ready PR #22 targets `main` from DCO-signed
+implementation commit `8e592f329424719214239bf97bd85dad9c9c5928`; GitHub
+Actions run `31042903689` passed all eight unchanged essential jobs. Squash
+integration remains pending.
 
 ## Repository identity
 

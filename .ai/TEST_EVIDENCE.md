@@ -1951,3 +1951,36 @@ correctly failed after the additive public render exports changed M14's exact
 installed-surface fixture. The fixture was updated to the six exact M17 names,
 then focused M14/M15/M16 tests, final wheel smoke, and final release smoke all
 passed. No product failure remains unresolved.
+
+## M17 hosted validation - 2026-08-06
+
+Ready PR #22 targets `main` from
+`codex/m17-render-device-conformance`. GitHub reported exact base
+`27d2ee9d1f7f75dacc17568650f00ce833ef4fce`, implementation head
+`8e592f329424719214239bf97bd85dad9c9c5928`, `MERGEABLE`, and `CLEAN`. The
+implementation history contains one DCO-signed commit.
+
+GitHub Actions pull-request run `31042903689` executed that implementation
+commit from `2026-08-05T20:11:26Z` through `2026-08-05T20:13:48Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence validates supported installed,
+cross-platform, and existing-provider behavior; it does not certify or admit
+third-party code, count project-owned adapters as independent adoption,
+publish a package, create a tag or release, add discovery/loading/install
+behavior, change a public or persistent format, or claim the locally missed
+M1/M3 performance targets passed.
+
+After recording these hosted facts, `uv run --frozen mkdocs build --strict`
+exited 0 in 0.58 seconds with only the documented upstream Material MkDocs-2
+warning, and `git diff --check` exited 0.

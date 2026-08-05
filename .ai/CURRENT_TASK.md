@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M17 - installed render-device conformance
-- **Status:** Implementation and complete local validation finished on
-  `codex/m17-render-device-conformance`.
+- **Status:** Implementation, complete local validation, and the unchanged
+  eight-job hosted matrix passed on `codex/m17-render-device-conformance`.
+  Ready PR #22 targets `main`; squash integration remains pending.
 - **Started:** 2026-08-06
 - **Base:** Exact clean `main` commit
   `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`, synchronized with
@@ -46,5 +47,7 @@
   findings, strict docs, a 92-entry universal wheel with no native/WASM files,
   isolated wheel and ten-artifact release smoke, and 10 real-wgpu tests. Every
   documented benchmark/profile validator passed with the existing M1/M3 target
-  misses recorded. Final diff review, hosted validation, and integration remain
+  misses recorded. GitHub Actions run `31042903689` passed all eight unchanged
+  essential jobs on DCO-signed implementation commit
+  `8e592f329424719214239bf97bd85dad9c9c5928`. Final integration remains
   pending and must not be claimed early.

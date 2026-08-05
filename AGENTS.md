@@ -75,8 +75,11 @@ commit `e2bd57c057c0c16861953c0702b2012c4cabfe90` with the exact final tree.
 M17 is assigned only to an installed `RenderDevice` baseline conformance
 profile derived from the design plan's third-party-adoption metric. It accepts
 an explicitly supplied trusted factory, returns sanitized versioned evidence,
-and must pass against Null plus the existing optional wgpu adapter through the
-unchanged essential CI topology. It may not discover, dynamically import,
+and passes against Null plus the existing optional wgpu adapter through the
+unchanged essential CI topology. Ready PR #22 and GitHub Actions run
+`31042903689` validate all eight jobs on DCO-signed implementation commit
+`8e592f329424719214239bf97bd85dad9c9c5928`; squash integration is pending.
+It may not discover, dynamically import,
 install, sandbox, certify, or admit provider code, change plugin manifests, or
 add a concrete provider, dependency, lock, version, persistent world format,
 canonical state, or package-root export. Do not add discovery, imports, hook execution,
