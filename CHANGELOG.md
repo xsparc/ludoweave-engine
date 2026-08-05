@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M16 deterministic installed security evidence for the WASM-mod admission
+  decision, exercised from source, isolated wheel, and release sample bundle.
+- ADR-0030 and a prospective threat model retaining the data-only plugin
+  boundary and deferring executable WASM mods until least-privilege, resource,
+  determinism, lifecycle, persistence, isolation, conformance, supply-chain,
+  and maintenance gates are complete.
 - M15 deterministic installed-surface evidence for the visual-editor admission
   decision, exercised from source, isolated wheel, and release sample bundle.
 - ADR-0029 retaining the bounded headless inspector and deferring a visual

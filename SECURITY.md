@@ -30,7 +30,30 @@ Maintainers will acknowledge the report through the same private channel, assess
 - Input files are read through one bounded open handle; stale size metadata cannot cause an unbounded read.
 - Project confinement protects normal workflows and static symlink/traversal mistakes. It is not a sandbox against a hostile local principal concurrently replacing files, directories, junctions, or symlinks inside the selected project tree; run commands only against a locally trusted, quiescent project directory.
 - The M2 CLI project manifest is data-only and cannot select Python modules, callables, components, or plugins.
+- M12 plugin manifests are exact-schema inert compatibility metadata. They do
+  not discover, import, install, resolve, or execute code, and unknown
+  executable fields fail closed.
+- M16 adds no WASM runtime, loader, guest ABI, WASI context, host call, or mod
+  package. Untrusted WebAssembly is not executed. ADR-0030 requires a complete
+  least-privilege, resource, determinism, lifecycle, persistence, isolation,
+  conformance, supply-chain, and maintenance gate before that boundary may
+  change.
 - Diagnostics must not expose environment variables or credentials.
 - Agent-facing mutations are typed, validated, capability-gated, caller-attributed, serialized at safe points, and return canonical receipts. Write access is disabled by default.
 - Agent requests, results, transactions, ticks, queries, snapshots, captures, tests, and call rates are bounded. Credential-shaped diagnostics and telemetry values are redacted.
 - The MCP adapter cannot launch a shell, evaluate Python, load a module named by request data, or open a socket. Anyone able to launch the process and access its stdio has the capabilities granted by that composition root.
+
+## Future executable-mod reports
+
+Treat any unexpected plugin-driven import, execution, dynamic loading, WASM
+instantiation, ambient filesystem/network/process access, or world mutation
+without a canonical receipt as a security report. Also report any accepted
+plugin-manifest field outside its documented exact schema. Use the private
+reporting route above; do not attach hostile modules or sensitive files to a
+public issue.
+
+The [M16 WASM-mod security decision](docs/wasm-mod-security-decision.md)
+records the prospective assets, actors, entry points, trust boundaries,
+blocking findings, verification requirements, and residual risk. Its findings
+are feature-admission blockers, not claims of a current executable-mod
+vulnerability.

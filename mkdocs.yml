@@ -15,6 +15,7 @@ nav:
   - Rollback and network-snapshot readiness: rollback-readiness.md
   - Constrained 3D scope decision: constrained-3d-decision.md
   - Visual-editor admission decision: visual-editor-decision.md
+  - WASM-mod security decision: wasm-mod-security-decision.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -67,6 +68,7 @@ nav:
       - ADR-0027 - Rollback readiness deferral: adr/0027-defer-network-rollback-after-readiness-evaluation.md
       - ADR-0028 - Retain layered 2D: adr/0028-retain-layered-2d-and-defer-constrained-3d.md
       - ADR-0029 - Defer visual editor: adr/0029-retain-headless-inspector-and-defer-visual-editor.md
+      - ADR-0030 - Defer WASM mods: adr/0030-retain-data-only-plugins-and-defer-wasm-mods.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

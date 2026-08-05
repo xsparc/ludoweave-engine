@@ -11,6 +11,7 @@ python rich_2d_showcase.py --ticks 6
 python rollback_readiness.py --ticks 120 --branch-tick 60
 python constrained_3d_decision.py
 python visual_editor_decision.py
+python wasm_mod_security_decision.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -39,6 +40,10 @@ no 3D API, provider, asset loader, or runtime implementation.
 MCP, and inspector foundation. It records a deterministic deferred admission
 decision and adds no GUI, editor runtime, public API, dependency, or project
 format.
+
+`wasm_mod_security_decision.py` audits the installed data-only plugin boundary,
+proves that executable manifest fields remain rejected, and records a deferred
+WASM-mod decision. It does not compile, instantiate, or execute guest code.
 
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:

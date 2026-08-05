@@ -44,6 +44,14 @@ compatibility, document/scene, selection/hierarchy, undo/conflict, property,
 viewport, asset, recovery, accessibility/usability, cross-platform packaging,
 resource-budget, and maintenance-owner gates are evidenced together.
 
+ADR-0030 resolves the M16 WASM-mod question by retaining the inert M12 plugin
+boundary and deferring executable guests until runtime provenance/support,
+package identity/distribution, default-deny copied capabilities,
+command/receipt mutation mapping, bounded execution, atomic trap/lifecycle,
+deterministic replay, guest-state migration, isolation, adversarial
+conformance, cross-platform installation, and named security/update ownership
+are evidenced together.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

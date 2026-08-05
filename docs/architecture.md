@@ -71,6 +71,18 @@ No runtime package, persistent protocol change, listener, or remote authority
 is added. See the [rollback-readiness guide](rollback-readiness.md) and
 ADR-0027.
 
+M14 retains the layered-2D product boundary after an exact installed-surface
+audit. M15 retains the finite headless inspector after confirming one real
+receipted semantic mutation. Both milestones add decision evidence only and
+introduce no runtime provider or second authority.
+
+M16 treats executable WebAssembly mods as a separate security workstream. It
+retains the M12 inert manifest boundary and adds only a threat model, installed
+evidence, exact artifact validation, and architecture guards. There is no WASM
+runtime, loader, guest ABI, WASI context, host call, public export, dependency,
+or canonical guest state. See the [WASM-mod security
+decision](wasm-mod-security-decision.md) and ADR-0030.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -114,6 +126,10 @@ sample composition ludoweave.samples.clockwork_arena
   helpers only. They may not import application/tools, ECS authority, samples,
   backends/providers, discovery/package metadata, process, or network modules,
   and may not evaluate Python.
+- No engine module may import a WASM runtime. A future guest adapter must be an
+  explicitly admitted, engine-owned boundary whose values are copied and whose
+  world mutations use commands and receipts; runtime/guest objects may never
+  enter public or canonical state.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
@@ -147,6 +163,11 @@ application, sample, and world contracts. Its validator is repository tooling.
 Neither is a runtime dependency, and architecture checks continue to prohibit
 network facilities from local stdio/inspector boundaries and provider objects
 from canonical state.
+
+The M16 evidence composition also lives under `examples/`; its validator is
+repository tooling. The AST checker explicitly rejects common WASM runtime
+imports even inside plugin contracts, while exact dependency tests keep both
+the baseline and graphics-extra requirement sets unchanged.
 
 ## Ownership and close order
 
@@ -414,6 +435,28 @@ ADR-0029 requires the complete product, compatibility, authoring, recovery,
 accessibility, packaging, performance, and ownership gate before these guards
 may change.
 
+## M16 WASM-mod security boundary
+
+The WebAssembly core sandbox provides no ambient host access, but LudoWeave as
+embedder would define every imported capability. A future guest therefore
+cannot receive filesystem, network, process, environment, clock, randomness,
+render/audio, persistence, or world authority implicitly. Guest values must be
+copied and validated, and every world mutation must cross the existing staged
+command/transaction path and produce a receipt. Guest memory, runtime handles,
+compiled modules, and host-function objects cannot enter public APIs or
+canonical state.
+
+M16 implements none of that execution surface. It audits the installed inert
+manifest contract from a dependency-free example, validates the exact document
+from source/wheel/release artifacts, and adds synthetic AST fixtures rejecting
+common WASM runtime imports. The baseline remains a universal pure-Python wheel
+with only the existing optional graphics extra.
+
+ADR-0030 requires complete capability, resource, determinism, trap/lifecycle,
+persistence, isolation, adversarial-conformance, cross-platform,
+supply-chain, and maintenance evidence before these guards may change. Core
+memory isolation or a successful guest prototype is insufficient.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -425,7 +468,8 @@ local semantic inspector, the M11 rich 2D authoring records, the M12 inert
 plugin manifest contract, and the M13 offline rollback-readiness decision now
 exist. M14 records the retained layered-2D boundary and defers constrained 3D
 without changing the runtime package. M15 retains the headless inspector and
-defers visual-editor implementation. M6
+defers visual-editor implementation. M16 retains data-only plugins and defers
+WASM runtimes, guest execution, WASI, and host calls. M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network

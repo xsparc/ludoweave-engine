@@ -37,7 +37,8 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M15 are complete, independently accepted, and hosted-CI validated.
+M0 through M15 are complete, independently accepted, hosted-CI validated, and
+integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
 exact final M14 tree. Superseded stacked PRs #9 through #15 are closed and
@@ -58,12 +59,22 @@ M15 retains the headless inspector and defers visual-editor implementation
 under ADR-0029. Its evidence-only implementation is published through ready PR
 #19 and validated by hosted run `31036925179`; it adds no runtime source,
 public API, persistent format, dependency, lock, version, or CI change.
+PR #19 squash-integrates the exact M15 tree as verified `main` commit
+`c013dad38b1b64f0f4ccddc19681d643f6414427`. M16 is assigned only to a
+WASM-mod security admission decision. It must retain data-only plugins and add
+threat-model, installed evidence, tests, and documentation without selecting or
+adding a runtime, loader, executable manifest field, guest ABI, WASI, host
+function, public API, persistent format, dependency, lock, version, or CI job.
+Its implementation is complete and independently accepted on
+`codex/m16-wasm-mod-security-decision`. Ready PR #20 and GitHub Actions run
+`31039403209` validate all eight unchanged essential jobs on DCO-signed
+implementation commit `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
 Do not add discovery, imports, hook execution,
 installation/resolution, a global plugin registry, GUI/editor, sockets,
 networking or remote attach, arbitrary child commands, another world store, a
 Box2D adapter,
 release tag, GitHub release, or PyPI publication. Real audio playback, font
 parsing/shaping, network agent transports, editor work, constrained/general 3D,
-SDL3, WASM, and native code remain out of scope.
+SDL3, executable WASM, and native code remain out of scope.
 RFC-0001 records the evidence-based native-code deferral; local performance
 misses are not automatic authorization for acceleration.

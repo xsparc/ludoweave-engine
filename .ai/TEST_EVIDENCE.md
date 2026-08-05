@@ -1761,3 +1761,105 @@ the implementation commit. Hosted evidence confirms the supported installed,
 cross-platform, and provider contracts; it does not publish a package, create
 a tag or release, add a GUI/editor/runtime API, promote the experimental agent
 surface, change a persistent format, or admit a new dependency/provider.
+
+## M16 final local validation - 2026-08-06
+
+M16 was evaluated on Windows 11 with uv-managed CPython 3.12.13. It changes
+repository evidence, tests, release-sample composition, and documentation only.
+The deterministic installed document records the complete exact three-entry
+optional-graphics `Requires-Dist` set, exact root/plugin exports and preview
+stability, ten inert manifest fields, eight capability labels, typed rejection
+of six representative executable fields, no WASM runtime requirement, no
+public guest-execution export, and fifteen false admission gates. It compiles
+or executes no guest.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | The existing lock resolved 46 packages and remained current. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | The existing frozen environment checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 0 | All 186 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 870 tests passed and one existing Windows symlink-capability test skipped in 65.04 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.55 seconds; Material emitted its documented upstream MkDocs 2.0 warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency wheel install passed the exact M16 installed document plus inherited public smokes. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m16-release-candidate-reviewed-20260806` | 0 | Staged the complete deterministic ten-artifact candidate including the M16 sample. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m16-release-candidate-reviewed-20260806` | 0 | Checksums, manifest, SBOM, installed wheel, and every bundled sample including exact M16 evidence passed. |
+| `uv run --frozen pytest -q tests/integration/test_wgpu_render.py` | 0 | Nine real-wgpu integration tests passed in 5.62 seconds. |
+| `uv run --frozen python examples/wasm_mod_security_decision.py` | 0 | Emitted the exact deferred `ludoweave.evaluation.wasm-mod-security/1` document. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The first sandboxed `uv lock --check` and two sandboxed `uv build` attempts
+could not open the user-managed uv cache and exited 1 before completing those
+checks. Their explicitly authorized reruns above exited 0. The first strict
+docs attempt found two links outside the documentation tree; the links were
+corrected and both final and independent strict builds passed.
+
+Every inherited README benchmark/profile command ran against uniquely named
+M16 artifacts and its validator exited 0:
+
+- M1 validated seven workloads. Fixed 3,600-tick p95 was 36,551,800 ns and
+  observed its target; 10,000-entity simulation p95 was 123,939,400 ns and did
+  not observe the inherited 4 ms target. One of two targets was observed.
+- M2 validated four informational workloads with no timing targets.
+- M3 validated six workloads. The 10,000-sprite extraction p95 was 24,013,300
+  ns and real-wgpu 10,000-instance submission p95 was 3,172,000 ns; neither
+  observed its inherited target in this local run. Zero of two targets was
+  observed.
+- M4 validated three workloads; baseline p95 was 1,817,500 ns and observed its
+  16,666,667 ns target.
+- Five-repeat M7 base and real-wgpu profile artifacts validated with two and
+  three workloads respectively. Profile timing remains diagnostic only.
+
+Artifact, scope, history, and independent-review evidence:
+
+- the exact alpha wheel contains 91 entries and zero `.pyd`, `.so`, `.dll`,
+  `.dylib`, WASM runtime, or WASI entries;
+- `.github/workflows/ci.yml`, `pyproject.toml`, `uv.lock`, the version, and all
+  `src/` files are byte-unchanged from exact base
+  `c013dad38b1b64f0f4ccddc19681d643f6414427`; the eight-job CI topology is
+  unchanged;
+- explicit, dynamic, and named-module fixtures prove the WASM runtime guard,
+  including the reproduced `webassembly_runtime.py` bypass; unknown and
+  malformed installed requirement fixtures fail before evidence success; and
+- independent review initially blocked blacklist-only requirement evidence,
+  the named-module bypass, missing residual risk, and inaccurate current-flow
+  wording. After correction, the reviewer ran
+  `uv run --frozen pytest -q tests/architecture/test_import_boundaries.py tests/architecture/test_m16_wasm_boundary.py tests/integration/test_wasm_mod_security_decision.py tests/unit/test_release_artifacts.py tests/architecture/test_release_workflow.py`
+  with 140 passes in 3.30 seconds, independently reproduced clean focused
+  Ruff/Pyright, strict docs, offline build, wheel/release smoke, exact evidence,
+  protected scope, and diff checks, and approved with no remaining finding.
+
+At this stage no M16 commit, hosted/cross-platform pass, PR, merge, tag,
+release, package publication, runtime/public/persistent-format change,
+executable mod, WASI/host-call surface, dependency, or new performance-target
+claim is made.
+
+## M16 hosted validation - 2026-08-06
+
+Ready PR #20 targets `main` from
+`codex/m16-wasm-mod-security-decision`. Before the evidence-only follow-up,
+GitHub reported exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`,
+implementation head `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`,
+`MERGEABLE`, and `CLEAN`. The implementation history contains one DCO-signed
+commit.
+
+GitHub Actions pull-request run `31039403209` executed that implementation
+commit from `2026-08-05T19:26:18Z` through `2026-08-05T19:28:52Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, exact isolated-wheel M16 evidence, release staging, and
+  complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence confirms the supported installed,
+cross-platform, and provider contracts; it does not publish a package, create
+a tag or release, add an executable mod/runtime/WASI/host-call surface, change
+a public or persistent contract, or admit a new dependency/provider.
