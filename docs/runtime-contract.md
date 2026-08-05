@@ -48,4 +48,7 @@ Diagnostics avoid environment variables, user paths, and exception messages from
 
 ## Compatibility
 
-Version `0.1.0.dev0` is pre-alpha. Public symbols are experimental and may change before a release candidate. Persistent file, command, receipt, or snapshot schemas do not exist in M0.
+Version `0.1.0a1` is community alpha. Every M0 runtime export remains
+experimental under the [API policy](api-status.md). Persistent commands,
+receipts, snapshots, and replay were added in M2 with independent versioned
+protocols; their existence does not make the M0 Python symbols stable.

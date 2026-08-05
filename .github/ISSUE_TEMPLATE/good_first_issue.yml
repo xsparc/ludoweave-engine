@@ -1,0 +1,45 @@
+name: Good-first task proposal
+description: Propose a small contributor-ready task for maintainer triage
+title: "[Good first]: "
+labels: ["good first issue", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: A maintainer confirms scope, labels the task `status:ready`, and names a review contact before implementation begins.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Contributor outcome
+      description: State one small user-visible, test, documentation, or tooling improvement.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Files and boundaries
+      description: Name likely files plus architecture, compatibility, security, and non-scope constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance checks
+      description: Give observable acceptance criteria and exact focused commands.
+    validations:
+      required: true
+  - type: textarea
+    id: guidance
+    attributes:
+      label: Maintainer guidance
+      description: Link relevant guides or identify the reviewer who can answer questions.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: The task avoids a new public API, dependency, schema, backend, or security boundary.
+          required: true
+        - label: The task can be reviewed independently and completed in one pull request.
+          required: true

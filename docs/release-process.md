@@ -1,0 +1,53 @@
+# Release process and artifact verification
+
+Only maintainers publish official releases. The `release.yml` workflow runs for
+an exact `vVERSION` tag and refuses a tag that differs from `pyproject.toml`.
+The repository does not publish a release from pull-request CI.
+
+## Candidate contents
+
+`scripts/release_artifacts.py` stages a new empty directory containing:
+
+- the pure `py3-none-any` wheel and source distribution;
+- a deterministic versioned sample ZIP;
+- Apache-2.0 `LICENSE` and project `NOTICE`;
+- the direct optional-dependency notice inventory;
+- versioned release notes;
+- an SPDX 2.3 JSON SBOM describing the baseline wheel;
+- a versioned JSON release manifest with sizes and SHA-256 digests;
+- `SHA256SUMS` covering every other staged file.
+
+The baseline SBOM has one package because the wheel has no runtime dependencies
+and redistributes no optional graphics providers. Locked contributor/graphics
+packages are installed separately under their own distributions and notices.
+
+## Maintainer gate
+
+1. Require the milestone PR's complete local and hosted gates to pass.
+2. Confirm the changelog, version, date, release notes, compatibility status,
+   security policy, notices, and retrospective agree.
+3. Build/stage/smoke the candidate from a clean signed commit.
+4. Create a signed `vVERSION` tag at that exact commit and push the tag.
+5. The least-privilege tag workflow reruns quality/tests/docs, builds/stages and
+   smokes artifacts, creates GitHub build-provenance and SPDX attestations, and
+   creates a prerelease with the staged files.
+6. Download the published assets, verify checksums and attestations, install the
+   wheel in a clean environment, and run the sample bundle before announcing.
+
+No PyPI upload is configured in community alpha. Name reservation, trusted
+publishing, and a non-prerelease support policy require separate maintainer
+decisions.
+
+## Consumer verification
+
+Verify local checksums using the platform's SHA-256 tool, then verify official
+GitHub provenance:
+
+```console
+gh attestation verify ludoweave-VERSION-py3-none-any.whl -R xsparc/ludoweave-engine
+gh attestation verify ludoweave-VERSION-py3-none-any.whl -R xsparc/ludoweave-engine --predicate-type https://spdx.dev/Document/v2.3
+```
+
+Artifact attestations are stored by GitHub and bind the subject digest to the
+tag workflow. `RELEASE_MANIFEST.json` is reproducible release metadata, not a
+cryptographic signature or substitute for the hosted attestation.

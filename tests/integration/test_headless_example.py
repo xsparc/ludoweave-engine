@@ -21,7 +21,7 @@ def test_headless_example_runs_requested_virtual_ticks() -> None:
     summary = cast(dict[str, object], json.loads(result.stdout))
     assert summary == {
         "schema": "ludoweave.example.headless/1",
-        "ludoweave_version": "0.1.0.dev0",
+        "ludoweave_version": "0.1.0a1",
         "ticks": 7,
         "frames": 7,
         "fixed_hz": 60,

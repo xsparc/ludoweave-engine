@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-LudoWeave is pre-alpha and has no supported release line yet. Security fixes are applied to the default branch until a version-support policy is announced.
+LudoWeave `0.1.0a1` is a community-alpha candidate, not a long-term support line. Security fixes are applied on a best-effort basis to the default branch and the current alpha until a version-support policy is announced. Older development snapshots are unsupported.
 
 ## Reporting a vulnerability
 
@@ -12,11 +12,25 @@ Use the repository's **Security** tab and choose **Report a vulnerability** to c
 
 If private vulnerability reporting is unavailable, use GitHub Support to contact the repository owner rather than disclosing the report publicly.
 
-Maintainers will acknowledge the report through the same private channel, assess impact, coordinate a fix when warranted, and credit reporters who request attribution. No response or remediation deadline is guaranteed during pre-alpha.
+Maintainers will acknowledge the report through the same private channel, assess impact, coordinate a fix when warranted, and credit reporters who request attribution. No response or remediation deadline is guaranteed during community alpha.
+
+## Release supply chain
+
+- The baseline wheel has no runtime dependencies and is built as `py3-none-any`.
+- Release candidates include SHA-256 checksums, an SPDX SBOM, Apache/project notices, and a versioned manifest.
+- The tag workflow uses immutable action revisions and grants write, identity-token, and attestation permissions only to the release job.
+- Official tagged artifacts receive GitHub build-provenance and SBOM attestations. Consumers should verify both the local checksums and hosted attestations as documented in `docs/release-process.md`.
+- No PyPI trusted-publishing or upload step exists in community alpha.
 
 ## Initial security boundaries
 
-- The engine provides no remote control or network listener in M0.
+- The M5 agent interface is local-only and provides no network listener or remote-control claim. MCP is confined to process stdio.
 - The CLI performs no arbitrary Python evaluation.
+- M2 artifact paths are bounded, project-relative, resolved beneath an explicitly selected project root, and reported only by stable roles in expected diagnostics.
+- Input files are read through one bounded open handle; stale size metadata cannot cause an unbounded read.
+- Project confinement protects normal workflows and static symlink/traversal mistakes. It is not a sandbox against a hostile local principal concurrently replacing files, directories, junctions, or symlinks inside the selected project tree; run commands only against a locally trusted, quiescent project directory.
+- The M2 CLI project manifest is data-only and cannot select Python modules, callables, components, or plugins.
 - Diagnostics must not expose environment variables or credentials.
-- Future agent-facing mutations must be typed, validated, capability-gated, and auditable.
+- Agent-facing mutations are typed, validated, capability-gated, caller-attributed, serialized at safe points, and return canonical receipts. Write access is disabled by default.
+- Agent requests, results, transactions, ticks, queries, snapshots, captures, tests, and call rates are bounded. Credential-shaped diagnostics and telemetry values are redacted.
+- The MCP adapter cannot launch a shell, evaluate Python, load a module named by request data, or open a socket. Anyone able to launch the process and access its stdio has the capabilities granted by that composition root.

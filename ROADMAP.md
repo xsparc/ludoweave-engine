@@ -1,0 +1,47 @@
+# LudoWeave roadmap board
+
+This repository-native board states outcomes and readiness; it is not a delivery-date
+promise. Accepted ADRs and milestone acceptance evidence override an older card. Public
+issues become the discussion and assignment record once a card is opened.
+
+## Community-alpha release candidate
+
+| Lane | Outcome | Evidence gate |
+| --- | --- | --- |
+| Done | M0 repository/runtime walking skeleton | Installed pure wheel and cross-platform CI |
+| Done | M1 deterministic world core | Reference-model properties and benchmark evidence |
+| Done | M2 command/snapshot/replay workflow | Artifact and installed-wheel scenario tests |
+| Done | M3 isolated 2D presentation | Null/wgpu vertical slice and graphics CI |
+| Done | M4 Clockwork Arena gameplay slice | 3,600-tick replay plus stress evidence |
+| Done | M5 local typed agent interface | Agent World Builder and local stdio acceptance |
+| Done | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
+| Done | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
+
+M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
+or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
+M7's implementation head passed the same 14-job hosted matrix, including base
+and real-wgpu profiling-contract smokes on all three operating systems.
+
+## Good-first contribution queue
+
+These are issue-ready cards, not assigned work. A maintainer opens one with the
+`good first issue`, `help wanted`, `status:ready`, and listed area labels before a
+contributor starts.
+
+| Card | Outcome | Scope | Acceptance |
+| --- | --- | --- | --- |
+| GF-01 glossary | Add a concise glossary for authority, canonical state, composition root, receipt, deterministic, presentation, and adapter | `docs/glossary.md`, `mkdocs.yml`; documentation only | Terms link to their defining guide/ADR; `uv run --frozen mkdocs build --strict` passes |
+| GF-02 expected sample output | Add sanitized example JSON and explain stable versus diagnostic fields | `examples/README.md`; do not change sample behavior or protocols | Run the documented null examples and record matching output; docs build passes |
+| GF-03 release checksum negative test | Add one focused test for an extra unlisted staged artifact | `tests/unit/test_release_artifacts.py`; no script/API change unless a demonstrated defect exists | Test fails against the intentional invalid fixture and full pytest passes |
+
+Use the [good-first task form](.github/ISSUE_TEMPLATE/good_first_issue.yml) to propose
+another card. The [triage contract](docs/triage.md) defines when it is ready.
+
+## Proposal backlog
+
+These areas remain uncommitted proposals and require milestone assignment plus the
+design process in `GOVERNANCE.md`: general scene importers, production audio,
+rigid-body physics, network transports, visual editor tooling, rich text, automatic GPU
+recovery, and 3D. Native acceleration is deferred under
+[RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md); its complete admission
+and quantified revisit gate applies before another proposal.

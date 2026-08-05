@@ -1,0 +1,35 @@
+name: Documentation improvement
+description: Report missing, unclear, or inaccurate LudoWeave documentation
+title: "[Docs]: "
+labels: ["documentation", "triage"]
+body:
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience and goal
+      description: Who is trying to do what?
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current documentation
+      description: Link to the page or identify the missing topic. Quote only the smallest relevant excerpt.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe what a reader should be able to understand or complete.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched for an existing issue and current documentation.
+          required: true
+        - label: This report contains no credentials, private paths, or vulnerability details.
+          required: true

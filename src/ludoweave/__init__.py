@@ -1,10 +1,7 @@
-"""Small experimental public surface for LudoWeave Engine M0."""
-
-from importlib.metadata import version as distribution_version
-from typing import Final
+"""Small experimental root surface for LudoWeave Engine."""
 
 from ludoweave.app import Engine, EngineConfig, LifecycleState
-
-__version__: Final = distribution_version("ludoweave")
+from ludoweave.core.version import __version__
 
 __all__ = ["Engine", "EngineConfig", "LifecycleState", "__version__"]
+__stability__ = {name: "experimental" for name in __all__}

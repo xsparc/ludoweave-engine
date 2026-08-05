@@ -1,6 +1,68 @@
 """Application configuration and lifecycle."""
 
 from ludoweave.app.config import EngineConfig
+from ludoweave.app.errors import (
+    ApplicationError,
+    InputError,
+    InputFrameError,
+    SystemAccessError,
+    SystemExecutionError,
+)
+from ludoweave.app.input import (
+    INPUT_SNAPSHOT_RESOURCE,
+    ActionBinding,
+    ActionMap,
+    ActionValue,
+    FocusEvent,
+    InputAction,
+    InputEvent,
+    InputSnapshot,
+    InputSource,
+    KeyEvent,
+    MappedInputSource,
+    MouseButtonEvent,
+    NullInputSource,
+    PointerEvent,
+    RecordedInputSource,
+    VirtualInputSource,
+)
 from ludoweave.app.lifecycle import Engine, LifecycleState, RunSummary
+from ludoweave.app.runtime import (
+    ApplicationConfig,
+    ApplicationRunSummary,
+    FixedStepApplication,
+    FrameSummary,
+)
 
-__all__ = ["Engine", "EngineConfig", "LifecycleState", "RunSummary"]
+__all__ = [
+    "INPUT_SNAPSHOT_RESOURCE",
+    "ActionBinding",
+    "ActionMap",
+    "ActionValue",
+    "ApplicationConfig",
+    "ApplicationError",
+    "ApplicationRunSummary",
+    "Engine",
+    "EngineConfig",
+    "FixedStepApplication",
+    "FocusEvent",
+    "FrameSummary",
+    "InputAction",
+    "InputError",
+    "InputEvent",
+    "InputFrameError",
+    "InputSnapshot",
+    "InputSource",
+    "KeyEvent",
+    "LifecycleState",
+    "MappedInputSource",
+    "MouseButtonEvent",
+    "NullInputSource",
+    "PointerEvent",
+    "RecordedInputSource",
+    "RunSummary",
+    "SystemAccessError",
+    "SystemExecutionError",
+    "VirtualInputSource",
+]
+__stability__ = {name: "experimental" for name in __all__}
