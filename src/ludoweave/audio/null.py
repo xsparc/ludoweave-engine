@@ -6,9 +6,11 @@ from enum import StrEnum
 from uuid import UUID, uuid4
 
 from ludoweave.audio.api import (
+    AudioBusDescriptor,
     AudioClipDescriptor,
     AudioClipHandle,
     AudioError,
+    AudioMixGraph,
     AudioPlaybackHandle,
     audio_error,
     validate_audio_name,
@@ -29,6 +31,7 @@ class NullAudioBackend:
         "_category_volumes",
         "_clips",
         "_master_volume",
+        "_mix_graph",
         "_next_clip",
         "_next_playback",
         "_playbacks",
@@ -51,6 +54,7 @@ class NullAudioBackend:
         self._playbacks: dict[AudioPlaybackHandle, tuple[AudioClipHandle, float, bool]] = {}
         self._category_volumes: dict[str, float] = {}
         self._master_volume = 1.0
+        self._mix_graph = _default_mix_graph()
         self._next_clip = 0
         self._next_playback = 0
 
@@ -75,6 +79,24 @@ class NullAudioBackend:
             raise _state_error("initialize", self._state)
         self._state = _State.READY
 
+    def configure_mix(self, graph: AudioMixGraph) -> None:
+        self._ready("configure_mix")
+        if type(graph) is not AudioMixGraph:
+            raise audio_error(
+                "null audio requires an exact mix graph",
+                phase="configure_mix",
+                details={"actual_type": type(graph).__name__},
+            )
+        if self._clips or self._playbacks:
+            raise audio_error(
+                "audio mix graph must be configured before clips or playbacks exist",
+                phase="configure_mix",
+                details={"clip_count": len(self._clips), "playback_count": len(self._playbacks)},
+                code="audio.invalid_state",
+            )
+        self._mix_graph = graph
+        self._category_volumes.clear()
+
     def load_clip(self, descriptor: AudioClipDescriptor, data: bytes) -> AudioClipHandle:
         self._ready("load_clip")
         if type(descriptor) is not AudioClipDescriptor:
@@ -89,6 +111,7 @@ class NullAudioBackend:
                 phase="load",
                 details={"actual_type": type(data).__name__},
             )
+        self._mix_graph.gain_for(descriptor.category)
         handle = AudioClipHandle(self._scope, self._next_clip)
         self._next_clip += 1
         self._clips[handle] = descriptor
@@ -147,10 +170,39 @@ class NullAudioBackend:
     def set_category_volume(self, category: str, volume: float) -> None:
         self._ready("set_category_volume")
         checked_category = validate_audio_name(category, field="category")
+        self._mix_graph.gain_for(checked_category)
         self._category_volumes[checked_category] = validate_volume(volume, phase="volume")
 
     def category_volume(self, category: str) -> float:
-        return self._category_volumes.get(validate_audio_name(category, field="category"), 1.0)
+        checked_category = validate_audio_name(category, field="category")
+        self._mix_graph.gain_for(checked_category)
+        return self._category_volumes.get(checked_category, 1.0)
+
+    def playback_gain(self, playback: AudioPlaybackHandle) -> float:
+        """Return the current deterministic effective gain for a live playback."""
+
+        self._ready("playback_gain")
+        if type(playback) is not AudioPlaybackHandle or playback.scope != self._scope:
+            raise audio_error(
+                "audio playback handle is not active in this backend",
+                phase="playback_gain",
+                details={"field": "playback"},
+                code="audio.invalid_handle",
+            )
+        record = self._playbacks.get(playback)
+        if record is None:
+            raise audio_error(
+                "audio playback handle is not active in this backend",
+                phase="playback_gain",
+                details={"field": "playback"},
+                code="audio.invalid_handle",
+            )
+        clip, volume, _loop = record
+        category = self._clips[clip].category
+        runtime_bus_gain = 1.0
+        for bus in self._mix_graph.lineage_for(category):
+            runtime_bus_gain *= self._category_volumes.get(bus, 1.0)
+        return self._master_volume * self._mix_graph.gain_for(category) * runtime_bus_gain * volume
 
     def close(self) -> None:
         if self._state is _State.CLOSED:
@@ -170,4 +222,14 @@ def _state_error(operation: str, state: _State) -> AudioError:
         phase=operation,
         details={"operation": operation, "state": state.value},
         code="audio.invalid_state",
+    )
+
+
+def _default_mix_graph() -> AudioMixGraph:
+    return AudioMixGraph(
+        (
+            AudioBusDescriptor("master", None),
+            AudioBusDescriptor("effects", "master"),
+            AudioBusDescriptor("music", "master"),
+        )
     )

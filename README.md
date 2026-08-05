@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M10 are hosted-validated; M10 adds a bounded headless semantic inspector over an owned local stdio child. Provider-neutral gamepad input and evidence-based SDL3, Box2D-plugin, and Rust/PyO3 deferrals use explicit admission gates. Every current Python API and wire format remains experimental and may change without deprecation.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M10 are hosted-validated; M11 rich 2D authoring is under local development. Provider-neutral gamepad input and evidence-based SDL3, Box2D-plugin, and Rust/PyO3 deferrals use explicit admission gates. Every current Python API and wire format remains experimental and may change without deprecation.
 
 ## What exists
 
@@ -33,6 +33,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   sources.
 - Project-confined `asset://` manifests, content-addressed dependency caching, bounded PNG loading, and retained safe texture replacement.
 - Deterministic AABB/circle collision, a property-tested spatial grid, documented kinematic resolution, and a minimal owned Null audio adapter.
+- Bounded tick animation, bitmap atlas text layout, immutable chunked tilemaps,
+  seeded fixed-point particles, and a Null-audio acyclic mix graph, all
+  exercised by one dependency-free headless showcase.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
 - A transport-independent typed agent service with explicit capabilities, quotas, redaction, serialized mutations, and the same canonical command receipts used by direct Python.
 - Twelve observation/control tools exposed through Python, a project-confined CLI, and a local-only MCP `2025-11-25` stdio adapter with no network listener.
@@ -46,7 +49,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - A bounded isolated Box2D-candidate probe plus ADR-0024; no physics binding,
   adapter, native object, or runtime dependency is shipped.
 
-General scene importers, production audio, rigid-body physics, networking or remote agent transport, visual editor tooling, 3D, and automatic GPU recovery are not implemented yet.
+General scene importers, production audio, international text shaping,
+rigid-body physics, networking or remote agent transport, visual editor
+tooling, 3D, and automatic GPU recovery are not implemented yet.
 
 ## Requirements
 
@@ -127,6 +132,8 @@ The [headless command workflow](docs/cli-workflows.md) documents the M2 data-onl
 The [agent control interface](docs/agent-control.md) documents M5 tools, capabilities, limits, Python/CLI/MCP composition, and the Agent World Builder loop.
 The [live semantic inspector guide](docs/inspector.md) documents M10 local child
 ownership, observation events, explicit write receipts, bounds, and failures.
+The [rich 2D presentation guide](docs/presentation.md) documents M11 animation,
+bitmap text, tilemap, particle, and audio-mix ownership and determinism.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

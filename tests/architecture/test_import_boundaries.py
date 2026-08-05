@@ -252,6 +252,29 @@ def test_application_may_compose_ecs_but_still_rejects_concrete_backends(
     assert "ludoweave.render.backends.null" in violations[0].message
 
 
+@pytest.mark.parametrize(
+    "source",
+    [
+        "from ludoweave.ecs import World\n",
+        "from ludoweave.world import WorldSession\n",
+        "from ludoweave.render.backends.wgpu import WgpuRenderDevice\n",
+        "from ludoweave.tools.cli import main\n",
+    ],
+)
+def test_presentation_authoring_rejects_authority_backends_and_tools(
+    tmp_path: Path, source: str
+) -> None:
+    source_root = tmp_path / "src"
+    bad_module = source_root / "ludoweave" / "presentation" / "bad.py"
+    bad_module.parent.mkdir(parents=True)
+    bad_module.write_text(source, encoding="utf-8")
+
+    violations = check_source_tree(source_root)
+
+    assert len(violations) == 1
+    assert "ludoweave.presentation.bad" in violations[0].message
+
+
 def test_checker_rejects_near_prefix_module_names(tmp_path: Path) -> None:
     source_root = tmp_path / "src"
     bad_module = source_root / "ludoweave" / "ecs" / "bad.py"

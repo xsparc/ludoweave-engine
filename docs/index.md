@@ -2,7 +2,7 @@
 
 **Build worlds humans can play and agents can operate.**
 
-LudoWeave is a community-alpha release candidate for deterministic, headless-first Python 2D and layered-2D worlds. M0 established the repository contract and lifecycle skeleton. M1 added the deterministic world/application core. M2 added typed persistent commands, atomic transactions and receipts, canonical authority snapshots and hashes, deterministic random streams, verified replay/checkpoints, immutable branches, and a data-only headless CLI workflow. M3 added isolated Null and wgpu 2D rendering. M4 added provider-neutral input, content-addressed assets, bounded collision/audio contracts, and Clockwork Arena. M5 added typed capability-gated agent control through Python, CLI, and local stdio MCP. M6 adds deterministic release artifacts, explicit API status, contribution guides, and release provenance staging. This is not yet a complete game runtime, and every current API remains experimental.
+LudoWeave is a community-alpha release candidate for deterministic, headless-first Python 2D and layered-2D worlds. M0 established the repository contract and lifecycle skeleton. M1 added the deterministic world/application core. M2 added typed persistent commands, atomic transactions and receipts, canonical authority snapshots and hashes, deterministic random streams, verified replay/checkpoints, immutable branches, and a data-only headless CLI workflow. M3 added isolated Null and wgpu 2D rendering. M4 added provider-neutral input, content-addressed assets, bounded collision/audio contracts, and Clockwork Arena. M5 added typed capability-gated agent control through Python, CLI, and local stdio MCP. M6 added deterministic release artifacts, explicit API status, contribution guides, and release provenance staging. M7-M10 recorded native/SDL3/Box2D deferrals and added a bounded semantic inspector. M11 adds headless rich 2D authoring records. This is not yet a complete game runtime, and every current API remains experimental.
 
 ## Current capabilities
 
@@ -27,9 +27,12 @@ LudoWeave is a community-alpha release candidate for deterministic, headless-fir
 - Immutable platform events/action snapshots, validated `asset://` content, deterministic 2D collision, minimal Null audio, and an ECS-authoritative playable sample.
 - A transport-independent agent service with 12 typed tools, default read-only capabilities, bounded/redacted data, serialized safe-point mutations, and canonical receipts.
 - A local MCP `2025-11-25` stdio adapter and Agent World Builder acceptance loop with no network listener or arbitrary code execution.
+- Exact-tick sprite animation, bitmap text layout, immutable tilemaps,
+  fixed-point particles, and a Null-audio mix graph through existing render
+  records.
 - A pure-wheel community-alpha candidate with a deterministic sample bundle, checksums, SPDX SBOM, notices, explicit stability metadata, and cross-platform release smoke.
 
-Start with the [community-alpha user guide](user-guide.md), then read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [rendering contract](rendering.md), [gameplay guide](gameplay.md), [agent control interface](agent-control.md), [API status](api-status.md), and [accepted decisions](adr/index.md) before building on the experimental API.
+Start with the [community-alpha user guide](user-guide.md), then read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [rendering contract](rendering.md), [rich 2D presentation guide](presentation.md), [gameplay guide](gameplay.md), [agent control interface](agent-control.md), [API status](api-status.md), and [accepted decisions](adr/index.md) before building on the experimental API.
 
 ## Quick check
 
@@ -38,6 +41,7 @@ uv sync --frozen --all-groups
 uv run ludoweave doctor
 uv run python examples/hello_headless.py --ticks 120
 uv run python examples/clockwork_arena.py --ticks 600
+uv run python examples/rich_2d_showcase.py --ticks 6
 uv run python examples/alpha_acceptance.py
 uv run ludoweave mcp --sample agent-world-builder
 ```

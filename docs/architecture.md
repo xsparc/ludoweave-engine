@@ -51,6 +51,13 @@ no canonical state and emits only detached semantic observations, receipts,
 and diffs after verifying exact authority-hash continuity. See the
 [live semantic inspector](inspector.md) and ADR-0025.
 
+M11 adds bounded headless-first rich 2D authoring without another world store.
+Tick animation, bitmap text, immutable tilemaps, and fixed-point particles live
+in `ludoweave.presentation` and translate only into existing backend-neutral
+render records. Audio gains use an immutable mix graph validated by the Null
+adapter; no real audio provider is admitted. See the
+[presentation guide](presentation.md) and ADR-0026.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -74,6 +81,7 @@ concrete adapters  ludoweave.render.backends.null[_device]
                    ludoweave.render.backends.wgpu (optional exact module)
 
 focused contracts  ludoweave.platform, assets, collision, audio
+presentation       ludoweave.presentation ---> render contracts/extraction
 
 sample composition ludoweave.samples.clockwork_arena
                    ludoweave.samples.agent_world_builder
@@ -85,6 +93,9 @@ sample composition ludoweave.samples.clockwork_arena
 - `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
 - Platform, asset, collision, and audio contracts depend only on their own package and core errors. Render adapters may emit engine-owned platform events.
+- Presentation authoring may depend on core plus exact render contracts,
+  extraction records, and opaque handles. It may not import ECS/world,
+  application/tools, samples, concrete backends, or third-party providers.
 - Concrete render backends may import the render API and core contracts.
 - `ludoweave.app` composes core contracts, public ECS/runtime contracts, and the `RenderBackend` protocol, never a concrete backend. ECS never imports application implementations.
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
@@ -316,11 +327,12 @@ Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
 the M6 community-alpha distribution contract, the M7 native-code decision, and
-the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, and the M10 owned
-local semantic inspector now exist. M6 does not add a plugin loader or dynamic
+the M8 gamepad contract/SDL3 deferral, the M9 Box2D deferral, the M10 owned
+local semantic inspector, and the M11 rich 2D authoring records now exist. M6
+does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network
-transports, visual editor tooling, rich text, automatic device recovery, and 3D
+transports, visual editor tooling, international text shaping, automatic device recovery, and 3D
 remain deferred to future assigned, exercised slices. Native acceleration is
 specifically deferred under RFC-0001's measurable revisit gate rather than
 generally authorized by the recorded target misses.

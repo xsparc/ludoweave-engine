@@ -7,10 +7,13 @@ dependency-free headless paths:
 python hello_headless.py --ticks 120
 python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
+python rich_2d_showcase.py --ticks 6
 python alpha_acceptance.py
 ```
 
-`alpha_acceptance.py` checks engine lifecycle, stale entity generations,
+`rich_2d_showcase.py` exercises animation, bitmap text, chunked tilemaps,
+fixed-point particles, Null-audio mixing, and Null rendering without a display
+or audio device. `alpha_acceptance.py` checks engine lifecycle, stale entity generations,
 Clockwork Arena, typed agent operations, replay evidence, provider ownership,
 and registered Agent World Builder tests without a display, network listener,
 or native compiler.

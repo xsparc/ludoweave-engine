@@ -19,6 +19,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M8 gamepad/SDL3 evaluation | Provider-neutral gamepad mapping, pinned GLFW smoke, SDL3 maturity ADR, and cross-platform validation |
 | Done | M9 Box2D v3 plugin evaluation | Binding/wheel/lifecycle/headless/API/threading/determinism/conformance admission evidence, ADR, and hosted validation |
 | Done | M10 live semantic inspector | Separate local process, versioned semantic stream, command/query reuse, explicit write receipts, lifecycle/security bounds, and quota-conscious essential CI |
+| In progress | M11 rich 2D authoring | Headless tick animation, bitmap text, immutable tilemaps, fixed-point particles, Null-audio mixing, and installed showcase |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -37,6 +38,9 @@ built-in local stdio composition and cannot listen on a network interface.
 M10 PR #11 passed its consolidated eight-job hosted matrix: one complete
 quality/test/distribution gate, four compatibility jobs, and real graphics on
 all three operating systems.
+M11 is a bounded authoring and extraction slice, not a new world store. Real
+audio playback, font parsing/shaping, editor-scale tile import, particle DSLs,
+and provider objects remain deferred.
 
 ## Good-first contribution queue
 
@@ -57,7 +61,7 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 
 These areas remain uncommitted proposals and require milestone assignment plus the
 design process in `GOVERNANCE.md`: general scene importers, production audio,
-rigid-body physics, network transports, visual editor tooling, rich text, automatic GPU
+rigid-body physics, network transports, visual editor tooling, international text shaping, automatic GPU
 recovery, and 3D. Native acceleration is deferred under
 [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md); its complete admission
 and quantified revisit gate applies before another proposal.

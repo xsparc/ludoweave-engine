@@ -1,60 +1,54 @@
 # Current Task
 
-- **Task:** M10 - Headless live semantic inspector
-- **Status:** Complete; published as ready stacked PR #11 and validated by all
-  eight essential hosted CI jobs
+- **Task:** M11 - Bounded headless rich 2D authoring modules
+- **Status:** Locally complete and independently accepted; signed commit,
+  stacked PR publication, and hosted validation remain pending
 - **Started:** 2026-08-06
-- **Base:** Exact final-head hosted-validated M9 commit
-  `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`; M10 will stack against
-  `codex/m9-box2d-plugin-evaluation`.
-- **Outcome:** Add a headless inspector process that observes a live world
-  exclusively through the existing local stdio MCP command/query protocol and
-  emits a bounded, versioned stream of detached semantic observations.
+- **Base:** Exact final M10 evidence head
+  `bae799900671481cfd6f03fe502dea95b2c7f96c`; M11 stacks against
+  `codex/m10-live-semantic-inspector`.
+- **Outcome:** Implement the fifth authoritative post-alpha item as one
+  dependency-free headless slice spanning richer audio mixing, bitmap text,
+  exact-tick animation, immutable tilemaps, and fixed-point particles.
 - **Acceptance gate:**
-  - `ludoweave inspect` starts only the built-in `python -I -m ludoweave mcp`
-    child; it accepts no shell, executable, URL, host, port, or dynamic module.
-  - Initial and post-transition observations include world description,
-    bounded stable query results, telemetry, exact authority hashes, and
-    semantic diffs without exposing snapshots, paths, environment values,
-    process IDs, provider values, or mutable aliases.
-  - The default inspector is read-only. Bootstrap/tick mutations require an
-    explicit write flag and use existing versioned transactions/tick commands,
-    receipts, optimistic hash chaining, and mutation safe points.
-  - The inspector verifies the MCP lifecycle, required typed tools, response
-    IDs/shapes, transition status, snapshot/diff hash continuity, message
-    bounds, and child exit status.
-  - The parent owns the child and closes it after success, protocol/domain
-    failure, partial output, or exception; no background listener or orphan is
-    created.
-  - Source-tree and installed-wheel tests cover read-only, write/bootstrap,
-    invalid capability/bounds, malformed/early child failure, and architecture
-    bans on networking and arbitrary evaluation.
-  - Full local quality/package/release/graphics gates and independent review
-    pass before signed commit, stacked PR, or hosted-success claims.
-  - Pull-request CI retains one complete baseline gate, all supported Python
-    versions and operating systems, and real graphics coverage without
-    repeating universal-wheel/release smoke on every platform.
-- **Architecture:** The child world remains canonical. The inspector holds only
-  detached JSON observations and an ephemeral prior snapshot used internally
-  for `world_diff`; it cannot mutate outside versioned service tools.
-- **Non-scope:** GUI/TUI/editor widgets, remote attach, sockets/HTTP/WebSocket,
-  process discovery, arbitrary executables, shell commands, filesystem export,
-  watch polling by wall clock, multiple targets, Box2D, richer media modules,
-  plugin manifests, rollback/networking, 3D, WASM, native code, tags, releases,
-  or package publication.
-- **SemVer:** Additive experimental CLI/tooling only; runtime version remains
-  `0.1.0a1`.
-- **Review:** The first independent review found child import shadowing,
-  dash-prefixed project-option injection, incomplete tick receipt validation,
-  and unstructured stream-read failures. Isolated child resolution, option
-  termination, exact receipt/hash/tick checks, structured reads, and
-  adversarial regressions resolved all four; repeat review approved
-  publication with no remaining blocker. A final CI review then found the
-  consolidated baseline duplicated real graphics without installing its Linux
-  runtime; the baseline now excludes that separately gated file and the
-  architecture test locks the eight-job quota/security contract.
-- **Hosted gate:** GitHub Actions run `31020096463` passed the complete Ubuntu
-  3.12 quality/test/distribution gate; Ubuntu 3.13/3.14, Windows 3.14, and macOS
-  3.14 compatibility; and real graphics on Linux, Windows, and macOS. PR #11 is
-  open, ready, mergeable, and clean against
-  `codex/m9-box2d-plugin-evaluation`.
+  - `ludoweave.presentation` exports typed frozen records and pure operations
+    for bounded animation, bitmap text layout, tilemap culling, particle
+    stepping, and existing render-record extraction.
+  - Animation samples `once`, `loop`, and `ping_pong` from exact elapsed ticks
+    without wall-clock or mutable player state.
+  - Bitmap text validates caller-loaded glyph metrics, fallback, wrapping,
+    alignment, and visible glyph sprites without font/provider objects.
+  - Tilemaps validate unique IDs/layers, non-overlapping bounded chunks,
+    declared cell IDs, half-open culling, and canonical tile order.
+  - Particles use bounded immutable state, fixed-point integer motion, stable
+    IDs, seeded repeatable velocity sampling, exact ticks, state digests, and
+    interpolation-ready sprites.
+  - Audio uses a maximum-64-bus immutable acyclic graph rooted at `master`;
+    the Null adapter validates categories, configuration order, handles, and
+    effective gain without opening a device.
+  - Architecture tests prevent presentation from importing authority,
+    application/tool, sample, concrete-backend, native, or provider modules.
+  - A repeatable headless example exercises all five areas through Null audio
+    and render devices; the isolated wheel and release sample bundle run it.
+  - Full local quality, package, release, graphics, example, and independent
+    review gates pass before signed commit, PR, or hosted-success claims.
+  - The existing eight-job essential CI topology remains unchanged.
+- **Architecture:** Presentation authoring may depend only on core and exact
+  backend-neutral render contracts/extraction/opaque handles. It owns no world,
+  provider, renderer resource, thread, clock, or mutable singleton. Gameplay-
+  relevant cursors/edits/state remain ECS/world authority and must use commands.
+- **Non-scope:** Real audio devices/callbacks, streaming/spatial/effects DSP,
+  font parsing, kerning/shaping/bidirectional layout, rich markup, Tiled or
+  general scene import, editor-scale streaming, particle DSL/editor, GPU
+  particles, another world store, GUI/editor, networking, rollback, plugin
+  manifests, 3D, SDL3, Box2D, native code, tags, releases, or publication.
+- **SemVer:** Additive experimental Python/sample surface; runtime version
+  remains `0.1.0a1` and no mandatory dependency is added.
+- **Current evidence:** The final reviewed local gate reports 663 passing tests
+  and one existing Windows symlink-capability skip, 164 formatted Python files,
+  zero Ruff/Pyright findings, strict docs, pure wheel/sdist, isolated-wheel and
+  complete ten-artifact release smoke, nine real-wgpu tests, valid inherited
+  base/graphics profiling contracts, and successful Clockwork Arena, Agent
+  World Builder, alpha acceptance, and rich-2D showcase execution. Independent
+  findings-first re-review reports no remaining finding. No hosted M11 claim is
+  made before PR CI runs.

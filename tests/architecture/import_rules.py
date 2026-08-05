@@ -258,6 +258,17 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
         return _is_any_module_or_child(imported, ("ludoweave.collision", "ludoweave.core"))
     if _is_module_or_child(source, "ludoweave.platform"):
         return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.platform"))
+    if _is_module_or_child(source, "ludoweave.presentation"):
+        return _is_any_module_or_child(
+            imported,
+            (
+                "ludoweave.core",
+                "ludoweave.presentation",
+                "ludoweave.render.contracts",
+                "ludoweave.render.extraction",
+                "ludoweave.render.handles",
+            ),
+        )
     if _is_module_or_child(source, "ludoweave.world"):
         return _is_any_module_or_child(
             imported, ("ludoweave.core", "ludoweave.ecs", "ludoweave.world")

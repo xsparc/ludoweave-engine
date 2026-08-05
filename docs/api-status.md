@@ -19,8 +19,9 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
 | `ludoweave.platform` | Provider-neutral events and gamepad-provider protocol | Experimental |
 | `ludoweave.assets` | Project-confined asset contracts | Experimental |
-| `ludoweave.audio` | Audio protocol and Null adapter | Experimental |
+| `ludoweave.audio` | Audio protocol, mix graph, and Null adapter | Experimental |
 | `ludoweave.collision` | Deterministic bounded collision | Experimental |
+| `ludoweave.presentation` | Tick animation, bitmap text, tilemap, particle, and extraction contracts | Experimental |
 | `ludoweave.agent` | Typed agent-control service | Experimental |
 | `ludoweave.samples` | Exercised reference compositions | Experimental |
 

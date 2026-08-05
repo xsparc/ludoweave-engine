@@ -27,6 +27,7 @@ nav:
   - M4 gameplay vertical slice: gameplay.md
   - Agent control interface: agent-control.md
   - Live semantic inspector: inspector.md
+  - Rich 2D presentation authoring: presentation.md
   - API status and compatibility: api-status.md
   - Headless command workflow: cli-workflows.md
   - Benchmarks: benchmarks.md
@@ -57,6 +58,7 @@ nav:
       - ADR-0023 - Gamepads and SDL3 deferral: adr/0023-gamepad-contract-and-sdl3-deferral.md
       - ADR-0024 - Box2D plugin deferral: adr/0024-defer-box2d-v3-plugin-after-admission-review.md
       - ADR-0025 - Local semantic inspector: adr/0025-owned-local-semantic-inspector.md
+      - ADR-0026 - Rich 2D authoring: adr/0026-bounded-headless-rich-2d-authoring.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

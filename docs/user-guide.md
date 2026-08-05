@@ -31,10 +31,13 @@ run:
 python hello_headless.py --ticks 120
 python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
+python rich_2d_showcase.py --ticks 6
 python alpha_acceptance.py
 ```
 
-Every command exits on its own and prints one JSON summary. The alpha acceptance
+Every command exits on its own and prints one JSON summary. The rich 2D
+showcase exercises animation, bitmap text, tilemaps, particles, and Null-audio
+mixing without a device. The alpha acceptance
 spans engine lifecycle, generational entities, fixed world ticks, Clockwork
 Arena, typed agent transactions, replay, tests, and owned capture cleanup.
 

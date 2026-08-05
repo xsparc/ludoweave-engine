@@ -53,6 +53,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     prefix = "ludoweave-samples-0.1.0a1/"
     assert prefix + "README.md" in names
     assert prefix + "alpha_acceptance.py" in names
+    assert prefix + "rich_2d_showcase.py" in names
     assert prefix + "assets/clockwork_arena.scene.json" in names
     assert all(name.startswith(prefix) and ".." not in name.split("/") for name in names)
 

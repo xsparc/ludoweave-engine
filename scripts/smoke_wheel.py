@@ -366,6 +366,32 @@ def main(argv: Sequence[str] | None = None) -> int:
         if any(fixed_step.get(key) != value for key, value in fixed_expected.items()):
             raise RuntimeError(f"fixed-step example summary was invalid: {fixed_step!r}")
 
+        rich_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "rich_2d_showcase.py"),
+                "--ticks",
+                "6",
+            ],
+            cwd=temp_root,
+        )
+        rich = cast(dict[str, object], json.loads(rich_result.stdout))
+        rich_expected = {
+            "schema": "ludoweave.example.rich_2d/1",
+            "ticks": 6,
+            "animation_frame": 0,
+            "audio_gain": 0.2,
+            "glyphs": 9,
+            "particles": 10,
+            "tile_instances": 8,
+            "sprite_instances": 20,
+            "draw_calls": 2,
+            "renderer": "null-device",
+        }
+        if any(rich.get(key) != value for key, value in rich_expected.items()):
+            raise RuntimeError(f"rich 2D example summary was invalid: {rich!r}")
+
         arena_smoke = textwrap.dedent(
             """
             from ludoweave.audio import AudioClipDescriptor, NullAudioBackend

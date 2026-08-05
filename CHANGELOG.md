@@ -8,6 +8,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M11 dependency-free headless 2D presentation authoring: exact-tick sprite
+  animation, bitmap glyph layout/extraction, bounded immutable tilemaps,
+  seeded fixed-point particles, and a lifecycle-validating audio mix graph.
+- ADR-0026 plus an installed-wheel/release-bundle rich 2D showcase covering all
+  five M11 module areas through the existing Null render/audio boundaries.
 - M10 owned local semantic inspector over the existing MCP stdio tools with a
   read-only default, explicit receipted bootstrap/ticks, versioned NDJSON
   observations, semantic diffs, and exact authority-hash continuity checks.

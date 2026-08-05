@@ -15,6 +15,25 @@ pytest.importorskip("wgpu")
 pytest.importorskip("rendercanvas")
 
 from ludoweave.core.errors import RenderError
+from ludoweave.presentation import (
+    BitmapFont,
+    BitmapGlyph,
+    ParticleEmitter,
+    ParticleState,
+    SpriteAnimationClip,
+    SpriteAnimationFrame,
+    TileChunk,
+    TileDefinition,
+    TileLayer,
+    TileMap,
+    animation_sprite,
+    extract_tile_groups,
+    glyph_sprites,
+    layout_text,
+    particle_sprites,
+    sample_animation,
+    step_particles,
+)
 from ludoweave.render import (
     Camera2D,
     ClearCommand,
@@ -22,6 +41,8 @@ from ludoweave.render import (
     CommandList,
     DebugLineCommand,
     PipelineDescriptor,
+    PresentationFrame,
+    RenderExtractor,
     SpriteBatchCommand,
     SpriteInstance,
     SurfaceDescriptor,
@@ -187,6 +208,81 @@ def test_tile_batch_and_debug_primitives_are_batched_semantically(
     pixels = tuple(_pixel(capture.pixels, 8, x, y) for y in range(8) for x in range(8))
     assert (255, 255, 255, 255) in pixels
     assert (0, 0, 255, 255) in pixels
+
+
+def test_rich_2d_authoring_records_render_through_real_backend(
+    device: WgpuRenderDevice,
+) -> None:
+    surface = device.create_surface(
+        SurfaceDescriptor(16, 8, TextureFormat.RGBA8_UNORM, SurfaceKind.OFFSCREEN, "rich-2d")
+    )
+    texture = device.create_texture(
+        TextureDescriptor(
+            2,
+            1,
+            TextureFormat.RGBA8_UNORM,
+            TextureUsage.SAMPLED | TextureUsage.COPY_DESTINATION,
+            label="rich-2d-atlas",
+        ),
+        TextureData(b"\xff\x00\x00\xff\x00\xff\x00\xff", 8),
+    )
+    pipeline = device.create_pipeline(PipelineDescriptor(TextureFormat.RGBA8_UNORM))
+    animation = SpriteAnimationClip("gpu.animation", (SpriteAnimationFrame(1, 0.0, 0.0, 0.5, 1.0),))
+    font = BitmapFont(
+        "gpu.font",
+        4,
+        (BitmapGlyph("A", 4, 4, 4, 0, 0, 0.5, 0.0, 1.0, 1.0),),
+        "A",
+    )
+    particles = step_particles(ParticleEmitter("gpu.particles", 1, 1, 1, 2), ParticleState())
+    sources = (
+        animation_sprite(
+            texture,
+            sample_animation(animation, 0),
+            entity_index=0,
+            previous_x=-4.0,
+            previous_y=0.0,
+            current_x=-4.0,
+            current_y=0.0,
+            width=4.0,
+            height=4.0,
+        ),
+        *glyph_sprites(texture, layout_text(font, "A"), base_entity_index=10),
+        *particle_sprites(texture, particles, base_entity_index=20, width=2.0, height=2.0),
+    )
+    tilemap = TileMap(
+        "gpu.map",
+        4,
+        4,
+        (TileDefinition(1, 0.5, 0.0, 1.0, 1.0),),
+        (TileLayer("ground", 0, (TileChunk(1, 0, 1, 1, (1,)),)),),
+    )
+    extractor = RenderExtractor()
+    sprites = extractor.extract_sprites(
+        sources,
+        completed_ticks=1,
+        interpolation_alpha=0.0,
+        camera=Camera2D(viewport_width=16.0, viewport_height=8.0),
+    )
+    frame = PresentationFrame(
+        sprites.completed_ticks,
+        sprites.source_tick,
+        sprites.interpolation_alpha,
+        sprites.camera,
+        sprite_groups=sprites.sprite_groups,
+        tile_groups=extract_tile_groups(tilemap, texture, min_x=0, min_y=0, max_x=2, max_y=1),
+    )
+
+    submission = device.submit(
+        (extractor.build_command_list(frame, target=surface, pipeline=pipeline),)
+    )
+    device.poll()
+    capture = device.capture_surface(surface)
+
+    assert submission.draw_calls == 2
+    assert submission.sprite_instances == 3
+    assert submission.tile_instances == 1
+    assert len(capture.pixels) == 16 * 8 * 4
 
 
 def test_surface_resize_minimize_restore_destroy_and_capture_lifecycle(

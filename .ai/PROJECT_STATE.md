@@ -17,6 +17,13 @@ based on exact M9 final head
 `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. ADR-0025 accepts one isolated,
 owned local MCP child with detached observations and receipted writes. GitHub
 Actions run `31020096463` passed all eight essential hosted jobs.
+M11 is locally complete and independently accepted on
+`codex/m11-rich-2d-modules`, based on exact M10
+evidence head `bae799900671481cfd6f03fe502dea95b2c7f96c`. ADR-0026 bounds it
+to dependency-free headless audio mixing, bitmap text, tick animation,
+immutable tilemaps, and fixed-point particles through existing render records.
+Signed publication and the essential eight-job hosted gate remain pending; no
+hosted M11 claim is made yet.
 
 ## Repository identity
 
@@ -38,7 +45,8 @@ The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
 `0237b2bfb11c6032d030dada639c7dbe439e5089`. M8 is based directly on that
 mainline commit. M9 is based on the hosted-validated M8 head
 `187ad4503a40325a1e334da3cb4078969e2e043b`; M10 is based on the final hosted
-M9 head and will be proposed against the M9 branch.
+M9 head and is proposed against the M9 branch. M11 is based on the final M10
+evidence head and will be proposed against the M10 branch.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -136,17 +144,39 @@ M9 head and will be proposed against the M9 branch.
   Ubuntu 3.12 quality/test/distribution gate, four compatibility jobs spanning
   CPython 3.13/3.14 and Windows/macOS, and three real cross-platform graphics
   jobs. Superseded runs remain cancelled.
+- `ludoweave.presentation` frozen animation, bitmap-glyph, tilemap, and
+  fixed-point particle records with exact-tick sampling, integer layout/culling,
+  stable seeded stepping/digests, and existing render extraction.
+- A bounded acyclic audio mix graph rooted at `master`, enforced by the
+  lifecycle-validating Null backend with category and effective-gain checks.
+- A dependency-free rich 2D showcase registered in source, isolated-wheel, and
+  deterministic release sample-bundle validation paths.
 
 ## Next slice
 
-- M10 is complete. Assign M11 from the authoritative post-alpha sequence before
-  implementation and stop at its acceptance boundary. Release publication,
-  deferred Box2D/SDL3 adapters, haptics/sensors, real audio, networking, editor
-  work, 3D, and native code remain outside M10; RFC-0001 continues to govern
-  Rust/PyO3.
+- Publish M11 as a signed ready PR stacked on exact M10 and require the
+  essential eight-job hosted gate to pass. Do not assign post-alpha
+  item 6/plugin-manifest stabilization until M11 evidence is reconciled. Real
+  audio providers, font shaping, editor tooling, networking, 3D, deferred
+  Box2D/SDL3 adapters, and native code remain outside M11.
 
 ## Validation state
 
+- The final reviewed M11 local gate on Windows/uv-managed CPython 3.12.13
+  reports 663 passing tests and one existing symlink-capability skip, 164
+  formatted Python files, zero Ruff/Pyright findings, strict documentation,
+  a pure 87-entry wheel with seven presentation entries and zero native files,
+  isolated-wheel smoke, and complete ten-artifact release smoke.
+- Nine real-wgpu integration tests, base/graphics one-repeat profiling-contract
+  smokes, Clockwork Arena, Agent World Builder, alpha acceptance, and the
+  repeatable rich-2D showcase passed. M11 defines no timing target and makes no
+  performance claim.
+- Independent review found exclusive tile-bound, pre-bound traversal, runtime
+  parent-fader, bounded-sequence, particle-work/state, and generic-style issues
+  during development. The corrected edge/work/iterator/gain regressions passed;
+  final re-review ran 78 focused tests plus 58 architecture/API tests with clean
+  Ruff/Pyright/provider/diff/credential checks and reported no remaining
+  finding.
 - The final reviewed M10 local gate on Windows/uv-managed CPython 3.12.13
   reports 642 passing tests and one existing symlink-capability skip, 154
   formatted Python files, zero Ruff/Pyright findings, strict documentation
@@ -262,7 +292,7 @@ M9 head and will be proposed against the M9 branch.
 ## Deferred roadmap
 
 Remote/network agent transport, real audio playback, Box2D/rigid-body physics,
-networking, editor tooling, automatic device recovery, rich text, 3D, and
+networking, editor tooling, automatic device recovery, international text shaping, 3D, and
 native acceleration remain unimplemented. RFC-0001 records that the improved
 M1/M3 workloads still miss their targets and defines the complete quantified
 admission gate before a native proposal may return.

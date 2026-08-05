@@ -70,6 +70,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         sample_root = _extract_bundle(bundle, samples, version=version)
         _run([str(python), "-I", "hello_headless.py", "--ticks", "5"], cwd=sample_root)
         _run([str(python), "-I", "fixed_step_world.py", "--ticks", "6"], cwd=sample_root)
+        _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
         _run(
             [
                 str(python),

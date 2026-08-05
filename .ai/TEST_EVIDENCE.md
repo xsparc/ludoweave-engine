@@ -1139,3 +1139,118 @@ eight-job topology; it replaces the former 14-job topology without dropping a
 supported Python version, desktop operating system, complete distribution
 gate, or real three-OS graphics gate. No merge, tag, release, or package
 publication occurred.
+
+## M11 focused development validation - 2026-08-06
+
+Environment: Windows, uv-managed CPython 3.12.13. M11 is based on exact M10
+evidence head `bae799900671481cfd6f03fe502dea95b2c7f96c` and is not yet
+published. No hosted or milestone-complete claim is made.
+
+- `uv run --frozen ruff format src/ludoweave/presentation src/ludoweave/audio examples/rich_2d_showcase.py scripts/smoke_wheel.py scripts/release_artifacts.py scripts/smoke_release.py tests`
+  exited 0; 76 files were already formatted.
+- `uv run --frozen ruff check src/ludoweave/presentation src/ludoweave/audio examples/rich_2d_showcase.py scripts/smoke_wheel.py scripts/release_artifacts.py scripts/smoke_release.py tests/unit/test_presentation.py tests/unit/test_audio.py tests/integration/test_rich_2d_showcase.py tests/architecture`
+  exited 0 with `All checks passed!`.
+- `uv run --frozen pyright src/ludoweave/presentation src/ludoweave/audio examples/rich_2d_showcase.py scripts/smoke_wheel.py scripts/release_artifacts.py scripts/smoke_release.py tests/unit/test_presentation.py tests/unit/test_audio.py tests/integration/test_rich_2d_showcase.py`
+  exited 0 with zero errors, warnings, or information diagnostics.
+- `uv run --frozen pytest -q tests/unit/test_presentation.py tests/unit/test_audio.py tests/integration/test_rich_2d_showcase.py tests/architecture`
+  exited 0 with 76 passing tests in 1.40 seconds.
+
+An earlier focused run exposed three lint defaults, one tuple return-type
+annotation, and an incorrect newly authored particle digest fixture; a second
+integration run corrected its expected lifetime count from eight to ten. Those
+development failures are not pass evidence. The corrected commands above are
+the current focused evidence. Full suite, strict docs, distribution/release,
+graphics, independent review, and hosted validation remain pending.
+
+## M11 final reviewed local validation - 2026-08-06
+
+Environment: Windows, uv-managed CPython 3.12.13 with the exact locked graphics
+extra. Base: `bae799900671481cfd6f03fe502dea95b2c7f96c`. Branch:
+`codex/m11-rich-2d-modules`.
+
+The final independently reviewed command sequence produced these results:
+
+- `uv lock --check` exited 0; the 46-package lock was unchanged.
+- `uv sync --frozen --all-groups --extra graphics` exited 0; 45 packages were
+  checked.
+- `uv run --frozen ruff format --check .` exited 0; 164 Python files were
+  already formatted.
+- `uv run --frozen ruff check .` exited 0 with `All checks passed!`.
+- `uv run --frozen pyright` exited 0 with zero errors, warnings, or information
+  diagnostics.
+- `uv run --frozen pytest -q` exited 0 with 663 passing tests and one existing
+  Windows symlink-capability skip in 46.37 seconds.
+- `uv run --frozen mkdocs build --strict` exited 0 in 0.47 seconds. Material for
+  MkDocs emitted its existing upstream MkDocs 2.0 informational warning.
+- `uv build` exited 0 and rebuilt
+  `dist/ludoweave-0.1.0a1.tar.gz` plus the universal
+  `dist/ludoweave-0.1.0a1-py3-none-any.whl` from the sdist.
+- `uv run --frozen python scripts/smoke_wheel.py dist` exited 0 with
+  `wheel smoke passed: ludoweave-0.1.0a1-py3-none-any.whl`. The isolated
+  no-dependency environment ran CLI/doctor, inherited scenarios, inspector,
+  agent builder, and the M11 rich-2D example.
+- `uv run --frozen python scripts/release_artifacts.py dist .tmp/m11-release-candidate-reviewed-20260806`
+  exited 0 with protocol `ludoweave.release-stage/1`, version `0.1.0a1`, ten
+  artifacts, the sample bundle, and SPDX SBOM.
+- `uv run --frozen python scripts/smoke_release.py .tmp/m11-release-candidate-reviewed-20260806`
+  exited 0 with `release smoke passed: ludoweave 0.1.0a1`; the extracted
+  versioned bundle ran `rich_2d_showcase.py` from the installed wheel.
+- `git diff --check` exited 0.
+
+Additional retained-gate execution:
+
+- `uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m11-profile-base.json`
+  and its validator exited 0 with schema `ludoweave.profile.m7/1`, two valid
+  workloads.
+- `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m11-profile-graphics.json`
+  and its validator exited 0 with the same schema and three valid workloads.
+  These validate inherited artifact contracts only; M11 assigns no timing
+  target and makes no performance claim.
+- `uv run --frozen pytest -q tests/integration/test_wgpu_render.py` exited 0
+  with nine passes in 5.52 seconds, including M11 animation/text/tile/particle
+  extraction through the real provider.
+- `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10`
+  exited 0 with 30 ticks, three draws, 16 sprites, and capture SHA-256
+  `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`.
+- `uv run --frozen --extra graphics python examples/agent_world_builder.py`
+  exited 0 with committed apply/adjust status, six query matches, three ticks,
+  five replay batches, and passing registered tests.
+- `uv run --frozen python examples/alpha_acceptance.py` exited 0 with protocol
+  `ludoweave.sample.alpha_acceptance/1` and status `ok`.
+- `uv run --frozen python examples/rich_2d_showcase.py --ticks 6` exited 0 with
+  schema `ludoweave.example.rich_2d/1`, animation frame 0, audio gain 0.2, nine
+  glyphs, ten particles, 20 sprite instances, eight tile instances, two draw
+  calls, and particle digest
+  `d3bb0b7050ec5f841de9f0b12997c9e9f4bdeb88f6a14024cd4554103beaa546`.
+
+Artifact and scope audit:
+
+- the wheel contains 87 entries, including all seven
+  `ludoweave/presentation` files and zero `.pyd`, `.so`, `.dll`, `.dylib`,
+  `.a`, or `.lib` entries;
+- metadata has no mandatory `Requires-Dist`; only the unchanged exact graphics
+  extra (`glfw`, `rendercanvas[glfw]`, `wgpu`) is present;
+- the final release sample ZIP contains `rich_2d_showcase.py`;
+- `.github/workflows/ci.yml` is unchanged, so the eight-job essential topology
+  remains the only pull-request gate;
+- focused scans found no M11 native/provider imports, presentation clock/global
+  RNG/thread/network imports, high-confidence credentials, or new-file trailing
+  whitespace; and architecture tests passed.
+
+Independent findings-first review initially identified unreachable maximum
+tile coordinates, unbounded/quadratic layer traversal, unbounded public
+sequence freezing, missing runtime parent-bus fader propagation, particle
+work/state bounds, and Ruff generic syntax. The fixes add edge, infinite-
+iterator, work-budget, state-lifetime, canonical-order, and nested-gain
+regressions. Final re-review reported no blocking, non-blocking, or open finding:
+format and Ruff passed, Pyright reported zero, 78 focused tests and 58
+architecture/API tests passed, provider isolation and deterministic showcase
+passed, and diff/credential checks were clean. One parallel review invocation
+collided with the root process on shared `.pytest-tmp` and produced 55 setup
+errors; the isolated rerun passed all 78, so that collision is not pass
+evidence.
+
+An initial sandboxed full-gate attempt could not read the existing uv user
+cache and therefore produced no check evidence. The exact approved reruns above
+completed successfully. No M11 hosted, cross-platform, merge, tag, release, or
+package-publication claim is made at this stage.

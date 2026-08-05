@@ -118,6 +118,10 @@ closes an injected backend; close is idempotent and invalid/foreign handles are
 typed failures. No Python real-time audio callback or provider dependency is
 introduced in M4.
 
+M11 adds a maximum-64-bus immutable acyclic mix graph rooted at `master`.
+The Null adapter validates clip categories and effective gain while still
+opening no audio device. See the [presentation guide](presentation.md).
+
 ## Stress evidence and limits
 
 Clockwork Arena bounds active enemies and supports stress levels 1-16. The M4
