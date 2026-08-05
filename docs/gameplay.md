@@ -101,6 +101,14 @@ no impulse, mass, rotation, rigid-body solver, or Box2D integration. Clockwork
 Arena uses the grid for projectile/enemy candidates and the axis policy for
 arena bounds.
 
+M9 evaluated `box2d-python==0.1.2` without adding it to the package or lock.
+Bounded isolated Windows CPython 3.12/3.13 headless traces repeated exactly,
+but the preview binding has no CPython 3.14 wheel, incomplete platform/source
+coverage, undocumented GIL/thread and cross-platform replay behavior, and no
+engine adapter conformance. ADR-0024 therefore defers the plugin. The local
+trace result does not upgrade the existing collision contract or establish a
+determinism tier.
+
 ## Audio ownership
 
 `AudioBackend` defines initialize, immutable clip load, play, stop,

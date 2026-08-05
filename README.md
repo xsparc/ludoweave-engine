@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M8 are implemented, including provider-neutral gamepad input and an evidence-based SDL3 adapter deferral behind explicit maturity gates. Profiling led to ordinary Python improvements and an explicit decision to defer Rust/PyO3. Every current Python API and wire format remains experimental and may change without deprecation.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M8 are hosted-validated; the M9 local Box2D-plugin evaluation is complete and awaiting its hosted gate. Provider-neutral gamepad input and evidence-based SDL3, Box2D-plugin, and Rust/PyO3 deferrals use explicit admission gates. Every current Python API and wire format remains experimental and may change without deprecation.
 
 ## What exists
 
@@ -40,6 +40,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Deterministic release staging with a pure wheel, source distribution, sample bundle, checksums, SPDX SBOM, notices, manifest, installed-artifact smoke, and a pinned provenance workflow.
 - Explicit stability metadata for every public Python export, community-alpha user/adapter/contribution guides, and a repository-native triage/roadmap queue.
 - Versioned, sanitized profiling for the representative M1/M3 misses plus an accepted RFC retaining the pure-Python/no-compiler baseline.
+- A bounded isolated Box2D-candidate probe plus ADR-0024; no physics binding,
+  adapter, native object, or runtime dependency is shipped.
 
 General scene importers, production audio, rigid-body physics, networking or remote agent transport, editor tooling, 3D, and automatic GPU recovery are not implemented yet.
 
@@ -161,6 +163,17 @@ git diff --check
 ```
 
 Milestone benchmark/profile commands are not part of every edit's fast gate. M1, M3, and M4 record local target observations; M2 measurements are informational and have no timing pass threshold. M7 profile time is diagnostic rather than a benchmark. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md), the [benchmark methodology](docs/benchmarks.md), and [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md).
+
+The M9 Box2D probe is also evaluation tooling, not a normal quality command or
+dependency. Run it only in an isolated environment with an explicit candidate:
+
+```console
+uv run --no-project --python 3.12 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py
+```
+
+A successful result establishes only bounded same-binary headless/lifecycle
+smoke. It does not admit the binding or claim cross-platform determinism; see
+[ADR-0024](docs/adr/0024-defer-box2d-v3-plugin-after-admission-review.md).
 
 Release staging requires a new empty output directory. The tag workflow is
 defined for a future maintainer-created `vVERSION` tag; this repository task

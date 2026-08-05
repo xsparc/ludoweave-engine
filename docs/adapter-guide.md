@@ -42,6 +42,24 @@ The Null render/audio implementations are executable contract references. The
 wgpu adapter demonstrates the permitted concrete-backend dependency exception
 and provider-to-engine normalization.
 
+## External physics admission
+
+There is no supported physics-plugin protocol in the alpha. Do not implement a
+provider by storing native bodies beside ECS entities and treating both as
+authoritative. A future external solver must consume copied engine-owned values
+at an explicit safe point, return copied observations or command proposals,
+and reconcile complete failure without partially advancing the canonical
+world. Native bodies, contacts, callbacks, allocators, pointers, and snapshots
+must stay behind the adapter.
+
+Physics is D0 unless an exact provider version passes cross-platform
+snapshot/restore, replay, hash, contact-order, lifecycle, and worker-count
+conformance. Same-binary repeated traces are only smoke evidence. Dependency
+wheels/provenance, GIL and thread ownership, headless use, explicit idempotent
+close, provider upgrades, and a named maintenance owner are separate admission
+gates. The evaluated Box2D binding does not meet them; see
+[ADR-0024](adr/0024-defer-box2d-v3-plugin-after-admission-review.md).
+
 ## Conformance checklist
 
 An adapter contribution needs focused tests for:
@@ -67,7 +85,7 @@ bounded compatible LudoWeave version and document their own stability, licenses,
 native requirements, and support matrix. Do not use the reserved `ludoweave`
 top-level namespace without maintainer agreement.
 
-Adding another official renderer/platform backend, introducing plugin
+Adding another official renderer/platform/physics backend, introducing plugin
 discovery, or changing a security/compatibility boundary requires an RFC. A
 small adapter should not become a route to networking, arbitrary evaluation,
 global mutable registries, or duplicate world state. See the

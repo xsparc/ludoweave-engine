@@ -1,51 +1,35 @@
 # Current Task
 
-- **Task:** M8 — Gamepad input and SDL3 adapter-maturity decision
-- **Status:** Complete; published as ready PR #9 and validated by hosted CI
-- **Started:** 2026-08-05
-- **Outcome:** Add provider-neutral, typed gamepad input that maps into the
-  existing immutable per-tick action snapshots, and record an evidence-based
-  decision on whether an SDL3 adapter is ready for the supported baseline.
+- **Task:** M9 — Box2D v3 plugin admission evaluation
+- **Status:** Local implementation, full gate, and repeat independent review
+  complete; signed commit, stacked PR publication, and hosted validation pending
+- **Started:** 2026-08-06
+- **Base:** Exact hosted-validated M8 head `187ad4503a40325a1e334da3cb4078969e2e043b`;
+  the M9 PR will stack against `codex/m8-gamepad-sdl3-evaluation`.
+- **Outcome:** Evaluate the current `box2d-python` binding against the explicit
+  cross-platform wheel, ownership/lifetime, headless, API stability,
+  GIL/threading, determinism, and adapter-conformance gates, then admit or
+  defer a plugin with an accepted ADR.
 - **Acceptance gate:**
-  - Immutable bounded connection, button, and axis events use engine-owned
-    identities and never expose provider objects.
-  - Action maps support standardized gamepad buttons and axes with explicit
-    deterministic ordering, finite normalization, deadzones, scaling,
-    hotplug cleanup, and focus-loss behavior.
-  - The already-pinned optional GLFW provider supplies standardized buttons
-    and four unambiguous stick axes on Windows, macOS, and Linux without a new
-    mandatory dependency. Its indistinguishable unavailable/half-pressed
-    trigger values are omitted rather than synthesized.
-  - Virtual/headless behavior, malformed input, provider failure, and
-    installed-wheel use are exercised; real-provider smoke remains tolerant of
-    machines with no attached gamepad.
-  - SDL3/Python binding maturity is evaluated from current primary sources and
-    accepted or deferred in an ADR with a measurable revisit gate.
-  - The full documented quality, package, release-candidate, graphics, and
-    repository review gates pass before publication.
-- **Architecture:** Gamepad state remains non-canonical platform input until an
-  application deliberately maps it into a tick-indexed `InputSnapshot`.
-  Provider polling is single-thread owned, globally ordered by player slot,
-  and isolated behind engine contracts. No SDL/GLFW/native value enters public
-  APIs, world state, snapshots, commands, receipts, or replays.
-- **Decision outcome:** Accepted ADR-0023 uses the existing pinned GLFW
-  provider and defers SDL3 until its Python binding, offline binary delivery,
-  lifecycle ownership, cross-platform conformance, and maintenance gates are
-  satisfied. No dependency changed.
-- **Local gate:** Windows, uv-managed CPython 3.12.13 reports 594 passed and one
-  existing symlink-capability skip, 149 formatted files, zero Ruff/Pyright
-  findings, strict docs success, a pure 79-entry wheel with no native entries,
-  installed-wheel and complete release-candidate smoke, eight real wgpu/GLFW
-  integration passes, and successful Clockwork Arena, Agent World Builder, and
-  alpha-acceptance runs. Repeat independent review found no blockers and
-  recommends PR publication. The superseded 589-pass run remains recorded.
-- **Hosted gate:** GitHub Actions run `31012696753` passed all 14 jobs on PR #9:
-  quality/docs; Ubuntu CPython 3.12/3.13/3.14; Windows and macOS CPython
-  3.12/3.14; installed-wheel smoke on all three systems; and real graphics/
-  GLFW gamepad smoke on Ubuntu, Windows, and macOS.
-- **Non-scope:** Haptics, LEDs, sensors, touchpads, raw joysticks, controller
-  remapping UI/database downloads, background input, multiple windows, IME,
-  clipboard, real audio, networking, editor work, 3D, Box2D, Rust/PyO3, release
-  tags, GitHub releases, or package publication.
-- **SemVer:** Additive experimental Python surface only; version remains
-  `0.1.0a1` unless implementation evidence requires a different decision.
+  - Current facts come from primary project/package sources and reproducible
+    isolated probes; no unexecuted installation or determinism claim is made.
+  - The base package and lock remain unchanged, pure Python, and compiler-free.
+  - An exercised probe checks available-version identity, bounded lifecycle
+    churn, idempotent destruction, headless stepping, and same-binary repeat
+    traces without importing LudoWeave or shipping the candidate.
+  - Architecture tests prohibit Box2D/native-binding imports from public and
+    canonical runtime code.
+  - ADR-0024 records each admission gate, evidence, determinism/authority
+    classification, decision, and measurable revisit conditions.
+  - Full local quality/package/release/graphics gates and independent review
+    pass before a signed commit, stacked PR, or hosted-success claim.
+- **Architecture:** External rigid-body state cannot become a second canonical
+  world. A future plugin must consume and return copied engine-owned values at
+  explicit tick/command boundaries, close deterministically, and remain D0
+  unless snapshot/replay/hash conformance proves a stronger tier.
+- **Non-scope:** A Box2D dependency or adapter, rigid-body gameplay, ECS
+  authority changes, plugin discovery/loading, release publication, semantic
+  inspector, richer audio/text/animation/tilemap/particles, networking,
+  editor, 3D, SDL3, Rust/PyO3, or other native code.
+- **SemVer:** Evaluation tooling and documentation only; runtime version remains
+  `0.1.0a1`.

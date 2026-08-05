@@ -17,6 +17,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
 | Done | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
 | Done | M8 gamepad/SDL3 evaluation | Provider-neutral gamepad mapping, pinned GLFW smoke, SDL3 maturity ADR, and cross-platform validation |
+| Local accepted | M9 Box2D v3 plugin evaluation | Binding/wheel/lifecycle/headless/API/threading/determinism/conformance admission evidence and ADR; hosted gate pending |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -25,6 +26,9 @@ and real-wgpu profiling-contract smokes on all three operating systems.
 M8 PR #9 passed the same 14-job hosted matrix, including standardized gamepad
 contract and real GLFW smoke on all three operating systems. Haptics, sensors,
 raw joysticks, remapping UI, and SDL windows remain future proposals.
+M9 evaluates the external rigid-body candidate only. The dependency, adapter,
+and canonical-physics integration remain absent unless every admission gate is
+evidenced.
 
 ## Good-first contribution queue
 

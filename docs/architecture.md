@@ -40,6 +40,12 @@ pinned GLFW provider; the Null device remains empty and headless. ADR-0023
 defers an SDL3 adapter until its Python binding, binary delivery, ownership,
 and cross-platform conformance meet explicit gates.
 
+M9 evaluates the current Box2D v3 Python candidate and defers admission. The
+evaluation script is repository tooling, not an engine dependency or adapter.
+The base lock and package remain pure Python. ADR-0024 records failed and
+incomplete wheel, stability, ownership, threading, determinism, conformance,
+and maintenance gates.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -252,13 +258,35 @@ exact tick. Raw provider events, device names, GUIDs, mapping databases,
 timestamps, haptics, and hardware capabilities are non-canonical and are not
 serialized into world snapshots, commands, receipts, or replay headers.
 
+## M9 external-physics boundary
+
+An external solver cannot become a second canonical world. A future adapter
+may receive copied engine-owned descriptors only at explicit safe points and
+may return copied observations or command proposals. Provider bodies, shapes,
+contacts, callbacks, allocators, pointers, and snapshots cannot enter public
+APIs, ECS records, commands, receipts, authority snapshots, or replays.
+
+External physics is D0 by default. Same-process repeated traces do not prove
+cross-platform determinism, rollback, snapshot/restore, contact ordering, or
+upgrade compatibility. A stronger classification needs exact provider-version
+identity and cross-platform snapshot/replay/hash conformance. Explicit close,
+failure reconciliation, bounded work, and single-owner threading must be
+exercised before a runtime protocol is introduced.
+
+The M9 candidate probe lives under `scripts/`, imports no LudoWeave module, and
+loads the candidate only from an isolated caller environment after matching the
+resolved module file to the distribution's installed-file inventory. A shadow
+module fails before import and is never attributed to the candidate version.
+Engine source imports of Box2D names are architecture violations. See
+[ADR-0024](adr/0024-defer-box2d-v3-plugin-after-admission-review.md).
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
 the M6 community-alpha distribution contract, the M7 native-code decision, and
-the M8 gamepad contract/SDL3 deferral now exist. M6 does not add a
+the M8 gamepad contract/SDL3 deferral, and the M9 Box2D deferral now exist. M6 does not add a
 plugin loader or dynamic data-selected code: adapter discovery remains explicit
 trusted composition. General scene importers, production audio, rigid-body
 physics, network transports, editor tooling, rich text, automatic device

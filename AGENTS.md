@@ -38,9 +38,11 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 ## Current boundary
 
 M0 through M8 are complete and hosted-CI validated. M1-M7 are integrated into
-`main`; M8 is published as PR #9. Stop at this boundary. Do not create a release
-tag, GitHub release, PyPI publication, or begin the Box2D/plugin evaluation
-without a separate maintainer decision. Real audio playback, network agent
-transports, editor work, 3D, SDL3, and native code remain out of scope. RFC-0001
-records the evidence-based native-code deferral; local performance misses are
-not automatic authorization for acceleration.
+`main`; M8 is published as PR #9. M9's local Box2D v3 admission review is
+complete, independently accepted, and defers the plugin; hosted validation is
+still required. Do not implement or depend on a Box2D adapter, create a release
+tag/GitHub release/PyPI publication, or begin the live semantic inspector. Real
+audio playback, network agent transports, editor work, 3D, SDL3, and native
+code remain out of scope. RFC-0001 records the evidence-based native-code
+deferral; local performance misses are not automatic authorization for
+acceleration.

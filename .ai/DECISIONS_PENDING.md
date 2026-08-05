@@ -11,6 +11,12 @@ surface and deferring SDL3 until a stable Python binding, auditable offline
 binary delivery, explicit lifecycle ownership, cross-platform conformance, and
 maintenance owner are evidenced.
 
+ADR-0024 resolves the M9 Box2D question by deferring the preview binding until
+the complete CPython/OS wheel and provenance matrix, stable API, lifecycle and
+stale-object soak, documented GIL/thread ownership, cross-platform
+snapshot/replay classification, copied engine adapter conformance, and a named
+maintenance owner are evidenced.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

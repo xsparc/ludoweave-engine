@@ -933,3 +933,84 @@ successfully with all 14 jobs passing:
 The hosted result validates execution and artifact contracts, not controller
 hardware coverage or a performance target. PR #9 remains open and no merge,
 tag, release, or package publication is claimed.
+
+## M9 local validation — 2026-08-06, Windows, CPython 3.12.13
+
+M9 evaluates `box2d-python==0.1.2` as an isolated candidate and does not add it
+to project metadata, the uv lock, the package, or release dependencies. Primary
+package evidence shows an early-development CFFI preview with partial Box2D
+v3.0 functionality, no source distribution, CPython 3.12/3.13 wheels only,
+macOS ARM64 wheels only, and no Trusted Publishing upload. Official Box2D is
+now 3.1.0 and documents cross-platform determinism beginning in 3.1; that claim
+is not attributed to this partial v3.0 community binding.
+
+Development feedback is retained rather than reported as a pass:
+
+- An initial CPython 3.12 candidate command used the tuple-position call shown
+  on the PyPI example and exited 1 because the installed wheel required two
+  position arguments. The corrected isolated call stepped successfully and
+  also tolerated repeated `destroy()`.
+- The first focused Ruff check found import ordering, a mutable test class
+  attribute, and a missing exception import. These were corrected.
+- The first focused pytest collection failed because the repository's
+  `scripts` directory is not an import package. The test now invokes the real
+  script in an isolated subprocess with a fake distribution instead of changing
+  project import behavior.
+- The first focused Pyright pass found two unsafe `object`-to-float conversions.
+  The probe now explicitly validates finite numeric position values.
+- A default-sandbox base-environment probe could not open uv's existing cache.
+  The authorized exact rerun produced the expected structured `unavailable`
+  document with child exit 2 and did not install the candidate.
+- Independent review found that distribution metadata and the imported module
+  were not yet linked, allowing a shadow `box2d.py` to be misattributed to
+  version 0.1.2. The probe now matches the resolved module to the
+  distribution's installed-file inventory before import, checks identity again
+  after import, fails closed without paths, and has a shadow-module regression.
+  It also requires at least one observed position change.
+
+Candidate probe evidence:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --no-project --python 3.12 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py --iterations 25 --steps 120` | 0 | Windows CPython 3.12.13 completed 25 single-thread create/step/double-destroy repetitions; exact traces matched with SHA-256 `c9e299e715c5f7a3654d7c5794d75347d765cc029b7991d4c8066dfaf7abdfc5`. |
+| `uv run --no-project --python 3.13 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py --iterations 25 --steps 120` | 0 | Windows CPython 3.13.13 produced the same exact bounded trace digest. |
+| `uv run --no-project --python 3.14 --with box2d-python==0.1.2 python scripts/probe_box2d_candidate.py --iterations 25 --steps 120` | 1 | Resolution failed: the release has no matching `cp314` wheel and publishes only `cp312`/`cp313` ABI wheels. The probe did not run. |
+| `uv run --frozen python scripts/probe_box2d_candidate.py --iterations 2 --steps 1` | 2 | The locked base environment emitted sanitized schema `ludoweave.evaluation.box2d/1` with status `unavailable`, confirming Box2D is not installed. |
+
+The full executed repository gate is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the unchanged 46-package lock in 0.73 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked all 45 locked environment packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 151 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | The ownership-corrected final run reported 606 tests passed and one existing Windows symlink-capability test skipped in 46.57 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.55 seconds with only the known upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the pure `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel smoke passed. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m9-release-candidate-reviewed-20260806` | 0 | The final post-review build staged the complete 10-file `ludoweave.release-stage/1` candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m9-release-candidate-reviewed-20260806` | 0 | The final post-review checksum, manifest, SPDX SBOM, notice, sample, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu/GLFW integration tests passed. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprite instances, and deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | The dependency-free acceptance composition returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| PowerShell wheel ZIP inventory | 0 | The built wheel contained 79 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib` entries. |
+| Runtime dependency scan | 1 | No case-insensitive Box2D name matched `src`, `pyproject.toml`, or `uv.lock`; ripgrep exit 1 means no matches. |
+| Credential-pattern scan | 1 | No private-key header or simple credential assignment matched the reviewed M9 repository surfaces; ripgrep exit 1 means no matches. |
+| `git diff --check` | 0 | No whitespace errors existed before factual evidence reconciliation. |
+
+The Windows traces establish only bounded same-binary headless/lifecycle smoke.
+No performance benchmark, cross-platform determinism, rollback, snapshot,
+contact-order, GIL-release, thread-safety, free-threaded, or provider-support
+claim is made.
+
+Independent review initially blocked sign-off because metadata identity did not
+prove ownership of the imported top-level module. After correction, repeat
+review ran 54 focused tests, Ruff formatting/linting, strict Pyright,
+`git diff --check`, the runtime/dependency scan, and an actual CPython 3.12
+candidate probe. It verified the pre-import installed-file ownership check,
+post-import identity check, structured broken-install behavior, and
+non-executing shadow-module regression; no blocker remained and the reviewer
+recommended M9 for final sign-off. Hosted M9 CI has not run at this point.

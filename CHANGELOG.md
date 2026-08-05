@@ -8,6 +8,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M9 bounded isolated Box2D-candidate lifecycle/repeat-trace probe and
+  architecture fixtures that keep the native binding out of engine source.
+- ADR-0024 recording the evidence-based Box2D v3 plugin deferral and complete
+  wheel, ownership, headless, stability, threading, determinism, conformance,
+  authority, and maintenance revisit gate.
 - M8 provider-neutral gamepad connection/button/axis events, explicit
   deadzone/scale action bindings, Null/GLFW providers, and Clockwork Arena
   controls. The GLFW adapter deliberately omits ambiguous trigger axes instead

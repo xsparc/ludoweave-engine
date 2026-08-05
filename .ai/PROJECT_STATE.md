@@ -6,6 +6,10 @@ M0 through M7 are complete, independently accepted, integrated into `main`,
 and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
 independently accepted, published as PR #9 from
 `codex/m8-gamepad-sdl3-evaluation`, and validated across all 14 hosted jobs.
+M9 Box2D v3 plugin admission evaluation is locally complete on
+`codex/m9-box2d-plugin-evaluation`, stacked from the exact M8 head. ADR-0024
+defers the plugin; repeat independent review accepted the ownership correction
+with no remaining blockers. Hosted validation remains pending.
 
 ## Repository identity
 
@@ -25,7 +29,9 @@ hosted run `31005165849` across all 14 jobs, including the new base and
 real-wgpu profiling-contract smokes.
 The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
 `0237b2bfb11c6032d030dada639c7dbe439e5089`. M8 is based directly on that
-mainline commit.
+mainline commit. M9 is based on the hosted-validated M8 head
+`187ad4503a40325a1e334da3cb4078969e2e043b` and will be proposed against the M8
+branch.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -99,17 +105,46 @@ mainline commit.
 - Accepted ADR-0023: the existing pinned GLFW adapter supplies M8 input while
   SDL3 is deferred until its Python binding, binary delivery, ownership,
   cross-platform conformance, and maintenance gates are satisfied.
+- A bounded isolated Box2D-candidate probe with versioned sanitized JSON,
+  exact single-thread fixed-step traces, repeated lifecycle churn, double
+  destruction, strict workload bounds, and no LudoWeave/runtime import.
+- Accepted ADR-0024: `box2d-python==0.1.2` is deferred after failing the complete
+  CPython/platform wheel and stable-API gates and lacking sufficient
+  ownership, GIL/thread, replay, adapter-conformance, and maintenance evidence.
+- Architecture fixtures reject case-insensitive Box2D/native-binding imports
+  from engine source; the base project metadata, uv lock, wheel, and runtime
+  remain unchanged and pure Python.
 
 ## Next slice
 
-- Complete M8 hosted validation and publication before starting another slice.
-- The next post-alpha design question after M8 is a separately bounded Box2D
-  v3 plugin evaluation. It is not part of M8. Release publication, SDL3,
-  haptics/sensors, real audio, networking, editor work, 3D, and native code
-  remain outside this milestone; RFC-0001 continues to govern Rust/PyO3.
+- Publish the signed M9 stacked PR and require the full hosted matrix before
+  calling M9 complete.
+- Do not begin the live semantic inspector or another roadmap item during M9.
+  Release publication, the deferred Box2D/SDL3 adapters, haptics/sensors, real
+  audio, networking, editor work, 3D, and native code remain outside this
+  milestone; RFC-0001 continues to govern Rust/PyO3.
 
 ## Validation state
 
+- The corrected M9 local gate on Windows/uv-managed CPython 3.12.13 reports 606 passing
+  tests and one existing symlink-capability skip, 151 formatted Python files,
+  zero Ruff/Pyright findings, strict documentation success, a 79-entry pure
+  wheel with zero native entries, installed-wheel and complete 10-artifact
+  release smoke, eight real wgpu integration passes, and successful Clockwork
+  Arena, Agent World Builder, and alpha-acceptance executions.
+- Isolated `box2d-python==0.1.2` probes on Windows CPython 3.12.13 and 3.13.13
+  each created/stepped/destroyed 25 worlds, repeated their exact traces, and
+  produced trace digest
+  `c9e299e715c5f7a3654d7c5794d75347d765cc029b7991d4c8066dfaf7abdfc5`.
+  CPython 3.14 resolution failed because the release has only `cp312` and
+  `cp313` wheels. These are candidate-admission facts, not performance,
+  cross-platform determinism, or runtime-support claims.
+- Independent review initially blocked sign-off because the metadata version
+  was not linked to the imported module. The corrected probe validates the
+  resolved module against the distribution's installed-file inventory before
+  import and again afterward. Repeat review ran 54 focused tests, Ruff,
+  Pyright, diff checks, and a real CPython 3.12 probe, found no remaining
+  blocker, and recommended final sign-off.
 - A pre-review M8 gate completed on Windows with uv-managed CPython 3.12.13,
   but an independent review then found production focus propagation, GLFW
   error-disambiguation, and trigger-neutrality defects. Its 589-pass result is
