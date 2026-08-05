@@ -38,8 +38,10 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 ## Current boundary
 
 M0 through M14 are complete, independently accepted, and hosted-CI validated.
-M1-M7 are integrated into `main`; M8 through M14 are published as stacked PRs
-#9 through #15. M13 is only a bounded offline rollback/network-snapshot
+M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
+#16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
+exact final M14 tree. Superseded stacked PRs #9 through #15 are closed and
+their branches remain for audit history. M13 is only a bounded offline rollback/network-snapshot
 readiness evaluation. M9 defers the Box2D v3 plugin. M10 adds only the headless
 owned-child semantic inspector. M11 adds bounded headless 2D audio-mix,
 bitmap-text, tick-animation, tilemap, and particle authoring through existing
