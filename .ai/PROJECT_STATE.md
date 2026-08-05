@@ -17,13 +17,14 @@ based on exact M9 final head
 `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. ADR-0025 accepts one isolated,
 owned local MCP child with detached observations and receipted writes. GitHub
 Actions run `31020096463` passed all eight essential hosted jobs.
-M11 is locally complete and independently accepted on
+M11 is complete and independently accepted on
 `codex/m11-rich-2d-modules`, based on exact M10
 evidence head `bae799900671481cfd6f03fe502dea95b2c7f96c`. ADR-0026 bounds it
 to dependency-free headless audio mixing, bitmap text, tick animation,
 immutable tilemaps, and fixed-point particles through existing render records.
-Signed publication and the essential eight-job hosted gate remain pending; no
-hosted M11 claim is made yet.
+It is published as ready stacked PR #12; GitHub Actions run `31024155710`
+passed all eight essential hosted jobs on signed implementation commit
+`aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
 
 ## Repository identity
 
@@ -46,7 +47,7 @@ The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
 mainline commit. M9 is based on the hosted-validated M8 head
 `187ad4503a40325a1e334da3cb4078969e2e043b`; M10 is based on the final hosted
 M9 head and is proposed against the M9 branch. M11 is based on the final M10
-evidence head and will be proposed against the M10 branch.
+evidence head and is proposed against the M10 branch as PR #12.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -154,11 +155,12 @@ evidence head and will be proposed against the M10 branch.
 
 ## Next slice
 
-- Publish M11 as a signed ready PR stacked on exact M10 and require the
-  essential eight-job hosted gate to pass. Do not assign post-alpha
-  item 6/plugin-manifest stabilization until M11 evidence is reconciled. Real
-  audio providers, font shaping, editor tooling, networking, 3D, deferred
-  Box2D/SDL3 adapters, and native code remain outside M11.
+- M11 publication and hosted evidence are complete. Before implementation,
+  turn authoritative post-alpha item 6, plugin-manifest stabilization and
+  compatibility checks, into a bounded M12 task contract based on the current
+  design, accepted ADRs, and existing plugin surfaces. Real audio providers,
+  font shaping, editor tooling, networking, 3D, deferred Box2D/SDL3 adapters,
+  and native code remain unassigned.
 
 ## Validation state
 
@@ -177,6 +179,11 @@ evidence head and will be proposed against the M10 branch.
   final re-review ran 78 focused tests plus 58 architecture/API tests with clean
   Ruff/Pyright/provider/diff/credential checks and reported no remaining
   finding.
+- GitHub Actions run `31024155710` passed the unchanged essential eight-job
+  topology on M11 implementation commit
+  `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`: the complete Ubuntu 3.12
+  quality/test/distribution job, Ubuntu 3.13/3.14 plus Windows/macOS 3.14
+  compatibility jobs, and real graphics jobs on Ubuntu, Windows, and macOS.
 - The final reviewed M10 local gate on Windows/uv-managed CPython 3.12.13
   reports 642 passing tests and one existing symlink-capability skip, 154
   formatted Python files, zero Ruff/Pyright findings, strict documentation

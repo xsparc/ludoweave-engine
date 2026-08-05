@@ -19,7 +19,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M8 gamepad/SDL3 evaluation | Provider-neutral gamepad mapping, pinned GLFW smoke, SDL3 maturity ADR, and cross-platform validation |
 | Done | M9 Box2D v3 plugin evaluation | Binding/wheel/lifecycle/headless/API/threading/determinism/conformance admission evidence, ADR, and hosted validation |
 | Done | M10 live semantic inspector | Separate local process, versioned semantic stream, command/query reuse, explicit write receipts, lifecycle/security bounds, and quota-conscious essential CI |
-| In progress | M11 rich 2D authoring | Headless tick animation, bitmap text, immutable tilemaps, fixed-point particles, Null-audio mixing, and installed showcase |
+| Done | M11 rich 2D authoring | Headless tick animation, bitmap text, immutable tilemaps, fixed-point particles, Null-audio mixing, installed showcase, and hosted validation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -41,6 +41,8 @@ all three operating systems.
 M11 is a bounded authoring and extraction slice, not a new world store. Real
 audio playback, font parsing/shaping, editor-scale tile import, particle DSLs,
 and provider objects remain deferred.
+M11 PR #12 passed the consolidated eight-job hosted matrix on implementation
+commit `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
 
 ## Good-first contribution queue
 

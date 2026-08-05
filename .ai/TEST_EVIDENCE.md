@@ -1252,5 +1252,30 @@ evidence.
 
 An initial sandboxed full-gate attempt could not read the existing uv user
 cache and therefore produced no check evidence. The exact approved reruns above
-completed successfully. No M11 hosted, cross-platform, merge, tag, release, or
-package-publication claim is made at this stage.
+completed successfully. At this local-gate stage no M11 hosted, cross-platform,
+merge, tag, release, or package-publication claim was made.
+
+## M11 hosted validation - 2026-08-06
+
+Ready stacked PR #12 targets `codex/m10-live-semantic-inspector` from
+`codex/m11-rich-2d-modules`. GitHub Actions pull-request run `31024155710`
+executed signed implementation commit
+`aca6d93165a52d88451e8e06d5f1aa8d2e323f1d` and completed successfully from
+`2026-08-05T16:12:36Z` through `2026-08-05T16:14:40Z`.
+
+All eight essential jobs concluded `success`:
+
+- `Quality, tests, and distribution` on Ubuntu with CPython 3.12 ran the
+  lockfile, formatting, Ruff, Pyright, strict documentation, baseline tests,
+  base profiling-contract smoke, sdist/wheel build, isolated-wheel smoke,
+  release staging, and release smoke gates.
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14;
+- real graphics smoke passed on Ubuntu, Windows, and macOS, including inherited
+  clear/sprite/capture/resize/loss/gamepad coverage, graphics profiling,
+  Clockwork Arena, and Agent World Builder.
+
+The workflow file was unchanged by M11. This run is the only hosted run created
+for the implementation commit. It validates the supported cross-platform
+matrix and distribution/provider contracts; it does not merge PR #12, publish
+a package, create a tag or release, or admit any deferred provider/native work.
