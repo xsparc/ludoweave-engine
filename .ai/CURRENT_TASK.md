@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M15 - Visual-editor admission decision
-- **Status:** Locally complete and independently accepted on
-  `codex/m15-visual-editor-admission`; ready for signed commit, ready PR, and
-  the unchanged essential hosted gate.
+- **Status:** Complete, independently accepted, and hosted-validated through
+  ready PR #19 on `codex/m15-visual-editor-admission`; integration uses the
+  user-authorized squash-PR flow.
 - **Started:** 2026-08-06
 - **Base:** Exact clean `main` evidence commit
   `bfea67d2d922e8c591224d18f56c14d572d7f7da`, after the validated M8-M14
@@ -55,3 +55,7 @@
   documented benchmark/profile validator pass. Independent findings-first
   review approved after installed mutation, export/stability, dependency,
   root-export, and stale-state evidence gaps were corrected.
+- **Hosted gate:** GitHub Actions run `31036925179` passed all eight unchanged
+  essential jobs on DCO-signed implementation commit
+  `7e85570056dde3678aaeee13eee4036067876d8c` through ready PR #19 against exact
+  base `bfea67d2d922e8c591224d18f56c14d572d7f7da`.

@@ -1734,3 +1734,30 @@ At this stage no M15 commit, hosted/cross-platform pass, PR, merge, tag,
 release, package publication, runtime/public/persistent-format change,
 GUI/editor implementation, toolkit/dependency, or new performance-target claim
 is made.
+
+## M15 hosted validation - 2026-08-06
+
+Ready PR #19 targets `main` from `codex/m15-visual-editor-admission`. Before
+the evidence-only follow-up, GitHub reported exact base
+`bfea67d2d922e8c591224d18f56c14d572d7f7da`, implementation head
+`7e85570056dde3678aaeee13eee4036067876d8c`, `MERGEABLE`, and `CLEAN`. The
+implementation history contains one DCO-signed commit.
+
+GitHub Actions pull-request run `31036925179` executed that implementation
+commit from `2026-08-05T18:54:18Z` through `2026-08-05T18:56:30Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, exact isolated-wheel M15 evidence, release staging, and
+  complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and this is the only hosted run created for
+the implementation commit. Hosted evidence confirms the supported installed,
+cross-platform, and provider contracts; it does not publish a package, create
+a tag or release, add a GUI/editor/runtime API, promote the experimental agent
+surface, change a persistent format, or admit a new dependency/provider.

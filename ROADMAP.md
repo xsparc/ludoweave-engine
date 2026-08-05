@@ -23,7 +23,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M12 plugin manifest compatibility | Canonical data-only manifests, deterministic environment/dependency checks, preview compatibility policy, installed CLI smoke, and hosted validation |
 | Done | M13 rollback/network-snapshot readiness | Hosted-validated bounded correction-branch evidence, explicit input-history gap, network deferral ADR, and no transport implementation |
 | Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
-| Review | M15 visual-editor admission decision | Exact installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
+| Done | M15 visual-editor admission decision | Hosted-validated installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -55,6 +55,9 @@ verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa`. Stacked PRs
 #9-#15 are closed as superseded; their branches remain as audit history.
 PR #18 integrated the repository-state evidence as verified main commit
 `bfea67d2d922e8c591224d18f56c14d572d7f7da`; M15 starts from that exact base.
+M15 ready PR #19 passed the unchanged eight-job hosted matrix as run
+`31036925179` on implementation commit
+`7e85570056dde3678aaeee13eee4036067876d8c`.
 
 ## Good-first contribution queue
 

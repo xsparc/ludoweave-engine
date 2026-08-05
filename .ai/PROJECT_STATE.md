@@ -82,7 +82,9 @@ The final local gate reports 834 passes and one existing Windows
 symlink-capability skip, clean static/docs/build/artifact/provider checks, and
 successful validation of every inherited documented benchmark/profile. No
 GUI/TUI, runtime package, public API, persistent format, dependency, lock,
-version, or CI change is introduced. Hosted validation is not yet claimed.
+version, or CI change is introduced. It is published through ready PR #19;
+GitHub Actions run `31036925179` passed all eight unchanged essential jobs on
+DCO-signed implementation commit `7e85570056dde3678aaeee13eee4036067876d8c`.
 
 ## Repository identity
 
