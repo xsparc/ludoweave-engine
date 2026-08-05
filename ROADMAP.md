@@ -24,6 +24,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M13 rollback/network-snapshot readiness | Hosted-validated bounded correction-branch evidence, explicit input-history gap, network deferral ADR, and no transport implementation |
 | Done | M14 constrained 3D decision | Hosted-validated installed-surface evidence, retained layered-2D scope, complete admission gate, and no 3D runtime implementation |
 | Done | M15 visual-editor admission decision | Hosted-validated installed semantic-mutation evidence, retained headless inspector, complete authoring/support gate, and no GUI/editor implementation |
+| In progress | M16 WASM-mod security admission decision | Installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -58,6 +59,10 @@ PR #18 integrated the repository-state evidence as verified main commit
 M15 ready PR #19 passed the unchanged eight-job hosted matrix as run
 `31036925179` on implementation commit
 `7e85570056dde3678aaeee13eee4036067876d8c`.
+PR #19 squash-integrated the exact final M15 tree into `main` as verified
+commit `c013dad38b1b64f0f4ccddc19681d643f6414427`. M16 starts from that
+exact clean base and treats WASM mods as a separate security decision, not a
+runtime implementation.
 
 ## Good-first contribution queue
 
@@ -83,6 +88,8 @@ recovery. Constrained and general 3D are deferred under
 [ADR-0028](docs/adr/0028-retain-layered-2d-and-defer-constrained-3d.md).
 Visual-editor implementation is deferred under
 [ADR-0029](docs/adr/0029-retain-headless-inspector-and-defer-visual-editor.md).
+Executable WASM mods are deferred under
+[ADR-0030](docs/adr/0030-retain-data-only-plugins-and-defer-wasm-mods.md).
 Native acceleration is deferred under
 [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md); its complete admission
 and quantified revisit gate applies before another proposal.

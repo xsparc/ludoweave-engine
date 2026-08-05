@@ -6,6 +6,20 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
+_WASM_RUNTIME_ROOTS = frozenset(
+    {
+        "pywasm",
+        "wasi",
+        "wasm3",
+        "wasmedge",
+        "wasmedge_sdk",
+        "wasmer",
+        "wasmer_compiler_cranelift",
+        "wasmer_engine_universal",
+        "wasmtime",
+    }
+)
+_WASM_MODULE_MARKERS = _WASM_RUNTIME_ROOTS | frozenset({"wasm", "wasi", "webassembly"})
 _BANNED_INTERFACE_ROOTS = frozenset(
     {"_tkinter", "curses", "idlelib", "tkinter", "turtle", "webbrowser"}
 )
@@ -99,6 +113,14 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
     for path in sorted(package_root.rglob("*.py")):
         module = _module_name(source_root, path)
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        if any(marker in module.casefold() for marker in _WASM_MODULE_MARKERS):
+            violations.append(
+                ImportViolation(
+                    path,
+                    1,
+                    f"source defines deferred WebAssembly runtime module {module!r}",
+                )
+            )
         for imported, line in _resolved_imports(
             tree, source_module=module, is_package=path.name == "__init__.py"
         ):
@@ -134,6 +156,14 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                         f"source imports deferred interface module {root!r}",
                     )
                 )
+            if normalized_root in _WASM_RUNTIME_ROOTS:
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"source imports deferred WebAssembly runtime {root!r}",
+                    )
+                )
             if module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS:
                 violations.append(
                     ImportViolation(
@@ -146,6 +176,7 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                 _is_module_or_child(module, "ludoweave.plugins")
                 and root != "ludoweave"
                 and root not in _PLUGIN_ALLOWED_STDLIB_ROOTS
+                and normalized_root not in _WASM_RUNTIME_ROOTS
             ):
                 violations.append(
                     ImportViolation(
@@ -224,6 +255,15 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
                             f"local inspector calls banned builtin {called!r}",
                         )
                     )
+        for runtime, line in _resolved_dynamic_module_loads(tree):
+            if runtime in _WASM_RUNTIME_ROOTS:
+                violations.append(
+                    ImportViolation(
+                        path,
+                        line,
+                        f"source dynamically loads deferred WebAssembly runtime {runtime!r}",
+                    )
+                )
     return violations
 
 
@@ -430,6 +470,38 @@ def _call_name(node: ast.expr) -> str | None:
         base = _call_name(node.value)
         return None if base is None else f"{base}.{node.attr}"
     return None
+
+
+def _resolved_dynamic_module_loads(tree: ast.AST) -> list[tuple[str, int]]:
+    aliases: dict[str, str] = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                aliases[alias.asname or alias.name.partition(".")[0]] = alias.name
+        elif isinstance(node, ast.ImportFrom) and node.module is not None:
+            for alias in node.names:
+                aliases[alias.asname or alias.name] = f"{node.module}.{alias.name}"
+
+    loaded: list[tuple[str, int]] = []
+    loaders = frozenset({"__import__", "builtins.__import__", "importlib.import_module"})
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call) or not node.args:
+            continue
+        called = _call_name(node.func)
+        if called is None:
+            continue
+        root, separator, remainder = called.partition(".")
+        resolved = aliases.get(called, called)
+        if separator:
+            resolved = f"{aliases.get(root, root)}.{remainder}"
+        if resolved not in loaders:
+            continue
+        argument = node.args[0]
+        if not isinstance(argument, ast.Constant) or not isinstance(argument.value, str):
+            continue
+        runtime = argument.value.partition(".")[0].casefold()
+        loaded.append((runtime, node.lineno))
+    return loaded
 
 
 def _module_mutable_assignments(tree: ast.Module, *, module: str) -> list[tuple[str, int]]:

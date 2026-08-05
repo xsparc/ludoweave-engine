@@ -57,6 +57,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "rich_2d_showcase.py" in names
     assert prefix + "rollback_readiness.py" in names
     assert prefix + "visual_editor_decision.py" in names
+    assert prefix + "wasm_mod_security_decision.py" in names
     assert prefix + "example.plugin.json" in names
     assert prefix + "assets/clockwork_arena.scene.json" in names
     assert all(name.startswith(prefix) and ".." not in name.split("/") for name in names)

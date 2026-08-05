@@ -14,6 +14,7 @@ from typing import cast
 
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
+from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
 
 def _run(
@@ -439,6 +440,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         visual_editor = cast(dict[str, object], json.loads(visual_editor_result.stdout))
         validate_visual_editor_evidence(visual_editor, version=version)
+
+        wasm_security_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "wasm_mod_security_decision.py"),
+            ],
+            cwd=temp_root,
+        )
+        wasm_security = cast(dict[str, object], json.loads(wasm_security_result.stdout))
+        validate_wasm_mod_security_evidence(wasm_security, version=version)
 
         plugin_manifest = temp_root / "example.plugin.json"
         shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)

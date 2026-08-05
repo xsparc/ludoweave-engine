@@ -86,6 +86,20 @@ version, or CI change is introduced. It is published through ready PR #19;
 GitHub Actions run `31036925179` passed all eight unchanged essential jobs on
 DCO-signed implementation commit `7e85570056dde3678aaeee13eee4036067876d8c`.
 
+PR #19 squash-integrated the exact final M15 tree into `main` as verified
+commit `c013dad38b1b64f0f4ccddc19681d643f6414427`. M16 is assigned on
+`codex/m16-wasm-mod-security-decision` from that exact clean base. Its bounded
+contract is an executable-WASM-mod security admission decision only: preserve
+the M12 data-only plugin boundary, document the prospective threat surface and
+complete gate, and add deterministic source/wheel/release evidence plus
+architecture guards. It does not add a runtime, loader, guest ABI, WASI, host
+call, public API, persistent format, dependency, lock, version, or CI job.
+The implementation is locally complete and independently accepted. The final
+post-review gate reports 870 passes and one existing Windows symlink-capability
+skip, clean static/docs/build/artifact/provider checks, and successful
+validation of every inherited documented benchmark/profile. Publication and
+hosted validation remain pending and are not yet claimed.
+
 ## Repository identity
 
 M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
@@ -229,18 +243,29 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M15 is the assigned bounded visual-editor admission decision. The current
-  evidence confirms the installed versioned command/receipt, exact public
-  agent stability, typed-tool, local MCP, and finite read-only inspector
-  foundation with one actual committed semantic mutation. ADR-0029 retains the
-  headless inspector and defers GUI/editor implementation until every
-  compatibility, authoring, recovery, accessibility/usability, packaging,
-  budget, and ownership gate is satisfied. Do not add a toolkit, runtime
-  editor API, project/scene format, GUI/TUI, network/remote attach, arbitrary
-  child command, 3D, provider adapter, WASM, native code, or dependency.
+- M16 is the assigned bounded WASM-mod security admission decision. Current
+  evidence confirms that installed M12 manifests are inert exact-schema
+  metadata, executable fields fail closed, and no runtime requirement or
+  public guest-execution export exists. ADR-0030 retains that boundary and
+  defers executable mods until every least-privilege, resource, determinism,
+  lifecycle, persistence, isolation, adversarial conformance, cross-platform,
+  supply-chain, and maintenance gate is satisfied. Do not add a runtime,
+  compiler, loader, WASI context, host call, guest state, executable plugin,
+  network, editor, 3D, provider adapter, native code, or dependency.
 
 ## Validation state
 
+- The final reviewed M16 local gate on Windows/uv-managed CPython 3.12.13
+  reports 870 passing tests and one existing symlink-capability skip, 186
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 91-entry wheel with no mandatory dependency or native/WASM file,
+  isolated-wheel smoke, and fresh complete ten-artifact release smoke.
+- Nine real-wgpu integration tests and every inherited benchmark/profile
+  artifact validator passed. Current M1 and M3 target misses remain recorded
+  engineering evidence and do not authorize native or WASM acceleration.
+  Repeat independent security review approved after exact distribution-
+  requirement evidence, named/dynamic runtime guards, residual-risk ownership,
+  and current-flow accuracy corrections, with no remaining finding.
 - The final reviewed M13 local gate on Windows/uv-managed CPython 3.12.13
   reports 793 passing tests and one existing symlink-capability skip, 174
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a

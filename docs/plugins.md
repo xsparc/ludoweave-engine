@@ -62,6 +62,13 @@ This keeps project data inert and prevents ambient installed packages from
 changing composition. A positive compatibility report is metadata evidence,
 not trust, conformance, security, determinism, or provider admission evidence.
 
+Executable WASM fields are equally absent: a manifest cannot name a `.wasm`
+artifact, module, entry point, WASI context, or host imports. M16 deliberately
+retains this fail-closed boundary. The [WASM-mod security
+decision](wasm-mod-security-decision.md) defines the separate threat model and
+complete gate that must be satisfied before a superseding executable-mod
+proposal can change it.
+
 ## Local compatibility check
 
 Check one or more explicitly selected manifests against the current LudoWeave
