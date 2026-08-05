@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M8 provider-neutral gamepad connection/button/axis events, explicit
+  deadzone/scale action bindings, Null/GLFW providers, and Clockwork Arena
+  controls. The GLFW adapter deliberately omits ambiguous trigger axes instead
+  of converting an unavailable axis into false input.
+- ADR-0023 recording the evidence-based SDL3 adapter deferral and measurable
+  binding/binary/ownership/conformance revisit gate.
 - M7 versioned, sanitized `cProfile` evidence and strict tamper-resistant
   validation for the representative 10,000-entity and 10,000-sprite workloads.
 - RFC-0001 and ADR-0022 recording the evidence-based decision to defer the

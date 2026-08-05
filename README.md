@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M6 are implemented, and M7 records the first post-alpha performance/native-code decision. Profiling led to ordinary Python improvements and an explicit decision to defer Rust/PyO3. Every current Python API and wire format remains experimental and may change without deprecation.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M7 are implemented, and M8 adds provider-neutral gamepad input while evaluating and deferring an SDL3 adapter behind explicit maturity gates. Profiling led to ordinary Python improvements and an explicit decision to defer Rust/PyO3. Every current Python API and wire format remains experimental and may change without deprecation.
 
 ## What exists
 
@@ -28,7 +28,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
 - Immutable presentation extraction, backend-neutral descriptors and scoped generational render handles, explicit render-graph validation, and deferred destruction.
 - An optional exactly pinned wgpu/rendercanvas/GLFW adapter with orthographic instanced atlas sprites, tile/debug batches, resize, typed loss, and offscreen RGBA capture.
-- Provider-neutral key/pointer/window events, immutable transition-aware action snapshots, and virtual/recorded/live input sources.
+- Provider-neutral key/pointer/window/gamepad events, explicit gamepad deadzones,
+  immutable transition-aware action snapshots, and virtual/recorded/live input
+  sources.
 - Project-confined `asset://` manifests, content-addressed dependency caching, bounded PNG loading, and retained safe texture replacement.
 - Deterministic AABB/circle collision, a property-tested spatial grid, documented kinematic resolution, and a minimal owned Null audio adapter.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
@@ -74,7 +76,8 @@ uv run --frozen --extra graphics python examples/agent_world_builder.py
 The sprite example renders two atlas regions in one instanced draw and prints a versioned offscreen-capture summary. Add `--window` to exercise the rendercanvas/GLFW window surface on a desktop session.
 
 Clockwork Arena can use the same optional renderer. Add `--window --interactive`
-for WASD/arrows, pointer aim, primary-button fire, and R restart:
+for WASD/arrows, pointer aim, primary-button fire, and R restart. Gamepad slot 0
+uses left/right sticks, A, and Start:
 
 ```console
 uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 36000 --renderer wgpu --window --interactive

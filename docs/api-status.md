@@ -17,7 +17,7 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.render` | Backend-neutral 2D rendering contracts | Experimental |
 | `ludoweave.render.backends` | Null validation adapters | Experimental |
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
-| `ludoweave.platform` | Provider-neutral events | Experimental |
+| `ludoweave.platform` | Provider-neutral events and gamepad-provider protocol | Experimental |
 | `ludoweave.assets` | Project-confined asset contracts | Experimental |
 | `ludoweave.audio` | Audio protocol and Null adapter | Experimental |
 | `ludoweave.collision` | Deterministic bounded collision | Experimental |

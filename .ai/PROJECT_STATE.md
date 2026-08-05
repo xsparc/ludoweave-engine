@@ -2,8 +2,10 @@
 
 ## Current milestone
 
-M0 through M7 are complete, independently accepted, published as stacked pull
-requests, and validated by hosted CI.
+M0 through M7 are complete, independently accepted, integrated into `main`,
+and validated by hosted CI. M8 gamepad/SDL3 evaluation is locally complete and
+independently accepted on `codex/m8-gamepad-sdl3-evaluation`; no hosted M8
+result is claimed yet.
 
 ## Repository identity
 
@@ -21,6 +23,9 @@ M7 performance/native decision is complete on
 `codex/m7-performance-decision`, published as stacked PR #7, and validated by
 hosted run `31005165849` across all 14 jobs, including the new base and
 real-wgpu profiling-contract smokes.
+The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit
+`0237b2bfb11c6032d030dada639c7dbe439e5089`. M8 is based directly on that
+mainline commit.
 
 - Canonical repository: `xsparc/ludoweave-engine`.
 - Package and CLI: `ludoweave`.
@@ -85,18 +90,39 @@ real-wgpu profiling-contract smokes.
 - Accepted RFC-0001 and ADR-0022: no native kernel is admitted; measurable
   cross-platform, contiguous-buffer, GIL, owner, build, fuzz, fallback, and
   improvement gates govern any future proposal.
+- Frozen standardized gamepad connection/button/axis records, bounded logical
+  slots, normalized stick/trigger domains, and an engine-owned provider
+  protocol implemented by Null and the optional render device.
+- Gamepad action bindings with explicit analog scale/deadzone semantics,
+  supported-control focus recovery, hotplug cleanup, stable GLFW polling, and
+  installed-wheel/Clockwork Arena coverage without provider-object leakage.
+- Accepted ADR-0023: the existing pinned GLFW adapter supplies M8 input while
+  SDL3 is deferred until its Python binding, binary delivery, ownership,
+  cross-platform conformance, and maintenance gates are satisfied.
 
 ## Next slice
 
-- Stop at the accepted M7 boundary. Do not create a release tag, publish a
-  package/release, or begin M8 without a separate maintainer decision.
-- The next design-sequenced question is gamepad/SDL3 evaluation as its own
-  evidence-bounded milestone. RFC-0001 continues to prohibit Rust/PyO3 until
-  its complete revisit gate is satisfied.
+- Complete M8 hosted validation and publication before starting another slice.
+- The next post-alpha design question after M8 is a separately bounded Box2D
+  v3 plugin evaluation. It is not part of M8. Release publication, SDL3,
+  haptics/sensors, real audio, networking, editor work, 3D, and native code
+  remain outside this milestone; RFC-0001 continues to govern Rust/PyO3.
 
 ## Validation state
 
-- Local validation completed on Windows with uv-managed CPython 3.12.13.
+- A pre-review M8 gate completed on Windows with uv-managed CPython 3.12.13,
+  but an independent review then found production focus propagation, GLFW
+  error-disambiguation, and trigger-neutrality defects. Its 589-pass result is
+  retained as historical evidence, not accepted as the final M8 gate.
+- The corrected final M8 gate reports 594 passing tests and one existing
+  Windows symlink-capability skip, 149 formatted Python files, zero
+  Ruff/Pyright findings, strict documentation success, a 79-entry pure wheel
+  with zero native entries, installed-wheel and complete release-candidate
+  smoke, eight real wgpu/GLFW integration passes, and successful Clockwork
+  Arena, Agent World Builder, and alpha-acceptance executions. Repeat
+  independent review found no blocking findings and recommended PR
+  publication. M8 adds no dependency or benchmark; no timing or hosted
+  cross-platform result is claimed.
 - The complete M1 final local suite reports 303 passing tests, zero Ruff/Pyright findings, a strict documentation build, successful sdist/wheel build, and successful isolated installed-wheel smoke covering both M0 and M1 examples.
 - The final 30-sample Windows/CPython 3.12.13 GIL-build benchmark artifact validates all seven versioned workloads. The 3,600-tick headless p95 was 26.8523 ms and observed the local 5×-real-time target. The representative 10,000-entity simulation-tick p95 was 196.8800 ms and did not observe the 4 ms engineering target. These are local observations, not cross-platform claims.
 - GitHub Actions run `30936533105` passed quality/documentation, Ubuntu Python 3.12/3.13/3.14, Windows Python 3.12/3.14, macOS Python 3.12/3.14, and installed-wheel smoke on all three operating systems after correcting the invalid planned `actions/checkout` v6.0.2 SHA.

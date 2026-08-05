@@ -10,7 +10,7 @@ from typing import cast
 from uuid import UUID, uuid4
 
 from ludoweave.core.errors import RenderError
-from ludoweave.platform import PlatformEvent
+from ludoweave.platform import GamepadEvent, PlatformEvent
 from ludoweave.render.contracts import (
     BufferData,
     BufferDescriptor,
@@ -338,6 +338,12 @@ class NullRenderDevice:
                 details={"actual_type": type(handle).__name__},
             )
         self._slot_for(handle)
+        return ()
+
+    def poll_gamepads(self) -> tuple[GamepadEvent, ...]:
+        """Return no gamepad input for the deterministic headless device."""
+
+        self._guard("poll_gamepads")
         return ()
 
     def poll(self) -> None:

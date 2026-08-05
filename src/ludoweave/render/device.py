@@ -3,7 +3,7 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from ludoweave.platform import PlatformEvent
+from ludoweave.platform import GamepadProvider, PlatformEvent
 from ludoweave.render.contracts import (
     BufferData,
     BufferDescriptor,
@@ -26,7 +26,7 @@ from ludoweave.render.handles import (
 )
 
 
-class RenderDevice(Protocol):
+class RenderDevice(GamepadProvider, Protocol):
     """Single-owner backend-neutral resource and submission boundary."""
 
     @property

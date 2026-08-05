@@ -9,17 +9,27 @@ __all__ = ["WgpuRenderDevice"]
 __stability__ = {name: "experimental" for name in __all__}
 
 import struct
+import warnings
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
-from typing import Never, Protocol, cast
+from math import isfinite
+from typing import ClassVar, Never, Protocol, cast
 from uuid import UUID, uuid4
 
 from ludoweave.core.errors import RenderError
 from ludoweave.platform import (
     CloseEvent,
+    FocusEvent,
+    GamepadAxis,
+    GamepadAxisEvent,
+    GamepadButton,
+    GamepadButtonEvent,
+    GamepadConnectionEvent,
+    GamepadEvent,
     KeyEvent,
     MouseButtonEvent,
     PlatformEvent,
+    PlatformEventError,
     PointerEvent,
     ResizeEvent,
 )
@@ -67,6 +77,7 @@ from ludoweave.render.handles import (
 )
 
 try:
+    import glfw
     import wgpu
     from rendercanvas.glfw import RenderCanvas as GlfwRenderCanvas
     from rendercanvas.offscreen import OffscreenRenderCanvas
@@ -117,6 +128,8 @@ class _Surface:
     width: int = 0
     height: int = 0
     suspended: bool = False
+    native_window: object | None = None
+    focused: bool | None = None
     events: list[PlatformEvent] = field(default_factory=list)
 
 
@@ -165,6 +178,175 @@ class _Encoder(Protocol):
     def finish(self) -> object: ...
 
 
+class _GamepadState(Protocol):
+    buttons: Sequence[int]
+    axes: Sequence[float]
+
+
+class _GlfwGamepadApi(Protocol):
+    def get_gamepad_state(self, slot: int) -> _GamepadState | None: ...
+
+    def get_error(self) -> tuple[int, bytes | None]: ...
+
+
+class _GlfwWindowApi(Protocol):
+    FOCUSED: ClassVar[int]
+
+    def get_window_attrib(self, window: object, attribute: int) -> int: ...
+
+    def get_error(self) -> tuple[int, bytes | None]: ...
+
+
+_GAMEPAD_BUTTONS = tuple(GamepadButton)
+_GLFW_GAMEPAD_AXES = tuple(GamepadAxis)[:4]
+_GLFW_GAMEPAD_AXIS_COUNT = 6
+_GLFW_NO_ERROR = 0
+
+
+class _GlfwGamepadPoller:
+    """Translate supported GLFW gamepad states into engine-owned values."""
+
+    __slots__ = ("_api", "_connected")
+
+    def __init__(self, api: _GlfwGamepadApi) -> None:
+        self._api = api
+        self._connected: set[int] = set()
+
+    def poll(self) -> tuple[GamepadEvent, ...]:
+        events: list[GamepadEvent] = []
+        connected: set[int] = set()
+        for slot in range(16):
+            state = _read_glfw_gamepad_state(self._api, slot=slot)
+            if state is None:
+                if slot in self._connected:
+                    events.append(GamepadConnectionEvent(slot, False))
+                continue
+            buttons, axes = _validated_gamepad_state(state, slot=slot)
+            connected.add(slot)
+            if slot not in self._connected:
+                events.append(GamepadConnectionEvent(slot, True))
+            events.extend(
+                GamepadButtonEvent(slot, button, pressed)
+                for button, pressed in zip(_GAMEPAD_BUTTONS, buttons, strict=True)
+            )
+            events.extend(
+                GamepadAxisEvent(slot, axis, value)
+                for axis, value in zip(_GLFW_GAMEPAD_AXES, axes, strict=True)
+            )
+        self._connected = connected
+        return tuple(events)
+
+    def disconnect_all(self) -> tuple[GamepadEvent, ...]:
+        events = tuple(GamepadConnectionEvent(slot, False) for slot in sorted(self._connected))
+        self._connected.clear()
+        return events
+
+
+def _validated_gamepad_state(
+    state: _GamepadState, *, slot: int
+) -> tuple[tuple[bool, ...], tuple[float, ...]]:
+    try:
+        raw_buttons = tuple(state.buttons)
+        raw_axes = tuple(state.axes)
+    except Exception as error:
+        raise _gamepad_provider_error(error, slot=slot) from error
+    if len(raw_buttons) != len(_GAMEPAD_BUTTONS) or len(raw_axes) != _GLFW_GAMEPAD_AXIS_COUNT:
+        error = ValueError("unexpected state shape")
+        raise _gamepad_provider_error(error, slot=slot) from error
+    if any(type(value) is not int or value not in (0, 1) for value in raw_buttons):
+        error = ValueError("invalid button state")
+        raise _gamepad_provider_error(error, slot=slot) from error
+    axes: list[float] = []
+    for value in raw_axes:
+        if type(value) is not float or not isfinite(value) or not -1.0 <= value <= 1.0:
+            error = ValueError("invalid axis state")
+            raise _gamepad_provider_error(error, slot=slot) from error
+        axes.append(value)
+    return (tuple(value == 1 for value in raw_buttons), tuple(axes[:4]))
+
+
+def _read_glfw_gamepad_state(api: _GlfwGamepadApi, *, slot: int) -> _GamepadState | None:
+    """Read one state while distinguishing absence from a GLFW failure."""
+
+    try:
+        api.get_error()  # Clear a stale calling-thread error before the query.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            state = api.get_gamepad_state(slot)
+        error_code, _ = api.get_error()
+        if type(error_code) is not int:
+            raise TypeError("GLFW returned a non-integer error code")
+    except Exception as error:
+        raise _gamepad_provider_error(error, slot=slot) from error
+    if error_code != _GLFW_NO_ERROR:
+        error = RuntimeError(f"GLFW gamepad query failed with code {error_code}")
+        raise _gamepad_provider_error(error, slot=slot, provider_code=error_code) from error
+    return state
+
+
+def _gamepad_provider_error(
+    error: Exception, *, slot: int, provider_code: int | None = None
+) -> PlatformEventError:
+    details: dict[str, object] = {
+        "backend": "glfw",
+        "slot": slot,
+        "cause_type": type(error).__name__,
+    }
+    if provider_code is not None:
+        details["provider_code"] = provider_code
+    return PlatformEventError(
+        "GLFW returned a malformed or unavailable gamepad state",
+        code="platform.gamepad_provider_failure",
+        subsystem="platform",
+        phase="poll",
+        details=details,
+    )
+
+
+def _read_glfw_focus(
+    api: _GlfwWindowApi, window: object, previous: bool | None
+) -> tuple[bool, FocusEvent | None]:
+    """Read and translate GLFW focus without exposing the native window."""
+
+    try:
+        api.get_error()  # Clear a stale calling-thread error before the query.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            raw_focused = api.get_window_attrib(window, api.FOCUSED)
+        error_code, _ = api.get_error()
+        if type(error_code) is not int:
+            raise TypeError("GLFW returned a non-integer error code")
+    except Exception as error:
+        raise _focus_provider_error(error) from error
+    if error_code != _GLFW_NO_ERROR:
+        error = RuntimeError(f"GLFW focus query failed with code {error_code}")
+        raise _focus_provider_error(error, provider_code=error_code) from error
+    if type(raw_focused) is not int or raw_focused not in (0, 1):
+        error = ValueError("GLFW returned an invalid focus flag")
+        raise _focus_provider_error(error) from error
+    focused = raw_focused == 1
+    event = None if focused is previous else FocusEvent(focused)
+    return focused, event
+
+
+def _focus_provider_error(
+    error: Exception, *, provider_code: int | None = None
+) -> PlatformEventError:
+    details: dict[str, object] = {
+        "backend": "glfw",
+        "cause_type": type(error).__name__,
+    }
+    if provider_code is not None:
+        details["provider_code"] = provider_code
+    return PlatformEventError(
+        "GLFW window focus could not be read",
+        code="platform.focus_provider_failure",
+        subsystem="platform",
+        phase="poll",
+        details=details,
+    )
+
+
 class WgpuRenderDevice:
     """Optional production device; no native object crosses its public methods."""
 
@@ -173,6 +355,7 @@ class WgpuRenderDevice:
         "_closed",
         "_debug_pipelines",
         "_device",
+        "_gamepads",
         "_loss_reason",
         "_lost",
         "_native",
@@ -273,6 +456,7 @@ class WgpuRenderDevice:
         self._queue = queue
         self._sampler = sampler
         self._white_texture = cast(_NativeTexture, white_texture)
+        self._gamepads = _GlfwGamepadPoller(cast(_GlfwGamepadApi, glfw))
         self._debug_pipelines: dict[TextureFormat, _Pipeline] = {}
         self._native: dict[tuple[type[object], int, int], object] = {}
         self._surfaces: dict[tuple[int, int], _Surface] = {}
@@ -432,6 +616,9 @@ class WgpuRenderDevice:
             context,
             width=descriptor.width,
             height=descriptor.height,
+            native_window=(
+                getattr(canvas, "_window", None) if descriptor.kind is SurfaceKind.WINDOW else None
+            ),
         )
         if descriptor.kind is SurfaceKind.WINDOW:
 
@@ -570,9 +757,29 @@ class WgpuRenderDevice:
             )
         self._validator.validate_handle(handle)
         surface = self._surfaces[(handle.index, handle.generation)]
-        events = tuple(surface.events)
+        focus_event: FocusEvent | None = None
+        if surface.native_window is not None:
+            surface.focused, focus_event = _read_glfw_focus(
+                glfw, surface.native_window, surface.focused
+            )
+        events = ((focus_event,) if focus_event is not None else ()) + tuple(surface.events)
         surface.events.clear()
         return events
+
+    def poll_gamepads(self) -> tuple[GamepadEvent, ...]:
+        """Return complete supported GLFW states when a window is active.
+
+        GLFW trigger values are deliberately omitted because the provider uses
+        the same value for an unavailable axis and a legitimate half press.
+        """
+
+        self._guard("poll_gamepads")
+        self._validator.poll_gamepads()
+        if not any(
+            surface.descriptor.kind is SurfaceKind.WINDOW for surface in self._surfaces.values()
+        ):
+            return self._gamepads.disconnect_all()
+        return self._gamepads.poll()
 
     def simulate_device_loss(self) -> None:
         """Inject a deterministic fatal loss for adapter conformance tests."""
@@ -596,6 +803,7 @@ class WgpuRenderDevice:
                 _close_native(retired.value)
             self._native.clear()
             self._surfaces.clear()
+            self._gamepads.disconnect_all()
             self._retired.clear()
             for pipeline in self._debug_pipelines.values():
                 _close_native(pipeline)

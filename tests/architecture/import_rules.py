@@ -5,7 +5,9 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-_BANNED_EXTERNAL_ROOTS = frozenset({"glfw", "numpy", "rendercanvas", "rust", "wgpu"})
+_BANNED_EXTERNAL_ROOTS = frozenset(
+    {"glfw", "numpy", "pysdl3", "rendercanvas", "rust", "sdl3", "wgpu"}
+)
 _GRAPHICS_ADAPTER_ROOTS = frozenset({"glfw", "rendercanvas", "wgpu"})
 _BANNED_WORLD_CALLS = frozenset({"__import__", "compile", "eval", "exec"})
 _BANNED_AGENT_CALLS = frozenset({"__import__", "compile", "eval", "exec"})

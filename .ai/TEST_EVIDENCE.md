@@ -796,3 +796,123 @@ do not create uncontrolled cross-platform timing claims.
 Before the hosted-evidence commit, `uv run --frozen mkdocs build --strict` and
 `git diff --check` both exited 0; documentation built in 0.55 seconds with only
 the already-recorded upstream Material/MkDocs 2.0 informational warning.
+
+## M8 final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+This executed gate was superseded after independent review found three
+blocking adapter defects: production window focus was not translated, a GLFW
+C-level query error could be mistaken for disconnection, and an unavailable
+trigger axis could become a false half press. Its results remain factual
+historical evidence but are not the final M8 acceptance evidence.
+
+M8 adds provider-neutral standardized gamepad input and decides whether an
+SDL3 adapter is mature enough for the supported alpha baseline. ADR-0023
+defers SDL3: the current SDL-listed Python binding is Beta and downloads native
+binaries on first use by default, while the already-pinned GLFW dependency
+supplies bounded standardized state without a new dependency.
+
+Development feedback was retained rather than reported as a pass:
+
+- The first focused Ruff invocation exited 1 on one export ordering and one
+  import ordering finding; Ruff's deterministic fixes resolved both.
+- The first focused gamepad test run reported 47 passes and one failure because
+  structured error details are immutable pairs rather than a mapping; the
+  assertion now copies them through `dict()`.
+- The first strict Pyright run after that correction reported two protocol
+  return-variance findings in the fake provider; exact `Sequence` annotations
+  resolved them.
+- A later format check exited 1 on one architecture-test layout and the file
+  was formatted before the final gate.
+- The first default-sandbox `uv lock --check` and `uv build` invocations each
+  exited 1 because the sandbox could not open uv's existing user cache. The
+  exact commands were rerun with access to that cache and passed. This was an
+  execution-environment restriction, not a project failure.
+
+The final executed command evidence is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Authorized rerun resolved the unchanged 46-package lock in 1 millisecond. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked all 45 locked environment packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 149 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 589 tests passed and one existing Windows symlink-capability test skipped in 48.24 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.53 seconds with only the already-recorded upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Authorized rerun built `ludoweave-0.1.0a1.tar.gz` and pure `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency installed-wheel smoke passed, including typed gamepad events, deadzone mapping, and Null-provider lifecycle. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m8-release-candidate-local` | 0 | Staged the complete 10-file `ludoweave.release-stage/1` alpha candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m8-release-candidate-local` | 0 | Checksum, manifest, SPDX SBOM, notice, sample, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu tests passed, including the provider-free device result and a real GLFW null-platform gamepad poll. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprite instances, and deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | The dependency-free acceptance composition returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| `git diff --check` | 0 | No whitespace errors existed before the factual state/evidence update. |
+
+The final source scan found no introduced credential value, SDL/PySDL3 import,
+native artifact, or new dependency. The only provider imports remain inside
+`ludoweave.render.backends.wgpu`; architecture fixtures now reject SDL and
+PySDL3 imports as well as the existing banned roots. Gamepad events carry only
+bounded slots, engine enums, booleans, and normalized floats. Provider names,
+GUIDs, timestamps, native objects, and hardware capabilities remain outside
+canonical state and public values.
+
+No M8 benchmark was run because polling is bounded to 16 logical slots and the
+milestone adds input contracts/adapter translation rather than a frame-scale
+simulation or extraction workload. No timing claim is made. Hosted M8 CI has
+not run, so no cross-platform M8 pass is claimed here.
+
+## M8 corrected final local validation — 2026-08-05, Windows, CPython 3.12.13
+
+The review-blocking focus, provider-error, and trigger-neutrality defects were
+corrected before publication. GLFW focus transitions are prepended during
+production surface draining, gamepad and focus queries clear and check the
+calling-thread GLFW error state, and GLFW emits only its unambiguous buttons
+and four stick axes. The public provider contract retains trigger events for a
+future provider that can distinguish capability and neutral state safely.
+
+Development feedback in the corrected pass was retained:
+
+- The first focused Ruff check exited 1 for an import-order finding and one
+  stale internal protocol name. Ruff organized the imports and the cast now
+  uses `_GlfwGamepadApi`.
+- The first strict Pyright pass after adding the focus fake exited 1 with five
+  invariant protocol-constant findings. Explicit `ClassVar[int]` annotations
+  resolved them.
+- The default-sandbox `uv lock --check` and
+  `uv sync --frozen --all-groups --extra graphics` commands exited 1 because
+  uv's existing user cache was inaccessible. The exact commands passed when
+  rerun with authorized cache access; no lock or dependency changed.
+
+The corrected final executed command evidence is:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Authorized rerun resolved the unchanged 46-package lock in 0.72 milliseconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Authorized rerun checked all 45 locked environment packages in 2 milliseconds. |
+| `uv run --frozen ruff format --check .` | 0 | All 149 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 594 tests passed and one existing Windows symlink-capability test skipped in 45.16 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.53 seconds with only the already-recorded upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Authorized run built `ludoweave-0.1.0a1.tar.gz` and `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency installed-wheel smoke passed, including the M8 gamepad contract. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m8-release-candidate-corrected` | 0 | Staged the complete 10-file `ludoweave.release-stage/1` candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m8-release-candidate-corrected` | 0 | Checksum, manifest, SPDX SBOM, notice, sample, isolated install, CLI, doctor, and bundled workflow smoke passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Eight real wgpu tests passed, including provider-free and real GLFW null-platform gamepad polling. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprite instances, and deterministic state/capture hashes. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320×180 RGBA8, passed registered tests, and recorded five replay batches. |
+| `uv run --frozen python examples/alpha_acceptance.py` | 0 | The dependency-free acceptance composition returned `status: ok` with four engine ticks, 120 Arena ticks, three agent ticks, and five replay batches. |
+| PowerShell wheel ZIP inventory | 0 | The built wheel contained 79 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib` entries. |
+| `git diff --check` | 0 | No whitespace errors existed after final evidence reconciliation. |
+
+Repeat independent review executed 113 focused unit/architecture tests, two
+real gamepad integration selections, Ruff formatting/linting, Pyright, and
+`git diff --check`; all passed. It also reproduced an uninitialized pinned
+GLFW query becoming structured `platform.gamepad_provider_failure` code 65537.
+The reviewer found no remaining blocker, provider/native leakage, credential
+exposure, authority violation, dependency drift, or lifecycle/concurrency
+regression and recommended M8 for commit and PR.
+
+No M8 benchmark was run and no performance statement is made. Hosted M8 CI has
+not run, so this evidence does not claim cross-platform acceptance.

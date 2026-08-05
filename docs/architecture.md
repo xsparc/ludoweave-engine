@@ -33,6 +33,13 @@ and backend-neutral bytes. No native module, compiler, NumPy storage, or new
 runtime dependency is introduced. See
 [RFC-0001](rfcs/0001-defer-first-native-kernel.md) and ADR-0022.
 
+M8 adds standardized gamepad input without changing the authority boundary.
+Engine-owned connection, button, and axis values map into the existing
+tick-indexed action snapshots. The optional wgpu adapter polls its already
+pinned GLFW provider; the Null device remains empty and headless. ADR-0023
+defers an SDL3 adapter until its Python binding, binary delivery, ownership,
+and cross-platform conformance meet explicit gates.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -70,7 +77,10 @@ sample composition ludoweave.samples.clockwork_arena
 - `ludoweave.tools` and examples are composition roots and may select `NullRenderBackend`.
 - MCP exists only as a local stdio composition adapter in `ludoweave.tools.mcp`; it may not import networking modules or implement a listener.
 - The package root may re-export the deliberately small application API but never a concrete backend or third-party native object.
-- Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW. NumPy storage and future native extension objects are forbidden from engine source and public APIs.
+- Only `ludoweave.render.backends.wgpu` may import wgpu, rendercanvas, or GLFW.
+  SDL/PySDL3 remains forbidden until ADR-0023's adapter gate is accepted by a
+  superseding decision. NumPy storage and future native extension objects are
+  forbidden from engine source and public APIs.
 
 The M2 CLI keeps filesystem policy in `ludoweave.tools`. Its data-only
 headless-project manifest cannot name Python modules or callables, and every
@@ -226,13 +236,29 @@ be read by a native loop while releasing the GIL. These are not admitted native
 boundaries. A later proposal must first establish an internal contiguous scalar
 batch without exposing storage or native objects through public APIs.
 
+## M8 gamepad boundary
+
+Gamepad providers own polling and native state. Public events contain only a
+bounded logical player slot, a standardized engine enum, and an exact normalized
+value. Polling is ordered by slot, then button, then axis for every control the
+provider can represent without ambiguity; connection loss clears all state for
+that slot. Focus loss suppresses live controls until focus and a current state
+sample return. A provider must omit an indeterminate control rather than
+synthesize an active value.
+
+Action-map deadzones and scales are presentation/input policy. They become
+simulation-relevant only after mapping into an immutable `InputSnapshot` for an
+exact tick. Raw provider events, device names, GUIDs, mapping databases,
+timestamps, haptics, and hardware capabilities are non-canonical and are not
+serialized into world snapshots, commands, receipts, or replay headers.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
 project-confined workflow CLI, the isolated M3 Null/wgpu 2D vertical slice, the
 bounded M4 gameplay contracts, the local M5 typed agent/stdio MCP interface,
-the M6 community-alpha distribution contract, and the M7 native-code decision
-now exist. M6 does not add a
+the M6 community-alpha distribution contract, the M7 native-code decision, and
+the M8 gamepad contract/SDL3 deferral now exist. M6 does not add a
 plugin loader or dynamic data-selected code: adapter discovery remains explicit
 trusted composition. General scene importers, production audio, rigid-body
 physics, network transports, editor tooling, rich text, automatic device

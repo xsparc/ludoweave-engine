@@ -298,6 +298,36 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         _run([str(python), "-I", "-c", schedule_smoke], cwd=temp_root)
 
+        gamepad_smoke = textwrap.dedent(
+            """
+            from ludoweave.app import ActionBinding, ActionMap, MappedInputSource
+            from ludoweave.platform import (
+                GamepadAxis,
+                GamepadAxisEvent,
+                GamepadButton,
+                GamepadButtonEvent,
+                GamepadConnectionEvent,
+            )
+            from ludoweave.render import NullRenderDevice
+
+            source = MappedInputSource(ActionMap((
+                ActionBinding("move.x", "gamepad:0:axis:left_x", 1.0, 0.2),
+                ActionBinding("fire", "gamepad:0:button:a"),
+            )))
+            source.feed(GamepadConnectionEvent(0, True))
+            source.feed(GamepadAxisEvent(0, GamepadAxis.LEFT_X, 0.6))
+            source.feed(GamepadButtonEvent(0, GamepadButton.A, True))
+            snapshot = source.snapshot_for_tick(0)
+            assert abs(snapshot.value("move.x") - 0.5) < 1e-12
+            assert snapshot.pressed("fire")
+            assert snapshot.just_pressed("fire")
+            device = NullRenderDevice()
+            assert device.poll_gamepads() == ()
+            device.close()
+            """
+        )
+        _run([str(python), "-I", "-c", gamepad_smoke], cwd=temp_root)
+
         example_result = _run(
             [
                 str(python),

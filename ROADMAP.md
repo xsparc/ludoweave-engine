@@ -16,11 +16,15 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M5 local typed agent interface | Agent World Builder and local stdio acceptance |
 | Done | M6 community alpha | Release artifact, docs, API, security, and contribution gates |
 | Done | M7 performance/native decision | Versioned profiles, ordinary Python optimization, RFC admission decision, and cross-platform smoke |
+| In progress | M8 gamepad/SDL3 evaluation | Provider-neutral gamepad mapping, pinned GLFW smoke, SDL3 maturity ADR, and cross-platform validation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
 M7's implementation head passed the same 14-job hosted matrix, including base
 and real-wgpu profiling-contract smokes on all three operating systems.
+M8 is deliberately limited to standardized gamepad input and the SDL3 adapter
+decision. Haptics, sensors, raw joysticks, remapping UI, and SDL windows remain
+future proposals.
 
 ## Good-first contribution queue
 

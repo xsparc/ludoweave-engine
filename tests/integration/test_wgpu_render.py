@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import textwrap
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -53,6 +54,38 @@ def _camera(width: int, height: int) -> tuple[float, ...]:
     return Camera2D(
         viewport_width=float(width), viewport_height=float(height)
     ).orthographic_matrix()
+
+
+def test_gamepad_poll_without_window_is_empty(device: WgpuRenderDevice) -> None:
+    assert device.poll_gamepads() == ()
+
+
+def test_real_glfw_null_platform_gamepad_poll_is_bounded() -> None:
+    script = textwrap.dedent(
+        """
+        import json
+        import glfw
+
+        from ludoweave.render.backends.wgpu import _GlfwGamepadPoller
+
+        glfw.init_hint(glfw.PLATFORM, glfw.PLATFORM_NULL)
+        assert glfw.init()
+        try:
+            events = _GlfwGamepadPoller(glfw).poll()
+            assert len(events) <= 16 * 20
+            print(json.dumps({"events": len(events), "status": "ok"}, sort_keys=True))
+        finally:
+            glfw.terminate()
+        """
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout)["status"] == "ok"
 
 
 def test_clear_and_two_region_texture_atlas_use_one_instanced_draw(

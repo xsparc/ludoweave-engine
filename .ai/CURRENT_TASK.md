@@ -1,41 +1,49 @@
 # Current Task
 
-- **Task:** M7 — Post-alpha performance and first-native-kernel decision
-- **Status:** Complete; DCO-signed PR #7 is published and hosted run `31005165849` passed all 14 jobs
+- **Task:** M8 — Gamepad input and SDL3 adapter-maturity decision
+- **Status:** In progress; explicitly authorized by the maintainer after the
+  validated M1-M7 integration was squash-merged to `main`
 - **Started:** 2026-08-05
-- **Acceptance gate:** Profile the exact recorded M1/M3 misses, exhaust ordinary
-  Python/algorithm work justified by the evidence, assess every native-code
-  admission field in a public RFC, preserve deterministic and backend-isolated
-  semantics, and validate the decision across the normal platform matrix.
-- **Profiling outcome:** Schema `ludoweave.profile.m7/1` records exact
-  10,000-entity simulation, 10,000-sprite extraction/packing, and optional
-  10,000-sprite wgpu submission profiles with sanitized module identities,
-  exact invariants, and a strict tamper-tested validator.
-- **Implementation outcome:** Query metadata/signature work is reduced without
-  weakening detached ownership or production/reference parity. Extraction
-  reuses validated immutable source fields while checking interpolated
-  finiteness. Sprite packing uses fixed 64-byte standard-library records and
-  retains exact provider-neutral bytes and structured overflow errors.
-- **Decision outcome:** Accepted RFC-0001 and ADR-0022 defer Rust/PyO3. Current
-  ECS/extraction inputs are Python object graphs rather than a GIL-releasable
-  contiguous buffer; no native build matrix or maintenance owner exists. The
-  RFC gives quantified evidence and an exact revisit gate.
-- **Local performance evidence:** Official 30-sample local p95 is 144.0474 ms
-  for the representative simulation tick, 30.6902 ms for extraction/packing,
-  and 5.1918 ms for wgpu CPU submission. All remain honest target misses. The
-  same-machine reductions from prior recorded evidence are 26.83%, 26.88%, and
-  20.57%, respectively.
-- **Local quality gate:** Windows, uv-managed CPython 3.12.13 reports 564 passed
-  and one existing symlink-capability skip, 148 formatted Python files, zero
-  Ruff/Pyright findings, strict docs success, pure wheel/sdist, installed-wheel
-  smoke, complete release-candidate smoke, six real wgpu integration passes,
-  and successful Clockwork Arena/Agent World Builder runs.
-- **Hosted gate:** PR #7 is mergeable with clean merge state against
-  `codex/m6-release-hardening`. Run `31005165849` passed strict quality/docs,
-  all seven CPython/OS test jobs, all three installed release-candidate smokes,
-  and all three real graphics/profile smokes.
-- **Non-scope retained:** No Rust, PyO3, Maturin, NumPy storage, native artifact,
-  public storage-layout exposure, release publication, networking, editor, 3D,
-  rigid-body physics, production audio, or remote agent transport.
-- **SemVer:** No public API or persistent-protocol addition; version remains
-  `0.1.0a1` and all current supported exports remain experimental.
+- **Outcome:** Add provider-neutral, typed gamepad input that maps into the
+  existing immutable per-tick action snapshots, and record an evidence-based
+  decision on whether an SDL3 adapter is ready for the supported baseline.
+- **Acceptance gate:**
+  - Immutable bounded connection, button, and axis events use engine-owned
+    identities and never expose provider objects.
+  - Action maps support standardized gamepad buttons and axes with explicit
+    deterministic ordering, finite normalization, deadzones, scaling,
+    hotplug cleanup, and focus-loss behavior.
+  - The already-pinned optional GLFW provider supplies standardized buttons
+    and four unambiguous stick axes on Windows, macOS, and Linux without a new
+    mandatory dependency. Its indistinguishable unavailable/half-pressed
+    trigger values are omitted rather than synthesized.
+  - Virtual/headless behavior, malformed input, provider failure, and
+    installed-wheel use are exercised; real-provider smoke remains tolerant of
+    machines with no attached gamepad.
+  - SDL3/Python binding maturity is evaluated from current primary sources and
+    accepted or deferred in an ADR with a measurable revisit gate.
+  - The full documented quality, package, release-candidate, graphics, and
+    repository review gates pass before publication.
+- **Architecture:** Gamepad state remains non-canonical platform input until an
+  application deliberately maps it into a tick-indexed `InputSnapshot`.
+  Provider polling is single-thread owned, globally ordered by player slot,
+  and isolated behind engine contracts. No SDL/GLFW/native value enters public
+  APIs, world state, snapshots, commands, receipts, or replays.
+- **Decision outcome:** Accepted ADR-0023 uses the existing pinned GLFW
+  provider and defers SDL3 until its Python binding, offline binary delivery,
+  lifecycle ownership, cross-platform conformance, and maintenance gates are
+  satisfied. No dependency changed.
+- **Local gate:** Windows, uv-managed CPython 3.12.13 reports 594 passed and one
+  existing symlink-capability skip, 149 formatted files, zero Ruff/Pyright
+  findings, strict docs success, a pure 79-entry wheel with no native entries,
+  installed-wheel and complete release-candidate smoke, eight real wgpu/GLFW
+  integration passes, and successful Clockwork Arena, Agent World Builder, and
+  alpha-acceptance runs. Repeat independent review found no blockers and
+  recommends PR publication. The superseded 589-pass run remains recorded.
+- **Hosted gate:** Not yet run; no cross-platform M8 pass is claimed.
+- **Non-scope:** Haptics, LEDs, sensors, touchpads, raw joysticks, controller
+  remapping UI/database downloads, background input, multiple windows, IME,
+  clipboard, real audio, networking, editor work, 3D, Box2D, Rust/PyO3, release
+  tags, GitHub releases, or package publication.
+- **SemVer:** Additive experimental Python surface only; version remains
+  `0.1.0a1` unless implementation evidence requires a different decision.

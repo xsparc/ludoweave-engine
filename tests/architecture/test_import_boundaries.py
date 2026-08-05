@@ -66,7 +66,7 @@ def test_checker_rejects_ecs_importing_application(tmp_path: Path) -> None:
     assert "ludoweave.app" in violations[0].message
 
 
-@pytest.mark.parametrize("provider", ["glfw", "rendercanvas", "wgpu", "numpy"])
+@pytest.mark.parametrize("provider", ["glfw", "rendercanvas", "wgpu", "numpy", "sdl3", "pysdl3"])
 def test_provider_and_storage_imports_are_confined_to_exact_adapter(
     tmp_path: Path, provider: str
 ) -> None:

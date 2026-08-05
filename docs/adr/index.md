@@ -24,4 +24,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0020: local stdio MCP adapter](0020-local-stdio-mcp-adapter.md)
 - [ADR-0021: explicit public API stability metadata](0021-explicit-public-api-stability-metadata.md)
 - [ADR-0022: defer native acceleration after profiling](0022-defer-native-acceleration-after-profiling.md)
+- [ADR-0023: provider-neutral gamepads and SDL3 adapter deferral](0023-gamepad-contract-and-sdl3-deferral.md)
 - [ADR template](template.md)

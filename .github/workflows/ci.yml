@@ -147,7 +147,7 @@ jobs:
           sudo apt-get install --yes --no-install-recommends libvulkan1 mesa-vulkan-drivers
       - name: Install locked graphics environment
         run: uv sync --frozen --all-groups --extra graphics
-      - name: Run clear, sprite, capture, resize, and loss smoke
+      - name: Run clear, sprite, capture, resize, loss, and gamepad smoke
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
       - name: Run graphics profiling contract smoke
         run: |

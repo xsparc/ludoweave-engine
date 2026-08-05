@@ -13,6 +13,11 @@ from ludoweave.app.errors import InputError
 from ludoweave.ecs.resources import ResourceSpec
 from ludoweave.platform import (
     FocusEvent,
+    GamepadAxis,
+    GamepadAxisEvent,
+    GamepadButton,
+    GamepadButtonEvent,
+    GamepadConnectionEvent,
     InputEvent,
     KeyEvent,
     MouseButtonEvent,
@@ -22,7 +27,7 @@ from ludoweave.platform import (
 type ActionValue = bool | float
 
 _ACTION_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_.:-]*\Z")
-_CONTROL_NAME = re.compile(r"(?:key|mouse):[A-Za-z0-9_.-]+\Z")
+_SIMPLE_CONTROL_NAME = re.compile(r"(?:key|mouse):[A-Za-z0-9_.-]+\Z")
 
 
 @dataclass(frozen=True, slots=True, eq=False)
@@ -192,10 +197,38 @@ class ActionBinding:
     action: str
     control: str
     value: ActionValue = True
+    deadzone: float = 0.0
 
     def __post_init__(self) -> None:
         _require_action_lookup(self.action)
         _require_control_name(self.control)
+        if type(self.deadzone) is not float or not isfinite(self.deadzone):
+            raise _input_error(
+                "binding deadzone must be a finite exact float",
+                phase="binding",
+                details={"action": self.action},
+            )
+        control_kind = _gamepad_control_kind(self.control)
+        if control_kind == "axis":
+            if not 0.0 <= self.deadzone < 1.0:
+                raise _input_error(
+                    "gamepad axis deadzone must be in [0.0, 1.0)",
+                    phase="binding",
+                    details={"action": self.action},
+                )
+            if type(self.value) is not float or not isfinite(self.value) or self.value == 0.0:
+                raise _input_error(
+                    "gamepad axis binding scale must be a finite nonzero exact float",
+                    phase="binding",
+                    details={"action": self.action},
+                )
+            return
+        if self.deadzone != 0.0:
+            raise _input_error(
+                "deadzones are supported only for gamepad axis bindings",
+                phase="binding",
+                details={"action": self.action},
+            )
         if type(self.value) is bool:
             return
         if type(self.value) is not float or not isfinite(self.value) or self.value == 0.0:
@@ -207,7 +240,7 @@ class ActionBinding:
 
 
 class ActionMap:
-    """Immutable canonical set of keyboard and mouse action bindings."""
+    """Immutable canonical set of keyboard, mouse, and gamepad bindings."""
 
     __slots__ = ("_bindings",)
 
@@ -253,7 +286,15 @@ class ActionMap:
 class MappedInputSource:
     """Single-thread event accumulator sampled exactly once per sequential tick."""
 
-    __slots__ = ("_action_map", "_controls", "_last_actions", "_next_tick", "_pointer")
+    __slots__ = (
+        "_action_map",
+        "_axes",
+        "_controls",
+        "_focused",
+        "_last_actions",
+        "_next_tick",
+        "_pointer",
+    )
 
     def __init__(self, action_map: ActionMap) -> None:
         if type(action_map) is not ActionMap:
@@ -264,6 +305,8 @@ class MappedInputSource:
             )
         self._action_map = action_map
         self._controls: set[str] = set()
+        self._axes: dict[str, float] = {}
+        self._focused = True
         self._pointer = (0.0, 0.0)
         self._last_actions: dict[str, ActionValue] = {}
         self._next_tick = 0
@@ -272,14 +315,32 @@ class MappedInputSource:
         """Apply one copied provider-neutral event before the next sample."""
 
         if type(event) is KeyEvent:
-            self._set_control(_control("key", event.key), event.pressed)
+            if self._focused:
+                self._set_control(_control("key", event.key), event.pressed)
         elif type(event) is MouseButtonEvent:
-            self._set_control(_control("mouse", event.button), event.pressed)
+            if self._focused:
+                self._set_control(_control("mouse", event.button), event.pressed)
+        elif type(event) is GamepadConnectionEvent:
+            if not event.connected:
+                self._release_gamepad(event.slot)
+        elif type(event) is GamepadButtonEvent:
+            if self._focused:
+                self._set_control(
+                    _gamepad_control(event.slot, "button", event.button.value),
+                    event.pressed,
+                )
+        elif type(event) is GamepadAxisEvent:
+            if self._focused:
+                self._axes[_gamepad_control(event.slot, "axis", event.axis.value)] = event.value
         elif type(event) is PointerEvent:
-            self._pointer = event.normalized
+            if self._focused:
+                self._pointer = event.normalized
         elif type(event) is FocusEvent:
+            self._focused = event.focused
             if not event.focused:
                 self._controls.clear()
+                self._axes.clear()
+                self._pointer = (0.0, 0.0)
         else:
             raise _input_error(
                 "mapped input requires a provider-neutral input event",
@@ -307,6 +368,15 @@ class MappedInputSource:
         else:
             self._controls.discard(control)
 
+    def _release_gamepad(self, slot: int) -> None:
+        prefix = f"gamepad:{slot}:"
+        self._controls = {control for control in self._controls if not control.startswith(prefix)}
+        self._axes = {
+            control: value
+            for control, value in self._axes.items()
+            if not control.startswith(prefix)
+        }
+
     def _resolve_actions(self) -> dict[str, ActionValue]:
         digital: dict[str, bool] = {}
         analog: dict[str, float] = {
@@ -314,6 +384,15 @@ class MappedInputSource:
             "pointer.y": self._pointer[1],
         }
         for binding in self._action_map.bindings:
+            axis = self._axes.get(binding.control)
+            if axis is not None:
+                assert type(binding.value) is float
+                value = _apply_deadzone(axis, binding.deadzone) * binding.value
+                analog[binding.action] = min(
+                    1.0,
+                    max(-1.0, analog.get(binding.action, 0.0) + value),
+                )
+                continue
             if binding.control not in self._controls:
                 continue
             if type(binding.value) is bool:
@@ -535,14 +614,52 @@ def _control(prefix: str, value: object) -> str:
     return _require_control_name(f"{prefix}:{value.lower()}")
 
 
+def _gamepad_control(slot: int, kind: str, name: str) -> str:
+    return _require_control_name(f"gamepad:{slot}:{kind}:{name}")
+
+
 def _require_control_name(value: object) -> str:
-    if type(value) is not str or _CONTROL_NAME.fullmatch(value) is None:
+    if type(value) is not str:
         raise _input_error(
-            "input control must be a canonical key: or mouse: identifier",
+            "input control must use a canonical provider-neutral identifier",
+            phase="binding",
+            details={"actual_type": type(value).__name__},
+        )
+    if _SIMPLE_CONTROL_NAME.fullmatch(value) is not None:
+        return value
+    if _gamepad_control_kind(value) is None:
+        raise _input_error(
+            "input control must be a canonical key, mouse, or gamepad identifier",
             phase="binding",
             details={"actual_type": type(value).__name__},
         )
     return value
+
+
+def _gamepad_control_kind(value: str) -> str | None:
+    parts = value.split(":")
+    if len(parts) != 4 or parts[0] != "gamepad":
+        return None
+    try:
+        slot = int(parts[1])
+    except ValueError:
+        return None
+    if str(slot) != parts[1] or not 0 <= slot <= 15:
+        return None
+    kind, name = parts[2:]
+    if kind == "button" and name in {button.value for button in GamepadButton}:
+        return kind
+    if kind == "axis" and name in {axis.value for axis in GamepadAxis}:
+        return kind
+    return None
+
+
+def _apply_deadzone(value: float, deadzone: float) -> float:
+    magnitude = abs(value)
+    if magnitude <= deadzone:
+        return 0.0
+    adjusted = (magnitude - deadzone) / (1.0 - deadzone)
+    return -adjusted if value < 0.0 else adjusted
 
 
 def _input_error(
