@@ -136,6 +136,11 @@ dependency, lock, version, persistent format, canonical state, or CI job.
 The final local gate passes, ready PR #24 targets `main` from DCO-signed
 implementation commit `c4dde705393eebb7c99af428745e9383750f6b4d`, and GitHub
 Actions run `31046172544` passed all eight unchanged essential jobs.
+PR #24 then squash-integrated exact final evidence head
+`cb617be0f678528fadc82877ec6910e42c6daf6b` into `main` as GitHub-verified
+commit `1000d362432f19c912edf51c67e29c79bf444443`; both trees are
+`1b6676ca7c1a6aaa223057a35e0c95242f4e9462`, and the milestone branch is
+retained.
 
 ## Repository identity
 
@@ -287,16 +292,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M17 is complete and integrated. M18 is in progress on
-  `codex/m18-agent-tool-conformance` from exact clean `main` commit
-  `ed65b12fa02f672113eac5939a0f616079fee44a`. It adds only an installed,
-  explicit-factory behavioral profile for the existing 12-tool agent service.
-  Implementation, focused adversarial coverage, strict docs/static checks,
-  the 925-test full suite, real-wgpu integration, isolated wheel smoke, and a
-  fresh ten-artifact release smoke pass locally, and all eight unchanged
-  hosted jobs pass as run `31046172544`; squash integration remains pending. Do not
-  infer discovery/loading, a new transport or provider, executable plugin,
-  network, editor, 3D, native code, dependency, or release publication.
+- M18 is complete, hosted-validated, and integrated. No M19 slice is assigned.
+  Select and bound another adoption metric before implementation; do not infer
+  discovery/loading, a new transport or provider, executable plugin, network,
+  editor, 3D, native code, dependency, or release publication from conformance
+  evidence.
 
 ## Validation state
 

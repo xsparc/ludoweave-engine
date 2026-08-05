@@ -37,7 +37,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M17 are complete, independently accepted, hosted-CI validated, and
+M0 through M18 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
@@ -95,11 +95,11 @@ SDL3, executable WASM, and native code remain out of scope.
 RFC-0001 records the evidence-based native-code deferral; local performance
 misses are not automatic authorization for acceleration.
 
-M18 is assigned only to an installed baseline conformance profile over the
-existing 12-tool transport-independent agent service. It must accept an
-explicit trusted factory, return sanitized versioned evidence, and pass through
-the existing direct service plus isolated wheel/release smoke without adding a
-CI job. It may not discover/import/install/launch provider code, add a transport
-or listener, change command/snapshot/replay formats, add a plugin field,
-dependency, lock, version, provider, or package-root export, or claim passing
-project-owned evidence as third-party adoption or manual-recovery telemetry.
+M18 adds only an installed baseline conformance profile over the existing
+12-tool transport-independent agent service. It accepts an explicit trusted
+factory and returns sanitized versioned evidence without a new CI job. No M19
+slice is assigned; select and bound another adoption metric before
+implementation. Do not infer provider discovery/import/installation, a
+transport or listener, command/snapshot/replay changes, a plugin field,
+dependency, lock, version, provider, package-root export, third-party adoption,
+or manual-recovery telemetry from project-owned evidence.
