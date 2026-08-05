@@ -37,9 +37,10 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M7 are complete and hosted-CI validated as stacked pull requests.
-Stop at this boundary. Do not create a release tag, GitHub release, PyPI
-publication, or begin another milestone without a separate maintainer decision.
-Real audio playback, network agent transports, editor work, 3D, and native code
-remain out of scope. RFC-0001 records the evidence-based native-code deferral;
-local performance misses are not automatic authorization for acceleration.
+M0 through M8 are complete and hosted-CI validated. M1-M7 are integrated into
+`main`; M8 is published as PR #9. Stop at this boundary. Do not create a release
+tag, GitHub release, PyPI publication, or begin the Box2D/plugin evaluation
+without a separate maintainer decision. Real audio playback, network agent
+transports, editor work, 3D, SDL3, and native code remain out of scope. RFC-0001
+records the evidence-based native-code deferral; local performance misses are
+not automatic authorization for acceleration.

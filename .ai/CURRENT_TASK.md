@@ -1,8 +1,7 @@
 # Current Task
 
 - **Task:** M8 — Gamepad input and SDL3 adapter-maturity decision
-- **Status:** In progress; explicitly authorized by the maintainer after the
-  validated M1-M7 integration was squash-merged to `main`
+- **Status:** Complete; published as ready PR #9 and validated by hosted CI
 - **Started:** 2026-08-05
 - **Outcome:** Add provider-neutral, typed gamepad input that maps into the
   existing immutable per-tick action snapshots, and record an evidence-based
@@ -40,7 +39,10 @@
   integration passes, and successful Clockwork Arena, Agent World Builder, and
   alpha-acceptance runs. Repeat independent review found no blockers and
   recommends PR publication. The superseded 589-pass run remains recorded.
-- **Hosted gate:** Not yet run; no cross-platform M8 pass is claimed.
+- **Hosted gate:** GitHub Actions run `31012696753` passed all 14 jobs on PR #9:
+  quality/docs; Ubuntu CPython 3.12/3.13/3.14; Windows and macOS CPython
+  3.12/3.14; installed-wheel smoke on all three systems; and real graphics/
+  GLFW gamepad smoke on Ubuntu, Windows, and macOS.
 - **Non-scope:** Haptics, LEDs, sensors, touchpads, raw joysticks, controller
   remapping UI/database downloads, background input, multiple windows, IME,
   clipboard, real audio, networking, editor work, 3D, Box2D, Rust/PyO3, release

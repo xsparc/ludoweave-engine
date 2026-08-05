@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M7 are implemented, and M8 adds provider-neutral gamepad input while evaluating and deferring an SDL3 adapter behind explicit maturity gates. Profiling led to ordinary Python improvements and an explicit decision to defer Rust/PyO3. Every current Python API and wire format remains experimental and may change without deprecation.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M8 are implemented, including provider-neutral gamepad input and an evidence-based SDL3 adapter deferral behind explicit maturity gates. Profiling led to ordinary Python improvements and an explicit decision to defer Rust/PyO3. Every current Python API and wire format remains experimental and may change without deprecation.
 
 ## What exists
 

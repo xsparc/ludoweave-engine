@@ -914,5 +914,22 @@ The reviewer found no remaining blocker, provider/native leakage, credential
 exposure, authority violation, dependency drift, or lifecycle/concurrency
 regression and recommended M8 for commit and PR.
 
-No M8 benchmark was run and no performance statement is made. Hosted M8 CI has
-not run, so this evidence does not claim cross-platform acceptance.
+No M8 benchmark was run and no performance statement is made.
+
+## M8 hosted validation — 2026-08-05
+
+Commit `2a654e03005481d61c6cbeb054b31e260b960659` was pushed to
+`codex/m8-gamepad-sdl3-evaluation` and published as ready PR #9 against
+`main`. GitHub reported the PR mergeable. Actions run `31012696753` completed
+successfully with all 14 jobs passing:
+
+- quality and strict documentation;
+- Ubuntu CPython 3.12, 3.13, and 3.14;
+- Windows CPython 3.12 and 3.14;
+- macOS CPython 3.12 and 3.14;
+- isolated installed-wheel smoke on Ubuntu, Windows, and macOS; and
+- real graphics/gamepad smoke on Ubuntu, Windows, and macOS.
+
+The hosted result validates execution and artifact contracts, not controller
+hardware coverage or a performance target. PR #9 remains open and no merge,
+tag, release, or package publication is claimed.

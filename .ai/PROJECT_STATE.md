@@ -3,9 +3,9 @@
 ## Current milestone
 
 M0 through M7 are complete, independently accepted, integrated into `main`,
-and validated by hosted CI. M8 gamepad/SDL3 evaluation is locally complete and
-independently accepted on `codex/m8-gamepad-sdl3-evaluation`; no hosted M8
-result is claimed yet.
+and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
+independently accepted, published as PR #9 from
+`codex/m8-gamepad-sdl3-evaluation`, and validated across all 14 hosted jobs.
 
 ## Repository identity
 
@@ -121,8 +121,12 @@ mainline commit.
   smoke, eight real wgpu/GLFW integration passes, and successful Clockwork
   Arena, Agent World Builder, and alpha-acceptance executions. Repeat
   independent review found no blocking findings and recommended PR
-  publication. M8 adds no dependency or benchmark; no timing or hosted
-  cross-platform result is claimed.
+  publication. M8 adds no dependency or benchmark; no timing result is
+  claimed.
+- GitHub Actions run `31012696753` passed all 14 M8 jobs: strict quality/docs;
+  Ubuntu CPython 3.12/3.13/3.14; Windows and macOS CPython 3.12/3.14;
+  installed-wheel smoke on Ubuntu, Windows, and macOS; and real graphics/GLFW
+  gamepad smoke on all three operating systems.
 - The complete M1 final local suite reports 303 passing tests, zero Ruff/Pyright findings, a strict documentation build, successful sdist/wheel build, and successful isolated installed-wheel smoke covering both M0 and M1 examples.
 - The final 30-sample Windows/CPython 3.12.13 GIL-build benchmark artifact validates all seven versioned workloads. The 3,600-tick headless p95 was 26.8523 ms and observed the local 5×-real-time target. The representative 10,000-entity simulation-tick p95 was 196.8800 ms and did not observe the 4 ms engineering target. These are local observations, not cross-platform claims.
 - GitHub Actions run `30936533105` passed quality/documentation, Ubuntu Python 3.12/3.13/3.14, Windows Python 3.12/3.14, macOS Python 3.12/3.14, and installed-wheel smoke on all three operating systems after correcting the invalid planned `actions/checkout` v6.0.2 SHA.
