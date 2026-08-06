@@ -2,6 +2,25 @@
 
 ## Current milestone
 
+M22 is complete, reviewed, published, and hosted-validated on
+`codex/m22-operation-argument-policy` from exact clean
+synchronized `main` commit
+`291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`. Its bounded result is an exact
+machine-readable policy for all seven built-in operation-v1 argument shapes,
+deterministic installed valid/missing/unknown-field evidence, RFC-0005, and
+RFC-0003 gate bookkeeping. It changes no runtime package, public API,
+operation, persistent format, dependency, lock, version, or CI topology.
+DCO-signed implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12` is published through ready PR
+#32. GitHub Actions run `31100821087` passed all eight unchanged essential
+jobs. Automated review then requested an explicit defaulted-component-field
+omission rule. The contract clarification, installed behavioral regression,
+full local gate, wheel, and release smoke pass in DCO-signed correction commit
+`cf3ae540e71cda128837ea698f5f175a7abf2fc4`. Follow-up GitHub Actions run
+`31101607485` passed all eight unchanged essential jobs. Thread-aware review
+now reports the sole review thread outdated and no actionable thread remains.
+Squash integration is pending.
+
 M21 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean
 synchronized `main` commit `feed793e94c345fac4b146c358a68264ef6e5f62`.
@@ -310,18 +329,15 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 and M21 are complete, hosted-validated, and squash-integrated. M21 adds
-  strict `TransactionReceipt.from_mapping()` and
-  `.from_json()` decoding under frozen explicit resource limits, structured
-  decode/incompatibility failures, exact committed/dry-run/rejected v1
-  fixtures, and deterministic source/wheel/release evidence. It versions the
-  M20 living evidence to `/2` and satisfies only the bounded-reader gate.
-- M21 may not reinterpret receipt/1, claim cross-version compatibility or
-  external adoption, promote stability, add a command/operation/migration,
+- M20 and M21 are complete, hosted-validated, and squash-integrated. M22 is the
+  active bounded slice and adds only an exact built-in v1 operation-argument
+  policy, same-version installed evidence, RFC-0005, and living readiness
+  schema `/3` bookkeeping.
+- M22 may not reinterpret a runtime contract, claim cross-version compatibility
+  or external adoption, promote stability, add an operation/handler/migration,
   discover or load providers, access ambient filesystem/network resources, or
-  change package-root exports, dependencies, lock, version, workflows, jobs,
+  change package exports, dependencies, lock, version, workflows, jobs,
   backends, storage, native/WASM code, tags, releases, or publication.
-- No M22 implementation is included or assigned by this integration record.
 
 ## Validation state
 

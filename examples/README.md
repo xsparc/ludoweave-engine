@@ -10,6 +10,7 @@ python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python rollback_readiness.py --ticks 120 --branch-tick 60
 python command_receipt_stability_decision.py
+python operation_argument_compatibility.py
 python receipt_reader.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
@@ -42,6 +43,11 @@ or live rollback service.
 command, transaction, receipt, and 12-tool agent foundations, then records why
 the central protocols remain experimental. It changes no runtime or format and
 does not claim cross-version compatibility or external adoption.
+
+`operation_argument_compatibility.py` exercises all seven built-in v1
+operation argument contracts, including exact missing-field and unknown-field
+rejection. Its same-version report validates the explicit evolution policy; it
+does not prove cross-version compatibility or promote the command protocol.
 
 `receipt_reader.py` decodes generated committed, dry-run, and rejected
 `ludoweave.receipt/1` documents through the bounded public reader and exercises

@@ -628,6 +628,22 @@ inputs for a later version but does not itself prove cross-version behavior.
 RFC-0004 keeps every new export experimental and versions M20's living
 readiness evidence to `/2`, with only the reader gate true.
 
+## M22 operation-argument policy boundary
+
+M22 adds no engine module. Its machine-readable contract, installed example,
+validator, and tests live outside `src/ludoweave`; runtime handlers do not load
+or depend on them. The example composes public ECS/world contracts and fresh
+in-memory authorities to exercise all seven built-in v1 operations plus exact
+missing-required and unknown-field rejection.
+
+Architecture tests require the frozen operation identities to match
+`BUILTIN_OPERATION_SPECS`, require the example literals to match the fixture,
+and reject filesystem, discovery, process, network, tool, plugin, and concrete-
+backend imports from the evidence files. RFC-0005 versions the living readiness
+evidence to `/3` and marks only the operation-policy and bounded-reader gates
+true. No second runtime schema, operation registry, API, or canonical state is
+introduced.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -649,6 +665,9 @@ M20 retains experimental command/receipt stability after a bounded installed
 readiness audit; it adds no reader, operation, format, or runtime export.
 M21 then adds only that bounded reader and frozen single-version fixtures; it
 does not change receipt/1, promote stability, or satisfy the cross-version gate.
+M22 adds only the exact built-in operation/version argument policy and
+same-version evidence; it does not add handlers, promote stability, or satisfy
+the remaining four gates.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.

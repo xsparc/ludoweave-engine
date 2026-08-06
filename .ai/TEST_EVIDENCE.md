@@ -2,6 +2,132 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M22 development evidence — 2026-08-06, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Baseline lock remained current; 46 packages resolved in 0.75 ms. |
+| Inherited focused command/transaction/stability/API/release tests | 0 | 165 tests passed in 3.43 seconds. |
+| `uv run --frozen pytest -q` | 0 | Inherited full suite passed 1,015 tests in 80.65 seconds with one existing Windows symlink-capability skip. |
+| `uv run --frozen python examples/operation_argument_compatibility.py` | 0 | All seven valid built-in v1 operations committed; missing-required and unexpected-field cases rejected with `world.transaction.validation_failed`; one sanitized schema `/1` report printed. |
+| `uv run --frozen pytest -q tests/integration/test_operation_argument_compatibility.py` | 0 | 7 installed evidence and tamper tests passed in 1.49 seconds. |
+| M22 integration plus architecture tests | 0 | 15 tests passed in 1.63 seconds. |
+| Focused M22/M20/release test group after artifact wiring | 0 | 34 tests passed in 3.50 seconds. |
+| First repository-wide Ruff check | 1 | Three simplification findings in the new example/architecture test were reported and corrected; no lint pass is claimed for this attempt. |
+| First repository-wide Pyright run | 0 | 0 errors, 0 warnings, 0 information messages. |
+| First M22 strict MkDocs build | 0 | Documentation built successfully in 0.66 seconds with Material's upstream MkDocs 2.0 informational warning. |
+
+The first sandboxed uv invocation after adding M22 evidence exited 1 before
+pytest ran because the managed sandbox denied access to uv's user cache. The
+same test commands were rerun with approved cache access and passed; no test
+pass is claimed for the failed attempt. Final full-suite, docs, build, wheel,
+release, graphics, benchmark/profile, and diff evidence follows. Hosted
+hosted evidence is recorded below.
+
+## M22 final local validation — 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile remained current; 46 packages resolved in 1 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Locked baseline plus graphics environment checked 45 packages in 2 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 215 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed after the recorded first-pass corrections. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,030 tests passed in 71.59 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.64 seconds with Material's upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built pure `ludoweave-0.1.0a1-py3-none-any.whl` and source distribution. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed, including exact M22 operation-argument evidence. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate-m22-final` | 0 | Staged the complete deterministic 10-artifact release candidate with sample bundle and SPDX SBOM. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/release-candidate-m22-final` | 0 | Isolated release smoke passed for `0.1.0a1`, including bundled M22 evidence. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | 10 real-wgpu integration tests passed in 5.79 seconds. |
+| Hosted graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected structured summaries. |
+| M1 benchmark plus validator | 0 | Seven workloads validated; fixed-tick target observed, simulation-tick target not observed. |
+| M2 benchmark plus validator | 0 | Four informational workloads validated with no timing targets. |
+| M3 benchmark plus validator | 0 | Six workloads validated; neither of two recorded targets was met. |
+| M4 benchmark plus validator | 0 | Three workloads validated; baseline target observed. |
+| M7 base and graphics profile runners plus validators | 0 | Two-workload base and three-workload graphics artifacts validated. |
+| `git diff --check` | 0 | No whitespace errors. |
+| First sandboxed `git add --all` | 128 | The filesystem sandbox denied creation of `.git/index.lock`; no path was staged. The operation was rerun with approved repository-metadata access. |
+
+The M1 simulation and both M3 target misses are recorded without a performance
+pass claim. They do not authorize native acceleration. Repository review found
+no change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`; no credential
+assignment matched; and the M22 evidence import scan found no ambient,
+provider, filesystem, process, or network dependency.
+
+## M22 hosted validation — PR #32
+
+Ready PR #32 targets `main` from `codex/m22-operation-argument-policy` at
+DCO-signed implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12`. GitHub Actions run
+`31100821087`, triggered by that pull request, completed successfully on
+2026-08-06. It validates the original implementation head; the review
+correction below requires one follow-up run because it changes installed
+evidence and artifact smoke.
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution — Ubuntu, Python 3.12 | Passed lock, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility — Ubuntu, Python 3.13 | Passed. |
+| Compatibility — Ubuntu, Python 3.14 | Passed. |
+| Compatibility — Windows, Python 3.14 | Passed. |
+| Compatibility — macOS, Python 3.14 | Passed. |
+| Graphics smoke — Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke — Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke — macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+No additional CI job or workflow change was introduced. No cross-version,
+external-adoption, stability-promotion, release, or publication claim is made.
+
+### Automated review correction
+
+The thread-aware PR review inspection found one unresolved P2 claiming that
+dataclass defaults might fill omitted persistent component fields. Source
+inspection confirmed `ComponentRegistry.migrate()` calls exact current-field
+validation before construction, so omission is rejected even when the Python
+field has a default. The contract and installed evidence now state and exercise
+that behavior explicitly instead of weakening the rule.
+
+The first focused post-review group exited 1 after 23 tests passed because the
+intentional fixture edit changed its frozen byte size and digest. The checker
+reported actual size 2,926 and SHA-256
+`11ec4b9d9805dc509f18a52e8c0defd50136a475e216ae88fbe6bae68fb27001`;
+those exact values are now recorded and the group is rerun below. The initial
+failure is not reported as a pass.
+
+| Corrected review gate | Exit | Result |
+| --- | ---: | --- |
+| Ruff format/check and strict Pyright | 0 | 215 files formatted; no Ruff or Pyright findings. |
+| Corrected focused compatibility/architecture/stability/release group | 0 | 26 tests passed in 3.62 seconds. |
+| `uv run --frozen pytest -q` | 0 | 1,030 tests passed in 71.15 seconds; the existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.64 seconds with the upstream informational warning. |
+| `uv build` and installed-wheel smoke | 0 | Pure wheel/sdist built and the installed evidence passed. |
+| Fresh ten-artifact release staging and smoke | 0 | `.tmp/release-candidate-m22-review-final` staged and passed, including the corrected bundled evidence. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The correction changes no runtime source or contract. A necessary second
+hosted run was quota-conscious evidence for the reviewed final artifact rather
+than a new CI job.
+
+## M22 final hosted validation and review closure — PR #32
+
+DCO-signed correction commit
+`cf3ae540e71cda128837ea698f5f175a7abf2fc4` triggered necessary follow-up
+GitHub Actions run `31101607485`. All eight unchanged essential jobs passed:
+complete Ubuntu quality/test/docs/build/wheel/release, Ubuntu 3.13/3.14,
+Windows 3.14, macOS 3.14, and real graphics on Ubuntu/Windows/macOS.
+
+The required thread-aware review reread returned no conversation comments and
+one review thread with `isOutdated: true`, no current line anchor, and no other
+actionable thread. Its original claim is covered by the exact frozen rule,
+installed default-omission rejection, docs, focused regression, full suite,
+artifact smoke, and final hosted run. No GitHub reply or manual resolution was
+performed.
+
+The branch has two CI runs total: the original complete implementation run
+`31100821087` and the necessary review-correction run `31101607485`. Both
+passed. No workflow or job topology changed.
+
 ## Baseline — 2026-08-04
 
 | Command | Exit | Result |

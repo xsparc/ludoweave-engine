@@ -33,7 +33,7 @@ from ludoweave.world import (
 )
 from ludoweave.world import __stability__ as world_stability
 
-_SCHEMA = "ludoweave.evaluation.command-receipt-stability/2"
+_SCHEMA = "ludoweave.evaluation.command-receipt-stability/3"
 _STABILITY_EXPORTS = (
     "COMMAND_PROTOCOL",
     "RECEIPT_PROTOCOL",
@@ -221,9 +221,11 @@ def evaluate() -> dict[str, object]:
     if not current_boundary_confirmed:
         raise AssertionError("M20 evidence no longer confirms the command/receipt boundary")
 
-    promotion_gates = {
-        name: name == "public_receipt_reader_and_bounds" for name in _PROMOTION_GATES
+    satisfied_gates = {
+        "operation_argument_compatibility_policy",
+        "public_receipt_reader_and_bounds",
     }
+    promotion_gates = {name: name in satisfied_gates for name in _PROMOTION_GATES}
     promotion_ready = all(promotion_gates.values())
     if promotion_ready:
         raise AssertionError("M20 evidence unexpectedly satisfies every preview promotion gate")

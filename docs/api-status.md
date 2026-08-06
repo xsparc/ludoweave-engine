@@ -37,6 +37,9 @@ there is no cross-version fixture result, external consumer evidence, complete
 field-evolution policy, or supported feature-release channel for the preview
 deprecation promise. M21 adds the bounded reader and a frozen single-version
 fixture baseline; those new exports also remain experimental under RFC-0004.
+M22 adds no export. RFC-0005 separately fixes the exact built-in v1 operation
+argument evolution policy and satisfies that one RFC-0003 gate; four promotion
+gates remain incomplete.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

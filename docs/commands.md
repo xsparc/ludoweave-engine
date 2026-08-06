@@ -23,6 +23,12 @@ component add/remove/patch, authoritative resource patch, and world tick.
 Their typed argument validation and atomic behavior are completed by later M2
 slices; registration alone is not an application claim.
 
+RFC-0005 makes each built-in operation/version argument shape an exact
+persistent identity. Unknown fields are rejected; a breaking change uses a new
+operation version rather than reinterpreting v1. See the
+[operation-argument compatibility guide](operation-argument-compatibility.md)
+for the machine-readable baseline, evolution policy, and same-version evidence.
+
 ## Canonical JSON v1
 
 Persistent documents use an engine-owned bounded profile:
@@ -197,6 +203,11 @@ policies, and a supported deprecation-capable release channel.
 See the [stability decision](command-receipt-stability-decision.md). Do not
 infer a preview promise from protocol `/1` identifiers or project-owned
 conformance passes.
+
+M21 and M22 satisfy the bounded-reader and operation-argument-policy gates,
+respectively. Cross-version history, external feedback, semantic-diff/
+diagnostic evolution, and a supported deprecation release channel remain
+absent, so the command/receipt surface stays experimental.
 
 ## Reading receipts
 

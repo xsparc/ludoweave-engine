@@ -94,7 +94,7 @@ _BOUNDARY: dict[str, object] = {
 _GATES: dict[str, object] = {
     "cross_version_compatibility_corpus": False,
     "external_consumer_feedback": False,
-    "operation_argument_compatibility_policy": False,
+    "operation_argument_compatibility_policy": True,
     "public_receipt_reader_and_bounds": True,
     "receipt_diff_diagnostic_compatibility_policy": False,
     "supported_deprecation_release_channel": False,
@@ -113,7 +113,7 @@ def validate_command_receipt_stability_evidence(
         "ludoweave_version": version,
         "promotion_gates": _GATES,
         "promotion_ready": False,
-        "schema": "ludoweave.evaluation.command-receipt-stability/2",
+        "schema": "ludoweave.evaluation.command-receipt-stability/3",
         "status": "deferred",
     }
     if not _exact_json(document, expected):

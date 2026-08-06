@@ -37,6 +37,23 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
+M22 is assigned only to the built-in v1 operation-argument compatibility and
+deprecation policy identified by RFC-0003. It may add a frozen repository
+contract, deterministic installed evidence, tests, RFC/docs, artifact smoke,
+and gate bookkeeping. It may not change runtime source, add or reinterpret an
+operation/handler/command/receipt field, promote stability, claim cross-version
+or external adoption, add a dependency/lock/version/workflow job, or implement
+storage, providers, transports, networking, native/WASM, 3D, or editor work.
+Ready PR #32 and GitHub Actions run `31100821087` validate all eight unchanged
+essential jobs on DCO-signed M22 implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12`. Automated review then requested
+explicit defaulted-component-field omission evidence; the correction must pass
+focused, artifact, and follow-up hosted validation before squash integration.
+DCO-signed correction commit
+`cf3ae540e71cda128837ea698f5f175a7abf2fc4` and follow-up run `31101607485`
+pass that gate; thread-aware review reports the original thread outdated and no
+actionable thread remains.
+
 M0 through M21 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR

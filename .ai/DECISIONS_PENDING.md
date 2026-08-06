@@ -80,6 +80,14 @@ The fixture set is explicitly a single-version baseline; cross-version
 compatibility, external adoption, evolution rules, a release channel, and
 stability promotion remain unresolved.
 
+RFC-0005 resolves the built-in operation-argument policy gate. Exact required
+and optional fields, unknown-field rejection, and named semantic rules are
+fixed per operation/version identity; a breaking change uses a new operation
+version and a new identity is additive. This satisfies only gate 3 of
+RFC-0003. Cross-version history, external feedback, receipt semantic-diff/
+diagnostic evolution, and a supported deprecation release channel remain
+unresolved.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

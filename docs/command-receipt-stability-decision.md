@@ -17,10 +17,12 @@ still reject an incompatible protocol identifier instead of reinterpreting
 `ludoweave.command/1`, `ludoweave.transaction/1`, or
 `ludoweave.receipt/1` in place.
 
-M21 subsequently adds the bounded reader identified by this gate under
-[RFC-0004](rfcs/0004-bounded-receipt-reader-and-v1-baseline.md). That completes
-one prerequisite without changing the overall decision: five promotion gates
-and actual cross-version evidence remain absent.
+M21 adds the bounded reader under
+[RFC-0004](rfcs/0004-bounded-receipt-reader-and-v1-baseline.md), and M22 adds
+the exact built-in operation/version evolution policy under
+[RFC-0005](rfcs/0005-built-in-operation-argument-compatibility.md). Those
+complete two prerequisites without changing the overall decision: four
+promotion gates and actual cross-version evidence remain absent.
 
 ## Installed evidence
 
@@ -32,8 +34,9 @@ python command_receipt_stability_decision.py
 ```
 
 It prints one deterministic
-`ludoweave.evaluation.command-receipt-stability/2` JSON document. Schema `/2`
-records the M21 reader capability; `/1` is not silently reinterpreted. The
+`ludoweave.evaluation.command-receipt-stability/3` JSON document. Schema `/3`
+records the M21 reader and M22 operation-policy gates; earlier report schemas
+are not silently reinterpreted. The
 evidence uses only installed public APIs and confirms:
 
 - exact command, transaction, receipt, and agent-conformance protocol IDs;
@@ -62,6 +65,7 @@ All of these must be evidenced together before reconsideration:
    integration; project-owned samples are not adoption evidence.
 3. Built-in operation argument schemas have an explicit compatibility and
    deprecation policy independent of their current implementation.
+   **Satisfied by M22/RFC-0005.**
 4. A bounded public receipt reader validates untrusted receipt documents.
    **Satisfied by M21/RFC-0004.**
 5. Semantic-diff fields and diagnostic-code compatibility are documented and
@@ -69,10 +73,10 @@ All of these must be evidenced together before reconsideration:
 6. A supported feature-release channel exists so the preview deprecation
    promise can actually be fulfilled.
 
-The `/2` evidence marks only gate 4 true. The existing versioned schemas,
+The `/3` evidence marks gates 3 and 4 true. The existing versioned schemas,
 canonical codec, transaction atomicity, transport-independent tool profile,
 and frozen single-version fixtures are necessary foundations, not substitutes
-for compatibility history or the other five gates.
+for compatibility history or the other four gates.
 
 ## Ownership and failure behavior
 
@@ -89,8 +93,8 @@ release behavior are outside this evidence.
 
 ## Explicit non-scope
 
-M20 adds no public runtime symbol, reader, operation, command field, receipt
-field, migration, persistent format, root export, plugin field, transport,
+M20-M22 add no operation, command field, receipt field, migration, persistent
+format, root export, plugin field, transport,
 listener, storage backend, dependency, lock change, package version, CI job,
 tag, release, or publication. It does not promote any API and does not claim
 external adoption, certification, cross-version compatibility, or maintenance

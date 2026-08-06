@@ -9,3 +9,4 @@ was adopted.
 - [RFC-0002: data-only plugin manifests and compatibility checks](0002-data-only-plugin-manifest-compatibility.md)
 - [RFC-0003: retain experimental command and receipt contracts](0003-retain-experimental-command-receipt-contracts.md)
 - [RFC-0004: bounded receipt reader and v1 baseline](0004-bounded-receipt-reader-and-v1-baseline.md)
+- [RFC-0005: built-in operation argument compatibility](0005-built-in-operation-argument-compatibility.md)
