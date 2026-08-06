@@ -2399,6 +2399,29 @@ release, or package publication; add a runtime/API/schema/dependency/version/CI
 change; or claim the locally missed M1/M3 performance targets passed. PR #28
 has not yet been merged at this stage.
 
+## M21 main integration - 2026-08-06
+
+Ready PR #30 was squash-merged at `2026-08-06T11:50:27Z`. GitHub reports
+merged commit `6bfb56555cafc93a7312f64465ea15cd7c450e79` with sole parent
+`feed793e94c345fac4b146c358a68264ef6e5f62`, exact tree
+`ea3f410fac31d7a32faee4e697c4fb0941b657df`, a valid GitHub signature verified
+at `2026-08-06T11:50:31Z`, and the DCO trailer. The tree exactly matches final
+evidence head `4e378756b2a1733de28e7160ac2d6d72921f3e4a` on retained branch
+`codex/m21-receipt-reader-baseline`; literal tree comparison reported no
+difference.
+
+GitHub still lists only successful run `31098563810` for the milestone branch;
+the documentation-only hosted-evidence commit used `[skip ci]` and created no
+second run. Integration changes no receipt protocol/field, command, operation,
+stability label, workflow, dependency, lock, package version, backend, storage,
+benchmark target, root export, or release artifact. No tag, GitHub release,
+PyPI publication, cross-version compatibility, receipt authenticity, external
+consumer adoption, certification, or stability promotion is claimed.
+
+After `git fetch --prune origin`, local `main` fast-forwarded to the verified
+squash commit and matched `origin/main` with a clean worktree. The retained M21
+branch remains available for audit history.
+
 After adding this hosted record, `uv run --frozen mkdocs build --strict` and
 `git diff --check` both exited 0; the documentation build emitted only the
 recorded upstream MkDocs Material/MkDocs 2.0 informational warning.

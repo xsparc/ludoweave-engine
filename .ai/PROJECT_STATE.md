@@ -2,15 +2,19 @@
 
 ## Current milestone
 
-M21 is assigned on `codex/m21-receipt-reader-baseline` from exact clean
+M21 is complete, independently reviewed, hosted-validated, and squash-
+integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean
 synchronized `main` commit `feed793e94c345fac4b146c358a68264ef6e5f62`.
-Its bounded scope is a public resource-limited reader for the unchanged
+Its bounded result is a public resource-limited reader for the unchanged
 `ludoweave.receipt/1` graph plus exact single-version fixtures, installed
 evidence, RFC-0004, and compatibility-gate bookkeeping. Implementation is
-locally complete and findings-first reviewed. Ready PR #30 publishes DCO-signed
+findings-first reviewed. Ready PR #30 published DCO-signed
 implementation commit `cec339be07318a7c1586bb3405e8f9b1904859f5`; sole hosted
-run `31098563810` passed all eight unchanged essential jobs. Squash integration
-remains pending.
+run `31098563810` passed all eight unchanged essential jobs. PR #30 squash-
+integrated exact final evidence head `4e378756b2a1733de28e7160ac2d6d72921f3e4a`
+as GitHub-verified `main` commit
+`6bfb56555cafc93a7312f64465ea15cd7c450e79`; both trees are
+`ea3f410fac31d7a32faee4e697c4fb0941b657df`.
 
 M0 through M7 are complete, independently accepted, integrated into `main`,
 and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
@@ -306,8 +310,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 is complete, hosted-validated, and squash-integrated. M21 is the only
-  assigned slice. It adds strict `TransactionReceipt.from_mapping()` and
+- M20 and M21 are complete, hosted-validated, and squash-integrated. M21 adds
+  strict `TransactionReceipt.from_mapping()` and
   `.from_json()` decoding under frozen explicit resource limits, structured
   decode/incompatibility failures, exact committed/dry-run/rejected v1
   fixtures, and deterministic source/wheel/release evidence. It versions the
@@ -317,6 +321,7 @@ Repository-state evidence is integrated by PR #18 as main commit
   discover or load providers, access ambient filesystem/network resources, or
   change package-root exports, dependencies, lock, version, workflows, jobs,
   backends, storage, native/WASM code, tags, releases, or publication.
+- No M22 implementation is included or assigned by this integration record.
 
 ## Validation state
 
@@ -333,7 +338,8 @@ Repository-state evidence is integrated by PR #18 as main commit
   acceleration. Workflow, metadata, lock, version, and root exports are
   unchanged. Ready PR #30 is mergeable and clean after sole hosted run
   `31098563810` passed all eight essential jobs on the DCO-signed implementation
-  commit. Integration remains pending.
+  commit. PR #30 squash-integrated the exact final branch tree as verified
+  `main` commit `6bfb56555cafc93a7312f64465ea15cd7c450e79`.
 
 - The exact M20 base resolves 46 locked packages. Its focused canonical
   command/transaction/receipt/agent/API baseline passes 91 tests in 1.52
