@@ -3,7 +3,7 @@
 - **Status:** Accepted
 - **Date:** 2026-08-06
 - **Decision:** Retain experimental status pending complete compatibility evidence
-- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md)
+- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md), [RFC-0006](0006-receipt-semantic-diff-and-diagnostic-compatibility.md)
 
 ## Summary
 
@@ -72,8 +72,11 @@ M21 satisfies gate 4 through RFC-0004. Its frozen documents all identify
 the same `0.1.0a1` source version, so they are baseline inputs for a future
 cross-version corpus rather than evidence that gate 1 is complete. M22
 satisfies gate 3 through RFC-0005 by freezing exact operation/version argument
-identities and requiring breaking changes to use a new operation version.
-Gates 1, 2, 5, and 6 remain false, and the contracts remain experimental.
+identities and requiring breaking changes to use a new operation version. M23
+satisfies gate 5 through RFC-0006 by freezing exact receipt-v1 semantic-diff
+meanings and diagnostic-code evolution. Gates 1, 2, and 6 remain false, and the
+contracts remain experimental. Gate 1 owns the missing cross-version execution
+history; project-owned same-version policy evidence does not satisfy it.
 
 ## Security and determinism
 
@@ -95,7 +98,7 @@ provider guarantee is inferred.
 - Future promotion has a finite, machine-auditable gate.
 - The project avoids promising deprecation behavior it currently cannot deliver.
 - No runtime API, wire format, operation, dependency, version, or CI topology
-  changes in M20.
+  changes in M20, M22, or M23; M21 adds only the bounded reader.
 - A later RFC may promote a bounded subset once every gate is evidenced; it
   must update stability metadata, compatibility docs, fixtures, and changelog
   in one reviewed change.

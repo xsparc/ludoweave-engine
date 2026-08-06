@@ -28,6 +28,7 @@ _SAMPLE_FILES = (
     "operation_argument_compatibility.py",
     "render_device_conformance.py",
     "receipt_reader.py",
+    "receipt_semantic_compatibility.py",
     "rich_2d_showcase.py",
     "rollback_readiness.py",
     "visual_editor_decision.py",

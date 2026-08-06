@@ -644,6 +644,22 @@ evidence to `/3` and marks only the operation-policy and bounded-reader gates
 true. No second runtime schema, operation registry, API, or canonical state is
 introduced.
 
+## M23 receipt-semantic policy boundary
+
+M23 adds no engine module. Its machine-readable receipt-v1 contract, installed
+example, strict validator, and tests remain outside `src/ludoweave`; the public
+reader and transaction service do not load the repository fixture. The example
+uses fresh in-memory authorities to exercise all semantic-diff record families,
+status presence, current top-level rejection codes, fail-closed fields, and an
+additive unknown-code fallback.
+
+Architecture tests require every policy literal to match the exact fixture and
+reject filesystem, discovery, process, network, tool, plugin, and concrete-
+backend imports. RFC-0006 versions the living readiness evidence to `/4` and
+marks the operation-policy, bounded-reader, and receipt-policy gates true. No
+runtime API, receipt field, handler, provider, dependency, or canonical state
+is introduced; cross-version history remains a separate false gate.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -666,8 +682,10 @@ readiness audit; it adds no reader, operation, format, or runtime export.
 M21 then adds only that bounded reader and frozen single-version fixtures; it
 does not change receipt/1, promote stability, or satisfy the cross-version gate.
 M22 adds only the exact built-in operation/version argument policy and
-same-version evidence; it does not add handlers, promote stability, or satisfy
-the remaining four gates.
+same-version evidence; it does not add handlers or promote stability. M23 adds
+only the exact receipt-v1 semantic-diff/diagnostic policy and same-version
+evidence. Neither policy satisfies the remaining cross-version, external-
+feedback, or supported-release-channel gates.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.

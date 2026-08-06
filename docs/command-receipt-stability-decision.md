@@ -20,9 +20,12 @@ still reject an incompatible protocol identifier instead of reinterpreting
 M21 adds the bounded reader under
 [RFC-0004](rfcs/0004-bounded-receipt-reader-and-v1-baseline.md), and M22 adds
 the exact built-in operation/version evolution policy under
-[RFC-0005](rfcs/0005-built-in-operation-argument-compatibility.md). Those
-complete two prerequisites without changing the overall decision: four
-promotion gates and actual cross-version evidence remain absent.
+[RFC-0005](rfcs/0005-built-in-operation-argument-compatibility.md). M23 adds
+the receipt semantic-diff and diagnostic-code evolution policy under
+[RFC-0006](rfcs/0006-receipt-semantic-diff-and-diagnostic-compatibility.md).
+Those complete three prerequisites without changing the overall decision:
+cross-version history, external feedback, and a supported release channel
+remain absent.
 
 ## Installed evidence
 
@@ -34,8 +37,8 @@ python command_receipt_stability_decision.py
 ```
 
 It prints one deterministic
-`ludoweave.evaluation.command-receipt-stability/3` JSON document. Schema `/3`
-records the M21 reader and M22 operation-policy gates; earlier report schemas
+`ludoweave.evaluation.command-receipt-stability/4` JSON document. Schema `/4`
+records the M21 reader, M22 operation-policy, and M23 receipt-policy gates; earlier report schemas
 are not silently reinterpreted. The
 evidence uses only installed public APIs and confirms:
 
@@ -68,15 +71,16 @@ All of these must be evidenced together before reconsideration:
    **Satisfied by M22/RFC-0005.**
 4. A bounded public receipt reader validates untrusted receipt documents.
    **Satisfied by M21/RFC-0004.**
-5. Semantic-diff fields and diagnostic-code compatibility are documented and
-   covered by cross-version fixtures.
+5. Semantic-diff fields and diagnostic-code compatibility have an explicit
+   versioned evolution policy. **Satisfied by M23/RFC-0006.** Cross-version
+   execution evidence remains independently required by gate 1.
 6. A supported feature-release channel exists so the preview deprecation
    promise can actually be fulfilled.
 
-The `/3` evidence marks gates 3 and 4 true. The existing versioned schemas,
+The `/4` evidence marks gates 3, 4, and 5 true. The existing versioned schemas,
 canonical codec, transaction atomicity, transport-independent tool profile,
 and frozen single-version fixtures are necessary foundations, not substitutes
-for compatibility history or the other four gates.
+for compatibility history or the other three gates.
 
 ## Ownership and failure behavior
 
@@ -93,7 +97,7 @@ release behavior are outside this evidence.
 
 ## Explicit non-scope
 
-M20-M22 add no operation, command field, receipt field, migration, persistent
+M20-M23 add no operation, command field, receipt field, migration, persistent
 format, root export, plugin field, transport,
 listener, storage backend, dependency, lock change, package version, CI job,
 tag, release, or publication. It does not promote any API and does not claim

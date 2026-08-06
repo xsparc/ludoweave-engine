@@ -38,8 +38,10 @@ field-evolution policy, or supported feature-release channel for the preview
 deprecation promise. M21 adds the bounded reader and a frozen single-version
 fixture baseline; those new exports also remain experimental under RFC-0004.
 M22 adds no export. RFC-0005 separately fixes the exact built-in v1 operation
-argument evolution policy and satisfies that one RFC-0003 gate; four promotion
-gates remain incomplete.
+argument evolution policy and satisfies that one RFC-0003 gate. M23 also adds
+no export; RFC-0006 fixes receipt-v1 semantic-diff and diagnostic-code
+evolution and satisfies that policy gate. Cross-version history, external
+feedback, and a supported feature-release channel remain incomplete.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

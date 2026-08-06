@@ -88,6 +88,13 @@ RFC-0003. Cross-version history, external feedback, receipt semantic-diff/
 diagnostic evolution, and a supported deprecation release channel remain
 unresolved.
 
+RFC-0006 resolves the receipt semantic-diff and diagnostic-code policy gate.
+Exact v1 field sets, presence, ordering, and meanings cannot change in place;
+existing code meanings are fixed, new well-formed codes are additive, and
+phase/message/scalar detail metadata is non-authoritative. This satisfies only
+gate 5 of RFC-0003. Cross-version history, external feedback, and a supported
+deprecation release channel remain unresolved.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

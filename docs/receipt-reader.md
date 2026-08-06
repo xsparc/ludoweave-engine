@@ -63,6 +63,12 @@ The reader reconstructs only detached evidence. It does not apply a receipt,
 mutate a world, verify a signature, authenticate an actor, resolve a provider,
 or trust diagnostic messages as commands.
 
+RFC-0006 separately defines the exact semantic-diff meanings and diagnostic-
+code evolution policy. See the
+[receipt semantic compatibility guide](receipt-semantic-compatibility.md).
+The reader remains a same-version baseline and does not itself prove cross-
+version compatibility.
+
 ## Failures
 
 Expected failures are structured `LudoWeaveError` subclasses:

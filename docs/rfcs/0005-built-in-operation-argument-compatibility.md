@@ -55,8 +55,10 @@ validator proves the recorded contract matches current behavior.
 
 RFC-0003's readiness report advances to schema `/3`. Gates 3 and 4 are true;
 cross-version fixtures, external consumer feedback, semantic-diff/diagnostic
-policy, and a supported feature-release channel remain false. All six remain
-required for preview reconsideration.
+policy, and a supported feature-release channel are false at M22. RFC-0006
+later satisfies the receipt-policy gate without changing this operation policy
+or claiming cross-version history. All six remain required for preview
+reconsideration.
 
 ## Security and determinism
 

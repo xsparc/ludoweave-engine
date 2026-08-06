@@ -79,8 +79,10 @@ isolated dependency-free wheel, and the release sample bundle.
 This satisfies only the operation-argument-policy gate in RFC-0003. The
 evidence uses one package version and project-owned implementations. It does
 not prove cross-version readability, external adoption, receipt semantic-diff
-or diagnostic-code evolution, or a supported deprecation release channel.
-Command, transaction, and receipt exports therefore remain experimental.
+or diagnostic-code evolution by itself, or a supported deprecation release
+channel. RFC-0006 separately defines the receipt policy; it does not change the
+single-version limitation. Command, transaction, and receipt exports therefore
+remain experimental.
 
 The composition creates fresh in-memory worlds synchronously and performs no
 filesystem read, discovery, dynamic import, installation, subprocess,

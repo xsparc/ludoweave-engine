@@ -170,6 +170,11 @@ untrusted receipt into detached immutable values, choose lower resource limits,
 and distinguish malformed, oversized, and incompatible documents. A decoded
 receipt is evidence only; applications decide provenance and authorization.
 
+The [receipt semantic compatibility guide](receipt-semantic-compatibility.md)
+defines the exact receipt-v1 diff meanings and diagnostic-code fallback rule.
+It distinguishes stable machine identities from advisory message/phase/detail
+metadata without claiming cross-version history or promoting stability.
+
 ## Failure and compatibility expectations
 
 Expected engine failures are structured `LudoWeaveError` subclasses with stable

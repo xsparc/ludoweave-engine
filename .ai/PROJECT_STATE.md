@@ -2,6 +2,41 @@
 
 ## Current milestone
 
+M23 implementation is published and initially hosted-validated on
+`codex/m23-receipt-diagnostic-policy` from exact clean
+synchronized `main` commit
+`415859e19d9d29caa1168fabc96def509897b056`. Its bounded result is an exact
+machine-readable receipt-v1 semantic-diff and diagnostic-code evolution policy,
+deterministic installed evidence, RFC-0006, and RFC-0003 schema `/4`
+bookkeeping. It changes no runtime package, public API, receipt field, operation,
+diagnostic behavior, dependency, lock, version, or CI topology. The complete
+local gate passes lock/sync,
+219-file formatting, Ruff, strict Pyright,
+1,048 tests with one existing Windows symlink skip, strict docs, pure build,
+isolated wheel/release smoke, 10 real-wgpu tests, both graphics vertical slices,
+and every documented M1-M4/M7 benchmark/profile validator. M1 simulation and
+both M3 timing targets remain observed misses rather than pass claims.
+The optional `.agents` task/ledger files expected by the review role
+are absent, so the authoritative `.ai` task, accepted RFCs, AGENTS boundary,
+call sites, tests, and executed evidence were used as the review baseline.
+DCO-signed implementation commit
+`a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
+#34. GitHub Actions run `31104052702` passed all eight unchanged essential jobs.
+Delayed automated review produced two valid P1 findings: diagnostic identities
+were not bound to exact meanings, and the installed evidence did not compare
+every generated diff value and declared order. The local correction now freezes
+all six code/meaning/scenario triples and an exact full complex-diff oracle. It
+passes 20 focused tests, 1,050 full-suite tests with one existing skip, static
+and strict-doc gates, pure build, isolated wheel smoke, and a fresh 10-artifact
+release smoke. DCO-signed correction commit
+`4eb61cd49542b0a4753629f31ebe80229c7d45b8` is published, and follow-up
+GitHub Actions run `31105197045` passed all eight unchanged essential jobs.
+Thread-aware reread shows both original discussions still unresolved and
+non-outdated because their anchors remain in the diff; current adjacent code
+directly supplies the requested definitions and full-diff assertion, so no
+finding remains actionable. No reply or manual resolution was performed. Final
+`[skip ci]` evidence publication and squash integration remain.
+
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
 `codex/m22-operation-argument-policy` from exact clean
@@ -334,11 +369,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M22 are complete, hosted-validated, and squash-integrated. M22
-  added only an exact built-in v1 operation-argument policy, same-version
-  installed evidence, RFC-0005, and living readiness schema `/3` bookkeeping.
-- No M23 slice is assigned or included in the M22 integration record.
-- M22 may not reinterpret a runtime contract, claim cross-version compatibility
+- M20 through M22 are complete, hosted-validated, and squash-integrated. M23 is
+  the active bounded slice and adds only an exact receipt-v1 semantic-diff and
+  diagnostic-code policy, same-version installed evidence, RFC-0006, and living
+  readiness schema `/4` bookkeeping.
+- M23 may not reinterpret a runtime contract, claim cross-version compatibility
   or external adoption, promote stability, add an operation/handler/migration,
   discover or load providers, access ambient filesystem/network resources, or
   change package exports, dependencies, lock, version, workflows, jobs,

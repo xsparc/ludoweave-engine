@@ -31,6 +31,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
+| Ready to integrate | M23 receipt semantic-diff and diagnostic compatibility | PR #34; two valid evidence findings corrected, 1,050 local tests and both eight-job hosted runs passed, with no current actionable review finding |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -153,6 +154,18 @@ PR #32 squash-integrated exact final evidence head
 GitHub-verified commit `8a4d288c4edf55d0299828b8edee1bd1885884d9`;
 both trees are `f513bec716d1735cc47a6aab862bca0f5f770af9`. The branch is
 retained for audit history, and no M23 work is included.
+
+M23 starts from integrated `main` commit
+`415859e19d9d29caa1168fabc96def509897b056`. It records exact receipt-v1
+semantic-diff field sets, presence, ordering, meanings, diagnostic-code
+identity, and unknown-code fallback. This satisfies only RFC-0003 gate 5;
+cross-version history, external feedback, and a supported release channel
+remain absent. No runtime API, protocol field, operation, dependency, version,
+or CI job is added.
+Ready PR #34 passed sole GitHub Actions run `31104052702` across all eight
+unchanged essential jobs on DCO-signed implementation commit
+`a6dc30ec62d91b1f6640db2c23797967f2aefefe`. Thread-aware review reports no
+comments, reviews, or review threads.
 
 ## Good-first contribution queue
 

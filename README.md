@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M21 are hosted-validated and integrated into `main`. M22 records an exact built-in operation/version argument-evolution policy and same-version installed evidence; it does not promote stability or claim cross-version evidence. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M22 are hosted-validated and integrated into `main`. M23 records an exact receipt-v1 semantic-diff and diagnostic-code evolution policy with same-version installed evidence; it does not promote stability or claim cross-version evidence. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -213,6 +213,10 @@ The [operation-argument compatibility guide](docs/operation-argument-compatibili
 documents M22's exact seven v1 shapes, fail-closed unknown-field rule,
 versioned breaking-change policy, installed evidence, and remaining RFC-0003
 gates under RFC-0005.
+The [receipt semantic compatibility guide](docs/receipt-semantic-compatibility.md)
+documents M23's exact v1 diff fields and meanings, status-specific presence,
+diagnostic-code identity/fallback rules, installed evidence, and remaining
+RFC-0003 gates under RFC-0006.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly
