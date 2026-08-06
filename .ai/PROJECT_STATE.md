@@ -296,17 +296,16 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M18 is complete, hosted-validated, and integrated. M19 is assigned on
-  `codex/m19-world-store-conformance` from exact clean synchronized `main`
-  commit `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`. It adds only an installed,
-  explicit-factory behavioral profile for the existing public `WorldStore`
-  contract. Implementation and findings-first local review are complete. Ready
-  PR #26 and the one authorized GitHub Actions run `31092244573` passed all
-  eight unchanged essential jobs on DCO-signed commit
-  `1da692a693c1f92e10b676c2d4539354ce3ff59f`; squash integration is pending.
-  Do not infer discovery/loading, a new storage backend, native or database
-  storage, external-resource lifecycle, format changes, dependency, or release
-  publication.
+- M19 is complete, hosted-validated, and squash-integrated. Ready PR #26 and
+  the one authorized GitHub Actions run `31092244573` passed all eight
+  unchanged essential jobs on DCO-signed implementation commit
+  `1da692a693c1f92e10b676c2d4539354ce3ff59f`. PR #26 integrated exact final
+  evidence head `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as
+  GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
+  `7fcd614fdde76daf1807f27dbe78ec306a501cc3`. No M20 implementation is
+  assigned. Do not infer discovery/loading, a new storage backend, native or
+  database storage, external-resource lifecycle, format changes, dependency,
+  release publication, certification, or independent third-party adoption.
 
 ## Validation state
 

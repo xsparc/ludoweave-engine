@@ -27,7 +27,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M16 WASM-mod security admission decision | Hosted-validated installed inert-boundary evidence, prospective threat model, complete security/determinism gate, and no runtime or guest execution |
 | Done | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
 | Done | M18 installed agent-tool conformance | Hosted-validated explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
-| In progress | M19 installed WorldStore conformance | Versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
+| Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -107,6 +107,10 @@ load, install, sandbox, certify, or admit code and adds no backend or storage
 format. Ready PR #26 passed the unchanged eight-job hosted matrix as run
 `31092244573` on DCO-signed implementation commit
 `1da692a693c1f92e10b676c2d4539354ce3ff59f`.
+PR #26 squash-integrated exact final evidence head
+`b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as GitHub-verified
+commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
+`7fcd614fdde76daf1807f27dbe78ec306a501cc3`.
 
 ## Good-first contribution queue
 

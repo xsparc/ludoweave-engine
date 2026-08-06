@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M19 - installed WorldStore conformance
-- **Status:** Implementation, findings-first review, complete local gate, and
-  the one authorized hosted implementation run are clean on ready PR #26;
-  ready for the authorized squash merge into `main`.
+- **Status:** Complete, hosted-validated, and squash-integrated into `main` by
+  PR #26. No M20 implementation is assigned.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`.
@@ -63,5 +62,8 @@
   existing M1 simulation and both M3 target misses remain explicit. GitHub
   Actions run `31092244573` passed all eight unchanged essential jobs on
   DCO-signed implementation commit
-  `1da692a693c1f92e10b676c2d4539354ce3ff59f`. No merge, tag, release, or
-  package publication is claimed yet.
+  `1da692a693c1f92e10b676c2d4539354ce3ff59f`. PR #26 squash-integrated exact
+  final evidence head `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as
+  GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
+  `7fcd614fdde76daf1807f27dbe78ec306a501cc3`. No tag, release, package
+  publication, certification, or independent third-party adoption is claimed.

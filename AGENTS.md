@@ -107,5 +107,8 @@ field, dependency, lock, version, or package-root export; or claim project-
 owned evidence as third-party adoption or certification.
 Ready PR #26 and GitHub Actions run `31092244573` validate all eight unchanged
 essential jobs on DCO-signed M19 implementation commit
-`1da692a693c1f92e10b676c2d4539354ce3ff59f`. Squash integration into `main`
-is pending.
+`1da692a693c1f92e10b676c2d4539354ce3ff59f`. PR #26 squash-integrates exact
+final evidence head `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as
+GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
+`7fcd614fdde76daf1807f27dbe78ec306a501cc3`. M19 is complete. No M20
+implementation is assigned.
