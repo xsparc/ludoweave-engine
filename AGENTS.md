@@ -68,6 +68,10 @@ while phase/message/scalar details remain non-authoritative metadata. Only
 RFC-0003 gate 5 may become true; cross-version history, external feedback, and
 a supported release channel remain false. No runtime source, public export,
 protocol field, dependency, lock, version, workflow, or CI job changes.
+Ready PR #34 and GitHub Actions run `31104052702` validate all eight unchanged
+essential jobs on DCO-signed M23 implementation commit
+`a6dc30ec62d91b1f6640db2c23797967f2aefefe`. Thread-aware review reports no
+comments, reviews, or review threads. Exact squash integration is pending.
 
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the

@@ -31,7 +31,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
-| Active | M23 receipt semantic-diff and diagnostic compatibility | Exact receipt-v1 field/meaning and diagnostic-code policy, deterministic installed evidence, RFC-0006, artifact smoke, and unchanged essential CI topology |
+| Ready to integrate | M23 receipt semantic-diff and diagnostic compatibility | PR #34; reviewed exact receipt-v1 field/meaning and diagnostic-code policy, deterministic installed evidence, RFC-0006, artifact smoke, and all eight unchanged essential jobs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -162,6 +162,10 @@ identity, and unknown-code fallback. This satisfies only RFC-0003 gate 5;
 cross-version history, external feedback, and a supported release channel
 remain absent. No runtime API, protocol field, operation, dependency, version,
 or CI job is added.
+Ready PR #34 passed sole GitHub Actions run `31104052702` across all eight
+unchanged essential jobs on DCO-signed implementation commit
+`a6dc30ec62d91b1f6640db2c23797967f2aefefe`. Thread-aware review reports no
+comments, reviews, or review threads.
 
 ## Good-first contribution queue
 

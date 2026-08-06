@@ -1,10 +1,10 @@
 # Current Task
 
 - **Task:** M23 - receipt semantic-diff and diagnostic compatibility policy
-- **Status:** Locally complete and findings-first reviewed on
-  `codex/m23-receipt-diagnostic-policy`. Implementation, full local/artifact/
-  provider validation, documentation, and diff review are complete. Hosted
-  validation, publication, and integration remain.
+- **Status:** Ready to integrate on `codex/m23-receipt-diagnostic-policy`.
+  Implementation, full local/artifact/provider validation, findings-first
+  review, ready PR #34, hosted validation, and thread-aware review closure are
+  complete. Exact squash integration remains.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `415859e19d9d29caa1168fabc96def509897b056`.
@@ -49,3 +49,7 @@
   first component annotation mode was incompatible with the component schema,
   and `world.transaction.nontransactional_operation` is a nested cause rather
   than a top-level receipt diagnostic code.
+  DCO-signed implementation commit
+  `a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
+  #34. GitHub Actions run `31104052702` passed all eight unchanged essential
+  jobs. Thread-aware review reports no comments, reviews, or review threads.

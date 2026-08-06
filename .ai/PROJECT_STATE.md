@@ -2,15 +2,15 @@
 
 ## Current milestone
 
-M23 is assigned on `codex/m23-receipt-diagnostic-policy` from exact clean
+M23 is complete, findings-first reviewed, published, and hosted-validated on
+`codex/m23-receipt-diagnostic-policy` from exact clean
 synchronized `main` commit
 `415859e19d9d29caa1168fabc96def509897b056`. Its bounded result is an exact
 machine-readable receipt-v1 semantic-diff and diagnostic-code evolution policy,
 deterministic installed evidence, RFC-0006, and RFC-0003 schema `/4`
 bookkeeping. It changes no runtime package, public API, receipt field, operation,
-diagnostic behavior, dependency, lock, version, or CI topology. Implementation,
-focused tests, and documentation pass locally; hosted validation, publication,
-and integration remain. The complete local gate passes lock/sync,
+diagnostic behavior, dependency, lock, version, or CI topology. The complete
+local gate passes lock/sync,
 219-file formatting, Ruff, strict Pyright,
 1,048 tests with one existing Windows symlink skip, strict docs, pure build,
 isolated wheel/release smoke, 10 real-wgpu tests, both graphics vertical slices,
@@ -20,6 +20,11 @@ Findings-first review reports no blocking or non-blocking defect and no open
 question. The optional `.agents` task/ledger files expected by the review role
 are absent, so the authoritative `.ai` task, accepted RFCs, AGENTS boundary,
 call sites, tests, and executed evidence were used as the review baseline.
+DCO-signed implementation commit
+`a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
+#34. GitHub Actions run `31104052702` passed all eight unchanged essential jobs.
+Thread-aware review reports no comments, reviews, or review threads. Squash
+integration is pending.
 
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on

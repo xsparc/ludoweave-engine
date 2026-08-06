@@ -65,6 +65,32 @@ then exited 0 in 0.67 seconds, `git diff --check` exited 0, the new-file
 credential-assignment scan matched nothing, and the scope check reported no
 change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`.
 
+## M23 hosted validation and review closure - PR #34
+
+Ready PR #34 targets exact base
+`415859e19d9d29caa1168fabc96def509897b056` from DCO-signed implementation
+commit `a6dc30ec62d91b1f6640db2c23797967f2aefefe`. GitHub Actions run
+`31104052702`, triggered once by the pull request, completed successfully on
+2026-08-06 across the unchanged eight-job topology:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution - Ubuntu, Python 3.12 | Passed lock, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility - Ubuntu, Python 3.13 | Passed. |
+| Compatibility - Ubuntu, Python 3.14 | Passed. |
+| Compatibility - Windows, Python 3.14 | Passed. |
+| Compatibility - macOS, Python 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+After the run, PR #34 was open, ready, `MERGEABLE`, and `CLEAN`; all eight
+status checks were `SUCCESS`. The required thread-aware review read returned no
+conversation comments, reviews, or review threads. No reply or manual thread
+resolution was performed. The branch has one CI run total, and no workflow or
+job topology changed. No cross-version, external-adoption, stability-promotion,
+release, or publication claim is made.
+
 ## M22 development evidence — 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |
