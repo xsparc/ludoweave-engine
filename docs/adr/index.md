@@ -34,4 +34,5 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0030: retain data-only plugins and defer WASM mods](0030-retain-data-only-plugins-and-defer-wasm-mods.md)
 - [ADR-0031: explicit installed render-device conformance](0031-explicit-installed-render-device-conformance.md)
 - [ADR-0032: explicit installed agent-tool conformance](0032-explicit-installed-agent-tool-conformance.md)
+- [ADR-0033: explicit installed WorldStore conformance](0033-explicit-installed-world-store-conformance.md)
 - [ADR template](template.md)

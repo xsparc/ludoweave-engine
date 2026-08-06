@@ -115,6 +115,13 @@ World mutation is single-owner and not concurrently safe. Normal CPython remains
 
 `ReferenceWorld` provides the same public storage behavior through a deliberately simple dictionary model. It independently implements allocation, values, epochs, patching, and cloning and is used as a property-test oracle. It is useful for conformance, not as an optimized gameplay backend.
 
+The installed [WorldStore conformance profile](world-store-conformance.md)
+turns the shared storage-neutral behavior into a fixed external evidence
+contract. A caller supplies one trusted factory explicitly; the runner does not
+discover or install implementations. It checks the production and reference
+worlds from source and installed artifacts without exposing dense/sparse rows,
+adding persistence, or creating another authority.
+
 ## Queries
 
 `World.query()` preserves the caller's component order and returns an immutable builder. Included types are conjunctive and `without()` excludes an entity when any named type is present:

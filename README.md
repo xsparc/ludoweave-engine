@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M18 are hosted-validated and integrated into `main`. M18 adds an explicit installed agent-tool conformance profile without discovering or admitting adapter code. Existing APIs remain experimental; the M12 manifest surface is the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M18 are hosted-validated and integrated into `main`. M19 adds an explicit installed WorldStore conformance profile without discovering implementations or adding storage. Existing APIs remain experimental; the M12 manifest surface is the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -55,6 +55,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - A versioned installed agent-tool baseline that exercises all 12 typed tools,
   transaction/tick receipts, stale-hash atomicity, query/diff, provider result
   shapes, and close behavior through an explicitly supplied trusted factory.
+- A versioned installed `WorldStore` baseline that exercises entity generations,
+  epochs, detached copies, queries, command atomicity, cloning, and structured
+  failures through an explicitly supplied trusted factory.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
 - A transport-independent typed agent service with explicit capabilities, quotas, redaction, serialized mutations, and the same canonical command receipts used by direct Python.
 - Twelve observation/control tools exposed through Python, a project-confined CLI, and a local-only MCP `2025-11-25` stdio adapter with no network listener.
@@ -96,6 +99,8 @@ uv run python examples/visual_editor_decision.py
 uv run python examples/wasm_mod_security_decision.py
 uv run python examples/render_device_conformance.py
 uv run python examples/agent_tool_conformance.py
+uv run python examples/world_store_conformance.py
+uv run python examples/world_store_conformance.py --backend reference
 uv run python examples/alpha_acceptance.py
 uv run ludoweave plugin check examples/example.plugin.json
 uv run ludoweave inspect --sample agent-world-builder
@@ -183,6 +188,9 @@ report, limitations, and evidence expectations for external adapters.
 The [agent-tool conformance guide](docs/agent-tool-conformance.md) documents
 M18's fixed 12-check profile, fresh-authority precondition, ownership,
 sanitized evidence, and explicit non-certification boundary.
+The [WorldStore conformance guide](docs/world-store-conformance.md) documents
+M19's fixed 10-check profile, borrowed registry identity, current no-close
+in-memory boundary, sanitized evidence, and non-certification limitations.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

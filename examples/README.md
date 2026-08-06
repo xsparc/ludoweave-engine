@@ -13,6 +13,8 @@ python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
 python render_device_conformance.py
+python world_store_conformance.py
+python world_store_conformance.py --backend reference
 python agent_tool_conformance.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
@@ -52,6 +54,12 @@ explicitly selected trusted adapter. The dependency-free default validates the
 Null device; `--backend wgpu` validates the optional production adapter. It
 does not discover, import by name, install, sandbox, or certify third-party
 code.
+
+`world_store_conformance.py` runs the versioned storage-neutral baseline against
+an explicit built-in `World` or `ReferenceWorld` factory. It validates entity
+generations, epochs, copy isolation, queries, atomic command buffers, cloning,
+and structured failures without discovery, persistence, provider imports, or an
+external-resource lifecycle.
 
 `agent_tool_conformance.py` runs the versioned 12-tool baseline against an
 explicit built-in direct-service factory and a fresh clean authority. It does

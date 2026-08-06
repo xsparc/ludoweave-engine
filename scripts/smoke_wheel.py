@@ -437,6 +437,31 @@ def main(argv: Sequence[str] | None = None) -> int:
         ):
             raise RuntimeError(f"agent-tool conformance report was invalid: {agent_conformance!r}")
 
+        for backend in ("world", "reference"):
+            world_conformance_result = _run(
+                [
+                    str(python),
+                    "-I",
+                    str(project_root / "examples" / "world_store_conformance.py"),
+                    "--backend",
+                    backend,
+                ],
+                cwd=temp_root,
+            )
+            world_conformance = cast(dict[str, object], json.loads(world_conformance_result.stdout))
+            world_checks = cast(list[dict[str, object]], world_conformance.get("checks"))
+            if (
+                world_conformance.get("protocol") != "ludoweave.world-store-conformance/1"
+                or world_conformance.get("profile") != "world-store-baseline/1"
+                or world_conformance.get("adapter_id") != f"ludoweave.{backend}"
+                or world_conformance.get("status") != "pass"
+                or len(world_checks) != 10
+                or any(check.get("status") != "pass" for check in world_checks)
+            ):
+                raise RuntimeError(
+                    f"world-store conformance report was invalid: {world_conformance!r}"
+                )
+
         rollback_result = _run(
             [
                 str(python),

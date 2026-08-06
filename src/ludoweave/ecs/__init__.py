@@ -14,6 +14,14 @@ from ludoweave.ecs.component import (
     component,
     component_schema,
 )
+from ludoweave.ecs.conformance import (
+    WORLD_STORE_CONFORMANCE_PROFILE,
+    WORLD_STORE_CONFORMANCE_PROTOCOL,
+    WorldStoreConformanceCheck,
+    WorldStoreConformanceReport,
+    WorldStoreConformanceStatus,
+    run_world_store_conformance,
+)
 from ludoweave.ecs.entity import EntityAllocator, EntityId
 from ludoweave.ecs.errors import (
     ActiveQueryError,
@@ -74,6 +82,8 @@ from ludoweave.ecs.schedule import (
 from ludoweave.ecs.world import World, WorldStore
 
 __all__ = [
+    "WORLD_STORE_CONFORMANCE_PROFILE",
+    "WORLD_STORE_CONFORMANCE_PROTOCOL",
     "ActiveQueryError",
     "CommandBufferStateError",
     "Commands",
@@ -144,8 +154,12 @@ __all__ = [
     "World",
     "WorldError",
     "WorldStore",
+    "WorldStoreConformanceCheck",
+    "WorldStoreConformanceReport",
+    "WorldStoreConformanceStatus",
     "component",
     "component_schema",
+    "run_world_store_conformance",
     "system",
     "system_spec",
 ]

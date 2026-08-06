@@ -34,6 +34,8 @@ python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python render_device_conformance.py
 python agent_tool_conformance.py
+python world_store_conformance.py
+python world_store_conformance.py --backend reference
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -47,6 +49,9 @@ The render-device profile produces deterministic installed evidence for the
 explicit Null factory; it does not discover or certify executable providers.
 The agent-tool profile exercises the exact 12-tool direct-service contract
 against a fresh authority; it does not discover or certify adapters.
+The WorldStore profile exercises both project-owned storage implementations;
+it does not discover implementations, admit persistent storage, or certify
+third-party adapters.
 
 The foundational application surface is deliberately small:
 
@@ -138,6 +143,10 @@ evaluation, shell tool, or dynamic project-module loader.
 The [agent-tool conformance guide](agent-tool-conformance.md) explains how an
 external local adapter can supply an explicitly imported trusted factory and
 what a passing installed report does not prove.
+
+The [WorldStore conformance guide](world-store-conformance.md) explains how a
+storage-neutral implementation can supply an explicit trusted factory and what
+the fixed in-memory profile does and does not prove.
 
 ## Failure and compatibility expectations
 
