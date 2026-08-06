@@ -66,6 +66,13 @@ global registration, and records that a project-owned pass is reference
 behavior rather than security, provenance, external adoption, cross-platform,
 performance, or manual-recovery evidence.
 
+RFC-0003 resolves the first central API-stability candidate by retaining the
+command, transaction, and receipt contracts as experimental. Same-version
+canonical/atomic behavior is confirmed, but preview promotion remains gated on
+a cross-version corpus, external consumer feedback, operation and receipt-field
+evolution rules, a bounded public receipt reader, and a supported deprecation-
+capable feature-release channel.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

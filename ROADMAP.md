@@ -28,6 +28,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
 | Done | M18 installed agent-tool conformance | Hosted-validated explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
+| In progress | M20 command/receipt stability decision | Installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -111,6 +112,12 @@ PR #26 squash-integrated exact final evidence head
 `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as GitHub-verified
 commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
 `7fcd614fdde76daf1807f27dbe78ec306a501cc3`.
+M20 starts from integrated `main` commit
+`2fdeccd697f09f3e165130eb8564a6c585d472d2`. It evaluates whether the
+installed command/transaction/receipt contracts are ready for preview without
+changing their runtime or wire formats. RFC-0003 retains experimental status
+until the complete cross-version, external-feedback, operation/receipt
+evolution, bounded-reader, and supported-release-channel gate is evidenced.
 
 ## Good-first contribution queue
 

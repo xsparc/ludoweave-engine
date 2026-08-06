@@ -296,19 +296,35 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M19 is complete, hosted-validated, and squash-integrated. Ready PR #26 and
-  the one authorized GitHub Actions run `31092244573` passed all eight
-  unchanged essential jobs on DCO-signed implementation commit
-  `1da692a693c1f92e10b676c2d4539354ce3ff59f`. PR #26 integrated exact final
-  evidence head `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as
-  GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
-  `7fcd614fdde76daf1807f27dbe78ec306a501cc3`. No M20 implementation is
-  assigned. Do not infer discovery/loading, a new storage backend, native or
-  database storage, external-resource lifecycle, format changes, dependency,
-  release publication, certification, or independent third-party adoption.
+- M19 is complete, hosted-validated, and squash-integrated. M20 is locally
+  complete and reviewed on
+  `codex/m20-command-receipt-stability-decision` from exact clean synchronized
+  `main` commit `2fdeccd697f09f3e165130eb8564a6c585d472d2`. It is an installed
+  command/receipt preview-readiness decision only: confirm the existing
+  same-version canonical, atomic, and transport-independent foundation; define
+  the complete compatibility gate; and record the decision in RFC-0003. It may
+  not add or change a command, operation, receipt reader/field, schema,
+  migration, stability label, runtime export, dependency, lock, version, or CI
+  job. Publication and hosted validation remain pending. No compatibility
+  promise, external adoption, tag, release, publication, certification, or
+  independently authored consumer evidence may be inferred.
 
 ## Validation state
 
+- The exact M20 base resolves 46 locked packages. Its focused canonical
+  command/transaction/receipt/agent/API baseline passes 91 tests in 1.52
+  seconds, and its full suite passes 955 tests with the existing Windows
+  symlink-capability skip in 72.22 seconds. The final M20 Windows/uv-managed
+  CPython 3.12.13 gate passes 972 tests with that one skip in 73.99 seconds,
+  205-file formatting, zero Ruff/Pyright findings, strict documentation, a pure
+  94-entry wheel with no mandatory dependency or native/WASM file, isolated-
+  wheel smoke, a fresh complete ten-artifact release smoke, 211 expanded
+  focused passes, and ten real-wgpu passes. All inherited benchmark/profile
+  artifacts validate; the M1 simulation and both M3 targets remain observed
+  misses and authorize no acceleration. Review hardened forbidden-import
+  prefix detection and reports no remaining finding. Workflows, runtime source,
+  project metadata, lock, version, protocol, stability labels, and package-root
+  exports are unchanged. Hosted validation and publication remain pending.
 - The final hardened M19 local gate on Windows/uv-managed CPython 3.12.13
   reports 955 passing tests and one existing symlink-capability skip, 201
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a

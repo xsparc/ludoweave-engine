@@ -13,7 +13,7 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.core` | Clock/error contracts | Experimental |
 | `ludoweave.ecs` | Entity, component, query, resource, schedule, world, and installed conformance contracts | Experimental |
 | `ludoweave.app` | Lifecycle, fixed-step application, and input contracts | Experimental |
-| `ludoweave.world` | Persistent commands, receipts, snapshots, replay, and authority | Experimental |
+| `ludoweave.world` | Persistent commands, receipts, snapshots, replay, and authority; command/receipt preview remains deferred under RFC-0003 | Experimental |
 | `ludoweave.render` | Backend-neutral 2D rendering contracts and installed conformance evidence | Experimental |
 | `ludoweave.render.backends` | Null validation adapters | Experimental |
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
@@ -30,6 +30,12 @@ Names from `ludoweave.tools` are composition-root internals unless a future
 decision exports them. CLI commands and persistent protocols have separately
 documented versioned contracts; a Python stability label does not override a
 wire-format revision.
+
+M20 confirms that the installed command/transaction/receipt path is canonical,
+atomic, and transport-independent within one version. It remains experimental:
+there is no public bounded receipt reader, cross-version fixture corpus,
+external consumer evidence, complete field-evolution policy, or supported
+feature-release channel for the preview deprecation promise.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

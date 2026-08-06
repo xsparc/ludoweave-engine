@@ -37,7 +37,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M18 are complete, independently accepted, hosted-CI validated, and
+M0 through M19 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
@@ -110,5 +110,15 @@ essential jobs on DCO-signed M19 implementation commit
 `1da692a693c1f92e10b676c2d4539354ce3ff59f`. PR #26 squash-integrates exact
 final evidence head `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as
 GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
-`7fcd614fdde76daf1807f27dbe78ec306a501cc3`. M19 is complete. No M20
-implementation is assigned.
+`7fcd614fdde76daf1807f27dbe78ec306a501cc3`. M19 is complete; no M20 work was
+included in it.
+
+M20 is assigned only to an installed command/receipt preview-readiness
+decision. It must confirm the current same-version canonical and atomic
+behavior, reuse the existing M18 agent-tool profile, define the complete
+compatibility gate, and record the result under RFC-0003 through source,
+isolated-wheel, and release-bundle evidence. It may not add or reinterpret a
+command, operation, receipt field/reader, schema, migration, public runtime
+symbol, stability label, root export, dependency, lock, package version, or CI
+job. No external adoption, cross-version compatibility, tag, release,
+publication, or certification may be claimed without direct evidence.

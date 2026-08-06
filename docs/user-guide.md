@@ -36,6 +36,7 @@ python render_device_conformance.py
 python agent_tool_conformance.py
 python world_store_conformance.py
 python world_store_conformance.py --backend reference
+python command_receipt_stability_decision.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -52,6 +53,9 @@ against a fresh authority; it does not discover or certify adapters.
 The WorldStore profile exercises both project-owned storage implementations;
 it does not discover implementations, admit persistent storage, or certify
 third-party adapters.
+The command/receipt stability evidence confirms same-version canonical and
+atomic behavior, then records why RFC-0003 retains experimental status. It
+does not change a wire format or claim cross-version compatibility.
 
 The foundational application surface is deliberately small:
 
@@ -147,6 +151,11 @@ what a passing installed report does not prove.
 The [WorldStore conformance guide](world-store-conformance.md) explains how a
 storage-neutral implementation can supply an explicit trusted factory and what
 the fixed in-memory profile does and does not prove.
+
+The [command and receipt stability decision](command-receipt-stability-decision.md)
+explains why the installed canonical/atomic foundation is not yet a preview
+compatibility promise. Its evidence is diagnostic only and changes no world,
+wire format, or package stability status outside its private in-memory fixture.
 
 ## Failure and compatibility expectations
 

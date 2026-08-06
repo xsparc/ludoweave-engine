@@ -112,6 +112,13 @@ conformance guide](world-store-conformance.md). A passing report does not
 establish provenance, persistence safety, support-matrix coverage, performance,
 or independent adoption.
 
+M20 does not add another adapter boundary. It evaluates the command/receipt
+contract already exercised through M18 and retains it as experimental under
+RFC-0003. Adapter authors should not treat the `/1` identifiers or a passing
+same-version profile as a preview compatibility promise; read the
+[stability decision](command-receipt-stability-decision.md) before persisting or
+transporting these documents across package versions.
+
 ## Publishing and compatibility
 
 Third-party adapters should be separately distributed packages that require a

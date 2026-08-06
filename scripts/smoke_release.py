@@ -15,6 +15,7 @@ from collections.abc import Iterable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import cast
 
+from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
@@ -173,6 +174,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         wasm_security = cast(dict[str, object], json.loads(wasm_security_result.stdout))
         validate_wasm_mod_security_evidence(wasm_security, version=version)
+        command_receipt_result = _run(
+            [str(python), "-I", "command_receipt_stability_decision.py"],
+            cwd=sample_root,
+        )
+        command_receipt = cast(dict[str, object], json.loads(command_receipt_result.stdout))
+        validate_command_receipt_stability_evidence(command_receipt, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -237,6 +244,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "agent_tool_conformance.py",
         "alpha_acceptance.py",
         "clockwork_arena.py",
+        "command_receipt_stability_decision.py",
         "constrained_3d_decision.py",
         "render_device_conformance.py",
         "rollback_readiness.py",
