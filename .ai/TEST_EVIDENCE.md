@@ -44,6 +44,33 @@ stale-documentation finding. M27 adds no runtime source, public export,
 persistent format, protocol, dependency, lock, version, workflow job, network
 activity, telemetry, external fact, tag, release, or publication.
 
+## M27 initial hosted failure and local correction - PR #42
+
+Ready PR #42 targets exact base
+`c1c3be08f7f75d90e7d1b517adbc30d56902ece4` from DCO-signed implementation
+commit `c622ff534ba93639b9dae7fe3ce603a123709792`. Initial GitHub Actions run
+`31118834216` exposed one project defect and one independent infrastructure
+failure:
+
+- Ubuntu CPython 3.13 and 3.14 each ran the complete tests and failed only
+  `test_public_contributor_path_is_complete_but_claims_no_external_study`.
+  The M27 test referenced `.github/PULL_REQUEST_TEMPLATE.md`, but the exact
+  tracked path is lowercase `.github/pull_request_template.md`; Windows local
+  validation could not expose the case-sensitive lookup defect.
+- Windows graphics failed during runner setup before checkout. GitHub reported
+  `Service Unavailable` and `Failed to resolve action download info`; no
+  repository command ran.
+- macOS graphics passed every graphics/provider/profile/sample step.
+
+The M27 architecture test now uses the exact tracked lowercase filename. The
+already-failed run was cancelled so its remaining queued jobs would not consume
+quota. No workflow or production behavior changed. Corrected local and hosted
+validation remain pending; no pass is claimed for run `31118834216`.
+
+| Corrected case-sensitive path gate | Exit | Result |
+| --- | ---: | --- |
+| Ruff format/check, Pyright, focused tests, strict docs, and whitespace | 0 | The exact test file was formatted and Ruff-clean; Pyright reported zero diagnostics; 59 focused tests passed with one Windows symlink-capability skip in 2.00 seconds; strict docs built in 0.72 seconds; and whitespace passed. |
+
 ## M26 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

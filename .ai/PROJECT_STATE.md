@@ -32,8 +32,14 @@ symlink-capability skips, pure build, isolated wheel/release smoke, all retained
 benchmark/profile validators, ten real-wgpu tests, and both graphics vertical
 slices. Protected runtime/workflow/metadata/lock scope is unchanged; the
 94-entry wheel has no native library and the 34-entry sample bundle contains
-both M27 evidence files. Commit, hosted validation, delayed thread-aware review,
-and integration remain pending.
+both M27 evidence files. Initial hosted run `31118834216` found that the M27
+architecture test spelled the tracked lowercase pull-request template with an
+uppercase filename; both Ubuntu compatibility jobs failed that same case-
+sensitive lookup. The local correction uses the exact tracked path. Windows
+graphics separately failed during GitHub action-download resolution before
+checkout with `Service Unavailable`; macOS graphics passed. The already-failed
+run was cancelled rather than spending its remaining queued jobs. Corrected
+hosted validation, delayed thread-aware review, and integration remain pending.
 
 M26 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m26-supported-release-channel-readiness` from exact clean

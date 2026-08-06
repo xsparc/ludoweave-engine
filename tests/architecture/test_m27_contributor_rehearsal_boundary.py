@@ -14,7 +14,7 @@ import ludoweave
 _ROOT = Path(__file__).parents[2]
 _REHEARSALS = _ROOT / "tests" / "fixtures" / "external_contributor_rehearsal.json"
 _CONTRIBUTOR_GUIDE = _ROOT / "docs" / "first-contribution.md"
-_PULL_REQUEST_TEMPLATE = _ROOT / ".github" / "PULL_REQUEST_TEMPLATE.md"
+_PULL_REQUEST_TEMPLATE = _ROOT / ".github" / "pull_request_template.md"
 _GOOD_FIRST_TEMPLATE = _ROOT / ".github" / "ISSUE_TEMPLATE" / "good_first_issue.yml"
 _CI_WORKFLOW = _ROOT / ".github" / "workflows" / "ci.yml"
 _RELEASE_WORKFLOW = _ROOT / ".github" / "workflows" / "release.yml"

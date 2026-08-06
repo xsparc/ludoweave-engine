@@ -59,4 +59,10 @@
   skip. The complete local gate passes 235-file formatting, Ruff, strict
   Pyright, strict docs, 1,210 tests with four Windows symlink-capability skips,
   pure build, isolated wheel/release smoke, retained benchmark/profile
-  validators, ten real-wgpu tests, and both graphics vertical slices.
+  validators, ten real-wgpu tests, and both graphics vertical slices. Initial
+  hosted run `31118834216` exposed one case-sensitive test-path defect on both
+  Ubuntu compatibility jobs: the tracked lowercase pull-request template was
+  referenced with uppercase spelling. The local correction uses the exact
+  tracked path. Windows graphics separately failed during GitHub action-
+  download setup before checkout; the already-failed run was cancelled to
+  avoid spending its remaining queued jobs.
