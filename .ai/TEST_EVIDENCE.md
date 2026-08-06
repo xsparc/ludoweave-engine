@@ -163,8 +163,42 @@ finding remains actionable. No reply or manual thread resolution was performed.
 
 The successful hosted checks do not establish real cross-version release
 history, supported-release evidence, external feedback, stability promotion,
-tag, GitHub release, or PyPI publication. A final documentation-only evidence
-commit will use `[skip ci]`; squash integration remains.
+tag, GitHub release, or PyPI publication. The final documentation-only evidence
+commit used `[skip ci]` and created no additional run; integration is recorded
+below.
+
+## M24 main integration - 2026-08-06
+
+Ready PR #36 was squash-merged at `2026-08-06T14:08:37Z`. GitHub reports merged
+commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8` with sole parent
+`55c7a72337913303b6b1f6bd31edbca7ff28683b`, exact tree
+`fa3c455ccd9722c666cc07cae325f1b50e37ddc7`, a valid GitHub signature verified
+at `2026-08-06T14:08:40Z`, and the DCO trailer. The tree exactly matches final
+evidence head `1a8bd6f19f656eb5c4a0d6bd90f057a69bddbc34` on retained branch
+`codex/m24-cross-version-corpus-readiness`; literal tree comparison and
+`git diff --exit-code` reported no difference.
+
+GitHub still lists exactly the initial successful run `31107800179` and the one
+necessary successful correction run `31108924069` for the milestone branch;
+both final evidence commits used `[skip ci]` and created no additional run.
+Integration changes no runtime source, API/export, protocol, workflow,
+dependency, lock, version, stability label, immutable M21 receipt byte, or M24
+admission-manifest byte. No tag, GitHub release, PyPI publication, actual cross-
+version history, supported release record, external feedback, certification, or
+stability promotion is claimed.
+
+After `git fetch --prune origin`, local `main` fast-forwarded to the verified
+squash commit and matched `origin/main` with a clean worktree. Full repository
+connectivity passed `git fsck --full --no-dangling`. Documentation-only branch
+`codex/m24-main-integration` was created from that exact clean commit; it adds no
+subsequent milestone work.
+
+On the documentation-only integration branch, strict MkDocs built in 0.70
+seconds, `git diff --check`, the non-state-surface comparison to `main`, and
+`git fsck --full --no-dangling` exited 0. `git diff --name-only main` listed
+exactly `.ai/CURRENT_TASK.md`, `.ai/PROJECT_STATE.md`, `.ai/TEST_EVIDENCE.md`,
+`AGENTS.md`, and `ROADMAP.md`. The focused credential-assignment scan returned
+no match.
 
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
 

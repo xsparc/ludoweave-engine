@@ -32,7 +32,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
 | Done | M23 receipt semantic-diff and diagnostic compatibility | PR #34 squash-integrated the corrected exact policy/evidence; 1,050 local tests and both eight-job hosted runs passed with no current actionable review finding |
-| In progress | M24 cross-version corpus admission readiness | Ready PR #36; exact preserved-manifest/receipt audit, false current gate, synthetic future gate-logic regression, installed artifact smoke, RFC-0007, and all eight unchanged essential jobs passed in sole hosted run `31107800179` |
+| Done | M24 cross-version corpus admission readiness | PR #36 squash-integrated; exact preserved history, false current gate, append-only correction, installed artifact smoke, RFC-0007, and both eight-job hosted runs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -188,7 +188,10 @@ prefixes and proves a newly pinned future manifest cannot replace the M21 entry;
 DCO correction commit `b393d6857f0a60c5d124fdeb25b3779c8f9dab86`
 passed necessary run `31108924069` across all eight unchanged essential jobs.
 Final thread-aware reread found no actionable finding; squash integration
-remains.
+completed through PR #36 at GitHub-verified `main` commit
+`b7b16697d28410567cbddf8eb962c7e6c9e664b8`. Its tree
+`fa3c455ccd9722c666cc07cae325f1b50e37ddc7` exactly matches final evidence head
+`1a8bd6f19f656eb5c4a0d6bd90f057a69bddbc34`; the branch is retained.
 
 ## Good-first contribution queue
 
