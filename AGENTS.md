@@ -37,7 +37,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M19 are complete, independently accepted, hosted-CI validated, and
+M0 through M20 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
@@ -113,15 +113,19 @@ GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees ar
 `7fcd614fdde76daf1807f27dbe78ec306a501cc3`. M19 is complete; no M20 work was
 included in it.
 
-M20 is assigned only to an installed command/receipt preview-readiness
-decision. It must confirm the current same-version canonical and atomic
-behavior, reuse the existing M18 agent-tool profile, define the complete
-compatibility gate, and record the result under RFC-0003 through source,
-isolated-wheel, and release-bundle evidence. It may not add or reinterpret a
+M20 adds only an installed command/receipt preview-readiness decision. It
+confirms the current same-version canonical and atomic behavior, reuses the
+existing M18 agent-tool profile, defines the complete compatibility gate, and
+records the result under RFC-0003 through source, isolated-wheel, and release-
+bundle evidence. It does not add or reinterpret a
 command, operation, receipt field/reader, schema, migration, public runtime
 symbol, stability label, root export, dependency, lock, package version, or CI
 job. No external adoption, cross-version compatibility, tag, release,
 publication, or certification may be claimed without direct evidence.
 Ready PR #28 and GitHub Actions run `31095009029` validate all eight unchanged
 essential jobs on DCO-signed M20 implementation commit
-`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. Squash integration is pending.
+`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. PR #28 squash-integrates exact
+final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` into `main` as
+GitHub-verified commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
+`c3e2dc1224f530fb483d1b9684ff55329bf9557b`. M20 is complete; no M21 work is
+included or assigned here.

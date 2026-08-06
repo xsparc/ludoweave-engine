@@ -2402,3 +2402,31 @@ has not yet been merged at this stage.
 After adding this hosted record, `uv run --frozen mkdocs build --strict` and
 `git diff --check` both exited 0; the documentation build emitted only the
 recorded upstream MkDocs Material/MkDocs 2.0 informational warning.
+
+## M20 main integration - 2026-08-06
+
+Ready PR #28 was squash-merged at `2026-08-06T10:58:12Z`. GitHub reports
+merged commit `d166ef86bf25526d9d7715f63263d3cac6db78d4` with sole parent
+`2fdeccd697f09f3e165130eb8564a6c585d472d2`, exact tree
+`c3e2dc1224f530fb483d1b9684ff55329bf9557b`, a valid GitHub signature verified
+at `2026-08-06T10:58:16Z`, and the DCO trailer. The tree exactly matches final
+evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` on retained branch
+`codex/m20-command-receipt-stability-decision`; corrected literal-revision
+`git rev-parse` checks and `git diff --exit-code` reported equal trees and no
+difference.
+
+GitHub still lists only successful run `31095009029` for the milestone branch;
+the documentation-only hosted-evidence commit used `[skip ci]` and created no
+second run. The first read-only tree query left PowerShell revision braces
+unquoted and was parsed incorrectly, producing fatal ambiguous-revision output;
+the quoted rerun above exited 0 and is the recorded result. Integration changes
+no runtime, public API, protocol, stability label, workflow, dependency, lock,
+package version, benchmark target, format, or release artifact. No tag, GitHub
+release, PyPI publication, cross-version compatibility, external consumer
+adoption, public receipt reader, or stability promotion is claimed.
+
+The documentation-only integration record passes `uv run --frozen mkdocs
+build --strict`, `git diff --check`, and the protected-surface comparison
+`git diff --exit-code origin/main -- .github pyproject.toml uv.lock
+src/ludoweave`; all exited 0. The docs build emitted only the recorded upstream
+MkDocs Material/MkDocs 2.0 informational warning.

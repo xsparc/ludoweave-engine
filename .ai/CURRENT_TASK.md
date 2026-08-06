@@ -1,11 +1,11 @@
 # Current Task
 
 - **Task:** M20 - command/receipt preview-readiness decision
-- **Status:** Implementation, complete local validation, findings-first review,
-  publication through ready PR #28, and the single unchanged essential hosted
-  run are complete on `codex/m20-command-receipt-stability-decision` from exact
-  clean synchronized `main` commit
-  `2fdeccd697f09f3e165130eb8564a6c585d472d2`. Squash integration is pending.
+- **Status:** Complete. Implementation, local validation, findings-first
+  review, ready PR #28, the single unchanged essential hosted run, and exact
+  squash integration into `main` are complete. PR #28 produced GitHub-verified
+  main commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`; the milestone branch
+  remains for audit history.
 - **Started:** 2026-08-06
 - **Outcome:** Decide whether the central installed command, transaction, and
   receipt contracts can honestly move from experimental to preview stability,
@@ -62,6 +62,9 @@
   matching for submodules and found no remaining issue. Ready PR #28 is
   mergeable and clean; GitHub Actions run `31095009029` passed all eight
   unchanged essential jobs on DCO-signed implementation commit
-  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. No merge, tag, release, package
+  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. PR #28 squash-integrated exact
+  final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` as verified
+  `main` commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
+  `c3e2dc1224f530fb483d1b9684ff55329bf9557b`. No tag, release, package
   publication, stability promotion, cross-version compatibility, or external
   adoption is claimed.
