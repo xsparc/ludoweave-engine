@@ -35,6 +35,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M24 cross-version corpus admission readiness | PR #36 squash-integrated; exact preserved history, false current gate, append-only correction, installed artifact smoke, RFC-0007, and both eight-job hosted runs passed |
 | Done | M25 external-consumer-feedback admission readiness | PR #38 squash-integrated; strict reviewed manifest, false current gate, reviewed non-IP correction, installed artifact smoke, RFC-0008, and both eight-job hosted runs passed |
 | Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
+| Active | M27 external-contributor rehearsal admission readiness | Strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -231,6 +232,18 @@ admission gap; 1,153 local tests and necessary corrected hosted run
 `ac8dd43e6b93bc89af1f5dd1821948e4860ac88b` as GitHub-verified `main` commit
 `a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde`; both trees are
 `e1f39a9c5d2bc81f76b45288225b27a7c782bf50`, and the branch is retained.
+
+M27 starts from verified integrated `main` commit
+`c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. It adds an offline admission
+harness requiring at least one independently reviewed human good-first
+contribution linked to a public project issue and merged pull request, with
+exact revisions, patch/feedback hashes, DCO, documented validation, no private
+maintainer knowledge, and no protected API/format/dependency/workflow change.
+The reviewed rehearsal set is empty, so the current result remains false;
+documentation, CI, project-owned fixtures, maintainers, and automated agents
+are not external-contributor usability evidence. No runtime source, public API,
+format, dependency, version, workflow job, network activity, contributor
+contact, telemetry, publication, or support promise is added.
 
 ## Good-first contribution queue
 

@@ -37,6 +37,22 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
+M27 adds only strict offline external-contributor rehearsal admission readiness
+for the design-plan objective that public documentation enable a first external
+contribution without private maintainer knowledge. The reviewed manifest is
+empty, so its current result must remain false and must not claim usability,
+adoption, feedback, or external contribution. Manual review, not evaluator
+logic, owns contributor independence, absence of private assistance, merge/DCO
+state, and provenance. M27 may add only frozen data evidence, an explicitly
+invoked evaluator/validator, synthetic gate tests, RFC/docs, and source/wheel/
+release-sample artifact smoke through the unchanged eight essential CI jobs. It
+may not solicit/contact contributors; open or mutate issues/PRs as evidence;
+collect private correspondence or personal data; use networking, telemetry,
+discovery, dynamic imports, subprocesses, or provider execution; or change
+runtime source, public APIs/exports, persistent formats, protocols, operations,
+dependencies, lock, version, workflow, CI topology, tag, release, publication,
+support policy, or stability label.
+
 M26 adds only strict offline supported deprecation release-channel
 admission readiness for RFC-0003 gate 6. The reviewed manifest is empty, so its
 current result must remain false and must not claim support or publication.
@@ -93,7 +109,9 @@ commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8`; both trees are
 assigned base. The milestone branch remains the audit trail.
 
 M0 through M26 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`. This branch records M26 integration only.
+integrated into `main`. M27 starts from exact verified integration-record
+commit `c1c3be08f7f75d90e7d1b517adbc30d56902ece4` and contains no subsequent
+milestone.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
 policy identified by RFC-0003: a frozen repository contract, deterministic
 installed evidence, tests, RFC/docs, artifact smoke, and gate bookkeeping. It

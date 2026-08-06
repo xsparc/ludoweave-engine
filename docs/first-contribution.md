@@ -81,4 +81,7 @@ The community-alpha CI rehearses this public path from a clean checkout on
 Windows, macOS, and Linux: locked setup, quality/docs, complete tests, pure-wheel
 build, isolated installed-wheel smoke, release staging, checksum/SBOM validation,
 and bundled headless samples. No external-contributor usability study has yet
-been recorded; report unclear or missing steps as documentation bugs.
+been recorded; report unclear or missing steps as documentation bugs. The
+[M27 readiness contract](external-contributor-rehearsal-readiness.md) explains
+what a future independently reviewed rehearsal must establish and why this
+walkthrough, project CI, and synthetic fixtures do not establish it alone.

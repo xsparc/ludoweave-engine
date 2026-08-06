@@ -2,6 +2,48 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M27 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M26 feature/state integration verification and branch preparation | 0 | PR #40 squash-integrated the exact final M26 tree as GitHub-verified `a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde`; zero-run PR #41 integrated its exact five-file state tree as GitHub-verified `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`; local `main` was clean and synchronized. |
+| `git switch -c codex/m27-external-contributor-rehearsal-readiness` | 0 | Created M27 from exact integrated `main` commit `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. |
+| Initial contributor-document inspection | 1 | The inspection read `CONTRIBUTING.md` and related public templates but also requested nonexistent `docs/contributor-walkthrough.md`. No content is claimed from that path; the actual guide `docs/first-contribution.md` was located and read next. |
+| `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.82 ms. |
+| Focused prior release/M25/M26 baseline | 0 | 64 tests passed with two Windows symlink-capability skips in 3.73 seconds. |
+| M27 manifest identity probe | 0 | The reviewed external-contributor rehearsal manifest is exactly 270 bytes with SHA-256 `ecb959e90a0033b4dbe3dcfe8a48db1c1eea915e0ef2840510969b9e25cdb9c7` and contains zero rehearsal records. |
+| Initial M27 format, Ruff, Pyright, focused tests, report, and whitespace group | 0 | Four files were reformatted; Ruff passed; Pyright reported zero diagnostics; 51 tests passed with one Windows symlink-capability skip in 1.74 seconds; the exact sanitized report was `not-ready`; and whitespace checks passed. |
+| First artifact-wiring format, Ruff, Pyright, and focused test group | Mixed | Two files were reformatted; Pyright reported zero diagnostics and 53 tests passed with one Windows symlink-capability skip in 2.02 seconds, but Ruff reported import-order findings in both smoke scripts. The combined shell ended 0 because later commands succeeded, so no Ruff pass is claimed. |
+| Corrected artifact-wiring Ruff group | 0 | Ruff mechanically sorted the two import blocks; both files were already formatted and Ruff then passed. |
+| Findings-first hardening gate | 0 | Cross-role reuse of head/merge and patch/feedback identities plus duplicate JSON fields now fail closed; Ruff passed, Pyright reported zero diagnostics, 59 focused tests passed with one Windows symlink-capability skip in 2.03 seconds, strict docs built in 0.70 seconds, and whitespace passed. |
+
+Synthetic populated rehearsal records prove evaluator mechanics only. They are
+not contributors, public issues, pull requests, feedback, usability research,
+adoption, project history, releases, or stability evidence.
+
+## M27 final local validation - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| First combined lock/sync/static/test/docs gate in the managed sandbox | Mixed | All seven uv invocations failed before project execution because the sandbox denied access to existing user-cache metadata. The final whitespace command succeeded, making the combined shell exit 0; no uv check pass is claimed from this attempt. |
+| Complete lock/sync/static/test/docs gate with approved cache access | 0 | The unchanged lock resolved 46 packages in 0.86 ms; 45 installed packages were checked; all 235 Python files were formatted; Ruff passed; Pyright reported zero diagnostics; 1,210 tests passed in 81.04 seconds with four Windows symlink-capability skips; and strict docs built in 0.72 seconds with the known upstream Material warning. |
+| `uv build` | 0 | Built the `0.1.0a1` source distribution and pure `py3-none-any` wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed, including the explicit M27 reviewed-manifest evidence path. |
+| Fresh M27 release staging and `scripts/smoke_release.py` | 0 | Staged the deterministic ten-artifact candidate and passed isolated release smoke, including the bundled M27 evaluator and empty reviewed manifest. |
+| Documented M1-M4 benchmark generators and validators | 0 | All retained contracts validated; M1 observed one of two targets, M2 has no timing target, the M3 validator reported one of two targets met in this diagnostic run, and M4 observed its baseline target. These are inherited observations, not M27 performance claims. |
+| Five-repeat base and graphics M7 profile generators and validators | 0 | The two-workload base and three-workload graphics artifacts validated; timings remain diagnostic only. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All ten unchanged real-wgpu integration tests passed in 5.74 seconds. |
+| Graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected deterministic structured summaries. |
+| First combined final-report/scope/credential/artifact audit command | 1 | PowerShell rejected the command before execution because a quoted credential-pattern expression was unterminated. No audit result is claimed from this attempt. |
+| Corrected current-report and Git scope/history audit | 0 | The exact sanitized report is `not-ready` with zero records and reason `external-contributor-rehearsal-absent`; runtime source, both workflows, project metadata, and lock are unchanged; whitespace and `git fsck --full --no-dangling` passed; the only retained “no external-contributor study” match is the deliberate current non-claim. |
+| Credential-pattern, identity, and artifact inventory audit | 0 | Broad credential matches are deliberate security/sanitization text and tests only; CI/release workflow hashes remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; the exact manifest hash remains reviewed; the 94-entry wheel contains zero `.pyd`, `.so`, `.dll`, or `.dylib`; and the 34-entry sample bundle contains both M27 files. |
+
+The final local review found no remaining scope, credential, backend/native
+leakage, dependency-direction, wall-clock, packaging, privacy, history, or
+stale-documentation finding. M27 adds no runtime source, public export,
+persistent format, protocol, dependency, lock, version, workflow job, network
+activity, telemetry, external fact, tag, release, or publication.
+
 ## M26 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

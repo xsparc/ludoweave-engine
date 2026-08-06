@@ -45,7 +45,9 @@ boundary. M2 timings are informational and have no threshold.
 No external-contributor first-contribution usability study has been recorded.
 The repository now supplies a complete walkthrough and issue-ready starter
 cards, but actual contributor feedback is a follow-up metric rather than a
-fabricated acceptance result.
+fabricated acceptance result. M27/RFC-0010 adds the strict offline admission
+path, but its reviewed manifest remains empty and therefore preserves this
+non-claim.
 
 ## Decisions retained
 
@@ -76,6 +78,9 @@ that gate false and makes no adoption claim. M26 defines strict offline
 admission for the release-channel gate under RFC-0009, but its empty reviewed
 release set leaves that gate false and makes no support/publication claim.
 Remaining priority questions also include contributor rehearsal feedback and
-controlled cross-platform performance evidence. Scene importers,
+controlled cross-platform performance evidence. M27 defines the rehearsal
+admission contract under RFC-0010, but it cannot become true until a real
+independent human completes a reviewed merged contribution using the public
+path without private maintainer knowledge. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.

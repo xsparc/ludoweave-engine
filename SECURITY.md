@@ -23,6 +23,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
+- M27 contributor-rehearsal evidence is offline and empty. Future reviewed
+  evidence may contain a public login and project references, but must exclude
+  email, private correspondence, credentials, prompts, telemetry, and other
+  unpublished personal data.
 
 ## Initial security boundaries
 

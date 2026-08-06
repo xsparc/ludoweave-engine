@@ -117,6 +117,16 @@ identities and append-only history. The reviewed manifest is empty, so the
 actual channel remains absent. Cross-version release execution and external
 consumer feedback also remain unresolved; no stability promotion is implied.
 
+RFC-0010 resolves how the first-external-contribution documentation objective
+is admitted. The offline harness requires at least one manually reviewed human
+good-first contribution linked to a public project issue and merged pull
+request, with exact Git/patch/feedback identities, DCO, documented validation,
+no private maintainer knowledge, and no public-API, persistent-format,
+dependency, or workflow change. The reviewed manifest is empty, so actual
+external-contributor usability evidence remains absent. The evaluator cannot
+establish independence or undisclosed assistance; human review owns those
+facts, and no synthetic fixture or CI pass is an external contribution.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

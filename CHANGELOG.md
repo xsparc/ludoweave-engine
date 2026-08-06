@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M27/RFC-0010 external-contributor rehearsal admission evidence that
+  preserves a complete reviewed history and explicitly retains the public-
+  documentation usability result as false until an independent human completes
+  a reviewed merged good-first contribution without private maintainer knowledge.
 - Add M26/RFC-0009 supported-release-channel admission evidence that rejects
   prerelease/local/CI substitutes and explicitly retains gate 6 as false until
   two reviewed supported final feature lines exist.

@@ -23,6 +23,7 @@ _SAMPLE_FILES = (
     "constrained_3d_decision.py",
     "cross_version_corpus_readiness.py",
     "example.plugin.json",
+    "external_contributor_rehearsal_readiness.py",
     "external_consumer_feedback_readiness.py",
     "fixed_step_world.py",
     "hello_headless.py",
@@ -141,6 +142,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "cross_version_receipt_corpus.json",
             Path("assets/cross_version_receipt_corpus.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "external_contributor_rehearsal.json",
+            Path("assets/external_contributor_rehearsal.json"),
         )
     )
     sources.append(

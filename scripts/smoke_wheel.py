@@ -16,6 +16,9 @@ from command_receipt_stability_evidence import validate_command_receipt_stabilit
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from cross_version_corpus_evidence import validate_cross_version_corpus_evidence
 from external_consumer_feedback_evidence import validate_external_consumer_feedback_evidence
+from external_contributor_rehearsal_evidence import (
+    validate_external_contributor_rehearsal_evidence,
+)
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -594,6 +597,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         external_feedback = cast(dict[str, object], json.loads(external_feedback_result.stdout))
         validate_external_consumer_feedback_evidence(external_feedback, version=version)
+
+        external_contributor_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "external_contributor_rehearsal_readiness.py"),
+                "--rehearsals",
+                str(project_root / "tests" / "fixtures" / "external_contributor_rehearsal.json"),
+            ],
+            cwd=temp_root,
+        )
+        external_contributor = cast(
+            dict[str, object], json.loads(external_contributor_result.stdout)
+        )
+        validate_external_contributor_rehearsal_evidence(external_contributor, version=version)
 
         release_channel_result = _run(
             [
