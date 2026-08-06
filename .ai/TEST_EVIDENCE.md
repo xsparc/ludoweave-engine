@@ -2,6 +2,55 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M26 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M25 feature/state integration verification and branch preparation | 0 | PR #38 squash-integrated exact final M25 tree `fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6` as GitHub-verified `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`; zero-run PR #39 integrated its exact state tree as GitHub-verified `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`; local `main` was clean and synchronized. |
+| `git switch -c codex/m26-supported-release-channel-readiness` | 0 | Created M26 from exact integrated `main` commit `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. |
+| Initial release-policy scope probe | 1 | Relevant RFC/policy/workflow searches and RFC-0003 read succeeded, but the final `Get-Content docs/release.md` failed because that file does not exist. No content is claimed from it; the actual guide is `docs/release-process.md` and was read next. |
+| `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.91 ms. |
+| Focused release/stability baseline | 0 | 61 release-workflow, artifact, command-stability, cross-version, external-feedback, and API-stability tests passed with one Windows symlink-capability skip in 5.90 seconds. |
+| M26 manifest and workflow identity probes | 0 | The reviewed release-channel manifest is exactly 278 bytes with SHA-256 `f23b4314696384ad288b86c63bc101606f1aa9f323c4fb186486d8c74915ec41`; the unchanged release workflow SHA-256 is `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. |
+| First M26 focused format, Ruff, Pyright, tests, and report group | Mixed | Two files were reformatted. Ruff alone exited 1 on B905/RUF007 for a successive-pair `zip`; Pyright reported zero diagnostics, 35 tests passed with one Windows symlink-capability skip in 1.66 seconds, and the sanitized current report was `not-ready`. The combined shell ended 0 only because later commands succeeded, so no Ruff pass is claimed. |
+| Focused gate after simplifying the unique-version order check | 0 | All four files were formatted, Ruff passed, Pyright reported zero diagnostics, and 35 tests passed with one Windows symlink-capability skip in 1.65 seconds. |
+| M26 artifact-wiring static and focused test group | 0 | Four artifact files were already formatted, Ruff and Pyright were clean, and 37 tests passed with one Windows symlink-capability skip in 2.00 seconds. |
+| Post-hardening focused static/docs group | 0 | Canonical project-tag URL, explicit non-draft/non-prerelease status, unique publication identity, and exact public-policy checks were added; Ruff passed, Pyright reported zero diagnostics, strict docs built in 0.73 seconds, and whitespace checks passed. |
+| First post-hardening focused pytest command | 1 | Pytest rejected the nonexistent path `tests/integration/test_release_workflow.py` and ran zero tests. The actual module was located at `tests/architecture/test_release_workflow.py`; no test result is claimed from this attempt. |
+| Corrected post-hardening focused pytest command | 0 | 46 release-channel, artifact, and release-workflow tests passed with one Windows symlink-capability skip in 2.00 seconds. |
+
+The synthetic canonical-shaped project-tag URLs identify nonexistent releases
+and prove only evaluator mechanics. They are not tags, publications, support
+commitments, release history, a deprecation channel, or stability promotion.
+
+## M26 final local validation - 2026-08-07, Windows, CPython 3.12.13
+
+Findings-first review added exact canonical project-tag URL enforcement,
+explicit non-draft/non-prerelease state, publication-identity uniqueness, and
+matching regressions. A later documentation audit corrected the stale README
+milestone status and described M25/M26 without changing runtime behavior.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| First combined `uv lock --check` and `uv sync --frozen --all-groups --extra graphics` in the managed sandbox | 1 | Both uv commands failed before project execution because the sandbox denied access to existing user-cache metadata; no lock or sync pass is claimed from this attempt. |
+| `uv lock --check` and `uv sync --frozen --all-groups --extra graphics` with approved cache access | 0 | The unchanged lock resolved 46 packages in 0.71 ms and 45 installed packages were checked. |
+| Complete formatting, Ruff, Pyright, strict docs, and whitespace group | 0 | All 231 Python files were formatted, Ruff passed, Pyright reported zero diagnostics, strict docs built in 0.73 seconds with the known upstream Material warning, and `git diff --check` passed. |
+| `uv run --frozen pytest -q` | 0 | 1,152 tests passed in 79.27 seconds; three Windows symlink-capability probes skipped because link creation was unavailable. |
+| First `uv build` in the managed sandbox | 1 | uv could not access its existing user cache, so no build result is claimed from this attempt. |
+| `uv build` with approved cache access | 0 | Built the `0.1.0a1` source distribution and pure `py3-none-any` wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed, including the explicit M26 source-manifest evidence path. |
+| Fresh M26 release staging and `scripts/smoke_release.py` | 0 | Staged the deterministic ten-artifact candidate and passed isolated release smoke, including the bundled empty reviewed release-channel manifest. |
+| Documented M1-M4 benchmark generators and validators | 0 | All four retained artifact contracts validated; M1 observed one of two targets, M2 has no timing target, M3 observed zero of two targets, and M4 observed its baseline target. These are inherited observations, not M26 claims. |
+| Five-repeat base and graphics M7 profile generators and validators | 0 | The two-workload base and three-workload graphics artifacts validated; timings remain diagnostic only. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All 10 unchanged real-wgpu integration tests passed in 6.24 seconds. |
+| Graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected deterministic structured summaries. |
+| Current M26 report execution | 0 | The exact sanitized report is `not-ready`, has zero release records and feature lines, and retains reason `supported-feature-release-channel-absent`. |
+| Protected-scope, manifest, credential-pattern, artifact, history, and Git-object audit | 0 | Runtime source, workflows, metadata, dependency lock, M24/M25 reviewed manifests, and the release workflow remain unchanged; the M26 manifest hash is exact; the 94-entry wheel has no `.pyd`, `.so`, `.dll`, or `.dylib`; the 32-entry sample bundle contains both M26 files; broad credential matches are deliberate sanitization text/tests only; `HEAD` and its merge-base with `main` are exact assigned base; and `git fsck --full --no-dangling` passed. |
+| Final post-documentation formatting, Ruff, Pyright, strict docs, tests, and whitespace recheck | 0 | All 231 Python files remained formatted; Ruff passed; Pyright reported zero diagnostics; strict docs built in 0.75 seconds with the known upstream Material warning; 1,152 tests passed with three Windows symlink-capability skips in 79.11 seconds; and `git diff --check` passed. |
+
+Commit, ready PR, one necessary hosted run, delayed thread-aware review, and
+squash integration remain pending.
+
 ## M25 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

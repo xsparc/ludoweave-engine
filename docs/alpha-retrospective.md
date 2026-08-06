@@ -72,8 +72,10 @@ same-version fixtures or a synthetic regression into history. Three gates
 remain: cross-version execution from supported releases, external feedback,
 and a supported release channel. M25 defines strict offline admission for the
 external-feedback gate under RFC-0008, but its empty reviewed manifest leaves
-that gate false and makes no adoption claim. Remaining priority
-questions also include contributor rehearsal feedback and controlled
-cross-platform performance evidence. Scene importers,
+that gate false and makes no adoption claim. M26 defines strict offline
+admission for the release-channel gate under RFC-0009, but its empty reviewed
+release set leaves that gate false and makes no support/publication claim.
+Remaining priority questions also include contributor rehearsal feedback and
+controlled cross-platform performance evidence. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.

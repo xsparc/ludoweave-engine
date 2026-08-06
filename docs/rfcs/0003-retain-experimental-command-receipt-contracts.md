@@ -3,7 +3,7 @@
 - **Status:** Accepted
 - **Date:** 2026-08-06
 - **Decision:** Retain experimental status pending complete compatibility evidence
-- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md), [RFC-0006](0006-receipt-semantic-diff-and-diagnostic-compatibility.md), [RFC-0007](0007-cross-version-corpus-admission-readiness.md), [RFC-0008](0008-external-consumer-feedback-admission-readiness.md)
+- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md), [RFC-0006](0006-receipt-semantic-diff-and-diagnostic-compatibility.md), [RFC-0007](0007-cross-version-corpus-admission-readiness.md), [RFC-0008](0008-external-consumer-feedback-admission-readiness.md), [RFC-0009](0009-supported-release-channel-admission-readiness.md)
 
 ## Summary
 
@@ -84,15 +84,20 @@ package history.
 M25/RFC-0008 defines an exact offline admission harness for gate 2. Its current
 report remains false because the reviewed feedback corpus is empty; the
 synthetic future-state regression is not an external consumer or feedback fact.
+M26/RFC-0009 defines an exact offline admission harness for gate 6. Its current
+report remains false because the reviewed final-feature-release set is empty;
+the prerelease workflow and synthetic regression are not a supported channel.
 
 ## Security and determinism
 
-The evidence runs trusted project code in-process and synchronously. It performs
-no discovery, dynamic import, installation, filesystem access, subprocess,
-networking, or global registration. It returns booleans, protocol/status/code
-identities, field names, operation names, and the installed package version—no
-world hashes, values, paths, environment/platform facts, timings, captures, or
-provider messages.
+The M20 same-version evidence runs trusted project code in-process and
+synchronously without discovery, dynamic import, installation, filesystem
+access, subprocess, networking, or global registration. M24-M26 admission tools
+add only bounded explicit local JSON reads; they still perform no discovery,
+subprocess, networking, or publication. Reports return sanitized booleans,
+counts, protocol/status/code identities, field names, operation names, versions,
+reason codes, and reviewed manifest digests—no world values, local paths,
+environment facts, timings, credentials, private evidence, or provider messages.
 
 Same-version D1 canonical bytes and atomic authority behavior are confirmed.
 No cross-version, cross-build, arbitrary-float, transport-security, or external

@@ -29,6 +29,9 @@ remain absent.
 M24/RFC-0007 adds strict admission machinery for the first missing gate, but
 the current `0.1.0a1` reader/fixture identity and empty supported-release set
 keep that gate false.
+M25/RFC-0008 adds strict external-feedback admission, but its reviewed corpus
+is empty. M26/RFC-0009 adds strict supported-release-channel admission, but its
+reviewed release set is empty. Both gates remain false.
 
 ## Installed evidence
 
@@ -81,6 +84,7 @@ All of these must be evidenced together before reconsideration:
    execution evidence remains independently required by gate 1.
 6. A supported feature-release channel exists so the preview deprecation
    promise can actually be fulfilled.
+   **Admission is defined by M26/RFC-0009; the reviewed release set is empty.**
 
 The `/4` evidence marks gates 3, 4, and 5 true. The existing versioned schemas,
 canonical codec, transaction atomicity, transport-independent tool profile,

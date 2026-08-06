@@ -21,6 +21,8 @@ Maintainers will acknowledge the report through the same private channel, assess
 - The tag workflow uses immutable action revisions and grants write, identity-token, and attestation permissions only to the release job.
 - Official tagged artifacts receive GitHub build-provenance and SBOM attestations. Consumers should verify both the local checksums and hosted attestations as documented in `docs/release-process.md`.
 - No PyPI trusted-publishing or upload step exists in community alpha.
+- M26 release-channel evidence is offline and empty; it does not publish,
+  download, resolve, or establish a supported release channel.
 
 ## Initial security boundaries
 

@@ -2,6 +2,27 @@
 
 ## Current milestone
 
+M26 is in progress on `codex/m26-supported-release-channel-readiness` from exact
+clean synchronized `main` commit
+`0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. Its bounded outcome is a strict
+offline admission harness for RFC-0003 gate 6. The current reviewed manifest is
+empty, so the sanitized result is deterministically `not-ready`: the tag-only
+prerelease workflow, local candidates, CI, and synthetic records do not establish
+a supported deprecation-capable feature-release channel. A future gate requires
+at least two reviewed supported non-yanked final releases on distinct feature
+lines, exact publication identities, the one-feature-release deprecation window,
+and append-only history. M26 changes no runtime source, public API/export,
+protocol, dependency, lock, package version, stability label, release workflow,
+or CI topology. The manifest is exactly 278 bytes with SHA-256
+`f23b4314696384ad288b86c63bc101606f1aa9f323c4fb186486d8c74915ec41`;
+findings-first review hardened exact project-tag URLs, final-release state, and
+publication identity. The complete local gate passes 231-file formatting,
+Ruff, strict Pyright, strict docs, 1,152 tests with three Windows symlink-
+capability skips, pure build, isolated wheel/release smoke, all documented
+benchmark/profile validators, 10 real-wgpu tests, and both graphics vertical
+slices. The post-documentation full gate passes on the exact final local tree;
+hosted validation remains pending.
+
 M25 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m25-external-consumer-feedback-readiness` from
 exact clean synchronized `main` commit
@@ -462,8 +483,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M25 are complete, hosted-validated, and squash-integrated. This
-  branch records M25 integration only; no subsequent milestone is included.
+- M20 through M25 are complete, hosted-validated, and squash-integrated. M26 is
+  the only active slice and is limited to supported release-channel admission
+  readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

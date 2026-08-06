@@ -90,6 +90,9 @@ external consumer feedback and a supported deprecation-capable feature-release
 channel also remain absent. Command, transaction, receipt, and reader exports
 remain experimental.
 
+M26/RFC-0009 defines admission for that release-channel gate, but its reviewed
+release set is empty and the gate remains false.
+
 M24 adds no runtime module, public export, protocol field, operation, handler,
 migration, dependency, lock change, package version, workflow job, tag,
 release, or publication.

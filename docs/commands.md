@@ -219,6 +219,10 @@ M25's [external consumer feedback readiness guide](external-consumer-feedback-re
 defines how gate-2 evidence is admitted. The reviewed manifest is empty, so
 the current result remains false and no external adoption is claimed.
 
+M26's [supported release channel readiness guide](supported-release-channel-readiness.md)
+defines how gate-6 evidence is admitted. The reviewed release set is empty, so
+the current result remains false and no support or publication is claimed.
+
 ## Reading receipts
 
 M21 adds strict `TransactionReceipt.from_json` and `from_mapping` entry points.

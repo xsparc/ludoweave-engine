@@ -87,6 +87,11 @@ command/receipt integration feedback. Project samples, synthetic fixtures, CI,
 downloads, and telemetry do not count. The reviewed corpus is empty, so the
 external-feedback gate remains false.
 
+RFC-0009 adds an offline admission harness for a supported deprecation-capable
+feature-release channel. The existing prerelease workflow, local candidates,
+and CI do not count. The reviewed release manifest is empty, so the channel
+gate remains false.
+
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;
 the v1 fields and fingerprint semantics are not reinterpreted in place.
