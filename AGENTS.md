@@ -51,8 +51,10 @@ package.
 The locally validated implementation is published through ready PR #38 at
 DCO-signed commit `9667e020c2213d415072b7c7efbd880f6b58abfa`. Its sole
 GitHub Actions run `31111498136` passed all eight unchanged essential jobs;
-the first thread-aware read found no review finding. Delayed review and squash
-integration remain.
+the first thread-aware read found no review finding. Delayed automated review
+then found one valid P2 in the future locator gate. The locally validated
+correction rejects numeric IP authorities and adds loopback/link-local
+regressions; corrected hosted validation and squash integration remain.
 
 M24 adds only strict offline cross-version receipt-corpus admission readiness.
 Its current result remains false and does not claim actual history or adoption.

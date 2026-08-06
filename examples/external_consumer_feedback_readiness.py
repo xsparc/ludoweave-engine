@@ -299,6 +299,7 @@ def _https_locator(value: object, maximum: int, role: str) -> str:
         or ":" in authority
         or "\\" in text
         or len(labels) < 2
+        or not any(character.isalpha() for character in labels[-1])
         or any(
             not label
             or not label[0].isalnum()

@@ -55,4 +55,10 @@
   `680e90dd8f9377fece23c43bd9f07ca9d76297de`. Sole GitHub Actions run
   `31111498136` passed all eight unchanged essential jobs. GitHub reports the
   PR `MERGEABLE` and `CLEAN`; the first thread-aware read found no issue
-  comment, review, or inline review thread.
+  comment, review, or inline review thread. Delayed automated review found one
+  valid P2: numeric private/link-local IP authorities could pass the future
+  locator syntax gate. The local correction requires an alphabetic DNS-style
+  top-level label, adds loopback/link-local regressions, and passes 1,111 tests
+  with the two existing Windows capability skips plus the complete static/docs
+  and isolated wheel/release gate. A DCO correction commit and one necessary
+  corrected hosted run remain.

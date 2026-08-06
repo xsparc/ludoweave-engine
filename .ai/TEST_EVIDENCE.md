@@ -81,6 +81,32 @@ cross-version release history, supported release channel, stability promotion,
 tag, GitHub release, or PyPI publication. A CI-skipping factual evidence commit,
 delayed thread-aware reread, and squash integration remain.
 
+## M25 delayed-review correction - PR #38
+
+At `2026-08-06T14:39:01Z`, delayed automated review of implementation commit
+`9667e020c2213d415072b7c7efbd880f6b58abfa` added one unresolved, non-outdated
+P2 thread: numeric authorities such as loopback or link-local IPs passed the
+future HTTPS locator syntax gate. The finding is valid because a later pinned
+manifest could otherwise produce a true gate from a non-public authority.
+
+The correction requires the authority's final DNS-style label to contain an
+alphabetic character, while the existing label/ASCII/credential/port checks
+continue to reject IPv6 literals and malformed hosts. Exact regressions reject
+`127.0.0.1` and `169.254.169.254`. Documentation now states the non-IP
+authority boundary.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Focused correction format, Ruff, Pyright, integration/architecture/release tests, and strict docs | 0 | Files were already formatted; Ruff passed; Pyright reported zero diagnostics; 37 tests passed with one Windows symlink-capability skip in 2.30 seconds; strict docs built in 0.70 seconds. |
+| Corrected `uv lock --check` and complete static gate | 0 | The unchanged 46-package lock, all 227-file formatting, Ruff, and strict Pyright passed. |
+| Corrected `uv run --frozen pytest -q` | 0 | 1,111 tests passed in 78.06 seconds; the two Windows symlink-capability probes skipped. |
+| Corrected strict docs, pure build, isolated wheel smoke, and fresh release smoke | 0 | Strict docs built in 0.70 seconds; the pure wheel/sdist built; installed-wheel evidence passed; and a fresh ten-artifact release candidate executed the bundled M25 evidence successfully. |
+| Corrected protected-scope, whitespace, and Git-object audit | 0 | Runtime source, workflow, metadata, lock, and the exact reviewed empty manifest remain unchanged; `git diff --check` and `git fsck --full --no-dangling` passed. |
+
+No reply or manual resolution was performed on the review thread. A DCO-signed
+correction commit, one necessary corrected hosted run, final thread-aware
+reread, and squash integration remain.
+
 ## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

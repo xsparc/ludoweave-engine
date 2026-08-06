@@ -58,9 +58,9 @@ proves only gate mechanics and uses the reserved `example.invalid` domain.
 ## Security, privacy, and determinism
 
 The tool reads one explicitly selected bounded local manifest. Exact fields,
-safe bounded identifiers, HTTPS locators without query/fragment components,
-Git/SHA identities, record count, unique consumers, protocol coverage,
-outcomes, reviewed digest, and mandatory history fail closed.
+safe bounded identifiers, non-IP HTTPS authorities without query/fragment
+components, Git/SHA identities, record count, unique consumers, protocol
+coverage, outcomes, reviewed digest, and mandatory history fail closed.
 
 Generated reports omit consumer identifiers, repositories, revisions, locators,
 artifact hashes, paths, environment/platform facts, timings, credentials, and

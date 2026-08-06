@@ -206,8 +206,10 @@ publication is added. Ready PR #38 targets the exact assigned base from
 DCO-signed implementation commit
 `9667e020c2213d415072b7c7efbd880f6b58abfa`; sole GitHub Actions run
 `31111498136` passed all eight unchanged essential jobs, and the first thread-
-aware read found no review finding. Delayed review and squash integration
-remain.
+aware read found no review finding. Delayed review then found one valid numeric-
+IP locator gap. The locally validated correction requires a non-IP DNS-style
+authority and adds loopback/link-local regressions; corrected hosted validation
+and squash integration remain.
 
 ## Good-first contribution queue
 

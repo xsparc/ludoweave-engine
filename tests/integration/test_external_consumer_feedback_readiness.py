@@ -242,6 +242,12 @@ def test_reviewed_manifest_cannot_drop_mandatory_feedback_history(tmp_path: Path
             "HTTPS locator",
         ),
         ("consumer_repository", "https://localhost/repo", "HTTPS locator"),
+        ("consumer_repository", "https://127.0.0.1/repo", "HTTPS locator"),
+        (
+            "evidence_locator",
+            "https://169.254.169.254/evidence",
+            "HTTPS locator",
+        ),
         ("consumer_repository", "https://example.invalid\\repo", "HTTPS locator"),
         ("consumer_repository", "https://exämple.invalid/repo", "HTTPS locator"),
         ("evidence_locator", "https://example.invalid/evidence?mutable=1", "HTTPS locator"),

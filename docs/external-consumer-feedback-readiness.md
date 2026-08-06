@@ -73,9 +73,10 @@ facts, timings, credentials, and provider messages.
 The harness is an explicitly invoked repository/release validation tool, not a
 runtime loader or telemetry collector. It reads one bounded local JSON document.
 Unknown fields, malformed identifiers, mutable/non-HTTPS locators, duplicate
-consumers, invalid hashes/revisions, project-owned relationships, incomplete
-protocol coverage, unsupported outcomes, record-count overflow, unreviewed
-corpus identity, or missing mandatory history fail closed.
+consumers, IP-literal authorities, invalid hashes/revisions, project-owned
+relationships, incomplete protocol coverage, unsupported outcomes, record-
+count overflow, unreviewed corpus identity, or missing mandatory history fail
+closed.
 
 Execution is synchronous on the calling thread. The harness retains no file
 handle, world, provider, process, socket, credential, global registry, or user

@@ -27,7 +27,13 @@ The DCO-signed implementation is published as ready PR #38 at exact head
 `680e90dd8f9377fece23c43bd9f07ca9d76297de`. Sole GitHub Actions run
 `31111498136` passed all eight unchanged essential jobs. GitHub reports the PR
 `MERGEABLE` and `CLEAN`; the first thread-aware read found no issue comment,
-review, or inline review thread. Delayed review and squash integration remain.
+review, or inline review thread. Delayed automated review found one valid P2:
+numeric loopback/private/link-local IP authorities could pass the future
+locator syntax gate. The local correction requires a non-IP DNS-style
+authority, adds exact loopback/link-local regressions, and passes 1,111 tests
+with the two Windows capability skips plus the complete static/docs and
+isolated wheel/release gate. A DCO correction commit, one necessary corrected
+hosted run, final thread-aware reread, and squash integration remain.
 
 M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m24-cross-version-corpus-readiness` from exact clean
