@@ -25,6 +25,7 @@ _SAMPLE_FILES = (
     "fixed_step_world.py",
     "hello_headless.py",
     "hello_sprite.py",
+    "operation_argument_compatibility.py",
     "render_device_conformance.py",
     "receipt_reader.py",
     "rich_2d_showcase.py",

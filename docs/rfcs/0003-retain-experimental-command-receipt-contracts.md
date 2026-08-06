@@ -3,7 +3,7 @@
 - **Status:** Accepted
 - **Date:** 2026-08-06
 - **Decision:** Retain experimental status pending complete compatibility evidence
-- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md)
+- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md)
 
 ## Summary
 
@@ -68,10 +68,12 @@ The complete preview promotion gate is:
 All six are required. Project-owned tests, source examples, or hosted passes do
 not fabricate external adoption or release history.
 
-M21 satisfies only gate 4 through RFC-0004. Its frozen documents all identify
+M21 satisfies gate 4 through RFC-0004. Its frozen documents all identify
 the same `0.1.0a1` source version, so they are baseline inputs for a future
-cross-version corpus rather than evidence that gate 1 is complete. Gates 1, 2,
-3, 5, and 6 remain false, and the contracts remain experimental.
+cross-version corpus rather than evidence that gate 1 is complete. M22
+satisfies gate 3 through RFC-0005 by freezing exact operation/version argument
+identities and requiring breaking changes to use a new operation version.
+Gates 1, 2, 5, and 6 remain false, and the contracts remain experimental.
 
 ## Security and determinism
 

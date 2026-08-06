@@ -1,0 +1,101 @@
+{
+  "schema": "ludoweave.compatibility.operation-arguments/1",
+  "source_package": "ludoweave",
+  "source_version": "0.1.0a1",
+  "command_protocol": "ludoweave.command/1",
+  "evidence_level": "single-version-policy-baseline",
+  "policy": {
+    "same_identity_change": "forbidden",
+    "breaking_change": "new-operation-version",
+    "unknown_fields": "reject",
+    "new_operation_identity": "additive",
+    "deprecation": "requires-supported-feature-release-after-preview"
+  },
+  "definitions": {
+    "component_payload_v1": {
+      "required": ["type_id", "values", "version"],
+      "optional": [],
+      "rules": [
+        "canonical-nonzero-uuid-type-id",
+        "positive-schema-version",
+        "registry-migration-before-construction",
+        "exact-registered-component-fields"
+      ]
+    },
+    "entity_reference_v1": {
+      "variants": [
+        {"required": ["alias"], "optional": []},
+        {"required": ["generation", "index"], "optional": []}
+      ],
+      "rules": [
+        "bounded-stable-alias-or-generational-id",
+        "non-negative-index-and-generation"
+      ]
+    }
+  },
+  "operations": [
+    {
+      "operation": "component.add",
+      "version": 1,
+      "required": ["component", "entity"],
+      "optional": [],
+      "rules": ["component-payload-v1", "entity-reference-v1"]
+    },
+    {
+      "operation": "component.patch",
+      "version": 1,
+      "required": ["changes", "entity", "type_id", "version"],
+      "optional": [],
+      "rules": [
+        "entity-reference-v1",
+        "canonical-registered-component-type-id",
+        "current-schema-version",
+        "non-empty-exact-registered-field-map"
+      ]
+    },
+    {
+      "operation": "component.remove",
+      "version": 1,
+      "required": ["entity", "type_id"],
+      "optional": [],
+      "rules": ["entity-reference-v1", "canonical-registered-component-type-id"]
+    },
+    {
+      "operation": "entity.destroy",
+      "version": 1,
+      "required": ["entity"],
+      "optional": [],
+      "rules": ["entity-reference-v1"]
+    },
+    {
+      "operation": "entity.spawn",
+      "version": 1,
+      "required": ["components"],
+      "optional": ["alias"],
+      "rules": [
+        "bounded-stable-optional-alias",
+        "component-payload-v1-array",
+        "unique-component-type-ids"
+      ]
+    },
+    {
+      "operation": "resource.patch",
+      "version": 1,
+      "required": ["type_id", "value", "version"],
+      "optional": [],
+      "rules": [
+        "canonical-registered-resource-type-id",
+        "authoritative-state-resource-only",
+        "current-schema-version",
+        "registered-codec-value"
+      ]
+    },
+    {
+      "operation": "world.tick",
+      "version": 1,
+      "required": ["count"],
+      "optional": [],
+      "rules": ["exact-positive-integer-one", "transaction-safe-point"]
+    }
+  ]
+}

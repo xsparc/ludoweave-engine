@@ -30,6 +30,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
+| In progress | M22 built-in operation argument compatibility | Exact seven-operation v1 policy, installed valid/missing/unknown-field evidence, RFC-0005, artifact smoke, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -131,6 +132,15 @@ identified by RFC-0003 and freezes exact `0.1.0a1` receipt/1 fixtures. RFC-0004
 marks only the reader-and-bounds gate complete; the fixture corpus remains a
 single-version baseline, and no command/receipt stability promotion or
 cross-version claim is made.
+M22 starts from integrated `main` commit
+`291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`. It records the exact v1
+argument contract independently of handler implementation and requires
+breaking argument changes to use a new operation version. The installed
+composition exercises all seven valid operations plus missing-required and
+unknown-field rejection. This satisfies only RFC-0003 gate 3; cross-version
+history, external feedback, semantic-diff/diagnostic evolution, and a supported
+release channel remain absent. No runtime API, operation, format, dependency,
+version, or CI job is added.
 
 ## Good-first contribution queue
 

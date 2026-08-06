@@ -119,6 +119,13 @@ same-version profile as a preview compatibility promise; read the
 [stability decision](command-receipt-stability-decision.md) before persisting or
 transporting these documents across package versions.
 
+M22 adds no adapter or runtime schema. RFC-0005 makes each built-in
+operation/version argument object exact, rejects unknown fields, and requires a
+new operation version for breaking evolution. Adapter authors must preserve
+those identities instead of rewriting or dropping arguments. The installed
+same-version evidence is not a provider certification or cross-version claim;
+see the [operation-argument compatibility guide](operation-argument-compatibility.md).
+
 M21 adds the engine-owned bounded reader adapters should use instead of parsing
 receipt dictionaries themselves. `TransactionReceipt.from_json` and
 `from_mapping` detach input, enforce exact v1 structure and status invariants,

@@ -2,6 +2,60 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M22 development evidence — 2026-08-06, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Baseline lock remained current; 46 packages resolved in 0.75 ms. |
+| Inherited focused command/transaction/stability/API/release tests | 0 | 165 tests passed in 3.43 seconds. |
+| `uv run --frozen pytest -q` | 0 | Inherited full suite passed 1,015 tests in 80.65 seconds with one existing Windows symlink-capability skip. |
+| `uv run --frozen python examples/operation_argument_compatibility.py` | 0 | All seven valid built-in v1 operations committed; missing-required and unexpected-field cases rejected with `world.transaction.validation_failed`; one sanitized schema `/1` report printed. |
+| `uv run --frozen pytest -q tests/integration/test_operation_argument_compatibility.py` | 0 | 7 installed evidence and tamper tests passed in 1.49 seconds. |
+| M22 integration plus architecture tests | 0 | 15 tests passed in 1.63 seconds. |
+| Focused M22/M20/release test group after artifact wiring | 0 | 34 tests passed in 3.50 seconds. |
+| First repository-wide Ruff check | 1 | Three simplification findings in the new example/architecture test were reported and corrected; no lint pass is claimed for this attempt. |
+| First repository-wide Pyright run | 0 | 0 errors, 0 warnings, 0 information messages. |
+| First M22 strict MkDocs build | 0 | Documentation built successfully in 0.66 seconds with Material's upstream MkDocs 2.0 informational warning. |
+
+The first sandboxed uv invocation after adding M22 evidence exited 1 before
+pytest ran because the managed sandbox denied access to uv's user cache. The
+same test commands were rerun with approved cache access and passed; no test
+pass is claimed for the failed attempt. Final full-suite, docs, build, wheel,
+release, graphics, benchmark/profile, and diff evidence follows. Hosted
+evidence remains pending.
+
+## M22 final local validation — 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Lockfile remained current; 46 packages resolved in 1 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Locked baseline plus graphics environment checked 45 packages in 2 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 215 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed after the recorded first-pass corrections. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,030 tests passed in 71.59 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.64 seconds with Material's upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built pure `ludoweave-0.1.0a1-py3-none-any.whl` and source distribution. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed, including exact M22 operation-argument evidence. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate-m22-final` | 0 | Staged the complete deterministic 10-artifact release candidate with sample bundle and SPDX SBOM. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/release-candidate-m22-final` | 0 | Isolated release smoke passed for `0.1.0a1`, including bundled M22 evidence. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | 10 real-wgpu integration tests passed in 5.79 seconds. |
+| Hosted graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected structured summaries. |
+| M1 benchmark plus validator | 0 | Seven workloads validated; fixed-tick target observed, simulation-tick target not observed. |
+| M2 benchmark plus validator | 0 | Four informational workloads validated with no timing targets. |
+| M3 benchmark plus validator | 0 | Six workloads validated; neither of two recorded targets was met. |
+| M4 benchmark plus validator | 0 | Three workloads validated; baseline target observed. |
+| M7 base and graphics profile runners plus validators | 0 | Two-workload base and three-workload graphics artifacts validated. |
+| `git diff --check` | 0 | No whitespace errors. |
+| First sandboxed `git add --all` | 128 | The filesystem sandbox denied creation of `.git/index.lock`; no path was staged. The operation was rerun with approved repository-metadata access. |
+
+The M1 simulation and both M3 target misses are recorded without a performance
+pass claim. They do not authorize native acceleration. Repository review found
+no change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`; no credential
+assignment matched; and the M22 evidence import scan found no ambient,
+provider, filesystem, process, or network dependency. GitHub-hosted evidence
+has not yet run for M22.
+
 ## Baseline — 2026-08-04
 
 | Command | Exit | Result |

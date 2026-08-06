@@ -37,6 +37,7 @@ python agent_tool_conformance.py
 python world_store_conformance.py
 python world_store_conformance.py --backend reference
 python command_receipt_stability_decision.py
+python operation_argument_compatibility.py
 python receipt_reader.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
@@ -57,6 +58,9 @@ third-party adapters.
 The command/receipt stability evidence confirms same-version canonical and
 atomic behavior, then records why RFC-0003 retains experimental status. It
 does not change a wire format or claim cross-version compatibility.
+The operation-argument evidence applies every built-in v1 shape and checks
+missing and unexpected fields. RFC-0005 fixes their evolution policy, but the
+same-version result is not a cross-version or preview claim.
 The receipt-reader example reconstructs committed, dry-run, and rejected v1
 documents under explicit limits. It emits sanitized evidence and records that
 its frozen fixtures are only a single-version baseline.

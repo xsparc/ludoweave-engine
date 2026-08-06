@@ -14,6 +14,7 @@ from typing import cast
 
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
+from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
@@ -530,6 +531,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         command_receipt = cast(dict[str, object], json.loads(command_receipt_result.stdout))
         validate_command_receipt_stability_evidence(command_receipt, version=version)
+
+        operation_argument_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "operation_argument_compatibility.py"),
+            ],
+            cwd=temp_root,
+        )
+        operation_argument = cast(dict[str, object], json.loads(operation_argument_result.stdout))
+        validate_operation_argument_evidence(operation_argument, version=version)
 
         receipt_reader_result = _run(
             [

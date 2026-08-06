@@ -63,6 +63,12 @@ compatibility, diagnostic/diff evolution, and preview status remain unproven.
 Future fixture checks preserve the historical bytes rather than rewriting them
 to match new behavior.
 
+RFC-0005 freezes every built-in `(operation, operation_version)` v1 argument
+identity: required/optional fields and semantic rules do not change in place,
+unknown fields are rejected, breaking changes use a new operation version, and
+new operation identities are additive. This satisfies the operation-policy
+gate only. Four command/receipt preview gates remain incomplete.
+
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;
 the v1 fields and fingerprint semantics are not reinterpreted in place.
