@@ -113,7 +113,7 @@ _CONTRACTS: tuple[dict[str, object], ...] = (
 @dataclass(slots=True)
 class _Position:
     x: int
-    y: int
+    y: int = 0
 
 
 _SCORE = ResourceSpec("compatibility.score", int, int)
@@ -184,11 +184,26 @@ def evaluate() -> dict[str, object]:
             }
         )
 
-    gate_satisfied = all(
-        result["valid_status"] == ReceiptStatus.COMMITTED.value
-        and result["missing_required_status"] == ReceiptStatus.REJECTED.value
-        and result["unexpected_field_status"] == ReceiptStatus.REJECTED.value
-        for result in results
+    default_session, default_arguments = _case("entity.spawn")
+    component_items = cast(list[object], default_arguments["components"])
+    first_component = cast(dict[str, object], component_items[0])
+    defaulted_values = cast(dict[str, object], first_component["values"])
+    del defaulted_values["y"]
+    default_omission = _apply(
+        default_session,
+        "entity.spawn",
+        default_arguments,
+        "default-omission",
+    )
+
+    gate_satisfied = (
+        all(
+            result["valid_status"] == ReceiptStatus.COMMITTED.value
+            and result["missing_required_status"] == ReceiptStatus.REJECTED.value
+            and result["unexpected_field_status"] == ReceiptStatus.REJECTED.value
+            for result in results
+        )
+        and default_omission.status is ReceiptStatus.REJECTED
     )
     if not gate_satisfied:
         raise AssertionError("installed operation argument compatibility evidence failed")
@@ -196,6 +211,8 @@ def evaluate() -> dict[str, object]:
         "command_protocol": COMMAND_PROTOCOL,
         "contracts": results,
         "cross_version_proven": False,
+        "defaulted_component_field_omission_code": _rejection_code(default_omission),
+        "defaulted_component_field_omission_status": default_omission.status.value,
         "evidence_level": "single-version-policy-baseline",
         "gate_satisfied": True,
         "ludoweave_version": __version__,

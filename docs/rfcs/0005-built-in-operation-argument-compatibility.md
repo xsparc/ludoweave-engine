@@ -46,6 +46,8 @@ The current seven v1 identities remain `component.add`, `component.patch`,
 `component.remove`, `entity.destroy`, `entity.spawn`, `resource.patch`, and
 `world.tick`. Component/resource payload versions and migrations evolve their
 registered values; they do not alter the surrounding operation argument shape.
+Component dataclass defaults are authoring metadata, not persistent omission
+semantics: v1 component values include every current registered field.
 
 The repository fixture is normative compatibility evidence. Runtime code does
 not load it. The installed example composes trusted public APIs and its strict

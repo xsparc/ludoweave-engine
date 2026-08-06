@@ -50,6 +50,10 @@ def test_installed_operation_argument_evidence_is_repeatable_and_sanitized() -> 
     _validator()(document, version=__version__)
     assert document["gate_satisfied"] is True
     assert document["cross_version_proven"] is False
+    assert document["defaulted_component_field_omission_status"] == "rejected"
+    assert (
+        document["defaulted_component_field_omission_code"] == "world.transaction.validation_failed"
+    )
     contracts = cast(list[dict[str, object]], document["contracts"])
     assert len(contracts) == 7
     assert all(contract["valid_status"] == "committed" for contract in contracts)

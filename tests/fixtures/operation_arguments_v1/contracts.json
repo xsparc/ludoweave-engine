@@ -19,7 +19,8 @@
         "canonical-nonzero-uuid-type-id",
         "positive-schema-version",
         "registry-migration-before-construction",
-        "exact-registered-component-fields"
+        "exact-current-registered-component-fields-including-defaulted",
+        "registered-defaults-do-not-authorize-payload-omission"
       ]
     },
     "entity_reference_v1": {

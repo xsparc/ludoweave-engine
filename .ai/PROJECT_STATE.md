@@ -12,8 +12,11 @@ RFC-0003 gate bookkeeping. It changes no runtime package, public API,
 operation, persistent format, dependency, lock, version, or CI topology.
 DCO-signed implementation commit
 `f1a89ad460467039f966ed37955144840cd96a12` is published through ready PR
-#32. Sole GitHub Actions run `31100821087` passed all eight unchanged essential
-jobs. Squash integration is pending.
+#32. GitHub Actions run `31100821087` passed all eight unchanged essential
+jobs. Automated review then requested an explicit defaulted-component-field
+omission rule. The contract clarification, installed behavioral regression,
+full local gate, wheel, and release smoke pass; follow-up hosted validation is
+pending. Squash integration is pending.
 
 M21 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean

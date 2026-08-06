@@ -20,7 +20,10 @@ validation. The normative decision is
 Every object is exact: unknown fields are rejected. Entity references are
 either `{alias}` or `{generation, index}`. Component payloads require
 `type_id`, `values`, and `version`; the values object must exactly match the
-registered component schema after any registered forward migration.
+registered component schema after any registered forward migration. Every
+current field remains required in the persistent values object even when the
+Python dataclass field has an authoring default; registered defaults do not
+silently fill persistent payload omissions.
 `component.patch` changes at least one exact registered field at the current
 schema version. `resource.patch` targets a registered authoritative state
 resource at its current schema version. `world.tick` accepts the exact integer
@@ -60,7 +63,8 @@ python operation_argument_compatibility.py
 ```
 
 The composition applies one valid transaction for every built-in operation,
-then proves missing-required and unexpected-field rejection on fresh worlds.
+then proves missing-required, unexpected-field, and defaulted-component-field
+omission rejection on fresh worlds.
 It emits one deterministic
 `ludoweave.evaluation.operation-argument-compatibility/1` JSON document. The
 strict validator accepts only the exact seven contracts, policy, statuses, and

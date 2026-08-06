@@ -1,9 +1,10 @@
 # Current Task
 
 - **Task:** M22 - built-in operation argument compatibility and evolution policy
-- **Status:** Ready to integrate on `codex/m22-operation-argument-policy`.
-  Implementation, review, local validation, publication, and the sole hosted
-  run are complete through ready PR #32. Exact squash integration is pending.
+- **Status:** Review correction is locally complete on
+  `codex/m22-operation-argument-policy`. PR #32's first hosted run passed; the
+  corrected final artifact requires follow-up hosted validation before exact
+  squash integration.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`.
@@ -40,5 +41,6 @@
   first sandboxed uv attempt and first Ruff findings are recorded with their
   successful corrections in `.ai/TEST_EVIDENCE.md`. DCO-signed implementation
   commit `f1a89ad460467039f966ed37955144840cd96a12` is published through ready
-  PR #32. GitHub Actions run `31100821087`, the branch's only run, passed all
-  eight unchanged essential jobs.
+  PR #32. GitHub Actions run `31100821087` passed all eight unchanged
+  essential jobs. One automated review clarification about defaulted component
+  fields is being corrected and will receive a necessary follow-up run.

@@ -83,9 +83,9 @@ def test_contract_fixture_is_exact_and_matches_installed_evidence_literals() -> 
     payload = _CONTRACT.read_bytes()
     document = cast(dict[str, object], json.loads(payload))
 
-    assert len(payload) == 2833
+    assert len(payload) == 2926
     assert hashlib.sha256(payload).hexdigest() == (
-        "b04677fbb39782e86d909c59d914e8d65ceec60e82a8a970e206bdddcbe5deb3"
+        "11ec4b9d9805dc509f18a52e8c0defd50136a475e216ae88fbe6bae68fb27001"
     )
     assert document.keys() == {
         "schema",

@@ -94,6 +94,8 @@ def validate_operation_argument_evidence(document: dict[str, object], *, version
         "command_protocol": "ludoweave.command/1",
         "contracts": expected_contracts,
         "cross_version_proven": False,
+        "defaulted_component_field_omission_code": "world.transaction.validation_failed",
+        "defaulted_component_field_omission_status": "rejected",
         "evidence_level": "single-version-policy-baseline",
         "gate_satisfied": True,
         "ludoweave_version": version,

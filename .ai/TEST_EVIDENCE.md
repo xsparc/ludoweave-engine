@@ -60,8 +60,10 @@ provider, filesystem, process, or network dependency.
 Ready PR #32 targets `main` from `codex/m22-operation-argument-policy` at
 DCO-signed implementation commit
 `f1a89ad460467039f966ed37955144840cd96a12`. GitHub Actions run
-`31100821087`, triggered once by that pull request, completed successfully on
-2026-08-06. It is the only workflow run listed for the branch.
+`31100821087`, triggered by that pull request, completed successfully on
+2026-08-06. It validates the original implementation head; the review
+correction below requires one follow-up run because it changes installed
+evidence and artifact smoke.
 
 | Hosted job | Result |
 | --- | --- |
@@ -76,6 +78,36 @@ DCO-signed implementation commit
 
 No additional CI job or workflow change was introduced. No cross-version,
 external-adoption, stability-promotion, release, or publication claim is made.
+
+### Automated review correction
+
+The thread-aware PR review inspection found one unresolved P2 claiming that
+dataclass defaults might fill omitted persistent component fields. Source
+inspection confirmed `ComponentRegistry.migrate()` calls exact current-field
+validation before construction, so omission is rejected even when the Python
+field has a default. The contract and installed evidence now state and exercise
+that behavior explicitly instead of weakening the rule.
+
+The first focused post-review group exited 1 after 23 tests passed because the
+intentional fixture edit changed its frozen byte size and digest. The checker
+reported actual size 2,926 and SHA-256
+`11ec4b9d9805dc509f18a52e8c0defd50136a475e216ae88fbe6bae68fb27001`;
+those exact values are now recorded and the group is rerun below. The initial
+failure is not reported as a pass.
+
+| Corrected review gate | Exit | Result |
+| --- | ---: | --- |
+| Ruff format/check and strict Pyright | 0 | 215 files formatted; no Ruff or Pyright findings. |
+| Corrected focused compatibility/architecture/stability/release group | 0 | 26 tests passed in 3.62 seconds. |
+| `uv run --frozen pytest -q` | 0 | 1,030 tests passed in 71.15 seconds; the existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.64 seconds with the upstream informational warning. |
+| `uv build` and installed-wheel smoke | 0 | Pure wheel/sdist built and the installed evidence passed. |
+| Fresh ten-artifact release staging and smoke | 0 | `.tmp/release-candidate-m22-review-final` staged and passed, including the corrected bundled evidence. |
+| `git diff --check` | 0 | No whitespace errors. |
+
+The correction changes no runtime source or contract. A necessary second
+hosted run is pending; it is quota-conscious evidence for the reviewed final
+artifact rather than a new CI job.
 
 ## Baseline — 2026-08-04
 

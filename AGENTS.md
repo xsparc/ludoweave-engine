@@ -44,9 +44,11 @@ and gate bookkeeping. It may not change runtime source, add or reinterpret an
 operation/handler/command/receipt field, promote stability, claim cross-version
 or external adoption, add a dependency/lock/version/workflow job, or implement
 storage, providers, transports, networking, native/WASM, 3D, or editor work.
-Ready PR #32 and sole GitHub Actions run `31100821087` validate all eight
-unchanged essential jobs on DCO-signed M22 implementation commit
-`f1a89ad460467039f966ed37955144840cd96a12`. Squash integration is pending.
+Ready PR #32 and GitHub Actions run `31100821087` validate all eight unchanged
+essential jobs on DCO-signed M22 implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12`. Automated review then requested
+explicit defaulted-component-field omission evidence; the correction must pass
+focused, artifact, and follow-up hosted validation before squash integration.
 
 M0 through M21 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
