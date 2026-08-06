@@ -1,0 +1,10 @@
+{
+  "schema": "ludoweave.compatibility.supported-release-channel/1",
+  "source_package": "ludoweave",
+  "minimum_supported_feature_releases": 2,
+  "deprecation_window_feature_releases": 1,
+  "required_publication_channels": [
+    "github-release"
+  ],
+  "release_records": []
+}

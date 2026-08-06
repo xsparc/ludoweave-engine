@@ -37,6 +37,18 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
+M26 is assigned only to strict offline supported deprecation release-channel
+admission readiness for RFC-0003 gate 6. The reviewed manifest is empty, so its
+current result must remain false and must not claim support or publication.
+Manual review, not evaluator logic, owns release existence, support/yank status,
+and provenance. M26 may add only frozen data evidence, an explicitly invoked
+evaluator/validator, synthetic gate tests, RFC/docs, and source/wheel/release-
+sample artifact smoke through the unchanged eight essential CI jobs. It may not
+create/push a tag; publish a GitHub release or PyPI package; configure trusted
+publishing; change the release workflow, package version, runtime/API/exports,
+protocol, dependency, lock, stability metadata, or support policy; or use
+networking, telemetry, discovery, subprocesses, or provider execution.
+
 M25 is assigned only to strict offline external-consumer-feedback admission
 readiness for RFC-0003 gate 2. The reviewed manifest is empty, so its current
 result must remain false and must not claim external adoption. Manual review,
@@ -76,7 +88,7 @@ commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8`; both trees are
 assigned base. The milestone branch remains the audit trail.
 
 M0 through M25 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`. This branch records M25 integration only.
+integrated into `main`. M26 is the only active milestone.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
 policy identified by RFC-0003: a frozen repository contract, deterministic
 installed evidence, tests, RFC/docs, artifact smoke, and gate bookkeeping. It

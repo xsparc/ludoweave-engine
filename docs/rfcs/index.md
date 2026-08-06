@@ -13,3 +13,4 @@ was adopted.
 - [RFC-0006: receipt semantic-diff and diagnostic compatibility](0006-receipt-semantic-diff-and-diagnostic-compatibility.md)
 - [RFC-0007: cross-version receipt-corpus admission readiness](0007-cross-version-corpus-admission-readiness.md)
 - [RFC-0008: external consumer feedback admission readiness](0008-external-consumer-feedback-admission-readiness.md)
+- [RFC-0009: supported release channel admission readiness](0009-supported-release-channel-admission-readiness.md)

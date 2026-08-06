@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M26/RFC-0009 supported-release-channel admission evidence that rejects
+  prerelease/local/CI substitutes and explicitly retains gate 6 as false until
+  two reviewed supported final feature lines exist.
 - Add M25/RFC-0008 external-consumer-feedback admission evidence that rejects
   project-owned substitutes and explicitly retains gate 2 as false until a
   reviewed independent command/receipt integration supplies feedback.

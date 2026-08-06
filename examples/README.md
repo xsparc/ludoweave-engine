@@ -15,6 +15,7 @@ python receipt_reader.py
 python receipt_semantic_compatibility.py
 python cross_version_corpus_readiness.py
 python external_consumer_feedback_readiness.py
+python supported_release_channel_readiness.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -71,6 +72,11 @@ synthetic gate regression is not cross-version history or release evidence.
 feedback manifest and reports that no independently owned integration evidence
 exists. Its synthetic gate regression is not a consumer, adoption, feedback,
 release, or stability-promotion claim.
+
+`supported_release_channel_readiness.py` validates the exact empty reviewed
+release-channel manifest and reports that no recurring supported final-feature
+release history exists. Its synthetic gate regression is not a release,
+support promise, channel, publication, or stability-promotion claim.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

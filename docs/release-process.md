@@ -38,6 +38,11 @@ No PyPI upload is configured in community alpha. Name reservation, trusted
 publishing, and a non-prerelease support policy require separate maintainer
 decisions.
 
+M26/RFC-0009 adds offline admission machinery for the future supported
+deprecation-capable feature-release channel. The current workflow remains
+prerelease-only, no release record is admitted, and gate 6 remains false. See
+the [supported release channel readiness guide](supported-release-channel-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official

@@ -33,6 +33,7 @@ _SAMPLE_FILES = (
     "receipt_semantic_compatibility.py",
     "rich_2d_showcase.py",
     "rollback_readiness.py",
+    "supported_release_channel_readiness.py",
     "visual_editor_decision.py",
     "wasm_mod_security_decision.py",
     "world_store_conformance.py",
@@ -146,6 +147,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "external_consumer_feedback.json",
             Path("assets/external_consumer_feedback.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "supported_release_channel.json",
+            Path("assets/supported_release_channel.json"),
         )
     )
     sources.extend(

@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M23 are hosted-validated and integrated into `main`. M24 adds a strict cross-version corpus admission harness while correctly retaining the current single-version gate as false. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M25 are hosted-validated and integrated into `main`. M26 adds strict supported-release-channel admission machinery while retaining its empty-record gate as false. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -67,6 +67,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - A deterministic admission harness that verifies those historical bytes and
   requires a different installed reader version plus supported-release
   evidence before any cross-version claim.
+- A strict external-consumer-feedback admission harness whose empty reviewed
+  manifest keeps the current adoption gate false.
+- A strict supported feature-release-channel admission harness whose empty
+  reviewed manifest keeps the deprecation-channel gate false.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -108,6 +112,7 @@ uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/rollback_readiness.py --ticks 120 --branch-tick 60
 uv run python examples/cross_version_corpus_readiness.py
 uv run python examples/external_consumer_feedback_readiness.py
+uv run python examples/supported_release_channel_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py

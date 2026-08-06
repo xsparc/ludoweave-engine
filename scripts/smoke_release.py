@@ -22,6 +22,7 @@ from external_consumer_feedback_evidence import validate_external_consumer_feedb
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
+from supported_release_channel_evidence import validate_supported_release_channel_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
@@ -215,6 +216,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         external_feedback = cast(dict[str, object], json.loads(external_feedback_result.stdout))
         validate_external_consumer_feedback_evidence(external_feedback, version=version)
+        release_channel_result = _run(
+            [str(python), "-I", "supported_release_channel_readiness.py"],
+            cwd=sample_root,
+        )
+        release_channel = cast(dict[str, object], json.loads(release_channel_result.stdout))
+        validate_supported_release_channel_evidence(release_channel, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -288,6 +295,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "receipt_reader.py",
         "receipt_semantic_compatibility.py",
         "rollback_readiness.py",
+        "supported_release_channel_readiness.py",
         "visual_editor_decision.py",
         "wasm_mod_security_decision.py",
         "world_store_conformance.py",

@@ -708,8 +708,10 @@ same-version evidence; it does not add handlers or promote stability. M23 adds
 only the exact receipt-v1 semantic-diff/diagnostic policy and same-version
 evidence. M24 adds only offline cross-version admission readiness and retains
 that gate as false. M25 adds only offline external-consumer-feedback admission
-readiness and retains that gate as false. None supplies actual cross-version
-history, external-consumer feedback, or a supported release channel.
+readiness and retains that gate as false. M26 adds only offline supported-
+release-channel admission readiness and retains that gate as false. None
+supplies actual cross-version history, external-consumer feedback, or a
+supported release channel.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.

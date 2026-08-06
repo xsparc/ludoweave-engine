@@ -110,6 +110,13 @@ independence by itself. The reviewed manifest is empty, so actual external
 feedback and adoption remain absent. Cross-version history and a supported
 deprecation release channel also remain unresolved.
 
+RFC-0009 resolves how supported deprecation-capable feature-release-channel
+evidence is admitted. The offline harness requires two reviewed supported,
+non-yanked final releases on distinct feature lines with exact publication
+identities and append-only history. The reviewed manifest is empty, so the
+actual channel remains absent. Cross-version release execution and external
+consumer feedback also remain unresolved; no stability promotion is implied.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

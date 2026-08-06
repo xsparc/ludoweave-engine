@@ -1,73 +1,63 @@
 # Current Task
 
-- **Task:** M25 - external-consumer-feedback admission readiness
-- **Status:** Complete and squash-integrated into `main`. This no-CI branch
-  records the exact verified integration; publication of that record remains.
+- **Task:** M26 - supported deprecation release-channel admission readiness
+- **Status:** Complete, reviewed, and hosted-validated on
+  `codex/m26-supported-release-channel-readiness`; squash integration remains.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized `main` commit
-  `680e90dd8f9377fece23c43bd9f07ca9d76297de` after verified PR #37.
-- **Outcome:** Make RFC-0003 gate-2 evidence mechanically auditable without
-  treating project-owned fixtures, synthetic tests, or unreviewed submissions
-  as external-consumer feedback.
+  `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62` after verified PR #39.
+- **Outcome:** Make RFC-0003 gate-6 evidence mechanically auditable without
+  treating the prerelease workflow, local candidates, CI, tags, or synthetic
+  records as a supported deprecation-capable feature-release channel.
 - **Acceptance gate:**
-  - Add one strict reviewed manifest whose current feedback-record set is empty
+  - Add one strict reviewed manifest whose current release-record set is empty
     and whose exact byte length and SHA-256 are pinned by architecture tests.
-  - Require a manually reviewed independent consumer, public HTTPS repository,
-    immutable Git revision, exact command/transaction/receipt protocol set,
-    integration and feedback artifact hashes, and a bounded outcome before any
-    record can count.
-  - Preserve every previously mandatory reviewed record as an exact append-only
-    prefix and reject duplicate consumers, malformed or project-owned records,
-    unreviewed manifest bytes, unknown fields, unsafe locators, and excess
-    records or bytes.
+  - Require at least two reviewed, supported, non-yanked final
+    `MAJOR.MINOR.PATCH` releases on distinct feature lines before the gate can
+    become true.
+  - Require exact version/tag/commit, public non-IP HTTPS release URL,
+    artifact/notes SHA-256, and publication-channel identities for every
+    record; preserve accepted history as an exact append-only prefix.
+  - Preserve the one-supported-feature-release deprecation window and reject
+    prereleases, patch-only cadence, duplicates, out-of-order records,
+    unsupported/yanked releases, unreviewed bytes, and excess records/bytes.
   - Emit exact sanitized `not-ready` evidence for the current empty manifest;
-    never expose consumer identity, repository, revision, or artifact hashes in
-    the report.
-  - Prove future gate logic only with a synthetic `.invalid` consumer and state
-    explicitly that the test is not external feedback or adoption evidence.
+    never expose release URLs, commits, or artifact/notes hashes in the report.
+  - Prove future gate mechanics synthetically while explicitly refusing to
+    count that regression as a release, support promise, or publication.
   - Exercise source, isolated wheel, and release-sample bundle paths, accept
-    RFC-0008, and preserve the existing eight essential CI jobs.
-- **Non-scope:** Soliciting or contacting consumers; network, telemetry,
-  discovery, dynamic imports, subprocesses, provider execution, adoption or
-  certification claims, stability promotion, runtime source/API/exports,
-  protocol/operation/version changes, dependency/lock/workflow changes,
-  release/tag/PyPI publication, or RFC-0003 gates 1/6.
+    RFC-0009, and preserve the existing workflows and eight essential CI jobs.
+- **Non-scope:** Creating/pushing a tag; publishing a GitHub release or PyPI
+  package; configuring trusted publishing; changing the release workflow,
+  package version, runtime source/API/exports, protocol/operation, dependency,
+  lock, stability metadata, or support policy; network/telemetry/discovery/
+  subprocess/provider execution; or claiming RFC-0003 gates 1/2 complete.
 - **SemVer:** No package or public-Python-surface change; version remains
   `0.1.0a1` and all command/transaction/receipt surfaces remain experimental.
-- **Baseline evidence:** M24 feature PR #36 and zero-run state PR #37 are
-  squash-integrated; local `main` was clean and synchronized at exact verified
-  commit `680e90dd8f9377fece23c43bd9f07ca9d76297de`. `uv lock --check`
-  resolves the unchanged 46-package lock, and 45 relevant M20/M24/release
-  tests pass in 4.40 seconds. The new reviewed manifest is exactly 283 bytes
-  with SHA-256
-  `b113444f60946461ec6774e2c278b9e82e7d80e08a37450b6cc153e5c5c1500e`.
-  Findings-first review corrected explicit-path symlink enforcement and
-  hardened public HTTPS locators. The final local gate passes 227-file
-  formatting, Ruff, strict Pyright, strict docs, 1,109 tests with two Windows
-  symlink-capability skips, pure build, isolated wheel/release smoke, all
-  documented benchmark/profile validators, 10 real-wgpu tests, and both
-  graphics vertical slices.
-- **Review and hosted evidence:** DCO-signed implementation commit
-  `9667e020c2213d415072b7c7efbd880f6b58abfa` is published through ready PR
-  #38 against exact assigned base
-  `680e90dd8f9377fece23c43bd9f07ca9d76297de`. Sole GitHub Actions run
-  `31111498136` passed all eight unchanged essential jobs. GitHub reports the
-  PR `MERGEABLE` and `CLEAN`; the first thread-aware read found no issue
-  comment, review, or inline review thread. Delayed automated review found one
-  valid P2: numeric private/link-local IP authorities could pass the future
-  locator syntax gate. The local correction requires an alphabetic DNS-style
-  top-level label, adds loopback/link-local regressions, and passes 1,111 tests
-  with the two existing Windows capability skips plus the complete static/docs
-  and isolated wheel/release gate. DCO correction commit
-  `90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary corrected run
-  `31112342328` across all eight unchanged essential jobs. Final thread-aware
-  reread found the original thread unresolved and non-outdated because its
-  anchor persists, but the adjacent non-IP gate and exact regressions satisfy
-  it; no finding remains actionable. No reply or manual resolution was
-  performed.
-- **Integration:** PR #38 squash-integrated exact final evidence head
-  `d0866967832fe80a49942184e1ab81d3c426a478` as GitHub-verified `main`
-  commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`. Both trees are
-  `fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`; the squash commit's sole parent
-  is assigned base `680e90dd8f9377fece23c43bd9f07ca9d76297de`, and its message contains the
-  DCO sign-off.
+- **Baseline evidence:** M25 feature PR #38 and zero-run state PR #39 are
+  squash-integrated; local `main` is clean and synchronized at exact verified
+  commit `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. The unchanged lock resolves
+  46 packages, and 61 relevant release/stability tests pass with one Windows
+  symlink-capability skip in 5.90 seconds. The new reviewed manifest is exactly
+  278 bytes with SHA-256
+  `f23b4314696384ad288b86c63bc101606f1aa9f323c4fb186486d8c74915ec41`.
+  Findings-first review hardened exact project-tag URLs, final-release state,
+  and publication identity. The complete local gate passes 231-file formatting,
+  Ruff, strict Pyright, strict docs, 1,152 tests with three Windows symlink-
+  capability skips, pure build, isolated wheel/release smoke, all documented
+  benchmark/profile validators, 10 real-wgpu tests, and both graphics vertical
+  slices. The post-documentation full gate passes on the exact final local tree;
+  ready PR #40 targets the exact assigned base from DCO-signed implementation
+  commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Initial hosted run
+  `31115252696` passes all eight unchanged essential jobs. GitHub reports the PR
+  `MERGEABLE` and `CLEAN`; the first thread-aware read found no comment, review,
+  or inline thread. Delayed review found one valid P2: a reviewed nonempty
+  manifest could be admitted without a matching complete mandatory prefix. The
+  local correction binds the reviewed digest to the entire prefix and passes
+  1,153 tests with the same three Windows capability skips plus complete
+  static/docs and isolated wheel/release validation. The correction is
+  published as `ad73e641605ee1622e8168a73183f9987d9f9254`; necessary corrected
+  run `31116147333` and its failed-job-only infrastructure rerun are successful
+  across all eight checks. Final thread-aware review finds
+  the original P2 outdated and no actionable finding. A CI-skipping factual
+  evidence commit and squash integration remain pending.
