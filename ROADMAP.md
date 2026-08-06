@@ -30,7 +30,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
-| Ready to integrate | M22 built-in operation argument compatibility | PR #32; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
+| Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -148,6 +148,11 @@ Automated review clarification commit
 `cf3ae540e71cda128837ea698f5f175a7abf2fc4` passed necessary follow-up run
 `31101607485` across the same eight jobs; the original review thread is
 outdated and no actionable thread remains.
+PR #32 squash-integrated exact final evidence head
+`a5a49dcca277f28bb3e6097f37d5418d5d3c2c9d` into `main` as
+GitHub-verified commit `8a4d288c4edf55d0299828b8edee1bd1885884d9`;
+both trees are `f513bec716d1735cc47a6aab862bca0f5f770af9`. The branch is
+retained for audit history, and no M23 work is included.
 
 ## Good-first contribution queue
 

@@ -128,6 +128,33 @@ The branch has two CI runs total: the original complete implementation run
 `31100821087` and the necessary review-correction run `31101607485`. Both
 passed. No workflow or job topology changed.
 
+## M22 main integration - 2026-08-06
+
+PR #32 squash-integrated final evidence head
+`a5a49dcca277f28bb3e6097f37d5418d5d3c2c9d` into `main` as commit
+`8a4d288c4edf55d0299828b8edee1bd1885884d9`. Read-only verification found:
+
+- the squash commit's sole parent is exact assigned base
+  `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`;
+- the final branch head and squash commit have exact tree
+  `f513bec716d1735cc47a6aab862bca0f5f770af9`;
+- the commit contains the contributor DCO sign-off and GitHub reports
+  verification `valid` with `verified: true`;
+- local `main`, `origin/main`, and the PR merge commit all resolve to
+  `8a4d288c4edf55d0299828b8edee1bd1885884d9` after a fast-forward; and
+- `git fsck --full --no-dangling` exited 0 with no output.
+
+Immediately before merge, PR #32 was open, ready, `MERGEABLE`, and `CLEAN`;
+its base was the exact assigned commit. The branch listed exactly two completed
+successful Actions runs, `31100821087` and `31101607485`. The feature branch
+was retained for audit history. No tag, release, publication, runtime source,
+dependency, lock, version, workflow, or M23 work is included.
+
+On the integration-record branch, `uv run --frozen mkdocs build --strict`
+exited 0 and built the documentation in 0.64 seconds with Material's upstream
+informational warning. `git diff --check` exited 0 with no whitespace errors;
+the diff contains only `.ai` state, `AGENTS.md`, and `ROADMAP.md`.
+
 ## Baseline — 2026-08-04
 
 | Command | Exit | Result |

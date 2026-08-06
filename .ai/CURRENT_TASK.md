@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M22 - built-in operation argument compatibility and evolution policy
-- **Status:** Ready to integrate on `codex/m22-operation-argument-policy`.
-  Review correction, local validation, final hosted validation, and thread-
-  aware review closure are complete through ready PR #32. Exact squash
-  integration is pending.
+- **Status:** Complete and squash-integrated by PR #32. GitHub-verified
+  `main` commit `8a4d288c4edf55d0299828b8edee1bd1885884d9` has the exact
+  final M22 tree. No M23 work is included.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`.
@@ -46,4 +45,7 @@
   fields was corrected in DCO-signed commit
   `cf3ae540e71cda128837ea698f5f175a7abf2fc4`. Necessary follow-up run
   `31101607485` passed all eight unchanged jobs; the original thread is now
-  outdated and no actionable thread remains.
+  outdated and no actionable thread remains. PR #32 squash-integrated final
+  evidence head `a5a49dcca277f28bb3e6097f37d5418d5d3c2c9d` as
+  GitHub-verified commit `8a4d288c4edf55d0299828b8edee1bd1885884d9`;
+  both trees are `f513bec716d1735cc47a6aab862bca0f5f770af9`.

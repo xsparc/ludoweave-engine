@@ -2,7 +2,8 @@
 
 ## Current milestone
 
-M22 is complete, reviewed, published, and hosted-validated on
+M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
+implemented on
 `codex/m22-operation-argument-policy` from exact clean
 synchronized `main` commit
 `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`. Its bounded result is an exact
@@ -19,7 +20,11 @@ full local gate, wheel, and release smoke pass in DCO-signed correction commit
 `cf3ae540e71cda128837ea698f5f175a7abf2fc4`. Follow-up GitHub Actions run
 `31101607485` passed all eight unchanged essential jobs. Thread-aware review
 now reports the sole review thread outdated and no actionable thread remains.
-Squash integration is pending.
+PR #32 squash-integrated exact final evidence head
+`a5a49dcca277f28bb3e6097f37d5418d5d3c2c9d` into `main` as
+GitHub-verified commit `8a4d288c4edf55d0299828b8edee1bd1885884d9`;
+both trees are `f513bec716d1735cc47a6aab862bca0f5f770af9`, and the sole
+parent is the assigned base. The milestone branch remains the audit trail.
 
 M21 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean
@@ -329,10 +334,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 and M21 are complete, hosted-validated, and squash-integrated. M22 is the
-  active bounded slice and adds only an exact built-in v1 operation-argument
-  policy, same-version installed evidence, RFC-0005, and living readiness
-  schema `/3` bookkeeping.
+- M20 through M22 are complete, hosted-validated, and squash-integrated. M22
+  added only an exact built-in v1 operation-argument policy, same-version
+  installed evidence, RFC-0005, and living readiness schema `/3` bookkeeping.
+- No M23 slice is assigned or included in the M22 integration record.
 - M22 may not reinterpret a runtime contract, claim cross-version compatibility
   or external adoption, promote stability, add an operation/handler/migration,
   discover or load providers, access ambient filesystem/network resources, or
