@@ -48,8 +48,35 @@ milestone status and described M25/M26 without changing runtime behavior.
 | Protected-scope, manifest, credential-pattern, artifact, history, and Git-object audit | 0 | Runtime source, workflows, metadata, dependency lock, M24/M25 reviewed manifests, and the release workflow remain unchanged; the M26 manifest hash is exact; the 94-entry wheel has no `.pyd`, `.so`, `.dll`, or `.dylib`; the 32-entry sample bundle contains both M26 files; broad credential matches are deliberate sanitization text/tests only; `HEAD` and its merge-base with `main` are exact assigned base; and `git fsck --full --no-dangling` passed. |
 | Final post-documentation formatting, Ruff, Pyright, strict docs, tests, and whitespace recheck | 0 | All 231 Python files remained formatted; Ruff passed; Pyright reported zero diagnostics; strict docs built in 0.75 seconds with the known upstream Material warning; 1,152 tests passed with three Windows symlink-capability skips in 79.11 seconds; and `git diff --check` passed. |
 
-Commit, ready PR, one necessary hosted run, delayed thread-aware review, and
-squash integration remain pending.
+The implementation commit and hosted evidence are recorded below.
+
+## M26 hosted validation and initial thread-aware review - PR #40
+
+Ready PR #40 targets exact base
+`0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62` from DCO-signed implementation
+commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Its sole GitHub Actions run
+`31115252696` completed successfully across the unchanged eight-job topology:
+
+| Job | Result |
+| --- | --- |
+| Quality, tests, and distribution | Passed formatting, Ruff, Pyright, strict docs, non-provider tests, base profile, pure build, installed-wheel smoke, release staging, and release smoke. |
+| Compatibility - Ubuntu 3.13 | Passed. |
+| Compatibility - Ubuntu 3.14 | Passed. |
+| Compatibility - Windows 3.14 | Passed. |
+| Compatibility - macOS 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+GitHub reports PR #40 open, ready, `MERGEABLE`, and `CLEAN`, with the exact
+head/base above and all eight checks successful. The first GraphQL thread-aware
+read returned no issue comment, review, or inline review thread.
+
+This hosted pass does not establish a supported release, recurring channel,
+support promise, cross-version execution, external consumer feedback,
+stability promotion, tag, GitHub release, or PyPI publication. A CI-skipping
+factual evidence commit, delayed thread-aware reread, and squash integration
+remain pending.
 
 ## M25 development evidence - 2026-08-07, Windows, CPython 3.12.13
 

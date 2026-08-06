@@ -21,7 +21,11 @@ Ruff, strict Pyright, strict docs, 1,152 tests with three Windows symlink-
 capability skips, pure build, isolated wheel/release smoke, all documented
 benchmark/profile validators, 10 real-wgpu tests, and both graphics vertical
 slices. The post-documentation full gate passes on the exact final local tree;
-hosted validation remains pending.
+ready PR #40 targets the exact assigned base from DCO-signed implementation
+commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Sole hosted run
+`31115252696` passes all eight unchanged essential jobs. GitHub reports the PR
+`MERGEABLE` and `CLEAN`; the first thread-aware read found no comment, review,
+or inline thread. Delayed review and squash integration remain pending.
 
 M25 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m25-external-consumer-feedback-readiness` from
