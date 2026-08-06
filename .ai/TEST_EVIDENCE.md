@@ -168,6 +168,37 @@ tamper tests, full local gate, wheel/release smokes, and hosted run directly
 satisfy both requested changes. Neither review text describes a current defect.
 No reply or manual resolution was performed, and no new review finding appeared.
 
+## M23 main integration - 2026-08-06
+
+PR #34 squash-integrated final evidence head
+`eacb0153d8ac6e5f65d4d52f02c493bf9a891219` into `main` as commit
+`2f7152565d369225dbf69055b7d42a4c80f46d1a`. Read-only verification found:
+
+- the squash commit's sole parent is exact assigned base
+  `415859e19d9d29caa1168fabc96def509897b056`;
+- the final branch head and squash commit have exact tree
+  `6ba709c29688041992bef75a2a83831275ff32db`;
+- the commit contains the contributor DCO sign-off and GitHub reports
+  verification `valid` with `verified: true`;
+- local `main`, `origin/main`, and the PR merge commit all resolved to
+  `2f7152565d369225dbf69055b7d42a4c80f46d1a` after a fast-forward; and
+- the feature branch was retained for audit history.
+
+Immediately before merge, PR #34 was open, ready, `MERGEABLE`, and `CLEAN`;
+its base and head were the exact assigned and final evidence commits. The
+branch listed exactly two completed successful Actions runs, `31104052702` and
+`31105197045`; the final `[skip ci]` evidence commit created no third run. The
+two review discussions retained unresolved/non-outdated GitHub metadata but
+their current adjacent definitions and exact-diff assertion satisfied both
+findings, as recorded above. No tag, release, publication, runtime source,
+dependency, lock, version, workflow, or subsequent-milestone work is included.
+
+On `codex/m23-main-integration`, `uv run --frozen mkdocs build --strict`
+exited 0 and built documentation in 0.70 seconds with Material's upstream
+informational warning. `git diff --check` and
+`git fsck --full --no-dangling` exited 0 with no output. The diff contains
+only `.ai` state, `AGENTS.md`, and `ROADMAP.md`.
+
 ## M22 development evidence — 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

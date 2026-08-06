@@ -2,7 +2,8 @@
 
 ## Current milestone
 
-M23 implementation is published and initially hosted-validated on
+M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
+implemented on
 `codex/m23-receipt-diagnostic-policy` from exact clean
 synchronized `main` commit
 `415859e19d9d29caa1168fabc96def509897b056`. Its bounded result is an exact
@@ -35,7 +36,13 @@ Thread-aware reread shows both original discussions still unresolved and
 non-outdated because their anchors remain in the diff; current adjacent code
 directly supplies the requested definitions and full-diff assertion, so no
 finding remains actionable. No reply or manual resolution was performed. Final
-`[skip ci]` evidence publication and squash integration remain.
+`[skip ci]` evidence head
+`eacb0153d8ac6e5f65d4d52f02c493bf9a891219` was squash-integrated by PR
+#34 as GitHub-verified `main` commit
+`2f7152565d369225dbf69055b7d42a4c80f46d1a`. Both trees are
+`6ba709c29688041992bef75a2a83831275ff32db`; the sole parent is exact assigned
+base `415859e19d9d29caa1168fabc96def509897b056`, and the commit contains the
+DCO sign-off. The milestone branch remains the audit trail.
 
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -369,15 +376,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M22 are complete, hosted-validated, and squash-integrated. M23 is
-  the active bounded slice and adds only an exact receipt-v1 semantic-diff and
-  diagnostic-code policy, same-version installed evidence, RFC-0006, and living
-  readiness schema `/4` bookkeeping.
-- M23 may not reinterpret a runtime contract, claim cross-version compatibility
-  or external adoption, promote stability, add an operation/handler/migration,
-  discover or load providers, access ambient filesystem/network resources, or
-  change package exports, dependencies, lock, version, workflows, jobs,
-  backends, storage, native/WASM code, tags, releases, or publication.
+- M20 through M23 are complete, hosted-validated, and squash-integrated. This
+  branch records M23 integration only; no subsequent milestone is included.
+- Cross-version compatibility history, external consumer feedback, and a
+  supported deprecation-capable feature-release channel remain absent. Do not
+  promote the experimental command/receipt surface by inference.
 
 ## Validation state
 
