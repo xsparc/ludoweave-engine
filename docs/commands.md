@@ -215,6 +215,10 @@ M24's [cross-version corpus readiness guide](cross-version-corpus-readiness.md)
 defines how gate-1 evidence is admitted. The current same-version reader and
 empty supported-release set keep that gate false.
 
+M25's [external consumer feedback readiness guide](external-consumer-feedback-readiness.md)
+defines how gate-2 evidence is admitted. The reviewed manifest is empty, so
+the current result remains false and no external adoption is claimed.
+
 ## Reading receipts
 
 M21 adds strict `TransactionReceipt.from_json` and `from_mapping` entry points.

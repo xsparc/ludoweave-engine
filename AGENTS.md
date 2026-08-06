@@ -37,6 +37,18 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
+M25 is assigned only to strict offline external-consumer-feedback admission
+readiness for RFC-0003 gate 2. The reviewed manifest is empty, so its current
+result must remain false and must not claim external adoption. Manual review,
+not evaluator logic, owns independence and provenance. M25 may add only frozen
+data evidence, an explicitly invoked evaluator/validator, synthetic gate tests,
+RFC/docs, and source/wheel/release-sample artifact smoke through the unchanged
+eight essential CI jobs. It may not solicit or contact consumers; use network,
+telemetry, discovery, dynamic imports, subprocesses, or provider execution;
+change runtime source, public APIs/exports, protocols, operations, dependencies,
+lock, version, workflow, or stability labels; or publish a tag, release, or
+package.
+
 M24 adds only strict offline cross-version receipt-corpus admission readiness.
 Its current result remains false and does not claim actual history or adoption.
 Delayed review's append-only finding is corrected by executable mandatory
@@ -49,7 +61,7 @@ commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8`; both trees are
 assigned base. The milestone branch remains the audit trail.
 
 M0 through M24 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`.
+integrated into `main`. M25 is the only active milestone.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
 policy identified by RFC-0003: a frozen repository contract, deterministic
 installed evidence, tests, RFC/docs, artifact smoke, and gate bookkeeping. It

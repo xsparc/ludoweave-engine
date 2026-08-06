@@ -18,6 +18,7 @@ from typing import cast
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from cross_version_corpus_evidence import validate_cross_version_corpus_evidence
+from external_consumer_feedback_evidence import validate_external_consumer_feedback_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -208,6 +209,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         cross_version = cast(dict[str, object], json.loads(cross_version_result.stdout))
         validate_cross_version_corpus_evidence(cross_version, version=version)
+        external_feedback_result = _run(
+            [str(python), "-I", "external_consumer_feedback_readiness.py"],
+            cwd=sample_root,
+        )
+        external_feedback = cast(dict[str, object], json.loads(external_feedback_result.stdout))
+        validate_external_consumer_feedback_evidence(external_feedback, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -275,6 +282,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "command_receipt_stability_decision.py",
         "constrained_3d_decision.py",
         "cross_version_corpus_readiness.py",
+        "external_consumer_feedback_readiness.py",
         "operation_argument_compatibility.py",
         "render_device_conformance.py",
         "receipt_reader.py",

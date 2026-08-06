@@ -33,6 +33,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
 | Done | M23 receipt semantic-diff and diagnostic compatibility | PR #34 squash-integrated the corrected exact policy/evidence; 1,050 local tests and both eight-job hosted runs passed with no current actionable review finding |
 | Done | M24 cross-version corpus admission readiness | PR #36 squash-integrated; exact preserved history, false current gate, append-only correction, installed artifact smoke, RFC-0007, and both eight-job hosted runs passed |
+| Locally validated | M25 external-consumer-feedback admission readiness | Strict reviewed manifest, sanitized false current report, append-only future record gate, installed artifact smoke, RFC-0008, and no adoption claim; hosted validation pending |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -192,6 +193,16 @@ completed through PR #36 at GitHub-verified `main` commit
 `b7b16697d28410567cbddf8eb962c7e6c9e664b8`. Its tree
 `fa3c455ccd9722c666cc07cae325f1b50e37ddc7` exactly matches final evidence head
 `1a8bd6f19f656eb5c4a0d6bd90f057a69bddbc34`; the branch is retained.
+
+M25 starts from integrated `main` commit
+`680e90dd8f9377fece23c43bd9f07ca9d76297de`. It adds an offline admission
+harness for manually reviewed independent-consumer feedback and requires exact
+public repository, immutable revision, protocol, outcome, and artifact
+identities before gate 2 can become true. The reviewed manifest is empty, so
+the current result remains false; the synthetic `.invalid` regression proves
+only gate logic and is not feedback or adoption evidence. No runtime API,
+protocol, dependency, version, workflow job, network activity, release, or
+publication is added.
 
 ## Good-first contribution queue
 

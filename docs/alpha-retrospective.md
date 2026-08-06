@@ -70,7 +70,9 @@ completes only the semantic-diff/diagnostic-code policy gate under RFC-0006.
 M24 adds the offline corpus admission harness under RFC-0007 but does not turn
 same-version fixtures or a synthetic regression into history. Three gates
 remain: cross-version execution from supported releases, external feedback,
-and a supported release channel. Remaining priority
+and a supported release channel. M25 defines strict offline admission for the
+external-feedback gate under RFC-0008, but its empty reviewed manifest leaves
+that gate false and makes no adoption claim. Remaining priority
 questions also include contributor rehearsal feedback and controlled
 cross-platform performance evidence. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device

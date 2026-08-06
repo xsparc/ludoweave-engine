@@ -82,6 +82,11 @@ receipt identities, requires a different installed reader version, and requires
 supported-release records for every observed version. The current corpus has
 only `0.1.0a1` and no release records, so the cross-version gate remains false.
 
+RFC-0008 adds an offline admission harness for independently owned public
+command/receipt integration feedback. Project samples, synthetic fixtures, CI,
+downloads, and telemetry do not count. The reviewed corpus is empty, so the
+external-feedback gate remains false.
+
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;
 the v1 fields and fingerprint semantics are not reinterpreted in place.

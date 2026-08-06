@@ -1,0 +1,11 @@
+{
+  "schema": "ludoweave.compatibility.external-consumer-feedback/1",
+  "source_package": "ludoweave",
+  "minimum_independent_consumers": 1,
+  "required_protocols": [
+    "ludoweave.command/1",
+    "ludoweave.transaction/1",
+    "ludoweave.receipt/1"
+  ],
+  "feedback_records": []
+}

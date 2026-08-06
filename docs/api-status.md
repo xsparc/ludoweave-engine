@@ -45,6 +45,8 @@ feedback, and a supported feature-release channel remain incomplete.
 M24 adds no export; RFC-0007 makes cross-version admission mechanically
 auditable but records the current single-version/no-release-evidence result as
 not ready.
+M25 adds no export; RFC-0008 makes external-consumer-feedback admission
+mechanically auditable but records the reviewed empty manifest as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

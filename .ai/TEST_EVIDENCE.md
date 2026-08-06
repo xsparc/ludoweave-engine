@@ -2,6 +2,57 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M25 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M24 feature/state integration verification and branch preparation | 0 | PR #36 squash-integrated the exact corrected M24 tree as GitHub-verified `b7b16697d28410567cbddf8eb962c7e6c9e664b8`; zero-run PR #37 integrated its exact state tree as GitHub-verified `680e90dd8f9377fece23c43bd9f07ca9d76297de`; local `main` was clean and synchronized before branch creation. |
+| `git switch -c codex/m25-external-consumer-feedback-readiness` | 0 | Created M25 from exact integrated `main` commit `680e90dd8f9377fece23c43bd9f07ca9d76297de`. |
+| `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.88 ms. |
+| Focused M20/M24/release baseline | 0 | 45 tests passed in 4.40 seconds. |
+| M25 manifest identity probe | 0 | The reviewed feedback manifest is exactly 283 bytes with SHA-256 `b113444f60946461ec6774e2c278b9e82e7d80e08a37450b6cc153e5c5c1500e` and contains zero feedback records. |
+| First M25 format, Ruff, Pyright, example, integration, and architecture group | 0 | Two files were reformatted; Ruff passed; Pyright reported zero diagnostics; the sanitized current report was `not-ready`; and 29 strict-evidence, synthetic-gate, history, malformed-record, boundary, and scope tests passed in 1.96 seconds. |
+
+The synthetic `.invalid` consumer proves only evaluator behavior. It is not an
+external consumer, feedback artifact, adoption result, release, or stability
+promotion. Full docs, repository, wheel/release, graphics/profile, review, and
+hosted validation remain pending.
+
+## M25 final local validation - 2026-08-07, Windows, CPython 3.12.13
+
+Findings-first review identified that CLI path normalization dereferenced an
+explicit symlink before the documented symlink rejection. The correction keeps
+the selected path intact for the bounded reader and also rejects credential-
+bearing, local-host, Unicode, and backslash HTTPS locator forms. The focused
+post-correction gate passed 35 tests with one Windows symlink-capability skip in
+2.23 seconds; Ruff and strict Pyright remained clean.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| First combined lock/sync/static gate in the managed sandbox | 1 | uv could not open its existing user-cache metadata; all five uv invocations failed before project execution, so no pass is claimed for this attempt. |
+| `uv lock --check` and `uv sync --frozen --all-groups --extra graphics` with approved cache access | 0 | The unchanged lock resolved 46 packages and 45 installed packages were checked. |
+| `uv run --frozen ruff format --check .` | 0 | All 227 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | All checks passed. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,109 tests passed in 79.58 seconds; the inherited Windows symlink-capability probe and the new explicit-manifest symlink probe skipped because link creation was unavailable. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.69 seconds; Material printed its known upstream MkDocs 2.0 warning. |
+| `uv build` | 0 | Built the `0.1.0a1` source distribution and pure `py3-none-any` wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed, including the explicit M25 source-manifest evidence path. |
+| Fresh M25 release staging and `scripts/smoke_release.py` | 0 | Staged the deterministic ten-artifact candidate and passed isolated release smoke, including the bundled empty reviewed feedback manifest. |
+| Documented M1-M4 benchmark artifact generators and validators | 0 | All four retained artifact contracts validated; M1 observed one of two targets, M2 has no timing target, M3 observed zero of two targets, and the M4 baseline target was observed. These are inherited observations, not M25 claims. |
+| Five-repeat base and graphics M7 profile generators and validators | 0 | The two-workload base and three-workload graphics artifacts validated. Timings remain diagnostic only. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All 10 unchanged real-wgpu integration tests passed in 6.31 seconds. |
+| Graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected deterministic structured summaries. |
+| Scope, whitespace, credential-pattern, Git-object, and stale-reference audit | 0 | Runtime source, workflow, metadata, lock, immutable M21 receipt fixtures, and M24 corpus are unchanged; `git diff --check` and `git fsck --full --no-dangling` passed. Broad credential-pattern results were existing tests/code identifiers or deliberate sanitization fixtures; no new credential value is present. |
+| Final static/docs, ancestry, and wheel inventory recheck | 0 | Formatting, Ruff, strict Pyright, strict docs, whitespace, and Git object checks passed; `HEAD` and its merge-base with `main` were exact assigned base `680e90dd8f9377fece23c43bd9f07ca9d76297de`; the current pure wheel contains 94 entries and zero `.pyd`, `.so`, `.dll`, or `.dylib` entries. |
+
+The final audit found no remaining scope, credential, backend/native leakage,
+dependency-direction, wall-clock, packaging, or stale-documentation finding.
+M25 adds no runtime source, public export, protocol, dependency, lock, version,
+workflow job, network activity, telemetry, stability promotion, external fact,
+tag, release, or publication. Commit, ready PR, hosted validation, delayed
+thread-aware review, and squash integration remain pending.
+
 ## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
 
 | Command | Exit | Result |
