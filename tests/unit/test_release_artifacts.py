@@ -58,6 +58,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "receipt_reader.py" in names
     assert prefix + "receipt_semantic_compatibility.py" in names
     assert prefix + "command_receipt_stability_decision.py" in names
+    assert prefix + "cross_version_corpus_readiness.py" in names
     assert prefix + "operation_argument_compatibility.py" in names
     assert prefix + "constrained_3d_decision.py" in names
     assert prefix + "rich_2d_showcase.py" in names
@@ -67,6 +68,11 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "world_store_conformance.py" in names
     assert prefix + "example.plugin.json" in names
     assert prefix + "assets/clockwork_arena.scene.json" in names
+    assert prefix + "assets/cross_version_receipt_corpus.json" in names
+    assert prefix + "assets/receipt_v1/manifest.json" in names
+    assert prefix + "assets/receipt_v1/committed.json" in names
+    assert prefix + "assets/receipt_v1/dry_run.json" in names
+    assert prefix + "assets/receipt_v1/rejected.json" in names
     assert all(name.startswith(prefix) and ".." not in name.split("/") for name in names)
 
 

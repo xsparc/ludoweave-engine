@@ -1,70 +1,43 @@
 # Current Task
 
-- **Task:** M23 - receipt semantic-diff and diagnostic compatibility policy
-- **Status:** Complete and squash-integrated into `main`. This no-CI branch
-  records the exact verified integration; publication of that record remains.
+- **Task:** M24 - cross-version receipt-corpus admission readiness
+- **Status:** Implementation complete and locally validated on
+  `codex/m24-cross-version-corpus-readiness`; DCO commit, ready PR, hosted
+  validation, thread-aware review, and squash integration remain.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
-  `415859e19d9d29caa1168fabc96def509897b056`.
-- **Outcome:** State an exact receipt-v1 semantic-diff and diagnostic-code
-  evolution policy independent of implementation and prove installed behavior
-  against it without promoting protocol stability.
+  `55c7a72337913303b6b1f6bd31edbca7ff28683b` after verified PR #35.
+- **Outcome:** Make RFC-0003 gate-1 evidence mechanically auditable without
+  relabeling the current single-version fixtures as cross-version history.
 - **Acceptance gate:**
-  - Freeze one machine-readable contract for semantic-diff root/nested fields,
-    status presence, ordering, and named meanings.
-  - Forbid in-place shape or meaning changes under `ludoweave.receipt/1`; a
-    breaking change uses a new receipt protocol.
-  - Freeze existing top-level diagnostic-code meanings, allow additive well-
-    formed codes with rejected-status fallback, and classify phase/message/
-    scalar detail keys as non-authoritative metadata.
-  - Exercise every semantic change family, all current top-level rejection
-    codes, missing/unknown diff fields, incompatible protocol, changed metadata,
-    and an unknown code through installed public APIs.
-  - Validate exact, sanitized, repeatable evidence from source, an isolated
-    wheel, and the release sample bundle.
-  - Accept RFC-0006 and update M20 living readiness schema to `/4`, with only
-    the operation-policy, bounded-reader, and receipt-policy gates true.
-  - Keep the existing eight essential CI jobs unchanged and create at most one
-    hosted implementation run unless a reviewed correction requires another.
-- **Non-scope:** Runtime source/API/export changes, receipt/command/operation/
-  handler changes, new diagnostic behavior, cross-version/external-adoption
-  claims, stability promotion, release-channel implementation, dependency/
-  lock/version/workflow changes, storage/backend/provider/native/WASM/network/
-  editor work, tag, release, or package publication.
-- **SemVer:** No package or public-Python-surface change. Receipt identity
-  remains `ludoweave.receipt/1`; package version remains `0.1.0a1`.
-- **Initial local evidence:** The verified baseline resolves 46 locked packages and
-  passes 84 focused receipt/transaction/stability tests. The corrected M23
-  evidence example emits an exact repeatable sanitized policy report. Focused
-  formatting, Ruff, strict Pyright, 17 integration/architecture tests, then an
-  expanded 28-test readiness/release group and strict MkDocs build pass. Two
-  expanded gate passes 219-file formatting, Ruff, strict Pyright, strict docs,
-  pure build, isolated wheel/release smoke, 1,048 tests with one existing
-  Windows symlink skip, 10 real-wgpu tests, both graphics vertical slices, and
-  every documented M1-M4/M7 benchmark/profile validator. M1 simulation and
-  both M3 timing targets remain observed misses. Two development failures are
-  recorded factually in `.ai/TEST_EVIDENCE.md`: the
-  first component annotation mode was incompatible with the component schema,
-  and `world.transaction.nontransactional_operation` is a nested cause rather
-  than a top-level receipt diagnostic code.
-  DCO-signed implementation commit
-  `a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
-  #34. GitHub Actions run `31104052702` passed all eight unchanged essential
-  jobs. Delayed automated review then found two valid gaps: the fixture named
-  diagnostic identities without freezing each meaning, and the installed
-  example checked diff shapes without an exact full-diff value/order oracle.
-  The local correction binds all six code/meaning/scenario triples, compares
-  the full generated diff, passes 20 focused tests, the 1,050-test full suite
-  with one existing skip, strict static/docs gates, pure build, isolated wheel
-  smoke, and fresh release-bundle smoke. DCO-signed correction commit
-  `4eb61cd49542b0a4753629f31ebe80229c7d45b8` is published, and follow-up
-  GitHub Actions run `31105197045` passed all eight unchanged essential jobs.
-  GitHub keeps both original discussions unresolved/non-outdated because their
-  anchors remain unchanged, but current adjacent definitions and exact-diff
-  assertions make neither finding actionable. No reply or manual resolution
-  was performed.
-- **Integration:** PR #34 squash-integrated exact final evidence head
-  `eacb0153d8ac6e5f65d4d52f02c493bf9a891219` as GitHub-verified `main`
-  commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`. Both trees are
-  `6ba709c29688041992bef75a2a83831275ff32db`; the squash commit's sole
-  parent is the assigned base and its message contains the DCO sign-off.
+  - Add one strict repository manifest that references preserved M21 source
+    manifests by safe name, exact byte length, and SHA-256.
+  - Decode every declared receipt through the installed bounded public reader
+    and require exact status/canonical-byte preservation.
+  - Require a reader version different from a source version, at least two
+    observed versions, and supported-release records for every observed
+    version before the cross-version gate can become true.
+  - Emit exact sanitized `not-ready` evidence for the current `0.1.0a1` corpus
+    and empty supported-release set.
+  - Prove future gate logic synthetically while explicitly refusing to count
+    that regression as history or release evidence.
+  - Exercise source, isolated wheel, and release-sample bundle paths, accept
+    RFC-0007, and preserve the existing eight essential CI jobs.
+- **Non-scope:** Changing historical receipt bytes, runtime source/API/exports,
+  command/receipt/operation semantics, package version, stability labels,
+  dependency/lock/workflow topology, external-adoption claims, actual release
+  records, tag/release/PyPI publication, provider discovery, networking,
+  subprocesses, storage/backend/native/WASM/editor work, or RFC-0003 gates 2/6.
+- **SemVer:** No package or public-Python-surface change; version remains
+  `0.1.0a1` and all command/transaction/receipt surfaces remain experimental.
+- **Baseline evidence:** The exact M21 source manifest remains 762 bytes with
+  SHA-256 `ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3`.
+  The lock resolves 46 packages, and 71 relevant reader/corpus/policy/
+  architecture tests pass in 4.05 seconds. The final reviewed gate passes 223-
+  file formatting, Ruff, strict Pyright, strict docs, 1,074 tests with one
+  existing Windows symlink skip, pure build, isolated wheel/release smoke, 10
+  real-wgpu tests, both graphics vertical slices, and base/graphics profile
+  contract smokes. Findings-first review added bounded streaming and path
+  confinement, pinned reviewed-corpus identity, exact release coverage, and
+  source/release/fixture/receipt resource caps; 26 focused post-hardening tests
+  pass and no finding remains.

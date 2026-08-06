@@ -37,15 +37,16 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-The M23 integration-record branch may change only repository state/evidence
-documents for the already merged receipt-v1 semantic-diff and diagnostic-code
-compatibility policy identified by RFC-0003. It may add a frozen repository
-integration record. It may not change runtime source, add or reinterpret a
-receipt/command/operation/handler, promote stability, claim cross-version or
-external adoption, add a dependency/lock/version/workflow job, or implement
-storage, providers, transports, networking, native/WASM, 3D, or editor work.
+M24 is assigned only to cross-version receipt-corpus admission readiness. It
+may add a strict offline repository manifest, deterministic installed evidence,
+tests, RFC/docs, artifact smoke, and gate bookkeeping. Its current result must
+remain false. It may not rewrite historical receipt bytes, change runtime
+source/API/exports or a receipt/command/operation/handler, promote stability,
+claim actual cross-version history or external adoption, add a dependency/
+lock/version/workflow job, publish a tag/release/package, or implement storage,
+providers, transports, networking, native/WASM, 3D, or editor work.
 
-M0 through M22 are complete, independently accepted, hosted-CI validated, and
+M0 through M23 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
 policy identified by RFC-0003: a frozen repository contract, deterministic

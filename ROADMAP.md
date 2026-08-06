@@ -32,6 +32,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
 | Done | M23 receipt semantic-diff and diagnostic compatibility | PR #34 squash-integrated the corrected exact policy/evidence; 1,050 local tests and both eight-job hosted runs passed with no current actionable review finding |
+| In progress | M24 cross-version corpus admission readiness | Exact preserved-manifest/receipt audit, false current gate, synthetic future gate-logic regression, installed artifact smoke, RFC-0007, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -171,6 +172,13 @@ valid evidence gaps; DCO-signed correction commit
 evidence head `eacb0153d8ac6e5f65d4d52f02c493bf9a891219` into `main` as
 GitHub-verified commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`;
 both trees are `6ba709c29688041992bef75a2a83831275ff32db`.
+
+M24 starts from integrated `main` commit
+`55c7a72337913303b6b1f6bd31edbca7ff28683b`. It adds an offline admission
+harness over the immutable M21 receipt corpus and requires a different reader
+version plus supported-release evidence before gate 1 can become true. The
+current `0.1.0a1`/empty-release result remains false. No runtime API, protocol,
+dependency, version, workflow job, tag, release, or publication is added.
 
 ## Good-first contribution queue
 

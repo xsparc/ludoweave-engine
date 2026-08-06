@@ -660,6 +660,28 @@ marks the operation-policy, bounded-reader, and receipt-policy gates true. No
 runtime API, receipt field, handler, provider, dependency, or canonical state
 is introduced; cross-version history remains a separate false gate.
 
+## M24 cross-version corpus admission boundary
+
+M24 adds no engine module. One explicitly invoked example reads a selected
+repository/release corpus manifest, verifies safe-basename child manifests and
+receipts by exact byte length/SHA-256, and decodes the historical receipts only
+through the installed bounded public reader. Runtime source never loads or
+depends on the corpus.
+
+The admission rule requires a reader version different from a preserved source
+version, at least two distinct observed package versions, and supported-release
+records for every observed version. The current deterministic report is
+`not-ready`: source and reader are both `0.1.0a1`, and the supported-release set
+is empty. The synthetic future-state regression proves only the Boolean gate
+logic and cannot count as history.
+
+Evidence reads are bounded and synchronous. Unsafe names, unknown fields,
+duplicates, hash/byte drift, incomplete status coverage, release-record drift,
+reader failure, and canonical drift fail closed. Reports omit paths, state
+values/hashes, environment facts, timing, credentials, and provider messages.
+There is no discovery, dynamic import, installation, subprocess, networking,
+tag lookup, publication, provider selection, or retained external resource.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -684,8 +706,9 @@ does not change receipt/1, promote stability, or satisfy the cross-version gate.
 M22 adds only the exact built-in operation/version argument policy and
 same-version evidence; it does not add handlers or promote stability. M23 adds
 only the exact receipt-v1 semantic-diff/diagnostic policy and same-version
-evidence. Neither policy satisfies the remaining cross-version, external-
-feedback, or supported-release-channel gates.
+evidence. M24 adds only offline cross-version admission readiness and retains
+that gate as false. None satisfies the remaining actual cross-version,
+external-feedback, or supported-release-channel gates.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.

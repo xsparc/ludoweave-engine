@@ -2,6 +2,57 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M23 feature/integration PR verification, `git fetch`, fast-forward, and `git fsck --full --no-dangling` | 0 | PR #34 squash was GitHub-verified as exact-tree commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`; zero-run PR #35 integrated its exact-tree state record as GitHub-verified `55c7a72337913303b6b1f6bd31edbca7ff28683b`; local `main` was clean and synchronized. |
+| M24 branch creation | 128 | The first sandboxed `git switch -c` could not create the Git ref lock; no branch was created. The same command was rerun with approved repository-metadata access. |
+| `git switch -c codex/m24-cross-version-corpus-readiness` | 0 | Created M24 from exact integrated `main` commit `55c7a72337913303b6b1f6bd31edbca7ff28683b`. |
+| M21 manifest identity probe | 0 | Preserved source manifest remained exactly 762 bytes with SHA-256 `ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3`. |
+| `uv lock --check` | 0 | Baseline lock remained current; 46 packages resolved in 0.76 ms. |
+| Focused receipt corpus/reader/policy/architecture baseline | 0 | 71 tests passed in 4.05 seconds. |
+| First M24 format/Ruff/Pyright/example group | 0 | The new example was formatted, Ruff passed, Pyright reported zero diagnostics, and one sanitized `not-ready` report printed with both missing-gate reasons. |
+| First M24 integration/architecture group | 0 | 19 exact-evidence, tamper, safe-path, synthetic future-gate, import-boundary, and scope tests passed in 1.77 seconds. |
+| M24 artifact-wiring static and focused test group | 0 | Four artifact files were already formatted, Ruff and Pyright were clean, and 21 tests passed in 2.19 seconds. |
+
+The synthetic `0.1.0a2` test proves only gate logic. It is not a package build,
+supported release, cross-version history, external consumer result, or preview
+promotion. Full docs, repository, wheel/release, provider, and review validation
+remain pending.
+
+## M24 final local validation - 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Expanded M21-M24 format/Ruff/Pyright/receipt/artifact/docs group | 0 | All 223 Python files were formatted, Ruff and Pyright were clean, 92 focused tests passed in 5.78 seconds, and strict docs built in 0.67 seconds. |
+| First M24 `uv build`, isolated wheel smoke, fresh release staging/smoke | 0 | Built the pure wheel/sdist; installed-wheel evidence passed; fresh 10-artifact release candidate included and executed the exact preserved corpus; release smoke passed. |
+| `uv run --frozen pytest -q` before final review hardening | 0 | 1,072 tests passed in 81.59 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | 10 unchanged real-wgpu integration tests passed in 6.35 seconds. |
+| Hosted graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected deterministic structured summaries. |
+| Base and graphics M7 profile contract smokes | 0 | Two-workload base and three-workload graphics artifacts validated with one repeat. Timing remains diagnostic only. |
+| Final `uv lock --check`, Ruff format/check, Pyright, and strict MkDocs | 0 | Lock resolved 46 packages in 0.80 ms; 223 files were formatted; Ruff passed; Pyright reported zero diagnostics; docs built in 0.72 seconds. |
+| Final `uv run --frozen pytest -q` | 0 | 1,074 tests passed in 78.93 seconds; one existing Windows symlink-capability test skipped. |
+| Final `uv build` and isolated wheel/release smoke using `.tmp/release-candidate-m24-review-final` | 0 | Fresh absent target produced the pure wheel/sdist and deterministic 10-artifact release candidate; both isolated smokes passed. |
+
+Findings-first review identified three issues before publication. A pre-stat
+followed by `read_bytes()` left a local change-between-check/read window;
+bounded streaming, child-directory confinement, and symlink rejection replace
+it. A caller-selected manifest could otherwise self-declare future release
+records; the exact reviewed corpus SHA-256 is now pinned by executable evidence
+and the strict validator, with a negative arbitrary-manifest regression.
+Finally, manifest byte bounds alone did not cap child work or declared receipt
+size; source manifests, fixtures, receipts, and supported-release records now
+have explicit caps and exact release-version coverage. The final 26-test
+hardening group passes in 2.42 seconds. No runtime, dependency, lock, package-
+version, workflow, or CI-topology change is included.
+
+Final strict MkDocs rebuilt in 0.67 seconds, `git diff --check` and
+`git fsck --full --no-dangling` exited 0, changed/new-file credential-assignment
+and trailing-whitespace scans matched nothing, and the scope diff remained
+empty for `src/`, `.github/`, `pyproject.toml`, `uv.lock`, and the immutable
+`tests/fixtures/receipt_v1` corpus.
+
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

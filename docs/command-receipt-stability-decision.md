@@ -26,6 +26,9 @@ the receipt semantic-diff and diagnostic-code evolution policy under
 Those complete three prerequisites without changing the overall decision:
 cross-version history, external feedback, and a supported release channel
 remain absent.
+M24/RFC-0007 adds strict admission machinery for the first missing gate, but
+the current `0.1.0a1` reader/fixture identity and empty supported-release set
+keep that gate false.
 
 ## Installed evidence
 
@@ -64,6 +67,7 @@ All of these must be evidenced together before reconsideration:
 
 1. A cross-version fixture corpus proves old accepted command/receipt documents
    remain readable or fail under a documented compatibility rule.
+   **Admission is defined by M24/RFC-0007; evidence remains absent.**
 2. At least one external consumer supplies feedback from a real command/receipt
    integration; project-owned samples are not adoption evidence.
 3. Built-in operation argument schemas have an explicit compatibility and

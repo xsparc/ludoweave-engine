@@ -1,0 +1,15 @@
+{
+  "schema": "ludoweave.compatibility.cross-version-receipt-corpus/1",
+  "source_package": "ludoweave",
+  "receipt_protocol": "ludoweave.receipt/1",
+  "minimum_distinct_observed_versions": 2,
+  "source_manifests": [
+    {
+      "directory": "receipt_v1",
+      "source_version": "0.1.0a1",
+      "bytes": 762,
+      "sha256": "ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3"
+    }
+  ],
+  "supported_releases": []
+}

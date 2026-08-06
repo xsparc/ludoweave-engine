@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M24/RFC-0007 cross-version receipt-corpus admission evidence that
+  verifies immutable historical bytes and explicitly retains gate 1 as false
+  until a different supported reader version and release evidence exist.
 - Add RFC-0006, a frozen machine-readable receipt-v1 semantic-diff and
   diagnostic-code policy, plus deterministic installed source/wheel/release
   evidence for exact meanings, fail-closed fields, and unknown-code fallback.

@@ -17,6 +17,7 @@ from typing import cast
 
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
+from cross_version_corpus_evidence import validate_cross_version_corpus_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -201,6 +202,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         receipt_semantic = cast(dict[str, object], json.loads(receipt_semantic_result.stdout))
         validate_receipt_semantic_evidence(receipt_semantic, version=version)
+        cross_version_result = _run(
+            [str(python), "-I", "cross_version_corpus_readiness.py"],
+            cwd=sample_root,
+        )
+        cross_version = cast(dict[str, object], json.loads(cross_version_result.stdout))
+        validate_cross_version_corpus_evidence(cross_version, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -267,6 +274,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "clockwork_arena.py",
         "command_receipt_stability_decision.py",
         "constrained_3d_decision.py",
+        "cross_version_corpus_readiness.py",
         "operation_argument_compatibility.py",
         "render_device_conformance.py",
         "receipt_reader.py",

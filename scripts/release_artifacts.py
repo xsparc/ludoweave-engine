@@ -21,6 +21,7 @@ _SAMPLE_FILES = (
     "clockwork_arena.py",
     "command_receipt_stability_decision.py",
     "constrained_3d_decision.py",
+    "cross_version_corpus_readiness.py",
     "example.plugin.json",
     "fixed_step_world.py",
     "hello_headless.py",
@@ -128,14 +129,28 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
     sample_root = root / "examples"
-    sources = [sample_root / name for name in _SAMPLE_FILES]
-    sources.extend(sorted((sample_root / "assets").rglob("*")))
+    sources = [(sample_root / name, Path(name)) for name in _SAMPLE_FILES]
+    sources.extend(
+        (source, source.relative_to(sample_root))
+        for source in sorted((sample_root / "assets").rglob("*"))
+    )
+    fixture_root = root / "tests" / "fixtures"
+    sources.append(
+        (
+            fixture_root / "cross_version_receipt_corpus.json",
+            Path("assets/cross_version_receipt_corpus.json"),
+        )
+    )
+    sources.extend(
+        (source, Path("assets/receipt_v1") / source.relative_to(fixture_root / "receipt_v1"))
+        for source in sorted((fixture_root / "receipt_v1").rglob("*"))
+    )
     prefix = f"ludoweave-samples-{version}"
     with zipfile.ZipFile(output, "w") as archive:
-        for source in sources:
+        for source, relative_path in sources:
             if not source.is_file():
                 continue
-            relative = source.relative_to(sample_root).as_posix()
+            relative = relative_path.as_posix()
             info = zipfile.ZipInfo(f"{prefix}/{relative}", _ZIP_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16

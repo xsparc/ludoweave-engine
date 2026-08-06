@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M22 are hosted-validated and integrated into `main`. M23 records an exact receipt-v1 semantic-diff and diagnostic-code evolution policy with same-version installed evidence; it does not promote stability or claim cross-version evidence. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M23 are hosted-validated and integrated into `main`. M24 adds a strict cross-version corpus admission harness while correctly retaining the current single-version gate as false. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -64,6 +64,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - A strict bounded `ludoweave.receipt/1` reader with detached immutable output,
   typed failures, configurable resource limits, and frozen `0.1.0a1` fixtures
   that seed—but do not yet satisfy—a cross-version compatibility corpus.
+- A deterministic admission harness that verifies those historical bytes and
+  requires a different installed reader version plus supported-release
+  evidence before any cross-version claim.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -103,6 +106,7 @@ uv run python examples/hello_headless.py --ticks 120
 uv run python examples/fixed_step_world.py --ticks 6
 uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/rollback_readiness.py --ticks 120 --branch-tick 60
+uv run python examples/cross_version_corpus_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
