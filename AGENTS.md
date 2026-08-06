@@ -37,8 +37,8 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M0 through M20 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`. M21 is the current assigned milestone.
+M0 through M21 are complete, independently accepted, hosted-CI validated, and
+integrated into `main`.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
 exact final M14 tree. Superseded stacked PRs #9 through #15 are closed and
@@ -143,6 +143,8 @@ export, native/WASM code, tag, release, or publication, or claim external
 adoption, certification, cross-version compatibility, or stability promotion.
 Ready PR #30 and GitHub Actions run `31098563810` validate all eight unchanged
 essential jobs on DCO-signed M21 implementation commit
-`cec339be07318a7c1586bb3405e8f9b1904859f5`. Squash integration remains
-pending; no hosted pass widens the M21 boundary or establishes cross-version
-compatibility.
+`cec339be07318a7c1586bb3405e8f9b1904859f5`. PR #30 squash-integrates exact
+final evidence head `4e378756b2a1733de28e7160ac2d6d72921f3e4a` into `main` as
+GitHub-verified commit `6bfb56555cafc93a7312f64465ea15cd7c450e79`;
+both trees are `ea3f410fac31d7a32faee4e697c4fb0941b657df`. No hosted pass or
+integration widens the M21 boundary or establishes cross-version compatibility.

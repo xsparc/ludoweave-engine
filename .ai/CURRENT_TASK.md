@@ -2,9 +2,11 @@
 
 - **Task:** M21 - bounded public receipt reader and v1 compatibility-fixture
   baseline
-- **Status:** Implementation, local review, publication, and hosted validation
-  are complete. Ready PR #30 targets `main`; its sole GitHub Actions run passed
-  all eight unchanged essential jobs. Squash integration remains pending.
+- **Status:** Complete. Implementation, local review, publication, the sole
+  hosted run, and exact squash integration are complete. PR #30 produced
+  GitHub-verified `main` commit
+  `6bfb56555cafc93a7312f64465ea15cd7c450e79`; the milestone branch remains
+  for audit history.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `feed793e94c345fac4b146c358a68264ef6e5f62` on
@@ -60,8 +62,11 @@
   are recorded in `.ai/TEST_EVIDENCE.md`. DCO-signed implementation commit
   `cec339be07318a7c1586bb3405e8f9b1904859f5` is published through ready PR
   #30. GitHub Actions run `31098563810` passed all eight essential jobs and is
-  the branch's only run. GitHub reports the PR mergeable and clean. No merge,
-  tag, release, publication, stability promotion, external adoption, or cross-
-  version compatibility is claimed yet.
+  the branch's only run. PR #30 squash-integrated final evidence head
+  `4e378756b2a1733de28e7160ac2d6d72921f3e4a` as verified `main` commit
+  `6bfb56555cafc93a7312f64465ea15cd7c450e79`; both trees are
+  `ea3f410fac31d7a32faee4e697c4fb0941b657df`. No tag, release, publication,
+  stability promotion, external adoption, certification, or cross-version
+  compatibility is claimed.
   Early failures and their corrections remain recorded in
   `.ai/TEST_EVIDENCE.md`.
