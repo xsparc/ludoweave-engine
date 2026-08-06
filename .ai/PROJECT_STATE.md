@@ -18,8 +18,12 @@ one existing Windows symlink skip, pure build, isolated wheel/release smoke, 10
 real-wgpu tests, both graphics vertical slices, and base/graphics profile
 contract smokes. Review hardened bounded streaming/path confinement, reviewed-
 manifest identity, exact release coverage, and child/per-receipt resource caps;
-26 focused post-hardening tests pass with no remaining finding. Publication and
-hosted validation remain.
+26 focused post-hardening tests pass with no remaining finding. DCO-signed
+implementation commit `e590d482246d122120c011969b47f79f9680efa2` is published
+through ready PR #36. Sole GitHub Actions run `31107800179` passed all eight
+unchanged essential jobs. GitHub reports the PR `MERGEABLE` and `CLEAN`; the
+first thread-aware read found no comment, review, or inline thread. Final review
+reread and squash integration remain.
 
 M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -398,7 +402,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 - M20 through M23 are complete, hosted-validated, and squash-integrated. M24 is
   the active bounded slice and adds only cross-version corpus admission
   readiness, deterministic false current evidence, RFC-0007, and artifact
-  smoke.
+  smoke. Ready PR #36 is locally complete and its sole hosted run
+  `31107800179` passed all eight unchanged essential jobs; final review reread
+  and squash integration remain.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. M24 may
   not promote the experimental command/receipt surface or fabricate those

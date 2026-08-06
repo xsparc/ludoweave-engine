@@ -53,6 +53,35 @@ and trailing-whitespace scans matched nothing, and the scope diff remained
 empty for `src/`, `.github/`, `pyproject.toml`, `uv.lock`, and the immutable
 `tests/fixtures/receipt_v1` corpus.
 
+## M24 hosted validation and initial thread-aware review - PR #36
+
+Ready PR #36 targets exact base
+`55c7a72337913303b6b1f6bd31edbca7ff28683b` from DCO-signed implementation
+commit `e590d482246d122120c011969b47f79f9680efa2`. GitHub Actions pull-request
+run `31107800179` executed that exact head from `2026-08-06T13:50:00Z` through
+`2026-08-06T13:52:57Z` and concluded `success` across the unchanged eight-job
+topology:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution - Ubuntu, Python 3.12 | Passed lock verification, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility - Ubuntu, Python 3.13 | Passed. |
+| Compatibility - Ubuntu, Python 3.14 | Passed. |
+| Compatibility - Windows, Python 3.14 | Passed. |
+| Compatibility - macOS, Python 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+`gh run list` returned exactly that one run for the M24 branch. After completion,
+GitHub reported PR #36 open, ready, `MERGEABLE`, and `CLEAN`, with exact head
+and base above and all eight checks `SUCCESS`. The first GraphQL thread-aware
+read returned no issue comment, review, or inline review thread. No workflow or
+job topology changed. This evidence does not claim actual cross-version package
+history, supported release records, external consumer feedback, stability
+promotion, tag, GitHub release, or PyPI publication. Final delayed-review reread
+and squash integration remain.
+
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

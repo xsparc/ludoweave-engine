@@ -1,9 +1,12 @@
 # Current Task
 
 - **Task:** M24 - cross-version receipt-corpus admission readiness
-- **Status:** Implementation complete and locally validated on
-  `codex/m24-cross-version-corpus-readiness`; DCO commit, ready PR, hosted
-  validation, thread-aware review, and squash integration remain.
+- **Status:** Implementation is complete, locally validated, DCO-signed, and
+  published through ready PR #36 on
+  `codex/m24-cross-version-corpus-readiness`. Sole GitHub Actions run
+  `31107800179` passed all eight unchanged essential jobs. The first
+  thread-aware read found no review material; final reread and squash
+  integration remain.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `55c7a72337913303b6b1f6bd31edbca7ff28683b` after verified PR #35.

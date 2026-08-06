@@ -32,7 +32,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
 | Done | M23 receipt semantic-diff and diagnostic compatibility | PR #34 squash-integrated the corrected exact policy/evidence; 1,050 local tests and both eight-job hosted runs passed with no current actionable review finding |
-| In progress | M24 cross-version corpus admission readiness | Exact preserved-manifest/receipt audit, false current gate, synthetic future gate-logic regression, installed artifact smoke, RFC-0007, and unchanged essential CI topology |
+| In progress | M24 cross-version corpus admission readiness | Ready PR #36; exact preserved-manifest/receipt audit, false current gate, synthetic future gate-logic regression, installed artifact smoke, RFC-0007, and all eight unchanged essential jobs passed in sole hosted run `31107800179` |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -179,6 +179,10 @@ harness over the immutable M21 receipt corpus and requires a different reader
 version plus supported-release evidence before gate 1 can become true. The
 current `0.1.0a1`/empty-release result remains false. No runtime API, protocol,
 dependency, version, workflow job, tag, release, or publication is added.
+Ready PR #36 targets that exact base from DCO-signed implementation commit
+`e590d482246d122120c011969b47f79f9680efa2`. Its sole GitHub Actions run
+`31107800179` passed all eight unchanged essential jobs; GitHub reports the PR
+`MERGEABLE` and `CLEAN`, with no review material on the first thread-aware read.
 
 ## Good-first contribution queue
 

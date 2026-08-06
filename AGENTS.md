@@ -46,6 +46,13 @@ claim actual cross-version history or external adoption, add a dependency/
 lock/version/workflow job, publish a tag/release/package, or implement storage,
 providers, transports, networking, native/WASM, 3D, or editor work.
 
+M24 is published through ready PR #36 from DCO-signed implementation commit
+`e590d482246d122120c011969b47f79f9680efa2`. Sole GitHub Actions run
+`31107800179` passed all eight unchanged essential jobs. GitHub reports exact
+base `55c7a72337913303b6b1f6bd31edbca7ff28683b`, exact implementation head,
+`MERGEABLE`, and `CLEAN`; the first thread-aware read found no review material.
+Final review reread and squash integration remain.
+
 M0 through M23 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
