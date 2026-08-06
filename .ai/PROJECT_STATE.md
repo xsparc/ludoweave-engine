@@ -2,7 +2,7 @@
 
 ## Current milestone
 
-M23 is complete, findings-first reviewed, published, and hosted-validated on
+M23 implementation is published and initially hosted-validated on
 `codex/m23-receipt-diagnostic-policy` from exact clean
 synchronized `main` commit
 `415859e19d9d29caa1168fabc96def509897b056`. Its bounded result is an exact
@@ -16,15 +16,20 @@ local gate passes lock/sync,
 isolated wheel/release smoke, 10 real-wgpu tests, both graphics vertical slices,
 and every documented M1-M4/M7 benchmark/profile validator. M1 simulation and
 both M3 timing targets remain observed misses rather than pass claims.
-Findings-first review reports no blocking or non-blocking defect and no open
-question. The optional `.agents` task/ledger files expected by the review role
+The optional `.agents` task/ledger files expected by the review role
 are absent, so the authoritative `.ai` task, accepted RFCs, AGENTS boundary,
 call sites, tests, and executed evidence were used as the review baseline.
 DCO-signed implementation commit
 `a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
 #34. GitHub Actions run `31104052702` passed all eight unchanged essential jobs.
-Thread-aware review reports no comments, reviews, or review threads. Squash
-integration is pending.
+Delayed automated review produced two valid P1 findings: diagnostic identities
+were not bound to exact meanings, and the installed evidence did not compare
+every generated diff value and declared order. The local correction now freezes
+all six code/meaning/scenario triples and an exact full complex-diff oracle. It
+passes 20 focused tests, 1,050 full-suite tests with one existing skip, static
+and strict-doc gates, pure build, isolated wheel smoke, and a fresh 10-artifact
+release smoke. A DCO-signed correction push, one necessary follow-up hosted run,
+thread-aware reread, and squash integration remain.
 
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on

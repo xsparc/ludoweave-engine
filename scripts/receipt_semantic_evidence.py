@@ -64,6 +64,81 @@ _SEMANTIC_RULES = [
     "rejected-receipt-exposes-no-partial-diff",
     "component-and-resource-values-never-exposed",
 ]
+_EXPECTED_COMPLEX_DIFF: dict[str, object] = {
+    "created_entities": ["2:0"],
+    "destroyed_entities": ["1:0"],
+    "changed_entities": ["0:0"],
+    "components_added": [
+        {
+            "entity": "2:0",
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "fields": ["x", "y"],
+            "before_epoch": None,
+            "after_epoch": 3,
+        }
+    ],
+    "components_removed": [
+        {
+            "entity": "1:0",
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "fields": ["x", "y"],
+            "before_epoch": 2,
+            "after_epoch": None,
+        }
+    ],
+    "components_changed": [
+        {
+            "entity": "0:0",
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "fields": ["x"],
+            "before_epoch": 1,
+            "after_epoch": 4,
+        }
+    ],
+    "resources_changed": [
+        {
+            "type_id": "a96920a2-c3e6-4913-885d-66ca38cb9201",
+            "before_present": True,
+            "after_present": True,
+            "value_changed": True,
+        }
+    ],
+    "allocator": {
+        "free_before": [],
+        "free_after": [1],
+        "slots": [
+            {
+                "index": 1,
+                "before_generation": 0,
+                "after_generation": 1,
+                "before_alive": True,
+                "after_alive": False,
+            },
+            {
+                "index": 2,
+                "before_generation": None,
+                "after_generation": 0,
+                "before_alive": None,
+                "after_alive": True,
+            },
+        ],
+    },
+    "epochs": {
+        "world_before": 2,
+        "world_after": 5,
+        "structural_before": 2,
+        "structural_after": 5,
+        "tables": [
+            {
+                "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+                "before": 2,
+                "after": 5,
+            }
+        ],
+    },
+    "completed_ticks_before": 0,
+    "completed_ticks_after": 0,
+}
 _DIAGNOSTIC_CODES = [
     "world.hash.unsupported_algorithm",
     "world.transaction.apply_failed",
@@ -71,6 +146,38 @@ _DIAGNOSTIC_CODES = [
     "world.transaction.stale_hash",
     "world.transaction.validation_failed",
     "world.transaction.world_mismatch",
+]
+_DIAGNOSTIC_DEFINITIONS = [
+    {
+        "code": "world.hash.unsupported_algorithm",
+        "meaning": "expected-world-hash-algorithm-is-not-supported",
+        "scenario": "non-sha256-expected-world-hash",
+    },
+    {
+        "code": "world.transaction.apply_failed",
+        "meaning": "decoded-operation-failed-against-staged-authority",
+        "scenario": "stale-entity-destroy-on-staged-authority",
+    },
+    {
+        "code": "world.transaction.limit_exceeded",
+        "meaning": "transaction-or-receipt-exceeded-configured-deterministic-limit",
+        "scenario": "command-count-above-configured-limit",
+    },
+    {
+        "code": "world.transaction.stale_hash",
+        "meaning": "expected-world-hash-did-not-match-live-authority",
+        "scenario": "stale-sha256-expected-world-hash",
+    },
+    {
+        "code": "world.transaction.validation_failed",
+        "meaning": "built-in-operation-arguments-failed-validation",
+        "scenario": "unexpected-entity-spawn-argument",
+    },
+    {
+        "code": "world.transaction.world_mismatch",
+        "meaning": "transaction-targeted-a-different-world",
+        "scenario": "transaction-world-id-mismatch",
+    },
 ]
 _DIAGNOSTIC_RULES = [
     "rejected-status-remains-authoritative",
@@ -89,13 +196,16 @@ def validate_receipt_semantic_evidence(document: dict[str, object], *, version: 
         "cross_version_proven": False,
         "diagnostic_contract": {
             "current_emitted_codes": _DIAGNOSTIC_CODES,
+            "definitions": _DIAGNOSTIC_DEFINITIONS,
             "fields": ["code", "phase", "message", "details"],
             "machine_identity": "code",
             "metadata_flexible": True,
             "rules": _DIAGNOSTIC_RULES,
             "unknown_code_additive": True,
         },
-        "diagnostic_cases": [{"code": code, "status": "rejected"} for code in _DIAGNOSTIC_CODES],
+        "diagnostic_cases": [
+            {**definition, "status": "rejected"} for definition in _DIAGNOSTIC_DEFINITIONS
+        ],
         "evidence_level": "single-version-policy-baseline",
         "gate_satisfied": True,
         "ludoweave_version": version,
@@ -108,6 +218,7 @@ def validate_receipt_semantic_evidence(document: dict[str, object], *, version: 
         "receipt_protocol": "ludoweave.receipt/1",
         "schema": "ludoweave.evaluation.receipt-semantic-compatibility/1",
         "semantic_diff_contract": {
+            "complex_diff_exact": True,
             "dry_run_matches_commit": True,
             "fields": _DIFF_FIELDS,
             "ordering_rules": _ORDERING_RULES,

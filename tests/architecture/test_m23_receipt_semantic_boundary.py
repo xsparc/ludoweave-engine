@@ -100,9 +100,9 @@ def test_contract_fixture_is_exact_and_matches_installed_evidence_literals() -> 
     payload = _CONTRACT.read_bytes()
     document = cast(dict[str, object], json.loads(payload))
 
-    assert len(payload) == 3153
+    assert len(payload) == 6286
     assert hashlib.sha256(payload).hexdigest() == (
-        "579d76e1fb359cfc266009dfbc17b6bd514f26662d8bcb5b394ab0d24c909291"
+        "f724a189e1ca23b6bc2637e1037d897bda4fa6dd3eda701ff5d538882a633619"
     )
     assert document.keys() == {
         "schema",
@@ -123,8 +123,15 @@ def test_contract_fixture_is_exact_and_matches_installed_evidence_literals() -> 
         assert _json_value(_literal(evidence, "_ORDERING_RULES")) == semantic["ordering_rules"]
         assert _json_value(_literal(evidence, "_SEMANTIC_RULES")) == semantic["semantic_rules"]
         assert (
+            _json_value(_literal(evidence, "_EXPECTED_COMPLEX_DIFF"))
+            == semantic["evidence_complex_diff"]
+        )
+        assert (
             _json_value(_literal(evidence, "_DIAGNOSTIC_CODES"))
             == diagnostics["current_emitted_codes"]
+        )
+        assert (
+            _json_value(_literal(evidence, "_DIAGNOSTIC_DEFINITIONS")) == diagnostics["definitions"]
         )
         assert _json_value(_literal(evidence, "_DIAGNOSTIC_RULES")) == diagnostics["rules"]
 

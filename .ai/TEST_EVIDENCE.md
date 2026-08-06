@@ -65,7 +65,7 @@ then exited 0 in 0.67 seconds, `git diff --check` exited 0, the new-file
 credential-assignment scan matched nothing, and the scope check reported no
 change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`.
 
-## M23 hosted validation and review closure - PR #34
+## M23 initial hosted validation and delayed review - PR #34
 
 Ready PR #34 targets exact base
 `415859e19d9d29caa1168fabc96def509897b056` from DCO-signed implementation
@@ -85,11 +85,54 @@ commit `a6dc30ec62d91b1f6640db2c23797967f2aefefe`. GitHub Actions run
 | Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
 
 After the run, PR #34 was open, ready, `MERGEABLE`, and `CLEAN`; all eight
-status checks were `SUCCESS`. The required thread-aware review read returned no
-conversation comments, reviews, or review threads. No reply or manual thread
-resolution was performed. The branch has one CI run total, and no workflow or
-job topology changed. No cross-version, external-adoption, stability-promotion,
-release, or publication claim is made.
+status checks were `SUCCESS`. The first thread-aware read returned no review
+material. A later read after the `[skip ci]` evidence commit found an automated
+review of the implementation head with two valid unresolved P1 findings:
+
+1. the frozen diagnostic list identified codes but did not bind each code to a
+   stable meaning and executable rejection scenario; and
+2. the example checked semantic-diff field shapes but did not compare the full
+   generated values and declared ordering across every change family.
+
+No reply or manual thread resolution was performed. A correction and one
+necessary follow-up run are required; the initial successful run is not claimed
+as final review closure. No workflow or job topology changed. No cross-version,
+external-adoption, stability-promotion, release, or publication claim is made.
+
+## M23 review correction local validation - 2026-08-06, Windows, CPython 3.12.13
+
+The correction adds a normative code/meaning/scenario record for all six
+top-level diagnostics and an exact full complex-diff value oracle covering
+created, destroyed, changed, component add/remove/change, resource, allocator,
+epoch, and tick fields. The fixture is exactly 6,286 bytes with SHA-256
+`f724a189e1ca23b6bc2637e1037d897bda4fa6dd3eda701ff5d538882a633619`.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv run --frozen python examples/receipt_semantic_compatibility.py` | 0 | Emitted the sanitized report with six exact code/meaning/scenario cases and `complex_diff_exact: true`. |
+| `uv run --frozen pytest -q tests/integration/test_receipt_semantic_compatibility.py tests/architecture/test_m23_receipt_semantic_boundary.py` | 0 | 20 exact-evidence, tamper, literal-fixture, and boundary tests passed in 2.35 seconds. |
+| Focused Ruff and Pyright correction checks | 0 | Ruff passed and Pyright reported 0 errors, 0 warnings, and 0 information messages. |
+| First repository-wide uv quality invocation | 1 | The managed sandbox denied access to uv's existing user cache before all five commands ran; no quality pass is claimed for this attempt. |
+| `uv lock --check` | 0 | Lockfile remained current; 46 packages resolved in 0.81 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Locked baseline plus graphics environment checked 45 packages in 2 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 219 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,050 tests passed in 76.89 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built in 0.70 seconds with Material's upstream MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built pure `ludoweave-0.1.0a1-py3-none-any.whl` and source distribution. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed with corrected exact M23 evidence. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate-m23-review-final` | 0 | Fresh absent target staged the complete deterministic 10-artifact release candidate. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/release-candidate-m23-review-final` | 0 | Isolated release smoke passed for `0.1.0a1` with corrected bundled evidence. |
+
+The correction changes no file under `src/`, `.github/`, `pyproject.toml`, or
+`uv.lock`. The earlier real-wgpu, graphics vertical-slice, and M1-M4/M7
+benchmark/profile evidence remains applicable because no runtime, graphics,
+benchmark, or profile file changed. After synchronizing the factual state
+records, strict MkDocs rebuilt successfully in 0.66 seconds, `git diff --check`
+exited 0, the added-line credential-assignment scan matched nothing, and the
+scope diff remained empty for `src/`, `.github/`, `pyproject.toml`, and
+`uv.lock`.
 
 ## M22 development evidence — 2026-08-06, Windows, CPython 3.12
 

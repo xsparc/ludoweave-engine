@@ -59,7 +59,82 @@
       "dry-run-diff-equals-equivalent-commit-diff",
       "rejected-receipt-exposes-no-partial-diff",
       "component-and-resource-values-never-exposed"
-    ]
+    ],
+    "evidence_complex_diff": {
+      "created_entities": ["2:0"],
+      "destroyed_entities": ["1:0"],
+      "changed_entities": ["0:0"],
+      "components_added": [
+        {
+          "entity": "2:0",
+          "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+          "fields": ["x", "y"],
+          "before_epoch": null,
+          "after_epoch": 3
+        }
+      ],
+      "components_removed": [
+        {
+          "entity": "1:0",
+          "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+          "fields": ["x", "y"],
+          "before_epoch": 2,
+          "after_epoch": null
+        }
+      ],
+      "components_changed": [
+        {
+          "entity": "0:0",
+          "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+          "fields": ["x"],
+          "before_epoch": 1,
+          "after_epoch": 4
+        }
+      ],
+      "resources_changed": [
+        {
+          "type_id": "a96920a2-c3e6-4913-885d-66ca38cb9201",
+          "before_present": true,
+          "after_present": true,
+          "value_changed": true
+        }
+      ],
+      "allocator": {
+        "free_before": [],
+        "free_after": [1],
+        "slots": [
+          {
+            "index": 1,
+            "before_generation": 0,
+            "after_generation": 1,
+            "before_alive": true,
+            "after_alive": false
+          },
+          {
+            "index": 2,
+            "before_generation": null,
+            "after_generation": 0,
+            "before_alive": null,
+            "after_alive": true
+          }
+        ]
+      },
+      "epochs": {
+        "world_before": 2,
+        "world_after": 5,
+        "structural_before": 2,
+        "structural_after": 5,
+        "tables": [
+          {
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "before": 2,
+            "after": 5
+          }
+        ]
+      },
+      "completed_ticks_before": 0,
+      "completed_ticks_after": 0
+    }
   },
   "diagnostics": {
     "fields": ["code", "phase", "message", "details"],
@@ -71,6 +146,38 @@
       "world.transaction.stale_hash",
       "world.transaction.validation_failed",
       "world.transaction.world_mismatch"
+    ],
+    "definitions": [
+      {
+        "code": "world.hash.unsupported_algorithm",
+        "meaning": "expected-world-hash-algorithm-is-not-supported",
+        "scenario": "non-sha256-expected-world-hash"
+      },
+      {
+        "code": "world.transaction.apply_failed",
+        "meaning": "decoded-operation-failed-against-staged-authority",
+        "scenario": "stale-entity-destroy-on-staged-authority"
+      },
+      {
+        "code": "world.transaction.limit_exceeded",
+        "meaning": "transaction-or-receipt-exceeded-configured-deterministic-limit",
+        "scenario": "command-count-above-configured-limit"
+      },
+      {
+        "code": "world.transaction.stale_hash",
+        "meaning": "expected-world-hash-did-not-match-live-authority",
+        "scenario": "stale-sha256-expected-world-hash"
+      },
+      {
+        "code": "world.transaction.validation_failed",
+        "meaning": "built-in-operation-arguments-failed-validation",
+        "scenario": "unexpected-entity-spawn-argument"
+      },
+      {
+        "code": "world.transaction.world_mismatch",
+        "meaning": "transaction-targeted-a-different-world",
+        "scenario": "transaction-world-id-mismatch"
+      }
     ],
     "rules": [
       "rejected-status-remains-authoritative",

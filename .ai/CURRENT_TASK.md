@@ -1,10 +1,10 @@
 # Current Task
 
 - **Task:** M23 - receipt semantic-diff and diagnostic compatibility policy
-- **Status:** Ready to integrate on `codex/m23-receipt-diagnostic-policy`.
-  Implementation, full local/artifact/provider validation, findings-first
-  review, ready PR #34, hosted validation, and thread-aware review closure are
-  complete. Exact squash integration remains.
+- **Status:** Review corrections are locally validated on
+  `codex/m23-receipt-diagnostic-policy`. Ready PR #34 remains open; a DCO-signed
+  correction push and one necessary follow-up hosted run remain before exact
+  squash integration.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `415859e19d9d29caa1168fabc96def509897b056`.
@@ -35,7 +35,7 @@
   editor work, tag, release, or package publication.
 - **SemVer:** No package or public-Python-surface change. Receipt identity
   remains `ludoweave.receipt/1`; package version remains `0.1.0a1`.
-- **Final local evidence:** The verified baseline resolves 46 locked packages and
+- **Initial local evidence:** The verified baseline resolves 46 locked packages and
   passes 84 focused receipt/transaction/stability tests. The corrected M23
   evidence example emits an exact repeatable sanitized policy report. Focused
   formatting, Ruff, strict Pyright, 17 integration/architecture tests, then an
@@ -52,4 +52,10 @@
   DCO-signed implementation commit
   `a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
   #34. GitHub Actions run `31104052702` passed all eight unchanged essential
-  jobs. Thread-aware review reports no comments, reviews, or review threads.
+  jobs. Delayed automated review then found two valid gaps: the fixture named
+  diagnostic identities without freezing each meaning, and the installed
+  example checked diff shapes without an exact full-diff value/order oracle.
+  The local correction binds all six code/meaning/scenario triples, compares
+  the full generated diff, passes 20 focused tests, the 1,050-test full suite
+  with one existing skip, strict static/docs gates, pure build, isolated wheel
+  smoke, and fresh release-bundle smoke. Hosted correction validation remains.

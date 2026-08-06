@@ -48,9 +48,12 @@ For `ludoweave.receipt/1`:
    deprecation rule then in force.
 
 The repository fixture is normative compatibility evidence. Runtime code does
-not load it. The installed example exercises every semantic change family, all
-six current top-level transaction rejection codes, exact missing/unknown field
-rejection, incompatible protocol rejection, and additive unknown-code reading.
+not load it. It binds each current diagnostic identity to a frozen meaning and
+an installed rejection scenario. The installed example exercises every
+semantic change family against one exact full-diff value and ordering oracle,
+all six current top-level transaction rejection code/meaning pairs, exact
+missing/unknown field rejection, incompatible protocol rejection, and additive
+unknown-code reading.
 
 RFC-0003's readiness report advances to schema `/4`. Gates 3, 4, and 5 are
 true. Gate 1 remains the sole cross-version proof requirement; satisfying the

@@ -54,9 +54,14 @@ def test_installed_receipt_semantic_evidence_is_repeatable_and_sanitized() -> No
     cases = cast(list[dict[str, object]], document["diagnostic_cases"])
     assert len(cases) == 6
     assert all(item["status"] == "rejected" for item in cases)
+    assert all(item["meaning"] and item["scenario"] for item in cases)
     contract = cast(dict[str, object], document["semantic_diff_contract"])
+    assert contract["complex_diff_exact"] is True
     assert contract["dry_run_matches_commit"] is True
     diagnostic = cast(dict[str, object], document["diagnostic_contract"])
+    assert diagnostic["definitions"] == [
+        {key: value for key, value in item.items() if key != "status"} for item in cases
+    ]
     assert diagnostic["unknown_code_additive"] is True
     assert diagnostic["metadata_flexible"] is True
     for forbidden in (
@@ -78,6 +83,8 @@ def test_installed_receipt_semantic_evidence_is_repeatable_and_sanitized() -> No
         ("root", "cross_version_proven", True),
         ("policy", "new_diagnostic_code", "breaking"),
         ("diagnostic", "unknown_code_additive", False),
+        ("definition", "meaning", "reinterpreted-diagnostic"),
+        ("semantic", "complex_diff_exact", False),
         ("semantic", "dry_run_matches_commit", False),
         ("fail_closed", "unknown_diff_field", "accepted"),
         ("case", "status", "committed"),
@@ -94,6 +101,9 @@ def test_exact_validator_rejects_policy_behavior_and_type_drift(
         cast(dict[str, object], tampered["policy"])[key] = value
     elif section == "diagnostic":
         cast(dict[str, object], tampered["diagnostic_contract"])[key] = value
+    elif section == "definition":
+        diagnostic = cast(dict[str, object], tampered["diagnostic_contract"])
+        cast(list[dict[str, object]], diagnostic["definitions"])[0][key] = value
     elif section == "semantic":
         cast(dict[str, object], tampered["semantic_diff_contract"])[key] = value
     elif section == "fail_closed":

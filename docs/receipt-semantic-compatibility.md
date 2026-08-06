@@ -52,14 +52,18 @@ retain their current exact nested field sets.
 ## Diagnostic evolution
 
 `ReceiptDiagnostic.code` is the machine-readable identity. The current built-in
-transaction service can emit these top-level rejection codes:
+transaction service can emit these top-level rejection codes. Each identity and
+meaning pair is frozen; the scenario column is the installed evidence used to
+prove that meaning:
 
-- `world.hash.unsupported_algorithm`
-- `world.transaction.apply_failed`
-- `world.transaction.limit_exceeded`
-- `world.transaction.stale_hash`
-- `world.transaction.validation_failed`
-- `world.transaction.world_mismatch`
+| Code | Frozen meaning | Evidence scenario |
+| --- | --- | --- |
+| `world.hash.unsupported_algorithm` | The expected-world-hash algorithm is unsupported. | A non-SHA-256 expected hash. |
+| `world.transaction.apply_failed` | A decoded operation failed against the staged authority. | Destroying a stale entity on the staged authority. |
+| `world.transaction.limit_exceeded` | The transaction or receipt exceeded a configured deterministic limit. | More commands than the configured maximum. |
+| `world.transaction.stale_hash` | The expected world hash did not match the live authority. | A stale SHA-256 expected hash. |
+| `world.transaction.validation_failed` | Built-in operation arguments failed validation. | An unexpected `entity.spawn` argument. |
+| `world.transaction.world_mismatch` | The transaction targeted a different world. | A transaction/world identity mismatch. |
 
 An existing code cannot be removed, reused, or assigned a different meaning
 within receipt protocol v1. A new well-formed code is additive: readers must
@@ -86,8 +90,11 @@ The example emits one deterministic
 fresh in-memory worlds and installed public APIs to prove:
 
 - every semantic-diff change family and exact nested field set;
+- exact identities, field values, epoch transitions, allocator transitions, and
+  declared ordering for one diff containing every change family;
 - equal dry-run/commit diffs and rejected-receipt null changes;
-- all six current top-level rejection codes;
+- all six current top-level rejection codes against their frozen meanings and
+  scenarios;
 - fail-closed missing, unknown, and incompatible protocol fields; and
 - successful bounded decoding of changed diagnostic metadata and a future
   well-formed diagnostic code.

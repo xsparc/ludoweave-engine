@@ -95,6 +95,81 @@ _SEMANTIC_RULES = (
     "rejected-receipt-exposes-no-partial-diff",
     "component-and-resource-values-never-exposed",
 )
+_EXPECTED_COMPLEX_DIFF: dict[str, object] = {
+    "created_entities": ["2:0"],
+    "destroyed_entities": ["1:0"],
+    "changed_entities": ["0:0"],
+    "components_added": [
+        {
+            "entity": "2:0",
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "fields": ["x", "y"],
+            "before_epoch": None,
+            "after_epoch": 3,
+        }
+    ],
+    "components_removed": [
+        {
+            "entity": "1:0",
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "fields": ["x", "y"],
+            "before_epoch": 2,
+            "after_epoch": None,
+        }
+    ],
+    "components_changed": [
+        {
+            "entity": "0:0",
+            "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+            "fields": ["x"],
+            "before_epoch": 1,
+            "after_epoch": 4,
+        }
+    ],
+    "resources_changed": [
+        {
+            "type_id": "a96920a2-c3e6-4913-885d-66ca38cb9201",
+            "before_present": True,
+            "after_present": True,
+            "value_changed": True,
+        }
+    ],
+    "allocator": {
+        "free_before": [],
+        "free_after": [1],
+        "slots": [
+            {
+                "index": 1,
+                "before_generation": 0,
+                "after_generation": 1,
+                "before_alive": True,
+                "after_alive": False,
+            },
+            {
+                "index": 2,
+                "before_generation": None,
+                "after_generation": 0,
+                "before_alive": None,
+                "after_alive": True,
+            },
+        ],
+    },
+    "epochs": {
+        "world_before": 2,
+        "world_after": 5,
+        "structural_before": 2,
+        "structural_after": 5,
+        "tables": [
+            {
+                "type_id": "957ef056-ce55-4658-a2aa-03221d911c6f",
+                "before": 2,
+                "after": 5,
+            }
+        ],
+    },
+    "completed_ticks_before": 0,
+    "completed_ticks_after": 0,
+}
 _DIAGNOSTIC_CODES = (
     "world.hash.unsupported_algorithm",
     "world.transaction.apply_failed",
@@ -102,6 +177,38 @@ _DIAGNOSTIC_CODES = (
     "world.transaction.stale_hash",
     "world.transaction.validation_failed",
     "world.transaction.world_mismatch",
+)
+_DIAGNOSTIC_DEFINITIONS = (
+    {
+        "code": "world.hash.unsupported_algorithm",
+        "meaning": "expected-world-hash-algorithm-is-not-supported",
+        "scenario": "non-sha256-expected-world-hash",
+    },
+    {
+        "code": "world.transaction.apply_failed",
+        "meaning": "decoded-operation-failed-against-staged-authority",
+        "scenario": "stale-entity-destroy-on-staged-authority",
+    },
+    {
+        "code": "world.transaction.limit_exceeded",
+        "meaning": "transaction-or-receipt-exceeded-configured-deterministic-limit",
+        "scenario": "command-count-above-configured-limit",
+    },
+    {
+        "code": "world.transaction.stale_hash",
+        "meaning": "expected-world-hash-did-not-match-live-authority",
+        "scenario": "stale-sha256-expected-world-hash",
+    },
+    {
+        "code": "world.transaction.validation_failed",
+        "meaning": "built-in-operation-arguments-failed-validation",
+        "scenario": "unexpected-entity-spawn-argument",
+    },
+    {
+        "code": "world.transaction.world_mismatch",
+        "meaning": "transaction-targeted-a-different-world",
+        "scenario": "transaction-world-id-mismatch",
+    },
 )
 _DIAGNOSTIC_RULES = (
     "rejected-status-remains-authoritative",
@@ -161,14 +268,20 @@ def evaluate() -> dict[str, object]:
     change = committed.changes.as_dict()
     records = _actual_records(change)
     diagnostic_cases = tuple(
-        {"code": code, "status": _rejection(code).status.value} for code in _DIAGNOSTIC_CODES
+        {
+            **definition,
+            "status": _rejection(definition["code"]).status.value,
+        }
+        for definition in _DIAGNOSTIC_DEFINITIONS
     )
+    complex_diff_exact = change == _EXPECTED_COMPLEX_DIFF
     metadata_flexible, unknown_code_additive = _diagnostic_evolution(rejected)
     fail_closed = _fail_closed(committed)
     report: dict[str, object] = {
         "cross_version_proven": False,
         "diagnostic_contract": {
             "current_emitted_codes": _DIAGNOSTIC_CODES,
+            "definitions": _DIAGNOSTIC_DEFINITIONS,
             "fields": tuple(rejected.diagnostics[0].as_dict()),
             "machine_identity": "code",
             "metadata_flexible": metadata_flexible,
@@ -184,6 +297,7 @@ def evaluate() -> dict[str, object]:
         "receipt_protocol": RECEIPT_PROTOCOL,
         "schema": _SCHEMA,
         "semantic_diff_contract": {
+            "complex_diff_exact": complex_diff_exact,
             "dry_run_matches_commit": dry_run.changes == committed.changes,
             "fields": tuple(change),
             "ordering_rules": _ORDERING_RULES,
@@ -199,6 +313,10 @@ def evaluate() -> dict[str, object]:
     }
     if tuple(change) != _DIFF_FIELDS or records != _RECORDS:
         raise AssertionError("installed semantic diff no longer matches the frozen field policy")
+    if not complex_diff_exact:
+        raise AssertionError("installed semantic diff no longer matches the exact frozen semantics")
+    if tuple(item["code"] for item in _DIAGNOSTIC_DEFINITIONS) != _DIAGNOSTIC_CODES:
+        raise AssertionError("diagnostic definitions no longer cover the frozen code identities")
     if tuple(item["code"] for item in diagnostic_cases) != _DIAGNOSTIC_CODES:
         raise AssertionError("installed diagnostic codes no longer match the frozen policy")
     if not metadata_flexible or not unknown_code_additive:
@@ -346,12 +464,14 @@ def _command(
 
 def _actual_records(change: dict[str, JsonValue]) -> dict[str, tuple[str, ...]]:
     components_added = cast(list[dict[str, JsonValue]], change["components_added"])
+    components_removed = cast(list[dict[str, JsonValue]], change["components_removed"])
+    components_changed = cast(list[dict[str, JsonValue]], change["components_changed"])
     resources_changed = cast(list[dict[str, JsonValue]], change["resources_changed"])
     allocator = cast(dict[str, JsonValue], change["allocator"])
     slots = cast(list[dict[str, JsonValue]], allocator["slots"])
     epochs = cast(dict[str, JsonValue], change["epochs"])
     tables = cast(list[dict[str, JsonValue]], epochs["tables"])
-    return {
+    records = {
         "component_change": tuple(components_added[0]),
         "resource_change": tuple(resources_changed[0]),
         "allocator": tuple(allocator),
@@ -359,6 +479,13 @@ def _actual_records(change: dict[str, JsonValue]) -> dict[str, tuple[str, ...]]:
         "epochs": tuple(epochs),
         "table_epoch": tuple(tables[0]),
     }
+    component_order = records["component_change"]
+    if any(
+        tuple(item) != component_order
+        for item in (*components_added, *components_removed, *components_changed)
+    ):
+        raise AssertionError("installed component diff record ordering drifted")
+    return records
 
 
 def _diagnostic_evolution(receipt: TransactionReceipt) -> tuple[bool, bool]:
