@@ -37,15 +37,31 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-The M23 integration-record branch may change only repository state/evidence
-documents for the already merged receipt-v1 semantic-diff and diagnostic-code
-compatibility policy identified by RFC-0003. It may add a frozen repository
-integration record. It may not change runtime source, add or reinterpret a
-receipt/command/operation/handler, promote stability, claim cross-version or
-external adoption, add a dependency/lock/version/workflow job, or implement
-storage, providers, transports, networking, native/WASM, 3D, or editor work.
+M24 is assigned only to cross-version receipt-corpus admission readiness. It
+may add a strict offline repository manifest, deterministic installed evidence,
+tests, RFC/docs, artifact smoke, and gate bookkeeping. Its current result must
+remain false. It may not rewrite historical receipt bytes, change runtime
+source/API/exports or a receipt/command/operation/handler, promote stability,
+claim actual cross-version history or external adoption, add a dependency/
+lock/version/workflow job, publish a tag/release/package, or implement storage,
+providers, transports, networking, native/WASM, 3D, or editor work.
 
-M0 through M22 are complete, independently accepted, hosted-CI validated, and
+M24 is published through ready PR #36 from DCO-signed implementation commit
+`e590d482246d122120c011969b47f79f9680efa2`. Sole GitHub Actions run
+`31107800179` passed all eight unchanged essential jobs. GitHub reports exact
+base `55c7a72337913303b6b1f6bd31edbca7ff28683b`, exact implementation head,
+`MERGEABLE`, and `CLEAN`; the first thread-aware read found no review material.
+Delayed automated review found one valid append-only-history gap. The local
+correction freezes executable mandatory source/release prefixes and proves a
+newly pinned manifest cannot replace the M21 identity. The corrected full,
+static, docs, wheel, and release gates pass. DCO correction commit
+`b393d6857f0a60c5d124fdeb25b3779c8f9dab86` passed necessary GitHub Actions
+run `31108924069` across all eight unchanged essential jobs. Final thread-aware
+reread finds the original unresolved anchor directly satisfied by the adjacent
+gate and regression; no finding remains actionable. No thread reply or manual
+resolution was performed. CI-skipping evidence and squash integration remain.
+
+M0 through M23 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
 policy identified by RFC-0003: a frozen repository contract, deterministic

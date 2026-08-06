@@ -77,6 +77,11 @@ are additive, while phase/message/detail metadata remains non-authoritative.
 This satisfies the receipt-policy gate only. Cross-version history, external
 feedback, and a supported release channel remain incomplete.
 
+RFC-0007 adds an offline admission harness that preserves exact historical
+receipt identities, requires a different installed reader version, and requires
+supported-release records for every observed version. The current corpus has
+only `0.1.0a1` and no release records, so the cross-version gate remains false.
+
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;
 the v1 fields and fingerprint semantics are not reinterpreted in place.

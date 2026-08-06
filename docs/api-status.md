@@ -42,6 +42,9 @@ argument evolution policy and satisfies that one RFC-0003 gate. M23 also adds
 no export; RFC-0006 fixes receipt-v1 semantic-diff and diagnostic-code
 evolution and satisfies that policy gate. Cross-version history, external
 feedback, and a supported feature-release channel remain incomplete.
+M24 adds no export; RFC-0007 makes cross-version admission mechanically
+auditable but records the current single-version/no-release-evidence result as
+not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

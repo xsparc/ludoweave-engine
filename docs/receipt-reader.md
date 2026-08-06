@@ -98,6 +98,10 @@ these unchanged fixtures under a documented compatibility policy. The fixture
 manifest deliberately contains no `target_version` or `compatible_versions`
 claim.
 
+RFC-0007's [admission harness](cross-version-corpus-readiness.md) verifies these
+unchanged bytes and still reports not ready because no different supported
+reader version has executed them.
+
 Run the installed evidence example from source or the release sample bundle:
 
 ```console

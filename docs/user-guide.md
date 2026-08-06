@@ -64,6 +64,9 @@ same-version result is not a cross-version or preview claim.
 The receipt-reader example reconstructs committed, dry-run, and rejected v1
 documents under explicit limits. It emits sanitized evidence and records that
 its frozen fixtures are only a single-version baseline.
+The cross-version corpus readiness example verifies those exact historical
+bytes and reports why gate 1 remains false; it does not query or publish a
+release.
 
 The foundational application surface is deliberately small:
 
@@ -174,6 +177,10 @@ The [receipt semantic compatibility guide](receipt-semantic-compatibility.md)
 defines the exact receipt-v1 diff meanings and diagnostic-code fallback rule.
 It distinguishes stable machine identities from advisory message/phase/detail
 metadata without claiming cross-version history or promoting stability.
+
+The [cross-version corpus readiness guide](cross-version-corpus-readiness.md)
+defines the exact different-reader and supported-release evidence required
+before those preserved receipts can count as history.
 
 ## Failure and compatibility expectations
 

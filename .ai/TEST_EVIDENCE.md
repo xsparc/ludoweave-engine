@@ -2,6 +2,170 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M23 feature/integration PR verification, `git fetch`, fast-forward, and `git fsck --full --no-dangling` | 0 | PR #34 squash was GitHub-verified as exact-tree commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`; zero-run PR #35 integrated its exact-tree state record as GitHub-verified `55c7a72337913303b6b1f6bd31edbca7ff28683b`; local `main` was clean and synchronized. |
+| M24 branch creation | 128 | The first sandboxed `git switch -c` could not create the Git ref lock; no branch was created. The same command was rerun with approved repository-metadata access. |
+| `git switch -c codex/m24-cross-version-corpus-readiness` | 0 | Created M24 from exact integrated `main` commit `55c7a72337913303b6b1f6bd31edbca7ff28683b`. |
+| M21 manifest identity probe | 0 | Preserved source manifest remained exactly 762 bytes with SHA-256 `ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3`. |
+| `uv lock --check` | 0 | Baseline lock remained current; 46 packages resolved in 0.76 ms. |
+| Focused receipt corpus/reader/policy/architecture baseline | 0 | 71 tests passed in 4.05 seconds. |
+| First M24 format/Ruff/Pyright/example group | 0 | The new example was formatted, Ruff passed, Pyright reported zero diagnostics, and one sanitized `not-ready` report printed with both missing-gate reasons. |
+| First M24 integration/architecture group | 0 | 19 exact-evidence, tamper, safe-path, synthetic future-gate, import-boundary, and scope tests passed in 1.77 seconds. |
+| M24 artifact-wiring static and focused test group | 0 | Four artifact files were already formatted, Ruff and Pyright were clean, and 21 tests passed in 2.19 seconds. |
+
+The synthetic `0.1.0a2` test proves only gate logic. It is not a package build,
+supported release, cross-version history, external consumer result, or preview
+promotion. Full docs, repository, wheel/release, provider, and review validation
+remain pending.
+
+## M24 final local validation - 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Expanded M21-M24 format/Ruff/Pyright/receipt/artifact/docs group | 0 | All 223 Python files were formatted, Ruff and Pyright were clean, 92 focused tests passed in 5.78 seconds, and strict docs built in 0.67 seconds. |
+| First M24 `uv build`, isolated wheel smoke, fresh release staging/smoke | 0 | Built the pure wheel/sdist; installed-wheel evidence passed; fresh 10-artifact release candidate included and executed the exact preserved corpus; release smoke passed. |
+| `uv run --frozen pytest -q` before final review hardening | 0 | 1,072 tests passed in 81.59 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | 10 unchanged real-wgpu integration tests passed in 6.35 seconds. |
+| Hosted graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected deterministic structured summaries. |
+| Base and graphics M7 profile contract smokes | 0 | Two-workload base and three-workload graphics artifacts validated with one repeat. Timing remains diagnostic only. |
+| Final `uv lock --check`, Ruff format/check, Pyright, and strict MkDocs | 0 | Lock resolved 46 packages in 0.80 ms; 223 files were formatted; Ruff passed; Pyright reported zero diagnostics; docs built in 0.72 seconds. |
+| Final `uv run --frozen pytest -q` | 0 | 1,074 tests passed in 78.93 seconds; one existing Windows symlink-capability test skipped. |
+| Final `uv build` and isolated wheel/release smoke using `.tmp/release-candidate-m24-review-final` | 0 | Fresh absent target produced the pure wheel/sdist and deterministic 10-artifact release candidate; both isolated smokes passed. |
+
+Findings-first review identified three issues before publication. A pre-stat
+followed by `read_bytes()` left a local change-between-check/read window;
+bounded streaming, child-directory confinement, and symlink rejection replace
+it. A caller-selected manifest could otherwise self-declare future release
+records; the exact reviewed corpus SHA-256 is now pinned by executable evidence
+and the strict validator, with a negative arbitrary-manifest regression.
+Finally, manifest byte bounds alone did not cap child work or declared receipt
+size; source manifests, fixtures, receipts, and supported-release records now
+have explicit caps and exact release-version coverage. The final 26-test
+hardening group passes in 2.42 seconds. No runtime, dependency, lock, package-
+version, workflow, or CI-topology change is included.
+
+Final strict MkDocs rebuilt in 0.67 seconds, `git diff --check` and
+`git fsck --full --no-dangling` exited 0, changed/new-file credential-assignment
+and trailing-whitespace scans matched nothing, and the scope diff remained
+empty for `src/`, `.github/`, `pyproject.toml`, `uv.lock`, and the immutable
+`tests/fixtures/receipt_v1` corpus.
+
+## M24 hosted validation and initial thread-aware review - PR #36
+
+Ready PR #36 targets exact base
+`55c7a72337913303b6b1f6bd31edbca7ff28683b` from DCO-signed implementation
+commit `e590d482246d122120c011969b47f79f9680efa2`. GitHub Actions pull-request
+run `31107800179` executed that exact head from `2026-08-06T13:50:00Z` through
+`2026-08-06T13:52:57Z` and concluded `success` across the unchanged eight-job
+topology:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution - Ubuntu, Python 3.12 | Passed lock verification, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility - Ubuntu, Python 3.13 | Passed. |
+| Compatibility - Ubuntu, Python 3.14 | Passed. |
+| Compatibility - Windows, Python 3.14 | Passed. |
+| Compatibility - macOS, Python 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+`gh run list` returned exactly that one run for the M24 branch. After completion,
+GitHub reported PR #36 open, ready, `MERGEABLE`, and `CLEAN`, with exact head
+and base above and all eight checks `SUCCESS`. The first GraphQL thread-aware
+read returned no issue comment, review, or inline review thread. No workflow or
+job topology changed. This evidence does not claim actual cross-version package
+history, supported release records, external consumer feedback, stability
+promotion, tag, GitHub release, or PyPI publication. Final delayed-review reread
+and squash integration remain.
+
+## M24 delayed-review correction - PR #36
+
+At `2026-08-06T13:54:48Z`, delayed automated review of implementation commit
+`e590d482246d122120c011969b47f79f9680efa2` added one unresolved, non-outdated
+P1 thread. The finding was valid: changing only the reviewed whole-manifest
+digest could allow a future source list to replace the M21 entry, contradicting
+RFC-0007's append-only rule. No reply or manual thread resolution was
+performed.
+
+The correction adds executable frozen prefixes for exact source-manifest and
+supported-release identities, makes their preservation an independent gate,
+and reports `historical-corpus-entry-missing` when it fails. A new regression
+pins a synthetic future manifest with complete release coverage after replacing
+the `receipt_v1` directory identity; every other gate becomes true while the
+history gate and overall admission remain false.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Focused format, Ruff, Pyright, installed example, and M24/release tests | 0 | One file was reformatted; Ruff passed, Pyright reported zero diagnostics, the report included `historical_entries_preserved: true`, and 28 focused tests passed in 2.66 seconds. |
+| First correction `uv lock --check` | 1 | The managed sandbox denied access to uv's existing user cache before project execution; no lock pass is claimed for this attempt. |
+| Approved `uv lock --check` rerun | 0 | The unchanged lock resolved 46 packages in 0.77 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 223 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,076 tests passed in 81.42 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict docs built in 0.75 seconds with only the recorded upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built the pure `ludoweave-0.1.0a1` source distribution and universal wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed with the corrected exact report. |
+| Fresh release staging and `smoke_release.py` at `.tmp/release-candidate-m24-review-correction` | 0 | The target was confirmed absent, ten artifacts were staged, and isolated release smoke passed for `0.1.0a1`. |
+
+After synchronizing the correction record, strict MkDocs rebuilt in 0.70
+seconds, `git diff --check` and `git fsck --full --no-dangling` exited 0, and
+the focused credential-assignment scan returned no match. The first scope query
+exited 1 because it mistakenly included the intentionally new M24 admission
+manifest in a comparison to the pre-M24 base; it showed only that expected
+addition. Corrected checks compare protected runtime/workflow/metadata/lock and
+the immutable M21 corpus to the assigned base, and the M24 admission-manifest
+bytes to prior evidence head `bebae10b8c9e1b663e0555bdc941ede9be8d0a12`;
+both exited 0.
+
+The correction changes no runtime source, public API/export, protocol,
+dependency, lock, package version, workflow, or CI topology. Correction commit,
+push, one necessary hosted run, final thread-aware reread, and squash integration
+remain.
+
+## M24 corrected hosted validation and final thread-aware reread - PR #36
+
+DCO-signed correction commit
+`b393d6857f0a60c5d124fdeb25b3779c8f9dab86` was pushed once. GitHub Actions
+pull-request run `31108924069` executed that exact head from
+`2026-08-06T14:03:36Z` through `2026-08-06T14:06:16Z` and concluded `success`.
+All eight unchanged essential jobs passed:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution - Ubuntu, Python 3.12 | Passed lock, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility - Ubuntu, Python 3.13 | Passed. |
+| Compatibility - Ubuntu, Python 3.14 | Passed. |
+| Compatibility - Windows, Python 3.14 | Passed. |
+| Compatibility - macOS, Python 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+GitHub lists exactly two M24 branch runs: initial successful run `31107800179`
+on the implementation commit and necessary successful correction run
+`31108924069`. PR #36 is open, ready, `MERGEABLE`, and `CLEAN` at the exact
+correction head above and assigned base
+`55c7a72337913303b6b1f6bd31edbca7ff28683b`; all eight final checks are
+`SUCCESS`.
+
+Final GraphQL thread-aware reread found no new issue comment, review, or thread.
+The original P1 discussion remains unresolved and non-outdated because its loop
+anchor persists at the shifted line. Current adjacent code freezes the exact
+M21 source prefix and the accepted-release prefix, independently gates their
+preservation, and the new test proves even a newly pinned replacement corpus
+cannot satisfy admission. The requested condition is therefore present and no
+finding remains actionable. No reply or manual thread resolution was performed.
+
+The successful hosted checks do not establish real cross-version release
+history, supported-release evidence, external feedback, stability promotion,
+tag, GitHub release, or PyPI publication. A final documentation-only evidence
+commit will use `[skip ci]`; squash integration remains.
+
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

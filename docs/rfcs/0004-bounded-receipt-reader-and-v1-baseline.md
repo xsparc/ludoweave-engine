@@ -74,6 +74,9 @@ only `public_receipt_reader_and_bounds` true. It retains the overall
   package version reads this baseline in CI and the policy for any accepted
   evolution is documented.
 
+RFC-0007 later makes that admission rule executable while retaining its result
+as false for the current single-version/no-release-evidence corpus.
+
 This policy establishes a baseline and preservation rule. It does not define
 compatibility for every diagnostic code, detail key, or semantic-diff field.
 That separate gate was false at M21 and is later satisfied by RFC-0006 without

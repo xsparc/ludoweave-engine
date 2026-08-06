@@ -95,6 +95,13 @@ phase/message/scalar detail metadata is non-authoritative. This satisfies only
 gate 5 of RFC-0003. Cross-version history, external feedback, and a supported
 deprecation release channel remain unresolved.
 
+RFC-0007 resolves how cross-version receipt-corpus evidence is admitted. The
+offline harness preserves exact historical identities and requires a distinct
+installed reader version plus supported-release records for every observed
+version. Its current result is explicitly false because all evidence is
+`0.1.0a1` and the release set is empty. Actual cross-version history, external
+feedback, and a supported deprecation release channel remain unresolved.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

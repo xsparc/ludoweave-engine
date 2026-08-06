@@ -13,6 +13,7 @@ python command_receipt_stability_decision.py
 python operation_argument_compatibility.py
 python receipt_reader.py
 python receipt_semantic_compatibility.py
+python cross_version_corpus_readiness.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -59,6 +60,11 @@ same-version evidence, not a compatibility or certification claim.
 all current top-level transaction rejection codes, strict field rejection, and
 the unknown-code fallback. Its same-version report proves RFC-0006's policy;
 it does not prove cross-version history or promote receipt stability.
+
+`cross_version_corpus_readiness.py` verifies the exact preserved receipt
+manifests and canonical decoding through the installed reader, then reports
+that the current single-version/no-release-evidence corpus is not ready. Its
+synthetic gate regression is not cross-version history or release evidence.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

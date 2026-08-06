@@ -211,6 +211,10 @@ absent, so the command/receipt surface stays experimental. See the
 [receipt semantic compatibility guide](receipt-semantic-compatibility.md) for
 the exact v1 meanings and unknown-code fallback rule.
 
+M24's [cross-version corpus readiness guide](cross-version-corpus-readiness.md)
+defines how gate-1 evidence is admitted. The current same-version reader and
+empty supported-release set keep that gate false.
+
 ## Reading receipts
 
 M21 adds strict `TransactionReceipt.from_json` and `from_mapping` entry points.

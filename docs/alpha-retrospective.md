@@ -67,8 +67,10 @@ compatibility gate is evidenced. M21 completes only the bounded public receipt
 reader gate and freezes same-version fixture inputs under RFC-0004. M22
 completes only the built-in operation-argument policy gate under RFC-0005. M23
 completes only the semantic-diff/diagnostic-code policy gate under RFC-0006.
-Three gates remain: cross-version history, external feedback, and a supported
-release channel. Remaining priority
+M24 adds the offline corpus admission harness under RFC-0007 but does not turn
+same-version fixtures or a synthetic regression into history. Three gates
+remain: cross-version execution from supported releases, external feedback,
+and a supported release channel. Remaining priority
 questions also include contributor rehearsal feedback and controlled
 cross-platform performance evidence. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device

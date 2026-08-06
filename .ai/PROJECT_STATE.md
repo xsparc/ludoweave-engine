@@ -2,6 +2,41 @@
 
 ## Current milestone
 
+M24 is assigned on `codex/m24-cross-version-corpus-readiness` from exact clean
+synchronized `main` commit
+`55c7a72337913303b6b1f6bd31edbca7ff28683b`. Its bounded outcome is a strict
+offline admission harness over the immutable M21 receipt corpus. Gate 1 can
+become true only when an installed reader differs from a preserved source
+version, at least two versions are observed, every receipt remains canonically
+readable, and supported-release records cover every observed version. The
+current `0.1.0a1`/empty-release report is deterministically `not-ready` and
+does not claim history. M24 changes no runtime source, API/export, protocol,
+dependency, lock, package version, stability label, workflow, or CI topology.
+The exact manifest/reader baseline passes 71 tests. The final reviewed gate
+passes 223-file formatting, Ruff, strict Pyright, strict docs, 1,074 tests with
+one existing Windows symlink skip, pure build, isolated wheel/release smoke, 10
+real-wgpu tests, both graphics vertical slices, and base/graphics profile
+contract smokes. Review hardened bounded streaming/path confinement, reviewed-
+manifest identity, exact release coverage, and child/per-receipt resource caps;
+26 focused post-hardening tests pass with no remaining finding. DCO-signed
+implementation commit `e590d482246d122120c011969b47f79f9680efa2` is published
+through ready PR #36. Sole GitHub Actions run `31107800179` passed all eight
+unchanged essential jobs. GitHub reports the PR `MERGEABLE` and `CLEAN`; the
+first thread-aware read found no comment, review, or inline thread. Delayed
+automated review then found one valid P1: a newly pinned future corpus could
+replace the current source list instead of retaining the M21 audit trail. The
+local correction freezes executable mandatory source/release prefixes, adds an
+explicit history-preservation gate and regression, and passes 28 focused tests,
+1,076 full-suite tests with the existing skip, the complete static/docs gate,
+pure build, isolated wheel smoke, and a fresh ten-artifact release smoke. DCO
+correction commit `b393d6857f0a60c5d124fdeb25b3779c8f9dab86` passed necessary
+GitHub Actions run `31108924069` across all eight unchanged essential jobs. PR
+#36 is `MERGEABLE` and `CLEAN`. The original thread remains unresolved and non-
+outdated because its loop anchor persists, but the adjacent frozen-prefix gate
+and replacement-corpus regression directly satisfy it; no finding remains
+actionable, and no reply or manual resolution was performed. CI-skipping final
+evidence and squash integration remain.
+
 M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
 `codex/m23-receipt-diagnostic-policy` from exact clean
@@ -376,11 +411,19 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M23 are complete, hosted-validated, and squash-integrated. This
-  branch records M23 integration only; no subsequent milestone is included.
-- Cross-version compatibility history, external consumer feedback, and a
-  supported deprecation-capable feature-release channel remain absent. Do not
-  promote the experimental command/receipt surface by inference.
+- M20 through M23 are complete, hosted-validated, and squash-integrated. M24 is
+  the active bounded slice and adds only cross-version corpus admission
+  readiness, deterministic false current evidence, RFC-0007, and artifact
+  smoke. Ready PR #36 is locally complete and its sole hosted run
+  `31107800179` passed all eight unchanged essential jobs. One delayed-review
+  append-only finding is corrected locally with frozen mandatory history and a
+  full passing gate; necessary follow-up run `31108924069` passed the same eight
+  jobs, and final thread-aware reread found no actionable finding. CI-skipping
+  evidence and squash integration remain.
+- Actual cross-version package history, external consumer feedback, and a
+  supported deprecation-capable feature-release channel remain absent. M24 may
+  not promote the experimental command/receipt surface or fabricate those
+  external facts.
 
 ## Validation state
 
