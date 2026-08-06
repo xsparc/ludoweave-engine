@@ -1,10 +1,8 @@
 # Current Task
 
 - **Task:** M23 - receipt semantic-diff and diagnostic compatibility policy
-- **Status:** Ready to integrate on `codex/m23-receipt-diagnostic-policy`.
-  Ready PR #34 has passed the corrected local/artifact gate and its one
-  necessary follow-up hosted run. Final `[skip ci]` evidence publication and
-  exact squash integration remain.
+- **Status:** Complete and squash-integrated into `main`. This no-CI branch
+  records the exact verified integration; publication of that record remains.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `415859e19d9d29caa1168fabc96def509897b056`.
@@ -65,3 +63,8 @@
   anchors remain unchanged, but current adjacent definitions and exact-diff
   assertions make neither finding actionable. No reply or manual resolution
   was performed.
+- **Integration:** PR #34 squash-integrated exact final evidence head
+  `eacb0153d8ac6e5f65d4d52f02c493bf9a891219` as GitHub-verified `main`
+  commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`. Both trees are
+  `6ba709c29688041992bef75a2a83831275ff32db`; the squash commit's sole
+  parent is the assigned base and its message contains the DCO sign-off.

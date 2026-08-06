@@ -37,10 +37,10 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
-M23 is assigned only to the receipt-v1 semantic-diff and diagnostic-code
+The M23 integration-record branch may change only repository state/evidence
+documents for the already merged receipt-v1 semantic-diff and diagnostic-code
 compatibility policy identified by RFC-0003. It may add a frozen repository
-contract, deterministic installed evidence, tests, RFC/docs, artifact smoke,
-and gate bookkeeping. It may not change runtime source, add or reinterpret a
+integration record. It may not change runtime source, add or reinterpret a
 receipt/command/operation/handler, promote stability, claim cross-version or
 external adoption, add a dependency/lock/version/workflow job, or implement
 storage, providers, transports, networking, native/WASM, 3D, or editor work.
@@ -76,7 +76,11 @@ not independently frozen. Both corrections pass the local full/artifact gate
 and follow-up GitHub Actions run `31105197045` across the unchanged eight jobs.
 Thread-aware reread confirms the unresolved anchors now sit beside the exact
 requested evidence and neither finding remains actionable. Exact squash
-integration is pending.
+integration is complete. PR #34 squash-integrated exact final evidence head
+`eacb0153d8ac6e5f65d4d52f02c493bf9a891219` into `main` as GitHub-verified
+commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`; both trees are
+`6ba709c29688041992bef75a2a83831275ff32db`, and the sole parent is the
+assigned base. The milestone branch remains the audit trail.
 
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
