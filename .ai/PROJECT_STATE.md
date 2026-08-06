@@ -2,8 +2,9 @@
 
 ## Current milestone
 
-M26 is in progress on `codex/m26-supported-release-channel-readiness` from exact
-clean synchronized `main` commit
+M26 is complete, reviewed, and hosted-validated on
+`codex/m26-supported-release-channel-readiness` from exact clean synchronized
+`main` commit
 `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. Its bounded outcome is a strict
 offline admission harness for RFC-0003 gate 6. The current reviewed manifest is
 empty, so the sanitized result is deterministically `not-ready`: the tag-only
@@ -22,15 +23,18 @@ capability skips, pure build, isolated wheel/release smoke, all documented
 benchmark/profile validators, 10 real-wgpu tests, and both graphics vertical
 slices. The post-documentation full gate passes on the exact final local tree;
 ready PR #40 targets the exact assigned base from DCO-signed implementation
-commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Sole hosted run
+commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Initial hosted run
 `31115252696` passes all eight unchanged essential jobs. GitHub reports the PR
 `MERGEABLE` and `CLEAN`; the first thread-aware read found no comment, review,
 or inline thread. Delayed review found one valid P2: a reviewed nonempty
 manifest could be admitted without a matching complete mandatory prefix. The
 local correction binds the reviewed digest to the entire prefix and passes
 1,153 tests with the same three Windows capability skips plus complete
-static/docs and isolated wheel/release validation. Correction publication, one
-necessary hosted rerun, final review, and squash integration remain pending.
+static/docs and isolated wheel/release validation. Corrected run `31116147333`
+is successful across all eight checks after a failed-job-only rerun recovered a
+GitHub action-download setup outage. Final thread-aware review finds the
+original P2 outdated and no actionable finding. A CI-skipping factual evidence
+commit and squash integration remain pending.
 
 M25 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m25-external-consumer-feedback-readiness` from

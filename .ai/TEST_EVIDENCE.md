@@ -107,6 +107,40 @@ No reply or manual resolution was performed on the review thread. A DCO-signed
 correction commit, one necessary corrected hosted run, final thread-aware
 reread, and squash integration remain pending.
 
+## M26 corrected hosted validation and final thread-aware reread - PR #40
+
+DCO-signed correction commit
+`ad73e641605ee1622e8168a73183f9987d9f9254` was pushed once. Corrected
+GitHub Actions run `31116147333` passed the quality/distribution job, all four
+compatibility jobs, and Linux/macOS graphics on its first attempt. Its Windows
+graphics job failed entirely during runner setup: GitHub reported `Service
+Unavailable` and then `Internal Server Error` while resolving action-download
+information. Checkout and every repository command were never reached.
+
+Only that failed job was rerun. Run attempt 2 completed successfully: Windows
+graphics checked out the exact corrected head and passed the locked graphics
+install, ten real-wgpu tests, graphics profile, Clockwork Arena, and Agent World
+Builder. GitHub now reports corrected run `31116147333` successful with all
+eight status checks successful.
+
+`gh run list` returns exactly two M26 branch runs: initial successful run
+`31115252696` on implementation commit
+`835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34` and corrected successful run
+`31116147333` on exact correction head above. The earlier factual evidence
+commit used `[skip ci]` and created no additional run.
+
+PR #40 is open, ready, `MERGEABLE`, and `CLEAN` against exact assigned base
+`0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. The final GraphQL thread-aware
+reread returns the original P2 thread unresolved but outdated. The corrected
+gate requires the complete reviewed identity sequence to equal the mandatory
+prefix, and the dedicated digest-only regression passes. No finding remains
+actionable. No reply or manual thread resolution was performed.
+
+The successful corrected checks do not establish a supported release,
+recurring channel, support promise, cross-version execution, external consumer
+feedback, stability promotion, tag, GitHub release, or PyPI publication. A
+final CI-skipping factual evidence commit and squash integration remain.
+
 ## M25 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

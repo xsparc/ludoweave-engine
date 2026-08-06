@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M26 - supported deprecation release-channel admission readiness
-- **Status:** In progress on
-  `codex/m26-supported-release-channel-readiness`.
+- **Status:** Complete, reviewed, and hosted-validated on
+  `codex/m26-supported-release-channel-readiness`; squash integration remains.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized `main` commit
   `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62` after verified PR #39.
@@ -48,13 +48,16 @@
   benchmark/profile validators, 10 real-wgpu tests, and both graphics vertical
   slices. The post-documentation full gate passes on the exact final local tree;
   ready PR #40 targets the exact assigned base from DCO-signed implementation
-  commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Sole hosted run
+  commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Initial hosted run
   `31115252696` passes all eight unchanged essential jobs. GitHub reports the PR
   `MERGEABLE` and `CLEAN`; the first thread-aware read found no comment, review,
   or inline thread. Delayed review found one valid P2: a reviewed nonempty
   manifest could be admitted without a matching complete mandatory prefix. The
   local correction binds the reviewed digest to the entire prefix and passes
   1,153 tests with the same three Windows capability skips plus complete
-  static/docs and isolated wheel/release validation. Correction publication,
-  one necessary hosted rerun, final review, and squash integration remain
-  pending.
+  static/docs and isolated wheel/release validation. The correction is
+  published as `ad73e641605ee1622e8168a73183f9987d9f9254`; necessary corrected
+  run `31116147333` and its failed-job-only infrastructure rerun are successful
+  across all eight checks. Final thread-aware review finds
+  the original P2 outdated and no actionable finding. A CI-skipping factual
+  evidence commit and squash integration remain pending.
