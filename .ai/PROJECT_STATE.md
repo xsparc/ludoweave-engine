@@ -2,7 +2,8 @@
 
 ## Current milestone
 
-M24 is assigned on `codex/m24-cross-version-corpus-readiness` from exact clean
+M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
+implemented on `codex/m24-cross-version-corpus-readiness` from exact clean
 synchronized `main` commit
 `55c7a72337913303b6b1f6bd31edbca7ff28683b`. Its bounded outcome is a strict
 offline admission harness over the immutable M21 receipt corpus. Gate 1 can
@@ -35,7 +36,12 @@ GitHub Actions run `31108924069` across all eight unchanged essential jobs. PR
 outdated because its loop anchor persists, but the adjacent frozen-prefix gate
 and replacement-corpus regression directly satisfy it; no finding remains
 actionable, and no reply or manual resolution was performed. CI-skipping final
-evidence and squash integration remain.
+evidence head `1a8bd6f19f656eb5c4a0d6bd90f057a69bddbc34` was squash-integrated
+by PR #36 as GitHub-verified `main` commit
+`b7b16697d28410567cbddf8eb962c7e6c9e664b8`. Both trees are
+`fa3c455ccd9722c666cc07cae325f1b50e37ddc7`; the sole parent is assigned base
+`55c7a72337913303b6b1f6bd31edbca7ff28683b`, and the commit contains the DCO
+sign-off. The milestone branch remains the audit trail.
 
 M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -411,19 +417,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M23 are complete, hosted-validated, and squash-integrated. M24 is
-  the active bounded slice and adds only cross-version corpus admission
-  readiness, deterministic false current evidence, RFC-0007, and artifact
-  smoke. Ready PR #36 is locally complete and its sole hosted run
-  `31107800179` passed all eight unchanged essential jobs. One delayed-review
-  append-only finding is corrected locally with frozen mandatory history and a
-  full passing gate; necessary follow-up run `31108924069` passed the same eight
-  jobs, and final thread-aware reread found no actionable finding. CI-skipping
-  evidence and squash integration remain.
+- M20 through M24 are complete, hosted-validated, and squash-integrated. This
+  branch records M24 integration only; no subsequent milestone is included.
 - Actual cross-version package history, external consumer feedback, and a
-  supported deprecation-capable feature-release channel remain absent. M24 may
-  not promote the experimental command/receipt surface or fabricate those
-  external facts.
+  supported deprecation-capable feature-release channel remain absent. Do not
+  promote the experimental command/receipt surface by inference.
 
 ## Validation state
 

@@ -1,16 +1,8 @@
 # Current Task
 
 - **Task:** M24 - cross-version receipt-corpus admission readiness
-- **Status:** Implementation is complete, locally validated, DCO-signed, and
-  published through ready PR #36 on
-  `codex/m24-cross-version-corpus-readiness`. Sole GitHub Actions run
-  `31107800179` passed all eight unchanged essential jobs. Delayed automated
-  review found one valid append-only-history gap. The correction freezes
-  mandatory source/release prefixes and passes the complete local/artifact
-  gate. DCO correction commit `b393d6857f0a60c5d124fdeb25b3779c8f9dab86`
-  passed necessary hosted run `31108924069` across all eight jobs. Final
-  thread-aware reread found no actionable finding; CI-skipping evidence commit
-  and squash integration remain.
+- **Status:** Complete and squash-integrated into `main`. This no-CI branch
+  records the exact verified integration; publication of that record remains.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `55c7a72337913303b6b1f6bd31edbca7ff28683b` after verified PR #35.
@@ -48,3 +40,16 @@
   confinement, pinned reviewed-corpus identity, exact release coverage, and
   source/release/fixture/receipt resource caps; 26 focused post-hardening tests
   pass and no finding remains.
+- **Review and hosted evidence:** DCO implementation commit
+  `e590d482246d122120c011969b47f79f9680efa2` passed initial run `31107800179`.
+  Delayed review found one valid append-only-history gap. DCO correction commit
+  `b393d6857f0a60c5d124fdeb25b3779c8f9dab86` freezes mandatory source/release
+  prefixes, passes 1,076 tests with the existing skip and the complete artifact
+  gate, and passed necessary run `31108924069` across all eight unchanged jobs.
+  Final thread-aware reread found no actionable finding; no thread reply or
+  manual resolution was performed.
+- **Integration:** PR #36 squash-integrated exact final evidence head
+  `1a8bd6f19f656eb5c4a0d6bd90f057a69bddbc34` as GitHub-verified `main`
+  commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8`. Both trees are
+  `fa3c455ccd9722c666cc07cae325f1b50e37ddc7`; the squash commit's sole parent
+  is the assigned base and its message contains the DCO sign-off.
