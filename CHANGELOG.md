@@ -6,11 +6,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add RFC-0006, a frozen machine-readable receipt-v1 semantic-diff and
+  diagnostic-code policy, plus deterministic installed source/wheel/release
+  evidence for exact meanings, fail-closed fields, and unknown-code fallback.
+- Version the command/receipt readiness report to `/4`; its operation-policy,
+  public-reader, and receipt-policy gates are true while three gates and
+  overall preview promotion remain incomplete.
 - Add RFC-0005, a frozen machine-readable v1 contract, and installed
   source/wheel/release evidence for the exact argument shapes of all seven
   built-in operations; breaking changes require a new operation version.
 - Version the command/receipt readiness report to `/3`; its operation-policy
-  and public-reader gates are true while four gates and overall preview
+  and public-reader gates were true while four gates and overall preview
   promotion remain incomplete.
 - Add a bounded experimental `TransactionReceipt` reader, structured receipt
   decode failures, deterministic limits, frozen receipt/1 baseline fixtures,

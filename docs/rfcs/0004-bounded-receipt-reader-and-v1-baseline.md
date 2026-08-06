@@ -74,9 +74,10 @@ only `public_receipt_reader_and_bounds` true. It retains the overall
   package version reads this baseline in CI and the policy for any accepted
   evolution is documented.
 
-This policy establishes a baseline and preservation rule. It does not yet
-define compatibility for every diagnostic code, detail key, or semantic-diff
-field, so RFC-0003's separate diff/diagnostic policy gate remains false.
+This policy establishes a baseline and preservation rule. It does not define
+compatibility for every diagnostic code, detail key, or semantic-diff field.
+That separate gate was false at M21 and is later satisfied by RFC-0006 without
+changing this reader or claiming cross-version history.
 
 ## Security and determinism
 

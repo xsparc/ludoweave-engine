@@ -59,7 +59,9 @@ conformance alone does not create a deprecation promise.
 RFC-0004 adds a bounded experimental `TransactionReceipt` reader and freezes
 exact `0.1.0a1` receipt/1 fixtures. This satisfies the reader-and-bounds gate
 only. The fixtures are a single-version baseline, so cross-version
-compatibility, diagnostic/diff evolution, and preview status remain unproven.
+compatibility and preview status remain unproven. RFC-0006 later defines
+diagnostic/diff evolution without turning those fixtures into cross-version
+history.
 Future fixture checks preserve the historical bytes rather than rewriting them
 to match new behavior.
 
@@ -67,7 +69,13 @@ RFC-0005 freezes every built-in `(operation, operation_version)` v1 argument
 identity: required/optional fields and semantic rules do not change in place,
 unknown fields are rejected, breaking changes use a new operation version, and
 new operation identities are additive. This satisfies the operation-policy
-gate only. Four command/receipt preview gates remain incomplete.
+gate only.
+
+RFC-0006 freezes receipt-v1 semantic-diff field sets, presence, ordering, and
+meanings. Existing diagnostic-code meanings are fixed; new well-formed codes
+are additive, while phase/message/detail metadata remains non-authoritative.
+This satisfies the receipt-policy gate only. Cross-version history, external
+feedback, and a supported release channel remain incomplete.
 
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;

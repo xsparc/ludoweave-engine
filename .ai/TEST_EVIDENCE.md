@@ -2,6 +2,69 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M23 development evidence - 2026-08-06, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `git status --short --branch`, recent history, and `git rev-parse HEAD` | 0 | Baseline was clean synchronized `main` at `415859e19d9d29caa1168fabc96def509897b056`. |
+| `uv lock --check` | 0 | Baseline lock remained current; 46 packages resolved in 0.87 ms. |
+| Focused receipt/reader/transaction/stability/architecture baseline | 0 | 84 tests passed in 2.21 seconds. |
+| First focused format/Ruff/Pyright/example group | 1 | Formatting changed one new file and Ruff/Pyright passed, but the example failed before reporting evidence because postponed annotations exposed component fields as strings. No example pass is claimed. |
+| Second focused format/Ruff/Pyright/example group | 1 | Static checks passed, but the example correctly exposed that `world.transaction.nontransactional_operation` is wrapped as the `cause_code` of top-level `world.transaction.apply_failed`. No example pass is claimed. |
+| Corrected focused format/Ruff/Pyright/example group | 0 | Both files were formatted, Ruff and Pyright were clean, and the exact sanitized M23 JSON report printed successfully. |
+| Focused M23 integration and architecture gate | 0 | 17 repeatability, exact-policy, tamper, import-boundary, dependency, and synthetic forbidden-import tests passed in 1.83 seconds. |
+| Expanded M23/readiness/release static and test group | 0 | 11 files were formatted; Ruff and strict Pyright were clean; 28 tests passed in 3.80 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Documentation built successfully in 0.66 seconds with Material's upstream MkDocs 2.0 informational warning. |
+
+The correction freezes only six current top-level transaction rejection codes.
+The nontransactional-operation identity remains visible as a nested diagnostic
+detail in existing runtime behavior, but M23 does not reinterpret that detail
+as a top-level code or change runtime source. Full validation follows after
+artifact wiring.
+
+## M23 final local validation - 2026-08-06, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Expanded repository-wide format/Ruff/Pyright, M20-M23/release/architecture group, and strict docs | 0 | 219 files were formatted, Ruff and Pyright were clean, 228 tests passed in 7.68 seconds, and docs built in 0.66 seconds. |
+| `uv build` | 0 | Built pure `ludoweave-0.1.0a1-py3-none-any.whl` and source distribution. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed, including exact M23 receipt-semantic evidence and readiness schema `/4`. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate-m23-development` | 0 | Staged the complete deterministic 10-artifact release candidate with the M23 sample, SPDX SBOM, manifest, and checksums. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/release-candidate-m23-development` | 0 | Isolated release smoke passed for `0.1.0a1`, including bundled M23 evidence. |
+| Direct installed unknown-operation diagnostic probe | 0 | The built-in transaction service returned top-level `world.transaction.validation_failed` with nested `cause_code` `world.unknown_operation`, confirming the frozen top-level classification. |
+| Strengthened M23 architecture/integration group | 0 | 18 exact contract, direct-code-literal coverage, installed evidence, and boundary tests passed in 1.90 seconds. |
+| `uv lock --check` | 0 | Lockfile remained current; 46 packages resolved in 0.68 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Locked baseline plus graphics environment checked 45 packages in 2 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 219 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,048 tests passed in 77.67 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | 10 unchanged real-wgpu integration tests passed in 6.52 seconds. |
+| Hosted graphics vertical-slice commands | 0 | Thirty-tick wgpu Clockwork Arena and Agent World Builder completed with their expected deterministic structured summaries. |
+| M1 benchmark plus validator | 0 | Seven workloads validated; fixed-tick target observed, simulation-tick target not observed. |
+| M2 benchmark plus validator | 0 | Four informational workloads validated with no timing targets. |
+| M3 benchmark plus validator | 0 | Six workloads validated; neither of two recorded targets was met. |
+| M4 benchmark plus validator | 0 | Three workloads validated; baseline target observed. |
+| M7 base and graphics profile runners plus validators | 0 | Two-workload base and three-workload graphics artifacts validated with five repeats. |
+
+The M1 simulation and both M3 target misses are recorded without a performance
+pass claim. They do not authorize native acceleration. The implementation
+changes no file under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`; the
+release remains pure Python and the eight essential hosted jobs remain
+unchanged.
+
+Findings-first review inspected changed behavior, current transaction/receipt
+call sites, status invariants, error wrapping, exact fixture/evidence matching,
+security/privacy, compatibility, resource ownership, tests, release smoke,
+architecture boundaries, and documentation state. It found no blocking or
+non-blocking defect and no open question. The optional `.agents/tasks.json` and
+`.agents/ledger.md` inputs named by the review role do not exist, so no shared-
+workflow acceptance claim is made; the repository's `.ai` task, accepted RFCs,
+and AGENTS contract supplied the authoritative criteria. Final strict MkDocs
+then exited 0 in 0.67 seconds, `git diff --check` exited 0, the new-file
+credential-assignment scan matched nothing, and the scope check reported no
+change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`.
+
 ## M22 development evidence — 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

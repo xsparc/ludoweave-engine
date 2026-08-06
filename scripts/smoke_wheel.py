@@ -16,6 +16,7 @@ from command_receipt_stability_evidence import validate_command_receipt_stabilit
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
+from receipt_semantic_evidence import validate_receipt_semantic_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
@@ -553,6 +554,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         receipt_reader = cast(dict[str, object], json.loads(receipt_reader_result.stdout))
         validate_receipt_reader_evidence(receipt_reader, version=version)
+
+        receipt_semantic_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "receipt_semantic_compatibility.py"),
+            ],
+            cwd=temp_root,
+        )
+        receipt_semantic = cast(dict[str, object], json.loads(receipt_semantic_result.stdout))
+        validate_receipt_semantic_evidence(receipt_semantic, version=version)
 
         plugin_manifest = temp_root / "example.plugin.json"
         shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)

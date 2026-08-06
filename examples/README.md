@@ -12,6 +12,7 @@ python rollback_readiness.py --ticks 120 --branch-tick 60
 python command_receipt_stability_decision.py
 python operation_argument_compatibility.py
 python receipt_reader.py
+python receipt_semantic_compatibility.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -53,6 +54,11 @@ does not prove cross-version compatibility or promote the command protocol.
 `ludoweave.receipt/1` documents through the bounded public reader and exercises
 its malformed, incompatible, and oversized failures. Its sanitized report is
 same-version evidence, not a compatibility or certification claim.
+
+`receipt_semantic_compatibility.py` exercises every semantic-diff record family,
+all current top-level transaction rejection codes, strict field rejection, and
+the unknown-code fallback. Its same-version report proves RFC-0006's policy;
+it does not prove cross-version history or promote receipt stability.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

@@ -16,6 +16,7 @@ nav:
   - WorldStore conformance: world-store-conformance.md
   - Command and receipt stability decision: command-receipt-stability-decision.md
   - Operation argument compatibility: operation-argument-compatibility.md
+  - Receipt semantic compatibility: receipt-semantic-compatibility.md
   - Bounded receipt reader: receipt-reader.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
@@ -33,6 +34,7 @@ nav:
       - RFC-0003 - Retain experimental command/receipt contracts: rfcs/0003-retain-experimental-command-receipt-contracts.md
       - RFC-0004 - Bounded receipt reader and v1 baseline: rfcs/0004-bounded-receipt-reader-and-v1-baseline.md
       - RFC-0005 - Built-in operation argument compatibility: rfcs/0005-built-in-operation-argument-compatibility.md
+      - RFC-0006 - Receipt semantic-diff and diagnostic compatibility: rfcs/0006-receipt-semantic-diff-and-diagnostic-compatibility.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

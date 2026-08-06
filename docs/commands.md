@@ -204,10 +204,12 @@ See the [stability decision](command-receipt-stability-decision.md). Do not
 infer a preview promise from protocol `/1` identifiers or project-owned
 conformance passes.
 
-M21 and M22 satisfy the bounded-reader and operation-argument-policy gates,
-respectively. Cross-version history, external feedback, semantic-diff/
-diagnostic evolution, and a supported deprecation release channel remain
-absent, so the command/receipt surface stays experimental.
+M21, M22, and M23 satisfy the bounded-reader, operation-argument-policy, and
+receipt semantic-diff/diagnostic-policy gates, respectively. Cross-version
+history, external feedback, and a supported deprecation release channel remain
+absent, so the command/receipt surface stays experimental. See the
+[receipt semantic compatibility guide](receipt-semantic-compatibility.md) for
+the exact v1 meanings and unknown-code fallback rule.
 
 ## Reading receipts
 

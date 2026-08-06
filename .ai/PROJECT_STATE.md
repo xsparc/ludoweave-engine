@@ -2,6 +2,25 @@
 
 ## Current milestone
 
+M23 is assigned on `codex/m23-receipt-diagnostic-policy` from exact clean
+synchronized `main` commit
+`415859e19d9d29caa1168fabc96def509897b056`. Its bounded result is an exact
+machine-readable receipt-v1 semantic-diff and diagnostic-code evolution policy,
+deterministic installed evidence, RFC-0006, and RFC-0003 schema `/4`
+bookkeeping. It changes no runtime package, public API, receipt field, operation,
+diagnostic behavior, dependency, lock, version, or CI topology. Implementation,
+focused tests, and documentation pass locally; hosted validation, publication,
+and integration remain. The complete local gate passes lock/sync,
+219-file formatting, Ruff, strict Pyright,
+1,048 tests with one existing Windows symlink skip, strict docs, pure build,
+isolated wheel/release smoke, 10 real-wgpu tests, both graphics vertical slices,
+and every documented M1-M4/M7 benchmark/profile validator. M1 simulation and
+both M3 timing targets remain observed misses rather than pass claims.
+Findings-first review reports no blocking or non-blocking defect and no open
+question. The optional `.agents` task/ledger files expected by the review role
+are absent, so the authoritative `.ai` task, accepted RFCs, AGENTS boundary,
+call sites, tests, and executed evidence were used as the review baseline.
+
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
 `codex/m22-operation-argument-policy` from exact clean
@@ -334,11 +353,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M22 are complete, hosted-validated, and squash-integrated. M22
-  added only an exact built-in v1 operation-argument policy, same-version
-  installed evidence, RFC-0005, and living readiness schema `/3` bookkeeping.
-- No M23 slice is assigned or included in the M22 integration record.
-- M22 may not reinterpret a runtime contract, claim cross-version compatibility
+- M20 through M22 are complete, hosted-validated, and squash-integrated. M23 is
+  the active bounded slice and adds only an exact receipt-v1 semantic-diff and
+  diagnostic-code policy, same-version installed evidence, RFC-0006, and living
+  readiness schema `/4` bookkeeping.
+- M23 may not reinterpret a runtime contract, claim cross-version compatibility
   or external adoption, promote stability, add an operation/handler/migration,
   discover or load providers, access ambient filesystem/network resources, or
   change package exports, dependencies, lock, version, workflows, jobs,

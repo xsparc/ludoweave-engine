@@ -33,7 +33,7 @@ from ludoweave.world import (
 )
 from ludoweave.world import __stability__ as world_stability
 
-_SCHEMA = "ludoweave.evaluation.command-receipt-stability/3"
+_SCHEMA = "ludoweave.evaluation.command-receipt-stability/4"
 _STABILITY_EXPORTS = (
     "COMMAND_PROTOCOL",
     "RECEIPT_PROTOCOL",
@@ -224,6 +224,7 @@ def evaluate() -> dict[str, object]:
     satisfied_gates = {
         "operation_argument_compatibility_policy",
         "public_receipt_reader_and_bounds",
+        "receipt_diff_diagnostic_compatibility_policy",
     }
     promotion_gates = {name: name in satisfied_gates for name in _PROMOTION_GATES}
     promotion_ready = all(promotion_gates.values())

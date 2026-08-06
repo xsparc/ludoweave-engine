@@ -37,6 +37,14 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
+M23 is assigned only to the receipt-v1 semantic-diff and diagnostic-code
+compatibility policy identified by RFC-0003. It may add a frozen repository
+contract, deterministic installed evidence, tests, RFC/docs, artifact smoke,
+and gate bookkeeping. It may not change runtime source, add or reinterpret a
+receipt/command/operation/handler, promote stability, claim cross-version or
+external adoption, add a dependency/lock/version/workflow job, or implement
+storage, providers, transports, networking, native/WASM, 3D, or editor work.
+
 M0 through M22 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
@@ -52,6 +60,14 @@ both trees are `f513bec716d1735cc47a6aab862bca0f5f770af9`. No
 cross-version or external-adoption claim, stability promotion, storage,
 provider, transport, networking, native/WASM, 3D, editor, or M23 work is
 included.
+
+M23 starts from exact integrated `main` commit
+`415859e19d9d29caa1168fabc96def509897b056`. RFC-0006 freezes exact
+receipt-v1 semantic-diff field sets/meanings and diagnostic-code evolution,
+while phase/message/scalar details remain non-authoritative metadata. Only
+RFC-0003 gate 5 may become true; cross-version history, external feedback, and
+a supported release channel remain false. No runtime source, public export,
+protocol field, dependency, lock, version, workflow, or CI job changes.
 
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
