@@ -2223,3 +2223,32 @@ was denied. Approved cache-access reruns and every final command above exited
 failures. No M19 hosted/cross-platform pass, PR, merge, tag, release, package
 publication, certification, or independently authored adapter adoption is
 claimed at this stage.
+
+## M19 hosted validation - 2026-08-06
+
+Ready PR #26 targets `main` from
+`codex/m19-world-store-conformance`. GitHub reported exact base
+`4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`, DCO-signed implementation head
+`1da692a693c1f92e10b676c2d4539354ce3ff59f`, `MERGEABLE`, and `CLEAN` after
+checks completed.
+
+GitHub Actions pull-request run `31092244573` executed that implementation
+commit from `2026-08-06T10:11:30Z` through `2026-08-06T10:14:03Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and GitHub lists this as the only hosted run
+for the M19 branch. Hosted evidence validates supported installed,
+cross-platform, and existing-provider contracts. It does not discover, admit,
+certify, or count third-party storage implementations; establish persistence,
+external-resource lifecycle, free-threaded safety, or maintenance readiness;
+publish a package; create a tag or release; add a backend, dependency, format,
+or CI job; or claim the locally missed M1/M3 performance targets passed.

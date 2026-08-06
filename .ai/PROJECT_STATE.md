@@ -300,10 +300,13 @@ Repository-state evidence is integrated by PR #18 as main commit
   `codex/m19-world-store-conformance` from exact clean synchronized `main`
   commit `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`. It adds only an installed,
   explicit-factory behavioral profile for the existing public `WorldStore`
-  contract. Implementation and findings-first local review are complete; the
-  one authorized hosted implementation run is pending. Do not infer discovery/
-  loading, a new storage backend, native or database storage, external-resource
-  lifecycle, format changes, dependency, or release publication.
+  contract. Implementation and findings-first local review are complete. Ready
+  PR #26 and the one authorized GitHub Actions run `31092244573` passed all
+  eight unchanged essential jobs on DCO-signed commit
+  `1da692a693c1f92e10b676c2d4539354ce3ff59f`; squash integration is pending.
+  Do not infer discovery/loading, a new storage backend, native or database
+  storage, external-resource lifecycle, format changes, dependency, or release
+  publication.
 
 ## Validation state
 

@@ -104,7 +104,9 @@ M19 starts from integrated `main` commit
 production/reference storage conformance into one installed profile for an
 explicitly supplied trusted `factory(ComponentRegistry)`. It does not discover,
 load, install, sandbox, certify, or admit code and adds no backend or storage
-format.
+format. Ready PR #26 passed the unchanged eight-job hosted matrix as run
+`31092244573` on DCO-signed implementation commit
+`1da692a693c1f92e10b676c2d4539354ce3ff59f`.
 
 ## Good-first contribution queue
 

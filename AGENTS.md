@@ -105,3 +105,7 @@ import, install, or launch provider code; add a storage backend, database,
 external-resource lifecycle, native/archetype/NumPy storage, format, plugin
 field, dependency, lock, version, or package-root export; or claim project-
 owned evidence as third-party adoption or certification.
+Ready PR #26 and GitHub Actions run `31092244573` validate all eight unchanged
+essential jobs on DCO-signed M19 implementation commit
+`1da692a693c1f92e10b676c2d4539354ce3ff59f`. Squash integration into `main`
+is pending.

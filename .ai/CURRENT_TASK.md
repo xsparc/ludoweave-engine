@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M19 - installed WorldStore conformance
-- **Status:** Implementation, findings-first review, and the complete local
-  gate are clean on `codex/m19-world-store-conformance`; ready for the one
-  authorized hosted implementation run.
+- **Status:** Implementation, findings-first review, complete local gate, and
+  the one authorized hosted implementation run are clean on ready PR #26;
+  ready for the authorized squash merge into `main`.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`.
@@ -60,5 +60,8 @@
   94-entry isolated wheel, and a complete ten-artifact release smoke pass. The
   protected workflows, lock, project metadata, version, and package root are
   unchanged. All documented benchmark/profile artifacts validate while the
-  existing M1 simulation and both M3 target misses remain explicit. No hosted
-  M19 run, PR, merge, tag, release, or package publication is claimed yet.
+  existing M1 simulation and both M3 target misses remain explicit. GitHub
+  Actions run `31092244573` passed all eight unchanged essential jobs on
+  DCO-signed implementation commit
+  `1da692a693c1f92e10b676c2d4539354ce3ff59f`. No merge, tag, release, or
+  package publication is claimed yet.
