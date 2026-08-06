@@ -43,7 +43,8 @@ The release-channel manifest:
    and explicit non-yanked status for every record;
 5. preserves the one-supported-feature-release deprecation window from
    `API_COMPATIBILITY.md`;
-6. is append-only through executable mandatory full-record prefixes;
+6. is append-only through an executable mandatory full-record prefix that must
+   equal the complete reviewed manifest identity sequence;
 7. requires the exact whole-manifest digest to be pinned by reviewed code and
    strict installed evidence; and
 8. never treats a local candidate, prerelease workflow, synthetic fixture, CI

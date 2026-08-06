@@ -74,9 +74,38 @@ read returned no issue comment, review, or inline review thread.
 
 This hosted pass does not establish a supported release, recurring channel,
 support promise, cross-version execution, external consumer feedback,
-stability promotion, tag, GitHub release, or PyPI publication. A CI-skipping
-factual evidence commit, delayed thread-aware reread, and squash integration
-remain pending.
+stability promotion, tag, GitHub release, or PyPI publication. DCO-signed
+factual evidence commit `3ac2b0786d588ab844978703a01d692c282927cb`
+used `[skip ci]`, was pushed, and created no additional run.
+
+## M26 delayed-review correction - PR #40
+
+At `2026-08-06T15:22:47Z`, delayed automated review of implementation commit
+`835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34` added one unresolved, non-outdated
+P2 thread: a future reviewer could pin a nonempty manifest digest without
+updating the empty mandatory prefix, so append-only history would remain
+vacuously true.
+
+The correction requires a reviewed manifest's complete identity sequence to
+equal the executable mandatory prefix. An unreviewed append-only candidate may
+still show preserved prior history, but it cannot satisfy the gate. The
+synthetic true-gate and patch-cadence tests now pin both the digest and complete
+prefix, and a dedicated regression proves digest-only pinning fails with
+`historical-release-record-missing`.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| First correction Ruff, Pyright, focused tests, strict docs, and whitespace group | Mixed | Ruff and Pyright passed, strict docs built in 0.76 seconds, and whitespace passed. The focused suite ran 47 tests with one Windows symlink skip but one patch-cadence assertion failed because that fixture intentionally pinned only the digest after the new guard; no focused test pass is claimed. |
+| Corrected focused Ruff, Pyright, tests, strict docs, and whitespace group | 0 | Ruff passed, Pyright reported zero diagnostics, 47 tests passed with one Windows symlink-capability skip in 2.07 seconds, strict docs built in 0.77 seconds, and whitespace passed. |
+| Corrected `uv lock --check` and complete static/docs gate | 0 | The unchanged lock resolved 46 packages; all 231 Python files were formatted; Ruff passed; Pyright reported zero diagnostics; strict docs built in 0.75 seconds; and whitespace passed. |
+| Corrected `uv run --frozen pytest -q` | 0 | 1,153 tests passed in 79.01 seconds; the three Windows symlink-capability probes skipped. |
+| Corrected pure build, isolated wheel smoke, fresh release staging, and release smoke | 0 | The pure wheel/sdist rebuilt; installed-wheel M26 evidence passed; a fresh ten-artifact release candidate executed the bundled corrected evaluator successfully. |
+| First combined corrected-report and scope audit group | Mixed | The report command alone failed before execution because the sandbox denied uv user-cache access. Subsequent whitespace, protected-scope, status, and Git-object checks ran successfully; no report pass is claimed from this attempt. |
+| Corrected report with approved cache access | 0 | The exact sanitized current report remains `not-ready` with zero releases and reason `supported-feature-release-channel-absent`. |
+
+No reply or manual resolution was performed on the review thread. A DCO-signed
+correction commit, one necessary corrected hosted run, final thread-aware
+reread, and squash integration remain pending.
 
 ## M25 development evidence - 2026-08-07, Windows, CPython 3.12.13
 

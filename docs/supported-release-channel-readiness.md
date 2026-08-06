@@ -9,8 +9,8 @@ The repository manifest is
 `tests/fixtures/supported_release_channel.json`. Its exact SHA-256 is pinned by
 installed evidence and the strict validator. Future accepted records are
 append-only: once a release is reviewed, its full identity enters the
-executable mandatory prefix and cannot be replaced by changing only the
-manifest digest.
+executable mandatory prefix. A reviewed manifest must equal that complete
+prefix; changing only the manifest digest fails closed.
 
 ## Admission rule
 

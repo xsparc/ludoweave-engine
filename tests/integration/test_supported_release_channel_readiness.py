@@ -96,6 +96,22 @@ def _two_feature_releases() -> list[dict[str, object]]:
     return [_record("1.0.0", character="1"), _record("1.1.0", character="2")]
 
 
+def _identity(record: dict[str, object]) -> tuple[object, ...]:
+    return (
+        record["version"],
+        record["tag"],
+        record["commit"],
+        record["release_url"],
+        record["artifact_sha256"],
+        record["release_notes_sha256"],
+        tuple(cast(list[str], record["publication_channels"])),
+        record["support_status"],
+        record["yanked"],
+        record["draft"],
+        record["prerelease"],
+    )
+
+
 def test_installed_release_channel_is_repeatable_sanitized_and_not_ready() -> None:
     first = _run()
     second = _run("--channel", str(_CHANNEL))
@@ -158,12 +174,14 @@ def test_gate_logic_becomes_true_only_for_reviewed_supported_feature_channel(
     tmp_path: Path,
 ) -> None:
     document = _manifest()
-    document["release_records"] = _two_feature_releases()
+    records = _two_feature_releases()
+    document["release_records"] = records
     channel = _write_manifest(tmp_path, document)
     module, evaluate = _evaluator()
     module.__dict__["_REVIEWED_RELEASE_CHANNEL_SHA256"] = hashlib.sha256(
         channel.read_bytes()
     ).hexdigest()
+    module.__dict__["_MANDATORY_RELEASE_PREFIX"] = tuple(_identity(record) for record in records)
 
     report = evaluate(channel)
 
@@ -179,17 +197,38 @@ def test_gate_logic_becomes_true_only_for_reviewed_supported_feature_channel(
     assert channel_report["versions"] == ("1.0.0", "1.1.0")
 
 
-def test_two_patch_releases_do_not_establish_two_feature_lines(tmp_path: Path) -> None:
+def test_reviewed_manifest_requires_complete_mandatory_history(tmp_path: Path) -> None:
     document = _manifest()
-    document["release_records"] = [
-        _record("1.0.0", character="1"),
-        _record("1.0.1", character="2"),
-    ]
+    document["release_records"] = _two_feature_releases()
     channel = _write_manifest(tmp_path, document)
     module, evaluate = _evaluator()
     module.__dict__["_REVIEWED_RELEASE_CHANNEL_SHA256"] = hashlib.sha256(
         channel.read_bytes()
     ).hexdigest()
+
+    report = evaluate(channel)
+
+    assert report["gate_satisfied"] is False
+    admission = cast(dict[str, object], report["admission"])
+    assert admission["channel_identity_reviewed"] is True
+    assert admission["historical_releases_preserved"] is False
+    assert admission["supported_feature_release_channel"] is True
+    assert admission["reason_codes"] == ("historical-release-record-missing",)
+
+
+def test_two_patch_releases_do_not_establish_two_feature_lines(tmp_path: Path) -> None:
+    document = _manifest()
+    records = [
+        _record("1.0.0", character="1"),
+        _record("1.0.1", character="2"),
+    ]
+    document["release_records"] = records
+    channel = _write_manifest(tmp_path, document)
+    module, evaluate = _evaluator()
+    module.__dict__["_REVIEWED_RELEASE_CHANNEL_SHA256"] = hashlib.sha256(
+        channel.read_bytes()
+    ).hexdigest()
+    module.__dict__["_MANDATORY_RELEASE_PREFIX"] = tuple(_identity(record) for record in records)
 
     report = evaluate(channel)
 
@@ -223,21 +262,7 @@ def test_reviewed_manifest_cannot_drop_mandatory_release_history(tmp_path: Path)
         channel.read_bytes()
     ).hexdigest()
     prior = _record("0.9.0", character="9")
-    module.__dict__["_MANDATORY_RELEASE_PREFIX"] = (
-        (
-            prior["version"],
-            prior["tag"],
-            prior["commit"],
-            prior["release_url"],
-            prior["artifact_sha256"],
-            prior["release_notes_sha256"],
-            tuple(cast(list[str], prior["publication_channels"])),
-            prior["support_status"],
-            prior["yanked"],
-            prior["draft"],
-            prior["prerelease"],
-        ),
-    )
+    module.__dict__["_MANDATORY_RELEASE_PREFIX"] = (_identity(prior),)
 
     report = evaluate(channel)
 

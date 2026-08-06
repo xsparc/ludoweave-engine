@@ -51,4 +51,10 @@
   commit `835ac2b2f3dd8bfe5a31fe9f880a43555e86fd34`. Sole hosted run
   `31115252696` passes all eight unchanged essential jobs. GitHub reports the PR
   `MERGEABLE` and `CLEAN`; the first thread-aware read found no comment, review,
-  or inline thread. Delayed review and squash integration remain pending.
+  or inline thread. Delayed review found one valid P2: a reviewed nonempty
+  manifest could be admitted without a matching complete mandatory prefix. The
+  local correction binds the reviewed digest to the entire prefix and passes
+  1,153 tests with the same three Windows capability skips plus complete
+  static/docs and isolated wheel/release validation. Correction publication,
+  one necessary hosted rerun, final review, and squash integration remain
+  pending.

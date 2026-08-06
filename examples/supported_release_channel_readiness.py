@@ -129,8 +129,10 @@ def evaluate(channel: Path) -> dict[str, object]:
 
     channel_hash = hashlib.sha256(raw_channel).hexdigest()
     channel_identity_reviewed = channel_hash == _REVIEWED_RELEASE_CHANNEL_SHA256
-    historical_releases_preserved = (
-        tuple(identities[: len(_MANDATORY_RELEASE_PREFIX)]) == _MANDATORY_RELEASE_PREFIX
+    historical_releases_preserved = tuple(
+        identities[: len(_MANDATORY_RELEASE_PREFIX)]
+    ) == _MANDATORY_RELEASE_PREFIX and (
+        not channel_identity_reviewed or len(identities) == len(_MANDATORY_RELEASE_PREFIX)
     )
     feature_lines = tuple(dict.fromkeys((major, minor) for major, minor, _ in semantic_versions))
     supported_feature_release_channel = len(identities) >= minimum and len(feature_lines) >= minimum
