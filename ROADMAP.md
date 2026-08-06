@@ -34,7 +34,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M23 receipt semantic-diff and diagnostic compatibility | PR #34 squash-integrated the corrected exact policy/evidence; 1,050 local tests and both eight-job hosted runs passed with no current actionable review finding |
 | Done | M24 cross-version corpus admission readiness | PR #36 squash-integrated; exact preserved history, false current gate, append-only correction, installed artifact smoke, RFC-0007, and both eight-job hosted runs passed |
 | Done | M25 external-consumer-feedback admission readiness | PR #38 squash-integrated; strict reviewed manifest, false current gate, reviewed non-IP correction, installed artifact smoke, RFC-0008, and both eight-job hosted runs passed |
-| In progress | M26 supported release-channel admission readiness | Strict empty reviewed manifest, false current gate, two-feature-line future admission, installed artifact smoke, RFC-0009, and no support/publication claim |
+| Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -217,7 +217,7 @@ no actionable finding. PR #38 squash-integrated exact final evidence head
 commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`; both trees are
 `fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`, and the branch is retained.
 
-M26 starts from integrated `main` commit
+M26 started from integrated `main` commit
 `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. It adds an offline admission
 harness requiring at least two reviewed supported, non-yanked final releases on
 distinct feature lines plus exact publication identities before gate 6 can
@@ -225,7 +225,12 @@ become true. The reviewed release set is empty, so the current result remains
 false; the prerelease workflow, local candidates, CI, and synthetic regression
 are not a supported channel. No runtime API, protocol, dependency, version,
 workflow job, tag, GitHub release, PyPI configuration, support promise, or
-publication is added.
+publication is added. Delayed review found and corrected an incomplete-prefix
+admission gap; 1,153 local tests and necessary corrected hosted run
+`31116147333` passed. PR #40 squash-integrated exact final evidence head
+`ac8dd43e6b93bc89af1f5dd1821948e4860ac88b` as GitHub-verified `main` commit
+`a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde`; both trees are
+`e1f39a9c5d2bc81f76b45288225b27a7c782bf50`, and the branch is retained.
 
 ## Good-first contribution queue
 

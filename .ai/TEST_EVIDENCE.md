@@ -141,6 +141,34 @@ recurring channel, support promise, cross-version execution, external consumer
 feedback, stability promotion, tag, GitHub release, or PyPI publication. A
 final CI-skipping factual evidence commit and squash integration remain.
 
+## M26 main integration - 2026-08-07
+
+Ready PR #40 was squash-merged at `2026-08-06T15:40:42Z`. GitHub reports merged
+commit `a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde` with sole parent
+`0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`, tree
+`e1f39a9c5d2bc81f76b45288225b27a7c782bf50`, DCO sign-off, and valid GitHub
+verification at `2026-08-06T15:40:46Z`. The tree exactly matches final feature
+evidence head `ac8dd43e6b93bc89af1f5dd1821948e4860ac88b`; the milestone branch is
+retained for audit history.
+
+GitHub lists only initial successful run `31115252696` and necessary corrected
+run `31116147333` for the milestone branch. The corrected run's first attempt
+had a GitHub action-download setup outage on Windows graphics before checkout;
+its failed-job-only second attempt passed. Both factual evidence commits used
+`[skip ci]` and created no additional run.
+
+Integration changes no runtime source, API/export, protocol, workflow,
+dependency, lock, version, support promise, external fact, tag, release, or
+publication. Local `main` fast-forwarded cleanly to the verified squash commit;
+quoted tree probes, sole-parent inspection, DCO message inspection, and
+`git fsck --full --no-dangling` passed.
+
+The integration-record branch changes exactly `.ai/CURRENT_TASK.md`,
+`.ai/PROJECT_STATE.md`, `.ai/TEST_EVIDENCE.md`, `AGENTS.md`, and `ROADMAP.md`.
+Strict docs built in 0.72 seconds with the known upstream Material warning;
+whitespace, exact scope, and Git-object checks passed. The state commit and PR
+must use `[skip ci]` and create no Actions run.
+
 ## M25 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

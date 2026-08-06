@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M26 - supported deprecation release-channel admission readiness
-- **Status:** Complete, reviewed, and hosted-validated on
-  `codex/m26-supported-release-channel-readiness`; squash integration remains.
+- **Status:** Complete and squash-integrated into `main`. This no-CI branch
+  records the exact verified integration; publication of that record remains.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized `main` commit
   `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62` after verified PR #39.
@@ -59,5 +59,10 @@
   published as `ad73e641605ee1622e8168a73183f9987d9f9254`; necessary corrected
   run `31116147333` and its failed-job-only infrastructure rerun are successful
   across all eight checks. Final thread-aware review finds
-  the original P2 outdated and no actionable finding. A CI-skipping factual
-  evidence commit and squash integration remain pending.
+  the original P2 outdated and no actionable finding.
+- **Integration:** PR #40 squash-integrated exact final evidence head
+  `ac8dd43e6b93bc89af1f5dd1821948e4860ac88b` as GitHub-verified `main`
+  commit `a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde`. Both trees are
+  `e1f39a9c5d2bc81f76b45288225b27a7c782bf50`; the squash commit's sole parent
+  is assigned base `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`, and its message contains
+  the DCO sign-off.

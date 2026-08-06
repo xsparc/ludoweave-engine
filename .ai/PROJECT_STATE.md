@@ -2,9 +2,9 @@
 
 ## Current milestone
 
-M26 is complete, reviewed, and hosted-validated on
-`codex/m26-supported-release-channel-readiness` from exact clean synchronized
-`main` commit
+M26 is complete, reviewed, hosted-validated, and squash-integrated. It was
+implemented on `codex/m26-supported-release-channel-readiness` from exact clean
+synchronized `main` commit
 `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. Its bounded outcome is a strict
 offline admission harness for RFC-0003 gate 6. The current reviewed manifest is
 empty, so the sanitized result is deterministically `not-ready`: the tag-only
@@ -33,8 +33,12 @@ local correction binds the reviewed digest to the entire prefix and passes
 static/docs and isolated wheel/release validation. Corrected run `31116147333`
 is successful across all eight checks after a failed-job-only rerun recovered a
 GitHub action-download setup outage. Final thread-aware review finds the
-original P2 outdated and no actionable finding. A CI-skipping factual evidence
-commit and squash integration remain pending.
+original P2 outdated and no actionable finding. PR #40 squash-integrated exact
+final evidence head `ac8dd43e6b93bc89af1f5dd1821948e4860ac88b` as GitHub-verified
+`main` commit `a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde`; both trees are
+`e1f39a9c5d2bc81f76b45288225b27a7c782bf50`, the squash commit has the exact
+assigned base as its sole parent, and the milestone branch remains the audit
+trail.
 
 M25 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m25-external-consumer-feedback-readiness` from
@@ -496,9 +500,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M25 are complete, hosted-validated, and squash-integrated. M26 is
-  the only active slice and is limited to supported release-channel admission
-  readiness.
+- M20 through M26 are complete, hosted-validated, and squash-integrated. This
+  branch records M26 integration only; no subsequent milestone is included.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.
