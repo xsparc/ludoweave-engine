@@ -28,7 +28,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
 | Done | M18 installed agent-tool conformance | Hosted-validated explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
-| Hosted validated | M20 command/receipt stability decision | Ready PR #28; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
+| Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -120,8 +120,10 @@ until the complete cross-version, external-feedback, operation/receipt
 evolution, bounded-reader, and supported-release-channel gate is evidenced.
 Ready PR #28 passed the unchanged eight-job hosted matrix as run
 `31095009029` on DCO-signed implementation commit
-`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. Squash integration remains
-pending.
+`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. PR #28 squash-integrated exact
+final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` into `main` as
+GitHub-verified commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
+`c3e2dc1224f530fb483d1b9684ff55329bf9557b`.
 
 ## Good-first contribution queue
 

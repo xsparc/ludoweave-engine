@@ -297,7 +297,7 @@ Repository-state evidence is integrated by PR #18 as main commit
 ## Next slice
 
 - M19 is complete, hosted-validated, and squash-integrated. M20 is complete,
-  reviewed, and hosted-validated on
+  reviewed, hosted-validated, and squash-integrated from
   `codex/m20-command-receipt-stability-decision` from exact clean synchronized
   `main` commit `2fdeccd697f09f3e165130eb8564a6c585d472d2`. It is an installed
   command/receipt preview-readiness decision only: confirm the existing
@@ -307,10 +307,14 @@ Repository-state evidence is integrated by PR #18 as main commit
   migration, stability label, runtime export, dependency, lock, version, or CI
   job. Ready PR #28 targets `main`; GitHub Actions run `31095009029` passed all
   eight unchanged essential jobs on DCO-signed implementation commit
-  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. Squash integration remains
-  pending. No compatibility promise, external adoption, tag, release,
-  publication, certification, or independently authored consumer evidence may
-  be inferred.
+  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. PR #28 squash-integrated exact
+  final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` as
+  GitHub-verified `main` commit
+  `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
+  `c3e2dc1224f530fb483d1b9684ff55329bf9557b`. No compatibility promise,
+  external adoption, tag, release, publication, certification, or independently
+  authored consumer evidence may be inferred. No M21 implementation is
+  assigned in this integration record.
 
 ## Validation state
 
@@ -327,9 +331,10 @@ Repository-state evidence is integrated by PR #18 as main commit
   misses and authorize no acceleration. Review hardened forbidden-import
   prefix detection and reports no remaining finding. Workflows, runtime source,
   project metadata, lock, version, protocol, stability labels, and package-root
-  exports are unchanged. Ready PR #28 is mergeable and clean; its sole hosted
-  run `31095009029` passed all eight unchanged essential jobs. Squash
-  integration remains pending.
+  exports are unchanged. Ready PR #28's sole hosted run `31095009029` passed
+  all eight unchanged essential jobs. The exact final head is squash-integrated
+  as verified `main` commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`
+  with matching tree `c3e2dc1224f530fb483d1b9684ff55329bf9557b`.
 - The final hardened M19 local gate on Windows/uv-managed CPython 3.12.13
   reports 955 passing tests and one existing symlink-capability skip, 201
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a
