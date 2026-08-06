@@ -2144,3 +2144,111 @@ discovery/loading/installation, transport, provider admission, dependency,
 workflow change, or additional Actions run. Project-owned direct-service
 conformance remains reference evidence and does not increase independently
 authored adapter adoption or establish real-agent manual-recovery rates.
+
+## M19 installed WorldStore conformance - local final gate - 2026-08-06
+
+Branch `codex/m19-world-store-conformance` starts from exact clean synchronized
+`main` commit `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`, with local `main`,
+`origin/main`, both merge bases, and `HEAD` initially equal and left/right count
+`0 0`. The bounded slice adds one experimental installed ten-check profile over
+an explicit trusted `factory(ComponentRegistry)`. It adds no discovery, dynamic
+import, installation, subprocess, network operation, backend, database,
+external-resource lifecycle, native/archetype/NumPy storage, persistent format,
+plugin field, dependency, lock, version, package-root export, or CI job.
+
+Final hardened Windows gate used uv-managed CPython 3.12.13:
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the unchanged 46-package lock. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked the locked 45-package environment. |
+| `uv run --frozen ruff format --check .` | 0 | All 201 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen pytest -q` | 0 | 955 tests passed and one existing Windows symlink-capability test skipped in 73.37 seconds. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.80 seconds; the upstream Material MkDocs-2 warning remained informational. |
+| `uv build` | 0 | Built `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency wheel passed all inherited flows plus both ten-check built-in WorldStore profiles. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate` | 0 | Staged the complete deterministic ten-artifact candidate including `world_store_conformance.py`. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/release-candidate` | 0 | Checksums, manifest, SBOM, notices, safe extraction, isolated install, inherited samples, and bundled production/reference WorldStore conformance passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All ten existing real-wgpu integration tests passed in 7.05 seconds. |
+| `uv run --frozen pytest -q tests/unit/test_world_store_conformance.py tests/architecture/test_m19_world_store_conformance_boundary.py tests/integration/test_world_store_conformance_example.py tests/unit/test_release_artifacts.py tests/conformance tests/architecture/test_import_boundaries.py tests/architecture/test_api_stability.py` | 0 | 149 focused success, adversarial-sanitization, epoch/copy/query/command/clone, explicit-factory, release, API, and dependency-boundary tests passed in 2.02 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+| `git fsck --no-dangling` | 0 | Repository object/connectivity check reported no issue. |
+
+The final wheel contains 94 entries including exactly one
+`ludoweave/ecs/conformance.py`, and no `.pyd`, `.so`, `.dll`, `.dylib`, or
+`.wasm` entry. Metadata retains Python `>=3.12,<3.15`, no mandatory
+requirement, and only the exact existing optional graphics requirements:
+
+- `glfw==2.10.2; extra == 'graphics'`;
+- `rendercanvas[glfw]==2.7.2; extra == 'graphics'`; and
+- `wgpu==0.32.0; extra == 'graphics'`.
+
+The protected `.github/workflows`, `pyproject.toml`, `uv.lock`, package version,
+and package-root exports are unchanged from the exact base. The sample bundle
+contains one project-owned `world_store_conformance.py`. Source scans found no
+credential assignment or wall-clock/random use; the only broad discovery/
+process/network scan match was the runtime docstring explicitly stating that
+subprocess and network operations are absent. AST tests reject discovery,
+private storage, concrete reference, filesystem, process, network, NumPy, and
+SQLite imports and prove nested forbidden imports are detected.
+
+All documented benchmark/profile contracts were executed on the dirty M19
+working tree and validated:
+
+- M1: seven workloads; fixed-step p95 `36,282,500 ns` observed its target,
+  while 10,000-entity simulation p95 `164,496,800 ns` missed; one of two
+  recorded targets observed.
+- M2: four informational workloads validated with no timing threshold.
+- M3: six workloads; 10,000-sprite extraction p95 `26,171,800 ns` and wgpu
+  submission p95 `3,465,100 ns` both missed; zero of two targets observed.
+- M4: baseline p95 `2,019,400 ns` observed its target; two stress workloads
+  remained informational.
+- M7: five-repeat base profile with two workloads and graphics profile with
+  three workloads both validated under `ludoweave.profile.m7/1`.
+
+Development validation first exposed postponed component annotations in the
+fixture, import/export ordering, one unnecessary cast, and two incorrect
+adversarial-test assumptions; all were corrected before the complete gate.
+Findings-first final review then added exact property-shape checks, adapter-stage
+control-flow propagation coverage, and precise direct-import architecture
+wording. The complete static, 955-test, installed-wheel, and release gates were
+rerun on that hardened tree with no remaining finding.
+
+Initial sandboxed `uv lock --check`, `uv sync`, and `uv build` invocations each
+exited 1 before project execution because access to uv's existing user cache
+was denied. Approved cache-access reruns and every final command above exited
+0; these were environment-permission failures, not lock, sync, or build
+failures. No M19 hosted/cross-platform pass, PR, merge, tag, release, package
+publication, certification, or independently authored adapter adoption is
+claimed at this stage.
+
+## M19 hosted validation - 2026-08-06
+
+Ready PR #26 targets `main` from
+`codex/m19-world-store-conformance`. GitHub reported exact base
+`4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`, DCO-signed implementation head
+`1da692a693c1f92e10b676c2d4539354ce3ff59f`, `MERGEABLE`, and `CLEAN` after
+checks completed.
+
+GitHub Actions pull-request run `31092244573` executed that implementation
+commit from `2026-08-06T10:11:30Z` through `2026-08-06T10:14:03Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and GitHub lists this as the only hosted run
+for the M19 branch. Hosted evidence validates supported installed,
+cross-platform, and existing-provider contracts. It does not discover, admit,
+certify, or count third-party storage implementations; establish persistence,
+external-resource lifecycle, free-threaded safety, or maintenance readiness;
+publish a package; create a tag or release; add a backend, dependency, format,
+or CI job; or claim the locally missed M1/M3 performance targets passed.

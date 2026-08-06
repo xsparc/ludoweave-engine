@@ -220,6 +220,10 @@ Repository-state evidence is integrated by PR #18 as main commit
   that exercises explicit trusted factories and emits deterministic sanitized
   evidence without discovery, loading, installation, transport selection, or
   provider admission.
+- An installed experimental `WorldStore` baseline conformance profile that
+  exercises explicit trusted `factory(ComponentRegistry)` implementations and
+  emits deterministic sanitized evidence without discovery, concrete storage,
+  persistence, external-resource lifecycle, or provider admission.
 - Default read-only capabilities, explicit write/capture/test grants, bounded requests/results/work, monotonic rate limiting, caller binding, recursive credential redaction, and non-blocking single-thread mutation safe points.
 - Project-confined `ludoweave agent` composition and local-only stdio MCP `2025-11-25` initialization, discovery, and tool calls without networking, shell access, arbitrary evaluation, dynamic project imports, or a new runtime dependency.
 - Agent World Builder acceptance composition with six typed ECS entities, real offscreen wgpu capture, exact query/adjust/diff/test/telemetry/replay coverage, and installed-wheel execution.
@@ -292,14 +296,29 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M18 is complete, hosted-validated, and integrated. No M19 slice is assigned.
-  Select and bound another adoption metric before implementation; do not infer
-  discovery/loading, a new transport or provider, executable plugin, network,
-  editor, 3D, native code, dependency, or release publication from conformance
-  evidence.
+- M18 is complete, hosted-validated, and integrated. M19 is assigned on
+  `codex/m19-world-store-conformance` from exact clean synchronized `main`
+  commit `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`. It adds only an installed,
+  explicit-factory behavioral profile for the existing public `WorldStore`
+  contract. Implementation and findings-first local review are complete. Ready
+  PR #26 and the one authorized GitHub Actions run `31092244573` passed all
+  eight unchanged essential jobs on DCO-signed commit
+  `1da692a693c1f92e10b676c2d4539354ce3ff59f`; squash integration is pending.
+  Do not infer discovery/loading, a new storage backend, native or database
+  storage, external-resource lifecycle, format changes, dependency, or release
+  publication.
 
 ## Validation state
 
+- The final hardened M19 local gate on Windows/uv-managed CPython 3.12.13
+  reports 955 passing tests and one existing symlink-capability skip, 201
+  formatted Python files, zero Ruff/Pyright findings, strict documentation, a
+  pure 94-entry wheel with no mandatory dependency or native/WASM file,
+  isolated-wheel smoke, fresh complete ten-artifact release smoke, 149 focused
+  conformance/release/architecture passes, and ten real-wgpu passes. All
+  inherited benchmark/profile artifacts validate; the existing M1 simulation
+  and both M3 targets still miss and authorize no native work. Workflows,
+  project metadata, lock, version, and package-root exports are unchanged.
 - The final reviewed M18 local gate on Windows/uv-managed CPython 3.12.13
   reports 925 passing tests and one existing symlink-capability skip, 196
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a

@@ -96,10 +96,16 @@ RFC-0001 records the evidence-based native-code deferral; local performance
 misses are not automatic authorization for acceleration.
 
 M18 adds only an installed baseline conformance profile over the existing
-12-tool transport-independent agent service. It accepts an explicit trusted
-factory and returns sanitized versioned evidence without a new CI job. No M19
-slice is assigned; select and bound another adoption metric before
-implementation. Do not infer provider discovery/import/installation, a
-transport or listener, command/snapshot/replay changes, a plugin field,
-dependency, lock, version, provider, package-root export, third-party adoption,
-or manual-recovery telemetry from project-owned evidence.
+12-tool transport-independent agent service. M19 is assigned only to an
+installed baseline conformance profile over the existing public `WorldStore`
+contract. It must accept an explicit trusted `factory(ComponentRegistry)`,
+return sanitized versioned evidence, pass production and reference worlds
+through isolated wheel/release smoke, and add no CI job. It may not discover,
+import, install, or launch provider code; add a storage backend, database,
+external-resource lifecycle, native/archetype/NumPy storage, format, plugin
+field, dependency, lock, version, or package-root export; or claim project-
+owned evidence as third-party adoption or certification.
+Ready PR #26 and GitHub Actions run `31092244573` validate all eight unchanged
+essential jobs on DCO-signed M19 implementation commit
+`1da692a693c1f92e10b676c2d4539354ce3ff59f`. Squash integration into `main`
+is pending.

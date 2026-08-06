@@ -16,6 +16,9 @@ because its manifest and protocol checks pass. See the
   Null adapter.
 - Implement `AgentCaptureProvider`, `AgentTelemetryProvider`, or
   `AgentTestProvider` only in a trusted application composition root.
+- Implement `WorldStore` only when the store can preserve canonical entity,
+  component, epoch, query, command-buffer, clone, and failure semantics without
+  exposing its storage representation.
 - Use resource copy adapters and tick executors only for trusted deterministic
   application code under their stricter documented contracts.
 
@@ -97,6 +100,17 @@ module or transport. See the [agent-tool conformance
 guide](agent-tool-conformance.md). A passing report does not establish remote
 transport security, provenance, support-matrix coverage, performance, or
 unassisted agent success.
+
+M19 applies explicit composition to storage-neutral implementations of
+`WorldStore`. An adapter package imports its trusted
+`factory(ComponentRegistry)` and calls `run_world_store_conformance()`. The
+runner verifies exact borrowed registry identity, generations/epochs, detached
+copies, queries, command atomicity, cloning, and structured failures. The
+current profile has no external-resource lifecycle; file-, database-, process-,
+thread-, or native-handle-owning stores are outside it. See the [WorldStore
+conformance guide](world-store-conformance.md). A passing report does not
+establish provenance, persistence safety, support-matrix coverage, performance,
+or independent adoption.
 
 ## Publishing and compatibility
 

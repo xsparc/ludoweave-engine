@@ -29,6 +29,7 @@ _SAMPLE_FILES = (
     "rollback_readiness.py",
     "visual_editor_decision.py",
     "wasm_mod_security_decision.py",
+    "world_store_conformance.py",
 )
 _COPY_FILES = ("LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md")
 _ZIP_TIME = (1980, 1, 1, 0, 0, 0)

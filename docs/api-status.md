@@ -11,7 +11,7 @@ The `0.1.0a1` surfaces are:
 | --- | --- | --- |
 | `ludoweave` | Deliberately small engine root | Experimental |
 | `ludoweave.core` | Clock/error contracts | Experimental |
-| `ludoweave.ecs` | Entity, component, query, resource, schedule, and world contracts | Experimental |
+| `ludoweave.ecs` | Entity, component, query, resource, schedule, world, and installed conformance contracts | Experimental |
 | `ludoweave.app` | Lifecycle, fixed-step application, and input contracts | Experimental |
 | `ludoweave.world` | Persistent commands, receipts, snapshots, replay, and authority | Experimental |
 | `ludoweave.render` | Backend-neutral 2D rendering contracts and installed conformance evidence | Experimental |

@@ -8,6 +8,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- M19 experimental installed `WorldStore` baseline conformance profile with a
+  fixed 10-check storage-neutral path, frozen sanitized reports, and production/
+  reference evidence from source, isolated wheel, and release sample bundle.
+- ADR-0033 retaining explicit trusted composition: the storage conformance
+  runner performs no discovery, dynamic import, installation, subprocess,
+  networking, provider admission, external-resource lifecycle, or
+  certification.
 - M18 experimental installed agent-tool baseline conformance profile with a
   fixed 12-check command/receipt path, frozen sanitized reports, and isolated
   source/wheel/release-sample smoke.

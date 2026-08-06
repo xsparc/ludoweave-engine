@@ -95,6 +95,12 @@ the engine runner imports no transport or provider and returns only frozen,
 sanitized evidence. See the [agent-tool conformance
 guide](agent-tool-conformance.md) and ADR-0032.
 
+M19 adds the installed behavioral profile over the existing storage-neutral
+`WorldStore`. Callers explicitly construct trusted implementations with the
+runner's immutable fixture registry; the runner selects or references no
+concrete implementation and returns only frozen, sanitized evidence. See the
+[WorldStore conformance guide](world-store-conformance.md) and ADR-0033.
+
 ## Dependency direction
 
 The active packages follow these rules:
@@ -111,6 +117,7 @@ agent evidence     ludoweave.agent.conformance ---> agent service/contracts
 
 application        ludoweave.app ----> world/runtime   ludoweave.ecs
                          |                    |
+ecs evidence       ludoweave.ecs.conformance ---> ECS contracts/WorldStore
 render contracts   ludoweave.render.api/device/contracts/extraction
 render evidence    ludoweave.render.conformance ---> render contracts/device
                          |                    |
@@ -129,6 +136,10 @@ sample composition ludoweave.samples.clockwork_arena
 
 - `ludoweave.core` imports only the Python standard library.
 - `ludoweave.ecs` may depend on core errors but not application, rendering, tools, or concrete backends.
+- ECS conformance may depend on standard-library value helpers, core errors,
+  and public ECS contracts only. It cannot import the concrete `World` or
+  `ReferenceWorld` names or the private storage module, discover/select
+  implementations, or use filesystem/process/network modules.
 - `ludoweave.world` may depend on core and public ECS contracts but not application, rendering, tools, or backend packages.
 - `ludoweave.agent` may depend on core and world contracts but not application, rendering, tools, samples, or concrete backends. Its conformance module may use only those same agent/core/world contracts and standard-library value helpers; it cannot discover or select adapters.
 - Render contracts, handles, extraction, and graphs may depend on core errors but not application, tools, world, ECS storage, or concrete backends.
@@ -197,6 +208,13 @@ external composition roots. The runner imports no tools, samples, rendering,
 plugin, provider, filesystem, process, network, discovery, or package-loading
 module. Its report is detached diagnostic evidence and cannot enter canonical
 world state or establish provider trust.
+
+The M19 installed runner lives with ECS contracts and accepts only an explicit
+`factory(ComponentRegistry)`. Implementation selection remains in examples or
+external composition roots. The runner imports neither `World` nor
+`ReferenceWorld`, concrete storage, persistence, tools, plugins, providers,
+filesystem, process, network, discovery, or package-loading modules. Its report
+is detached evidence and cannot become canonical state or admit storage.
 
 ## Ownership and close order
 
@@ -536,6 +554,35 @@ reference evidence; external adoption remains zero until independently
 authored evidence is reviewed. See
 [ADR-0032](adr/0032-explicit-installed-agent-tool-conformance.md).
 
+## M19 installed WorldStore-conformance boundary
+
+The third installed profile targets the existing public `WorldStore` contract.
+A caller explicitly supplies a trusted `factory(ComponentRegistry)`. The runner
+creates one immutable fixture registry, invokes the factory once on the calling
+thread, and requires the returned store to retain that exact borrowed registry
+identity. It performs no discovery, module lookup, installation, filesystem
+access, subprocess launch, networking, or global registration.
+
+The fixed profile checks deterministic entity generations, world/component
+epochs, detached value ownership, query order/change/writeback and lifecycle,
+atomic retryable local command buffers, independent state/allocator cloning,
+and structured failure atomicity. Canonical state remains solely in the tested
+store; the runner produces only detached status evidence.
+
+Reports contain fixed statuses and runner-owned codes, never provider
+messages/codes, paths, environment/platform metadata, timing, component/entity
+values, storage layout, credentials, or native objects. The current in-memory
+`WorldStore` protocol has no `close()` method, so the runner performs no cleanup
+call and excludes stores requiring external-resource ownership.
+
+Conformance is a behavioral self-test, not provider trust, certification, or
+admission. Provenance, complete OS/Python support, performance, persistence,
+free-threaded behavior, external-resource recovery, and maintenance remain
+separate evidence gates. The project-owned `World` and `ReferenceWorld` passes
+are references; independent adoption remains zero until separately authored
+evidence is reviewed. See
+[ADR-0033](adr/0033-explicit-installed-world-store-conformance.md).
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -551,7 +598,9 @@ defers visual-editor implementation. M16 retains data-only plugins and defers
 WASM runtimes, guest execution, WASI, and host calls. M17 adds one explicit
 installed render-device baseline without admitting or discovering providers.
 M18 adds one explicit installed agent-tool baseline without discovering a
-transport or admitting an adapter. M6
+transport or admitting an adapter. M19 adds one explicit installed WorldStore
+baseline without discovering an implementation or adding a storage backend.
+M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
 General scene importers, production audio, rigid-body physics, network

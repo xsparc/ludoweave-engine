@@ -109,6 +109,30 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise RuntimeError(
                 f"bundled agent-tool conformance report was invalid: {agent_conformance!r}"
             )
+        for backend in ("world", "reference"):
+            world_conformance_result = _run(
+                [
+                    str(python),
+                    "-I",
+                    "world_store_conformance.py",
+                    "--backend",
+                    backend,
+                ],
+                cwd=sample_root,
+            )
+            world_conformance = cast(dict[str, object], json.loads(world_conformance_result.stdout))
+            world_checks = cast(list[dict[str, object]], world_conformance.get("checks"))
+            if (
+                world_conformance.get("protocol") != "ludoweave.world-store-conformance/1"
+                or world_conformance.get("profile") != "world-store-baseline/1"
+                or world_conformance.get("adapter_id") != f"ludoweave.{backend}"
+                or world_conformance.get("status") != "pass"
+                or len(world_checks) != 10
+                or any(check.get("status") != "pass" for check in world_checks)
+            ):
+                raise RuntimeError(
+                    f"bundled world-store conformance report was invalid: {world_conformance!r}"
+                )
         _run([str(python), "-I", "rich_2d_showcase.py", "--ticks", "6"], cwd=sample_root)
         rollback_result = _run(
             [
@@ -218,6 +242,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "rollback_readiness.py",
         "visual_editor_decision.py",
         "wasm_mod_security_decision.py",
+        "world_store_conformance.py",
     }
     if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:
         raise RuntimeError("sample bundle is incomplete")
