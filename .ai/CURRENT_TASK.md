@@ -60,5 +60,10 @@
   locator syntax gate. The local correction requires an alphabetic DNS-style
   top-level label, adds loopback/link-local regressions, and passes 1,111 tests
   with the two existing Windows capability skips plus the complete static/docs
-  and isolated wheel/release gate. A DCO correction commit and one necessary
-  corrected hosted run remain.
+  and isolated wheel/release gate. DCO correction commit
+  `90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary corrected run
+  `31112342328` across all eight unchanged essential jobs. Final thread-aware
+  reread found the original thread unresolved and non-outdated because its
+  anchor persists, but the adjacent non-IP gate and exact regressions satisfy
+  it; no finding remains actionable. No reply or manual resolution was
+  performed. A final CI-skipping evidence commit and squash integration remain.

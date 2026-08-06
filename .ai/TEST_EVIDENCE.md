@@ -107,6 +107,35 @@ No reply or manual resolution was performed on the review thread. A DCO-signed
 correction commit, one necessary corrected hosted run, final thread-aware
 reread, and squash integration remain.
 
+## M25 corrected hosted validation and final thread-aware reread - PR #38
+
+DCO-signed correction commit
+`90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` was pushed once. GitHub Actions
+run `31112342328` completed successfully across all eight unchanged essential
+jobs: quality/tests/distribution; Ubuntu 3.13 and 3.14; Windows 3.14; macOS
+3.14; and real graphics on Ubuntu, Windows, and macOS.
+
+`gh run list` returned exactly two M25 branch runs: initial successful run
+`31111498136` on implementation commit
+`9667e020c2213d415072b7c7efbd880f6b58abfa` and necessary successful
+correction run `31112342328` on exact corrected head above. PR #38 is open,
+ready, `MERGEABLE`, and `CLEAN` against exact assigned base
+`680e90dd8f9377fece23c43bd9f07ca9d76297de`, with all corrected-head checks
+successful.
+
+The final GraphQL thread-aware reread returned no issue comment and one review
+with its original inline P2 thread. The thread remains unresolved and non-
+outdated because the same conditional anchor persists at line 306. The anchored
+code now requires an alphabetic DNS-style top-level label, rejecting the exact
+numeric IP examples named by review, and dedicated loopback/link-local
+regressions pass. No finding remains actionable. No reply or manual thread
+resolution was performed.
+
+The successful corrected checks do not establish an external consumer,
+feedback, adoption, cross-version release history, supported release channel,
+stability promotion, tag, GitHub release, or PyPI publication. A final
+CI-skipping factual evidence commit and squash integration remain.
+
 ## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

@@ -54,7 +54,11 @@ GitHub Actions run `31111498136` passed all eight unchanged essential jobs;
 the first thread-aware read found no review finding. Delayed automated review
 then found one valid P2 in the future locator gate. The locally validated
 correction rejects numeric IP authorities and adds loopback/link-local
-regressions; corrected hosted validation and squash integration remain.
+regressions. DCO correction commit
+`90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary run
+`31112342328` across all eight unchanged essential jobs. Final thread-aware
+reread found no actionable finding; no reply or manual resolution was
+performed. Squash integration remains.
 
 M24 adds only strict offline cross-version receipt-corpus admission readiness.
 Its current result remains false and does not claim actual history or adoption.

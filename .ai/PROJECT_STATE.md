@@ -32,8 +32,14 @@ numeric loopback/private/link-local IP authorities could pass the future
 locator syntax gate. The local correction requires a non-IP DNS-style
 authority, adds exact loopback/link-local regressions, and passes 1,111 tests
 with the two Windows capability skips plus the complete static/docs and
-isolated wheel/release gate. A DCO correction commit, one necessary corrected
-hosted run, final thread-aware reread, and squash integration remain.
+isolated wheel/release gate. DCO correction commit
+`90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary GitHub Actions
+run `31112342328` across all eight unchanged essential jobs. PR #38 is
+`MERGEABLE` and `CLEAN`. The original thread remains unresolved and non-outdated
+because its anchor persists, but the adjacent non-IP gate and exact loopback/
+link-local regressions directly satisfy it; no finding remains actionable, and
+no reply or manual resolution was performed. A final CI-skipping evidence
+commit and squash integration remain.
 
 M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m24-cross-version-corpus-readiness` from exact clean

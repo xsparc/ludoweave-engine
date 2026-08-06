@@ -208,8 +208,10 @@ DCO-signed implementation commit
 `31111498136` passed all eight unchanged essential jobs, and the first thread-
 aware read found no review finding. Delayed review then found one valid numeric-
 IP locator gap. The locally validated correction requires a non-IP DNS-style
-authority and adds loopback/link-local regressions; corrected hosted validation
-and squash integration remain.
+authority and adds loopback/link-local regressions. DCO correction commit
+`90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary run
+`31112342328` across all eight unchanged jobs. Final thread-aware reread found
+no actionable finding; squash integration remains.
 
 ## Good-first contribution queue
 
