@@ -1,11 +1,11 @@
 # Current Task
 
 - **Task:** M20 - command/receipt preview-readiness decision
-- **Status:** Implementation, complete local validation, and findings-first
-  review are complete on `codex/m20-command-receipt-stability-decision` from
-  exact clean synchronized `main` commit
-  `2fdeccd697f09f3e165130eb8564a6c585d472d2`. Publication and hosted evidence
-  are pending.
+- **Status:** Implementation, complete local validation, findings-first review,
+  publication through ready PR #28, and the single unchanged essential hosted
+  run are complete on `codex/m20-command-receipt-stability-decision` from exact
+  clean synchronized `main` commit
+  `2fdeccd697f09f3e165130eb8564a6c585d472d2`. Squash integration is pending.
 - **Started:** 2026-08-06
 - **Outcome:** Decide whether the central installed command, transaction, and
   receipt contracts can honestly move from experimental to preview stability,
@@ -59,6 +59,9 @@
   211 expanded focused tests, and ten real-wgpu tests. Every inherited
   benchmark/profile artifact validates; the M1 simulation and both M3 targets
   remain observed misses. Findings-first review hardened forbidden-import
-  matching for submodules and found no remaining issue. No hosted run, PR,
-  merge, tag, release, package publication, stability promotion, cross-version
-  compatibility, or external adoption is claimed.
+  matching for submodules and found no remaining issue. Ready PR #28 is
+  mergeable and clean; GitHub Actions run `31095009029` passed all eight
+  unchanged essential jobs on DCO-signed implementation commit
+  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. No merge, tag, release, package
+  publication, stability promotion, cross-version compatibility, or external
+  adoption is claimed.

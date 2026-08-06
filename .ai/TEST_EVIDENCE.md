@@ -2368,3 +2368,37 @@ the focused tests passed in 2.07 seconds. A fresh `git fetch --prune origin`
 then confirmed local `main`, `origin/main`, the M20 merge base, and branch HEAD
 all share exact base `2fdeccd697f09f3e165130eb8564a6c585d472d2`; the reviewed
 history is linear and GitHub reports `main` as the default branch.
+
+## M20 hosted validation - 2026-08-06
+
+Ready PR #28 targets `main` from
+`codex/m20-command-receipt-stability-decision`. GitHub reports exact base
+`2fdeccd697f09f3e165130eb8564a6c585d472d2`, DCO-signed implementation head
+`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`, `MERGEABLE`, and `CLEAN` after
+checks completed.
+
+GitHub Actions pull-request run `31095009029` executed that implementation
+commit from `2026-08-06T10:52:55Z` through `2026-08-06T10:55:33Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and GitHub lists this as the only hosted run
+for the M20 branch. Hosted evidence confirms supported installed and cross-
+platform same-version behavior. It does not establish cross-version
+compatibility, external consumer adoption, a public receipt reader, a
+deprecation-capable release channel, stability promotion, certification, tag,
+release, or package publication; add a runtime/API/schema/dependency/version/CI
+change; or claim the locally missed M1/M3 performance targets passed. PR #28
+has not yet been merged at this stage.
+
+After adding this hosted record, `uv run --frozen mkdocs build --strict` and
+`git diff --check` both exited 0; the documentation build emitted only the
+recorded upstream MkDocs Material/MkDocs 2.0 informational warning.

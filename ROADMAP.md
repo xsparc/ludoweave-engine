@@ -28,7 +28,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M17 installed render-device conformance | Versioned explicit-factory baseline, Null/wgpu evidence, isolated artifact smoke, and unchanged essential CI topology |
 | Done | M18 installed agent-tool conformance | Hosted-validated explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
-| In progress | M20 command/receipt stability decision | Installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
+| Hosted validated | M20 command/receipt stability decision | Ready PR #28; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -118,6 +118,10 @@ installed command/transaction/receipt contracts are ready for preview without
 changing their runtime or wire formats. RFC-0003 retains experimental status
 until the complete cross-version, external-feedback, operation/receipt
 evolution, bounded-reader, and supported-release-channel gate is evidenced.
+Ready PR #28 passed the unchanged eight-job hosted matrix as run
+`31095009029` on DCO-signed implementation commit
+`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. Squash integration remains
+pending.
 
 ## Good-first contribution queue
 

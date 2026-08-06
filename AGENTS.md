@@ -122,3 +122,6 @@ command, operation, receipt field/reader, schema, migration, public runtime
 symbol, stability label, root export, dependency, lock, package version, or CI
 job. No external adoption, cross-version compatibility, tag, release,
 publication, or certification may be claimed without direct evidence.
+Ready PR #28 and GitHub Actions run `31095009029` validate all eight unchanged
+essential jobs on DCO-signed M20 implementation commit
+`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. Squash integration is pending.

@@ -296,8 +296,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M19 is complete, hosted-validated, and squash-integrated. M20 is locally
-  complete and reviewed on
+- M19 is complete, hosted-validated, and squash-integrated. M20 is complete,
+  reviewed, and hosted-validated on
   `codex/m20-command-receipt-stability-decision` from exact clean synchronized
   `main` commit `2fdeccd697f09f3e165130eb8564a6c585d472d2`. It is an installed
   command/receipt preview-readiness decision only: confirm the existing
@@ -305,9 +305,12 @@ Repository-state evidence is integrated by PR #18 as main commit
   the complete compatibility gate; and record the decision in RFC-0003. It may
   not add or change a command, operation, receipt reader/field, schema,
   migration, stability label, runtime export, dependency, lock, version, or CI
-  job. Publication and hosted validation remain pending. No compatibility
-  promise, external adoption, tag, release, publication, certification, or
-  independently authored consumer evidence may be inferred.
+  job. Ready PR #28 targets `main`; GitHub Actions run `31095009029` passed all
+  eight unchanged essential jobs on DCO-signed implementation commit
+  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. Squash integration remains
+  pending. No compatibility promise, external adoption, tag, release,
+  publication, certification, or independently authored consumer evidence may
+  be inferred.
 
 ## Validation state
 
@@ -324,7 +327,9 @@ Repository-state evidence is integrated by PR #18 as main commit
   misses and authorize no acceleration. Review hardened forbidden-import
   prefix detection and reports no remaining finding. Workflows, runtime source,
   project metadata, lock, version, protocol, stability labels, and package-root
-  exports are unchanged. Hosted validation and publication remain pending.
+  exports are unchanged. Ready PR #28 is mergeable and clean; its sole hosted
+  run `31095009029` passed all eight unchanged essential jobs. Squash
+  integration remains pending.
 - The final hardened M19 local gate on Windows/uv-managed CPython 3.12.13
   reports 955 passing tests and one existing symlink-capability skip, 201
   formatted Python files, zero Ruff/Pyright findings, strict documentation, a
