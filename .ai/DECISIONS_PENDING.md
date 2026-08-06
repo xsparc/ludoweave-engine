@@ -102,6 +102,14 @@ version. Its current result is explicitly false because all evidence is
 `0.1.0a1` and the release set is empty. Actual cross-version history, external
 feedback, and a supported deprecation release channel remain unresolved.
 
+RFC-0008 resolves how external-consumer-feedback evidence is admitted. The
+offline harness requires manually reviewed independent-consumer records with
+exact public repository, revision, protocol, outcome, and artifact identities;
+the evaluator verifies only the frozen data contract and cannot establish
+independence by itself. The reviewed manifest is empty, so actual external
+feedback and adoption remain absent. Cross-version history and a supported
+deprecation release channel also remain unresolved.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

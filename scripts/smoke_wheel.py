@@ -15,6 +15,7 @@ from typing import cast
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from cross_version_corpus_evidence import validate_cross_version_corpus_evidence
+from external_consumer_feedback_evidence import validate_external_consumer_feedback_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -579,6 +580,19 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         cross_version = cast(dict[str, object], json.loads(cross_version_result.stdout))
         validate_cross_version_corpus_evidence(cross_version, version=version)
+
+        external_feedback_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "external_consumer_feedback_readiness.py"),
+                "--corpus",
+                str(project_root / "tests" / "fixtures" / "external_consumer_feedback.json"),
+            ],
+            cwd=temp_root,
+        )
+        external_feedback = cast(dict[str, object], json.loads(external_feedback_result.stdout))
+        validate_external_consumer_feedback_evidence(external_feedback, version=version)
 
         plugin_manifest = temp_root / "example.plugin.json"
         shutil.copyfile(project_root / "examples" / "example.plugin.json", plugin_manifest)

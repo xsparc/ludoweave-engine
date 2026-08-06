@@ -73,6 +73,7 @@ uv run python examples/alpha_acceptance.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
+uv run python examples/external_consumer_feedback_readiness.py
 uv run ludoweave mcp --sample agent-world-builder
 ```
 

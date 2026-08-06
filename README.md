@@ -107,6 +107,7 @@ uv run python examples/fixed_step_world.py --ticks 6
 uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/rollback_readiness.py --ticks 120 --branch-tick 60
 uv run python examples/cross_version_corpus_readiness.py
+uv run python examples/external_consumer_feedback_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py

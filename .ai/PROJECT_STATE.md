@@ -2,6 +2,45 @@
 
 ## Current milestone
 
+M25 is in progress on `codex/m25-external-consumer-feedback-readiness` from
+exact clean synchronized `main` commit
+`680e90dd8f9377fece23c43bd9f07ca9d76297de`. Its bounded outcome is a strict
+offline admission harness for RFC-0003 gate 2. A record can count only after
+manual review establishes an independent consumer and freezes a public HTTPS
+repository, immutable revision, exact protocol set, bounded outcome, and exact
+integration/feedback artifact identities. The evaluator verifies those frozen
+facts but cannot establish independence itself. The reviewed manifest is empty,
+so the current sanitized result is deterministically `not-ready` and makes no
+external-adoption claim. M25 changes no runtime source, public API/export,
+protocol, dependency, lock, package version, stability label, workflow, or CI
+topology. The manifest is exactly 283 bytes with SHA-256
+`b113444f60946461ec6774e2c278b9e82e7d80e08a37450b6cc153e5c5c1500e`;
+focused formatting, Ruff, strict Pyright, report execution, and 29 tests pass.
+Findings-first review corrected explicit-path symlink enforcement and rejected
+credential-bearing, local-host, Unicode, and backslash HTTPS locators. The
+final local gate passes 227-file formatting, Ruff, strict Pyright, strict docs,
+1,109 tests with two Windows symlink-capability skips, pure build, isolated
+wheel/release smoke, all documented benchmark/profile validators, 10 real-wgpu
+tests, and both graphics vertical slices.
+The DCO-signed implementation is published as ready PR #38 at exact head
+`9667e020c2213d415072b7c7efbd880f6b58abfa` against assigned base
+`680e90dd8f9377fece23c43bd9f07ca9d76297de`. Sole GitHub Actions run
+`31111498136` passed all eight unchanged essential jobs. GitHub reports the PR
+`MERGEABLE` and `CLEAN`; the first thread-aware read found no issue comment,
+review, or inline review thread. Delayed automated review found one valid P2:
+numeric loopback/private/link-local IP authorities could pass the future
+locator syntax gate. The local correction requires a non-IP DNS-style
+authority, adds exact loopback/link-local regressions, and passes 1,111 tests
+with the two Windows capability skips plus the complete static/docs and
+isolated wheel/release gate. DCO correction commit
+`90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary GitHub Actions
+run `31112342328` across all eight unchanged essential jobs. PR #38 is
+`MERGEABLE` and `CLEAN`. The original thread remains unresolved and non-outdated
+because its anchor persists, but the adjacent non-IP gate and exact loopback/
+link-local regressions directly satisfy it; no finding remains actionable, and
+no reply or manual resolution was performed. A final CI-skipping evidence
+commit and squash integration remain.
+
 M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m24-cross-version-corpus-readiness` from exact clean
 synchronized `main` commit
@@ -417,8 +456,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M24 are complete, hosted-validated, and squash-integrated. This
-  branch records M24 integration only; no subsequent milestone is included.
+- M20 through M24 are complete, hosted-validated, and squash-integrated. M25 is
+  the only active slice and is limited to external-consumer-feedback admission
+  readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

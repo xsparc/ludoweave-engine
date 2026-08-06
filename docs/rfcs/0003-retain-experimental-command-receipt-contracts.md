@@ -3,7 +3,7 @@
 - **Status:** Accepted
 - **Date:** 2026-08-06
 - **Decision:** Retain experimental status pending complete compatibility evidence
-- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md), [RFC-0006](0006-receipt-semantic-diff-and-diagnostic-compatibility.md), [RFC-0007](0007-cross-version-corpus-admission-readiness.md)
+- **Related:** [command guide](../commands.md), [API status](../api-status.md), [ADR-0008](../adr/0008-versioned-command-envelope-and-canonical-json.md), [ADR-0019](../adr/0019-agent-service-capabilities-and-safe-points.md), [RFC-0004](0004-bounded-receipt-reader-and-v1-baseline.md), [RFC-0005](0005-built-in-operation-argument-compatibility.md), [RFC-0006](0006-receipt-semantic-diff-and-diagnostic-compatibility.md), [RFC-0007](0007-cross-version-corpus-admission-readiness.md), [RFC-0008](0008-external-consumer-feedback-admission-readiness.md)
 
 ## Summary
 
@@ -81,6 +81,9 @@ M24/RFC-0007 defines an exact offline admission harness for gate 1. Its current
 report remains false because source and reader are both `0.1.0a1` and supported-
 release evidence is empty; the synthetic future-state regression is not
 package history.
+M25/RFC-0008 defines an exact offline admission harness for gate 2. Its current
+report remains false because the reviewed feedback corpus is empty; the
+synthetic future-state regression is not an external consumer or feedback fact.
 
 ## Security and determinism
 

@@ -70,6 +70,7 @@ All of these must be evidenced together before reconsideration:
    **Admission is defined by M24/RFC-0007; evidence remains absent.**
 2. At least one external consumer supplies feedback from a real command/receipt
    integration; project-owned samples are not adoption evidence.
+   **Admission is defined by M25/RFC-0008; the reviewed corpus is empty.**
 3. Built-in operation argument schemas have an explicit compatibility and
    deprecation policy independent of their current implementation.
    **Satisfied by M22/RFC-0005.**

@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M25/RFC-0008 external-consumer-feedback admission evidence that rejects
+  project-owned substitutes and explicitly retains gate 2 as false until a
+  reviewed independent command/receipt integration supplies feedback.
 - Add M24/RFC-0007 cross-version receipt-corpus admission evidence that
   verifies immutable historical bytes and explicitly retains gate 1 as false
   until a different supported reader version and release evidence exist.
