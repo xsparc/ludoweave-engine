@@ -15,8 +15,11 @@ DCO-signed implementation commit
 #32. GitHub Actions run `31100821087` passed all eight unchanged essential
 jobs. Automated review then requested an explicit defaulted-component-field
 omission rule. The contract clarification, installed behavioral regression,
-full local gate, wheel, and release smoke pass; follow-up hosted validation is
-pending. Squash integration is pending.
+full local gate, wheel, and release smoke pass in DCO-signed correction commit
+`cf3ae540e71cda128837ea698f5f175a7abf2fc4`. Follow-up GitHub Actions run
+`31101607485` passed all eight unchanged essential jobs. Thread-aware review
+now reports the sole review thread outdated and no actionable thread remains.
+Squash integration is pending.
 
 M21 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean

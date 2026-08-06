@@ -49,6 +49,10 @@ essential jobs on DCO-signed M22 implementation commit
 `f1a89ad460467039f966ed37955144840cd96a12`. Automated review then requested
 explicit defaulted-component-field omission evidence; the correction must pass
 focused, artifact, and follow-up hosted validation before squash integration.
+DCO-signed correction commit
+`cf3ae540e71cda128837ea698f5f175a7abf2fc4` and follow-up run `31101607485`
+pass that gate; thread-aware review reports the original thread outdated and no
+actionable thread remains.
 
 M0 through M21 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.

@@ -106,8 +106,27 @@ failure is not reported as a pass.
 | `git diff --check` | 0 | No whitespace errors. |
 
 The correction changes no runtime source or contract. A necessary second
-hosted run is pending; it is quota-conscious evidence for the reviewed final
-artifact rather than a new CI job.
+hosted run was quota-conscious evidence for the reviewed final artifact rather
+than a new CI job.
+
+## M22 final hosted validation and review closure — PR #32
+
+DCO-signed correction commit
+`cf3ae540e71cda128837ea698f5f175a7abf2fc4` triggered necessary follow-up
+GitHub Actions run `31101607485`. All eight unchanged essential jobs passed:
+complete Ubuntu quality/test/docs/build/wheel/release, Ubuntu 3.13/3.14,
+Windows 3.14, macOS 3.14, and real graphics on Ubuntu/Windows/macOS.
+
+The required thread-aware review reread returned no conversation comments and
+one review thread with `isOutdated: true`, no current line anchor, and no other
+actionable thread. Its original claim is covered by the exact frozen rule,
+installed default-omission rejection, docs, focused regression, full suite,
+artifact smoke, and final hosted run. No GitHub reply or manual resolution was
+performed.
+
+The branch has two CI runs total: the original complete implementation run
+`31100821087` and the necessary review-correction run `31101607485`. Both
+passed. No workflow or job topology changed.
 
 ## Baseline — 2026-08-04
 
