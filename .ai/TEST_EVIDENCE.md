@@ -134,6 +134,40 @@ exited 0, the added-line credential-assignment scan matched nothing, and the
 scope diff remained empty for `src/`, `.github/`, `pyproject.toml`, and
 `uv.lock`.
 
+## M23 corrected hosted validation and thread-aware reread - PR #34
+
+DCO-signed correction commit
+`4eb61cd49542b0a4753629f31ebe80229c7d45b8` was pushed once. GitHub Actions
+run `31105197045` completed successfully on 2026-08-06 across the unchanged
+eight-job topology:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution - Ubuntu, Python 3.12 | Passed lock, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility - Ubuntu, Python 3.13 | Passed. |
+| Compatibility - Ubuntu, Python 3.14 | Passed. |
+| Compatibility - Windows, Python 3.14 | Passed. |
+| Compatibility - macOS, Python 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+After completion, PR #34 was open, ready, `MERGEABLE`, and `CLEAN`; all eight
+status checks were `SUCCESS`, exact head was the correction commit, and exact
+base remained `415859e19d9d29caa1168fabc96def509897b056`. The branch had exactly
+two CI runs: initial successful run `31104052702` on the implementation commit
+and corrected successful run `31105197045`.
+
+The thread-aware GraphQL reread returned the same two review discussions. Both
+remain marked unresolved and non-outdated because their original anchor lines
+still exist: the code-list thread is anchored at fixture line 142 with the new
+per-code definitions beginning at line 150, and the shallow-shape thread is
+anchored at example line 315 with the new exact full-diff assertion at line 316.
+The current code, fixture-literal guards, installed example, strict validator,
+tamper tests, full local gate, wheel/release smokes, and hosted run directly
+satisfy both requested changes. Neither review text describes a current defect.
+No reply or manual resolution was performed, and no new review finding appeared.
+
 ## M22 development evidence — 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

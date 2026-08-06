@@ -28,8 +28,14 @@ every generated diff value and declared order. The local correction now freezes
 all six code/meaning/scenario triples and an exact full complex-diff oracle. It
 passes 20 focused tests, 1,050 full-suite tests with one existing skip, static
 and strict-doc gates, pure build, isolated wheel smoke, and a fresh 10-artifact
-release smoke. A DCO-signed correction push, one necessary follow-up hosted run,
-thread-aware reread, and squash integration remain.
+release smoke. DCO-signed correction commit
+`4eb61cd49542b0a4753629f31ebe80229c7d45b8` is published, and follow-up
+GitHub Actions run `31105197045` passed all eight unchanged essential jobs.
+Thread-aware reread shows both original discussions still unresolved and
+non-outdated because their anchors remain in the diff; current adjacent code
+directly supplies the requested definitions and full-diff assertion, so no
+finding remains actionable. No reply or manual resolution was performed. Final
+`[skip ci]` evidence publication and squash integration remain.
 
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on

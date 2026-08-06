@@ -1,10 +1,10 @@
 # Current Task
 
 - **Task:** M23 - receipt semantic-diff and diagnostic compatibility policy
-- **Status:** Review corrections are locally validated on
-  `codex/m23-receipt-diagnostic-policy`. Ready PR #34 remains open; a DCO-signed
-  correction push and one necessary follow-up hosted run remain before exact
-  squash integration.
+- **Status:** Ready to integrate on `codex/m23-receipt-diagnostic-policy`.
+  Ready PR #34 has passed the corrected local/artifact gate and its one
+  necessary follow-up hosted run. Final `[skip ci]` evidence publication and
+  exact squash integration remain.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `415859e19d9d29caa1168fabc96def509897b056`.
@@ -58,4 +58,10 @@
   The local correction binds all six code/meaning/scenario triples, compares
   the full generated diff, passes 20 focused tests, the 1,050-test full suite
   with one existing skip, strict static/docs gates, pure build, isolated wheel
-  smoke, and fresh release-bundle smoke. Hosted correction validation remains.
+  smoke, and fresh release-bundle smoke. DCO-signed correction commit
+  `4eb61cd49542b0a4753629f31ebe80229c7d45b8` is published, and follow-up
+  GitHub Actions run `31105197045` passed all eight unchanged essential jobs.
+  GitHub keeps both original discussions unresolved/non-outdated because their
+  anchors remain unchanged, but current adjacent definitions and exact-diff
+  assertions make neither finding actionable. No reply or manual resolution
+  was performed.

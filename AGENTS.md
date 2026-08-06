@@ -72,8 +72,11 @@ Ready PR #34 and GitHub Actions run `31104052702` validate all eight unchanged
 essential jobs on DCO-signed M23 implementation commit
 `a6dc30ec62d91b1f6640db2c23797967f2aefefe`. Delayed automated review found two
 valid evidence gaps: per-code meanings and exact full-diff contents/order were
-not independently frozen. Both corrections pass the local full/artifact gate;
-one necessary follow-up hosted run and exact squash integration are pending.
+not independently frozen. Both corrections pass the local full/artifact gate
+and follow-up GitHub Actions run `31105197045` across the unchanged eight jobs.
+Thread-aware reread confirms the unresolved anchors now sit beside the exact
+requested evidence and neither finding remains actionable. Exact squash
+integration is pending.
 
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the

@@ -31,7 +31,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
-| Review correction | M23 receipt semantic-diff and diagnostic compatibility | PR #34; initial eight-job run passed, two valid evidence findings are locally corrected, and one follow-up hosted run remains before squash integration |
+| Ready to integrate | M23 receipt semantic-diff and diagnostic compatibility | PR #34; two valid evidence findings corrected, 1,050 local tests and both eight-job hosted runs passed, with no current actionable review finding |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
