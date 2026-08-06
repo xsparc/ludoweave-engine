@@ -61,8 +61,10 @@ fabricated acceptance result.
 ## Next questions
 
 Future work begins with evidence and an assigned milestone, not automatically
-from this alpha. Priority questions are contributor rehearsal feedback,
-controlled cross-platform performance evidence, defining any preview/stable API
-candidates, and deciding whether a PyPI release channel is warranted. Scene importers,
+from this alpha. M20 evaluates the first central preview candidate and retains
+command/receipt contracts as experimental under RFC-0003 until the full
+compatibility gate is evidenced. Remaining priority questions are contributor
+rehearsal feedback, controlled cross-platform performance evidence, and
+deciding whether a PyPI release channel is warranted. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.

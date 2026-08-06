@@ -583,6 +583,30 @@ are references; independent adoption remains zero until separately authored
 evidence is reviewed. See
 [ADR-0033](adr/0033-explicit-installed-world-store-conformance.md).
 
+## M20 command/receipt stability boundary
+
+M20 evaluates compatibility readiness without adding a second command layer or
+changing the existing one. Its installed example composes only public
+`ludoweave.world`, ECS, sample, and agent-conformance APIs. It creates one
+in-memory authority, exercises canonical decode, dry-run, commit, stale-hash,
+unsupported-hash, and failed-batch behavior, and then runs the existing M18
+twelve-check profile against a separately owned fresh authority.
+
+The evidence reports protocol/status/error identities, field and operation
+names, boolean relationships, stability labels, and package version. It omits
+authority hashes and values, entity/component values, snapshots, captures,
+paths, environment/platform facts, timing, credentials, and provider messages.
+It performs no discovery, dynamic import, installation, filesystem access,
+subprocess launch, networking, registry mutation, or backend composition.
+
+RFC-0003 retains the command, transaction, and receipt surfaces as
+experimental. The evidence confirms strong same-version canonical and atomic
+behavior but also records the absent public bounded receipt reader and the
+missing cross-version corpus, external feedback, operation/diff/diagnostic
+evolution rules, and supported deprecation-capable release channel. A future
+promotion must satisfy the complete gate in one assigned decision; it cannot be
+inferred from a green same-version test or project-owned adapter pass.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -600,6 +624,8 @@ installed render-device baseline without admitting or discovering providers.
 M18 adds one explicit installed agent-tool baseline without discovering a
 transport or admitting an adapter. M19 adds one explicit installed WorldStore
 baseline without discovering an implementation or adding a storage backend.
+M20 retains experimental command/receipt stability after a bounded installed
+readiness audit; it adds no reader, operation, format, or runtime export.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.

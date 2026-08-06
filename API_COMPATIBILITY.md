@@ -50,6 +50,12 @@ determine compatibility. Package-version changes do not silently reinterpret
 canonical bytes. The alpha snapshot/replay policy remains deliberately strict
 where the protocol documents require an exact engine version.
 
+RFC-0003 retains the command, transaction, and receipt Python/wire surfaces as
+experimental after M20's installed readiness audit. Preview promotion requires
+the complete cross-version corpus, external feedback, operation-argument,
+receipt-reader/diff/diagnostic, and supported-release-channel gate; same-version
+conformance alone does not create a deprecation promise.
+
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;
 the v1 fields and fingerprint semantics are not reinterpreted in place.

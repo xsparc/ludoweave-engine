@@ -14,6 +14,7 @@ nav:
   - Render-device conformance: render-device-conformance.md
   - Agent-tool conformance: agent-tool-conformance.md
   - WorldStore conformance: world-store-conformance.md
+  - Command and receipt stability decision: command-receipt-stability-decision.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
   - Constrained 3D scope decision: constrained-3d-decision.md
@@ -23,10 +24,11 @@ nav:
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
   - Alpha retrospective: alpha-retrospective.md
-  - Performance and native-code decision:
+  - Requests for Comments:
       - RFC index: rfcs/index.md
       - RFC-0001 - Defer first native kernel: rfcs/0001-defer-first-native-kernel.md
       - RFC-0002 - Data-only plugin manifests: rfcs/0002-data-only-plugin-manifest-compatibility.md
+      - RFC-0003 - Retain experimental command/receipt contracts: rfcs/0003-retain-experimental-command-receipt-contracts.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

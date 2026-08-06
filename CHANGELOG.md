@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add deterministic installed command/receipt preview-readiness evidence and
+  RFC-0003, retaining the central contracts as experimental until the complete
+  compatibility gate is evidenced.
+
 ### Added
 
 - M19 experimental installed `WorldStore` baseline conformance profile with a

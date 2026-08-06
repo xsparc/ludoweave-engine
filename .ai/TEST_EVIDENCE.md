@@ -2270,3 +2270,135 @@ second run. Integration changes no runtime, public API, workflow, dependency,
 lock, package version, benchmark target, format, or release artifact. No tag,
 GitHub release, PyPI publication, provider discovery/admission/certification,
 or independently authored WorldStore adoption is claimed.
+
+## M20 baseline and initial evidence - 2026-08-06
+
+M20 starts from exact clean synchronized `main` commit
+`2fdeccd697f09f3e165130eb8564a6c585d472d2` on branch
+`codex/m20-command-receipt-stability-decision`.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Approved cache-access rerun resolved 46 packages in 0.84 ms. |
+| `uv run --frozen pytest -q tests/unit/test_canonical_json.py tests/unit/test_persistent_command_schema.py tests/unit/test_transactions.py tests/unit/test_receipts.py tests/unit/test_agent_tool_conformance.py tests/integration/test_agent_cli.py tests/architecture/test_api_stability.py` | 0 | 91 focused baseline tests passed in 1.52 seconds. |
+| `uv run --frozen pytest -q` | 0 | 955 tests passed with one existing Windows symlink-capability skip in 72.22 seconds. |
+| `uv run --frozen python examples/command_receipt_stability_decision.py` | 0 | The initial versioned installed evidence confirmed the current boundary and returned deferred `retain-experimental-command-receipt`. |
+| `uv run --frozen pytest -q tests/integration/test_command_receipt_stability_decision.py tests/architecture/test_m20_command_receipt_stability_boundary.py` | 0 | 16 exact-evidence, tamper, stability-drift, argument, dependency, and nested-import boundary tests passed in 2.05 seconds. |
+
+The first sandboxed `uv lock --check` attempt exited 1 before project execution
+because uv could not access its existing user cache. The approved cache-access
+rerun above is the project result. At this stage the complete static, full,
+documentation, build, isolated-wheel, release, provider, benchmark/profile, and
+findings-first review gates remain pending. No hosted M20 run, PR, merge, tag,
+release, package publication, stability promotion, cross-version compatibility,
+or external consumer/adoption evidence is claimed.
+
+## M20 final local validation and review - 2026-08-06
+
+The final reviewed tree remains based on exact `main` commit
+`2fdeccd697f09f3e165130eb8564a6c585d472d2`. M20 changes no file under
+`.github`, `src/ludoweave`, `pyproject.toml`, or `uv.lock`.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Approved cache-access rerun checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 0 | All 205 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built; only the upstream MkDocs Material/MkDocs 2.0 informational warning was emitted. |
+| `uv run --frozen pytest -q tests/integration/test_command_receipt_stability_decision.py tests/architecture/test_m20_command_receipt_stability_boundary.py tests/unit/test_release_artifacts.py tests/unit/test_canonical_json.py tests/unit/test_persistent_command_schema.py tests/unit/test_transactions.py tests/unit/test_receipts.py tests/unit/test_agent_tool_conformance.py tests/integration/test_agent_cli.py tests/architecture/test_api_stability.py tests/architecture/test_import_boundaries.py tests/architecture/test_release_workflow.py` | 0 | 211 expanded evidence, canonical transaction/receipt, agent, artifact, and architecture tests passed in 4.24 seconds. |
+| `uv run --frozen pytest -q` | 0 | 972 tests passed with one existing Windows symlink-capability skip in 73.99 seconds. |
+| `uv build` | 0 | Approved cache-access final build produced `ludoweave-0.1.0a1.tar.gz` and the universal pure-Python wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | The isolated no-dependency installed-wheel workflow, including M20 evidence validation, passed. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m20-release-final` | 0 | A fresh complete ten-artifact release directory was staged. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m20-release-final` | 0 | Checksums, manifest, SPDX SBOM, installed wheel, and all sample-bundle evidence passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Ten real-wgpu integration tests passed in 6.29 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+| `git diff --exit-code main -- .github pyproject.toml uv.lock src/ludoweave` | 0 | Workflow, metadata, lock, and runtime package trees are unchanged. |
+| `git fsck --no-dangling` | 0 | Repository object connectivity is clean with no dangling objects reported. |
+
+The M20 evidence runs twice byte-for-byte identically in its integration test.
+Its exact validator rejects value and JSON-type drift, arguments, and an
+unrecorded stability promotion. The source, isolated wheel, and deterministic
+sample-bundle paths all return deferred
+`retain-experimental-command-receipt`. The final wheel contains 94 entries,
+declares only the existing optional graphics extra, contains no native/WASM
+file, and the release sample ZIP contains
+`command_receipt_stability_decision.py`.
+
+All inherited documented performance artifacts validate:
+
+- M1's 3,600-tick p95 was 42.0198 ms and observed its 12-second target; the
+  10,000-entity simulation p95 was 125.6192 ms and missed the 4 ms target.
+- M2's four target-free informational p50/p95 observations were
+  31.8993/35.7171 ms for canonical 100-command round trips,
+  14.2993/15.8356 ms for atomic 100-command apply, 18.0485/19.5923 ms for
+  1,000-entity snapshot round trips, and 210.5091/229.5513 ms for verified
+  100-batch replay.
+- M3's 10,000-sprite extraction p95 was 26.2983 ms and real-wgpu submission
+  p95 was 3.1636 ms; both missed their 3 ms starting targets.
+- M4's baseline Clockwork Arena p95 was 2.1096 ms and observed its 16.666667
+  ms target. Stress 4/8 p95 values were 3.0000/4.4796 ms with no targets.
+- Five-repeat M7 base and graphics profiling artifacts validated with two and
+  three workloads respectively. These are call-profile contracts, not timing
+  targets.
+
+Development evidence is retained rather than rewritten as a false clean first
+attempt. Initial sandboxed `uv lock --check`, `uv sync`, and `uv build` calls
+exited 1 before project execution because uv's existing user cache was denied;
+approved cache-access reruns exited 0. The first evidence composition omitted
+the explicit capture provider required by the M18 profile and was corrected.
+The first Ruff pass found two smoke-script import-order issues and passed after
+correction. Findings-first review identified that exact-name import checks
+would miss forbidden submodules; prefix matching and a nested wgpu fixture now
+cover that case, and the focused boundary suite passes 17 tests in 2.05
+seconds.
+
+The final scope/credential/backend review found no new credential assignment,
+ambient time/random/environment/path input, native/WASM/backend leakage,
+runtime/public API change, dependency change, workflow change, stale link, or
+unsupported pass claim. No hosted M20 run, PR, merge, tag, release, package
+publication, cross-version compatibility, external adoption, or stability
+promotion is claimed at this stage.
+
+After recording the final evidence, one post-record gate reran `uv lock
+--check`, Ruff format/check, Pyright, strict MkDocs, the 17 M20 integration and
+architecture tests, and `git diff --check` in sequence. Every command exited 0;
+the focused tests passed in 2.07 seconds. A fresh `git fetch --prune origin`
+then confirmed local `main`, `origin/main`, the M20 merge base, and branch HEAD
+all share exact base `2fdeccd697f09f3e165130eb8564a6c585d472d2`; the reviewed
+history is linear and GitHub reports `main` as the default branch.
+
+## M20 hosted validation - 2026-08-06
+
+Ready PR #28 targets `main` from
+`codex/m20-command-receipt-stability-decision`. GitHub reports exact base
+`2fdeccd697f09f3e165130eb8564a6c585d472d2`, DCO-signed implementation head
+`d96d132da5ee847d6e86645be5e87a1e4aa5e89e`, `MERGEABLE`, and `CLEAN` after
+checks completed.
+
+GitHub Actions pull-request run `31095009029` executed that implementation
+commit from `2026-08-06T10:52:55Z` through `2026-08-06T10:55:33Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` on Ubuntu CPython 3.12 passed lock,
+  formatting, Ruff, Pyright, strict docs, baseline tests, base profile smoke,
+  sdist/wheel build, installed-wheel smoke, release staging, and complete
+  release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and GitHub lists this as the only hosted run
+for the M20 branch. Hosted evidence confirms supported installed and cross-
+platform same-version behavior. It does not establish cross-version
+compatibility, external consumer adoption, a public receipt reader, a
+deprecation-capable release channel, stability promotion, certification, tag,
+release, or package publication; add a runtime/API/schema/dependency/version/CI
+change; or claim the locally missed M1/M3 performance targets passed. PR #28
+has not yet been merged at this stage.
+
+After adding this hosted record, `uv run --frozen mkdocs build --strict` and
+`git diff --check` both exited 0; the documentation build emitted only the
+recorded upstream MkDocs Material/MkDocs 2.0 informational warning.

@@ -9,6 +9,7 @@ python fixed_step_world.py --ticks 6
 python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python rollback_readiness.py --ticks 120 --branch-tick 60
+python command_receipt_stability_decision.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -35,6 +36,11 @@ CPython, and desktop platform without importing or executing plugin code.
 future input, records the still-external input-history dependency, and emits a
 deferred networking decision. It opens no listener and implements no transport
 or live rollback service.
+
+`command_receipt_stability_decision.py` exercises the installed canonical
+command, transaction, receipt, and 12-tool agent foundations, then records why
+the central protocols remain experimental. It changes no runtime or format and
+does not claim cross-version compatibility or external adoption.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

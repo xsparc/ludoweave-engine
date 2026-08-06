@@ -185,3 +185,15 @@ does not make the entire requested count atomic.
 Read, write, capture, and test behavior, quotas, concurrency, redaction, and
 transport details are documented in the [agent control interface](agent-control.md)
 and ADR-0019/ADR-0020.
+
+## M20 stability decision
+
+M20 evaluates command/receipt preview readiness. The installed same-version
+path remains canonical, atomic, and transport-independent, but RFC-0003 retains
+experimental status because the project lacks a public bounded receipt reader,
+cross-version fixture history, external consumer feedback, field-evolution
+policies, and a supported deprecation-capable release channel.
+
+See the [stability decision](command-receipt-stability-decision.md). Do not
+infer a preview promise from protocol `/1` identifiers or project-owned
+conformance passes.

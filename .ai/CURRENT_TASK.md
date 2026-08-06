@@ -1,69 +1,67 @@
 # Current Task
 
-- **Task:** M19 - installed WorldStore conformance
-- **Status:** Complete, hosted-validated, and squash-integrated into `main` by
-  PR #26. No M20 implementation is assigned.
+- **Task:** M20 - command/receipt preview-readiness decision
+- **Status:** Implementation, complete local validation, findings-first review,
+  publication through ready PR #28, and the single unchanged essential hosted
+  run are complete on `codex/m20-command-receipt-stability-decision` from exact
+  clean synchronized `main` commit
+  `2fdeccd697f09f3e165130eb8564a6c585d472d2`. Squash integration is pending.
 - **Started:** 2026-08-06
-- **Base:** Exact clean synchronized `main` commit
-  `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`.
-- **Outcome:** Give authors of storage-neutral ECS world implementations one
-  small installed, versioned behavioral profile over the existing public
-  `WorldStore` boundary without copying repository-private tests.
+- **Outcome:** Decide whether the central installed command, transaction, and
+  receipt contracts can honestly move from experimental to preview stability,
+  using deterministic evidence rather than inferring compatibility from their
+  same-version quality.
 - **Acceptance gate:**
-  - The public experimental runner accepts a bounded adapter ID and an
-    explicitly supplied trusted `factory(ComponentRegistry)`. It performs no
-    discovery, dynamic import, installation, filesystem scan, subprocess,
-    network request, or global registration.
-  - One fixed profile exercises exactly these ordered checks:
-    `factory_registry`, `empty_state`, `direct_mutation_epochs`,
-    `copy_isolation`, `entity_generations`, `query_semantics`,
-    `writable_query_lifecycle`, `command_buffer_atomicity`,
-    `clone_independence`, and `structured_failures`.
-  - The profile verifies deterministic entity IDs/generations, logical and
-    structural epochs, detached component ownership, stable and changed
-    queries, writable-cursor ownership, atomic retryable local command flush,
-    clone/allocator independence, and structured failure atomicity.
-  - Frozen reports use protocol `ludoweave.world-store-conformance/1` and
-    profile `world-store-baseline/1`, with fixed status order and runner-owned
-    `world_store_conformance.*` codes. Reports contain no provider message or
-    code, path, environment/platform data, timing, component/entity values,
-    storage layout, credential, or native object.
-  - The built-in production `World` and independent `ReferenceWorld` pass from
-    source, an isolated dependency-free wheel, and the deterministic release
-    sample bundle.
-  - Negative fixtures prove invalid factory/registry/shape, malformed values,
-    mutation/epoch/query/command/clone mismatches, provider diagnostic
-    sanitization, immutable report invariants, and no-discovery behavior.
-  - ADR-0033 and public guides record trust, borrowed component-registry
-    identity, the current no-close in-memory contract, limitations, evidence
-    meaning, and independently authored storage-adapter adoption remaining
-    zero.
+  - One dependency-free installed example emits exact versioned schema
+    `ludoweave.evaluation.command-receipt-stability/1` with a deterministic
+    decision and no arguments, ambient inputs, paths, timing, state hashes,
+    world values, captures, or provider diagnostics.
+  - Evidence confirms exact command/transaction/receipt protocol IDs, built-in
+    operations, public stability labels, canonical decode/round trip, dry-run
+    non-mutation, committed hash continuity, stale-hash and unsupported-hash
+    rejection, and failed-middle-operation atomicity.
+  - The existing installed twelve-check M18 agent-tool profile passes against
+    a fresh explicitly composed built-in authority, proving transport-
+    independent same-version command/receipt behavior without adding another
+    conformance runner.
+  - The preview promotion gate explicitly covers a cross-version fixture
+    corpus, external consumer feedback, operation-argument evolution rules, a
+    bounded public receipt reader, receipt-diff/diagnostic evolution rules, and
+    a supported deprecation-capable feature-release channel.
+  - RFC-0003 records the evidence-based decision. No stability label or wire
+    contract changes unless every gate is actually met.
+  - The evidence runs from source, an isolated dependency-free wheel, and the
+    deterministic release sample bundle with a strict exact-type validator.
+  - Architecture tests reject ambient/discovery/backend/tool imports, prove the
+    scanner with nested invalid fixtures, preserve root exports and dependency
+    metadata, and verify the command/receipt exports remain focused.
   - The existing eight essential CI jobs remain unchanged and only one hosted
     implementation run may be created.
-- **Non-scope:** A new storage backend, native/archetype/NumPy storage,
-  persistence or database access, external-resource lifecycle, background
-  threads, discovery/loading/installation, plugin fields or execution,
-  command/snapshot/replay changes, another world authority, benchmark target
-  changes, GUI/editor, 3D, WASM, networking, dependency/lock/version changes,
-  release tag, GitHub release, or package publication.
-- **SemVer:** Additive experimental `ludoweave.ecs` exports and a versioned
-  report/profile. No stable API, root export, persistent format, runtime
-  dependency, or package version change.
-- **Baseline evidence:** On the exact clean base, `uv lock --check` resolved 46
-  packages; storage/conformance/import/API tests passed 117 tests in 1.17
-  seconds; and `uv run --frozen pytest -q` passed 925 tests with the existing
-  Windows symlink-capability skip in 65.66 seconds.
-- **Current local evidence:** The final hardened gate passes 955 tests with the
-  existing skip, 149 focused tests, and all ten real-wgpu tests; 201 Python
-  files are formatted with zero Ruff/Pyright findings; strict docs, the pure
-  94-entry isolated wheel, and a complete ten-artifact release smoke pass. The
-  protected workflows, lock, project metadata, version, and package root are
-  unchanged. All documented benchmark/profile artifacts validate while the
-  existing M1 simulation and both M3 target misses remain explicit. GitHub
-  Actions run `31092244573` passed all eight unchanged essential jobs on
-  DCO-signed implementation commit
-  `1da692a693c1f92e10b676c2d4539354ce3ff59f`. PR #26 squash-integrated exact
-  final evidence head `b93ca591f7063a1500cf105e6b0496b33573c69a` into `main` as
-  GitHub-verified commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9`; both trees are
-  `7fcd614fdde76daf1807f27dbe78ec306a501cc3`. No tag, release, package
-  publication, certification, or independent third-party adoption is claimed.
+- **Non-scope:** A new command or operation, receipt reader, schema migration,
+  field reinterpretation, stability promotion, source runtime module, package-
+  root export, plugin field, provider discovery/loading, transport/listener,
+  storage backend, networking, editor, 3D, WASM, Box2D, native code, dependency,
+  lock, package version, CI job, tag, release, or publication.
+- **SemVer:** Evidence/documentation only. All existing command/receipt Python
+  exports and persistent protocols retain their current experimental status;
+  package version remains `0.1.0a1`.
+- **Baseline evidence:** On exact base
+  `2fdeccd697f09f3e165130eb8564a6c585d472d2`, `uv lock --check` resolved 46
+  packages; 91 focused canonical-command/transaction/receipt/agent/API tests
+  passed in 1.52 seconds; and the full suite passed 955 tests with the existing
+  Windows symlink-capability skip in 72.22 seconds. The initial sandboxed lock
+  check exited 1 before project execution because uv's existing user cache was
+  inaccessible; the approved cache-access rerun exited 0.
+- **Current local evidence:** The final Windows/uv-managed CPython 3.12.13 gate
+  passes 972 tests with one existing symlink-capability skip in 73.99 seconds,
+  205-file formatting, Ruff, strict Pyright, strict MkDocs, source and installed
+  evidence, pure-wheel build/smoke, a fresh complete 10-artifact release smoke,
+  211 expanded focused tests, and ten real-wgpu tests. Every inherited
+  benchmark/profile artifact validates; the M1 simulation and both M3 targets
+  remain observed misses. Findings-first review hardened forbidden-import
+  matching for submodules and found no remaining issue. Ready PR #28 is
+  mergeable and clean; GitHub Actions run `31095009029` passed all eight
+  unchanged essential jobs on DCO-signed implementation commit
+  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. No merge, tag, release, package
+  publication, stability promotion, cross-version compatibility, or external
+  adoption is claimed.
