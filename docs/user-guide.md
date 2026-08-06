@@ -37,6 +37,7 @@ python agent_tool_conformance.py
 python world_store_conformance.py
 python world_store_conformance.py --backend reference
 python command_receipt_stability_decision.py
+python receipt_reader.py
 python alpha_acceptance.py
 ludoweave plugin check example.plugin.json
 ```
@@ -56,6 +57,9 @@ third-party adapters.
 The command/receipt stability evidence confirms same-version canonical and
 atomic behavior, then records why RFC-0003 retains experimental status. It
 does not change a wire format or claim cross-version compatibility.
+The receipt-reader example reconstructs committed, dry-run, and rejected v1
+documents under explicit limits. It emits sanitized evidence and records that
+its frozen fixtures are only a single-version baseline.
 
 The foundational application surface is deliberately small:
 
@@ -156,6 +160,11 @@ The [command and receipt stability decision](command-receipt-stability-decision.
 explains why the installed canonical/atomic foundation is not yet a preview
 compatibility promise. Its evidence is diagnostic only and changes no world,
 wire format, or package stability status outside its private in-memory fixture.
+
+The [bounded receipt-reader guide](receipt-reader.md) shows how to decode an
+untrusted receipt into detached immutable values, choose lower resource limits,
+and distinguish malformed, oversized, and incompatible documents. A decoded
+receipt is evidence only; applications decide provenance and authorization.
 
 ## Failure and compatibility expectations
 

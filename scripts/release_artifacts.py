@@ -26,6 +26,7 @@ _SAMPLE_FILES = (
     "hello_headless.py",
     "hello_sprite.py",
     "render_device_conformance.py",
+    "receipt_reader.py",
     "rich_2d_showcase.py",
     "rollback_readiness.py",
     "visual_editor_decision.py",

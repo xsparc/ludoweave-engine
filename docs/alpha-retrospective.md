@@ -63,8 +63,11 @@ fabricated acceptance result.
 Future work begins with evidence and an assigned milestone, not automatically
 from this alpha. M20 evaluates the first central preview candidate and retains
 command/receipt contracts as experimental under RFC-0003 until the full
-compatibility gate is evidenced. Remaining priority questions are contributor
-rehearsal feedback, controlled cross-platform performance evidence, and
-deciding whether a PyPI release channel is warranted. Scene importers,
+compatibility gate is evidenced. M21 completes only the bounded public receipt
+reader gate and freezes same-version fixture inputs under RFC-0004; it does not
+claim cross-version history. Remaining priority questions are contributor
+rehearsal feedback, controlled cross-platform performance evidence, operation
+and diagnostic evolution rules, and deciding whether a PyPI release channel is
+warranted. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.

@@ -56,6 +56,13 @@ the complete cross-version corpus, external feedback, operation-argument,
 receipt-reader/diff/diagnostic, and supported-release-channel gate; same-version
 conformance alone does not create a deprecation promise.
 
+RFC-0004 adds a bounded experimental `TransactionReceipt` reader and freezes
+exact `0.1.0a1` receipt/1 fixtures. This satisfies the reader-and-bounds gate
+only. The fixtures are a single-version baseline, so cross-version
+compatibility, diagnostic/diff evolution, and preview status remain unproven.
+Future fixture checks preserve the historical bytes rather than rewriting them
+to match new behavior.
+
 Plugin manifest protocol `ludoweave.plugin-manifest/1` is persistent under
 RFC-0002. A breaking wire change requires another protocol identifier and RFC;
 the v1 fields and fingerprint semantics are not reinterpreted in place.

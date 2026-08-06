@@ -119,6 +119,13 @@ same-version profile as a preview compatibility promise; read the
 [stability decision](command-receipt-stability-decision.md) before persisting or
 transporting these documents across package versions.
 
+M21 adds the engine-owned bounded reader adapters should use instead of parsing
+receipt dictionaries themselves. `TransactionReceipt.from_json` and
+`from_mapping` detach input, enforce exact v1 structure and status invariants,
+and return typed failures. Passing the reader does not authenticate a producer,
+admit an adapter, or establish cross-version support; see the
+[receipt-reader guide](receipt-reader.md).
+
 ## Publishing and compatibility
 
 Third-party adapters should be separately distributed packages that require a

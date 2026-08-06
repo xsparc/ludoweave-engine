@@ -1,0 +1,27 @@
+{
+  "schema": "ludoweave.compatibility.receipt-corpus/1",
+  "source_package": "ludoweave",
+  "source_version": "0.1.0a1",
+  "receipt_protocol": "ludoweave.receipt/1",
+  "evidence_level": "single-version-baseline",
+  "fixtures": [
+    {
+      "file": "committed.json",
+      "status": "committed",
+      "bytes": 1987,
+      "sha256": "d51548b17218a1e2c439a2376fbb017ff0a2fa5ed6c9061637e63865085a07fc"
+    },
+    {
+      "file": "dry_run.json",
+      "status": "dry_run",
+      "bytes": 2046,
+      "sha256": "04adf1d88a3e2607e900a27809ed41ccba64e85d0f4e1ee4d6361b3397204057"
+    },
+    {
+      "file": "rejected.json",
+      "status": "rejected",
+      "bytes": 789,
+      "sha256": "afbc64d93e92a4b52041a10687e78b51f5eacfb3d4bf50870512ce77960d5ebf"
+    }
+  ]
+}

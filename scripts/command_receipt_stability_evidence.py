@@ -24,7 +24,10 @@ _STABILITY_EXPORTS = [
     "CommandEnvelope",
     "CommandOutcome",
     "CommandTransaction",
+    "IncompatibleReceiptError",
     "ReceiptDiagnostic",
+    "ReceiptDecodeError",
+    "ReceiptLimits",
     "ReceiptStatus",
     "TransactionReceipt",
     "TransactionService",
@@ -67,7 +70,7 @@ _BOUNDARY: dict[str, object] = {
     "public_readers": {
         "command_envelope": True,
         "command_transaction": True,
-        "transaction_receipt": False,
+        "transaction_receipt": True,
     },
     "receipt_fields": [
         "protocol",
@@ -92,7 +95,7 @@ _GATES: dict[str, object] = {
     "cross_version_compatibility_corpus": False,
     "external_consumer_feedback": False,
     "operation_argument_compatibility_policy": False,
-    "public_receipt_reader_and_bounds": False,
+    "public_receipt_reader_and_bounds": True,
     "receipt_diff_diagnostic_compatibility_policy": False,
     "supported_deprecation_release_channel": False,
 }
@@ -110,7 +113,7 @@ def validate_command_receipt_stability_evidence(
         "ludoweave_version": version,
         "promotion_gates": _GATES,
         "promotion_ready": False,
-        "schema": "ludoweave.evaluation.command-receipt-stability/1",
+        "schema": "ludoweave.evaluation.command-receipt-stability/2",
         "status": "deferred",
     }
     if not _exact_json(document, expected):

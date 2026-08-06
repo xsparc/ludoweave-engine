@@ -17,6 +17,7 @@ from typing import cast
 
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
+from receipt_reader_evidence import validate_receipt_reader_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
@@ -180,6 +181,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         command_receipt = cast(dict[str, object], json.loads(command_receipt_result.stdout))
         validate_command_receipt_stability_evidence(command_receipt, version=version)
+        receipt_reader_result = _run(
+            [str(python), "-I", "receipt_reader.py"],
+            cwd=sample_root,
+        )
+        receipt_reader = cast(dict[str, object], json.loads(receipt_reader_result.stdout))
+        validate_receipt_reader_evidence(receipt_reader, version=version)
         plugin_result = _run(
             [str(python), "-I", "-m", "ludoweave", "plugin", "check", "example.plugin.json"],
             cwd=sample_root,
@@ -247,6 +254,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "command_receipt_stability_decision.py",
         "constrained_3d_decision.py",
         "render_device_conformance.py",
+        "receipt_reader.py",
         "rollback_readiness.py",
         "visual_editor_decision.py",
         "wasm_mod_security_decision.py",

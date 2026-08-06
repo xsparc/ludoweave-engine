@@ -61,20 +61,23 @@ def test_installed_command_receipt_evidence_is_repeatable_and_deferred() -> None
     assert first.stdout == second.stdout
     document = cast(dict[str, object], json.loads(first.stdout))
     _validator()(document, version=__version__)
-    assert document["schema"] == "ludoweave.evaluation.command-receipt-stability/1"
+    assert document["schema"] == "ludoweave.evaluation.command-receipt-stability/2"
     assert document["status"] == "deferred"
     assert document["decision"] == "retain-experimental-command-receipt"
     assert document["current_boundary_confirmed"] is True
     assert document["promotion_ready"] is False
     assert document["ludoweave_version"] == __version__
     gates = cast(dict[str, object], document["promotion_gates"])
-    assert all(value is False for value in gates.values())
+    assert gates["public_receipt_reader_and_bounds"] is True
+    assert all(
+        value is False for key, value in gates.items() if key != "public_receipt_reader_and_bounds"
+    )
     boundary = cast(dict[str, object], document["current_boundary"])
     readers = cast(dict[str, object], boundary["public_readers"])
     assert readers == {
         "command_envelope": True,
         "command_transaction": True,
-        "transaction_receipt": False,
+        "transaction_receipt": True,
     }
     assert boundary["agent_conformance_passed"] is True
     behavior = cast(dict[str, object], boundary["behavior"])

@@ -15,6 +15,14 @@ class CommandSchemaError(WorldProtocolError):
     """Raised when a persistent command document violates its schema."""
 
 
+class ReceiptDecodeError(WorldProtocolError):
+    """Raised when a receipt document violates its bounded wire schema."""
+
+
+class IncompatibleReceiptError(ReceiptDecodeError):
+    """Raised when a valid receipt document uses an unsupported protocol."""
+
+
 class DuplicateOperationError(CommandSchemaError):
     """Raised when an operation registry contains a duplicate identity."""
 

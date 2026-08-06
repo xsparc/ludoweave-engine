@@ -197,3 +197,16 @@ policies, and a supported deprecation-capable release channel.
 See the [stability decision](command-receipt-stability-decision.md). Do not
 infer a preview promise from protocol `/1` identifiers or project-owned
 conformance passes.
+
+## Reading receipts
+
+M21 adds strict `TransactionReceipt.from_json` and `from_mapping` entry points.
+Both apply canonical JSON and receipt-specific limits before returning detached
+immutable values. They reject incompatible protocols, unknown fields,
+malformed nested changes, and inconsistent status/hash/tick relationships with
+structured receipt decode errors.
+
+The [bounded receipt-reader guide](receipt-reader.md) lists the exact default
+limits, invariants, failure codes, ownership boundary, and frozen v1 fixture
+policy. Decoding proves schema validity, not authority authenticity or
+cross-version compatibility.

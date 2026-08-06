@@ -607,6 +607,27 @@ evolution rules, and supported deprecation-capable release channel. A future
 promotion must satisfy the complete gate in one assigned decision; it cannot be
 inferred from a green same-version test or project-owned adapter pass.
 
+## M21 receipt-reader boundary
+
+M21 adds one engine-owned decoding edge inside `ludoweave.world`. It accepts a
+decoded JSON-domain object or bounded UTF-8 JSON, applies canonical limits
+before domain construction, validates the exact existing receipt/1 graph, and
+returns only immutable backend-neutral value objects. It calls no operation
+handler and has no reference to a `WorldSession`, registry, provider, tool,
+filesystem, process, or network surface.
+
+The parser depends downward on canonical JSON, command attribution, receipt
+value types, semantic-diff records, and structured world-protocol errors. No
+application, CLI, tool, plugin, render backend, or optional dependency enters
+the contract. `ReceiptLimits` makes byte/tree/string/outcome/diagnostic/alias/
+diff work explicit; caller containers are recursively detached.
+
+The repository freezes exact committed, dry-run, and rejected v1 documents
+under a single-version fixture manifest. This creates immutable historical
+inputs for a later version but does not itself prove cross-version behavior.
+RFC-0004 keeps every new export experimental and versions M20's living
+readiness evidence to `/2`, with only the reader gate true.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -626,6 +647,8 @@ transport or admitting an adapter. M19 adds one explicit installed WorldStore
 baseline without discovering an implementation or adding a storage backend.
 M20 retains experimental command/receipt stability after a bounded installed
 readiness audit; it adds no reader, operation, format, or runtime export.
+M21 then adds only that bounded reader and frozen single-version fixtures; it
+does not change receipt/1, promote stability, or satisfy the cross-version gate.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.

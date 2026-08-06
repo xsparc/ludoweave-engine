@@ -38,7 +38,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 ## Current boundary
 
 M0 through M20 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`.
+integrated into `main`. M21 is the current assigned milestone.
 M1-M7 are integrated into `main` by PR #8; M8-M14 are squash-integrated by PR
 #16 as verified commit `2c62c8ed9c4ced6292260f6b8c84b1f069de1eaa` with the
 exact final M14 tree. Superseded stacked PRs #9 through #15 are closed and
@@ -128,4 +128,21 @@ essential jobs on DCO-signed M20 implementation commit
 final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` into `main` as
 GitHub-verified commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
 `c3e2dc1224f530fb483d1b9684ff55329bf9557b`. M20 is complete; no M21 work is
-included or assigned here.
+included in that integration.
+
+M21 adds only a strict resource-bounded public reader for the unchanged
+`ludoweave.receipt/1` graph, structured decoding failures, exact committed/
+dry-run/rejected `0.1.0a1` fixture inputs, installed source/wheel/release
+evidence, and RFC-0004. The fixture set is a single-version baseline, not
+cross-version compatibility evidence. Only the public-reader gate from
+RFC-0003 may become true; all command/transaction/receipt contracts remain
+experimental. It may not reinterpret a protocol or field, add a command,
+operation, migration, provider loader, ambient filesystem/network reader,
+dependency, lock, version, CI job, backend, storage implementation, root
+export, native/WASM code, tag, release, or publication, or claim external
+adoption, certification, cross-version compatibility, or stability promotion.
+Ready PR #30 and GitHub Actions run `31098563810` validate all eight unchanged
+essential jobs on DCO-signed M21 implementation commit
+`cec339be07318a7c1586bb3405e8f9b1904859f5`. Squash integration remains
+pending; no hosted pass widens the M21 boundary or establishes cross-version
+compatibility.
