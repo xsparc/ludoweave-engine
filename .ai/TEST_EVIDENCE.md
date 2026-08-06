@@ -2430,3 +2430,107 @@ build --strict`, `git diff --check`, and the protected-surface comparison
 `git diff --exit-code origin/main -- .github pyproject.toml uv.lock
 src/ludoweave`; all exited 0. The docs build emitted only the recorded upstream
 MkDocs Material/MkDocs 2.0 informational warning.
+
+## M21 baseline and development evidence - 2026-08-06
+
+M21 starts from exact clean synchronized `main` commit
+`feed793e94c345fac4b146c358a68264ef6e5f62` on branch
+`codex/m21-receipt-reader-baseline`. The branch was created before any M21
+change and the initial history inspection showed that commit as local `main`,
+`origin/main`, `origin/HEAD`, and the feature-branch base.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Resolved the unchanged 46-package lock in 0.71 ms. |
+| `uv run --frozen pytest -q tests/unit/test_receipts.py tests/unit/test_persistent_command_schema.py tests/unit/test_canonical_json.py tests/architecture/test_api_stability.py tests/architecture/test_import_boundaries.py tests/unit/test_release_artifacts.py` | 0 | 138 focused baseline tests passed in 1.70 seconds. |
+| `uv run --frozen pytest -q` | 0 | The inherited suite passed 972 tests with one existing Windows symlink-capability skip in 69.25 seconds. |
+| Corrected reader unit/static group | 0 | 26 reader tests passed in 0.41 seconds; Ruff and Pyright reported no finding for the group. |
+| Corrected fixture/reader group | 0 | 24 exact corpus, round-trip, limit, and compatibility tests passed in 0.39 seconds; focused Ruff and Pyright reported no finding. |
+| Corrected installed/release group | 0 | 34 deterministic example, validator, isolated-artifact integration, and release-registration tests passed in 2.22 seconds; focused static checks were clean. |
+| Combined M20/M21 focused group | 0 | 58 tests passed in 3.46 seconds. Ruff was clean after one mechanical import-order correction; Pyright then identified one frozen-value mutation in a test helper, which was corrected. The combined post-correction gate remains pending. |
+| `uv run --frozen ruff check <M20/M21 changed Python files>` | 0 | Corrected focused files passed all Ruff checks. |
+| `uv run --frozen pyright` | 0 | Corrected complete project reported zero errors, warnings, or information findings. |
+| `uv run --frozen pytest -q tests/unit/test_receipt_reader.py tests/integration/test_receipt_v1_compatibility_corpus.py tests/integration/test_receipt_reader_example.py tests/integration/test_command_receipt_stability_decision.py tests/architecture/test_m21_receipt_reader_boundary.py tests/architecture/test_m20_command_receipt_stability_boundary.py tests/unit/test_release_artifacts.py` | 0 | 60 corrected M20/M21 reader, fixture, evidence, release, and architecture tests passed in 4.10 seconds. |
+
+Development evidence is retained rather than rewritten as a clean first pass.
+The first reader unit run had one failing noncanonical-input test because the
+test used Python `False` inside handwritten JSON; replacing it with
+`json.dumps()` corrected the fixture. Early Ruff findings were import/export
+ordering only. Early Pyright findings identified one generic uniqueness helper
+type and one inferred example-report return type; both received explicit types.
+The installed example emitted the intended deterministic sanitized report
+before its static report annotation was corrected. The final helper correction
+routes the attempted frozen-field mutation through `setattr` so Pyright can
+type-check the architecture test while runtime immutability remains exercised.
+
+At this stage no complete M21 static/full/docs/distribution/graphics/benchmark
+gate, final findings-first review, hosted run, PR, merge, tag, release, package
+publication, stability promotion, external adoption, or cross-version
+compatibility result is claimed.
+
+## M21 final local validation and review - 2026-08-06
+
+The final reviewed tree remains based on exact synchronized `main` commit
+`feed793e94c345fac4b146c358a68264ef6e5f62`. M21 changes no file under
+`.github`, `pyproject.toml`, `uv.lock`, or `src/ludoweave/__init__.py`.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Approved cache-access rerun resolved the unchanged 46-package lock in 0.76 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Approved cache-access rerun checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 0 | All 211 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built after correcting one out-of-tree RFC link; only the upstream MkDocs Material/MkDocs 2.0 informational warning remained. |
+| `uv run --frozen pytest -q tests/unit/test_receipt_reader.py tests/integration/test_receipt_v1_compatibility_corpus.py tests/integration/test_receipt_reader_example.py tests/integration/test_command_receipt_stability_decision.py tests/architecture/test_m21_receipt_reader_boundary.py tests/architecture/test_m20_command_receipt_stability_boundary.py tests/unit/test_release_artifacts.py tests/unit/test_canonical_json.py tests/unit/test_persistent_command_schema.py tests/unit/test_transactions.py tests/unit/test_receipts.py tests/unit/test_agent_tool_conformance.py tests/integration/test_agent_cli.py tests/architecture/test_api_stability.py tests/architecture/test_import_boundaries.py tests/architecture/test_release_workflow.py` | 0 | 255 expanded reader, compatibility-fixture, canonical transaction/receipt, agent, release, and architecture tests passed in 5.60 seconds. |
+| `uv run --frozen pytest -q` | 0 | 1,015 tests passed with one existing Windows symlink-capability skip in 69.87 seconds. |
+| `uv build` | 0 | Approved cache-access rerun built `ludoweave-0.1.0a1.tar.gz` and the universal pure-Python wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installation passed all inherited smoke plus both M20 `/2` and M21 receipt-reader evidence. |
+| `uv run --frozen python scripts/release_artifacts.py dist .tmp/m21-release-final` | 0 | Staged a fresh complete ten-artifact candidate with a 20-file sample bundle. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m21-release-final` | 0 | Checksums, manifest, SPDX SBOM, safe extraction, isolated installation, and all bundled evidence including `receipt_reader.py` passed. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Ten unchanged real-wgpu integration tests passed in 5.83 seconds. |
+| `git diff --check` | 0 | No whitespace errors. |
+| `git diff --exit-code main -- .github pyproject.toml uv.lock src/ludoweave/__init__.py` | 0 | Workflow, metadata, lock, package version, and root package exports are unchanged. |
+| `git fsck --no-dangling` | 0 | Repository object connectivity is clean with no dangling objects reported. |
+
+The inherited performance evidence was regenerated and validated on dirty
+Windows/uv-managed CPython 3.12.13 without changing any target. M1's 3,600-tick
+p95 was 36.1046 ms and observed its 12-second target; the 10,000-entity
+simulation p95 was 118.5788 ms and missed its 4 ms target. M2's four
+target-free p50/p95 observations were 29.9931/32.9317 ms for canonical
+100-command round trips, 13.8005/16.0934 ms for atomic apply, 17.7123/19.1362
+ms for 1,000-entity snapshot round trips, and 199.1210/223.4890 ms for verified
+100-batch replay. M3's 10,000-sprite extraction p95 was 25.6030 ms and real-
+wgpu submission p95 was 3.0072 ms; both missed their 3 ms starting targets.
+M4's baseline p95 was 1.8156 ms and observed its 16.666667 ms target; stress
+4/8 p95 values were 2.9891/4.2398 ms with no targets. Five-repeat M7 base and
+graphics profiles validated with two and three workloads. No local miss
+authorizes native, WASM, dependency, or scope expansion.
+
+Findings-first review corrected four reader-boundary defects before the final
+gate: mapping input now enforces encoded `max_bytes`; canonical limit failures
+retain causes and map to the typed oversized code; very long numeric entity
+identities cannot escape through CPython integer-conversion limits; and changed
+component epochs must advance. Nested allocator/epoch objects now fail exact-
+field checks before member decoding. New regressions exercise every correction.
+The review also confirmed detached inputs, exact status/hash/tick/diff
+relationships, experimental-only focused exports, no world mutation or
+provider access, and deterministic sanitized evidence.
+
+Development failures remain factual: initial sandboxed lock, sync, and build
+attempts exited 1 before project execution because uv's existing user cache was
+inaccessible; approved cache-access reruns passed. The first full strict-docs
+run exited 1 for an RFC link outside the MkDocs tree and passed after the link
+targeted the in-site API-status page. A read-only PowerShell tree query again
+interpreted unquoted revision braces, produced ambiguous-revision output, and
+passed when the revisions were quoted.
+
+The final scope/security/package review found no new credential assignment,
+ambient time/random/environment/path input, backend/native/WASM leakage,
+workflow/dependency/lock/version/root-export change, stale link, or unsupported
+pass claim. The wheel has 94 entries, only the existing optional exact graphics
+requirements, and no native or WASM file. The frozen fixtures and manifest have
+exact checked byte sizes/hashes and explicitly claim only
+`single-version-baseline`. No hosted M21 run, PR, merge, tag, GitHub release,
+PyPI publication, stability promotion, external adoption, certification, or
+cross-version compatibility is claimed at this stage.

@@ -2,6 +2,14 @@
 
 ## Current milestone
 
+M21 is assigned on `codex/m21-receipt-reader-baseline` from exact clean
+synchronized `main` commit `feed793e94c345fac4b146c358a68264ef6e5f62`.
+Its bounded scope is a public resource-limited reader for the unchanged
+`ludoweave.receipt/1` graph plus exact single-version fixtures, installed
+evidence, RFC-0004, and compatibility-gate bookkeeping. Implementation is
+locally complete and findings-first reviewed; publication, hosted validation,
+and integration remain pending.
+
 M0 through M7 are complete, independently accepted, integrated into `main`,
 and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
 independently accepted, published as PR #9 from
@@ -296,27 +304,32 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M19 is complete, hosted-validated, and squash-integrated. M20 is complete,
-  reviewed, hosted-validated, and squash-integrated from
-  `codex/m20-command-receipt-stability-decision` from exact clean synchronized
-  `main` commit `2fdeccd697f09f3e165130eb8564a6c585d472d2`. It is an installed
-  command/receipt preview-readiness decision only: confirm the existing
-  same-version canonical, atomic, and transport-independent foundation; define
-  the complete compatibility gate; and record the decision in RFC-0003. It may
-  not add or change a command, operation, receipt reader/field, schema,
-  migration, stability label, runtime export, dependency, lock, version, or CI
-  job. Ready PR #28 targets `main`; GitHub Actions run `31095009029` passed all
-  eight unchanged essential jobs on DCO-signed implementation commit
-  `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`. PR #28 squash-integrated exact
-  final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` as
-  GitHub-verified `main` commit
-  `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
-  `c3e2dc1224f530fb483d1b9684ff55329bf9557b`. No compatibility promise,
-  external adoption, tag, release, publication, certification, or independently
-  authored consumer evidence may be inferred. No M21 implementation is
-  assigned in this integration record.
+- M20 is complete, hosted-validated, and squash-integrated. M21 is the only
+  assigned slice. It adds strict `TransactionReceipt.from_mapping()` and
+  `.from_json()` decoding under frozen explicit resource limits, structured
+  decode/incompatibility failures, exact committed/dry-run/rejected v1
+  fixtures, and deterministic source/wheel/release evidence. It versions the
+  M20 living evidence to `/2` and satisfies only the bounded-reader gate.
+- M21 may not reinterpret receipt/1, claim cross-version compatibility or
+  external adoption, promote stability, add a command/operation/migration,
+  discover or load providers, access ambient filesystem/network resources, or
+  change package-root exports, dependencies, lock, version, workflows, jobs,
+  backends, storage, native/WASM code, tags, releases, or publication.
 
 ## Validation state
+
+- The exact M21 base resolves 46 locked packages. Its focused receipt,
+  persistent-schema, canonical-JSON, API/import-boundary, and artifact baseline
+  passes 138 tests in 1.70 seconds; its inherited full suite passes 972 tests
+  with one existing Windows symlink-capability skip in 69.25 seconds. The final
+  reviewed M21 gate passes 1,015 tests with the same single skip in 69.87
+  seconds, 211-file formatting, zero Ruff/Pyright findings, strict docs, a pure
+  94-entry wheel, isolated-wheel smoke, a fresh complete ten-artifact release
+  smoke, 255 expanded receipt/transaction/agent/release/architecture tests, and
+  ten real-wgpu tests. Every inherited benchmark/profile artifact validates;
+  M1 simulation and both M3 targets remain observed misses and authorize no
+  acceleration. Workflow, metadata, lock, version, and root exports are
+  unchanged. Hosted validation and integration remain pending.
 
 - The exact M20 base resolves 46 locked packages. Its focused canonical
   command/transaction/receipt/agent/API baseline passes 91 tests in 1.52

@@ -15,6 +15,7 @@ nav:
   - Agent-tool conformance: agent-tool-conformance.md
   - WorldStore conformance: world-store-conformance.md
   - Command and receipt stability decision: command-receipt-stability-decision.md
+  - Bounded receipt reader: receipt-reader.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
   - Constrained 3D scope decision: constrained-3d-decision.md
@@ -29,6 +30,7 @@ nav:
       - RFC-0001 - Defer first native kernel: rfcs/0001-defer-first-native-kernel.md
       - RFC-0002 - Data-only plugin manifests: rfcs/0002-data-only-plugin-manifest-compatibility.md
       - RFC-0003 - Retain experimental command/receipt contracts: rfcs/0003-retain-experimental-command-receipt-contracts.md
+      - RFC-0004 - Bounded receipt reader and v1 baseline: rfcs/0004-bounded-receipt-reader-and-v1-baseline.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

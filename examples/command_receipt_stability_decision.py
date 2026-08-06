@@ -25,6 +25,7 @@ from ludoweave.world import (
     CommandEnvelope,
     CommandSchemaError,
     CommandTransaction,
+    ReceiptLimits,
     ReceiptStatus,
     TransactionReceipt,
     TransactionService,
@@ -32,7 +33,7 @@ from ludoweave.world import (
 )
 from ludoweave.world import __stability__ as world_stability
 
-_SCHEMA = "ludoweave.evaluation.command-receipt-stability/1"
+_SCHEMA = "ludoweave.evaluation.command-receipt-stability/2"
 _STABILITY_EXPORTS = (
     "COMMAND_PROTOCOL",
     "RECEIPT_PROTOCOL",
@@ -41,7 +42,10 @@ _STABILITY_EXPORTS = (
     "CommandEnvelope",
     "CommandOutcome",
     "CommandTransaction",
+    "IncompatibleReceiptError",
     "ReceiptDiagnostic",
+    "ReceiptDecodeError",
+    "ReceiptLimits",
     "ReceiptStatus",
     "TransactionReceipt",
     "TransactionService",
@@ -210,13 +214,16 @@ def evaluate() -> dict[str, object]:
         == {
             "command_envelope": True,
             "command_transaction": True,
-            "transaction_receipt": False,
+            "transaction_receipt": True,
         }
+        and ReceiptLimits().max_outcomes == 1_024
     )
     if not current_boundary_confirmed:
         raise AssertionError("M20 evidence no longer confirms the command/receipt boundary")
 
-    promotion_gates = {name: False for name in _PROMOTION_GATES}
+    promotion_gates = {
+        name: name == "public_receipt_reader_and_bounds" for name in _PROMOTION_GATES
+    }
     promotion_ready = all(promotion_gates.values())
     if promotion_ready:
         raise AssertionError("M20 evidence unexpectedly satisfies every preview promotion gate")

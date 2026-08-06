@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M20 are hosted-validated and integrated into `main`. M20 retains command/receipt experimental status after its installed preview-readiness decision. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M20 are hosted-validated and integrated into `main`. M21 adds a bounded experimental receipt reader and freezes a single-version v1 compatibility baseline; it does not promote stability or claim cross-version evidence. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -61,6 +61,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - Deterministic installed command/receipt stability evidence that confirms the
   same-version canonical and atomic foundation while retaining experimental
   status under RFC-0003 until every compatibility gate is evidenced.
+- A strict bounded `ludoweave.receipt/1` reader with detached immutable output,
+  typed failures, configurable resource limits, and frozen `0.1.0a1` fixtures
+  that seed—but do not yet satisfy—a cross-version compatibility corpus.
 - ECS-authoritative Clockwork Arena with fixed-seed waves, enemies, projectiles, health, score, restart, exact 3,600-tick replay evidence, optional wgpu presentation, and stress workloads.
 - A transport-independent typed agent service with explicit capabilities, quotas, redaction, serialized mutations, and the same canonical command receipts used by direct Python.
 - Twelve observation/control tools exposed through Python, a project-confined CLI, and a local-only MCP `2025-11-25` stdio adapter with no network listener.
@@ -98,6 +101,7 @@ uv run python examples/fixed_step_world.py --ticks 6
 uv run python examples/clockwork_arena.py --ticks 600
 uv run python examples/rollback_readiness.py --ticks 120 --branch-tick 60
 uv run python examples/command_receipt_stability_decision.py
+uv run python examples/receipt_reader.py
 uv run python examples/constrained_3d_decision.py
 uv run python examples/visual_editor_decision.py
 uv run python examples/wasm_mod_security_decision.py
@@ -198,6 +202,9 @@ in-memory boundary, sanitized evidence, and non-certification limitations.
 The [command and receipt stability decision](docs/command-receipt-stability-decision.md)
 documents M20's installed same-version evidence, complete preview gate, and
 RFC-0003 decision to retain experimental status without changing a wire format.
+The [bounded receipt-reader guide](docs/receipt-reader.md) documents M21's
+exact v1 schema checks, limits, immutable decoding, failure behavior, and
+single-version fixture non-claim under RFC-0004.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

@@ -73,6 +73,13 @@ a cross-version corpus, external consumer feedback, operation and receipt-field
 evolution rules, a bounded public receipt reader, and a supported deprecation-
 capable feature-release channel.
 
+RFC-0004 resolves the bounded-reader gate with a strict resource-limited
+decoder for the unchanged receipt/1 graph and immutable committed, dry-run,
+and rejected fixtures from `0.1.0a1`. This satisfies only gate 4 of RFC-0003.
+The fixture set is explicitly a single-version baseline; cross-version
+compatibility, external adoption, evolution rules, a release channel, and
+stability promotion remain unresolved.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

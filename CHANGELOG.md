@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add a bounded experimental `TransactionReceipt` reader, structured receipt
+  decode failures, deterministic limits, frozen receipt/1 baseline fixtures,
+  and installed source/wheel/release evidence under RFC-0004.
+- Version the command/receipt readiness report to `/2`; its public-reader gate
+  is now true while the overall experimental-retention decision remains.
 - Add deterministic installed command/receipt preview-readiness evidence and
   RFC-0003, retaining the central contracts as experimental until the complete
   compatibility gate is evidenced.

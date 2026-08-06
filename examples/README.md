@@ -10,6 +10,7 @@ python clockwork_arena.py --ticks 600
 python rich_2d_showcase.py --ticks 6
 python rollback_readiness.py --ticks 120 --branch-tick 60
 python command_receipt_stability_decision.py
+python receipt_reader.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -41,6 +42,11 @@ or live rollback service.
 command, transaction, receipt, and 12-tool agent foundations, then records why
 the central protocols remain experimental. It changes no runtime or format and
 does not claim cross-version compatibility or external adoption.
+
+`receipt_reader.py` decodes generated committed, dry-run, and rejected
+`ludoweave.receipt/1` documents through the bounded public reader and exercises
+its malformed, incompatible, and oversized failures. Its sanitized report is
+same-version evidence, not a compatibility or certification claim.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

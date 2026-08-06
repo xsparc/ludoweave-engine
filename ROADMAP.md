@@ -29,6 +29,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M18 installed agent-tool conformance | Hosted-validated explicit-factory 12-tool baseline, direct-service artifact evidence, and unchanged essential CI topology |
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
+| Locally complete | M21 bounded receipt reader and v1 baseline | Reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and no stability promotion; hosted validation pending |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -124,6 +125,12 @@ Ready PR #28 passed the unchanged eight-job hosted matrix as run
 final evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` into `main` as
 GitHub-verified commit `d166ef86bf25526d9d7715f63263d3cac6db78d4`; both trees are
 `c3e2dc1224f530fb483d1b9684ff55329bf9557b`.
+M21 starts from integrated `main` commit
+`feed793e94c345fac4b146c358a68264ef6e5f62`. It adds the bounded public reader
+identified by RFC-0003 and freezes exact `0.1.0a1` receipt/1 fixtures. RFC-0004
+marks only the reader-and-bounds gate complete; the fixture corpus remains a
+single-version baseline, and no command/receipt stability promotion or
+cross-version claim is made.
 
 ## Good-first contribution queue
 

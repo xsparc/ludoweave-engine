@@ -55,6 +55,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "agent_tool_conformance.py" in names
     assert prefix + "alpha_acceptance.py" in names
     assert prefix + "render_device_conformance.py" in names
+    assert prefix + "receipt_reader.py" in names
     assert prefix + "command_receipt_stability_decision.py" in names
     assert prefix + "constrained_3d_decision.py" in names
     assert prefix + "rich_2d_showcase.py" in names
