@@ -53,6 +53,34 @@ workflow job, network activity, telemetry, stability promotion, external fact,
 tag, release, or publication. Commit, ready PR, hosted validation, delayed
 thread-aware review, and squash integration remain pending.
 
+## M25 hosted validation and initial thread-aware review - PR #38
+
+Ready PR #38 targets exact base
+`680e90dd8f9377fece23c43bd9f07ca9d76297de` from DCO-signed implementation
+commit `9667e020c2213d415072b7c7efbd880f6b58abfa`. GitHub Actions run
+`31111498136` completed successfully across the unchanged eight-job topology:
+
+| Job | Result |
+| --- | --- |
+| Quality, tests, and distribution | Passed formatting, Ruff, Pyright, strict docs, non-provider tests, base profile, pure build, installed-wheel smoke, release staging, and release smoke. |
+| Compatibility - Ubuntu 3.13 | Passed. |
+| Compatibility - Ubuntu 3.14 | Passed. |
+| Compatibility - Windows 3.14 | Passed. |
+| Compatibility - macOS 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+`gh run list` returned exactly that one run for the M25 branch. GitHub reports
+PR #38 open, ready, `MERGEABLE`, and `CLEAN`, with the exact head and base
+above and all eight checks successful. The first GraphQL thread-aware read
+returned no issue comment, review, or inline review thread.
+
+This hosted pass does not establish an external consumer, feedback, adoption,
+cross-version release history, supported release channel, stability promotion,
+tag, GitHub release, or PyPI publication. A CI-skipping factual evidence commit,
+delayed thread-aware reread, and squash integration remain.
+
 ## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

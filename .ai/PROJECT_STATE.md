@@ -21,7 +21,13 @@ credential-bearing, local-host, Unicode, and backslash HTTPS locators. The
 final local gate passes 227-file formatting, Ruff, strict Pyright, strict docs,
 1,109 tests with two Windows symlink-capability skips, pure build, isolated
 wheel/release smoke, all documented benchmark/profile validators, 10 real-wgpu
-tests, and both graphics vertical slices. Hosted validation remains pending.
+tests, and both graphics vertical slices.
+The DCO-signed implementation is published as ready PR #38 at exact head
+`9667e020c2213d415072b7c7efbd880f6b58abfa` against assigned base
+`680e90dd8f9377fece23c43bd9f07ca9d76297de`. Sole GitHub Actions run
+`31111498136` passed all eight unchanged essential jobs. GitHub reports the PR
+`MERGEABLE` and `CLEAN`; the first thread-aware read found no issue comment,
+review, or inline review thread. Delayed review and squash integration remain.
 
 M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m24-cross-version-corpus-readiness` from exact clean

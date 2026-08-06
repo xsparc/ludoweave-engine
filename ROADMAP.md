@@ -202,7 +202,12 @@ identities before gate 2 can become true. The reviewed manifest is empty, so
 the current result remains false; the synthetic `.invalid` regression proves
 only gate logic and is not feedback or adoption evidence. No runtime API,
 protocol, dependency, version, workflow job, network activity, release, or
-publication is added.
+publication is added. Ready PR #38 targets the exact assigned base from
+DCO-signed implementation commit
+`9667e020c2213d415072b7c7efbd880f6b58abfa`; sole GitHub Actions run
+`31111498136` passed all eight unchanged essential jobs, and the first thread-
+aware read found no review finding. Delayed review and squash integration
+remain.
 
 ## Good-first contribution queue
 
