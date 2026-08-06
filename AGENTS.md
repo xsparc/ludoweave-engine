@@ -141,3 +141,8 @@ operation, migration, provider loader, ambient filesystem/network reader,
 dependency, lock, version, CI job, backend, storage implementation, root
 export, native/WASM code, tag, release, or publication, or claim external
 adoption, certification, cross-version compatibility, or stability promotion.
+Ready PR #30 and GitHub Actions run `31098563810` validate all eight unchanged
+essential jobs on DCO-signed M21 implementation commit
+`cec339be07318a7c1586bb3405e8f9b1904859f5`. Squash integration remains
+pending; no hosted pass widens the M21 boundary or establishes cross-version
+compatibility.

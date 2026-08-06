@@ -2,11 +2,9 @@
 
 - **Task:** M21 - bounded public receipt reader and v1 compatibility-fixture
   baseline
-- **Status:** Locally complete and reviewed. Runtime, frozen-fixture,
-  installed-evidence, release-smoke, architecture-test, RFC, documentation,
-  full quality, distribution, graphics, inherited benchmark/profile, and
-  findings-first review gates pass. No M21 commit, push, pull request, hosted
-  run, or merge is claimed yet.
+- **Status:** Implementation, local review, publication, and hosted validation
+  are complete. Ready PR #30 targets `main`; its sole GitHub Actions run passed
+  all eight unchanged essential jobs. Squash integration remains pending.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `feed793e94c345fac4b146c358a68264ef6e5f62` on
@@ -59,6 +57,11 @@
   pure-wheel and fresh release smoke, 255 expanded tests, ten real-wgpu tests,
   and every inherited benchmark/profile validator. M1 simulation and both M3
   targets remain observed misses. Exact results and corrected first attempts
-  are recorded in `.ai/TEST_EVIDENCE.md`.
+  are recorded in `.ai/TEST_EVIDENCE.md`. DCO-signed implementation commit
+  `cec339be07318a7c1586bb3405e8f9b1904859f5` is published through ready PR
+  #30. GitHub Actions run `31098563810` passed all eight essential jobs and is
+  the branch's only run. GitHub reports the PR mergeable and clean. No merge,
+  tag, release, publication, stability promotion, external adoption, or cross-
+  version compatibility is claimed yet.
   Early failures and their corrections remain recorded in
   `.ai/TEST_EVIDENCE.md`.

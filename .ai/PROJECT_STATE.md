@@ -7,8 +7,10 @@ synchronized `main` commit `feed793e94c345fac4b146c358a68264ef6e5f62`.
 Its bounded scope is a public resource-limited reader for the unchanged
 `ludoweave.receipt/1` graph plus exact single-version fixtures, installed
 evidence, RFC-0004, and compatibility-gate bookkeeping. Implementation is
-locally complete and findings-first reviewed; publication, hosted validation,
-and integration remain pending.
+locally complete and findings-first reviewed. Ready PR #30 publishes DCO-signed
+implementation commit `cec339be07318a7c1586bb3405e8f9b1904859f5`; sole hosted
+run `31098563810` passed all eight unchanged essential jobs. Squash integration
+remains pending.
 
 M0 through M7 are complete, independently accepted, integrated into `main`,
 and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
@@ -329,7 +331,9 @@ Repository-state evidence is integrated by PR #18 as main commit
   ten real-wgpu tests. Every inherited benchmark/profile artifact validates;
   M1 simulation and both M3 targets remain observed misses and authorize no
   acceleration. Workflow, metadata, lock, version, and root exports are
-  unchanged. Hosted validation and integration remain pending.
+  unchanged. Ready PR #30 is mergeable and clean after sole hosted run
+  `31098563810` passed all eight essential jobs on the DCO-signed implementation
+  commit. Integration remains pending.
 
 - The exact M20 base resolves 46 locked packages. Its focused canonical
   command/transaction/receipt/agent/API baseline passes 91 tests in 1.52

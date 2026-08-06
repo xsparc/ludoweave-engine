@@ -2534,3 +2534,30 @@ exact checked byte sizes/hashes and explicitly claim only
 `single-version-baseline`. No hosted M21 run, PR, merge, tag, GitHub release,
 PyPI publication, stability promotion, external adoption, certification, or
 cross-version compatibility is claimed at this stage.
+
+## M21 hosted validation - 2026-08-06
+
+Ready PR #30 targets `main` from `codex/m21-receipt-reader-baseline`. GitHub
+reports exact base `feed793e94c345fac4b146c358a68264ef6e5f62`, DCO-signed
+implementation head `cec339be07318a7c1586bb3405e8f9b1904859f5`, `MERGEABLE`,
+and `CLEAN` after checks completed.
+
+GitHub Actions pull-request run `31098563810` executed that implementation
+commit from `2026-08-06T11:45:38Z` through `2026-08-06T11:48:05Z` and
+concluded `success`. All eight unchanged essential jobs passed:
+
+- `Quality, tests, and distribution` passed lock verification, formatting,
+  Ruff, Pyright, strict docs, baseline tests, base profile smoke, sdist/wheel
+  build, isolated-wheel smoke, release staging, and complete release smoke;
+- compatibility tests passed on Ubuntu CPython 3.13 and 3.14, Windows CPython
+  3.14, and macOS CPython 3.14; and
+- real graphics, graphics profiling, Clockwork Arena, and Agent World Builder
+  passed on Ubuntu software Vulkan, Windows, and macOS.
+
+The workflow file is unchanged, and `gh run list` returned only run
+`31098563810` for the M21 branch. Hosted evidence confirms the supported
+installed same-version reader behavior and packaging paths. It does not prove
+cross-version compatibility, authenticate receipt provenance, establish
+external consumer adoption, promote stability, certify a provider, authorize
+native acceleration, or create a tag, release, or package publication. PR #30
+has not yet been merged at this stage.
