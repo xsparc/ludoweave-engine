@@ -185,7 +185,10 @@ Ready PR #36 targets that exact base from DCO-signed implementation commit
 `MERGEABLE` and `CLEAN`. Delayed automated review found one valid append-only-
 history gap. The locally validated correction freezes mandatory source/release
 prefixes and proves a newly pinned future manifest cannot replace the M21 entry;
-follow-up hosted validation and squash integration remain.
+DCO correction commit `b393d6857f0a60c5d124fdeb25b3779c8f9dab86`
+passed necessary run `31108924069` across all eight unchanged essential jobs.
+Final thread-aware reread found no actionable finding; squash integration
+remains.
 
 ## Good-first contribution queue
 

@@ -127,6 +127,45 @@ dependency, lock, package version, workflow, or CI topology. Correction commit,
 push, one necessary hosted run, final thread-aware reread, and squash integration
 remain.
 
+## M24 corrected hosted validation and final thread-aware reread - PR #36
+
+DCO-signed correction commit
+`b393d6857f0a60c5d124fdeb25b3779c8f9dab86` was pushed once. GitHub Actions
+pull-request run `31108924069` executed that exact head from
+`2026-08-06T14:03:36Z` through `2026-08-06T14:06:16Z` and concluded `success`.
+All eight unchanged essential jobs passed:
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution - Ubuntu, Python 3.12 | Passed lock, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility - Ubuntu, Python 3.13 | Passed. |
+| Compatibility - Ubuntu, Python 3.14 | Passed. |
+| Compatibility - Windows, Python 3.14 | Passed. |
+| Compatibility - macOS, Python 3.14 | Passed. |
+| Graphics smoke - Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke - macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+GitHub lists exactly two M24 branch runs: initial successful run `31107800179`
+on the implementation commit and necessary successful correction run
+`31108924069`. PR #36 is open, ready, `MERGEABLE`, and `CLEAN` at the exact
+correction head above and assigned base
+`55c7a72337913303b6b1f6bd31edbca7ff28683b`; all eight final checks are
+`SUCCESS`.
+
+Final GraphQL thread-aware reread found no new issue comment, review, or thread.
+The original P1 discussion remains unresolved and non-outdated because its loop
+anchor persists at the shifted line. Current adjacent code freezes the exact
+M21 source prefix and the accepted-release prefix, independently gates their
+preservation, and the new test proves even a newly pinned replacement corpus
+cannot satisfy admission. The requested condition is therefore present and no
+finding remains actionable. No reply or manual thread resolution was performed.
+
+The successful hosted checks do not establish real cross-version release
+history, supported-release evidence, external feedback, stability promotion,
+tag, GitHub release, or PyPI publication. A final documentation-only evidence
+commit will use `[skip ci]`; squash integration remains.
+
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

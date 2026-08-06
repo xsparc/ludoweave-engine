@@ -29,8 +29,13 @@ local correction freezes executable mandatory source/release prefixes, adds an
 explicit history-preservation gate and regression, and passes 28 focused tests,
 1,076 full-suite tests with the existing skip, the complete static/docs gate,
 pure build, isolated wheel smoke, and a fresh ten-artifact release smoke. DCO
-correction commit, one necessary hosted run, final thread reread, and squash
-integration remain.
+correction commit `b393d6857f0a60c5d124fdeb25b3779c8f9dab86` passed necessary
+GitHub Actions run `31108924069` across all eight unchanged essential jobs. PR
+#36 is `MERGEABLE` and `CLEAN`. The original thread remains unresolved and non-
+outdated because its loop anchor persists, but the adjacent frozen-prefix gate
+and replacement-corpus regression directly satisfy it; no finding remains
+actionable, and no reply or manual resolution was performed. CI-skipping final
+evidence and squash integration remain.
 
 M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -412,8 +417,9 @@ Repository-state evidence is integrated by PR #18 as main commit
   smoke. Ready PR #36 is locally complete and its sole hosted run
   `31107800179` passed all eight unchanged essential jobs. One delayed-review
   append-only finding is corrected locally with frozen mandatory history and a
-  full passing gate; correction publication, follow-up hosted validation, final
-  review reread, and squash integration remain.
+  full passing gate; necessary follow-up run `31108924069` passed the same eight
+  jobs, and final thread-aware reread found no actionable finding. CI-skipping
+  evidence and squash integration remain.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. M24 may
   not promote the experimental command/receipt surface or fabricate those

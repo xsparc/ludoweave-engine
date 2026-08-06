@@ -7,7 +7,9 @@
   `31107800179` passed all eight unchanged essential jobs. Delayed automated
   review found one valid append-only-history gap. The correction freezes
   mandatory source/release prefixes and passes the complete local/artifact
-  gate; DCO correction commit, one necessary hosted run, final thread reread,
+  gate. DCO correction commit `b393d6857f0a60c5d124fdeb25b3779c8f9dab86`
+  passed necessary hosted run `31108924069` across all eight jobs. Final
+  thread-aware reread found no actionable finding; CI-skipping evidence commit
   and squash integration remain.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
