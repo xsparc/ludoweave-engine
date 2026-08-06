@@ -1,10 +1,8 @@
 # Current Task
 
 - **Task:** M25 - external-consumer-feedback admission readiness
-- **Status:** Implementation, local validation, publication, and the single
-  necessary hosted run are complete on
-  `codex/m25-external-consumer-feedback-readiness`. Delayed thread-aware review
-  and squash integration remain.
+- **Status:** Complete and squash-integrated into `main`. This no-CI branch
+  records the exact verified integration; publication of that record remains.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized `main` commit
   `680e90dd8f9377fece23c43bd9f07ca9d76297de` after verified PR #37.
@@ -66,4 +64,10 @@
   reread found the original thread unresolved and non-outdated because its
   anchor persists, but the adjacent non-IP gate and exact regressions satisfy
   it; no finding remains actionable. No reply or manual resolution was
-  performed. A final CI-skipping evidence commit and squash integration remain.
+  performed.
+- **Integration:** PR #38 squash-integrated exact final evidence head
+  `d0866967832fe80a49942184e1ab81d3c426a478` as GitHub-verified `main`
+  commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`. Both trees are
+  `fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`; the squash commit's sole parent
+  is assigned base `680e90dd8f9377fece23c43bd9f07ca9d76297de`, and its message contains the
+  DCO sign-off.

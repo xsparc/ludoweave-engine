@@ -58,7 +58,11 @@ regressions. DCO correction commit
 `90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary run
 `31112342328` across all eight unchanged essential jobs. Final thread-aware
 reread found no actionable finding; no reply or manual resolution was
-performed. Squash integration remains.
+performed. PR #38 squash-integrated exact final evidence head
+`d0866967832fe80a49942184e1ab81d3c426a478` into `main` as GitHub-verified
+commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`; both trees are
+`fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`, and the sole parent is the
+assigned base. The milestone branch remains the audit trail.
 
 M24 adds only strict offline cross-version receipt-corpus admission readiness.
 Its current result remains false and does not claim actual history or adoption.
@@ -71,8 +75,8 @@ commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8`; both trees are
 `fa3c455ccd9722c666cc07cae325f1b50e37ddc7`, and the sole parent is the
 assigned base. The milestone branch remains the audit trail.
 
-M0 through M24 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`. M25 is the only active milestone.
+M0 through M25 are complete, independently accepted, hosted-CI validated, and
+integrated into `main`. This branch records M25 integration only.
 M22 adds only the built-in v1 operation-argument compatibility and deprecation
 policy identified by RFC-0003: a frozen repository contract, deterministic
 installed evidence, tests, RFC/docs, artifact smoke, and gate bookkeeping. It
