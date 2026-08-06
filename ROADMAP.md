@@ -33,7 +33,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M22 built-in operation argument compatibility | PR #32 squash-integrated; reviewed exact seven-operation v1 policy, installed valid/missing/unknown/default-omission evidence, RFC-0005, artifact smoke, and all eight unchanged essential jobs passed on the corrected head |
 | Done | M23 receipt semantic-diff and diagnostic compatibility | PR #34 squash-integrated the corrected exact policy/evidence; 1,050 local tests and both eight-job hosted runs passed with no current actionable review finding |
 | Done | M24 cross-version corpus admission readiness | PR #36 squash-integrated; exact preserved history, false current gate, append-only correction, installed artifact smoke, RFC-0007, and both eight-job hosted runs passed |
-| Locally validated | M25 external-consumer-feedback admission readiness | Strict reviewed manifest, sanitized false current report, append-only future record gate, installed artifact smoke, RFC-0008, and no adoption claim; hosted validation pending |
+| Done | M25 external-consumer-feedback admission readiness | PR #38 squash-integrated; strict reviewed manifest, false current gate, reviewed non-IP correction, installed artifact smoke, RFC-0008, and both eight-job hosted runs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -211,7 +211,10 @@ IP locator gap. The locally validated correction requires a non-IP DNS-style
 authority and adds loopback/link-local regressions. DCO correction commit
 `90ed57e360765cf7f2d0973e41b8f8ec06dc4b50` passed necessary run
 `31112342328` across all eight unchanged jobs. Final thread-aware reread found
-no actionable finding; squash integration remains.
+no actionable finding. PR #38 squash-integrated exact final evidence head
+`d0866967832fe80a49942184e1ab81d3c426a478` into `main` as GitHub-verified
+commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`; both trees are
+`fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`, and the branch is retained.
 
 ## Good-first contribution queue
 

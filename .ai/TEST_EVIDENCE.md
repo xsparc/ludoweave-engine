@@ -136,6 +136,39 @@ feedback, adoption, cross-version release history, supported release channel,
 stability promotion, tag, GitHub release, or PyPI publication. A final
 CI-skipping factual evidence commit and squash integration remain.
 
+## M25 main integration - 2026-08-07
+
+Ready PR #38 was squash-merged at `2026-08-06T14:49:28Z`. GitHub reports merged
+commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b` with sole parent
+`680e90dd8f9377fece23c43bd9f07ca9d76297de`, tree
+`fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`, DCO sign-off, and valid GitHub
+verification at `2026-08-06T14:49:33Z`. The tree exactly matches final feature
+evidence head `d0866967832fe80a49942184e1ab81d3c426a478`; the milestone branch
+is retained for audit history.
+
+The first combined post-merge command omitted PowerShell-safe quoting around
+two `^{tree}` revision expressions. PowerShell rewrote those two arguments and
+both `git rev-parse` subcommands emitted fatal ambiguous-revision errors; no
+tree result is claimed from them. The same tree probes were rerun with quoted
+revisions and exited 0, returning exact matching tree
+`fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6` for final feature head and
+`origin/main`. The remaining fetch, commit metadata, and GitHub verification
+steps in the first command completed successfully.
+
+GitHub lists only initial successful run `31111498136` and necessary successful
+correction run `31112342328` for the milestone branch; both factual evidence
+commits used `[skip ci]` and created no additional run. Integration changes no
+runtime source, API/export, protocol, workflow, dependency, lock, version,
+stability label, or reviewed-manifest byte. No tag, GitHub release, PyPI
+publication, actual external feedback, adoption, certification, cross-version
+release history, supported release channel, or stability promotion is claimed.
+
+After `git fetch origin main`, local `main` fast-forwarded cleanly from assigned
+base to verified squash commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`.
+`codex/m25-main-integration` was created from that exact commit for this factual
+record. Strict docs, whitespace, scope, Git-object, commit/tree, zero-extra-run,
+and review-state checks precede its CI-skipping publication.
+
 ## M24 development evidence - 2026-08-06, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

@@ -2,7 +2,8 @@
 
 ## Current milestone
 
-M25 is in progress on `codex/m25-external-consumer-feedback-readiness` from
+M25 is complete, reviewed, hosted-validated, and squash-integrated. It was
+implemented on `codex/m25-external-consumer-feedback-readiness` from
 exact clean synchronized `main` commit
 `680e90dd8f9377fece23c43bd9f07ca9d76297de`. Its bounded outcome is a strict
 offline admission harness for RFC-0003 gate 2. A record can count only after
@@ -39,7 +40,12 @@ run `31112342328` across all eight unchanged essential jobs. PR #38 is
 because its anchor persists, but the adjacent non-IP gate and exact loopback/
 link-local regressions directly satisfy it; no finding remains actionable, and
 no reply or manual resolution was performed. A final CI-skipping evidence
-commit and squash integration remain.
+head `d0866967832fe80a49942184e1ab81d3c426a478` was squash-integrated by PR
+#38 as GitHub-verified `main` commit
+`9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`. Both trees are
+`fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6`; the squash commit's sole parent
+is assigned base `680e90dd8f9377fece23c43bd9f07ca9d76297de`, and its message contains the
+DCO sign-off. The milestone branch remains the audit trail.
 
 M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m24-cross-version-corpus-readiness` from exact clean
@@ -456,9 +462,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M24 are complete, hosted-validated, and squash-integrated. M25 is
-  the only active slice and is limited to external-consumer-feedback admission
-  readiness.
+- M20 through M25 are complete, hosted-validated, and squash-integrated. This
+  branch records M25 integration only; no subsequent milestone is included.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.
