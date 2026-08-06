@@ -2252,3 +2252,21 @@ certify, or count third-party storage implementations; establish persistence,
 external-resource lifecycle, free-threaded safety, or maintenance readiness;
 publish a package; create a tag or release; add a backend, dependency, format,
 or CI job; or claim the locally missed M1/M3 performance targets passed.
+
+## M19 main integration - 2026-08-06
+
+Ready PR #26 was squash-merged at `2026-08-06T10:17:52Z`. GitHub reports
+merged commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9` with sole parent
+`4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`, exact tree
+`7fcd614fdde76daf1807f27dbe78ec306a501cc3`, a valid GitHub signature, and the
+DCO trailer. The tree exactly matches final evidence head
+`b93ca591f7063a1500cf105e6b0496b33573c69a` on retained branch
+`codex/m19-world-store-conformance`; `git diff --exit-code` reported no
+difference between those trees.
+
+GitHub still lists only successful run `31092244573` for the milestone branch;
+the documentation-only hosted-evidence commit used `[skip ci]` and created no
+second run. Integration changes no runtime, public API, workflow, dependency,
+lock, package version, benchmark target, format, or release artifact. No tag,
+GitHub release, PyPI publication, provider discovery/admission/certification,
+or independently authored WorldStore adoption is claimed.
