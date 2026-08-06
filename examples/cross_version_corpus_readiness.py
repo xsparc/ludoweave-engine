@@ -17,6 +17,15 @@ _SCHEMA = "ludoweave.evaluation.cross-version-receipt-corpus/1"
 _CORPUS_SCHEMA = "ludoweave.compatibility.cross-version-receipt-corpus/1"
 _SOURCE_SCHEMA = "ludoweave.compatibility.receipt-corpus/1"
 _REVIEWED_CORPUS_SHA256 = "0b1d7b9f68b49ad1f6ab21cff4f744140cf3a16b52c6cdebd691b28b375a72ae"
+_MANDATORY_SOURCE_PREFIX = (
+    (
+        "receipt_v1",
+        "0.1.0a1",
+        762,
+        "ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3",
+    ),
+)
+_MANDATORY_RELEASE_PREFIX: tuple[tuple[str, str, str, str], ...] = ()
 _MAX_MANIFEST_BYTES = 65_536
 _MAX_SOURCE_MANIFESTS = 16
 _MAX_FIXTURES_PER_MANIFEST = 64
@@ -82,32 +91,46 @@ def evaluate(corpus: Path) -> dict[str, object]:
         raise RuntimeError("cross-version corpus must preserve a source manifest")
     if len(source_entries) > _MAX_SOURCE_MANIFESTS:
         raise RuntimeError("cross-version corpus exceeds its source-manifest limit")
-    source_versions: list[str] = []
+    source_identities: list[tuple[str, str, int, str]] = []
     statuses: list[str] = []
     fixture_count = 0
     for item in source_entries:
         entry = _object(item, "source manifest entry")
-        version, entry_statuses, count = _audit_source_manifest(corpus.parent, entry)
-        if version in source_versions:
+        identity, entry_statuses, count = _audit_source_manifest(corpus.parent, entry)
+        if any(previous[1] == identity[1] for previous in source_identities):
             raise RuntimeError("cross-version corpus repeats a source version")
-        source_versions.append(version)
+        source_identities.append(identity)
         statuses.extend(entry_statuses)
         fixture_count += count
 
     corpus_hash = hashlib.sha256(raw_corpus).hexdigest()
     corpus_identity_reviewed = corpus_hash == _REVIEWED_CORPUS_SHA256
-    releases = _release_versions(document["supported_releases"])
+    source_versions = tuple(identity[1] for identity in source_identities)
+    source_history_preserved = (
+        tuple(source_identities[: len(_MANDATORY_SOURCE_PREFIX)]) == _MANDATORY_SOURCE_PREFIX
+    )
+    release_identities = _release_identities(document["supported_releases"])
+    releases = tuple(identity[0] for identity in release_identities)
+    release_history_preserved = (
+        tuple(release_identities[: len(_MANDATORY_RELEASE_PREFIX)]) == _MANDATORY_RELEASE_PREFIX
+    )
+    historical_entries_preserved = source_history_preserved and release_history_preserved
     observed_versions = tuple(dict.fromkeys((*source_versions, __version__)))
     required_release_versions = set(observed_versions)
     release_evidence_complete = required_release_versions == set(releases)
     reader_differs_from_source = any(version != __version__ for version in source_versions)
     cross_version_execution = len(observed_versions) >= minimum and reader_differs_from_source
     gate_satisfied = (
-        corpus_identity_reviewed and cross_version_execution and release_evidence_complete
+        corpus_identity_reviewed
+        and historical_entries_preserved
+        and cross_version_execution
+        and release_evidence_complete
     )
     reasons: list[str] = []
     if not corpus_identity_reviewed:
         reasons.append("corpus-identity-unreviewed")
+    if not historical_entries_preserved:
+        reasons.append("historical-corpus-entry-missing")
     if not cross_version_execution:
         reasons.append("cross-version-execution-absent")
     if not release_evidence_complete:
@@ -117,6 +140,7 @@ def evaluate(corpus: Path) -> dict[str, object]:
         "admission": {
             "corpus_identity_reviewed": corpus_identity_reviewed,
             "cross_version_execution": cross_version_execution,
+            "historical_entries_preserved": historical_entries_preserved,
             "minimum_distinct_observed_versions": minimum,
             "reason_codes": tuple(reasons),
             "reader_differs_from_source": reader_differs_from_source,
@@ -149,7 +173,7 @@ def evaluate(corpus: Path) -> dict[str, object]:
 
 def _audit_source_manifest(
     root: Path, entry: dict[str, object]
-) -> tuple[str, tuple[str, ...], int]:
+) -> tuple[tuple[str, str, int, str], tuple[str, ...], int]:
     _exact_fields(
         entry,
         {"directory", "source_version", "bytes", "sha256"},
@@ -222,14 +246,15 @@ def _audit_source_manifest(
         statuses.append(status)
     if tuple(statuses) != _EXPECTED_STATUSES:
         raise RuntimeError("source fixture status coverage is incomplete")
-    return expected_version, tuple(statuses), len(fixtures)
+    identity = (directory, expected_version, expected_bytes, expected_hash)
+    return identity, tuple(statuses), len(fixtures)
 
 
-def _release_versions(value: object) -> tuple[str, ...]:
+def _release_identities(value: object) -> tuple[tuple[str, str, str, str], ...]:
     releases = _list(value, "supported releases")
     if len(releases) > _MAX_SUPPORTED_RELEASES:
         raise RuntimeError("cross-version corpus exceeds its supported-release limit")
-    versions: list[str] = []
+    identities: list[tuple[str, str, str, str]] = []
     for item in releases:
         release = _object(item, "supported release")
         _exact_fields(
@@ -239,12 +264,12 @@ def _release_versions(value: object) -> tuple[str, ...]:
         )
         version = _text(release["version"], "supported release version")
         tag = _text(release["tag"], "supported release tag")
-        _git_oid(release["commit"], "supported release commit")
-        _sha256_text(release["artifact_sha256"], "supported release artifact sha256")
-        if tag != f"v{version}" or version in versions:
+        commit = _git_oid(release["commit"], "supported release commit")
+        artifact = _sha256_text(release["artifact_sha256"], "supported release artifact sha256")
+        if tag != f"v{version}" or any(previous[0] == version for previous in identities):
             raise RuntimeError("supported release evidence is invalid")
-        versions.append(version)
-    return tuple(versions)
+        identities.append((version, tag, commit, artifact))
+    return tuple(identities)
 
 
 def _default_corpus() -> Path:

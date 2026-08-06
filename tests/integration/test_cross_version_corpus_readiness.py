@@ -77,6 +77,7 @@ def test_installed_corpus_readiness_is_repeatable_sanitized_and_not_ready() -> N
     admission = cast(dict[str, object], document["admission"])
     assert admission["corpus_identity_reviewed"] is True
     assert admission["cross_version_execution"] is False
+    assert admission["historical_entries_preserved"] is True
     assert admission["supported_release_evidence_complete"] is False
     corpus = cast(dict[str, object], document["corpus"])
     assert corpus["fixture_count"] == 3
@@ -101,6 +102,7 @@ def test_installed_corpus_readiness_is_repeatable_sanitized_and_not_ready() -> N
         ("root", "cross_version_proven", True),
         ("admission", "corpus_identity_reviewed", False),
         ("admission", "cross_version_execution", True),
+        ("admission", "historical_entries_preserved", False),
         ("admission", "reason_codes", []),
         ("corpus", "canonical_round_trip", False),
         ("corpus", "fixture_count", 2),
@@ -148,6 +150,7 @@ def test_admission_becomes_true_only_for_different_reader_and_release_evidence(
     admission = cast(dict[str, object], report["admission"])
     assert admission["reason_codes"] == ()
     assert admission["corpus_identity_reviewed"] is True
+    assert admission["historical_entries_preserved"] is True
     assert admission["reader_differs_from_source"] is True
     assert admission["supported_release_evidence_complete"] is True
 
@@ -178,6 +181,38 @@ def test_unreviewed_future_manifest_cannot_satisfy_gate(tmp_path: Path) -> None:
     assert admission["cross_version_execution"] is True
     assert admission["supported_release_evidence_complete"] is True
     assert admission["reason_codes"] == ("corpus-identity-unreviewed",)
+
+
+def test_reviewed_future_manifest_cannot_drop_m21_history(tmp_path: Path) -> None:
+    corpus = tmp_path / "cross_version_receipt_corpus.json"
+    shutil.copytree(_CORPUS.parent / "receipt_v1", tmp_path / "replacement_v1")
+    document = cast(dict[str, object], json.loads(_CORPUS.read_text(encoding="utf-8")))
+    sources = cast(list[dict[str, object]], document["source_manifests"])
+    sources[0]["directory"] = "replacement_v1"
+    document["supported_releases"] = [
+        {
+            "version": version,
+            "tag": f"v{version}",
+            "commit": character * 40,
+            "artifact_sha256": character * 64,
+        }
+        for version, character in (("0.1.0a1", "1"), ("0.1.0a2", "2"))
+    ]
+    corpus.write_text(json.dumps(document), encoding="utf-8")
+    module, evaluate = _evaluator()
+    module.__dict__["__version__"] = "0.1.0a2"
+    module.__dict__["_REVIEWED_CORPUS_SHA256"] = hashlib.sha256(corpus.read_bytes()).hexdigest()
+
+    report = evaluate(corpus)
+
+    assert report["gate_satisfied"] is False
+    assert report["cross_version_proven"] is False
+    admission = cast(dict[str, object], report["admission"])
+    assert admission["corpus_identity_reviewed"] is True
+    assert admission["historical_entries_preserved"] is False
+    assert admission["cross_version_execution"] is True
+    assert admission["supported_release_evidence_complete"] is True
+    assert admission["reason_codes"] == ("historical-corpus-entry-missing",)
 
 
 def test_corpus_tamper_fails_before_receipt_decoding(tmp_path: Path) -> None:

@@ -35,7 +35,9 @@ The admission manifest:
 
 1. references each source manifest by safe directory name, source version,
    exact byte length, and SHA-256;
-2. is append-only with respect to historical source and release records;
+2. is append-only with respect to historical source and release records,
+   enforced by executable frozen mandatory prefixes in addition to the reviewed
+   whole-manifest digest;
 3. requires at least two distinct versions across source fixtures and the
    installed reader;
 4. requires the reader to differ from at least one source version;

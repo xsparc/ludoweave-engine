@@ -24,7 +24,9 @@ Gate 1 can become true only when all of these are true together:
    version, producing at least two distinct observed package versions; and
 4. independently verified supported-release records cover every observed
    source and reader version; and
-5. the exact admission-manifest SHA-256 is pinned by the reviewed evidence
+5. every frozen mandatory source/release prefix remains byte-for-byte present,
+   so a newly reviewed manifest cannot replace or omit earlier history; and
+6. the exact admission-manifest SHA-256 is pinned by the reviewed evidence
    implementation and strict validator.
 
 The last records contain a version, exact `vVERSION` tag, Git commit identity,
@@ -32,7 +34,9 @@ and release-artifact SHA-256. Their structure is necessary but not sufficient:
 a review must verify the tag, commit, artifact, and support status against the
 actual release channel. A project-owned synthetic test is not release history.
 An arbitrary `--corpus` document cannot report a satisfied gate because its
-identity is not in the reviewed evidence set.
+identity is not in the reviewed evidence set. Updating that reviewed identity
+alone is insufficient: executable mandatory prefixes freeze the M21 source
+identity and, as release records are accepted, the earlier release identities.
 
 Today the report therefore returns:
 

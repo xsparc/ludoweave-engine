@@ -82,6 +82,51 @@ history, supported release records, external consumer feedback, stability
 promotion, tag, GitHub release, or PyPI publication. Final delayed-review reread
 and squash integration remain.
 
+## M24 delayed-review correction - PR #36
+
+At `2026-08-06T13:54:48Z`, delayed automated review of implementation commit
+`e590d482246d122120c011969b47f79f9680efa2` added one unresolved, non-outdated
+P1 thread. The finding was valid: changing only the reviewed whole-manifest
+digest could allow a future source list to replace the M21 entry, contradicting
+RFC-0007's append-only rule. No reply or manual thread resolution was
+performed.
+
+The correction adds executable frozen prefixes for exact source-manifest and
+supported-release identities, makes their preservation an independent gate,
+and reports `historical-corpus-entry-missing` when it fails. A new regression
+pins a synthetic future manifest with complete release coverage after replacing
+the `receipt_v1` directory identity; every other gate becomes true while the
+history gate and overall admission remain false.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Focused format, Ruff, Pyright, installed example, and M24/release tests | 0 | One file was reformatted; Ruff passed, Pyright reported zero diagnostics, the report included `historical_entries_preserved: true`, and 28 focused tests passed in 2.66 seconds. |
+| First correction `uv lock --check` | 1 | The managed sandbox denied access to uv's existing user cache before project execution; no lock pass is claimed for this attempt. |
+| Approved `uv lock --check` rerun | 0 | The unchanged lock resolved 46 packages in 0.77 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 223 Python files were formatted. |
+| `uv run --frozen ruff check .` | 0 | All lint checks passed. |
+| `uv run --frozen pyright` | 0 | 0 errors, 0 warnings, and 0 information messages. |
+| `uv run --frozen pytest -q` | 0 | 1,076 tests passed in 81.42 seconds; one existing Windows symlink-capability test skipped. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict docs built in 0.75 seconds with only the recorded upstream Material/MkDocs 2.0 informational warning. |
+| `uv build` | 0 | Built the pure `ludoweave-0.1.0a1` source distribution and universal wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated installed-wheel smoke passed with the corrected exact report. |
+| Fresh release staging and `smoke_release.py` at `.tmp/release-candidate-m24-review-correction` | 0 | The target was confirmed absent, ten artifacts were staged, and isolated release smoke passed for `0.1.0a1`. |
+
+After synchronizing the correction record, strict MkDocs rebuilt in 0.70
+seconds, `git diff --check` and `git fsck --full --no-dangling` exited 0, and
+the focused credential-assignment scan returned no match. The first scope query
+exited 1 because it mistakenly included the intentionally new M24 admission
+manifest in a comparison to the pre-M24 base; it showed only that expected
+addition. Corrected checks compare protected runtime/workflow/metadata/lock and
+the immutable M21 corpus to the assigned base, and the M24 admission-manifest
+bytes to prior evidence head `bebae10b8c9e1b663e0555bdc941ede9be8d0a12`;
+both exited 0.
+
+The correction changes no runtime source, public API/export, protocol,
+dependency, lock, package version, workflow, or CI topology. Correction commit,
+push, one necessary hosted run, final thread-aware reread, and squash integration
+remain.
+
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
 
 | Command | Exit | Result |

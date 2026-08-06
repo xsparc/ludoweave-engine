@@ -68,6 +68,13 @@ def _literal(path: Path, name: str) -> object:
             isinstance(target, ast.Name) and target.id == name for target in statement.targets
         ):
             return ast.literal_eval(statement.value)
+        if (
+            isinstance(statement, ast.AnnAssign)
+            and isinstance(statement.target, ast.Name)
+            and statement.target.id == name
+            and statement.value is not None
+        ):
+            return ast.literal_eval(statement.value)
     raise AssertionError(f"{name} was not a literal assignment")
 
 
@@ -83,6 +90,15 @@ def test_admission_manifest_is_exact_and_preserves_m21_identity() -> None:
     assert _literal(_EVIDENCE_FILES[0], "_REVIEWED_CORPUS_SHA256") == (
         "0b1d7b9f68b49ad1f6ab21cff4f744140cf3a16b52c6cdebd691b28b375a72ae"
     )
+    assert _literal(_EVIDENCE_FILES[0], "_MANDATORY_SOURCE_PREFIX") == (
+        (
+            "receipt_v1",
+            "0.1.0a1",
+            762,
+            "ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3",
+        ),
+    )
+    assert _literal(_EVIDENCE_FILES[0], "_MANDATORY_RELEASE_PREFIX") == ()
     assert document == {
         "schema": "ludoweave.compatibility.cross-version-receipt-corpus/1",
         "source_package": "ludoweave",

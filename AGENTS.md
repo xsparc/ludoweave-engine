@@ -51,7 +51,11 @@ M24 is published through ready PR #36 from DCO-signed implementation commit
 `31107800179` passed all eight unchanged essential jobs. GitHub reports exact
 base `55c7a72337913303b6b1f6bd31edbca7ff28683b`, exact implementation head,
 `MERGEABLE`, and `CLEAN`; the first thread-aware read found no review material.
-Final review reread and squash integration remain.
+Delayed automated review found one valid append-only-history gap. The local
+correction freezes executable mandatory source/release prefixes and proves a
+newly pinned manifest cannot replace the M21 identity. The corrected full,
+static, docs, wheel, and release gates pass; correction publication, one
+necessary hosted run, final review reread, and squash integration remain.
 
 M0 through M23 are complete, independently accepted, hosted-CI validated, and
 integrated into `main`.

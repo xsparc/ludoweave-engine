@@ -182,7 +182,10 @@ dependency, version, workflow job, tag, release, or publication is added.
 Ready PR #36 targets that exact base from DCO-signed implementation commit
 `e590d482246d122120c011969b47f79f9680efa2`. Its sole GitHub Actions run
 `31107800179` passed all eight unchanged essential jobs; GitHub reports the PR
-`MERGEABLE` and `CLEAN`, with no review material on the first thread-aware read.
+`MERGEABLE` and `CLEAN`. Delayed automated review found one valid append-only-
+history gap. The locally validated correction freezes mandatory source/release
+prefixes and proves a newly pinned future manifest cannot replace the M21 entry;
+follow-up hosted validation and squash integration remain.
 
 ## Good-first contribution queue
 

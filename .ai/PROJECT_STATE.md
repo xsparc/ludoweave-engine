@@ -22,8 +22,15 @@ manifest identity, exact release coverage, and child/per-receipt resource caps;
 implementation commit `e590d482246d122120c011969b47f79f9680efa2` is published
 through ready PR #36. Sole GitHub Actions run `31107800179` passed all eight
 unchanged essential jobs. GitHub reports the PR `MERGEABLE` and `CLEAN`; the
-first thread-aware read found no comment, review, or inline thread. Final review
-reread and squash integration remain.
+first thread-aware read found no comment, review, or inline thread. Delayed
+automated review then found one valid P1: a newly pinned future corpus could
+replace the current source list instead of retaining the M21 audit trail. The
+local correction freezes executable mandatory source/release prefixes, adds an
+explicit history-preservation gate and regression, and passes 28 focused tests,
+1,076 full-suite tests with the existing skip, the complete static/docs gate,
+pure build, isolated wheel smoke, and a fresh ten-artifact release smoke. DCO
+correction commit, one necessary hosted run, final thread reread, and squash
+integration remain.
 
 M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -403,8 +410,10 @@ Repository-state evidence is integrated by PR #18 as main commit
   the active bounded slice and adds only cross-version corpus admission
   readiness, deterministic false current evidence, RFC-0007, and artifact
   smoke. Ready PR #36 is locally complete and its sole hosted run
-  `31107800179` passed all eight unchanged essential jobs; final review reread
-  and squash integration remain.
+  `31107800179` passed all eight unchanged essential jobs. One delayed-review
+  append-only finding is corrected locally with frozen mandatory history and a
+  full passing gate; correction publication, follow-up hosted validation, final
+  review reread, and squash integration remain.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. M24 may
   not promote the experimental command/receipt surface or fabricate those

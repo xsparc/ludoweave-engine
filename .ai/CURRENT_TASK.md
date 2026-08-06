@@ -4,9 +4,11 @@
 - **Status:** Implementation is complete, locally validated, DCO-signed, and
   published through ready PR #36 on
   `codex/m24-cross-version-corpus-readiness`. Sole GitHub Actions run
-  `31107800179` passed all eight unchanged essential jobs. The first
-  thread-aware read found no review material; final reread and squash
-  integration remain.
+  `31107800179` passed all eight unchanged essential jobs. Delayed automated
+  review found one valid append-only-history gap. The correction freezes
+  mandatory source/release prefixes and passes the complete local/artifact
+  gate; DCO correction commit, one necessary hosted run, final thread reread,
+  and squash integration remain.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `55c7a72337913303b6b1f6bd31edbca7ff28683b` after verified PR #35.

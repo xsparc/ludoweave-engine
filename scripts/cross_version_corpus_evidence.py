@@ -10,6 +10,7 @@ def validate_cross_version_corpus_evidence(document: dict[str, object], *, versi
         "admission": {
             "corpus_identity_reviewed": True,
             "cross_version_execution": False,
+            "historical_entries_preserved": True,
             "minimum_distinct_observed_versions": 2,
             "reader_differs_from_source": False,
             "reason_codes": [
