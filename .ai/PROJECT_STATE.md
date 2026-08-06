@@ -2,13 +2,18 @@
 
 ## Current milestone
 
-M22 is in progress on `codex/m22-operation-argument-policy` from exact clean
+M22 is complete, reviewed, published, and hosted-validated on
+`codex/m22-operation-argument-policy` from exact clean
 synchronized `main` commit
 `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`. Its bounded result is an exact
 machine-readable policy for all seven built-in operation-v1 argument shapes,
 deterministic installed valid/missing/unknown-field evidence, RFC-0005, and
 RFC-0003 gate bookkeeping. It changes no runtime package, public API,
 operation, persistent format, dependency, lock, version, or CI topology.
+DCO-signed implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12` is published through ready PR
+#32. Sole GitHub Actions run `31100821087` passed all eight unchanged essential
+jobs. Squash integration is pending.
 
 M21 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean

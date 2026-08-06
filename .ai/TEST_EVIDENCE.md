@@ -22,7 +22,7 @@ pytest ran because the managed sandbox denied access to uv's user cache. The
 same test commands were rerun with approved cache access and passed; no test
 pass is claimed for the failed attempt. Final full-suite, docs, build, wheel,
 release, graphics, benchmark/profile, and diff evidence follows. Hosted
-evidence remains pending.
+hosted evidence is recorded below.
 
 ## M22 final local validation — 2026-08-06, Windows, CPython 3.12.13
 
@@ -53,8 +53,29 @@ The M1 simulation and both M3 target misses are recorded without a performance
 pass claim. They do not authorize native acceleration. Repository review found
 no change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`; no credential
 assignment matched; and the M22 evidence import scan found no ambient,
-provider, filesystem, process, or network dependency. GitHub-hosted evidence
-has not yet run for M22.
+provider, filesystem, process, or network dependency.
+
+## M22 hosted validation — PR #32
+
+Ready PR #32 targets `main` from `codex/m22-operation-argument-policy` at
+DCO-signed implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12`. GitHub Actions run
+`31100821087`, triggered once by that pull request, completed successfully on
+2026-08-06. It is the only workflow run listed for the branch.
+
+| Hosted job | Result |
+| --- | --- |
+| Quality, tests, and distribution — Ubuntu, Python 3.12 | Passed lock, formatting, Ruff, strict Pyright, strict docs, baseline tests, base profile smoke, pure build, isolated wheel smoke, release staging, and isolated release smoke. |
+| Compatibility — Ubuntu, Python 3.13 | Passed. |
+| Compatibility — Ubuntu, Python 3.14 | Passed. |
+| Compatibility — Windows, Python 3.14 | Passed. |
+| Compatibility — macOS, Python 3.14 | Passed. |
+| Graphics smoke — Ubuntu | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke — Windows | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+| Graphics smoke — macOS | Passed real-wgpu tests, graphics profile smoke, Clockwork Arena, and Agent World Builder. |
+
+No additional CI job or workflow change was introduced. No cross-version,
+external-adoption, stability-promotion, release, or publication claim is made.
 
 ## Baseline — 2026-08-04
 

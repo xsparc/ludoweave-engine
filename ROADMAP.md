@@ -30,7 +30,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M19 installed WorldStore conformance | Hosted-validated versioned explicit-factory storage baseline, production/reference artifact evidence, and unchanged essential CI topology |
 | Done | M20 command/receipt stability decision | PR #28 squash-integrated; installed same-version evidence, complete preview gate, RFC-0003 decision, and unchanged runtime/CI topology |
 | Done | M21 bounded receipt reader and v1 baseline | PR #30 squash-integrated; reviewed strict detached decoding, deterministic limits, frozen single-version fixtures, installed evidence, and all eight essential hosted jobs passed without stability promotion |
-| In progress | M22 built-in operation argument compatibility | Exact seven-operation v1 policy, installed valid/missing/unknown-field evidence, RFC-0005, artifact smoke, and unchanged essential CI topology |
+| Ready to integrate | M22 built-in operation argument compatibility | Ready PR #32; exact seven-operation v1 policy, installed valid/missing/unknown-field evidence, RFC-0005, artifact smoke, and all eight unchanged essential hosted jobs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -141,6 +141,9 @@ unknown-field rejection. This satisfies only RFC-0003 gate 3; cross-version
 history, external feedback, semantic-diff/diagnostic evolution, and a supported
 release channel remain absent. No runtime API, operation, format, dependency,
 version, or CI job is added.
+Ready PR #32 passed sole GitHub Actions run `31100821087` across all eight
+unchanged essential jobs on DCO-signed implementation commit
+`f1a89ad460467039f966ed37955144840cd96a12`.
 
 ## Good-first contribution queue
 

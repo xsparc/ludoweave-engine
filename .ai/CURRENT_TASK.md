@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M22 - built-in operation argument compatibility and evolution policy
-- **Status:** Locally complete on `codex/m22-operation-argument-policy`;
-  implementation, full local validation, artifact smoke, and final scope/
-  security/architecture review pass. Publication and hosted validation are
-  pending.
+- **Status:** Ready to integrate on `codex/m22-operation-argument-policy`.
+  Implementation, review, local validation, publication, and the sole hosted
+  run are complete through ready PR #32. Exact squash integration is pending.
 - **Started:** 2026-08-06
 - **Base:** Exact clean synchronized `main` commit
   `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`.
@@ -39,5 +38,7 @@
   vertical slices, and all documented M1-M4/M7 benchmark/profile validators
   pass. M1 simulation and both M3 timing targets remain observed misses. The
   first sandboxed uv attempt and first Ruff findings are recorded with their
-  successful corrections in `.ai/TEST_EVIDENCE.md`. No hosted M22 result is
-  claimed yet.
+  successful corrections in `.ai/TEST_EVIDENCE.md`. DCO-signed implementation
+  commit `f1a89ad460467039f966ed37955144840cd96a12` is published through ready
+  PR #32. GitHub Actions run `31100821087`, the branch's only run, passed all
+  eight unchanged essential jobs.
