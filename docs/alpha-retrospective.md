@@ -106,3 +106,8 @@ and pull-request-review latency from a complete reviewed public cohort that
 preserves pending items. Its reviewed manifest remains empty, so automation,
 project history, and synthetic fixtures do not establish human responsiveness
 or an SLA.
+M32 defines the next ordered operational metric under RFC-0015: replay-
+divergence rate from a complete reviewed CI execution cohort that preserves
+non-execution. Its reviewed manifest remains empty, so passing workflows,
+project history, and synthetic fixtures do not establish a measured rate or
+zero-divergence result.

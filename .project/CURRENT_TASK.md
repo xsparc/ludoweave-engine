@@ -1,89 +1,80 @@
 # Current Task
 
-- **Task:** M31 - issue-response and pull-request-review latency admission readiness
-- **Status:** Complete, hosted-validated, reviewed, squash-integrated, and
-  cleaned up on synchronized verified `main` commit
-  `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`.
+- **Task:** M32 - CI replay-divergence-rate admission readiness
+- **Status:** In progress on `evidence/m32-replay-divergence-rate` from exact
+  clean synchronized verified `main` commit
+  `b4de1d115ddb620ecddccab84637c0e66cfad9fd`.
 - **Started:** 2026-08-08
-- **Base:** PR #48 squash-integrated the exact validated M30 feature tree as
-  verified `675713d15a20a38233b80580e5aa773dc7a8684c`; documentation-only PR
-  #49 squash-integrated the factual M30 state record as verified
-  `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. Local `main`, `origin/main`,
+- **Base:** PR #50 squash-integrated the exact corrected M31 feature tree as
+  verified `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`; documentation-only PR
+  #51 squash-integrated the factual M31 state record as verified
+  `b4de1d115ddb620ecddccab84637c0e66cfad9fd`. Local `main`, `origin/main`,
   and `origin/HEAD` matched that commit with a clean worktree before branching.
-- **Outcome:** Make the design plan's next longer-term metric—issue-response
-  and pull-request-review time—mechanically reportable from a complete reviewed
-  public cohort without querying GitHub, collecting telemetry or identities,
-  selecting only completed actions, or fabricating an SLA.
+- **Outcome:** Make the design plan's next longer-term metric—replay-divergence
+  rate in CI—mechanically reportable from a complete reviewed execution cohort
+  without querying GitHub, collecting telemetry/logs, selecting only completed
+  checks, or inferring a zero rate from passing workflows.
 - **Acceptance gate:**
-  - Add one strict reviewed manifest whose current measurement-window set is
+  - Add one strict reviewed manifest whose current evaluation-window set is
     empty and whose exact bytes and SHA-256 are pinned by architecture tests.
-  - Require bounded chronological non-overlapping opening windows plus a later
-    observation cutoff and complete reviewed public cohort.
-  - Require every eligible external-human issue and pull request to remain in
-    the cohort as either observed or pending.
-  - Require observed actions to identify the first qualifying public human-
-    maintainer response/review by a distinct participant with exact public
-    resource/action locations and UTC timestamp/latency agreement.
+  - Require bounded chronological non-overlapping execution windows plus a
+    strictly later observation cutoff and complete reviewed public CI cohort.
+  - Preserve every eligible replay execution as verified, diverged, or not-
+    executed; never omit cancellation, pre-replay failure, skipping, or missing
+    result evidence.
+  - Bind executions to canonical public run/job locations, exact head/workflow/
+    case sources, UTC start time, and frozen result evidence.
+  - Require verified outcomes to have equal hashes; divergent outcomes to have
+    distinct hashes, first divergent tick, and `world.replay.diverged`; and
+    non-executed outcomes to claim no replay hashes or tick.
   - Require census and review artifacts at the same immutable project revision,
-    distinct evidence hashes, and reviewed eligibility, action state,
-    provenance, validation, maintainer status, and participant distinctness.
+    unique execution/result identities, and reviewed eligibility, outcome,
+    provenance, validation, and cohort completeness.
   - Preserve accepted windows as an exact complete executable prefix and bind
     it to the reviewed whole-manifest digest.
-  - Expose only aggregate eligible/observed/pending counts and deterministic
-    median/nearest-rank-p95 seconds after exact digest/history admission.
-  - Require at least one observed issue response and PR review for a reportable
-    metric while defining no target, quality verdict, release gate, SLA, or
-    support promise.
+  - Expose an exact integer numerator/denominator rate only for a non-empty
+    complete cohort with no non-executed case; define no float, threshold,
+    quality verdict, release gate, reliability promise, SLA, or support promise.
   - Emit exact sanitized `not-ready` evidence for the current empty manifest;
-    never expose resource/action locations, identities, per-record hashes,
-    timestamps, local paths, host facts, raw evidence, or private data.
-  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0014,
+    never expose run/job locations, revisions, case names, timestamps, hashes,
+    local paths, host facts, environment values, or raw logs.
+  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0015,
     and preserve both workflows and all eight essential CI jobs exactly.
-- **Non-scope:** GitHub discovery or remote lookup; issue/PR/contact mutation;
-  telemetry; usernames, email addresses, private correspondence or logs;
-  automatic role/identity inference; runtime source; public APIs/exports;
-  persistent formats; protocols; operations; dependencies; lock; version;
-  workflows; CI topology; tags; releases; publication; certification; stability
-  promotion; service levels; or support policy.
+- **Non-scope:** GitHub discovery or remote lookup; workflow mutation;
+  telemetry/log collection; runtime source; replay behavior; public APIs/
+  exports; persistent formats; protocols; operations; dependencies; lock;
+  version; workflows; CI topology; tags; releases; publication; certification;
+  stability promotion; reliability targets; service levels; or support policy.
 - **SemVer:** No package or public-Python-surface change; version remains
   `0.1.0a1` and current stability labels are unchanged.
 - **Baseline evidence:** Exact `HEAD`, `main`, `origin/main`, and `origin/HEAD`
-  resolved to `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`; the worktree was clean and
-  `git fsck --full --no-dangling` exited 0. The first sandboxed uv attempt could
-  not access its user cache and produced no test result. The corrected host-
-  cache run resolved the unchanged 46-package lock in 0.69 ms and passed 59
-  M30/artifact/workflow tests with one Windows symlink-capability skip in 2.08
-  seconds. CI and release workflow SHA-256 values remain
+  resolved to `b4de1d115ddb620ecddccab84637c0e66cfad9fd`; the worktree was clean,
+  only `main` existed locally/remotely, no PR was open, and
+  `git fsck --full --no-dangling` exited 0. The first sandboxed lock attempt
+  could not access uv's existing user cache and produced no lock result. The
+  corrected host-cache run resolved the unchanged 46-package lock in 0.80 ms
+  and passed 65 inherited M31/release tests with one Windows symlink-capability
+  skip in 1.44 seconds. CI and release workflow SHA-256 values remain
   `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and
   `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`.
-- **Current local evidence:** The exact 199-byte empty manifest has SHA-256
-  `bc40bbcc1636229fa2c78aed5f71854d1221fd3c0d33169edc1321dd07e69d4f`.
+- **Current local evidence:** The exact 175-byte empty manifest has SHA-256
+  `cff8a32428ac8dcd18029be4f70e9d359b4c9d70fd411ffe2f36d35704d68aa7`.
   The evaluator emits deterministic path-free `not-ready` evidence with zero
-  windows and measurements. Its corrected focused gate passes 49 adversarial
-  tests with one Windows symlink-capability skip, and the evaluator/artifact
-  group passes 51 tests with the same skip. The corrected architecture/
-  evaluator/artifact gate passes 62 tests with one skip and strict docs. The
-  final complete gate passes the unchanged lock/sync, 251-file formatting,
-  Ruff, strict Pyright, strict docs, 1,435 tests with eight skips, pure build,
-  isolated wheel/release smoke, ten real-wgpu tests, and both graphics vertical
-  slices. The unchanged 94-entry wheel has no native/WASM file and the 42-entry
-  sample bundle contains both exact M31 evidence files. Protected runtime/
-  workflow/metadata/lock scope is unchanged. Findings-first local review found
-  no issue. Ready PR #50's initial exact head passed all eight hosted jobs, but
-  the hosted review correctly found that the evaluator admitted an observation
-  cutoff equal to the opening-window close. Admission now requires a strictly
-  later cutoff, equality has a regression, and the post-review gate passes 60
-  focused tests with one skip, formatting, Ruff, strict Pyright, strict docs,
-  1,435 complete-suite tests with eight skips, pure build, installed-wheel
-  smoke, and fresh ten-artifact release smoke. No benchmark was run because M31
-  changes no runtime or performance path and defines no timing target.
-  Corrected exact head `dd4058b71439b5bade9d091831ba5453a51db35c`
-  passed all eight essential hosted jobs in run `31190559197`. The sole review
-  thread is resolved and outdated, no unresolved thread or top-level comment
-  remains, and PR #50 was `MERGEABLE` and `CLEAN`. PR #50 squash-integrated the
-  exact corrected tree `2ec80742556e62b34dc9275fd0b268a484e9eace` as
-  GitHub-verified commit `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`
-  with sole parent `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`.
-  Literal tree comparison and object-integrity checks passed; the temporary
-  feature branch is deleted locally and remotely. No benchmark was run because
-  M31 changes no runtime or performance path and defines no timing target.
+  windows/executions and no rate. Findings-first review found and corrected a
+  noncanonical replay-case URL acceptance gap plus underspecified eligibility
+  for deliberately divergent/verification-disabled cases. The reviewed gate
+  passes the unchanged 46-package lock, 255-file formatting, Ruff, strict
+  Pyright, strict docs, 1,498 tests with nine platform-capability skips, pure
+  build, isolated wheel/release smoke, ten real-wgpu tests, and both graphics
+  vertical slices. The unchanged 94-entry wheel has no native/WASM file and the
+  44-entry sample bundle contains both exact M32 evidence files. Protected
+  runtime/workflow/metadata/lock scope is unchanged. Initial exact head
+  `7046e59eb4840e6df492c886ce78baf4ad51cd95` passed all eight hosted jobs, but
+  hosted review found the evaluator used `world.replay.divergence` instead of
+  runtime diagnostic `world.replay.diverged`. The evaluator, fixture, docs, and
+  architecture regression are corrected. The post-review gate passes 80
+  focused tests with one skip, 1,499 complete-suite tests with nine skips,
+  255-file formatting, Ruff, strict Pyright, strict docs, the unchanged lock,
+  protected-surface and whitespace checks, pure build, isolated-wheel smoke,
+  and a fresh ten-artifact release smoke. Corrected hosted validation,
+  integration, and cleanup remain pending.

@@ -160,6 +160,15 @@ support claim exists. The evaluator cannot establish human roles, participant
 distinctness, first-action state, or census completeness; manual review owns
 those facts.
 
+RFC-0015 resolves how CI replay-divergence-rate evidence is admitted. The
+offline harness requires a complete reviewed public cohort of eligible replay
+executions, preserves cancellation, early failure, skips, and missing result
+evidence as non-executed, binds verified/diverged outcomes to exact workflow,
+case, and frozen result identities, and preserves complete history. The
+reviewed manifest is empty, so no measured rate or zero-divergence result
+exists. Human review owns cohort completeness, eligibility, outcome,
+provenance, and validation.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

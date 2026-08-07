@@ -29,6 +29,7 @@ from installation_matrix_evidence import validate_installation_matrix_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
+from replay_divergence_rate_evidence import validate_replay_divergence_rate_evidence
 from response_review_latency_evidence import validate_response_review_latency_evidence
 from supported_release_channel_evidence import validate_supported_release_channel_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
@@ -663,6 +664,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(response_review_latency_result.stdout)
         )
         validate_response_review_latency_evidence(response_review_latency, version=version)
+
+        replay_divergence_rate_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "replay_divergence_rate_readiness.py"),
+                "--manifest",
+                str(project_root / "tests" / "fixtures" / "replay_divergence_rate.json"),
+            ],
+            cwd=temp_root,
+        )
+        replay_divergence_rate = cast(
+            dict[str, object], json.loads(replay_divergence_rate_result.stdout)
+        )
+        validate_replay_divergence_rate_evidence(replay_divergence_rate, version=version)
 
         external_sample_game_result = _run(
             [

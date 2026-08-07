@@ -110,6 +110,12 @@ an admitted human-maintainer response/review latency result. Future windows
 must preserve pending items; synthetic fixtures and automation are not people,
 support work, latency measurements, or SLA evidence.
 
+`replay_divergence_rate_readiness.py` validates the exact empty reviewed CI
+execution manifest and reports that no complete replay cohort has an admitted
+divergence rate. Future windows must retain cancelled, pre-replay-failed,
+skipped, and unavailable-result executions; passing jobs and synthetic fixtures
+are not historical rate evidence or a reliability target.
+
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds
 no 3D API, provider, asset loader, or runtime implementation.

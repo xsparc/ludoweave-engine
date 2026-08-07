@@ -61,6 +61,12 @@ the installed offline evidence path works; it is not a human response, review,
 latency measurement, service-level result, or support claim. See the
 [response and review latency readiness guide](response-review-latency-readiness.md).
 
+M32/RFC-0015 adds the empty reviewed replay-divergence-rate fixture and
+evaluator to the deterministic sample bundle. Release smoke proves only that
+the installed offline evidence path works; it is not a complete CI replay
+cohort, measured divergence rate, reliability result, or release gate. See the
+[replay-divergence-rate readiness guide](replay-divergence-rate-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official
