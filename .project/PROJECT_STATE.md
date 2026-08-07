@@ -2,7 +2,7 @@
 
 ## Current milestone
 
-M29 is in progress on `evidence/m29-contributor-retention-readiness` from exact
+M29 is complete, hosted-validated, and squash-integrated. It started from exact
 clean synchronized verified `main` commit
 `e4125bf31a751473d2af4fecc05a9744d551063c`. Its bounded outcome is a strict
 offline admission harness for the design plan's next longer-term metric:
@@ -43,8 +43,15 @@ strict Pyright, strict docs, pure build, isolated wheel/release smoke, all retai
 benchmark/profile validators, ten real-wgpu tests, and both graphics vertical
 slices. Protected runtime/workflow/metadata/lock scope is unchanged; the
 94-entry wheel has no native library and the 38-entry sample bundle contains
-both exact M29 evidence files. A correction commit, hosted rerun,
-thread-aware review, and squash integration remain pending.
+both exact M29 evidence files. Correction run `31183032073` passed all eight
+essential jobs on DCO-signed head
+`897a3db5b0901835c6929eda5f94ed1774afac16`. The final audit found no review
+thread or actionable finding, and GitHub reported PR #46 `MERGEABLE` and
+`CLEAN`. PR #46 squash-integrated the exact corrected tree as GitHub-verified
+commit `fc969a981ecdbbf842477f46486e29277119e05b`; its sole parent is the
+assigned base and its tree is
+`d98c25f156aaeee863ff8dc88b00355daa921d2e`. The obsolete feature branch is
+deleted locally and remotely.
 
 M28 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started from exact clean synchronized GitHub-verified `main` commit
@@ -647,11 +654,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Complete M29's focused gate, findings-first review, full quality/release
-  evidence, ready PR, unchanged essential hosted CI, and exact squash
-  integration.
-- M0 through M28 are complete, hosted-validated, and squash-integrated. M29 is
-  limited to external contributor-retention admission readiness.
+- M0 through M29 are complete, hosted-validated, and squash-integrated.
+- Select the next bounded milestone from explicit product evidence before
+  changing runtime, protocol, dependency, release, or support scope.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

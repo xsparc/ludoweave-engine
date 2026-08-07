@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M29 - external contributor-retention admission readiness
-- **Status:** In progress on `evidence/m29-contributor-retention-readiness`
-  from exact clean synchronized verified `main` commit
-  `e4125bf31a751473d2af4fecc05a9744d551063c`.
+- **Status:** Complete. PR #46 squash-integrated the exact corrected M29 tree
+  as GitHub-verified `main` commit
+  `fc969a981ecdbbf842477f46486e29277119e05b`.
 - **Started:** 2026-08-07
 - **Base:** PR #44 squash-integrated M28 as verified
   `90d58a4567e7c7eaff90a28a7c59f2453b6d4538`; documentation-only PR #45
@@ -86,5 +86,9 @@
   escapes. Focused CPython 3.12 and 3.14 runs each pass 56 tests with one skip;
   complete CPython 3.12 and 3.14 suites pass 1,321 tests with six skips and
   1,311 tests with seven skips. Static, strict docs, pure build, isolated wheel,
-  and fresh release smoke also pass. Correction commit, hosted validation,
-  review reread, and squash integration remain pending.
+  and fresh release smoke also pass. Correction run `31183032073` passed all
+  eight essential jobs. The final audit found no review thread or actionable
+  finding; GitHub reported the PR mergeable and clean. The squash commit has
+  the exact corrected tree, the assigned base as its sole parent, valid GitHub
+  verification, and DCO sign-off. The obsolete feature branch is deleted
+  locally and remotely.
