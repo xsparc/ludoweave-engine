@@ -2,6 +2,47 @@
 
 ## Current milestone
 
+M32 is in progress on `evidence/m32-replay-divergence-rate` from exact clean
+synchronized verified `main` commit
+`b4de1d115ddb620ecddccab84637c0e66cfad9fd`. Its bounded outcome is a strict
+offline admission harness for the design plan's next longer-term metric:
+replay-divergence rate in CI. The reviewed manifest contains no evaluation
+windows, so no execution count, divergence count, rate, reliability result, or
+release gate is claimed. A future admitted window requires a complete reviewed
+public cohort of eligible CI replay executions started during a bounded
+interval and preserves verified, diverged, and not-executed cases. Cancellation,
+pre-replay failure, skips, and unavailable result evidence cannot disappear
+from the cohort. Each execution binds canonical project workflow run/job
+locations, exact head/workflow/case sources, UTC time, and frozen result
+evidence. Verified outcomes require equal expected/actual hashes; divergences
+require distinct hashes, first divergent tick, and the stable divergence code;
+non-execution claims no replay hashes or tick. Public census and review
+artifacts share one immutable project revision. Manual review owns cohort
+completeness, eligibility, outcome, provenance, and validation. Only exact
+reviewed whole-manifest identity and complete mandatory history expose admitted
+counts; an exact numerator/denominator rate additionally requires a non-empty
+cohort with no non-executed case. `ready` means reportable, not that any
+threshold, quality target, release gate, reliability promise, SLA, or support
+promise is met. M32 changes no runtime source, replay behavior, public API/
+export, persistent format, protocol, operation, dependency, lock, package
+version, stability label, workflow, CI topology, tag, release, publication,
+certification, reliability target, SLA, or support policy. The manifest is
+exactly 175 bytes with SHA-256
+`cff8a32428ac8dcd18029be4f70e9d359b4c9d70fd411ffe2f36d35704d68aa7`.
+The evaluator, exact validator, adversarial future/non-execution/history
+regressions, source/wheel/release artifact wiring, RFC-0015, and public
+documentation are complete. Findings-first review corrected noncanonical case-
+source URL acceptance and fixed eligibility before outcomes to exclude
+intentionally divergent negative fixtures and verification-disabled diagnostic
+runs. The reviewed tree passes the unchanged 46-package lock, 255-file
+formatting, Ruff, strict Pyright, strict docs, 1,498 tests with nine platform-
+capability skips, pure build, isolated wheel/release smoke, ten real-wgpu tests,
+and both graphics vertical slices. The 94-entry wheel remains universal pure
+Python with no native/WASM file; the 44-entry sample bundle contains the exact
+evaluator and manifest. Protected runtime/workflow/metadata/lock scope remains
+unchanged. Ready-PR publication, hosted validation, squash integration, and
+cleanup remain pending.
+
 M31 is complete, hosted-validated, reviewed, squash-integrated, and cleaned up.
 It started from exact clean synchronized verified `main` commit
 `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. Its bounded outcome is a strict
@@ -753,10 +794,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
+- Complete M32's architecture, documentation, full quality/release gate,
+  findings-first review, ready PR, unchanged essential hosted CI, and exact
+  squash integration.
 - M0 through M31 are complete, hosted-validated, reviewed, and squash-
-  integrated.
-- Select the next bounded slice from current authoritative project goals; no
-  new milestone is assigned by this factual integration record.
+  integrated. M32 is limited to CI replay-divergence-rate admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

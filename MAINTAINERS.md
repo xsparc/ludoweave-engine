@@ -42,6 +42,29 @@ claims.
 
 ## Current boundary
 
+M32 adds only strict offline CI replay-divergence-rate admission readiness for
+the next longer-term metric in the design plan. The reviewed manifest is empty,
+so its window and execution counts remain zero, its exact rational rate remains
+absent, and no zero-divergence, reliability, quality, release-gate, or support
+result may be claimed. Manual review, not evaluator logic, owns eligible CI
+replay-execution scope, complete cohort coverage, outcome, provenance, and
+validation. Eligibility is fixed before outcomes and covers verification cases
+expected to reproduce canonical state with hash verification enabled; it
+excludes intentionally divergent negative fixtures and verification-disabled
+diagnostics. Future cohorts must preserve cancellation, pre-replay failure,
+skips, and unavailable result evidence as `not-executed` rather than selecting
+only completed checks. M32 may add only frozen data evidence, an explicitly
+invoked evaluator/validator, synthetic gate tests, RFC/docs, and source/wheel/
+release-sample artifact smoke through the unchanged eight essential CI jobs. It
+may not query GitHub, collect telemetry or logs, change CI, execute providers,
+or change runtime source, public APIs/exports, replay/persistent formats,
+protocols, operations, dependencies, lock, version, workflows, CI topology,
+tag, release, publication, certification, stability label, reliability target,
+SLA, or support policy. M0 through M31 are complete, reviewed, hosted-CI
+validated, and integrated into `main`. M32 starts from exact verified M31
+integration-record commit `b4de1d115ddb620ecddccab84637c0e66cfad9fd` and
+contains no subsequent milestone.
+
 M31 adds only strict offline issue-response and pull-request-review latency
 admission readiness for the next longer-term metric in the design plan. The
 reviewed manifest is empty, so its window and measurement counts remain zero,

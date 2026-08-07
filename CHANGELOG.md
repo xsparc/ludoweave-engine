@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M32/RFC-0015 CI replay-divergence-rate admission evidence that preserves
+  non-executed cases, emits only an exact admitted ratio, and retains the
+  current empty-manifest result without claiming a measured zero rate.
 - Add M31/RFC-0014 issue-response and pull-request-review latency admission
   evidence that preserves pending items, rejects completed-only selection, and
   retains the current empty-manifest result without defining an SLA.

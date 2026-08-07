@@ -25,6 +25,7 @@ nav:
   - External sample-game adoption readiness: external-sample-game-adoption-readiness.md
   - Installation-matrix readiness: installation-matrix-readiness.md
   - Response and review latency readiness: response-review-latency-readiness.md
+  - Replay-divergence-rate readiness: replay-divergence-rate-readiness.md
   - Bounded receipt reader: receipt-reader.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
@@ -51,6 +52,7 @@ nav:
       - RFC-0012 - External contributor-retention readiness: rfcs/0012-external-contributor-retention-admission-readiness.md
       - RFC-0013 - Installation-matrix readiness: rfcs/0013-installation-matrix-admission-readiness.md
       - RFC-0014 - Response and review latency readiness: rfcs/0014-response-review-latency-admission-readiness.md
+      - RFC-0015 - Replay-divergence-rate readiness: rfcs/0015-replay-divergence-rate-admission-readiness.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -40,6 +40,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
 | Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
 | Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
+| Active | M32 replay-divergence-rate admission readiness | Strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -323,6 +324,19 @@ Corrected head `dd4058b71439b5bade9d091831ba5453a51db35c` passed all eight
 essential jobs in run `31190559197`; PR #50 squash-integrated the exact tree as
 GitHub-verified `main` commit
 `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`.
+
+M32 starts from verified integrated `main` commit
+`b4de1d115ddb620ecddccab84637c0e66cfad9fd`. It adds an offline admission
+harness for the next longer-term metric: replay-divergence rate in CI. A future
+window requires a complete reviewed public cohort of eligible replay
+executions, preserves cancellation, pre-replay failure, skipping, and missing
+result evidence as `not-executed`, and binds verified/diverged outcomes to
+exact public workflow, case, and frozen result evidence. The reviewed set is
+empty, so no execution count or divergence rate is claimed; passing jobs and
+synthetic fixtures are not historical rate evidence. M32 adds no runtime
+source, API, replay protocol, format, dependency, version, workflow job,
+network activity, telemetry, tag, release, publication, certification,
+stability change, reliability target, or support promise.
 
 ## Good-first contribution queue
 

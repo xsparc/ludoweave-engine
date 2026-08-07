@@ -782,6 +782,42 @@ evidence. RFC-0014 adds no runtime API, canonical state, protocol, format,
 dependency, lock, version, workflow, publication, stability, SLA, or support
 change.
 
+## M32 replay-divergence-rate boundary
+
+M32 adds no engine module. One explicitly invoked example reads a selected
+reviewed manifest outside `src/ludoweave` and emits sanitized aggregate CI
+replay-divergence-rate readiness evidence. The runtime package and CI workflow
+never load the manifest or evaluator.
+
+The evaluator accepts only bounded exact-schema data. A future window must
+contain the complete reviewed public cohort of eligible CI replay executions
+that started in its interval. Each execution binds canonical project workflow
+run/job locations, an exact head revision, immutable workflow and test sources,
+and a frozen result artifact. Outcomes are exactly `verified`, `diverged`, or
+`not-executed`. Verified outcomes require equal expected/actual hashes;
+divergence requires distinct hashes, the first divergent tick, and
+`world.replay.divergence`; non-execution carries no replay hashes/tick and
+retains a bounded cancellation, early-failure, skip, or unavailable-result
+reason. Eligibility is fixed before outcomes: it covers replay-verification
+cases expected to reproduce canonical state with hash verification enabled and
+excludes intentionally divergent negative fixtures and verification-disabled
+diagnostics. An actual divergence in an eligible case remains counted. Human
+review owns cohort completeness, eligibility, outcome, provenance, and
+validation.
+
+Only the exact reviewed manifest and complete mandatory history can expose
+admitted counts. A rate requires at least one execution and no non-executed
+case, and is emitted only as an exact integer numerator/denominator pair. The
+current 175-byte manifest contains no windows, so the deterministic result is
+`not-ready`, no divergence rate is exposed, and a passing CI job is not treated
+as zero divergence. Reports omit run/job URLs, revisions, timestamps, case
+names, state hashes, artifacts, paths, environment values, and raw logs.
+
+M32 does not query GitHub, collect telemetry, execute providers, or change
+runtime source, replay behavior, public exports, formats, protocols,
+dependencies, lock, version, workflows, CI topology, publication, stability,
+reliability targets, or support policy.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -817,7 +853,8 @@ external contributor-retention admission readiness and retains its zero count.
 M30 adds only offline installation-matrix admission readiness and retains its
 zero-record result. M31 adds only offline issue-response and pull-request-review
 latency admission readiness, retains its empty-manifest result, and defines no
-SLA. None
+SLA. M32 adds only offline CI replay-divergence-rate admission readiness,
+retains its empty-manifest result, and exposes no measured rate. None
 supplies actual cross-version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.
