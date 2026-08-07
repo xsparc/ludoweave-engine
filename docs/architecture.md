@@ -704,6 +704,31 @@ authors, repositories, revisions, artifact hashes, licenses, paths, platforms,
 and timings. RFC-0011 adds no runtime API, canonical state, protocol, format,
 dependency, lock, version, workflow, publication, or stability change.
 
+## M29 contributor-retention boundary
+
+M29 adds no engine module. One explicitly invoked example reads a selected
+reviewed manifest outside `src/ludoweave` and emits sanitized aggregate
+readiness evidence. The runtime package never loads the manifest or evaluator.
+
+Every future admitted record must describe the same independently reviewed
+external human completing a first and later return contribution to this
+project. Both contributions require distinct public issues and merged pull
+requests, exact Git and artifact identities, valid DCO, complete validation,
+reviewed provenance, and canonical merge chronology. Human reviewers own
+identity, independence, same-person continuity, chronology, and retention
+judgments. The evaluator validates only frozen fields, complete history, and
+resource bounds. The current empty manifest deterministically reports zero
+retained contributors and `not-ready`; popularity metrics, project actors, and
+synthetic regressions cannot change that result.
+
+Reads are bounded, explicit, synchronous, and symlink-rejecting. Evidence code
+uses no discovery, networking, remote lookup, dynamic import, installation,
+subprocess, provider execution, telemetry, or retained resource. Reports omit
+contributors, public references, revisions, artifact hashes, timestamps,
+paths, platforms, and timings. RFC-0012 adds no runtime API, canonical state,
+protocol, format, dependency, lock, version, workflow, publication, or
+stability change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -733,7 +758,9 @@ that gate as false. M25 adds only offline external-consumer-feedback admission
 readiness and retains that gate as false. M26 adds only offline supported-
 release-channel admission readiness and retains that gate as false. M27 adds
 only offline external-contributor rehearsal admission readiness and retains
-its empty-record result as false. None
+its empty-record result as false. M28 adds only offline external sample-game
+adoption admission readiness and retains its zero count. M29 adds only offline
+external contributor-retention admission readiness and retains its zero count. None
 supplies actual cross-version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.

@@ -37,6 +37,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
 | Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
 | Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
+| Active | M29 contributor-retention admission readiness | Strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -241,7 +242,7 @@ contribution linked to a public project issue and merged pull request, with
 exact revisions, patch/feedback hashes, DCO, documented validation, no private
 maintainer knowledge, and no protected API/format/dependency/workflow change.
 The reviewed rehearsal set is empty, so the current result remains false;
-documentation, CI, project-owned fixtures, maintainers, and automated agents
+documentation, CI, project-owned fixtures, maintainers, and non-human automation
 are not external-contributor usability evidence. No runtime source, public API,
 format, dependency, version, workflow job, network activity, contributor
 contact, telemetry, publication, or support promise is added. Corrected hosted
@@ -266,6 +267,19 @@ Both necessary eight-job hosted runs passed after correcting the two valid
 review findings. PR #44 squash-integrated exact final evidence head
 `c383a4f143fd8682059a89ff6b645104a6b4332d` as GitHub-verified `main` commit
 `90d58a4567e7c7eaff90a28a7c59f2453b6d4538` with the exact final tree.
+
+M29 starts from verified integrated `main` commit
+`e4125bf31a751473d2af4fecc05a9744d551063c`. It adds an offline admission
+harness for the next longer-term metric: contributor retention rather than raw
+stars. A future record requires one independently reviewed external human to
+complete two distinct merged public project contributions, with exact
+issue/PR/revision/artifact identities, valid DCO, complete validation,
+reviewed provenance, and a return merge later than the first. The reviewed set
+is empty, so the current retained-contributor and return-contribution counts
+remain zero; maintainers, agents, CI, popularity totals, and synthetic fixtures
+are not retention. M29 adds no runtime source, API, protocol, format,
+dependency, version, workflow job, network activity, contributor contact,
+telemetry, tag, release, publication, certification, or support promise.
 
 ## Good-first contribution queue
 

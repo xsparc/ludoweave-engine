@@ -32,7 +32,7 @@ M5's inherited hosted baseline passed 14 jobs across CPython 3.12-3.14 and all
 three desktop operating systems. M6 run `31002365370` also passed all 14 jobs,
 including complete release-candidate smoke and real graphics acceptance on
 Windows, macOS, and Linux. Exact local and hosted command records live in
-`.ai/TEST_EVIDENCE.md`.
+`.project/TEST_EVIDENCE.md`.
 
 Recorded local benchmarks observed the M1 3,600-tick headless target and the M4
 Clockwork Arena baseline target. The representative M1 10,000-entity tick and
@@ -92,3 +92,8 @@ reclassifying bundled examples as adoption; a real independently authored,
 publicly reviewed installed-wheel game remains required. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.
+M29 defines the next ordered adoption metric under RFC-0012: an independently
+reviewed external human must return for a later distinct merged contribution.
+Its reviewed manifest remains empty, so the retained-contributor count remains
+zero; stars, forks, downloads, maintainers, agents, and synthetic fixtures do
+not substitute for retention.

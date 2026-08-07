@@ -2,14 +2,53 @@
 
 ## Current milestone
 
+M29 is in progress on `evidence/m29-contributor-retention-readiness` from exact
+clean synchronized verified `main` commit
+`e4125bf31a751473d2af4fecc05a9744d551063c`. Its bounded outcome is a strict
+offline admission harness for the design plan's next longer-term metric:
+contributor retention rather than raw stars. The reviewed manifest contains
+zero records, so retained-contributor and return-contribution counts remain
+zero and the sanitized result is deterministically `not-ready`; maintainers,
+non-human automation, CI, stars, forks, downloads, and synthetic fixtures do not
+establish retention. A future true result requires the same independently
+reviewed external human to complete a first and later return contribution with
+distinct public issues and merged pull requests, exact Git and artifact
+identities, canonical chronology, valid DCO, complete validation, reviewed
+provenance, and explicit human review of identity, independence, same-person
+continuity, chronology, and retention. The complete reviewed identity sequence
+must equal the executable mandatory prefix. Candidate or history-incomplete
+manifests expose no record-derived counts or scopes. M29 changes no runtime
+source, public API/export, persistent format, protocol, dependency, lock,
+package version, stability label, workflow, or CI topology. The manifest is
+exactly 274 bytes with SHA-256
+`61785ec165e9f9a7c1025c37f7b714d6fa42b2c7081145a0f843395a325b36ee`.
+The evaluator, exact validator, initial fail-closed regressions, artifact
+wiring, RFC-0012, and public documentation are complete. They are accompanied
+by the user-authorized neutral
+repository convention: maintenance guidance now lives in `MAINTAINERS.md`, and
+current state, decisions, templates, and reproducible evidence live under
+`.project/`. This path migration changes no authorship or historical fact.
+Findings-first review
+closed case-variant double counting, made popularity-field rejection explicit,
+required ASCII canonical timestamps, and made excessive JSON nesting fail
+closed. The final focused gate passes Ruff, strict Pyright, strict docs, and
+111 M28/M29 and artifact tests with two Windows symlink-capability skips. The
+complete local gate passes 243-file formatting, Ruff, strict Pyright, strict docs, 1,319 tests
+with six skips, pure build, isolated wheel/release smoke, all retained
+benchmark/profile validators, ten real-wgpu tests, and both graphics vertical
+slices. Protected runtime/workflow/metadata/lock scope is unchanged; the
+94-entry wheel has no native library and the 38-entry sample bundle contains
+both exact M29 evidence files. Ready-PR publication, hosted validation,
+thread-aware review, and squash integration remain pending.
+
 M28 is complete, independently reviewed, hosted-validated, and squash-
 integrated. It started from exact clean synchronized GitHub-verified `main` commit
 `17401eb32be30862496bbe02366d886a60752fb3`. Its bounded outcome is a strict
 offline admission harness for the design plan's longer-term metric counting
 externally authored sample games. The reviewed manifest contains zero records,
 so the current count remains zero and the sanitized result is deterministically
-`not-ready`; project examples, maintainers, automated agents, CI, and synthetic
-fixtures do not establish adoption. A future true result requires manually
+`not-ready`; project examples, maintainers, project-controlled automation, CI,
+and synthetic fixtures do not establish adoption. A future true result requires manually
 reviewed independent authorship, a public repository and immutable revision,
 an installed-wheel 2D/layered-2D game, exact headless fixed-tick, typed command-
 receipt, and verified-replay capability evidence, distinct source/execution/
@@ -56,8 +95,8 @@ offline admission harness for the design-plan objective that documentation
 enable a first external contribution without private maintainer knowledge.
 The reviewed manifest contains zero records, so the sanitized result is
 deterministically `not-ready`; project documentation, hosted CI, maintainers,
-automated agents, and synthetic fixtures do not establish an independent human
-contribution rehearsal. A future true result requires at least one manually
+non-human automation and synthetic fixtures do not establish an independent
+human contribution rehearsal. A future true result requires at least one manually
 reviewed human good-first contribution linked to a public project issue and
 merged pull request, exact base/head/merge objects, patch/feedback hashes,
 valid DCO, the clean/focused/complete validation sequence, and explicit review
@@ -603,8 +642,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M0 through M28 are complete, hosted-validated, and squash-integrated. No
-  subsequent milestone is assigned by this record.
+- Complete M29's focused gate, findings-first review, full quality/release
+  evidence, ready PR, unchanged essential hosted CI, and exact squash
+  integration.
+- M0 through M28 are complete, hosted-validated, and squash-integrated. M29 is
+  limited to external contributor-retention admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

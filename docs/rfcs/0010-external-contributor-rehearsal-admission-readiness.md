@@ -49,7 +49,7 @@ The contributor-rehearsal manifest:
    prefix equal to the complete reviewed manifest identity sequence;
 7. requires the exact whole-manifest digest to be pinned by reviewed code and
    strict installed evidence; and
-8. never counts project-owned fixtures, automated agents, documentation text,
+8. never counts project-owned fixtures, non-human automation, documentation text,
    CI passes, opened-but-unmerged pull requests, maintainer-authored changes,
    or synthetic GitHub-shaped URLs as external-contributor evidence.
 

@@ -14,7 +14,7 @@ git switch -c docs/your-focused-change
 uv sync --frozen --all-groups --extra graphics
 ```
 
-Read `AGENTS.md`, `.ai/PROJECT_STATE.md`, `.ai/CURRENT_TASK.md`, the relevant
+Read `MAINTAINERS.md`, `.project/PROJECT_STATE.md`, `.project/CURRENT_TASK.md`, the relevant
 guide/ADR, and `git status`. Do not discard unrelated changes.
 
 ## 2. Reproduce the baseline

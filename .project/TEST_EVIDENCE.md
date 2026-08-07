@@ -2,6 +2,82 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M29 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M28 feature/state integration and branch-cleanup verification | 0 | PR #44 is merged as verified `90d58a4567e7c7eaff90a28a7c59f2453b6d4538`; no-CI PR #45 is merged as verified `e4125bf31a751473d2af4fecc05a9744d551063c`; local and remote M28 branches were deleted after both PRs merged, no open PR remained, and only synchronized `main` remained locally and remotely. |
+| Exact M29 base and workflow identity audit | 0 | `HEAD`, `main`, `origin/main`, and `origin/HEAD` all resolved to `e4125bf31a751473d2af4fecc05a9744d551063c`; the worktree was clean, `git fsck --full --no-dangling` passed, and CI/release SHA-256 values remained `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. |
+| `git switch -c evidence/m29-contributor-retention-readiness` | 0 | Created the neutral-named M29 branch from the exact integrated base. |
+| First `uv lock --check` in the managed sandbox | 1 | uv failed before project execution because the sandbox denied access to existing user-cache metadata; no lock pass is claimed from this attempt. |
+| `uv lock --check` with approved cache access | 0 | The unchanged lock resolved 46 packages in 0.74 ms. |
+| Focused M27/M28/adoption-artifact baseline | 0 | 114 contributor-rehearsal, sample-game, architecture, and release-artifact tests passed with two Windows symlink-capability skips in 3.93 seconds. |
+| M29 manifest identity probe | 0 | The reviewed contributor-retention manifest is exactly 274 bytes with SHA-256 `61785ec165e9f9a7c1025c37f7b714d6fa42b2c7081145a0f843395a325b36ee` and contains zero retention records. |
+| Initial M29 evaluator report | 0 | The source evaluator emitted exact path-free `not-ready` evidence with zero retained contributors, zero return contributions, and reason `retained-external-contributor-absent`. |
+| Initial M29 formatting, Ruff, and integration suite | 0 | Ruff formatted one of three files, lint passed, and all 39 initial fail-closed integration tests passed with one Windows symlink-capability skip in 1.83 seconds. |
+
+Synthetic populated retention records prove evaluator mechanics only. They are
+not people, contributions, issues, pull requests, feedback, retention,
+adoption, project history, or popularity evidence.
+
+## M29 final local validation and review - 2026-08-07, Windows, CPython 3.12.13
+
+Findings-first review identified that GitHub login case could otherwise make
+one public identity appear as two contributors. The evaluator now canonicalizes
+logins case-insensitively before uniqueness and history checks. Regressions also
+prove that `star_count` is rejected at both manifest and record levels rather
+than treated as retention evidence.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Approved cache-access run checked 45 installed packages in 3 ms. |
+| `uv run --frozen ruff format --check .` | 0 | All 243 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| Focused M27-M29 evaluator, architecture, and artifact suite | 0 | The corrected suite passed 146 tests with three Windows symlink-capability skips in 5.58 seconds. |
+| First `uv run --frozen pytest -q` | 1 | 1,316 tests passed with six skips, but one M28 architecture contract failed because M29's README status sentence had replaced M28's exact empty-sample-manifest non-claim. No full-suite pass is claimed from this run. |
+| Corrected M28/M29 documentation-contract check | 0 | Both retained non-claims are explicit; all 20 M28/M29 architecture tests passed in 0.41 seconds. |
+| Corrected `uv run --frozen pytest -q` | 0 | The complete suite passed 1,317 tests with six Windows symlink-capability skips in 88.85 seconds. |
+| `uv run --frozen mkdocs build --strict` after correction | 0 | Strict documentation built in 0.81 seconds with only the known upstream MkDocs Material/MkDocs 2.0 informational warning. |
+| Final post-record formatting, Ruff, Pyright, focused tests, strict docs, and complete tests | 0 | All 243 Python files remained formatted; Ruff passed; Pyright reported zero diagnostics; 54 focused M29/artifact tests passed with one Windows symlink-capability skip in 2.43 seconds; strict docs built in 0.91 seconds with the known upstream warning; and 1,317 complete tests passed with six skips in 91.43 seconds. |
+| `uv build` | 0 | Approved cache-access run built `ludoweave-0.1.0a1.tar.gz` and the universal pure-Python wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel installation passed all inherited smoke plus exact M29 zero-retention evidence. |
+| Fresh M29 release staging and `scripts/smoke_release.py` | 0 | Staged a deterministic ten-artifact candidate and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M29 evidence smoke. |
+| Documented M1-M4 benchmark generators and validators | 0 | All retained schemas validated. M1's 3,600-tick p95 was 57.287 ms and observed its 12-second target; its 10,000-entity simulation p95 was 175.1282 ms and missed 4 ms. M2's four target-free p95 values were 38.0544, 17.2453, 18.8606, and 248.891 ms. M3 extraction/submission p95 values were 26.9649/3.0528 ms and both missed 3 ms. M4 baseline p95 was 2.0168 ms and observed 16.666667 ms; stress 4/8 p95 values were 3.0014/4.2406 ms with no targets. |
+| Five-repeat base and graphics M7 profile generators and validators | 0 | The two-workload base and three-workload graphics artifacts validated; timings remain diagnostic only. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All ten unchanged real-wgpu integration tests passed in 6.98 seconds. |
+| Clockwork Arena and Agent World Builder real-wgpu vertical slices | 0 | Clockwork Arena completed 30 ticks and three draws with state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture SHA-256 `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder committed its typed loop, passed registered tests, and recorded five replay batches. |
+| Final whitespace, protected-surface, object, and artifact inventory audit | 0 | `git diff --check`, exact-base protected diff, and `git fsck --full --no-dangling` passed. Workflow hashes remain unchanged; the exact 274-byte manifest hash remains pinned; the 94-entry wheel contains no native/WASM file; and the 38-entry sample bundle contains both M29 evidence files. |
+| Targeted credential-pattern `rg` scan | 1 | Expected no-match exit: no private-key, GitHub-token, AWS-key, or generic `sk-` credential pattern appeared in the changed evidence/documentation surfaces. |
+| First ASCII/nesting hardening gate | Mixed | Ruff correctly rejected a confusable Unicode digit in a test literal, and the 1,100-level nesting fixture parsed to a non-object instead of exercising the intended decoder failure. No pass is claimed from this attempt. The fixture now uses escaped Unicode and 10,000 nesting levels within the byte cap. |
+| First post-migration `uv lock --check` in the managed sandbox | 1 | uv again failed before project execution because access to existing user-cache metadata was denied; no lock pass is claimed from this attempt. |
+| Final `uv lock --check` with approved cache access | 0 | The unchanged 46-package lock resolved in 0.92 ms. |
+| Final `uv sync --frozen --all-groups --extra graphics` | 0 | The frozen environment checked 45 packages in 3 ms. |
+| Final formatting, Ruff, Pyright, and strict docs after the repository-convention migration | 0 | All 243 Python files were formatted; Ruff passed; Pyright reported zero diagnostics; strict docs built in 0.97 seconds with only the known upstream warning. |
+| First focused M28/M29 command after migration | 4 | A stale architecture-test filename caused pytest collection to stop with no tests run. No pass is claimed from this invocation. |
+| Corrected focused M28/M29 and artifact suite | 0 | 111 tests passed with two Windows symlink-capability skips in 4.16 seconds. |
+| Final `uv run --frozen pytest -q` | 0 | The exact final tree passed 1,319 tests with six Windows symlink-capability skips in 98.88 seconds. |
+| Final `uv build` and `scripts/smoke_wheel.py dist` | 0 | The pure `0.1.0a1` sdist and universal wheel built; isolated wheel smoke passed. |
+| Exact documented release staging and smoke | 0 | A fresh `.tmp/release-candidate` contained ten deterministic artifacts, and complete release smoke passed. |
+| Final documented M1-M4 generators and validators | 0 | All schemas validated. M1 fixed-step p95 was 46.5708 ms and observed its target; simulation p95 was 195.7832 ms and missed 4 ms. M2's target-free p95 values were 44.8821, 17.0150, 23.1025, and 259.5819 ms. M3 extraction/submission p95 values were 28.0267/4.0673 ms and both missed 3 ms. M4 baseline p95 was 2.5603 ms and observed its target; stress 4/8 p95 values were 3.8675/4.7666 ms with no targets. |
+| Final documented M7 base and graphics profile generators and validators | 0 | The two-workload base and three-workload graphics profile artifacts validated; timings remain diagnostic only. |
+| Neutral repository-convention inspection | 0 | `.ai` and `AGENTS.md` are absent from the working tree; maintenance guidance is `MAINTAINERS.md`, current records live under `.project/`, and current references resolve to those paths. Historical branch names remain only where required for factual Git/test evidence; no history was rewritten. |
+| Final remote-history refresh and graph audit | 0 | `git fetch origin --prune` completed; `HEAD`, `main`, `origin/main`, `origin/HEAD`, and the merge base all remained exact `e4125bf31a751473d2af4fecc05a9744d551063c`, with zero commits on either side. The graph is linear through the verified M28 integration record, `git fsck --full --no-dangling` passed, and only local `main` plus the neutral M29 branch and remote `main` exist. |
+| Final protected-surface and workflow/manifest identity audit | 0 | The staged diff against the exact base is empty for `.github`, `pyproject.toml`, `uv.lock`, and `src/ludoweave`. CI, release, and M29 manifest SHA-256 values remain exact `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21`, `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`, and `61785ec165e9f9a7c1025c37f7b714d6fa42b2c7081145a0f843395a325b36ee`. |
+| First final credential scan invocation | 1 | The pattern began with hyphens and was interpreted as an `rg` option, so the scan did not execute and no clean result is claimed from that attempt. |
+| Corrected credential and development-provenance phrase scans | 1 | Expected no-match exits: no targeted private-key/token/access-key pattern and no explicit development-agent phrase appeared in the reviewed current tree. Product-facing software-agent terminology remains because agent operability is an engine requirement. |
+| First artifact inventory probe | 1 | PowerShell had not loaded the ZIP filesystem assembly, so no artifact-count result is claimed from that attempt. |
+| Corrected artifact inventory probe | 0 | After explicitly loading the read-only ZIP assembly, the wheel contained 94 entries and zero native/WASM libraries; the 38-entry sample bundle contained the exact M29 evaluator and manifest paths. |
+| Final post-review `uv run --frozen mkdocs build --strict` | 0 | Strict docs rebuilt in 0.77 seconds with only the known upstream warning after the last wording edits. |
+
+The final scope review found no runtime/public-export, persistent-format,
+dependency, lock, version, workflow, CI-topology, backend/native/WASM,
+networking, telemetry, provider, credential, private-data, or stale-documentation
+change. The separately authorized maintenance-path migration changes no
+authorship or milestone semantics. M1 simulation and both M3 targets remain recorded misses and authorize
+no native code or scope expansion. Ready-PR publication, hosted validation,
+thread-aware review, and squash integration remain pending.
+
 ## M28 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

@@ -1,0 +1,11 @@
+{
+  "schema": "ludoweave.community.external-contributor-retention/1",
+  "source_project": "ludoweave-engine",
+  "minimum_retained_contributors": 1,
+  "required_validation_steps": [
+    "clean-setup",
+    "focused-check",
+    "complete-gate"
+  ],
+  "retention_records": []
+}

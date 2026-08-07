@@ -24,6 +24,7 @@ _SAMPLE_FILES = (
     "cross_version_corpus_readiness.py",
     "example.plugin.json",
     "external_contributor_rehearsal_readiness.py",
+    "external_contributor_retention_readiness.py",
     "external_consumer_feedback_readiness.py",
     "external_sample_game_adoption_readiness.py",
     "fixed_step_world.py",
@@ -149,6 +150,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "external_contributor_rehearsal.json",
             Path("assets/external_contributor_rehearsal.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "external_contributor_retention.json",
+            Path("assets/external_contributor_retention.json"),
         )
     )
     sources.append(

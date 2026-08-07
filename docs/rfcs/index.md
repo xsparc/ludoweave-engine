@@ -16,3 +16,4 @@ was adopted.
 - [RFC-0009: supported release channel admission readiness](0009-supported-release-channel-admission-readiness.md)
 - [RFC-0010: external-contributor rehearsal admission readiness](0010-external-contributor-rehearsal-admission-readiness.md)
 - [RFC-0011: external sample-game adoption admission readiness](0011-external-sample-game-adoption-admission-readiness.md)
+- [RFC-0012: external contributor-retention admission readiness](0012-external-contributor-retention-admission-readiness.md)

@@ -22,6 +22,9 @@ from external_consumer_feedback_evidence import validate_external_consumer_feedb
 from external_contributor_rehearsal_evidence import (
     validate_external_contributor_rehearsal_evidence,
 )
+from external_contributor_retention_evidence import (
+    validate_external_contributor_retention_evidence,
+)
 from external_sample_game_adoption_evidence import (
     validate_external_sample_game_adoption_evidence,
 )
@@ -230,6 +233,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(external_contributor_result.stdout)
         )
         validate_external_contributor_rehearsal_evidence(external_contributor, version=version)
+        contributor_retention_result = _run(
+            [str(python), "-I", "external_contributor_retention_readiness.py"],
+            cwd=sample_root,
+        )
+        contributor_retention = cast(
+            dict[str, object], json.loads(contributor_retention_result.stdout)
+        )
+        validate_external_contributor_retention_evidence(contributor_retention, version=version)
         external_sample_game_result = _run(
             [str(python), "-I", "external_sample_game_adoption_readiness.py"],
             cwd=sample_root,
@@ -312,6 +323,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "constrained_3d_decision.py",
         "cross_version_corpus_readiness.py",
         "external_contributor_rehearsal_readiness.py",
+        "external_contributor_retention_readiness.py",
         "external_consumer_feedback_readiness.py",
         "external_sample_game_adoption_readiness.py",
         "operation_argument_compatibility.py",
