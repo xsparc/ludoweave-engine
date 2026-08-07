@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M33 - benchmark-regression-rate admission readiness
-- **Status:** Implementation, findings-first review, and complete local
-  validation are complete on neutral branch
-  `evidence/m33-benchmark-regression-rate`; commit, hosted validation, PR,
-  integration, and cleanup remain pending.
+- **Status:** Complete, locally and hosted validated, reviewed,
+  squash-integrated, and cleaned up on synchronized verified `main` commit
+  `0993c73b3290809ef4e0c36d64d39e5ee5891a9b`.
 - **Started:** 2026-08-08
 - **Base:** M32 implementation PR #52 and factual record PR #53 are
   squash-integrated. Exact clean synchronized `main`, `origin/main`, and
@@ -66,3 +65,11 @@
   both M7 profile validators, ten real-wgpu tests, and both graphics vertical
   slices pass. Protected surfaces are unchanged and artifact/security audits
   pass. The local benchmark/profile outputs are not admitted rate evidence.
+- **Integration evidence:** Ready PR #54 exact head
+  `3bd7e17eed26028592cb39d37e77e15c6f4371f1` passed all eight essential jobs
+  in run `31225942698`; GitHub reported no comment, review, or review thread and
+  the PR was mergeable/clean. It squash-integrated as GitHub-verified commit
+  `0993c73b3290809ef4e0c36d64d39e5ee5891a9b` with sole parent
+  `60ddf57216d1054ac44df8d834756312c3864e3e`, exact validated tree
+  `0db61d87fed781f3cc6ffbeac1b3743f32a81ca2`, and DCO trailer. The temporary
+  feature branch is deleted locally/remotely; only synchronized `main` remains.
