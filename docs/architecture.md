@@ -682,6 +682,28 @@ values/hashes, environment facts, timing, credentials, and provider messages.
 There is no discovery, dynamic import, installation, subprocess, networking,
 tag lookup, publication, provider selection, or retained external resource.
 
+## M28 external sample-game adoption boundary
+
+M28 adds no engine module. One explicitly invoked example reads a selected
+reviewed manifest outside `src/ludoweave` and emits sanitized aggregate
+readiness evidence. The runtime package never loads the manifest or evaluator.
+
+Every future admitted record must describe an independently authored public 2D
+or layered-2D game using an installed wheel and exercising headless fixed ticks,
+typed command receipts, and verified replay. Human reviewers own authorship,
+independence, public provenance, licensing, and outcome judgments. The evaluator
+validates only frozen fields, exact identities, complete history, and resource
+bounds. The current empty manifest deterministically reports zero external
+sample games and `not-ready`; project samples and synthetic regressions cannot
+change that result.
+
+Reads are bounded, explicit, synchronous, and symlink-rejecting. Evidence code
+uses no discovery, networking, remote lookup, dynamic import, installation,
+subprocess, provider execution, telemetry, or retained resource. Reports omit
+authors, repositories, revisions, artifact hashes, licenses, paths, platforms,
+and timings. RFC-0011 adds no runtime API, canonical state, protocol, format,
+dependency, lock, version, workflow, publication, or stability change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

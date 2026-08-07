@@ -17,6 +17,7 @@ python cross_version_corpus_readiness.py
 python external_consumer_feedback_readiness.py
 python supported_release_channel_readiness.py
 python external_contributor_rehearsal_readiness.py
+python external_sample_game_adoption_readiness.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -84,6 +85,11 @@ reviewed rehearsal manifest and reports that the public first-contribution path
 has not yet been independently completed without private maintainer knowledge.
 Its synthetic gate regressions are not contributors, pull requests, feedback,
 usability evidence, or project history.
+
+`external_sample_game_adoption_readiness.py` validates the exact empty reviewed
+sample-game manifest and reports that no independently authored public game is
+currently admitted. Its synthetic gate regressions and the bundled project
+examples are not external authors, games, users, or adoption evidence.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

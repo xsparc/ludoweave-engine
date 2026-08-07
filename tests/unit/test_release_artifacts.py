@@ -61,6 +61,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "cross_version_corpus_readiness.py" in names
     assert prefix + "external_contributor_rehearsal_readiness.py" in names
     assert prefix + "external_consumer_feedback_readiness.py" in names
+    assert prefix + "external_sample_game_adoption_readiness.py" in names
     assert prefix + "supported_release_channel_readiness.py" in names
     assert prefix + "operation_argument_compatibility.py" in names
     assert prefix + "constrained_3d_decision.py" in names
@@ -74,6 +75,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "assets/cross_version_receipt_corpus.json" in names
     assert prefix + "assets/external_contributor_rehearsal.json" in names
     assert prefix + "assets/external_consumer_feedback.json" in names
+    assert prefix + "assets/external_sample_game_adoption.json" in names
     assert prefix + "assets/supported_release_channel.json" in names
     assert prefix + "assets/receipt_v1/manifest.json" in names
     assert prefix + "assets/receipt_v1/committed.json" in names

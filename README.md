@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M26 are hosted-validated and integrated into `main`. M27 adds strict external-contributor rehearsal admission machinery while retaining its empty-record result as false. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M27 are hosted-validated and integrated into `main`. M28 adds strict external sample-game adoption admission machinery while retaining its empty reviewed sample-game manifest and zero-adoption result. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -74,6 +74,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 - A strict external-contributor rehearsal admission harness whose empty
   reviewed manifest explicitly does not claim that an independent human has
   completed the public contribution path without private maintainer knowledge.
+- A strict external sample-game adoption admission harness whose empty reviewed
+  sample-game manifest keeps the externally authored game count at zero.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -117,6 +119,7 @@ uv run python examples/cross_version_corpus_readiness.py
 uv run python examples/external_consumer_feedback_readiness.py
 uv run python examples/supported_release_channel_readiness.py
 uv run python examples/external_contributor_rehearsal_readiness.py
+uv run python examples/external_sample_game_adoption_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
@@ -234,6 +237,10 @@ RFC-0003 gates under RFC-0006.
 The [external-contributor rehearsal readiness guide](docs/external-contributor-rehearsal-readiness.md)
 documents M27's reviewed-history, human-review, privacy, and installed-artifact
 contract while retaining the current empty-record result as false.
+The [external sample-game adoption readiness guide](docs/external-sample-game-adoption-readiness.md)
+documents M28's authorship, provenance, installed-capability, licensing, and
+complete-history gate while retaining the current externally authored game
+count at zero.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

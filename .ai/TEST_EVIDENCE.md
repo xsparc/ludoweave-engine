@@ -2,6 +2,116 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M28 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M27 feature/state integration verification and branch preparation | 0 | PR #42 squash-integrated exact final M27 evidence head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` as GitHub-verified `ff1c81f8aaa96245706586096f400a5fb03bdd04`; no-CI PR #43 integrated the exact five-file state tree as GitHub-verified `17401eb32be30862496bbe02366d886a60752fb3`; local `main`, `origin/main`, and `origin/HEAD` matched with a clean worktree, and `git fsck --full --no-dangling` exited 0. |
+| `git switch -c codex/m28-external-sample-game-adoption-readiness` | 0 | Created M28 from exact integrated `main` commit `17401eb32be30862496bbe02366d886a60752fb3`. |
+| First `uv lock --check` in the managed sandbox | 1 | uv failed before project execution because the sandbox denied access to existing user-cache metadata; no lock pass is claimed from this attempt. |
+| `uv lock --check` with approved cache access | 0 | The unchanged lock resolved 46 packages in 0.83 ms. |
+| Focused M25/M27/adoption-artifact baseline | 0 | 94 external-feedback, contributor-rehearsal, architecture, and release-artifact tests passed with two Windows symlink-capability skips in 4.75 seconds. |
+| M28 manifest identity probe | 0 | The reviewed external sample-game manifest is exactly 280 bytes with SHA-256 `ecdd0be75e42f047037c6799205786079274eb6d73d788f81e1061acc82008dd` and contains zero sample-game records. |
+| Initial M28 formatting | 0 | Ruff reformatted three of eight changed Python files; five were already formatted. |
+| Initial M28 Ruff, Pyright, focused tests, and report group | Mixed | Ruff passed and the exact sanitized report was `not-ready`. Pyright found one unnecessary Boolean cast. The focused suite passed 51 tests with one Windows symlink-capability skip but failed its single documentation-contract test because the M28 public docs had not yet been added. No Pyright or focused-suite pass is claimed from this group. |
+| First corrected focused/static/docs gate | 0 | After the type correction and public documentation landed, Ruff passed, Pyright reported zero diagnostics, 52 focused tests passed with one Windows symlink-capability skip in 2.22 seconds, and strict docs built in 0.81 seconds. |
+| Findings-first hardening gate | Mixed | Review added explicit independence, provenance, and outcome attestations plus cross-role artifact and evidence-locator uniqueness. Ruff, Pyright, and strict docs passed, but the first 65-record count-cap regression reached the 65,536-byte limit before the record-count limit. No focused-suite pass is claimed from this group. |
+| Corrected focused M28 suite | 0 | The executable record cap was set to 32; all 56 evaluator, validator, boundary, artifact, and release tests passed with one Windows symlink-capability skip in 2.18 seconds. |
+
+Synthetic populated sample-game records prove evaluator mechanics only. They
+are not authors, games, users, repositories, feedback, adoption, project
+history, releases, or compatibility evidence.
+
+## M28 final local validation and review - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Approved cache-access run resolved the unchanged 46-package lock in 0.90 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Approved cache-access run checked 45 installed packages in 3 ms. |
+| First combined static command | Interrupted | The combined shell was interrupted before producing conclusive results; no pass is claimed from it. Every check was rerun separately below. |
+| `uv run --frozen ruff format --check .` | 0 | All 239 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.86 seconds with only the known upstream MkDocs Material/MkDocs 2.0 informational warning. |
+| `uv run --frozen pytest -q` | 0 | 1,264 tests passed with five Windows symlink-capability skips in 92.09 seconds. |
+| First sandboxed `uv build` | 1 | uv could not access existing user-cache metadata before project execution; no build pass is claimed from this attempt. |
+| `uv build` with approved cache access | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the universal pure-Python wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel installation passed all inherited smoke and exact M28 empty-manifest evidence. |
+| Fresh M28 release staging and `scripts/smoke_release.py` | 0 | Staged a deterministic ten-artifact candidate and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M28 evidence smoke. |
+| M28 report and exact validator | 0 | The source evaluator emitted the exact sanitized `not-ready` document with zero games and reason `external-sample-game-absent`; the installed evidence validator accepted it. |
+| Documented M1-M4 benchmark generators and validators | 0 | All retained schemas validated. M1 observed only the 3,600-tick target; its 10,000-entity simulation p95 was 127.2239 ms against 4 ms. M2 retained four target-free observations. M3 extraction/submission p95 values were 26.7673/3.3518 ms and both missed their 3 ms starting targets. M4 baseline p95 was 1.9282 ms and observed its 16.666667 ms target; stress 4/8 p95 values were 3.0410/4.4781 ms with no targets. |
+| Five-repeat base and graphics M7 profile generators and validators | 0 | The two-workload base and three-workload graphics artifacts validated; timings remain diagnostic only. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All ten unchanged real-wgpu integration tests passed in 6.88 seconds. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprites, state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, and capture SHA-256 `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320x180 RGBA8, passed registered tests, and recorded five replay batches. |
+| Final whitespace, protected-surface, Git-object, identity, and artifact inventory audit | 0 | `git diff --check`, exact-base protected diff, and `git fsck --full --no-dangling` passed. CI/release workflow hashes remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; the exact 280-byte manifest hash remains pinned; the 94-entry wheel contains no native file; and the 36-entry sample bundle contains both M28 evidence files. |
+| Final post-record formatting, Ruff, Pyright, focused tests, strict docs, and complete tests | 0 | All 239 Python files remained formatted; Ruff passed; Pyright reported zero diagnostics; 56 focused tests passed with one Windows symlink-capability skip in 2.39 seconds; strict docs built in 0.84 seconds with the known upstream warning; and 1,264 complete tests passed with five skips in 92.90 seconds. |
+
+The findings-first review found no remaining scope, credential, privacy,
+backend/native/WASM leakage, dependency-direction, wall-clock, history,
+packaging, or stale-documentation issue. M28 changes no runtime source, public
+API/export, persistent format, protocol, operation, dependency, lock, package
+version, stability label, workflow, CI topology, tag, release, publication,
+provider, network surface, or external fact. M1 simulation and both M3 targets
+remain recorded misses and authorize no acceleration. Ready-PR publication,
+hosted validation, thread-aware review, and squash integration remain pending.
+
+## M28 hosted validation and review correction - PR #44
+
+Ready PR #44 targets exact base
+`17401eb32be30862496bbe02366d886a60752fb3`. Its DCO-signed implementation
+head is `a1898a81218ae5674fd0347018c6062a5537f359` with tree
+`7768d74ce536ce0c5201af804248dd01c9bac0b7` and that base as its sole parent.
+
+GitHub Actions run `31175906134` executed the exact implementation head and
+passed all eight unchanged essential jobs: quality/tests/distribution, Ubuntu
+CPython 3.13, Ubuntu/macOS/Windows CPython 3.14, and real graphics on Ubuntu,
+macOS, and Windows. No additional workflow, job, or matrix was created.
+
+Thread-aware review found two valid P2 issues on that head. An unreviewed
+custom manifest could expose nonzero game and author aggregates even though
+its gate remained false. A syntactically safe HTTPS evidence locator did not
+have to contain an immutable record identity. The correction exposes record-
+derived counts, versions, scopes, outcomes, and presence only after the exact
+manifest digest and complete mandatory history are admitted. It also requires
+the locator path to contain the exact revision or one recorded source,
+execution, or review digest.
+
+| Correction command | Exit | Result |
+| --- | ---: | --- |
+| First review-correction static/focused/docs group | Mixed | Ruff formatting and lint, Pyright, and strict docs passed, but two duplicate-identity regressions failed because their fixtures did not yet preserve the new locator-identity invariant. No focused-suite pass is claimed from this group. |
+| First corrected duplicate-fixture group | Mixed | All 57 focused tests passed with one Windows symlink-capability skip, and Ruff lint passed, but the leading format check reported one test file would be reformatted. No format pass is claimed from this group. |
+| Final post-review format, Ruff, Pyright, focused tests, strict docs, report, and validator | 0 | All 239 Python files were formatted; Ruff passed; Pyright reported zero diagnostics; 57 focused tests passed with one skip in 2.19 seconds; strict docs built in 0.81 seconds with the known upstream warning; and the exact zero-game `not-ready` report and validator passed. The first sandboxed report rerun failed only on denied uv cache access; the approved rerun supplied the recorded report pass. |
+| `uv run --frozen pytest -q` | 0 | The corrected complete suite passed 1,265 tests with five Windows symlink-capability skips in 88.39 seconds. |
+| Corrected `uv build`, isolated wheel smoke, fresh release staging, and release smoke | 0 | Rebuilt the pure `0.1.0a1` sdist/wheel, passed isolated wheel smoke, staged a fresh ten-artifact candidate, and passed complete release smoke with the corrected bundled M28 evaluator. |
+
+The correction changes only the M28 evaluator, regressions, readiness guide,
+RFC, and factual `.ai` state. It does not widen scope or change runtime source,
+public APIs/exports, persistent formats, dependencies, lock, version, workflow,
+CI topology, tag, release, publication, provider, network behavior, or current
+zero-adoption result. Correction commit/push, necessary hosted validation,
+final thread-aware reread, and squash integration remain pending.
+
+Correction commit `36130c8a3d0923a7330ee2c9e287c11c2a52594c` is DCO-signed,
+has tree `3e0fa65789beefb4dcb8a00489fe732b7124ca01`, and follows the
+implementation commit directly. GitHub Actions run `31176729893` executed that
+exact correction head from `2026-08-07T12:05:20Z` through
+`2026-08-07T12:08:35Z` and passed all eight unchanged essential jobs. Its
+quality job passed the lock, formatting, Ruff, Pyright, strict docs, full tests,
+base profile smoke, pure build, isolated wheel smoke, deterministic release
+staging, and release smoke. All four compatibility jobs and all three real-
+graphics jobs passed.
+
+GitHub reports ready PR #44 `MERGEABLE` and `CLEAN` against exact base
+`17401eb32be30862496bbe02366d886a60752fb3`. The final thread-aware reread
+reports both original P2 threads outdated after the adjacent corrections. The
+current logic and regressions expose no unreviewed aggregates and reject a
+locator without the exact revision or one recorded artifact digest. No new
+review submission, comment, thread, or actionable finding exists. Neither
+thread was replied to or manually resolved. The factual CI-skipping evidence
+commit, confirmation that it creates no third run, and squash integration
+remain pending.
+
 ## M27 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

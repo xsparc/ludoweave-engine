@@ -19,6 +19,9 @@ from external_consumer_feedback_evidence import validate_external_consumer_feedb
 from external_contributor_rehearsal_evidence import (
     validate_external_contributor_rehearsal_evidence,
 )
+from external_sample_game_adoption_evidence import (
+    validate_external_sample_game_adoption_evidence,
+)
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -612,6 +615,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(external_contributor_result.stdout)
         )
         validate_external_contributor_rehearsal_evidence(external_contributor, version=version)
+
+        external_sample_game_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "external_sample_game_adoption_readiness.py"),
+                "--samples",
+                str(project_root / "tests" / "fixtures" / "external_sample_game_adoption.json"),
+            ],
+            cwd=temp_root,
+        )
+        external_sample_game = cast(
+            dict[str, object], json.loads(external_sample_game_result.stdout)
+        )
+        validate_external_sample_game_adoption_evidence(external_sample_game, version=version)
 
         release_channel_result = _run(
             [

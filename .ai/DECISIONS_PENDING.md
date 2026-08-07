@@ -127,6 +127,14 @@ external-contributor usability evidence remains absent. The evaluator cannot
 establish independence or undisclosed assistance; human review owns those
 facts, and no synthetic fixture or CI pass is an external contribution.
 
+RFC-0011 resolves how externally authored sample games are admitted as a
+longer-term adoption metric. The offline harness requires manually reviewed
+independent authorship, immutable public provenance, installed-wheel headless/
+command-receipt/replay evidence, distinct artifact identities, and reviewed
+licensing while preserving exact complete history. The reviewed manifest is
+empty, so the current external sample-game count remains zero. Project-owned
+examples, maintainers, agents, CI, and synthetic fixtures are not adoption.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

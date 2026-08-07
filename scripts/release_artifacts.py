@@ -25,6 +25,7 @@ _SAMPLE_FILES = (
     "example.plugin.json",
     "external_contributor_rehearsal_readiness.py",
     "external_consumer_feedback_readiness.py",
+    "external_sample_game_adoption_readiness.py",
     "fixed_step_world.py",
     "hello_headless.py",
     "hello_sprite.py",
@@ -154,6 +155,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "external_consumer_feedback.json",
             Path("assets/external_consumer_feedback.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "external_sample_game_adoption.json",
+            Path("assets/external_sample_game_adoption.json"),
         )
     )
     sources.append(

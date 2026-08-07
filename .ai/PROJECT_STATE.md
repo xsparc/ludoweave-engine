@@ -2,6 +2,47 @@
 
 ## Current milestone
 
+M28 is in progress on `codex/m28-external-sample-game-adoption-readiness` from
+exact clean synchronized GitHub-verified `main` commit
+`17401eb32be30862496bbe02366d886a60752fb3`. Its bounded outcome is a strict
+offline admission harness for the design plan's longer-term metric counting
+externally authored sample games. The reviewed manifest contains zero records,
+so the current count remains zero and the sanitized result is deterministically
+`not-ready`; project examples, maintainers, automated agents, CI, and synthetic
+fixtures do not establish adoption. A future true result requires manually
+reviewed independent authorship, a public repository and immutable revision,
+an installed-wheel 2D/layered-2D game, exact headless fixed-tick, typed command-
+receipt, and verified-replay capability evidence, distinct source/execution/
+review artifact identities, a validated outcome, and reviewed public licensing.
+The complete reviewed identity sequence must equal the executable mandatory
+prefix. M28 changes no runtime source, public API/export, persistent format,
+protocol, dependency, lock, package version, stability label, workflow, or CI
+topology. The initial baseline resolves the unchanged 46-package lock and
+passes 94 related tests with two Windows symlink-capability skips. The reviewed
+manifest is exactly 280 bytes with SHA-256
+`ecdd0be75e42f047037c6799205786079274eb6d73d788f81e1061acc82008dd`.
+The evaluator, exact validator, synthetic regressions, source/wheel/release
+artifact paths, RFC-0011, and public documentation are complete. Findings-
+first review added explicit independence/provenance/outcome attestations,
+cross-role artifact and locator uniqueness, duplicate-field rejection,
+resource bounds, and complete mandatory-prefix enforcement. Corrected focused
+validation initially passed 56 tests with one Windows symlink-capability skip.
+Ready PR #44 and run `31175906134` passed all eight unchanged essential jobs on
+DCO-signed head `a1898a81218ae5674fd0347018c6062a5537f359`. Thread-aware
+review then found two valid P2 issues: unreviewed manifests could publish
+candidate game/author aggregates, and HTTPS evidence locators were not bound
+to an immutable record identity. The corrected evaluator exposes aggregates
+only after exact digest and complete-history admission and requires the
+locator path to contain the revision or one source/execution/review digest.
+Post-correction formatting, Ruff, strict Pyright, strict docs, 57 focused
+tests with one skip, 1,265 full tests with five skips, pure build, isolated
+wheel smoke, and fresh ten-artifact release smoke pass. Correction run
+`31176729893` also passes all eight unchanged essential jobs on exact head
+`36130c8a3d0923a7330ee2c9e287c11c2a52594c`. GitHub reports PR #44
+`MERGEABLE` and `CLEAN`; both original P2 threads are outdated, and the final
+thread-aware reread found no new finding. Factual CI-skipping evidence
+publication and exact squash integration remain in progress.
+
 M27 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
 `codex/m27-external-contributor-rehearsal-readiness` from exact clean
@@ -558,8 +599,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M0 through M27 are complete, hosted-validated, and squash-integrated. This
-  branch records M27 integration only; no subsequent milestone is included.
+- Publish M28's factual hosted-validation record with `[skip ci]`, confirm no
+  third workflow run, and exact-squash integrate ready PR #44.
+- M0 through M27 are complete, hosted-validated, and squash-integrated. M28 is
+  limited to external sample-game adoption admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.
