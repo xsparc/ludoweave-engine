@@ -1,11 +1,11 @@
 # Current Task
 
 - **Task:** M28 - external sample-game adoption admission readiness
-- **Status:** Ready PR #44 is open. Its initial implementation head passed the
-  single eight-job hosted run; thread-aware review then found two valid P2
-  admission-boundary defects. Both corrections and their local validation are
-  complete. Publishing the correction, its necessary hosted run and reread,
-  and exact squash integration remain.
+- **Status:** Ready PR #44 is `MERGEABLE` and `CLEAN`. Both the initial and
+  corrected eight-job hosted runs passed. The two valid P2 review findings are
+  corrected, their threads are outdated, and the final reread found no new
+  finding. Factual CI-skipping evidence publication and exact squash
+  integration remain.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized GitHub-verified `main` commit
   `17401eb32be30862496bbe02366d886a60752fb3` after PR #43 recorded M27
@@ -74,3 +74,8 @@
   correction exposes record aggregates only after exact digest and complete-
   history admission and requires the locator path to contain the record's
   revision or one recorded artifact digest.
+- **Corrected hosted acceptance:** Run `31176729893` passed all eight unchanged
+  essential jobs on correction head
+  `36130c8a3d0923a7330ee2c9e287c11c2a52594c`. GitHub reports PR #44
+  `MERGEABLE` and `CLEAN` against the exact assigned base. Both original review
+  threads are outdated; no new review or actionable finding exists.

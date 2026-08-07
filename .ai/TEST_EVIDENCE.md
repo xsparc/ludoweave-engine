@@ -92,6 +92,26 @@ CI topology, tag, release, publication, provider, network behavior, or current
 zero-adoption result. Correction commit/push, necessary hosted validation,
 final thread-aware reread, and squash integration remain pending.
 
+Correction commit `36130c8a3d0923a7330ee2c9e287c11c2a52594c` is DCO-signed,
+has tree `3e0fa65789beefb4dcb8a00489fe732b7124ca01`, and follows the
+implementation commit directly. GitHub Actions run `31176729893` executed that
+exact correction head from `2026-08-07T12:05:20Z` through
+`2026-08-07T12:08:35Z` and passed all eight unchanged essential jobs. Its
+quality job passed the lock, formatting, Ruff, Pyright, strict docs, full tests,
+base profile smoke, pure build, isolated wheel smoke, deterministic release
+staging, and release smoke. All four compatibility jobs and all three real-
+graphics jobs passed.
+
+GitHub reports ready PR #44 `MERGEABLE` and `CLEAN` against exact base
+`17401eb32be30862496bbe02366d886a60752fb3`. The final thread-aware reread
+reports both original P2 threads outdated after the adjacent corrections. The
+current logic and regressions expose no unreviewed aggregates and reject a
+locator without the exact revision or one recorded artifact digest. No new
+review submission, comment, thread, or actionable finding exists. Neither
+thread was replied to or manually resolved. The factual CI-skipping evidence
+commit, confirmation that it creates no third run, and squash integration
+remain pending.
+
 ## M27 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

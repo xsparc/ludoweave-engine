@@ -36,9 +36,12 @@ only after exact digest and complete-history admission and requires the
 locator path to contain the revision or one source/execution/review digest.
 Post-correction formatting, Ruff, strict Pyright, strict docs, 57 focused
 tests with one skip, 1,265 full tests with five skips, pure build, isolated
-wheel smoke, and fresh ten-artifact release smoke pass. Publishing this
-correction, necessary hosted validation, final thread-aware reread, and exact
-squash integration remain in progress.
+wheel smoke, and fresh ten-artifact release smoke pass. Correction run
+`31176729893` also passes all eight unchanged essential jobs on exact head
+`36130c8a3d0923a7330ee2c9e287c11c2a52594c`. GitHub reports PR #44
+`MERGEABLE` and `CLEAN`; both original P2 threads are outdated, and the final
+thread-aware reread found no new finding. Factual CI-skipping evidence
+publication and exact squash integration remain in progress.
 
 M27 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -596,9 +599,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Publish M28's locally accepted review correction to ready PR #44, run only
-  the necessary unchanged hosted validation, perform a final thread-aware
-  reread, and exact-squash integrate the validated tree.
+- Publish M28's factual hosted-validation record with `[skip ci]`, confirm no
+  third workflow run, and exact-squash integrate ready PR #44.
 - M0 through M27 are complete, hosted-validated, and squash-integrated. M28 is
   limited to external sample-game adoption admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
