@@ -37,6 +37,26 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 
 ## Current boundary
 
+M28 adds only strict offline external sample-game adoption admission readiness
+for the first longer-term adoption metric in the design plan. The reviewed
+manifest is empty, so its current game count and result must remain zero/false
+and must not claim an external author, user, game, adoption, licensing result,
+or compatibility. Manual review, not evaluator logic, owns authorship,
+independence, repository provenance, license state, and outcome. M28 may add
+only frozen data evidence, an explicitly invoked evaluator/validator,
+synthetic gate tests, RFC/docs, and source/wheel/release-sample artifact smoke
+through the unchanged eight essential CI jobs. It may not solicit/contact
+authors; discover/query remote repositories; open or mutate issues/PRs as
+evidence; collect private communication or personal data; use networking,
+telemetry, discovery, dynamic imports, subprocesses, installation, or provider
+execution; or change runtime source, public APIs/exports, persistent formats,
+protocols, operations, dependencies, lock, version, workflows, CI topology,
+tag, release, publication, certification, support policy, or stability label.
+M0 through M27 are complete, independently accepted, hosted-CI validated, and
+integrated into `main`. M28 starts from exact verified integration-record
+commit `17401eb32be30862496bbe02366d886a60752fb3` and contains no subsequent
+milestone.
+
 M27 adds only strict offline external-contributor rehearsal admission readiness
 for the design-plan objective that public documentation enable a first external
 contribution without private maintainer knowledge. The reviewed manifest is

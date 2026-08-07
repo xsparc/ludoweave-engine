@@ -49,6 +49,11 @@ fabricated acceptance result. M27/RFC-0010 adds the strict offline admission
 path, but its reviewed manifest remains empty and therefore preserves this
 non-claim.
 
+No externally authored sample game has been admitted. Bundled games and
+synthetic fixtures remain project-owned behavioral evidence, not adoption.
+M28/RFC-0011 adds a strict offline admission path, but its reviewed manifest is
+empty and its externally authored game count remains zero.
+
 ## Decisions retained
 
 - Every current Python export and persistent protocol remains experimental.
@@ -81,6 +86,9 @@ Remaining priority questions also include contributor rehearsal feedback and
 controlled cross-platform performance evidence. M27 defines the rehearsal
 admission contract under RFC-0010, but it cannot become true until a real
 independent human completes a reviewed merged contribution using the public
-path without private maintainer knowledge. Scene importers,
+path without private maintainer knowledge.
+M28 then defines external sample-game admission under RFC-0011 without
+reclassifying bundled examples as adoption; a real independently authored,
+publicly reviewed installed-wheel game remains required. Scene importers,
 production audio, rigid-body physics, networking, editor tooling, 3D, device
 recovery, and native acceleration remain unimplemented.

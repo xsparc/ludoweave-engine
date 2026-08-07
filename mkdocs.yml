@@ -21,6 +21,7 @@ nav:
   - External consumer feedback readiness: external-consumer-feedback-readiness.md
   - Supported release channel readiness: supported-release-channel-readiness.md
   - External-contributor rehearsal readiness: external-contributor-rehearsal-readiness.md
+  - External sample-game adoption readiness: external-sample-game-adoption-readiness.md
   - Bounded receipt reader: receipt-reader.md
   - Plugin manifests and compatibility: plugins.md
   - Rollback and network-snapshot readiness: rollback-readiness.md
@@ -43,6 +44,7 @@ nav:
       - RFC-0008 - External consumer feedback readiness: rfcs/0008-external-consumer-feedback-admission-readiness.md
       - RFC-0009 - Supported release channel readiness: rfcs/0009-supported-release-channel-admission-readiness.md
       - RFC-0010 - External-contributor rehearsal readiness: rfcs/0010-external-contributor-rehearsal-admission-readiness.md
+      - RFC-0011 - External sample-game adoption readiness: rfcs/0011-external-sample-game-adoption-admission-readiness.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

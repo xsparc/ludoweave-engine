@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M28/RFC-0011 external sample-game adoption admission evidence that
+  rejects project-owned substitutes and retains the externally authored game
+  count as zero until a reviewed independent installed-wheel game exists.
 - Add M27/RFC-0010 external-contributor rehearsal admission evidence that
   preserves a complete reviewed history and explicitly retains the public-
   documentation usability result as false until an independent human completes

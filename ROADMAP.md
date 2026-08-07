@@ -36,6 +36,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M25 external-consumer-feedback admission readiness | PR #38 squash-integrated; strict reviewed manifest, false current gate, reviewed non-IP correction, installed artifact smoke, RFC-0008, and both eight-job hosted runs passed |
 | Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
 | Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
+| Active | M28 external sample-game adoption admission readiness | Strict empty reviewed manifest, zero current count, authorship/provenance/history gates, installed artifact smoke, RFC-0011, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -249,6 +250,18 @@ failed-job-only outage recovery. PR #42 squash-integrated exact final evidence
 head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` as GitHub-verified `main`
 commit `ff1c81f8aaa96245706586096f400a5fb03bdd04`; both trees are
 `f957c2e40eec5bd2d70cc274079ea334d6a34cc3`.
+
+M28 starts from verified integrated `main` commit
+`17401eb32be30862496bbe02366d886a60752fb3`. It adds an offline admission
+harness for the longer-term metric counting externally authored sample games.
+A future record requires manually reviewed independent authorship, a public
+repository and immutable revision, installed-wheel execution, exact headless/
+command-receipt/replay capability evidence, distinct source/run/review
+identities, and reviewed public licensing. The reviewed set is empty, so the
+current count remains zero; bundled examples, maintainers, agents, CI, and
+synthetic fixtures are not adoption. M28 adds no runtime source, API, protocol,
+format, dependency, version, workflow job, network activity, author contact,
+telemetry, tag, release, publication, certification, or support promise.
 
 ## Good-first contribution queue
 

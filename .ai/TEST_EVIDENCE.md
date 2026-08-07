@@ -2,6 +2,60 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M28 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M27 feature/state integration verification and branch preparation | 0 | PR #42 squash-integrated exact final M27 evidence head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` as GitHub-verified `ff1c81f8aaa96245706586096f400a5fb03bdd04`; no-CI PR #43 integrated the exact five-file state tree as GitHub-verified `17401eb32be30862496bbe02366d886a60752fb3`; local `main`, `origin/main`, and `origin/HEAD` matched with a clean worktree, and `git fsck --full --no-dangling` exited 0. |
+| `git switch -c codex/m28-external-sample-game-adoption-readiness` | 0 | Created M28 from exact integrated `main` commit `17401eb32be30862496bbe02366d886a60752fb3`. |
+| First `uv lock --check` in the managed sandbox | 1 | uv failed before project execution because the sandbox denied access to existing user-cache metadata; no lock pass is claimed from this attempt. |
+| `uv lock --check` with approved cache access | 0 | The unchanged lock resolved 46 packages in 0.83 ms. |
+| Focused M25/M27/adoption-artifact baseline | 0 | 94 external-feedback, contributor-rehearsal, architecture, and release-artifact tests passed with two Windows symlink-capability skips in 4.75 seconds. |
+| M28 manifest identity probe | 0 | The reviewed external sample-game manifest is exactly 280 bytes with SHA-256 `ecdd0be75e42f047037c6799205786079274eb6d73d788f81e1061acc82008dd` and contains zero sample-game records. |
+| Initial M28 formatting | 0 | Ruff reformatted three of eight changed Python files; five were already formatted. |
+| Initial M28 Ruff, Pyright, focused tests, and report group | Mixed | Ruff passed and the exact sanitized report was `not-ready`. Pyright found one unnecessary Boolean cast. The focused suite passed 51 tests with one Windows symlink-capability skip but failed its single documentation-contract test because the M28 public docs had not yet been added. No Pyright or focused-suite pass is claimed from this group. |
+| First corrected focused/static/docs gate | 0 | After the type correction and public documentation landed, Ruff passed, Pyright reported zero diagnostics, 52 focused tests passed with one Windows symlink-capability skip in 2.22 seconds, and strict docs built in 0.81 seconds. |
+| Findings-first hardening gate | Mixed | Review added explicit independence, provenance, and outcome attestations plus cross-role artifact and evidence-locator uniqueness. Ruff, Pyright, and strict docs passed, but the first 65-record count-cap regression reached the 65,536-byte limit before the record-count limit. No focused-suite pass is claimed from this group. |
+| Corrected focused M28 suite | 0 | The executable record cap was set to 32; all 56 evaluator, validator, boundary, artifact, and release tests passed with one Windows symlink-capability skip in 2.18 seconds. |
+
+Synthetic populated sample-game records prove evaluator mechanics only. They
+are not authors, games, users, repositories, feedback, adoption, project
+history, releases, or compatibility evidence.
+
+## M28 final local validation and review - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 0 | Approved cache-access run resolved the unchanged 46-package lock in 0.90 ms. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Approved cache-access run checked 45 installed packages in 3 ms. |
+| First combined static command | Interrupted | The combined shell was interrupted before producing conclusive results; no pass is claimed from it. Every check was rerun separately below. |
+| `uv run --frozen ruff format --check .` | 0 | All 239 Python files were already formatted. |
+| `uv run --frozen ruff check .` | 0 | No lint findings. |
+| `uv run --frozen pyright` | 0 | Zero errors, warnings, or information findings. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict documentation built in 0.86 seconds with only the known upstream MkDocs Material/MkDocs 2.0 informational warning. |
+| `uv run --frozen pytest -q` | 0 | 1,264 tests passed with five Windows symlink-capability skips in 92.09 seconds. |
+| First sandboxed `uv build` | 1 | uv could not access existing user-cache metadata before project execution; no build pass is claimed from this attempt. |
+| `uv build` with approved cache access | 0 | Built `ludoweave-0.1.0a1.tar.gz` and the universal pure-Python wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency wheel installation passed all inherited smoke and exact M28 empty-manifest evidence. |
+| Fresh M28 release staging and `scripts/smoke_release.py` | 0 | Staged a deterministic ten-artifact candidate and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M28 evidence smoke. |
+| M28 report and exact validator | 0 | The source evaluator emitted the exact sanitized `not-ready` document with zero games and reason `external-sample-game-absent`; the installed evidence validator accepted it. |
+| Documented M1-M4 benchmark generators and validators | 0 | All retained schemas validated. M1 observed only the 3,600-tick target; its 10,000-entity simulation p95 was 127.2239 ms against 4 ms. M2 retained four target-free observations. M3 extraction/submission p95 values were 26.7673/3.3518 ms and both missed their 3 ms starting targets. M4 baseline p95 was 1.9282 ms and observed its 16.666667 ms target; stress 4/8 p95 values were 3.0410/4.4781 ms with no targets. |
+| Five-repeat base and graphics M7 profile generators and validators | 0 | The two-workload base and three-workload graphics artifacts validated; timings remain diagnostic only. |
+| `uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | All ten unchanged real-wgpu integration tests passed in 6.88 seconds. |
+| `uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10` | 0 | Offscreen wgpu completed 30 ticks, three draws, 16 sprites, state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, and capture SHA-256 `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`. |
+| `uv run --frozen --extra graphics python examples/agent_world_builder.py` | 0 | The typed-tool loop committed create/adjust work, completed three ticks, captured 320x180 RGBA8, passed registered tests, and recorded five replay batches. |
+| Final whitespace, protected-surface, Git-object, identity, and artifact inventory audit | 0 | `git diff --check`, exact-base protected diff, and `git fsck --full --no-dangling` passed. CI/release workflow hashes remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; the exact 280-byte manifest hash remains pinned; the 94-entry wheel contains no native file; and the 36-entry sample bundle contains both M28 evidence files. |
+| Final post-record formatting, Ruff, Pyright, focused tests, strict docs, and complete tests | 0 | All 239 Python files remained formatted; Ruff passed; Pyright reported zero diagnostics; 56 focused tests passed with one Windows symlink-capability skip in 2.39 seconds; strict docs built in 0.84 seconds with the known upstream warning; and 1,264 complete tests passed with five skips in 92.90 seconds. |
+
+The findings-first review found no remaining scope, credential, privacy,
+backend/native/WASM leakage, dependency-direction, wall-clock, history,
+packaging, or stale-documentation issue. M28 changes no runtime source, public
+API/export, persistent format, protocol, operation, dependency, lock, package
+version, stability label, workflow, CI topology, tag, release, publication,
+provider, network surface, or external fact. M1 simulation and both M3 targets
+remain recorded misses and authorize no acceleration. Ready-PR publication,
+hosted validation, thread-aware review, and squash integration remain pending.
+
 ## M27 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

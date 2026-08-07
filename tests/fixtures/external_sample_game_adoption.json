@@ -1,0 +1,11 @@
+{
+  "schema": "ludoweave.adoption.external-sample-games/1",
+  "source_project": "ludoweave-engine",
+  "minimum_external_sample_games": 1,
+  "required_capabilities": [
+    "headless-fixed-tick",
+    "typed-command-receipt",
+    "verified-replay"
+  ],
+  "sample_game_records": []
+}

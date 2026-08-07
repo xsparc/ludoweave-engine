@@ -22,6 +22,9 @@ from external_consumer_feedback_evidence import validate_external_consumer_feedb
 from external_contributor_rehearsal_evidence import (
     validate_external_contributor_rehearsal_evidence,
 )
+from external_sample_game_adoption_evidence import (
+    validate_external_sample_game_adoption_evidence,
+)
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -227,6 +230,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(external_contributor_result.stdout)
         )
         validate_external_contributor_rehearsal_evidence(external_contributor, version=version)
+        external_sample_game_result = _run(
+            [str(python), "-I", "external_sample_game_adoption_readiness.py"],
+            cwd=sample_root,
+        )
+        external_sample_game = cast(
+            dict[str, object], json.loads(external_sample_game_result.stdout)
+        )
+        validate_external_sample_game_adoption_evidence(external_sample_game, version=version)
         release_channel_result = _run(
             [str(python), "-I", "supported_release_channel_readiness.py"],
             cwd=sample_root,
@@ -302,6 +313,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "cross_version_corpus_readiness.py",
         "external_contributor_rehearsal_readiness.py",
         "external_consumer_feedback_readiness.py",
+        "external_sample_game_adoption_readiness.py",
         "operation_argument_compatibility.py",
         "render_device_conformance.py",
         "receipt_reader.py",

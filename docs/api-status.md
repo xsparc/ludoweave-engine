@@ -51,6 +51,9 @@ M26 adds no export; RFC-0009 makes supported feature-release-channel admission
 mechanically auditable but records the reviewed empty manifest as not ready.
 M27 adds no export; RFC-0010 makes external-contributor rehearsal admission
 mechanically auditable but records the reviewed empty manifest as not ready.
+M28 adds no export; RFC-0011 makes external sample-game adoption admission
+mechanically auditable but records the reviewed empty manifest and zero count
+as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

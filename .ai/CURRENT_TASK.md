@@ -1,82 +1,67 @@
 # Current Task
 
-- **Task:** M27 - external-contributor rehearsal admission readiness
-- **Status:** Complete and squash-integrated into `main`. This no-CI branch
-  records the exact verified integration; publication of that record remains.
+- **Task:** M28 - external sample-game adoption admission readiness
+- **Status:** Implementation, local validation, artifact smoke, and findings-
+  first review are complete on
+  `codex/m28-external-sample-game-adoption-readiness`; ready-PR publication,
+  minimum necessary hosted validation, thread-aware review, and exact squash
+  integration remain.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized GitHub-verified `main` commit
-  `c1c3be08f7f75d90e7d1b517adbc30d56902ece4` after PR #41 recorded M26
+  `17401eb32be30862496bbe02366d886a60752fb3` after PR #43 recorded M27
   integration without starting a workflow run.
-- **Outcome:** Make the design-plan objective “documentation enables a first
-  external contribution without private maintainer knowledge” mechanically
-  auditable without treating project-owned documentation, CI, synthetic
-  fixtures, maintainers, or automated agents as external human evidence.
+- **Outcome:** Make the design plan's longer-term metric counting externally
+  authored sample games mechanically auditable without treating bundled
+  examples, maintainers, automated agents, CI, or synthetic fixtures as
+  external authorship or adoption.
 - **Acceptance gate:**
-  - Add one strict reviewed manifest whose current rehearsal-record set is
-    empty and whose exact 270 bytes and SHA-256 are pinned by architecture
+  - Add one strict reviewed manifest whose current sample-game record set is
+    empty and whose exact 280 bytes and SHA-256 are pinned by architecture
     tests.
-  - Require at least one independently reviewed human, merged good-first
-    project contribution linked to a public issue and pull request before the
-    result can become true.
-  - Require exact distinct base/head/merge Git objects, reviewed patch and
-    feedback SHA-256 identities, valid DCO, clean/focused/complete validation,
-    merged outcome, and no private maintainer knowledge.
-  - Limit admissible scope to bug fixes, documentation, tests, or tooling and
-    reject public-API, persistent-format, dependency, or workflow changes.
+  - Require at least one independently authored, manually reviewed public 2D
+    or layered-2D game before the result can become true.
+  - Require a public repository, immutable Git revision, installed-wheel use,
+    exact headless-fixed-tick, typed-command-receipt, and verified-replay
+    capability evidence, plus a validated outcome.
+  - Require distinct source, execution, and review SHA-256 identities and an
+    explicitly reviewed public SPDX license.
+  - Reject project-owned and maintainer-authored games, unreviewed authorship
+    or licensing, unsafe locators, duplicate identities, and incomplete
+    capabilities.
   - Preserve accepted history as an exact complete executable prefix and bind
     it to the reviewed whole-manifest digest.
   - Emit exact sanitized `not-ready` evidence for the current empty manifest;
-    never expose contributor login, URLs, revisions, or artifact hashes in the
-    report.
-  - Prove future gate mechanics synthetically while explicitly refusing to
-    count those regressions as contributors, issues, pull requests, feedback,
-    or usability evidence.
-  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0010,
+    never expose author IDs, repositories, revisions, artifact hashes,
+    evidence locations, licenses, local paths, platform facts, or timings.
+  - Prove future gate mechanics synthetically while refusing to count those
+    fixtures as authors, games, users, repositories, feedback, or adoption.
+  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0011,
     and preserve the two existing workflows and eight essential CI jobs.
-- **Non-scope:** Soliciting/contacting contributors; opening or mutating issues
-  or pull requests as evidence; network/telemetry/discovery/dynamic-import/
-  subprocess/provider execution; collecting email or private communication;
-  changing runtime source, public APIs/exports, persistent formats, protocols,
-  operations, dependencies, lock, package version, stability metadata,
-  workflows, CI topology, tags, releases, publication, or support policy.
+- **Non-scope:** Soliciting/contacting authors; discovery or remote repository
+  lookup; opening or mutating issues/PRs as evidence; networking, telemetry,
+  dynamic imports, subprocesses, installation, provider execution, private
+  communication, or personal-data collection; changing runtime source, public
+  APIs/exports, persistent formats, protocols, operations, dependencies, lock,
+  version, workflows, CI topology, tags, releases, publication, certification,
+  support policy, or stability labels.
 - **SemVer:** No package or public-Python-surface change; version remains
   `0.1.0a1` and current stability labels are unchanged.
-- **Baseline evidence:** M26 feature PR #40 and no-CI state PR #41 are
-  squash-integrated. Local M27 starts from exact verified `main` commit
-  `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. The unchanged lock resolves
-  46 packages. The prior release/M25/M26 baseline passed 64 tests with two
-  Windows symlink-capability skips in 3.73 seconds. The reviewed rehearsal
-  manifest is exactly 270 bytes with SHA-256
-  `ecb959e90a0033b4dbe3dcfe8a48db1c1eea915e0ef2840510969b9e25cdb9c7`.
-  The initial focused M27 evaluator/boundary suite passed 51 tests with one
-  Windows symlink-capability skip in 1.74 seconds; artifact wiring then passed
-  53 tests with one skip in 2.02 seconds, and Pyright reported zero diagnostics.
-  Findings-first review closed cross-role revision/artifact reuse and duplicate-
-  JSON-field ambiguity; the corrected focused suite passes 59 tests with one
-  skip. The complete local gate passes 235-file formatting, Ruff, strict
-  Pyright, strict docs, 1,210 tests with four Windows symlink-capability skips,
-  pure build, isolated wheel/release smoke, retained benchmark/profile
-  validators, ten real-wgpu tests, and both graphics vertical slices. Initial
-  hosted run `31118834216` exposed one case-sensitive test-path defect on both
-  Ubuntu compatibility jobs: the tracked lowercase pull-request template was
-  referenced with uppercase spelling. The local correction uses the exact
-  tracked path. Windows graphics separately failed during GitHub action-
-  download setup before checkout; the already-failed run was cancelled to
-  avoid spending its remaining queued jobs. Corrected run `31119640551`
-  initially encountered GitHub's resolved Actions outage during action
-  downloads. Its single failed-job-only rerun preserved three successful jobs,
-  reran only the five affected jobs, and completed with all eight effective
-  jobs successful on exact head
-  `f9e779d83a82795ad68cff22c424b6e94ef13703`.
-- **Integration:** Final feature head
-  `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` adds only the factual hosted
-  record with `[skip ci]`; GitHub lists no new run for it. Final thread-aware
-  review found one unresolved bot comment that names ephemeral PR test-merge
-  commit `b8dcedce82bb6da786297dd5a0942e4019f4df6e`, not any of the three
-  DCO-signed branch commits, so it is not actionable and was neither answered
-  nor resolved. PR #42 squash-integrated the exact final tree as GitHub-
-  verified `main` commit `ff1c81f8aaa96245706586096f400a5fb03bdd04`.
-  Both trees are `f957c2e40eec5bd2d70cc274079ea334d6a34cc3`; the squash
-  commit's sole parent is exact assigned base
-  `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`, and its message contains the
-  DCO sign-off.
+- **Baseline evidence:** M27 feature PR #42 and no-CI integration PR #43 are
+  squash-integrated. Local M28 starts from exact verified `main` commit
+  `17401eb32be30862496bbe02366d886a60752fb3`; `main`, `origin/main`, and
+  `origin/HEAD` matched with a clean worktree and `git fsck --full
+  --no-dangling` exited 0. The unchanged lock resolves 46 packages. The focused
+  M25/M27/adoption-artifact baseline passed 94 tests with two Windows symlink-
+  capability skips in 4.75 seconds. The first sandboxed lock check failed
+  before project execution because the existing uv user cache was denied; the
+  approved cache-access rerun passed in 0.83 ms.
+- **Local acceptance evidence:** The corrected focused M28 suite passes 56
+  tests with one Windows symlink-capability skip. The complete gate passes
+  unchanged lock/sync, 239-file formatting, Ruff, strict Pyright, strict docs,
+  1,264 tests with five Windows symlink-capability skips, a pure build,
+  isolated wheel/release smoke, all retained benchmark/profile validators, ten
+  real-wgpu tests, and both graphics vertical slices. The final scope audit
+  confirms unchanged runtime source, workflows, metadata, lock, version, and
+  public exports; a 94-entry wheel with no native file; and a 36-entry sample
+  bundle containing both exact M28 evidence files. M1 simulation and both M3
+  timing targets remain observed misses and authorize no acceleration.
