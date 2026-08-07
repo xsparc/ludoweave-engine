@@ -40,7 +40,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
 | Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
 | Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
-| Active | M32 replay-divergence-rate admission readiness | Strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and unchanged essential CI topology |
+| Done | M32 replay-divergence-rate admission readiness | PR #52 squash-integrated; strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and all eight essential hosted jobs passed on the corrected head |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -337,6 +337,14 @@ synthetic fixtures are not historical rate evidence. M32 adds no runtime
 source, API, replay protocol, format, dependency, version, workflow job,
 network activity, telemetry, tag, release, publication, certification,
 stability change, reliability target, or support promise.
+Initial head `7046e59eb4840e6df492c886ce78baf4ad51cd95` passed all eight
+essential jobs in run `31194645068`, but hosted review identified a mismatched
+replay-divergence diagnostic. Corrected head
+`f6f574c2e9b54341e77d1b9ba2d9268bffe5439a` uses and pins runtime code
+`world.replay.diverged`, resolved the sole review thread, and passed all eight
+essential jobs in run `31195402467`; PR #52 squash-integrated the exact tree as
+GitHub-verified `main` commit
+`36e8d9ed65a619569f3620b2431d977a1fb80a58`.
 
 ## Good-first contribution queue
 

@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M32 - CI replay-divergence-rate admission readiness
-- **Status:** In progress on `evidence/m32-replay-divergence-rate` from exact
-  clean synchronized verified `main` commit
-  `b4de1d115ddb620ecddccab84637c0e66cfad9fd`.
+- **Status:** Complete, hosted-validated, reviewed, squash-integrated, and
+  cleaned up on synchronized verified `main` commit
+  `36e8d9ed65a619569f3620b2431d977a1fb80a58`.
 - **Started:** 2026-08-08
 - **Base:** PR #50 squash-integrated the exact corrected M31 feature tree as
   verified `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`; documentation-only PR
@@ -76,5 +76,13 @@
   focused tests with one skip, 1,499 complete-suite tests with nine skips,
   255-file formatting, Ruff, strict Pyright, strict docs, the unchanged lock,
   protected-surface and whitespace checks, pure build, isolated-wheel smoke,
-  and a fresh ten-artifact release smoke. Corrected hosted validation,
-  integration, and cleanup remain pending.
+  and a fresh ten-artifact release smoke. Corrected exact head
+  `f6f574c2e9b54341e77d1b9ba2d9268bffe5439a` passed all eight essential jobs
+  in hosted run `31195402467`; the sole review thread is resolved and outdated.
+  PR #52 squash-integrated exact tree
+  `e185e24861b74fe11325b7188026af29a9618926` as GitHub-verified commit
+  `36e8d9ed65a619569f3620b2431d977a1fb80a58` with sole parent
+  `b4de1d115ddb620ecddccab84637c0e66cfad9fd` and the DCO trailer. Literal tree
+  comparison and object-integrity checks passed. The temporary feature branch
+  is deleted locally and remotely; only the factual integration-record branch
+  remains pending its documentation-only PR.
