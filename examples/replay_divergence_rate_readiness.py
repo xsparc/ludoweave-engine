@@ -408,7 +408,7 @@ def _execution_identity(
             or actual_hash is None
             or expected_hash == actual_hash
             or first_divergent_tick is None
-            or outcome_code != "world.replay.divergence"
+            or outcome_code != "world.replay.diverged"
         ):
             raise RuntimeError("diverged replay execution has incompatible outcome evidence")
     elif (

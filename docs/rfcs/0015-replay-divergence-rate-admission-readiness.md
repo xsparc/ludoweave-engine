@@ -32,7 +32,8 @@ The manifest:
    intentionally divergent negative fixtures and verification-disabled
    diagnostics;
 4. preserves every eligible replay case as verified, diverged, or
-   not-executed, including an actual divergence in an eligible case;
+   not-executed, including an actual divergence in an eligible case with the
+   runtime's stable `world.replay.diverged` diagnostic;
 5. binds executions to canonical public run/job locations, exact workflow and
    case sources, frozen result evidence, UTC timestamps, and SHA-256 identities;
 6. requires reviewed eligibility, outcome, provenance, validation, and census

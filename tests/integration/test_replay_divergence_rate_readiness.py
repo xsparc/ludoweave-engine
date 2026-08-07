@@ -90,7 +90,7 @@ def _execution(index: int, *, outcome: str = "verified") -> dict[str, object]:
         expected_hash = _digest("expected", index)
         actual_hash = _digest("actual", index)
         first_tick = 300 + index
-        outcome_code = "world.replay.divergence"
+        outcome_code = "world.replay.diverged"
     else:
         expected_hash = actual_hash = None
         first_tick = None

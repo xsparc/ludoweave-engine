@@ -796,7 +796,7 @@ run/job locations, an exact head revision, immutable workflow and test sources,
 and a frozen result artifact. Outcomes are exactly `verified`, `diverged`, or
 `not-executed`. Verified outcomes require equal expected/actual hashes;
 divergence requires distinct hashes, the first divergent tick, and
-`world.replay.divergence`; non-execution carries no replay hashes/tick and
+`world.replay.diverged`; non-execution carries no replay hashes/tick and
 retains a bounded cancellation, early-failure, skip, or unavailable-result
 reason. Eligibility is fixed before outcomes: it covers replay-verification
 cases expected to reproduce canonical state with hash verification enabled and

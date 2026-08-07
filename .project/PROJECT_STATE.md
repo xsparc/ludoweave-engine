@@ -40,8 +40,16 @@ capability skips, pure build, isolated wheel/release smoke, ten real-wgpu tests,
 and both graphics vertical slices. The 94-entry wheel remains universal pure
 Python with no native/WASM file; the 44-entry sample bundle contains the exact
 evaluator and manifest. Protected runtime/workflow/metadata/lock scope remains
-unchanged. Ready-PR publication, hosted validation, squash integration, and
-cleanup remain pending.
+unchanged. Ready PR #52 is published. Initial exact PR head
+`7046e59eb4840e6df492c886ce78baf4ad51cd95` passed all eight hosted jobs, but
+hosted review correctly found the evaluator required nonexistent diagnostic
+`world.replay.divergence` instead of the runtime's `world.replay.diverged`.
+Evaluator, fixture, docs, and an architecture regression are corrected. The
+post-review gate passes 80 focused tests with one skip, 1,499 complete-suite
+tests with nine skips, 255-file formatting, Ruff, strict Pyright, strict docs,
+the unchanged lock, protected-surface and whitespace checks, pure build,
+isolated-wheel smoke, and a fresh ten-artifact release smoke. Corrected hosted
+validation, squash integration, and cleanup remain pending.
 
 M31 is complete, hosted-validated, reviewed, squash-integrated, and cleaned up.
 It started from exact clean synchronized verified `main` commit

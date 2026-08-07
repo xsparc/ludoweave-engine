@@ -142,6 +142,15 @@ def test_m32_adds_no_runtime_export_dependency_version_workflow_or_provider() ->
     )
 
 
+def test_evaluator_uses_the_runtime_replay_divergence_code() -> None:
+    runtime = (_ROOT / "src" / "ludoweave" / "world" / "replay.py").read_text(encoding="utf-8")
+    evaluator = _EVIDENCE_FILES[0].read_text(encoding="utf-8")
+
+    assert 'code="world.replay.diverged"' in runtime
+    assert 'outcome_code != "world.replay.diverged"' in evaluator
+    assert "world.replay.divergence" not in evaluator
+
+
 def test_public_contract_retains_empty_execution_manifest_and_no_rate_claim() -> None:
     expected = {
         _ROOT / "README.md": (

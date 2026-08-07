@@ -34,7 +34,7 @@ Every intended execution remains present as exactly one of:
 
 - `verified`, with equal expected and actual state hashes;
 - `diverged`, with distinct hashes, the first divergent tick, and the stable
-  `world.replay.divergence` code; or
+  `world.replay.diverged` code; or
 - `not-executed`, with no replay hashes or tick and an exact cancellation,
   pre-replay failure, skip, or unavailable-result reason.
 

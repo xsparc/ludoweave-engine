@@ -25,7 +25,7 @@
   - Bind executions to canonical public run/job locations, exact head/workflow/
     case sources, UTC start time, and frozen result evidence.
   - Require verified outcomes to have equal hashes; divergent outcomes to have
-    distinct hashes, first divergent tick, and `world.replay.divergence`; and
+    distinct hashes, first divergent tick, and `world.replay.diverged`; and
     non-executed outcomes to claim no replay hashes or tick.
   - Require census and review artifacts at the same immutable project revision,
     unique execution/result identities, and reviewed eligibility, outcome,
@@ -68,5 +68,13 @@
   build, isolated wheel/release smoke, ten real-wgpu tests, and both graphics
   vertical slices. The unchanged 94-entry wheel has no native/WASM file and the
   44-entry sample bundle contains both exact M32 evidence files. Protected
-  runtime/workflow/metadata/lock scope is unchanged. Hosted validation,
+  runtime/workflow/metadata/lock scope is unchanged. Initial exact head
+  `7046e59eb4840e6df492c886ce78baf4ad51cd95` passed all eight hosted jobs, but
+  hosted review found the evaluator used `world.replay.divergence` instead of
+  runtime diagnostic `world.replay.diverged`. The evaluator, fixture, docs, and
+  architecture regression are corrected. The post-review gate passes 80
+  focused tests with one skip, 1,499 complete-suite tests with nine skips,
+  255-file formatting, Ruff, strict Pyright, strict docs, the unchanged lock,
+  protected-surface and whitespace checks, pure build, isolated-wheel smoke,
+  and a fresh ten-artifact release smoke. Corrected hosted validation,
   integration, and cleanup remain pending.
