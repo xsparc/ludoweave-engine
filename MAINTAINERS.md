@@ -1,12 +1,12 @@
-# AGENTS.md
+# MAINTAINERS.md
 
-This file is the operating contract for human and automated contributors to LudoWeave Engine.
+This file is the operating contract for LudoWeave Engine maintainers and contributors.
 
 ## Read first
 
 1. The assigned issue or milestone acceptance criteria.
 2. `docs/architecture.md` and relevant accepted ADRs.
-3. `.ai/PROJECT_STATE.md`, `.ai/CURRENT_TASK.md`, and `.ai/TEST_EVIDENCE.md`.
+3. `.project/PROJECT_STATE.md`, `.project/CURRENT_TASK.md`, and `.project/TEST_EVIDENCE.md`.
 4. Current code, tests, CI, and `git status`.
 
 ## Authoritative rules
@@ -33,9 +33,38 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 - Add focused tests and public documentation with behavior changes.
 - Run focused checks first, then every command in the README quality suite.
 - Review the diff for scope growth, secrets, dependency violations, backend leakage, nondeterminism, packaging effects, and stale documentation.
-- Update `.ai/PROJECT_STATE.md` and `.ai/TEST_EVIDENCE.md` with reproducible facts only.
+- Update `.project/PROJECT_STATE.md` and `.project/TEST_EVIDENCE.md` with reproducible facts only.
+
+Repository-facing maintenance records use role- and purpose-based names.
+Contribution identity and authorship remain governed by Git history and DCO
+sign-off; do not rewrite historical evidence or make unsupported provenance
+claims.
 
 ## Current boundary
+
+M29 adds only strict offline external contributor-retention admission readiness
+for the second longer-term adoption metric in the design plan. The reviewed
+manifest is empty, so its retained-contributor and return-contribution counts
+and result must remain zero/false and must not claim an external person,
+contribution, retention, popularity, or adoption result. Manual review, not
+evaluator logic, owns identity, independence, same-person continuity,
+chronology, provenance, validation, DCO state, and retention. M29 may add only
+frozen data evidence, an explicitly invoked evaluator/validator, synthetic gate
+tests, RFC/docs, and source/wheel/release-sample artifact smoke through the
+unchanged eight essential CI jobs. It may not contact contributors; discover
+or query remote records; open or mutate issues/PRs as evidence; collect private
+communication or personal data; use networking, telemetry, discovery, dynamic
+imports, subprocesses, installation, or provider execution; or change runtime
+source, public APIs/exports, persistent formats, protocols, operations,
+dependencies, lock, version, workflows, CI topology, tag, release,
+publication, certification, support policy, or stability label. The separately
+authorized repository-convention migration may only rename maintenance guidance
+and state paths and update their references; it may not change runtime or
+milestone semantics. M0 through M28
+are complete, independently accepted, hosted-CI validated, and integrated into
+`main`. M29 starts from exact verified M28 integration-record commit
+`e4125bf31a751473d2af4fecc05a9744d551063c` and contains no subsequent
+milestone.
 
 M28 adds only strict offline external sample-game adoption admission readiness
 for the first longer-term adoption metric in the design plan. The reviewed
@@ -204,8 +233,8 @@ WASM-mod security admission decision. It must retain data-only plugins and add
 threat-model, installed evidence, tests, and documentation without selecting or
 adding a runtime, loader, executable manifest field, guest ABI, WASI, host
 function, public API, persistent format, dependency, lock, version, or CI job.
-Its implementation is complete and independently accepted on
-`codex/m16-wasm-mod-security-decision`. Ready PR #20 and GitHub Actions run
+Its implementation is complete and independently accepted on the M16
+milestone branch. Ready PR #20 and GitHub Actions run
 `31039403209` validate all eight unchanged essential jobs on DCO-signed
 implementation commit `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`.
 PR #20 squash-integrates exact final head

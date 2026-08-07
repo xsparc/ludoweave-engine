@@ -48,7 +48,7 @@ The external sample-game manifest:
    equal to the complete reviewed manifest identity sequence;
 8. requires the exact whole-manifest digest to be pinned by reviewed code and
    strict installed evidence; and
-9. never counts project examples, automated agents, tests, benchmarks,
+9. never counts project examples, project-controlled automation, tests, benchmarks,
    synthetic records, CI passes, or unreviewed external claims as adoption.
 
 An evidence locator is immutable only when its path contains the exact

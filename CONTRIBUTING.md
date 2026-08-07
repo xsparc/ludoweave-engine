@@ -4,7 +4,7 @@ Thank you for helping build LudoWeave. The project welcomes focused bug fixes, t
 
 ## Before opening a change
 
-1. Read [AGENTS.md](AGENTS.md), the [architecture overview](docs/architecture.md), and accepted [ADRs](docs/adr/).
+1. Read [MAINTAINERS.md](MAINTAINERS.md), the [architecture overview](docs/architecture.md), and accepted [ADRs](docs/adr/).
 2. Keep the change within one issue or milestone task.
 3. Discuss public API, persistent schema, security model, native-code, renderer-backend, networking, editor, or 3D changes before implementation.
 4. Do not include credentials, private prompts, model transcripts, or proprietary assets.

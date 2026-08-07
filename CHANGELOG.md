@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Use neutral repository-maintenance names: `MAINTAINERS.md` for contributor
+  guidance and `.project/` for current state, decisions, and test evidence.
+- Add M29/RFC-0012 external contributor-retention admission evidence that
+  rejects popularity and synthetic substitutes and retains the current count
+  as zero until an independently reviewed human returns for a later merged
+  project contribution.
 - Add M28/RFC-0011 external sample-game adoption admission evidence that
   rejects project-owned substitutes and retains the externally authored game
   count as zero until a reviewed independent installed-wheel game exists.

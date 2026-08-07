@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M28 are hosted-validated and integrated into `main`. M28 adds strict external sample-game adoption admission machinery while retaining its empty reviewed sample-game manifest and zero-adoption result. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M28 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result. M29 adds strict contributor-retention admission machinery while retaining its empty reviewed contributor-retention manifest and zero-retention result. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -119,6 +119,7 @@ uv run python examples/cross_version_corpus_readiness.py
 uv run python examples/external_consumer_feedback_readiness.py
 uv run python examples/supported_release_channel_readiness.py
 uv run python examples/external_contributor_rehearsal_readiness.py
+uv run python examples/external_contributor_retention_readiness.py
 uv run python examples/external_sample_game_adoption_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
@@ -241,6 +242,10 @@ The [external sample-game adoption readiness guide](docs/external-sample-game-ad
 documents M28's authorship, provenance, installed-capability, licensing, and
 complete-history gate while retaining the current externally authored game
 count at zero.
+The [external contributor-retention readiness guide](docs/external-contributor-retention-readiness.md)
+documents M29's same-person, chronology, DCO, validation, provenance, and
+complete-history gate while retaining the current retained-contributor count
+at zero and excluding popularity metrics.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly
@@ -286,7 +291,7 @@ uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-graphic
 git diff --check
 ```
 
-Milestone benchmark/profile commands are not part of every edit's fast gate. M1, M3, and M4 record local target observations; M2 measurements are informational and have no timing pass threshold. M7 profile time is diagnostic rather than a benchmark. Results are recorded only after commands have actually run; see [test evidence](.ai/TEST_EVIDENCE.md), the [benchmark methodology](docs/benchmarks.md), and [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md).
+Milestone benchmark/profile commands are not part of every edit's fast gate. M1, M3, and M4 record local target observations; M2 measurements are informational and have no timing pass threshold. M7 profile time is diagnostic rather than a benchmark. Results are recorded only after commands have actually run; see [test evidence](.project/TEST_EVIDENCE.md), the [benchmark methodology](docs/benchmarks.md), and [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md).
 
 Pull-request CI deliberately uses eight essential hosted jobs: one complete
 Ubuntu 3.12 quality, non-provider test, documentation, package,
@@ -313,6 +318,6 @@ does not create a tag, publish a GitHub release, or upload to PyPI.
 
 ## Contributing and project policy
 
-Contributions use the [Developer Certificate of Origin](CONTRIBUTING.md), not a CLA. Start with the [first-contribution walkthrough](docs/first-contribution.md) and [roadmap board](ROADMAP.md). Please also read the [code of conduct](CODE_OF_CONDUCT.md), [security policy](SECURITY.md), [governance model](GOVERNANCE.md), and repository guidance in [AGENTS.md](AGENTS.md).
+Contributions use the [Developer Certificate of Origin](CONTRIBUTING.md), not a CLA. Start with the [first-contribution walkthrough](docs/first-contribution.md) and [roadmap board](ROADMAP.md). Please also read the [code of conduct](CODE_OF_CONDUCT.md), [security policy](SECURITY.md), [governance model](GOVERNANCE.md), and repository guidance in [MAINTAINERS.md](MAINTAINERS.md).
 
 LudoWeave Engine is licensed under the [Apache License 2.0](LICENSE).

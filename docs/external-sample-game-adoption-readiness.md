@@ -3,7 +3,7 @@
 No externally authored sample game is currently admitted. M28 provides an
 offline, reviewable path for counting that longer-term adoption metric without
 turning project-owned examples, synthetic fixtures, CI, maintainers, or
-automated agents into external users.
+project-controlled automation into external users.
 
 ## What can count
 
