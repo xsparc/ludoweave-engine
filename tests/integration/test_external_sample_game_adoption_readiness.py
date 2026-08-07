@@ -240,8 +240,14 @@ def test_reviewed_manifest_requires_complete_mandatory_history(tmp_path: Path) -
     admission = cast(dict[str, object], report["admission"])
     assert admission["manifest_identity_reviewed"] is True
     assert admission["historical_sample_games_preserved"] is False
-    assert admission["external_sample_game_present"] is True
-    assert admission["reason_codes"] == ("historical-sample-game-record-missing",)
+    assert admission["external_sample_game_present"] is False
+    assert admission["reason_codes"] == (
+        "historical-sample-game-record-missing",
+        "external-sample-game-absent",
+    )
+    games = cast(dict[str, object], report["sample_games"])
+    assert games["game_count"] == 0
+    assert games["distinct_authors"] == 0
 
 
 def test_unreviewed_synthetic_game_cannot_satisfy_gate(tmp_path: Path) -> None:
@@ -254,9 +260,18 @@ def test_unreviewed_synthetic_game_cannot_satisfy_gate(tmp_path: Path) -> None:
 
     assert report["gate_satisfied"] is False
     admission = cast(dict[str, object], report["admission"])
-    assert admission["external_sample_game_present"] is True
+    assert admission["external_sample_game_present"] is False
     assert admission["historical_sample_games_preserved"] is True
-    assert admission["reason_codes"] == ("sample-game-manifest-identity-unreviewed",)
+    assert admission["reason_codes"] == (
+        "sample-game-manifest-identity-unreviewed",
+        "external-sample-game-absent",
+    )
+    games = cast(dict[str, object], report["sample_games"])
+    assert games["game_count"] == 0
+    assert games["distinct_authors"] == 0
+    assert games["observed_ludoweave_versions"] == ()
+    assert games["outcomes"] == ()
+    assert games["sample_scopes"] == ()
 
 
 def test_reviewed_manifest_cannot_drop_mandatory_game(tmp_path: Path) -> None:
@@ -283,7 +298,11 @@ def test_reviewed_manifest_cannot_drop_mandatory_game(tmp_path: Path) -> None:
     assert report["gate_satisfied"] is False
     admission = cast(dict[str, object], report["admission"])
     assert admission["historical_sample_games_preserved"] is False
-    assert admission["reason_codes"] == ("historical-sample-game-record-missing",)
+    assert admission["external_sample_game_present"] is False
+    assert admission["reason_codes"] == (
+        "historical-sample-game-record-missing",
+        "external-sample-game-absent",
+    )
 
 
 @pytest.mark.parametrize(
@@ -296,6 +315,11 @@ def test_reviewed_manifest_cannot_drop_mandatory_game(tmp_path: Path) -> None:
         ("repository_url", "https://localhost/game", "HTTPS locator"),
         ("repository_url", "https://127.0.0.1/game", "HTTPS locator"),
         ("evidence_locator", "https://169.254.169.254/game", "HTTPS locator"),
+        (
+            "evidence_locator",
+            "https://example.invalid/latest",
+            "recorded immutable identity",
+        ),
         ("repository_url", "https://example.invalid\\game", "HTTPS locator"),
         ("repository_url", "https://exÃ¤mple.invalid/game", "HTTPS locator"),
         ("evidence_locator", "https://example.invalid/game?mutable=1", "HTTPS locator"),
@@ -348,7 +372,17 @@ def test_sample_games_reject_reused_identity(tmp_path: Path, field: str, message
         execution_character="7",
         review_character="8",
     )
-    second[field] = first[field]
+    if field == "revision":
+        second[field] = first[field]
+        second["evidence_locator"] = f"{second['repository_url']}/commit/{second['revision']}"
+    elif field == "evidence_locator":
+        shared_locator = (
+            f"https://example.invalid/evidence/{first['revision']}/{second['revision']}"
+        )
+        first[field] = shared_locator
+        second[field] = shared_locator
+    else:
+        second[field] = first[field]
     document = _manifest()
     document["sample_game_records"] = [first, second]
     _, evaluate = _evaluator()

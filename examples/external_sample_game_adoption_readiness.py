@@ -109,15 +109,11 @@ def evaluate(samples: Path) -> dict[str, object]:
     if len(raw_records) > _MAX_SAMPLE_GAME_RECORDS:
         raise RuntimeError("sample-game manifest exceeds its record limit")
     identities: list[_SampleGameIdentity] = []
-    authors: set[str] = set()
     game_slugs: set[str] = set()
     repositories: set[str] = set()
     revisions: set[str] = set()
     artifact_hashes: set[str] = set()
     evidence_locators: set[str] = set()
-    versions: list[str] = []
-    scopes: list[str] = []
-    outcomes: list[str] = []
     for item in raw_records:
         identity = _sample_game_identity(_object(item, "sample-game record"), capabilities)
         if identity[3] in game_slugs:
@@ -131,16 +127,12 @@ def evaluate(samples: Path) -> dict[str, object]:
         record_hashes = identity[11:14]
         if artifact_hashes.intersection(record_hashes):
             raise RuntimeError("sample-game manifest repeats an artifact identity")
-        authors.add(identity[0])
         game_slugs.add(identity[3])
         repositories.add(identity[4])
         revisions.add(identity[5])
         artifact_hashes.update(record_hashes)
         evidence_locators.add(identity[14])
         identities.append(identity)
-        scopes.append(identity[6])
-        versions.append(identity[8])
-        outcomes.append(identity[10])
 
     manifest_hash = hashlib.sha256(raw_manifest).hexdigest()
     manifest_identity_reviewed = manifest_hash == _REVIEWED_SAMPLE_GAME_SHA256
@@ -149,7 +141,14 @@ def evaluate(samples: Path) -> dict[str, object]:
     ) == _MANDATORY_SAMPLE_GAME_PREFIX and (
         not manifest_identity_reviewed or len(identities) == len(_MANDATORY_SAMPLE_GAME_PREFIX)
     )
-    external_sample_game_present = len(identities) >= minimum
+    admitted_identities = (
+        identities if manifest_identity_reviewed and historical_sample_games_preserved else []
+    )
+    admitted_authors = {identity[0] for identity in admitted_identities}
+    admitted_versions = [identity[8] for identity in admitted_identities]
+    admitted_scopes = [identity[6] for identity in admitted_identities]
+    admitted_outcomes = [identity[10] for identity in admitted_identities]
+    external_sample_game_present = len(admitted_identities) >= minimum
     gate_satisfied = (
         manifest_identity_reviewed
         and historical_sample_games_preserved
@@ -180,14 +179,14 @@ def evaluate(samples: Path) -> dict[str, object]:
         "gate_satisfied": gate_satisfied,
         "ludoweave_version": __version__,
         "sample_games": {
-            "distinct_authors": len(authors),
-            "game_count": len(identities),
+            "distinct_authors": len(admitted_authors),
+            "game_count": len(admitted_identities),
             "manifest_sha256": manifest_hash,
-            "observed_ludoweave_versions": tuple(dict.fromkeys(versions)),
-            "outcomes": tuple(outcomes),
+            "observed_ludoweave_versions": tuple(dict.fromkeys(admitted_versions)),
+            "outcomes": tuple(admitted_outcomes),
             "records_verified": True,
             "required_capabilities": capabilities,
-            "sample_scopes": tuple(scopes),
+            "sample_scopes": tuple(admitted_scopes),
         },
         "schema": _SCHEMA,
         "status": "ready" if gate_satisfied else "not-ready",
@@ -256,7 +255,12 @@ def _sample_game_identity(
     review_hash = _sha256_text(record["review_sha256"], "sample-game review sha256")
     if len({source_hash, execution_hash, review_hash}) != 3:
         raise RuntimeError("sample-game artifact identities must be distinct")
-    locator = _https_locator(record["evidence_locator"], 512, "sample-game evidence locator")
+    locator = _immutable_https_locator(
+        record["evidence_locator"],
+        512,
+        "sample-game evidence locator",
+        (revision, source_hash, execution_hash, review_hash),
+    )
     license_spdx = _spdx(record["license_spdx"])
     license_reviewed = _bool(record["license_reviewed"], "license reviewed")
     if not license_reviewed:
@@ -415,6 +419,19 @@ def _https_locator(value: object, maximum: int, role: str) -> str:
         )
     ):
         raise RuntimeError(f"{role} must be a bounded immutable HTTPS locator")
+    return text
+
+
+def _immutable_https_locator(
+    value: object,
+    maximum: int,
+    role: str,
+    immutable_identities: tuple[str, ...],
+) -> str:
+    text = _https_locator(value, maximum, role)
+    path = text.removeprefix("https://").partition("/")[2]
+    if not any(identity in path.split("/") for identity in immutable_identities):
+        raise RuntimeError(f"{role} must contain a recorded immutable identity")
     return text
 
 

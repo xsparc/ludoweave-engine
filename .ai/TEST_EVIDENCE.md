@@ -56,6 +56,42 @@ provider, network surface, or external fact. M1 simulation and both M3 targets
 remain recorded misses and authorize no acceleration. Ready-PR publication,
 hosted validation, thread-aware review, and squash integration remain pending.
 
+## M28 hosted validation and review correction - PR #44
+
+Ready PR #44 targets exact base
+`17401eb32be30862496bbe02366d886a60752fb3`. Its DCO-signed implementation
+head is `a1898a81218ae5674fd0347018c6062a5537f359` with tree
+`7768d74ce536ce0c5201af804248dd01c9bac0b7` and that base as its sole parent.
+
+GitHub Actions run `31175906134` executed the exact implementation head and
+passed all eight unchanged essential jobs: quality/tests/distribution, Ubuntu
+CPython 3.13, Ubuntu/macOS/Windows CPython 3.14, and real graphics on Ubuntu,
+macOS, and Windows. No additional workflow, job, or matrix was created.
+
+Thread-aware review found two valid P2 issues on that head. An unreviewed
+custom manifest could expose nonzero game and author aggregates even though
+its gate remained false. A syntactically safe HTTPS evidence locator did not
+have to contain an immutable record identity. The correction exposes record-
+derived counts, versions, scopes, outcomes, and presence only after the exact
+manifest digest and complete mandatory history are admitted. It also requires
+the locator path to contain the exact revision or one recorded source,
+execution, or review digest.
+
+| Correction command | Exit | Result |
+| --- | ---: | --- |
+| First review-correction static/focused/docs group | Mixed | Ruff formatting and lint, Pyright, and strict docs passed, but two duplicate-identity regressions failed because their fixtures did not yet preserve the new locator-identity invariant. No focused-suite pass is claimed from this group. |
+| First corrected duplicate-fixture group | Mixed | All 57 focused tests passed with one Windows symlink-capability skip, and Ruff lint passed, but the leading format check reported one test file would be reformatted. No format pass is claimed from this group. |
+| Final post-review format, Ruff, Pyright, focused tests, strict docs, report, and validator | 0 | All 239 Python files were formatted; Ruff passed; Pyright reported zero diagnostics; 57 focused tests passed with one skip in 2.19 seconds; strict docs built in 0.81 seconds with the known upstream warning; and the exact zero-game `not-ready` report and validator passed. The first sandboxed report rerun failed only on denied uv cache access; the approved rerun supplied the recorded report pass. |
+| `uv run --frozen pytest -q` | 0 | The corrected complete suite passed 1,265 tests with five Windows symlink-capability skips in 88.39 seconds. |
+| Corrected `uv build`, isolated wheel smoke, fresh release staging, and release smoke | 0 | Rebuilt the pure `0.1.0a1` sdist/wheel, passed isolated wheel smoke, staged a fresh ten-artifact candidate, and passed complete release smoke with the corrected bundled M28 evaluator. |
+
+The correction changes only the M28 evaluator, regressions, readiness guide,
+RFC, and factual `.ai` state. It does not widen scope or change runtime source,
+public APIs/exports, persistent formats, dependencies, lock, version, workflow,
+CI topology, tag, release, publication, provider, network behavior, or current
+zero-adoption result. Correction commit/push, necessary hosted validation,
+final thread-aware reread, and squash integration remain pending.
+
 ## M27 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

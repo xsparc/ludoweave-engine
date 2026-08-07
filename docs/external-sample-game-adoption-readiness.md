@@ -24,7 +24,10 @@ facts together:
 - it is not owned by this project or authored by a LudoWeave maintainer.
 
 The manifest freezes those reviewed facts. The evaluator checks the frozen
-shape, identities, bounded resources, and complete mandatory history. It
+shape, identities, bounded resources, and complete mandatory history. Evidence
+locators must contain the exact revision or one recorded artifact digest as a
+path segment. Counts and record-derived aggregates remain zero unless the
+whole-manifest digest and complete history are both admitted. The evaluator
 cannot discover games, establish authorship or independence, inspect remote
 repositories, validate a license, or replace human provenance review.
 

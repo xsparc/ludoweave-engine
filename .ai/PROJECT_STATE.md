@@ -26,13 +26,19 @@ artifact paths, RFC-0011, and public documentation are complete. Findings-
 first review added explicit independence/provenance/outcome attestations,
 cross-role artifact and locator uniqueness, duplicate-field rejection,
 resource bounds, and complete mandatory-prefix enforcement. Corrected focused
-validation passes 56 tests with one Windows symlink-capability skip. The full
-local gate passes formatting, Ruff, strict Pyright, strict docs, 1,264 tests
-with five skips, pure build and isolated artifacts, retained performance
-validators, ten real-wgpu tests, and both graphics vertical slices. Final
-scope/history/package review finds no remaining actionable issue. Publication,
-minimum necessary hosted validation, thread-aware review, and integration
-remain in progress.
+validation initially passed 56 tests with one Windows symlink-capability skip.
+Ready PR #44 and run `31175906134` passed all eight unchanged essential jobs on
+DCO-signed head `a1898a81218ae5674fd0347018c6062a5537f359`. Thread-aware
+review then found two valid P2 issues: unreviewed manifests could publish
+candidate game/author aggregates, and HTTPS evidence locators were not bound
+to an immutable record identity. The corrected evaluator exposes aggregates
+only after exact digest and complete-history admission and requires the
+locator path to contain the revision or one source/execution/review digest.
+Post-correction formatting, Ruff, strict Pyright, strict docs, 57 focused
+tests with one skip, 1,265 full tests with five skips, pure build, isolated
+wheel smoke, and fresh ten-artifact release smoke pass. Publishing this
+correction, necessary hosted validation, final thread-aware reread, and exact
+squash integration remain in progress.
 
 M27 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -590,9 +596,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Publish M28's locally accepted strict offline evidence through one ready PR,
-  run only the unchanged eight essential hosted jobs, perform thread-aware
-  review, and exact-squash integrate the validated tree.
+- Publish M28's locally accepted review correction to ready PR #44, run only
+  the necessary unchanged hosted validation, perform a final thread-aware
+  reread, and exact-squash integrate the validated tree.
 - M0 through M27 are complete, hosted-validated, and squash-integrated. M28 is
   limited to external sample-game adoption admission readiness.
 - Actual cross-version package history, external consumer feedback, and a

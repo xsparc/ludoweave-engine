@@ -51,6 +51,11 @@ The external sample-game manifest:
 9. never counts project examples, automated agents, tests, benchmarks,
    synthetic records, CI passes, or unreviewed external claims as adoption.
 
+An evidence locator is immutable only when its path contains the exact
+revision or one of the record's source, execution, or review digests. Reports
+expose zero games, authors, versions, scopes, and outcomes until both the exact
+manifest digest and complete mandatory history are admitted.
+
 The current normative report is `not-ready`, with zero games and reason code
 `external-sample-game-absent`. Tests may use nonexistent canonical-shaped
 references solely to prove future gate behavior.
