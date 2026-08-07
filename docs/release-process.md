@@ -49,6 +49,12 @@ the installed offline evidence path works; it is not an external contribution,
 feedback artifact, or usability result. See the
 [external-contributor rehearsal readiness guide](external-contributor-rehearsal-readiness.md).
 
+M30/RFC-0013 adds the empty reviewed published-wheel installation-matrix
+fixture and evaluator to the deterministic sample bundle. Release smoke proves
+only that the installed offline evidence path works; it is not a public
+release, independent installation, matrix result, or support claim. See the
+[installation-matrix readiness guide](installation-matrix-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official

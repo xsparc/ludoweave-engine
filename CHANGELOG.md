@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M30/RFC-0013 published-wheel installation-matrix admission evidence that
+  rejects source-checkout/local-build substitutes and retains the current
+  result as false until one immutable public wheel passes the complete reviewed
+  clean-install matrix.
 - Use neutral repository-maintenance names: `MAINTAINERS.md` for contributor
   guidance and `.project/` for current state, decisions, and test evidence.
 - Add M29/RFC-0012 external contributor-retention admission evidence that

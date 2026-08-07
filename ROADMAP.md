@@ -38,6 +38,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
 | Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
 | Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
+| Active | M30 installation-matrix admission readiness | Strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -286,6 +287,19 @@ the excessive-nesting regression. The corrected evaluator applies an explicit
 run `31183032073` passed all eight essential jobs, and PR #46 squash-integrated
 the exact corrected tree as GitHub-verified `main` commit
 `fc969a981ecdbbf842477f46486e29277119e05b`.
+
+M30 starts from verified integrated `main` commit
+`c88b166a39a793c91741bfa762af5627a87c53b4`. It adds an offline admission
+harness for the next longer-term metric: installation success across the
+supported OS/CPython matrix. A future record set requires one immutable public
+pure-Python release wheel to pass clean isolated installation, version,
+doctor, headless example, and Clockwork Arena checks in all seven practical
+environments, with exact artifact/log identities and reviewed provenance. The
+reviewed set is empty, so the current successful-environment count remains
+zero; source-checkout CI, local builds, automation, and synthetic fixtures are
+not released-user installation evidence. M30 adds no runtime source, API,
+protocol, format, dependency, version, workflow job, network activity,
+installation, tag, release, publication, certification, or support promise.
 
 ## Good-first contribution queue
 

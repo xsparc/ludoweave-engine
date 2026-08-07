@@ -98,6 +98,12 @@ yet returned for a later merged project contribution. Its synthetic gate
 regressions are not people, contributions, retention, popularity, or project
 history.
 
+`installation_matrix_readiness.py` validates the exact empty reviewed
+installation manifest and reports that no immutable public release wheel has a
+complete reviewed clean-install result across the supported OS/CPython matrix.
+Its synthetic gate regressions and source-checkout CI are not released-user
+installations, publication, or support evidence.
+
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds
 no 3D API, provider, asset loader, or runtime implementation.

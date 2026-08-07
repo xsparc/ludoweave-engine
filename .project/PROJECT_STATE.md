@@ -2,6 +2,42 @@
 
 ## Current milestone
 
+M30 is in progress on `evidence/m30-installation-matrix-readiness` from exact
+clean synchronized verified `main` commit
+`c88b166a39a793c91741bfa762af5627a87c53b4`. Its bounded outcome is a strict
+offline admission harness for the design plan's next longer-term metric:
+installation success across the supported OS/CPython matrix. The reviewed
+manifest contains zero records, so the successful-environment count remains
+zero and the sanitized result is deterministically `not-ready`; source-checkout
+CI, local builds, automation, downloads, and synthetic fixtures do not
+establish clean installation of one immutable public release wheel. A future
+true result requires the same canonical public pure-Python wheel to pass fresh
+isolated installs on Ubuntu CPython 3.12/3.13/3.14 and macOS/Windows CPython
+3.12/3.14, with no dependencies or native compiler, all four installed checks,
+distinct log identities, canonical provenance, and reviewed validation. The
+complete reviewed identity sequence must equal the executable mandatory
+prefix. Candidate or history-incomplete manifests expose no record-derived
+environment or release aggregates. M30 changes no runtime source, public
+API/export, persistent format, protocol, dependency, lock, package version,
+stability label, workflow, CI topology, tag, release, publication, or support
+policy. The manifest is exactly 462 bytes with SHA-256
+`7c05813a7304e8ff44a009ada37c8e60ff545baec633852fc332e46bdfe03c90`.
+The evaluator, exact validator, initial fail-closed regressions, source/wheel/
+release artifact wiring, RFC-0013, and public documentation are complete.
+Findings-first review corrected the canonical GitHub asset download path,
+required unique public validation-job locators, enforced canonical environment
+order, and added real calendar validation. The corrected focused gate passes
+56 evaluator/architecture/artifact tests with one Windows symlink-capability
+skip. The final complete gate passes the unchanged lock/sync, 247-file
+formatting, Ruff, strict Pyright, strict docs, 1,375 tests with seven skips,
+pure build, isolated wheel/release smoke, ten real-wgpu tests, and both graphics
+vertical slices. Protected runtime/workflow/metadata/lock scope is unchanged;
+the 94-entry wheel has no native/WASM file and the 40-entry sample bundle
+contains both exact M30 evidence files. No benchmark was run because M30
+changes no runtime/performance path and makes no performance claim. Ready-PR
+publication, hosted validation, review reread, and squash integration remain
+pending.
+
 M29 is complete, hosted-validated, and squash-integrated. It started from exact
 clean synchronized verified `main` commit
 `e4125bf31a751473d2af4fecc05a9744d551063c`. Its bounded outcome is a strict
@@ -654,9 +690,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M0 through M29 are complete, hosted-validated, and squash-integrated.
-- Select the next bounded milestone from explicit product evidence before
-  changing runtime, protocol, dependency, release, or support scope.
+- Complete M30's full quality/release gate, findings-first review, ready PR,
+  unchanged essential hosted CI, and exact squash integration.
+- M0 through M29 are complete, hosted-validated, and squash-integrated. M30 is
+  limited to published-wheel installation-matrix admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

@@ -729,6 +729,31 @@ paths, platforms, and timings. RFC-0012 adds no runtime API, canonical state,
 protocol, format, dependency, lock, version, workflow, publication, or
 stability change.
 
+## M30 installation-matrix boundary
+
+M30 adds no engine module. One explicitly invoked example reads a selected
+reviewed manifest outside `src/ludoweave` and emits sanitized aggregate
+readiness evidence. The runtime package never loads the manifest or evaluator.
+
+Every future admitted matrix must cover the exact supported practical
+OS/CPython set with clean isolated installations of one immutable public
+`py3-none-any` release wheel. Records bind canonical project release and asset
+locations, wheel and installation-log SHA-256 identities, CPython patch and
+platform values, dependency/compiler absence, the required installed checks,
+and reviewed provenance and validation. The evaluator validates only frozen
+fields, complete history, and resource bounds. The current empty manifest
+deterministically reports zero successful environments and `not-ready`;
+source-checkout CI, local builds, and synthetic regressions cannot change that
+result.
+
+Reads are bounded, explicit, synchronous, and symlink-rejecting. Evidence code
+uses no discovery, networking, remote lookup, dynamic import, installation,
+subprocess, provider execution, telemetry, or retained resource. Reports omit
+release/asset locations, Python patch versions, platforms, log identities,
+timestamps, paths, hosts, and timings. RFC-0013 adds no runtime API, canonical
+state, protocol, format, dependency, lock, version, workflow, publication, or
+stability change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -760,7 +785,9 @@ release-channel admission readiness and retains that gate as false. M27 adds
 only offline external-contributor rehearsal admission readiness and retains
 its empty-record result as false. M28 adds only offline external sample-game
 adoption admission readiness and retains its zero count. M29 adds only offline
-external contributor-retention admission readiness and retains its zero count. None
+external contributor-retention admission readiness and retains its zero count.
+M30 adds only offline installation-matrix admission readiness and retains its
+zero-record result. None
 supplies actual cross-version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.

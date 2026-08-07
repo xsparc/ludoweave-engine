@@ -28,6 +28,7 @@ from external_contributor_retention_evidence import (
 from external_sample_game_adoption_evidence import (
     validate_external_sample_game_adoption_evidence,
 )
+from installation_matrix_evidence import validate_installation_matrix_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
@@ -241,6 +242,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(contributor_retention_result.stdout)
         )
         validate_external_contributor_retention_evidence(contributor_retention, version=version)
+        installation_matrix_result = _run(
+            [str(python), "-I", "installation_matrix_readiness.py"],
+            cwd=sample_root,
+        )
+        installation_matrix = cast(dict[str, object], json.loads(installation_matrix_result.stdout))
+        validate_installation_matrix_evidence(installation_matrix, version=version)
         external_sample_game_result = _run(
             [str(python), "-I", "external_sample_game_adoption_readiness.py"],
             cwd=sample_root,
@@ -326,6 +333,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "external_contributor_retention_readiness.py",
         "external_consumer_feedback_readiness.py",
         "external_sample_game_adoption_readiness.py",
+        "installation_matrix_readiness.py",
         "operation_argument_compatibility.py",
         "render_device_conformance.py",
         "receipt_reader.py",

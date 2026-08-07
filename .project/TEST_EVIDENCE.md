@@ -2,6 +2,48 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M30 development evidence - 2026-08-07, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M29 feature/state integration and cleanup verification | 0 | PR #46 is merged as verified `fc969a981ecdbbf842477f46486e29277119e05b`; no-CI PR #47 is merged as verified `c88b166a39a793c91741bfa762af5627a87c53b4`; both exact feature/record trees and parents were verified; both temporary branches were deleted locally and remotely; no open PR remained; and only synchronized `main` remained. |
+| Exact M30 base and workflow identity audit | 0 | `HEAD`, `main`, `origin/main`, `origin/HEAD`, and the merge base all resolved to `c88b166a39a793c91741bfa762af5627a87c53b4`; the worktree was clean, `git fsck --full --no-dangling` passed, and CI/release SHA-256 values remained `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. |
+| `git switch -c evidence/m30-installation-matrix-readiness` | 0 | Created the neutral M30 branch from the exact integrated base. |
+| `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.84 ms. |
+| Inherited M29/artifact baseline | 0 | 61 contributor-retention, architecture, release-artifact, and release-workflow tests passed with one Windows symlink-capability skip in 2.20 seconds. |
+| M30 manifest identity probe | 0 | The reviewed installation-matrix manifest is exactly 462 bytes with SHA-256 `7c05813a7304e8ff44a009ada37c8e60ff545baec633852fc332e46bdfe03c90` and contains zero installation records. |
+| Initial M30 evaluator/static group | Mixed | The evaluator emitted the exact path-free `not-ready` report. Ruff passed, while strict Pyright found six local annotation issues in the new evaluator. No Pyright pass is claimed from this group. The annotations were corrected before tests were added. |
+| Initial M30 evaluator regression suite | 0 | Ruff and strict Pyright passed; 41 evaluator tests passed with one Windows symlink-capability skip in 2.93 seconds. |
+| Initial source/wheel/release artifact wiring gate | 0 | Ruff and strict Pyright passed; 43 evaluator and release-artifact tests passed with one Windows symlink-capability skip in 2.04 seconds. |
+| First combined evaluator/architecture/artifact gate | 1 | 53 tests passed with one skip, but the public-contract architecture test found that the README non-claim did not explicitly name the empty installation-matrix manifest. Strict docs still built in 0.89 seconds. No focused-suite pass is claimed. |
+| Second combined evaluator/architecture/artifact gate | 1 | 53 tests passed with one skip, but the RFC's equivalent non-claim was line-wrapped across the exact architecture phrase. Strict docs still built in 0.83 seconds. No focused-suite pass is claimed. |
+| Corrected focused/static/docs gate | 0 | All 53 evaluator, architecture, and release-artifact tests passed with one Windows symlink-capability skip in 2.07 seconds; Ruff passed; strict Pyright reported zero diagnostics; strict docs built in 0.80 seconds with only the known upstream notice; and `git diff --check` passed. |
+| Complete static/documentation gate | 0 | The unchanged 46-package lock resolved, frozen sync checked 45 packages, all 247 Python files were formatted, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.81 seconds with only the known upstream notice, and whitespace passed. |
+| First `uv run --frozen pytest -q` | 1 | 1,371 tests passed with seven Windows capability skips, but one M28 architecture contract failed because the updated README status had omitted M28's exact empty sample-game manifest non-claim. No complete-suite pass is claimed from this run. |
+| Corrected M28-M30 public-contract group and complete suite | 0 | All 30 M28-M30 architecture tests passed in 0.50 seconds; the complete suite then passed 1,372 tests with seven Windows capability skips in 93.53 seconds. |
+| `uv build` and `scripts/smoke_wheel.py dist` | 0 | Built the pure `0.1.0a1` source archive and universal wheel; isolated no-dependency wheel smoke passed with exact M30 evidence. |
+| Fresh M30 release staging and `scripts/smoke_release.py` | 0 | Staged ten deterministic artifacts and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M30 evidence smoke. |
+| Real-wgpu regression and vertical slices | 0 | All ten real-wgpu tests passed in 6.82 seconds. Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture SHA-256 `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder completed its typed loop with five replay batches and passing registered tests. |
+| Findings-first M30 review | Mixed | Review found that the synthetic future record used the release-page path instead of GitHub's canonical asset-download path, lacked a public validation-job locator, allowed noncanonical record ordering, and accepted impossible calendar dates. No final-reviewed pass is claimed from the pre-review tree. |
+| Corrected findings-first focused/static/docs gate | 0 | Canonical download/validation URLs, unique validation evidence, required environment order, and calendar dates are enforced. All 56 focused tests passed with one Windows symlink-capability skip in 2.22 seconds; Ruff passed; strict Pyright reported zero diagnostics; strict docs built in 0.83 seconds with only the known upstream notice; and whitespace passed. |
+| Final post-review lock/static/docs gate | 0 | The unchanged 46-package lock resolved in 0.80 ms; frozen sync checked 45 packages; all 247 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; strict docs built in 0.78 seconds with only the known upstream notice; and whitespace passed. |
+| Final post-review `uv run --frozen pytest -q` | 0 | The exact reviewed tree passed 1,375 tests with seven Windows capability skips in 92.88 seconds. |
+| Final `uv build` and `scripts/smoke_wheel.py dist` | 0 | The pure `0.1.0a1` source archive and universal wheel rebuilt; isolated no-dependency installed-wheel smoke passed with exact M30 evidence. |
+| Final release staging and `scripts/smoke_release.py` | 0 | A fresh ten-artifact candidate passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M30 evidence smoke. |
+| Final protected-surface, credential, object, and artifact audit | 0 | `git diff --check`, exact-base protected diff, and `git fsck --full --no-dangling` passed. Workflow hashes remain unchanged; the exact 462-byte manifest hash remains pinned; no targeted credential pattern appeared; the 94-entry wheel contains no native/WASM file; and the 40-entry sample bundle contains the exact M30 evaluator and manifest paths. |
+
+No benchmark was run because M30 changes no runtime or performance path and
+makes no performance claim. The final review found no remaining runtime/API,
+format, dependency, lock, version, workflow/CI-topology, backend/native/WASM,
+networking, telemetry, provider, credential, private-data, path-leakage, or
+stale-documentation change. Ready-PR publication, hosted validation, review
+reread, and squash integration remain pending.
+
+The current empty manifest and synthetic populated fixtures prove evaluator
+mechanics only. They are not releases, users, installations, clean machines,
+publication, support evidence, or external adoption. Full local validation and
+review remain pending.
+
 ## M29 Python 3.14 hosted correction - 2026-08-07
 
 Ready PR #46 initially preserved five successful essential jobs: the Ubuntu
