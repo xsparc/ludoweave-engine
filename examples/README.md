@@ -16,6 +16,7 @@ python receipt_semantic_compatibility.py
 python cross_version_corpus_readiness.py
 python external_consumer_feedback_readiness.py
 python supported_release_channel_readiness.py
+python external_contributor_rehearsal_readiness.py
 python constrained_3d_decision.py
 python visual_editor_decision.py
 python wasm_mod_security_decision.py
@@ -77,6 +78,12 @@ release, or stability-promotion claim.
 release-channel manifest and reports that no recurring supported final-feature
 release history exists. Its synthetic gate regression is not a release,
 support promise, channel, publication, or stability-promotion claim.
+
+`external_contributor_rehearsal_readiness.py` validates the exact empty
+reviewed rehearsal manifest and reports that the public first-contribution path
+has not yet been independently completed without private maintainer knowledge.
+Its synthetic gate regressions are not contributors, pull requests, feedback,
+usability evidence, or project history.
 
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds

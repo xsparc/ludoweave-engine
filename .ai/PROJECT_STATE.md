@@ -2,6 +2,52 @@
 
 ## Current milestone
 
+M27 is in progress on
+`codex/m27-external-contributor-rehearsal-readiness` from exact clean
+synchronized GitHub-verified `main` commit
+`c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. Its bounded outcome is a strict
+offline admission harness for the design-plan objective that documentation
+enable a first external contribution without private maintainer knowledge.
+The reviewed manifest contains zero records, so the sanitized result is
+deterministically `not-ready`; project documentation, hosted CI, maintainers,
+automated agents, and synthetic fixtures do not establish an independent human
+contribution rehearsal. A future true result requires at least one manually
+reviewed human good-first contribution linked to a public project issue and
+merged pull request, exact base/head/merge objects, patch/feedback hashes,
+valid DCO, the clean/focused/complete validation sequence, and explicit review
+that no private maintainer knowledge or protected API/format/dependency/workflow
+change was involved. The complete reviewed identity sequence must equal the
+executable mandatory prefix. M27 changes no runtime source, public API/export,
+persistent format, protocol, dependency, lock, package version, stability
+label, workflow, or CI topology. The manifest is exactly 270 bytes with
+SHA-256 `ecb959e90a0033b4dbe3dcfe8a48db1c1eea915e0ef2840510969b9e25cdb9c7`.
+The core focused suite passed 51 tests with one Windows symlink-capability skip
+in 1.74 seconds; source/wheel/release artifact wiring then passed 53 tests with
+one skip in 2.02 seconds, Ruff passed after import ordering was corrected, and
+Pyright reported zero diagnostics. Findings-first review then closed cross-role
+revision/artifact reuse and duplicate-JSON-field ambiguity; 59 corrected
+focused tests pass with one skip. The complete local gate passes 235-file
+formatting, Ruff, strict Pyright, strict docs, 1,210 tests with four Windows
+symlink-capability skips, pure build, isolated wheel/release smoke, all retained
+benchmark/profile validators, ten real-wgpu tests, and both graphics vertical
+slices. Protected runtime/workflow/metadata/lock scope is unchanged; the
+94-entry wheel has no native library and the 34-entry sample bundle contains
+both M27 evidence files. Initial hosted run `31118834216` found that the M27
+architecture test spelled the tracked lowercase pull-request template with an
+uppercase filename; both Ubuntu compatibility jobs failed that same case-
+sensitive lookup. The local correction uses the exact tracked path. Windows
+graphics separately failed during GitHub action-download resolution before
+checkout with `Service Unavailable`; macOS graphics passed. The already-failed
+run was cancelled rather than spending its remaining queued jobs. Corrected
+run `31119640551` first preserved three successful jobs while four jobs failed
+before checkout and macOS graphics remained unassigned during GitHub's
+subsequently resolved Actions outage. One failed-job-only rerun then executed
+only the five affected jobs. The resulting effective eight-job matrix is fully
+successful on exact corrected head
+`f9e779d83a82795ad68cff22c424b6e94ef13703`: quality/distribution, Ubuntu
+3.13/3.14, Windows 3.14, macOS 3.14, and graphics on Ubuntu, Windows, and
+macOS all pass. Final thread-aware review and integration remain pending.
+
 M26 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m26-supported-release-channel-readiness` from exact clean
 synchronized `main` commit
@@ -500,8 +546,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M20 through M26 are complete, hosted-validated, and squash-integrated. This
-  branch records M26 integration only; no subsequent milestone is included.
+- Complete M27's local gate, findings-first review, ready PR, minimum necessary
+  hosted validation, delayed thread-aware reread, exact squash integration, and
+  no-CI integration record.
+- M0 through M26 are complete, hosted-validated, and squash-integrated. M27 is
+  limited to external-contributor rehearsal admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

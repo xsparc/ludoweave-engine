@@ -43,6 +43,12 @@ deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
 the [supported release channel readiness guide](supported-release-channel-readiness.md).
 
+M27/RFC-0010 adds the empty reviewed external-contributor rehearsal fixture and
+evaluator to the deterministic sample bundle. Release smoke proves only that
+the installed offline evidence path works; it is not an external contribution,
+feedback artifact, or usability result. See the
+[external-contributor rehearsal readiness guide](external-contributor-rehearsal-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official

@@ -49,6 +49,8 @@ M25 adds no export; RFC-0008 makes external-consumer-feedback admission
 mechanically auditable but records the reviewed empty manifest as not ready.
 M26 adds no export; RFC-0009 makes supported feature-release-channel admission
 mechanically auditable but records the reviewed empty manifest as not ready.
+M27 adds no export; RFC-0010 makes external-contributor rehearsal admission
+mechanically auditable but records the reviewed empty manifest as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

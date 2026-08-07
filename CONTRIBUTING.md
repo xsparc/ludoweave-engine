@@ -10,7 +10,11 @@ Thank you for helping build LudoWeave. The project welcomes focused bug fixes, t
 4. Do not include credentials, private prompts, model transcripts, or proprietary assets.
 
 For a start-to-finish setup, validation, DCO, and pull-request walkthrough, use
-the [first-contribution guide](docs/first-contribution.md).
+the [first-contribution guide](docs/first-contribution.md). The
+[external-contributor rehearsal contract](docs/external-contributor-rehearsal-readiness.md)
+documents the minimal public evidence and privacy boundary for any future
+independently reviewed rehearsal; do not add private correspondence or personal
+data to the repository.
 
 ## Development setup
 

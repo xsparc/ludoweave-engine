@@ -1,0 +1,11 @@
+{
+  "schema": "ludoweave.community.external-contributor-rehearsal/1",
+  "source_project": "ludoweave-engine",
+  "minimum_merged_rehearsals": 1,
+  "required_validation_steps": [
+    "clean-setup",
+    "focused-check",
+    "complete-gate"
+  ],
+  "rehearsal_records": []
+}
