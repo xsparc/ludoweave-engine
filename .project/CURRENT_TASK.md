@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M31 - issue-response and pull-request-review latency admission readiness
-- **Status:** In progress on `evidence/m31-response-review-latency` from exact
-  clean synchronized verified `main` commit
-  `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`.
+- **Status:** Complete, hosted-validated, reviewed, squash-integrated, and
+  cleaned up on synchronized verified `main` commit
+  `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`.
 - **Started:** 2026-08-08
 - **Base:** PR #48 squash-integrated the exact validated M30 feature tree as
   verified `675713d15a20a38233b80580e5aa773dc7a8684c`; documentation-only PR
@@ -77,5 +77,13 @@
   1,435 complete-suite tests with eight skips, pure build, installed-wheel
   smoke, and fresh ten-artifact release smoke. No benchmark was run because M31
   changes no runtime or performance path and defines no timing target.
-  Correction publication, hosted validation of the corrected exact head,
-  final review reread, integration, and cleanup remain pending.
+  Corrected exact head `dd4058b71439b5bade9d091831ba5453a51db35c`
+  passed all eight essential hosted jobs in run `31190559197`. The sole review
+  thread is resolved and outdated, no unresolved thread or top-level comment
+  remains, and PR #50 was `MERGEABLE` and `CLEAN`. PR #50 squash-integrated the
+  exact corrected tree `2ec80742556e62b34dc9275fd0b268a484e9eace` as
+  GitHub-verified commit `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`
+  with sole parent `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`.
+  Literal tree comparison and object-integrity checks passed; the temporary
+  feature branch is deleted locally and remotely. No benchmark was run because
+  M31 changes no runtime or performance path and defines no timing target.

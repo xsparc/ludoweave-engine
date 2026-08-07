@@ -39,7 +39,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
 | Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
 | Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
-| Active | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and unchanged essential CI topology |
+| Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -319,6 +319,10 @@ human responsiveness evidence. M31 adds no runtime source, API, protocol,
 format, dependency, version, workflow job, network activity, telemetry,
 contributor contact, issue/PR mutation, tag, release, publication,
 certification, stability change, SLA, or support promise.
+Corrected head `dd4058b71439b5bade9d091831ba5453a51db35c` passed all eight
+essential jobs in run `31190559197`; PR #50 squash-integrated the exact tree as
+GitHub-verified `main` commit
+`8adb8d46d0ce13ea3687856ae53e899e98dc42a6`.
 
 ## Good-first contribution queue
 

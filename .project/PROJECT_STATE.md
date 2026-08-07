@@ -2,8 +2,8 @@
 
 ## Current milestone
 
-M31 is in progress on `evidence/m31-response-review-latency` from exact clean
-synchronized verified `main` commit
+M31 is complete, hosted-validated, reviewed, squash-integrated, and cleaned up.
+It started from exact clean synchronized verified `main` commit
 `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. Its bounded outcome is a strict
 offline admission harness for the design plan's next longer-term metric:
 issue-response and pull-request-review time. The reviewed manifest contains no
@@ -44,8 +44,17 @@ The post-review gate passes 60 focused tests with one skip, formatting, Ruff,
 strict Pyright, strict docs, 1,435 complete-suite tests with eight skips, pure
 build, installed-wheel smoke, and fresh ten-artifact release smoke. No
 benchmark was run because M31 changes no runtime/performance path and defines
-no timing target. Correction publication, hosted validation of the corrected
-exact head, final review reread, squash integration, and cleanup remain pending.
+no timing target. Corrected exact head
+`dd4058b71439b5bade9d091831ba5453a51db35c` passed all eight essential jobs in
+run `31190559197`. The sole review thread is resolved and outdated, no
+unresolved thread or top-level comment remains, and PR #50 was `MERGEABLE` and
+`CLEAN`. PR #50 squash-integrated exact tree
+`2ec80742556e62b34dc9275fd0b268a484e9eace` as GitHub-verified commit
+`8adb8d46d0ce13ea3687856ae53e899e98dc42a6` with sole parent
+`22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. Literal tree comparison and object
+integrity passed. The temporary feature branch is deleted locally and remotely;
+no feature PR remains open. M0-M31 are complete; select the next bounded slice
+from current authoritative project goals before changing runtime scope.
 
 M30 is complete, hosted-validated, reviewed, and squash-integrated by PR #48 as
 GitHub-verified `main` commit
@@ -744,11 +753,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Complete M31's architecture, documentation, full quality/release gate,
-  findings-first review, ready PR, unchanged essential hosted CI, and exact
-  squash integration.
-- M0 through M30 are complete, hosted-validated, and squash-integrated. M31 is
-  limited to issue-response and pull-request-review latency admission readiness.
+- M0 through M31 are complete, hosted-validated, reviewed, and squash-
+  integrated.
+- Select the next bounded slice from current authoritative project goals; no
+  new milestone is assigned by this factual integration record.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.
