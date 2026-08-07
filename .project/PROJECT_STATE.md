@@ -2,8 +2,10 @@
 
 ## Current milestone
 
-M30 is in progress on `evidence/m30-installation-matrix-readiness` from exact
-clean synchronized verified `main` commit
+M30 is complete, hosted-validated, reviewed, and squash-integrated by PR #48 as
+GitHub-verified `main` commit
+`675713d15a20a38233b80580e5aa773dc7a8684c`. It started from exact clean
+synchronized verified `main` commit
 `c88b166a39a793c91741bfa762af5627a87c53b4`. Its bounded outcome is a strict
 offline admission harness for the design plan's next longer-term metric:
 installation success across the supported OS/CPython matrix. The reviewed
@@ -34,9 +36,16 @@ pure build, isolated wheel/release smoke, ten real-wgpu tests, and both graphics
 vertical slices. Protected runtime/workflow/metadata/lock scope is unchanged;
 the 94-entry wheel has no native/WASM file and the 40-entry sample bundle
 contains both exact M30 evidence files. No benchmark was run because M30
-changes no runtime/performance path and makes no performance claim. Ready-PR
-publication, hosted validation, review reread, and squash integration remain
-pending.
+changes no runtime/performance path and makes no performance claim. Ready PR
+#48 contained single DCO-signed feature commit
+`576dd070b547bef853ee47ece4c928b4e9962a7d`; hosted run `31186083454` passed
+all eight essential jobs on that exact head. The final GitHub audit found zero
+reviews, zero review threads, and eight successful checks. PR #48
+squash-integrated exact feature tree
+`6c421ece852d822270f3de1e9ece9c7cc1568678` as verified commit
+`675713d15a20a38233b80580e5aa773dc7a8684c` with sole parent
+`c88b166a39a793c91741bfa762af5627a87c53b4`; the feature branch is deleted
+locally and remotely.
 
 M29 is complete, hosted-validated, and squash-integrated. It started from exact
 clean synchronized verified `main` commit
@@ -690,10 +699,9 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Complete M30's full quality/release gate, findings-first review, ready PR,
-  unchanged essential hosted CI, and exact squash integration.
-- M0 through M29 are complete, hosted-validated, and squash-integrated. M30 is
-  limited to published-wheel installation-matrix admission readiness.
+- M0 through M30 are complete, hosted-validated, and squash-integrated.
+- Select the next bounded milestone from accepted project direction before
+  changing runtime, public, persistent, dependency, workflow, or support scope.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

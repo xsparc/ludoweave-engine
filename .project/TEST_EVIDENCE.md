@@ -31,18 +31,25 @@ Only commands actually executed in the current repository are recorded here.
 | Final `uv build` and `scripts/smoke_wheel.py dist` | 0 | The pure `0.1.0a1` source archive and universal wheel rebuilt; isolated no-dependency installed-wheel smoke passed with exact M30 evidence. |
 | Final release staging and `scripts/smoke_release.py` | 0 | A fresh ten-artifact candidate passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M30 evidence smoke. |
 | Final protected-surface, credential, object, and artifact audit | 0 | `git diff --check`, exact-base protected diff, and `git fsck --full --no-dangling` passed. Workflow hashes remain unchanged; the exact 462-byte manifest hash remains pinned; no targeted credential pattern appeared; the 94-entry wheel contains no native/WASM file; and the 40-entry sample bundle contains the exact M30 evaluator and manifest paths. |
+| DCO commit, ready PR, and exact hosted head | 0 | DCO-signed feature commit `576dd070b547bef853ee47ece4c928b4e9962a7d` was pushed on the neutral M30 branch and published as ready PR #48 against exact base `c88b166a39a793c91741bfa762af5627a87c53b4`. |
+| GitHub Actions run `31186083454` | 0 | The exact feature head passed all eight essential jobs: quality/tests/distribution; Ubuntu CPython 3.13 and 3.14; Windows CPython 3.14; macOS CPython 3.14; and graphics smoke on Ubuntu, Windows, and macOS. |
+| Final hosted review and check audit | 0 | GitHub reported zero reviews, zero review threads, and eight successful completed checks on PR #48. |
+| PR #48 squash integration verification | 0 | PR #48 merged at 2026-08-07T14:12:10Z as GitHub-verified commit `675713d15a20a38233b80580e5aa773dc7a8684c`. Its tree `6c421ece852d822270f3de1e9ece9c7cc1568678` exactly equals the feature-head tree, its sole parent is exact M30 base `c88b166a39a793c91741bfa762af5627a87c53b4`, `git diff --exit-code` found no tree difference, and `git fsck --full --no-dangling` passed. |
+| M30 feature-branch cleanup | 0 | GitHub deleted the merged remote feature branch; fetch/prune showed no remote feature branch; the exact verified local feature branch was deleted after tree comparison; and synchronized `main` became the base of neutral state-record branch `records/m30-integration`. |
+| State-record focused architecture gate | 0 | All ten M30 public-contract architecture tests passed in 0.28 seconds. |
+| State-record strict documentation and scope gate | 0 | Strict MkDocs built in 0.86 seconds with only the known upstream notice; `git diff --check` passed; and the diff contained only `ROADMAP.md` plus the three neutral `.project` records. |
 
 No benchmark was run because M30 changes no runtime or performance path and
 makes no performance claim. The final review found no remaining runtime/API,
 format, dependency, lock, version, workflow/CI-topology, backend/native/WASM,
 networking, telemetry, provider, credential, private-data, path-leakage, or
 stale-documentation change. Ready-PR publication, hosted validation, review
-reread, and squash integration remain pending.
+reread, exact squash integration, and feature-branch cleanup are complete.
 
 The current empty manifest and synthetic populated fixtures prove evaluator
 mechanics only. They are not releases, users, installations, clean machines,
 publication, support evidence, or external adoption. Full local validation and
-review remain pending.
+review are complete; the current result remains an evidence-only non-claim.
 
 ## M29 Python 3.14 hosted correction - 2026-08-07
 
