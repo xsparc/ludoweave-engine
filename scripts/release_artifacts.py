@@ -30,6 +30,7 @@ _SAMPLE_FILES = (
     "fixed_step_world.py",
     "hello_headless.py",
     "hello_sprite.py",
+    "installation_matrix_readiness.py",
     "operation_argument_compatibility.py",
     "render_device_conformance.py",
     "receipt_reader.py",
@@ -168,6 +169,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "external_sample_game_adoption.json",
             Path("assets/external_sample_game_adoption.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "installation_matrix.json",
+            Path("assets/installation_matrix.json"),
         )
     )
     sources.append(

@@ -54,6 +54,12 @@ mechanically auditable but records the reviewed empty manifest as not ready.
 M28 adds no export; RFC-0011 makes external sample-game adoption admission
 mechanically auditable but records the reviewed empty manifest and zero count
 as not ready.
+M29 adds no export; RFC-0012 makes external contributor-retention admission
+mechanically auditable but records the reviewed empty manifest and zero count
+as not ready.
+M30 adds no export; RFC-0013 makes published-wheel installation-matrix
+admission mechanically auditable but records the reviewed empty manifest and
+zero successful environments as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 
