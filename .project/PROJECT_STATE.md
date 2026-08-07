@@ -1,5 +1,41 @@
 # Project State
 
+## M34 in progress
+
+M34 starts from exact clean synchronized M33 integration-record commit
+`d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. Its bounded outcome is strict
+offline admission readiness for the percentage of agent tool calls that
+complete without manual recovery, plus the directly authorized elimination of
+redundant CI runs. The reviewed 195-byte manifest contains no evaluation
+windows and has SHA-256
+`e952c045b039055e8439069cf88176b6ac1d2ad7de49a94d39b2737e5d06e1d5`, so
+no call count, manual-recovery count, recovery-free completion rate,
+reliability result, certification, or release gate is claimed.
+
+Future admission requires every dispatched call from a complete reviewed
+cohort of eligible task-directed sessions. It freezes the exact 12 product
+tools and `ludoweave.agent.service/1`, immutable service/dispatch/result/
+recovery evidence, sequential per-session indices, canonical order, complete
+history, and explicit privacy/consent plus behavioral reviews. Known non-
+completions and calls completed after
+manual recovery remain in the denominator; `terminal-unobserved` remains
+counted and blocks publication. Synthetic fixtures, conformance, tests,
+benchmarks, maintainer-driven calls, and unreviewed/private sessions are
+ineligible. Aggregate output omits raw sessions, tools, prompts, arguments,
+results, errors, and evidence locations.
+
+The eight existing CI jobs remain the substantive supported Python/OS/
+graphics/distribution gate. M34 changes only their trigger: substantive pull
+requests run the gate once; the same tree is not rerun after merging to
+unprotected `main`, and `.project/**`-only factual record pull requests use no
+hosted runner. Runtime, agent tools/protocols, public APIs, formats,
+dependencies, lock, version, release workflow, providers, telemetry, and
+native/WASM surfaces remain unchanged. Implementation, the 1,624-test complete
+suite, strict static/docs gates, universal build, isolated wheel/release smoke,
+real-wgpu/vertical-slice checks, scope/security audits, and findings-first
+review pass on `evidence/m34-agent-tool-recovery`. Hosted validation and
+integration remain pending; no hosted or merge claim is made yet.
+
 ## M33 complete
 
 M33 starts from exact clean synchronized M32 integration-record commit

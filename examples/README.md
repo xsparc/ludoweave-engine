@@ -123,6 +123,13 @@ M1-M4 p95 workloads, bind comparable runner/source artifacts, predeclare exact
 integer tolerances, and retain non-execution. Local timings, cProfile output,
 passing jobs, and synthetic fixtures are not historical rate evidence.
 
+`agent_tool_recovery_rate_readiness.py` validates the exact empty reviewed
+task-directed call manifest and reports that no complete agent-tool cohort has
+an admitted completion-without-manual-recovery rate. Future windows must retain
+known failures, calls completed after human recovery, and unobserved terminal
+states. Conformance runs, tests, maintainer-invoked calls, and synthetic
+fixtures are not operational recovery-rate evidence.
+
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds
 no 3D API, provider, asset loader, or runtime implementation.

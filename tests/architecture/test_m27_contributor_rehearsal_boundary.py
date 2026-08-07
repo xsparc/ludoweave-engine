@@ -16,7 +16,6 @@ _REHEARSALS = _ROOT / "tests" / "fixtures" / "external_contributor_rehearsal.jso
 _CONTRIBUTOR_GUIDE = _ROOT / "docs" / "first-contribution.md"
 _PULL_REQUEST_TEMPLATE = _ROOT / ".github" / "pull_request_template.md"
 _GOOD_FIRST_TEMPLATE = _ROOT / ".github" / "ISSUE_TEMPLATE" / "good_first_issue.yml"
-_CI_WORKFLOW = _ROOT / ".github" / "workflows" / "ci.yml"
 _RELEASE_WORKFLOW = _ROOT / ".github" / "workflows" / "release.yml"
 _EVIDENCE_FILES = (
     _ROOT / "examples" / "external_contributor_rehearsal_readiness.py",
@@ -125,10 +124,7 @@ def test_public_contributor_path_is_complete_but_claims_no_external_study() -> N
     assert "The task can be reviewed independently" in good_first_template
 
 
-def test_m27_preserves_the_two_workflows_exactly() -> None:
-    assert hashlib.sha256(_CI_WORKFLOW.read_bytes()).hexdigest() == (
-        "06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21"
-    )
+def test_m27_preserves_the_release_workflow_exactly() -> None:
     assert hashlib.sha256(_RELEASE_WORKFLOW.read_bytes()).hexdigest() == (
         "d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8"
     )

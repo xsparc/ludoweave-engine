@@ -1,4 +1,4 @@
-"""Keep M33 benchmark-regression-rate evidence strict, offline, and non-runtime."""
+"""Keep M34 agent-tool recovery-rate evidence strict, offline, and non-runtime."""
 
 import ast
 import hashlib
@@ -10,12 +10,13 @@ from typing import cast
 import pytest
 
 import ludoweave
+from ludoweave.agent import AGENT_TOOL_NAMES
 
 _ROOT = Path(__file__).parents[2]
-_MANIFEST = _ROOT / "tests" / "fixtures" / "benchmark_regression_rate.json"
+_MANIFEST = _ROOT / "tests" / "fixtures" / "agent_tool_recovery_rate.json"
 _EVIDENCE_FILES = (
-    _ROOT / "examples" / "benchmark_regression_rate_readiness.py",
-    _ROOT / "scripts" / "benchmark_regression_rate_evidence.py",
+    _ROOT / "examples" / "agent_tool_recovery_rate_readiness.py",
+    _ROOT / "scripts" / "agent_tool_recovery_rate_evidence.py",
 )
 _FORBIDDEN_IMPORTS = {
     "http",
@@ -30,7 +31,7 @@ _FORBIDDEN_IMPORTS = {
     "time",
     "urllib",
     "webbrowser",
-    "ludoweave.benchmark",
+    "ludoweave.agent",
     "ludoweave.plugins",
     "ludoweave.render.backends",
     "ludoweave.tools",
@@ -78,31 +79,31 @@ def _literal(path: Path, name: str) -> object:
     raise AssertionError(f"{name} was not a literal assignment")
 
 
-def test_benchmark_regression_manifest_is_exact_empty_and_reviewed() -> None:
+def test_agent_tool_recovery_manifest_is_exact_empty_and_reviewed() -> None:
     payload = _MANIFEST.read_bytes()
     document = cast(dict[str, object], json.loads(payload))
 
-    assert len(payload) == 199
+    assert len(payload) == 195
     assert hashlib.sha256(payload).hexdigest() == (
-        "720ae794e2a4ba76303196cd43d6ba0f3b21f81cffd4fa8584f526e2a0d48dca"
+        "e952c045b039055e8439069cf88176b6ac1d2ad7de49a94d39b2737e5d06e1d5"
     )
     assert _literal(_EVIDENCE_FILES[0], "_REVIEWED_MANIFEST_SHA256") == (
-        "720ae794e2a4ba76303196cd43d6ba0f3b21f81cffd4fa8584f526e2a0d48dca"
+        "e952c045b039055e8439069cf88176b6ac1d2ad7de49a94d39b2737e5d06e1d5"
     )
     assert _literal(_EVIDENCE_FILES[0], "_MANDATORY_WINDOW_PREFIX") == ()
     assert document == {
-        "schema": "ludoweave.performance.benchmark-regression-rate/1",
+        "schema": "ludoweave.operations.agent-tool-recovery-rate/1",
         "source_project": "ludoweave-engine",
-        "measurement_policy": "complete-reviewed-controlled-benchmark-comparisons/1",
+        "measurement_policy": "complete-reviewed-task-directed-agent-tool-calls/1",
         "evaluation_windows": [],
     }
 
 
-def test_benchmark_regression_evidence_files_are_bounded_and_offline() -> None:
+def test_agent_tool_recovery_evidence_files_are_bounded_and_offline() -> None:
     assert _literal(_EVIDENCE_FILES[0], "_MAX_MANIFEST_BYTES") == 131_072
     assert _literal(_EVIDENCE_FILES[0], "_MAX_JSON_NESTING") == 16
     assert _literal(_EVIDENCE_FILES[0], "_MAX_EVALUATION_WINDOWS") == 12
-    assert _literal(_EVIDENCE_FILES[0], "_MAX_COMPARISONS_PER_WINDOW") == 512
+    assert _literal(_EVIDENCE_FILES[0], "_MAX_CALLS_PER_WINDOW") == 2_048
     for path in _EVIDENCE_FILES:
         assert _forbidden(_imports(path)) == set()
 
@@ -114,7 +115,7 @@ def test_benchmark_regression_evidence_files_are_bounded_and_offline() -> None:
         "if True:\n    from importlib import import_module\n",
         "try:\n    import subprocess\nexcept ImportError:\n    pass\n",
         "from urllib.parse import urlparse\n",
-        "from ludoweave.tools import cli\n",
+        "from ludoweave.agent import AGENT_TOOL_NAMES\n",
     ],
 )
 def test_import_scan_detects_nested_forbidden_fixtures(tmp_path: Path, source: str) -> None:
@@ -124,56 +125,62 @@ def test_import_scan_detects_nested_forbidden_fixtures(tmp_path: Path, source: s
     assert _forbidden(_imports(fixture))
 
 
-def test_m33_adds_no_runtime_export_dependency_version_release_or_provider() -> None:
+def test_m34_adds_no_runtime_export_dependency_version_release_or_provider() -> None:
     document = tomllib.loads((_ROOT / "pyproject.toml").read_text(encoding="utf-8"))
     project = cast(dict[str, object], document["project"])
 
     assert project["version"] == "0.1.0a1"
     assert project["dependencies"] == []
     assert project["optional-dependencies"] == {"graphics": _GRAPHICS_DEPENDENCIES}
-    assert "BenchmarkRegressionRate" not in ludoweave.__all__
+    assert "AgentToolRecoveryRate" not in ludoweave.__all__
     assert not any(
-        "benchmark_regression_rate" in path.name
-        for path in (_ROOT / "src" / "ludoweave").rglob("*")
+        "agent_tool_recovery_rate" in path.name for path in (_ROOT / "src" / "ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
         "d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8"
     )
 
 
-def test_evaluator_registers_exact_perf_counter_benchmark_sources_only() -> None:
-    evaluator = _EVIDENCE_FILES[0].read_text(encoding="utf-8")
-
-    for source in (
-        "benchmarks/benchmark_m1.py",
-        "benchmarks/benchmark_m2.py",
-        "benchmarks/benchmark_m3.py",
-        "benchmarks/benchmark_m4.py",
-    ):
-        assert source in evaluator
-    assert "ludoweave.profile.m7/1" not in evaluator
-    assert 'metric != "p95_ns"' in evaluator
-    assert "candidate_p95 * 10_000 > baseline_p95 * (10_000 + tolerance_bps)" in evaluator
+def test_evaluator_registers_the_exact_product_tool_set_without_importing_it() -> None:
+    assert _literal(_EVIDENCE_FILES[0], "_TOOL_NAMES") == AGENT_TOOL_NAMES
+    assert _literal(_EVIDENCE_FILES[0], "_SERVICE_PROTOCOL") == "ludoweave.agent.service/1"
 
 
-def test_source_wheel_and_release_smoke_explicitly_include_m33_evidence() -> None:
+def test_ci_runs_only_the_eight_essential_jobs_for_substantive_pull_requests() -> None:
+    workflow = (_ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+
+    assert '\non:\n  pull_request:\n    paths-ignore:\n      - ".project/**"\n' in workflow
+    assert "\n  push:" not in workflow
+    assert "\n  schedule:" not in workflow
+    assert "\n  workflow_dispatch:" not in workflow
+    assert workflow.count("\n  verify:\n") == 1
+    assert workflow.count("\n  tests:\n") == 1
+    assert workflow.count("\n  graphics:\n") == 1
+    assert "os: [ubuntu-latest, windows-latest, macos-latest]" in workflow
+    for platform in ("ubuntu-latest", "windows-latest", "macos-latest"):
+        assert platform in workflow
+    for version in ('python-version: "3.12"', 'python: "3.13"', 'python: "3.14"'):
+        assert version in workflow
+
+
+def test_source_wheel_and_release_smoke_explicitly_include_m34_evidence() -> None:
     checks = {
         _ROOT / "scripts" / "smoke_wheel.py": (
-            "validate_benchmark_regression_rate_evidence",
-            "benchmark_regression_rate_readiness.py",
-            "benchmark_regression_rate.json",
+            "validate_agent_tool_recovery_rate_evidence",
+            "agent_tool_recovery_rate_readiness.py",
+            "agent_tool_recovery_rate.json",
         ),
         _ROOT / "scripts" / "smoke_release.py": (
-            "validate_benchmark_regression_rate_evidence",
-            "benchmark_regression_rate_readiness.py",
+            "validate_agent_tool_recovery_rate_evidence",
+            "agent_tool_recovery_rate_readiness.py",
         ),
         _ROOT / "scripts" / "release_artifacts.py": (
-            "benchmark_regression_rate_readiness.py",
-            "benchmark_regression_rate.json",
+            "agent_tool_recovery_rate_readiness.py",
+            "agent_tool_recovery_rate.json",
         ),
         _ROOT / "tests" / "unit" / "test_release_artifacts.py": (
-            "benchmark_regression_rate_readiness.py",
-            "benchmark_regression_rate.json",
+            "agent_tool_recovery_rate_readiness.py",
+            "agent_tool_recovery_rate.json",
         ),
     }
     for path, required in checks.items():
@@ -181,45 +188,45 @@ def test_source_wheel_and_release_smoke_explicitly_include_m33_evidence() -> Non
         assert all(item in text for item in required)
 
 
-def test_m33_public_contract_and_indices_are_registered() -> None:
+def test_m34_public_contract_and_indices_are_registered() -> None:
     required = {
         _ROOT / "README.md": (
-            "empty reviewed comparison manifest",
-            "no measured regression rate",
+            "empty reviewed agent-tool call manifest",
+            "no measured recovery-free completion rate",
         ),
         _ROOT / "ROADMAP.md": (
-            "M33 benchmark-regression-rate admission readiness",
-            "M7 cProfile output",
+            "M34 agent-tool recovery-rate admission readiness",
+            "terminal-unobserved",
         ),
         _ROOT / "MAINTAINERS.md": (
-            "M33 adds only strict offline benchmark-regression-rate",
-            "M7 cProfile diagnostics are not timing evidence",
+            "M34 adds strict offline agent-tool recovery-rate admission readiness",
+            "one substantive pull-request run",
         ),
         _ROOT / "docs" / "architecture.md": (
-            "M33 benchmark-regression-rate boundary",
-            "no comparison count or regression rate is exposed",
+            "M34 agent-tool recovery-rate boundary",
+            "no call count or recovery-free completion rate is exposed",
         ),
-        _ROOT / "docs" / "benchmark-regression-rate-readiness.md": (
-            "benchmark-regression-rate-evidence-absent",
-            "measured zero-regression result",
-            "candidate_p95_ns * 10_000",
+        _ROOT / "docs" / "agent-tool-recovery-rate-readiness.md": (
+            "agent-tool-recovery-rate-evidence-absent",
+            "completed-after-manual-recovery",
+            "Required approval before dispatch",
         ),
-        _ROOT / "docs" / "rfcs" / "0016-benchmark-regression-rate-admission-readiness.md": (
+        _ROOT / "docs" / "rfcs" / "0017-agent-tool-recovery-rate-admission-readiness.md": (
             "reviewed manifest contains no evaluation windows",
-            "No project-wide threshold",
-            "cProfile attribution documents",
+            "No success target",
+            "synthetic fixtures, conformance profiles",
         ),
         _ROOT / "mkdocs.yml": (
-            "benchmark-regression-rate-readiness.md",
-            "0016-benchmark-regression-rate-admission-readiness.md",
+            "agent-tool-recovery-rate-readiness.md",
+            "0017-agent-tool-recovery-rate-admission-readiness.md",
         ),
         _ROOT / "docs" / "rfcs" / "index.md": (
-            "RFC-0016: benchmark-regression-rate admission readiness",
+            "RFC-0017: agent-tool recovery-rate admission readiness",
         ),
-        _ROOT / "docs" / "api-status.md": ("M33 adds no export",),
-        _ROOT / "docs" / "release-process.md": ("M33/RFC-0016",),
-        _ROOT / "docs" / "alpha-retrospective.md": ("M33 defines",),
-        _ROOT / "examples" / "README.md": ("benchmark_regression_rate_readiness.py",),
+        _ROOT / "docs" / "api-status.md": ("M34 adds no export",),
+        _ROOT / "docs" / "release-process.md": ("M34/RFC-0017",),
+        _ROOT / "docs" / "alpha-retrospective.md": ("M34 defines",),
+        _ROOT / "examples" / "README.md": ("agent_tool_recovery_rate_readiness.py",),
     }
     for path, values in required.items():
         text = path.read_text(encoding="utf-8")

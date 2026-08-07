@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0017 resolves how agent-tool recovery-rate evidence is admitted. The
+offline harness requires a complete reviewed cohort of task-directed sessions
+and every dispatched call, keeps known failure and manual-recovery outcomes in
+the denominator, blocks publication on unobserved terminal state, and preserves
+complete history. The reviewed manifest is empty, so no measured rate or
+recovery-free result exists. Human review owns session/call eligibility,
+manual-recovery status, outcome, provenance, validation, and census
+completeness. The eight essential CI jobs now run only for substantive pull
+requests, avoiding redundant post-merge and `.project/**`-only runs.
+
 RFC-0001 resolves the M7 first-native-kernel question by deferring Rust/PyO3
 until its quantified cross-platform, buffer/GIL, ownership, build, fallback,
 fuzz, and maintenance-owner gate is satisfied.

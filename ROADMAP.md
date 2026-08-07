@@ -42,6 +42,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
 | Done | M32 replay-divergence-rate admission readiness | PR #52 squash-integrated; strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and all eight essential hosted jobs passed on the corrected head |
 | Done | M33 benchmark-regression-rate admission readiness | PR #54 squash-integrated; strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0016, and all eight essential hosted jobs passed |
+| Ready for hosted validation | M34 agent-tool recovery-rate admission readiness | Strict empty reviewed task-directed call manifest, complete cohort and terminal-evidence preservation, exact rational rate, installed artifact smoke, RFC-0017, and one substantive pull-request CI run |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -363,6 +364,22 @@ Ready PR #54 exact head `3bd7e17eed26028592cb39d37e77e15c6f4371f1`
 passed all eight essential jobs in run `31225942698`, had no review comment or
 thread, and squash-integrated the exact tree as GitHub-verified `main` commit
 `0993c73b3290809ef4e0c36d64d39e5ee5891a9b`.
+
+M34 starts from verified M33 integration-record commit
+`d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. It adds an offline admission
+harness for the next longer-term metric: the percentage of agent tool calls
+that complete without manual recovery. A future window requires a complete
+reviewed cohort of task-directed sessions and every dispatched product-tool
+call. Known failures and calls completed after recovery remain in the
+denominator; `terminal-unobserved` remains counted and blocks publication. The
+reviewed set is empty, so no call count or recovery-free completion rate is
+claimed; examples, conformance profiles, tests, maintainer-invoked calls, and
+synthetic fixtures are not operational history. M34 adds no runtime or agent
+implementation, API, protocol, format, dependency, lock, version, telemetry,
+provider, release, publication, certification, reliability target, or support
+promise. It retains the eight essential CI jobs but runs them once per
+substantive pull request, not again after merge or for `.project/**`-only
+records.
 
 ## Good-first contribution queue
 

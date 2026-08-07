@@ -69,6 +69,9 @@ measured divergence rate as not ready.
 M33 adds no export; RFC-0016 makes controlled benchmark-regression-rate
 admission mechanically auditable but records the reviewed empty comparison
 manifest and no measured regression rate as not ready.
+M34 adds no export; RFC-0017 makes task-directed agent-tool recovery-rate
+admission mechanically auditable but records the reviewed empty call manifest
+and no measured completion-without-manual-recovery rate as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

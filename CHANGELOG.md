@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M34/RFC-0017 agent-tool recovery-rate admission evidence that preserves
+  known failures, calls completed after manual recovery, and unobserved
+  terminal states while retaining the current empty-manifest result without a
+  measured recovery-free completion rate.
+- Run the unchanged eight essential CI jobs only for substantive pull requests,
+  avoiding duplicate post-merge `main` runs and `.project/**`-only record runs.
 - Add M33/RFC-0016 benchmark-regression-rate admission evidence that restricts
   comparisons to reviewed controlled paired M1-M4 p95 artifacts, preserves
   non-execution, and retains the current empty-manifest result without

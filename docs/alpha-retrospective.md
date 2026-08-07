@@ -117,3 +117,8 @@ artifacts with predeclared integer tolerances and preserved non-execution. Its
 reviewed manifest remains empty, so local timings, cProfile diagnostics,
 passing smokes, project history, and synthetic fixtures do not establish a
 measured rate or zero-regression result.
+M34 defines the next ordered operational metric under RFC-0017: the exact
+fraction of dispatched calls in a complete reviewed task-directed cohort that
+complete without manual recovery. Its reviewed manifest remains empty, so
+examples, conformance profiles, tests, project history, and synthetic fixtures
+do not establish a measured rate or recovery-free result.
