@@ -31,14 +31,19 @@ current state, decisions, templates, and reproducible evidence live under
 Findings-first review
 closed case-variant double counting, made popularity-field rejection explicit,
 required ASCII canonical timestamps, and made excessive JSON nesting fail
-closed. The final focused gate passes Ruff, strict Pyright, strict docs, and
-111 M28/M29 and artifact tests with two Windows symlink-capability skips. The
-complete local gate passes 243-file formatting, Ruff, strict Pyright, strict docs, 1,319 tests
-with six skips, pure build, isolated wheel/release smoke, all retained
+closed. Ready PR #46's initial hosted run `31181308306` passed five essential
+jobs but exposed one CPython 3.14 decoder-behavior assumption in all three
+compatibility jobs. The corrected evaluator now applies an explicit,
+parser-independent 16-level structural nesting limit while ignoring JSON
+string contents and escapes. Focused CPython 3.12 and 3.14 suites each pass 56
+tests with one Windows capability skip. Complete local CPython 3.12 and 3.14
+suites pass 1,321 tests with six skips and 1,311 tests with seven skips,
+respectively. The complete local gate also passes 243-file formatting, Ruff,
+strict Pyright, strict docs, pure build, isolated wheel/release smoke, all retained
 benchmark/profile validators, ten real-wgpu tests, and both graphics vertical
 slices. Protected runtime/workflow/metadata/lock scope is unchanged; the
 94-entry wheel has no native library and the 38-entry sample bundle contains
-both exact M29 evidence files. Ready-PR publication, hosted validation,
+both exact M29 evidence files. A correction commit, hosted rerun,
 thread-aware review, and squash integration remain pending.
 
 M28 is complete, independently reviewed, hosted-validated, and squash-

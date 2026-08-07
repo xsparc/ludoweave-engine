@@ -2,6 +2,40 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M29 Python 3.14 hosted correction - 2026-08-07
+
+Ready PR #46 initially preserved five successful essential jobs: the Ubuntu
+3.12 quality/distribution job, Ubuntu 3.13 compatibility, and the Ubuntu,
+macOS, and Windows graphics jobs. Run `31181308306` failed only its Ubuntu,
+macOS, and Windows Python 3.14 compatibility jobs. Each failure was the same
+`test_retention_manifest_rejects_excessive_json_nesting` expectation: CPython
+3.14 accepted the 10,000-level array and the evaluator then rejected its root
+as a non-object, while the regression expected a decoder error. No hosted pass
+is claimed for those three jobs from that run.
+
+The correction enforces a parser-independent 16-level object/array nesting
+limit over the already byte-bounded manifest. Its linear scanner ignores JSON
+string contents and escapes, and the standard parser remains authoritative for
+JSON syntax. Boundary and escaped-string regressions cover those semantics.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Local reproduction on CPython 3.14.5 before correction | 1 | The single excessive-nesting regression reproduced the hosted failure: the evaluator reported that the manifest must be an object instead of the expected invalid-JSON error. No pass is claimed. |
+| Focused CPython 3.12 evaluator and architecture suite | 0 | 56 tests passed with one Windows symlink-capability skip in 5.27 seconds. |
+| Focused Ruff and Pyright checks | 0 | Ruff reported no lint finding and Pyright reported zero errors, warnings, or information findings. |
+| `uv run --isolated --frozen --python 3.14 pytest -q tests/integration/test_external_contributor_retention_readiness.py tests/architecture/test_m29_contributor_retention_boundary.py` | 0 | 56 tests passed with one Windows symlink-capability skip in 2.28 seconds. |
+| First combined lock/sync/static/docs gate in the managed sandbox | 1 | Every uv command stopped before project execution because the sandbox denied access to existing user-cache metadata. No pass is claimed from this invocation; `git diff --check` produced no finding. |
+| Authorized lock, frozen sync, formatting, lint, type, docs, and whitespace gate | 0 | The unchanged 46-package lock resolved; 45 installed packages were checked; all 243 Python files were formatted; Ruff passed; Pyright reported zero diagnostics; strict docs built with only the known upstream MkDocs Material notice; and `git diff --check` passed. |
+| `uv run --frozen pytest -q` on CPython 3.12.13 | 0 | The complete suite passed 1,321 tests with six Windows capability skips in 101.76 seconds. |
+| `uv run --isolated --frozen --python 3.14 pytest -q` on CPython 3.14.5 | 0 | The complete compatibility suite passed 1,311 tests with seven platform/version capability skips in 95.59 seconds. |
+| `uv build` | 0 | Built the pure `ludoweave-0.1.0a1` source archive and universal wheel. |
+| `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel smoke passed. |
+| Fresh release staging and `scripts/smoke_release.py` | 0 | Staged ten deterministic artifacts and passed release-bundle smoke for `0.1.0a1`. |
+
+The correction changes only the bounded offline M29 evaluator, its tests, and
+the matching public boundary documentation. Hosted correction validation,
+review reread, and integration remain pending.
+
 ## M29 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

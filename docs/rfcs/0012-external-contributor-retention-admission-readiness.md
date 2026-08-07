@@ -75,9 +75,10 @@ The evaluator reads one explicitly selected bounded local manifest. It rejects
 unknown or duplicate JSON fields, unsafe identities and project references,
 invalid Git/SHA/timestamp values, non-human or non-external contributors,
 incomplete review and validation, non-merged outcomes, symlinks, oversized
-or excessively nested documents, excess records, duplicate contributors and
-evidence identities, and incomplete mandatory history. Canonical timestamps
-are ASCII UTC values; Unicode digit lookalikes are rejected.
+or documents exceeding 16 structural object/array levels, excess records,
+duplicate contributors and evidence identities, and incomplete mandatory
+history. Canonical timestamps are ASCII UTC values; Unicode digit lookalikes
+are rejected.
 
 The public manifest may contain only minimal public provenance: a public
 GitHub login, project issue/PR references, Git object IDs, artifact hashes,

@@ -55,6 +55,7 @@ _ALLOWED_TASK_SCOPES = (
 _REVIEWED_RETENTION_SHA256 = "61785ec165e9f9a7c1025c37f7b714d6fa42b2c7081145a0f843395a325b36ee"
 _MANDATORY_RETENTION_PREFIX: tuple[_RetentionIdentity, ...] = ()
 _MAX_MANIFEST_BYTES = 65_536
+_MAX_JSON_NESTING = 16
 _MAX_RETENTION_RECORDS = 32
 
 
@@ -369,10 +370,34 @@ def _read_bounded(path: Path, maximum: int, role: str) -> bytes:
 
 
 def _loads(value: bytes, role: str) -> object:
+    _reject_excessive_nesting(value, role)
     try:
         return json.loads(value, object_pairs_hook=_unique_object)
     except (UnicodeDecodeError, json.JSONDecodeError, RecursionError, ValueError) as error:
         raise RuntimeError(f"{role} is not valid JSON") from error
+
+
+def _reject_excessive_nesting(value: bytes, role: str) -> None:
+    depth = 0
+    in_string = False
+    escaped = False
+    for character in value:
+        if in_string:
+            if escaped:
+                escaped = False
+            elif character == ord("\\"):
+                escaped = True
+            elif character == ord('"'):
+                in_string = False
+            continue
+        if character == ord('"'):
+            in_string = True
+        elif character in (ord("{"), ord("[")):
+            depth += 1
+            if depth > _MAX_JSON_NESTING:
+                raise RuntimeError(f"{role} exceeds its nesting limit")
+        elif character in (ord("}"), ord("]")) and depth > 0:
+            depth -= 1
 
 
 def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:

@@ -79,3 +79,12 @@
   The 38-entry sample bundle contains both exact M29 evidence files. M1
   simulation and both M3 targets remain observed misses and authorize no
   acceleration.
+- **Hosted correction:** Ready PR #46 run `31181308306` passed five essential
+  jobs and failed only the Ubuntu, macOS, and Windows Python 3.14 jobs on one
+  excessive-nesting decoder assumption. The parser-independent correction
+  caps structural JSON nesting at 16 while ignoring string contents and
+  escapes. Focused CPython 3.12 and 3.14 runs each pass 56 tests with one skip;
+  complete CPython 3.12 and 3.14 suites pass 1,321 tests with six skips and
+  1,311 tests with seven skips. Static, strict docs, pure build, isolated wheel,
+  and fresh release smoke also pass. Correction commit, hosted validation,
+  review reread, and squash integration remain pending.

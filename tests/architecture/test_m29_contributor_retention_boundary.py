@@ -103,6 +103,7 @@ def test_retention_manifest_is_exact_empty_and_reviewed() -> None:
 
 
 def test_retention_evidence_files_have_no_ambient_external_dependency() -> None:
+    assert _literal(_EVIDENCE_FILES[0], "_MAX_JSON_NESTING") == 16
     for path in _EVIDENCE_FILES:
         assert _forbidden(_imports(path)) == set()
 

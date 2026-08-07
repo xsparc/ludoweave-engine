@@ -79,10 +79,11 @@ The evaluator performs one bounded synchronous read of an explicitly selected
 local JSON document. It uses no networking, telemetry, discovery, dynamic
 imports, subprocesses, provider execution, GitHub API, or retained external
 resources. Duplicate fields, excessive nesting, and non-ASCII timestamp
-lookalikes fail closed. M29 does not contact contributors, mutate issues or
-pull requests, publish a package, promote stability, change runtime source or public APIs,
-change persistent formats or dependencies, or alter the workflow and CI
-topology.
+lookalikes fail closed; object and array nesting is limited to 16 structural
+levels, with JSON string contents excluded from that count. M29 does not
+contact contributors, mutate issues or pull requests, publish a package,
+promote stability, change runtime source or public APIs, change persistent
+formats or dependencies, or alter the workflow and CI topology.
 
 See
 [RFC-0012](rfcs/0012-external-contributor-retention-admission-readiness.md)

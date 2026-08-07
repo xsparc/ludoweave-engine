@@ -515,11 +515,29 @@ def test_retention_manifest_rejects_duplicate_json_fields(tmp_path: Path) -> Non
 
 def test_retention_manifest_rejects_excessive_json_nesting(tmp_path: Path) -> None:
     retention = tmp_path / "nested.json"
-    retention.write_text("[" * 10_000 + "]" * 10_000, encoding="utf-8")
+    retention.write_text("[" * 17 + "]" * 17, encoding="utf-8")
     _, evaluate = _evaluator()
 
-    with pytest.raises(RuntimeError, match="not valid JSON"):
+    with pytest.raises(RuntimeError, match="exceeds its nesting limit"):
         evaluate(retention)
+
+
+def test_retention_manifest_accepts_json_nesting_limit(tmp_path: Path) -> None:
+    retention = tmp_path / "nested.json"
+    retention.write_text("[" * 16 + "]" * 16, encoding="utf-8")
+    _, evaluate = _evaluator()
+
+    with pytest.raises(RuntimeError, match="must be an object"):
+        evaluate(retention)
+
+
+def test_retention_nesting_guard_ignores_json_string_syntax(tmp_path: Path) -> None:
+    document = _manifest()
+    document["source_project"] = '["\\\\"]' * 20
+    _, evaluate = _evaluator()
+
+    with pytest.raises(RuntimeError, match="project identity is invalid"):
+        evaluate(_write_manifest(tmp_path, document))
 
 
 def test_retention_manifest_read_and_record_count_are_bounded(tmp_path: Path) -> None:
