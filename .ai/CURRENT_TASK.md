@@ -1,11 +1,13 @@
 # Current Task
 
 - **Task:** M28 - external sample-game adoption admission readiness
-- **Status:** Ready PR #44 is `MERGEABLE` and `CLEAN`. Both the initial and
-  corrected eight-job hosted runs passed. The two valid P2 review findings are
-  corrected, their threads are outdated, and the final reread found no new
-  finding. Factual CI-skipping evidence publication and exact squash
-  integration remain.
+- **Status:** Complete, independently reviewed, hosted-validated, and exact-
+  squash integrated. PR #44 merged final evidence head
+  `c383a4f143fd8682059a89ff6b645104a6b4332d` into `main` as GitHub-verified
+  commit `90d58a4567e7c7eaff90a28a7c59f2453b6d4538`; both trees are
+  `2f5ebf96af70741deb8d2b7d18ffa6d84effc494` and the sole parent is the
+  assigned base. This documentation-only record closes M28 without starting
+  a subsequent milestone.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized GitHub-verified `main` commit
   `17401eb32be30862496bbe02366d886a60752fb3` after PR #43 recorded M27
@@ -79,3 +81,9 @@
   `36130c8a3d0923a7330ee2c9e287c11c2a52594c`. GitHub reports PR #44
   `MERGEABLE` and `CLEAN` against the exact assigned base. Both original review
   threads are outdated; no new review or actionable finding exists.
+- **Integration:** The factual `[skip ci]` head
+  `c383a4f143fd8682059a89ff6b645104a6b4332d` created no third workflow run.
+  PR #44 squash-integrated it on 2026-08-07 as verified commit
+  `90d58a4567e7c7eaff90a28a7c59f2453b6d4538`, preserving the exact final
+  tree and DCO sign-off. Local `main`, `origin/main`, and `origin/HEAD` were
+  synchronized to that commit before this integration record was created.

@@ -53,8 +53,9 @@ packaging, or stale-documentation issue. M28 changes no runtime source, public
 API/export, persistent format, protocol, operation, dependency, lock, package
 version, stability label, workflow, CI topology, tag, release, publication,
 provider, network surface, or external fact. M1 simulation and both M3 targets
-remain recorded misses and authorize no acceleration. Ready-PR publication,
-hosted validation, thread-aware review, and squash integration remain pending.
+remain recorded misses and authorize no acceleration. At this local-validation
+stage, ready-PR publication, hosted validation, thread-aware review, and squash
+integration had not yet been executed; the later sections record their results.
 
 ## M28 hosted validation and review correction - PR #44
 
@@ -89,8 +90,7 @@ The correction changes only the M28 evaluator, regressions, readiness guide,
 RFC, and factual `.ai` state. It does not widen scope or change runtime source,
 public APIs/exports, persistent formats, dependencies, lock, version, workflow,
 CI topology, tag, release, publication, provider, network behavior, or current
-zero-adoption result. Correction commit/push, necessary hosted validation,
-final thread-aware reread, and squash integration remain pending.
+zero-adoption result.
 
 Correction commit `36130c8a3d0923a7330ee2c9e287c11c2a52594c` is DCO-signed,
 has tree `3e0fa65789beefb4dcb8a00489fe732b7124ca01`, and follows the
@@ -109,8 +109,32 @@ current logic and regressions expose no unreviewed aggregates and reject a
 locator without the exact revision or one recorded artifact digest. No new
 review submission, comment, thread, or actionable finding exists. Neither
 thread was replied to or manually resolved. The factual CI-skipping evidence
-commit, confirmation that it creates no third run, and squash integration
-remain pending.
+commit `c383a4f143fd8682059a89ff6b645104a6b4332d` has tree
+`2f5ebf96af70741deb8d2b7d18ffa6d84effc494` and created no third workflow
+run.
+
+## M28 main integration - 2026-08-07
+
+PR #44 squash-integrated exact final evidence head
+`c383a4f143fd8682059a89ff6b645104a6b4332d` into `main` as commit
+`90d58a4567e7c7eaff90a28a7c59f2453b6d4538` at `2026-08-07T12:11:14Z`.
+GitHub reports a valid verification at `2026-08-07T12:11:19Z`. The squash
+commit's sole parent is exact assigned base
+`17401eb32be30862496bbe02366d886a60752fb3`; its tree is
+`2f5ebf96af70741deb8d2b7d18ffa6d84effc494`, exactly matching the final PR
+head, and its message retains `Signed-off-by: Louijie Compo
+<louijie.compo@gmail.com>`. PR #44 is `MERGED`. Local `main`, `origin/main`,
+and `origin/HEAD` were synchronized to the verified squash commit before the
+documentation-only integration record was created.
+
+| Integration-record command | Exit | Result |
+| --- | ---: | --- |
+| `gh pr view 44` and branch-scoped `gh run list` | 0 | PR #44 is merged from exact head `c383a4f143fd8682059a89ff6b645104a6b4332d` into exact base `17401eb32be30862496bbe02366d886a60752fb3` as `90d58a4567e7c7eaff90a28a7c59f2453b6d4538`; the branch has exactly the two successful CI runs `31175906134` and `31176729893`, so the final `[skip ci]` commit created no third run. |
+| Local `git show`/`rev-parse` and GitHub commit API verification | 0 | The squash commit has the assigned base as its sole parent, exact final tree `2f5ebf96af70741deb8d2b7d18ffa6d84effc494`, retained DCO trailer, and valid GitHub verification. |
+| `uv run --frozen mkdocs build --strict` | 0 | The six-file factual integration record built in 0.81 seconds with only the known upstream MkDocs Material/MkDocs 2.0 informational warning. |
+| `git diff --check` | 0 | No whitespace errors. |
+| `git diff --exit-code 90d58a4567e7c7eaff90a28a7c59f2453b6d4538 -- .github pyproject.toml uv.lock src/ludoweave` | 0 | Workflows, package metadata, lock, and all runtime source are unchanged. |
+| `git fsck --full --no-dangling` | 0 | Repository object connectivity is clean with no dangling objects reported. |
 
 ## M27 development evidence - 2026-08-07, Windows, CPython 3.12.13
 

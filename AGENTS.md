@@ -52,9 +52,14 @@ telemetry, discovery, dynamic imports, subprocesses, installation, or provider
 execution; or change runtime source, public APIs/exports, persistent formats,
 protocols, operations, dependencies, lock, version, workflows, CI topology,
 tag, release, publication, certification, support policy, or stability label.
-M0 through M27 are complete, independently accepted, hosted-CI validated, and
-integrated into `main`. M28 starts from exact verified integration-record
-commit `17401eb32be30862496bbe02366d886a60752fb3` and contains no subsequent
+M0 through M28 are complete, independently accepted, hosted-CI validated, and
+integrated into `main`. M28 started from exact verified integration-record
+commit `17401eb32be30862496bbe02366d886a60752fb3`. PR #44 passed both necessary
+eight-job hosted runs after correcting two valid review findings and squash-
+integrated exact final evidence head
+`c383a4f143fd8682059a89ff6b645104a6b4332d` as GitHub-verified `main` commit
+`90d58a4567e7c7eaff90a28a7c59f2453b6d4538`; both trees are
+`2f5ebf96af70741deb8d2b7d18ffa6d84effc494`. M28 contains no subsequent
 milestone.
 
 M27 adds only strict offline external-contributor rehearsal admission readiness
