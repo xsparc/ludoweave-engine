@@ -29,14 +29,20 @@ Only commands actually executed in the current repository are recorded here.
 | First final artifact/security audit | Mixed | Manifest/workflow hashes, protected scope, whitespace, object integrity, credential scan, and neutral-path checks passed, but incorrect PowerShell archive path syntax made the archive counts invalid. No archive-content pass is claimed from this attempt. |
 | Corrected archive-content audit | 0 | The unchanged 94-entry wheel contains zero native/WASM files. The 42-entry sample bundle contains the exact M31 evaluator and manifest paths. |
 | Final post-record static/focused/docs/scope gate | 0 | All 251 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; all 62 focused tests passed with one Windows symlink-capability skip in 1.53 seconds; strict docs built in 0.78 seconds with only the known upstream notice; whitespace, exact-base protected-surface comparison, and the neutral repository-path audit passed. |
+| DCO feature commit, ready PR, and initial hosted validation | 0 | DCO-signed feature commit `95f193779d2895ea48584e0bc589bd94d6b58ff7` was pushed and published as ready PR #50 against exact base `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`; GitHub Actions run `31189729885` passed all eight essential jobs on that exact head. |
+| Hosted review of the initial PR head | Mixed | GitHub reported the PR `MERGEABLE` and `CLEAN` with eight successful checks, but its automated review correctly found that `observed_through == opened_before` was admitted even though the contract requires post-window observation. No final review or integration pass is claimed for the initial head. |
+| Post-review focused/static/docs gate | 0 | Admission now requires `observed_through > opened_before`, equality has an explicit regression, and the RFC/public admission text says the cutoff is strictly after closure. All 60 focused tests passed with one Windows symlink-capability skip in 1.15 seconds; focused Ruff formatting/linting and strict Pyright passed; and strict docs built in 0.91 seconds with only the known upstream notice. |
+| Post-review complete static and test gate | 0 | All 251 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; and the complete suite passed 1,435 tests with eight Windows capability skips in 91.83 seconds. |
+| Post-review pure build, installed-wheel smoke, and fresh release smoke | 0 | `uv build` rebuilt the pure `0.1.0a1` source archive and universal wheel; isolated no-dependency wheel smoke passed; a confirmed-absent target staged ten deterministic artifacts; and the complete release smoke passed. |
 
 The current empty manifest and synthetic populated fixtures prove evaluator
 mechanics only. They are not people, issue responses, pull-request reviews,
 maintainer work, responsiveness, support, service levels, or project history.
-Documentation/architecture validation, the full local gate, findings-first
-review, and artifact audit are complete. No benchmark was run
+Documentation/architecture validation, the post-review full local gate,
+findings-first review, and artifact audit are complete. No benchmark was run
 because M31 changes no runtime/performance path and defines no timing target.
-Ready-PR publication, hosted validation, and integration remain pending.
+Correction publication, hosted validation of the corrected exact head, final
+review reread, and integration remain pending.
 
 ## M30 development evidence - 2026-08-07, Windows, CPython 3.12.13
 

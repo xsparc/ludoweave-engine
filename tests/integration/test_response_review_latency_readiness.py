@@ -508,6 +508,11 @@ def test_window_rejects_excess_duration_observation_lag_and_overlap(tmp_path: Pa
     _assert_rejected(document, tmp_path)
 
     document = _ready_manifest()
+    window = _first_window(document)
+    window["observed_through"] = window["opened_before"]
+    _assert_rejected(document, tmp_path)
+
+    document = _ready_manifest()
     second = _window([], index=2)
     second["opened_from"] = "2026-08-01T12:00:00Z"
     document["measurement_windows"] = [_first_window(document), second]

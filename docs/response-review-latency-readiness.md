@@ -59,7 +59,7 @@ The evaluator requires:
 1. the exact reviewed whole-manifest SHA-256;
 2. canonical sequential windows that are chronological and non-overlapping;
 3. a positive opening interval of at most 366 days and an observation cutoff
-   no more than 366 days after it closes;
+   strictly after, but no more than 366 days after, it closes;
 4. canonical public project issue, pull-request, issue-comment, and review
    locations with positive decimal identities;
 5. exact timestamp/latency agreement for every observed action;

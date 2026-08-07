@@ -68,7 +68,14 @@
   isolated wheel/release smoke, ten real-wgpu tests, and both graphics vertical
   slices. The unchanged 94-entry wheel has no native/WASM file and the 42-entry
   sample bundle contains both exact M31 evidence files. Protected runtime/
-  workflow/metadata/lock scope is unchanged. Findings-first review found no
-  remaining blocking or non-blocking issue. No benchmark was run because M31
-  changes no runtime or performance path and defines no timing target. Ready-PR
-  publication, hosted validation, integration, and cleanup remain pending.
+  workflow/metadata/lock scope is unchanged. Findings-first local review found
+  no issue. Ready PR #50's initial exact head passed all eight hosted jobs, but
+  the hosted review correctly found that the evaluator admitted an observation
+  cutoff equal to the opening-window close. Admission now requires a strictly
+  later cutoff, equality has a regression, and the post-review gate passes 60
+  focused tests with one skip, formatting, Ruff, strict Pyright, strict docs,
+  1,435 complete-suite tests with eight skips, pure build, installed-wheel
+  smoke, and fresh ten-artifact release smoke. No benchmark was run because M31
+  changes no runtime or performance path and defines no timing target.
+  Correction publication, hosted validation of the corrected exact head,
+  final review reread, integration, and cleanup remain pending.

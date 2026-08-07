@@ -234,8 +234,8 @@ def _window_identity(
         raise RuntimeError("measurement windows must be chronological and non-overlapping")
     if _seconds_between(opened_from_value, opened_before_value) > _MAX_WINDOW_SECONDS:
         raise RuntimeError("measurement window exceeds its duration limit")
-    if observed_through_value < opened_before_value:
-        raise RuntimeError("measurement observation must cover the opening window")
+    if observed_through_value <= opened_before_value:
+        raise RuntimeError("measurement observation must extend beyond the opening window")
     if _seconds_between(opened_before_value, observed_through_value) > (
         _MAX_OBSERVATION_LAG_SECONDS
     ):

@@ -36,7 +36,7 @@ record after reviewers establish those facts from public evidence.
 The response/review-latency manifest:
 
 1. uses bounded chronological non-overlapping opening windows and a later
-   observation cutoff;
+   observation cutoff strictly after the opening window closes;
 2. requires a complete reviewed census of eligible external-human public issues
    and pull requests, including pending items with no qualifying action;
 3. requires observed issues to identify the first qualifying public response
