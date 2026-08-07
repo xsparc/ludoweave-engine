@@ -31,10 +31,14 @@ JSON syntax. Boundary and escaped-string regressions cover those semantics.
 | `uv build` | 0 | Built the pure `ludoweave-0.1.0a1` source archive and universal wheel. |
 | `uv run --frozen python scripts/smoke_wheel.py dist` | 0 | Isolated no-dependency installed-wheel smoke passed. |
 | Fresh release staging and `scripts/smoke_release.py` | 0 | Staged ten deterministic artifacts and passed release-bundle smoke for `0.1.0a1`. |
+| GitHub Actions correction run `31183032073` | 0 | All eight essential jobs passed on exact DCO-signed head `897a3db5b0901835c6929eda5f94ed1774afac16`: quality/tests/distribution; Ubuntu 3.13; Ubuntu, macOS, and Windows 3.14; and graphics smoke on all three operating systems. |
+| Final PR #46 review and mergeability audit | 0 | GitHub reported `MERGEABLE` and `CLEAN`; no review thread or actionable finding remained. One old general comment cited a nonexistent commit, while both actual PR commits contain valid DCO trailers. |
+| PR #46 squash integration | 0 | GitHub squash-integrated the exact corrected tree as verified commit `fc969a981ecdbbf842477f46486e29277119e05b` with sole parent `e4125bf31a751473d2af4fecc05a9744d551063c` and tree `d98c25f156aaeee863ff8dc88b00355daa921d2e`, identical to the final feature head. |
+| Post-merge synchronization and branch cleanup | 0 | Local `main`, `origin/main`, and `origin/HEAD` synchronized at the verified squash commit; the obsolete M29 feature branch was deleted locally and remotely; `git fsck --full --no-dangling` passed. |
+| Integration-record focused gate | 0 | All ten M29 architecture tests passed in 0.25 seconds; strict docs built in 0.76 seconds with only the known upstream notice; whitespace passed; and the record changes no workflow, metadata, lock, runtime, example, script, or test file. |
 
 The correction changes only the bounded offline M29 evaluator, its tests, and
-the matching public boundary documentation. Hosted correction validation,
-review reread, and integration remain pending.
+the matching public boundary documentation. M29 is fully integrated.
 
 ## M29 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
@@ -108,9 +112,10 @@ The final scope review found no runtime/public-export, persistent-format,
 dependency, lock, version, workflow, CI-topology, backend/native/WASM,
 networking, telemetry, provider, credential, private-data, or stale-documentation
 change. The separately authorized maintenance-path migration changes no
-authorship or milestone semantics. M1 simulation and both M3 targets remain recorded misses and authorize
-no native code or scope expansion. Ready-PR publication, hosted validation,
-thread-aware review, and squash integration remain pending.
+authorship or milestone semantics. M1 simulation and both M3 targets remain
+recorded misses and authorize no native code or scope expansion. Subsequent
+correction, hosted validation, review, and integration evidence is recorded in
+the M29 correction section above.
 
 ## M28 development evidence - 2026-08-07, Windows, CPython 3.12.13
 

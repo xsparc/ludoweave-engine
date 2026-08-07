@@ -37,7 +37,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
 | Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
 | Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
-| Active | M29 contributor-retention admission readiness | Strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and unchanged essential CI topology |
+| Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -280,6 +280,12 @@ remain zero; maintainers, agents, CI, popularity totals, and synthetic fixtures
 are not retention. M29 adds no runtime source, API, protocol, format,
 dependency, version, workflow job, network activity, contributor contact,
 telemetry, tag, release, publication, certification, or support promise.
+Initial hosted validation found one CPython 3.14 decoder-behavior assumption in
+the excessive-nesting regression. The corrected evaluator applies an explicit
+16-level structural JSON limit while ignoring strings and escapes. Correction
+run `31183032073` passed all eight essential jobs, and PR #46 squash-integrated
+the exact corrected tree as GitHub-verified `main` commit
+`fc969a981ecdbbf842477f46486e29277119e05b`.
 
 ## Good-first contribution queue
 
