@@ -1,11 +1,8 @@
 # Current Task
 
 - **Task:** M27 - external-contributor rehearsal admission readiness
-- **Status:** In progress on
-  `codex/m27-external-contributor-rehearsal-readiness`; implementation,
-  artifact wiring, public documentation, complete local validation,
-  findings-first diff review, DCO commits, ready PR, and hosted validation are
-  complete. Final thread-aware reread and integration remain.
+- **Status:** Complete and squash-integrated into `main`. This no-CI branch
+  records the exact verified integration; publication of that record remains.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized GitHub-verified `main` commit
   `c1c3be08f7f75d90e7d1b517adbc30d56902ece4` after PR #41 recorded M26
@@ -71,3 +68,15 @@
   reran only the five affected jobs, and completed with all eight effective
   jobs successful on exact head
   `f9e779d83a82795ad68cff22c424b6e94ef13703`.
+- **Integration:** Final feature head
+  `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` adds only the factual hosted
+  record with `[skip ci]`; GitHub lists no new run for it. Final thread-aware
+  review found one unresolved bot comment that names ephemeral PR test-merge
+  commit `b8dcedce82bb6da786297dd5a0942e4019f4df6e`, not any of the three
+  DCO-signed branch commits, so it is not actionable and was neither answered
+  nor resolved. PR #42 squash-integrated the exact final tree as GitHub-
+  verified `main` commit `ff1c81f8aaa96245706586096f400a5fb03bdd04`.
+  Both trees are `f957c2e40eec5bd2d70cc274079ea334d6a34cc3`; the squash
+  commit's sole parent is exact assigned base
+  `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`, and its message contains the
+  DCO sign-off.

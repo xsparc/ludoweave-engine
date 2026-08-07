@@ -2,7 +2,8 @@
 
 ## Current milestone
 
-M27 is in progress on
+M27 is complete, reviewed, hosted-validated, and squash-integrated. It was
+implemented on
 `codex/m27-external-contributor-rehearsal-readiness` from exact clean
 synchronized GitHub-verified `main` commit
 `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. Its bounded outcome is a strict
@@ -46,7 +47,18 @@ only the five affected jobs. The resulting effective eight-job matrix is fully
 successful on exact corrected head
 `f9e779d83a82795ad68cff22c424b6e94ef13703`: quality/distribution, Ubuntu
 3.13/3.14, Windows 3.14, macOS 3.14, and graphics on Ubuntu, Windows, and
-macOS all pass. Final thread-aware review and integration remain pending.
+macOS all pass.
+
+The final evidence commit used `[skip ci]` and created no additional workflow
+run. The final thread-aware reread found one unresolved bot comment that
+mistook GitHub's ephemeral PR test-merge commit for a branch commit; every
+branch commit has the required DCO trailer, so the finding is not actionable
+and was neither answered nor resolved. PR #42 squash-integrated exact final
+evidence head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` as GitHub-verified
+`main` commit `ff1c81f8aaa96245706586096f400a5fb03bdd04`. Both trees are
+`f957c2e40eec5bd2d70cc274079ea334d6a34cc3`; the squash commit has exact
+assigned base `c1c3be08f7f75d90e7d1b517adbc30d56902ece4` as its sole parent
+and carries the DCO sign-off. The milestone branch remains the audit trail.
 
 M26 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m26-supported-release-channel-readiness` from exact clean
@@ -546,11 +558,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Complete M27's local gate, findings-first review, ready PR, minimum necessary
-  hosted validation, delayed thread-aware reread, exact squash integration, and
-  no-CI integration record.
-- M0 through M26 are complete, hosted-validated, and squash-integrated. M27 is
-  limited to external-contributor rehearsal admission readiness.
+- M0 through M27 are complete, hosted-validated, and squash-integrated. This
+  branch records M27 integration only; no subsequent milestone is included.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

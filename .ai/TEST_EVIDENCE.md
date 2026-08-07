@@ -107,6 +107,37 @@ base all exited 0. The strict docs build completed in 0.88 seconds with only
 the recorded upstream Material warning; `.github`, project metadata, lock, and
 runtime source remain unchanged.
 
+## M27 main integration - 2026-08-07
+
+Final evidence head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` used `[skip ci]`.
+`gh run list` returned only corrected run `31119640551` and initial cancelled
+run `31118834216`; no workflow run was created for the evidence commit. GitHub
+reported ready PR #42 as `MERGEABLE` and `CLEAN` at that exact head and exact
+base `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. Local and GitHub history
+inspection confirmed that all three branch commits contain a DCO
+`Signed-off-by` trailer.
+
+The final thread-aware reread found one unresolved, non-outdated automated
+comment anchored to `AGENTS.md`. It alleged missing DCO on
+`b8dcedce82bb6da786297dd5a0942e4019f4df6e`, which is GitHub's ephemeral PR
+test-merge commit and is absent from the exact three-commit branch history.
+The comment therefore does not identify a branch defect; it was neither
+answered nor manually resolved.
+
+PR #42 was squash-merged at `2026-08-07T10:44:26Z`. GitHub reports merge
+commit `ff1c81f8aaa96245706586096f400a5fb03bdd04`, sole parent
+`c1c3be08f7f75d90e7d1b517adbc30d56902ece4`, tree
+`f957c2e40eec5bd2d70cc274079ea334d6a34cc3`, valid signature verified at
+`2026-08-07T10:44:31Z`, and the DCO trailer. `git rev-parse` returned the same
+tree for final feature head and squash commit, and `git diff --exit-code`
+between them exited 0. Local `main` then fast-forwarded cleanly to the verified
+squash commit and matched `origin/main`.
+
+This five-file integration record passes `uv run --frozen mkdocs build
+--strict`, `git diff --check`, and the protected-surface comparison against
+`origin/main`; all exited 0. The docs build completed in 0.73 seconds with only
+the recorded upstream Material warning.
+
 ## M26 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

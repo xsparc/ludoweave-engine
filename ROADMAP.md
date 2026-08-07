@@ -35,7 +35,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M24 cross-version corpus admission readiness | PR #36 squash-integrated; exact preserved history, false current gate, append-only correction, installed artifact smoke, RFC-0007, and both eight-job hosted runs passed |
 | Done | M25 external-consumer-feedback admission readiness | PR #38 squash-integrated; strict reviewed manifest, false current gate, reviewed non-IP correction, installed artifact smoke, RFC-0008, and both eight-job hosted runs passed |
 | Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
-| Active | M27 external-contributor rehearsal admission readiness | Strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and unchanged essential CI topology |
+| Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -243,7 +243,12 @@ The reviewed rehearsal set is empty, so the current result remains false;
 documentation, CI, project-owned fixtures, maintainers, and automated agents
 are not external-contributor usability evidence. No runtime source, public API,
 format, dependency, version, workflow job, network activity, contributor
-contact, telemetry, publication, or support promise is added.
+contact, telemetry, publication, or support promise is added. Corrected hosted
+run `31119640551` passed all eight effective essential jobs after a minimal
+failed-job-only outage recovery. PR #42 squash-integrated exact final evidence
+head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` as GitHub-verified `main`
+commit `ff1c81f8aaa96245706586096f400a5fb03bdd04`; both trees are
+`f957c2e40eec5bd2d70cc274079ea334d6a34cc3`.
 
 ## Good-first contribution queue
 
