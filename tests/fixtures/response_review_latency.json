@@ -1,0 +1,6 @@
+{
+  "schema": "ludoweave.community.response-review-latency/1",
+  "source_project": "ludoweave-engine",
+  "measurement_policy": "first-public-human-maintainer-action/1",
+  "measurement_windows": []
+}

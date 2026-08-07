@@ -135,6 +135,31 @@ licensing while preserving exact complete history. The reviewed manifest is
 empty, so the current external sample-game count remains zero. Project-owned
 examples, maintainers, agents, CI, and synthetic fixtures are not adoption.
 
+RFC-0012 resolves how external contributor-retention evidence is admitted. The
+offline harness requires the same independently reviewed external human to
+complete distinct first and later merged public contributions with exact
+issue/PR/revision/artifact identities, chronology, DCO, validation, provenance,
+and complete history. The reviewed manifest is empty, so retained-contributor
+and return-contribution counts remain zero; popularity and synthetic fixtures
+are not retention.
+
+RFC-0013 resolves how published-wheel installation-matrix evidence is admitted.
+The offline harness requires one immutable public pure-Python release wheel to
+pass reviewed clean isolated installation and installed checks across the exact
+practical OS/CPython matrix with complete history. The reviewed manifest is
+empty, so source-checkout CI, local builds, and synthetic fixtures are not
+published installation success.
+
+RFC-0014 resolves how issue-response and pull-request-review latency evidence
+is admitted. The offline harness requires a complete reviewed public cohort of
+eligible external-human issues and pull requests, preserves pending items,
+binds first qualifying human-maintainer actions to exact frozen evidence and
+timestamp/latency agreement, and preserves complete history. The reviewed
+manifest is empty, so no latency aggregate, responsiveness result, SLA, or
+support claim exists. The evaluator cannot establish human roles, participant
+distinctness, first-action state, or census completeness; manual review owns
+those facts.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.

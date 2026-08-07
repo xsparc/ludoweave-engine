@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M31/RFC-0014 issue-response and pull-request-review latency admission
+  evidence that preserves pending items, rejects completed-only selection, and
+  retains the current empty-manifest result without defining an SLA.
 - Add M30/RFC-0013 published-wheel installation-matrix admission evidence that
   rejects source-checkout/local-build substitutes and retains the current
   result as false until one immutable public wheel passes the complete reviewed

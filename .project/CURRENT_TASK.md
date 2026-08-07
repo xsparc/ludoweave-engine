@@ -1,77 +1,74 @@
 # Current Task
 
-- **Task:** M30 - published-wheel installation-matrix admission readiness
-- **Status:** Complete, hosted-validated, reviewed, and squash-integrated by
-  PR #48 as GitHub-verified `main` commit
-  `675713d15a20a38233b80580e5aa773dc7a8684c`.
-- **Started:** 2026-08-07
-- **Completed:** 2026-08-07
-- **Base:** PR #46 squash-integrated exact corrected M29 feature tree as
-  verified `fc969a981ecdbbf842477f46486e29277119e05b`; documentation-only PR
-  #47 squash-integrated the factual M29 state record as verified
-  `c88b166a39a793c91741bfa762af5627a87c53b4`. Local `main`, `origin/main`,
+- **Task:** M31 - issue-response and pull-request-review latency admission readiness
+- **Status:** In progress on `evidence/m31-response-review-latency` from exact
+  clean synchronized verified `main` commit
+  `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`.
+- **Started:** 2026-08-08
+- **Base:** PR #48 squash-integrated the exact validated M30 feature tree as
+  verified `675713d15a20a38233b80580e5aa773dc7a8684c`; documentation-only PR
+  #49 squash-integrated the factual M30 state record as verified
+  `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. Local `main`, `origin/main`,
   and `origin/HEAD` matched that commit with a clean worktree before branching.
-- **Outcome:** Make the design plan's next longer-term metric—installation
-  success across the supported OS/CPython matrix—mechanically auditable without
-  treating source-checkout CI, local builds, automation, or synthetic fixtures
-  as installations of one immutable public release wheel.
+- **Outcome:** Make the design plan's next longer-term metric—issue-response
+  and pull-request-review time—mechanically reportable from a complete reviewed
+  public cohort without querying GitHub, collecting telemetry or identities,
+  selecting only completed actions, or fabricating an SLA.
 - **Acceptance gate:**
-  - Add one strict reviewed manifest whose current installation record set is
+  - Add one strict reviewed manifest whose current measurement-window set is
     empty and whose exact bytes and SHA-256 are pinned by architecture tests.
-  - Require Ubuntu CPython 3.12/3.13/3.14 and macOS/Windows CPython 3.12/3.14.
-  - Require every record to identify the same canonical public project release,
-    universal wheel URL, release version/tag, and wheel SHA-256.
-  - Require fresh isolation, release-wheel installation, no dependencies, no
-    native compiler, and passing installed version, doctor, `hello_headless`,
-    and headless Clockwork Arena checks.
-  - Require platform/Python agreement, distinct log identities, successful
-    outcomes, canonical timestamps, and reviewed provenance and validation.
-  - Preserve accepted history as an exact complete executable prefix and bind
+  - Require bounded chronological non-overlapping opening windows plus a later
+    observation cutoff and complete reviewed public cohort.
+  - Require every eligible external-human issue and pull request to remain in
+    the cohort as either observed or pending.
+  - Require observed actions to identify the first qualifying public human-
+    maintainer response/review by a distinct participant with exact public
+    resource/action locations and UTC timestamp/latency agreement.
+  - Require census and review artifacts at the same immutable project revision,
+    distinct evidence hashes, and reviewed eligibility, action state,
+    provenance, validation, maintainer status, and participant distinctness.
+  - Preserve accepted windows as an exact complete executable prefix and bind
     it to the reviewed whole-manifest digest.
-  - Expose record-derived environments and release versions only after exact
-    digest and complete-history admission.
+  - Expose only aggregate eligible/observed/pending counts and deterministic
+    median/nearest-rank-p95 seconds after exact digest/history admission.
+  - Require at least one observed issue response and PR review for a reportable
+    metric while defining no target, quality verdict, release gate, SLA, or
+    support promise.
   - Emit exact sanitized `not-ready` evidence for the current empty manifest;
-    never expose URLs, Python patch/platform values, hashes, timestamps, local
-    paths, host facts, or timings.
-  - Prove future gate mechanics synthetically while refusing to count fixtures
-    as releases, users, installations, publication, or support evidence.
-  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0013,
+    never expose resource/action locations, identities, per-record hashes,
+    timestamps, local paths, host facts, raw evidence, or private data.
+  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0014,
     and preserve both workflows and all eight essential CI jobs exactly.
-- **Non-scope:** Publishing or downloading a release; GitHub discovery or
-  remote lookup; running installer commands from manifest data; networking,
-  telemetry, dynamic imports, subprocess launch by the evaluator, provider
-  execution, credentials/private logs, runtime source, public APIs/exports,
-  persistent formats, protocols, dependencies, lock, version, workflows, CI
-  topology, tags, releases, certification, or support policy.
+- **Non-scope:** GitHub discovery or remote lookup; issue/PR/contact mutation;
+  telemetry; usernames, email addresses, private correspondence or logs;
+  automatic role/identity inference; runtime source; public APIs/exports;
+  persistent formats; protocols; operations; dependencies; lock; version;
+  workflows; CI topology; tags; releases; publication; certification; stability
+  promotion; service levels; or support policy.
 - **SemVer:** No package or public-Python-surface change; version remains
   `0.1.0a1` and current stability labels are unchanged.
-- **Baseline evidence:** Exact `HEAD`, `main`, `origin/main`, `origin/HEAD`, and
-  merge base all resolved to
-  `c88b166a39a793c91741bfa762af5627a87c53b4`; the worktree was clean and
-  `git fsck --full --no-dangling` exited 0. The unchanged 46-package lock
-  resolved in 0.84 ms. The inherited M29/artifact baseline passed 61 tests with
-  one Windows symlink-capability skip in 2.20 seconds. CI and release workflow
-  hashes remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21`
-  and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`.
-- **Validation and integration evidence:** The exact 462-byte empty manifest has SHA-256
-  `7c05813a7304e8ff44a009ada37c8e60ff545baec633852fc332e46bdfe03c90`.
+- **Baseline evidence:** Exact `HEAD`, `main`, `origin/main`, and `origin/HEAD`
+  resolved to `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`; the worktree was clean and
+  `git fsck --full --no-dangling` exited 0. The first sandboxed uv attempt could
+  not access its user cache and produced no test result. The corrected host-
+  cache run resolved the unchanged 46-package lock in 0.69 ms and passed 59
+  M30/artifact/workflow tests with one Windows symlink-capability skip in 2.08
+  seconds. CI and release workflow SHA-256 values remain
+  `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and
+  `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`.
+- **Current local evidence:** The exact 199-byte empty manifest has SHA-256
+  `bc40bbcc1636229fa2c78aed5f71854d1221fd3c0d33169edc1321dd07e69d4f`.
   The evaluator emits deterministic path-free `not-ready` evidence with zero
-  successful environments. Findings-first review corrected the canonical
-  GitHub asset download path, required a unique public validation-job locator,
-  enforced required environment order, and added real calendar validation. The
-  focused evaluator, architecture, and release-artifact suite passes 56 tests
-  with one Windows symlink-capability skip. The final complete gate passes the
-  unchanged lock/sync, 247-file formatting, Ruff, strict Pyright, strict docs,
-  1,375 tests with seven skips, pure build, isolated wheel/release smoke, ten
-  real-wgpu tests, and both graphics vertical slices. The 94-entry wheel has no
-  native/WASM file and the 40-entry sample bundle contains both exact M30
-  evidence files. Protected runtime/workflow/metadata/lock scope is unchanged.
-  No benchmark was run because M30 changes no runtime or performance path and
-  makes no performance claim. Ready PR #48 contained the single DCO-signed
-  feature commit `576dd070b547bef853ee47ece4c928b4e9962a7d`. Hosted run
-  `31186083454` passed all eight essential jobs on that exact head. The final
-  GitHub audit found no review or review thread, and every check was successful.
-  PR #48 squash-integrated tree
-  `6c421ece852d822270f3de1e9ece9c7cc1568678` as verified commit
-  `675713d15a20a38233b80580e5aa773dc7a8684c`, whose sole parent is the exact
-  M30 base. The feature branch was deleted locally and remotely.
+  windows and measurements. Its corrected focused gate passes 49 adversarial
+  tests with one Windows symlink-capability skip, and the evaluator/artifact
+  group passes 51 tests with the same skip. The corrected architecture/
+  evaluator/artifact gate passes 62 tests with one skip and strict docs. The
+  final complete gate passes the unchanged lock/sync, 251-file formatting,
+  Ruff, strict Pyright, strict docs, 1,435 tests with eight skips, pure build,
+  isolated wheel/release smoke, ten real-wgpu tests, and both graphics vertical
+  slices. The unchanged 94-entry wheel has no native/WASM file and the 42-entry
+  sample bundle contains both exact M31 evidence files. Protected runtime/
+  workflow/metadata/lock scope is unchanged. Findings-first review found no
+  remaining blocking or non-blocking issue. No benchmark was run because M31
+  changes no runtime or performance path and defines no timing target. Ready-PR
+  publication, hosted validation, integration, and cleanup remain pending.

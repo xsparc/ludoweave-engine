@@ -101,3 +101,8 @@ M30 defines the next ordered operational metric under RFC-0013: one immutable
 public release wheel must pass a complete reviewed clean-install matrix. Its
 reviewed manifest remains empty, so source-checkout CI, local builds, and
 synthetic fixtures do not establish published installation success.
+M31 defines the next ordered operational metric under RFC-0014: issue-response
+and pull-request-review latency from a complete reviewed public cohort that
+preserves pending items. Its reviewed manifest remains empty, so automation,
+project history, and synthetic fixtures do not establish human responsiveness
+or an SLA.

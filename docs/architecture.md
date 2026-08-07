@@ -754,6 +754,34 @@ timestamps, paths, hosts, and timings. RFC-0013 adds no runtime API, canonical
 state, protocol, format, dependency, lock, version, workflow, publication, or
 stability change.
 
+## M31 response/review-latency boundary
+
+M31 adds no engine module. One explicitly invoked example reads a selected
+reviewed manifest outside `src/ludoweave` and emits sanitized aggregate
+measurement-readiness evidence. The runtime package never loads the manifest
+or evaluator.
+
+Every future admitted window must cover the complete reviewed public cohort of
+eligible external-human issues and pull requests opened during its bounded
+interval. Records preserve pending items and bind first qualifying public human-
+maintainer actions to canonical project locations, exact UTC timestamp/latency
+agreement, frozen source/review identities, and reviewed eligibility,
+provenance, validation, maintainer status, and participant distinctness. Public
+census and review artifacts share one immutable project revision. The evaluator
+validates only frozen fields, aggregate calculations, complete history, and
+resource bounds. The current empty manifest deterministically reports zero
+windows and measurements and `not-ready`; automation, project history, and
+synthetic regressions cannot change that result.
+
+Reads are bounded, explicit, synchronous, and symlink-rejecting. Evidence code
+uses no discovery, networking, remote lookup, dynamic import, installation,
+subprocess, provider execution, telemetry, contributor contact, issue/PR
+mutation, or retained resource. Reports omit resource/action locations,
+timestamps, identities, per-record hashes, paths, hosts, private data, and raw
+evidence. RFC-0014 adds no runtime API, canonical state, protocol, format,
+dependency, lock, version, workflow, publication, stability, SLA, or support
+change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -787,7 +815,9 @@ its empty-record result as false. M28 adds only offline external sample-game
 adoption admission readiness and retains its zero count. M29 adds only offline
 external contributor-retention admission readiness and retains its zero count.
 M30 adds only offline installation-matrix admission readiness and retains its
-zero-record result. None
+zero-record result. M31 adds only offline issue-response and pull-request-review
+latency admission readiness, retains its empty-manifest result, and defines no
+SLA. None
 supplies actual cross-version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.
