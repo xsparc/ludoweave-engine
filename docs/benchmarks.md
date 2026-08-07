@@ -113,3 +113,19 @@ canonical hotspot order.
 The associated [native-code RFC](rfcs/0001-defer-first-native-kernel.md)
 records the final 30-sample measurements and explains why M7 improves the
 ordinary Python paths but does not admit Rust/PyO3.
+
+## Regression-rate admission
+
+M33/RFC-0016 adds an offline admission contract for future benchmark-
+regression-rate evidence. It does not add a benchmark runner or reinterpret the
+results above. A future rate requires a complete reviewed controlled cohort of
+paired base/head M1-M4 workload artifacts with the same environment profile,
+parameters, timer, metric, and predeclared integer tolerance. Non-executed
+comparisons remain present and block rate publication. M7 cProfile artifacts
+are excluded because they are diagnostic attribution rather than comparable
+benchmark timing.
+
+The current reviewed manifest is empty, so no regression rate, zero-regression
+claim, quality verdict, release gate, native-code decision, or performance
+guarantee exists. See the
+[benchmark-regression-rate readiness guide](benchmark-regression-rate-readiness.md).

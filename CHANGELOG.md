@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M33/RFC-0016 benchmark-regression-rate admission evidence that restricts
+  comparisons to reviewed controlled paired M1-M4 p95 artifacts, preserves
+  non-execution, and retains the current empty-manifest result without
+  claiming a measured zero rate.
 - Add M32/RFC-0015 CI replay-divergence-rate admission evidence that preserves
   non-executed cases, emits only an exact admitted ratio, and retains the
   current empty-manifest result without claiming a measured zero rate.

@@ -42,6 +42,29 @@ claims.
 
 ## Current boundary
 
+M33 adds only strict offline benchmark-regression-rate admission readiness for
+the next longer-term metric in the design plan. The reviewed manifest is empty,
+so its window and comparison counts remain zero, its exact rational rate is
+absent, and no zero-regression, performance, quality, release-gate, native-code,
+or support result may be claimed. Manual review, not evaluator logic, owns
+controlled-runner census completeness, eligibility, base/head comparability,
+parameter equality, tolerance predeclaration, outcome, provenance, and
+validation. Eligible comparisons are registered M1-M4 `perf_counter_ns` p95
+workloads; M7 cProfile diagnostics are not timing evidence. Future cohorts must
+preserve cancellation, pre-benchmark failure, skips, and unavailable evidence
+as `not-executed`. M33 may add only frozen data evidence, an explicitly invoked
+evaluator/validator, synthetic gate tests, RFC/docs, and source/wheel/release-
+sample artifact smoke through the unchanged eight essential CI jobs. It may
+not query GitHub, collect telemetry, change benchmarks or CI, optimize runtime,
+execute providers, or change runtime source, public APIs/exports, formats,
+protocols, dependencies, lock, version, workflows, CI topology, native/WASM
+boundaries, tag, release, publication, certification, stability label,
+performance target, SLA, or support policy. M0 through M32 are complete,
+reviewed, hosted-CI validated, and integrated into `main`. M33 starts from
+exact verified M32 integration-record commit
+`60ddf57216d1054ac44df8d834756312c3864e3e` and contains no subsequent
+milestone.
+
 M32 adds only strict offline CI replay-divergence-rate admission readiness for
 the next longer-term metric in the design plan. The reviewed manifest is empty,
 so its window and execution counts remain zero, its exact rational rate remains

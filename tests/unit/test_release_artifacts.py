@@ -54,6 +54,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "README.md" in names
     assert prefix + "agent_tool_conformance.py" in names
     assert prefix + "alpha_acceptance.py" in names
+    assert prefix + "benchmark_regression_rate_readiness.py" in names
     assert prefix + "render_device_conformance.py" in names
     assert prefix + "receipt_reader.py" in names
     assert prefix + "receipt_semantic_compatibility.py" in names
@@ -76,6 +77,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "world_store_conformance.py" in names
     assert prefix + "example.plugin.json" in names
     assert prefix + "assets/clockwork_arena.scene.json" in names
+    assert prefix + "assets/benchmark_regression_rate.json" in names
     assert prefix + "assets/cross_version_receipt_corpus.json" in names
     assert prefix + "assets/external_contributor_rehearsal.json" in names
     assert prefix + "assets/external_contributor_retention.json" in names

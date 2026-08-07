@@ -66,6 +66,9 @@ manifest, zero measurements, and no SLA as not ready.
 M32 adds no export; RFC-0015 makes CI replay-divergence-rate admission
 mechanically auditable but records the reviewed empty execution manifest and no
 measured divergence rate as not ready.
+M33 adds no export; RFC-0016 makes controlled benchmark-regression-rate
+admission mechanically auditable but records the reviewed empty comparison
+manifest and no measured regression rate as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

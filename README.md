@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M31 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 adds strict CI replay-divergence-rate admission machinery while retaining its empty reviewed execution manifest and no measured divergence rate. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M32 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 adds strict benchmark-regression-rate admission machinery while retaining its empty reviewed comparison manifest and no measured regression rate. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -80,6 +80,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   reviewed manifest keeps the current clean-install result false.
 - A strict issue-response and pull-request-review latency admission harness
   whose empty reviewed manifest keeps all counts and latency aggregates absent.
+- A strict controlled benchmark-regression-rate admission harness whose empty
+  reviewed manifest keeps all comparison counts and rate absent.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -128,6 +130,7 @@ uv run python examples/external_sample_game_adoption_readiness.py
 uv run python examples/installation_matrix_readiness.py
 uv run python examples/response_review_latency_readiness.py
 uv run python examples/replay_divergence_rate_readiness.py
+uv run python examples/benchmark_regression_rate_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
@@ -264,6 +267,10 @@ The [replay-divergence-rate readiness guide](docs/replay-divergence-rate-readine
 documents M32's complete CI execution cohort, preserved non-execution outcomes,
 exact rational rate, and history gate while retaining the current empty
 reviewed execution manifest and no measured divergence rate.
+The [benchmark-regression-rate readiness guide](docs/benchmark-regression-rate-readiness.md)
+documents M33's registered paired-benchmark cohort, controlled-comparability,
+predeclared integer tolerance, non-execution, and history gates while retaining
+the current empty reviewed comparison manifest and no measured regression rate.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

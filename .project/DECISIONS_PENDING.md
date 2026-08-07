@@ -169,6 +169,16 @@ reviewed manifest is empty, so no measured rate or zero-divergence result
 exists. Human review owns cohort completeness, eligibility, outcome,
 provenance, and validation.
 
+RFC-0016 resolves how benchmark-regression-rate evidence is admitted. The
+offline harness requires a complete reviewed controlled cohort of paired
+registered M1-M4 `perf_counter_ns` p95 comparisons, binds exact base/head
+sources and frozen runner/result artifacts, requires predeclared integer
+tolerances, preserves non-execution, and preserves complete history. M7
+cProfile output is diagnostic and ineligible. The reviewed manifest is empty,
+so no measured rate or zero-regression result exists. Human review owns runner
+control, parameter equality, eligibility, comparability, tolerance
+predeclaration, outcome, provenance, validation, and census completeness.
+
 Operational follow-ups outside repository implementation:
 
 - Verify and reserve the `ludoweave` package name before the first publication.
