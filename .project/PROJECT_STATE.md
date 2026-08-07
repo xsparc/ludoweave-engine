@@ -2,8 +2,8 @@
 
 ## Current milestone
 
-M32 is in progress on `evidence/m32-replay-divergence-rate` from exact clean
-synchronized verified `main` commit
+M32 is complete, hosted-validated, reviewed, squash-integrated, and cleaned up.
+It started from exact clean synchronized verified `main` commit
 `b4de1d115ddb620ecddccab84637c0e66cfad9fd`. Its bounded outcome is a strict
 offline admission harness for the design plan's next longer-term metric:
 replay-divergence rate in CI. The reviewed manifest contains no evaluation
@@ -49,7 +49,14 @@ post-review gate passes 80 focused tests with one skip, 1,499 complete-suite
 tests with nine skips, 255-file formatting, Ruff, strict Pyright, strict docs,
 the unchanged lock, protected-surface and whitespace checks, pure build,
 isolated-wheel smoke, and a fresh ten-artifact release smoke. Corrected hosted
-validation, squash integration, and cleanup remain pending.
+head `f6f574c2e9b54341e77d1b9ba2d9268bffe5439a` passed all eight essential jobs
+in run `31195402467`, and the sole hosted-review thread is resolved and
+outdated. PR #52 squash-integrated exact tree
+`e185e24861b74fe11325b7188026af29a9618926` as GitHub-verified commit
+`36e8d9ed65a619569f3620b2431d977a1fb80a58` with sole parent
+`b4de1d115ddb620ecddccab84637c0e66cfad9fd` and its DCO trailer. The temporary
+feature branch is deleted locally and remotely. No benchmark was rerun because
+M32 changes no runtime or performance path and defines no performance target.
 
 M31 is complete, hosted-validated, reviewed, squash-integrated, and cleaned up.
 It started from exact clean synchronized verified `main` commit
@@ -802,11 +809,10 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Complete M32's architecture, documentation, full quality/release gate,
-  findings-first review, ready PR, unchanged essential hosted CI, and exact
-  squash integration.
-- M0 through M31 are complete, hosted-validated, reviewed, and squash-
-  integrated. M32 is limited to CI replay-divergence-rate admission readiness.
+- M0 through M32 are complete, hosted-validated, reviewed, and squash-
+  integrated.
+- Select the next bounded slice from current authoritative project goals; no
+  subsequent milestone is assigned by this factual integration record.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.
