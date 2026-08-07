@@ -34,15 +34,21 @@ Only commands actually executed in the current repository are recorded here.
 | Post-review focused/static/docs gate | 0 | Admission now requires `observed_through > opened_before`, equality has an explicit regression, and the RFC/public admission text says the cutoff is strictly after closure. All 60 focused tests passed with one Windows symlink-capability skip in 1.15 seconds; focused Ruff formatting/linting and strict Pyright passed; and strict docs built in 0.91 seconds with only the known upstream notice. |
 | Post-review complete static and test gate | 0 | All 251 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; and the complete suite passed 1,435 tests with eight Windows capability skips in 91.83 seconds. |
 | Post-review pure build, installed-wheel smoke, and fresh release smoke | 0 | `uv build` rebuilt the pure `0.1.0a1` source archive and universal wheel; isolated no-dependency wheel smoke passed; a confirmed-absent target staged ten deterministic artifacts; and the complete release smoke passed. |
+| Corrected-head publication and hosted validation | 0 | DCO-signed correction commit `dd4058b71439b5bade9d091831ba5453a51db35c` was pushed to PR #50; run `31190559197` passed all eight essential jobs on that exact head: quality/tests/distribution, Ubuntu CPython 3.13 and 3.14, Windows CPython 3.14, macOS CPython 3.14, and graphics smoke on Ubuntu, Windows, and macOS. |
+| Final hosted review and merge audit | 0 | The valid finding was acknowledged and its thread resolved. GitHub reported the sole thread resolved and outdated, zero top-level comments, eight successful completed checks, exact base `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`, exact head `dd4058b71439b5bade9d091831ba5453a51db35c`, and PR #50 `MERGEABLE` and `CLEAN`. |
+| PR #50 squash integration verification | 0 | PR #50 merged at 2026-08-07T15:05:08Z as GitHub-verified commit `8adb8d46d0ce13ea3687856ae53e899e98dc42a6`. Its tree `2ec80742556e62b34dc9275fd0b268a484e9eace` exactly equals the corrected feature-head tree, its sole parent is exact M31 base `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`, literal `git diff --exit-code` found no tree difference, and `git fsck --full --no-dangling` passed. |
+| M31 feature-branch cleanup | 0 | GitHub deleted the remote feature branch; fetch/prune confirmed it absent. Normal local safe deletion correctly refused because a squash merge does not make feature commits ancestors; after exact tree/parent verification, the single named local feature branch was force-deleted. No open PR remained, and synchronized `main` became the base of `records/m31-integration`. |
+| State-record focused architecture gate | 0 | All 11 M31 public-contract architecture tests passed in 0.50 seconds. |
+| State-record strict documentation and scope gate | 0 | Strict MkDocs built in 0.81 seconds with only the known upstream notice; `git diff --check` passed; and the diff contained only `ROADMAP.md` plus the three neutral `.project` records. |
 
 The current empty manifest and synthetic populated fixtures prove evaluator
 mechanics only. They are not people, issue responses, pull-request reviews,
 maintainer work, responsiveness, support, service levels, or project history.
 Documentation/architecture validation, the post-review full local gate,
-findings-first review, and artifact audit are complete. No benchmark was run
-because M31 changes no runtime/performance path and defines no timing target.
-Correction publication, hosted validation of the corrected exact head, final
-review reread, and integration remain pending.
+findings-first review, artifact audit, corrected-head hosted validation, review
+reread, exact squash integration, and feature-branch cleanup are complete. No
+benchmark was run because M31 changes no runtime/performance path and defines no
+timing target.
 
 ## M30 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
