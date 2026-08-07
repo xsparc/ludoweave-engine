@@ -38,7 +38,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
 | Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
 | Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
-| Active | M30 installation-matrix admission readiness | Strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and unchanged essential CI topology |
+| Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -300,6 +300,11 @@ zero; source-checkout CI, local builds, automation, and synthetic fixtures are
 not released-user installation evidence. M30 adds no runtime source, API,
 protocol, format, dependency, version, workflow job, network activity,
 installation, tag, release, publication, certification, or support promise.
+Ready PR #48 ran the unchanged essential CI topology on exact feature commit
+`576dd070b547bef853ee47ece4c928b4e9962a7d`; run `31186083454` passed all
+eight jobs. PR #48 then squash-integrated the exact feature tree as
+GitHub-verified `main` commit
+`675713d15a20a38233b80580e5aa773dc7a8684c`.
 
 ## Good-first contribution queue
 

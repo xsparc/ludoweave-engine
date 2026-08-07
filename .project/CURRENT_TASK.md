@@ -1,10 +1,11 @@
 # Current Task
 
 - **Task:** M30 - published-wheel installation-matrix admission readiness
-- **Status:** In progress on `evidence/m30-installation-matrix-readiness` from
-  exact clean synchronized verified `main` commit
-  `c88b166a39a793c91741bfa762af5627a87c53b4`.
+- **Status:** Complete, hosted-validated, reviewed, and squash-integrated by
+  PR #48 as GitHub-verified `main` commit
+  `675713d15a20a38233b80580e5aa773dc7a8684c`.
 - **Started:** 2026-08-07
+- **Completed:** 2026-08-07
 - **Base:** PR #46 squash-integrated exact corrected M29 feature tree as
   verified `fc969a981ecdbbf842477f46486e29277119e05b`; documentation-only PR
   #47 squash-integrated the factual M29 state record as verified
@@ -52,7 +53,7 @@
   one Windows symlink-capability skip in 2.20 seconds. CI and release workflow
   hashes remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21`
   and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`.
-- **Current local evidence:** The exact 462-byte empty manifest has SHA-256
+- **Validation and integration evidence:** The exact 462-byte empty manifest has SHA-256
   `7c05813a7304e8ff44a009ada37c8e60ff545baec633852fc332e46bdfe03c90`.
   The evaluator emits deterministic path-free `not-ready` evidence with zero
   successful environments. Findings-first review corrected the canonical
@@ -66,5 +67,11 @@
   native/WASM file and the 40-entry sample bundle contains both exact M30
   evidence files. Protected runtime/workflow/metadata/lock scope is unchanged.
   No benchmark was run because M30 changes no runtime or performance path and
-  makes no performance claim. Ready-PR publication, hosted validation, review
-  reread, and integration remain pending.
+  makes no performance claim. Ready PR #48 contained the single DCO-signed
+  feature commit `576dd070b547bef853ee47ece4c928b4e9962a7d`. Hosted run
+  `31186083454` passed all eight essential jobs on that exact head. The final
+  GitHub audit found no review or review thread, and every check was successful.
+  PR #48 squash-integrated tree
+  `6c421ece852d822270f3de1e9ece9c7cc1568678` as verified commit
+  `675713d15a20a38233b80580e5aa773dc7a8684c`, whose sole parent is the exact
+  M30 base. The feature branch was deleted locally and remotely.
