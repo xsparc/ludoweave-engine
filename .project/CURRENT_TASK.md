@@ -72,4 +72,5 @@
   `0993c73b3290809ef4e0c36d64d39e5ee5891a9b` with sole parent
   `60ddf57216d1054ac44df8d834756312c3864e3e`, exact validated tree
   `0db61d87fed781f3cc6ffbeac1b3743f32a81ca2`, and DCO trailer. The temporary
-  feature branch is deleted locally/remotely; only synchronized `main` remains.
+  feature branch is deleted locally/remotely; this documentation-only
+  integration-record branch and PR remain pending until their own gate passes.

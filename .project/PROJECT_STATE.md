@@ -27,9 +27,11 @@ GitHub reported the PR mergeable/clean. PR #54 squash-integrated the exact
 validated tree as GitHub-verified `main` commit
 `0993c73b3290809ef4e0c36d64d39e5ee5891a9b` with sole parent exact M33 base
 `60ddf57216d1054ac44df8d834756312c3864e3e` and DCO trailer. The feature branch
-was deleted locally and remotely; synchronized `main` is clean and is the only
-remaining branch. M33 is complete; no measured rate, release, publication,
-performance guarantee, or native-code authorization is claimed.
+was deleted locally and remotely. Synchronized `main` remains at the verified
+feature squash while this documentation-only `records/m33-integration` branch
+and PR #55 await their own hosted gate. M33 feature work is complete; no
+measured rate, release, publication, performance guarantee, or native-code
+authorization is claimed.
 
 ## Current milestone
 
