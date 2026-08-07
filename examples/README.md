@@ -116,6 +116,13 @@ divergence rate. Future windows must retain cancelled, pre-replay-failed,
 skipped, and unavailable-result executions; passing jobs and synthetic fixtures
 are not historical rate evidence or a reliability target.
 
+`benchmark_regression_rate_readiness.py` validates the exact empty reviewed
+controlled-comparison manifest and reports that no complete paired benchmark
+cohort has an admitted regression rate. Future windows must use registered
+M1-M4 p95 workloads, bind comparable runner/source artifacts, predeclare exact
+integer tolerances, and retain non-execution. Local timings, cProfile output,
+passing jobs, and synthetic fixtures are not historical rate evidence.
+
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds
 no 3D API, provider, asset loader, or runtime implementation.

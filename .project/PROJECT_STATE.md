@@ -1,5 +1,28 @@
 # Project State
 
+## M33 in progress
+
+M33 starts from exact clean synchronized M32 integration-record commit
+`60ddf57216d1054ac44df8d834756312c3864e3e`. Its bounded outcome is strict
+offline admission readiness for benchmark-regression rate. The reviewed
+manifest contains no evaluation windows, so no comparison count, regression
+count, rate, zero-regression result, performance verdict, native decision, or
+release gate is claimed. Future admission is restricted to registered M1-M4
+`time.perf_counter_ns` p95 workload pairs on reviewed comparable controlled
+runner profiles with distinct base/head revisions, exact sources/artifacts,
+and predeclared integer tolerances. M7 cProfile output is diagnostic and
+ineligible. Stable, regressed, and not-executed outcomes are preserved;
+non-execution blocks rate publication. No runtime/benchmark source, API,
+protocol, format, dependency, lock, version, workflow, provider, telemetry, or
+native/WASM boundary changes. The exact 199-byte manifest SHA-256 is
+`720ae794e2a4ba76303196cd43d6ba0f3b21f81cffd4fa8584f526e2a0d48dca`.
+Implementation, adversarial tests, distribution wiring, RFC-0016, and public
+documentation exist on `evidence/m33-benchmark-regression-rate`. Complete local
+static/docs/test/build/wheel/release/benchmark/profile/graphics validation and
+findings-first review pass. Protected-surface, archive, credential-pattern,
+neutral-metadata, and object-integrity audits pass. Hosted validation,
+publication, integration, and cleanup remain pending.
+
 ## Current milestone
 
 M32 is complete, hosted-validated, reviewed, squash-integrated, and cleaned up.

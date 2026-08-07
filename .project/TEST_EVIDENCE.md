@@ -2,6 +2,37 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M33 development evidence - 2026-08-08, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M32 integration baseline audit | 0 | Clean synchronized `main`, `origin/main`, and `origin/HEAD` at `60ddf57216d1054ac44df8d834756312c3864e3e`; only `main` existed locally/remotely. The sandbox blocked the GitHub API open-PR query, so no remote PR-state result is claimed. |
+| First focused baseline attempt | 4 | `uv lock --check` resolved the unchanged 46-package lock, but stale benchmark-test filenames caused pytest to collect no tests. No test pass is claimed. |
+| Corrected focused baseline | 0 | 86 inherited M32, benchmark-validator, release-artifact, and release-workflow tests passed with one graphics-capability skip in 5.10 seconds. |
+| `git switch -c evidence/m33-benchmark-regression-rate` | 0 | Created the neutral M33 branch from exact integrated base. |
+| M33 manifest identity probe | 0 | Exact 199-byte empty reviewed manifest SHA-256 is `720ae794e2a4ba76303196cd43d6ba0f3b21f81cffd4fa8584f526e2a0d48dca`. |
+| Initial evaluator/static gate | Mixed | Ruff passed and the evaluator emitted exact path-free `not-ready` evidence; all 44 evaluator tests passed in 1.07 seconds. Strict Pyright found only two redundant test casts, which were corrected; no type pass is claimed from this group. |
+| Corrected evaluator/artifact gate | 0 | Eight touched Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; 57 evaluator, architecture, and release-artifact tests passed in 1.48 seconds. |
+| First public-contract/docs gate | Mixed | Formatting and Ruff passed; strict MkDocs built in 1.03 seconds with only the known upstream notice; whitespace passed; 57 of 58 focused tests passed, with one documentation assertion failing only because a required phrase crossed a Markdown line wrap. No focused-suite pass is claimed. The assertion was corrected and later passed. |
+| Corrected public-contract gate | 0 | Eight touched Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; 58 evaluator, architecture, and release-artifact tests passed in 1.41 seconds; strict docs built in 0.84 seconds with only the known upstream notice; whitespace passed. |
+| Shared runner-profile review correction | 0 | Findings-first review found that a frozen controlled runner profile should be reusable across comparisons. Global uniqueness now applies to result/timing artifacts rather than shared runner-profile evidence; an explicit regression proves reuse. Ruff, strict Pyright, whitespace, and all 59 focused tests passed in 1.47 seconds. No remaining blocking or non-blocking review finding was identified. |
+| Complete lock/static/docs gate | 0 | The unchanged lock resolved 46 packages in 1 ms; frozen sync checked 45 packages in 4 ms; all 259 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; strict docs built in 0.84 seconds with only the known upstream notice; whitespace passed. |
+| First complete suite | 1 | 1,555 tests passed with nine expected platform-capability skips in 95.23 seconds, but one inherited M32 architecture assertion failed because README wording shortened `empty reviewed execution manifest`. No complete-suite pass is claimed. Runtime behavior did not fail. |
+| Restored M32/M33 contract gate | 0 | The exact inherited M32 phrase was restored; all 70 M32/M33 architecture and evaluator tests passed in 1.46 seconds; whitespace passed. |
+| Corrected complete suite | 0 | All 1,556 tests passed with nine expected platform-capability skips in 95.10 seconds. |
+| Pure build and installed-wheel smoke | 0 | `uv build` produced `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`; isolated no-dependency wheel smoke passed with exact M33 evidence. |
+| Fresh release stage and smoke | 0 | Confirmed `.tmp/release-candidate-m33-reviewed` absent, staged ten deterministic artifacts, and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M33 evidence smoke. |
+| Documented M1/M2/M4 benchmark integrity | 0 | All three benchmark commands and validators completed. M1 recorded one of two historical absolute targets observed; M2 validated four informational workloads with no targets; M4 validated three workloads with its baseline target observed. Dirty-tree local results are not admitted M33 comparison evidence. |
+| Documented M3 and M7 integrity | 0 | The graphics M3 benchmark/validator recorded six workloads and both historical targets, with zero met. Base and graphics M7 cProfile documents validated two and three diagnostic workloads respectively. These local outputs are not admitted M33 timing comparisons. |
+| Real-wgpu regression and vertical slices | 0 | All ten real-wgpu integration tests passed in 7.86 seconds. Clockwork Arena completed 30 ticks with three draws, 16 sprites, state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`. Agent World Builder passed registered tests with five replay batches, state hash `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`, and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`. |
+| Artifact, scope, history, and credential audit | 0 | Protected `.github`, metadata, lock, `src/ludoweave`, and `benchmarks` surfaces are unchanged from exact base. CI/release workflow SHA-256 values remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; whitespace and `git fsck --full --no-dangling` passed. The 94-entry wheel and 46-entry sample bundle contain no native/WASM artifact; the sample bundle contains the exact 33,018-byte evaluator and 199-byte manifest. Focused credential-pattern scanning returned no match; retired `.ai`, `.agents`, `.codex`, and `AGENTS.md` paths remain absent. GitHub reported no open PR. |
+| Final post-record gate | 0 | The unchanged lock resolved 46 packages in 0.89 ms; all 259 files were formatted; Ruff passed; strict Pyright reported zero diagnostics; all 344 architecture, M33 evaluator, and release-artifact tests passed in 3.32 seconds; strict docs built in 0.88 seconds with only the known upstream notice; whitespace and exact-base protected-surface comparison passed. |
+
+The current empty manifest and synthetic populated fixtures prove evaluator
+mechanics only. They are not controlled benchmark runs, historical comparison
+evidence, a measured regression rate, a zero-regression result, a performance
+claim, or native-code authorization.
+
 ## M32 development evidence - 2026-08-08, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

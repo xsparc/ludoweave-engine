@@ -17,6 +17,7 @@ _SAMPLE_FILES = (
     "agent_tool_conformance.py",
     "agent_world_builder.py",
     "alpha_acceptance.py",
+    "benchmark_regression_rate_readiness.py",
     "clockwork_arena.assets.json",
     "clockwork_arena.py",
     "command_receipt_stability_decision.py",
@@ -143,6 +144,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         for source in sorted((sample_root / "assets").rglob("*"))
     )
     fixture_root = root / "tests" / "fixtures"
+    sources.append(
+        (
+            fixture_root / "benchmark_regression_rate.json",
+            Path("assets/benchmark_regression_rate.json"),
+        )
+    )
     sources.append(
         (
             fixture_root / "cross_version_receipt_corpus.json",

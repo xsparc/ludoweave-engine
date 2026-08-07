@@ -818,6 +818,42 @@ runtime source, replay behavior, public exports, formats, protocols,
 dependencies, lock, version, workflows, CI topology, publication, stability,
 reliability targets, or support policy.
 
+## M33 benchmark-regression-rate boundary
+
+M33 adds no engine or benchmark module. One explicitly invoked example reads a
+selected reviewed manifest outside `src/ludoweave` and emits sanitized
+aggregate benchmark-regression-rate readiness evidence. The runtime package,
+benchmark scripts, and CI workflow never load the manifest or evaluator.
+
+A future window must contain the complete reviewed controlled cohort of
+eligible paired comparisons that started in its interval. The evaluator
+registers only the existing M1-M4 `time.perf_counter_ns` workloads and exact
+`p95_ns`; M7 cProfile documents remain diagnostic attribution evidence. Each
+comparison binds distinct base/head revisions, both exact benchmark sources,
+the candidate workflow source, one frozen runner profile, an environment
+profile, a predeclared integer basis-point tolerance, and frozen result
+artifacts. Human review owns runner control, parameter equality, eligibility,
+comparability, threshold predeclaration, outcome, provenance, validation, and
+census completeness.
+
+Outcomes are exactly `stable`, `regressed`, or `not-executed`. Executed results
+require positive base/candidate p95 values and complete artifacts; their
+classification is exact integer arithmetic, with equality at the tolerance
+boundary stable. Non-execution carries no timing artifacts and retains a
+bounded cancellation, pre-benchmark failure, skip, or unavailable-evidence
+reason. Only exact reviewed manifest identity and complete mandatory history
+expose admitted counts. A rate additionally requires a non-empty cohort with
+no non-executed comparison and is emitted only as an integer numerator and
+denominator.
+
+The current 199-byte manifest contains no windows, so the deterministic result
+is `not-ready` and no comparison count or regression rate is exposed. Reports
+omit run/job URLs, revisions, timestamps, workload names, tolerances, timings,
+runner/environment details, artifacts, paths, and raw logs. M33 changes no
+runtime/benchmark implementation, optimization, API, format, dependency,
+lockfile, version, workflow, telemetry, provider, native/WASM boundary,
+publication, performance target, reliability promise, or support policy.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -854,8 +890,10 @@ M30 adds only offline installation-matrix admission readiness and retains its
 zero-record result. M31 adds only offline issue-response and pull-request-review
 latency admission readiness, retains its empty-manifest result, and defines no
 SLA. M32 adds only offline CI replay-divergence-rate admission readiness,
-retains its empty-manifest result, and exposes no measured rate. None
-supplies actual cross-version history, external-consumer feedback, or a
+retains its empty-manifest result, and exposes no measured rate. M33 adds only
+offline benchmark-regression-rate admission readiness, retains its empty-
+manifest result, and exposes no measured rate. None supplies actual cross-
+version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.
 M6

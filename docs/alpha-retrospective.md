@@ -111,3 +111,9 @@ divergence rate from a complete reviewed CI execution cohort that preserves
 non-execution. Its reviewed manifest remains empty, so passing workflows,
 project history, and synthetic fixtures do not establish a measured rate or
 zero-divergence result.
+M33 defines the next ordered operational metric under RFC-0016: benchmark-
+regression rate from a complete reviewed controlled cohort of paired M1-M4 p95
+artifacts with predeclared integer tolerances and preserved non-execution. Its
+reviewed manifest remains empty, so local timings, cProfile diagnostics,
+passing smokes, project history, and synthetic fixtures do not establish a
+measured rate or zero-regression result.

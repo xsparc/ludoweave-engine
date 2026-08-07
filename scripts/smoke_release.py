@@ -15,6 +15,7 @@ from collections.abc import Iterable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import cast
 
+from benchmark_regression_rate_evidence import validate_benchmark_regression_rate_evidence
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
 from cross_version_corpus_evidence import validate_cross_version_corpus_evidence
@@ -266,6 +267,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(replay_divergence_rate_result.stdout)
         )
         validate_replay_divergence_rate_evidence(replay_divergence_rate, version=version)
+        benchmark_regression_rate_result = _run(
+            [str(python), "-I", "benchmark_regression_rate_readiness.py"],
+            cwd=sample_root,
+        )
+        benchmark_regression_rate = cast(
+            dict[str, object], json.loads(benchmark_regression_rate_result.stdout)
+        )
+        validate_benchmark_regression_rate_evidence(benchmark_regression_rate, version=version)
         external_sample_game_result = _run(
             [str(python), "-I", "external_sample_game_adoption_readiness.py"],
             cwd=sample_root,
@@ -343,6 +352,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "README.md",
         "agent_tool_conformance.py",
         "alpha_acceptance.py",
+        "benchmark_regression_rate_readiness.py",
         "clockwork_arena.py",
         "command_receipt_stability_decision.py",
         "constrained_3d_decision.py",

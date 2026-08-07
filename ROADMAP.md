@@ -41,6 +41,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
 | Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
 | Done | M32 replay-divergence-rate admission readiness | PR #52 squash-integrated; strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and all eight essential hosted jobs passed on the corrected head |
+| In progress | M33 benchmark-regression-rate admission readiness | Strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, and RFC-0016 |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -345,6 +346,19 @@ replay-divergence diagnostic. Corrected head
 essential jobs in run `31195402467`; PR #52 squash-integrated the exact tree as
 GitHub-verified `main` commit
 `36e8d9ed65a619569f3620b2431d977a1fb80a58`.
+
+M33 starts from verified integrated M32 state-record commit
+`60ddf57216d1054ac44df8d834756312c3864e3e`. It adds an offline admission
+harness for the next longer-term metric: benchmark regression rate. A future
+window requires a complete reviewed controlled cohort of paired base/head
+M1-M4 `perf_counter_ns` workloads, exact p95 evidence, comparable frozen runner
+profiles, and predeclared integer tolerances. Non-execution remains counted and
+blocks publication. The reviewed set is empty, so no comparison count or
+regression rate is claimed; local timings, M7 cProfile output, passing smokes,
+and synthetic fixtures are not controlled historical rate evidence. M33 adds
+no runtime or benchmark implementation, optimization, API, protocol, format,
+dependency, lock, version, workflow job, telemetry, native boundary, tag,
+release, publication, certification, performance target, or support promise.
 
 ## Good-first contribution queue
 
