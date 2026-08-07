@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M29 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result. M30 adds strict installation-matrix admission machinery while retaining its empty reviewed installation-matrix manifest and no published-wheel installation claim. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M30 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim. M31 adds strict response/review-latency admission machinery while retaining its empty reviewed measurement manifest and no response-time, review-time, or SLA claim. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -78,6 +78,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   sample-game manifest keeps the externally authored game count at zero.
 - A strict published-wheel installation-matrix admission harness whose empty
   reviewed manifest keeps the current clean-install result false.
+- A strict issue-response and pull-request-review latency admission harness
+  whose empty reviewed manifest keeps all counts and latency aggregates absent.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -124,6 +126,7 @@ uv run python examples/external_contributor_rehearsal_readiness.py
 uv run python examples/external_contributor_retention_readiness.py
 uv run python examples/external_sample_game_adoption_readiness.py
 uv run python examples/installation_matrix_readiness.py
+uv run python examples/response_review_latency_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
@@ -252,6 +255,10 @@ at zero and excluding popularity metrics.
 The [installation-matrix readiness guide](docs/installation-matrix-readiness.md)
 documents M30's immutable public-wheel, clean-environment, exact-matrix, and
 complete-history gate while retaining the current zero-record result.
+The [response and review latency readiness guide](docs/response-review-latency-readiness.md)
+documents M31's complete-census, pending-item, first-qualifying-action, and
+complete-history gate while retaining the current empty reviewed measurement
+manifest and defining no SLA.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

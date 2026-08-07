@@ -60,6 +60,9 @@ as not ready.
 M30 adds no export; RFC-0013 makes published-wheel installation-matrix
 admission mechanically auditable but records the reviewed empty manifest and
 zero successful environments as not ready.
+M31 adds no export; RFC-0014 makes issue-response and pull-request-review
+latency admission mechanically auditable but records the reviewed empty
+manifest, zero measurements, and no SLA as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

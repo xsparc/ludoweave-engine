@@ -2,6 +2,51 @@
 
 ## Current milestone
 
+M31 is in progress on `evidence/m31-response-review-latency` from exact clean
+synchronized verified `main` commit
+`22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. Its bounded outcome is a strict
+offline admission harness for the design plan's next longer-term metric:
+issue-response and pull-request-review time. The reviewed manifest contains no
+measurement windows, so no cohort, response/review count, latency aggregate,
+responsiveness result, or SLA is claimed. A future admitted window requires a
+complete reviewed public cohort of eligible external-human issues and pull
+requests opened during a bounded interval, preserves both observed and pending
+items, and binds first qualifying public human-maintainer actions to exact
+resource/action locations, UTC timestamp/latency agreement, frozen source and
+review identities, and reviewed eligibility, role, distinctness, provenance,
+and validation. Public census and review artifacts must share one immutable
+project revision. Only exact reviewed whole-manifest identity and complete
+mandatory history expose aggregate eligible/observed/pending counts and
+deterministic median/nearest-rank-p95 seconds. `ready` means reportable, not
+that any threshold, quality target, release gate, SLA, or support promise is
+met. M31 changes no runtime source, public API/export, persistent format,
+protocol, operation, dependency, lock, package version, stability label,
+workflow, CI topology, tag, release, publication, certification, SLA, or
+support policy. The manifest is exactly 199 bytes with SHA-256
+`bc40bbcc1636229fa2c78aed5f71854d1221fd3c0d33169edc1321dd07e69d4f`.
+The evaluator, exact validator, adversarial future/pending/history regressions,
+source/wheel/release artifact wiring, RFC-0014, and public documentation are
+complete. The corrected focused evaluator gate passes 49 tests with one Windows
+symlink-capability skip; the evaluator/artifact group passes 51 tests with the
+same skip; and the corrected architecture/evaluator/artifact gate passes 62
+tests with one skip and strict docs. The final complete gate passes the
+unchanged lock/sync, 251-file formatting, Ruff, strict Pyright, strict docs,
+1,435 tests with eight skips, pure build, isolated wheel/release smoke, ten
+real-wgpu tests, and both graphics vertical slices. Protected runtime/workflow/
+metadata/lock scope is unchanged; the unchanged 94-entry wheel has no native/
+WASM file and the 42-entry sample bundle contains both exact M31 evidence
+files. Findings-first local review found no issue. Ready PR #50's initial exact
+head passed all eight hosted jobs in run `31189729885`, but the hosted review
+correctly found that equality between the observation cutoff and the opening-
+window close was admitted. The evaluator now requires a strictly later cutoff,
+equality has an explicit regression, and the public admission text is aligned.
+The post-review gate passes 60 focused tests with one skip, formatting, Ruff,
+strict Pyright, strict docs, 1,435 complete-suite tests with eight skips, pure
+build, installed-wheel smoke, and fresh ten-artifact release smoke. No
+benchmark was run because M31 changes no runtime/performance path and defines
+no timing target. Correction publication, hosted validation of the corrected
+exact head, final review reread, squash integration, and cleanup remain pending.
+
 M30 is complete, hosted-validated, reviewed, and squash-integrated by PR #48 as
 GitHub-verified `main` commit
 `675713d15a20a38233b80580e5aa773dc7a8684c`. It started from exact clean
@@ -699,9 +744,11 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- M0 through M30 are complete, hosted-validated, and squash-integrated.
-- Select the next bounded milestone from accepted project direction before
-  changing runtime, public, persistent, dependency, workflow, or support scope.
+- Complete M31's architecture, documentation, full quality/release gate,
+  findings-first review, ready PR, unchanged essential hosted CI, and exact
+  squash integration.
+- M0 through M30 are complete, hosted-validated, and squash-integrated. M31 is
+  limited to issue-response and pull-request-review latency admission readiness.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.

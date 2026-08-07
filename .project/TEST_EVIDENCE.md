@@ -2,6 +2,48 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M31 development evidence - 2026-08-08, Windows, CPython 3.12.13
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| M30 feature/state integration and cleanup verification | 0 | PR #48 is merged as verified `675713d15a20a38233b80580e5aa773dc7a8684c`; no-CI PR #49 is merged as verified `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`; both exact feature/record trees and parents were verified; both temporary branches were deleted locally and remotely; no open PR remained; and only synchronized `main` remained. |
+| M31 design selection | 0 | The authoritative design specification orders issue-response and PR-review time immediately after installation success. M31 was bounded to strict offline measurement admission with pending-item preservation and no SLA, telemetry, networking, or runtime/API change. |
+| Exact M31 base and workflow identity audit | 0 | `HEAD`, `main`, `origin/main`, and `origin/HEAD` all resolved to `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`; the worktree was clean, `git fsck --full --no-dangling` passed, and CI/release SHA-256 values remained `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. |
+| First sandboxed uv baseline attempt | Mixed | Repository identity, object integrity, and workflow hashing completed, but both uv commands were denied access to the existing user cache. No lock or test pass is claimed from this attempt. |
+| Corrected host-cache lock and inherited baseline | 0 | The unchanged lock resolved 46 packages in 0.69 ms; 59 M30 evaluator, architecture, release-artifact, and release-workflow tests passed with one Windows symlink-capability skip in 2.08 seconds. |
+| `git switch -c evidence/m31-response-review-latency` | 0 | Created the neutral M31 branch from the exact integrated base. |
+| M31 manifest identity probe | 0 | The reviewed response/review-latency manifest is exactly 199 bytes with SHA-256 `bc40bbcc1636229fa2c78aed5f71854d1221fd3c0d33169edc1321dd07e69d4f` and contains zero measurement windows. |
+| Initial M31 evaluator/static group | Mixed | The evaluator emitted the exact path-free `not-ready` report. Ruff found two UTC-alias style issues and strict Pyright found seven local type issues. No static pass is claimed from this group. |
+| Corrected evaluator format/static group | 0 | The first corrected check still reported two files requiring formatting while Ruff lint and strict Pyright passed and the evaluator remained exact. The locked formatter then reformatted both files; the repeated format, Ruff, and strict Pyright checks passed with zero diagnostics. |
+| First M31 adversarial focused gate | 1 | Strict Pyright passed and 46 tests passed with one Windows symlink-capability skip, but three test fixtures failed and Ruff rejected a raw full-width-digit literal. No focused-suite or Ruff pass is claimed. The fixtures were corrected without changing the evaluated contract. |
+| Corrected M31 adversarial focused gate | 0 | Ruff and strict Pyright passed; all 49 evaluator/validator tests passed with one Windows symlink-capability skip in 1.01 seconds. |
+| Initial source/wheel/release artifact wiring gate | 0 | Ruff and strict Pyright passed; all 51 evaluator and release-artifact tests passed with one Windows symlink-capability skip in 1.37 seconds. |
+| First architecture/evaluator/artifact/docs gate | Mixed | 61 tests passed with one Windows symlink-capability skip, but one architecture assertion required the literal `no SLA` while the roadmap used the stronger contextual statement `no latency aggregate or SLA is claimed`. No focused-suite pass is claimed. Strict docs still built in 0.97 seconds and whitespace passed. |
+| Corrected architecture/evaluator/artifact/docs gate | 0 | The assertion now checks each document's actual explicit non-claim. Ruff and strict Pyright passed; all 62 tests passed with one Windows symlink-capability skip in 1.44 seconds; strict docs built in 0.83 seconds with only the known upstream notice; and whitespace passed. |
+| Findings-first M31 review | 0 | Review found no remaining blocking or non-blocking issue. It verified pending-item preservation, complete-cohort/manual-review boundaries, aggregate suppression before exact manifest/history admission, canonical project-only locators, timestamp/latency agreement, path-free failures, privacy limits, installed artifact wiring, and unchanged runtime/workflow scope. |
+| Complete lock/static/docs gate | 0 | The unchanged lock resolved 46 packages in 1 ms; frozen sync checked 45 packages in 3 ms; all 251 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; strict docs built in 0.81 seconds with only the known upstream notice; and whitespace passed. |
+| `uv run --frozen pytest -q` | 0 | The exact reviewed tree passed 1,435 tests with eight Windows capability skips in 90.68 seconds. |
+| `uv build` and `scripts/smoke_wheel.py dist` | 0 | Built the pure `0.1.0a1` source archive and universal wheel; isolated no-dependency installed-wheel smoke passed with exact M31 evidence. |
+| Fresh M31 release staging and `scripts/smoke_release.py` | 0 | Staged ten deterministic artifacts and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M31 evidence smoke. |
+| Real-wgpu regression and vertical slices | 0 | All ten real-wgpu tests passed in 6.83 seconds. Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture SHA-256 `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder completed its typed loop with five replay batches and passing registered tests. |
+| First final artifact/security audit | Mixed | Manifest/workflow hashes, protected scope, whitespace, object integrity, credential scan, and neutral-path checks passed, but incorrect PowerShell archive path syntax made the archive counts invalid. No archive-content pass is claimed from this attempt. |
+| Corrected archive-content audit | 0 | The unchanged 94-entry wheel contains zero native/WASM files. The 42-entry sample bundle contains the exact M31 evaluator and manifest paths. |
+| Final post-record static/focused/docs/scope gate | 0 | All 251 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; all 62 focused tests passed with one Windows symlink-capability skip in 1.53 seconds; strict docs built in 0.78 seconds with only the known upstream notice; whitespace, exact-base protected-surface comparison, and the neutral repository-path audit passed. |
+| DCO feature commit, ready PR, and initial hosted validation | 0 | DCO-signed feature commit `95f193779d2895ea48584e0bc589bd94d6b58ff7` was pushed and published as ready PR #50 against exact base `22dc58df8b0c4d17c3619d83e37c6d0ee6184441`; GitHub Actions run `31189729885` passed all eight essential jobs on that exact head. |
+| Hosted review of the initial PR head | Mixed | GitHub reported the PR `MERGEABLE` and `CLEAN` with eight successful checks, but its automated review correctly found that `observed_through == opened_before` was admitted even though the contract requires post-window observation. No final review or integration pass is claimed for the initial head. |
+| Post-review focused/static/docs gate | 0 | Admission now requires `observed_through > opened_before`, equality has an explicit regression, and the RFC/public admission text says the cutoff is strictly after closure. All 60 focused tests passed with one Windows symlink-capability skip in 1.15 seconds; focused Ruff formatting/linting and strict Pyright passed; and strict docs built in 0.91 seconds with only the known upstream notice. |
+| Post-review complete static and test gate | 0 | All 251 Python files were formatted; Ruff passed; strict Pyright reported zero diagnostics; and the complete suite passed 1,435 tests with eight Windows capability skips in 91.83 seconds. |
+| Post-review pure build, installed-wheel smoke, and fresh release smoke | 0 | `uv build` rebuilt the pure `0.1.0a1` source archive and universal wheel; isolated no-dependency wheel smoke passed; a confirmed-absent target staged ten deterministic artifacts; and the complete release smoke passed. |
+
+The current empty manifest and synthetic populated fixtures prove evaluator
+mechanics only. They are not people, issue responses, pull-request reviews,
+maintainer work, responsiveness, support, service levels, or project history.
+Documentation/architecture validation, the post-review full local gate,
+findings-first review, and artifact audit are complete. No benchmark was run
+because M31 changes no runtime/performance path and defines no timing target.
+Correction publication, hosted validation of the corrected exact head, final
+review reread, and integration remain pending.
+
 ## M30 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |

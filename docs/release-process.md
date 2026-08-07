@@ -55,6 +55,12 @@ only that the installed offline evidence path works; it is not a public
 release, independent installation, matrix result, or support claim. See the
 [installation-matrix readiness guide](installation-matrix-readiness.md).
 
+M31/RFC-0014 adds the empty reviewed response/review-latency fixture and
+evaluator to the deterministic sample bundle. Release smoke proves only that
+the installed offline evidence path works; it is not a human response, review,
+latency measurement, service-level result, or support claim. See the
+[response and review latency readiness guide](response-review-latency-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official

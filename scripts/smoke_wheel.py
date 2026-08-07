@@ -29,6 +29,7 @@ from installation_matrix_evidence import validate_installation_matrix_evidence
 from operation_argument_evidence import validate_operation_argument_evidence
 from receipt_reader_evidence import validate_receipt_reader_evidence
 from receipt_semantic_evidence import validate_receipt_semantic_evidence
+from response_review_latency_evidence import validate_response_review_latency_evidence
 from supported_release_channel_evidence import validate_supported_release_channel_evidence
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
@@ -647,6 +648,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         installation_matrix = cast(dict[str, object], json.loads(installation_matrix_result.stdout))
         validate_installation_matrix_evidence(installation_matrix, version=version)
+
+        response_review_latency_result = _run(
+            [
+                str(python),
+                "-I",
+                str(project_root / "examples" / "response_review_latency_readiness.py"),
+                "--manifest",
+                str(project_root / "tests" / "fixtures" / "response_review_latency.json"),
+            ],
+            cwd=temp_root,
+        )
+        response_review_latency = cast(
+            dict[str, object], json.loads(response_review_latency_result.stdout)
+        )
+        validate_response_review_latency_evidence(response_review_latency, version=version)
 
         external_sample_game_result = _run(
             [

@@ -42,6 +42,29 @@ claims.
 
 ## Current boundary
 
+M31 adds only strict offline issue-response and pull-request-review latency
+admission readiness for the next longer-term metric in the design plan. The
+reviewed manifest is empty, so its window and measurement counts remain zero,
+latency aggregates remain absent, and no response-time, review-time, service-
+level, support, or responsiveness result may be claimed. Manual review, not
+evaluator logic, owns external-human eligibility, human-maintainer status,
+participant distinctness, first-qualifying-action state, complete cohort
+coverage, provenance, and validation. Future cohorts must preserve pending
+items rather than selecting only completed actions. M31 may add only frozen
+data evidence, an explicitly invoked evaluator/validator, synthetic gate tests,
+RFC/docs, and source/wheel/release-sample artifact smoke through the unchanged
+eight essential CI jobs. It may not query or mutate issues/PRs; contact
+contributors; collect usernames, private correspondence, personal data, or
+telemetry; use networking, discovery, dynamic imports, subprocesses,
+installation, or provider execution; or change runtime source, public APIs/
+exports, persistent formats, protocols, operations, dependencies, lock,
+version, workflows, CI topology, tag, release, publication, certification,
+stability label, SLA, or support policy. M0 through M30 are complete, reviewed,
+hosted-CI validated, and integrated into `main`. M31 starts from exact verified
+M30 integration-record commit
+`22dc58df8b0c4d17c3619d83e37c6d0ee6184441` and contains no subsequent
+milestone.
+
 M29 adds only strict offline external contributor-retention admission readiness
 for the second longer-term adoption metric in the design plan. The reviewed
 manifest is empty, so its retained-contributor and return-contribution counts

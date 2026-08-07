@@ -104,6 +104,12 @@ complete reviewed clean-install result across the supported OS/CPython matrix.
 Its synthetic gate regressions and source-checkout CI are not released-user
 installations, publication, or support evidence.
 
+`response_review_latency_readiness.py` validates the exact empty reviewed
+measurement manifest and reports that no complete public issue/PR cohort has
+an admitted human-maintainer response/review latency result. Future windows
+must preserve pending items; synthetic fixtures and automation are not people,
+support work, latency measurements, or SLA evidence.
+
 `constrained_3d_decision.py` audits the installed public render and built-in
 world-operation surfaces. It emits a deterministic deferred decision and adds
 no 3D API, provider, asset loader, or runtime implementation.

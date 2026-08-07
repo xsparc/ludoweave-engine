@@ -35,6 +35,7 @@ _SAMPLE_FILES = (
     "render_device_conformance.py",
     "receipt_reader.py",
     "receipt_semantic_compatibility.py",
+    "response_review_latency_readiness.py",
     "rich_2d_showcase.py",
     "rollback_readiness.py",
     "supported_release_channel_readiness.py",
@@ -175,6 +176,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "installation_matrix.json",
             Path("assets/installation_matrix.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "response_review_latency.json",
+            Path("assets/response_review_latency.json"),
         )
     )
     sources.append(

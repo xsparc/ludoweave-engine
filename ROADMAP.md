@@ -39,6 +39,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
 | Done | M29 contributor-retention admission readiness | PR #46 squash-integrated; strict empty reviewed manifest, zero current count, same-person/chronology/history gates, installed artifact smoke, RFC-0012, and all eight essential hosted jobs passed on the corrected head |
 | Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
+| Active | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and unchanged essential CI topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -305,6 +306,19 @@ Ready PR #48 ran the unchanged essential CI topology on exact feature commit
 eight jobs. PR #48 then squash-integrated the exact feature tree as
 GitHub-verified `main` commit
 `675713d15a20a38233b80580e5aa773dc7a8684c`.
+
+M31 starts from verified integrated `main` commit
+`22dc58df8b0c4d17c3619d83e37c6d0ee6184441`. It adds an offline admission
+harness for the next longer-term metric: issue-response and pull-request-review
+time. A future window requires a complete reviewed public cohort of eligible
+external-human issues and pull requests, preserves pending items, and binds
+first qualifying human-maintainer actions to exact public evidence and
+timestamp/latency agreement. The reviewed set is empty, so no latency aggregate
+or SLA is claimed; automation, project history, and synthetic fixtures are not
+human responsiveness evidence. M31 adds no runtime source, API, protocol,
+format, dependency, version, workflow job, network activity, telemetry,
+contributor contact, issue/PR mutation, tag, release, publication,
+certification, stability change, SLA, or support promise.
 
 ## Good-first contribution queue
 
