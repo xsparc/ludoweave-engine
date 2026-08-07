@@ -3,9 +3,9 @@
 - **Task:** M27 - external-contributor rehearsal admission readiness
 - **Status:** In progress on
   `codex/m27-external-contributor-rehearsal-readiness`; implementation,
-  artifact wiring, public documentation, complete local validation, and
-  findings-first diff review are complete. Commit, ready PR, hosted validation,
-  delayed thread-aware reread, and integration remain.
+  artifact wiring, public documentation, complete local validation,
+  findings-first diff review, DCO commits, ready PR, and hosted validation are
+  complete. Final thread-aware reread and integration remain.
 - **Started:** 2026-08-07
 - **Base:** Exact clean synchronized GitHub-verified `main` commit
   `c1c3be08f7f75d90e7d1b517adbc30d56902ece4` after PR #41 recorded M26
@@ -65,4 +65,9 @@
   referenced with uppercase spelling. The local correction uses the exact
   tracked path. Windows graphics separately failed during GitHub action-
   download setup before checkout; the already-failed run was cancelled to
-  avoid spending its remaining queued jobs.
+  avoid spending its remaining queued jobs. Corrected run `31119640551`
+  initially encountered GitHub's resolved Actions outage during action
+  downloads. Its single failed-job-only rerun preserved three successful jobs,
+  reran only the five affected jobs, and completed with all eight effective
+  jobs successful on exact head
+  `f9e779d83a82795ad68cff22c424b6e94ef13703`.

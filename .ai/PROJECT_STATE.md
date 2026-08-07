@@ -39,7 +39,14 @@ sensitive lookup. The local correction uses the exact tracked path. Windows
 graphics separately failed during GitHub action-download resolution before
 checkout with `Service Unavailable`; macOS graphics passed. The already-failed
 run was cancelled rather than spending its remaining queued jobs. Corrected
-hosted validation, delayed thread-aware review, and integration remain pending.
+run `31119640551` first preserved three successful jobs while four jobs failed
+before checkout and macOS graphics remained unassigned during GitHub's
+subsequently resolved Actions outage. One failed-job-only rerun then executed
+only the five affected jobs. The resulting effective eight-job matrix is fully
+successful on exact corrected head
+`f9e779d83a82795ad68cff22c424b6e94ef13703`: quality/distribution, Ubuntu
+3.13/3.14, Windows 3.14, macOS 3.14, and graphics on Ubuntu, Windows, and
+macOS all pass. Final thread-aware review and integration remain pending.
 
 M26 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on `codex/m26-supported-release-channel-readiness` from exact clean

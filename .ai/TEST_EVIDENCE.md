@@ -71,6 +71,42 @@ validation remain pending; no pass is claimed for run `31118834216`.
 | --- | ---: | --- |
 | Ruff format/check, Pyright, focused tests, strict docs, and whitespace | 0 | The exact test file was formatted and Ruff-clean; Pyright reported zero diagnostics; 59 focused tests passed with one Windows symlink-capability skip in 2.00 seconds; strict docs built in 0.72 seconds; and whitespace passed. |
 
+## M27 corrected hosted validation - PR #42
+
+Corrected GitHub Actions run `31119640551` targets exact DCO-signed head
+`f9e779d83a82795ad68cff22c424b6e94ef13703`. Attempt 1 completed graphics on
+Ubuntu and Windows plus macOS CPython 3.14 successfully. GitHub's critical
+Actions outage then caused quality/distribution and Ubuntu 3.13/3.14 plus
+Windows 3.14 to fail during action download before checkout; macOS graphics
+never received a runner and was cancelled. GitHub subsequently marked the
+incident resolved and Actions operational. No repository failure is claimed
+for those five affected jobs.
+
+Exactly one failed-job-only rerun created attempt 2. It preserved the three
+successful attempt-1 jobs and reran only the five affected jobs. Attempt 2
+concluded `success` at `2026-08-07T10:40:14Z`; the effective run contains all
+eight unchanged essential jobs as successes:
+
+- quality, tests, and distribution passed in 2 minutes 34 seconds, including
+  lock, formatting, Ruff, Pyright, strict docs, 1,210 baseline tests, profiling
+  smoke, pure build, isolated-wheel smoke, release staging, and release smoke;
+- compatibility passed on Ubuntu CPython 3.13 and 3.14, Windows CPython 3.14,
+  and macOS CPython 3.14; and
+- graphics/provider/profile/Clockwork Arena/Agent World Builder smoke passed
+  on Ubuntu, Windows, and macOS.
+
+`gh pr checks 42 --repo xsparc/ludoweave-engine` reported all eight checks as
+`pass`. The workflow files remain unchanged. This validates M27's installed and
+cross-platform paths; it does not establish an actual external contributor,
+independent rehearsal, usability, adoption, release, publication, stability
+promotion, or any inherited missed performance target.
+
+After recording the hosted facts, `uv run --frozen mkdocs build --strict`,
+`git diff --check`, and the protected-surface comparison against the exact M27
+base all exited 0. The strict docs build completed in 0.88 seconds with only
+the recorded upstream Material warning; `.github`, project metadata, lock, and
+runtime source remain unchanged.
+
 ## M26 development evidence - 2026-08-07, Windows, CPython 3.12.13
 
 | Command | Exit | Result |
