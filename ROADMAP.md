@@ -36,7 +36,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M25 external-consumer-feedback admission readiness | PR #38 squash-integrated; strict reviewed manifest, false current gate, reviewed non-IP correction, installed artifact smoke, RFC-0008, and both eight-job hosted runs passed |
 | Done | M26 supported release-channel admission readiness | PR #40 squash-integrated; strict empty reviewed manifest, false current gate, complete-prefix correction, installed artifact smoke, RFC-0009, and both eight-job hosted runs passed |
 | Done | M27 external-contributor rehearsal admission readiness | PR #42 squash-integrated; strict empty reviewed manifest, false current result, complete-history admission, installed artifact smoke, RFC-0010, and all eight effective essential jobs passed |
-| Active | M28 external sample-game adoption admission readiness | Strict empty reviewed manifest, zero current count, authorship/provenance/history gates, installed artifact smoke, RFC-0011, and unchanged essential CI topology |
+| Done | M28 external sample-game adoption admission readiness | PR #44 squash-integrated; strict empty reviewed manifest, zero current count, corrected authorship/provenance/history gates, installed artifact smoke, RFC-0011, and both eight-job hosted runs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -262,6 +262,10 @@ current count remains zero; bundled examples, maintainers, agents, CI, and
 synthetic fixtures are not adoption. M28 adds no runtime source, API, protocol,
 format, dependency, version, workflow job, network activity, author contact,
 telemetry, tag, release, publication, certification, or support promise.
+Both necessary eight-job hosted runs passed after correcting the two valid
+review findings. PR #44 squash-integrated exact final evidence head
+`c383a4f143fd8682059a89ff6b645104a6b4332d` as GitHub-verified `main` commit
+`90d58a4567e7c7eaff90a28a7c59f2453b6d4538` with the exact final tree.
 
 ## Good-first contribution queue
 

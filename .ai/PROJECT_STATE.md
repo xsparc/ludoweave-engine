@@ -2,8 +2,8 @@
 
 ## Current milestone
 
-M28 is in progress on `codex/m28-external-sample-game-adoption-readiness` from
-exact clean synchronized GitHub-verified `main` commit
+M28 is complete, independently reviewed, hosted-validated, and squash-
+integrated. It started from exact clean synchronized GitHub-verified `main` commit
 `17401eb32be30862496bbe02366d886a60752fb3`. Its bounded outcome is a strict
 offline admission harness for the design plan's longer-term metric counting
 externally authored sample games. The reviewed manifest contains zero records,
@@ -40,8 +40,12 @@ wheel smoke, and fresh ten-artifact release smoke pass. Correction run
 `31176729893` also passes all eight unchanged essential jobs on exact head
 `36130c8a3d0923a7330ee2c9e287c11c2a52594c`. GitHub reports PR #44
 `MERGEABLE` and `CLEAN`; both original P2 threads are outdated, and the final
-thread-aware reread found no new finding. Factual CI-skipping evidence
-publication and exact squash integration remain in progress.
+thread-aware reread found no new finding. The factual `[skip ci]` final head
+`c383a4f143fd8682059a89ff6b645104a6b4332d` created no third workflow run.
+PR #44 squash-integrated that exact head as GitHub-verified commit
+`90d58a4567e7c7eaff90a28a7c59f2453b6d4538`; both trees are
+`2f5ebf96af70741deb8d2b7d18ffa6d84effc494`, its sole parent is the assigned
+base, and the squash message retains DCO sign-off.
 
 M27 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
@@ -599,10 +603,8 @@ Repository-state evidence is integrated by PR #18 as main commit
 
 ## Next slice
 
-- Publish M28's factual hosted-validation record with `[skip ci]`, confirm no
-  third workflow run, and exact-squash integrate ready PR #44.
-- M0 through M27 are complete, hosted-validated, and squash-integrated. M28 is
-  limited to external sample-game adoption admission readiness.
+- M0 through M28 are complete, hosted-validated, and squash-integrated. No
+  subsequent milestone is assigned by this record.
 - Actual cross-version package history, external consumer feedback, and a
   supported deprecation-capable feature-release channel remain absent. Do not
   promote the experimental command/receipt surface by inference.
