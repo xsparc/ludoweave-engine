@@ -41,7 +41,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M30 installation-matrix admission readiness | PR #48 squash-integrated; strict empty reviewed manifest, zero current count, immutable public-wheel/full-matrix/history gates, installed artifact smoke, RFC-0013, and all eight essential hosted jobs passed |
 | Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
 | Done | M32 replay-divergence-rate admission readiness | PR #52 squash-integrated; strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and all eight essential hosted jobs passed on the corrected head |
-| In progress | M33 benchmark-regression-rate admission readiness | Strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, and RFC-0016 |
+| Done | M33 benchmark-regression-rate admission readiness | PR #54 squash-integrated; strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0016, and all eight essential hosted jobs passed |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -359,6 +359,10 @@ and synthetic fixtures are not controlled historical rate evidence. M33 adds
 no runtime or benchmark implementation, optimization, API, protocol, format,
 dependency, lock, version, workflow job, telemetry, native boundary, tag,
 release, publication, certification, performance target, or support promise.
+Ready PR #54 exact head `3bd7e17eed26028592cb39d37e77e15c6f4371f1`
+passed all eight essential jobs in run `31225942698`, had no review comment or
+thread, and squash-integrated the exact tree as GitHub-verified `main` commit
+`0993c73b3290809ef4e0c36d64d39e5ee5891a9b`.
 
 ## Good-first contribution queue
 

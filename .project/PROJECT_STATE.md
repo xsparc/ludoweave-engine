@@ -1,6 +1,6 @@
 # Project State
 
-## M33 in progress
+## M33 complete
 
 M33 starts from exact clean synchronized M32 integration-record commit
 `60ddf57216d1054ac44df8d834756312c3864e3e`. Its bounded outcome is strict
@@ -20,8 +20,18 @@ Implementation, adversarial tests, distribution wiring, RFC-0016, and public
 documentation exist on `evidence/m33-benchmark-regression-rate`. Complete local
 static/docs/test/build/wheel/release/benchmark/profile/graphics validation and
 findings-first review pass. Protected-surface, archive, credential-pattern,
-neutral-metadata, and object-integrity audits pass. Hosted validation,
-publication, integration, and cleanup remain pending.
+neutral-metadata, and object-integrity audits pass. Ready PR #54 exact head
+`3bd7e17eed26028592cb39d37e77e15c6f4371f1` passed all eight essential jobs in
+hosted run `31225942698`; no comment, review, or review thread existed and
+GitHub reported the PR mergeable/clean. PR #54 squash-integrated the exact
+validated tree as GitHub-verified `main` commit
+`0993c73b3290809ef4e0c36d64d39e5ee5891a9b` with sole parent exact M33 base
+`60ddf57216d1054ac44df8d834756312c3864e3e` and DCO trailer. The feature branch
+was deleted locally and remotely. Synchronized `main` remains at the verified
+feature squash while this documentation-only `records/m33-integration` branch
+and PR #55 await their own hosted gate. M33 feature work is complete; no
+measured rate, release, publication, performance guarantee, or native-code
+authorization is claimed.
 
 ## Current milestone
 
