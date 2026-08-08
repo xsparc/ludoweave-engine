@@ -29,7 +29,7 @@ def test_release_notes_are_supplied_then_verified_before_publication() -> None:
 def test_release_notes_validator_is_bounded_and_content_silent() -> None:
     verifier = _VERIFY.read_text(encoding="utf-8")
 
-    assert '"ludoweave.release-draft-integrity/3"' in verifier
+    assert '"ludoweave.release-draft-integrity/4"' in verifier
     assert "_MAX_RELEASE_NOTES_BYTES = 256 * 1024" in verifier
     assert '_RELEASE_NOTES_NAME = "RELEASE_NOTES.md"' in verifier
     assert 'release.get("body") != notes' in verifier

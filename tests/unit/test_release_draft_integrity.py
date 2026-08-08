@@ -28,9 +28,10 @@ def _staging(tmp_path: Path) -> Path:
     return staged
 
 
-def _identity(path: Path) -> dict[str, object]:
+def _identity(path: Path, *, asset_id: int) -> dict[str, object]:
     data = path.read_bytes()
     return {
+        "id": asset_id,
         "name": path.name,
         "size": len(data),
         "digest": f"sha256:{hashlib.sha256(data).hexdigest()}",
@@ -50,7 +51,10 @@ def _document(
         "immutable": immutable,
         "published_at": "2026-08-09T00:00:00Z" if published else None,
         "body": (staged / "RELEASE_NOTES.md").read_bytes().decode("utf-8"),
-        "assets": [_identity(path) for path in sorted(staged.iterdir())],
+        "assets": [
+            _identity(path, asset_id=asset_id)
+            for asset_id, path in enumerate(sorted(staged.iterdir()), start=1_001)
+        ],
     }
 
 
@@ -62,22 +66,26 @@ def _run(
     expected_tag: str = _TAG,
     expected_title: str = _TITLE,
     expected_state: str = "draft",
+    asset_plan: Path | None = None,
 ) -> subprocess.CompletedProcess[str]:
     evidence = tmp_path / "draft.json"
     evidence.write_text(json.dumps(document), encoding="utf-8")
+    command = [
+        sys.executable,
+        str(_SCRIPT),
+        str(staged),
+        str(evidence),
+        "--expected-tag",
+        expected_tag,
+        "--expected-title",
+        expected_title,
+        "--expected-state",
+        expected_state,
+    ]
+    if asset_plan is not None:
+        command.extend(("--asset-plan", str(asset_plan)))
     return subprocess.run(
-        [
-            sys.executable,
-            str(_SCRIPT),
-            str(staged),
-            str(evidence),
-            "--expected-tag",
-            expected_tag,
-            "--expected-title",
-            expected_title,
-            "--expected-state",
-            expected_state,
-        ],
+        command,
         cwd=_ROOT,
         check=False,
         capture_output=True,
@@ -111,7 +119,7 @@ def test_exact_release_emits_stable_safe_identities(
     assert result.returncode == 0, result.stderr
     assert result.stderr == ""
     document = json.loads(result.stdout)
-    assert document["protocol"] == "ludoweave.release-draft-integrity/3"
+    assert document["protocol"] == "ludoweave.release-draft-integrity/4"
     assert document["status"] == "pass"
     assert document["tag"] == _TAG
     assert document["state"] == expected_state
@@ -126,6 +134,171 @@ def test_exact_release_emits_stable_safe_identities(
         }
         for path in sorted(staged.iterdir(), key=lambda item: item.name)
     ]
+
+
+def test_published_release_writes_bounded_asset_retrieval_plan(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    remote = _document(staged, expected_state="published")
+    plan = tmp_path / "published-assets.plan"
+
+    result = _run(
+        staged,
+        tmp_path,
+        remote,
+        expected_state="published",
+        asset_plan=plan,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert '"id"' not in result.stdout
+    assert str(plan) not in result.stdout
+    assert plan.read_text(encoding="utf-8") == (
+        "ludoweave.release-asset-retrieval-plan/1\n"
+        + "".join(
+            f"{asset['id']}\t{asset['name']}\n"
+            for asset in sorted(
+                cast(list[dict[str, object]], remote["assets"]),
+                key=lambda item: cast(str, item["name"]),
+            )
+        )
+    )
+
+
+def test_draft_cannot_write_asset_retrieval_plan(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    plan = tmp_path / "draft-assets.plan"
+
+    failure = _failure(_run(staged, tmp_path, _document(staged), asset_plan=plan))
+
+    assert failure["code"] == "release_draft.invalid_plan"
+    assert not plan.exists()
+
+
+def test_asset_plan_is_written_only_after_complete_validation(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    remote = _document(staged, expected_state="published")
+    remote["body"] = "substituted notes\n"
+    plan = tmp_path / "published-assets.plan"
+
+    failure = _failure(
+        _run(
+            staged,
+            tmp_path,
+            remote,
+            expected_state="published",
+            asset_plan=plan,
+        )
+    )
+
+    assert failure["code"] == "release_draft.notes_mismatch"
+    assert not plan.exists()
+
+
+@pytest.mark.parametrize("value", [None, True, 0, -1, 1 << 63, "1001"])
+def test_invalid_remote_asset_id_fails_closed(tmp_path: Path, value: object) -> None:
+    staged = _staging(tmp_path)
+    remote = _document(staged, expected_state="published")
+    assets = cast(list[dict[str, object]], remote["assets"])
+    assets[0]["id"] = value
+
+    failure = _failure(_run(staged, tmp_path, remote, expected_state="published"))
+
+    assert failure["code"] == "release_draft.invalid_document"
+
+
+def test_duplicate_remote_asset_id_fails_closed(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    remote = _document(staged, expected_state="published")
+    assets = cast(list[dict[str, object]], remote["assets"])
+    assets[1]["id"] = assets[0]["id"]
+
+    failure = _failure(_run(staged, tmp_path, remote, expected_state="published"))
+
+    assert failure["code"] == "release_draft.invalid_document"
+
+
+def test_asset_plan_never_clobbers_an_existing_path(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    plan = tmp_path / "published-assets.plan"
+    plan.write_text("keep\n", encoding="utf-8")
+
+    failure = _failure(
+        _run(
+            staged,
+            tmp_path,
+            _document(staged, expected_state="published"),
+            expected_state="published",
+            asset_plan=plan,
+        )
+    )
+
+    assert failure["code"] == "release_draft.plan_write_failed"
+    assert plan.read_text(encoding="utf-8") == "keep\n"
+
+
+def test_asset_plan_requires_an_existing_parent_directory(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    plan = tmp_path / "missing" / "published-assets.plan"
+
+    failure = _failure(
+        _run(
+            staged,
+            tmp_path,
+            _document(staged, expected_state="published"),
+            expected_state="published",
+            asset_plan=plan,
+        )
+    )
+
+    assert failure["code"] == "release_draft.plan_write_failed"
+    assert not plan.exists()
+
+
+def test_retrieved_assets_round_trip_through_exact_id_plan(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    remote = _document(staged, expected_state="published")
+    plan = tmp_path / "published-assets.plan"
+    planned = _run(
+        staged,
+        tmp_path,
+        remote,
+        expected_state="published",
+        asset_plan=plan,
+    )
+    assert planned.returncode == 0, planned.stderr
+
+    sources_by_id = {
+        str(asset["id"]): staged / cast(str, asset["name"])
+        for asset in cast(list[dict[str, object]], remote["assets"])
+    }
+    retrieved = tmp_path / "retrieved"
+    retrieved.mkdir()
+    for line in plan.read_text(encoding="utf-8").splitlines()[1:]:
+        asset_id, name = line.split("\t")
+        source = sources_by_id[asset_id]
+        assert source.name == name
+        (retrieved / name).write_bytes(source.read_bytes())
+
+    verified = _run(retrieved, tmp_path, remote, expected_state="published")
+    assert verified.returncode == 0, verified.stderr
+    assert json.loads(verified.stdout)["state"] == "published"
+
+
+def test_retrieved_asset_byte_drift_fails_against_published_document(
+    tmp_path: Path,
+) -> None:
+    staged = _staging(tmp_path)
+    remote = _document(staged, expected_state="published")
+    retrieved = tmp_path / "retrieved"
+    retrieved.mkdir()
+    for path in staged.iterdir():
+        (retrieved / path.name).write_bytes(path.read_bytes())
+    (retrieved / "LICENSE").write_bytes(b"substituted")
+
+    failure = _failure(_run(retrieved, tmp_path, remote, expected_state="published"))
+
+    assert failure["code"] == "release_draft.asset_mismatch"
+    assert "substituted" not in json.dumps(failure)
 
 
 @pytest.mark.parametrize(
@@ -179,6 +352,7 @@ def test_remote_identity_state_or_asset_drift_fails_closed(
     elif mutation == "extra":
         assets.append(
             {
+                "id": 2_001,
                 "name": "extra.txt",
                 "size": 1,
                 "digest": f"sha256:{'0' * 64}",
@@ -194,7 +368,7 @@ def test_remote_identity_state_or_asset_drift_fails_closed(
 
     result = _run(staged, tmp_path, document)
     failure = _failure(result)
-    assert failure["protocol"] == "ludoweave.release-draft-integrity/3"
+    assert failure["protocol"] == "ludoweave.release-draft-integrity/4"
     assert failure["status"] == "fail"
     assert failure["code"] == code
     assert "Exact notes" not in result.stderr
@@ -239,7 +413,7 @@ def test_invalid_published_state_fails_closed(tmp_path: Path, mutation: str) -> 
 
     result = _run(staged, tmp_path, document, expected_state="published")
     failure = _failure(result)
-    assert failure["protocol"] == "ludoweave.release-draft-integrity/3"
+    assert failure["protocol"] == "ludoweave.release-draft-integrity/4"
     assert failure["code"] == "release_draft.invalid_state"
     assert "2026-99-99T00:00:00Z" not in result.stderr
 
@@ -280,7 +454,7 @@ def test_duplicate_remote_asset_name_fails_closed(tmp_path: Path) -> None:
     assert failure["code"] == "release_draft.invalid_document"
 
 
-@pytest.mark.parametrize("field", ["size", "digest", "state"])
+@pytest.mark.parametrize("field", ["id", "size", "digest", "state"])
 def test_missing_required_remote_asset_field_fails_closed(tmp_path: Path, field: str) -> None:
     staged = _staging(tmp_path)
     document = _document(staged)

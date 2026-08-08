@@ -1,70 +1,64 @@
 # Current Task
 
-- **Task:** M42 - published prerelease integrity
-- **Status:** Implementation and integration record are squash-integrated;
-  publishing the zero-run closeout record on `records/m42-closeout`.
+- **Task:** M43 - published asset retrieval integrity
+- **Status:** Complete local validation on
+  `release/m43-asset-retrieval-integrity`; ready pull request and hosted gate
+  remain pending.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `0dec2254a9d9483b27d158aaad108340e9c94e28`. Only `main` existed locally
+  commit `2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`. Only `main` existed locally
   and remotely, no pull request, local/remote tag, or GitHub release was
   present, and `git fsck --full --no-dangling` passed.
-- **Outcome:** Require one exact authenticated release database identity to
-  satisfy both the private-draft contract and the final public-prerelease
-  contract before the release job can succeed.
+- **Outcome:** Require the exact published asset database identities already
+  admitted by M42 to return the same complete byte set as local staging before
+  the release job can succeed.
 - **Acceptance gate:**
-  - Advance the internal draft-integrity protocol from `/2` to `/3` and make
-    expected `draft` or `published` state explicit on every invocation.
-  - Require drafts to remain mutable prereleases with null `published_at`.
-  - Require published records to have `draft=false`, `prerelease=true`, a JSON
-    boolean immutable field, and a syntactically/calendrically valid UTC
-    `published_at`.
-  - Retain exact tag, title, bounded notes-body, and uploaded asset identity
-    verification in both states; emit only state plus existing safe identities.
-  - Carry only the validated numeric release ID across `gh release edit`, fetch
-    that same ID once after publication, and fail if the public record differs.
+  - Advance the internal release validator from `/3` to `/4` and require one
+    unique positive 63-bit ID for every bounded remote asset.
+  - After complete published-state verification, create one exclusive
+    `ludoweave.release-asset-retrieval-plan/1` file containing only canonical
+    decimal ID and safe-basename pairs.
+  - Reject draft plans, malformed/duplicate/out-of-range IDs, existing plan
+    targets, unavailable parents, incomplete validation, and all asset drift.
+  - Consume the plan inside the existing tag job with quoted bounded tokens,
+    no clobber, and exact `releases/assets/ID` authenticated API requests.
+  - Reuse the same published document and validator to hash every downloaded
+    byte against the already matched local staging identities.
   - Add no job, runner, action, permission, trigger, dependency, credential,
-    cache key, tag, release, upload, or publication authority.
-  - Document that this is postpublication observation, not automatic rollback,
-    later-mutation prevention, or immutable-release policy.
+    cache key, tag, release, upload, rollback, cleanup, or publication authority.
+  - Document the one-point authenticated retrieval claim and all public,
+    global, future, immutability, consumer-installation, and attestation
+    non-claims.
   - Run the complete local gate and one substantive hosted pull-request gate.
 - **Non-scope:** Creating/pushing a tag, draft, or release; uploading or
   publishing; automatic unpublish/delete/rollback; enabling or requiring
-  immutable releases; public-asset download; rendered Markdown, link, or
-  factual review; signer/key policy; deployment environments or tag rules;
-  PyPI; supported release channel; runtime/public API; persistent formats;
-  package version/dependency/lock; platform support; deferred subsystems.
+  immutable releases; unauthenticated/browser downloads; global CDN/cache
+  verification; future-byte monitoring; public installed-wheel matrix;
+  attestation verification; rendered Markdown/link/factual review; signer/key
+  policy; deployment environments or tag rules; PyPI; supported release
+  channel; runtime/public API; package version/dependency/lock; deferred
+  subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** M41 closeout PR #76 exact head
-  `5d891d0bfa030ff8387d9c384fafa4aa81abbdf8` changed only three `.project`
-  paths and allocated no run, check, review, comment, or thread. Squash
-  `0dec2254a9d9483b27d158aaad108340e9c94e28` has sole parent the M41
-  integration-record squash, preserves reviewed tree
-  `a028eb0492019b42658045bf112ca2fcafd211b4`, has a valid GitHub signature and
-  standalone DCO trailer, and allocated no post-merge run. M42 inherited 37
-  release-integrity tests with two Windows symlink-capability skips. The first
-  implementation behavior run passed 39 tests with two skips while formatting
-  identified two files; after mechanical formatting and a UTC-alias lint
-  correction, focused static/type checks and all 39 behavior tests pass. Two
-  intentional M41 historical guards then failed on the stronger protocol and
-  workflow hash; after updating that boundary and adding M42 architecture
-  coverage, all 54 focused tests pass with two capability skips. Findings-first
-  review strengthened published drift/confidentiality and non-mutation guards.
-  The corrected complete Python 3.12 suite passes 1,850 tests with 13 expected
-  skips; Python 3.13 and 3.14 each pass 1,840 with 14 expected skips; real
-  graphics, profiles, deterministic samples, reproducible distributions,
-  installed-wheel smoke, complete release smoke, and exact mutable/immutable
-  synthetic state verification all pass. Exact implementation head
-  `45cd04e627f44400e8bd3adcbeeaf1756160f745` passed run `31271273535` in
-  three allocations: Linux 6m54s, Windows 3m39s, and macOS 1m59s. With no
-  review, issue comment, review comment, or thread, PR #77 squash-integrated as
-  `28dd9d7e282ec85c06b71ed340f3cfcea379d6be`; the reviewed tree, exact parent,
-  valid signature, standalone DCO, and zero post-merge run are verified. The
-  feature branch is deleted locally and remotely. Integration record PR #78
-  exact head `b08c4ff57c2d995fdce73f2e835f2ca3a8075a70` classified four paths as
-  documentation and passed in one 33-second Linux allocation; its desktop
-  umbrella skipped with zero runner work. With no feedback, it
-  squash-integrated as `35aa6c46f0d128f66535d75dff342f0b7f6bcdeb`, preserving tree, exact parent,
-  valid signature, standalone DCO, zero post-merge run, and branch cleanup.
+- **Current evidence:** M42 zero-run closeout PR #79 exact head
+  `8407499326f2c55118c7a28735224c9e4cd18723` changed only three `.project`
+  paths and had no run, check, review, comment, or thread. Squash
+  `2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79` has sole parent the M42
+  integration squash, preserves reviewed tree
+  `664d67c43daa42eb8bd02ab0c52d04bad294ff6b`, has a valid GitHub signature and
+  standalone DCO trailer, and allocated no post-merge run. Official GitHub API
+  documentation confirms exact numeric asset-ID binary retrieval with the
+  existing contents access. Protocol `/4`, exclusive published-only plan
+  output, exact-ID authenticated retrieval, same-document byte revalidation,
+  and fail-closed state/ID/drift behavior are implemented. Findings-first
+  review tightened the shell boundary to canonical positive 63-bit IDs and at
+  most 32 requests and added an exact-ID success round trip. The final workflow
+  SHA-256 is `874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac`.
+  Whole-tree format/lint/type/docs, 361 architecture tests, the final 1,870-test
+  CPython 3.12 suite, CPython 3.13/3.14 compatibility, real graphics, profiles,
+  deterministic samples, fresh reproducible distributions, installed-wheel
+  smoke, complete release smoke, YAML, scope, credential, archive, identity,
+  whitespace, and Git-object checks all pass locally. Hosted validation remains
+  pending.

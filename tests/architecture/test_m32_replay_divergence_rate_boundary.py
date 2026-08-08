@@ -135,7 +135,7 @@ def test_m32_adds_no_runtime_export_dependency_version_release_or_provider() -> 
         "replay_divergence_rate" in path.name for path in (_ROOT / "src/ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "a15921df77a64c51889d8d6353cce7e5f6924b38396a5b84bd39c5a5accbfefe"
+        "874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac"
     )
 
 

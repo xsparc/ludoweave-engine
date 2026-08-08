@@ -51,6 +51,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M40 draft-release asset integrity | PR #71 corrected pathological JSON failures after review, passed the exact draft-asset boundary in three bounded hosted allocations, and squash-integrated without new release authority |
 | Done | M41 release-notes body integrity | PR #74 passed exact source-body and asset verification in three bounded hosted allocations, then squash-integrated without workflow or release-authority change |
 | Done | M42 published prerelease integrity | PR #77 passed exact same-ID draft/public state, timestamp, notes, and asset verification in three bounded hosted allocations, then squash-integrated without new release authority |
+| In progress | M43 published asset retrieval integrity | Retrieve every validated numeric asset ID through the authenticated API and rehash the downloaded set against the same published document |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -512,6 +513,16 @@ publication time, and unchanged notes/assets. It adds one read-only API request
 inside the existing tag job but no runner, action, permission, trigger,
 dependency, credential, tag, release, upload, automatic rollback, immutable-
 release setting, or publication authority.
+
+M43 starts from verified M42 closeout commit
+`2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`. It advances the internal release
+validator to protocol `/4`, requires unique bounded numeric asset IDs, and can
+write one exclusive published-only retrieval plan after complete verification.
+The existing tag job retrieves each exact ID through the authenticated asset
+API and rehashes the downloaded directory against the same published document.
+It adds no runner, action, permission, trigger, dependency, credential, tag,
+release, upload, rollback, cleanup, immutable-release setting, or publication
+authority, and makes no unauthenticated/global/future availability claim.
 
 ## Good-first contribution queue
 

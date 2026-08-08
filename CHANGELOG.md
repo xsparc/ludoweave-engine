@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M43/RFC-0026 exact-ID published asset retrieval and byte revalidation to
+  the existing tag job, without clobber, rollback, immutable-release claims,
+  or a new runner, action, permission, dependency, trigger, or release authority.
 - Add M42/RFC-0025 exact same-ID postpublication prerelease verification to the
   existing tag job, without automatic rollback, immutable-release claims, or a
   new runner, action, permission, dependency, trigger, or publication authority.

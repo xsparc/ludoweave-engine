@@ -171,4 +171,50 @@ jobs:
           uv run --frozen python scripts/verify_release_draft.py \
             release "$RUNNER_TEMP/release-published.json" \
             --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
+            --expected-state published \
+            --asset-plan "$RUNNER_TEMP/release-assets.plan"
+      - name: Retrieve and verify published release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TITLE: LudoWeave ${{ steps.version.outputs.version }}
+        shell: bash
+        run: |
+          plan="$RUNNER_TEMP/release-assets.plan"
+          download_dir="$RUNNER_TEMP/release-download"
+          mkdir "$download_dir"
+          exec 3< "$plan"
+          IFS= read -r protocol <&3
+          test "$protocol" = "ludoweave.release-asset-retrieval-plan/1"
+          asset_count=0
+          while IFS=$'\t' read -r asset_id asset_name <&3; do
+            if [[ ! "$asset_id" =~ ^[1-9][0-9]{0,18}$ ]]; then
+              echo "invalid release asset id" >&2
+              exit 1
+            fi
+            if [[ ${#asset_id} -eq 19 && "$asset_id" > "9223372036854775807" ]]; then
+              echo "invalid release asset id" >&2
+              exit 1
+            fi
+            if [[ ! "$asset_name" =~ ^[0-9A-Za-z][0-9A-Za-z._+-]{0,255}$ ]]; then
+              echo "invalid release asset name" >&2
+              exit 1
+            fi
+            test "$asset_count" -lt 32
+            target="$download_dir/$asset_name"
+            partial="$download_dir/.asset-$asset_id.part"
+            test ! -e "$target"
+            test ! -e "$partial"
+            gh api \
+              -H "Accept: application/octet-stream" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              "repos/$GITHUB_REPOSITORY/releases/assets/$asset_id" \
+              > "$partial"
+            mv "$partial" "$target"
+            asset_count=$((asset_count + 1))
+          done
+          exec 3<&-
+          test "$asset_count" -gt 0
+          uv run --frozen python scripts/verify_release_draft.py \
+            "$download_dir" "$RUNNER_TEMP/release-published.json" \
+            --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
             --expected-state published

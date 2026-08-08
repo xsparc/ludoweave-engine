@@ -1,5 +1,38 @@
 # Project State
 
+## M43 in progress
+
+M43 starts from exact clean synchronized M42 closeout commit
+`2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`. It closes the remaining gap
+between the authenticated published release document and the bytes returned by
+GitHub's release-asset endpoint.
+
+The internal validator advances to `ludoweave.release-draft-integrity/4` and
+requires each remote asset to carry a unique positive 63-bit ID. A completely
+verified published document may write one exclusive runner-temporary
+`ludoweave.release-asset-retrieval-plan/1` containing only canonical decimal
+IDs and safe basenames. Draft plans, unsafe IDs, existing targets, missing
+parents, and incomplete validation fail with structured codes.
+
+The existing tag job consumes that plan, retrieves each exact asset ID through
+the authenticated versioned binary endpoint, and reruns the same verifier over
+the downloaded directory and same published document. No tag lookup, browser
+URL, clobber, mutation, rollback, or cleanup is introduced. This observes one
+authenticated retrieval point and does not claim unauthenticated/global/future
+availability, immutability, consumer installation, or attestation verification.
+M43 adds no job, runner, action, permission, trigger, dependency, credential,
+runtime/public API, tag, release, upload, or publication authority.
+
+Complete local validation passes. Findings-first review corrected the shell
+boundary to recheck canonical positive 63-bit IDs and the 32-request cap, then
+found no remaining blocking or non-blocking defect. All 361 architecture tests
+and the final 1,870-test CPython 3.12 suite pass; CPython 3.13/3.14, real wgpu,
+profiles, deterministic samples, reproducible builds, wheel/release smoke,
+strict static/docs/YAML, scope, credential, archive, identity, whitespace, and
+Git-object gates also pass. Final release-workflow SHA-256 is
+`874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac`.
+Hosted validation, integration records, and branch cleanup remain pending.
+
 ## M42 complete
 
 M42 starts from exact clean synchronized M41 closeout commit
