@@ -258,9 +258,9 @@ def _json_document(path: Path) -> object:
         )
     try:
         return json.loads(raw.decode("utf-8"), object_pairs_hook=_unique_object)
-    except (UnicodeDecodeError, json.JSONDecodeError, ReleaseDraftIntegrityError) as error:
-        if isinstance(error, ReleaseDraftIntegrityError):
-            raise
+    except ReleaseDraftIntegrityError:
+        raise
+    except (UnicodeDecodeError, RecursionError, ValueError) as error:
         raise ReleaseDraftIntegrityError(
             "draft release document is not strict UTF-8 JSON",
             code="release_draft.invalid_document",

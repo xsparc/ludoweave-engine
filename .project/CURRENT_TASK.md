@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M40 - draft-release asset integrity
-- **Status:** Local implementation, review, and recorded-tree validation are
-  complete on `release/m40-draft-assets`; preparing the exact implementation
-  commit for hosted validation.
+- **Status:** The initial exact-head review finding is corrected and fully
+  validated locally on `release/m40-draft-assets`; preparing a correction
+  commit and hosted rerun. The passing initial hosted head will not merge.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,

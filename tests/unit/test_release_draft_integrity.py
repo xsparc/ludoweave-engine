@@ -198,7 +198,9 @@ def test_invalid_expected_identity_is_structured(tmp_path: Path) -> None:
     assert bad_title["code"] == "release_draft.invalid_identity"
 
 
-def test_malformed_duplicate_or_oversized_json_fails_without_traceback(tmp_path: Path) -> None:
+def test_malformed_duplicate_oversized_or_pathological_json_fails_without_traceback(
+    tmp_path: Path,
+) -> None:
     staged = _staging(tmp_path)
     evidence = tmp_path / "draft.json"
     command = [
@@ -211,7 +213,13 @@ def test_malformed_duplicate_or_oversized_json_fails_without_traceback(tmp_path:
         "--expected-title",
         _TITLE,
     ]
-    for content in (b"{", b'{"tag_name":"one","tag_name":"two"}', b" " * (4 * 1024 * 1024 + 1)):
+    for content in (
+        b"{",
+        b'{"tag_name":"one","tag_name":"two"}',
+        b"[" * 2_000 + b"0" + b"]" * 2_000,
+        b'{"value":' + b"9" * 10_000 + b"}",
+        b" " * (4 * 1024 * 1024 + 1),
+    ):
         evidence.write_bytes(content)
         result = subprocess.run(command, cwd=_ROOT, check=False, capture_output=True, text=True)
         assert _failure(result)["code"] == "release_draft.invalid_document"

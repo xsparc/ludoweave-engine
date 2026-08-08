@@ -36,8 +36,13 @@ runner/job/matrix count, action, permission, trigger, dependency, lock, package
 version, runtime/public API, attestation, tag, release, credential, immutable-
 release setting, PyPI configuration, supported release policy, or deferred
 subsystem. Final recorded-tree static, architecture, docs, and complete Python
-3.12 validation passes. Exact commit validation, hosted validation, integration,
-and cleanup remain pending.
+3.12 validation passes. The initial exact implementation head passed all three
+hosted allocations, but review correctly found that pathological JSON nesting
+and overlong integers could escape as unstructured parser exceptions. No merge
+is claimed for that head. The parser correction and both pathological-input
+regressions now pass focused static/behavior checks, the complete architecture
+gate, strict docs, and all 1,818 Python 3.12 tests. Corrected exact-commit and
+hosted validation, integration, and cleanup remain pending.
 
 ## M39 complete
 
