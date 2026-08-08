@@ -12,7 +12,7 @@ from pathlib import Path, PurePosixPath
 _REVISION = re.compile(r"[0-9a-fA-F]{40,64}\Z")
 _DOCUMENTATION_FILES = frozenset(
     {
-        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/pull_request_template.md",
         ".github/labels.yml",
     }
 )

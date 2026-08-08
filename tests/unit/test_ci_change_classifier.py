@@ -46,7 +46,7 @@ _CLASSIFIER = _load_classifier()
         ".project/TEST_EVIDENCE.md",
         ".github/ISSUE_TEMPLATE/bug.yml",
         ".github/ISSUE_TEMPLATE/config.yaml",
-        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/pull_request_template.md",
         ".github/labels.yml",
     ],
 )
