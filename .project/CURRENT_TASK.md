@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M42 - published prerelease integrity
-- **Status:** Implementation squash-integrated; publishing the documentation-
-  only integration record on `records/m42-integration`.
+- **Status:** Implementation and integration record are squash-integrated;
+  publishing the zero-run closeout record on `records/m42-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -62,4 +62,9 @@
   review, issue comment, review comment, or thread, PR #77 squash-integrated as
   `28dd9d7e282ec85c06b71ed340f3cfcea379d6be`; the reviewed tree, exact parent,
   valid signature, standalone DCO, and zero post-merge run are verified. The
-  feature branch is deleted locally and remotely.
+  feature branch is deleted locally and remotely. Integration record PR #78
+  exact head `b08c4ff57c2d995fdce73f2e835f2ca3a8075a70` classified four paths as
+  documentation and passed in one 33-second Linux allocation; its desktop
+  umbrella skipped with zero runner work. With no feedback, it
+  squash-integrated as `35aa6c46f0d128f66535d75dff342f0b7f6bcdeb`, preserving tree, exact parent,
+  valid signature, standalone DCO, zero post-merge run, and branch cleanup.
