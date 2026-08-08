@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M46 - fresh-runner public consumer rehearsal
-- **Status:** Completing final validation of the bounded separate-runner release rehearsal on
-  `release/m46-fresh-runner-consumer`.
+- **Status:** Feature fully validated and squash-integrated; recording the
+  verified integration on `records/m46-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -79,5 +79,15 @@
   under `set -u`. The correction removes the array, uses a shared verifier
   function with safe positional arguments, retains exactly two verifier call
   sites, and passes all 17 focused tests on CPython 3.12-3.14. Corrected full
-  local validation passes; corrected hosted validation remains pending and the
-  failed head will not merge.
+  local validation passed and required a corrected hosted run; the failed head
+  did not merge.
+- **Completion:** Corrected head `7f7f865880a415bec2f1fdaffbc35426399fb0fd`
+  passed run `31283211266` in exactly three allocations: Linux 7m07s,
+  macOS 2m31s, and Windows 4m24s. Every platform passed graphics, profiles,
+  vertical slices, and CPython 3.14 compatibility; Linux also passed complete
+  quality, CPython 3.12/3.13, reproducibility, wheel smoke, and release smoke.
+  PR #89 was mergeable/clean with no review, comment, or thread. Verified
+  squash `d4cb4410d1dd9f684d3b169932ea3251801d3884` has the exact reviewed
+  tree, sole parent the M45 closeout, valid signature, standalone DCO, and no
+  post-merge run. The feature branch is deleted locally/remotely. No real tag,
+  release, or fresh-runner release execution exists or is claimed.

@@ -1,6 +1,6 @@
 # Project State
 
-## M46 fresh-runner public consumer rehearsal - locally validated
+## M46 fresh-runner public consumer rehearsal - complete
 
 - Base: exact verified M45 closeout commit
   `086f1ceb3974583ce7a2c386c67f516299c2f1dd`.
@@ -37,7 +37,18 @@
   `set -u` with a shared verifier function and safe positional arguments while
   retaining exactly two verifier call sites. Focused tests pass on CPython
   3.12-3.14; the corrected complete 3.12 graphics and static/docs/architecture
-  gates pass. Corrected hosted evidence remains pending.
+  gates pass. Corrected hosted evidence passed as recorded below.
+- Corrected run `31283211266` passed exact head
+  `7f7f865880a415bec2f1fdaffbc35426399fb0fd` in exactly three allocations:
+  Linux 7m07s, macOS 2m31s, and Windows 4m24s. Linux passed 1,927 baseline
+  tests and Ubuntu 3.13/3.14 each passed 1,927 with one skip; both desktops
+  passed 1,927 with one skip. Every platform passed ten real-wgpu tests,
+  profiles, Clockwork Arena, and Agent World Builder.
+- PR #89 had no review, comment, or thread. GitHub-verified squash
+  `d4cb4410d1dd9f684d3b169932ea3251801d3884` has sole parent exact M45
+  closeout, tree `a3774ff0846a099c2b821500a93fb3b387db2210` exactly equal to the
+  corrected head, and standalone DCO. No post-merge run was allocated; the
+  feature branch is deleted locally/remotely. No real tag/release rehearsal ran.
 
 ## M45 public release consumer-path integrity - complete
 

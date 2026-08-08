@@ -54,7 +54,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M43 published asset retrieval integrity | PR #80 corrected and passed bounded exact-ID retrieval, same-document byte revalidation, and the three-allocation hosted gate before verified squash integration |
 | Done | M44 published release attestation integrity | PR #83 passed exact-source SLSA provenance policy for every retrieved asset plus SPDX wheel-SBOM verification in three bounded hosted allocations, then squash-integrated with unchanged release authority |
 | Done | M45 public release consumer-path integrity | PR #86 passed credential-free exact-ID public document/assets, complete revalidation, installed release smoke, and the three-allocation hosted gate before verified squash integration |
-| In progress | M46 fresh-runner public consumer rehearsal | Separate read-only Linux job reuses the admitted same-workflow candidate, retrieves public bytes, and runs installed smoke without new release authority |
+| Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -577,6 +577,14 @@ publication authority, artifact-set, dependency, runtime, package, or public-
 API change. Same-workflow rehearsal is not independent/external or cross-
 platform evidence; a real pass remains unclaimed until an authorized signed-
 tag run.
+
+PR #89 corrected Bash 3.2 reuse-mode portability after the first hosted run
+blocked on macOS. Corrected run `31283211266` passed the exact three-allocation
+gate, including the macOS regression, complete compatibility, real-wgpu
+profiles/samples, reproducible distribution, installed wheel, and release
+smoke. Verified squash `d4cb4410d1dd9f684d3b169932ea3251801d3884`
+has the exact reviewed tree, sole M45-closeout parent, valid signature, and DCO;
+no post-merge run was allocated and the feature branch is deleted.
 
 ## Good-first contribution queue
 
