@@ -1,6 +1,6 @@
 # Project State
 
-## M41 in progress
+## M41 implementation complete
 
 M41 starts from exact clean synchronized M40 closeout commit
 `9983e0da88b6aef999d26498cc6438f0b3c5927b`. It closes the remaining private-
@@ -30,7 +30,16 @@ skips, and Python 3.13/3.14 each pass 1,820 with 13 expected skips. Real wgpu,
 profiles, vertical slices, reproducible distributions, installed-wheel smoke,
 complete release smoke, and exact synthetic draft verification pass. Workflow,
 runtime, metadata, dependency, lock, permission, and runner boundaries remain
-unchanged. Hosted validation, integration, and cleanup remain pending.
+unchanged.
+
+Ready PR #74 exact head `ec051d4fd2da80235da1a94642158ebe384cb2b0`
+passed run `31269399211` in exactly three allocations: Linux 6m55s,
+Windows 2m44s, and macOS 2m12s. No review, comment, or thread was present.
+Squash `89a641559c246e971869a3ae06a878de81bffcee` has sole parent the exact M40
+closeout, preserves reviewed tree `6446826ee0b35c02dcebc78b9fad3f55caaca0c5`,
+has a valid GitHub signature and standalone DCO trailer, and allocated no
+post-merge `main` run. The feature branch is deleted locally and remotely.
+Only the documentation-only integration and closeout records remain.
 
 ## M40 complete
 

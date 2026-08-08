@@ -49,7 +49,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M38 distribution reproducibility enforcement | PR #65 squash-integrated; corrected same-source wheel/sdist byte gate passed all three bounded hosted allocations with no new runner or publication authority |
 | Done | M39 release-tag integrity enforcement | PR #68 passed exact-head trusted tag identity/ancestry validation plus the three-allocation hosted gate, then squash-integrated with no new runner or publication authority |
 | Done | M40 draft-release asset integrity | PR #71 corrected pathological JSON failures after review, passed the exact draft-asset boundary in three bounded hosted allocations, and squash-integrated without new release authority |
-| In progress | M41 release-notes body integrity | Require the authenticated private draft body to exactly match bounded staged `RELEASE_NOTES.md` before publication |
+| Done | M41 release-notes body integrity | PR #74 passed exact source-body and asset verification in three bounded hosted allocations, then squash-integrated without workflow or release-authority change |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
