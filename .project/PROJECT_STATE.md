@@ -37,11 +37,25 @@ PR #68 squash `4e30b4bf3b911270ab4e1bd117d49ca0d090a0a7` has sole parent exact M
 closeout, tree `e08a1956e1b6ec9005b1455c5020ee716f6fbdef` exactly equal to the
 reviewed feature head, a valid GitHub signature, and a standalone DCO trailer.
 No post-merge `main` run was allocated, and the feature branch is deleted
-locally and remotely. M39 changes no CI workflow, runner/job/matrix count,
-action, permission, trigger, dependency, lock, package version, runtime/public
-API, attestation, tag, release, PyPI configuration, supported release policy,
-or deferred subsystem. The factual public integration record and zero-run
-closeout record remain before final clean-main closeout.
+locally and remotely. Public integration-record PR #69 changed exactly four
+Markdown paths. Run `31265044941` classified them as documentation and allocated
+only Linux job `93121720961`, which passed in 33 seconds; desktop umbrella
+`93121781802` skipped with no runner steps. No review, comment, or review thread
+was present. Record squash `166dcb2dc619dbc721207eece273c0fd9437f9ff` has sole
+parent the implementation squash, tree
+`1071165a0bf41397dfbeee38b09eee606299686e` exactly equal to the reviewed
+record head, a valid GitHub signature, and a standalone DCO trailer. It
+allocated no post-merge `main` run, and the record branch is deleted locally and
+remotely.
+
+M39 changes no CI workflow, runner/job/matrix count, action, permission,
+trigger, dependency, lock, package version, runtime/public API, attestation,
+tag, release, PyPI configuration, supported release policy, or deferred
+subsystem. Before creation of this `.project`-only closeout branch, clean
+synchronized `main` at `166dcb2dc619dbc721207eece273c0fd9437f9ff` was the only
+local and remote branch, no pull request was open, and full Git object checking
+passed. Only the zero-run closeout record, its squash audit, and final branch
+cleanup remain.
 
 ## M38 complete
 
