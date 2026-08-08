@@ -1,76 +1,71 @@
 # Current Task
 
-- **Task:** M33 - benchmark-regression-rate admission readiness
-- **Status:** Complete, locally and hosted validated, reviewed,
-  squash-integrated, and cleaned up on synchronized verified `main` commit
-  `0993c73b3290809ef4e0c36d64d39e5ee5891a9b`.
+- **Task:** M34 - agent-tool recovery-rate admission readiness and CI quota hardening
+- **Status:** Corrected locally after the initial hosted run and delayed review;
+  corrected-head hosted validation is pending on neutral feature branch
+  `evidence/m34-agent-tool-recovery`.
 - **Started:** 2026-08-08
-- **Base:** M32 implementation PR #52 and factual record PR #53 are
-  squash-integrated. Exact clean synchronized `main`, `origin/main`, and
-  `origin/HEAD` commit before branching was
-  `60ddf57216d1054ac44df8d834756312c3864e3e`; only `main` existed locally and
-  remotely.
-- **Outcome:** Make the design plan's next ordered longer-term metric—benchmark
-  regression rate—mechanically reportable from a complete reviewed controlled
-  paired-comparison cohort without changing benchmarks/CI, querying GitHub,
-  collecting telemetry, or inferring a zero rate from local timings, profiles,
-  or passing smokes.
+- **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
+  commit `d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. Only `main` existed locally
+  and remotely, no pull request was open, `git fsck --full --no-dangling`
+  passed, and the post-M33 main CI run `31226750474` passed all eight jobs.
+- **Outcome:** Make the design plan's next ordered longer-term metric—the
+  percentage of agent tool calls that complete without manual recovery—
+  mechanically reportable from a complete reviewed task-directed call cohort
+  without runtime instrumentation, private telemetry, provider queries, or a
+  fabricated result. Preserve the necessary eight-job hosted gate while
+  removing redundant post-merge and record-only runs.
 - **Acceptance gate:**
   - Add one strict reviewed manifest whose current evaluation-window set is
-    empty and whose exact 199 bytes and SHA-256 are pinned.
-  - Admit only registered M1-M4 `time.perf_counter_ns` workloads and exact
-    `p95_ns`; exclude M7 cProfile diagnostics from timing comparison.
-  - Require bounded chronological non-overlapping windows, a strictly later
-    observation cutoff, and a complete reviewed controlled-runner census.
-  - Bind each comparison to canonical run/job, distinct base/head revisions,
-    exact benchmark/workflow sources, frozen runner profile, environment
-    profile, result artifacts, and SHA-256 identities.
-  - Require reviewed eligibility, comparability, tolerance predeclaration,
-    outcome, provenance, validation, and cohort completeness.
-  - Classify exact integer p95 evidence with predeclared basis-point tolerance;
-    equality is stable and one unit above is regressed.
-  - Preserve stable, regressed, and not-executed outcomes; non-execution remains
-    counted and blocks rate publication.
-  - Preserve complete accepted history through an executable mandatory prefix
-    and exact whole-manifest digest.
-  - Emit only sanitized aggregate evidence and an exact rational rate after
-    complete admission; define no project-wide target, quality verdict, release
-    gate, guarantee, native decision, SLA, or support promise.
-  - Exercise source, isolated-wheel, and release-sample paths, accept RFC-0016,
-    and preserve runtime, benchmark, dependency, lock, version, and workflow
-    surfaces.
-- **Non-scope:** New benchmark targets/runners/workflows; runtime optimization;
-  Rust, PyO3, WASM, or other native code; GitHub discovery; telemetry;
-  benchmark or CI mutation; public API/export; persistent format/protocol;
-  dependencies/lock/version; providers; tags/releases/publication; performance
-  certification, guarantees, SLAs, or support policy.
+    empty and whose exact 195 bytes and SHA-256 are pinned.
+  - Admit only dispatched calls to the exact 12 product tool names under
+    `ludoweave.agent.service/1` in complete reviewed task-directed sessions.
+  - Fix eligibility before outcomes; exclude synthetic fixtures, conformance,
+    benchmark/CI contract exercises, maintainer-driven calls, and unreviewed or
+    private sessions.
+  - Bind immutable service-contract, call, terminal-result, and manual-recovery
+    evidence while requiring explicit privacy/consent review and excluding raw
+    session content from aggregate output.
+  - Preserve `completed-without-manual-recovery`,
+    `completed-after-manual-recovery`, `not-completed`, and
+    `terminal-unobserved`; known failures remain in the denominator and an
+    unobserved terminal state blocks rate publication.
+  - Require complete sequential per-session call indices, canonical order,
+    reviewed eligibility/task context/manual recovery/outcome/provenance/
+    validation, and complete accepted history.
+  - Emit only sanitized aggregate evidence and an exact integer
+    numerator/denominator rate after complete admission; define no success
+    target, verdict, guarantee, release gate, certification, SLA, or support
+    promise.
+  - Exercise source, isolated-wheel, and release-sample paths and accept
+    RFC-0017 without changing runtime, public API, protocol, dependency, lock,
+    version, or release workflow surfaces.
+  - Keep the existing eight substantive CI jobs, trigger them only for pull
+    requests with changes outside `.project/**`, and remove the redundant
+    `push: main` run.
+- **Non-scope:** Runtime logging or telemetry; provider/session discovery;
+  prompts, private correspondence, usernames, credentials, world content,
+  environment/path collection; new tools/protocols; runtime/API/format changes;
+  dependencies/lock/version; job removal; releases/publication; reliability or
+  support claims; Rust, PyO3, WASM, networking, editor, physics, or 3D work.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1` and
   stability labels remain unchanged.
-- **Baseline evidence:** Repository/history audit was clean at exact base. The
-  sandbox blocked the GitHub API open-PR query; it will be repeated with network
-  access before publication. `uv lock --check` resolved the unchanged
-  46-package lock. A first focused command used stale benchmark-test filenames
-  and collected no tests; the corrected baseline passed 86 inherited
-  M32/benchmark/release tests with one graphics-capability skip in 5.10 seconds.
+- **Baseline evidence:** Repository/history/branch audit was clean at the exact
+  base. GitHub reported no open pull request and no branch protection. The
+  latest main run completed successfully across the eight existing jobs. A
+  focused inherited agent-service/conformance/M33 boundary baseline passed 47
+  tests. The first sandboxed uv command could not access the user cache; the
+  same command ran successfully with the existing managed cache outside the
+  sandbox.
 - **Current evidence:** The exact empty manifest has SHA-256
-  `720ae794e2a4ba76303196cd43d6ba0f3b21f81cffd4fa8584f526e2a0d48dca`.
+  `e952c045b039055e8439069cf88176b6ac1d2ad7de49a94d39b2737e5d06e1d5`.
   Its evaluator emits deterministic path-free `not-ready` evidence with zero
-  windows/comparisons and no rate. All 44 adversarial evaluator tests pass.
-  Packaging wiring plus strict Pyright, Ruff, and 59 focused tests pass. Strict
-  docs and whitespace pass. The first complete suite found one inherited M32
-  wording regression after 1,555 passes; the exact phrase was restored, 70
-  M32/M33 contract tests passed, and the corrected complete suite passed 1,556
-  tests with nine skips in 95.10 seconds. Pure build, isolated-wheel smoke, a
-  fresh ten-artifact release smoke, all documented M1-M4 benchmark validators,
-  both M7 profile validators, ten real-wgpu tests, and both graphics vertical
-  slices pass. Protected surfaces are unchanged and artifact/security audits
-  pass. The local benchmark/profile outputs are not admitted rate evidence.
-- **Integration evidence:** Ready PR #54 exact head
-  `3bd7e17eed26028592cb39d37e77e15c6f4371f1` passed all eight essential jobs
-  in run `31225942698`; GitHub reported no comment, review, or review thread and
-  the PR was mergeable/clean. It squash-integrated as GitHub-verified commit
-  `0993c73b3290809ef4e0c36d64d39e5ee5891a9b` with sole parent
-  `60ddf57216d1054ac44df8d834756312c3864e3e`, exact validated tree
-  `0db61d87fed781f3cc6ffbeac1b3743f32a81ca2`, and DCO trailer. The temporary
-  feature branch is deleted locally/remotely; this documentation-only
-  integration-record branch and PR remain pending until their own gate passes.
+  windows/calls and no rate. Findings-first review added explicit per-window and
+  per-call privacy/consent admission and found no remaining issue. The complete
+  suite passes 1,625 tests with nine skips; all static/docs gates, universal
+  build, isolated wheel/release smoke, ten real-wgpu tests, graphics profile,
+  both vertical slices, and final scope/security/artifact audits pass. Initial
+  hosted run `31228373123` exposed one POSIX traceback disclosure and delayed
+  review found one excessive-nesting exception escape. Both have focused
+  regressions and pass the corrected complete local gate. Corrected-head hosted
+  validation, review closure, and integration are pending.

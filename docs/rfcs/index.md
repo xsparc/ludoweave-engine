@@ -21,3 +21,4 @@ was adopted.
 - [RFC-0014: response and review latency admission readiness](0014-response-review-latency-admission-readiness.md)
 - [RFC-0015: replay-divergence-rate admission readiness](0015-replay-divergence-rate-admission-readiness.md)
 - [RFC-0016: benchmark-regression-rate admission readiness](0016-benchmark-regression-rate-admission-readiness.md)
+- [RFC-0017: agent-tool recovery-rate admission readiness](0017-agent-tool-recovery-rate-admission-readiness.md)

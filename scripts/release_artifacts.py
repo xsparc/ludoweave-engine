@@ -14,6 +14,7 @@ from typing import cast
 
 _SAMPLE_FILES = (
     "README.md",
+    "agent_tool_recovery_rate_readiness.py",
     "agent_tool_conformance.py",
     "agent_world_builder.py",
     "alpha_acceptance.py",
@@ -144,6 +145,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         for source in sorted((sample_root / "assets").rglob("*"))
     )
     fixture_root = root / "tests" / "fixtures"
+    sources.append(
+        (
+            fixture_root / "agent_tool_recovery_rate.json",
+            Path("assets/agent_tool_recovery_rate.json"),
+        )
+    )
     sources.append(
         (
             fixture_root / "benchmark_regression_rate.json",

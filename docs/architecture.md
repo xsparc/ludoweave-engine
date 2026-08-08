@@ -854,6 +854,39 @@ runtime/benchmark implementation, optimization, API, format, dependency,
 lockfile, version, workflow, telemetry, provider, native/WASM boundary,
 publication, performance target, reliability promise, or support policy.
 
+## M34 agent-tool recovery-rate boundary
+
+M34 adds no engine or agent module. One explicitly invoked example reads a
+selected reviewed manifest outside `src/ludoweave` and emits sanitized
+aggregate recovery-rate readiness evidence. The runtime package and agent
+service never load the manifest or evaluator.
+
+A future window must contain every dispatched call from a complete reviewed
+cohort of eligible task-directed software-agent sessions. Calls are restricted
+to the exact 12 names in `ludoweave.agent.service/1` and bind immutable service-
+contract, dispatch, terminal-result, and recovery evidence. Synthetic fixtures,
+conformance runs, benchmarks, CI contract exercises, maintainer-invoked calls,
+and unreviewed/private sessions are ineligible. Human review owns session and
+call eligibility, census completeness, task context, manual-recovery status,
+outcome, provenance, and validation.
+
+Outcomes are exactly `completed-without-manual-recovery`,
+`completed-after-manual-recovery`, `not-completed`, or `terminal-unobserved`.
+Known failures remain in the denominator. Missing terminal evidence remains
+counted and blocks publication. Only exact reviewed manifest identity and
+complete mandatory history expose admitted counts. A rate additionally
+requires a non-empty cohort with no unobserved terminal state and is emitted
+only as an exact integer numerator and denominator.
+
+The current 195-byte manifest contains no windows, so the deterministic result
+is `not-ready` and no call count or recovery-free completion rate is exposed.
+Reports omit sessions, adapter IDs, tool names, revisions, timestamps, prompts,
+arguments, results, errors, evidence locations, paths, and environment values.
+M34 adds no runtime/API/protocol/format/dependency/version/telemetry/provider or
+release change. Its only workflow change retains the eight existing essential
+jobs while limiting them to substantive pull requests, excluding redundant
+post-merge and `.project/**`-only runs.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -892,7 +925,9 @@ latency admission readiness, retains its empty-manifest result, and defines no
 SLA. M32 adds only offline CI replay-divergence-rate admission readiness,
 retains its empty-manifest result, and exposes no measured rate. M33 adds only
 offline benchmark-regression-rate admission readiness, retains its empty-
-manifest result, and exposes no measured rate. None supplies actual cross-
+manifest result, and exposes no measured rate. M34 adds only offline agent-tool
+recovery-rate admission readiness, retains its empty-manifest result, and
+exposes no measured rate. None supplies actual cross-
 version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.

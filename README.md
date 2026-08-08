@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M32 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 adds strict benchmark-regression-rate admission machinery while retaining its empty reviewed comparison manifest and no measured regression rate. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M33 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 adds strict agent-tool recovery-rate admission machinery while retaining its empty reviewed call manifest and no measured recovery-free completion rate. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -82,6 +82,8 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   whose empty reviewed manifest keeps all counts and latency aggregates absent.
 - A strict controlled benchmark-regression-rate admission harness whose empty
   reviewed manifest keeps all comparison counts and rate absent.
+- A strict agent-tool recovery-rate admission harness whose empty reviewed
+  agent-tool call manifest keeps all call counts and recovery-free rate absent.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -131,6 +133,7 @@ uv run python examples/installation_matrix_readiness.py
 uv run python examples/response_review_latency_readiness.py
 uv run python examples/replay_divergence_rate_readiness.py
 uv run python examples/benchmark_regression_rate_readiness.py
+uv run python examples/agent_tool_recovery_rate_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
@@ -271,6 +274,11 @@ The [benchmark-regression-rate readiness guide](docs/benchmark-regression-rate-r
 documents M33's registered paired-benchmark cohort, controlled-comparability,
 predeclared integer tolerance, non-execution, and history gates while retaining
 the current empty reviewed comparison manifest and no measured regression rate.
+The [agent-tool recovery-rate readiness guide](docs/agent-tool-recovery-rate-readiness.md)
+documents M34's complete task-directed call cohort, exact manual-recovery
+definition, terminal-evidence and history gates while retaining the current
+empty reviewed agent-tool call manifest and no measured recovery-free
+completion rate.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly
@@ -325,6 +333,9 @@ installed-wheel, and release gate; four compatibility jobs spanning CPython
 Windows, and macOS. The pure universal wheel is smoke-tested once rather than
 rebuilding the same artifact three times, provider tests run only in jobs with
 the required graphics runtime, and superseded runs are cancelled automatically.
+The gate runs only for substantive pull requests: a validated tree is not run
+again after merge to unprotected `main`, and `.project/**`-only factual record
+pull requests consume no hosted runner quota.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

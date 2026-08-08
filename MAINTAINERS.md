@@ -42,6 +42,28 @@ claims.
 
 ## Current boundary
 
+M34 adds strict offline agent-tool recovery-rate admission readiness for the
+next longer-term metric in the design plan. The reviewed manifest is empty, so
+its window and call counts remain zero, its exact rational rate is absent, and
+no recovery-free, reliability, quality, release-gate, certification, SLA, or
+support result may be claimed. Manual review, not evaluator logic, owns the
+complete task-directed session census, call eligibility, task context, manual-
+recovery status, outcome, provenance, and validation. Known failures and calls
+completed after recovery remain in the denominator; `terminal-unobserved`
+blocks publication. M34 may add only frozen data evidence, an explicitly
+invoked evaluator/validator, synthetic gate tests, RFC/docs, and source/wheel/
+release-sample artifact smoke. It may not query providers, collect telemetry,
+expose private session content, or change runtime source, agent tools,
+protocols, APIs/exports, formats, dependencies, lock, version, release
+workflow, native/WASM boundaries, tag, publication, certification, stability
+label, success target, SLA, or support policy. The only CI change keeps all
+eight essential jobs and limits them to one substantive pull-request run,
+excluding duplicate post-merge and `.project/**`-only runs. M0 through M33 are
+complete, reviewed, hosted-CI validated, and integrated into `main`. M34 starts
+from exact verified M33 integration-record commit
+`d12c30a02782c0ebf892e27c5daf6e9fec1c93ee` and contains no subsequent
+milestone.
+
 M33 adds only strict offline benchmark-regression-rate admission readiness for
 the next longer-term metric in the design plan. The reviewed manifest is empty,
 so its window and comparison counts remain zero, its exact rational rate is

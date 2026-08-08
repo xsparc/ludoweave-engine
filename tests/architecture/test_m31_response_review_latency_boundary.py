@@ -123,7 +123,7 @@ def test_import_scan_detects_nested_forbidden_fixtures(tmp_path: Path, source: s
     assert _forbidden(_imports(fixture))
 
 
-def test_m31_adds_no_runtime_export_dependency_version_workflow_or_provider() -> None:
+def test_m31_adds_no_runtime_export_dependency_version_release_or_provider() -> None:
     document = tomllib.loads((_ROOT / "pyproject.toml").read_text(encoding="utf-8"))
     project = cast(dict[str, object], document["project"])
 
@@ -133,9 +133,6 @@ def test_m31_adds_no_runtime_export_dependency_version_workflow_or_provider() ->
     assert "ResponseReviewLatency" not in ludoweave.__all__
     assert not any(
         "response_review_latency" in path.name for path in (_ROOT / "src/ludoweave").rglob("*")
-    )
-    assert hashlib.sha256((_ROOT / ".github/workflows/ci.yml").read_bytes()).hexdigest() == (
-        "06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21"
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
         "d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8"

@@ -15,6 +15,7 @@ from collections.abc import Iterable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import cast
 
+from agent_tool_recovery_rate_evidence import validate_agent_tool_recovery_rate_evidence
 from benchmark_regression_rate_evidence import validate_benchmark_regression_rate_evidence
 from command_receipt_stability_evidence import validate_command_receipt_stability_evidence
 from constrained_3d_evidence import validate_constrained_3d_evidence
@@ -275,6 +276,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(benchmark_regression_rate_result.stdout)
         )
         validate_benchmark_regression_rate_evidence(benchmark_regression_rate, version=version)
+        agent_tool_recovery_rate_result = _run(
+            [str(python), "-I", "agent_tool_recovery_rate_readiness.py"],
+            cwd=sample_root,
+        )
+        agent_tool_recovery_rate = cast(
+            dict[str, object], json.loads(agent_tool_recovery_rate_result.stdout)
+        )
+        validate_agent_tool_recovery_rate_evidence(agent_tool_recovery_rate, version=version)
         external_sample_game_result = _run(
             [str(python), "-I", "external_sample_game_adoption_readiness.py"],
             cwd=sample_root,
@@ -350,6 +359,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
     root = output / expected_root
     required = {
         "README.md",
+        "agent_tool_recovery_rate_readiness.py",
         "agent_tool_conformance.py",
         "alpha_acceptance.py",
         "benchmark_regression_rate_readiness.py",

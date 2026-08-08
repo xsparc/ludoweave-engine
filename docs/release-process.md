@@ -74,6 +74,13 @@ benchmark cohort, measured regression rate, performance result, native-code
 decision, or release gate. See the
 [benchmark-regression-rate readiness guide](benchmark-regression-rate-readiness.md).
 
+M34/RFC-0017 adds the empty reviewed agent-tool recovery-rate fixture and
+evaluator to the deterministic sample bundle. Release smoke proves only that
+the installed offline evidence path works; it is not a task-directed
+operational cohort, measured recovery-free completion rate, reliability
+result, provider certification, or release gate. See the
+[agent-tool recovery-rate readiness guide](agent-tool-recovery-rate-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official
