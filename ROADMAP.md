@@ -48,7 +48,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M37 CI change qualification | PR #62 squash-integrated; corrected substantive run `31259200818` passed fail-closed trusted-base classification, the three-allocation M36 gate, Linux-before-desktop qualification, and RFC-0020 |
 | Done | M38 distribution reproducibility enforcement | PR #65 squash-integrated; corrected same-source wheel/sdist byte gate passed all three bounded hosted allocations with no new runner or publication authority |
 | Done | M39 release-tag integrity enforcement | PR #68 passed exact-head trusted tag identity/ancestry validation plus the three-allocation hosted gate, then squash-integrated with no new runner or publication authority |
-| In progress | M40 draft-release asset integrity | Require the exact GitHub-reported draft asset set, upload state, byte sizes, and SHA-256 digests to match local staging before publication |
+| Done | M40 draft-release asset integrity | PR #71 corrected pathological JSON failures after review, passed the exact draft-asset boundary in three bounded hosted allocations, and squash-integrated without new release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -483,6 +483,15 @@ only when the exact tag/title/state and every uploaded asset name, size, and
 SHA-256 digest match local staging. The slice adds no runner, action,
 permission, trigger, dependency, tag, release, credential, or publication
 authority and does not enable the separate immutable-release repository setting.
+
+PR #71 corrected a review finding so pathological JSON nesting and overlong
+integers also fail through the structured validator contract. Corrected head
+`967147b3bbc83414d0ce303845975dea0c4e9d26` passed exactly three hosted
+allocations, then squash-integrated as
+`e9d9850e11f572a1d4ddc78d06c79b23a5584f87`. The squash tree exactly matches
+the reviewed head, its sole parent is the M39 closeout, its GitHub signature and
+DCO trailer are valid, no `main` run was allocated, and the feature branch is
+deleted locally and remotely.
 
 ## Good-first contribution queue
 

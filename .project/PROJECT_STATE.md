@@ -1,6 +1,6 @@
 # Project State
 
-## M40 in progress
+## M40 complete
 
 M40 starts from exact clean synchronized M39 closeout commit
 `49fba13477890bf6bf1c9e6a645e669b3a69492f`. It makes the existing GitHub
@@ -40,9 +40,18 @@ subsystem. Final recorded-tree static, architecture, docs, and complete Python
 hosted allocations, but review correctly found that pathological JSON nesting
 and overlong integers could escape as unstructured parser exceptions. No merge
 is claimed for that head. The parser correction and both pathological-input
-regressions now pass focused static/behavior checks, the complete architecture
-gate, strict docs, and all 1,818 Python 3.12 tests. Corrected exact-commit and
-hosted validation, integration, and cleanup remain pending.
+regressions pass focused static/behavior checks, the complete architecture gate,
+strict docs, and all 1,818 Python 3.12 tests.
+
+Corrected head `967147b3bbc83414d0ce303845975dea0c4e9d26` passed exact run
+`31267396755` in three allocations: Linux 6m43s, macOS 2m51s, and Windows
+3m35s. The resolved review thread is outdated and no unresolved thread remains.
+Squash `e9d9850e11f572a1d4ddc78d06c79b23a5584f87` has sole parent the exact M39
+closeout, tree `974b790ab2d925562185c2c18707f3878b0e7bdd` exactly equal to the
+reviewed head, a valid GitHub signature, and standalone DCO trailer. It
+allocated no `main` run. The feature branch is deleted locally/remotely; clean
+synchronized `main` is the sole branch, no PR, tag, or release is open/present,
+and full Git object checking passes.
 
 ## M39 complete
 

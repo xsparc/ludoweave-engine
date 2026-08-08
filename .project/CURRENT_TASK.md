@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M40 - draft-release asset integrity
-- **Status:** The initial exact-head review finding is corrected and fully
-  validated locally on `release/m40-draft-assets`; preparing a correction
-  commit and hosted rerun. The passing initial hosted head will not merge.
+- **Status:** Implementation and correction are hosted-validated and
+  squash-integrated; publishing the documentation-only integration record on
+  `records/m40-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -38,10 +38,11 @@
   or public API; persistent formats/protocols; package version/dependency/lock;
   platform/version support; attestation changes; deferred runtime subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** Complete Python 3.12 passes 1,818 tests with 12 expected
-  skips; Python 3.13 and 3.14 each pass 1,808 with 13 expected skips. Real-wgpu,
-  both profiles, both vertical samples, deterministic two-build comparison,
-  installed-wheel smoke, ten-artifact release smoke, and exact real-staging
-  synthetic-draft verification pass. Findings-first review corrected the draft
-  lookup to fetch the authenticated numeric release ID and found no remaining
-  scope, credential, archive, native, runtime, dependency, lock, or CI drift.
+- **Current evidence:** Corrected exact head
+  `967147b3bbc83414d0ce303845975dea0c4e9d26` passed run `31267396755` in
+  exactly three allocations: Linux 6m43s, macOS 2m51s, and Windows 3m35s. The
+  sole review thread is resolved and outdated. Squash
+  `e9d9850e11f572a1d4ddc78d06c79b23a5584f87` preserves the reviewed tree,
+  exact base parent, valid GitHub signature, and standalone DCO trailer. No
+  `main` run was allocated, and only clean synchronized `main` remained before
+  this record branch.
