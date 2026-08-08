@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M40 - draft-release asset integrity
-- **Status:** Implementation and correction are hosted-validated and
-  squash-integrated; publishing the documentation-only integration record on
-  `records/m40-integration`.
+- **Status:** Implementation and integration record are squash-integrated;
+  publishing the zero-run closeout record on `records/m40-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -44,5 +43,9 @@
   sole review thread is resolved and outdated. Squash
   `e9d9850e11f572a1d4ddc78d06c79b23a5584f87` preserves the reviewed tree,
   exact base parent, valid GitHub signature, and standalone DCO trailer. No
-  `main` run was allocated, and only clean synchronized `main` remained before
-  this record branch.
+  `main` run was allocated. Integration record PR #72 passed its one 35-second
+  Linux documentation allocation while the desktop umbrella skipped with zero
+  steps, then squash-integrated as
+  `67d03d41430dc24bf81a894752b3641de8e521ed` with the same tree, parent,
+  signature, DCO, and zero-`main`-run guarantees. Only clean synchronized
+  `main` remained before this closeout branch.
