@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M43 - published asset retrieval integrity
-- **Status:** Feature implementation is squash-integrated through PR #80;
-  publishing the documentation-only integration record on
-  `records/m43-integration`.
+- **Status:** Feature and documentation-only integration record are
+  squash-integrated; publishing the final zero-run closeout record on
+  `records/m43-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -82,5 +82,13 @@
   closeout, preserves reviewed tree
   `6c5ed36a8454a3ab16fec82152df13038c41ce84`, has a valid GitHub signature and
   standalone DCO trailer, and allocated no post-merge `main` run. The feature
-  branch is deleted locally and remotely. Only the documentation-only
-  integration record and zero-run closeout record remain.
+  branch is deleted locally and remotely. Integration-record PR #81 exact head
+  `3350a8eb59fae09cd0764a400540d0d51722866e` classified four paths as
+  documentation and passed run `31275425828` in one 33-second Linux
+  allocation; the desktop umbrella skipped with zero steps and no runner. It
+  had no review, comment, or thread. Squash
+  `deab03fd1f01c3baea8c55494ec1205f53495417` has sole parent the feature
+  squash, preserves reviewed tree
+  `0725d4a05a2033b868e44b050d58023b4cdb61e3`, has a valid GitHub signature and
+  standalone DCO trailer, and allocated no post-merge `main` run. Its branch is
+  deleted locally and remotely. Only this zero-run closeout record remains.

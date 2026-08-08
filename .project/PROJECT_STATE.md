@@ -1,6 +1,6 @@
 # Project State
 
-## M43 integration in progress
+## M43 complete
 
 M43 starts from exact clean synchronized M42 closeout commit
 `2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`. It closes the remaining gap
@@ -56,7 +56,18 @@ local/hosted evidence, then resolved. GitHub reported PR #80 `MERGEABLE` and
 corrected head, a valid GitHub signature, and a standalone DCO trailer. No
 post-merge `main` run was allocated. The feature branch is deleted locally and
 remotely; synchronized `main` was the sole branch before this record branch.
-The documentation-only integration record and zero-run closeout remain.
+Documentation-only integration-record PR #81 exact head
+`3350a8eb59fae09cd0764a400540d0d51722866e` classified four paths as
+documentation. Run `31275425828` allocated only Linux job `93148087116`, which
+passed in 33 seconds with the unchanged lock, static/docs gate, all 361
+architecture tests, universal build, isolated-wheel smoke, and complete release
+smoke. Desktop umbrella job `93148143924` skipped with zero steps and no runner.
+No review, comment, or thread was present. Squash
+`deab03fd1f01c3baea8c55494ec1205f53495417` has sole parent the feature squash,
+tree `0725d4a05a2033b868e44b050d58023b4cdb61e3` exactly equal to the reviewed
+record head, a valid GitHub signature, and a standalone DCO trailer. No post-
+merge `main` run was allocated. The record branch is deleted locally and
+remotely; only the final `.project/**` closeout record remains.
 
 ## M42 complete
 
