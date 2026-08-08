@@ -1,58 +1,62 @@
 # Current Task
 
-- **Task:** M36 - CI runner consolidation without validation-slice loss
-- **Status:** Complete. Feature PR #60 is squash-integrated on `main`, and the
-  temporary feature branch is deleted locally and remotely.
+- **Task:** M37 - fail-closed CI change qualification
+- **Status:** In progress on `maintenance/m37-ci-change-qualification`.
 - **Started:** 2026-08-08
+- **Authority:** The standing maintainer instruction requires only necessary,
+  vital hosted checks and authorizes subsequent fully validated milestone PRs.
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `ba9125389ab2b2b760ca7115b5b1b03c447f4190`. Only `main` existed locally
+  commit `46ef98447706c94763a236841a38c2dbb5b444ca`. Only `main` existed locally
   and remotely, no pull request was open, and `git fsck --full --no-dangling`
-  passed. M35 feature run `31231410432` passed all eight allocations; its
+  passed. M36 feature run `31232803658` passed exactly three allocations; its
   feature and zero-run record PRs are squash-integrated.
-- **Outcome:** Reduce per-pull-request runner allocations and repeated setup
-  from eight to three while preserving every existing validation slice and all
-  security, trigger, version, platform, graphics, and distribution boundaries.
+- **Outcome:** Use one existing Linux allocation to qualify pull-request
+  changes, retain one bounded Linux gate for documentation-only work, preserve
+  the complete three-allocation M36 gate for substantive work, and avoid two
+  desktop allocations when Linux qualification or validation fails.
 - **Acceptance gate:**
-  - Allocate exactly one Ubuntu runner and a two-entry Windows/macOS desktop
-    matrix: three hosted allocations total instead of eight.
-  - Preserve Ubuntu CPython 3.12 quality, non-provider tests, docs, base profile,
-    build, isolated-wheel smoke, and release smoke.
-  - Preserve full compatibility tests on Ubuntu 3.13/3.14 and Windows/macOS
-    3.14 using explicit managed-Python environment transitions.
-  - Preserve real-graphics tests, graphics profile, Clockwork Arena, and Agent
-    World Builder on CPython 3.12 across Ubuntu, Windows, and macOS.
-  - Retain pull-request-only and `.project/**` exclusions, `contents: read`,
-    exact action/uv pins, disabled checkout credentials, cache, timeouts,
-    desktop fail-fast isolation, and superseded-run cancellation.
-  - Add architecture tests proving allocation count, every retained slice,
-    security/trigger invariants, and unchanged runtime/release surfaces.
-  - Accept RFC-0019 and align the smallest authoritative maintenance docs.
-- **Non-scope:** Removing or weakening a validation slice; changing test
-  behavior; runtime/API/protocol/format changes; dependencies, lock, package
-  version, release workflow, tag/publication, provider admission, support
-  policy, or any deferred engine subsystem.
+  - Load the classifier from the exact pull-request base revision rather than
+    the candidate copy; first introduction and missing policy are substantive.
+  - Admit only root Markdown, Markdown below `docs/` and `.project/`, issue
+    forms, the pull-request template, and labels as documentation-only;
+    `mkdocs.yml` and non-Markdown documentation inputs remain substantive.
+  - Treat empty, mixed, ambiguous, invalid, undecodable, and unknown changes as
+    substantive or fail the Linux job.
+  - Keep lock, formatting/lint, strict docs, all architecture tests, universal
+    build, isolated-wheel smoke, and release-candidate smoke in the one-
+    allocation documentation gate.
+  - Keep all eight M36 Python/platform/graphics/distribution slices in exactly
+    three allocations for substantive changes.
+  - Make Windows/macOS depend on successful Linux qualification and run only
+    for `substantive=true`, while retaining desktop matrix isolation.
+  - Preserve pull-request-only and `.project/**` exclusions, `contents: read`,
+    exact pins, disabled checkout credentials, cache, timeouts, and cancellation.
+  - Add strict classifier unit/integration tests, workflow architecture tests,
+    RFC-0020, and aligned public/project documentation.
+  - Hosted-prove three allocations on the substantive feature PR, then one
+    Linux allocation and two successful conditional skips on the public
+    documentation/status record PR.
+- **Non-scope:** Removing a substantive validation slice; altering runtime or
+  test behavior; dependencies, lock, package version, release workflow, tag,
+  publication, branch protection, required-check settings, external evidence,
+  provider admission, certification, support policy, or a deferred subsystem.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Baseline evidence:** The current workflow expands three YAML job definitions
-  into eight runner allocations and repeats checkout/setup eight times. Exact
-  M35 run `31231410432` passed all slices. Twenty-five inherited M34/M35
-  workflow-boundary tests passed in 0.64 seconds. The first sandboxed lock
-  check could not read the managed uv cache; the corrected check resolved the
-  unchanged 46-package lock. CPython 3.12, 3.13, and 3.14 are locally present.
-- **Final evidence:** The workflow has one Ubuntu job and a two-entry desktop
-  matrix. Ubuntu sequentially owns quality/distribution, 3.12 graphics, and
-  3.13/3.14 compatibility; each desktop runner owns 3.12 graphics then 3.14
-  compatibility. Exact local transitions pass 1,714 tests on both 3.13 and
-  3.14; restored 3.12 passes 1,724 tests with nine skips. Whole-tree static/
-  docs, YAML parsing, 34 focused workflow/release tests, universal build,
-  isolated wheel/release smoke, real-wgpu/profile, and both vertical slices
-  pass. Findings-first review moved later-interpreter installation before
-  expensive work and found no remaining issue. Scope/security audit passes and
-  the final implementation-tree 3.12 suite passes 1,724 tests with nine skips.
-  Only factual `.project/**` rows followed. Pull-request run `31232803658`
-  passed exactly three hosted allocations on exact feature head
-  `38589bbe6b4c688b581bc972f0ba1e4e39d5cd93`: Linux in 6m36s, Windows in
-  3m32s, and macOS in 2m16s. Every retained step passed. GitHub reported PR
-  #60 mergeable and clean with no comment, review, or review thread. Its exact
-  tree squash-integrated as verified DCO commit
-  `0b8b39052d79ee9c8a2f909f8ac70045adf5a785`; no redundant `main` run was
-  scheduled.
+- **Baseline evidence:** The first sandboxed `uv lock --check` could not read
+  the managed cache; the approved identical check resolved the unchanged 46-
+  package lock. All 34 inherited M34-M36 workflow/release boundary tests pass
+  in 1.41 seconds. The official GitHub direction scan records that conditionally
+  skipped jobs report success, `needs` gates dependent jobs, and path-skipped
+  workflows can leave required checks pending.
+- **Current evidence:** The hardened classifier has 30 passing tests, including
+  a real temporary Git repository, NUL-safe spaced path, fail-closed empty/
+  mixed inputs, narrow allowlist, and invalid-revision option-injection
+  regression. Review found and closed one valid bypass: `docs/**` plus
+  `mkdocs.yml` could admit executable hooks, so only Markdown documentation is
+  now admitted and documentation configuration is substantive. The exact no-
+  graphics documentation lane passes lock/static/docs, 334 architecture tests,
+  build, wheel, and release smoke. The final 3.12 suite passes 1,760 tests with
+  nine skips; earlier complete 3.13/3.14 suites pass 1,745 with ten skips each,
+  and the correction's 36 focused tests pass on both. Whole-tree static/docs,
+  YAML, real-wgpu, profiles, both vertical slices, rebuilt wheel, and fresh
+  release smoke pass. Hosted substantive and documentation-lane proof remain
+  pending.

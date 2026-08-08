@@ -941,6 +941,31 @@ request only, least privilege, pinned, cached, bounded, credential-free, and
 cancelable. M36 changes no test scope, runtime, dependency, lockfile, package,
 release workflow, or supported platform/version contract.
 
+## M37 CI change-qualification boundary
+
+M37 classifies the exact pull-request three-dot diff inside the existing Linux
+job. The classifier is loaded from the exact base revision, so the candidate
+diff cannot change the policy used to classify itself. Missing policy, empty or
+invalid input, unrecognized paths, decoding failure, and Git failure are
+substantive or block the Linux gate; none can silently select a smaller gate.
+
+Documentation-only means root Markdown, Markdown below `docs/` and `.project/`,
+and the bounded issue/pull-request metadata files named by RFC-0020. `mkdocs.yml`
+and non-Markdown files remain substantive so executable hooks cannot enter
+through the smaller gate. One Linux
+allocation still performs lock, formatting/lint, strict docs, architecture,
+build, installed-wheel, and release-candidate checks. Those checks protect the
+package metadata and release bundle that include documentation.
+
+Every other change is substantive. The existing Linux job performs its full
+M36 quality/distribution/graphics/CPython 3.12-3.14 slices before the dependent
+Windows/macOS matrix starts. The two desktop jobs run only for a successful
+`substantive=true` Linux result. This preserves all eight slices and three-
+allocation ceiling for substantive work, avoids desktop allocation after an
+early Linux failure, and trades additional wall time for lower avoidable quota.
+Workflow triggers, privileges, pins, credentials, cache, timeouts, runtime,
+dependencies, lock, release workflow, and supported versions remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

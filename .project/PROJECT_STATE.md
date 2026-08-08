@@ -1,5 +1,30 @@
 # Project State
 
+## M37 in progress
+
+M37 starts from exact clean synchronized M36 integration-record commit
+`46ef98447706c94763a236841a38c2dbb5b444ca`. Its bounded outcome is fail-closed
+change qualification inside the existing Linux CI allocation. A classifier
+loaded from the exact base revision admits only a narrow documentation/community
+path set; empty, mixed, ambiguous, invalid, unknown, or indeterminate input is
+substantive or blocks the Linux gate. Documentation-only work retains one Linux
+lock/static/docs/architecture/build/wheel/release allocation. Substantive work
+retains all eight M36 slices and three allocations, with Windows/macOS gated on
+successful Linux `substantive=true` output.
+
+The hardened classifier implementation and strict tests exist on
+`maintenance/m37-ci-change-qualification`. RFC-0020 and public architecture,
+maintenance, roadmap, changelog, and README contracts describe the policy and
+tradeoff. M37 changes no runtime, test behavior, dependency, lock, package
+version, release workflow, supported platform/version, tag, publication,
+provider, certification, or support policy. Findings-first review closed one
+valid hook-policy bypass by restricting `docs/`/`.project/` to Markdown and
+making `mkdocs.yml` substantive. The exact no-graphics documentation lane,
+complete 3.12-3.14 suites, post-correction cross-version focus, static/docs/
+YAML, real-wgpu/profile/vertical-slice, and final artifact gates pass. Hosted
+substantive proof, hosted documentation-only proof, integration, and branch
+cleanup remain pending.
+
 ## M36 complete
 
 M36 starts from exact clean synchronized M35 integration-record commit

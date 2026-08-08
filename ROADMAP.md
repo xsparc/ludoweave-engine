@@ -44,7 +44,8 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M33 benchmark-regression-rate admission readiness | PR #54 squash-integrated; strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0016, and all eight essential hosted jobs passed |
 | Done | M34 agent-tool recovery-rate admission readiness | PR #56 squash-integrated; strict empty reviewed task-directed call manifest, complete cohort and terminal-evidence preservation, exact rational rate, installed artifact smoke, RFC-0017, and one substantive pull-request CI gate |
 | Done | M35 third-party conformance-adoption readiness | PR #58 squash-integrated; strict empty reviewed project-accepted submission census, exact existing profile registry, failure/non-execution preservation, zero current count, installed artifact smoke, and RFC-0018 |
-| Implemented for M36 | M36 CI runner consolidation | Preserve all eight Python/platform/graphics/distribution validation slices in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
+| Done | M36 CI runner consolidation | PR #60 squash-integrated; all eight Python/platform/graphics/distribution slices passed in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
+| Implemented for M37 | M37 CI change qualification | Fail-closed trusted-base classification, one Linux documentation-only gate, three-allocation substantive gate, Linux-before-desktop qualification, and RFC-0020 |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -412,6 +413,16 @@ It retains PR-only and `.project/**` exclusions, least privilege, exact pins,
 caching, timeouts, fail-fast isolation across desktop OSes, and cancellation of
 superseded runs. M36 changes no runtime, API, protocol, format, dependency,
 lock, version, release workflow, tag, publication, or support policy.
+
+M37 starts from verified M36 integration-record commit
+`46ef98447706c94763a236841a38c2dbb5b444ca`. It keeps the pull-request workflow
+visible while using the exact base-revision classifier to distinguish a narrow
+documentation-only path set from substantive work. Documentation-only changes
+retain one Linux lock/static/docs/architecture/build/wheel/release allocation.
+Substantive and indeterminate changes retain or fail into the complete three-
+allocation M36 gate, and Windows/macOS wait for successful Linux qualification.
+M37 changes no runtime, test behavior, dependency, lock, package version,
+release workflow, tag, publication, or support policy.
 
 ## Good-first contribution queue
 
