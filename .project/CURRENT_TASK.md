@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M41 - release-notes body integrity
-- **Status:** Locally validated on `release/m41-notes-integrity`; publication
-  and hosted validation are pending.
+- **Status:** Implementation squash-integrated; publishing the documentation-
+  only integration record on `records/m41-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -52,3 +52,9 @@
   3.13 and 3.14 each pass 1,820 with 13 expected skips; real graphics, profiles,
   deterministic samples, reproducible distributions, installed-wheel smoke,
   complete release smoke, and exact synthetic-draft verification all pass.
+  Exact implementation head `ec051d4fd2da80235da1a94642158ebe384cb2b0`
+  passed run `31269399211` in three allocations: Linux 6m55s, Windows 2m44s,
+  and macOS 2m12s. With no review/comment/thread, PR #74 squash-integrated as
+  `89a641559c246e971869a3ae06a878de81bffcee`; the reviewed tree, exact parent,
+  valid signature, standalone DCO, and zero post-merge run are verified. The
+  feature branch is deleted locally and remotely.
