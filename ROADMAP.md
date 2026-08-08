@@ -50,6 +50,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M39 release-tag integrity enforcement | PR #68 passed exact-head trusted tag identity/ancestry validation plus the three-allocation hosted gate, then squash-integrated with no new runner or publication authority |
 | Done | M40 draft-release asset integrity | PR #71 corrected pathological JSON failures after review, passed the exact draft-asset boundary in three bounded hosted allocations, and squash-integrated without new release authority |
 | Done | M41 release-notes body integrity | PR #74 passed exact source-body and asset verification in three bounded hosted allocations, then squash-integrated without workflow or release-authority change |
+| In progress | M42 published prerelease integrity | Recheck the exact authenticated release ID, final public state, UTC publication time, notes, and assets after the publish transition |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -501,6 +502,16 @@ exactly equal the bounded non-empty UTF-8 `RELEASE_NOTES.md` already supplied
 through `--notes-file`. The slice logs no note content and changes no workflow,
 runner, action, permission, trigger, dependency, tag, release, credential,
 publication authority, or immutable-release setting.
+
+M42 starts from verified M41 closeout commit
+`0dec2254a9d9483b27d158aaad108340e9c94e28`. It advances the internal release
+validator to protocol `/3`, makes expected draft/published state explicit, and
+rechecks the same numeric release ID after `gh release edit --draft=false`.
+The published observation requires an exact public prerelease state, valid UTC
+publication time, and unchanged notes/assets. It adds one read-only API request
+inside the existing tag job but no runner, action, permission, trigger,
+dependency, credential, tag, release, upload, automatic rollback, immutable-
+release setting, or publication authority.
 
 ## Good-first contribution queue
 

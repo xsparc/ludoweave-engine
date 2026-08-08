@@ -33,6 +33,9 @@ Maintainers will acknowledge the report through the same private channel, assess
   bounded staged `RELEASE_NOTES.md` before publication. It rejects missing,
   null, substituted, truncated, or normalization-different notes without
   emitting their content.
+- M42 retains the exact authenticated release database ID across publication
+  and rechecks the final public prerelease state, valid UTC publication time,
+  notes, and assets before the release job can succeed.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -50,6 +53,9 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M41 compares the API source body, not GitHub's rendered Markdown; it does not
   validate links or factual completeness, sanitize maintainer-authored text, or
   replace human release review.
+- M42 observes the authenticated state only after publication. Failure blocks
+  a successful job result but does not automatically unpublish, delete, or
+  mutate evidence, prevent later edits, or claim immutable-release policy.
 
 ## Initial security boundaries
 

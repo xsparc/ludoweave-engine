@@ -1,5 +1,32 @@
 # Project State
 
+## M42 in progress
+
+M42 starts from exact clean synchronized M41 closeout commit
+`0dec2254a9d9483b27d158aaad108340e9c94e28`. It closes the final-state
+observation gap after the verified private draft is published. The exact
+numeric release database ID now crosses the existing CLI transition and is
+fetched once more through the pinned authenticated API.
+
+The internal validator advances to `ludoweave.release-draft-integrity/3` and
+requires explicit `draft` or `published` state. Drafts require mutable
+prerelease state and null `published_at`; published records require public
+prerelease state, a boolean immutable field, and a valid UTC publication time.
+Both states retain exact tag, title, bounded notes, and asset verification.
+
+One new read-only postpublication request runs inside the existing tag job.
+M42 adds no job, runner, action, permission, trigger, dependency, credential,
+tag, release, upload, publication, automatic rollback, or immutable-release
+policy. RFC-0025 and the release/security/architecture surfaces document the
+boundary. Findings-first review strengthened content-silent published drift and
+non-mutation coverage. The complete corrected Python 3.12 suite passes 1,850
+tests with 13 expected skips; Python 3.13/3.14 each pass 1,840 with 14 expected
+skips. Real wgpu, profiles, vertical slices, reproducible distributions,
+installed-wheel smoke, complete release smoke, and exact mutable/immutable
+synthetic release states pass. CI, runtime, metadata, dependency, lock,
+permission, action, and runner boundaries remain unchanged. Hosted validation,
+integration, and cleanup remain pending.
+
 ## M41 complete
 
 M41 starts from exact clean synchronized M40 closeout commit

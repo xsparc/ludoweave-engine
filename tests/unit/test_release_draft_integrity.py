@@ -1,4 +1,4 @@
-"""Remote draft release assets must exactly match bounded local staging."""
+"""Remote release state and assets must exactly match bounded local staging."""
 
 from __future__ import annotations
 
@@ -38,13 +38,17 @@ def _identity(path: Path) -> dict[str, object]:
     }
 
 
-def _document(staged: Path) -> dict[str, object]:
+def _document(
+    staged: Path, *, expected_state: str = "draft", immutable: bool = False
+) -> dict[str, object]:
+    published = expected_state == "published"
     return {
         "tag_name": _TAG,
         "name": _TITLE,
-        "draft": True,
+        "draft": not published,
         "prerelease": True,
-        "immutable": False,
+        "immutable": immutable,
+        "published_at": "2026-08-09T00:00:00Z" if published else None,
         "body": (staged / "RELEASE_NOTES.md").read_bytes().decode("utf-8"),
         "assets": [_identity(path) for path in sorted(staged.iterdir())],
     }
@@ -57,6 +61,7 @@ def _run(
     *,
     expected_tag: str = _TAG,
     expected_title: str = _TITLE,
+    expected_state: str = "draft",
 ) -> subprocess.CompletedProcess[str]:
     evidence = tmp_path / "draft.json"
     evidence.write_text(json.dumps(document), encoding="utf-8")
@@ -70,6 +75,8 @@ def _run(
             expected_tag,
             "--expected-title",
             expected_title,
+            "--expected-state",
+            expected_state,
         ],
         cwd=_ROOT,
         check=False,
@@ -85,18 +92,32 @@ def _failure(result: subprocess.CompletedProcess[str]) -> dict[str, object]:
     return cast(dict[str, object], json.loads(result.stderr))
 
 
-def test_exact_uploaded_draft_emits_stable_safe_identities(tmp_path: Path) -> None:
+@pytest.mark.parametrize(
+    ("expected_state", "immutable"),
+    [("draft", False), ("published", False), ("published", True)],
+)
+def test_exact_release_emits_stable_safe_identities(
+    tmp_path: Path, expected_state: str, immutable: bool
+) -> None:
     staged = _staging(tmp_path)
 
-    result = _run(staged, tmp_path, _document(staged))
+    result = _run(
+        staged,
+        tmp_path,
+        _document(staged, expected_state=expected_state, immutable=immutable),
+        expected_state=expected_state,
+    )
 
     assert result.returncode == 0, result.stderr
     assert result.stderr == ""
     document = json.loads(result.stdout)
-    assert document["protocol"] == "ludoweave.release-draft-integrity/2"
+    assert document["protocol"] == "ludoweave.release-draft-integrity/3"
     assert document["status"] == "pass"
     assert document["tag"] == _TAG
+    assert document["state"] == expected_state
     assert "Exact notes" not in result.stdout
+    assert "2026-08-09T00:00:00Z" not in result.stdout
+    assert '"immutable"' not in result.stdout
     assert document["assets"] == [
         {
             "bytes": path.stat().st_size,
@@ -115,6 +136,8 @@ def test_exact_uploaded_draft_emits_stable_safe_identities(tmp_path: Path) -> No
         ("published", "release_draft.invalid_state"),
         ("not-prerelease", "release_draft.invalid_state"),
         ("immutable", "release_draft.invalid_state"),
+        ("published-at", "release_draft.invalid_state"),
+        ("published-at-missing", "release_draft.invalid_state"),
         ("notes", "release_draft.notes_mismatch"),
         ("notes-missing", "release_draft.notes_mismatch"),
         ("notes-null", "release_draft.notes_mismatch"),
@@ -141,6 +164,10 @@ def test_remote_identity_state_or_asset_drift_fails_closed(
         document["prerelease"] = False
     elif mutation == "immutable":
         document["immutable"] = True
+    elif mutation == "published-at":
+        document["published_at"] = "2026-08-09T00:00:00Z"
+    elif mutation == "published-at-missing":
+        del document["published_at"]
     elif mutation == "notes":
         document["body"] = "different notes\n"
     elif mutation == "notes-missing":
@@ -167,11 +194,80 @@ def test_remote_identity_state_or_asset_drift_fails_closed(
 
     result = _run(staged, tmp_path, document)
     failure = _failure(result)
-    assert failure["protocol"] == "ludoweave.release-draft-integrity/2"
+    assert failure["protocol"] == "ludoweave.release-draft-integrity/3"
     assert failure["status"] == "fail"
     assert failure["code"] == code
     assert "Exact notes" not in result.stderr
     assert "different notes" not in result.stderr
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        "draft",
+        "not-prerelease",
+        "immutable-missing",
+        "immutable-null",
+        "immutable-text",
+        "published-at-missing",
+        "published-at-null",
+        "published-at-empty",
+        "published-at-malformed",
+    ],
+)
+def test_invalid_published_state_fails_closed(tmp_path: Path, mutation: str) -> None:
+    staged = _staging(tmp_path)
+    document = _document(staged, expected_state="published")
+    if mutation == "draft":
+        document["draft"] = True
+    elif mutation == "not-prerelease":
+        document["prerelease"] = False
+    elif mutation == "immutable-missing":
+        del document["immutable"]
+    elif mutation == "immutable-null":
+        document["immutable"] = None
+    elif mutation == "immutable-text":
+        document["immutable"] = "false"
+    elif mutation == "published-at-missing":
+        del document["published_at"]
+    elif mutation == "published-at-null":
+        document["published_at"] = None
+    elif mutation == "published-at-empty":
+        document["published_at"] = ""
+    else:
+        document["published_at"] = "2026-99-99T00:00:00Z"
+
+    result = _run(staged, tmp_path, document, expected_state="published")
+    failure = _failure(result)
+    assert failure["protocol"] == "ludoweave.release-draft-integrity/3"
+    assert failure["code"] == "release_draft.invalid_state"
+    assert "2026-99-99T00:00:00Z" not in result.stderr
+
+
+@pytest.mark.parametrize(
+    ("mutation", "code"),
+    [
+        ("notes", "release_draft.notes_mismatch"),
+        ("asset", "release_draft.asset_mismatch"),
+    ],
+)
+def test_published_notes_or_assets_drift_fails_closed(
+    tmp_path: Path, mutation: str, code: str
+) -> None:
+    staged = _staging(tmp_path)
+    document = _document(staged, expected_state="published")
+    if mutation == "notes":
+        document["body"] = "different notes\n"
+    else:
+        assets = cast(list[dict[str, object]], document["assets"])
+        assets[0]["digest"] = f"sha256:{'0' * 64}"
+
+    result = _run(staged, tmp_path, document, expected_state="published")
+    failure = _failure(result)
+    assert failure["code"] == code
+    assert "Exact notes" not in result.stderr
+    assert "different notes" not in result.stderr
+    assert "2026-08-09T00:00:00Z" not in result.stderr
 
 
 def test_duplicate_remote_asset_name_fails_closed(tmp_path: Path) -> None:
@@ -227,6 +323,8 @@ def test_malformed_duplicate_oversized_or_pathological_json_fails_without_traceb
         _TAG,
         "--expected-title",
         _TITLE,
+        "--expected-state",
+        "draft",
     ]
     for content in (
         b"{",

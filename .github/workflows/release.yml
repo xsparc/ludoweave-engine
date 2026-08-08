@@ -122,6 +122,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh release upload "$GITHUB_REF_NAME" release/* --repo "$GITHUB_REPOSITORY"
       - name: Verify draft release asset integrity
+        id: verify_draft
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TITLE: LudoWeave ${{ steps.version.outputs.version }}
@@ -140,7 +141,9 @@ jobs:
             > "$RUNNER_TEMP/release-draft.json"
           uv run --frozen python scripts/verify_release_draft.py \
             release "$RUNNER_TEMP/release-draft.json" \
-            --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE"
+            --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
+            --expected-state draft
+          echo "release_id=$release_id" >> "$GITHUB_OUTPUT"
       - name: Publish verified GitHub prerelease
         env:
           GH_TOKEN: ${{ github.token }}
@@ -151,3 +154,21 @@ jobs:
           --draft=false
           --prerelease
           --latest=false
+      - name: Verify published GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_ID: ${{ steps.verify_draft.outputs.release_id }}
+          RELEASE_TITLE: LudoWeave ${{ steps.version.outputs.version }}
+        shell: bash
+        run: |
+          case "$RELEASE_ID" in
+            ""|*[!0-9]*) echo "invalid published release id" >&2; exit 1 ;;
+          esac
+          gh api \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
+            > "$RUNNER_TEMP/release-published.json"
+          uv run --frozen python scripts/verify_release_draft.py \
+            release "$RUNNER_TEMP/release-published.json" \
+            --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
+            --expected-state published

@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M42/RFC-0025 exact same-ID postpublication prerelease verification to the
+  existing tag job, without automatic rollback, immutable-release claims, or a
+  new runner, action, permission, dependency, trigger, or publication authority.
 - Add M41/RFC-0024 exact bounded release-notes body verification to the existing
   private-draft gate, without logging note content or changing workflow
   allocations, permissions, dependencies, tags, releases, or publication

@@ -10,7 +10,6 @@ _CI = _ROOT / ".github" / "workflows" / "ci.yml"
 _RELEASE = _ROOT / ".github" / "workflows" / "release.yml"
 _VERIFY = _ROOT / "scripts" / "verify_release_draft.py"
 _CI_SHA256 = "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
-_RELEASE_SHA256 = "3983cd82f0201fcac8fe2156f77715e1136998781b428c60a192b3f3a3522871"
 _PYPROJECT_SHA256 = "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1"
 _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed"
 
@@ -25,13 +24,12 @@ def test_release_notes_are_supplied_then_verified_before_publication() -> None:
 
     assert create < notes < verify < publish
     assert hashlib.sha256(_CI.read_bytes()).hexdigest() == _CI_SHA256
-    assert hashlib.sha256(_RELEASE.read_bytes()).hexdigest() == _RELEASE_SHA256
 
 
 def test_release_notes_validator_is_bounded_and_content_silent() -> None:
     verifier = _VERIFY.read_text(encoding="utf-8")
 
-    assert '"ludoweave.release-draft-integrity/2"' in verifier
+    assert '"ludoweave.release-draft-integrity/3"' in verifier
     assert "_MAX_RELEASE_NOTES_BYTES = 256 * 1024" in verifier
     assert '_RELEASE_NOTES_NAME = "RELEASE_NOTES.md"' in verifier
     assert 'release.get("body") != notes' in verifier

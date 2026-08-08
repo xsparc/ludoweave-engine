@@ -54,7 +54,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
 9. M41 additionally requires the authenticated draft's source release-notes
    body to exactly match bounded staged `RELEASE_NOTES.md`; note content is not
    emitted by the validator.
-10. Download the published assets, verify checksums and attestations, install the
+10. M42 preserves the validated numeric release ID, publishes the draft, then
+    requires that exact authenticated record to report public prerelease state,
+    a valid UTC publication time, and unchanged notes/assets.
+11. Download the published assets, verify checksums and attestations, install the
    wheel in a clean environment, and run the sample bundle before announcing.
 
 No PyPI upload is configured in community alpha. Name reservation, trusted
@@ -85,6 +88,17 @@ Missing, null, substituted, truncated, or normalization-different text fails
 before publication. The gate does not log note content, inspect rendered
 Markdown, evaluate links or factual accuracy, or add a network call, workflow
 allocation, permission, dependency, release, or publication authority.
+
+M42/RFC-0025 advances the internal contract to
+`ludoweave.release-draft-integrity/3` and makes expected draft/published state
+explicit. The existing draft check now requires null `published_at`; after
+publication, one read-only API request for the same numeric release ID requires
+`draft=false`, `prerelease=true`, a boolean immutable field, a valid UTC
+publication time, and the same notes/assets. Failure blocks a successful job
+result but does not automatically unpublish, delete, or mutate an already
+public release. The check neither requires nor claims immutable-release policy
+and adds no runner, action, permission, dependency, trigger, tag, release,
+upload, or publication authority.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains

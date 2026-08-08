@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0025 resolves M42 published-prerelease observation. The exact numeric
+release database ID now crosses the existing publish transition, after which
+one read-only authenticated request must report public prerelease state, a
+valid UTC publication time, and unchanged notes/assets. Protocol `/3` makes
+draft/published state explicit. Failure blocks a successful release-job result
+but performs no automatic rollback, deletion, or mutation. Jobs, runners,
+actions, permissions, triggers, dependencies, credentials, tags, releases,
+uploads, publication authority, and immutable-release policy remain unchanged.
+
 RFC-0024 resolves M41 release-notes body integrity. The existing bounded M40
 validator now requires authenticated draft `body` text to exactly equal the
 fixed staged `RELEASE_NOTES.md` supplied through `--notes-file`, while emitting
