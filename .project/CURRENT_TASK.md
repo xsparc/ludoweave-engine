@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M45 - public release consumer-path integrity
-- **Status:** Feature PR #86 is hosted-validated and squash-integrated. Exact
-  integration facts are being recorded on the documentation-only branch
-  `records/m45-integration`; its bounded Linux gate remains pending.
+- **Status:** M45 feature and documentation record are fully validated and
+  squash-integrated. Final zero-run closeout facts are being recorded on
+  `records/m45-closeout` before selecting the next milestone.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -13,8 +13,8 @@
   Only `main` existed locally and remotely, no open pull request, local/remote
   tag, or GitHub release was present, and `git fsck --full --no-dangling`
   passed.
-- **Record base:** Exact verified M45 feature squash
-  `471da6efe908463ed8f6744272bd372548cb3345`.
+- **Record base:** Exact verified M45 integration-record squash
+  `01241e2e1eadff959d13530e1118b0ad6b686dad`.
 - **Outcome:** After M44, verify that the exact public GitHub API release ID and
   every exact M43 asset ID are retrievable without a GitHub credential, still
   match the admitted candidate, and pass complete installed release smoke.
@@ -78,4 +78,11 @@
   `471da6efe908463ed8f6744272bd372548cb3345` has sole parent the M44
   closeout, exact reviewed tree, a valid GitHub signature, a standalone DCO
   trailer, and no post-merge `main` run. The feature branch is deleted locally
-  and remotely. No real public release-path pass is claimed.
+  and remotely. Documentation-only PR #87 exact head
+  `13dcd951226430cb660ddf98ad0bd9c66f4633a5` passed run `31280561142`
+  in one 38-second Linux allocation; its desktop umbrella skipped with zero
+  steps. With no feedback, it squash-integrated as
+  `01241e2e1eadff959d13530e1118b0ad6b686dad`, preserving its exact
+  reviewed tree, feature-squash parent, valid signature, DCO, and zero post-
+  merge run. Its branch is deleted locally/remotely. No real public release-
+  path pass is claimed.
