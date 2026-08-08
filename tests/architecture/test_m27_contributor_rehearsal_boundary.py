@@ -126,7 +126,7 @@ def test_public_contributor_path_is_complete_but_claims_no_external_study() -> N
 
 def test_m27_preserves_the_release_workflow_exactly() -> None:
     assert hashlib.sha256(_RELEASE_WORKFLOW.read_bytes()).hexdigest() == (
-        "3e82735e95120ab3fcbd9d2f0b658765a2e524e808d8b64a25062e799454dfae"
+        "84da9dfd05f02cbf13403d9ab266808b2ed771fa549fd26a1aad0518f3855a6f"
     )
 
 

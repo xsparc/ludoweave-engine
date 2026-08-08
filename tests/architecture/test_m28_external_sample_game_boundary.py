@@ -134,7 +134,7 @@ def test_m28_adds_no_runtime_export_dependency_version_release_or_provider() -> 
     assert "ExternalSampleGame" not in ludoweave.__all__
     assert not any("external_sample" in path.name for path in (_ROOT / "src/ludoweave").rglob("*"))
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "3e82735e95120ab3fcbd9d2f0b658765a2e524e808d8b64a25062e799454dfae"
+        "84da9dfd05f02cbf13403d9ab266808b2ed771fa549fd26a1aad0518f3855a6f"
     )
 
 

@@ -53,6 +53,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M42 published prerelease integrity | PR #77 passed exact same-ID draft/public state, timestamp, notes, and asset verification in three bounded hosted allocations, then squash-integrated without new release authority |
 | Done | M43 published asset retrieval integrity | PR #80 corrected and passed bounded exact-ID retrieval, same-document byte revalidation, and the three-allocation hosted gate before verified squash integration |
 | Done | M44 published release attestation integrity | PR #83 passed exact-source SLSA provenance policy for every retrieved asset plus SPDX wheel-SBOM verification in three bounded hosted allocations, then squash-integrated with unchanged release authority |
+| In progress | M45 public release consumer-path integrity | Credential-free exact-ID public document/assets, complete revalidation, and installed release smoke in the existing tag job without new release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -552,6 +553,17 @@ Squash `781ca0d1692b309ca3dd7ea9ca8dc6af88f77b09` has the exact reviewed
 tree, sole parent the M43 closeout, a valid GitHub signature, and a standalone
 DCO trailer. No post-merge `main` run was allocated, and the feature branch is
 deleted.
+
+M45 starts from verified M44 closeout commit
+`2c5e312a97028d0b835fc174b8abb51df22ea314`. It follows M44 with one
+credential-free observation of the exact public release ID and every exact M43
+asset ID through fixed HTTPS GitHub API endpoints. The same bounded validators
+recheck public metadata and bytes before the existing complete release smoke
+installs the wheel and runs bundled scenarios. It adds no job, runner, action,
+permission, trigger, dependency, credential, tag, release, upload,
+publication, rollback, cleanup, runtime, package, or public-API change. A real
+public-path pass remains unclaimed until an authorized signed-tag release run
+executes.
 
 ## Good-first contribution queue
 

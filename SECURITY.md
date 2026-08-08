@@ -43,6 +43,9 @@ Maintainers will acknowledge the report through the same private channel, assess
   2.3 SBOM attestation for the one pure wheel, constrained to the exact
   repository, tag, source/signer commit, release workflow, GitHub OIDC issuer,
   hosted runner class, and bounded candidate count.
+- M45 then fetches the exact public release and asset IDs without supplying a
+  GitHub credential, revalidates the bounded downloaded set, and runs complete
+  isolated release smoke against those public bytes.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -71,6 +74,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   artifact security, an independent or trusted build, predicate truth beyond
   the constrained type/identity, future availability or non-revocation,
   immutable release state, consumer installation, or a supported channel.
+- M45 observes one fixed public GitHub API path on the same hosted Linux runner.
+  It does not establish an independent or external consumer, a clean-machine or
+  cross-platform matrix, every browser/CDN/cache/geographic path, future
+  availability, immutability, artifact security, PyPI, or a supported channel.
 
 ## Initial security boundaries
 

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M45/RFC-0028 credential-free exact-ID public release retrieval,
+  revalidation, and installed-candidate smoke after M44 in the existing tag
+  job, with bounded HTTPS requests and no new workflow allocation, action,
+  permission, dependency, release mutation, or publication authority.
 - Add M44/RFC-0027 exact-source SLSA provenance verification for every
   retrieved release asset and SPDX SBOM verification for the pure wheel, with
   bounded content-silent subprocesses and no new workflow allocation, action,

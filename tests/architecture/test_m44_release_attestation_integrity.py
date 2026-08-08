@@ -28,7 +28,11 @@ def test_attestations_are_verified_after_exact_asset_retrieval() -> None:
         "Retrieve and verify published release assets",
         "Verify published release attestations",
     )
-    attestations = _step(workflow, "Verify published release attestations")
+    attestations = _step(
+        workflow,
+        "Verify published release attestations",
+        "Verify public release consumer path",
+    )
 
     assert "scripts/verify_release_draft.py" in retrieval
     assert '"$download_dir" "$RUNNER_TEMP/release-published.json"' in retrieval

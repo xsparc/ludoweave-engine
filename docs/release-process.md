@@ -64,7 +64,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
     SBOM attestation for exactly one pure wheel under the exact repository,
     tag, source/signer commit, release workflow, issuer, and hosted-runner
     policy.
-13. Independently download the public assets, verify checksums and
+13. M45 fetches that exact public release and every exact asset ID without a
+    GitHub credential, revalidates the public document and downloaded set, and
+    runs the complete release smoke against those public bytes.
+14. Independently download the public assets, verify checksums and
     attestations, install the wheel in a clean environment, and run the sample
     bundle before announcing.
 
@@ -138,6 +141,21 @@ non-revocation, global asset access, immutability, consumer installation, or a
 supported channel. Failure occurs after publication and grants no retry,
 unpublish, delete, edit, rollback, or cleanup authority.
 
+M45/RFC-0028 performs a second, credential-free retrieval after M44. It fetches
+the exact public release ID and exact M43 asset IDs only from fixed HTTPS GitHub
+API endpoints, with client configuration disabled, bounded redirects/connect/
+request time, a 4-MiB document cap, and the inherited 32-asset, 256-MiB per-
+asset, and 512-MiB total limits. The public document is validated against local
+staging before retrieval; every new partial file must have the exact expected
+length; the complete public directory is revalidated and passed to the existing
+release smoke. The step receives no GitHub credential or authorization/cookie
+header and trusts no browser download URL. It establishes one public API and
+same-run installed-candidate observation only—not independent/external or
+cross-platform installation, every CDN/cache/browser path, future availability,
+immutability, artifact security, PyPI, or a supported release channel. Failure
+occurs after publication and grants no retry, mutation, rollback, or cleanup
+authority.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
@@ -208,3 +226,9 @@ M44 automates this check inside a real signed-tag run, but no hosted
 attestation pass exists until such a run creates and verifies the attestations.
 Attestation verification is an integrity and identity claim, not an artifact-
 security or independent-build certification.
+
+M45 also exercises the exact public API release and asset IDs without supplying
+a GitHub credential, then runs the complete installed release smoke against
+those downloaded bytes. No public-path pass exists until a real signed-tag run,
+and this same-run observation is not a substitute for the independent consumer
+check in maintainer gate 14.

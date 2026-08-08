@@ -1,80 +1,73 @@
 # Current Task
 
-- **Task:** M44 - published release attestation integrity
-- **Status:** Feature PR #83 and documentation-only integration-record PR #84
-  are hosted-validated and squash-integrated; publishing the final zero-run
-  closeout record on `records/m44-closeout`.
+- **Task:** M45 - public release consumer-path integrity
+- **Status:** Local implementation, review, and validation are complete on
+  `release/m45-public-consumer-verification`; exact-head hosted pull-request
+  validation remains pending.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `0b3b9eb982a67eee1833f3a8f920671f8ffd006b`. Only `main` existed locally
-  and remotely, no pull request, local/remote tag, or GitHub release was
+  commit `2c5e312a97028d0b835fc174b8abb51df22ea314`. Only `main` existed locally
+  and remotely, no open pull request, local/remote tag, or GitHub release was
   present, and `git fsck --full --no-dangling` passed.
-- **Outcome:** Require every exact published asset retrieved and revalidated by
-  M43 to have SLSA v1 provenance from the exact release workflow/source, and
-  require the one pure wheel to have an SPDX 2.3 SBOM attestation.
+- **Outcome:** After M44, verify that the exact public GitHub API release ID and
+  every exact M43 asset ID are retrievable without a GitHub credential, still
+  match the admitted candidate, and pass complete installed release smoke.
 - **Acceptance gate:**
-  - Consume only the canonical bounded M43 retrieval plan, exact downloaded
-    directory, event tag, and checked-out commit.
-  - Revalidate plan and directory equality, safe regular files, size bounds,
-    exact tag/commit syntax, and exactly one pure LudoWeave wheel before any
-    attestation command.
-  - Bind every verification to repository `xsparc/ludoweave-engine`, signer
-    workflow `xsparc/ludoweave-engine/.github/workflows/release.yml`, the exact
-    tag ref, exact source/signer commit, GitHub Actions OIDC issuer, hosted
-    runner class, predicate type, and at most 30 candidate bundles.
-  - Verify SLSA v1 provenance for at most 32 assets and SPDX 2.3 for exactly
-    one wheel: at most 33 sequential child calls, each with null streams and a
-    30-second timeout.
-  - Emit only versioned aggregate counts on success and structured generic
-    errors on failure; do not expose attestation, predicate, certificate,
-    environment, path, token, or artifact content.
-  - Run only after M43's exact downloaded-byte verification in the existing
-    tag job.
+  - Run only after M44 in the existing tag job and receive only the exact
+    retained release ID plus expected public title.
+  - Fetch only fixed `api.github.com` release/asset numeric-ID endpoints; do
+    not consume browser URLs, caller-selected hosts, credentials,
+    authorization headers, cookies, client configuration, or unbounded
+    redirects.
+  - Require HTTPS for initial/redirect protocols, at most three redirects,
+    10-second connects, 30-second requests, and a 4-MiB public-document cap.
+  - Revalidate the public document against exact local staging, tag, title,
+    notes, assets, and published state before downloading any public asset.
+  - Reparse the canonical M43 plan and retain positive 63-bit IDs, safe
+    basenames, at most 32 assets, 256 MiB per asset, and 512 MiB total.
+  - Stream at most each expected size plus one byte into a new partial path,
+    reject short/long content, rename only after exact length, then revalidate
+    the complete public directory.
+  - Run the existing complete release smoke against the public directory,
+    including checksums, manifest, SPDX metadata, safe sample extraction,
+    isolated wheel installation, and bundled scenarios.
   - Add no job, runner, action, permission, trigger, dependency, credential,
     tag, release, upload, publication, rollback, cleanup, runtime, package,
     public-API, lock, or SemVer change.
-  - Document the exact integrity/identity claim and all security, independent-
-    build, predicate-truth, future availability/revocation, global access,
-    immutability, consumer, and support non-claims.
+  - Document the exact one-point claim and all independent/external consumer,
+    clean-machine/cross-platform, browser/CDN/cache/geographic, future,
+    immutability, artifact-security, PyPI, and support non-claims.
   - Run the complete local gate and one substantive hosted pull-request gate.
 - **Non-scope:** Creating/pushing a tag or release; uploading/publishing;
-  changing attestation creation; parsing bundles or predicates; automatic
-  retry/unpublish/delete/rollback/cleanup; immutable-release settings;
-  artifact vulnerability/security certification; independent/trusted builds;
-  unauthenticated/global availability; future monitoring or revocation policy;
-  consumer installation; PyPI; supported release channel; runtime/public API;
-  package version/dependency/lock; deferred subsystems.
+  enabling immutable releases; automatic retry/unpublish/delete/rollback/
+  cleanup; external monitoring; every public delivery path; independent
+  verification; cross-platform public installation; PyPI; supported release
+  channel; runtime/public API; package version/dependency/lock; deferred
+  subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** M43 zero-run closeout PR #82 squash-integrated as exact
-  clean base `0b3b9eb982a67eee1833f3a8f920671f8ffd006b` with sole parent the M43
-  integration record, exact reviewed tree, valid GitHub signature, standalone
-  DCO trailer, and no post-merge run. Baseline inherited release tests passed
-  86 tests with two capability skips. Official GitHub CLI documentation and
-  installed CLI help expose the required SLSA/SPDX predicate and identity
-  policy flags. The standard-library verifier, focused adversarial tests,
-  release workflow integration, RFC-0027, architecture guards, and public
-  documentation are complete. The final feature tree passes 366
-  architecture tests and the 1,906-test CPython 3.12 graphics suite; CPython
-  3.13/3.14, real wgpu, profiles, deterministic samples, documented benchmark
-  validators, reproducible builds, isolated-wheel smoke, and complete release
-  smoke also pass. Ready PR #83 run `31277236908` passed exact head
-  `494ae4f32209c8e679633d528bb63cf4b1093800` in exactly three allocations,
-  with all platform, compatibility, graphics, sample, distribution, and smoke
-  slices successful. The sole automated P1 was disproved by the exact pinned
-  action source and official GitHub docs, answered, and resolved. Squash
-  `781ca0d1692b309ca3dd7ea9ca8dc6af88f77b09` has the exact reviewed tree,
-  sole parent the M43 closeout, a valid GitHub signature, and standalone DCO
-  trailer. No post-merge `main` run was allocated; only synchronized `main`
-  remained before the integration-record branch. Ready PR #84 exact head
-  `66c58256790127db727c8cc87741d95f6c9a5612` classified exactly four Markdown
-  paths as documentation. Run `31278008212` allocated one 30-second Linux job,
-  passed the documentation/static/architecture/distribution gate, and skipped
-  the desktop umbrella with zero steps. It had no review, comment, or thread.
-  Squash `792a2e702a8331566ddc5c5bf07e449c66f30f9e` has sole parent the feature
-  squash, the exact reviewed tree, a valid GitHub signature, and standalone
-  DCO trailer. No post-merge `main` run was allocated, and the integration
-  branch is deleted locally and remotely. No real release or hosted
-  attestation pass is claimed.
+- **Current evidence:** M44 feature PR #83, documentation-only record PR #84,
+  and zero-run closeout PR #85 are squash-integrated. Final closeout squash
+  `2c5e312a97028d0b835fc174b8abb51df22ea314` has sole parent the exact M44
+  integration squash, exact reviewed tree, a valid GitHub signature, and a
+  standalone DCO trailer; no post-merge `main` run occurred. Only synchronized
+  `main` remained and GitHub had no open PR, tag, or release before this branch.
+  Official GitHub REST documentation states that public release and asset
+  endpoints can be used without authentication and that the numeric asset
+  endpoint returns or redirects to binary content for the octet-stream accept
+  type. The inherited M39-M44/release baseline passes 100 tests with three
+  capability skips. After correcting one stale M43 wording guard and scoping
+  historical workflow tests to their own steps, the focused release chain
+  passes 106 tests with three capability skips. The final recorded tree passes
+  all 373 architecture tests and seven exact extracted-shell regressions on
+  each of CPython 3.12-3.14. The complete 3.12 graphics suite passes 1,913
+  tests with 14 expected skips; 3.13 and 3.14 each pass 1,902 tests with 15
+  skips. Real wgpu,
+  profiling contracts, deterministic samples, byte-reproducible distributions,
+  isolated-wheel smoke, complete release smoke, and every documented benchmark
+  validator pass. Static analysis, strict docs, YAML, Bash syntax, whitespace,
+  scope/credential review, and full Git object checking pass. Exact-head
+  hosted validation, review, and integration remain pending. No real public
+  release-path pass is claimed.

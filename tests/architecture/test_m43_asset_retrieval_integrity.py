@@ -28,7 +28,11 @@ def test_published_assets_are_retrieved_by_validated_exact_id_and_reverified() -
         "Verify published GitHub prerelease",
         "Retrieve and verify published release assets",
     )
-    retrieval = _step(workflow, "Retrieve and verify published release assets")
+    retrieval = _step(
+        workflow,
+        "Retrieve and verify published release assets",
+        "Verify published release attestations",
+    )
 
     assert '"$RUNNER_TEMP/release-published.json"' in published
     assert '--asset-plan "$RUNNER_TEMP/release-assets.plan"' in published
@@ -54,8 +58,10 @@ def test_published_assets_are_retrieved_by_validated_exact_id_and_reverified() -
     assert '"$download_dir" "$RUNNER_TEMP/release-published.json"' in retrieval
     assert "--expected-state published" in retrieval
     assert "--asset-plan" not in retrieval
-    assert workflow.count("scripts/verify_release_draft.py") == 3
-    assert workflow.count("X-GitHub-Api-Version: 2026-03-10") == 3
+    assert published.count("scripts/verify_release_draft.py") == 1
+    assert retrieval.count("scripts/verify_release_draft.py") == 1
+    assert published.count("X-GitHub-Api-Version: 2026-03-10") == 1
+    assert retrieval.count("X-GitHub-Api-Version: 2026-03-10") == 1
 
     for forbidden in (
         "gh release download",

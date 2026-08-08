@@ -42,26 +42,27 @@ claims.
 
 ## Current boundary
 
-M44 closes the hosted-attestation observation gap after M42's published-state
-check and M43's exact-ID byte retrieval. A standard-library verifier consumes
-only the canonical bounded M43 plan, exact downloaded directory, tag, and
-commit. It requires SLSA v1
-provenance for every asset and an SPDX 2.3 SBOM attestation for exactly one
-pure wheel under the exact repository, release workflow, source/signer commit,
-tag ref, GitHub OIDC issuer, hosted-runner, timeout, and bundle-count policy.
+M45 closes the public consumer-path observation gap after M44's authenticated
+attestation verification. The existing tag job must fetch the exact M42
+release ID and every exact M43 asset ID from the canonical retrieval plan and
+fixed HTTPS GitHub API endpoints without supplying a GitHub credential, then
+revalidate the public document and bounded downloaded set before complete
+installed release smoke.
 
-M44 may change only the existing tag workflow's postpublication tail, one
-standard-library verification script, focused tests, RFC/docs, and factual
-project records. It must add no job, runner matrix entry, action, permission,
-trigger, dependency, lock entry, credential, package version, public API,
-runtime source, tag, release, upload, rollback, cleanup, or publication
-authority. It must not claim artifact security, an independent/trusted build,
-predicate truth beyond verified type/identity, future availability or non-
-revocation, unauthenticated/global asset availability, immutability, consumer
-installation, or a supported release channel. M0 through M43 are complete,
-reviewed, hosted-validated, and integrated into `main`. M44 starts from exact
-verified M43 closeout commit
-`0b3b9eb982a67eee1833f3a8f920671f8ffd006b`.
+M45 may change only the existing tag workflow's postpublication tail, focused
+architecture/security tests, RFC/docs, and factual project records. It must
+retain client-configuration disablement, HTTPS-only bounded redirects,
+connect/request timeouts, exact numeric IDs, safe names, no-clobber partial
+files, the 4-MiB document cap, and M43's 32-asset, 256-MiB individual, and
+512-MiB total bounds. It must add no job, runner matrix entry, action,
+permission, trigger, dependency, lock entry, credential, package version,
+public API, runtime source, tag, release, upload, rollback, cleanup, or
+publication authority. It must not claim an independent/external consumer,
+clean-machine or cross-platform evidence, every browser/CDN/cache/geographic
+path, future availability, immutability, artifact security, PyPI, or a
+supported release channel. M0 through M44 are complete, reviewed,
+hosted-validated, and integrated into `main`. M45 starts from exact verified
+M44 closeout commit `2c5e312a97028d0b835fc174b8abb51df22ea314`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
