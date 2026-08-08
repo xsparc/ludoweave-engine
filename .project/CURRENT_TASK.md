@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M43 - published asset retrieval integrity
-- **Status:** Complete local validation on
-  `release/m43-asset-retrieval-integrity`; ready pull request and hosted gate
-  remain pending.
+- **Status:** Feature implementation is squash-integrated through PR #80;
+  publishing the documentation-only integration record on
+  `records/m43-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -71,5 +71,16 @@
   focused correction, shell-stream semantics, complete architecture, static,
   docs, YAML, final 1,870-test suite, reproducible distribution, installed-wheel,
   complete release smoke, protected-surface, credential, whitespace, and
-  Git-object gates pass. Only the corrected hosted rerun and review resolution
-  remain pending.
+  Git-object gates pass. Corrected head
+  `3a5004217598c82eca5b8286442e7d8a502642b1` passed run `31274622529` in
+  exactly three allocations: Linux 7m13s, macOS 1m48s, and Windows 3m53s.
+  Linux and every compatibility platform passed 1,873 tests; compatibility
+  suites had one expected skip, and all three platforms passed ten real-wgpu
+  tests. The P2 thread was answered with correction evidence and resolved;
+  no unresolved thread remains. PR #80 squash
+  `8b7038cc203cead16d1dd88c746b584b6d0c37ca` has sole parent the exact M42
+  closeout, preserves reviewed tree
+  `6c5ed36a8454a3ab16fec82152df13038c41ce84`, has a valid GitHub signature and
+  standalone DCO trailer, and allocated no post-merge `main` run. The feature
+  branch is deleted locally and remotely. Only the documentation-only
+  integration record and zero-run closeout record remain.

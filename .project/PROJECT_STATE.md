@@ -1,6 +1,6 @@
 # Project State
 
-## M43 in progress
+## M43 integration in progress
 
 M43 starts from exact clean synchronized M42 closeout commit
 `2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`. It closes the remaining gap
@@ -35,8 +35,28 @@ distributions, wheel/release smoke, scope, credential, whitespace, and Git
 objects pass on the correction. No remaining local finding was identified.
 Corrected release-workflow SHA-256 is
 `a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06`.
-Corrected hosted validation, review resolution, integration records, and branch
-cleanup remain pending.
+Corrected head `3a5004217598c82eca5b8286442e7d8a502642b1` passed hosted run
+`31274622529` in exactly three allocations. Linux passed in 7m13s before the
+desktop jobs were allocated; macOS passed in 1m48s and Windows in 3m53s. The
+Linux baseline and Ubuntu 3.13/3.14 plus both desktop 3.14 suites each passed
+1,873 tests, with one expected skip in each compatibility suite. All three
+platforms passed ten real-wgpu tests, profiling contracts, Clockwork Arena, and
+Agent World Builder. The Linux build reproducibly produced a 267,906-byte wheel
+at SHA-256 `b36bf6eebeb8173d04c9dba1c96d166f0294aab0d36804c07523be2cb2fd71c1`
+and a 956,605-byte sdist at SHA-256
+`2064aa70d5b8cdfef41f9a36b49689cd38e89e0b3a5780000a9d742e8b8a2982`, then
+passed installed-wheel and complete ten-artifact release smoke.
+
+The sole P2 thread was answered with the bounded-transfer correction and exact
+local/hosted evidence, then resolved. GitHub reported PR #80 `MERGEABLE` and
+`CLEAN` with all checks successful. Squash
+`8b7038cc203cead16d1dd88c746b584b6d0c37ca` has sole parent exact M42 closeout
+`2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`, tree
+`6c5ed36a8454a3ab16fec82152df13038c41ce84` exactly equal to the reviewed
+corrected head, a valid GitHub signature, and a standalone DCO trailer. No
+post-merge `main` run was allocated. The feature branch is deleted locally and
+remotely; synchronized `main` was the sole branch before this record branch.
+The documentation-only integration record and zero-run closeout remain.
 
 ## M42 complete
 
