@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0020 resolves M37 CI change qualification with an exact trusted-base
+classifier. Documentation-only work retains one Linux quality/docs/
+architecture/distribution allocation; substantive work retains all three M36
+allocations and eight slices. Windows/macOS depend on successful Linux
+qualification, so an early failure consumes no desktop allocation. The
+accepted tradeoff is later substantive desktop feedback. Workflow-level docs
+filtering is rejected because GitHub documents a required-check pending risk;
+a separate filter job is rejected because it adds a fourth allocation.
+
 RFC-0019 resolves M36 CI runner ownership by preserving all eight existing
 validation slices inside three OS-owned allocations. Ubuntu runs quality/
 distribution, 3.12 graphics, and sequential 3.13/3.14 compatibility. Windows

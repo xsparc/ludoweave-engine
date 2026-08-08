@@ -42,23 +42,32 @@ claims.
 
 ## Current boundary
 
-M36 changes CI runner ownership only. It must preserve all eight existing
-validation slices while grouping them into exactly three hosted allocations:
-one Ubuntu runner and one runner each for Windows and macOS. Ubuntu retains
-CPython 3.12 quality/distribution and graphics plus 3.13/3.14 compatibility;
-Windows and macOS retain 3.12 graphics plus 3.14 compatibility. The workflow
-must remain substantive-pull-request only, ignore `.project/**`-only records,
-use `contents: read`, disable checkout credentials, retain exact action/uv
-pins, cache from the lockfile, bound every job, isolate desktop failures, and
-cancel superseded runs. Sequential slices within an OS are an accepted quota
-tradeoff; removing a validation slice is not. M36 may update only CI, workflow
-architecture tests, RFC/docs, and neutral engineering records. It may not
-change runtime source, test behavior, dependencies, lock, package version,
-release workflow, tag, publication, platform/version support, certification,
-or support policy. M0 through M35 are complete, reviewed, hosted-CI validated,
-and integrated into `main`. M36 starts from exact verified M35 integration-
-record commit `ba9125389ab2b2b760ca7115b5b1b03c447f4190` and contains no
-subsequent milestone.
+M37 changes CI qualification only. A classifier loaded from the exact base
+revision admits only root Markdown, Markdown below `docs/` and `.project/`, and
+the bounded issue/pull-request metadata named by RFC-0020 as documentation-only.
+`mkdocs.yml` and non-Markdown documentation paths remain substantive so hooks
+or other executable inputs cannot enter through the smaller gate.
+Missing policy, empty or invalid input, mixed/unrecognized paths, decoding
+failure, and Git failure must be substantive or block the Linux job. The pull-
+request copy of the classifier must never classify itself.
+
+Documentation-only pull requests retain one Linux lock, formatting/lint,
+strict-docs, architecture, build, isolated-wheel, and release-candidate gate.
+Substantive work retains all eight M36 validation slices and exactly three
+hosted allocations. Windows and macOS depend on successful Linux qualification
+and run only for `substantive=true`; an early Linux failure must not allocate
+desktop runners. The workflow remains pull-request only, ignores
+`.project/**`-only records, uses `contents: read`, disables checkout
+credentials, retains exact action/uv pins, caches from the lockfile, bounds
+every job, isolates desktop failures, and cancels superseded runs. M37 may
+update only CI qualification tooling, workflow architecture tests, RFC/docs,
+and neutral engineering records. It may not change runtime source, test
+behavior, dependencies, lock, package version, release workflow, tag,
+publication, platform/version support, certification, or support policy. M0
+through M36 are complete, reviewed, hosted-CI validated, and integrated into
+`main`. M37 starts from exact verified M36 integration-record commit
+`46ef98447706c94763a236841a38c2dbb5b444ca` and contains no subsequent
+milestone.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

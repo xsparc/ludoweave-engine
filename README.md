@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M35 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M36 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -347,6 +347,14 @@ installed, and superseded runs are cancelled automatically.
 The gate runs only for substantive pull requests: a validated tree is not run
 again after merge to unprotected `main`, and `.project/**`-only factual record
 pull requests consume no hosted runner quota.
+
+M37 keeps one visible pull-request workflow but qualifies the diff from the
+trusted base revision. Documentation-only changes run one Linux allocation for
+lock, formatting/lint, strict docs, architecture, build, installed-wheel, and
+release-candidate checks. Any unrecognized, empty, mixed, or indeterminate diff
+is substantive or fails closed. Substantive changes retain all three hosted
+allocations and eight M36 validation slices; Windows and macOS begin only after
+the Linux qualification and complete gate succeed.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

@@ -18,14 +18,17 @@ env:
 
 jobs:
   linux:
-    name: Linux - quality, compatibility, graphics, and distribution
+    name: Linux - qualification, compatibility, graphics, and distribution
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    outputs:
+      substantive: ${{ steps.scope.outputs.substantive }}
     steps:
       - name: Check out source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Install uv and baseline CPython
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
@@ -33,39 +36,73 @@ jobs:
           python-version: "3.12"
           enable-cache: true
           cache-dependency-glob: uv.lock
+      - name: Classify pull-request changes from trusted base
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          if git cat-file -e "${BASE_SHA}:scripts/classify_ci_changes.py"; then
+            git show "${BASE_SHA}:scripts/classify_ci_changes.py" > "$RUNNER_TEMP/classify_ci_changes.py"
+            python "$RUNNER_TEMP/classify_ci_changes.py" \
+              --base "$BASE_SHA" \
+              --head "$HEAD_SHA" \
+              --github-output "$GITHUB_OUTPUT"
+          else
+            echo "substantive=true" >> "$GITHUB_OUTPUT"
+            echo "changed_count=unknown" >> "$GITHUB_OUTPUT"
+            echo '{"classification":"substantive","reason":"classifier-not-on-base"}'
+          fi
       - name: Install managed compatibility CPython versions
+        if: steps.scope.outputs.substantive == 'true'
         run: uv python install 3.13 3.14
       - name: Install Linux software-rendering runtime
+        if: steps.scope.outputs.substantive == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends libvulkan1 mesa-vulkan-drivers
       - name: Verify lockfile
         run: uv lock --check
       - name: Install locked baseline and graphics environment
+        if: steps.scope.outputs.substantive == 'true'
         run: uv sync --frozen --all-groups --extra graphics
+      - name: Install locked documentation environment
+        if: steps.scope.outputs.substantive != 'true'
+        run: uv sync --frozen --all-groups
       - name: Check formatting
         run: uv run --frozen ruff format --check .
       - name: Lint
         run: uv run --frozen ruff check .
       - name: Type check
+        if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen pyright
       - name: Build documentation
         run: uv run --frozen mkdocs build --strict
+      - name: Run documentation architecture tests
+        if: steps.scope.outputs.substantive != 'true'
+        run: uv run --frozen pytest -q tests/architecture
       - name: Run CPython 3.12 baseline tests
+        if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen pytest -q --ignore=tests/integration/test_wgpu_render.py
       - name: Run base profiling contract smoke
+        if: steps.scope.outputs.substantive == 'true'
         run: |
           uv run --frozen python -m benchmarks.profile_m7 --repeats 1 --output .tmp/m7-profile-base.json
           uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-base.json
       - name: Run Linux graphics smoke
+        if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
       - name: Run Linux graphics profiling contract smoke
+        if: steps.scope.outputs.substantive == 'true'
         run: |
           uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m7-profile-graphics.json
           uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m7-profile-graphics.json
       - name: Run Linux Clockwork Arena wgpu vertical slice
+        if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen --extra graphics python examples/clockwork_arena.py --ticks 30 --renderer wgpu --render-every 10
       - name: Run Linux Agent World Builder typed-tool loop
+        if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen --extra graphics python examples/agent_world_builder.py
       - name: Build sdist and wheel
         run: uv build
@@ -76,16 +113,20 @@ jobs:
       - name: Smoke-test release candidate
         run: uv run --frozen python scripts/smoke_release.py .tmp/ci-release
       - name: Run Ubuntu CPython 3.13 tests
+        if: steps.scope.outputs.substantive == 'true'
         run: |
           uv sync --frozen --all-groups --python 3.13
           uv run --frozen --python 3.13 pytest -q
       - name: Run Ubuntu CPython 3.14 tests
+        if: steps.scope.outputs.substantive == 'true'
         run: |
           uv sync --frozen --all-groups --python 3.14
           uv run --frozen --python 3.14 pytest -q
 
   desktop:
     name: ${{ matrix.label }} - graphics and CPython 3.14 compatibility
+    needs: linux
+    if: needs.linux.outputs.substantive == 'true'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     strategy:

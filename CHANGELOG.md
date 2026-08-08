@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M37/RFC-0020 fail-closed CI change qualification: documentation-only
+  changes retain one Linux quality/docs/distribution allocation, substantive
+  changes retain all three M36 allocations, and failed Linux qualification
+  prevents two unnecessary desktop allocations.
 - Consolidate the unchanged eight pull-request validation slices into three
   OS-owned hosted runner allocations under M36/RFC-0019, retaining exact
   Python/platform/graphics/distribution coverage, least privilege, pins,
