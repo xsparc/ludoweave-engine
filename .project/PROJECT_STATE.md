@@ -49,6 +49,14 @@
   closeout, tree `a3774ff0846a099c2b821500a93fb3b387db2210` exactly equal to the
   corrected head, and standalone DCO. No post-merge run was allocated; the
   feature branch is deleted locally/remotely. No real tag/release rehearsal ran.
+- Record: documentation-only PR #90 exact head
+  `4a74380f3011cbb841b89a7778cf676163cc1c28` passed run `31283922258` in
+  one 36-second Linux allocation; the desktop umbrella skipped with zero
+  steps. It had no review/comment/thread. Verified squash
+  `f6a15655b9bfe5657f15baea89d36206743a3468` has exact reviewed tree,
+  sole feature-squash parent, valid signature, standalone DCO, and no main
+  run. Its branch is deleted. This three-file closeout is the only remaining
+  M46 work.
 
 ## M45 public release consumer-path integrity - complete
 
