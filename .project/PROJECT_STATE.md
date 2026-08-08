@@ -1,6 +1,6 @@
 # Project State
 
-## M38 implementation complete; public record validation pending
+## M38 complete
 
 M38 starts from exact clean synchronized M37 closeout commit
 `3578da64b2686cd8d63340aeb1eed30f5c4cb761`. It adds a standard-library,
@@ -36,11 +36,26 @@ PR #65 squash `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7` has sole parent exact M
 closeout, tree `1a96d02b8b23410732fc7ac746179459a14d3f44` exactly equal to the reviewed
 feature head, a valid GitHub signature, and a parsed DCO trailer. The feature
 branch is deleted locally and remotely, synchronized main contains the squash,
-and no post-merge main run was allocated. M38 changes no runtime, public API,
-dependency, lock, version, supported platform/Python contract, attestation
-action/permission, tag, publication, or deferred subsystem. This public
-Markdown record still requires the bounded one-Linux documentation gate; its
-hosted result is not pre-claimed.
+and no post-merge main run was allocated.
+
+Public record PR #66 changed exactly four Markdown paths. Its exact committed
+classifier result was `classification=documentation`, `substantive=false`, and
+`changed_count=4`. Hosted run `31262609814` allocated only Linux, which passed
+the complete bounded documentation gate in 32 seconds. GitHub skipped the
+desktop matrix before expansion in zero seconds; its umbrella check had no
+runner steps. Record squash `42046d521242147cc5ed56874238d25de9870316`
+has exact sole parent the feature squash, tree
+`0776afee4c20884240cd4828095ac3b03ae46423` exactly equal to the reviewed
+record head, a valid GitHub signature, and a parsed DCO trailer. PR #66 had no
+comment, review, or review thread. The record branch is deleted locally and
+remotely, synchronized main contains both M38 squashes, and no post-merge main
+run was allocated.
+
+M38 changes no runtime, public API, dependency, lock, version, supported
+platform/Python contract, attestation action/permission, tag, publication, or
+deferred subsystem. Its guarantee remains same-source/same-job byte equality,
+not cross-platform, hermetic, independent-rebuilder, provenance, certification,
+or publication evidence.
 
 ## M37 complete
 
