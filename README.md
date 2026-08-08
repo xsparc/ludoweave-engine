@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M33 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 adds strict agent-tool recovery-rate admission machinery while retaining its empty reviewed call manifest and no measured recovery-free completion rate. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M34 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 adds strict third-party conformance-adoption admission machinery while retaining an empty reviewed submission manifest and zero passing external implementations. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -84,6 +84,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   reviewed manifest keeps all comparison counts and rate absent.
 - A strict agent-tool recovery-rate admission harness whose empty reviewed
   agent-tool call manifest keeps all call counts and recovery-free rate absent.
+- A strict third-party conformance-adoption admission harness whose empty
+  reviewed submission manifest keeps the passing external implementation count
+  at zero without discovering, loading, or executing packages.
 - Exact v1 contracts and an explicit versioned evolution policy for all seven
   built-in operation argument shapes, exercised from installed artifacts
   without adding a runtime schema layer.
@@ -134,6 +137,7 @@ uv run python examples/response_review_latency_readiness.py
 uv run python examples/replay_divergence_rate_readiness.py
 uv run python examples/benchmark_regression_rate_readiness.py
 uv run python examples/agent_tool_recovery_rate_readiness.py
+uv run python examples/third_party_conformance_adoption_readiness.py
 uv run python examples/command_receipt_stability_decision.py
 uv run python examples/operation_argument_compatibility.py
 uv run python examples/receipt_reader.py
@@ -279,6 +283,11 @@ documents M34's complete task-directed call cohort, exact manual-recovery
 definition, terminal-evidence and history gates while retaining the current
 empty reviewed agent-tool call manifest and no measured recovery-free
 completion rate.
+The [third-party conformance-adoption readiness guide](docs/third-party-conformance-adoption-readiness.md)
+documents M35's fixed installed-profile registry, independent-authorship,
+plugin-manifest, failure-preservation, and complete-history gates while
+retaining the current empty reviewed submission manifest and zero passing
+third-party implementations.
 The [community-alpha user guide](docs/user-guide.md), [adapter guide](docs/adapter-guide.md), [API policy](API_COMPATIBILITY.md), and [release verification guide](docs/release-process.md) cover the M6 evaluation boundary.
 
 Agent mutation is disabled unless the trusted composition root explicitly

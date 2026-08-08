@@ -37,6 +37,9 @@ from receipt_semantic_evidence import validate_receipt_semantic_evidence
 from replay_divergence_rate_evidence import validate_replay_divergence_rate_evidence
 from response_review_latency_evidence import validate_response_review_latency_evidence
 from supported_release_channel_evidence import validate_supported_release_channel_evidence
+from third_party_conformance_adoption_evidence import (
+    validate_third_party_conformance_adoption_evidence,
+)
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
@@ -284,6 +287,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             dict[str, object], json.loads(agent_tool_recovery_rate_result.stdout)
         )
         validate_agent_tool_recovery_rate_evidence(agent_tool_recovery_rate, version=version)
+        third_party_conformance_result = _run(
+            [str(python), "-I", "third_party_conformance_adoption_readiness.py"],
+            cwd=sample_root,
+        )
+        third_party_conformance = cast(
+            dict[str, object], json.loads(third_party_conformance_result.stdout)
+        )
+        validate_third_party_conformance_adoption_evidence(third_party_conformance, version=version)
         external_sample_game_result = _run(
             [str(python), "-I", "external_sample_game_adoption_readiness.py"],
             cwd=sample_root,
@@ -380,6 +391,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         "response_review_latency_readiness.py",
         "rollback_readiness.py",
         "supported_release_channel_readiness.py",
+        "third_party_conformance_adoption_readiness.py",
         "visual_editor_decision.py",
         "wasm_mod_security_decision.py",
         "world_store_conformance.py",

@@ -72,6 +72,9 @@ manifest and no measured regression rate as not ready.
 M34 adds no export; RFC-0017 makes task-directed agent-tool recovery-rate
 admission mechanically auditable but records the reviewed empty call manifest
 and no measured completion-without-manual-recovery rate as not ready.
+M35 adds no export; RFC-0018 makes third-party conformance adoption
+mechanically auditable but records the reviewed empty submission manifest and
+zero passing external implementations as not ready.
 
 Inspect metadata directly when evaluating an alpha dependency:
 

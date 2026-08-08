@@ -122,3 +122,9 @@ fraction of dispatched calls in a complete reviewed task-directed cohort that
 complete without manual recovery. Its reviewed manifest remains empty, so
 examples, conformance profiles, tests, project history, and synthetic fixtures
 do not establish a measured rate or recovery-free result.
+M35 defines the final ordered adoption metric under RFC-0018: the number of
+independently authored third-party implementations passing one of the three
+existing installed conformance profiles. Its reviewed manifest remains empty,
+so project-owned reference passes, compatible inert manifests, downloads,
+stars, installed packages, and synthetic fixtures do not establish an external
+implementation or passing count.

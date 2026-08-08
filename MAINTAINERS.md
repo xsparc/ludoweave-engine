@@ -42,6 +42,31 @@ claims.
 
 ## Current boundary
 
+M35 adds strict offline admission readiness for the design plan's final
+ordered longer-term metric: the number of independently authored third-party
+adapters or plugin-backed adapters passing conformance. The exact reviewed
+manifest explicitly asserts a complete project-accepted submission-census
+review and contains no submissions, so the current passing count is zero. It
+is not a global package census, support matrix, security/performance result,
+provider certification, or ecosystem claim. Manual review owns independence,
+authorship, license, eligibility, outcome, provenance, validation, privacy,
+consent, and census completeness. Project-owned and maintainer-authored
+references never count; passed, failed, and not-executed accepted outcomes
+remain in history. Only the exact existing M17 render-device, M18 agent-tool,
+and M19 WorldStore profiles are accepted. An M12-compatible `render.device`
+manifest is required for a plugin-backed record but never counts without a
+passing render-device profile. M35 may add only frozen reviewed data, an
+explicitly invoked offline evaluator/validator, adversarial tests, RFC/docs,
+and source/wheel/release-sample smoke. It may not discover, import, install, or
+execute providers; query networks; collect telemetry; or change runtime
+source, public APIs/exports, protocols/profiles, plugin fields, formats,
+dependencies, lock, version, CI topology, release workflow, tag, publication,
+certification, stability label, SLA, or support policy. M0 through M34 are
+complete, reviewed, hosted-CI validated, and integrated into `main`. M35 starts
+from exact verified M34 integration-record commit
+`277de9052e768a5f70d32f1a2f67ec9f93353723` and contains no subsequent
+milestone.
+
 M34 adds strict offline agent-tool recovery-rate admission readiness for the
 next longer-term metric in the design plan. The reviewed manifest is empty, so
 its window and call counts remain zero, its exact rational rate is absent, and

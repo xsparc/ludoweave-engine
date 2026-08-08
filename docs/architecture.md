@@ -887,6 +887,38 @@ release change. Its only workflow change retains the eight existing essential
 jobs while limiting them to substantive pull requests, excluding redundant
 post-merge and `.project/**`-only runs.
 
+## M35 third-party conformance-adoption boundary
+
+M35 adds no engine, adapter, plugin-loader, or registry module. One explicitly
+invoked example outside `src/ludoweave` reads a bounded reviewed manifest and
+emits sanitized aggregate admission evidence. Existing installed M17-M19
+conformance runners produce evidence only when a caller explicitly supplies a
+trusted factory; the M35 evaluator neither imports nor executes that factory.
+
+The accepted registry contains only the existing render-device, agent-tool,
+and WorldStore baseline protocols, profiles, and fixed check counts. A
+plugin-backed record is possible only for the existing M12 `render.device`
+capability and requires both a compatible reviewed inert manifest and a
+passing installed render-device profile. The inert manifest alone is never
+behavioral conformance. Agent-tool and WorldStore records remain adapter
+records because no matching whole-service plugin capability exists.
+
+Eligibility is established before outcome. Project-owned and maintainer-
+authored implementations are excluded. Human review owns independence,
+authorship, license, eligibility, provenance, outcome, validation, privacy,
+consent, and completeness of the project-accepted submission census. Passed,
+failed, and not-executed submissions remain in complete accepted history; only
+distinct passing implementation identities contribute to the aggregate count.
+
+The current reviewed 250-byte manifest contains no submissions, so the result
+is `not-ready` with a zero passing count. The report omits implementation,
+package, repository, revision, artifact, evidence-location, platform, and
+environment identities. It is not a global package census, support matrix,
+security or performance result, provider certification, or ecosystem claim.
+M35 changes no runtime/public API/protocol/profile/format, dependency, lock,
+version, CI topology, release, publication, discovery, installation, provider
+execution, network, telemetry, or support policy.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -927,7 +959,9 @@ retains its empty-manifest result, and exposes no measured rate. M33 adds only
 offline benchmark-regression-rate admission readiness, retains its empty-
 manifest result, and exposes no measured rate. M34 adds only offline agent-tool
 recovery-rate admission readiness, retains its empty-manifest result, and
-exposes no measured rate. None supplies actual cross-
+exposes no measured rate. M35 adds only offline third-party conformance-
+adoption admission readiness, retains its reviewed zero result, and discovers
+or executes no provider. None supplies actual cross-
 version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.

@@ -81,6 +81,13 @@ operational cohort, measured recovery-free completion rate, reliability
 result, provider certification, or release gate. See the
 [agent-tool recovery-rate readiness guide](agent-tool-recovery-rate-readiness.md).
 
+M35/RFC-0018 adds the empty reviewed third-party conformance-adoption fixture
+and evaluator to the deterministic sample bundle. Release smoke proves only
+that the installed offline evidence path works; it is not an independently
+authored adapter or plugin, passing external conformance result, provider
+certification, support matrix, or adoption claim. See the
+[third-party conformance-adoption readiness guide](third-party-conformance-adoption-readiness.md).
+
 ## Consumer verification
 
 Verify local checksums using the platform's SHA-256 tool, then verify official
