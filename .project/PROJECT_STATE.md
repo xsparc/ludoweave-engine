@@ -1,6 +1,6 @@
 # Project State
 
-## M41 implementation complete
+## M41 complete
 
 M41 starts from exact clean synchronized M40 closeout commit
 `9983e0da88b6aef999d26498cc6438f0b3c5927b`. It closes the remaining private-
@@ -39,7 +39,14 @@ Squash `89a641559c246e971869a3ae06a878de81bffcee` has sole parent the exact M40
 closeout, preserves reviewed tree `6446826ee0b35c02dcebc78b9fad3f55caaca0c5`,
 has a valid GitHub signature and standalone DCO trailer, and allocated no
 post-merge `main` run. The feature branch is deleted locally and remotely.
-Only the documentation-only integration and closeout records remain.
+Documentation-only PR #75 exact head
+`d967624c618e433beda1052a7715872b0f256540` classified four paths as
+documentation and passed run `31270041957` in one 33-second Linux allocation;
+the desktop umbrella skipped with zero steps and no runner. With no feedback,
+it squash-integrated as `b05dbda471edf2ac14c5e0b6bf4bd75aaf23f252`,
+preserving its reviewed tree, exact feature-squash parent, valid signature,
+standalone DCO, and zero post-merge run. Its branch is deleted locally and
+remotely. Only the zero-run closeout record remains.
 
 ## M40 complete
 

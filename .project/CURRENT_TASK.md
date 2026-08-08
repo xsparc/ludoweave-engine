@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M41 - release-notes body integrity
-- **Status:** Implementation squash-integrated; publishing the documentation-
-  only integration record on `records/m41-integration`.
+- **Status:** Implementation and integration record are squash-integrated;
+  publishing the zero-run closeout record on `records/m41-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -57,4 +57,9 @@
   and macOS 2m12s. With no review/comment/thread, PR #74 squash-integrated as
   `89a641559c246e971869a3ae06a878de81bffcee`; the reviewed tree, exact parent,
   valid signature, standalone DCO, and zero post-merge run are verified. The
-  feature branch is deleted locally and remotely.
+  feature branch is deleted locally and remotely. Integration record PR #75
+  exact head `d967624c618e433beda1052a7715872b0f256540` classified four paths
+  as documentation and passed in one 33-second Linux allocation; its desktop
+  umbrella skipped with zero steps. With no feedback, it squash-integrated as
+  `b05dbda471edf2ac14c5e0b6bf4bd75aaf23f252`, preserving tree, exact parent,
+  valid signature, standalone DCO, zero post-merge run, and branch cleanup.
