@@ -67,7 +67,11 @@ same-job check is not an independent or cross-platform rebuild claim; see
 13. M45 fetches that exact public release and every exact asset ID without a
     GitHub credential, revalidates the public document and downloaded set, and
     runs the complete release smoke against those public bytes.
-14. Independently download the public assets, verify checksums and
+14. M46 waits for the publishing job to succeed, then uses one fresh read-only
+    Linux runner to retrieve the same workflow's admitted candidate and the
+    exact public bytes, revalidate them, install the wheel in a new isolated
+    environment, and run the sample bundle.
+15. Independently download the public assets, verify checksums and
     attestations, install the wheel in a clean environment, and run the sample
     bundle before announcing.
 
@@ -156,6 +160,23 @@ immutability, artifact security, PyPI, or a supported release channel. Failure
 occurs after publication and grants no retry, mutation, rollback, or cleanup
 authority.
 
+M46/RFC-0029 extracts that bounded retrieval into one shared shell verifier and
+adds a dependent fresh-runner rehearsal. The release job exposes only its
+verified numeric release ID and package version. The new Linux job uses explicit
+read-only contents permission, retrieves the exact named candidate through the
+pinned same-workflow artifact channel, creates a new plan exclusively, repeats
+the complete public retrieval/revalidation, and runs installed release smoke in
+its own workspace. Its public HTTP requests receive no release credential; the
+checkout and artifact actions still use scoped workflow services. The job adds
+no release mutation or publication authority.
+
+This is a same-workflow, same-provider Linux rehearsal, not independent or
+external verification, a cross-platform public matrix, a clean machine outside
+GitHub-hosted Actions, every delivery path, future availability, immutability,
+artifact security, PyPI, or a supported release channel. It does not replace
+maintainer gate 15. No real fresh-runner pass exists until an authorized signed-
+tag release run executes.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
@@ -231,4 +252,9 @@ M45 also exercises the exact public API release and asset IDs without supplying
 a GitHub credential, then runs the complete installed release smoke against
 those downloaded bytes. No public-path pass exists until a real signed-tag run,
 and this same-run observation is not a substitute for the independent consumer
-check in maintainer gate 14.
+check in maintainer gate 15.
+
+M46 repeats that check from a dependent fresh Linux runner using the exact
+candidate preserved by the publishing job. It improves runner/workspace and
+isolated-install separation but remains inside the same workflow and provider,
+so it is also not a substitute for the independent consumer check in gate 15.

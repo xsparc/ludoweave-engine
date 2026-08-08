@@ -61,9 +61,9 @@ def test_m38_adds_no_hosted_runner_action_permission_or_trigger() -> None:
     assert "\n  schedule:" not in ci
     assert "\n  workflow_dispatch:" not in ci
 
-    assert release.count("\n    runs-on:") == 1
-    assert release.count("uses: actions/checkout@") == 1
-    assert release.count("uses: astral-sh/setup-uv@") == 1
+    assert release.count("\n    runs-on:") == 2
+    assert release.count("uses: actions/checkout@") == 2
+    assert release.count("uses: astral-sh/setup-uv@") == 2
     assert release.count("uses: actions/attest@") == 2
     assert "attestations: write" in release
     assert "contents: write" in release

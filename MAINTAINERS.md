@@ -42,27 +42,31 @@ claims.
 
 ## Current boundary
 
-M45 closes the public consumer-path observation gap after M44's authenticated
-attestation verification. The existing tag job must fetch the exact M42
-release ID and every exact M43 asset ID from the canonical retrieval plan and
-fixed HTTPS GitHub API endpoints without supplying a GitHub credential, then
-revalidate the public document and bounded downloaded set before complete
-installed release smoke.
+M46 adds a fresh-runner rehearsal that separates M45's public-byte and
+installed-candidate observation from the publishing runner. It preserves the
+lineage from M42's published-release check through M43 asset retrieval, M44
+attestation verification, and M45's credential-free public consumer path. The
+release job may expose only the verified numeric release ID and validated
+version. One dependent read-only Linux job retrieves the exact candidate
+preserved by the same workflow, creates a new exclusive M43-format plan,
+repeats the bounded public download/revalidation, and runs complete installed
+release smoke in its own workspace.
 
-M45 may change only the existing tag workflow's postpublication tail, focused
-architecture/security tests, RFC/docs, and factual project records. It must
-retain client-configuration disablement, HTTPS-only bounded redirects,
-connect/request timeouts, exact numeric IDs, safe names, no-clobber partial
-files, the 4-MiB document cap, and M43's 32-asset, 256-MiB individual, and
-512-MiB total bounds. It must add no job, runner matrix entry, action,
-permission, trigger, dependency, lock entry, credential, package version,
-public API, runtime source, tag, release, upload, rollback, cleanup, or
-publication authority. It must not claim an independent/external consumer,
-clean-machine or cross-platform evidence, every browser/CDN/cache/geographic
-path, future availability, immutability, artifact security, PyPI, or a
-supported release channel. M0 through M44 are complete, reviewed,
-hosted-validated, and integrated into `main`. M45 starts from exact verified
-M44 closeout commit `2c5e312a97028d0b835fc174b8abb51df22ea314`.
+M46 may change only the tag workflow's job/output topology, one internal shell
+verifier, focused architecture/security tests, RFC/docs, and factual records.
+It must retain M45's fixed repository, no-release-credential request, HTTPS,
+redirect/time, document, ID, name, count, byte, no-clobber, exact-set, and smoke
+bounds. The new job must depend on release success, use explicit read-only
+contents permission, and add exactly one pinned download action and one tag-
+only Linux allocation. It may add no pull-request CI allocation, release
+trigger, release/attestation/identity write permission, mutation, retry,
+rollback, artifact-set, dependency, lock, version, runtime, package, or public-
+API change. It must not claim independent/external or cross-platform evidence,
+a clean machine outside GitHub-hosted Actions, future availability,
+immutability, artifact security, PyPI, or a supported release channel. M0
+through M45 are complete, reviewed, hosted-validated, and integrated into
+`main`. M46 starts from exact verified M45 closeout commit
+`086f1ceb3974583ce7a2c386c67f516299c2f1dd`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

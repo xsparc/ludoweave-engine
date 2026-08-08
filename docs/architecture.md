@@ -1166,6 +1166,36 @@ runner, action, permission, trigger, dependency, credential, runtime import,
 public API, package version, tag, release, upload, publication, rollback, or
 cleanup authority. RFC-0028 defines the complete boundary.
 
+## M46 fresh-runner consumer-rehearsal boundary
+
+M46 separates the final public-byte and installed-candidate observation from
+the publishing runner without pretending the result is external. The existing
+release job exposes only its verified numeric release ID and package version.
+After that job succeeds, one read-only Linux job starts with a new workspace,
+checks out the exact tagged source without persisted credentials, installs the
+pinned tool/Python pair without a dependency cache, and retrieves the exact
+named candidate preserved by the same workflow.
+
+One repository-owned shell verifier serves both jobs. Its explicit mode owns
+the plan boundary: the publishing runner must reuse M43's existing plan, while
+the fresh runner requires the path to be absent and creates a new exclusive
+plan only after the admitted candidate matches the bounded public document.
+Both paths retain M45's fixed repository, ID, HTTPS/redirect/time, document,
+name, count, byte, partial-file, exact-set, and installed-smoke bounds.
+
+The fresh job has `contents: read` and no release, attestation, or identity-
+token write permission. Public requests receive no release credential, but the
+checkout and artifact actions use GitHub's scoped workflow services. Failure
+occurs after publication and adds no retry, mutation, rollback, or cleanup.
+
+One fresh GitHub-hosted Linux runner is not independent/external verification,
+a cross-platform public matrix, a clean machine outside the same provider,
+every delivery path, future availability, immutability, artifact security,
+PyPI, or a supported release channel. M46 adds one tag-only runner and one
+pinned download action but changes no pull-request CI allocation, release
+trigger or publication authority, staged artifact, dependency, runtime, or
+public API. RFC-0029 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

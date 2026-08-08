@@ -114,9 +114,9 @@ def test_m44_adds_no_runner_action_permission_trigger_or_dependency() -> None:
         _PYPROJECT_SHA256
     )
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
-    assert release.count("\n    runs-on:") == 1
-    assert release.count("uses: actions/checkout@") == 1
-    assert release.count("uses: astral-sh/setup-uv@") == 1
+    assert release.count("\n    runs-on:") == 2
+    assert release.count("uses: actions/checkout@") == 2
+    assert release.count("uses: astral-sh/setup-uv@") == 2
     assert release.count("uses: actions/attest@") == 2
     assert release.count("uses: actions/upload-artifact@") == 1
     assert release.count("gh release create") == 1

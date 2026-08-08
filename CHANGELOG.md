@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M46/RFC-0029 fresh-runner public release consumer rehearsal using the
+  exact admitted same-workflow candidate, a shared bounded verifier, read-only
+  permissions, and one pinned download action without new release mutation,
+  publication authority, runtime, dependency, or pull-request CI allocation.
 - Add M45/RFC-0028 credential-free exact-ID public release retrieval,
   revalidation, and installed-candidate smoke after M44 in the existing tag
   job, with bounded HTTPS requests and no new workflow allocation, action,
