@@ -1,7 +1,8 @@
 # Current Task
 
 - **Task:** M39 - release-tag integrity enforcement
-- **Status:** In progress on `release/m39-tag-integrity`.
+- **Status:** Implementation complete and squash-integrated; publishing the
+  factual integration record on `records/m39-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -38,7 +39,10 @@
   public API; persistent formats/protocols; package version/dependency/lock;
   platform/version support; attestation changes; deferred runtime subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** The exact baseline lock resolves 46 packages and all ten
-  inherited release/M38 boundary tests pass. The validator passes 16 behavior/
-  adversarial tests after one strict-typing correction. Integrated
-  verifier/workflow focus passes 23 tests and workflow YAML parses.
+- **Current evidence:** Exact implementation head
+  `f71d8ddbf816873cf9af8ea6538112ff0e75553e` passed run `31264314307` in
+  exactly three allocations: Linux 6m43s, macOS 2m33s, and Windows 3m30s.
+  Squash `4e30b4bf3b911270ab4e1bd117d49ca0d090a0a7` preserves the reviewed tree,
+  exact base parent, valid GitHub signature, and standalone DCO trailer. No
+  review thread or post-merge `main` run exists, and the feature branch is
+  deleted locally and remotely.
