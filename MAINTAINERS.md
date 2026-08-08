@@ -42,32 +42,22 @@ claims.
 
 ## Current boundary
 
-M37 changes CI qualification only. A classifier loaded from the exact base
-revision admits only root Markdown, Markdown below `docs/` and `.project/`, and
-the bounded issue/pull-request metadata named by RFC-0020 as documentation-only.
-`mkdocs.yml` and non-Markdown documentation paths remain substantive so hooks
-or other executable inputs cannot enter through the smaller gate.
-Missing policy, empty or invalid input, mixed/unrecognized paths, decoding
-failure, and Git failure must be substantive or block the Linux job. The pull-
-request copy of the classifier must never classify itself.
+M38 enforces same-source distribution reproducibility. The standard-library
+verifier accepts two distinct build directories, each containing exactly one
+matching `ludoweave-VERSION-py3-none-any.whl` and source archive, and fails
+closed on symlinks, directories, unexpected/missing artifacts, inconsistent or
+platform-specific names, unreadable files, or differing bytes. Success emits
+versioned deterministic JSON with exact sizes and SHA-256 identities.
 
-Documentation-only pull requests retain one Linux lock, formatting/lint,
-strict-docs, architecture, build, isolated-wheel, and release-candidate gate.
-Substantive work retains all eight M36 validation slices and exactly three
-hosted allocations. Windows and macOS depend on successful Linux qualification
-and run only for `substantive=true`; an early Linux failure must not allocate
-desktop runners. The workflow remains pull-request only, ignores
-`.project/**`-only records, uses `contents: read`, disables checkout
-credentials, retains exact action/uv pins, caches from the lockfile, bounds
-every job, isolates desktop failures, and cancels superseded runs. M37 may
-update only CI qualification tooling, workflow architecture tests, RFC/docs,
-and neutral engineering records. It may not change runtime source, test
-behavior, dependencies, lock, package version, release workflow, tag,
-publication, platform/version support, certification, or support policy. M0
-through M36 are complete, reviewed, hosted-CI validated, and integrated into
-`main`. M37 starts from exact verified M36 integration-record commit
-`46ef98447706c94763a236841a38c2dbb5b444ca` and contains no subsequent
-milestone.
+The existing Linux pull-request and tag-release distribution steps each build
+twice and compare before smoke, staging, attestation, or publication. M38 must
+add no job, runner matrix entry, action, permission, trigger, dependency, lock
+entry, credential, package version, public API, runtime source, tag, release,
+or publication. The claim is same-source/same-job byte identity only, not
+cross-platform or hermetic reproducibility, independent rebuilding,
+provenance, availability, or support. M0 through M37 are complete, reviewed,
+hosted-validated, and integrated into `main`. M38 starts from exact verified
+M37 closeout commit `3578da64b2686cd8d63340aeb1eed30f5c4cb761`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

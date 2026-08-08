@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _WORKFLOW = _ROOT / ".github" / "workflows" / "ci.yml"
-_RELEASE_WORKFLOW_SHA256 = "d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8"
+_RELEASE_WORKFLOW_SHA256 = "fa6c60642946cc0350f3d2fb78d6918efc4a1ba6f27b54de9f53de3a156c85ae"
 
 
 def _job_block(source: str, name: str, next_name: str | None = None) -> str:
@@ -80,8 +80,8 @@ def test_documentation_lane_retains_one_linux_quality_and_distribution_allocatio
         "ruff check .",
         "mkdocs build --strict",
         "uv build",
-        "scripts/smoke_wheel.py dist",
-        "scripts/release_artifacts.py dist .tmp/ci-release",
+        "scripts/smoke_wheel.py .tmp/ci-dist-first",
+        "scripts/release_artifacts.py .tmp/ci-dist-first .tmp/ci-release",
         "scripts/smoke_release.py .tmp/ci-release",
     ):
         assert command in linux

@@ -1,5 +1,29 @@
 # Project State
 
+## M38 in progress
+
+M38 starts from exact clean synchronized M37 closeout commit
+`3578da64b2686cd8d63340aeb1eed30f5c4cb761`. It adds a standard-library,
+fail-closed comparison for two distinct wheel/sdist build directories and
+wires one repeat build into each existing Linux pull-request and tag-release
+distribution step. The verifier requires one matching pure wheel/source pair,
+ordinary files, exact bytes, and deterministic JSON identities. Invalid entry
+types, missing/extra artifacts, inconsistent or platform-specific names,
+unreadable data, and byte divergence fail nonzero.
+
+The existing same-source build probe produces exact matching wheel and sdist
+bytes on Windows. Corrected focused tests cover valid output and adversarial
+directory, name, artifact-set, and byte cases. CI/release architecture tests
+preserve the M37 two-job/three-allocation pull-request topology, one-job tag
+workflow, exact action pins, existing permissions, and triggers. RFC-0021 and
+public release/architecture documentation define the narrow same-source/same-
+job guarantee. Complete local validation and findings-first review pass,
+including the exact reviewed-tree repeat build, installed wheel, staged release,
+and archive inspection. M38 changes no runtime, public API, dependency, lock,
+version, supported platform/Python contract, attestation action/permission,
+tag, publication, or deferred subsystem. Hosted validation, integration, and
+cleanup remain pending.
+
 ## M37 complete
 
 M37 starts from exact clean synchronized M36 integration-record commit

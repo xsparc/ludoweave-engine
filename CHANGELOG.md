@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M38/RFC-0021 fail-closed wheel/sdist reproducibility verification to the
+  existing Linux pull-request and tag-release distribution steps without a new
+  runner, action, dependency, permission, trigger, or publication claim.
 - Add M37/RFC-0020 fail-closed CI change qualification: documentation-only
   changes retain one Linux quality/docs/distribution allocation, substantive
   changes retain all three M36 allocations, and failed Linux qualification

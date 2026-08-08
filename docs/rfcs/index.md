@@ -25,3 +25,4 @@ was adopted.
 - [RFC-0018: third-party conformance-adoption readiness](0018-third-party-conformance-adoption-readiness.md)
 - [RFC-0019: CI runner consolidation](0019-ci-runner-consolidation.md)
 - [RFC-0020: CI change qualification](0020-ci-change-qualification.md)
+- [RFC-0021: enforce distribution reproducibility](0021-enforce-distribution-reproducibility.md)

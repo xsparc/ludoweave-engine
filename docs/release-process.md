@@ -21,12 +21,21 @@ The baseline SBOM has one package because the wheel has no runtime dependencies
 and redistributes no optional graphics providers. Locked contributor/graphics
 packages are installed separately under their own distributions and notices.
 
+Before installed-wheel smoke or staging, M38 builds the wheel and source
+distribution twice in distinct directories and runs
+`scripts/verify_distribution_reproducibility.py`. Both directories must contain
+exactly one matching pure wheel/source-archive pair and the bytes must match.
+The deterministic JSON result records exact sizes and SHA-256 identities. This
+same-job check is not an independent or cross-platform rebuild claim; see
+[RFC-0021](rfcs/0021-enforce-distribution-reproducibility.md).
+
 ## Maintainer gate
 
 1. Require the milestone PR's complete local and hosted gates to pass.
 2. Confirm the changelog, version, date, release notes, compatibility status,
    security policy, notices, and retrospective agree.
-3. Build/stage/smoke the candidate from a clean signed commit.
+3. Build twice, verify byte reproducibility, then stage/smoke the candidate
+   from a clean signed commit.
 4. Create a signed `vVERSION` tag at that exact commit and push the tag.
 5. The least-privilege tag workflow reruns quality/tests/docs, builds/stages and
    smokes artifacts, creates GitHub build-provenance and SPDX attestations, and
@@ -101,3 +110,5 @@ gh attestation verify ludoweave-VERSION-py3-none-any.whl -R xsparc/ludoweave-eng
 Artifact attestations are stored by GitHub and bind the subject digest to the
 tag workflow. `RELEASE_MANIFEST.json` is reproducible release metadata, not a
 cryptographic signature or substitute for the hosted attestation.
+Matching repeat builds are also not provenance: they do not identify the
+builder or prove that the environment was trustworthy.
