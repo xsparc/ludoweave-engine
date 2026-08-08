@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M34 - agent-tool recovery-rate admission readiness and CI quota hardening
-- **Status:** Locally complete, findings-first reviewed, and ready for hosted
-  validation on neutral feature branch `evidence/m34-agent-tool-recovery`.
+- **Status:** Corrected locally after the initial hosted run and delayed review;
+  corrected-head hosted validation is pending on neutral feature branch
+  `evidence/m34-agent-tool-recovery`.
 - **Started:** 2026-08-08
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
   commit `d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. Only `main` existed locally
@@ -61,7 +62,10 @@
   Its evaluator emits deterministic path-free `not-ready` evidence with zero
   windows/calls and no rate. Findings-first review added explicit per-window and
   per-call privacy/consent admission and found no remaining issue. The complete
-  suite passes 1,624 tests with nine skips; all static/docs gates, universal
+  suite passes 1,625 tests with nine skips; all static/docs gates, universal
   build, isolated wheel/release smoke, ten real-wgpu tests, graphics profile,
-  both vertical slices, and final scope/security/artifact audits pass. Hosted
-  validation, PR review, and integration are pending.
+  both vertical slices, and final scope/security/artifact audits pass. Initial
+  hosted run `31228373123` exposed one POSIX traceback disclosure and delayed
+  review found one excessive-nesting exception escape. Both have focused
+  regressions and pass the corrected complete local gate. Corrected-head hosted
+  validation, review closure, and integration are pending.

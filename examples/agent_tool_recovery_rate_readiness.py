@@ -109,7 +109,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     arguments = parser.parse_args(tuple(sys.argv[1:] if argv is None else argv))
     selected: object = getattr(arguments, "manifest", None)
     manifest = _default_manifest() if selected is None else _path(selected)
-    print(json.dumps(evaluate(manifest), ensure_ascii=True, separators=(",", ":"), sort_keys=True))
+    try:
+        report = evaluate(manifest)
+    except RuntimeError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    print(json.dumps(report, ensure_ascii=True, separators=(",", ":"), sort_keys=True))
     return 0
 
 
@@ -592,10 +597,10 @@ def _loads(payload: bytes, label: str) -> object:
     try:
         text = payload.decode("utf-8")
         value = json.loads(text, object_pairs_hook=_unique_object)
-    except (UnicodeDecodeError, json.JSONDecodeError, ValueError) as error:
+        if _json_depth(value) > _MAX_JSON_NESTING:
+            raise RuntimeError(f"{label} exceeds its nesting limit")
+    except (UnicodeDecodeError, json.JSONDecodeError, RecursionError, ValueError) as error:
         raise RuntimeError(f"{label} is not valid JSON") from error
-    if _json_depth(value) > _MAX_JSON_NESTING:
-        raise RuntimeError(f"{label} exceeds its nesting limit")
     return value
 
 

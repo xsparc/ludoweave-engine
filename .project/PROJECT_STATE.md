@@ -33,8 +33,18 @@ dependencies, lock, version, release workflow, providers, telemetry, and
 native/WASM surfaces remain unchanged. Implementation, the 1,624-test complete
 suite, strict static/docs gates, universal build, isolated wheel/release smoke,
 real-wgpu/vertical-slice checks, scope/security audits, and findings-first
-review pass on `evidence/m34-agent-tool-recovery`. Hosted validation and
-integration remain pending; no hosted or merge claim is made yet.
+review pass on `evidence/m34-agent-tool-recovery`. Initial hosted run
+`31228373123` failed one missing-manifest regression on Ubuntu and macOS because
+the uncaught chained traceback disclosed the test path; the Windows
+compatibility and all three graphics jobs passed. Delayed review also found
+that sufficiently deep JSON could escape through `RecursionError`. The CLI now
+prints only its sanitized outer error, and both parser and recursive depth-walk
+exhaustion normalize to the documented validation error. Regressions cover no
+traceback and excessive nesting. The corrected local gate passes 1,625 tests
+with nine skips, strict static/docs checks, a universal build, isolated wheel
+smoke, and a fresh ten-artifact release smoke. Corrected-head hosted validation,
+review closure, and integration remain pending; no hosted pass or merge claim
+is made yet.
 
 ## M33 complete
 

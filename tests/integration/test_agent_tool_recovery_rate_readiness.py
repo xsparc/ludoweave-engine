@@ -246,6 +246,7 @@ def test_missing_manifest_error_is_path_free(tmp_path: Path) -> None:
     assert result.stdout == ""
     assert "agent-tool recovery manifest is unavailable" in result.stderr
     assert str(tmp_path) not in result.stderr
+    assert "Traceback" not in result.stderr
 
 
 def test_validator_rejects_value_and_json_type_drift() -> None:
@@ -406,6 +407,15 @@ def test_manifest_rejects_unknown_duplicate_size_nesting_and_symlink(tmp_path: P
         return
     with pytest.raises(RuntimeError, match="symbolic link"):
         evaluate(link)
+
+
+def test_manifest_rejects_parser_depth_exhaustion(tmp_path: Path) -> None:
+    deeply_nested = tmp_path / "deeply-nested.json"
+    deeply_nested.write_text("[" * 2_000 + "]" * 2_000, encoding="utf-8")
+    _, evaluate = _evaluator()
+
+    with pytest.raises(RuntimeError, match="not valid JSON"):
+        evaluate(deeply_nested)
 
 
 @pytest.mark.parametrize(
