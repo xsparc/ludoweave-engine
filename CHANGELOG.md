@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M44/RFC-0027 exact-source SLSA provenance verification for every
+  retrieved release asset and SPDX SBOM verification for the pure wheel, with
+  bounded content-silent subprocesses and no new workflow allocation, action,
+  permission, dependency, trigger, release mutation, or rollback authority.
 - Add M43/RFC-0026 exact-ID published asset retrieval and byte revalidation to
   the existing tag job, without clobber, rollback, immutable-release claims,
   or a new runner, action, permission, dependency, trigger, or release authority.

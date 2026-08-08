@@ -137,7 +137,7 @@ def test_m33_adds_no_runtime_export_dependency_version_release_or_provider() -> 
         for path in (_ROOT / "src" / "ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06"
+        "3e82735e95120ab3fcbd9d2f0b658765a2e524e808d8b64a25062e799454dfae"
     )
 
 

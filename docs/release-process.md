@@ -60,8 +60,13 @@ same-job check is not an independent or cross-platform rebuild claim; see
 11. M43 requires unique bounded numeric asset IDs, retrieves each exact ID
     through the authenticated binary asset endpoint, and rehashes the complete
     downloaded set against the same published document.
-12. Independently download the public assets, verify checksums and attestations, install the
-   wheel in a clean environment, and run the sample bundle before announcing.
+12. M44 verifies SLSA v1 provenance for every retrieved asset and an SPDX 2.3
+    SBOM attestation for exactly one pure wheel under the exact repository,
+    tag, source/signer commit, release workflow, issuer, and hosted-runner
+    policy.
+13. Independently download the public assets, verify checksums and
+    attestations, install the wheel in a clean environment, and run the sample
+    bundle before announcing.
 
 No PyPI upload is configured in community alpha. Name reservation, trusted
 publishing, and a non-prerelease support policy require separate maintainer
@@ -117,6 +122,21 @@ retrieval observation, not unauthenticated availability, every CDN/cache edge,
 future bytes, immutability, consumer installation, or attestation verification.
 It adds no runner, action, permission, dependency, trigger, tag, release,
 upload, rollback, cleanup, or publication authority.
+
+M44/RFC-0027 consumes the canonical M43 plan and exact downloaded directory in
+one standard-library verifier after byte revalidation. It runs
+`gh attestation verify` once per asset for SLSA v1 provenance and once for the
+single pure wheel's SPDX 2.3 SBOM. Every invocation binds repository, release
+workflow, tag ref, source/signer commit, GitHub Actions OIDC issuer, hosted
+runner class, predicate type, a 30-bundle limit, null child streams, and a
+30-second timeout. The 32-asset plan cap limits the verifier to 33 sequential
+calls. Output contains only protocol/status/counts or a stable generic failure.
+This verifies subject digest and constrained GitHub identity at one observation
+point; it does not prove artifact security, an independent or trusted build,
+predicate truth beyond the constrained type/identity, future availability or
+non-revocation, global asset access, immutability, consumer installation, or a
+supported channel. Failure occurs after publication and grants no retry,
+unpublish, delete, edit, rollback, or cleanup authority.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
@@ -183,3 +203,8 @@ tag workflow. `RELEASE_MANIFEST.json` is reproducible release metadata, not a
 cryptographic signature or substitute for the hosted attestation.
 Matching repeat builds are also not provenance: they do not identify the
 builder or prove that the environment was trustworthy.
+
+M44 automates this check inside a real signed-tag run, but no hosted
+attestation pass exists until such a run creates and verifies the attestations.
+Attestation verification is an integrity and identity claim, not an artifact-
+security or independent-build certification.

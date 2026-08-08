@@ -52,6 +52,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M41 release-notes body integrity | PR #74 passed exact source-body and asset verification in three bounded hosted allocations, then squash-integrated without workflow or release-authority change |
 | Done | M42 published prerelease integrity | PR #77 passed exact same-ID draft/public state, timestamp, notes, and asset verification in three bounded hosted allocations, then squash-integrated without new release authority |
 | Done | M43 published asset retrieval integrity | PR #80 corrected and passed bounded exact-ID retrieval, same-document byte revalidation, and the three-allocation hosted gate before verified squash integration |
+| In progress | M44 published release attestation integrity | Exact-source SLSA provenance for every retrieved asset plus SPDX wheel-SBOM verification, with bounded content-silent execution and unchanged hosted topology |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -531,6 +532,16 @@ thread was resolved after the bounded-stream correction. Squash
 `8b7038cc203cead16d1dd88c746b584b6d0c37ca` has the exact reviewed tree, sole
 parent the M42 closeout, a valid GitHub signature, and a standalone DCO trailer.
 No post-merge `main` run was allocated, and the feature branch is deleted.
+
+M44 starts from verified M43 closeout commit
+`0b3b9eb982a67eee1833f3a8f920671f8ffd006b`. It consumes the bounded M43 plan
+and exact downloaded subject set after publication, requiring SLSA v1
+provenance for every asset and an SPDX 2.3 SBOM attestation for the one pure
+wheel under exact repository, workflow, tag, source/signer commit, issuer, and
+hosted-runner policy. It adds no runner, action, permission, trigger,
+dependency, credential, tag, release, upload, publication, rollback, cleanup,
+runtime, package, or public-API change. A real attestation pass remains
+unclaimed until an authorized signed-tag release run executes.
 
 ## Good-first contribution queue
 
