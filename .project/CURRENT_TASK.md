@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M44 - published release attestation integrity
-- **Status:** Feature PR #83 is hosted-validated and squash-integrated;
-  publishing the documentation-only integration record on
-  `records/m44-integration`.
+- **Status:** Feature PR #83 and documentation-only integration-record PR #84
+  are hosted-validated and squash-integrated; publishing the final zero-run
+  closeout record on `records/m44-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -68,5 +68,13 @@
   `781ca0d1692b309ca3dd7ea9ca8dc6af88f77b09` has the exact reviewed tree,
   sole parent the M43 closeout, a valid GitHub signature, and standalone DCO
   trailer. No post-merge `main` run was allocated; only synchronized `main`
-  remained before this record branch. No real release or hosted attestation
-  pass is claimed.
+  remained before the integration-record branch. Ready PR #84 exact head
+  `66c58256790127db727c8cc87741d95f6c9a5612` classified exactly four Markdown
+  paths as documentation. Run `31278008212` allocated one 30-second Linux job,
+  passed the documentation/static/architecture/distribution gate, and skipped
+  the desktop umbrella with zero steps. It had no review, comment, or thread.
+  Squash `792a2e702a8331566ddc5c5bf07e449c66f30f9e` has sole parent the feature
+  squash, the exact reviewed tree, a valid GitHub signature, and standalone
+  DCO trailer. No post-merge `main` run was allocated, and the integration
+  branch is deleted locally and remotely. No real release or hosted
+  attestation pass is claimed.
