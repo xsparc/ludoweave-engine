@@ -46,7 +46,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M35 third-party conformance-adoption readiness | PR #58 squash-integrated; strict empty reviewed project-accepted submission census, exact existing profile registry, failure/non-execution preservation, zero current count, installed artifact smoke, and RFC-0018 |
 | Done | M36 CI runner consolidation | PR #60 squash-integrated; all eight Python/platform/graphics/distribution slices passed in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
 | Done | M37 CI change qualification | PR #62 squash-integrated; corrected substantive run `31259200818` passed fail-closed trusted-base classification, the three-allocation M36 gate, Linux-before-desktop qualification, and RFC-0020 |
-| In progress | M38 distribution reproducibility enforcement | Fail-closed same-source wheel/sdist byte comparison inside existing Linux CI and tag-release jobs, with no new runner or publication authority |
+| Done | M38 distribution reproducibility enforcement | PR #65 squash-integrated; corrected same-source wheel/sdist byte gate passed all three bounded hosted allocations with no new runner or publication authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -442,6 +442,13 @@ release distribution steps each build twice and reject any filename, artifact-
 set, portability, or byte mismatch before smoke, staging, attestation, or
 publication. The comparison consumes no additional runner allocation and
 claims neither cross-platform/independent reproducibility nor provenance.
+
+PR #65 corrected symlink-cycle failure handling and passed exact final head
+`4f3db7446c842df4f36d7cc8f8321a89bbe5997f` in run `31261807768`. Linux
+completed in 6m50s before the desktop allocations began; macOS passed in 1m59s
+and Windows in 3m44s. Squash `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7`
+has the exact reviewed tree, a valid GitHub signature, and a DCO trailer. No
+post-merge main run was allocated and the feature branch is deleted.
 
 ## Good-first contribution queue
 

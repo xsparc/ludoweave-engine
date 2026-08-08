@@ -1,6 +1,6 @@
 # Project State
 
-## M38 in progress
+## M38 implementation complete; public record validation pending
 
 M38 starts from exact clean synchronized M37 closeout commit
 `3578da64b2686cd8d63340aeb1eed30f5c4cb761`. It adds a standard-library,
@@ -13,16 +13,34 @@ unreadable data, and byte divergence fail nonzero.
 
 The existing same-source build probe produces exact matching wheel and sdist
 bytes on Windows. Corrected focused tests cover valid output and adversarial
-directory, name, artifact-set, and byte cases. CI/release architecture tests
-preserve the M37 two-job/three-allocation pull-request topology, one-job tag
-workflow, exact action pins, existing permissions, and triggers. RFC-0021 and
-public release/architecture documentation define the narrow same-source/same-
-job guarantee. Complete local validation and findings-first review pass,
-including the exact reviewed-tree repeat build, installed wheel, staged release,
-and archive inspection. M38 changes no runtime, public API, dependency, lock,
-version, supported platform/Python contract, attestation action/permission,
-tag, publication, or deferred subsystem. Hosted validation, integration, and
-cleanup remain pending.
+directory, name, artifact-set, byte, unreadable-directory, and symlink-cycle
+cases. CI/release architecture tests preserve the M37 two-job/three-allocation
+pull-request topology, one-job tag workflow, exact action pins, existing
+permissions, and triggers. RFC-0021 and public release/architecture
+documentation define the narrow same-source/same-job guarantee.
+
+PR #65 review identified that `Path.resolve(strict=True)` raises
+`RuntimeError`, rather than `OSError`, for a symlink loop. DCO-signed correction
+`4f3db7446c842df4f36d7cc8f8321a89bbe5997f` returns the promised structured
+invalid-directory failure and adds a capability-aware regression. Replacement
+run `31261807768` passed exact corrected head in exactly three allocations:
+Linux in 6m50s, macOS in 1m59s, and Windows in 3m44s. Linux passed before either
+desktop allocation began. Its same-source rebuild comparison reported a
+266,797-byte wheel at SHA-256
+`6c43bb79ed5de115ee645f1c8a9b4e8338f364c5bb1f53e08cde58e82e9afe06`
+and an 892,185-byte sdist at SHA-256
+`8f21585819f76f289887a6194e44bcf06b72497d70d13451326cc778e48e4f8a`.
+All expected steps passed; the sole review thread is resolved and outdated.
+
+PR #65 squash `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7` has sole parent exact M37
+closeout, tree `1a96d02b8b23410732fc7ac746179459a14d3f44` exactly equal to the reviewed
+feature head, a valid GitHub signature, and a parsed DCO trailer. The feature
+branch is deleted locally and remotely, synchronized main contains the squash,
+and no post-merge main run was allocated. M38 changes no runtime, public API,
+dependency, lock, version, supported platform/Python contract, attestation
+action/permission, tag, publication, or deferred subsystem. This public
+Markdown record still requires the bounded one-Linux documentation gate; its
+hosted result is not pre-claimed.
 
 ## M37 complete
 
