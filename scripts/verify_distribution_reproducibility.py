@@ -101,7 +101,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 def _directory(value: Path, *, role: str) -> Path:
     try:
         resolved = value.resolve(strict=True)
-    except OSError as error:
+    except (OSError, RuntimeError) as error:
         raise DistributionReproducibilityError(
             f"{role} distribution directory is unavailable",
             code="distribution.invalid_directory",

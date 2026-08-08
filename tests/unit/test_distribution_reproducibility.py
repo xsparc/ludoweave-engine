@@ -116,6 +116,22 @@ def test_symlinked_artifact_fails_closed_when_platform_supports_it(tmp_path: Pat
     assert json.loads(result.stderr)["code"] == "distribution.invalid_entry"
 
 
+def test_symlink_cycle_is_a_structured_directory_failure_when_supported(tmp_path: Path) -> None:
+    first = tmp_path / "cycle-first"
+    second = tmp_path / "cycle-second"
+    valid = _dist(tmp_path / "valid")
+    try:
+        first.symlink_to(second, target_is_directory=True)
+        second.symlink_to(first, target_is_directory=True)
+    except OSError as error:
+        pytest.skip(f"symlink creation is unavailable: {error}")
+
+    result = _run(first, valid)
+    assert result.returncode == 1
+    assert result.stdout == ""
+    assert json.loads(result.stderr)["code"] == "distribution.invalid_directory"
+
+
 @pytest.mark.parametrize(
     ("wheel", "sdist"),
     [
