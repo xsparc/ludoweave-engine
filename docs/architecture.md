@@ -1034,6 +1034,28 @@ download remote assets, change attestations, define signer policy, or establish
 a supported release channel. RFC-0023 defines the full trust and non-claim
 boundary.
 
+## M41 release-notes body integrity boundary
+
+M41 closes the remaining draft metadata gap without changing workflow topology.
+The M40 validator already receives bounded local staging and the authenticated
+GitHub draft document after `gh release create --notes-file` and asset upload.
+Protocol `ludoweave.release-draft-integrity/2` additionally reads the fixed
+staged `RELEASE_NOTES.md` member and requires the remote release `body` to equal
+that exact text before asset admission and publication.
+
+The notes reader accepts only a regular non-symlink file of at most 256 KiB,
+strict non-empty UTF-8, and no NUL. It accepts no normalization: missing, null,
+non-text, substituted, truncated, newline-different, whitespace-different, or
+Unicode-different bodies fail closed. Output contains only the existing safe
+tag/asset identities or a stable code; release-note content never enters logs.
+
+M41 adds no network client, workflow change, runner allocation, action,
+permission, trigger, credential, dependency, runtime import, public API, tag,
+release, or publication authority. It compares GitHub's API source body rather
+than rendered Markdown and does not verify link safety, factual completeness,
+human approval, independent storage, or immutability. RFC-0024 defines the full
+trust and non-claim boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

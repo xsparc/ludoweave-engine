@@ -1,51 +1,54 @@
 # Current Task
 
-- **Task:** M40 - draft-release asset integrity
-- **Status:** Implementation and integration record are squash-integrated;
-  publishing the zero-run closeout record on `records/m40-closeout`.
+- **Task:** M41 - release-notes body integrity
+- **Status:** Locally validated on `release/m41-notes-integrity`; publication
+  and hosted validation are pending.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `49fba13477890bf6bf1c9e6a645e669b3a69492f`. Only `main` existed locally
+  commit `9983e0da88b6aef999d26498cc6438f0b3c5927b`. Only `main` existed locally
   and remotely, no pull request, local/remote tag, or GitHub release was
   present, and `git fsck --full --no-dangling` passed.
-- **Outcome:** Keep the existing GitHub prerelease private as a draft until the
-  authenticated remote asset inventory exactly matches bounded local staging.
+- **Outcome:** Publish the private draft only when its authenticated release-
+  notes body exactly matches bounded staged `RELEASE_NOTES.md`.
 - **Acceptance gate:**
-  - Strictly validate capped duplicate-free GitHub release JSON plus bounded
-    local regular files and safe identities.
-  - Require exact tag/title, `draft=true`, `prerelease=true`,
-    `immutable=false`, and one complete uploaded remote asset per local file.
-  - Require exact asset names, byte sizes, and SHA-256 digests; fail missing,
-    extra, duplicate, pending, renamed, truncated, or digest-different assets.
-  - Create the draft without assets, upload without clobbering, fetch through a
-    pinned REST API version, verify, and only then publish.
-  - Leave failed drafts unpublished for deliberate inspection; never delete or
-    clobber release evidence automatically.
-  - Preserve the M39 pull-request topology and existing tag job; add no runner,
-    action, permission, trigger, dependency, credential, cache key, or
-    publication authority.
-  - Document GitHub as the remote digest authority and explicitly reject
-    independent-storage, immutability, PyPI, supported-channel, real-tag, or
-    real-publication claims.
+  - Advance the internal draft-integrity protocol from `/1` to `/2` because the
+    acceptance contract becomes stronger.
+  - Read only the fixed staged `RELEASE_NOTES.md` regular non-symlink member;
+    require non-empty strict UTF-8 without NUL and cap it at 256 KiB.
+  - Require exact equality with the authenticated GitHub release `body`; reject
+    missing, null, non-text, substituted, truncated, newline-, whitespace-, or
+    Unicode-different bodies.
+  - Emit no release-note content on success or failure; preserve structured
+    stable errors and the complete M40 asset checks.
+  - Preserve both workflow files exactly; add no runner, action, permission,
+    trigger, dependency, credential, cache key, API call, or publication
+    authority.
+  - Document source-body trust and explicitly reject rendered-Markdown, link,
+    factual-completeness, immutability, PyPI, and supported-channel claims.
   - Run the complete local gate and one substantive hosted pull-request gate.
 - **Non-scope:** Creating/pushing a tag, draft, or release; asset upload; GitHub
-  release or PyPI publication; automatic failed-draft deletion; immutable
-  release settings; independent remote downloads; signer/key lifecycle; runtime
-  or public API; persistent formats/protocols; package version/dependency/lock;
-  platform/version support; attestation changes; deferred runtime subsystems.
+  release or PyPI publication; rendered Markdown or link validation; factual
+  release-note review; immutable-release settings; independent remote download;
+  signer/key lifecycle; runtime or public API; persistent formats/protocols;
+  package version/dependency/lock; platform support; attestations; deferred
+  runtime subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** Corrected exact head
-  `967147b3bbc83414d0ce303845975dea0c4e9d26` passed run `31267396755` in
-  exactly three allocations: Linux 6m43s, macOS 2m51s, and Windows 3m35s. The
-  sole review thread is resolved and outdated. Squash
-  `e9d9850e11f572a1d4ddc78d06c79b23a5584f87` preserves the reviewed tree,
-  exact base parent, valid GitHub signature, and standalone DCO trailer. No
-  `main` run was allocated. Integration record PR #72 passed its one 35-second
-  Linux documentation allocation while the desktop umbrella skipped with zero
-  steps, then squash-integrated as
-  `67d03d41430dc24bf81a894752b3641de8e521ed` with the same tree, parent,
-  signature, DCO, and zero-`main`-run guarantees. Only clean synchronized
-  `main` remained before this closeout branch.
+- **Current evidence:** M40 closeout PR #73 exact head
+  `e1b07f781096370fa3b6f820bc80dc1d4c585279` changed only three `.project`
+  paths and allocated no run, check, review, comment, or thread. Squash
+  `9983e0da88b6aef999d26498cc6438f0b3c5927b` preserves the reviewed tree,
+  exact parent, valid GitHub signature, standalone DCO trailer, and zero
+  post-merge runner usage. M41 inherited 25 validator/workflow tests with one
+  Windows symlink skip. After correcting Windows fixture newline and case-ID
+  behavior, focused format/lint/strict typing pass and 26 behavior/adversarial
+  tests pass with the same capability skip. RFC-0024 and the release/security/
+  architecture surfaces are integrated; a further 30-test focused gate proves
+  release-note content remains absent from both success and failure output.
+  Findings-first review corrected notes-member error taxonomy. The corrected
+  complete Python 3.12 suite passes 1,830 tests with 13 expected skips; Python
+  3.13 and 3.14 each pass 1,820 with 13 expected skips; real graphics, profiles,
+  deterministic samples, reproducible distributions, installed-wheel smoke,
+  complete release smoke, and exact synthetic-draft verification all pass.

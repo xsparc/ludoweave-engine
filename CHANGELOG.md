@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M41/RFC-0024 exact bounded release-notes body verification to the existing
+  private-draft gate, without logging note content or changing workflow
+  allocations, permissions, dependencies, tags, releases, or publication
+  authority.
 - Add M40/RFC-0023 fail-closed GitHub draft-release asset verification before
   publication, with exact uploaded name, state, size, and SHA-256 equality and
   no new runner, action, permission, trigger, dependency, tag, release, or

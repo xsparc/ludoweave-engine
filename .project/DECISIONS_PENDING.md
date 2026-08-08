@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0024 resolves M41 release-notes body integrity. The existing bounded M40
+validator now requires authenticated draft `body` text to exactly equal the
+fixed staged `RELEASE_NOTES.md` supplied through `--notes-file`, while emitting
+no note content. The internal protocol advances to `/2`; both workflow files,
+runner allocations, actions, permissions, triggers, dependencies, credentials,
+API calls, tags, releases, and publication authority remain unchanged. Rendered
+Markdown, link and factual-content review, immutable-release policy, PyPI, and a
+supported release channel remain separate decisions.
+
 RFC-0023 resolves M40 draft-release asset integrity. The existing tag job makes
 its final draft/upload/publish sequence explicit and publishes only when a
 bounded standard-library validator confirms the authenticated GitHub draft has

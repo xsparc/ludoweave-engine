@@ -51,7 +51,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
    staged set without clobbering, fetches the authenticated GitHub release
    document, and requires every uploaded name, state, size, and SHA-256 digest
    to match local staging before publishing the draft.
-9. Download the published assets, verify checksums and attestations, install the
+9. M41 additionally requires the authenticated draft's source release-notes
+   body to exactly match bounded staged `RELEASE_NOTES.md`; note content is not
+   emitted by the validator.
+10. Download the published assets, verify checksums and attestations, install the
    wheel in a clean environment, and run the sample bundle before announcing.
 
 No PyPI upload is configured in community alpha. Name reservation, trusted
@@ -73,6 +76,15 @@ leaves an unpublished draft for inspection, and retries never use `--clobber`.
 The remote digest is GitHub's authenticated report, not independent storage
 verification. M40 does not enable immutable releases, create a real release,
 change attestations, or authorize automatic draft deletion.
+
+M41/RFC-0024 advances that internal validator contract to
+`ludoweave.release-draft-integrity/2`. It reads only the fixed staged
+`RELEASE_NOTES.md` member, caps it at 256 KiB, requires non-empty strict UTF-8
+without NUL, and compares it exactly with the authenticated release `body`.
+Missing, null, substituted, truncated, or normalization-different text fails
+before publication. The gate does not log note content, inspect rendered
+Markdown, evaluate links or factual accuracy, or add a network call, workflow
+allocation, permission, dependency, release, or publication authority.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
