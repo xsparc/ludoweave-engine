@@ -26,8 +26,15 @@
   from primary evidence without a code change.
 - Integration: the GitHub-verified squash has the exact reviewed tree and sole
   parent the M43 closeout; no post-merge `main` run occurred and the feature
-  branch is deleted. No real signed-tag release or hosted attestation pass
-  exists or is claimed.
+  branch is deleted. Documentation-only PR #84 exact head
+  `66c58256790127db727c8cc87741d95f6c9a5612` classified four Markdown paths
+  as documentation and passed run `31278008212` in one 30-second Linux
+  allocation; its desktop umbrella skipped with zero steps. With no feedback,
+  it squash-integrated as `792a2e702a8331566ddc5c5bf07e449c66f30f9e`,
+  preserving its reviewed tree, exact feature-squash parent, valid signature,
+  standalone DCO, and zero post-merge run. Its branch is deleted locally and
+  remotely. Only this final `.project/**` closeout record remains. No real
+  signed-tag release or hosted attestation pass exists or is claimed.
 
 ## M43 complete
 
