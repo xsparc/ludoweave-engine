@@ -1,6 +1,6 @@
 # Project State
 
-## M39 in progress
+## M39 complete
 
 M39 starts from exact clean synchronized M38 closeout commit
 `185e206d6b9c1e97512e289bcba84701dc29c147`. It closes the existing gap between
@@ -24,14 +24,24 @@ and records the absence of a signer/key allowlist. It also records that the
 workflow cannot authenticate replacement of its own definition by an already-
 authorized tag actor; tag and environment rules remain operational controls.
 
-Focused behavior, adversarial, static, workflow, and YAML gates pass after one
+Focused behavior, adversarial, static, workflow, and YAML gates passed after one
 strict-typing correction, one helper-specificity correction, and two findings-
-first workflow trust corrections. M39 changes no
-CI workflow, runner/job/matrix count, action, permission, trigger, dependency,
-lock, package version, runtime/public API, attestation, tag, release, PyPI
-configuration, supported release policy, or deferred subsystem. Complete local
-validation, findings-first review, hosted validation, integration, and cleanup
-remain pending.
+first workflow trust corrections. Exact head
+`f71d8ddbf816873cf9af8ea6538112ff0e75553e` passed hosted run `31264314307`
+in exactly three allocations: Linux in 6m43s before macOS and Windows began,
+then macOS in 2m33s and Windows in 3m30s. The Linux job passed the full quality,
+graphics, sample, distribution, installed-wheel, release-candidate, and CPython
+3.13/3.14 gates. No review, comment, or review thread was present.
+
+PR #68 squash `4e30b4bf3b911270ab4e1bd117d49ca0d090a0a7` has sole parent exact M38
+closeout, tree `e08a1956e1b6ec9005b1455c5020ee716f6fbdef` exactly equal to the
+reviewed feature head, a valid GitHub signature, and a standalone DCO trailer.
+No post-merge `main` run was allocated, and the feature branch is deleted
+locally and remotely. M39 changes no CI workflow, runner/job/matrix count,
+action, permission, trigger, dependency, lock, package version, runtime/public
+API, attestation, tag, release, PyPI configuration, supported release policy,
+or deferred subsystem. The factual public integration record and zero-run
+closeout record remain before final clean-main closeout.
 
 ## M38 complete
 

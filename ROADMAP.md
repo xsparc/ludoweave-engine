@@ -47,7 +47,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M36 CI runner consolidation | PR #60 squash-integrated; all eight Python/platform/graphics/distribution slices passed in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
 | Done | M37 CI change qualification | PR #62 squash-integrated; corrected substantive run `31259200818` passed fail-closed trusted-base classification, the three-allocation M36 gate, Linux-before-desktop qualification, and RFC-0020 |
 | Done | M38 distribution reproducibility enforcement | PR #65 squash-integrated; corrected same-source wheel/sdist byte gate passed all three bounded hosted allocations with no new runner or publication authority |
-| In progress | M39 release-tag integrity enforcement | Require an annotated GitHub-verified tag at the exact checked-out `origin/main` commit before the existing tag job performs expensive or publishing work |
+| Done | M39 release-tag integrity enforcement | PR #68 passed exact-head trusted tag identity/ancestry validation plus the three-allocation hosted gate, then squash-integrated with no new runner or publication authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -458,6 +458,21 @@ annotated GitHub-valid signature, exact event/checkout/tag-object commit, and
 `origin/main` ancestry before system setup, tests, builds, attestations, or
 publication. The check adds no hosted allocation, action, permission, trigger,
 dependency, tag, release, key allowlist, or publication authority.
+
+PR #68 passed exact head `f71d8ddbf816873cf9af8ea6538112ff0e75553e` in run
+`31264314307` with exactly three allocations. Linux completed in 6m43s before
+the desktop jobs began; macOS passed in 2m33s and Windows in 3m30s. The Linux
+job built a 267,110-byte wheel at SHA-256
+`b09d2727d39ae8b750f6aa9f13035cad34477d287eab07eb5ee52341221cd02a`
+and a 906,680-byte sdist at SHA-256
+`ef6e4fbf6f05d664a0311249c46106b0001b949a16373025dec171e60cca4314`,
+then passed the complete ten-artifact release-candidate smoke. No review,
+comment, or review thread was present. Squash
+`4e30b4bf3b911270ab4e1bd117d49ca0d090a0a7` has sole parent the exact M38
+closeout, tree `e08a1956e1b6ec9005b1455c5020ee716f6fbdef` exactly equal to the
+reviewed head, a valid GitHub signature, and a standalone DCO trailer. No
+post-merge `main` run was allocated, and the feature branch is deleted locally
+and remotely.
 
 ## Good-first contribution queue
 
