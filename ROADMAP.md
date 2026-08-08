@@ -51,7 +51,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M40 draft-release asset integrity | PR #71 corrected pathological JSON failures after review, passed the exact draft-asset boundary in three bounded hosted allocations, and squash-integrated without new release authority |
 | Done | M41 release-notes body integrity | PR #74 passed exact source-body and asset verification in three bounded hosted allocations, then squash-integrated without workflow or release-authority change |
 | Done | M42 published prerelease integrity | PR #77 passed exact same-ID draft/public state, timestamp, notes, and asset verification in three bounded hosted allocations, then squash-integrated without new release authority |
-| In progress | M43 published asset retrieval integrity | Retrieve every validated numeric asset ID through the authenticated API and rehash the downloaded set against the same published document |
+| Done | M43 published asset retrieval integrity | PR #80 corrected and passed bounded exact-ID retrieval, same-document byte revalidation, and the three-allocation hosted gate before verified squash integration |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -523,6 +523,14 @@ API and rehashes the downloaded directory against the same published document.
 It adds no runner, action, permission, trigger, dependency, credential, tag,
 release, upload, rollback, cleanup, immutable-release setting, or publication
 authority, and makes no unauthenticated/global/future availability claim.
+
+Corrected PR #80 head `3a5004217598c82eca5b8286442e7d8a502642b1`
+passed run `31274622529` in exactly three allocations: Linux in 7m13s before
+desktop allocation, macOS in 1m48s, and Windows in 3m53s. The sole P2 review
+thread was resolved after the bounded-stream correction. Squash
+`8b7038cc203cead16d1dd88c746b584b6d0c37ca` has the exact reviewed tree, sole
+parent the M42 closeout, a valid GitHub signature, and a standalone DCO trailer.
+No post-merge `main` run was allocated, and the feature branch is deleted.
 
 ## Good-first contribution queue
 
