@@ -1,6 +1,6 @@
 # Project State
 
-## M45 public release consumer-path integrity - feature integrated
+## M45 public release consumer-path integrity - complete
 
 - Base: exact verified M44 closeout commit
   `2c5e312a97028d0b835fc174b8abb51df22ea314`.
@@ -40,9 +40,18 @@
   `471da6efe908463ed8f6744272bd372548cb3345` has sole parent exact M44
   closeout, tree `5f9368d215038b76cc8afb104cf6bcb444a04801` exactly equal to the
   reviewed head, and a standalone DCO trailer. No post-merge `main` run was
-  allocated, and the feature branch is deleted locally/remotely. This four-
-  Markdown integration record remains pending. No real tag, release, or public
-  consumer-path pass exists or is claimed.
+  allocated, and the feature branch is deleted locally/remotely.
+- Record: documentation-only PR #87 exact head
+  `13dcd951226430cb660ddf98ad0bd9c66f4633a5` classified four Markdown
+  paths as documentation. Run `31280561142` passed in one 38-second Linux
+  allocation with 373 architecture tests, universal build, installed-wheel
+  smoke, and complete release smoke; desktop umbrella job `93161106180`
+  skipped with zero steps. No review, comment, or thread existed. Verified
+  squash `01241e2e1eadff959d13530e1118b0ad6b686dad` has sole parent the
+  feature squash, exact reviewed tree, valid signature, standalone DCO, and no
+  post-merge run. Its branch is deleted locally/remotely. Only this three-file
+  zero-run closeout remains. No real tag, release, or public consumer-path pass
+  exists or is claimed.
 
 ## M44 published release attestation integrity - complete
 
