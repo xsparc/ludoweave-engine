@@ -53,6 +53,17 @@ allocated no `main` run. The feature branch is deleted locally/remotely; clean
 synchronized `main` is the sole branch, no PR, tag, or release is open/present,
 and full Git object checking passes.
 
+Documentation-only integration record PR #72 changed four paths and passed run
+`31268048294` in one 35-second Linux allocation; the desktop umbrella skipped
+with zero steps and no runner. It had no review, comment, or thread. Squash
+`67d03d41430dc24bf81a894752b3641de8e521ed` has sole parent the M40 feature
+integration, tree `896461bbfd43975ca1ee49962409d9b38695c10f` exactly equal to the
+reviewed head, a valid GitHub signature, and standalone DCO trailer. It
+allocated no `main` run. The record branch is deleted locally/remotely; before
+this closeout branch, clean synchronized `main` was the sole branch, no PR was
+open, and full Git object checking passed. Only this zero-run closeout record,
+its squash audit, and final branch cleanup remain.
+
 ## M39 complete
 
 M39 starts from exact clean synchronized M38 closeout commit
