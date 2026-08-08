@@ -13,12 +13,14 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal, cast
 
-_PROTOCOL = "ludoweave.release-draft-integrity/3"
+_PROTOCOL = "ludoweave.release-draft-integrity/4"
+_ASSET_PLAN_PROTOCOL = "ludoweave.release-asset-retrieval-plan/1"
 _MAX_DOCUMENT_BYTES = 4 * 1024 * 1024
 _MAX_ASSETS = 32
 _MAX_ASSET_BYTES = 256 * 1024 * 1024
 _MAX_TOTAL_BYTES = 512 * 1024 * 1024
 _MAX_RELEASE_NOTES_BYTES = 256 * 1024
+_MAX_ASSET_ID = (1 << 63) - 1
 _RELEASE_NOTES_NAME = "RELEASE_NOTES.md"
 _TAG_PATTERN = re.compile(r"v[0-9A-Za-z][0-9A-Za-z._-]{0,127}")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
@@ -39,6 +41,15 @@ class ReleaseAssetIdentity:
     sha256: str
 
 
+@dataclass(frozen=True, slots=True)
+class ReleaseAssetRetrieval:
+    """Validated GitHub asset identity used only by the workflow retrieval plan."""
+
+    asset_id: int
+    bytes: int
+    name: str
+
+
 class ReleaseDraftIntegrityError(ValueError):
     """A release cannot be trusted for or after publication."""
 
@@ -56,6 +67,26 @@ def verify_release(
     expected_state: ReleaseState,
 ) -> tuple[ReleaseAssetIdentity, ...]:
     """Return asset identities when state, notes, and assets match expectations."""
+
+    assets, _ = _verify_release(
+        staged_directory,
+        release_document,
+        expected_tag=expected_tag,
+        expected_title=expected_title,
+        expected_state=expected_state,
+    )
+    return assets
+
+
+def _verify_release(
+    staged_directory: Path,
+    release_document: object,
+    *,
+    expected_tag: str,
+    expected_title: str,
+    expected_state: ReleaseState,
+) -> tuple[tuple[ReleaseAssetIdentity, ...], tuple[ReleaseAssetRetrieval, ...]]:
+    """Return safe asset and retrieval identities after complete validation."""
 
     tag = _tag_name(expected_tag)
     title = _title(expected_title)
@@ -89,6 +120,8 @@ def verify_release(
             code="release_draft.invalid_document",
         )
     remote: dict[str, ReleaseAssetIdentity] = {}
+    retrievals: dict[str, ReleaseAssetRetrieval] = {}
+    asset_ids: set[int] = set()
     for value in assets:
         asset = _object(value, field="release asset")
         name = _asset_name(asset.get("name"))
@@ -97,6 +130,13 @@ def verify_release(
                 "release contains a duplicate asset name",
                 code="release_draft.invalid_document",
             )
+        asset_id = _asset_id(asset.get("id"))
+        if asset_id in asset_ids:
+            raise ReleaseDraftIntegrityError(
+                "release contains a duplicate asset id",
+                code="release_draft.invalid_document",
+            )
+        asset_ids.add(asset_id)
         size = _asset_size(asset.get("size"))
         digest = _asset_digest(asset.get("digest"))
         if asset.get("state") != "uploaded":
@@ -105,6 +145,7 @@ def verify_release(
                 code="release_draft.asset_mismatch",
             )
         remote[name] = ReleaseAssetIdentity(name, size, digest.removeprefix("sha256:"))
+        retrievals[name] = ReleaseAssetRetrieval(asset_id, size, name)
 
     if remote.keys() != local.keys():
         raise ReleaseDraftIntegrityError(
@@ -117,7 +158,7 @@ def verify_release(
                 f"release asset does not match local staging: {name}",
                 code="release_draft.asset_mismatch",
             )
-    return tuple(local.values())
+    return tuple(local.values()), tuple(retrievals[name] for name in local)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -132,16 +173,29 @@ def main(argv: Sequence[str] | None = None) -> int:
         choices=("draft", "published"),
         help="required release publication state",
     )
+    parser.add_argument(
+        "--asset-plan",
+        type=Path,
+        help="new file that receives a bounded published-asset retrieval plan",
+    )
     args = parser.parse_args(argv)
     try:
         state = _release_state(str(args.expected_state))
-        assets = verify_release(
+        assets, retrievals = _verify_release(
             Path(args.staged_directory),
             _json_document(Path(args.release_document)),
             expected_tag=str(args.expected_tag),
             expected_title=str(args.expected_title),
             expected_state=state,
         )
+        plan_path = cast(Path | None, args.asset_plan)
+        if plan_path is not None:
+            if state != "published":
+                raise ReleaseDraftIntegrityError(
+                    "asset retrieval plans require published release state",
+                    code="release_draft.invalid_plan",
+                )
+            _write_asset_plan(plan_path, retrievals)
     except ReleaseDraftIntegrityError as error:
         print(
             _json(
@@ -221,6 +275,28 @@ def _is_published_at(value: object) -> bool:
     except ValueError:
         return False
     return timestamp.tzinfo == UTC
+
+
+def _write_asset_plan(path: Path, retrievals: tuple[ReleaseAssetRetrieval, ...]) -> None:
+    payload = (
+        _ASSET_PLAN_PROTOCOL
+        + "\n"
+        + "".join(f"{item.asset_id}\t{item.bytes}\t{item.name}\n" for item in retrievals)
+    )
+    try:
+        if path.is_symlink() or path.exists():
+            raise OSError
+        parent = path.parent.resolve(strict=True)
+        if not parent.is_dir():
+            raise OSError
+        target = parent / path.name
+        with target.open("x", encoding="utf-8", newline="\n") as stream:
+            stream.write(payload)
+    except (OSError, RuntimeError) as error:
+        raise ReleaseDraftIntegrityError(
+            "asset retrieval plan could not be created",
+            code="release_draft.plan_write_failed",
+        ) from error
 
 
 def _directory(value: Path) -> Path:
@@ -429,6 +505,15 @@ def _asset_size(value: object) -> int:
     if type(value) is not int or value < 0 or value > _MAX_ASSET_BYTES:
         raise ReleaseDraftIntegrityError(
             "release asset size is invalid",
+            code="release_draft.invalid_document",
+        )
+    return value
+
+
+def _asset_id(value: object) -> int:
+    if type(value) is not int or not 0 < value <= _MAX_ASSET_ID:
+        raise ReleaseDraftIntegrityError(
+            "release asset id is invalid",
             code="release_draft.invalid_document",
         )
     return value

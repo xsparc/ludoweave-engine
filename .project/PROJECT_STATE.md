@@ -1,5 +1,43 @@
 # Project State
 
+## M43 in progress
+
+M43 starts from exact clean synchronized M42 closeout commit
+`2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`. It closes the remaining gap
+between the authenticated published release document and the bytes returned by
+GitHub's release-asset endpoint.
+
+The internal validator advances to `ludoweave.release-draft-integrity/4` and
+requires each remote asset to carry a unique positive 63-bit ID. A completely
+verified published document may write one exclusive runner-temporary
+`ludoweave.release-asset-retrieval-plan/1` containing only canonical decimal
+IDs, expected byte sizes, and safe basenames. Draft plans, unsafe IDs, existing
+targets, missing parents, and incomplete validation fail with structured codes.
+
+The existing tag job consumes that plan, retrieves each exact asset ID through
+the authenticated versioned binary endpoint, and reruns the same verifier over
+the downloaded directory and same published document. No tag lookup, browser
+URL, clobber, mutation, rollback, or cleanup is introduced. This observes one
+authenticated retrieval point and does not claim unauthenticated/global/future
+availability, immutability, consumer installation, or attestation verification.
+M43 adds no job, runner, action, permission, trigger, dependency, credential,
+runtime/public API, tag, release, upload, or publication authority.
+
+Complete local validation passed the initial head. Hosted run `31273727767`
+also passed in exactly three allocations, but one P2 review found that an
+oversized asset response could fill runner storage before post-download
+validation. The correction carries each already verified expected size in the
+plan, caps each response stream at expected size plus one byte, rejects short
+and long responses, and enforces the 512-MiB expected-total boundary during
+retrieval. Focused behavior, Git Bash stream semantics, all 361 architecture
+tests, the complete 1,870-test suite, static typing, docs, YAML, reproducible
+distributions, wheel/release smoke, scope, credential, whitespace, and Git
+objects pass on the correction. No remaining local finding was identified.
+Corrected release-workflow SHA-256 is
+`a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06`.
+Corrected hosted validation, review resolution, integration records, and branch
+cleanup remain pending.
+
 ## M42 complete
 
 M42 starts from exact clean synchronized M41 closeout commit

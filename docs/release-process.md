@@ -57,7 +57,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
 10. M42 preserves the validated numeric release ID, publishes the draft, then
     requires that exact authenticated record to report public prerelease state,
     a valid UTC publication time, and unchanged notes/assets.
-11. Download the published assets, verify checksums and attestations, install the
+11. M43 requires unique bounded numeric asset IDs, retrieves each exact ID
+    through the authenticated binary asset endpoint, and rehashes the complete
+    downloaded set against the same published document.
+12. Independently download the public assets, verify checksums and attestations, install the
    wheel in a clean environment, and run the sample bundle before announcing.
 
 No PyPI upload is configured in community alpha. Name reservation, trusted
@@ -99,6 +102,21 @@ result but does not automatically unpublish, delete, or mutate an already
 public release. The check neither requires nor claims immutable-release policy
 and adds no runner, action, permission, dependency, trigger, tag, release,
 upload, or publication authority.
+
+M43/RFC-0026 advances the internal contract to
+`ludoweave.release-draft-integrity/4`, requires unique positive 63-bit asset
+IDs, and allows a fully verified published document to create one exclusive
+runner-temporary `ludoweave.release-asset-retrieval-plan/1` file. The existing
+tag job consumes only safe decimal IDs, expected sizes, and basenames, retrieves
+each exact ID through `gh api` with `Accept: application/octet-stream`, bounds
+every stream to the expected size plus one byte, rejects short/long or
+over-total responses, then reruns the same validator over the downloaded
+directory and same published document. The plan and downloads never clobber
+existing paths. This proves one authenticated
+retrieval observation, not unauthenticated availability, every CDN/cache edge,
+future bytes, immutability, consumer installation, or attestation verification.
+It adds no runner, action, permission, dependency, trigger, tag, release,
+upload, rollback, cleanup, or publication authority.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains

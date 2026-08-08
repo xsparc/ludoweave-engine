@@ -44,8 +44,8 @@ def test_exact_release_id_is_reverified_after_publication() -> None:
     assert "--expected-state published" in published
     assert "X-GitHub-Api-Version: 2026-03-10" in published
     assert "/releases/tags/" not in draft + published
-    assert workflow.count("scripts/verify_release_draft.py") == 2
-    assert workflow.count("X-GitHub-Api-Version: 2026-03-10") == 2
+    assert workflow.count("scripts/verify_release_draft.py") == 3
+    assert workflow.count("X-GitHub-Api-Version: 2026-03-10") == 3
     for mutation in ("gh release delete", "-X PATCH", "--method PATCH", "--clobber"):
         assert mutation not in published
 
@@ -63,7 +63,7 @@ def test_exact_release_id_is_reverified_after_publication() -> None:
 def test_release_validator_has_explicit_bounded_state_contracts() -> None:
     verifier = _VERIFY.read_text(encoding="utf-8")
 
-    assert '"ludoweave.release-draft-integrity/3"' in verifier
+    assert '"ludoweave.release-draft-integrity/4"' in verifier
     assert 'ReleaseState = Literal["draft", "published"]' in verifier
     assert 'choices=("draft", "published")' in verifier
     assert "required=True" in verifier

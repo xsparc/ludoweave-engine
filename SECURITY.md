@@ -36,6 +36,9 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M42 retains the exact authenticated release database ID across publication
   and rechecks the final public prerelease state, valid UTC publication time,
   notes, and assets before the release job can succeed.
+- M43 retrieves every validated numeric asset ID through the authenticated
+  binary asset endpoint and rehashes the complete downloaded set against the
+  same published release document before the release job can succeed.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -56,6 +59,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M42 observes the authenticated state only after publication. Failure blocks
   a successful job result but does not automatically unpublish, delete, or
   mutate evidence, prevent later edits, or claim immutable-release policy.
+- M43 writes only an exclusive bounded runner-temporary retrieval plan and new
+  temporary download files. It neither clobbers nor mutates release assets and
+  does not prove unauthenticated availability, all CDN/cache paths, future
+  bytes, immutability, consumer installation, or attestation verification.
 
 ## Initial security boundaries
 

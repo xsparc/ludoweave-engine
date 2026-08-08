@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0026 resolves M43 published-asset retrieval integrity. Protocol `/4`
+requires unique bounded numeric asset IDs and may write one exclusive
+published-only retrieval plan after complete verification. The existing tag job
+retrieves every exact ID through the authenticated binary API and rehashes the
+downloaded directory against the same published document. Failure is observed
+after publication and performs no rollback or mutation. The result is one
+authenticated point-in-time byte observation, not unauthenticated/global/future
+availability, immutability, consumer installation, or attestation evidence.
+Jobs, runners, actions, permissions, triggers, dependencies, credentials, tags,
+releases, uploads, cleanup, and publication authority remain unchanged.
+
 RFC-0025 resolves M42 published-prerelease observation. The exact numeric
 release database ID now crosses the existing publish transition, after which
 one read-only authenticated request must report public prerelease state, a

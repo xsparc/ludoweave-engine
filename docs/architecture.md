@@ -1080,6 +1080,36 @@ enable immutability, download public assets, replace attestations, add a runner
 or permission, or expand publication authority. RFC-0025 defines the full trust
 and non-claim boundary.
 
+## M43 published asset retrieval integrity boundary
+
+M43 extends M42 from authenticated metadata to one exact stored-byte retrieval
+observation. Protocol `ludoweave.release-draft-integrity/4` requires every
+remote asset to carry a unique positive 63-bit database ID. Only after complete
+published-state, notes, and asset verification may the validator create an
+exclusive `ludoweave.release-asset-retrieval-plan/1` runner-temporary file.
+The plan contains only a protocol header plus canonical name-sorted decimal ID,
+expected byte size, and safe-basename tuples; normal structured output
+continues to omit IDs, URLs, paths, notes, timestamps, and immutable state.
+
+The existing tag job owns retrieval. It validates plan tokens again, requests
+each exact asset ID from the versioned GitHub API with
+`Accept: application/octet-stream`, streams at most the expected size plus one
+byte into each new partial path, rejects short/long responses, enforces the
+expected-total cap, and invokes the same validator on the retrieved directory
+and exact M42 published document. The validator owns only deterministic bounded
+local reads and the explicit exclusive plan write; it owns no token, network
+client, shell, process, release mutation, retry, rollback, or cleanup authority.
+
+This establishes that the authenticated release-asset endpoint returned the
+same complete byte set as staged and reported at one observation point. It
+does not prove unauthenticated access, global CDN/cache state, future bytes,
+immutability, consumer installation, sample execution, or attestation
+verification. A mismatch occurs after publication and fails the job without
+unpublishing, deleting, clobbering, or otherwise mutating the release. M43 adds
+no runner, action, permission, trigger, credential, dependency, runtime import,
+public API, tag, release, upload, or publication authority. RFC-0026 defines
+the full trust and non-claim boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

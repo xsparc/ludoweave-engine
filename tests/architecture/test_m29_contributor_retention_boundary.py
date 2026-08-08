@@ -137,7 +137,7 @@ def test_m29_adds_no_runtime_export_dependency_version_release_or_provider() -> 
         "contributor_retention" in path.name for path in (_ROOT / "src/ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "a15921df77a64c51889d8d6353cce7e5f6924b38396a5b84bd39c5a5accbfefe"
+        "a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06"
     )
 
 
