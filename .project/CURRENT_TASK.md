@@ -1,7 +1,9 @@
 # Current Task
 
 - **Task:** M35 - third-party conformance-adoption admission readiness
-- **Status:** In progress on `evidence/m35-third-party-conformance`.
+- **Status:** Complete. The corrected implementation passed the full local and
+  hosted gates, its sole review thread is resolved, and PR #58 is squash-
+  integrated.
 - **Started:** 2026-08-08
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
   commit `277de9052e768a5f70d32f1a2f67ec9f93353723`. Only `main` existed locally
@@ -61,4 +63,9 @@
   identifier-grammar mismatch with the installed runners. The exact grammar
   correction now passes 100 focused tests and the complete 1,718-test suite,
   plus static/docs, real-wgpu, rebuilt wheel, isolated-wheel, and fresh release
-  smoke. Corrected hosted validation remains pending.
+  smoke. Corrected hosted run `31231410432` passed all eight jobs on exact head
+  `fb0d887eed80a2d96c4b3348d950df371e58db56`; the sole review thread is
+  resolved. PR #58 squash-integrated the exact tree as GitHub-verified
+  `603403967e333342c5ff72222ea3567d3252fd6f` with sole parent exact M35 base
+  and a valid parsed DCO trailer. The feature branch is deleted locally and
+  remotely, and the PR-only workflow created no redundant post-merge run.

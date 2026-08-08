@@ -1,6 +1,6 @@
 # Project State
 
-## M35 in progress
+## M35 complete
 
 M35 starts from exact clean synchronized M34 integration-record commit
 `277de9052e768a5f70d32f1a2f67ec9f93353723`. Its bounded outcome is strict
@@ -43,7 +43,16 @@ exact shared M17-M19 adapter grammar. The correction uses the installed runner
 grammar for equal implementation/adapter identities; 100 focused tests, the
 complete 1,718-test suite, strict static/docs gates, real-wgpu, rebuilt wheel,
 isolated-wheel smoke, and fresh release smoke pass. Corrected hosted validation
-and integration remain pending.
+run `31231410432` passed all eight essential jobs on exact final head
+`fb0d887eed80a2d96c4b3348d950df371e58db56`. The correction evidence was
+posted and the sole review thread resolved. PR #58 squash-integrated the exact
+final tree as GitHub-verified commit
+`603403967e333342c5ff72222ea3567d3252fd6f`, with sole parent exact base
+`277de9052e768a5f70d32f1a2f67ec9f93353723`, tree
+`59c049ebdb957818aba2252c74d5b5f8ef9cb72f`, and a valid standalone DCO
+trailer. Local and remote feature branches are deleted. The PR-only workflow
+created no post-merge `main` run; the latest listed main run remains pre-M34
+run `31226750474`.
 
 ## M34 complete
 
