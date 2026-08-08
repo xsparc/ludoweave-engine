@@ -1087,17 +1087,18 @@ observation. Protocol `ludoweave.release-draft-integrity/4` requires every
 remote asset to carry a unique positive 63-bit database ID. Only after complete
 published-state, notes, and asset verification may the validator create an
 exclusive `ludoweave.release-asset-retrieval-plan/1` runner-temporary file.
-The plan contains only a protocol header plus canonical name-sorted decimal ID
-and safe-basename pairs; normal structured output continues to omit IDs, URLs,
-paths, notes, timestamps, and immutable state.
+The plan contains only a protocol header plus canonical name-sorted decimal ID,
+expected byte size, and safe-basename tuples; normal structured output
+continues to omit IDs, URLs, paths, notes, timestamps, and immutable state.
 
 The existing tag job owns retrieval. It validates plan tokens again, requests
 each exact asset ID from the versioned GitHub API with
-`Accept: application/octet-stream`, writes only new temporary partial/final
-files, and invokes the same validator on the retrieved directory and the exact
-M42 published document. The validator owns only deterministic bounded local
-reads and the explicit exclusive plan write; it owns no token, network client,
-shell, process, release mutation, retry, rollback, or cleanup authority.
+`Accept: application/octet-stream`, streams at most the expected size plus one
+byte into each new partial path, rejects short/long responses, enforces the
+expected-total cap, and invokes the same validator on the retrieved directory
+and exact M42 published document. The validator owns only deterministic bounded
+local reads and the explicit exclusive plan write; it owns no token, network
+client, shell, process, release mutation, retry, rollback, or cleanup authority.
 
 This establishes that the authenticated release-asset endpoint returned the
 same complete byte set as staged and reported at one observation point. It

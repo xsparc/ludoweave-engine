@@ -105,7 +105,7 @@ def test_m26_does_not_relabel_or_expand_the_existing_release_workflow() -> None:
     workflow = _RELEASE_WORKFLOW.read_bytes()
 
     assert hashlib.sha256(workflow).hexdigest() == (
-        "874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac"
+        "a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06"
     )
     text = workflow.decode("utf-8")
     assert 'tags:\n      - "v*"' in text

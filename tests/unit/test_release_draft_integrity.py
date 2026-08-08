@@ -155,7 +155,7 @@ def test_published_release_writes_bounded_asset_retrieval_plan(tmp_path: Path) -
     assert plan.read_text(encoding="utf-8") == (
         "ludoweave.release-asset-retrieval-plan/1\n"
         + "".join(
-            f"{asset['id']}\t{asset['name']}\n"
+            f"{asset['id']}\t{asset['size']}\t{asset['name']}\n"
             for asset in sorted(
                 cast(list[dict[str, object]], remote["assets"]),
                 key=lambda item: cast(str, item["name"]),
@@ -274,9 +274,10 @@ def test_retrieved_assets_round_trip_through_exact_id_plan(tmp_path: Path) -> No
     retrieved = tmp_path / "retrieved"
     retrieved.mkdir()
     for line in plan.read_text(encoding="utf-8").splitlines()[1:]:
-        asset_id, name = line.split("\t")
+        asset_id, expected_bytes, name = line.split("\t")
         source = sources_by_id[asset_id]
         assert source.name == name
+        assert source.stat().st_size == int(expected_bytes)
         (retrieved / name).write_bytes(source.read_bytes())
 
     verified = _run(retrieved, tmp_path, remote, expected_state="published")

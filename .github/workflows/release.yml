@@ -186,7 +186,8 @@ jobs:
           IFS= read -r protocol <&3
           test "$protocol" = "ludoweave.release-asset-retrieval-plan/1"
           asset_count=0
-          while IFS=$'\t' read -r asset_id asset_name <&3; do
+          expected_total=0
+          while IFS=$'\t' read -r asset_id expected_bytes asset_name <&3; do
             if [[ ! "$asset_id" =~ ^[1-9][0-9]{0,18}$ ]]; then
               echo "invalid release asset id" >&2
               exit 1
@@ -195,11 +196,21 @@ jobs:
               echo "invalid release asset id" >&2
               exit 1
             fi
+            if [[ ! "$expected_bytes" =~ ^(0|[1-9][0-9]{0,8})$ ]]; then
+              echo "invalid release asset size" >&2
+              exit 1
+            fi
+            if [[ ${#expected_bytes} -eq 9 && "$expected_bytes" > "268435456" ]]; then
+              echo "invalid release asset size" >&2
+              exit 1
+            fi
             if [[ ! "$asset_name" =~ ^[0-9A-Za-z][0-9A-Za-z._+-]{0,255}$ ]]; then
               echo "invalid release asset name" >&2
               exit 1
             fi
             test "$asset_count" -lt 32
+            expected_total=$((expected_total + expected_bytes))
+            test "$expected_total" -le 536870912
             target="$download_dir/$asset_name"
             partial="$download_dir/.asset-$asset_id.part"
             test ! -e "$target"
@@ -208,7 +219,8 @@ jobs:
               -H "Accept: application/octet-stream" \
               -H "X-GitHub-Api-Version: 2026-03-10" \
               "repos/$GITHUB_REPOSITORY/releases/assets/$asset_id" \
-              > "$partial"
+              | head -c "$((expected_bytes + 1))" > "$partial"
+            test "$(wc -c < "$partial")" -eq "$expected_bytes"
             mv "$partial" "$target"
             asset_count=$((asset_count + 1))
           done

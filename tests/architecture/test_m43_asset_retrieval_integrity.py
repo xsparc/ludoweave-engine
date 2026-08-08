@@ -35,15 +35,20 @@ def test_published_assets_are_retrieved_by_validated_exact_id_and_reverified() -
     assert "--expected-state published" in published
     assert 'test "$protocol" = "ludoweave.release-asset-retrieval-plan/1"' in retrieval
     assert 'exec 3< "$plan"' in retrieval
-    assert "IFS=$'\\t' read -r asset_id asset_name <&3" in retrieval
+    assert "IFS=$'\\t' read -r asset_id expected_bytes asset_name <&3" in retrieval
     assert "^[1-9][0-9]{0,18}$" in retrieval
     assert '"9223372036854775807"' in retrieval
     assert 'test "$asset_count" -lt 32' in retrieval
+    assert "^(0|[1-9][0-9]{0,8})$" in retrieval
+    assert '"268435456"' in retrieval
+    assert 'test "$expected_total" -le 536870912' in retrieval
     assert "^[0-9A-Za-z][0-9A-Za-z._+-]{0,255}$" in retrieval
     assert 'test ! -e "$target"' in retrieval
     assert 'test ! -e "$partial"' in retrieval
     assert '"Accept: application/octet-stream"' in retrieval
     assert '"repos/$GITHUB_REPOSITORY/releases/assets/$asset_id"' in retrieval
+    assert 'head -c "$((expected_bytes + 1))"' in retrieval
+    assert 'test "$(wc -c < "$partial")" -eq "$expected_bytes"' in retrieval
     assert 'mv "$partial" "$target"' in retrieval
     assert 'test "$asset_count" -gt 0' in retrieval
     assert '"$download_dir" "$RUNNER_TEMP/release-published.json"' in retrieval
@@ -90,7 +95,7 @@ def test_release_validator_emits_only_a_bounded_no_clobber_plan() -> None:
     assert 'if state != "published"' in verifier
     assert 'target.open("x"' in verifier
     assert 'code="release_draft.plan_write_failed"' in verifier
-    assert 'f"{item.asset_id}\\t{item.name}\\n"' in verifier
+    assert 'f"{item.asset_id}\\t{item.bytes}\\t{item.name}\\n"' in verifier
     assert '"asset_id"' not in verifier[verifier.index("print(\n        _json(") :]
     for forbidden in (
         "import requests",

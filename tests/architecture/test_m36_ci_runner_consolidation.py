@@ -4,7 +4,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _WORKFLOW = _ROOT / ".github" / "workflows" / "ci.yml"
-_RELEASE_WORKFLOW_SHA256 = "874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac"
+_RELEASE_WORKFLOW_SHA256 = "a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06"
 
 
 def _job_block(source: str, name: str, next_name: str | None = None) -> str:

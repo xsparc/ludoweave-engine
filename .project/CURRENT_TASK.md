@@ -20,11 +20,12 @@
     unique positive 63-bit ID for every bounded remote asset.
   - After complete published-state verification, create one exclusive
     `ludoweave.release-asset-retrieval-plan/1` file containing only canonical
-    decimal ID and safe-basename pairs.
+    decimal ID, expected-size, and safe-basename tuples.
   - Reject draft plans, malformed/duplicate/out-of-range IDs, existing plan
     targets, unavailable parents, incomplete validation, and all asset drift.
   - Consume the plan inside the existing tag job with quoted bounded tokens,
-    no clobber, and exact `releases/assets/ID` authenticated API requests.
+    no clobber, bounded response streams, and exact `releases/assets/ID`
+    authenticated API requests.
   - Reuse the same published document and validator to hash every downloaded
     byte against the already matched local staging identities.
   - Add no job, runner, action, permission, trigger, dependency, credential,
@@ -54,11 +55,21 @@
   output, exact-ID authenticated retrieval, same-document byte revalidation,
   and fail-closed state/ID/drift behavior are implemented. Findings-first
   review tightened the shell boundary to canonical positive 63-bit IDs and at
-  most 32 requests and added an exact-ID success round trip. The final workflow
-  SHA-256 is `874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac`.
+  most 32 requests and added an exact-ID success round trip. Hosted run
+  `31273727767` passed the exact initial feature head in three allocations, but
+  one P2 review correctly found that an oversized response was not bounded
+  during transfer. The plan now carries verified expected sizes; each transfer
+  is capped at expected size plus one byte, short/long responses fail, and the
+  512-MiB expected-total cap is enforced before materialization. The corrected
+  workflow SHA-256 is
+  `a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06`.
   Whole-tree format/lint/type/docs, 361 architecture tests, the final 1,870-test
   CPython 3.12 suite, CPython 3.13/3.14 compatibility, real graphics, profiles,
   deterministic samples, fresh reproducible distributions, installed-wheel
   smoke, complete release smoke, YAML, scope, credential, archive, identity,
-  whitespace, and Git-object checks all pass locally. Hosted validation remains
-  pending.
+  whitespace, and Git-object checks all pass locally for the initial head. The
+  focused correction, shell-stream semantics, complete architecture, static,
+  docs, YAML, final 1,870-test suite, reproducible distribution, installed-wheel,
+  complete release smoke, protected-surface, credential, whitespace, and
+  Git-object gates pass. Only the corrected hosted rerun and review resolution
+  remain pending.

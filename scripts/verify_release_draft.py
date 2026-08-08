@@ -46,6 +46,7 @@ class ReleaseAssetRetrieval:
     """Validated GitHub asset identity used only by the workflow retrieval plan."""
 
     asset_id: int
+    bytes: int
     name: str
 
 
@@ -144,7 +145,7 @@ def _verify_release(
                 code="release_draft.asset_mismatch",
             )
         remote[name] = ReleaseAssetIdentity(name, size, digest.removeprefix("sha256:"))
-        retrievals[name] = ReleaseAssetRetrieval(asset_id, name)
+        retrievals[name] = ReleaseAssetRetrieval(asset_id, size, name)
 
     if remote.keys() != local.keys():
         raise ReleaseDraftIntegrityError(
@@ -280,7 +281,7 @@ def _write_asset_plan(path: Path, retrievals: tuple[ReleaseAssetRetrieval, ...])
     payload = (
         _ASSET_PLAN_PROTOCOL
         + "\n"
-        + "".join(f"{item.asset_id}\t{item.name}\n" for item in retrievals)
+        + "".join(f"{item.asset_id}\t{item.bytes}\t{item.name}\n" for item in retrievals)
     )
     try:
         if path.is_symlink() or path.exists():

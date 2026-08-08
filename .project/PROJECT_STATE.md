@@ -11,8 +11,8 @@ The internal validator advances to `ludoweave.release-draft-integrity/4` and
 requires each remote asset to carry a unique positive 63-bit ID. A completely
 verified published document may write one exclusive runner-temporary
 `ludoweave.release-asset-retrieval-plan/1` containing only canonical decimal
-IDs and safe basenames. Draft plans, unsafe IDs, existing targets, missing
-parents, and incomplete validation fail with structured codes.
+IDs, expected byte sizes, and safe basenames. Draft plans, unsafe IDs, existing
+targets, missing parents, and incomplete validation fail with structured codes.
 
 The existing tag job consumes that plan, retrieves each exact asset ID through
 the authenticated versioned binary endpoint, and reruns the same verifier over
@@ -23,15 +23,20 @@ availability, immutability, consumer installation, or attestation verification.
 M43 adds no job, runner, action, permission, trigger, dependency, credential,
 runtime/public API, tag, release, upload, or publication authority.
 
-Complete local validation passes. Findings-first review corrected the shell
-boundary to recheck canonical positive 63-bit IDs and the 32-request cap, then
-found no remaining blocking or non-blocking defect. All 361 architecture tests
-and the final 1,870-test CPython 3.12 suite pass; CPython 3.13/3.14, real wgpu,
-profiles, deterministic samples, reproducible builds, wheel/release smoke,
-strict static/docs/YAML, scope, credential, archive, identity, whitespace, and
-Git-object gates also pass. Final release-workflow SHA-256 is
-`874f40f4edc0abe5f455d7cc001a7a3e2a94f8bbb38c21ff75ac628662126aac`.
-Hosted validation, integration records, and branch cleanup remain pending.
+Complete local validation passed the initial head. Hosted run `31273727767`
+also passed in exactly three allocations, but one P2 review found that an
+oversized asset response could fill runner storage before post-download
+validation. The correction carries each already verified expected size in the
+plan, caps each response stream at expected size plus one byte, rejects short
+and long responses, and enforces the 512-MiB expected-total boundary during
+retrieval. Focused behavior, Git Bash stream semantics, all 361 architecture
+tests, the complete 1,870-test suite, static typing, docs, YAML, reproducible
+distributions, wheel/release smoke, scope, credential, whitespace, and Git
+objects pass on the correction. No remaining local finding was identified.
+Corrected release-workflow SHA-256 is
+`a5c7ff3f80010cad2712592daf32327b80122b8473cee720fe066bbb3eb06e06`.
+Corrected hosted validation, review resolution, integration records, and branch
+cleanup remain pending.
 
 ## M42 complete
 

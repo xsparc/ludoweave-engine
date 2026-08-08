@@ -107,10 +107,12 @@ M43/RFC-0026 advances the internal contract to
 `ludoweave.release-draft-integrity/4`, requires unique positive 63-bit asset
 IDs, and allows a fully verified published document to create one exclusive
 runner-temporary `ludoweave.release-asset-retrieval-plan/1` file. The existing
-tag job consumes only safe decimal IDs and basenames, retrieves each exact ID
-through `gh api` with `Accept: application/octet-stream`, then reruns the same
-validator over the downloaded directory and same published document. The plan
-and downloads never clobber existing paths. This proves one authenticated
+tag job consumes only safe decimal IDs, expected sizes, and basenames, retrieves
+each exact ID through `gh api` with `Accept: application/octet-stream`, bounds
+every stream to the expected size plus one byte, rejects short/long or
+over-total responses, then reruns the same validator over the downloaded
+directory and same published document. The plan and downloads never clobber
+existing paths. This proves one authenticated
 retrieval observation, not unauthenticated availability, every CDN/cache edge,
 future bytes, immutability, consumer installation, or attestation verification.
 It adds no runner, action, permission, dependency, trigger, tag, release,

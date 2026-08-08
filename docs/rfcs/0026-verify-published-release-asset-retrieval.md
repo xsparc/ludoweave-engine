@@ -30,7 +30,8 @@ file containing:
 
 - protocol `ludoweave.release-asset-retrieval-plan/1`;
 - one canonical name-sorted line per asset;
-- only the validated decimal asset ID and safe asset basename.
+- only the validated decimal asset ID, expected byte size, and safe asset
+  basename.
 
 The plan is available only for expected published state, is written only after
 all verification succeeds, requires an existing parent directory, and opens
@@ -43,10 +44,13 @@ The existing M42 published-state step writes the plan from the exact release
 document fetched by the validated release database ID. A following step in the
 same tag job:
 
-1. validates the plan protocol and each bounded shell token again;
+1. validates the plan protocol, identity, expected byte size, and each bounded
+   shell token again;
 2. retrieves each numeric asset ID through `gh api` with
    `Accept: application/octet-stream` and REST version `2026-03-10`;
-3. writes only new runner-temporary partial and final files, with no clobber;
+3. streams at most the expected byte size plus one byte into a new
+   runner-temporary partial file, rejects short or long responses, enforces the
+   512-MiB expected-total cap, and never clobbers a partial or final path;
 4. reruns the same standard-library validator on the retrieved directory and
    the same published release document.
 
@@ -60,9 +64,11 @@ at that observation point.
 The workflow owns all authenticated network reads and runner-temporary files.
 The validator owns no token, network client, shell, process, release mutation,
 or cleanup authority; its only new write is the explicit exclusive plan path.
-A missing, malformed, duplicate, out-of-range, unavailable, partial, extra, or
-byte-different asset fails the release job with no retry, clobber, delete,
-unpublish, rollback, or other release mutation.
+A missing, malformed, duplicate, out-of-range, unavailable, short, oversized,
+partial, extra, or byte-different asset fails the release job with no retry,
+clobber, delete, unpublish, rollback, or other release mutation. Oversized
+responses are cut off after the expected size plus one byte, before final
+validation.
 
 As in M42, failure occurs after publication. The prerelease may therefore
 already be public and requires deliberate maintainer inspection.
@@ -100,8 +106,9 @@ This decision does not:
 
 - The tag job performs one bounded asset read per staged member after
   publication; the current candidate has ten members.
-- Retrieval remains capped by the existing 32-asset, 256-MiB individual, and
-  512-MiB total validator limits.
+- Retrieval enforces the existing 32-asset, 256-MiB individual, and 512-MiB
+  expected-total limits before or during transfer; the complete validator then
+  rechecks the materialized directory.
 - A storage/retrieval mismatch becomes visible before the job reports success,
   while remediation remains a maintainer decision.
 - Pull-request CI topology and quota usage remain unchanged.
