@@ -105,14 +105,49 @@ jobs:
           path: release/*
           if-no-files-found: error
           retention-days: 30
-      - name: Publish GitHub prerelease
+      - name: Create draft GitHub prerelease
         env:
           GH_TOKEN: ${{ github.token }}
         run: >-
-          gh release create "$GITHUB_REF_NAME" release/*
+          gh release create "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
           --verify-tag
+          --draft
           --prerelease
           --latest=false
           --title "LudoWeave ${{ steps.version.outputs.version }}"
           --notes-file release/RELEASE_NOTES.md
+      - name: Upload draft release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" release/* --repo "$GITHUB_REPOSITORY"
+      - name: Verify draft release asset integrity
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TITLE: LudoWeave ${{ steps.version.outputs.version }}
+        shell: bash
+        run: |
+          release_id="$(
+            gh release view "$GITHUB_REF_NAME" \
+              --repo "$GITHUB_REPOSITORY" --json databaseId --jq .databaseId
+          )"
+          case "$release_id" in
+            ""|*[!0-9]*) echo "invalid draft release id" >&2; exit 1 ;;
+          esac
+          gh api \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/$GITHUB_REPOSITORY/releases/$release_id" \
+            > "$RUNNER_TEMP/release-draft.json"
+          uv run --frozen python scripts/verify_release_draft.py \
+            release "$RUNNER_TEMP/release-draft.json" \
+            --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE"
+      - name: Publish verified GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release edit "$GITHUB_REF_NAME"
+          --repo "$GITHUB_REPOSITORY"
+          --verify-tag
+          --draft=false
+          --prerelease
+          --latest=false

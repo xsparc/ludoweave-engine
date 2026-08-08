@@ -44,6 +44,9 @@ def test_release_workflow_validates_before_publishing() -> None:
         "scripts/release_artifacts.py .tmp/release-dist-first release --tag",
         "scripts/smoke_release.py release",
         "gh release create",
+        "gh release upload",
+        "scripts/verify_release_draft.py",
+        "gh release edit",
     )
 
     offsets = [workflow.index(command) for command in required]
@@ -51,6 +54,7 @@ def test_release_workflow_validates_before_publishing() -> None:
     assert 'test "$GITHUB_REF_NAME" = "v$version"' in workflow
     assert "Verify signed release tag and main ancestry" in workflow
     assert "--verify-tag" in workflow
+    assert "--draft" in workflow
     assert "--prerelease" in workflow
     assert "--notes-file release/RELEASE_NOTES.md" in workflow
 

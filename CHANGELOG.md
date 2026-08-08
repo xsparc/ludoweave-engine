@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M40/RFC-0023 fail-closed GitHub draft-release asset verification before
+  publication, with exact uploaded name, state, size, and SHA-256 equality and
+  no new runner, action, permission, trigger, dependency, tag, release, or
+  publication authority.
 - Add M39/RFC-0022 fail-closed annotated release-tag, GitHub signature,
   checkout identity, and `origin/main` ancestry verification before the
   existing tag job performs expensive or publishing work, with no new runner,

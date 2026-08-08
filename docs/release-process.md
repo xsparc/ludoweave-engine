@@ -46,9 +46,12 @@ same-job check is not an independent or cross-platform rebuild claim; see
    not the tag checkout. `--verify-tag` remains an existence check, not the
    signature gate.
 7. The least-privilege tag workflow reruns quality/tests/docs, builds/stages and
-   smokes artifacts, creates GitHub build-provenance and SPDX attestations, and
-   creates a prerelease with the staged files.
-8. Download the published assets, verify checksums and attestations, install the
+   smokes artifacts, and creates GitHub build-provenance and SPDX attestations.
+8. M40 creates a private prerelease draft without assets, uploads the complete
+   staged set without clobbering, fetches the authenticated GitHub release
+   document, and requires every uploaded name, state, size, and SHA-256 digest
+   to match local staging before publishing the draft.
+9. Download the published assets, verify checksums and attestations, install the
    wheel in a clean environment, and run the sample bundle before announcing.
 
 No PyPI upload is configured in community alpha. Name reservation, trusted
@@ -62,6 +65,14 @@ immutable releases, or claim that a valid signature alone authorizes a release.
 Repository tag rules, protected deployment environments, and workflow-file
 governance remain operational controls; this workflow cannot authenticate a
 replacement of its own definition by an already-authorized tag actor.
+
+M40/RFC-0023 makes the GitHub draft boundary explicit. The standard-library
+validator consumes only bounded local files and a capped strict JSON document;
+network and publication remain workflow-owned. Upload or identity failure
+leaves an unpublished draft for inspection, and retries never use `--clobber`.
+The remote digest is GitHub's authenticated report, not independent storage
+verification. M40 does not enable immutable releases, create a real release,
+change attestations, or authorize automatic draft deletion.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains

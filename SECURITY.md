@@ -24,6 +24,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   and whose commit is reachable from `origin/main`. The validator is loaded
   from fetched `origin/main`, not from the unadmitted tag checkout.
 - Official tagged artifacts receive GitHub build-provenance and SBOM attestations. Consumers should verify both the local checksums and hosted attestations as documented in `docs/release-process.md`.
+- M40 keeps the GitHub release as an unpublished prerelease draft while the
+  workflow verifies that every authenticated API asset is fully uploaded and
+  exactly matches local staging by safe name, byte size, and SHA-256 digest.
+  Failed verification leaves the draft for inspection and never clobbers an
+  existing asset.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -35,6 +40,9 @@ Maintainers will acknowledge the report through the same private channel, assess
   file self-authentication. Repository tag rules, deployment-environment
   approval, signing-key lifecycle, and workflow governance remain operational
   controls; report suspected unauthorized tag/workflow changes privately.
+- M40 does not enable or claim immutable releases, independently verify GitHub
+  storage, or replace build/SBOM attestations. Release immutability and failed-
+  draft cleanup remain explicit repository operations.
 
 ## Initial security boundaries
 

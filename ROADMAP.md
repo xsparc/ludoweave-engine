@@ -48,6 +48,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M37 CI change qualification | PR #62 squash-integrated; corrected substantive run `31259200818` passed fail-closed trusted-base classification, the three-allocation M36 gate, Linux-before-desktop qualification, and RFC-0020 |
 | Done | M38 distribution reproducibility enforcement | PR #65 squash-integrated; corrected same-source wheel/sdist byte gate passed all three bounded hosted allocations with no new runner or publication authority |
 | Done | M39 release-tag integrity enforcement | PR #68 passed exact-head trusted tag identity/ancestry validation plus the three-allocation hosted gate, then squash-integrated with no new runner or publication authority |
+| In progress | M40 draft-release asset integrity | Require the exact GitHub-reported draft asset set, upload state, byte sizes, and SHA-256 digests to match local staging before publication |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -473,6 +474,15 @@ closeout, tree `e08a1956e1b6ec9005b1455c5020ee716f6fbdef` exactly equal to the
 reviewed head, a valid GitHub signature, and a standalone DCO trailer. No
 post-merge `main` run was allocated, and the feature branch is deleted locally
 and remotely.
+
+M40 starts from verified M39 closeout commit
+`49fba13477890bf6bf1c9e6a645e669b3a69492f`. It makes the existing release
+CLI's internal draft/upload/publish ordering explicit and adds a bounded local
+validator for the authenticated GitHub draft document. Publication may proceed
+only when the exact tag/title/state and every uploaded asset name, size, and
+SHA-256 digest match local staging. The slice adds no runner, action,
+permission, trigger, dependency, tag, release, credential, or publication
+authority and does not enable the separate immutable-release repository setting.
 
 ## Good-first contribution queue
 
