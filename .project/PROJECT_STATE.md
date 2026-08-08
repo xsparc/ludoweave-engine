@@ -1,6 +1,6 @@
 # Project State
 
-## M34 in progress
+## M34 complete
 
 M34 starts from exact clean synchronized M33 integration-record commit
 `d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. Its bounded outcome is strict
@@ -42,9 +42,21 @@ prints only its sanitized outer error, and both parser and recursive depth-walk
 exhaustion normalize to the documented validation error. Regressions cover no
 traceback and excessive nesting. The corrected local gate passes 1,625 tests
 with nine skips, strict static/docs checks, a universal build, isolated wheel
-smoke, and a fresh ten-artifact release smoke. Corrected-head hosted validation,
-review closure, and integration remain pending; no hosted pass or merge claim
-is made yet.
+smoke, and a fresh ten-artifact release smoke. Corrected hosted run
+`31229138742` passed all eight jobs on exact head
+`600f71a416f0df46af68e63d28a2711893ec4675`: quality/tests/distribution;
+Ubuntu CPython 3.13 and 3.14; Windows and macOS CPython 3.14; and real graphics
+on Ubuntu, Windows, and macOS. The sole review finding was acknowledged and its
+thread resolved; GitHub reported PR #56 mergeable and clean. PR #56
+squash-integrated the exact validated tree as GitHub-verified commit
+`a0d80851821b569156979d8d2ae0e473cea768f9` with sole parent exact base
+`d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. Both source commits are
+DCO-signed and remain attached to the PR. GitHub's squash body retained literal
+escaped newline text before its displayed sign-off, so this record does not
+claim the generated squash commit has a parsed DCO trailer and does not rewrite
+public history. The remote and local feature branches are deleted. The new
+PR-only trigger created no redundant post-merge `main` run; the latest listed
+main run remains pre-M34 run `31226750474`.
 
 ## M33 complete
 

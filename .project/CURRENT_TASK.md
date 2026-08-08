@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M34 - agent-tool recovery-rate admission readiness and CI quota hardening
-- **Status:** Corrected locally after the initial hosted run and delayed review;
-  corrected-head hosted validation is pending on neutral feature branch
-  `evidence/m34-agent-tool-recovery`.
+- **Status:** Complete. The corrected implementation passed the full local and
+  hosted gates, its review thread is resolved, and PR #56 is squash-integrated.
 - **Started:** 2026-08-08
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
   commit `d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. Only `main` existed locally
@@ -67,5 +66,9 @@
   both vertical slices, and final scope/security/artifact audits pass. Initial
   hosted run `31228373123` exposed one POSIX traceback disclosure and delayed
   review found one excessive-nesting exception escape. Both have focused
-  regressions and pass the corrected complete local gate. Corrected-head hosted
-  validation, review closure, and integration are pending.
+  regressions and pass the corrected complete local gate. Corrected hosted run
+  `31229138742` passed all eight jobs on exact head `600f71a416f0df46af68e63d28a2711893ec4675`;
+  the sole thread is resolved. PR #56 squash-integrated the exact tree as
+  GitHub-verified `a0d80851821b569156979d8d2ae0e473cea768f9` with sole parent
+  exact M34 base. The feature branch is deleted locally and remotely, and the
+  PR-only workflow created no redundant post-merge `main` run.
