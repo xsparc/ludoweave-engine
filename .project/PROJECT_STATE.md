@@ -1,5 +1,26 @@
 # Project State
 
+## M44 published release attestation integrity - in progress
+
+- Base: exact verified M43 closeout commit
+  `0b3b9eb982a67eee1833f3a8f920671f8ffd006b`.
+- Branch: `release/m44-attestation-verification`.
+- Contract: after M43 exact-ID retrieval and byte revalidation, verify SLSA v1
+  provenance for every bounded asset and SPDX 2.3 SBOM attestation for exactly
+  one pure wheel under exact repository, workflow, tag, source/signer commit,
+  GitHub OIDC issuer, hosted-runner, timeout, and bundle-count policy.
+- Ownership: the existing tag job owns credentials/network/temp files; the
+  standard-library verifier owns bounded local validation and content-silent
+  child execution only. Failure after publication performs no mutation,
+  cleanup, retry, or rollback.
+- Scope: one verifier script, the existing release workflow tail, focused
+  tests, RFC/docs, historical workflow-hash guards, and factual project
+  records. No job/action/permission/trigger/dependency/lock/runtime/public API,
+  tag/release/upload/publication, or version change.
+- Current state: implementation is locally validated and awaiting final review
+  plus the bounded substantive hosted pull-request gate. No real signed-tag
+  release or hosted attestation pass exists or is claimed.
+
 ## M43 complete
 
 M43 starts from exact clean synchronized M42 closeout commit

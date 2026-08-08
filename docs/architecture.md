@@ -1110,6 +1110,35 @@ no runner, action, permission, trigger, credential, dependency, runtime import,
 public API, tag, release, upload, or publication authority. RFC-0026 defines
 the full trust and non-claim boundary.
 
+## M44 published release attestation integrity boundary
+
+M44 extends M43's exact downloaded-subject set into one bounded hosted
+attestation observation. After every downloaded byte is revalidated against
+the same published document, a standard-library verifier requires SLSA v1
+provenance for each admitted asset and an SPDX 2.3 SBOM attestation for exactly
+one pure `ludoweave-*-py3-none-any.whl`.
+
+Every `gh attestation verify` call constrains the exact repository, release
+workflow, source ref, source and signer commit, GitHub Actions OIDC issuer,
+hosted-runner class, predicate type, candidate count, and 30-second timeout.
+The M43 plan remains the authority for a maximum of 32 exact safe basenames,
+individual/total sizes, and directory equality. Child stdin, stdout, and
+stderr are discarded; the verifier reports only stable failure codes or
+aggregate success counts. With one additional wheel SBOM check, at most 33
+sequential child processes can run.
+
+The existing tag job owns the token, CLI, network, plan, and temporary files;
+the verifier owns only bounded local validation and child-process execution.
+Failure occurs after publication and does not retry, unpublish, delete, edit,
+clean up, or roll back the release. Verified subject and identity evidence does
+not establish artifact security, an independent or trusted build, predicate
+truth beyond the constrained type/identity, future availability or non-
+revocation, global asset access, immutability, consumer installation, sample
+execution, or a supported release channel. M44 adds no runner, action,
+permission, trigger, dependency, credential, runtime import, public API, tag,
+release, upload, publication, rollback, or cleanup authority. RFC-0027 defines
+the complete trust and non-claim boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

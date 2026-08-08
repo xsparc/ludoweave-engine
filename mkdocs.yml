@@ -67,6 +67,7 @@ nav:
       - RFC-0024 - Draft release-notes integrity: rfcs/0024-verify-draft-release-notes.md
       - RFC-0025 - Published release-state integrity: rfcs/0025-confirm-published-release-state.md
       - RFC-0026 - Published asset retrieval integrity: rfcs/0026-verify-published-release-asset-retrieval.md
+      - RFC-0027 - Published release attestation integrity: rfcs/0027-verify-published-release-attestations.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

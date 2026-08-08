@@ -230,3 +230,13 @@ jobs:
             "$download_dir" "$RUNNER_TEMP/release-published.json" \
             --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
             --expected-state published
+      - name: Verify published release attestations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          uv run --frozen python scripts/verify_release_attestations.py \
+            "$RUNNER_TEMP/release-download" \
+            "$RUNNER_TEMP/release-assets.plan" \
+            --expected-tag "$GITHUB_REF_NAME" \
+            --expected-commit "$GITHUB_SHA"

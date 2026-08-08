@@ -39,6 +39,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M43 retrieves every validated numeric asset ID through the authenticated
   binary asset endpoint and rehashes the complete downloaded set against the
   same published release document before the release job can succeed.
+- M44 then verifies SLSA v1 provenance for every retrieved asset and an SPDX
+  2.3 SBOM attestation for the one pure wheel, constrained to the exact
+  repository, tag, source/signer commit, release workflow, GitHub OIDC issuer,
+  hosted runner class, and bounded candidate count.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -63,6 +67,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   temporary download files. It neither clobbers nor mutates release assets and
   does not prove unauthenticated availability, all CDN/cache paths, future
   bytes, immutability, consumer installation, or attestation verification.
+- M44 attestation identity and subject verification does not establish
+  artifact security, an independent or trusted build, predicate truth beyond
+  the constrained type/identity, future availability or non-revocation,
+  immutable release state, consumer installation, or a supported channel.
 
 ## Initial security boundaries
 

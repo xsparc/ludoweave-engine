@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+RFC-0027 resolves M44 published release attestation integrity. The existing
+release job will verify SLSA v1 provenance for every exact M43-retrieved asset
+and an SPDX 2.3 SBOM attestation for exactly one pure wheel after publication.
+The verifier fixes repository, signer workflow, tag/source identity, signer
+commit, GitHub OIDC issuer, hosted-runner class, predicate, bundle count,
+process count, timeout, and content-silent output bounds. No authority exists
+to create a tag/release, change attestation creation, retry or roll back failed
+publication, enable immutability, publish to PyPI, claim artifact security,
+independent builds, or predicate truth, or promote a supported release channel.
+A real attestation pass remains pending an explicitly authorized signed-tag
+release execution; local and pull-request validation cannot substitute for
+that hosted evidence.
+
 RFC-0026 resolves M43 published-asset retrieval integrity. Protocol `/4`
 requires unique bounded numeric asset IDs and may write one exclusive
 published-only retrieval plan after complete verification. The existing tag job

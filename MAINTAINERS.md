@@ -42,24 +42,26 @@ claims.
 
 ## Current boundary
 
-M43 closes the stored-byte observation gap after M42's same-ID published-state
-check. The standard-library validator requires every remote asset to have a
-unique bounded numeric ID and may write one exclusive published-only retrieval
-plan after complete state, notes, and asset verification. The existing tag job
-retrieves each exact ID through the authenticated binary asset endpoint and
-rehashes the downloaded directory against the same release document.
+M44 closes the hosted-attestation observation gap after M42's published-state
+check and M43's exact-ID byte retrieval. A standard-library verifier consumes
+only the canonical bounded M43 plan, exact downloaded directory, tag, and
+commit. It requires SLSA v1
+provenance for every asset and an SPDX 2.3 SBOM attestation for exactly one
+pure wheel under the exact repository, release workflow, source/signer commit,
+tag ref, GitHub OIDC issuer, hosted-runner, timeout, and bundle-count policy.
 
-M43 may change only the existing release validator, the existing tag workflow's
-postpublication tail, focused tests, RFC/docs, and factual project records. It
-must add no job, runner matrix entry, action, permission, trigger, dependency,
-lock entry, credential, package version, public API, runtime source, tag,
-release, upload, rollback, cleanup, or publication authority. It must not
-clobber assets, automatically unpublish/delete evidence, enable or require
-immutable releases, replace attestations, claim unauthenticated/global/future
-availability, install retrieved artifacts, or establish a PyPI/supported-
-release channel. M0 through M42 are complete, reviewed, hosted-validated, and
-integrated into `main`. M43 starts from exact verified M42 closeout commit
-`2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`.
+M44 may change only the existing tag workflow's postpublication tail, one
+standard-library verification script, focused tests, RFC/docs, and factual
+project records. It must add no job, runner matrix entry, action, permission,
+trigger, dependency, lock entry, credential, package version, public API,
+runtime source, tag, release, upload, rollback, cleanup, or publication
+authority. It must not claim artifact security, an independent/trusted build,
+predicate truth beyond verified type/identity, future availability or non-
+revocation, unauthenticated/global asset availability, immutability, consumer
+installation, or a supported release channel. M0 through M43 are complete,
+reviewed, hosted-validated, and integrated into `main`. M44 starts from exact
+verified M43 closeout commit
+`0b3b9eb982a67eee1833f3a8f920671f8ffd006b`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
