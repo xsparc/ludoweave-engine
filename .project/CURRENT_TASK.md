@@ -1,7 +1,8 @@
 # Current Task
 
 - **Task:** M36 - CI runner consolidation without validation-slice loss
-- **Status:** In progress on `maintenance/m36-ci-runner-consolidation`.
+- **Status:** Complete. Feature PR #60 is squash-integrated on `main`, and the
+  temporary feature branch is deleted locally and remotely.
 - **Started:** 2026-08-08
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
   commit `ba9125389ab2b2b760ca7115b5b1b03c447f4190`. Only `main` existed locally
@@ -37,7 +38,7 @@
   workflow-boundary tests passed in 0.64 seconds. The first sandboxed lock
   check could not read the managed uv cache; the corrected check resolved the
   unchanged 46-package lock. CPython 3.12, 3.13, and 3.14 are locally present.
-- **Current evidence:** The workflow has one Ubuntu job and a two-entry desktop
+- **Final evidence:** The workflow has one Ubuntu job and a two-entry desktop
   matrix. Ubuntu sequentially owns quality/distribution, 3.12 graphics, and
   3.13/3.14 compatibility; each desktop runner owns 3.12 graphics then 3.14
   compatibility. Exact local transitions pass 1,714 tests on both 3.13 and
@@ -47,5 +48,11 @@
   pass. Findings-first review moved later-interpreter installation before
   expensive work and found no remaining issue. Scope/security audit passes and
   the final implementation-tree 3.12 suite passes 1,724 tests with nine skips.
-  Only factual `.project/**` rows followed. Hosted
-  three-allocation proof remains pending.
+  Only factual `.project/**` rows followed. Pull-request run `31232803658`
+  passed exactly three hosted allocations on exact feature head
+  `38589bbe6b4c688b581bc972f0ba1e4e39d5cd93`: Linux in 6m36s, Windows in
+  3m32s, and macOS in 2m16s. Every retained step passed. GitHub reported PR
+  #60 mergeable and clean with no comment, review, or review thread. Its exact
+  tree squash-integrated as verified DCO commit
+  `0b8b39052d79ee9c8a2f909f8ac70045adf5a785`; no redundant `main` run was
+  scheduled.

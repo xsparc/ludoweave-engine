@@ -1,6 +1,6 @@
 # Project State
 
-## M36 in progress
+## M36 complete
 
 M36 starts from exact clean synchronized M35 integration-record commit
 `ba9125389ab2b2b760ca7115b5b1b03c447f4190`. It changes CI orchestration only:
@@ -17,14 +17,28 @@ lock, caching, timeouts, desktop failure isolation, and superseded-run
 cancellation remain. Runtime, tests, dependencies, lock, package version,
 release workflow, public contracts, supported platforms/versions, tag,
 publication, and support policy remain unchanged. Workflow implementation,
-architecture regressions, RFC-0019, and documentation exist on
-`maintenance/m36-ci-runner-consolidation`. Exact sequential 3.13 and 3.14
+architecture regressions, RFC-0019, and documentation are integrated. Exact
+sequential 3.13 and 3.14
 transitions pass complete 1,714-test suites on Windows; restored 3.12 passes
 1,724 tests. Static/docs/YAML, distribution, isolated wheel/release, real-
 wgpu/profile, vertical-slice, and focused workflow/release gates pass.
 Findings-first review moved compatibility-interpreter installation before
 expensive work. Scope/security and final implementation-tree 1,724-test gates
-pass; only factual `.project/**` rows followed. Hosted proof remains pending.
+pass; only factual `.project/**` rows followed.
+
+Ready PR #60 used exact base
+`ba9125389ab2b2b760ca7115b5b1b03c447f4190` and DCO-signed final head
+`38589bbe6b4c688b581bc972f0ba1e4e39d5cd93`. Pull-request run `31232803658`
+passed exactly three hosted allocations: Linux in 6m36s, Windows in 3m32s, and
+macOS in 2m16s. Its step-level evidence covers every retained quality,
+distribution, compatibility, real-graphics, profiling, and vertical-slice
+gate. GitHub reported the PR mergeable and clean, with no comment, review, or
+review thread. PR #60 squash-integrated the exact feature tree
+`39d29fa863fee46665bf02856f4d9657068b573f` as GitHub-verified commit
+`0b8b39052d79ee9c8a2f909f8ac70045adf5a785`, with sole parent exact base and a
+valid DCO trailer. The feature branch is deleted locally and remotely. The
+PR-only workflow scheduled no post-merge `main` run; the latest listed main run
+remains pre-M34 run `31226750474`.
 
 ## M35 complete
 
