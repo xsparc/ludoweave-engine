@@ -919,6 +919,28 @@ M35 changes no runtime/public API/protocol/profile/format, dependency, lock,
 version, CI topology, release, publication, discovery, installation, provider
 execution, network, telemetry, or support policy.
 
+## M36 CI runner-ownership boundary
+
+M36 changes workflow orchestration only. The same eight validation slices
+remain: Ubuntu CPython 3.12 quality/distribution, Ubuntu 3.13 and 3.14
+compatibility, Windows and macOS 3.14 compatibility, and CPython 3.12 real-
+graphics evidence on all three desktop operating systems.
+
+Those slices are owned by three runners rather than eight. One Ubuntu runner
+performs quality, distribution, Linux graphics, and then the two later-CPython
+compatibility slices. A two-entry desktop matrix gives Windows and macOS one
+runner each; each performs its 3.12 graphics slice before replacing the locked
+environment with 3.14 for compatibility tests. Environment replacement is
+explicit and no slice relies on packages left by another Python version.
+
+The tradeoff is deliberate: slices within an OS fail sequentially, reducing
+parallel feedback and rerun granularity while avoiding five runner allocations
+and five repeated checkout/setup sequences. Windows and macOS remain isolated
+from each other with matrix fail-fast disabled. The workflow remains pull-
+request only, least privilege, pinned, cached, bounded, credential-free, and
+cancelable. M36 changes no test scope, runtime, dependency, lockfile, package,
+release workflow, or supported platform/version contract.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -961,7 +983,9 @@ manifest result, and exposes no measured rate. M34 adds only offline agent-tool
 recovery-rate admission readiness, retains its empty-manifest result, and
 exposes no measured rate. M35 adds only offline third-party conformance-
 adoption admission readiness, retains its reviewed zero result, and discovers
-or executes no provider. None supplies actual cross-
+or executes no provider. M36 preserves those product boundaries and only
+consolidates CI runner ownership without deleting any validation slice. None
+supplies actual cross-
 version history, external-consumer feedback, or a
 supported release channel; no project-owned document or synthetic fixture is
 treated as an independent human contribution.

@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M34 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 adds strict third-party conformance-adoption admission machinery while retaining an empty reviewed submission manifest and zero passing external implementations. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M35 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -335,13 +335,15 @@ git diff --check
 
 Milestone benchmark/profile commands are not part of every edit's fast gate. M1, M3, and M4 record local target observations; M2 measurements are informational and have no timing pass threshold. M7 profile time is diagnostic rather than a benchmark. Results are recorded only after commands have actually run; see [test evidence](.project/TEST_EVIDENCE.md), the [benchmark methodology](docs/benchmarks.md), and [RFC-0001](docs/rfcs/0001-defer-first-native-kernel.md).
 
-Pull-request CI deliberately uses eight essential hosted jobs: one complete
-Ubuntu 3.12 quality, non-provider test, documentation, package,
-installed-wheel, and release gate; four compatibility jobs spanning CPython
-3.13/3.14 plus Windows and macOS; and three real graphics jobs across Linux,
-Windows, and macOS. The pure universal wheel is smoke-tested once rather than
-rebuilding the same artifact three times, provider tests run only in jobs with
-the required graphics runtime, and superseded runs are cancelled automatically.
+M36 pull-request CI preserves the same eight validation slices while grouping
+them into three OS-owned hosted runner allocations: one Ubuntu runner covers
+quality/distribution, CPython 3.12-3.14, and Linux graphics; Windows and macOS
+each cover CPython 3.12 graphics plus 3.14 compatibility. This uses five fewer
+runner allocations without deleting a version, platform, graphics, package,
+installed-wheel, release, documentation, or static-analysis slice. The pure
+universal wheel is smoke-tested once rather than rebuilding the same artifact
+three times, provider tests run only after the required graphics runtime is
+installed, and superseded runs are cancelled automatically.
 The gate runs only for substantive pull requests: a validated tree is not run
 again after merge to unprotected `main`, and `.project/**`-only factual record
 pull requests consume no hosted runner quota.

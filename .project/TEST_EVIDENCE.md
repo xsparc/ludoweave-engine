@@ -2,6 +2,29 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M36 development evidence - 2026-08-08, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Repository/history/hosted baseline audit | 0 | Clean synchronized `main`, `origin/main`, and `origin/HEAD` at `ba9125389ab2b2b760ca7115b5b1b03c447f4190`; only `main` existed locally/remotely, no PR was open, both M35 branches were deleted, and `git fsck --full --no-dangling` passed. |
+| M35 hosted topology/timing audit | 0 | Corrected run `31231410432` passed eight allocations: one Ubuntu 3.12 quality/distribution slice, Ubuntu 3.13/3.14 and Windows/macOS 3.14 compatibility slices, and Ubuntu/Windows/macOS 3.12 graphics slices. Checkout and setup executed in every allocation. |
+| Focused workflow baseline | 0 | All 25 inherited M34/M35 workflow-boundary tests passed in 0.64 seconds. |
+| First `uv lock --check` | 1 | The sandbox could not initialize the existing user uv cache. No lock pass is claimed. |
+| Corrected `uv lock --check` | 0 | Using the existing managed cache, the unchanged lock resolved 46 packages. |
+| Local Python availability probe | 0 | uv found CPython 3.12 in the project environment and managed CPython 3.13/3.14 interpreters. |
+| `git switch -c maintenance/m36-ci-runner-consolidation` | 0 | Created the neutral M36 branch from exact clean base `ba9125389ab2b2b760ca7115b5b1b03c447f4190`. |
+| First workflow/docs gate | Mixed | Ruff, strict docs, and whitespace passed; 30 of 31 focused tests passed. The single failure was a prose assertion expecting `five fewer runner allocations` contiguously while README inserted `That is` before the phrase. No focused-suite pass is claimed. |
+| Corrected initial workflow/docs gate | 0 | The aligned README wording passed all 31 focused M34-M36 workflow/docs tests in 0.36 seconds. |
+| CPython 3.12 graphics environment and smoke | 0 | The frozen all-group graphics sync checked 45 packages; `uv python install 3.13 3.14` confirmed managed compatibility interpreters; all ten real-wgpu tests passed in 6.95 seconds. |
+| First sequential CPython 3.13 full test | 1 | The environment transition completed, then 1,713 tests passed with ten expected skips and one failure in 92.97 seconds. `test_release_workflow` still parsed the superseded `verify/tests/graphics` job names. No 3.13 pass is claimed. |
+| Corrected CPython 3.13 gate | 0 | The release-workflow architecture test now validates the Linux/desktop topology. Ruff and 34 focused workflow/release tests passed; the complete CPython 3.13 suite passed 1,714 tests with ten expected skips in 93.40 seconds. |
+| Sequential CPython 3.14 gate | 0 | The exact frozen environment replacement completed and the complete CPython 3.14 suite passed 1,714 tests with ten expected skips in 101.78 seconds. |
+| Restored CPython 3.12 complete suite | 0 | Restored the exact 45-package graphics environment; the complete suite passed 1,724 tests with nine expected skips in 105.48 seconds. |
+| Distribution, graphics, profile, and vertical-slice gate | 0 | Built the universal wheel and sdist; isolated-wheel smoke passed; confirmed-absent `.tmp/release-candidate-m36-reviewed` received ten artifacts and release smoke passed; ten real-wgpu tests passed in 6.60 seconds; base and graphics profile artifacts validated; and both deterministic vertical slices reproduced their M35 hashes. |
+| Findings-first fail-early refinement | 0 | Operational review moved managed 3.13/3.14 installation immediately after uv setup so interpreter availability fails before expensive quality/build/graphics work. Architecture regressions fix that ordering. Final 268-file formatting, Ruff, strict Pyright, strict docs, YAML parsing, 34 focused tests, and whitespace passed. |
+| Scope, workflow, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or `release.yml`; the release-workflow SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. Final CI SHA-256 is `ab4d4e5e71e733abfccc20b35944e90dcf9c5cf6dba433f3bdf62a999a1d5fa7`. The 94-entry wheel has no native/WASM payload. Credential-pattern matches were expected test/service vocabulary only; `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent; `git fsck --full --no-dangling` passed. |
+| Final implementation-tree `uv run --frozen pytest -q` | 0 | The complete CPython 3.12 suite passed 1,724 tests with nine expected skips in 106.27 seconds after the fail-early refinement. Only these factual `.project/**` evidence rows were added afterward. Hosted proof remains pending. |
+
 ## M35 development evidence - 2026-08-08, Windows, CPython 3.12
 
 | Command | Exit | Result |

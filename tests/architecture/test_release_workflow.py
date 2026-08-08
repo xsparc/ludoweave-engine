@@ -52,10 +52,10 @@ def test_release_workflow_validates_before_publishing() -> None:
     assert "--notes-file release/RELEASE_NOTES.md" in workflow
 
 
-def test_ci_keeps_one_complete_distribution_gate_and_minimal_platform_matrix() -> None:
+def test_ci_keeps_one_complete_distribution_gate_in_consolidated_platforms() -> None:
     workflow = _CI.read_text(encoding="utf-8")
 
-    verify_section = workflow.split("  verify:", 1)[1].split("  tests:", 1)[0]
+    verify_section = workflow.split("  linux:", 1)[1].split("  desktop:", 1)[0]
     assert "uv run --frozen pytest -q --ignore=tests/integration/test_wgpu_render.py" in (
         verify_section
     )
@@ -63,20 +63,20 @@ def test_ci_keeps_one_complete_distribution_gate_and_minimal_platform_matrix() -
     assert "scripts/release_artifacts.py dist .tmp/ci-release" in verify_section
     assert "scripts/smoke_release.py .tmp/ci-release" in verify_section
 
-    compatibility_section = workflow.split("  tests:", 1)[1].split("  graphics:", 1)[0]
-    assert compatibility_section.count("          - os:") == 4
-    assert 'os: ubuntu-latest\n            python: "3.13"' in compatibility_section
-    assert 'os: ubuntu-latest\n            python: "3.14"' in compatibility_section
-    assert 'os: windows-latest\n            python: "3.14"' in compatibility_section
-    assert 'os: macos-latest\n            python: "3.14"' in compatibility_section
+    compatibility_section = workflow.split("  desktop:", 1)[1]
+    assert compatibility_section.count("          - os:") == 2
+    assert "uv run --frozen --python 3.13 pytest -q" in verify_section
+    assert "uv run --frozen --python 3.14 pytest -q" in verify_section
+    assert "          - os: windows-latest" in compatibility_section
+    assert "          - os: macos-latest" in compatibility_section
+    assert "uv run --frozen --python 3.14 pytest -q" in compatibility_section
 
-    assert "os: [ubuntu-latest, windows-latest, macos-latest]" in workflow
     assert "  wheel-smoke:" not in workflow
     assert "permissions:\n  contents: read" in workflow
     assert "cancel-in-progress: true" in workflow
-    assert workflow.count("timeout-minutes:") == 3
-    assert workflow.count("enable-cache: true") == 3
-    assert workflow.count("persist-credentials: false") == 3
-    assert workflow.count("fail-fast: false") == 2
-    assert workflow.count("actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd") == 3
-    assert workflow.count("astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b") == 3
+    assert workflow.count("timeout-minutes:") == 2
+    assert workflow.count("enable-cache: true") == 2
+    assert workflow.count("persist-credentials: false") == 2
+    assert workflow.count("fail-fast: false") == 1
+    assert workflow.count("actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd") == 2
+    assert workflow.count("astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b") == 2

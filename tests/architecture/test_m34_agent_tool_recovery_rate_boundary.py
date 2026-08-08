@@ -146,21 +146,15 @@ def test_evaluator_registers_the_exact_product_tool_set_without_importing_it() -
     assert _literal(_EVIDENCE_FILES[0], "_SERVICE_PROTOCOL") == "ludoweave.agent.service/1"
 
 
-def test_ci_runs_only_the_eight_essential_jobs_for_substantive_pull_requests() -> None:
+def test_ci_retains_the_m34_pr_only_quota_boundary() -> None:
     workflow = (_ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
 
     assert '\non:\n  pull_request:\n    paths-ignore:\n      - ".project/**"\n' in workflow
     assert "\n  push:" not in workflow
     assert "\n  schedule:" not in workflow
     assert "\n  workflow_dispatch:" not in workflow
-    assert workflow.count("\n  verify:\n") == 1
-    assert workflow.count("\n  tests:\n") == 1
-    assert workflow.count("\n  graphics:\n") == 1
-    assert "os: [ubuntu-latest, windows-latest, macos-latest]" in workflow
-    for platform in ("ubuntu-latest", "windows-latest", "macos-latest"):
-        assert platform in workflow
-    for version in ('python-version: "3.12"', 'python: "3.13"', 'python: "3.14"'):
-        assert version in workflow
+    assert "permissions:\n  contents: read" in workflow
+    assert "cancel-in-progress: true" in workflow
 
 
 def test_source_wheel_and_release_smoke_explicitly_include_m34_evidence() -> None:

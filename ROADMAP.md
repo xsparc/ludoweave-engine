@@ -43,7 +43,8 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M32 replay-divergence-rate admission readiness | PR #52 squash-integrated; strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and all eight essential hosted jobs passed on the corrected head |
 | Done | M33 benchmark-regression-rate admission readiness | PR #54 squash-integrated; strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0016, and all eight essential hosted jobs passed |
 | Done | M34 agent-tool recovery-rate admission readiness | PR #56 squash-integrated; strict empty reviewed task-directed call manifest, complete cohort and terminal-evidence preservation, exact rational rate, installed artifact smoke, RFC-0017, and one substantive pull-request CI gate |
-| Implemented for M35 | M35 third-party conformance-adoption readiness | Strict empty reviewed project-accepted submission census, exact existing profile registry, failure/non-execution preservation, zero current count, installed artifact smoke, and RFC-0018 |
+| Done | M35 third-party conformance-adoption readiness | PR #58 squash-integrated; strict empty reviewed project-accepted submission census, exact existing profile registry, failure/non-execution preservation, zero current count, installed artifact smoke, and RFC-0018 |
+| Implemented for M36 | M36 CI runner consolidation | Preserve all eight Python/platform/graphics/distribution validation slices in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -397,6 +398,20 @@ plugin-backed record but is never sufficient without a passing installed M17
 profile. M35 adds no discovery, installation, provider execution, network,
 telemetry, runtime/API/protocol/profile, dependency, lock, version, workflow
 job, release, publication, or support-policy change.
+
+M36 starts from verified M35 integration-record commit
+`ba9125389ab2b2b760ca7115b5b1b03c447f4190`. It preserves the exact eight
+validation slices exercised by corrected M35 run `31231410432` while grouping
+them into one Ubuntu allocation and one allocation each for Windows and macOS.
+The Ubuntu runner owns quality/distribution, 3.12 graphics, and sequential
+3.13/3.14 compatibility. Each desktop runner owns 3.12 graphics followed by
+3.14 compatibility. The structural change removes five runner allocations and
+five repeated checkout/setup sequences without removing a Python, platform,
+graphics, package, installed-wheel, release, docs, or static-analysis slice.
+It retains PR-only and `.project/**` exclusions, least privilege, exact pins,
+caching, timeouts, fail-fast isolation across desktop OSes, and cancellation of
+superseded runs. M36 changes no runtime, API, protocol, format, dependency,
+lock, version, release workflow, tag, publication, or support policy.
 
 ## Good-first contribution queue
 

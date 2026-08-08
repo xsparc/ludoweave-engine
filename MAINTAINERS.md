@@ -42,6 +42,24 @@ claims.
 
 ## Current boundary
 
+M36 changes CI runner ownership only. It must preserve all eight existing
+validation slices while grouping them into exactly three hosted allocations:
+one Ubuntu runner and one runner each for Windows and macOS. Ubuntu retains
+CPython 3.12 quality/distribution and graphics plus 3.13/3.14 compatibility;
+Windows and macOS retain 3.12 graphics plus 3.14 compatibility. The workflow
+must remain substantive-pull-request only, ignore `.project/**`-only records,
+use `contents: read`, disable checkout credentials, retain exact action/uv
+pins, cache from the lockfile, bound every job, isolate desktop failures, and
+cancel superseded runs. Sequential slices within an OS are an accepted quota
+tradeoff; removing a validation slice is not. M36 may update only CI, workflow
+architecture tests, RFC/docs, and neutral engineering records. It may not
+change runtime source, test behavior, dependencies, lock, package version,
+release workflow, tag, publication, platform/version support, certification,
+or support policy. M0 through M35 are complete, reviewed, hosted-CI validated,
+and integrated into `main`. M36 starts from exact verified M35 integration-
+record commit `ba9125389ab2b2b760ca7115b5b1b03c447f4190` and contains no
+subsequent milestone.
+
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
 adapters or plugin-backed adapters passing conformance. The exact reviewed
