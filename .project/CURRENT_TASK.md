@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M46 - fresh-runner public consumer rehearsal
-- **Status:** Feature fully validated and squash-integrated; recording the
-  verified integration on `records/m46-integration`.
+- **Status:** Feature and integration record fully validated and
+  squash-integrated; closing factual records on `records/m46-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -91,3 +91,13 @@
   tree, sole parent the M45 closeout, valid signature, standalone DCO, and no
   post-merge run. The feature branch is deleted locally/remotely. No real tag,
   release, or fresh-runner release execution exists or is claimed.
+- **Integration record:** Four-Markdown PR #90 exact head
+  `4a74380f3011cbb841b89a7778cf676163cc1c28` classified documentation-only.
+  Run `31283922258` passed in one 36-second Linux allocation with 383
+  architecture tests, strict docs, universal build, wheel smoke, and release
+  smoke; desktop job `93169560315` skipped with zero steps. No review, comment,
+  or thread existed. Verified squash
+  `f6a15655b9bfe5657f15baea89d36206743a3468` has sole parent the M46 feature
+  squash, exact reviewed tree, valid signature, standalone DCO, and no
+  post-merge run. Its branch is deleted locally/remotely. Only this three-file
+  zero-run closeout remains before selecting the next milestone.
