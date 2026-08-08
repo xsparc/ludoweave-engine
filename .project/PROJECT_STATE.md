@@ -1,6 +1,6 @@
 # Project State
 
-## M42 implementation complete
+## M42 complete
 
 M42 starts from exact clean synchronized M41 closeout commit
 `0dec2254a9d9483b27d158aaad108340e9c94e28`. It closes the final-state
@@ -33,8 +33,14 @@ present. Squash `28dd9d7e282ec85c06b71ed340f3cfcea379d6be` has sole parent the e
 M41 closeout, preserves reviewed tree
 `7e65795a6b44de7b3ff393128274eda207c58dc3`, has a valid GitHub signature and
 standalone DCO trailer, and allocated no post-merge `main` run. The feature
-branch is deleted locally and remotely. Only the documentation-only integration
-and closeout records remain.
+branch is deleted locally and remotely. Documentation-only PR #78 exact head
+`b08c4ff57c2d995fdce73f2e835f2ca3a8075a70` classified four paths as
+documentation and passed run `31271986168` in one 33-second Linux allocation;
+the desktop umbrella skipped with zero steps and no runner. With no feedback,
+it squash-integrated as `35aa6c46f0d128f66535d75dff342f0b7f6bcdeb`, preserving its reviewed tree,
+exact feature-squash parent, valid signature, standalone DCO, and zero post-
+merge run. Its branch is deleted locally and remotely. Only the zero-run
+closeout record remains.
 
 ## M41 complete
 
