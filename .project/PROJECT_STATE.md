@@ -1,10 +1,12 @@
 # Project State
 
-## M44 published release attestation integrity - in progress
+## M44 published release attestation integrity - complete
 
 - Base: exact verified M43 closeout commit
   `0b3b9eb982a67eee1833f3a8f920671f8ffd006b`.
-- Branch: `release/m44-attestation-verification`.
+- Feature: ready PR #83 exact head
+  `494ae4f32209c8e679633d528bb63cf4b1093800`; squash-integrated as
+  `781ca0d1692b309ca3dd7ea9ca8dc6af88f77b09`.
 - Contract: after M43 exact-ID retrieval and byte revalidation, verify SLSA v1
   provenance for every bounded asset and SPDX 2.3 SBOM attestation for exactly
   one pure wheel under exact repository, workflow, tag, source/signer commit,
@@ -17,9 +19,15 @@
   tests, RFC/docs, historical workflow-hash guards, and factual project
   records. No job/action/permission/trigger/dependency/lock/runtime/public API,
   tag/release/upload/publication, or version change.
-- Current state: implementation is locally validated and awaiting final review
-  plus the bounded substantive hosted pull-request gate. No real signed-tag
-  release or hosted attestation pass exists or is claimed.
+- Validation: complete local 3.12-3.14, graphics, profiles, samples,
+  benchmarks, reproducibility, package/release smoke, static, architecture,
+  docs, and security/scope gates passed. Hosted run `31277236908` passed the
+  exact feature head in three allocations. Its sole review thread was resolved
+  from primary evidence without a code change.
+- Integration: the GitHub-verified squash has the exact reviewed tree and sole
+  parent the M43 closeout; no post-merge `main` run occurred and the feature
+  branch is deleted. No real signed-tag release or hosted attestation pass
+  exists or is claimed.
 
 ## M43 complete
 
