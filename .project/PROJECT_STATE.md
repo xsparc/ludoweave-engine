@@ -1,5 +1,38 @@
 # Project State
 
+## M39 in progress
+
+M39 starts from exact clean synchronized M38 closeout commit
+`185e206d6b9c1e97512e289bcba84701dc29c147`. It closes the existing gap between
+remote tag existence and release identity. The standard-library verifier
+requires strict bounded GitHub ref/tag documents, an exact annotated tag whose
+signature GitHub reports as valid, matching local/GitHub tag and target commit,
+an exact event checkout, and reachability from fetched `origin/main`. Success
+emits only safe tag/object/commit/ref identities; signature and payload content
+remain private. Structured failures cover malformed/duplicate/oversized input,
+identity drift, unsigned/lightweight tags, detached checkout, missing Git state,
+and non-main commits.
+
+The existing tag workflow fetches full history/tags, reads the version, obtains
+the two read-only GitHub API documents, materializes the verifier from fetched
+`origin/main`, and runs it with setup Python before system-package installation,
+dependency sync, tests, builds, M38 comparison, staging, attestation, or
+publication. GitHub is the signature-verification authority; local Git checks
+exact object, checkout, and ancestry identity without a signing-key trust store.
+RFC-0022 rejects treating `gh release create --verify-tag` as a signature check
+and records the absence of a signer/key allowlist. It also records that the
+workflow cannot authenticate replacement of its own definition by an already-
+authorized tag actor; tag and environment rules remain operational controls.
+
+Focused behavior, adversarial, static, workflow, and YAML gates pass after one
+strict-typing correction, one helper-specificity correction, and two findings-
+first workflow trust corrections. M39 changes no
+CI workflow, runner/job/matrix count, action, permission, trigger, dependency,
+lock, package version, runtime/public API, attestation, tag, release, PyPI
+configuration, supported release policy, or deferred subsystem. Complete local
+validation, findings-first review, hosted validation, integration, and cleanup
+remain pending.
+
 ## M38 complete
 
 M38 starts from exact clean synchronized M37 closeout commit

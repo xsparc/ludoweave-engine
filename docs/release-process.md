@@ -1,8 +1,10 @@
 # Release process and artifact verification
 
 Only maintainers publish official releases. The `release.yml` workflow runs for
-an exact `vVERSION` tag and refuses a tag that differs from `pyproject.toml`.
-The repository does not publish a release from pull-request CI.
+an exact signed annotated `vVERSION` tag and refuses a tag that differs from
+`pyproject.toml`, lacks GitHub-verified signature evidence, targets a different
+checkout, or is not reachable from `origin/main`. The repository does not
+publish a release from pull-request CI.
 
 ## Candidate contents
 
@@ -34,18 +36,32 @@ same-job check is not an independent or cross-platform rebuild claim; see
 1. Require the milestone PR's complete local and hosted gates to pass.
 2. Confirm the changelog, version, date, release notes, compatibility status,
    security policy, notices, and retrospective agree.
-3. Build twice, verify byte reproducibility, then stage/smoke the candidate
-   from a clean signed commit.
-4. Create a signed `vVERSION` tag at that exact commit and push the tag.
-5. The least-privilege tag workflow reruns quality/tests/docs, builds/stages and
+3. Confirm the intended release commit is integrated into `origin/main`.
+4. Build twice, verify byte reproducibility, then stage/smoke the candidate
+   from that clean signed commit.
+5. Create and push a signed annotated `vVERSION` tag at that exact commit.
+6. M39 makes the tag job fail first unless GitHub reports a valid tag
+   signature and local Git confirms the same annotated object, checkout commit,
+   and `origin/main` ancestry. The verifier is loaded from fetched `origin/main`,
+   not the tag checkout. `--verify-tag` remains an existence check, not the
+   signature gate.
+7. The least-privilege tag workflow reruns quality/tests/docs, builds/stages and
    smokes artifacts, creates GitHub build-provenance and SPDX attestations, and
    creates a prerelease with the staged files.
-6. Download the published assets, verify checksums and attestations, install the
+8. Download the published assets, verify checksums and attestations, install the
    wheel in a clean environment, and run the sample bundle before announcing.
 
 No PyPI upload is configured in community alpha. Name reservation, trusted
 publishing, and a non-prerelease support policy require separate maintainer
 decisions.
+
+M39/RFC-0022 trusts GitHub's annotated-tag verification result and separately
+checks local object/checkout/main ancestry. It does not install a local trust
+store, define a signer or key allowlist, authorize tag creation, enable
+immutable releases, or claim that a valid signature alone authorizes a release.
+Repository tag rules, protected deployment environments, and workflow-file
+governance remain operational controls; this workflow cannot authenticate a
+replacement of its own definition by an already-authorized tag actor.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains

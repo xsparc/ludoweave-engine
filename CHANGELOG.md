@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M39/RFC-0022 fail-closed annotated release-tag, GitHub signature,
+  checkout identity, and `origin/main` ancestry verification before the
+  existing tag job performs expensive or publishing work, with no new runner,
+  action, permission, trigger, dependency, tag, or publication authority.
 - Add M38/RFC-0021 fail-closed wheel/sdist reproducibility verification to the
   existing Linux pull-request and tag-release distribution steps without a new
   runner, action, dependency, permission, trigger, or publication claim.

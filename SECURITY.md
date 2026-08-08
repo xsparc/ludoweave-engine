@@ -19,6 +19,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - The baseline wheel has no runtime dependencies and is built as `py3-none-any`.
 - Release candidates include SHA-256 checksums, an SPDX SBOM, Apache/project notices, and a versioned manifest.
 - The tag workflow uses immutable action revisions and grants write, identity-token, and attestation permissions only to the release job.
+- M39 requires the exact release ref to be an annotated tag whose signature
+  GitHub reports as valid, whose local/GitHub target is the checked-out commit,
+  and whose commit is reachable from `origin/main`. The validator is loaded
+  from fetched `origin/main`, not from the unadmitted tag checkout.
 - Official tagged artifacts receive GitHub build-provenance and SBOM attestations. Consumers should verify both the local checksums and hosted attestations as documented in `docs/release-process.md`.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
@@ -27,6 +31,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   evidence may contain a public login and project references, but must exclude
   email, private correspondence, credentials, prompts, telemetry, and other
   unpublished personal data.
+- M39 does not define a signer/key allowlist, local trust store, or workflow-
+  file self-authentication. Repository tag rules, deployment-environment
+  approval, signing-key lifecycle, and workflow governance remain operational
+  controls; report suspected unauthorized tag/workflow changes privately.
 
 ## Initial security boundaries
 

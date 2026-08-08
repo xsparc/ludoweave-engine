@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M37 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. M38 is enforcing same-source wheel/sdist byte reproducibility inside those existing distribution jobs. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M38 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. M38 enforces same-source wheel/sdist byte reproducibility inside those existing distribution jobs. M39 is enforcing an annotated, GitHub-verified release tag at the exact `origin/main` commit before the tag job performs expensive or publishing work. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -97,7 +97,7 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   explicit receipted sample/tick mutations, versioned semantic observations,
   and verified snapshot/diff hash continuity.
 - An Agent World Builder acceptance loop covering typed creation, validation, application, ticks, capture, query, adjustment, diff, telemetry, tests, and replay evidence.
-- Deterministic release staging with a pure wheel, source distribution, sample bundle, checksums, SPDX SBOM, notices, manifest, installed-artifact smoke, a pinned provenance workflow, and fail-closed repeat-build byte verification.
+- Deterministic release staging with a pure wheel, source distribution, sample bundle, checksums, SPDX SBOM, notices, manifest, installed-artifact smoke, a pinned provenance workflow, fail-closed repeat-build byte verification, and signed annotated-tag identity/main-ancestry admission.
 - Explicit stability metadata for every public Python export, community-alpha user/adapter/contribution guides, and a repository-native triage/roadmap queue.
 - Versioned, sanitized profiling for the representative M1/M3 misses plus an accepted RFC retaining the pure-Python/no-compiler baseline.
 - A bounded isolated Box2D-candidate probe plus ADR-0024; no physics binding,
@@ -365,6 +365,15 @@ publication in the tag workflow. It adds no runner, matrix entry, dependency,
 action, permission, trigger, credential, or cross-platform reproducibility
 claim.
 
+M39 makes the existing tag-only release job fail before system setup, tests,
+build, attestation, or publication unless the exact `vVERSION` ref is an
+annotated tag whose signature GitHub reports as valid, whose local/GitHub tag
+object targets the checked-out event commit, and whose commit is reachable from
+fetched `origin/main`. The validator emits only safe tag/object/commit identities
+and never prints the signature or payload. This adds no runner, action,
+permission, trigger, dependency, key allowlist, tag, or publication authority;
+RFC-0022 defines the trust boundary.
+
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:
 
@@ -378,8 +387,9 @@ smoke. It does not admit the binding or claim cross-platform determinism; see
 
 Repeat-build verification and release staging require new empty output
 directories. The tag workflow is
-defined for a future maintainer-created `vVERSION` tag; this repository task
-does not create a tag, publish a GitHub release, or upload to PyPI.
+defined for a future maintainer-created signed annotated `vVERSION` tag at an
+exact `origin/main` commit. This repository task does not create a tag, publish
+a GitHub release, configure a signing-key allowlist, or upload to PyPI.
 
 ## Contributing and project policy
 

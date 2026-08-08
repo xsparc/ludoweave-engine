@@ -42,22 +42,24 @@ claims.
 
 ## Current boundary
 
-M38 enforces same-source distribution reproducibility. The standard-library
-verifier accepts two distinct build directories, each containing exactly one
-matching `ludoweave-VERSION-py3-none-any.whl` and source archive, and fails
-closed on symlinks, directories, unexpected/missing artifacts, inconsistent or
-platform-specific names, unreadable files, or differing bytes. Success emits
-versioned deterministic JSON with exact sizes and SHA-256 identities.
+M39 enforces release-tag identity before the existing tag-only workflow performs
+system setup, tests, build, staging, attestation, or publication. The
+standard-library verifier requires an exact bounded `vVERSION` ref, an annotated
+tag object whose signature GitHub reports as valid, matching local/GitHub tag
+and commit identities, an exact event checkout, and reachability from fetched
+`origin/main`. It caps strict duplicate-free JSON input, runs local Git without
+a shell, emits only safe tag/object/commit/ref identities, and fails closed with
+versioned structured errors.
 
-The existing Linux pull-request and tag-release distribution steps each build
-twice and compare before smoke, staging, attestation, or publication. M38 must
-add no job, runner matrix entry, action, permission, trigger, dependency, lock
-entry, credential, package version, public API, runtime source, tag, release,
-or publication. The claim is same-source/same-job byte identity only, not
-cross-platform or hermetic reproducibility, independent rebuilding,
-provenance, availability, or support. M0 through M37 are complete, reviewed,
-hosted-validated, and integrated into `main`. M38 starts from exact verified
-M37 closeout commit `3578da64b2686cd8d63340aeb1eed30f5c4cb761`.
+M39 may change only the explicit release-ref verifier, its focused tests, the
+existing tag workflow, RFC/docs, and factual project records. It must add no
+job, runner matrix entry, action, permission, trigger, dependency, lock entry,
+credential, package version, public API, runtime source, tag, release, or
+publication. GitHub is the tag-signature verification authority; no local key
+trust store, signer/key allowlist, immutable-release setting, PyPI channel, or
+supported-release claim is introduced. M0 through M38 are complete, reviewed,
+hosted-validated, and integrated into `main`. M39 starts from exact verified
+M38 closeout commit `185e206d6b9c1e97512e289bcba84701dc29c147`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

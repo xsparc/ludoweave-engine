@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0022 resolves M39 release-tag identity enforcement. GitHub's annotated-tag
+API is the hosted signature-verification authority, while local Git independently
+checks the exact tag object, checkout commit, and `origin/main` ancestry before
+the existing tag job performs expensive or publishing work. The bounded gate
+adds no runner, action, permission, trigger, dependency, credential, tag, or
+publication authority. A local trust store, signer/key allowlist, immutable-
+release policy, PyPI channel, and supported-release claim remain separate
+decisions.
+
 RFC-0021 resolves M38 distribution reproducibility enforcement. The existing
 Linux pull-request and tag-release distribution jobs build twice and compare
 the exact pure wheel/source pair before smoke, staging, attestation, or

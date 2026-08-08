@@ -18,6 +18,7 @@ def test_release_workflow_is_tag_only_and_pinned() -> None:
     assert "contents: write" in workflow
     assert "id-token: write" in workflow
     assert "persist-credentials: false" in workflow
+    assert "fetch-depth: 0" in workflow
     assert "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" in workflow
     assert "astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b" in workflow
     assert workflow.count("actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6") == 2
@@ -31,6 +32,7 @@ def test_release_workflow_is_tag_only_and_pinned() -> None:
 def test_release_workflow_validates_before_publishing() -> None:
     workflow = _RELEASE.read_text(encoding="utf-8")
     required = (
+        "scripts/verify_release_ref.py",
         "uv lock --check",
         "ruff format --check .",
         "ruff check .",
@@ -47,6 +49,7 @@ def test_release_workflow_validates_before_publishing() -> None:
     offsets = [workflow.index(command) for command in required]
     assert offsets == sorted(offsets)
     assert 'test "$GITHUB_REF_NAME" = "v$version"' in workflow
+    assert "Verify signed release tag and main ancestry" in workflow
     assert "--verify-tag" in workflow
     assert "--prerelease" in workflow
     assert "--notes-file release/RELEASE_NOTES.md" in workflow

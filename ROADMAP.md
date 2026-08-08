@@ -47,6 +47,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M36 CI runner consolidation | PR #60 squash-integrated; all eight Python/platform/graphics/distribution slices passed in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
 | Done | M37 CI change qualification | PR #62 squash-integrated; corrected substantive run `31259200818` passed fail-closed trusted-base classification, the three-allocation M36 gate, Linux-before-desktop qualification, and RFC-0020 |
 | Done | M38 distribution reproducibility enforcement | PR #65 squash-integrated; corrected same-source wheel/sdist byte gate passed all three bounded hosted allocations with no new runner or publication authority |
+| In progress | M39 release-tag integrity enforcement | Require an annotated GitHub-verified tag at the exact checked-out `origin/main` commit before the existing tag job performs expensive or publishing work |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -449,6 +450,14 @@ completed in 6m50s before the desktop allocations began; macOS passed in 1m59s
 and Windows in 3m44s. Squash `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7`
 has the exact reviewed tree, a valid GitHub signature, and a DCO trailer. No
 post-merge main run was allocated and the feature branch is deleted.
+
+M39 starts from verified M38 closeout commit
+`185e206d6b9c1e97512e289bcba84701dc29c147`. It closes the gap between remote
+tag existence and release identity: the existing tag job must verify an
+annotated GitHub-valid signature, exact event/checkout/tag-object commit, and
+`origin/main` ancestry before system setup, tests, builds, attestations, or
+publication. The check adds no hosted allocation, action, permission, trigger,
+dependency, tag, release, key allowlist, or publication authority.
 
 ## Good-first contribution queue
 

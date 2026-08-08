@@ -984,6 +984,32 @@ cross-platform reproducibility, a hermetic-build claim, independent rebuild
 consensus, provenance, publication, or package availability. RFC-0021 defines
 the complete decision.
 
+## M39 release-ref integrity boundary
+
+M39 separates release-ref admission from artifact validation. The existing
+tag job first requires the exact `vVERSION` ref to target an annotated tag
+object, GitHub to report its signature as valid, the local and GitHub tag
+objects to target the exact checked-out event commit, and that commit to be an
+ancestor of fetched `origin/main`. Only then may system setup, tests, builds,
+M38 comparison, staging, attestations, or publication proceed.
+
+The standard-library verifier consumes runner-temporary GitHub API documents
+plus the local repository. The job materializes the verifier from fetched
+`origin/main` rather than trusting the not-yet-admitted tag checkout's script.
+It caps strict duplicate-free JSON inputs, checks local Git without a shell,
+and emits only tag, tag-object SHA, commit SHA, and main-ref identity. Signature
+and payload bytes never enter output. GitHub's tag-object API is the signature-
+verification authority; local Git proves object, checkout, and ancestry
+identity but owns no signing-key trust store.
+
+M39 adds no runner allocation, action, permission, trigger, credential,
+dependency, runtime import, public API, tag, release, or publication authority.
+It does not define a signer/key allowlist, key rotation or revocation, immutable
+release policy, PyPI channel, trusted publishing, or supported release channel.
+It also cannot protect a workflow file that an authorized tag actor can replace;
+tag and environment protection remain repository operations.
+RFC-0022 defines the full trust and non-claim boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
