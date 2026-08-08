@@ -6,7 +6,6 @@ import hashlib
 import os
 import shutil
 import subprocess
-import textwrap
 from pathlib import Path
 
 import pytest
@@ -14,16 +13,10 @@ import pytest
 _ROOT = Path(__file__).parents[2]
 _CI = _ROOT / ".github" / "workflows" / "ci.yml"
 _RELEASE = _ROOT / ".github" / "workflows" / "release.yml"
+_PUBLIC_SCRIPT = _ROOT / "scripts" / "verify_public_release.sh"
 _CI_SHA256 = "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
 _PYPROJECT_SHA256 = "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1"
 _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed"
-
-
-def _step(source: str, name: str, next_name: str | None = None) -> str:
-    start = source.index(f"      - name: {name}\n")
-    if next_name is None:
-        return source[start:]
-    return source[start : source.index(f"      - name: {next_name}\n", start + 1)]
 
 
 def _bash() -> str:
@@ -54,15 +47,11 @@ def _bash() -> str:
     pytest.skip("a working Bash runtime is unavailable")
 
 
-def _run_script(source: str) -> str:
-    marker = "        run: |\n"
-    assert marker in source
-    return textwrap.dedent(source.split(marker, 1)[1])
-
-
 def test_public_consumer_path_follows_attestation_verification() -> None:
     workflow = _RELEASE.read_text(encoding="utf-8")
-    public = _step(workflow, "Verify public release consumer path")
+    public_start = workflow.index("      - name: Verify public release consumer path\n")
+    public = workflow[public_start : workflow.index("\n\n  fresh-consumer:", public_start)]
+    script = _PUBLIC_SCRIPT.read_text(encoding="utf-8")
 
     required = (
         "Publish verified GitHub prerelease",
@@ -75,19 +64,17 @@ def test_public_consumer_path_follows_attestation_verification() -> None:
     assert offsets == sorted(offsets)
 
     assert "RELEASE_ID: ${{ steps.verify_draft.outputs.release_id }}" in public
-    assert '[[ ! "$RELEASE_ID" =~ ^[1-9][0-9]{0,18}$ ]]' in public
-    assert "[[ ${#RELEASE_ID} -eq 19" in public
-    assert '"9223372036854775807"' in public
-    assert 'test ! -e "$public_document"' in public
-    assert 'test ! -e "$public_dir"' in public
-    assert 'mkdir "$public_dir"' in public
+    assert "bash scripts/verify_public_release.sh release --use-existing-plan" in public
+    assert '[[ ! "$RELEASE_ID" =~ ^[1-9][0-9]{0,18}$ ]]' in script
+    assert "[[ ${#RELEASE_ID} -eq 19" in script
+    assert '"9223372036854775807"' in script
+    assert 'test ! -e "$public_document"' in script
+    assert 'test ! -e "$public_dir"' in script
+    assert 'mkdir "$public_dir"' in script
 
 
 def test_public_document_and_assets_use_exact_bounded_https_requests() -> None:
-    public = _step(
-        _RELEASE.read_text(encoding="utf-8"),
-        "Verify public release consumer path",
-    )
+    public = _PUBLIC_SCRIPT.read_text(encoding="utf-8")
 
     assert public.count("curl --disable --fail --silent --show-error --location") == 2
     assert public.count("--max-redirs 3") == 2
@@ -122,10 +109,7 @@ def test_public_document_and_assets_use_exact_bounded_https_requests() -> None:
 
 
 def test_public_retrieval_revalidates_plan_set_and_installed_candidate() -> None:
-    public = _step(
-        _RELEASE.read_text(encoding="utf-8"),
-        "Verify public release consumer path",
-    )
+    public = _PUBLIC_SCRIPT.read_text(encoding="utf-8")
 
     for required in (
         'plan="$RUNNER_TEMP/release-assets.plan"',
@@ -147,11 +131,11 @@ def test_public_retrieval_revalidates_plan_set_and_installed_candidate() -> None
         assert required in public
 
     assert public.count("scripts/verify_release_draft.py") == 2
-    assert 'release "$public_document"' in public
+    assert '"$expected_dir" "$public_document"' in public
     assert '"$public_dir" "$public_document"' in public
     assert public.count("--expected-state published") == 2
     assert 'scripts/smoke_release.py "$public_dir"' in public
-    assert public.index('release "$public_document"') < public.index("while IFS=")
+    assert public.index('"$expected_dir" "$public_document"') < public.index("while IFS=")
     assert public.index('"$public_dir" "$public_document"') < public.index(
         'scripts/smoke_release.py "$public_dir"'
     )
@@ -160,14 +144,10 @@ def test_public_retrieval_revalidates_plan_set_and_installed_candidate() -> None
 def test_public_consumer_shell_executes_exact_bounded_plan_without_credentials(
     tmp_path: Path,
 ) -> None:
-    script = _run_script(
-        _step(
-            _RELEASE.read_text(encoding="utf-8"),
-            "Verify public release consumer path",
-        )
-    )
+    script = _PUBLIC_SCRIPT.read_text(encoding="utf-8")
     runner = tmp_path / "runner"
     runner.mkdir()
+    (tmp_path / "expected").mkdir()
     (runner / "release-assets.plan").write_text(
         "ludoweave.release-asset-retrieval-plan/1\n456\t5\tasset.bin\n",
         encoding="utf-8",
@@ -185,8 +165,8 @@ case "${@: -1}" in
   *) exit 92 ;;
 esac
 }
-uv() {
-printf '%s\\n' "$*" >> "$M45_UV_LOG"
+python() {
+printf '%s\\n' "$*" >> "$M45_PYTHON_LOG"
 }
 """
     environment = os.environ.copy()
@@ -197,7 +177,7 @@ printf '%s\\n' "$*" >> "$M45_UV_LOG"
             "GITHUB_REF_NAME": "v0.1.0a1",
             "GITHUB_REPOSITORY": "xsparc/ludoweave-engine",
             "M45_CURL_LOG": "curl.log",
-            "M45_UV_LOG": "uv.log",
+            "M45_PYTHON_LOG": "python.log",
             "RELEASE_ID": "123",
             "RELEASE_TITLE": "LudoWeave 0.1.0a1",
             "RUNNER_TEMP": "runner",
@@ -214,6 +194,9 @@ printf '%s\\n' "$*" >> "$M45_UV_LOG"
             "pipefail",
             "-c",
             harness + script,
+            "verify_public_release.sh",
+            "expected",
+            "--use-existing-plan",
         ],
         cwd=tmp_path,
         env=environment,
@@ -231,24 +214,22 @@ printf '%s\\n' "$*" >> "$M45_UV_LOG"
     assert len(curl_lines) == 2
     assert all("--disable --fail --silent --show-error --location" in line for line in curl_lines)
     assert all("Authorization:" not in line and "Cookie:" not in line for line in curl_lines)
-    uv_lines = (tmp_path / "uv.log").read_text(encoding="utf-8").splitlines()
-    assert len(uv_lines) == 3
-    assert sum("scripts/verify_release_draft.py" in line for line in uv_lines) == 2
-    assert sum("scripts/smoke_release.py" in line for line in uv_lines) == 1
+    python_lines = (tmp_path / "python.log").read_text(encoding="utf-8").splitlines()
+    assert len(python_lines) == 3
+    assert sum("scripts/verify_release_draft.py" in line for line in python_lines) == 2
+    assert sum("scripts/smoke_release.py" in line for line in python_lines) == 1
 
 
-def test_m45_adds_no_runner_action_permission_trigger_or_dependency() -> None:
+def test_m45_publication_authority_and_package_boundary_remain_stable() -> None:
     release = _RELEASE.read_text(encoding="utf-8")
+    public = _PUBLIC_SCRIPT.read_text(encoding="utf-8")
 
     assert hashlib.sha256(_CI.read_bytes()).hexdigest() == _CI_SHA256
     assert hashlib.sha256((_ROOT / "pyproject.toml").read_bytes()).hexdigest() == (
         _PYPROJECT_SHA256
     )
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
-    assert release.count("\n    runs-on:") == 1
     assert "if: github.repository == 'xsparc/ludoweave-engine'" in release
-    assert release.count("uses: actions/checkout@") == 1
-    assert release.count("uses: astral-sh/setup-uv@") == 1
     assert release.count("uses: actions/attest@") == 2
     assert release.count("uses: actions/upload-artifact@") == 1
     assert release.count("gh release create") == 1
@@ -261,6 +242,9 @@ def test_m45_adds_no_runner_action_permission_trigger_or_dependency() -> None:
     assert "pull_request:" not in release
     assert "workflow_dispatch:" not in release
     assert "schedule:" not in release
+    assert "gh " not in public
+    assert "GH_TOKEN" not in public
+    assert "GITHUB_TOKEN" not in public
 
 
 def test_m45_changes_no_runtime_or_public_package_boundary() -> None:

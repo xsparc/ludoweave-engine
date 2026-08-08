@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+RFC-0029 resolves M46 fresh-runner consumer rehearsal. After the publishing
+job succeeds, one additional read-only Linux job receives only the verified
+release ID/version, retrieves the exact same-workflow admitted candidate,
+creates a fresh bounded plan, repeats public byte validation without a release
+credential, and runs installed release smoke. This is not independent/external
+or cross-platform verification and adds no release mutation, publication
+authority, pull-request CI allocation, runtime, dependency, or package change.
+A real fresh-runner pass remains pending an explicitly authorized signed-tag
+release execution.
+
+RFC-0028 resolves M45 public release consumer-path integrity. The publishing
+job performs bounded credential-free exact-ID public retrieval, revalidates the
+downloaded candidate, and runs complete installed release smoke. This is one
+same-run observation, not independent/external or cross-platform evidence,
+future availability, immutability, artifact security, PyPI, or a supported
+channel. A real public-path pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0027 resolves M44 published release attestation integrity. The existing
 release job will verify SLSA v1 provenance for every exact M43-retrieved asset
 and an SPDX 2.3 SBOM attestation for exactly one pure wheel after publication.

@@ -135,7 +135,7 @@ def test_m31_adds_no_runtime_export_dependency_version_release_or_provider() -> 
         "response_review_latency" in path.name for path in (_ROOT / "src/ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "84da9dfd05f02cbf13403d9ab266808b2ed771fa549fd26a1aad0518f3855a6f"
+        "36822c260af578e3cd5a3456d17d655848c71bb305e861c4361cd03798aa86d2"
     )
 
 

@@ -46,6 +46,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M45 then fetches the exact public release and asset IDs without supplying a
   GitHub credential, revalidates the bounded downloaded set, and runs complete
   isolated release smoke against those public bytes.
+- M46 repeats the bounded public retrieval and installed smoke from a dependent
+  fresh Linux runner with read-only contents permission. It retrieves the exact
+  admitted candidate through the pinned same-workflow artifact channel and
+  supplies no release credential to public HTTP requests.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -78,6 +82,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   It does not establish an independent or external consumer, a clean-machine or
   cross-platform matrix, every browser/CDN/cache/geographic path, future
   availability, immutability, artifact security, PyPI, or a supported channel.
+- M46 adds workspace/runner separation but remains inside the same GitHub-hosted
+  workflow and uses scoped checkout/artifact services. It is not independent or
+  external verification, a cross-platform public matrix, a clean machine
+  outside that provider, future availability, immutability, artifact security,
+  PyPI, or a supported channel.
 
 ## Initial security boundaries
 

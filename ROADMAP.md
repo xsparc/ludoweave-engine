@@ -54,6 +54,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M43 published asset retrieval integrity | PR #80 corrected and passed bounded exact-ID retrieval, same-document byte revalidation, and the three-allocation hosted gate before verified squash integration |
 | Done | M44 published release attestation integrity | PR #83 passed exact-source SLSA provenance policy for every retrieved asset plus SPDX wheel-SBOM verification in three bounded hosted allocations, then squash-integrated with unchanged release authority |
 | Done | M45 public release consumer-path integrity | PR #86 passed credential-free exact-ID public document/assets, complete revalidation, installed release smoke, and the three-allocation hosted gate before verified squash integration |
+| In progress | M46 fresh-runner public consumer rehearsal | Separate read-only Linux job reuses the admitted same-workflow candidate, retrieves public bytes, and runs installed smoke without new release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -564,6 +565,18 @@ permission, trigger, dependency, credential, tag, release, upload,
 publication, rollback, cleanup, runtime, package, or public-API change. A real
 public-path pass remains unclaimed until an authorized signed-tag release run
 executes.
+
+M46 starts from verified M45 closeout commit
+`086f1ceb3974583ce7a2c386c67f516299c2f1dd`. It extracts M45's bounded
+public retrieval into a shared script and adds one dependent read-only Linux
+job after successful publication. The fresh runner retrieves the exact
+candidate preserved by the same workflow, creates its own plan, revalidates
+public bytes, and runs installed release smoke. It adds one tag-only runner and
+one pinned download action but no pull-request CI allocation, release mutation,
+publication authority, artifact-set, dependency, runtime, package, or public-
+API change. Same-workflow rehearsal is not independent/external or cross-
+platform evidence; a real pass remains unclaimed until an authorized signed-
+tag run.
 
 ## Good-first contribution queue
 

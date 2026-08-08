@@ -33,3 +33,4 @@ was adopted.
 - [RFC-0026: verify published release asset retrieval](0026-verify-published-release-asset-retrieval.md)
 - [RFC-0027: verify published release attestations](0027-verify-published-release-attestations.md)
 - [RFC-0028: verify the public release consumer path](0028-verify-public-release-consumer-path.md)
+- [RFC-0029: add a fresh-runner public consumer rehearsal](0029-fresh-runner-consumer-rehearsal.md)

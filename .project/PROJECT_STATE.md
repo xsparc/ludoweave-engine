@@ -1,5 +1,36 @@
 # Project State
 
+## M46 fresh-runner public consumer rehearsal - locally validated
+
+- Base: exact verified M45 closeout commit
+  `086f1ceb3974583ce7a2c386c67f516299c2f1dd`.
+- Outcome: after successful publication validation, use one separate read-only
+  Linux runner to retrieve the same workflow's admitted candidate, fetch and
+  revalidate public bytes without a release credential, and run complete
+  installed release smoke in a fresh workspace.
+- Ownership: the publishing job exports only release ID/version and reuses its
+  M43 plan. The dependent job owns its downloaded workflow artifact and must
+  exclusively create a fresh plan. One shared script owns fixed public request,
+  byte, plan, and smoke bounds but no mutation authority.
+- Topology: exactly one additional tag-only Ubuntu job, explicit read-only
+  contents permission, 25-minute timeout, duplicated pinned checkout/setup,
+  and download-artifact v8.0.1 pinned to verified commit
+  `3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c`. Pull-request CI is unchanged.
+- Claim: a real pass may establish separate same-workflow GitHub-hosted runner
+  and isolated-install evidence. It cannot establish independent/external or
+  cross-platform verification, a clean machine outside the provider, every
+  delivery path, future availability, immutability, artifact security, PyPI,
+  or a supported channel.
+- Current validation: release-workflow YAML and shared Bash syntax parse; all
+  383 architecture assertions pass. Complete graphics-enabled CPython
+  3.12-3.14 runs each pass 1,923 tests with 14 capability skips. Static/docs,
+  real wgpu, both M7 profiles, deterministic samples, all retained benchmark
+  validators, reproducible distribution, isolated-wheel smoke, and complete
+  release smoke pass. Review caught a nonexistent plan option before commit;
+  the corrected shell uses the established exclusive `--asset-plan` contract,
+  and the regression executes the real verifier on all three Python versions.
+  Hosted validation and integration remain.
+
 ## M45 public release consumer-path integrity - complete
 
 - Base: exact verified M44 closeout commit
