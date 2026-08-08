@@ -52,7 +52,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M41 release-notes body integrity | PR #74 passed exact source-body and asset verification in three bounded hosted allocations, then squash-integrated without workflow or release-authority change |
 | Done | M42 published prerelease integrity | PR #77 passed exact same-ID draft/public state, timestamp, notes, and asset verification in three bounded hosted allocations, then squash-integrated without new release authority |
 | Done | M43 published asset retrieval integrity | PR #80 corrected and passed bounded exact-ID retrieval, same-document byte revalidation, and the three-allocation hosted gate before verified squash integration |
-| In progress | M44 published release attestation integrity | Exact-source SLSA provenance for every retrieved asset plus SPDX wheel-SBOM verification, with bounded content-silent execution and unchanged hosted topology |
+| Done | M44 published release attestation integrity | PR #83 passed exact-source SLSA provenance policy for every retrieved asset plus SPDX wheel-SBOM verification in three bounded hosted allocations, then squash-integrated with unchanged release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -542,6 +542,16 @@ hosted-runner policy. It adds no runner, action, permission, trigger,
 dependency, credential, tag, release, upload, publication, rollback, cleanup,
 runtime, package, or public-API change. A real attestation pass remains
 unclaimed until an authorized signed-tag release run executes.
+
+PR #83 exact head `494ae4f32209c8e679633d528bb63cf4b1093800`
+passed run `31277236908` in exactly three allocations: Linux in 7m04s before
+desktop allocation, macOS in 2m35s, and Windows in 3m50s. One automated P1
+predicate-URI suggestion was disproved by the exact pinned action source and
+official GitHub documentation, answered, and resolved without code change.
+Squash `781ca0d1692b309ca3dd7ea9ca8dc6af88f77b09` has the exact reviewed
+tree, sole parent the M43 closeout, a valid GitHub signature, and a standalone
+DCO trailer. No post-merge `main` run was allocated, and the feature branch is
+deleted.
 
 ## Good-first contribution queue
 

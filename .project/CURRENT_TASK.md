@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M44 - published release attestation integrity
-- **Status:** Implementation is locally validated on
-  `release/m44-attestation-verification`; final review and pull-request
-  publication are in progress.
+- **Status:** Feature PR #83 is hosted-validated and squash-integrated;
+  publishing the documentation-only integration record on
+  `records/m44-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -56,8 +56,17 @@
   installed CLI help expose the required SLSA/SPDX predicate and identity
   policy flags. The standard-library verifier, focused adversarial tests,
   release workflow integration, RFC-0027, architecture guards, and public
-  documentation are complete locally. The final recorded tree passes 366
+  documentation are complete. The final feature tree passes 366
   architecture tests and the 1,906-test CPython 3.12 graphics suite; CPython
   3.13/3.14, real wgpu, profiles, deterministic samples, documented benchmark
   validators, reproducible builds, isolated-wheel smoke, and complete release
-  smoke also pass. No real release or hosted attestation pass is claimed.
+  smoke also pass. Ready PR #83 run `31277236908` passed exact head
+  `494ae4f32209c8e679633d528bb63cf4b1093800` in exactly three allocations,
+  with all platform, compatibility, graphics, sample, distribution, and smoke
+  slices successful. The sole automated P1 was disproved by the exact pinned
+  action source and official GitHub docs, answered, and resolved. Squash
+  `781ca0d1692b309ca3dd7ea9ca8dc6af88f77b09` has the exact reviewed tree,
+  sole parent the M43 closeout, a valid GitHub signature, and standalone DCO
+  trailer. No post-merge `main` run was allocated; only synchronized `main`
+  remained before this record branch. No real release or hosted attestation
+  pass is claimed.
