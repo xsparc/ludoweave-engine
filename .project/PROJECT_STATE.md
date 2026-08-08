@@ -1,5 +1,36 @@
 # Project State
 
+## M45 public release consumer-path integrity - in progress
+
+- Base: exact verified M44 closeout commit
+  `2c5e312a97028d0b835fc174b8abb51df22ea314`.
+- Outcome: after M44, fetch the exact public release and every exact asset ID
+  without a GitHub credential, revalidate public metadata/bytes, and execute
+  complete installed release smoke against that public directory.
+- Boundary: fixed HTTPS GitHub API numeric-ID endpoints, disabled client
+  configuration, no authorization/cookie/browser URL, bounded redirects and
+  time, a 4-MiB document cap, and inherited M43 ID/name/count/byte/no-clobber
+  limits.
+- Scope: the existing tag job's postpublication tail, focused architecture
+  tests, RFC/docs, and factual records only. No job/action/permission/trigger,
+  dependency/lock/version, runtime/public API, tag/release/upload/publication,
+  immutability setting, rollback, or cleanup authority.
+- Claim: one real tag run may establish a same-run public API and installed-
+  candidate observation. It cannot establish independent/external or cross-
+  platform consumer evidence, every delivery path, future availability,
+  immutability, artifact security, PyPI, or a supported channel.
+- Current validation: the corrected focused release chain passes 106 tests
+  with three capability skips; the final recorded tree passes all 373
+  architecture tests and the seven exact extracted-shell regressions pass on
+  CPython 3.12-3.14. The complete CPython 3.12 graphics suite passes 1,913
+  tests with 14 expected skips; CPython 3.13/3.14 each pass 1,902 tests with 15
+  skips. Real wgpu, profiles,
+  deterministic samples, documented benchmark validators, reproducible
+  distributions, isolated-wheel smoke, complete release smoke, static checks,
+  strict docs, workflow YAML, Bash syntax, whitespace, scope/credential review,
+  and full Git object checking pass. Exact-head hosted validation, review, and
+  integration remain pending.
+
 ## M44 published release attestation integrity - complete
 
 - Base: exact verified M43 closeout commit

@@ -1139,6 +1139,33 @@ permission, trigger, dependency, credential, runtime import, public API, tag,
 release, upload, publication, rollback, or cleanup authority. RFC-0027 defines
 the complete trust and non-claim boundary.
 
+## M45 public release consumer-path integrity boundary
+
+M45 extends M44 with one credential-free observation of the consumer-facing
+GitHub API path. The existing tag job fetches the exact M42 release ID and each
+exact M43 asset ID from fixed `api.github.com` HTTPS endpoints without a GitHub
+credential, authorization header, cookie, browser URL, or caller-selected
+host. Client configuration is disabled; redirects, connect/request duration,
+document bytes, asset count, individual/total bytes, names, IDs, and new
+partial paths remain bounded.
+
+The public release document must independently satisfy the same exact staged
+tag/title/notes/asset/published-state contract before downloads. Every public
+asset must have its planned exact length before rename, the complete public
+directory must satisfy the same validator, and the existing release smoke then
+checks hashes, manifest, SPDX metadata, safe extraction, isolated wheel
+installation, and bundled acceptance scenarios against those bytes.
+
+This occurs after publication and M44. Failure does not retry, unpublish,
+delete, edit, clean up, or roll back anything. One same-run hosted Linux public
+API and installed-candidate pass is not independent/external consumer evidence,
+a clean-machine or cross-platform matrix, proof for every browser/CDN/cache/
+geographic path, a future-availability or immutability guarantee, artifact
+security, PyPI availability, or a supported release channel. M45 adds no job,
+runner, action, permission, trigger, dependency, credential, runtime import,
+public API, package version, tag, release, upload, publication, rollback, or
+cleanup authority. RFC-0028 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

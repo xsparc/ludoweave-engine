@@ -32,3 +32,4 @@ was adopted.
 - [RFC-0025: confirm published release state](0025-confirm-published-release-state.md)
 - [RFC-0026: verify published release asset retrieval](0026-verify-published-release-asset-retrieval.md)
 - [RFC-0027: verify published release attestations](0027-verify-published-release-attestations.md)
+- [RFC-0028: verify the public release consumer path](0028-verify-public-release-consumer-path.md)

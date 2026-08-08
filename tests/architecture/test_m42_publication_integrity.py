@@ -29,7 +29,11 @@ def test_exact_release_id_is_reverified_after_publication() -> None:
     publish = _step(
         workflow, "Publish verified GitHub prerelease", "Verify published GitHub prerelease"
     )
-    published = _step(workflow, "Verify published GitHub prerelease")
+    published = _step(
+        workflow,
+        "Verify published GitHub prerelease",
+        "Retrieve and verify published release assets",
+    )
 
     assert "id: verify_draft" in draft
     assert '"repos/$GITHUB_REPOSITORY/releases/$release_id"' in draft
@@ -44,8 +48,10 @@ def test_exact_release_id_is_reverified_after_publication() -> None:
     assert "--expected-state published" in published
     assert "X-GitHub-Api-Version: 2026-03-10" in published
     assert "/releases/tags/" not in draft + published
-    assert workflow.count("scripts/verify_release_draft.py") == 3
-    assert workflow.count("X-GitHub-Api-Version: 2026-03-10") == 3
+    assert draft.count("scripts/verify_release_draft.py") == 1
+    assert published.count("scripts/verify_release_draft.py") == 1
+    assert draft.count("X-GitHub-Api-Version: 2026-03-10") == 1
+    assert published.count("X-GitHub-Api-Version: 2026-03-10") == 1
     for mutation in ("gh release delete", "-X PATCH", "--method PATCH", "--clobber"):
         assert mutation not in published
 
