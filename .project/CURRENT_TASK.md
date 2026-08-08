@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M39 - release-tag integrity enforcement
-- **Status:** Implementation complete and squash-integrated; publishing the
-  factual integration record on `records/m39-integration`.
+- **Status:** Implementation and public integration record are complete and
+  squash-integrated; publishing the zero-run closeout record on
+  `records/m39-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -43,6 +44,10 @@
   `f71d8ddbf816873cf9af8ea6538112ff0e75553e` passed run `31264314307` in
   exactly three allocations: Linux 6m43s, macOS 2m33s, and Windows 3m30s.
   Squash `4e30b4bf3b911270ab4e1bd117d49ca0d090a0a7` preserves the reviewed tree,
-  exact base parent, valid GitHub signature, and standalone DCO trailer. No
-  review thread or post-merge `main` run exists, and the feature branch is
-  deleted locally and remotely.
+  exact base parent, valid GitHub signature, and standalone DCO trailer. Public
+  record PR #69 passed its 33-second Linux documentation allocation while the
+  desktop umbrella skipped without a runner; squash
+  `166dcb2dc619dbc721207eece273c0fd9437f9ff` also preserves the reviewed tree,
+  exact parent, valid signature, and DCO trailer. Neither merge allocated a
+  `main` run. Before this closeout branch, only clean synchronized `main`
+  remained locally/remotely and no pull request was open.
