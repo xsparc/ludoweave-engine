@@ -42,9 +42,26 @@ Only commands actually executed in the current repository are recorded here.
 | Corrected local documentation gate | 0 | With approved access to the existing cache, the unchanged lock resolved 46 packages, the no-graphics all-groups environment removed six optional graphics packages, Ruff formatting reported 271 already-formatted files, Ruff lint passed, strict docs built in 0.98 seconds, all 334 architecture tests passed in 1.93 seconds, and `git diff --check` passed. |
 | Local record artifact gate | 0 | `uv build` produced the universal wheel and sdist; isolated-wheel smoke passed; confirmed-absent `.tmp/m37-record-local` received the complete ten-artifact staged candidate; and checksums, manifest, SBOM, safe sample extraction, isolated installation, and bundled evidence release smoke passed. |
 
-The public M37 integration record is the pending documentation-only acceptance
-fixture. No one-allocation hosted result or desktop conditional-skip result is
-claimed before that pull request completes.
+At publication, the public M37 integration record was explicitly treated as a
+pending documentation-only acceptance fixture. No one-allocation hosted result
+or desktop conditional-skip result was claimed before it completed.
+
+## M37 documentation-only hosted proof and closeout - 2026-08-08
+
+| Command or check | Exit | Result |
+| --- | ---: | --- |
+| First committed record-classifier invocation | 1 | The command used a guessed full head SHA rather than the actual commit SHA. Git rejected the three-dot expression, the classifier failed closed, and no output file or classification was produced. |
+| Corrected committed record-classifier invocation | 0 | Against exact base `407226beae36182d237e32866a86ce19bb93c691` and head `06fc5d53b01706b10ceb67f4f6f2f310f2d0b6c6`, the unchanged trusted classifier reported four paths, `classification=documentation`, and `substantive=false`. The paths were `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`. |
+| PR #63 hosted run `31259908552` | 0 | Exact head `06fc5d53b01706b10ceb67f4f6f2f310f2d0b6c6` completed successfully. Linux was the only runner allocation and passed in 32 seconds: trusted classification, unchanged lock, no-graphics docs sync, formatting, lint, strict docs, all architecture tests, universal build, isolated-wheel smoke, release staging, and complete release smoke. Type/full compatibility, graphics, profiles, and vertical slices were correctly skipped for documentation-only scope. |
+| PR #63 desktop-allocation audit | 0 | GitHub evaluated the desktop condition before expanding the two-entry matrix. One matrix-umbrella check concluded `skipped` with no steps; no Windows or macOS runner was allocated. This is the hosted representation of both desktop entries being excluded, not two separately expanded skipped checks. |
+| Final PR #63 review audit | 0 | GitHub reported exact base `407226beae36182d237e32866a86ce19bb93c691`, exact head `06fc5d53b01706b10ceb67f4f6f2f310f2d0b6c6`, `MERGEABLE`, and `CLEAN`; the pull request had no comments, reviews, or review threads. |
+| PR #63 squash integration audit | 0 | Squash `7434f310c86dd9acf6c61ff01c1a5f2dfcdffe31` has sole parent `407226beae36182d237e32866a86ce19bb93c691`, exact reviewed tree `9dc7f0bc50b7b5b8309405ce491978f3ef39cbe4`, a valid GitHub signature, and a parsed DCO trailer. The record PR is merged, its branch is deleted locally/remotely, synchronized main contains the squash, no main-branch run was allocated, and only main remained before this `.project` closeout branch. |
+
+M37 is complete. The two accepted hosted feature runs consumed three runner
+allocations for the substantive correction and one for the public
+documentation fixture. The final `.project/**` closeout record is excluded by
+the existing pull-request path filter and is expected to consume zero hosted
+allocations; no run result is pre-claimed here.
 
 ## M36 development evidence - 2026-08-08, Windows, CPython 3.12
 
