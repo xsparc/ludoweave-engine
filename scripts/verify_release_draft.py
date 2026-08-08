@@ -1,4 +1,4 @@
-"""Fail closed unless a GitHub draft exactly matches staged notes and assets."""
+"""Fail closed unless a GitHub release matches its expected state and staging."""
 
 from __future__ import annotations
 
@@ -9,10 +9,11 @@ import re
 import sys
 from collections.abc import Sequence
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import cast
+from typing import Literal, cast
 
-_PROTOCOL = "ludoweave.release-draft-integrity/2"
+_PROTOCOL = "ludoweave.release-draft-integrity/3"
 _MAX_DOCUMENT_BYTES = 4 * 1024 * 1024
 _MAX_ASSETS = 32
 _MAX_ASSET_BYTES = 256 * 1024 * 1024
@@ -22,6 +23,11 @@ _RELEASE_NOTES_NAME = "RELEASE_NOTES.md"
 _TAG_PATTERN = re.compile(r"v[0-9A-Za-z][0-9A-Za-z._-]{0,127}")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
 _DIGEST_PATTERN = re.compile(r"sha256:[0-9a-f]{64}")
+_PUBLISHED_AT_PATTERN = re.compile(
+    r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]{1,9})?Z"
+)
+
+ReleaseState = Literal["draft", "published"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -34,21 +40,22 @@ class ReleaseAssetIdentity:
 
 
 class ReleaseDraftIntegrityError(ValueError):
-    """A draft release cannot be trusted for publication."""
+    """A release cannot be trusted for or after publication."""
 
     def __init__(self, message: str, *, code: str) -> None:
         super().__init__(message)
         self.code = code
 
 
-def verify_release_draft(
+def verify_release(
     staged_directory: Path,
     release_document: object,
     *,
     expected_tag: str,
     expected_title: str,
+    expected_state: ReleaseState,
 ) -> tuple[ReleaseAssetIdentity, ...]:
-    """Return asset identities when remote notes and assets match local staging."""
+    """Return asset identities when state, notes, and assets match expectations."""
 
     tag = _tag_name(expected_tag)
     title = _title(expected_title)
@@ -59,21 +66,13 @@ def verify_release_draft(
 
     if release.get("tag_name") != tag or release.get("name") != title:
         raise ReleaseDraftIntegrityError(
-            "draft release identity does not match the expected tag and title",
+            "release identity does not match the expected tag and title",
             code="release_draft.identity_mismatch",
         )
-    if (
-        release.get("draft") is not True
-        or release.get("prerelease") is not True
-        or release.get("immutable") is not False
-    ):
-        raise ReleaseDraftIntegrityError(
-            "release must remain a mutable prerelease draft during asset verification",
-            code="release_draft.invalid_state",
-        )
+    _validate_release_state(release, expected_state=expected_state)
     if release.get("body") != notes:
         raise ReleaseDraftIntegrityError(
-            "draft release notes do not exactly match local staging",
+            "release notes do not exactly match local staging",
             code="release_draft.notes_mismatch",
         )
 
@@ -95,27 +94,27 @@ def verify_release_draft(
         name = _asset_name(asset.get("name"))
         if name in remote:
             raise ReleaseDraftIntegrityError(
-                "draft release contains a duplicate asset name",
+                "release contains a duplicate asset name",
                 code="release_draft.invalid_document",
             )
         size = _asset_size(asset.get("size"))
         digest = _asset_digest(asset.get("digest"))
         if asset.get("state") != "uploaded":
             raise ReleaseDraftIntegrityError(
-                f"draft release asset is not completely uploaded: {name}",
+                f"release asset is not completely uploaded: {name}",
                 code="release_draft.asset_mismatch",
             )
         remote[name] = ReleaseAssetIdentity(name, size, digest.removeprefix("sha256:"))
 
     if remote.keys() != local.keys():
         raise ReleaseDraftIntegrityError(
-            "draft release and local staging contain different asset names",
+            "release and local staging contain different asset names",
             code="release_draft.asset_set_mismatch",
         )
     for name, identity in local.items():
         if remote[name] != identity:
             raise ReleaseDraftIntegrityError(
-                f"draft release asset does not match local staging: {name}",
+                f"release asset does not match local staging: {name}",
                 code="release_draft.asset_mismatch",
             )
     return tuple(local.values())
@@ -124,16 +123,24 @@ def verify_release_draft(
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("staged_directory", type=Path, help="local staged release directory")
-    parser.add_argument("release_document", type=Path, help="GitHub draft release JSON document")
+    parser.add_argument("release_document", type=Path, help="GitHub release JSON document")
     parser.add_argument("--expected-tag", required=True, help="exact vVERSION release tag")
     parser.add_argument("--expected-title", required=True, help="exact release title")
+    parser.add_argument(
+        "--expected-state",
+        required=True,
+        choices=("draft", "published"),
+        help="required release publication state",
+    )
     args = parser.parse_args(argv)
     try:
-        assets = verify_release_draft(
+        state = _release_state(str(args.expected_state))
+        assets = verify_release(
             Path(args.staged_directory),
             _json_document(Path(args.release_document)),
             expected_tag=str(args.expected_tag),
             expected_title=str(args.expected_title),
+            expected_state=state,
         )
     except ReleaseDraftIntegrityError as error:
         print(
@@ -154,6 +161,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "protocol": _PROTOCOL,
                 "status": "pass",
                 "tag": str(args.expected_tag),
+                "state": state,
                 "assets": [
                     {"name": item.name, "bytes": item.bytes, "sha256": item.sha256}
                     for item in assets
@@ -162,6 +170,57 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
     )
     return 0
+
+
+def _release_state(value: str) -> ReleaseState:
+    if value == "draft" or value == "published":
+        return value
+    raise ReleaseDraftIntegrityError(
+        "expected release state is invalid",
+        code="release_draft.invalid_identity",
+    )
+
+
+def _validate_release_state(release: dict[str, object], *, expected_state: ReleaseState) -> None:
+    if release.get("prerelease") is not True:
+        raise ReleaseDraftIntegrityError(
+            "release is not in the expected prerelease state",
+            code="release_draft.invalid_state",
+        )
+    immutable = release.get("immutable")
+    if expected_state == "draft":
+        if (
+            release.get("draft") is not True
+            or immutable is not False
+            or "published_at" not in release
+            or release["published_at"] is not None
+        ):
+            raise ReleaseDraftIntegrityError(
+                "release must remain an unpublished mutable prerelease draft",
+                code="release_draft.invalid_state",
+            )
+        return
+
+    published_at = release.get("published_at")
+    if (
+        release.get("draft") is not False
+        or type(immutable) is not bool
+        or not _is_published_at(published_at)
+    ):
+        raise ReleaseDraftIntegrityError(
+            "release is not a published prerelease with a valid publication time",
+            code="release_draft.invalid_state",
+        )
+
+
+def _is_published_at(value: object) -> bool:
+    if not isinstance(value, str) or _PUBLISHED_AT_PATTERN.fullmatch(value) is None:
+        return False
+    try:
+        timestamp = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return timestamp.tzinfo == UTC
 
 
 def _directory(value: Path) -> Path:
@@ -257,12 +316,12 @@ def _json_document(path: Path) -> object:
             raw = stream.read(_MAX_DOCUMENT_BYTES + 1)
     except OSError as error:
         raise ReleaseDraftIntegrityError(
-            "draft release document is unavailable",
+            "release document is unavailable",
             code="release_draft.invalid_document",
         ) from error
     if len(raw) > _MAX_DOCUMENT_BYTES:
         raise ReleaseDraftIntegrityError(
-            "draft release document exceeds the size limit",
+            "release document exceeds the size limit",
             code="release_draft.invalid_document",
         )
     try:
@@ -271,7 +330,7 @@ def _json_document(path: Path) -> object:
         raise
     except (UnicodeDecodeError, RecursionError, ValueError) as error:
         raise ReleaseDraftIntegrityError(
-            "draft release document is not strict UTF-8 JSON",
+            "release document is not strict UTF-8 JSON",
             code="release_draft.invalid_document",
         ) from error
 
@@ -312,7 +371,7 @@ def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
     for key, value in pairs:
         if key in result:
             raise ReleaseDraftIntegrityError(
-                "draft release JSON contains a duplicate object key",
+                "release JSON contains a duplicate object key",
                 code="release_draft.invalid_document",
             )
         result[key] = value

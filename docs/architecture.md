@@ -1056,6 +1056,30 @@ than rendered Markdown and does not verify link safety, factual completeness,
 human approval, independent storage, or immutability. RFC-0024 defines the full
 trust and non-claim boundary.
 
+## M42 published prerelease integrity boundary
+
+M42 extends the exact release identity through the final public-state
+transition. Protocol `ludoweave.release-draft-integrity/3` requires every
+validator invocation to select `draft` or `published`. The draft contract adds
+an explicit null `published_at`; the published contract requires
+`draft=false`, `prerelease=true`, a boolean `immutable`, and a valid UTC
+publication timestamp. Both states retain exact tag, title, notes, and asset
+verification.
+
+The draft step exposes only its validated numeric release database ID. After
+the existing `gh release edit --draft=false` transition, one read-only API call
+fetches that same ID and the same standard-library validator confirms published
+state. Success emits only state, tag, and safe asset identities, never the
+timestamp, immutable policy, or notes text.
+
+This is a postpublication observation, not transaction rollback: mismatch
+fails the job but the prerelease is already public, and no automatic deletion,
+unpublishing, or mutation occurs. Accepting either boolean immutable value
+avoids silently imposing repository policy. M42 does not prevent later edits,
+enable immutability, download public assets, replace attestations, add a runner
+or permission, or expand publication authority. RFC-0025 defines the full trust
+and non-claim boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -1,65 +1,58 @@
 # Current Task
 
-- **Task:** M41 - release-notes body integrity
-- **Status:** Implementation and integration record are squash-integrated;
-  publishing the zero-run closeout record on `records/m41-closeout`.
+- **Task:** M42 - published prerelease integrity
+- **Status:** In progress on `release/m42-publication-integrity`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `9983e0da88b6aef999d26498cc6438f0b3c5927b`. Only `main` existed locally
+  commit `0dec2254a9d9483b27d158aaad108340e9c94e28`. Only `main` existed locally
   and remotely, no pull request, local/remote tag, or GitHub release was
   present, and `git fsck --full --no-dangling` passed.
-- **Outcome:** Publish the private draft only when its authenticated release-
-  notes body exactly matches bounded staged `RELEASE_NOTES.md`.
+- **Outcome:** Require one exact authenticated release database identity to
+  satisfy both the private-draft contract and the final public-prerelease
+  contract before the release job can succeed.
 - **Acceptance gate:**
-  - Advance the internal draft-integrity protocol from `/1` to `/2` because the
-    acceptance contract becomes stronger.
-  - Read only the fixed staged `RELEASE_NOTES.md` regular non-symlink member;
-    require non-empty strict UTF-8 without NUL and cap it at 256 KiB.
-  - Require exact equality with the authenticated GitHub release `body`; reject
-    missing, null, non-text, substituted, truncated, newline-, whitespace-, or
-    Unicode-different bodies.
-  - Emit no release-note content on success or failure; preserve structured
-    stable errors and the complete M40 asset checks.
-  - Preserve both workflow files exactly; add no runner, action, permission,
-    trigger, dependency, credential, cache key, API call, or publication
-    authority.
-  - Document source-body trust and explicitly reject rendered-Markdown, link,
-    factual-completeness, immutability, PyPI, and supported-channel claims.
+  - Advance the internal draft-integrity protocol from `/2` to `/3` and make
+    expected `draft` or `published` state explicit on every invocation.
+  - Require drafts to remain mutable prereleases with null `published_at`.
+  - Require published records to have `draft=false`, `prerelease=true`, a JSON
+    boolean immutable field, and a syntactically/calendrically valid UTC
+    `published_at`.
+  - Retain exact tag, title, bounded notes-body, and uploaded asset identity
+    verification in both states; emit only state plus existing safe identities.
+  - Carry only the validated numeric release ID across `gh release edit`, fetch
+    that same ID once after publication, and fail if the public record differs.
+  - Add no job, runner, action, permission, trigger, dependency, credential,
+    cache key, tag, release, upload, or publication authority.
+  - Document that this is postpublication observation, not automatic rollback,
+    later-mutation prevention, or immutable-release policy.
   - Run the complete local gate and one substantive hosted pull-request gate.
-- **Non-scope:** Creating/pushing a tag, draft, or release; asset upload; GitHub
-  release or PyPI publication; rendered Markdown or link validation; factual
-  release-note review; immutable-release settings; independent remote download;
-  signer/key lifecycle; runtime or public API; persistent formats/protocols;
-  package version/dependency/lock; platform support; attestations; deferred
-  runtime subsystems.
+- **Non-scope:** Creating/pushing a tag, draft, or release; uploading or
+  publishing; automatic unpublish/delete/rollback; enabling or requiring
+  immutable releases; public-asset download; rendered Markdown, link, or
+  factual review; signer/key policy; deployment environments or tag rules;
+  PyPI; supported release channel; runtime/public API; persistent formats;
+  package version/dependency/lock; platform support; deferred subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** M40 closeout PR #73 exact head
-  `e1b07f781096370fa3b6f820bc80dc1d4c585279` changed only three `.project`
+- **Current evidence:** M41 closeout PR #76 exact head
+  `5d891d0bfa030ff8387d9c384fafa4aa81abbdf8` changed only three `.project`
   paths and allocated no run, check, review, comment, or thread. Squash
-  `9983e0da88b6aef999d26498cc6438f0b3c5927b` preserves the reviewed tree,
-  exact parent, valid GitHub signature, standalone DCO trailer, and zero
-  post-merge runner usage. M41 inherited 25 validator/workflow tests with one
-  Windows symlink skip. After correcting Windows fixture newline and case-ID
-  behavior, focused format/lint/strict typing pass and 26 behavior/adversarial
-  tests pass with the same capability skip. RFC-0024 and the release/security/
-  architecture surfaces are integrated; a further 30-test focused gate proves
-  release-note content remains absent from both success and failure output.
-  Findings-first review corrected notes-member error taxonomy. The corrected
-  complete Python 3.12 suite passes 1,830 tests with 13 expected skips; Python
-  3.13 and 3.14 each pass 1,820 with 13 expected skips; real graphics, profiles,
-  deterministic samples, reproducible distributions, installed-wheel smoke,
-  complete release smoke, and exact synthetic-draft verification all pass.
-  Exact implementation head `ec051d4fd2da80235da1a94642158ebe384cb2b0`
-  passed run `31269399211` in three allocations: Linux 6m55s, Windows 2m44s,
-  and macOS 2m12s. With no review/comment/thread, PR #74 squash-integrated as
-  `89a641559c246e971869a3ae06a878de81bffcee`; the reviewed tree, exact parent,
-  valid signature, standalone DCO, and zero post-merge run are verified. The
-  feature branch is deleted locally and remotely. Integration record PR #75
-  exact head `d967624c618e433beda1052a7715872b0f256540` classified four paths
-  as documentation and passed in one 33-second Linux allocation; its desktop
-  umbrella skipped with zero steps. With no feedback, it squash-integrated as
-  `b05dbda471edf2ac14c5e0b6bf4bd75aaf23f252`, preserving tree, exact parent,
-  valid signature, standalone DCO, zero post-merge run, and branch cleanup.
+  `0dec2254a9d9483b27d158aaad108340e9c94e28` has sole parent the M41
+  integration-record squash, preserves reviewed tree
+  `a028eb0492019b42658045bf112ca2fcafd211b4`, has a valid GitHub signature and
+  standalone DCO trailer, and allocated no post-merge run. M42 inherited 37
+  release-integrity tests with two Windows symlink-capability skips. The first
+  implementation behavior run passed 39 tests with two skips while formatting
+  identified two files; after mechanical formatting and a UTC-alias lint
+  correction, focused static/type checks and all 39 behavior tests pass. Two
+  intentional M41 historical guards then failed on the stronger protocol and
+  workflow hash; after updating that boundary and adding M42 architecture
+  coverage, all 54 focused tests pass with two capability skips. Findings-first
+  review strengthened published drift/confidentiality and non-mutation guards.
+  The corrected complete Python 3.12 suite passes 1,850 tests with 13 expected
+  skips; Python 3.13 and 3.14 each pass 1,840 with 14 expected skips; real
+  graphics, profiles, deterministic samples, reproducible distributions,
+  installed-wheel smoke, complete release smoke, and exact mutable/immutable
+  synthetic state verification all pass.

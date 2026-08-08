@@ -42,23 +42,22 @@ claims.
 
 ## Current boundary
 
-M41 requires the authenticated private draft's release-notes `body` to exactly
-equal the bounded staged `RELEASE_NOTES.md` already supplied through
-`--notes-file` and covered by M40 asset verification. The standard-library
-validator accepts only a regular non-symlink notes file of at most 256 KiB,
-strict non-empty UTF-8, and no NUL. Missing, null, substituted, truncated, or
-normalization-different remote text fails closed; note content never enters
-structured output or logs.
+M42 retains the exact authenticated GitHub release database ID across the
+publication transition. The standard-library validator now requires explicit
+draft or published state. Published validation requires `draft=false`,
+`prerelease=true`, a boolean immutable field, a valid UTC `published_at`, and
+the unchanged exact tag, title, notes body, and asset identities.
 
-M41 may change only the existing draft validator, its focused tests, RFC/docs,
-and factual project records. It must add no workflow change, job, runner matrix
-entry, action, permission, trigger, dependency, lock entry, credential, package
-version, public API, runtime source, tag, release, or publication authority. It
-must not render or sanitize Markdown, evaluate links or factual accuracy,
-enable or claim immutable releases, change attestations, or establish a
-PyPI/supported-release channel. M0 through M40 are complete, reviewed,
-hosted-validated, and integrated into `main`. M41 starts from exact verified M40
-closeout commit `9983e0da88b6aef999d26498cc6438f0b3c5927b`.
+M42 may change only the existing release validator, the existing tag workflow's
+same-ID postpublication read, focused tests, RFC/docs, and factual project
+records. It must add no job, runner matrix entry, action, permission, trigger,
+dependency, lock entry, credential, package version, public API, runtime source,
+tag, release, upload, or publication authority. It must not automatically
+unpublish/delete evidence, enable or require immutable releases, download
+public assets, change attestations, or establish a PyPI/supported-release
+channel. M0 through M41 are complete, reviewed, hosted-validated, and integrated
+into `main`. M42 starts from exact verified M41 closeout commit
+`0dec2254a9d9483b27d158aaad108340e9c94e28`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

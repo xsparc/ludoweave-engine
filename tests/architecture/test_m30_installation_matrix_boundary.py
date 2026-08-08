@@ -145,7 +145,7 @@ def test_m30_adds_no_runtime_export_dependency_version_release_or_provider() -> 
         "installation_matrix" in path.name for path in (_ROOT / "src/ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "3983cd82f0201fcac8fe2156f77715e1136998781b428c60a192b3f3a3522871"
+        "a15921df77a64c51889d8d6353cce7e5f6924b38396a5b84bd39c5a5accbfefe"
     )
 
 

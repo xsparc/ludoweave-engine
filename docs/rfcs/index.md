@@ -29,3 +29,4 @@ was adopted.
 - [RFC-0022: enforce release tag integrity](0022-enforce-release-tag-integrity.md)
 - [RFC-0023: verify draft release assets before publication](0023-verify-draft-release-assets.md)
 - [RFC-0024: verify draft release notes before publication](0024-verify-draft-release-notes.md)
+- [RFC-0025: confirm published release state](0025-confirm-published-release-state.md)
