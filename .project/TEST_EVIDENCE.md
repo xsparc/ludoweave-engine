@@ -2,6 +2,31 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M35 development evidence - 2026-08-08, Windows, CPython 3.12
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| Repository/history/hosted baseline audit | 0 | Clean synchronized `main`, `origin/main`, and `origin/HEAD` at `277de9052e768a5f70d32f1a2f67ec9f93353723`; only `main` existed locally/remotely, no PR was open, `git fsck --full --no-dangling` passed, GitHub reported no branch protection, and M34 pull-request run `31229138742` passed all eight essential jobs. No M34 post-merge or `.project/**`-record run existed. |
+| Focused inherited baseline | 0 | 154 existing plugin, installed render/agent/WorldStore conformance, release-artifact, and boundary tests passed in 3.54 seconds. |
+| Initial M35 evaluator gate | Mixed | The initial 207-byte empty manifest had SHA-256 `1eb9bcfeec623b25b1c90497bf8f25fb73544082f5e882d64fe69183e3ce21c6`. Ruff passed; strict Pyright reported four redundant test casts; 73 of 74 evaluator tests passed because one direct evaluator assertion expected a JSON list rather than the internal tuple. No type or focused-suite pass is claimed. |
+| Corrected initial evaluator gate | 0 | After test-only corrections, formatting and Ruff passed, strict Pyright reported zero diagnostics, and all 74 evaluator tests passed in 2.21 seconds. |
+| Reviewed-census contract hardening | 0 | Added an explicit complete project-accepted submission-census review assertion. The final exact empty manifest is 250 bytes with SHA-256 `adee8c68b5d89923ee2682162eb24cd9542a4601b1ff6fb901709ebcc0066767`. |
+| First combined architecture/conformance selector | 4 | Ruff, strict Pyright, strict docs, and whitespace passed, but stale M12/M17/M18 architecture filenames caused pytest to collect no tests. No focused-test pass is claimed. |
+| Corrected architecture/conformance gate | Corrected | The first actual focused run passed 159 of 160 tests; one RFC did not yet contain the literal milestone identity used by the documentation-boundary test. The single corrected test then exposed an overly brittle support-matrix phrase assertion. After documentation and test-language alignment, all 160 M35, M12, M17-M19, release-artifact, and installed-conformance tests passed in 4.74 seconds. |
+| Findings-first public-evidence correction | 0 | Review found that reserved non-public domains and non-wheel HTTPS paths could satisfy the claimed public-wheel locator shape. The validator now rejects RFC-reserved/local/IP authorities and requires `.whl` paths for both implementation and LudoWeave artifacts. Ruff and strict Pyright passed; all 91 focused evaluator/architecture regressions passed in 2.26 seconds. No remaining code, privacy, architecture, or CI-operability finding was identified. |
+| First `uv sync --frozen --all-groups --extra graphics` | 2 | The sandbox could not open the existing user uv cache. No environment-sync pass is claimed from this attempt. |
+| Corrected `uv sync --frozen --all-groups --extra graphics` | 0 | Using the existing managed cache, uv checked 45 installed packages. |
+| First `uv lock --check` | 2 | The sandbox could not open the existing user uv cache. No lock pass is claimed from this attempt. |
+| Corrected `uv lock --check` | 0 | The unchanged lock resolved 46 packages. |
+| Complete static/docs gate | 0 | `uv run --frozen ruff format --check .` reported 267 files formatted; Ruff passed; strict Pyright reported zero diagnostics; strict MkDocs built in 0.88 seconds with only the known upstream Material notice; and `git diff --check` passed. |
+| `uv run --frozen pytest -q` | 0 | 1,716 tests passed with nine expected platform-capability skips in 114.15 seconds. |
+| First `uv build` | 2 | The sandbox could not open the existing user uv cache. No build pass is claimed from this attempt. |
+| Corrected `uv build` and installed-wheel smoke | 0 | Built `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`; `uv run --frozen python scripts/smoke_wheel.py dist` passed, including exact installed M35 evidence. |
+| Fresh release stage and smoke | 0 | Confirmed `.tmp/release-candidate-m35-reviewed` absent, staged ten deterministic artifacts, and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M35 evidence smoke. |
+| Real-wgpu and profiling gates | 0 | All ten wgpu integration tests passed in 6.45 seconds. The two-workload base and three-workload graphics M7 profile artifacts both validated under `ludoweave.profile.m7/1`. |
+| Deterministic vertical slices | 0 | Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7` and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`. |
+| Scope, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or either workflow. CI SHA-256 remains `3ca17d0e1fad70cd898c90451701ba6733ecfb5235d5c03d898fc9c75bf5871d`; release SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. The 94-entry wheel has no native/WASM file; the 50-entry sample bundle contains the M35 evaluator and exact manifest. Credential-pattern matches were expected command/service vocabulary only; no credential value was found. `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent, and `git fsck --full --no-dangling` passed. Hosted validation remains pending. |
+
 ## M34 development evidence - 2026-08-08, Windows, CPython 3.12
 
 | Command | Exit | Result |

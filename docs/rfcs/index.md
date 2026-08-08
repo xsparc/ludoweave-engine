@@ -22,3 +22,4 @@ was adopted.
 - [RFC-0015: replay-divergence-rate admission readiness](0015-replay-divergence-rate-admission-readiness.md)
 - [RFC-0016: benchmark-regression-rate admission readiness](0016-benchmark-regression-rate-admission-readiness.md)
 - [RFC-0017: agent-tool recovery-rate admission readiness](0017-agent-tool-recovery-rate-admission-readiness.md)
+- [RFC-0018: third-party conformance-adoption readiness](0018-third-party-conformance-adoption-readiness.md)

@@ -42,7 +42,8 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M31 response/review-latency admission readiness | Strict empty reviewed manifest, complete public cohort and pending-item preservation, deterministic aggregates, installed artifact smoke, RFC-0014, and all eight essential jobs passed before verified PR #50 integration |
 | Done | M32 replay-divergence-rate admission readiness | PR #52 squash-integrated; strict empty reviewed manifest, complete CI replay-execution cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0015, and all eight essential hosted jobs passed on the corrected head |
 | Done | M33 benchmark-regression-rate admission readiness | PR #54 squash-integrated; strict empty reviewed manifest, controlled paired-comparison cohort and non-execution preservation, exact rational rate, installed artifact smoke, RFC-0016, and all eight essential hosted jobs passed |
-| Implemented in PR #56 | M34 agent-tool recovery-rate admission readiness | Strict empty reviewed task-directed call manifest, complete cohort and terminal-evidence preservation, exact rational rate, installed artifact smoke, RFC-0017, and one substantive pull-request CI gate |
+| Done | M34 agent-tool recovery-rate admission readiness | PR #56 squash-integrated; strict empty reviewed task-directed call manifest, complete cohort and terminal-evidence preservation, exact rational rate, installed artifact smoke, RFC-0017, and one substantive pull-request CI gate |
+| Implemented for M35 | M35 third-party conformance-adoption readiness | Strict empty reviewed project-accepted submission census, exact existing profile registry, failure/non-execution preservation, zero current count, installed artifact smoke, and RFC-0018 |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -380,6 +381,22 @@ provider, release, publication, certification, reliability target, or support
 promise. It retains the eight essential CI jobs but runs them once per
 substantive pull request, not again after merge or for `.project/**`-only
 records.
+
+M35 starts from verified M34 integration-record commit
+`277de9052e768a5f70d32f1a2f67ec9f93353723`. It adds an offline admission
+harness for the design plan's final ordered longer-term metric: the number of
+independently authored third-party adapters or plugin-backed adapters passing
+existing installed conformance profiles. The exact reviewed manifest asserts
+that the complete project-accepted submission census was reviewed and contains
+no submissions, so the current count is zero and no support, certification,
+security, performance, ecosystem, or global package-census result is claimed.
+Future records must preserve passed, failed, and not-executed outcomes and
+complete accepted history. Project-owned and maintainer-authored references
+never count. A compatible M12 render-device manifest is necessary for a
+plugin-backed record but is never sufficient without a passing installed M17
+profile. M35 adds no discovery, installation, provider execution, network,
+telemetry, runtime/API/protocol/profile, dependency, lock, version, workflow
+job, release, publication, or support-policy change.
 
 ## Good-first contribution queue
 

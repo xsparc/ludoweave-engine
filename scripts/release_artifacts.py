@@ -42,6 +42,7 @@ _SAMPLE_FILES = (
     "rich_2d_showcase.py",
     "rollback_readiness.py",
     "supported_release_channel_readiness.py",
+    "third_party_conformance_adoption_readiness.py",
     "visual_editor_decision.py",
     "wasm_mod_security_decision.py",
     "world_store_conformance.py",
@@ -209,6 +210,12 @@ def _write_sample_bundle(root: Path, output: Path, version: str) -> None:
         (
             fixture_root / "supported_release_channel.json",
             Path("assets/supported_release_channel.json"),
+        )
+    )
+    sources.append(
+        (
+            fixture_root / "third_party_conformance_adoption.json",
+            Path("assets/third_party_conformance_adoption.json"),
         )
     )
     sources.extend(

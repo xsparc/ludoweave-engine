@@ -69,6 +69,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "replay_divergence_rate_readiness.py" in names
     assert prefix + "response_review_latency_readiness.py" in names
     assert prefix + "supported_release_channel_readiness.py" in names
+    assert prefix + "third_party_conformance_adoption_readiness.py" in names
     assert prefix + "operation_argument_compatibility.py" in names
     assert prefix + "constrained_3d_decision.py" in names
     assert prefix + "rich_2d_showcase.py" in names
@@ -89,6 +90,7 @@ def test_release_stage_is_reproducible_and_complete(tmp_path: Path) -> None:
     assert prefix + "assets/replay_divergence_rate.json" in names
     assert prefix + "assets/response_review_latency.json" in names
     assert prefix + "assets/supported_release_channel.json" in names
+    assert prefix + "assets/third_party_conformance_adoption.json" in names
     assert prefix + "assets/receipt_v1/manifest.json" in names
     assert prefix + "assets/receipt_v1/committed.json" in names
     assert prefix + "assets/receipt_v1/dry_run.json" in names

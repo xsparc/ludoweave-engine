@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M35/RFC-0018 third-party conformance-adoption admission evidence that
+  fixes the three existing installed profiles, preserves failed and
+  not-executed submissions, and retains the current empty-manifest result with
+  zero passing external implementations.
 - Add M34/RFC-0017 agent-tool recovery-rate admission evidence that preserves
   known failures, calls completed after manual recovery, and unobserved
   terminal states while retaining the current empty-manifest result without a

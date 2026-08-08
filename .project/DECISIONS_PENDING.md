@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0018 resolves how third-party conformance-adoption evidence is admitted.
+The offline harness counts distinct independent external implementation
+identities only after a complete project-accepted submission-census review and
+a passing exact installed M17-M19 profile. Project-owned and maintainer-
+authored references never count. Plugin-backed evidence is limited to the
+existing M12 `render.device` capability and requires both compatible inert
+manifest evidence and a passing render profile. Failed and not-executed
+submissions remain in complete history. The reviewed manifest is empty, so the
+current passing count is zero and no ecosystem, support, certification,
+security, performance, or global-discovery result exists.
+
 RFC-0017 resolves how agent-tool recovery-rate evidence is admitted. The
 offline harness requires a complete reviewed cohort of task-directed sessions
 and every dispatched call, keeps known failure and manual-recovery outcomes in

@@ -1,5 +1,44 @@
 # Project State
 
+## M35 in progress
+
+M35 starts from exact clean synchronized M34 integration-record commit
+`277de9052e768a5f70d32f1a2f67ec9f93353723`. Its bounded outcome is strict
+offline admission readiness for the design plan's final ordered longer-term
+metric: independently authored third-party adapters or plugin-backed adapters
+passing existing installed conformance. The exact reviewed 250-byte manifest
+has SHA-256
+`adee8c68b5d89923ee2682162eb24cd9542a4601b1ff6fb901709ebcc0066767`,
+explicitly asserts complete review of the project-accepted submission census,
+and contains no submissions. The current passing count is therefore zero; no
+global package census, ecosystem adoption, support matrix, security,
+performance, provider certification, or release gate is claimed.
+
+Future admission is limited to distinct independent external implementation
+identities using the exact installed M17 render-device, M18 agent-tool, or M19
+WorldStore baseline and fixed check count. Project-owned and maintainer-
+authored implementations are excluded before outcome. A plugin-backed record
+is possible only for the existing M12 `render.device` capability and requires
+both compatible reviewed inert-manifest evidence and a passing installed
+render-device result. Passed, failed, and not-executed submissions remain in
+complete accepted history; only passes count. Public immutable wheels,
+revisions, reports, reviews, supported CPython/platform evidence, and explicit
+authorship/independence/license/eligibility/outcome/provenance/validation/
+privacy/consent review are required.
+
+The evaluator is an explicitly invoked bounded offline reader outside the
+runtime package. It performs no discovery, import, install, provider execution,
+network request, sandboxing, or telemetry and emits only sanitized aggregates.
+M35 changes no runtime source, public API/export, protocol/profile, plugin
+field, format, dependency, lock, version, CI topology, release workflow, tag,
+publication, certification, or support policy. Implementation and focused
+evaluator tests exist on `evidence/m35-third-party-conformance`. Findings-first
+review hardened public evidence against reserved non-public domains and non-
+wheel paths. The complete local gate passes 1,716 tests with nine skips, strict
+static/docs checks, universal build, installed wheel/release smoke, real-wgpu/
+profile and vertical-slice checks, and scope/security/artifact audits. Hosted
+validation and integration remain pending.
+
 ## M34 complete
 
 M34 starts from exact clean synchronized M33 integration-record commit

@@ -160,6 +160,12 @@ explicit built-in direct-service factory and a fresh clean authority. It does
 not accept a module name, discover a transport, install code, start a process,
 open a network connection, sandbox, or certify third-party code.
 
+`third_party_conformance_adoption_readiness.py` validates the exact empty
+reviewed project-accepted submission manifest and reports zero passing
+independently authored implementations. It does not discover packages, import
+providers, install wheels, execute factories, or count the bundled conformance
+examples as adoption.
+
 For optional WebGPU presentation, install the exact release's `graphics` extra
 and run:
 
