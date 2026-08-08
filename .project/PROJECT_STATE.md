@@ -1,6 +1,6 @@
 # Project State
 
-## M45 public release consumer-path integrity - in progress
+## M45 public release consumer-path integrity - feature integrated
 
 - Base: exact verified M44 closeout commit
   `2c5e312a97028d0b835fc174b8abb51df22ea314`.
@@ -19,7 +19,7 @@
   candidate observation. It cannot establish independent/external or cross-
   platform consumer evidence, every delivery path, future availability,
   immutability, artifact security, PyPI, or a supported channel.
-- Current validation: the corrected focused release chain passes 106 tests
+- Local validation: the corrected focused release chain passes 106 tests
   with three capability skips; the final recorded tree passes all 373
   architecture tests and the seven exact extracted-shell regressions pass on
   CPython 3.12-3.14. The complete CPython 3.12 graphics suite passes 1,913
@@ -28,8 +28,21 @@
   deterministic samples, documented benchmark validators, reproducible
   distributions, isolated-wheel smoke, complete release smoke, static checks,
   strict docs, workflow YAML, Bash syntax, whitespace, scope/credential review,
-  and full Git object checking pass. Exact-head hosted validation, review, and
-  integration remain pending.
+  and full Git object checking pass.
+- Hosted validation: ready PR #86 exact head
+  `51e5a600c89fbecf09a9addb47e8e2a1729b0081` classified 29 paths as
+  substantive and passed run `31279830471` in exactly three allocations. Linux
+  passed in 6m58s before macOS and Windows were allocated; macOS passed in
+  2m07s and Windows in 4m01s. Every platform passed graphics, profiles, both
+  vertical slices, and CPython 3.14 compatibility; Linux also passed complete
+  quality, CPython 3.12/3.13, reproducibility, wheel, and release smoke.
+- Integration: PR #86 had no review, comment, or thread. GitHub-verified squash
+  `471da6efe908463ed8f6744272bd372548cb3345` has sole parent exact M44
+  closeout, tree `5f9368d215038b76cc8afb104cf6bcb444a04801` exactly equal to the
+  reviewed head, and a standalone DCO trailer. No post-merge `main` run was
+  allocated, and the feature branch is deleted locally/remotely. This four-
+  Markdown integration record remains pending. No real tag, release, or public
+  consumer-path pass exists or is claimed.
 
 ## M44 published release attestation integrity - complete
 

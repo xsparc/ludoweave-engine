@@ -1,17 +1,20 @@
 # Current Task
 
 - **Task:** M45 - public release consumer-path integrity
-- **Status:** Local implementation, review, and validation are complete on
-  `release/m45-public-consumer-verification`; exact-head hosted pull-request
-  validation remains pending.
+- **Status:** Feature PR #86 is hosted-validated and squash-integrated. Exact
+  integration facts are being recorded on the documentation-only branch
+  `records/m45-integration`; its bounded Linux gate remains pending.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `2c5e312a97028d0b835fc174b8abb51df22ea314`. Only `main` existed locally
-  and remotely, no open pull request, local/remote tag, or GitHub release was
-  present, and `git fsck --full --no-dangling` passed.
+- **Feature base:** Exact clean synchronized `main`, `origin/main`, and
+  `origin/HEAD` commit `2c5e312a97028d0b835fc174b8abb51df22ea314`.
+  Only `main` existed locally and remotely, no open pull request, local/remote
+  tag, or GitHub release was present, and `git fsck --full --no-dangling`
+  passed.
+- **Record base:** Exact verified M45 feature squash
+  `471da6efe908463ed8f6744272bd372548cb3345`.
 - **Outcome:** After M44, verify that the exact public GitHub API release ID and
   every exact M43 asset ID are retrievable without a GitHub credential, still
   match the admitted candidate, and pass complete installed release smoke.
@@ -68,6 +71,11 @@
   profiling contracts, deterministic samples, byte-reproducible distributions,
   isolated-wheel smoke, complete release smoke, and every documented benchmark
   validator pass. Static analysis, strict docs, YAML, Bash syntax, whitespace,
-  scope/credential review, and full Git object checking pass. Exact-head
-  hosted validation, review, and integration remain pending. No real public
-  release-path pass is claimed.
+  scope/credential review, and full Git object checking pass. Ready PR #86
+  exact head `51e5a600c89fbecf09a9addb47e8e2a1729b0081` passed hosted run
+  `31279830471` in exactly three Linux-first allocations. GitHub reported no
+  review, comment, or thread. Squash
+  `471da6efe908463ed8f6744272bd372548cb3345` has sole parent the M44
+  closeout, exact reviewed tree, a valid GitHub signature, a standalone DCO
+  trailer, and no post-merge `main` run. The feature branch is deleted locally
+  and remotely. No real public release-path pass is claimed.
