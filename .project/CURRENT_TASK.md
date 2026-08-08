@@ -1,7 +1,8 @@
 # Current Task
 
 - **Task:** M42 - published prerelease integrity
-- **Status:** In progress on `release/m42-publication-integrity`.
+- **Status:** Implementation squash-integrated; publishing the documentation-
+  only integration record on `records/m42-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -55,4 +56,10 @@
   skips; Python 3.13 and 3.14 each pass 1,840 with 14 expected skips; real
   graphics, profiles, deterministic samples, reproducible distributions,
   installed-wheel smoke, complete release smoke, and exact mutable/immutable
-  synthetic state verification all pass.
+  synthetic state verification all pass. Exact implementation head
+  `45cd04e627f44400e8bd3adcbeeaf1756160f745` passed run `31271273535` in
+  three allocations: Linux 6m54s, Windows 3m39s, and macOS 1m59s. With no
+  review, issue comment, review comment, or thread, PR #77 squash-integrated as
+  `28dd9d7e282ec85c06b71ed340f3cfcea379d6be`; the reviewed tree, exact parent,
+  valid signature, standalone DCO, and zero post-merge run are verified. The
+  feature branch is deleted locally and remotely.

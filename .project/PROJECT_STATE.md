@@ -1,6 +1,6 @@
 # Project State
 
-## M42 in progress
+## M42 implementation complete
 
 M42 starts from exact clean synchronized M41 closeout commit
 `0dec2254a9d9483b27d158aaad108340e9c94e28`. It closes the final-state
@@ -24,8 +24,17 @@ tests with 13 expected skips; Python 3.13/3.14 each pass 1,840 with 14 expected
 skips. Real wgpu, profiles, vertical slices, reproducible distributions,
 installed-wheel smoke, complete release smoke, and exact mutable/immutable
 synthetic release states pass. CI, runtime, metadata, dependency, lock,
-permission, action, and runner boundaries remain unchanged. Hosted validation,
-integration, and cleanup remain pending.
+permission, action, and runner boundaries remain unchanged.
+
+Ready PR #77 exact head `45cd04e627f44400e8bd3adcbeeaf1756160f745`
+passed run `31271273535` in exactly three allocations: Linux 6m54s, Windows
+3m39s, and macOS 1m59s. No review, issue comment, review comment, or thread was
+present. Squash `28dd9d7e282ec85c06b71ed340f3cfcea379d6be` has sole parent the exact
+M41 closeout, preserves reviewed tree
+`7e65795a6b44de7b3ff393128274eda207c58dc3`, has a valid GitHub signature and
+standalone DCO trailer, and allocated no post-merge `main` run. The feature
+branch is deleted locally and remotely. Only the documentation-only integration
+and closeout records remain.
 
 ## M41 complete
 
