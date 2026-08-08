@@ -22,6 +22,7 @@ def _staging(tmp_path: Path) -> Path:
     staged = tmp_path / "release"
     staged.mkdir()
     (staged / "LICENSE").write_text("license\n", encoding="utf-8")
+    (staged / "RELEASE_NOTES.md").write_bytes(b"# Release notes\n\nExact notes.\n")
     (staged / "SHA256SUMS").write_text("checksums\n", encoding="utf-8")
     (staged / "ludoweave-0.1.0a1-py3-none-any.whl").write_bytes(b"wheel")
     return staged
@@ -44,6 +45,7 @@ def _document(staged: Path) -> dict[str, object]:
         "draft": True,
         "prerelease": True,
         "immutable": False,
+        "body": (staged / "RELEASE_NOTES.md").read_bytes().decode("utf-8"),
         "assets": [_identity(path) for path in sorted(staged.iterdir())],
     }
 
@@ -91,9 +93,10 @@ def test_exact_uploaded_draft_emits_stable_safe_identities(tmp_path: Path) -> No
     assert result.returncode == 0, result.stderr
     assert result.stderr == ""
     document = json.loads(result.stdout)
-    assert document["protocol"] == "ludoweave.release-draft-integrity/1"
+    assert document["protocol"] == "ludoweave.release-draft-integrity/2"
     assert document["status"] == "pass"
     assert document["tag"] == _TAG
+    assert "Exact notes" not in result.stdout
     assert document["assets"] == [
         {
             "bytes": path.stat().st_size,
@@ -112,6 +115,9 @@ def test_exact_uploaded_draft_emits_stable_safe_identities(tmp_path: Path) -> No
         ("published", "release_draft.invalid_state"),
         ("not-prerelease", "release_draft.invalid_state"),
         ("immutable", "release_draft.invalid_state"),
+        ("notes", "release_draft.notes_mismatch"),
+        ("notes-missing", "release_draft.notes_mismatch"),
+        ("notes-null", "release_draft.notes_mismatch"),
         ("missing", "release_draft.asset_set_mismatch"),
         ("extra", "release_draft.asset_set_mismatch"),
         ("size", "release_draft.asset_mismatch"),
@@ -135,6 +141,12 @@ def test_remote_identity_state_or_asset_drift_fails_closed(
         document["prerelease"] = False
     elif mutation == "immutable":
         document["immutable"] = True
+    elif mutation == "notes":
+        document["body"] = "different notes\n"
+    elif mutation == "notes-missing":
+        del document["body"]
+    elif mutation == "notes-null":
+        document["body"] = None
     elif mutation == "missing":
         assets.pop()
     elif mutation == "extra":
@@ -153,10 +165,13 @@ def test_remote_identity_state_or_asset_drift_fails_closed(
     else:
         assets[0]["state"] = "new"
 
-    failure = _failure(_run(staged, tmp_path, document))
-    assert failure["protocol"] == "ludoweave.release-draft-integrity/1"
+    result = _run(staged, tmp_path, document)
+    failure = _failure(result)
+    assert failure["protocol"] == "ludoweave.release-draft-integrity/2"
     assert failure["status"] == "fail"
     assert failure["code"] == code
+    assert "Exact notes" not in result.stderr
+    assert "different notes" not in result.stderr
 
 
 def test_duplicate_remote_asset_name_fails_closed(tmp_path: Path) -> None:
@@ -238,6 +253,44 @@ def test_invalid_local_entry_and_asset_size_fail_closed(tmp_path: Path) -> None:
         stream.truncate(256 * 1024 * 1024 + 1)
     failure = _failure(_run(staged, tmp_path, document))
     assert failure["code"] == "release_draft.size_limit"
+
+
+@pytest.mark.parametrize(
+    "content",
+    [b"", b"invalid: \xff", b"contains\x00nul", b"x" * (256 * 1024 + 1)],
+    ids=["empty", "invalid-utf8", "nul", "oversized"],
+)
+def test_invalid_local_release_notes_fail_closed(tmp_path: Path, content: bytes) -> None:
+    staged = _staging(tmp_path)
+    document = _document(staged)
+    (staged / "RELEASE_NOTES.md").write_bytes(content)
+
+    failure = _failure(_run(staged, tmp_path, document))
+    assert failure["code"] == "release_draft.invalid_notes"
+
+
+def test_missing_local_release_notes_fail_closed(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    document = _document(staged)
+    (staged / "RELEASE_NOTES.md").unlink()
+
+    failure = _failure(_run(staged, tmp_path, document))
+    assert failure["code"] == "release_draft.invalid_notes"
+
+
+@pytest.mark.skipif(not hasattr(os, "symlink"), reason="symlink support unavailable")
+def test_symlinked_local_release_notes_fail_closed_when_supported(tmp_path: Path) -> None:
+    staged = _staging(tmp_path)
+    document = _document(staged)
+    notes = staged / "RELEASE_NOTES.md"
+    notes.unlink()
+    try:
+        notes.symlink_to(staged / "LICENSE")
+    except OSError:
+        pytest.skip("symlink creation is not permitted")
+
+    failure = _failure(_run(staged, tmp_path, document))
+    assert failure["code"] == "release_draft.invalid_notes"
 
 
 @pytest.mark.skipif(not hasattr(os, "symlink"), reason="symlink support unavailable")

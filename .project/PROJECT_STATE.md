@@ -1,5 +1,37 @@
 # Project State
 
+## M41 in progress
+
+M41 starts from exact clean synchronized M40 closeout commit
+`9983e0da88b6aef999d26498cc6438f0b3c5927b`. It closes the remaining private-
+draft metadata gap: the staged release notes already feed
+`gh release create --notes-file`, but M40 did not compare the authenticated
+release `body` with that source before publication.
+
+The internal validator advances to `ludoweave.release-draft-integrity/2`. It
+reads only the fixed staged `RELEASE_NOTES.md` regular non-symlink file, caps it
+at 256 KiB, requires non-empty strict UTF-8 without NUL, and rejects any remote
+body difference. Missing, null, substituted, truncated, newline-, whitespace-,
+or Unicode-different text fails with a stable structured code; note content is
+never emitted.
+
+Official GitHub CLI and REST documentation confirms `--notes-file` supplies the
+release notes and the authenticated release document exposes them as `body`.
+The existing M40 API document and verifier invocation are therefore sufficient:
+M41 changes neither workflow file and adds no runner, action, permission,
+trigger, dependency, credential, API call, tag, release, or publication
+authority. RFC-0024 and the release/security/architecture surfaces now document
+the boundary. Focused static checks and 26 behavior/adversarial tests pass with
+one Windows symlink-capability skip after correcting a Windows-only byte-fixture
+and pytest case-ID defect. Findings-first review then made notes validation
+precede asset scanning so a symlinked notes member uses the notes-specific code;
+the complete corrected Python 3.12 suite passes 1,830 tests with 13 expected
+skips, and Python 3.13/3.14 each pass 1,820 with 13 expected skips. Real wgpu,
+profiles, vertical slices, reproducible distributions, installed-wheel smoke,
+complete release smoke, and exact synthetic draft verification pass. Workflow,
+runtime, metadata, dependency, lock, permission, and runner boundaries remain
+unchanged. Hosted validation, integration, and cleanup remain pending.
+
 ## M40 complete
 
 M40 starts from exact clean synchronized M39 closeout commit
@@ -61,8 +93,15 @@ integration, tree `896461bbfd43975ca1ee49962409d9b38695c10f` exactly equal to th
 reviewed head, a valid GitHub signature, and standalone DCO trailer. It
 allocated no `main` run. The record branch is deleted locally/remotely; before
 this closeout branch, clean synchronized `main` was the sole branch, no PR was
-open, and full Git object checking passed. Only this zero-run closeout record,
-its squash audit, and final branch cleanup remain.
+open, and full Git object checking passed. Zero-run closeout PR #73 exact head
+`e1b07f781096370fa3b6f820bc80dc1d4c585279` changed only three `.project`
+paths and had no run, check, review, comment, or thread. Squash
+`9983e0da88b6aef999d26498cc6438f0b3c5927b` has sole parent the record
+integration, tree `d76b9a348690d6a35af774755cdc4a836240069a` exactly equal to the
+reviewed head, a valid GitHub signature, and standalone DCO trailer. It
+allocated no `main` run. The closeout branch is deleted locally/remotely; clean
+synchronized `main` is the sole branch, no PR, tag, or release is present, and
+full Git object checking passes.
 
 ## M39 complete
 

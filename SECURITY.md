@@ -29,6 +29,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   exactly matches local staging by safe name, byte size, and SHA-256 digest.
   Failed verification leaves the draft for inspection and never clobbers an
   existing asset.
+- M41 also requires the authenticated draft's source `body` to exactly match
+  bounded staged `RELEASE_NOTES.md` before publication. It rejects missing,
+  null, substituted, truncated, or normalization-different notes without
+  emitting their content.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -43,6 +47,9 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M40 does not enable or claim immutable releases, independently verify GitHub
   storage, or replace build/SBOM attestations. Release immutability and failed-
   draft cleanup remain explicit repository operations.
+- M41 compares the API source body, not GitHub's rendered Markdown; it does not
+  validate links or factual completeness, sanitize maintainer-authored text, or
+  replace human release review.
 
 ## Initial security boundaries
 

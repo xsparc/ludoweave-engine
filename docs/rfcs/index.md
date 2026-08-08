@@ -28,3 +28,4 @@ was adopted.
 - [RFC-0021: enforce distribution reproducibility](0021-enforce-distribution-reproducibility.md)
 - [RFC-0022: enforce release tag integrity](0022-enforce-release-tag-integrity.md)
 - [RFC-0023: verify draft release assets before publication](0023-verify-draft-release-assets.md)
+- [RFC-0024: verify draft release notes before publication](0024-verify-draft-release-notes.md)

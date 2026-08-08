@@ -42,24 +42,23 @@ claims.
 
 ## Current boundary
 
-M40 keeps the GitHub release private as a prerelease draft until every remote
-asset exactly matches bounded local staging. The standard-library validator
-requires exact tag/title/draft state, safe duplicate-free names, complete upload
-state, byte-size equality, and SHA-256 equality. It caps strict duplicate-free
-JSON, per-file/total bytes, and asset count; owns no network, token, shell,
-dynamic import, release mutation, or cleanup; emits only safe identities; and
-fails closed with versioned structured errors.
+M41 requires the authenticated private draft's release-notes `body` to exactly
+equal the bounded staged `RELEASE_NOTES.md` already supplied through
+`--notes-file` and covered by M40 asset verification. The standard-library
+validator accepts only a regular non-symlink notes file of at most 256 KiB,
+strict non-empty UTF-8, and no NUL. Missing, null, substituted, truncated, or
+normalization-different remote text fails closed; note content never enters
+structured output or logs.
 
-M40 may change only the explicit draft-asset validator, its focused tests, the
-existing tag workflow's final draft/upload/verify/publish sequence, RFC/docs,
-and factual project records. It must add no job, runner matrix entry, action,
-permission, trigger, dependency, lock entry, credential, package version,
-public API, runtime source, tag, release, or publication authority. It must not
-clobber assets, delete failed drafts, enable or claim immutable releases,
-download remote assets, change attestations, or establish a PyPI/supported-
-release channel. M0 through M39 are complete, reviewed, hosted-validated, and
-integrated into `main`. M40 starts from exact verified M39 closeout commit
-`49fba13477890bf6bf1c9e6a645e669b3a69492f`.
+M41 may change only the existing draft validator, its focused tests, RFC/docs,
+and factual project records. It must add no workflow change, job, runner matrix
+entry, action, permission, trigger, dependency, lock entry, credential, package
+version, public API, runtime source, tag, release, or publication authority. It
+must not render or sanitize Markdown, evaluate links or factual accuracy,
+enable or claim immutable releases, change attestations, or establish a
+PyPI/supported-release channel. M0 through M40 are complete, reviewed,
+hosted-validated, and integrated into `main`. M41 starts from exact verified M40
+closeout commit `9983e0da88b6aef999d26498cc6438f0b3c5927b`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

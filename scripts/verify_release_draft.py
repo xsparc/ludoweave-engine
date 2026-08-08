@@ -1,4 +1,4 @@
-"""Fail closed unless a GitHub draft release exactly matches staged assets."""
+"""Fail closed unless a GitHub draft exactly matches staged notes and assets."""
 
 from __future__ import annotations
 
@@ -12,11 +12,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-_PROTOCOL = "ludoweave.release-draft-integrity/1"
+_PROTOCOL = "ludoweave.release-draft-integrity/2"
 _MAX_DOCUMENT_BYTES = 4 * 1024 * 1024
 _MAX_ASSETS = 32
 _MAX_ASSET_BYTES = 256 * 1024 * 1024
 _MAX_TOTAL_BYTES = 512 * 1024 * 1024
+_MAX_RELEASE_NOTES_BYTES = 256 * 1024
+_RELEASE_NOTES_NAME = "RELEASE_NOTES.md"
 _TAG_PATTERN = re.compile(r"v[0-9A-Za-z][0-9A-Za-z._-]{0,127}")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
 _DIGEST_PATTERN = re.compile(r"sha256:[0-9a-f]{64}")
@@ -46,11 +48,13 @@ def verify_release_draft(
     expected_tag: str,
     expected_title: str,
 ) -> tuple[ReleaseAssetIdentity, ...]:
-    """Return exact asset identities when a remote draft matches local staging."""
+    """Return asset identities when remote notes and assets match local staging."""
 
     tag = _tag_name(expected_tag)
     title = _title(expected_title)
-    local = _local_assets(_directory(staged_directory))
+    root = _directory(staged_directory)
+    notes = _release_notes(root / _RELEASE_NOTES_NAME)
+    local = _local_assets(root)
     release = _object(release_document, field="release document")
 
     if release.get("tag_name") != tag or release.get("name") != title:
@@ -66,6 +70,11 @@ def verify_release_draft(
         raise ReleaseDraftIntegrityError(
             "release must remain a mutable prerelease draft during asset verification",
             code="release_draft.invalid_state",
+        )
+    if release.get("body") != notes:
+        raise ReleaseDraftIntegrityError(
+            "draft release notes do not exactly match local staging",
+            code="release_draft.notes_mismatch",
         )
 
     assets_value = release.get("assets")
@@ -265,6 +274,37 @@ def _json_document(path: Path) -> object:
             "draft release document is not strict UTF-8 JSON",
             code="release_draft.invalid_document",
         ) from error
+
+
+def _release_notes(path: Path) -> str:
+    try:
+        if path.is_symlink() or not path.is_file():
+            raise OSError
+        with path.open("rb") as stream:
+            raw = stream.read(_MAX_RELEASE_NOTES_BYTES + 1)
+    except OSError as error:
+        raise ReleaseDraftIntegrityError(
+            "staged release notes are unavailable",
+            code="release_draft.invalid_notes",
+        ) from error
+    if len(raw) > _MAX_RELEASE_NOTES_BYTES:
+        raise ReleaseDraftIntegrityError(
+            "staged release notes exceed the size limit",
+            code="release_draft.invalid_notes",
+        )
+    try:
+        notes = raw.decode("utf-8")
+    except UnicodeDecodeError as error:
+        raise ReleaseDraftIntegrityError(
+            "staged release notes are not strict UTF-8",
+            code="release_draft.invalid_notes",
+        ) from error
+    if not notes or "\x00" in notes:
+        raise ReleaseDraftIntegrityError(
+            "staged release notes must contain bounded text",
+            code="release_draft.invalid_notes",
+        )
+    return notes
 
 
 def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
