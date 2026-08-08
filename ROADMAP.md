@@ -45,7 +45,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M34 agent-tool recovery-rate admission readiness | PR #56 squash-integrated; strict empty reviewed task-directed call manifest, complete cohort and terminal-evidence preservation, exact rational rate, installed artifact smoke, RFC-0017, and one substantive pull-request CI gate |
 | Done | M35 third-party conformance-adoption readiness | PR #58 squash-integrated; strict empty reviewed project-accepted submission census, exact existing profile registry, failure/non-execution preservation, zero current count, installed artifact smoke, and RFC-0018 |
 | Done | M36 CI runner consolidation | PR #60 squash-integrated; all eight Python/platform/graphics/distribution slices passed in three OS-owned allocations, with five fewer repeated runner setups and RFC-0019 |
-| Implemented for M37 | M37 CI change qualification | Fail-closed trusted-base classification, one Linux documentation-only gate, three-allocation substantive gate, Linux-before-desktop qualification, and RFC-0020 |
+| Done | M37 CI change qualification | PR #62 squash-integrated; corrected substantive run `31259200818` passed fail-closed trusted-base classification, the three-allocation M36 gate, Linux-before-desktop qualification, and RFC-0020 |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -423,6 +423,16 @@ Substantive and indeterminate changes retain or fail into the complete three-
 allocation M36 gate, and Windows/macOS wait for successful Linux qualification.
 M37 changes no runtime, test behavior, dependency, lock, package version,
 release workflow, tag, publication, or support policy.
+
+PR #62 is squash-integrated as
+`407226beae36182d237e32866a86ce19bb93c691`. Corrected substantive run
+`31259200818` passed exact reviewed head
+`8214227c99831310546147977bf354b5ae956bce` in three allocations: Linux passed
+before Windows and macOS were allocated, and all three completed successfully.
+The public integration record is intentionally composed only of paths admitted
+by the trusted base classifier so its pull request can verify the bounded
+one-allocation documentation lane without spending desktop allocations. That
+record's hosted result is not pre-claimed here.
 
 ## Good-first contribution queue
 
