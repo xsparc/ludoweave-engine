@@ -71,3 +71,13 @@
   verifier on CPython 3.12-3.14. The final implementation-tree rebuild and
   complete suite pass. Publication, hosted validation, review closure, and
   integration remain pending. No real fresh-runner release pass is claimed.
+- **Hosted correction:** Ready PR #89 exact feature head
+  `bbfd68ee6b0826b47b573ede4a10910b07945aeb` allocated exactly three
+  runners in run `31282550237`. Linux passed in 5m58s and Windows passed in
+  3m42s. macOS failed one compatibility assertion after 1,926 passes and one
+  skip because Bash 3.2 treats an explicitly empty array expansion as unbound
+  under `set -u`. The correction removes the array, uses a shared verifier
+  function with safe positional arguments, retains exactly two verifier call
+  sites, and passes all 17 focused tests on CPython 3.12-3.14. Corrected full
+  local validation passes; corrected hosted validation remains pending and the
+  failed head will not merge.

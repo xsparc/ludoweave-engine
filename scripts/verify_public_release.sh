@@ -20,18 +20,24 @@ fi
 
 expected_dir="$1"
 plan="$RUNNER_TEMP/release-assets.plan"
-plan_arguments=(--asset-plan "$plan")
+use_existing_plan=false
 if [[ $# -eq 2 ]]; then
   if [[ "$2" != "--use-existing-plan" || ! -f "$plan" ]]; then
     echo "existing release plan is unavailable" >&2
     exit 1
   fi
-  plan_arguments=()
+  use_existing_plan=true
 else
   test ! -e "$plan"
 fi
 public_document="$RUNNER_TEMP/release-public.json"
 public_dir="$RUNNER_TEMP/release-public-download"
+verify_expected_release() {
+  python scripts/verify_release_draft.py \
+    "$expected_dir" "$public_document" \
+    --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
+    --expected-state published "$@"
+}
 test ! -e "$public_document"
 test ! -e "$public_dir"
 mkdir "$public_dir"
@@ -43,10 +49,11 @@ curl --disable --fail --silent --show-error --location --max-redirs 3 \
   "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
   | head -c 4194305 > "$public_document"
 test "$(wc -c < "$public_document")" -le 4194304
-python scripts/verify_release_draft.py \
-  "$expected_dir" "$public_document" \
-  --expected-tag "$GITHUB_REF_NAME" --expected-title "$RELEASE_TITLE" \
-  --expected-state published "${plan_arguments[@]}"
+if [[ "$use_existing_plan" == true ]]; then
+  verify_expected_release
+else
+  verify_expected_release --asset-plan "$plan"
+fi
 exec 3< "$plan"
 IFS= read -r protocol <&3
 test "$protocol" = "ludoweave.release-asset-retrieval-plan/1"

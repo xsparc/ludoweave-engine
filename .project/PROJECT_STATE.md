@@ -30,6 +30,14 @@
   the corrected shell uses the established exclusive `--asset-plan` contract,
   and the regression executes the real verifier on all three Python versions.
   Hosted validation and integration remain.
+- First hosted run `31282550237` correctly allocated exactly three runners.
+  Linux and Windows passed; macOS exposed one Bash 3.2 portability failure in
+  existing-plan mode after 1,926 test passes and one skip. The blocked head is
+  not mergeable by policy. The correction replaces empty-array expansion under
+  `set -u` with a shared verifier function and safe positional arguments while
+  retaining exactly two verifier call sites. Focused tests pass on CPython
+  3.12-3.14; the corrected complete 3.12 graphics and static/docs/architecture
+  gates pass. Corrected hosted evidence remains pending.
 
 ## M45 public release consumer-path integrity - complete
 

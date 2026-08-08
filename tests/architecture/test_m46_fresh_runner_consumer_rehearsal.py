@@ -104,10 +104,13 @@ def test_fresh_consumer_reuses_exact_bounded_public_verifier() -> None:
     assert "RELEASE_TITLE: LudoWeave ${{ needs.release.outputs.release_version }}" in consumer
     assert "bash scripts/verify_public_release.sh .tmp/m46-expected-release" in consumer
     assert '[[ "$GITHUB_REPOSITORY" != "xsparc/ludoweave-engine" ]]' in script
-    assert 'plan_arguments=(--asset-plan "$plan")' in script
+    assert "use_existing_plan=false" in script
+    assert "use_existing_plan=true" in script
     assert '"$2" != "--use-existing-plan"' in script
     assert 'test ! -e "$plan"' in script
-    assert '"${plan_arguments[@]}"' in script
+    assert 'verify_expected_release --asset-plan "$plan"' in script
+    assert '--expected-state published "$@"' in script
+    assert "plan_arguments" not in script
     assert script.count("curl --disable --fail --silent --show-error --location") == 2
     assert script.count("--proto '=https' --proto-redir '=https'") == 2
     assert script.count("--connect-timeout 10 --max-time 30") == 2
