@@ -1,6 +1,6 @@
 # Project State
 
-## M37 feature integrated; documentation-lane proof in progress
+## M37 complete
 
 M37 starts from exact clean synchronized M36 integration-record commit
 `46ef98447706c94763a236841a38c2dbb5b444ca`. Its bounded outcome is fail-closed
@@ -29,11 +29,22 @@ distribution steps in 6m48s; only then did Windows and macOS start, passing in
 `407226beae36182d237e32866a86ce19bb93c691` has the exact reviewed tree, exact
 M36-record parent, a valid GitHub signature, and a parsed DCO trailer. PR #62
 and its feature branch are closed/deleted, synchronized main contains the
-feature squash, and no main-branch run was allocated. This public Markdown
-record is the documentation-only hosted acceptance fixture; its result is not
-pre-claimed. M37 changes no runtime, test behavior, dependency, lock, package
-version, release workflow, supported platform/version, tag, publication,
-provider, certification, or support policy.
+feature squash, and no main-branch run was allocated.
+
+Public record PR #63 changed exactly four admitted Markdown paths. Its exact
+committed classifier result was `classification=documentation`,
+`substantive=false`, and `changed_count=4`. Hosted run `31259908552` allocated
+only Linux, which passed the complete bounded documentation gate in 32 seconds.
+GitHub evaluated the desktop job condition before matrix expansion and emitted
+one skipped matrix-umbrella check with no steps and no Windows/macOS runner
+allocation. Record squash `7434f310c86dd9acf6c61ff01c1a5f2dfcdffe31`
+has exact reviewed tree `9dc7f0bc50b7b5b8309405ce491978f3ef39cbe4`, sole feature-squash parent, a
+valid GitHub signature, and a parsed DCO trailer. The PR and branch are deleted,
+main is synchronized, and no main-branch run was allocated.
+
+M37 changes no runtime, test behavior, dependency, lock, package version,
+release workflow, supported platform/version, tag, publication, provider,
+certification, or support policy.
 
 ## M36 complete
 
