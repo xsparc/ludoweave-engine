@@ -113,6 +113,8 @@ def test_m35_fixes_only_existing_installed_profiles_and_reference_counts() -> No
     assert '"render-device-plugin"' in source
     assert '"agent-tool-plugin"' not in source
     assert '"world-store-plugin"' not in source
+    assert '_ADAPTER_ID = re.compile(r"[a-z][a-z0-9]*(?:[._-][a-z0-9]+){1,15}\\Z")' in source
+    assert '_adapter_id(record["adapter_id"], "adapter ID")' in source
 
 
 def test_m35_excludes_project_and_maintainer_evidence_before_outcome() -> None:

@@ -56,5 +56,9 @@
   public-wheel evidence. The final focused gate passes 160 tests; the complete
   suite passes 1,716 tests with nine skips; all static/docs, universal build,
   isolated wheel/release, real-wgpu/profile, vertical-slice, scope, archive,
-  credential-pattern, neutral-identity, and Git-object checks pass. Hosted
-  validation remains pending.
+  credential-pattern, neutral-identity, and Git-object checks pass. Initial
+  hosted run `31231040437` passed all eight jobs, but automated review found an
+  identifier-grammar mismatch with the installed runners. The exact grammar
+  correction now passes 100 focused tests and the complete 1,718-test suite,
+  plus static/docs, real-wgpu, rebuilt wheel, isolated-wheel, and fresh release
+  smoke. Corrected hosted validation remains pending.

@@ -241,6 +241,18 @@ def test_reviewed_passing_adapter_becomes_ready(
     }
 
 
+def test_runner_compatible_underscore_adapter_identity_is_admitted(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    document = _manifest()
+    document["submissions"] = [_record(implementation="acme_renderer")]
+    module, evaluate = _evaluator()
+
+    report = _admit(module, evaluate, _write(tmp_path, document), monkeypatch)
+
+    assert report["gate_satisfied"] is True
+
+
 def test_reviewed_plugin_adapter_requires_both_conformance_and_manifest_check(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -493,6 +505,16 @@ def test_identifiers_versions_license_and_hashes_are_strict(
 ) -> None:
     record = _record()
     record[field] = value
+    document = _manifest()
+    document["submissions"] = [record]
+
+    _assert_rejected(document, tmp_path)
+
+
+def test_adapter_identity_requires_the_installed_conformance_grammar(tmp_path: Path) -> None:
+    record = _record()
+    record["implementation_id"] = "renderer"
+    record["adapter_id"] = "renderer"
     document = _manifest()
     document["submissions"] = [record]
 

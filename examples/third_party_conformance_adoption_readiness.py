@@ -24,6 +24,7 @@ _MAX_MANIFEST_BYTES = 262_144
 _MAX_JSON_NESTING = 16
 _MAX_SUBMISSIONS = 64
 _SAFE_ID = re.compile(r"[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*\Z")
+_ADAPTER_ID = re.compile(r"[a-z][a-z0-9]*(?:[._-][a-z0-9]+){1,15}\Z")
 _VERSION = re.compile(r"[0-9][0-9A-Za-z]*(?:[.+-][0-9A-Za-z]+)*\Z")
 _GIT_SHA = re.compile(r"[0-9a-f]{40}\Z")
 _SHA256 = re.compile(r"[0-9a-f]{64}\Z")
@@ -317,7 +318,7 @@ def _submission_identity(record: dict[str, object], index: int) -> _SubmissionId
     submission_id = _bounded_ascii(record["submission_id"], 20, "submission ID")
     if submission_id != f"submission-{index + 1:04d}":
         raise RuntimeError("conformance submissions must use canonical sequential IDs")
-    implementation_id = _safe_id(record["implementation_id"], "implementation ID")
+    implementation_id = _adapter_id(record["implementation_id"], "implementation ID")
     implementation_kind = _bounded_ascii(record["implementation_kind"], 32, "implementation kind")
     rule = _PROFILE_RULES.get(implementation_kind)
     if rule is None:
@@ -361,7 +362,7 @@ def _submission_identity(record: dict[str, object], index: int) -> _SubmissionId
     profile = _bounded_ascii(record["conformance_profile"], 48, "conformance profile")
     if (protocol, profile) != (rule.protocol, rule.profile):
         raise RuntimeError("implementation kind and conformance profile do not match")
-    adapter_id = _safe_id(record["adapter_id"], "adapter ID")
+    adapter_id = _adapter_id(record["adapter_id"], "adapter ID")
     if adapter_id != implementation_id:
         raise RuntimeError("adapter and implementation identities must match")
     check_count = _positive_int(record["check_count"], 64, "conformance check count")
@@ -584,6 +585,13 @@ def _bounded_ascii(value: object, limit: int, label: str) -> str:
 def _safe_id(value: object, label: str) -> str:
     text = _bounded_ascii(value, 96, label)
     if _SAFE_ID.fullmatch(text) is None:
+        raise RuntimeError(f"{label} is invalid")
+    return text
+
+
+def _adapter_id(value: object, label: str) -> str:
+    text = _bounded_ascii(value, 128, label)
+    if _ADAPTER_ID.fullmatch(text) is None:
         raise RuntimeError(f"{label} is invalid")
     return text
 

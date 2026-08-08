@@ -37,7 +37,13 @@ review hardened public evidence against reserved non-public domains and non-
 wheel paths. The complete local gate passes 1,716 tests with nine skips, strict
 static/docs checks, universal build, installed wheel/release smoke, real-wgpu/
 profile and vertical-slice checks, and scope/security/artifact audits. Hosted
-validation and integration remain pending.
+run `31231040437` passed all eight essential jobs on the initial head, but
+automated review found that its generic identifier grammar disagreed with the
+exact shared M17-M19 adapter grammar. The correction uses the installed runner
+grammar for equal implementation/adapter identities; 100 focused tests, the
+complete 1,718-test suite, strict static/docs gates, real-wgpu, rebuilt wheel,
+isolated-wheel smoke, and fresh release smoke pass. Corrected hosted validation
+and integration remain pending.
 
 ## M34 complete
 

@@ -69,6 +69,10 @@ Each submission binds:
 - for a render-device plugin adapter, immutable plugin-manifest and
   compatibility-report evidence.
 
+Implementation and adapter identities are equal and use the exact installed
+conformance-runner grammar
+`[a-z][a-z0-9]*(?:[._-][a-z0-9]+){1,15}`.
+
 Passing evidence requires every fixed check to pass. A single environment pass
 does not establish a complete support matrix, security, performance,
 determinism, maintenance, or provider certification.
