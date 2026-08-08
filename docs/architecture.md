@@ -1010,6 +1010,30 @@ It also cannot protect a workflow file that an authorized tag actor can replace;
 tag and environment protection remain repository operations.
 RFC-0022 defines the full trust and non-claim boundary.
 
+## M40 draft-release asset integrity boundary
+
+M40 separates remote asset admission from the final publication transition.
+After the exact tag, quality, build, staging, smoke, and attestation gates pass,
+the existing tag job creates a prerelease draft without assets and uploads the
+complete staged set without clobbering. It fetches the draft through a pinned
+GitHub REST API version and publishes only after the standard-library validator
+confirms the exact tag/title/draft state and every local/remote asset name, byte
+size, upload state, and SHA-256 digest.
+
+The validator owns no network client, token, shell, dynamic import, release
+mutation, or cleanup authority. It accepts at most 32 safe regular files, caps
+individual/total bytes and the strict duplicate-free JSON document, and emits
+only sorted safe identities. An invalid or incomplete remote set fails with a
+versioned structured result and leaves the release unpublished for deliberate
+inspection.
+
+M40 adds no runner allocation, action, permission, trigger, credential,
+dependency, runtime import, public API, tag, release, or publication authority.
+It does not enable immutable releases, independently verify GitHub storage,
+download remote assets, change attestations, define signer policy, or establish
+a supported release channel. RFC-0023 defines the full trust and non-claim
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

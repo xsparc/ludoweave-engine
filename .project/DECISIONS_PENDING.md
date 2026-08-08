@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0023 resolves M40 draft-release asset integrity. The existing tag job makes
+its final draft/upload/publish sequence explicit and publishes only when a
+bounded standard-library validator confirms the authenticated GitHub draft has
+the exact local asset names, complete upload state, byte sizes, and SHA-256
+digests. Failed verification remains an unpublished draft and assets are never
+clobbered or automatically deleted. The gate adds no runner, action, permission,
+trigger, dependency, credential, tag, release, or publication authority.
+Independent remote download/storage verification, immutable-release policy,
+PyPI, and a supported release channel remain separate decisions.
+
 RFC-0022 resolves M39 release-tag identity enforcement. GitHub's annotated-tag
 API is the hosted signature-verification authority, while local Git independently
 checks the exact tag object, checkout commit, and `origin/main` ancestry before

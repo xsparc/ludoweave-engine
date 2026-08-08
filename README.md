@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M38 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. M38 enforces same-source wheel/sdist byte reproducibility inside those existing distribution jobs. M39 is enforcing an annotated, GitHub-verified release tag at the exact `origin/main` commit before the tag job performs expensive or publishing work. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M39 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. M38 enforces same-source wheel/sdist byte reproducibility inside those existing distribution jobs. M39 enforces an annotated, GitHub-verified release tag at the exact `origin/main` commit before expensive or publishing work. M40 is making the final draft/upload/publish boundary explicit and requiring exact GitHub-reported asset names, sizes, and SHA-256 digests before publication. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -373,6 +373,14 @@ fetched `origin/main`. The validator emits only safe tag/object/commit identitie
 and never prints the signature or payload. This adds no runner, action,
 permission, trigger, dependency, key allowlist, tag, or publication authority;
 RFC-0022 defines the trust boundary.
+
+M40 makes the existing GitHub release transition explicit: create a prerelease
+draft without assets, upload every staged file without clobbering, fetch the
+version-pinned release document, and compare every uploaded name, byte size,
+state, and SHA-256 digest with bounded local staging before publication. A
+failure leaves an unpublished draft for inspection. This adds no runner,
+action, permission, trigger, dependency, tag, release, or publication authority
+and does not enable immutable releases; RFC-0023 defines the boundary.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

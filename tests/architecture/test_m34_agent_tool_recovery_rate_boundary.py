@@ -137,7 +137,7 @@ def test_m34_adds_no_runtime_export_dependency_version_release_or_provider() -> 
         "agent_tool_recovery_rate" in path.name for path in (_ROOT / "src" / "ludoweave").rglob("*")
     )
     assert hashlib.sha256((_ROOT / ".github/workflows/release.yml").read_bytes()).hexdigest() == (
-        "fd18b22b4363f183bc986bd013db7a139502f93d103725f429a62219f9ce61ca"
+        "3983cd82f0201fcac8fe2156f77715e1136998781b428c60a192b3f3a3522871"
     )
 
 

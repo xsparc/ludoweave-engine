@@ -1,5 +1,44 @@
 # Project State
 
+## M40 in progress
+
+M40 starts from exact clean synchronized M39 closeout commit
+`49fba13477890bf6bf1c9e6a645e669b3a69492f`. It makes the existing GitHub
+release CLI's internal draft/upload/publish sequence explicit. The tag job will
+create an asset-free prerelease draft, upload the staged set without clobbering,
+fetch the draft with REST API version `2026-03-10`, validate it, and only then
+publish.
+
+The standard-library validator caps duplicate-free strict JSON, local asset
+count, individual and total bytes, safe basenames, and identity fields. It
+requires exact tag/title/draft state, a complete duplicate-free remote set,
+`state=uploaded`, and exact local/remote names, sizes, and SHA-256 digests.
+Success emits only sorted safe identities; failures are structured and leave an
+unpublished draft for inspection. The validator owns no network, token, shell,
+dynamic import, release mutation, clobber, or cleanup authority.
+
+Focused format/lint/strict-type and 18 behavior/adversarial tests pass with one
+Windows symlink-capability skip after one typing/order correction. The explicit
+workflow and M38-M40 architecture focus pass 33 tests with the same skip after
+one mechanical format correction. Findings-first review then corrected the
+draft lookup: GitHub documents the tag-name REST route for published releases,
+so the workflow now resolves the authenticated draft's numeric database ID,
+validates it, and fetches that exact release by ID.
+
+The complete Python 3.12 suite passes 1,818 tests with 12 expected skips;
+Python 3.13 and 3.14 each pass 1,808 with 13 expected skips. Real-wgpu,
+base/graphics profiles, Clockwork Arena, Agent World Builder, deterministic
+two-build comparison, installed-wheel smoke, ten-artifact release smoke, and a
+real-staging synthetic-draft verification all pass. Review found no credential,
+archive, native-object, runtime, dependency, lock, or CI drift after the exact
+draft-route correction. M40 changes no pull-request CI workflow,
+runner/job/matrix count, action, permission, trigger, dependency, lock, package
+version, runtime/public API, attestation, tag, release, credential, immutable-
+release setting, PyPI configuration, supported release policy, or deferred
+subsystem. Final recorded-tree static, architecture, docs, and complete Python
+3.12 validation passes. Exact commit validation, hosted validation, integration,
+and cleanup remain pending.
+
 ## M39 complete
 
 M39 starts from exact clean synchronized M38 closeout commit
@@ -51,11 +90,14 @@ remotely.
 M39 changes no CI workflow, runner/job/matrix count, action, permission,
 trigger, dependency, lock, package version, runtime/public API, attestation,
 tag, release, PyPI configuration, supported release policy, or deferred
-subsystem. Before creation of this `.project`-only closeout branch, clean
-synchronized `main` at `166dcb2dc619dbc721207eece273c0fd9437f9ff` was the only
-local and remote branch, no pull request was open, and full Git object checking
-passed. Only the zero-run closeout record, its squash audit, and final branch
-cleanup remain.
+subsystem. Zero-run closeout PR #70 changed only three `.project` paths, had no
+run, review, comment, or thread, and squash-integrated exact head
+`4d31f46008bf5efd7475a9b432226748e484d891` as
+`49fba13477890bf6bf1c9e6a645e669b3a69492f`. The squash has sole parent the
+record integration, tree `46df243de9b6f9f773723412af2580fe8682f27a` exactly equal to the reviewed
+head, a valid GitHub signature, and standalone DCO trailer. It allocated no
+`main` run. The closeout branch is deleted locally/remotely; clean synchronized
+`main` is the sole branch, no PR is open, and full Git object checking passes.
 
 ## M38 complete
 

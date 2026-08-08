@@ -63,6 +63,7 @@ nav:
       - RFC-0020 - CI change qualification: rfcs/0020-ci-change-qualification.md
       - RFC-0021 - Distribution reproducibility: rfcs/0021-enforce-distribution-reproducibility.md
       - RFC-0022 - Release tag integrity: rfcs/0022-enforce-release-tag-integrity.md
+      - RFC-0023 - Draft release asset integrity: rfcs/0023-verify-draft-release-assets.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

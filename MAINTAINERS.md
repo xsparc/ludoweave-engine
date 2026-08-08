@@ -42,24 +42,24 @@ claims.
 
 ## Current boundary
 
-M39 enforces release-tag identity before the existing tag-only workflow performs
-system setup, tests, build, staging, attestation, or publication. The
-standard-library verifier requires an exact bounded `vVERSION` ref, an annotated
-tag object whose signature GitHub reports as valid, matching local/GitHub tag
-and commit identities, an exact event checkout, and reachability from fetched
-`origin/main`. It caps strict duplicate-free JSON input, runs local Git without
-a shell, emits only safe tag/object/commit/ref identities, and fails closed with
-versioned structured errors.
+M40 keeps the GitHub release private as a prerelease draft until every remote
+asset exactly matches bounded local staging. The standard-library validator
+requires exact tag/title/draft state, safe duplicate-free names, complete upload
+state, byte-size equality, and SHA-256 equality. It caps strict duplicate-free
+JSON, per-file/total bytes, and asset count; owns no network, token, shell,
+dynamic import, release mutation, or cleanup; emits only safe identities; and
+fails closed with versioned structured errors.
 
-M39 may change only the explicit release-ref verifier, its focused tests, the
-existing tag workflow, RFC/docs, and factual project records. It must add no
-job, runner matrix entry, action, permission, trigger, dependency, lock entry,
-credential, package version, public API, runtime source, tag, release, or
-publication. GitHub is the tag-signature verification authority; no local key
-trust store, signer/key allowlist, immutable-release setting, PyPI channel, or
-supported-release claim is introduced. M0 through M38 are complete, reviewed,
-hosted-validated, and integrated into `main`. M39 starts from exact verified
-M38 closeout commit `185e206d6b9c1e97512e289bcba84701dc29c147`.
+M40 may change only the explicit draft-asset validator, its focused tests, the
+existing tag workflow's final draft/upload/verify/publish sequence, RFC/docs,
+and factual project records. It must add no job, runner matrix entry, action,
+permission, trigger, dependency, lock entry, credential, package version,
+public API, runtime source, tag, release, or publication authority. It must not
+clobber assets, delete failed drafts, enable or claim immutable releases,
+download remote assets, change attestations, or establish a PyPI/supported-
+release channel. M0 through M39 are complete, reviewed, hosted-validated, and
+integrated into `main`. M40 starts from exact verified M39 closeout commit
+`49fba13477890bf6bf1c9e6a645e669b3a69492f`.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
