@@ -64,11 +64,14 @@ jobs:
           test "$GITHUB_REF_NAME" = "v$version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
       - name: Build source and wheel distributions
-        run: uv build
+        run: |
+          uv build --out-dir .tmp/release-dist-first
+          uv build --out-dir .tmp/release-dist-second
+          uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/release-dist-first .tmp/release-dist-second
       - name: Smoke-test installed wheel
-        run: uv run --frozen python scripts/smoke_wheel.py dist
+        run: uv run --frozen python scripts/smoke_wheel.py .tmp/release-dist-first
       - name: Stage release inputs
-        run: uv run --frozen python scripts/release_artifacts.py dist release --tag "${{ github.ref_name }}"
+        run: uv run --frozen python scripts/release_artifacts.py .tmp/release-dist-first release --tag "${{ github.ref_name }}"
       - name: Smoke-test staged release
         run: uv run --frozen python scripts/smoke_release.py release
       - name: Attest release artifacts

@@ -4,7 +4,7 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M36 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. The M12 manifest surface remains the first preview contract under RFC-0002.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M37 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. M38 is enforcing same-source wheel/sdist byte reproducibility inside those existing distribution jobs. The M12 manifest surface remains the first preview contract under RFC-0002.
 
 ## What exists
 
@@ -97,7 +97,7 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
   explicit receipted sample/tick mutations, versioned semantic observations,
   and verified snapshot/diff hash continuity.
 - An Agent World Builder acceptance loop covering typed creation, validation, application, ticks, capture, query, adjustment, diff, telemetry, tests, and replay evidence.
-- Deterministic release staging with a pure wheel, source distribution, sample bundle, checksums, SPDX SBOM, notices, manifest, installed-artifact smoke, and a pinned provenance workflow.
+- Deterministic release staging with a pure wheel, source distribution, sample bundle, checksums, SPDX SBOM, notices, manifest, installed-artifact smoke, a pinned provenance workflow, and fail-closed repeat-build byte verification.
 - Explicit stability metadata for every public Python export, community-alpha user/adapter/contribution guides, and a repository-native triage/roadmap queue.
 - Versioned, sanitized profiling for the representative M1/M3 misses plus an accepted RFC retaining the pure-Python/no-compiler baseline.
 - A bounded isolated Box2D-candidate probe plus ADR-0024; no physics binding,
@@ -314,9 +314,11 @@ uv run --frozen ruff check .
 uv run --frozen pyright
 uv run --frozen pytest -q
 uv run --frozen mkdocs build --strict
-uv build
-uv run --frozen python scripts/smoke_wheel.py dist
-uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate
+uv build --out-dir .tmp/dist-first
+uv build --out-dir .tmp/dist-second
+uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/dist-first .tmp/dist-second
+uv run --frozen python scripts/smoke_wheel.py .tmp/dist-first
+uv run --frozen python scripts/release_artifacts.py .tmp/dist-first .tmp/release-candidate
 uv run --frozen python scripts/smoke_release.py .tmp/release-candidate
 uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m1-benchmark.json
 uv run --frozen python benchmarks/validate_m1_results.py .tmp/m1-benchmark.json
@@ -356,6 +358,13 @@ is substantive or fails closed. Substantive changes retain all three hosted
 allocations and eight M36 validation slices; Windows and macOS begin only after
 the Linux qualification and complete gate succeed.
 
+M38 builds the pure wheel and source distribution twice inside the already
+allocated Linux distribution step and fails unless both artifact pairs are
+byte-identical. The same comparison runs before smoke, staging, attestation, or
+publication in the tag workflow. It adds no runner, matrix entry, dependency,
+action, permission, trigger, credential, or cross-platform reproducibility
+claim.
+
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:
 
@@ -367,7 +376,8 @@ A successful result establishes only bounded same-binary headless/lifecycle
 smoke. It does not admit the binding or claim cross-platform determinism; see
 [ADR-0024](docs/adr/0024-defer-box2d-v3-plugin-after-admission-review.md).
 
-Release staging requires a new empty output directory. The tag workflow is
+Repeat-build verification and release staging require new empty output
+directories. The tag workflow is
 defined for a future maintainer-created `vVERSION` tag; this repository task
 does not create a tag, publish a GitHub release, or upload to PyPI.
 

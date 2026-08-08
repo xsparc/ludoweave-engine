@@ -48,16 +48,19 @@ uv run --frozen ruff check .
 uv run --frozen pyright
 uv run --frozen pytest -q
 uv run --frozen mkdocs build --strict
-uv build
-uv run --frozen python scripts/smoke_wheel.py dist
-uv run --frozen python scripts/release_artifacts.py dist .tmp/release-candidate
+uv build --out-dir .tmp/dist-first
+uv build --out-dir .tmp/dist-second
+uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/dist-first .tmp/dist-second
+uv run --frozen python scripts/smoke_wheel.py .tmp/dist-first
+uv run --frozen python scripts/release_artifacts.py .tmp/dist-first .tmp/release-candidate
 uv run --frozen python scripts/smoke_release.py .tmp/release-candidate
 git diff --check
 ```
 
-Use a new empty release staging directory if `.tmp/release-candidate` already
-exists. Milestone benchmark commands are required only when performance is
-affected or claimed.
+Use new empty build directories if `.tmp/dist-first` or `.tmp/dist-second`
+already exists, and a new empty release staging directory if
+`.tmp/release-candidate` already exists. Milestone benchmark commands are
+required only when performance is affected or claimed.
 
 ## 5. Review and submit
 

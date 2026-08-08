@@ -2,6 +2,14 @@
 
 No architecture decision is currently blocked.
 
+RFC-0021 resolves M38 distribution reproducibility enforcement. The existing
+Linux pull-request and tag-release distribution jobs build twice and compare
+the exact pure wheel/source pair before smoke, staging, attestation, or
+publication. A same-source/same-job byte match is required; cross-platform or
+hermetic reproducibility, independent rebuilding, provenance, and publication
+are not claimed. A separate rebuild runner and attestation changes are rejected
+for this bounded milestone.
+
 RFC-0020 resolves M37 CI change qualification with an exact trusted-base
 classifier. Documentation-only work retains one Linux quality/docs/
 architecture/distribution allocation; substantive work retains all three M36

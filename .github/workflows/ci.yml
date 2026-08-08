@@ -105,11 +105,14 @@ jobs:
         if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen --extra graphics python examples/agent_world_builder.py
       - name: Build sdist and wheel
-        run: uv build
+        run: |
+          uv build --out-dir .tmp/ci-dist-first
+          uv build --out-dir .tmp/ci-dist-second
+          uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/ci-dist-first .tmp/ci-dist-second
       - name: Smoke-test installed wheel
-        run: uv run --frozen python scripts/smoke_wheel.py dist
+        run: uv run --frozen python scripts/smoke_wheel.py .tmp/ci-dist-first
       - name: Stage release candidate
-        run: uv run --frozen python scripts/release_artifacts.py dist .tmp/ci-release
+        run: uv run --frozen python scripts/release_artifacts.py .tmp/ci-dist-first .tmp/ci-release
       - name: Smoke-test release candidate
         run: uv run --frozen python scripts/smoke_release.py .tmp/ci-release
       - name: Run Ubuntu CPython 3.13 tests

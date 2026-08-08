@@ -38,8 +38,8 @@ def test_release_workflow_validates_before_publishing() -> None:
         "pytest -q",
         "mkdocs build --strict",
         "uv build",
-        "scripts/smoke_wheel.py dist",
-        "scripts/release_artifacts.py dist release --tag",
+        "scripts/smoke_wheel.py .tmp/release-dist-first",
+        "scripts/release_artifacts.py .tmp/release-dist-first release --tag",
         "scripts/smoke_release.py release",
         "gh release create",
     )
@@ -59,8 +59,8 @@ def test_ci_keeps_one_complete_distribution_gate_in_consolidated_platforms() -> 
     assert "uv run --frozen pytest -q --ignore=tests/integration/test_wgpu_render.py" in (
         verify_section
     )
-    assert "scripts/smoke_wheel.py dist" in verify_section
-    assert "scripts/release_artifacts.py dist .tmp/ci-release" in verify_section
+    assert "scripts/smoke_wheel.py .tmp/ci-dist-first" in verify_section
+    assert "scripts/release_artifacts.py .tmp/ci-dist-first .tmp/ci-release" in verify_section
     assert "scripts/smoke_release.py .tmp/ci-release" in verify_section
 
     compatibility_section = workflow.split("  desktop:", 1)[1]

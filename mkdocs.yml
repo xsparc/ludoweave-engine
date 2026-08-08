@@ -61,6 +61,7 @@ nav:
       - RFC-0018 - Third-party conformance-adoption readiness: rfcs/0018-third-party-conformance-adoption-readiness.md
       - RFC-0019 - CI runner consolidation: rfcs/0019-ci-runner-consolidation.md
       - RFC-0020 - CI change qualification: rfcs/0020-ci-change-qualification.md
+      - RFC-0021 - Distribution reproducibility: rfcs/0021-enforce-distribution-reproducibility.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

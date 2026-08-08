@@ -966,6 +966,24 @@ early Linux failure, and trades additional wall time for lower avoidable quota.
 Workflow triggers, privileges, pins, credentials, cache, timeouts, runtime,
 dependencies, lock, release workflow, and supported versions remain unchanged.
 
+## M38 distribution-reproducibility boundary
+
+M38 compares two independent output directories after rebuilding the pure
+wheel and source archive in the existing Linux pull-request and tag-release
+jobs. The standard-library verifier requires exactly one matching
+`py3-none-any` wheel/source pair per directory, rejects symlinks, nested or
+extra entries, missing or inconsistent names, unreadable files, and differing
+bytes, and emits deterministic versioned JSON with sizes and SHA-256 digests.
+
+Comparison happens before installed-wheel smoke, release staging, attestation,
+or publication. It adds one build to each already allocated distribution job
+without adding a workflow job, matrix entry, action, permission, trigger,
+dependency, lock entry, credential, runtime import, or public API. The bounded
+claim is same-source byte identity inside one validated job. It is not
+cross-platform reproducibility, a hermetic-build claim, independent rebuild
+consensus, provenance, publication, or package availability. RFC-0021 defines
+the complete decision.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
