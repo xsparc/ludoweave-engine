@@ -38,6 +38,18 @@ Only commands actually executed in the current repository are recorded here.
 | First local documentation-record gate | Not executed | Every uv-backed command was blocked before project execution because the sandbox could not read the existing managed uv cache. PowerShell continued through the semicolon-separated group and the final standalone whitespace check returned zero; no lock, sync, static, docs, architecture, build, reproducibility, wheel, or release pass is claimed from that group. |
 | Corrected local documentation-record gate | 0 | With approved access to the existing cache, the unchanged lock resolved 46 packages, the no-graphics environment removed six optional packages, whole-tree formatting reported 274 files, Ruff passed, strict docs built in 0.95 seconds, and all 339 architecture tests passed in 2.13 seconds. Two fresh builds matched: the 266,811-byte wheel SHA-256 is `1831f7cb5c1a5cca9a79f8352a46c999ba61ce7c910389d49d22d50b3c5953c7`; the 893,458-byte sdist SHA-256 is `ec5b1300ec7d707c94899e16739b96a7ebf71e8e38ade3b15cf2c9ca7cfa0203`. Isolated-wheel and complete ten-artifact release smoke passed, as did whitespace. |
 
+## M38 documentation-only hosted proof and closeout - 2026-08-09
+
+| Command or check | Exit | Result |
+| --- | ---: | --- |
+| First committed record-classifier invocation | 2 | The invocation omitted the required `--github-output` argument, so argument validation exited before classification. No result is claimed from that attempt. |
+| Corrected committed record-classifier invocation | 0 | Against exact base `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7` and head `d4d02bb8dae9f0524f923f40bfa338e99c0db09a`, the trusted classifier reported four paths, `classification=documentation`, and `substantive=false`. The paths were `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`. |
+| PR #66 documentation-lane hosted proof | 0 | Run `31262609814` passed exact head `d4d02bb8dae9f0524f923f40bfa338e99c0db09a`. Linux job `93115649996` passed trusted classification, lock, no-graphics sync, format, lint, strict docs, 339 architecture tests, two-build comparison, installed wheel, staging, and release smoke in 32 seconds. All substantive-only steps skipped. |
+| Desktop quota proof | 0 | GitHub skipped desktop matrix umbrella `93115706948` in zero seconds before matrix expansion. It had no checkout, setup, test, or other runner step and allocated no Windows/macOS runner. Exactly one hosted allocation was consumed by the record PR. |
+| Final PR #66 review audit | 0 | GitHub reported exact base `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7`, exact head `d4d02bb8dae9f0524f923f40bfa338e99c0db09a`, `MERGEABLE`, and `CLEAN`, with one successful Linux check, one skipped desktop umbrella, and no comment, review, or review thread. The record commit contains the exact maintainer DCO trailer. |
+| PR #66 squash integration audit | 0 | PR #66 merged at `2026-08-08T14:43:34Z` as GitHub-signature-verified squash `42046d521242147cc5ed56874238d25de9870316`, with sole parent exact feature squash and tree `0776afee4c20884240cd4828095ac3b03ae46423` exactly equal to the reviewed record head. The squash has a parsed DCO trailer. The remote and local record branches were deleted. |
+| Final main-run quota audit | 0 | `gh run list --branch main` contained no run for record squash `42046d521242147cc5ed56874238d25de9870316`; the latest listed main run remained pre-M34 run `31226750474`. Both M38 merges therefore consumed no redundant main runner. |
+
 ## M37 development evidence - 2026-08-08, Windows, CPython 3.12
 
 | Command | Exit | Result |
