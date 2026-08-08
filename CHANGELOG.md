@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Consolidate the unchanged eight pull-request validation slices into three
+  OS-owned hosted runner allocations under M36/RFC-0019, retaining exact
+  Python/platform/graphics/distribution coverage, least privilege, pins,
+  caching, timeouts, PR-only triggers, and record-only exclusions.
 - Add M35/RFC-0018 third-party conformance-adoption admission evidence that
   fixes the three existing installed profiles, preserves failed and
   not-executed submissions, and retains the current empty-manifest result with

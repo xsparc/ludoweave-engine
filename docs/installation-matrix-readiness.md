@@ -49,8 +49,9 @@ record-derived environment or release aggregates.
 
 ## Why current CI does not satisfy the metric
 
-The eight essential pull-request jobs validate source and locally built
-artifacts before merge. They are necessary engineering gates, but they do not
+The three M36 pull-request runner allocations execute the same eight source and
+locally built-artifact validation slices before merge. They are necessary
+engineering gates, but they do not
 prove that a public release asset exists or that independent clean installs of
 that immutable asset succeeded across the supported matrix. Synthetic complete
 records prove only the Boolean gate mechanics.

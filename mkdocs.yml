@@ -59,6 +59,7 @@ nav:
       - RFC-0016 - Benchmark-regression-rate readiness: rfcs/0016-benchmark-regression-rate-admission-readiness.md
       - RFC-0017 - Agent-tool recovery-rate readiness: rfcs/0017-agent-tool-recovery-rate-admission-readiness.md
       - RFC-0018 - Third-party conformance-adoption readiness: rfcs/0018-third-party-conformance-adoption-readiness.md
+      - RFC-0019 - CI runner consolidation: rfcs/0019-ci-runner-consolidation.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

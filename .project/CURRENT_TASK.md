@@ -1,71 +1,51 @@
 # Current Task
 
-- **Task:** M35 - third-party conformance-adoption admission readiness
-- **Status:** Complete. The corrected implementation passed the full local and
-  hosted gates, its sole review thread is resolved, and PR #58 is squash-
-  integrated.
+- **Task:** M36 - CI runner consolidation without validation-slice loss
+- **Status:** In progress on `maintenance/m36-ci-runner-consolidation`.
 - **Started:** 2026-08-08
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  commit `277de9052e768a5f70d32f1a2f67ec9f93353723`. Only `main` existed locally
-  and remotely, no pull request was open, `git fsck --full --no-dangling`
-  passed, and the latest valid hosted run was M34 pull-request run
-  `31229138742`, whose eight essential jobs passed.
-- **Outcome:** Make the design plan's final ordered longer-term metric—the
-  number of independently authored third-party adapters or plugin-backed
-  adapters passing conformance—mechanically reportable from a complete
-  reviewed project-accepted submission census without discovering, importing,
-  installing, or executing providers and without fabricating adoption.
+  commit `ba9125389ab2b2b760ca7115b5b1b03c447f4190`. Only `main` existed locally
+  and remotely, no pull request was open, and `git fsck --full --no-dangling`
+  passed. M35 feature run `31231410432` passed all eight allocations; its
+  feature and zero-run record PRs are squash-integrated.
+- **Outcome:** Reduce per-pull-request runner allocations and repeated setup
+  from eight to three while preserving every existing validation slice and all
+  security, trigger, version, platform, graphics, and distribution boundaries.
 - **Acceptance gate:**
-  - Add one strict reviewed manifest that explicitly asserts complete
-    project-accepted submission-census review, is empty today, and pins exact
-    bytes and SHA-256.
-  - Admit only distinct independent external implementation identities that
-    are neither project-owned nor maintainer-authored.
-  - Accept only the exact installed M17 render-device, M18 agent-tool, and M19
-    WorldStore protocols/profiles and fixed reference check counts.
-  - Require a reviewed compatible M12 `render.device` manifest plus a passing
-    render-device profile for plugin-backed evidence; compatibility alone
-    never counts.
-  - Bind public installed wheels, immutable repository revisions, reports,
-    reviews, license, supported CPython/platform, and complete human review.
-  - Preserve passed, failed, and not-executed accepted submissions plus the
-    complete mandatory history prefix; count only passed implementations.
-  - Emit only deterministic sanitized aggregates and keep the current result
-    `not-ready` with zero passing implementations.
-  - Exercise source, isolated-wheel, and release-sample paths and accept
-    RFC-0018 without changing runtime, public API, conformance profiles,
-    dependencies, lock, version, or CI topology.
-- **Non-scope:** Global package discovery or ecosystem census; provider import,
-  installation, execution, sandboxing, networking, or telemetry; new adapters,
-  plugin capabilities, conformance protocols/profiles, runtime/API/format
-  changes, dependencies/lock/version, workflow jobs, release/publication,
-  certification/support claims, Rust, PyO3, WASM, editor, physics, or 3D work.
-- **SemVer:** No package/public-Python change; version remains `0.1.0a1` and
-  stability labels remain unchanged.
-- **Baseline evidence:** Repository/history/branch audit was clean at the exact
-  base. GitHub reported no open pull request and no branch protection. The
-  latest M34 hosted pull-request run passed all eight existing jobs. The
-  unchanged lock contains 46 packages, and 154 inherited conformance/plugin/
-  release tests passed in 3.54 seconds.
-- **Current evidence:** The exact empty 250-byte manifest has SHA-256
-  `adee8c68b5d89923ee2682162eb24cd9542a4601b1ff6fb901709ebcc0066767`.
-  The first evaluator gate passed formatting and Ruff, while strict Pyright
-  found four redundant test casts and 73 of 74 tests passed because one direct
-  evaluator assertion expected JSON's list rather than the evaluator's tuple.
-  After focused test-only corrections, formatting, Ruff, and strict Pyright
-  passed and all 74 evaluator tests passed in 2.21 seconds. Findings-first
-  review then rejected reserved non-public domains and non-wheel paths from
-  public-wheel evidence. The final focused gate passes 160 tests; the complete
-  suite passes 1,716 tests with nine skips; all static/docs, universal build,
-  isolated wheel/release, real-wgpu/profile, vertical-slice, scope, archive,
-  credential-pattern, neutral-identity, and Git-object checks pass. Initial
-  hosted run `31231040437` passed all eight jobs, but automated review found an
-  identifier-grammar mismatch with the installed runners. The exact grammar
-  correction now passes 100 focused tests and the complete 1,718-test suite,
-  plus static/docs, real-wgpu, rebuilt wheel, isolated-wheel, and fresh release
-  smoke. Corrected hosted run `31231410432` passed all eight jobs on exact head
-  `fb0d887eed80a2d96c4b3348d950df371e58db56`; the sole review thread is
-  resolved. PR #58 squash-integrated the exact tree as GitHub-verified
-  `603403967e333342c5ff72222ea3567d3252fd6f` with sole parent exact M35 base
-  and a valid parsed DCO trailer. The feature branch is deleted locally and
-  remotely, and the PR-only workflow created no redundant post-merge run.
+  - Allocate exactly one Ubuntu runner and a two-entry Windows/macOS desktop
+    matrix: three hosted allocations total instead of eight.
+  - Preserve Ubuntu CPython 3.12 quality, non-provider tests, docs, base profile,
+    build, isolated-wheel smoke, and release smoke.
+  - Preserve full compatibility tests on Ubuntu 3.13/3.14 and Windows/macOS
+    3.14 using explicit managed-Python environment transitions.
+  - Preserve real-graphics tests, graphics profile, Clockwork Arena, and Agent
+    World Builder on CPython 3.12 across Ubuntu, Windows, and macOS.
+  - Retain pull-request-only and `.project/**` exclusions, `contents: read`,
+    exact action/uv pins, disabled checkout credentials, cache, timeouts,
+    desktop fail-fast isolation, and superseded-run cancellation.
+  - Add architecture tests proving allocation count, every retained slice,
+    security/trigger invariants, and unchanged runtime/release surfaces.
+  - Accept RFC-0019 and align the smallest authoritative maintenance docs.
+- **Non-scope:** Removing or weakening a validation slice; changing test
+  behavior; runtime/API/protocol/format changes; dependencies, lock, package
+  version, release workflow, tag/publication, provider admission, support
+  policy, or any deferred engine subsystem.
+- **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
+- **Baseline evidence:** The current workflow expands three YAML job definitions
+  into eight runner allocations and repeats checkout/setup eight times. Exact
+  M35 run `31231410432` passed all slices. Twenty-five inherited M34/M35
+  workflow-boundary tests passed in 0.64 seconds. The first sandboxed lock
+  check could not read the managed uv cache; the corrected check resolved the
+  unchanged 46-package lock. CPython 3.12, 3.13, and 3.14 are locally present.
+- **Current evidence:** The workflow has one Ubuntu job and a two-entry desktop
+  matrix. Ubuntu sequentially owns quality/distribution, 3.12 graphics, and
+  3.13/3.14 compatibility; each desktop runner owns 3.12 graphics then 3.14
+  compatibility. Exact local transitions pass 1,714 tests on both 3.13 and
+  3.14; restored 3.12 passes 1,724 tests with nine skips. Whole-tree static/
+  docs, YAML parsing, 34 focused workflow/release tests, universal build,
+  isolated wheel/release smoke, real-wgpu/profile, and both vertical slices
+  pass. Findings-first review moved later-interpreter installation before
+  expensive work and found no remaining issue. Scope/security audit passes and
+  the final implementation-tree 3.12 suite passes 1,724 tests with nine skips.
+  Only factual `.project/**` rows followed. Hosted
+  three-allocation proof remains pending.

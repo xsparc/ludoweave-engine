@@ -2,6 +2,14 @@
 
 No architecture decision is currently blocked.
 
+RFC-0019 resolves M36 CI runner ownership by preserving all eight existing
+validation slices inside three OS-owned allocations. Ubuntu runs quality/
+distribution, 3.12 graphics, and sequential 3.13/3.14 compatibility. Windows
+and macOS each run 3.12 graphics followed by 3.14 compatibility. The accepted
+tradeoff is less per-slice parallelism and rerun granularity in exchange for
+five fewer runner allocations and repeated setups. No billed-minute saving is
+claimed before hosted evidence; no coverage slice is removed.
+
 RFC-0018 resolves how third-party conformance-adoption evidence is admitted.
 The offline harness counts distinct independent external implementation
 identities only after a complete project-accepted submission-census review and

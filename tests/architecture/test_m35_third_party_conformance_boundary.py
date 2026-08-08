@@ -218,15 +218,17 @@ def test_m35_rfc_is_accepted_and_registered() -> None:
     assert "0018-third-party-conformance-adoption-readiness.md" in nav
 
 
-def test_m35_uses_existing_ci_topology_and_records_only_filter() -> None:
+def test_m35_retains_pr_only_filter_and_supported_os_coverage() -> None:
     workflow = (_ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
 
     assert "push:" not in workflow
     assert '      - ".project/**"' in workflow
-    assert workflow.count("runs-on:") == 3
     assert "matrix.os" in workflow
-    assert "matrix.python" in workflow
-    assert "graphics" in workflow.casefold()
+    for platform in ("ubuntu-latest", "windows-latest", "macos-latest"):
+        assert platform in workflow
+    assert "third_party_conformance_adoption" in (_ROOT / "scripts" / "smoke_wheel.py").read_text(
+        encoding="utf-8"
+    )
 
 
 def test_m35_validator_has_no_engine_or_provider_dependency() -> None:

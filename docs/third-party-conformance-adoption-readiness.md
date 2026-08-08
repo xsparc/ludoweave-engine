@@ -110,6 +110,6 @@ M35 adds no runtime source, discovery, loader, registry, dynamic import,
 installation, provider execution, network request, telemetry, plugin field,
 conformance protocol/profile, public API/export, dependency, lockfile, package
 version, workflow job, release workflow, tag, publication, certification,
-stability label, SLA, or support promise. The existing eight essential jobs
-remain the one substantive pull-request gate; `.project/**`-only records use no
-hosted runner.
+stability label, SLA, or support promise. M36 groups the same eight validation
+slices into three runner allocations for one substantive pull-request gate;
+`.project/**`-only records use no hosted runner.

@@ -1,5 +1,31 @@
 # Project State
 
+## M36 in progress
+
+M36 starts from exact clean synchronized M35 integration-record commit
+`ba9125389ab2b2b760ca7115b5b1b03c447f4190`. It changes CI orchestration only:
+the same eight validation slices move from eight runner allocations to three
+OS-owned allocations. One Ubuntu runner owns CPython 3.12 quality,
+distribution, base/graphics profiling, real graphics, and the sequential 3.13/
+3.14 compatibility slices. A two-entry desktop matrix gives Windows and macOS
+one runner each for 3.12 graphics followed by 3.14 compatibility.
+
+The structural target is five fewer runner allocations and five fewer repeated
+checkout/setup sequences, not removal of coverage. PR-only and `.project/**`
+filters, least privilege, disabled credential persistence, exact pins, frozen
+lock, caching, timeouts, desktop failure isolation, and superseded-run
+cancellation remain. Runtime, tests, dependencies, lock, package version,
+release workflow, public contracts, supported platforms/versions, tag,
+publication, and support policy remain unchanged. Workflow implementation,
+architecture regressions, RFC-0019, and documentation exist on
+`maintenance/m36-ci-runner-consolidation`. Exact sequential 3.13 and 3.14
+transitions pass complete 1,714-test suites on Windows; restored 3.12 passes
+1,724 tests. Static/docs/YAML, distribution, isolated wheel/release, real-
+wgpu/profile, vertical-slice, and focused workflow/release gates pass.
+Findings-first review moved compatibility-interpreter installation before
+expensive work. Scope/security and final implementation-tree 1,724-test gates
+pass; only factual `.project/**` rows followed. Hosted proof remains pending.
+
 ## M35 complete
 
 M35 starts from exact clean synchronized M34 integration-record commit
