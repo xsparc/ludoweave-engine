@@ -62,6 +62,7 @@ nav:
       - RFC-0019 - CI runner consolidation: rfcs/0019-ci-runner-consolidation.md
       - RFC-0020 - CI change qualification: rfcs/0020-ci-change-qualification.md
       - RFC-0021 - Distribution reproducibility: rfcs/0021-enforce-distribution-reproducibility.md
+      - RFC-0022 - Release tag integrity: rfcs/0022-enforce-release-tag-integrity.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

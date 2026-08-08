@@ -1,44 +1,44 @@
 # Current Task
 
-- **Task:** M38 - distribution reproducibility enforcement
-- **Status:** Complete, hosted-validated, reviewed, squash-integrated, publicly
-  recorded, and cleaned up.
-- **Started:** 2026-08-08
-- **Completed:** 2026-08-09
+- **Task:** M39 - release-tag integrity enforcement
+- **Status:** In progress on `release/m39-tag-integrity`.
+- **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Feature base:** Exact M37 closeout
-  `3578da64b2686cd8d63340aeb1eed30f5c4cb761`.
-- **Feature squash:** `9f6ca61ccb1f9b7e0796e5cc60c7dd38e6af99d7`.
-- **Public record squash:** `42046d521242147cc5ed56874238d25de9870316`.
-- **Outcome:** The existing Linux pull-request and tag-release jobs fail
-  closed unless two same-source distribution builds contain exactly one
-  matching universal wheel and source archive whose bytes are identical.
-- **Acceptance evidence:**
-  - Corrected substantive run `31261807768` passed exact head
-    `4f3db7446c842df4f36d7cc8f8321a89bbe5997f` in exactly three allocations:
-    Linux 6m50s, macOS 1m59s, and Windows 3m44s. Desktop work began only after
-    Linux passed.
-  - The Linux verifier emitted
-    `ludoweave.distribution-reproducibility/1` with `status=pass`, a
-    266,797-byte wheel SHA-256
-    `6c43bb79ed5de115ee645f1c8a9b4e8338f364c5bb1f53e08cde58e82e9afe06`,
-    and an 892,185-byte sdist SHA-256
-    `8f21585819f76f289887a6194e44bcf06b72497d70d13451326cc778e48e4f8a`.
-  - The sole feature review finding is corrected, resolved, and outdated.
-    Both feature commits, feature squash, record commit, and record squash have
-    the required DCO trailers; both squash commits have valid GitHub signatures
-    and exact reviewed trees.
-  - Documentation record run `31262609814` classified four Markdown paths as
-    documentation, passed one Linux allocation in 32 seconds, and skipped the
-    desktop matrix before expansion in zero seconds with no runner steps.
-  - No feature or record merge triggered a `main` run. All M38 feature and
-    public-record branches are deleted locally and remotely.
-- **Non-scope:** Runtime or public API; persistent formats/protocols; package
-  version, dependency, lock, platform/version support; timestamp-policy change;
-  cross-platform or independent-rebuilder comparison; attestation changes;
-  tag, release, PyPI publication, certification, or deferred runtime subsystem.
+- **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
+  commit `185e206d6b9c1e97512e289bcba84701dc29c147`. Only `main` existed locally
+  and remotely, no pull request, issue, or local/remote tag was open/present,
+  and `git fsck --full --no-dangling` passed.
+- **Outcome:** Fail the existing tag-release job before expensive or publishing
+  work unless the exact version ref is an annotated GitHub-verified signed tag
+  at the checked-out event commit and that commit is reachable from
+  `origin/main`.
+- **Acceptance gate:**
+  - Strictly validate bounded tag/SHA identities and capped duplicate-free
+    GitHub ref/tag JSON without emitting signature or payload content.
+  - Require exact GitHub ref, annotated tag object, tag/commit targets,
+    `verified=true`, `reason=valid`, and non-empty verification evidence.
+  - Require matching local annotated tag/commit objects, exact `HEAD`, and
+    `origin/main` ancestry.
+  - Fail malformed, missing, oversized, unsigned, lightweight, retargeted,
+    detached, missing-Git, and non-main cases with versioned structured errors.
+  - Run immediately after version validation and before system setup,
+    dependency synchronization, tests, build, staging, attestation, or
+    publication in the existing tag job.
+  - Preserve the M38 pull-request topology and release job; add no runner,
+    action, permission, trigger, dependency, credential, cache key, or
+    publication authority.
+  - Document GitHub as signature-verification authority and explicitly reject
+    signer/key allowlist, local trust-store, immutable-release, PyPI, supported-
+    channel, tag-creation, or publication claims.
+  - Run the complete local gate and one substantive hosted pull-request gate.
+- **Non-scope:** Creating/pushing a tag; GitHub release or PyPI publication;
+  signer authorization or key lifecycle; immutable release settings; runtime or
+  public API; persistent formats/protocols; package version/dependency/lock;
+  platform/version support; attestation changes; deferred runtime subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Next:** Select the next bounded milestone from repository evidence; do not
-  infer release, publication, or deferred subsystem authority.
+- **Current evidence:** The exact baseline lock resolves 46 packages and all ten
+  inherited release/M38 boundary tests pass. The validator passes 16 behavior/
+  adversarial tests after one strict-typing correction. Integrated
+  verifier/workflow focus passes 23 tests and workflow YAML parses.
