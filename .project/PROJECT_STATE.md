@@ -7,7 +7,8 @@
   open pull request, tag, release, or post-closeout `main` run.
 - Scope: after all connected-peer/TLS checks and `getresponse()`, validate
   documented response version and framing before status, redirect, or body
-  use. Require integer HTTP/1.1 value `11`; allow absent or case-insensitive
+  use. Require the HTTP/1.1-class integer value `11` without claiming exact raw
+  status-line identity; allow absent or case-insensitive
   exact `chunked` transfer encoding; reject transfer encoding plus content
   length; require any content length to be a string before existing bounds.
 - Failure: malformed, unsupported, ambiguous, missing, and raising metadata
@@ -18,7 +19,8 @@
   authority, private response state, raw HTTP/chunk parser, alternate client,
   HTTP/2 or HTTP/3, proxy, decompression, retry, cache, or network sandbox.
   Fixture/PR evidence is not a real public release observation or general
-  request-smuggling protection.
+  request-smuggling protection, and public value `11` is not exact status-line
+  token evidence because CPython can normalize another raw `HTTP/1.x` value.
 - Decision: accepted RFC-0038 records the exact metadata, ordering, ownership,
   failure, non-claim, and authority boundaries.
 - Development evidence: all 157 inherited M47-M54 assertions pass after valid
@@ -38,6 +40,18 @@
   docs, reproducible-build, installed-wheel, complete release-smoke,
   whitespace, and Git-object gates pass. The final evidence-inclusive static
   gate also passes; hosted exact-head validation remains pending.
+- Hosted review correction: initial exact head
+  `77812ae6b25635a9831b43088bd4397645fb4adf` passed run `31324078779` in
+  exactly three Linux-first allocations. Delayed review then correctly found
+  that CPython maps other raw `HTTP/1.x` status-line tokens to public value
+  `11`, invalidating the original exact-token implication. M55 now treats `11`
+  as the documented compatibility bucket and explicitly disclaims exact raw
+  token evidence. Corrected focused/static/docs and complete graphics-enabled
+  CPython 3.12-3.14 suites, real-wgpu, profiles, both vertical slices,
+  reproducible builds, isolated-wheel smoke, and complete release smoke pass.
+  Corrected findings-first review and final evidence-inclusive static gate have
+  no remaining local issue. Hosted validation remains pending; the PR is not
+  mergeable by policy until it passes and the finding is resolved.
 
 ## M54 public release TLS session freshness - complete
 

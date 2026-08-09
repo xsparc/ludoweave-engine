@@ -63,7 +63,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M52 public release TLS service-identity evidence | PR #108 corrected real-connection invalid-IDNA ordering during review, passed actual socket identity/certificate checks in the exact three-allocation gate, and squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M53 public release TLS context binding | PR #111 passed exact post-handshake socket/context identity, strict client-role and policy revalidation in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M54 public release TLS session freshness | PR #114 passed exact post-handshake `session_reused is False` evidence on every hop in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
-| In progress | M55 public release HTTP response framing | Require documented HTTP/1.1 metadata and unambiguous supported framing before response status, redirect, or body use, with unchanged workflows and release authority |
+| In progress | M55 public release HTTP response framing | Require the documented HTTP/1.1-class value and unambiguous supported framing before response status, redirect, or body use, without claiming exact raw status-line identity or changing workflows/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -808,11 +808,15 @@ was created.
 M55 starts from verified M54 closeout commit
 `aab15d601eb4402213f2e058f270237b964f1000`. After all connected-peer and TLS
 checks and `getresponse()`, but before response status, redirect, or body use,
-it requires documented integer HTTP/1.1 version `11`, permits absent or case-
-insensitive exact `chunked` `Transfer-Encoding`, rejects its coexistence with
+it requires documented HTTP/1.1-class integer version value `11`, permits
+absent or case-insensitive exact `chunked` `Transfer-Encoding`, rejects its coexistence with
 `Content-Length`, and requires any content length to be a string before the
 existing bounded syntax and exact-size checks. Every redirect repeats the
 framing validation independently.
+
+CPython may normalize another raw `HTTP/1.x` status-line token into public
+value `11`; the slice therefore does not claim exact wire-token identity and
+does not add private parser introspection to manufacture that evidence.
 
 The slice adds no private response-state dependency, raw HTTP/chunk parser,
 alternate client, HTTP/2 or HTTP/3, proxy, decompression, retry, cache, network

@@ -495,7 +495,7 @@ def _download(
 def _validate_http_response_framing(
     response: http.client.HTTPResponse,
 ) -> str | None:
-    """Require unambiguous HTTP/1.1 response framing metadata."""
+    """Require the documented HTTP/1.1-class response and safe framing metadata."""
 
     try:
         version = cast(object, response.version)

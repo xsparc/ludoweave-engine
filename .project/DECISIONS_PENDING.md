@@ -3,7 +3,9 @@
 No architecture decision is currently blocked.
 
 RFC-0038 resolves M55 public release HTTP response-framing conformance. Every
-response must expose documented HTTP/1.1 version `11`; transfer encoding is
+response must expose documented HTTP/1.1-class value `11`; this is explicitly
+not exact raw status-line token evidence because CPython can normalize another
+`HTTP/1.x` value. Transfer encoding is
 absent or exactly `chunked` case-insensitively, cannot coexist with content
 length, and any present content length is a string before existing bounded
 checks. Every redirect repeats the validation before status or body use. This

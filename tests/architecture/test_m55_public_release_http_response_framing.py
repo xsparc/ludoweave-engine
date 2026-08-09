@@ -5,6 +5,8 @@ from __future__ import annotations
 import hashlib
 import http.client
 import importlib.util
+import io
+import socket
 import ssl
 import sys
 from collections.abc import Mapping
@@ -161,7 +163,7 @@ def _install_response(
         {},
     ),
 )
-def test_http_1_1_accepted_framing_streams_decoded_bounded_body(
+def test_version_11_accepted_framing_streams_decoded_bounded_body(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     headers: Mapping[str, object],
@@ -192,8 +194,19 @@ def test_http_1_1_accepted_framing_streams_decoded_bounded_body(
     assert events[-2:] == ["response-close", "connection-close"]
 
 
+def test_cpython_version_11_bucket_is_not_exact_status_line_evidence() -> None:
+    class RawSocket:
+        def makefile(self, _mode: str) -> io.BytesIO:
+            return io.BytesIO(b"HTTP/1.9 200 OK\r\nContent-Length: 0\r\n\r\n")
+
+    response = http.client.HTTPResponse(cast(socket.socket, RawSocket()))
+    response.begin()
+
+    assert response.version == 11
+
+
 @pytest.mark.parametrize("version", (10, 9, 20, True, None, "11"))
-def test_non_http_1_1_version_fails_before_header_or_body_use(
+def test_non_version_11_value_fails_before_status_or_body_use(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     version: object,
@@ -447,6 +460,7 @@ def test_m55_public_and_maintainer_docs_define_the_exact_boundary() -> None:
     assert all("m55" in document for document in documents)
     for term in (
         "http/1.1",
+        "status-line token",
         "transfer-encoding",
         "content-length",
         "chunked",

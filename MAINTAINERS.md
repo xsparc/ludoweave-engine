@@ -43,14 +43,17 @@ claims.
 ## Current boundary
 
 M55 requires the M47-M54 portable public-release client to validate documented
-HTTP/1.1 response framing without widening release authority. After all peer
-and TLS checks and `getresponse()`, but before status, redirect, or body use,
-require `HTTPResponse.version` to be the integer `11`; require
+HTTP/1.1-class response framing without widening release authority. After all
+peer and TLS checks and `getresponse()`, but before status, redirect, or body
+use, require `HTTPResponse.version` to be the integer `11`; require
 `Transfer-Encoding` to be absent or exactly `chunked` case-insensitively;
 reject its coexistence with `Content-Length`; and require any content length to
 be a string before the existing ASCII-decimal and bounded-size checks. Missing,
 unsupported, malformed, ambiguous, or raising observations use the content-
 silent `public_release.request_failed` code. Every redirect repeats the check.
+CPython may normalize another raw `HTTP/1.x` status-line token to value `11`,
+so maintainers must not present this public-property check as exact wire-token
+evidence.
 
 Preserve M54's fresh-session contract, M51's negotiated-session contract,
 M50's explicit per-hop context and key-log isolation, M49's connected-peer
@@ -61,8 +64,8 @@ alternate client, HTTP/2 or HTTP/3, proxy, retry, decompression, cache, network
 sandbox, workflow edit, runner, action, permission, trigger, credential,
 release mutation, rollback, cleanup, artifact-set, dependency, lock, version,
 runtime, package, or public-API change. It must not claim a real release
-observation, general request-smuggling protection, independent/external
-evidence, every intermediary or delivery path, future availability,
+observation, exact status-line identity, general request-smuggling protection,
+independent/external evidence, every intermediary or delivery path, future availability,
 immutability, artifact security, PyPI, or a supported release channel. M0
 through M54 are complete, reviewed, hosted-validated, and integrated into
 `main`. M55 starts from exact verified M54 closeout commit
@@ -79,7 +82,8 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   verified socket's reference hostname and peer certificate, and M53 proves
   the socket retained the exact client context after the handshake. M54 then
   requires the actual socket to report that its session was not reused, and
-  M55 validates unambiguous documented HTTP/1.1 response framing; none of these
+  M55 validates the documented HTTP/1.1-class value and unambiguous response
+  framing without claiming the exact raw status-line token; none of these
   milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final

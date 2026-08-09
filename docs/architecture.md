@@ -1437,10 +1437,15 @@ availability, or a supported channel. RFC-0037 defines the complete boundary.
 M55 validates the documented HTTP response metadata after all connected-peer
 and TLS checks and `getresponse()`, but before status, redirect, or body use.
 Every response, including every redirect, must report `version` as the non-
-boolean integer `11`. `Transfer-Encoding` must be absent or exactly `chunked`
-under case-insensitive comparison and cannot coexist with `Content-Length`.
-Any present content length must be a string before the existing ASCII-decimal,
-maximum-size, and exact-size validation runs.
+boolean integer `11`, Python's documented HTTP/1.1-class value.
+`Transfer-Encoding` must be absent or exactly `chunked` under case-insensitive
+comparison and cannot coexist with `Content-Length`. Any present content length
+must be a string before the existing ASCII-decimal, maximum-size, and exact-
+size validation runs.
+
+The public version property is not exact status-line token evidence. CPython
+can normalize another raw `HTTP/1.x` token into value `11`; M55 deliberately
+does not use a private parser surface to distinguish it.
 
 The standard-library HTTP connection remains the owner and decoder. Valid
 chunked payloads reach the existing deadline-aware, byte-bounded decoded-body
@@ -1454,8 +1459,8 @@ M55 uses no private response `chunked`, `length`, or `will_close` state, adds no
 raw HTTP or chunk parser, alternate client, HTTP/2 or HTTP/3, proxy,
 decompression, workflow, allocation, dependency, package, runtime API, or
 release authority. Fixture and pull-request evidence are not a real public
-release observation, a general request-smuggling defense, independent or
-external verification, every intermediary or delivery path, future
+release observation, exact status-line identity, a general request-smuggling
+defense, independent or external verification, every intermediary or delivery path, future
 availability, immutability, artifact security, PyPI availability, or a
 supported channel. RFC-0038 defines the complete boundary.
 

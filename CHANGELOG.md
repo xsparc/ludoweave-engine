@@ -6,10 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
-- Add M55/RFC-0038 documented HTTP/1.1 response-version and framing validation
-  on every public-release response, rejecting unsupported transfer codings and
-  `Transfer-Encoding`/`Content-Length` ambiguity before status or body use,
-  without changing workflows, dependencies, runtime APIs, or release authority.
+- Add M55/RFC-0038 documented HTTP/1.1-class response-value and framing
+  validation on every public-release response, rejecting unsupported transfer
+  codings and `Transfer-Encoding`/`Content-Length` ambiguity before status or
+  body use while explicitly not claiming exact raw status-line token evidence.
 - Add M54/RFC-0037 exact post-handshake public-release TLS session-freshness
   evidence through `session_reused is False` on every hop before later TLS
   observations or HTTP, without changing workflows, dependencies, runtime
