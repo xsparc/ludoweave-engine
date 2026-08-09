@@ -39,7 +39,24 @@
   graphics-enabled CPython 3.12-3.14 suites with 1,997 passes and 14 expected
   skips each, ten real-wgpu tests, both profiles, both deterministic vertical
   slices, reproducible distribution, isolated-wheel smoke, and complete
-  release smoke. Replacement hosted validation and integration remain pending.
+  release smoke.
+- Hosted evidence: replacement PR #99 exact head
+  `01c955f0256c0c6e3a34afaf317c828e439b87ca` passed run `31307775820` in
+  exactly three allocations. Linux qualified first in 422 seconds; macOS then
+  passed in 143 seconds and Windows in 230 seconds. Linux passed 2,001 baseline
+  tests and Ubuntu CPython 3.13/3.14 each passed 2,001 with one skip. Each
+  desktop passed ten real-wgpu tests, both vertical slices, profiling, and
+  2,001 CPython 3.14 tests with one skip. Reproducible exact-head artifacts
+  were a 269,300-byte wheel at
+  `4d0c8951410d181730ade2103b5c19720a568eee004169de10d86659377baa1c` and a
+  1,023,424-byte sdist at
+  `ba42cc14a628a95ef928bd9fa7e974af61b2650fd18667b3a853cd9c9a1ef374`.
+- Integration: PR #99 was clean and mergeable with no review, comment, or
+  thread. GitHub-verified squash
+  `842aedc67a7ae4584821c4d8bc96a4ed8cb334c3` has exact reviewed tree
+  `a9755cbf65dfeba5087f5037f73bc6027c408444`, sole parent the M48 closeout,
+  and standalone DCO. No post-merge run was allocated, and the feature branch
+  is deleted locally/remotely. No signed-tag release rehearsal ran.
 
 ## M48 public release HTTP response conformance - complete
 

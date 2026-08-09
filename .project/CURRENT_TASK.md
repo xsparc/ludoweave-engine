@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M49 - public release connected-peer confinement
-- **Status:** Hosted review correction validated locally; retiring feature PR
-  #98 without merge and preparing a fresh immutable replacement branch.
+- **Status:** Corrected feature integration complete; publishing the factual
+  M49 integration record before the zero-run closeout.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -80,5 +80,16 @@
   31 focused assertions, and complete graphics-enabled CPython 3.12-3.14
   suites now pass; each complete suite has 1,997 passes and 14 expected skips.
   Ten real-wgpu tests, both three-repeat profiles, Clockwork Arena, and Agent
-  World Builder also revalidate. Replacement hosted validation and integration
-  remain pending. No real M49 tag/release execution exists or is claimed.
+  World Builder also revalidate. Replacement PR #99 exact head
+  `01c955f0256c0c6e3a34afaf317c828e439b87ca` passed run `31307775820` in
+  exactly three allocations: Linux `93230730827` in 422 seconds, macOS
+  `93231457896` in 143 seconds, and Windows `93231457841` in 230 seconds.
+  Linux and both supported Ubuntu compatibility suites passed 2,001 tests;
+  each nonbaseline suite had one expected skip. Both desktop compatibility
+  suites also passed 2,001 tests with one skip. The PR was clean and mergeable
+  with zero review, comment, or thread. GitHub-verified squash
+  `842aedc67a7ae4584821c4d8bc96a4ed8cb334c3` has reviewed tree
+  `a9755cbf65dfeba5087f5037f73bc6027c408444`, sole parent the M48 closeout,
+  and standalone DCO. No post-merge `main` run was allocated; the feature
+  branch is deleted locally/remotely. Integration record and zero-run closeout
+  remain. No real M49 tag/release execution exists or is claimed.
