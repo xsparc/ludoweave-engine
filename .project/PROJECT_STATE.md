@@ -1,6 +1,6 @@
 # Project State
 
-## M51 public release negotiated TLS-session conformance - implementation ready
+## M51 public release negotiated TLS-session conformance - feature complete
 
 - Base: clean synchronized M50 closeout
   `53f3804010f1556ecaff21a61b1e9c405a26e203`, with only `main` present
@@ -32,13 +32,31 @@
   both three-repeat profile contracts, Clockwork Arena, Agent World Builder,
   and all documented M1-M4 benchmark validators pass. Candidate-tree
   reproducible-distribution, isolated-wheel, and release-smoke identities are
-  recorded in `.project/TEST_EVIDENCE.md`; exact-head hosted artifacts remain
-  pending pull-request validation.
+  recorded in `.project/TEST_EVIDENCE.md`; the matching exact-head hosted
+  evidence follows below.
 - Review correction: initial PR #105 head `cdd3cc8fd943861072efafed593462fac7ffc3f4`
   passed its exact three-allocation hosted gate, but pre-merge review found that
   an unhashable malformed negotiated-version value could escape the stable
   failure boundary. The corrected candidate first type-checks the version and
   adds sequence/mapping regressions; the initial head will not be merged.
+- Hosted evidence: corrected head `a0612236aa13c2892fd95e55c2a77286d21572d4`
+  passed run `31312987430` in exactly three allocations. Linux job
+  `93243602979` passed in 7m16s before macOS `93244384980` and Windows
+  `93244384979` began; they passed in 2m02s and 3m55s. Linux baseline and every
+  hosted compatibility suite passed 2,029 tests; each nonbaseline suite had one
+  expected skip. All platforms passed ten graphics tests, profile smoke,
+  Clockwork Arena, and Agent World Builder. Exact-head reproducibility passed
+  for wheel `9539b42da0143fb893e107eeb554dfe0229125439627f361b3b7507b9f3df989`
+  and sdist `27c0604758c1d9eb391bf26a093c9c5f85396e33a6a84e4af49004bf0f1bbc5f`.
+- Integration: the sole prior review thread is outdated and resolved after the
+  correction; no issue comment or unresolved thread remains. PR #105 was
+  `MERGEABLE/CLEAN` at the exact corrected head/base. GitHub-verified squash
+  `ce4184b4ecedd9163a654cc96ae6c96086683760` has tree
+  `c331ea93e5332b47a3df20906dfb6f6e77c6cdb3` exactly equal to the reviewed
+  head, sole parent M50 closeout
+  `53f3804010f1556ecaff21a61b1e9c405a26e203`, and standalone DCO. No post-
+  merge `main` run was allocated; the feature branch is deleted locally and
+  remotely.
 - Non-claim: no real signed tag or release was created or exercised. Fixture
   and pull-request evidence are not a real public release observation,
   independent/external verification, every delivery path, future-availability

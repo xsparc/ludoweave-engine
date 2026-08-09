@@ -59,7 +59,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
 | Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
 | Done | M50 public release TLS key-log isolation | PR #102 passed explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and the exact three-allocation gate before verified squash integration |
-| In progress | M51 public release negotiated TLS-session conformance | Require TLSv1.2/TLSv1.3, a well-formed 128-bit-or-stronger cipher report, no compression, and HTTP/1.1-compatible ALPN before every request without changing release authority |
+| Done | M51 public release negotiated TLS-session conformance | PR #105 corrected malformed unhashable-version handling after review, passed the exact three-allocation gate, and squash-integrated pre-request TLSv1.2/TLSv1.3, cipher-strength, compression, and ALPN checks without changing release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -714,6 +714,17 @@ real public release observation, independent/external verification, every
 delivery path, future availability, immutability, artifact security, PyPI, or
 a supported channel. A real pass remains unclaimed until an authorized signed-
 tag release run executes.
+
+Corrected PR #105 head `a0612236aa13c2892fd95e55c2a77286d21572d4`
+passed run `31312987430` in exactly three allocations: Linux first in 7m16s,
+then macOS in 2m02s and Windows in 3m55s. The initial green head was not merged
+because review found an unhashable malformed-version escape; the corrected
+head added string guarding plus sequence/mapping regressions and the sole
+thread was resolved. GitHub-verified squash
+`ce4184b4ecedd9163a654cc96ae6c96086683760` has reviewed tree
+`c331ea93e5332b47a3df20906dfb6f6e77c6cdb3`, sole parent the M50 closeout,
+valid signature, and standalone DCO. No post-merge run was allocated, the
+feature branch is deleted, and no real tag or release was created.
 
 ## Good-first contribution queue
 

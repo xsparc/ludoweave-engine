@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M51 - public release negotiated TLS-session conformance
-- **Status:** A pre-merge review finding on PR #105 is corrected and locally
-  revalidated on `security/m51-negotiated-tls-conformance`; corrected-head
-  hosted validation is pending.
+- **Status:** Corrected PR #105 is fully validated and squash-integrated;
+  recording exact integration evidence on `records/m51-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -54,5 +53,10 @@
   isolated wheel, and complete release smoke also pass on the corrected
   candidate.
   Corrected attempts and exact results are recorded in
-  `.project/TEST_EVIDENCE.md`; corrected-head hosted evidence remains pending.
-  No real tag or release has been created or claimed.
+  `.project/TEST_EVIDENCE.md`. Corrected head
+  `a0612236aa13c2892fd95e55c2a77286d21572d4` passed run `31312987430` in
+  exactly three Linux-first allocations. The one prior review finding is
+  corrected, outdated, and resolved; no unresolved thread remains. Verified
+  squash `ce4184b4ecedd9163a654cc96ae6c96086683760` has the exact reviewed
+  tree, sole M50-closeout parent, valid GitHub signature, and standalone DCO.
+  No post-merge `main` run, real tag, or release was created or claimed.
