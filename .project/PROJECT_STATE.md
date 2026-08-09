@@ -1,6 +1,6 @@
 # Project State
 
-## M53 public release TLS context binding - in progress
+## M53 public release TLS context binding - complete
 
 - Base: exact clean synchronized M52 closeout
   `8d69f5b265277edb95ae47ea3a0af001217a4575`, with only `main` present and no
@@ -28,13 +28,24 @@
   expected skips. Real-wgpu, profiles, both vertical slices, documented
   benchmarks, reproducible build, isolated wheel, and release smoke pass.
   Exact commands, counts, hashes, and corrected attempts are recorded in test
-  evidence. Hosted exact-head evidence remains pending and is not claimed.
+  evidence.
 - Review: findings-first diff, scope, history, integrity, credential, identity,
   backend/native leakage, and public-boundary review found no actionable
   finding. The 19-path candidate changes no workflow, runtime package,
   benchmark, metadata, or lock. Final record-inclusive static, architecture,
-  docs, reproducible build, installed wheel, and release smoke pass. Feature
-  publication and hosted exact-head evidence remain pending.
+  docs, reproducible build, installed wheel, and release smoke pass.
+- Hosted evidence: exact feature head
+  `0b3eaad213a149fb96c138cd4eabc1d861d053e9` passed run `31319422736` in
+  exactly three Linux-first allocations. Linux passed in 7m05s before macOS
+  and Windows began; macOS passed in 2m08s and Windows in 4m01s. Every static,
+  supported-Python, real-graphics, profile, sample, reproducible-build,
+  isolated-wheel, and release-smoke step passed.
+- Integration: delayed review found no review, issue comment, inline comment,
+  or thread. GitHub-verified squash
+  `66f9d84eea57c270e9b18326348eb1ea5c4ebfa4` has the exact reviewed feature
+  tree, sole parent M52 closeout, valid signature, and standalone DCO. The
+  feature branch is deleted locally/remotely; no post-merge `main` run, tag, or
+  release was created.
 
 ## M52 public release TLS service-identity evidence - complete
 
