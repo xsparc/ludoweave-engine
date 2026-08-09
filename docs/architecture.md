@@ -1196,6 +1196,36 @@ pinned download action but changes no pull-request CI allocation, release
 trigger or publication authority, staged artifact, dependency, runtime, or
 public API. RFC-0029 defines the complete boundary.
 
+## M47 cross-platform public consumer-rehearsal boundary
+
+M47 replaces the internal Bash public verifier with one typed standard-library
+Python program and expands M46's existing tag-only fresh-consumer job to the
+exact Ubuntu, Windows, and macOS matrix. The publishing invocation reuses the
+existing M43 plan; each fresh operating-system runner rejects a preexisting
+plan, retrieves the exact named same-workflow candidate, and creates its own
+exclusive plan before downloading public bytes and running complete installed
+release smoke.
+
+The portable verifier owns no credential or caller-selected endpoint. Initial
+requests are fixed to the exact GitHub API repository and numeric IDs. Remote
+redirects must remain HTTPS on port 443 and stop after three responses. A
+verified default TLS context, 10-second blocking limit, 30-second monotonic
+deadline, 4-MiB document, 16-KiB plan, 32 unique safe assets, 256-MiB per-asset
+limit, 512-MiB total, exclusive ID-derived partials, exact length checks, and
+the existing before/after release-document validation bound the observation.
+
+Every fresh job has read-only contents permission, no dependency cache, and no
+release, attestation, or identity-token write permission. The matrix adds two
+tag-only runner allocations but no pull-request allocation. It adds no release
+trigger, artifact, mutation, publication, rollback, credential, dependency,
+runtime, package, or public API.
+
+A successful authorized tag run would provide hosted same-workflow observations
+on the three supported operating systems. It would not provide an independent
+or external consumer/provider/build, a clean machine outside GitHub-hosted
+Actions, every delivery path, future availability, immutability, artifact
+security, PyPI, or a supported channel. RFC-0030 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

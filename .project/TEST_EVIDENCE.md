@@ -2,6 +2,17 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M47 development evidence - 2026-08-09, Windows, CPython 3.12
+
+| Command or check | Exit | Result |
+| --- | ---: | --- |
+| M46 closeout audit | 0 | Zero-run PR #91 exact head `76f5aa6d871b1d118e56661d3f191a1cd3f758b8` had exact M46-record base, zero run/check/review/comment/thread, and only three `.project/**` files. Squash/current M47 base `2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5` has sole parent M46 record squash `f6a15655b9bfe5657f15baea89d36206743a3468`, tree `1a26146a7213d21ef5930c6817a9d5ef27aa0259` exactly equal to the reviewed head, valid GitHub signature, and standalone DCO. No post-merge run was allocated; the branch was deleted locally/remotely. Only synchronized `main` remained, with no open PR, tag, or release and healthy Git objects. |
+| Portable-verifier focused gate | 0 | Strict formatting, Ruff, and Pyright passed. All 39 focused M45-M47 assertions passed in 0.48 seconds, including fresh-plan creation against the real release-document validator, exact byte revalidation, aggregate-only output, credential rejection, malformed/duplicate/over-limit plan rejection, three-redirect success, fourth/non-HTTPS redirect rejection, declared/streamed size mismatch, monotonic/socket deadline failure, and exclusive hard-link finalization without clobber. |
+| Final supported-Python gate | 0 | The exact hardened graphics-enabled CPython 3.12, 3.13, and 3.14 trees each passed 1,945 tests with 14 expected platform/capability skips, in 123.73, 143.78, and 143.70 seconds respectively. The earlier pre-timeout-diagnostic runs are not represented as final-tree evidence. |
+| Real-wgpu, profiles, and vertical slices | 0 | All ten real-wgpu tests passed in 7.39 seconds. The two-workload base and three-workload graphics M7 profiles validated. Clockwork Arena reproduced state `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7` and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`, with registered tests and five replay batches passing. |
+| Initial distribution exercise | 0 | Before the final aggregate-output/no-clobber hardening and factual records, two fresh build directories matched exactly; isolated-wheel smoke and complete ten-artifact release staging/smoke passed. Because executable and record files changed afterward, no digest from this run is represented as final-tree distribution evidence. |
+| Final static, architecture, docs, and workflow gate | 0 | The unchanged lock resolved 46 packages in 1 ms; all 290 Python files passed formatting and Ruff; strict Pyright reported zero diagnostics; all 405 architecture assertions passed in 2.28 seconds; strict docs built in 1.00 seconds with only the known upstream notice; release YAML parsed to the exact `release`/`fresh-consumer` job set; whitespace passed. |
+
 ## M46 development evidence - 2026-08-09, Windows, CPython 3.12
 
 | Command or check | Exit | Result |

@@ -247,13 +247,19 @@ jobs:
         env:
           RELEASE_ID: ${{ steps.verify_draft.outputs.release_id }}
           RELEASE_TITLE: LudoWeave ${{ steps.version.outputs.version }}
-        shell: bash
-        run: bash scripts/verify_public_release.sh release --use-existing-plan
+        run: python scripts/verify_public_release.py release --use-existing-plan
 
   fresh-consumer:
-    name: Fresh-runner public release consumer rehearsal
+    name: Fresh public release consumer (${{ matrix.os }})
     needs: release
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 25
     permissions:
       contents: read
@@ -272,10 +278,9 @@ jobs:
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: ludoweave-${{ needs.release.outputs.release_version }}
-          path: .tmp/m46-expected-release
-      - name: Verify public release from fresh runner
+          path: .tmp/m47-expected-release
+      - name: Verify public release from fresh operating-system runner
         env:
           RELEASE_ID: ${{ needs.release.outputs.release_id }}
           RELEASE_TITLE: LudoWeave ${{ needs.release.outputs.release_version }}
-        shell: bash
-        run: bash scripts/verify_public_release.sh .tmp/m46-expected-release
+        run: python scripts/verify_public_release.py .tmp/m47-expected-release

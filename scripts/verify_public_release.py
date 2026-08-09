@@ -1,0 +1,568 @@
+"""Verify exact public GitHub release bytes and the installed release candidate."""
+
+from __future__ import annotations
+
+import argparse
+import contextlib
+import http.client
+import io
+import json
+import os
+import re
+import ssl
+import sys
+import time
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
+from pathlib import Path
+from urllib.parse import SplitResult, urljoin, urlsplit, urlunsplit
+
+import smoke_release
+import verify_release_draft
+
+_PROTOCOL = "ludoweave.public-release-consumer/1"
+_PLAN_PROTOCOL = "ludoweave.release-asset-retrieval-plan/1"
+_REPOSITORY = "xsparc/ludoweave-engine"
+_API_HOST = "api.github.com"
+_API_VERSION = "2026-03-10"
+_MAX_RELEASE_ID = (1 << 63) - 1
+_MAX_DOCUMENT_BYTES = 4 * 1024 * 1024
+_MAX_ASSETS = 32
+_MAX_ASSET_BYTES = 256 * 1024 * 1024
+_MAX_TOTAL_BYTES = 512 * 1024 * 1024
+_MAX_PLAN_BYTES = 16 * 1024
+_CONNECT_TIMEOUT_SECONDS = 10.0
+_REQUEST_TIMEOUT_SECONDS = 30.0
+_MAX_REDIRECTS = 3
+_READ_BYTES = 1024 * 1024
+_ID_PATTERN = re.compile(r"[1-9][0-9]{0,18}")
+_SIZE_PATTERN = re.compile(r"(?:0|[1-9][0-9]{0,8})")
+_NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
+_REDIRECT_STATUSES = frozenset((301, 302, 303, 307, 308))
+
+
+@dataclass(frozen=True, slots=True)
+class AssetPlanItem:
+    """One fully bounded public asset retrieval instruction."""
+
+    asset_id: int
+    bytes: int
+    name: str
+
+
+@dataclass(frozen=True, slots=True)
+class VerificationContext:
+    """Validated workflow-owned paths and exact release identity."""
+
+    expected_directory: Path
+    runner_temp: Path
+    release_id: int
+    release_tag: str
+    release_title: str
+    use_existing_plan: bool
+
+
+class PublicReleaseVerificationError(RuntimeError):
+    """The bounded public consumer observation failed closed."""
+
+    def __init__(self, message: str, *, code: str) -> None:
+        super().__init__(message)
+        self.code = code
+
+
+def main(
+    argv: Sequence[str] | None = None,
+    *,
+    environment: Mapping[str, str] | None = None,
+) -> int:
+    """Run one credential-free, bounded public release consumer observation."""
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("expected_directory", type=Path)
+    parser.add_argument("--use-existing-plan", action="store_true")
+    args = parser.parse_args(argv)
+    values = os.environ if environment is None else environment
+    try:
+        context = _context(args, values)
+        count, total = verify_public_release(context)
+    except PublicReleaseVerificationError as error:
+        print(
+            _json(
+                {
+                    "protocol": _PROTOCOL,
+                    "status": "fail",
+                    "code": error.code,
+                    "message": str(error),
+                }
+            ),
+            file=sys.stderr,
+        )
+        return 1
+    print(
+        _json(
+            {
+                "protocol": _PROTOCOL,
+                "status": "pass",
+                "assets": count,
+                "bytes": total,
+            }
+        )
+    )
+    return 0
+
+
+def verify_public_release(context: VerificationContext) -> tuple[int, int]:
+    """Retrieve, revalidate, and smoke one exact public release."""
+
+    plan = context.runner_temp / "release-assets.plan"
+    public_document = context.runner_temp / "release-public.json"
+    public_directory = context.runner_temp / "release-public-download"
+    if public_document.exists() or public_directory.exists():
+        raise PublicReleaseVerificationError(
+            "public release output already exists",
+            code="public_release.output_exists",
+        )
+    if context.use_existing_plan:
+        if plan.is_symlink() or not plan.is_file():
+            raise PublicReleaseVerificationError(
+                "existing release plan is unavailable",
+                code="public_release.plan_unavailable",
+            )
+    elif plan.exists():
+        raise PublicReleaseVerificationError(
+            "fresh release plan path already exists",
+            code="public_release.plan_exists",
+        )
+
+    release_url = f"https://{_API_HOST}/repos/{_REPOSITORY}/releases/{context.release_id}"
+    _download(
+        release_url,
+        public_document,
+        accept="application/vnd.github+json",
+        maximum_bytes=_MAX_DOCUMENT_BYTES,
+    )
+    verify_arguments = [
+        str(context.expected_directory),
+        str(public_document),
+        "--expected-tag",
+        context.release_tag,
+        "--expected-title",
+        context.release_title,
+        "--expected-state",
+        "published",
+    ]
+    if not context.use_existing_plan:
+        verify_arguments.extend(("--asset-plan", str(plan)))
+    if _run_release_validator(verify_arguments) != 0:
+        raise PublicReleaseVerificationError(
+            "public release document does not match the admitted candidate",
+            code="public_release.document_mismatch",
+        )
+
+    items = _asset_plan(plan)
+    try:
+        public_directory.mkdir()
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release output could not be created",
+            code="public_release.output_failed",
+        ) from error
+    for item in items:
+        asset_url = f"https://{_API_HOST}/repos/{_REPOSITORY}/releases/assets/{item.asset_id}"
+        _download(
+            asset_url,
+            public_directory / item.name,
+            accept="application/octet-stream",
+            maximum_bytes=item.bytes,
+            expected_bytes=item.bytes,
+            partial_name=f".asset-{item.asset_id}.part",
+        )
+
+    final_arguments = [
+        str(public_directory),
+        str(public_document),
+        "--expected-tag",
+        context.release_tag,
+        "--expected-title",
+        context.release_title,
+        "--expected-state",
+        "published",
+    ]
+    if _run_release_validator(final_arguments) != 0:
+        raise PublicReleaseVerificationError(
+            "downloaded public assets do not match the release document",
+            code="public_release.asset_mismatch",
+        )
+    try:
+        smoke_result = smoke_release.main([str(public_directory)])
+    except (OSError, RuntimeError, ValueError) as error:
+        raise PublicReleaseVerificationError(
+            "installed public release smoke failed",
+            code="public_release.smoke_failed",
+        ) from error
+    if smoke_result != 0:
+        raise PublicReleaseVerificationError(
+            "installed public release smoke failed",
+            code="public_release.smoke_failed",
+        )
+    return len(items), sum(item.bytes for item in items)
+
+
+def _context(args: argparse.Namespace, environment: Mapping[str, str]) -> VerificationContext:
+    if environment.get("GITHUB_REPOSITORY") != _REPOSITORY:
+        raise PublicReleaseVerificationError(
+            "unexpected release repository",
+            code="public_release.invalid_repository",
+        )
+    if environment.get("GH_TOKEN") or environment.get("GITHUB_TOKEN"):
+        raise PublicReleaseVerificationError(
+            "public release requests must not receive a release credential",
+            code="public_release.credential_present",
+        )
+    release_id_text = environment.get("RELEASE_ID", "")
+    if _ID_PATTERN.fullmatch(release_id_text) is None:
+        raise PublicReleaseVerificationError(
+            "public release id is invalid",
+            code="public_release.invalid_identity",
+        )
+    release_id = int(release_id_text)
+    if release_id > _MAX_RELEASE_ID:
+        raise PublicReleaseVerificationError(
+            "public release id is invalid",
+            code="public_release.invalid_identity",
+        )
+    release_tag = environment.get("GITHUB_REF_NAME", "")
+    release_title = environment.get("RELEASE_TITLE", "")
+    if not release_tag or not release_title:
+        raise PublicReleaseVerificationError(
+            "public release identity is unavailable",
+            code="public_release.invalid_identity",
+        )
+    expected = _path_argument(args, "expected_directory")
+    if expected.is_symlink() or not expected.is_dir():
+        raise PublicReleaseVerificationError(
+            "expected release directory is unavailable",
+            code="public_release.candidate_unavailable",
+        )
+    runner_temp_text = environment.get("RUNNER_TEMP", "")
+    runner_temp = Path(runner_temp_text) if runner_temp_text else Path()
+    if not runner_temp_text or runner_temp.is_symlink() or not runner_temp.is_dir():
+        raise PublicReleaseVerificationError(
+            "runner temporary directory is unavailable",
+            code="public_release.temp_unavailable",
+        )
+    return VerificationContext(
+        expected_directory=expected,
+        runner_temp=runner_temp,
+        release_id=release_id,
+        release_tag=release_tag,
+        release_title=release_title,
+        use_existing_plan=bool(args.use_existing_plan),
+    )
+
+
+def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:
+    try:
+        if path.is_symlink() or not path.is_file():
+            raise OSError
+        with path.open("rb") as stream:
+            raw = stream.read(_MAX_PLAN_BYTES + 1)
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "release asset plan is unavailable",
+            code="public_release.plan_unavailable",
+        ) from error
+    if len(raw) > _MAX_PLAN_BYTES:
+        raise PublicReleaseVerificationError(
+            "release asset plan exceeds the size limit",
+            code="public_release.invalid_plan",
+        )
+    try:
+        lines = raw.decode("utf-8").splitlines()
+    except UnicodeDecodeError as error:
+        raise PublicReleaseVerificationError(
+            "release asset plan is not strict UTF-8",
+            code="public_release.invalid_plan",
+        ) from error
+    if not lines or lines[0] != _PLAN_PROTOCOL or not 1 <= len(lines) - 1 <= _MAX_ASSETS:
+        raise PublicReleaseVerificationError(
+            "release asset plan has an invalid protocol or count",
+            code="public_release.invalid_plan",
+        )
+    items: list[AssetPlanItem] = []
+    asset_ids: set[int] = set()
+    names: set[str] = set()
+    total = 0
+    for line in lines[1:]:
+        fields = line.split("\t")
+        if len(fields) != 3:
+            raise PublicReleaseVerificationError(
+                "release asset plan contains an invalid record",
+                code="public_release.invalid_plan",
+            )
+        asset_id_text, size_text, name = fields
+        if (
+            _ID_PATTERN.fullmatch(asset_id_text) is None
+            or _SIZE_PATTERN.fullmatch(size_text) is None
+            or _NAME_PATTERN.fullmatch(name) is None
+        ):
+            raise PublicReleaseVerificationError(
+                "release asset plan contains an invalid record",
+                code="public_release.invalid_plan",
+            )
+        asset_id = int(asset_id_text)
+        size = int(size_text)
+        if (
+            asset_id > _MAX_RELEASE_ID
+            or size > _MAX_ASSET_BYTES
+            or asset_id in asset_ids
+            or name in names
+        ):
+            raise PublicReleaseVerificationError(
+                "release asset plan contains an invalid or duplicate record",
+                code="public_release.invalid_plan",
+            )
+        total += size
+        if total > _MAX_TOTAL_BYTES:
+            raise PublicReleaseVerificationError(
+                "release asset plan exceeds the total size limit",
+                code="public_release.invalid_plan",
+            )
+        asset_ids.add(asset_id)
+        names.add(name)
+        items.append(AssetPlanItem(asset_id, size, name))
+    return tuple(items)
+
+
+def _download(
+    url: str,
+    target: Path,
+    *,
+    accept: str,
+    maximum_bytes: int,
+    expected_bytes: int | None = None,
+    partial_name: str | None = None,
+) -> None:
+    if target.exists():
+        raise PublicReleaseVerificationError(
+            "public release target already exists",
+            code="public_release.output_exists",
+        )
+    partial = target if partial_name is None else target.parent / partial_name
+    if partial.exists():
+        raise PublicReleaseVerificationError(
+            "public release partial target already exists",
+            code="public_release.output_exists",
+        )
+    deadline = time.monotonic() + _REQUEST_TIMEOUT_SECONDS
+    current_url = url
+    redirects = 0
+    while True:
+        parsed = _https_url(current_url)
+        hostname = parsed.hostname
+        assert hostname is not None
+        try:
+            connection = http.client.HTTPSConnection(
+                hostname,
+                parsed.port,
+                timeout=min(_CONNECT_TIMEOUT_SECONDS, _remaining(deadline)),
+                context=ssl.create_default_context(),
+            )
+        except (OSError, ValueError) as error:
+            raise PublicReleaseVerificationError(
+                "public release request failed",
+                code="public_release.request_failed",
+            ) from error
+        response: http.client.HTTPResponse | None = None
+        try:
+            path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
+            connection.request(
+                "GET",
+                path,
+                headers={
+                    "Accept": accept,
+                    "Accept-Encoding": "identity",
+                    "Connection": "close",
+                    "User-Agent": "LudoWeave-release-verifier/1",
+                    "X-GitHub-Api-Version": _API_VERSION,
+                },
+            )
+            response = connection.getresponse()
+            if response.status in _REDIRECT_STATUSES:
+                location = response.getheader("Location")
+                redirects += 1
+                if not location or redirects > _MAX_REDIRECTS:
+                    raise PublicReleaseVerificationError(
+                        "public release redirect is invalid",
+                        code="public_release.redirect_failed",
+                    )
+                current_url = urljoin(current_url, location)
+                _https_url(current_url)
+                continue
+            if response.status != 200:
+                raise PublicReleaseVerificationError(
+                    "public release request failed",
+                    code="public_release.request_failed",
+                )
+            length_header = response.getheader("Content-Length")
+            if length_header is not None:
+                if not length_header.isascii() or not length_header.isdecimal():
+                    raise PublicReleaseVerificationError(
+                        "public release response length is invalid",
+                        code="public_release.size_mismatch",
+                    )
+                length = int(length_header)
+                if length > maximum_bytes or (
+                    expected_bytes is not None and length != expected_bytes
+                ):
+                    raise PublicReleaseVerificationError(
+                        "public release response length does not match",
+                        code="public_release.size_mismatch",
+                    )
+            received = _stream_response(
+                response,
+                connection,
+                partial,
+                maximum_bytes=maximum_bytes,
+                deadline=deadline,
+            )
+            if expected_bytes is not None and received != expected_bytes:
+                raise PublicReleaseVerificationError(
+                    "public release response length does not match",
+                    code="public_release.size_mismatch",
+                )
+            if partial != target:
+                _publish_partial(partial, target)
+            return
+        except PublicReleaseVerificationError:
+            raise
+        except (OSError, TimeoutError, http.client.HTTPException, ValueError) as error:
+            raise PublicReleaseVerificationError(
+                "public release request failed",
+                code="public_release.request_failed",
+            ) from error
+        finally:
+            if response is not None:
+                response.close()
+            connection.close()
+
+
+def _stream_response(
+    response: http.client.HTTPResponse,
+    connection: http.client.HTTPSConnection,
+    target: Path,
+    *,
+    maximum_bytes: int,
+    deadline: float,
+) -> int:
+    received = 0
+    try:
+        with target.open("xb") as stream:
+            while True:
+                remaining = _remaining(deadline)
+                if connection.sock is not None:
+                    connection.sock.settimeout(min(_CONNECT_TIMEOUT_SECONDS, remaining))
+                block = response.read(min(_READ_BYTES, maximum_bytes + 1 - received))
+                if not block:
+                    break
+                received += len(block)
+                if received > maximum_bytes:
+                    raise PublicReleaseVerificationError(
+                        "public release response exceeds the size limit",
+                        code="public_release.size_mismatch",
+                    )
+                stream.write(block)
+    except FileExistsError as error:
+        raise PublicReleaseVerificationError(
+            "public release target already exists",
+            code="public_release.output_exists",
+        ) from error
+    except TimeoutError as error:
+        raise PublicReleaseVerificationError(
+            "public release request exceeded the time limit",
+            code="public_release.request_timeout",
+        ) from error
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release output could not be written",
+            code="public_release.output_failed",
+        ) from error
+    return received
+
+
+def _publish_partial(partial: Path, target: Path) -> None:
+    try:
+        os.link(partial, target)
+    except FileExistsError as error:
+        raise PublicReleaseVerificationError(
+            "public release target already exists",
+            code="public_release.output_exists",
+        ) from error
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release output could not be finalized",
+            code="public_release.output_failed",
+        ) from error
+    try:
+        partial.unlink()
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release partial could not be removed",
+            code="public_release.output_failed",
+        ) from error
+
+
+def _run_release_validator(arguments: Sequence[str]) -> int:
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+        return verify_release_draft.main(arguments)
+
+
+def _https_url(url: str) -> SplitResult:
+    try:
+        parsed = urlsplit(url)
+        port = parsed.port
+    except ValueError as error:
+        raise PublicReleaseVerificationError(
+            "public release URL is invalid",
+            code="public_release.redirect_failed",
+        ) from error
+    if (
+        parsed.scheme != "https"
+        or not parsed.hostname
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.fragment
+        or port not in (None, 443)
+    ):
+        raise PublicReleaseVerificationError(
+            "public release URL must remain bounded HTTPS",
+            code="public_release.redirect_failed",
+        )
+    return parsed
+
+
+def _remaining(deadline: float) -> float:
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise PublicReleaseVerificationError(
+            "public release request exceeded the time limit",
+            code="public_release.request_timeout",
+        )
+    return remaining
+
+
+def _path_argument(args: argparse.Namespace, name: str) -> Path:
+    value: object = getattr(args, name, None)
+    if not isinstance(value, Path):
+        raise TypeError(f"{name} must be a path")
+    return value
+
+
+def _json(value: object) -> str:
+    return json.dumps(
+        value, ensure_ascii=False, allow_nan=False, sort_keys=True, separators=(",", ":")
+    )
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -70,6 +70,7 @@ nav:
       - RFC-0027 - Published release attestation integrity: rfcs/0027-verify-published-release-attestations.md
       - RFC-0028 - Public release consumer-path integrity: rfcs/0028-verify-public-release-consumer-path.md
       - RFC-0029 - Fresh-runner consumer rehearsal: rfcs/0029-fresh-runner-consumer-rehearsal.md
+      - RFC-0030 - Cross-platform consumer rehearsal: rfcs/0030-cross-platform-release-consumer-rehearsal.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

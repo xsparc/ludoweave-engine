@@ -42,31 +42,36 @@ claims.
 
 ## Current boundary
 
-M46 adds a fresh-runner rehearsal that separates M45's public-byte and
-installed-candidate observation from the publishing runner. It preserves the
-lineage from M42's published-release check through M43 asset retrieval, M44
-attestation verification, and M45's credential-free public consumer path. The
-release job may expose only the verified numeric release ID and validated
-version. One dependent read-only Linux job retrieves the exact candidate
-preserved by the same workflow, creates a new exclusive M43-format plan,
-repeats the bounded public download/revalidation, and runs complete installed
-release smoke in its own workspace.
+M47 makes M46's public consumer rehearsal portable and cross-platform without
+widening release authority. Replace the internal Bash verifier with one typed
+standard-library Python program. The publishing invocation must reuse M43's
+existing plan; every fresh runner must reject a preexisting plan, retrieve the
+exact same-workflow candidate, create a new exclusive plan, fetch the bounded
+public bytes without a release credential, revalidate the complete set, and run
+installed release smoke.
 
-M46 may change only the tag workflow's job/output topology, one internal shell
-verifier, focused architecture/security tests, RFC/docs, and factual records.
-It must retain M45's fixed repository, no-release-credential request, HTTPS,
-redirect/time, document, ID, name, count, byte, no-clobber, exact-set, and smoke
-bounds. The new job must depend on release success, use explicit read-only
-contents permission, and add exactly one pinned download action and one tag-
-only Linux allocation. It may add no pull-request CI allocation, release
-trigger, release/attestation/identity write permission, mutation, retry,
-rollback, artifact-set, dependency, lock, version, runtime, package, or public-
-API change. It must not claim independent/external or cross-platform evidence,
-a clean machine outside GitHub-hosted Actions, future availability,
-immutability, artifact security, PyPI, or a supported release channel. M0
-through M45 are complete, reviewed, hosted-validated, and integrated into
-`main`. M46 starts from exact verified M45 closeout commit
-`086f1ceb3974583ce7a2c386c67f516299c2f1dd`.
+The tag-only fresh-consumer job may expand only to the exact Ubuntu, Windows,
+and macOS matrix. It must depend on release success, use explicit read-only
+contents permission, retain the pinned checkout/setup/download actions, disable
+dependency caching, and allocate no new pull-request runner. M47 must retain the
+fixed repository, HTTPS-only three-redirect limit, 10/30-second time bounds,
+4-MiB document, 16-KiB plan, positive 63-bit IDs, safe unique names, exclusive
+partials, 32 assets, 256 MiB per asset, 512 MiB total, exact-set validation, and
+complete installed smoke. It may add no credential, trigger, publication,
+release/attestation/identity write permission, mutation, retry, rollback,
+artifact-set, dependency, lock, version, runtime, package, or public-API change.
+It must not claim independent/external evidence, a machine outside GitHub-hosted
+Actions, every delivery path, future availability, immutability, artifact
+security, PyPI, or a supported release channel. M0 through M46 are complete,
+reviewed, hosted-validated, and integrated into `main`. M47 starts from exact
+verified M46 closeout commit `2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5`.
+
+Preserve the release-integrity lineage: M42 keeps one exact release identity
+across publication, M43 revalidates authenticated exact-ID asset bytes, M44
+checks constrained provenance and wheel-SBOM attestations, M45 repeats exact
+public retrieval without a release credential, and M46 separates that public
+consumer observation onto a fresh runner. M47 widens only the verifier/runtime
+portability of this chain; none of these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
