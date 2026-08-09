@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0033 resolves M50 public release TLS key-log isolation. Every public API or
+asset hop receives a new explicit verified client context with system
+server-auth roots, certificate/hostname validation, TLS 1.2 minimum, strict
+X.509 flags, and disabled key logging. An ambient `SSLKEYLOGFILE` remains
+unchanged and cannot create or receive secrets from the verifier. No custom
+trust store, pin, workflow, dependency, release mutation, or authority change
+is introduced. A real pass remains pending an explicitly authorized signed-tag
+release execution.
+
 RFC-0032 resolves M49 public release connected-peer confinement. Every fixed
 API or redirected asset connection validates the actual port-443 TLS socket
 peer before HTTP transmission and permits only globally reachable unicast IPv4

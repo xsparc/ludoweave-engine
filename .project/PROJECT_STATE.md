@@ -1,5 +1,43 @@
 # Project State
 
+## M50 public release TLS key-log isolation - implementation complete
+
+- Base: clean synchronized M49 closeout
+  `f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`, with only `main` present
+  locally/remotely and no open pull request, tag, or GitHub release.
+- Outcome: replace `ssl.create_default_context()` in the portable public
+  release verifier with one explicit `PROTOCOL_TLS_CLIENT` context per fixed
+  API or bounded redirected asset hop.
+- TLS boundary: load system server-auth roots; require `CERT_REQUIRED`, hostname
+  checking, TLS 1.2 minimum, and strict/partial-chain X.509 verification; reject
+  any context with active key logging.
+- Ambient boundary: leave `SSLKEYLOGFILE` untouched and prove a controlled
+  nonexistent target is neither created nor used by successful fixed and
+  redirected fixture requests.
+- Failure boundary: context construction, root loading, or invariant failure
+  uses content-silent `public_release.tls_failed` with internal cause chaining.
+- Preserved: M49 connected-peer validation, M48 response/header/failure
+  conformance, and every M47 identity, deadline, size, path, exact-byte,
+  partial, validation, and installed-smoke bound.
+- No scope growth: no workflow, runner, action, permission, trigger,
+  credential, proxy, custom trust store, certificate/SPKI pin, client
+  certificate, release mutation, retry, cleanup, dependency, lock, package
+  version, runtime package, or public API change.
+- Decision: accepted RFC-0033 records the ownership, failure, authority, and
+  non-claim boundary. System/OpenSSL default trust remains authoritative.
+- Local evidence: all 293 Python files format cleanly; Ruff and strict Pyright
+  report zero findings; all 464 architecture assertions pass; strict docs
+  build passes. Complete graphics-enabled CPython 3.12.13, 3.13.13, and 3.14.5
+  suites each pass 2,004 tests with 14 expected skips. Ten real-wgpu tests,
+  both three-repeat profile contracts, Clockwork Arena, Agent World Builder,
+  reproducible distributions, isolated-wheel smoke, and complete release smoke
+  pass. Exact hosted-head evidence remains pending.
+- Non-claim: no real signed tag or release was created or exercised. Fixture
+  and pull-request evidence are not a real public release observation,
+  negotiated-session audit, independent/external verification, every delivery
+  path, future-availability/immutability proof, artifact-security result, PyPI
+  availability, or a supported release channel.
+
 ## M49 public release connected-peer confinement - complete
 
 - Base: exact verified M48 closeout

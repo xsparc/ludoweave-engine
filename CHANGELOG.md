@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M50/RFC-0033 explicit verified public-release TLS contexts that preserve
+  system trust and modern certificate/hostname validation while preventing
+  ambient `SSLKEYLOGFILE` session-secret logging, without changing workflows,
+  dependencies, runtime APIs, or release authority.
 - Add M46/RFC-0029 fresh-runner public release consumer rehearsal using the
   exact admitted same-workflow candidate, a shared bounded verifier, read-only
   permissions, and one pinned download action without new release mutation,

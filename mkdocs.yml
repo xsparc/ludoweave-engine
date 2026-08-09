@@ -73,6 +73,7 @@ nav:
       - RFC-0030 - Cross-platform consumer rehearsal: rfcs/0030-cross-platform-release-consumer-rehearsal.md
       - RFC-0031 - Public release HTTP response conformance: rfcs/0031-public-release-http-response-conformance.md
       - RFC-0032 - Public release connected-peer confinement: rfcs/0032-public-release-peer-confinement.md
+      - RFC-0033 - Public release TLS key-log isolation: rfcs/0033-public-release-tls-keylog-isolation.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

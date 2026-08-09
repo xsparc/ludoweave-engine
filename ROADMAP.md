@@ -58,6 +58,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
 | Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
 | Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
+| In progress | M50 public release TLS key-log isolation | Explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -665,6 +666,25 @@ review, comment, or thread. GitHub-verified squash
 `a9755cbf65dfeba5087f5037f73bc6027c408444`, sole parent the M48 closeout,
 valid signature, and standalone DCO. No post-merge run was allocated, the
 feature branch is deleted, and no real tag or release was created.
+
+M50 starts from verified M49 closeout commit
+`f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`. It replaces the portable public
+verifier's ambient-sensitive default-context helper with a new explicit
+verified client context per fixed API or redirected asset hop. System
+server-auth roots, certificate and hostname validation, TLS 1.2 or newer, and
+strict/partial-chain X.509 verification remain mandatory. Ambient
+`SSLKEYLOGFILE` must remain untouched and may neither enable key logging nor
+create its target. Context construction or invariant failure uses a stable,
+content-silent code.
+
+The slice adds no custom trust store, certificate/SPKI pin, client certificate,
+proxy, workflow, runner allocation, action, permission, credential, trigger,
+release mutation, retry, cleanup, dependency, runtime, package, or public API.
+Fixture and pull-request evidence are not a real public release observation,
+negotiated-session audit, independent/external verification, every delivery
+path, future availability, immutability, artifact security, PyPI, or a
+supported channel. A real pass remains unclaimed until an authorized signed-tag
+release run executes.
 
 ## Good-first contribution queue
 
