@@ -1,6 +1,6 @@
 # Project State
 
-## M48 public release HTTP response conformance - in progress
+## M48 public release HTTP response conformance - complete
 
 - Base: exact verified M47 closeout
   `8d8d9e4a5790d7b74ec06139d314ffdf30a4ef41`; clean synchronized `main`
@@ -30,6 +30,19 @@
   architecture assertions, strict docs, whitespace, and healthy Git objects.
   The final commit-candidate distributions matched byte-for-byte and passed
   isolated-wheel plus complete release smoke.
+- Hosted evidence: ready PR #95 exact head
+  `9b5c533d1e73ee985945fa0feb7e876417ee0126` passed run `31288303182` in
+  exactly three allocations. Linux qualified first in 415 seconds; macOS then
+  passed in 118 seconds and Windows in 228 seconds. Linux passed 1,970 baseline
+  tests and Ubuntu CPython 3.13/3.14 each passed 1,970 with one skip. Each
+  desktop passed ten real-wgpu tests, both vertical slices, profiling, and
+  1,970 CPython 3.14 tests with one skip.
+- Integration: PR #95 was clean and mergeable with no review, comment, or
+  thread. GitHub-verified squash
+  `c32ff1bf71b53278ef2ff616c2fc3cfce5cf20a3` has exact reviewed tree
+  `1986f691633d94a5b980c2be0b7e1d0b364de37e`, sole parent the M47 closeout,
+  and standalone DCO. No post-merge run was allocated, and the feature branch
+  is deleted locally/remotely. No signed-tag release rehearsal ran.
 
 ## M47 cross-platform public consumer rehearsal - complete
 

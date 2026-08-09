@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M48 - public release HTTP response conformance
-- **Status:** Final local gate complete on
-  `release/m48-http-response-conformance`; reviewing the exact diff before
-  commit and hosted validation.
+- **Status:** Feature fully validated and squash-integrated; recording exact
+  hosted and integration evidence on `records/m48-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -64,5 +63,13 @@
   The final static gate covers 291 formatted files, zero Ruff/Pyright findings,
   426 architecture assertions, strict docs, whitespace, and healthy Git
   objects. Commit-candidate reproducibility, isolated-wheel smoke, and complete
-  release smoke pass. Exact diff review, hosted validation, and integration
-  remain pending. No real M48 tag/release execution exists or is claimed.
+  release smoke pass. Ready PR #95 exact head
+  `9b5c533d1e73ee985945fa0feb7e876417ee0126` passed run `31288303182` in
+  exactly three allocations: Linux first in 415 seconds, then macOS in 118
+  seconds and Windows in 228 seconds. Every job and non-skipped step succeeded.
+  The PR was clean with no review, comment, or thread. Verified squash
+  `c32ff1bf71b53278ef2ff616c2fc3cfce5cf20a3` has exact reviewed tree
+  `1986f691633d94a5b980c2be0b7e1d0b364de37e`, sole parent the M47
+  closeout, a GitHub-valid signature, standalone DCO, and no post-merge run.
+  The feature branch is deleted locally/remotely. No real M48 tag/release
+  execution exists or is claimed.
