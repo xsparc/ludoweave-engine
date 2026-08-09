@@ -1,6 +1,6 @@
 # Project State
 
-## M56 public release status and redirect-reference conformance - in progress
+## M56 public release status and redirect-reference conformance - feature integrated
 
 - Base: exact clean synchronized M55 closeout
   `e7f700454adf1c11c80cb1ba684ed3318f7876e4`, with only `main` present and no
@@ -61,8 +61,33 @@
   artifact release smoke passed for the initial head. Corrected pre-record
   reproducibility and smokes also pass. The final corrected record-inclusive
   lock/static/604-assertion/docs/integrity gate, two-build reproducibility,
-  isolated-wheel smoke, and complete release smoke pass. Replacement exact-
-  head validation remains pending.
+  isolated-wheel smoke, and complete release smoke pass.
+- Hosted evidence: corrected exact head
+  `35b94a42b10cbd8f75048d3200e95a4aca81fa5d` passed run `31329613114` in
+  exactly three Linux-first allocations. Linux job `93285627958` passed in
+  7m22s before macOS `93286456923` and Windows `93286456914` began; they passed
+  in 2m19s and 4m00s. Linux baseline passed 2,148 tests; Ubuntu CPython
+  3.13/3.14 and both desktop CPython 3.14 suites passed 2,148 tests with one
+  expected skip. Every platform passed ten real-graphics tests, profile smoke,
+  Clockwork Arena, and Agent World Builder.
+- Hosted artifacts: exact corrected-head reproducibility produced a pure
+  270,869-byte wheel at
+  `c09dfe4f799ecad4860d088588a547786c0a9ed8cf3cc8045f8f1eb417c31cf2`
+  and a 1,090,506-byte source distribution at
+  `7de047cbe0b6dc5b8120795e6c1207db8a66a3f0a4372d8a69fad510a7116368`;
+  installed-wheel and complete release smoke passed.
+- Integration: the sole valid P2 was answered with correction evidence and its
+  thread resolved. Two delayed audits found no new issue comment, review
+  activity, or unresolved thread. Head-pinned GitHub-verified squash
+  `22c432310fae2f9ac372062cbd465cc2617fb95c` has tree
+  `a891364113a439c08e985c925fc81a507053fb2c` exactly equal to the corrected
+  feature head, sole parent M55 closeout
+  `e7f700454adf1c11c80cb1ba684ed3318f7876e4`, a valid signature, and
+  standalone DCO. The feature branch is deleted locally/remotely; no
+  post-merge `main` run, open PR, non-main remote branch, tag, or release
+  exists. The remaining integration record changes exactly four
+  documentation/project paths and requires one Linux allocation with a
+  zero-step skipped desktop umbrella.
 
 ## M55 public release HTTP response framing - complete
 
