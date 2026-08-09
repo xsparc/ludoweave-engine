@@ -1,6 +1,6 @@
 # Project State
 
-## M52 public release TLS service-identity evidence - feature integrated
+## M52 public release TLS service-identity evidence - complete
 
 - Base: clean synchronized M51 closeout
   `047478d0c7fb873ae94aaa6e322b5b08903ed354`, with only `main` present
@@ -82,8 +82,29 @@
   `31317421319` in one Linux allocation with a zero-step skipped desktop
   umbrella. External review then found the stale pending-gates sentence above,
   which contradicted the exact hosted and integration evidence. The corrected
-  record removes that sentence; the initial otherwise-green head will not be
-  merged, and corrected hosted validation remains pending.
+  record removed that sentence; the initial otherwise-green head was not
+  merged.
+- Integration-record hosted evidence: corrected exact head
+  `6e36c1a77e5ca9c1ca50b272c184fab63495299c` passed run `31317666409`.
+  Linux job `93255421358` passed in 42 seconds with formatting, lint, strict
+  docs, 504 documentation architecture assertions, reproducible build,
+  isolated-wheel smoke, and complete release smoke. The 269,957-byte wheel was
+  `0bbdcc263fa1b28b7c0b8e29559b45b47df28b7d61a43eb23feb941d6e1e3386`;
+  the 1,055,033-byte sdist was
+  `ca9a361a96c899eff198421fc8fc015385011b0ac89110ccdd35a3d629c357de`.
+  Desktop umbrella job `93255511671` skipped with zero steps and no runner
+  allocation.
+- Integration-record squash: the sole actionable PR #109 thread is resolved
+  after its stale sentence was removed. The PR was `MERGEABLE/CLEAN` at the
+  exact corrected head/base. GitHub-verified squash
+  `cd697ef150861c405b9e104db009a15a9db78e47` has tree
+  `0dd8456b491f5a8f783407b1c2f237a0e7604407` exactly equal to the corrected
+  record tree, sole parent feature squash
+  `eb083089bfff774c0df2b115428901357c9084b2`, and standalone DCO. No post-
+  merge `main` run was allocated; both feature and record branches are deleted
+  locally/remotely. Synchronized `main`, `origin/main`, and `origin/HEAD` now
+  resolve to that squash; no open PR, tag, or GitHub release exists and full
+  Git-object checking passes.
 - Non-claim: fixture and pull-request conformance are not a real public release
   observation, independent/external verification, every TLS/CDN/geographic
   path, future availability, immutability, artifact security, PyPI, or a

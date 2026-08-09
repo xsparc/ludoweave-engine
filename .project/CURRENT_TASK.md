@@ -1,19 +1,20 @@
 # Current Task
 
 - **Task:** M52 - public release TLS service-identity evidence
-- **Status:** Feature PR #108 is fully validated, review-clean, and squash-
-  integrated; correcting the exact four-file integration record on
-  `records/m52-integration` after PR #109 review found one stale status line.
+- **Status:** Feature PR #108 and corrected integration-record PR #109 are
+  fully validated and squash-integrated; publishing the exact three-file
+  closeout record on `records/m52-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
 - **Base:** The feature began from exact clean synchronized M51 closeout
-  `047478d0c7fb873ae94aaa6e322b5b08903ed354`. The current record is based on
-  exact synchronized M52 feature squash
-  `eb083089bfff774c0df2b115428901357c9084b2`; the feature branch is deleted
-  locally/remotely, no open pull request, tag, GitHub release, or post-merge
-  `main` run exists, and full Git-object checking passes.
+  `047478d0c7fb873ae94aaa6e322b5b08903ed354`. The current closeout record is
+  based on exact synchronized M52 integration-record squash
+  `cd697ef150861c405b9e104db009a15a9db78e47`; only `main` and this intended
+  local record branch exist, no remote feature/record branch remains, no open
+  pull request, tag, GitHub release, or post-merge `main` run exists, and full
+  Git-object checking passes.
 - **Outcome:** Observe the URL-derived TLS service identity on every fixed API
   or bounded redirected asset hop after connected-peer confinement and before
   negotiated-session inspection or HTTP transmission.
@@ -82,5 +83,12 @@
   documentation allocation and a zero-step skipped desktop umbrella. Initial
   integration head `92427931151106f7b1ce9c77c4809bf794d1f7f9` passed that
   topology in run `31317421319`; external review then found one stale sentence
-  that still called final review and hosted gates pending. The corrected record
-  removes the contradiction; corrected hosted validation remains pending.
+  that still called final review and hosted gates pending. Corrected head
+  `6e36c1a77e5ca9c1ca50b272c184fab63495299c` removed the contradiction,
+  passed run `31317666409` in one Linux allocation with a zero-step skipped
+  desktop umbrella, and resolved the sole thread. Verified squash
+  `cd697ef150861c405b9e104db009a15a9db78e47` has the exact corrected tree,
+  feature squash as sole parent, valid GitHub signature, and standalone DCO.
+  No post-merge `main` run, tag, or release was created or claimed. The
+  closeout changes only the three `.project/**` records and must allocate no
+  hosted run or check.
