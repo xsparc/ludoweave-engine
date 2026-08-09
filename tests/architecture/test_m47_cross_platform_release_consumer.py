@@ -89,8 +89,10 @@ class _Response:
 
 
 class _Socket:
-    def __init__(self, server_hostname: str = "api.github.com") -> None:
+    def __init__(self, context: ssl.SSLContext, server_hostname: str = "api.github.com") -> None:
         self.timeouts: list[float] = []
+        self.context = context
+        self.server_side = False
         self.server_hostname = server_hostname
 
     def settimeout(self, value: float) -> None:
@@ -373,8 +375,7 @@ def test_https_client_follows_at_most_three_remote_https_redirects(
             timeout: float,
             context: ssl.SSLContext,
         ) -> None:
-            del context
-            self.sock = _Socket(host)
+            self.sock = _Socket(context, host)
             connections.append((host, port, timeout, self.sock))
 
         def request(self, method: str, path: str, *, headers: Mapping[str, str]) -> None:
@@ -423,7 +424,7 @@ def test_https_client_rejects_fourth_redirect(
 
     class FakeConnection:
         def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
-            self.sock = _Socket(host)
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]), host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
@@ -453,10 +454,8 @@ def test_https_client_rejects_non_https_redirect(
     module, _, download = _load()
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
@@ -499,10 +498,8 @@ def test_https_client_rejects_declared_or_streamed_size_mismatch(
     headers = {} if content_length is None else {"Content-Length": content_length}
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
@@ -550,10 +547,8 @@ def test_socket_read_timeout_is_reported_as_request_timeout(
             raise TimeoutError
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None

@@ -40,6 +40,7 @@ _READ_BYTES = 1024 * 1024
 _HTTP_ALPN = "http/1.1"
 _ALLOWED_TLS_VERSIONS = frozenset(("TLSv1.2", "TLSv1.3"))
 _MINIMUM_TLS_SECRET_BITS = 128
+_REQUIRED_TLS_VERIFY_FLAGS = ssl.VERIFY_X509_PARTIAL_CHAIN | ssl.VERIFY_X509_STRICT
 _ID_PATTERN = re.compile(r"[1-9][0-9]{0,18}")
 _SIZE_PATTERN = re.compile(r"(?:0|[1-9][0-9]{0,8})")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
@@ -75,6 +76,8 @@ class PublicReleaseVerificationError(RuntimeError):
 
 
 class _TlsPeer(Protocol):
+    context: ssl.SSLContext
+    server_side: bool
     server_hostname: str | None
 
     def getpeercert(self, binary_form: bool = False) -> object: ...
@@ -383,12 +386,13 @@ def _download(
         hostname = parsed.hostname
         assert hostname is not None
         reference_hostname = _tls_reference_hostname(hostname)
+        tls_context = _public_tls_context()
         try:
             connection = http.client.HTTPSConnection(
                 reference_hostname,
                 parsed.port,
                 timeout=min(_CONNECT_TIMEOUT_SECONDS, _remaining(deadline)),
-                context=_public_tls_context(),
+                context=tls_context,
             )
         except (OSError, ValueError) as error:
             raise PublicReleaseVerificationError(
@@ -398,6 +402,7 @@ def _download(
         response: http.client.HTTPResponse | None = None
         try:
             _connect_public_peer(connection, deadline)
+            _validate_tls_context_binding(connection, tls_context)
             _validate_tls_identity(connection, reference_hostname)
             _validate_tls_session(connection)
             path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
@@ -500,18 +505,54 @@ def _public_tls_context() -> ssl.SSLContext:
             "public release TLS context failed",
             code="public_release.tls_failed",
         ) from error
+    _require_public_tls_context(context)
+    return context
+
+
+def _require_public_tls_context(context: ssl.SSLContext) -> None:
+    """Require the complete per-hop client verification policy."""
+
     if (
         context.protocol != ssl.PROTOCOL_TLS_CLIENT
         or context.verify_mode != ssl.CERT_REQUIRED
         or not context.check_hostname
         or context.minimum_version != ssl.TLSVersion.TLSv1_2
+        or context.verify_flags & _REQUIRED_TLS_VERIFY_FLAGS != _REQUIRED_TLS_VERIFY_FLAGS
         or getattr(context, "keylog_filename", None) is not None
     ):
         raise PublicReleaseVerificationError(
             "public release TLS context failed",
             code="public_release.tls_failed",
         )
-    return context
+
+
+def _validate_tls_context_binding(
+    connection: http.client.HTTPSConnection,
+    expected_context: ssl.SSLContext,
+) -> None:
+    """Require the connected client socket to retain the exact verified context."""
+
+    socket = connection.sock
+    if socket is None:
+        raise PublicReleaseVerificationError(
+            "public release TLS context binding failed",
+            code="public_release.tls_failed",
+        )
+    peer = cast(_TlsPeer, socket)
+    try:
+        actual_context: object = peer.context
+        server_side: object = peer.server_side
+    except (AttributeError, NotImplementedError, OSError, TypeError, ValueError) as error:
+        raise PublicReleaseVerificationError(
+            "public release TLS context binding failed",
+            code="public_release.tls_failed",
+        ) from error
+    if actual_context is not expected_context or server_side is not False:
+        raise PublicReleaseVerificationError(
+            "public release TLS context binding failed",
+            code="public_release.tls_failed",
+        )
+    _require_public_tls_context(expected_context)
 
 
 def _validate_tls_session(connection: http.client.HTTPSConnection) -> None:

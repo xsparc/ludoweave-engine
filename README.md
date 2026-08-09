@@ -6,6 +6,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 
 > Project status: community-alpha release candidate (`0.1.0a1`). M0 through M51 are hosted-validated and integrated into `main`. M28 retains its empty reviewed sample-game manifest and zero-adoption result; M29 retains its empty reviewed contributor-retention manifest and zero-retention result; M30 retains its empty reviewed installation-matrix manifest and no published-wheel installation claim; M31 retains its empty reviewed measurement manifest for response/review latency and no response-time, review-time, or SLA claim. M32 retains its empty reviewed execution manifest and no measured divergence rate. M33 retains its empty reviewed benchmark comparison manifest and no measured regression rate. M34 retains its empty reviewed call manifest and no measured recovery-free completion rate. M35 retains an empty reviewed third-party conformance submission manifest and zero passing external implementations. M36 consolidates the unchanged eight validation slices into three hosted runner allocations. M37 adds fail-closed change qualification so documentation-only work uses a bounded Linux gate while substantive work retains every M36 slice. M38 enforces same-source wheel/sdist byte reproducibility inside those existing distribution jobs. M39 enforces an annotated, GitHub-verified release tag at the exact `origin/main` commit before expensive or publishing work. M40 verifies the private draft's exact remote asset identities before publication. M41 requires its authenticated release-notes body to exactly match staged `RELEASE_NOTES.md`. M42 extends the same-release identity boundary through an exact postpublication state observation. M43 adds exact-ID authenticated asset retrieval and byte revalidation. M44 adds exact-source provenance verification for every retrieved asset and SPDX SBOM verification for the pure wheel. M45 adds bounded credential-free public release retrieval and installed-candidate smoke. M46 adds a separate fresh-runner rehearsal. M47 replaces its Bash-only verifier and widens that tag-only rehearsal to Ubuntu, Windows, and macOS. M48 constrains the shared client's response and failure semantics. M49 confines every actual connected peer to globally reachable unicast. M50 isolates the portable verifier from ambient TLS key logging. M51 validates each actual negotiated TLS session before HTTP transmission. M52 observes the URL-derived TLS service identity and non-empty peer certificate before session checks and HTTP without changing workflows, pull-request allocations, or release authority. The M12 manifest surface remains the first preview contract under RFC-0002.
 
+M52 is also hosted-validated and integrated. M53 now binds every actual TLS
+socket to the exact verified per-hop context and client-side role after the
+handshake, before service-identity/session inspection or HTTP transmission.
+
 ## What exists
 
 - A typed engine lifecycle with explicit ownership and close semantics.
@@ -489,6 +493,15 @@ redirect repeats the check. RFC-0035 defines the content-silent failure and
 ownership boundary. This adds no certificate parsing, pinning, custom trust,
 revocation/CT policy, workflow, dependency, runtime API, release authority, or
 real public release observation.
+
+M53 verifies after the handshake that every actual TLS socket retains the
+exact context object supplied for that hop and is strictly client-side. It then
+revalidates the complete M50 context policy before M52 service-identity and M51
+session checks or any HTTP transmission. Every redirect repeats the binding
+and policy check with an independent context. RFC-0036 defines the content-
+silent failure and ownership boundary. This adds no custom trust, pinning,
+workflow, dependency, runtime API, release authority, or real public release
+observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

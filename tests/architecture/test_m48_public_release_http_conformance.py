@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import http.client
 import importlib.util
+import ssl
 import sys
 from collections.abc import Mapping
 from pathlib import Path
@@ -61,8 +62,10 @@ class _Response:
 
 
 class _Socket:
-    def __init__(self, server_hostname: str = "api.github.com") -> None:
+    def __init__(self, context: ssl.SSLContext, server_hostname: str = "api.github.com") -> None:
         self.timeouts: list[float] = []
+        self.context = context
+        self.server_side = False
         self.server_hostname = server_hostname
 
     def settimeout(self, value: float) -> None:
@@ -116,10 +119,8 @@ def test_release_document_requires_direct_200_response(
     requests = 0
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             nonlocal requests
@@ -155,10 +156,8 @@ def test_release_document_and_asset_accept_direct_200(
     ]
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
@@ -207,7 +206,7 @@ def test_asset_accepts_302_then_200_and_minimizes_redirect_headers(
     class FakeConnection:
         def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
             self.host = host
-            self.sock = _Socket(host)
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]), host)
 
         def request(self, _method: str, _path: str, *, headers: Mapping[str, str]) -> None:
             requests.append((self.host, dict(headers)))
@@ -248,10 +247,8 @@ def test_asset_rejects_undocumented_redirect_status(
     _, download, error_type = _load()
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
@@ -285,10 +282,8 @@ def test_request_and_response_header_timeouts_share_timeout_code(
     _, download, error_type = _load()
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             if phase == "request":
@@ -380,10 +375,8 @@ def test_response_body_transport_failure_is_not_misreported_as_output_failure(
             raise failure
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
@@ -413,10 +406,8 @@ def test_local_target_creation_failure_remains_output_failure(
     _, download, error_type = _load()
 
     class FakeConnection:
-        sock = _Socket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = _Socket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None
