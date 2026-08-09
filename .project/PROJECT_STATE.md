@@ -43,8 +43,7 @@
   `.project/TEST_EVIDENCE.md`. Each final CPython 3.12-3.14 graphics-enabled
   suite passed 2,044 tests with 14 expected skips. Record-inclusive
   reproducible build, isolated-wheel, and complete ten-artifact release smoke
-  also pass. The final review and hosted gates remain pending and are not
-  claimed.
+  also pass. Exact review, hosted, and integration evidence follows below.
 - Review correction: the first invalid-IDNA regression supplied an already
   connected fake socket, while a real connection could attempt its own IDNA
   conversion first and escape as a generic request failure. The corrected
@@ -78,6 +77,13 @@
   `047478d0c7fb873ae94aaa6e322b5b08903ed354`, and standalone DCO. No post-
   merge `main` run was allocated; the feature branch is deleted locally and
   remotely. No real tag or release was created.
+- Integration-record review correction: initial PR #109 head
+  `92427931151106f7b1ce9c77c4809bf794d1f7f9` passed docs-only run
+  `31317421319` in one Linux allocation with a zero-step skipped desktop
+  umbrella. External review then found the stale pending-gates sentence above,
+  which contradicted the exact hosted and integration evidence. The corrected
+  record removes that sentence; the initial otherwise-green head will not be
+  merged, and corrected hosted validation remains pending.
 - Non-claim: fixture and pull-request conformance are not a real public release
   observation, independent/external verification, every TLS/CDN/geographic
   path, future availability, immutability, artifact security, PyPI, or a

@@ -2,8 +2,8 @@
 
 - **Task:** M52 - public release TLS service-identity evidence
 - **Status:** Feature PR #108 is fully validated, review-clean, and squash-
-  integrated; publishing the exact four-file integration record on
-  `records/m52-integration`.
+  integrated; correcting the exact four-file integration record on
+  `records/m52-integration` after PR #109 review found one stale status line.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -79,4 +79,8 @@
   exact reviewed tree with the M51 closeout as sole parent, valid GitHub
   signature, and standalone DCO. No post-merge `main` run, tag, or release was
   created or claimed. The four-file integration record requires one Linux
-  documentation allocation and a zero-step skipped desktop umbrella.
+  documentation allocation and a zero-step skipped desktop umbrella. Initial
+  integration head `92427931151106f7b1ce9c77c4809bf794d1f7f9` passed that
+  topology in run `31317421319`; external review then found one stale sentence
+  that still called final review and hosted gates pending. The corrected record
+  removes the contradiction; corrected hosted validation remains pending.
