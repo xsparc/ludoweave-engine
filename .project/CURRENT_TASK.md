@@ -1,16 +1,19 @@
 # Current Task
 
 - **Task:** M54 - public release TLS session freshness
-- **Status:** In implementation and local validation on
-  `security/m54-tls-session-freshness`.
+- **Status:** Feature PR #114 is fully validated and squash-integrated;
+  publishing the exact four-file integration record on
+  `records/m54-integration`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M53 closeout
-  `fe585f8bd2313feac39b70cadf088c57bbb1960e`; only `main` existed locally and
-  remotely, with no open pull request, tag, release, or post-closeout `main`
-  run.
+- **Base:** The feature began from exact clean synchronized M53 closeout
+  `fe585f8bd2313feac39b70cadf088c57bbb1960e`. The integration record begins
+  from GitHub-verified feature squash
+  `c333f2b9aad98b9a55d986076fe8b09153d30762`; only `main` and this intended
+  local record branch exist, with no remote feature branch, open pull request,
+  tag, release, or post-merge `main` run.
 - **Outcome:** Observe after the handshake that every actual public-release TLS
   socket reports a fresh, non-reused session before later TLS evidence or HTTP
   transmission.
@@ -28,8 +31,13 @@
   does not independently prove a full handshake or certificate exchange.
   Fixture/PR evidence is not a real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Validation:** Run focused M47-M54 compatibility and adversarial tests,
-  whole-tree format/lint/type/architecture/docs, complete supported-Python
-  suites, real-wgpu, profiles, vertical slices, documented benchmarks,
-  reproducible build, isolated-wheel and release smoke, then findings-first
-  scope/security/integrity review before the bounded hosted gate.
+- **Evidence:** Feature head `d5d02a38ea302c0e314f966376e267c45508d14b`
+  passed run `31321661693` in exactly three Linux-first allocations. Every
+  static, supported-Python, real-graphics, profile, sample, reproducible-build,
+  installed-wheel, and release-smoke step passed. Delayed review found no
+  review, comment, or thread. Squash `c333f2b9aad98b9a55d986076fe8b09153d30762`
+  reproduces the exact reviewed tree with the M53 closeout as sole parent,
+  valid GitHub signature, and standalone DCO. The feature branch is deleted
+  locally/remotely; no post-merge run, tag, or release exists.
+- **Record gate:** This four-file documentation change must use one Linux
+  allocation; the desktop umbrella must skip with zero steps.

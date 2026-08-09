@@ -1,6 +1,6 @@
 # Project State
 
-## M54 public release TLS session freshness - in progress
+## M54 public release TLS session freshness - complete
 
 - Base: exact clean synchronized M53 closeout
   `fe585f8bd2313feac39b70cadf088c57bbb1960e`, with only `main` present and no
@@ -35,7 +35,25 @@
   no workflow, runtime package, benchmark, metadata, or lock.
 - Local status: final fail-fast static, architecture, docs, reproducible build,
   installed-wheel, release-smoke, archive, whitespace, and Git-object gates
-  pass. Hosted exact-head validation remains pending before publication.
+  pass.
+- Hosted evidence: exact feature head
+  `d5d02a38ea302c0e314f966376e267c45508d14b` passed run `31321661693` in
+  exactly three Linux-first allocations. Linux passed in 6m23s before macOS
+  and Windows began; macOS passed in 2m10s and Windows in 4m11s. Every static,
+  supported-Python, real-graphics, profile, sample, reproducible-build,
+  isolated-wheel, and release-smoke step passed.
+- Hosted artifacts: exact-head reproducibility produced a pure 270,321-byte
+  wheel at SHA-256
+  `009b51c9ddb4606968f195a5543288c7e98114ebaec85111347addf00a5eceee`
+  and a 1,068,001-byte source distribution at
+  `b26ff481a608d9d9777e65650f9556c2d880d7ab28c01a7a38b7c6ed7c1b17f1`.
+- Integration: delayed review found no review, issue comment, inline comment,
+  or thread. GitHub-verified squash
+  `c333f2b9aad98b9a55d986076fe8b09153d30762` has the exact reviewed feature
+  tree, sole parent M53 closeout, valid signature, and standalone DCO. The
+  feature branch is deleted locally/remotely; no post-merge `main` run, tag, or
+  release was created. The remaining integration record changes exactly four
+  documentation/project paths.
 
 ## M53 public release TLS context binding - complete
 

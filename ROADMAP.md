@@ -62,7 +62,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M51 public release negotiated TLS-session conformance | PR #105 corrected malformed unhashable-version handling after review, passed the exact three-allocation gate, and squash-integrated pre-request TLSv1.2/TLSv1.3, cipher-strength, compression, and ALPN checks without changing release authority |
 | Done | M52 public release TLS service-identity evidence | PR #108 corrected real-connection invalid-IDNA ordering during review, passed actual socket identity/certificate checks in the exact three-allocation gate, and squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M53 public release TLS context binding | PR #111 passed exact post-handshake socket/context identity, strict client-role and policy revalidation in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
-| In progress | M54 public release TLS session freshness | Exact post-handshake `session_reused is False` evidence on every hop before later TLS observations or HTTP, with unchanged workflows, dependencies, and release authority |
+| Done | M54 public release TLS session freshness | PR #114 passed exact post-handshake `session_reused is False` evidence on every hop in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -793,6 +793,16 @@ release observation, independent or external verification, every TLS/CDN path,
 future availability, immutability, artifact security, PyPI, or a supported
 channel. A real pass remains unclaimed until an authorized signed-tag release
 run executes.
+
+Feature PR #114 exact head `d5d02a38ea302c0e314f966376e267c45508d14b`
+passed run `31321661693` in exactly three Linux-first allocations, including
+all supported-Python, graphics, profile, vertical-slice, reproducible-build,
+installed-wheel, and release-smoke gates. Delayed review found no review,
+comment, or thread. GitHub-verified squash
+`c333f2b9aad98b9a55d986076fe8b09153d30762` has the exact reviewed tree, the
+M53 closeout as sole parent, valid signature, and standalone DCO. No post-merge
+run was allocated, the feature branch is deleted, and no real tag or release
+was created.
 
 ## Good-first contribution queue
 
