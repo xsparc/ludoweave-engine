@@ -57,7 +57,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
 | Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
 | Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
-| Active | M49 public release connected-peer confinement | Actual port-443 TLS peer validated before every request; global-unicast IPv4/IPv6 only; unchanged workflows and release authority |
+| Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -650,6 +650,21 @@ pull-request evidence are not a real public release observation, network
 sandbox, independent/external verification, every delivery path, future
 availability, immutability, artifact security, PyPI, or a supported channel. A
 real pass remains unclaimed until an authorized signed-tag release run executes.
+
+Initial PR #98 passed its exact three-allocation gate but remained unmerged
+after hosted review identified that supported CPython could classify deprecated
+IPv6 site-local and reserved peers as global. The replacement explicitly
+rejects both classifications and adds the reported ranges as regressions.
+
+Replacement PR #99 exact head
+`01c955f0256c0c6e3a34afaf317c828e439b87ca` passed run `31307775820` in
+exactly three allocations: Linux first in 422 seconds, then macOS in 143
+seconds and Windows in 230 seconds. The PR was clean and mergeable with no
+review, comment, or thread. GitHub-verified squash
+`842aedc67a7ae4584821c4d8bc96a4ed8cb334c3` has reviewed tree
+`a9755cbf65dfeba5087f5037f73bc6027c408444`, sole parent the M48 closeout,
+valid signature, and standalone DCO. No post-merge run was allocated, the
+feature branch is deleted, and no real tag or release was created.
 
 ## Good-first contribution queue
 
