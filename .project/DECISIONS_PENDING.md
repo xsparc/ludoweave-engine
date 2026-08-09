@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0032 resolves M49 public release connected-peer confinement. Every fixed
+API or redirected asset connection validates the actual port-443 TLS socket
+peer before HTTP transmission and permits only globally reachable unicast IPv4
+or IPv6, with IPv4-mapped IPv6 classified by its embedded address. A
+non-global peer has one stable forbidden code; timeout and malformed/unavailable
+peer inspection retain the request timeout/failure taxonomy. No hostname/IP
+allowlist, separate DNS preflight, workflow, dependency, release mutation, or
+authority change is introduced. A real pass remains pending an explicitly
+authorized signed-tag release execution.
+
 RFC-0031 resolves M48 public release HTTP response conformance. The fixed
 release-document request accepts only direct `200`; asset-ID requests accept
 direct `200` or at most three bounded `302` responses. API-only headers remain

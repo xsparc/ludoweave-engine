@@ -72,6 +72,7 @@ nav:
       - RFC-0029 - Fresh-runner consumer rehearsal: rfcs/0029-fresh-runner-consumer-rehearsal.md
       - RFC-0030 - Cross-platform consumer rehearsal: rfcs/0030-cross-platform-release-consumer-rehearsal.md
       - RFC-0031 - Public release HTTP response conformance: rfcs/0031-public-release-http-response-conformance.md
+      - RFC-0032 - Public release connected-peer confinement: rfcs/0032-public-release-peer-confinement.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

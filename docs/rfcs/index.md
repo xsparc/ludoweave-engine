@@ -36,3 +36,4 @@ was adopted.
 - [RFC-0029: add a fresh-runner public consumer rehearsal](0029-fresh-runner-consumer-rehearsal.md)
 - [RFC-0030: add a cross-platform public release consumer rehearsal](0030-cross-platform-release-consumer-rehearsal.md)
 - [RFC-0031: constrain public release HTTP responses and failures](0031-public-release-http-response-conformance.md)
+- [RFC-0032: confine public release requests to global connected peers](0032-public-release-peer-confinement.md)

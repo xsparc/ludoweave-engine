@@ -95,6 +95,9 @@ class _Socket:
     def settimeout(self, value: float) -> None:
         self.timeouts.append(value)
 
+    def getpeername(self) -> tuple[str, int]:
+        return ("8.8.8.8", 443)
+
 
 def _load() -> tuple[ModuleType, _Main, _Download]:
     spec = importlib.util.spec_from_file_location("m47_public_release_verifier", _VERIFIER)

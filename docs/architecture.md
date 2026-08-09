@@ -1253,6 +1253,34 @@ not a real public release observation, independent/external verification,
 future availability, immutability, artifact security, PyPI, or a supported
 channel. RFC-0031 defines the complete boundary.
 
+## M49 public release connected-peer boundary
+
+M49 closes the remaining gap between a syntactically bounded redirect hostname
+and the address actually reached. Before sending HTTP on the fixed API request
+or any bounded asset redirect, the verifier explicitly establishes its normal
+verified TLS connection and inspects `getpeername()`. The peer must be a
+well-formed IPv4 or IPv6 address at actual port 443. IPv4-mapped IPv6 is
+classified through its embedded IPv4 address.
+
+Only globally reachable unicast addresses proceed to request transmission.
+Private, shared, loopback, link-local, documentation, benchmarking,
+unspecified, multicast, reserved, and every other non-global address fail with
+the content-silent `public_release.peer_forbidden` code. The check applies to
+the actual connected socket, avoiding a separate DNS result that could differ
+from the connection. It occurs after the TLS handshake needed to discover the
+peer but before HTTP method, path, or headers are sent.
+
+Connect or peer-inspection timeouts retain M48's request-timeout code.
+Malformed peer results, unavailable sockets, wrong ports, and other inspection
+failures use request failure. No public diagnostic includes the peer, hostname,
+URL, or response content. M49 adds no hostname/IP allowlist, separate DNS
+preflight, proxy, network sandbox, retry, cleanup, workflow, allocation,
+permission, credential, dependency, runtime, package, public API, or release
+mutation. Pull-request evidence is not a real public release observation,
+independent/external verification, every CDN path, future availability,
+immutability, artifact security, PyPI, or a supported channel. RFC-0032 defines
+the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

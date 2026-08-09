@@ -6,6 +6,7 @@ import argparse
 import contextlib
 import http.client
 import io
+import ipaddress
 import json
 import os
 import re
@@ -15,6 +16,7 @@ import time
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import cast
 from urllib.parse import SplitResult, urljoin, urlsplit, urlunsplit
 
 import smoke_release
@@ -377,6 +379,7 @@ def _download(
             ) from error
         response: http.client.HTTPResponse | None = None
         try:
+            _connect_public_peer(connection, deadline)
             path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
             headers = {
                 "Accept": accept,
@@ -460,6 +463,63 @@ def _download(
             if response is not None:
                 response.close()
             connection.close()
+
+
+def _connect_public_peer(
+    connection: http.client.HTTPSConnection,
+    deadline: float,
+) -> None:
+    """Connect and reject a non-global peer before transmitting HTTP."""
+
+    if connection.sock is None:
+        connection.connect()
+    socket = connection.sock
+    if socket is None:
+        raise PublicReleaseVerificationError(
+            "public release peer is unavailable",
+            code="public_release.request_failed",
+        )
+    _set_socket_timeout(connection, deadline)
+    try:
+        peer: object = socket.getpeername()
+    except TimeoutError:
+        raise
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release peer is unavailable",
+            code="public_release.request_failed",
+        ) from error
+    if not isinstance(peer, tuple):
+        raise PublicReleaseVerificationError(
+            "public release peer is unavailable",
+            code="public_release.request_failed",
+        )
+    peer_parts = cast(tuple[object, ...], peer)
+    if len(peer_parts) < 2 or not isinstance(peer_parts[0], str) or peer_parts[1] != 443:
+        raise PublicReleaseVerificationError(
+            "public release peer is unavailable",
+            code="public_release.request_failed",
+        )
+    try:
+        address = ipaddress.ip_address(peer_parts[0].split("%", 1)[0])
+    except ValueError as error:
+        raise PublicReleaseVerificationError(
+            "public release peer address is invalid",
+            code="public_release.request_failed",
+        ) from error
+    if isinstance(address, ipaddress.IPv6Address) and address.ipv4_mapped is not None:
+        address = address.ipv4_mapped
+    if (
+        not address.is_global
+        or address.is_multicast
+        or address.is_reserved
+        or address.is_unspecified
+        or (isinstance(address, ipaddress.IPv6Address) and address.is_site_local)
+    ):
+        raise PublicReleaseVerificationError(
+            "public release peer is not globally reachable",
+            code="public_release.peer_forbidden",
+        )
 
 
 def _stream_response(

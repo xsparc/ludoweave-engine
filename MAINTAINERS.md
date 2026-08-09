@@ -42,38 +42,37 @@ claims.
 
 ## Current boundary
 
-M48 constrains M47's portable public-release client to the documented response
-set without widening release authority. The public release document must return
-a direct `200`. Asset retrieval may return `200` or follow at most three `302`
-responses that retain M47's HTTPS/default-port URL bounds; every other `3xx`
-fails closed. The API-version header must remain confined to `api.github.com`
-and no request may receive authorization, cookies, ambient proxy configuration,
-browser URLs, or caller-selected initial hosts.
+M49 confines M48's portable public-release client to globally reachable
+connected peers without widening release authority. Before transmitting an
+HTTP request, explicitly connect each fixed API or redirected asset hop,
+inspect the actual socket peer, require actual port 443, normalize IPv4-mapped
+IPv6, and accept only globally reachable unicast IPv4/IPv6. Apply the check to
+every bounded hop. Non-global peers use `public_release.peer_forbidden`;
+connect/inspection timeouts retain `public_release.request_timeout`; malformed,
+unavailable, wrong-port, or other peer inspection failures retain
+`public_release.request_failed`. Public output may disclose no host, address,
+URL, or response content.
 
-Retain the 10-second blocking timeout inside the 30-second monotonic per-request
-deadline and refresh the connected socket timeout before response headers and
-every bounded body read. Every blocking `TimeoutError` must map to the stable
-timeout code; other socket/HTTP protocol errors map to request failure; only
-local exclusive-create/write/finalization/removal failures map to output
-failure. Preserve all M47 document, plan, ID, name, count, byte, exact-set,
-partial, validation, and installed-smoke bounds. M48 may add no runner, action,
-permission, workflow edit, trigger, credential, release mutation, retry,
-rollback, cleanup, artifact-set, dependency, lock, version, runtime, package,
-or public-API change. It must not claim a real release observation,
-independent/external evidence, a machine outside GitHub-hosted Actions, every
+Preserve M48's exact response/header/error contract and all M47 identity, TLS,
+document, plan, ID, name, count, byte, exact-set, partial, validation, and
+installed-smoke bounds. M49 may add no hostname/IP allowlist, separate DNS
+preflight, runner, action, permission, workflow edit, trigger, credential,
+release mutation, retry, rollback, cleanup, artifact-set, dependency, lock,
+version, runtime, package, or public-API change. It must not claim a network
+sandbox, real release observation, independent/external evidence, every
 delivery path, future availability, immutability, artifact security, PyPI, or a
-supported release channel. M0 through M47 are complete, reviewed,
-hosted-validated, and integrated into `main`. M48 starts from exact verified
-M47 closeout commit `8d8d9e4a5790d7b74ec06139d314ffdf30a4ef41`.
+supported release channel. M0 through M48 are complete, reviewed,
+hosted-validated, and integrated into `main`. M49 starts from exact verified
+M48 closeout commit `049cdbcf2769a1c2359593f642e37697d5bf7400`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
 checks constrained provenance and wheel-SBOM attestations, M45 repeats exact
 public retrieval without a release credential, and M46 separates that public
 consumer observation onto a fresh runner, and M47 widens only its verifier and
-cross-platform operating-system portability. M48 narrows response/failure
-semantics only; none
-of these milestones authorizes a real release.
+  cross-platform operating-system portability. M48 narrows response/failure
+  semantics and M49 confines the actual connected peer; none of these
+  milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
