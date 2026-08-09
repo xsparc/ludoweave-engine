@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M50 - public release TLS key-log isolation
-- **Status:** Implementation, complete local validation, and findings-first
-  review passed on `security/m50-tls-context-isolation`; ready for exact-head
-  hosted validation.
+- **Status:** Feature implementation, complete local/hosted validation, review,
+  and squash integration passed; recording exact integration evidence on
+  `records/m50-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -50,6 +50,13 @@
   and that the debug file receives TLS session secrets. The explicit
   implementation passes the full local static, architecture, supported-Python,
   graphics, profile, vertical-slice, reproducible-build, isolated-wheel, and
-  complete release-smoke gates recorded in `.project/TEST_EVIDENCE.md`. Hosted
-  exact-head validation remains pending. No real tag or release has been
-  created or claimed.
+  complete release-smoke gates recorded in `.project/TEST_EVIDENCE.md`. Ready
+  PR #102 exact head `99134b6be68bb7978431710228e788250561659e`
+  passed run `31309759226` in exactly three allocations: Linux first, then
+  macOS and Windows. The PR had zero reviews, comments, or review threads and
+  squash-integrated as `5fb56120e1a96a0a25db96baa3836699e435611c`
+  with the exact reviewed tree, sole M49-closeout parent, GitHub-valid
+  signature, and DCO. No `main` run was allocated and only synchronized
+  `main` remains locally/remotely. The documentation-only integration record
+  and zero-run closeout remain. No real tag or release has been created or
+  claimed.

@@ -58,7 +58,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
 | Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
 | Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
-| In progress | M50 public release TLS key-log isolation | Explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and unchanged workflow/release authority |
+| Done | M50 public release TLS key-log isolation | PR #102 passed explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and the exact three-allocation gate before verified squash integration |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -685,6 +685,16 @@ negotiated-session audit, independent/external verification, every delivery
 path, future availability, immutability, artifact security, PyPI, or a
 supported channel. A real pass remains unclaimed until an authorized signed-tag
 release run executes.
+
+Ready PR #102 exact head
+`99134b6be68bb7978431710228e788250561659e` passed run `31309759226` in
+exactly three allocations: Linux first in 7m43s, then macOS in 2m08s and
+Windows in 3m01s. The PR was clean and mergeable with no review, comment, or
+thread. GitHub-verified squash
+`5fb56120e1a96a0a25db96baa3836699e435611c` has reviewed tree
+`2ec52b638069d23aabd68af04f3ada426aab803d`, sole parent the M49 closeout,
+valid signature, and standalone DCO. No post-merge run was allocated, the
+feature branch is deleted, and no real tag or release was created.
 
 ## Good-first contribution queue
 
