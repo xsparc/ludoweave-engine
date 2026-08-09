@@ -64,6 +64,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M53 public release TLS context binding | PR #111 passed exact post-handshake socket/context identity, strict client-role and policy revalidation in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M54 public release TLS session freshness | PR #114 passed exact post-handshake `session_reused is False` evidence on every hop in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M55 public release HTTP response framing | PR #117 corrected the CPython status-line normalization overclaim, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated documented HTTP/1.1-class framing checks with unchanged workflows/release authority |
+| In progress | M56 public release redirect-reference conformance | Strict integer status, exactly one bounded Location URI-reference, post-resolution HTTPS revalidation, and unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -827,6 +828,25 @@ request-smuggling protection, independent/external verification, every
 intermediary or delivery path, future availability, immutability, artifact
 security, PyPI, or a supported channel. A real pass remains unclaimed until an
 authorized signed-tag release run executes.
+
+M56 starts from verified M55 closeout commit
+`e7f700454adf1c11c80cb1ba684ed3318f7876e4`. After M55 framing and before
+comparison, redirect resolution, or body use, every response status must be a
+non-boolean integer from 100 through 599. Every followed `302` must expose
+exactly one Location field through the documented header-pair list. Its value
+must be a single 1-to-8,000-octet ASCII URI-reference using valid RFC 3986
+characters and complete percent escapes. The resolved URL must pass the
+existing bounded HTTPS policy before the next request.
+
+Relative and cross-host absolute references remain supported, so every hop
+repeats M49-M55 peer, TLS, framing, deadline, size, and exact-byte checks. The
+slice adds no host allowlist, private response state, raw HTTP/URI parser,
+alternate client, proxy, DNS preflight, network sandbox, workflow, runner
+allocation, action, permission, credential, release mutation, dependency,
+runtime package, public API, or release authority. Fixture and pull-request
+evidence are not a real public release observation or a general SSRF defense.
+A real pass remains unclaimed until an authorized signed-tag release run
+executes.
 
 ## Good-first contribution queue
 

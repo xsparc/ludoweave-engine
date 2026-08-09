@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M56/RFC-0039 strict integer response-status and single bounded Location
+  URI-reference validation before public-release redirect resolution, without
+  adding a host allowlist, workflow, dependency, runtime API, or release
+  authority.
 - Add M55/RFC-0038 documented HTTP/1.1-class response-value and framing
   validation on every public-release response, rejecting unsupported transfer
   codings and `Transfer-Encoding`/`Content-Length` ambiguity before status or

@@ -353,6 +353,25 @@ claim or exact status-line proof. Pull-request fixtures are not a real public
 release observation. No real M55 pass exists until an authorized signed-tag
 release run exercises the public path.
 
+M56/RFC-0039 validates the documented response status after M55 framing and
+before comparison, redirect resolution, or body use. The status must be a non-
+boolean integer from 100 through 599. Each followed `302` must expose exactly
+one Location field through the documented header-pair list; its value must be a
+single 1-to-8,000-octet ASCII URI-reference with valid RFC 3986 characters and
+complete percent escapes. Invalid status uses content-silent
+`public_release.request_failed`; invalid Location metadata or resolution uses
+`public_release.redirect_failed`, and supported local causes remain chained.
+Every redirect repeats the validation.
+
+The resolved reference must still pass the bounded HTTPS URL policy before use.
+Cross-host absolute references remain permitted, so every hop repeats the M49-
+M55 peer, TLS, framing, deadline, byte, and exact-artifact checks; there is no
+host allowlist. M56 adds no raw parser, alternate client, proxy, DNS preflight,
+network sandbox, workflow, allocation, dependency, runtime API, release
+authority, or general SSRF claim. Pull-request fixtures are not a real public
+release observation. No real M56 pass exists until an authorized signed-tag
+release run exercises the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

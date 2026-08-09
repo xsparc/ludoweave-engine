@@ -79,6 +79,9 @@ class _Response:
     def getheader(self, name: str) -> str | None:
         return self._headers.get(name)
 
+    def getheaders(self) -> list[tuple[str, str]]:
+        return list(self._headers.items())
+
     def read(self, amount: int = -1) -> bytes:
         if amount < 0:
             amount = len(self._body) - self._offset

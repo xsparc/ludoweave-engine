@@ -86,6 +86,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   normalize another `HTTP/1.x` value. `Transfer-Encoding` must be absent or
   exactly `chunked` case-insensitively, cannot coexist with `Content-Length`,
   and any present content length remains a string for existing bounded checks.
+- M56 requires each response status to be a non-boolean integer from 100
+  through 599. Each followed `302` must expose exactly one Location field whose
+  value is a single URI-reference of at most 8,000 ASCII octets with complete
+  percent escapes; the resolved URL repeats the existing bounded HTTPS, peer,
+  TLS, framing, size, and exact-byte checks before use.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
