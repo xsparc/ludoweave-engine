@@ -72,6 +72,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M52 validates the socket's URL-derived TLS service identity before the M51
   session check: its observed IDNA-normalized reference hostname must match and
   its verified peer certificate must be available as non-empty DER bytes.
+- M53 validates after the handshake that the actual socket retains the exact
+  context supplied for that hop and has an exactly client-side role, then
+  revalidates the complete M50 context policy before M52, M51, or any request.
+  Every redirect repeats the exact context binding check independently.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -130,6 +134,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   transparency, DNSSEC, workflow, dependency, or release authority. Its
   fixture checks are not a real public release observation or proof for every
   endpoint, certificate, delivery path, or future connection.
+- M53 adds no custom trust, pinning, certificate/chain parser, revocation,
+  session reuse, channel binding, proxy, network sandbox, workflow, dependency,
+  or release authority. Its fixture checks are not a real public release
+  observation or proof for every endpoint, context implementation, delivery
+  path, or future connection.
 
 ## Initial security boundaries
 

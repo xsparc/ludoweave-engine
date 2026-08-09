@@ -1,5 +1,41 @@
 # Project State
 
+## M53 public release TLS context binding - in progress
+
+- Base: exact clean synchronized M52 closeout
+  `8d69f5b265277edb95ae47ea3a0af001217a4575`, with only `main` present and no
+  open pull request, tag, release, or post-closeout `main` run.
+- Scope: after the handshake and M49 peer confinement, require the actual
+  socket to retain the exact M50 context object supplied to that hop and an
+  exactly client-side role. Revalidate the complete context policy before M52
+  service identity, M51 negotiated session, or HTTP transmission. Repeat on
+  every redirect with an independent context.
+- Failure: missing/unsupported accessors, context substitution, wrong role,
+  post-handshake policy mutation, and inspection failures use the stable,
+  content-silent `public_release.tls_failed` code before later TLS evidence or
+  request transmission. Available local inspection causes remain chained.
+- Boundary: no workflow, runner allocation, dependency, lock, version, runtime
+  package, public API, credential, release mutation, or release-authority
+  change. No trust replacement, pinning, certificate/chain parsing, revocation,
+  session reuse, channel binding, proxy, network sandbox, or external monitor.
+- Decision: accepted RFC-0036 records exact object binding, post-handshake
+  policy revalidation, ordering, ownership, failure, authority, and non-claim
+  boundaries.
+- Development evidence: focused M47-M53 behavior passes 144 assertions. All
+  296 Python files are format clean; Ruff and strict Pyright report zero
+  findings; 522 architecture assertions and strict docs pass. Complete
+  graphics-enabled CPython 3.12-3.14 suites each pass 2,062 tests with 14
+  expected skips. Real-wgpu, profiles, both vertical slices, documented
+  benchmarks, reproducible build, isolated wheel, and release smoke pass.
+  Exact commands, counts, hashes, and corrected attempts are recorded in test
+  evidence. Hosted exact-head evidence remains pending and is not claimed.
+- Review: findings-first diff, scope, history, integrity, credential, identity,
+  backend/native leakage, and public-boundary review found no actionable
+  finding. The 19-path candidate changes no workflow, runtime package,
+  benchmark, metadata, or lock. Final record-inclusive static, architecture,
+  docs, reproducible build, installed wheel, and release smoke pass. Feature
+  publication and hosted exact-head evidence remain pending.
+
 ## M52 public release TLS service-identity evidence - complete
 
 - Base: clean synchronized M51 closeout

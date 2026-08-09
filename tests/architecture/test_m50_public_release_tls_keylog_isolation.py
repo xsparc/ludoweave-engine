@@ -68,7 +68,9 @@ class _RedirectResponse(_Response):
 
 
 class _PeerSocket:
-    def __init__(self, server_hostname: str = "api.github.com") -> None:
+    def __init__(self, context: ssl.SSLContext, server_hostname: str = "api.github.com") -> None:
+        self.context = context
+        self.server_side = False
         self.server_hostname = server_hostname
 
     def getpeername(self) -> tuple[str, int]:
@@ -153,11 +155,12 @@ def test_ambient_keylog_path_is_not_created_or_used(
         ) -> None:
             assert timeout > 0
             contexts.append(context)
+            self.context = context
             self.host = _host
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
-            self.sock = _PeerSocket(self.host)
+            self.sock = _PeerSocket(self.context, self.host)
 
         def request(
             self,
@@ -217,11 +220,12 @@ def test_redirect_hop_receives_an_independent_isolated_context(
         ) -> None:
             assert timeout > 0
             contexts.append(context)
+            self.context = context
             self.host = _host
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
-            self.sock = _PeerSocket(self.host)
+            self.sock = _PeerSocket(self.context, self.host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None

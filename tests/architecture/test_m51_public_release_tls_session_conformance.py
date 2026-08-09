@@ -69,6 +69,7 @@ class _RedirectResponse(_Response):
 class _TlsSocket:
     def __init__(
         self,
+        context: ssl.SSLContext,
         events: list[str],
         *,
         version: object = "TLSv1.3",
@@ -77,6 +78,8 @@ class _TlsSocket:
         alpn: object = "http/1.1",
         server_hostname: object = "api.github.com",
     ) -> None:
+        self.context = context
+        self.server_side = False
         self.events = events
         self.server_hostname = server_hostname
         self.negotiated_version = version
@@ -141,9 +144,9 @@ def test_tls_context_advertises_only_http_1_1(
         protocol = ssl.PROTOCOL_TLS_CLIENT
         verify_mode = ssl.CERT_REQUIRED
         check_hostname = True
-        minimum_version = ssl.TLSVersion.MINIMUM_SUPPORTED
+        minimum_version = ssl.TLSVersion.TLSv1_2
         keylog_filename = None
-        verify_flags = ssl.VerifyFlags(0)
+        verify_flags = ssl.VERIFY_X509_PARTIAL_CHAIN | ssl.VERIFY_X509_STRICT
 
         def load_default_certs(self, purpose: ssl.Purpose) -> None:
             assert purpose == ssl.Purpose.SERVER_AUTH
@@ -184,11 +187,18 @@ def test_conforming_tls_session_is_checked_before_request(
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:
+            self.context = cast(ssl.SSLContext, _kwargs["context"])
             self.sock: _TlsSocket | None = None
 
         def connect(self) -> None:
             events.append("connect")
-            self.sock = _TlsSocket(events, version=version, cipher=cipher, alpn=alpn)
+            self.sock = _TlsSocket(
+                self.context,
+                events,
+                version=version,
+                cipher=cipher,
+                alpn=alpn,
+            )
 
         def request(
             self,
@@ -259,7 +269,8 @@ def test_nonconforming_tls_session_fails_before_request(
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            self.sock = _TlsSocket(events, **overrides)
+            context = cast(ssl.SSLContext, _kwargs["context"])
+            self.sock = _TlsSocket(context, events, **overrides)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append("request")
@@ -291,7 +302,10 @@ def test_missing_tls_session_accessor_fails_closed(
     requests = 0
 
     class IncompleteSocket:
-        server_hostname = "api.github.com"
+        def __init__(self, context: ssl.SSLContext) -> None:
+            self.context = context
+            self.server_side = False
+            self.server_hostname = "api.github.com"
 
         def getpeername(self) -> tuple[str, int]:
             return ("8.8.8.8", 443)
@@ -313,10 +327,8 @@ def test_missing_tls_session_accessor_fails_closed(
             return None
 
     class FakeConnection:
-        sock = IncompleteSocket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = IncompleteSocket(cast(ssl.SSLContext, _kwargs["context"]))
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             nonlocal requests
@@ -355,7 +367,8 @@ def test_redirect_revalidates_an_independent_tls_session(
     class FakeConnection:
         def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
             self.host = host
-            self.sock = _TlsSocket(events, server_hostname=host)
+            context = cast(ssl.SSLContext, _kwargs["context"])
+            self.sock = _TlsSocket(context, events, server_hostname=host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append(f"request:{self.host}")

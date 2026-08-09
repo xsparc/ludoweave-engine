@@ -1376,6 +1376,36 @@ release observation, independent/external verification, every delivery path,
 future-availability proof, immutability proof, artifact-security result, PyPI
 availability, or a supported channel. RFC-0035 defines the complete boundary.
 
+## M53 public release TLS context-binding boundary
+
+M53 observes the context binding on the actual connected TLS socket. After the
+handshake and M49 peer confinement, but before M52 service-identity evidence,
+M51 negotiated-session inspection, or HTTP transmission, the socket must expose
+the exact context object supplied to that hop's `HTTPSConnection` and an
+exactly client-side `server_side` value of `False`.
+
+The verifier then revalidates the complete M50 context policy after the
+handshake: `PROTOCOL_TLS_CLIENT`, `CERT_REQUIRED`, hostname checking, an exact
+TLSv1.2 minimum, strict plus partial-chain verification flags, and no key-log
+file. Object identity is required; a separately configured equivalent context
+does not establish ownership of the actual socket. Every redirect owns and
+checks a new exact context independently.
+
+A missing socket or accessor, substituted context, non-client role, changed
+policy, unsupported inspection, or inspection failure uses the stable,
+content-silent `public_release.tls_failed` code before service identity,
+session inspection, or request transmission. The existing per-hop `finally`
+path owns connection closure and preserves a local chained cause when one is
+available.
+
+M53 changes no workflow, runner allocation, dependency, package, runtime API,
+or release authority. It adds no trust replacement, pinning, certificate/chain
+parser, revocation, session reuse, channel binding, proxy policy, or network
+sandbox. Fixture and pull-request evidence are not a real public release
+observation, independent/external verification, every delivery path, future-
+availability proof, immutability proof, artifact-security result, PyPI
+availability, or a supported channel. RFC-0036 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

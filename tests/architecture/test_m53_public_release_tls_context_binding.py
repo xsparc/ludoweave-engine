@@ -1,4 +1,4 @@
-"""Protect M52 public release TLS service-identity evidence."""
+"""Protect M53 public release TLS context binding."""
 
 from __future__ import annotations
 
@@ -43,20 +43,24 @@ class _CodedError(Protocol):
 class _Response:
     status = 200
 
-    def __init__(self, body: bytes, *, location: str | None = None) -> None:
-        self._body = body
-        self._offset = 0
-        self._location = location
+    def __init__(self, body: bytes = b"{}", *, location: str | None = None) -> None:
+        self.body = body
+        self.location = location
+        self.offset = 0
 
     def getheader(self, name: str) -> str | None:
-        return self._location if name == "Location" else None
+        if name == "Location":
+            return self.location
+        if name == "Content-Length":
+            return str(len(self.body))
+        return None
 
     def read(self, amount: int = -1) -> bytes:
         if amount < 0:
-            amount = len(self._body) - self._offset
-        block = self._body[self._offset : self._offset + amount]
-        self._offset += len(block)
-        return block
+            amount = len(self.body) - self.offset
+        chunk = self.body[self.offset : self.offset + amount]
+        self.offset += len(chunk)
+        return chunk
 
     def close(self) -> None:
         return None
@@ -66,20 +70,29 @@ class _RedirectResponse(_Response):
     status = 302
 
 
-class _IdentitySocket:
+class _BoundSocket:
     def __init__(
         self,
-        context: ssl.SSLContext,
+        context: object,
         events: list[str],
         *,
-        server_hostname: object = "api.github.com",
-        certificate: object = b"verified-leaf-certificate",
+        server_side: object = False,
+        server_hostname: str = "api.github.com",
     ) -> None:
-        self.context = context
-        self.server_side = False
+        self._context = context
+        self._server_side = server_side
         self.events = events
-        self._server_hostname = server_hostname
-        self.certificate = certificate
+        self.server_hostname = server_hostname
+
+    @property
+    def context(self) -> object:
+        self.events.append("context")
+        return self._context
+
+    @property
+    def server_side(self) -> object:
+        self.events.append("server-side")
+        return self._server_side
 
     def getpeername(self) -> tuple[str, int]:
         self.events.append("peer")
@@ -88,14 +101,10 @@ class _IdentitySocket:
     def settimeout(self, _value: float) -> None:
         return None
 
-    @property
-    def server_hostname(self) -> object:
-        self.events.append("reference-hostname")
-        return self._server_hostname
-
-    def getpeercert(self, *, binary_form: bool = False) -> object:
-        self.events.append(f"certificate:{binary_form}")
-        return self.certificate
+    def getpeercert(self, *, binary_form: bool = False) -> bytes:
+        assert binary_form
+        self.events.append("certificate")
+        return b"verified-leaf-certificate"
 
     def version(self) -> str:
         self.events.append("version")
@@ -115,7 +124,7 @@ class _IdentitySocket:
 
 
 def _load() -> tuple[ModuleType, _Download, type[Exception]]:
-    spec = importlib.util.spec_from_file_location("m52_public_release_verifier", _VERIFIER)
+    spec = importlib.util.spec_from_file_location("m53_public_release_verifier", _VERIFIER)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -132,47 +141,32 @@ def _load() -> tuple[ModuleType, _Download, type[Exception]]:
     )
 
 
-@pytest.mark.parametrize(
-    ("url", "observed_hostname", "expected_reference", "expected_path"),
-    (
-        (
-            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
-            "API.GITHUB.COM",
-            "api.github.com",
-            "/repos/xsparc/ludoweave-engine/releases/123",
-        ),
-        (
-            "https://PYTHÖN.example/release",
-            "xn--pythn-mua.example",
-            "xn--pythn-mua.example",
-            "/release",
-        ),
-    ),
-)
-def test_verified_service_identity_precedes_session_and_request(
+def test_exact_client_context_binding_precedes_identity_session_and_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    url: str,
-    observed_hostname: str,
-    expected_reference: str,
-    expected_path: str,
 ) -> None:
     _, download, _ = _load()
     events: list[str] = []
+    contexts: list[ssl.SSLContext] = []
 
     class FakeConnection:
-        def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
-            events.append(f"connection:{host}")
-            self.context = cast(ssl.SSLContext, _kwargs["context"])
-            self.sock: _IdentitySocket | None = None
+        def __init__(
+            self,
+            host: str,
+            _port: int | None,
+            *,
+            timeout: float,
+            context: ssl.SSLContext,
+        ) -> None:
+            assert host == "api.github.com"
+            assert timeout > 0
+            contexts.append(context)
+            self.context = context
+            self.sock: _BoundSocket | None = None
 
         def connect(self) -> None:
             events.append("connect")
-            self.sock = _IdentitySocket(
-                self.context,
-                events,
-                server_hostname=observed_hostname,
-            )
+            self.sock = _BoundSocket(self.context, events)
 
         def request(
             self,
@@ -185,7 +179,7 @@ def test_verified_service_identity_precedes_session_and_request(
             events.append(f"request:{method}:{path}")
 
         def getresponse(self) -> _Response:
-            return _Response(b"{}")
+            return _Response()
 
         def close(self) -> None:
             events.append("close")
@@ -193,7 +187,7 @@ def test_verified_service_identity_precedes_session_and_request(
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
     target = tmp_path / "release.json"
     download(
-        url,
+        "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
         target,
         accept="application/vnd.github+json",
         maximum_bytes=100,
@@ -201,65 +195,35 @@ def test_verified_service_identity_precedes_session_and_request(
     )
 
     assert target.read_bytes() == b"{}"
+    assert len(contexts) == 1
     assert events == [
-        f"connection:{expected_reference}",
         "connect",
         "peer",
-        "reference-hostname",
-        "certificate:True",
+        "context",
+        "server-side",
+        "certificate",
         "version",
         "cipher",
         "compression",
         "alpn",
-        f"request:GET:{expected_path}",
+        "request:GET:/repos/xsparc/ludoweave-engine/releases/123",
         "close",
     ]
 
 
-@pytest.mark.parametrize(
-    ("url", "server_hostname", "certificate"),
-    (
-        ("https://api.github.com/release", None, b"verified-leaf-certificate"),
-        ("https://api.github.com/release", [], b"verified-leaf-certificate"),
-        ("https://api.github.com/release", "", b"verified-leaf-certificate"),
-        (
-            "https://api.github.com/release",
-            "secret.example",
-            b"verified-leaf-certificate",
-        ),
-        ("https://k.example/release", "\u212a.example", b"verified-leaf-certificate"),
-        ("https://api.github.com/release", "api.github.com", None),
-        ("https://api.github.com/release", "api.github.com", b""),
-        (
-            "https://api.github.com/release",
-            "api.github.com",
-            bytearray(b"certificate"),
-        ),
-    ),
-)
-def test_invalid_service_identity_fails_before_session_or_request(
+@pytest.mark.parametrize("server_side", (True, None, 0, "false"))
+def test_non_client_socket_role_fails_before_identity_or_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    url: str,
-    server_hostname: object,
-    certificate: object,
+    server_side: object,
 ) -> None:
     _, download, error_type = _load()
     events: list[str] = []
 
     class FakeConnection:
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            self.context = cast(ssl.SSLContext, _kwargs["context"])
-            self.sock: _IdentitySocket | None = None
-
-        def connect(self) -> None:
-            events.append("connect")
-            self.sock = _IdentitySocket(
-                self.context,
-                events,
-                server_hostname=server_hostname,
-                certificate=certificate,
-            )
+        def __init__(self, *_args: object, **kwargs: object) -> None:
+            context = cast(ssl.SSLContext, kwargs["context"])
+            self.sock = _BoundSocket(context, events, server_side=server_side)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append("request")
@@ -270,7 +234,7 @@ def test_invalid_service_identity_fails_before_session_or_request(
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
     with pytest.raises(error_type) as raised:
         download(
-            url,
+            "https://api.github.com/release",
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
@@ -278,36 +242,65 @@ def test_invalid_service_identity_fails_before_session_or_request(
         )
 
     assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
+    assert "certificate" not in events
     assert "request" not in events
-    assert "version" not in events
     assert events[-1] == "close"
+
+
+def test_substituted_context_fails_closed_and_content_silent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _, download, error_type = _load()
+    events: list[str] = []
+    substitute = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+
+    class FakeConnection:
+        def __init__(self, *_args: object, **_kwargs: object) -> None:
+            self.sock = _BoundSocket(substitute, events)
+
+        def request(self, *_args: object, **_kwargs: object) -> None:
+            events.append("request")
+
+        def close(self) -> None:
+            events.append("close")
+
+    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
+    with pytest.raises(error_type) as raised:
+        download(
+            "https://api.github.com/release",
+            tmp_path / "release.json",
+            accept="application/vnd.github+json",
+            maximum_bytes=100,
+            maximum_redirects=0,
+        )
+
+    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
     assert "api.github.com" not in str(raised.value)
-    assert "secret.example" not in str(raised.value)
+    assert "request" not in events
 
 
-@pytest.mark.parametrize("missing", ("server_hostname", "getpeercert"))
-def test_missing_service_identity_accessor_fails_closed(
+@pytest.mark.parametrize("missing", ("context", "server_side"))
+def test_missing_binding_accessor_fails_closed(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     missing: str,
 ) -> None:
     _, download, error_type = _load()
-    requests = 0
 
-    class MissingSocket(_IdentitySocket):
+    class MissingSocket(_BoundSocket):
         def __getattribute__(self, name: str) -> object:
             if name == missing:
-                raise AttributeError("identity accessor is unavailable")
+                raise AttributeError("binding accessor unavailable")
             return super().__getattribute__(name)
 
     class FakeConnection:
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            context = cast(ssl.SSLContext, _kwargs["context"])
+        def __init__(self, *_args: object, **kwargs: object) -> None:
+            context = cast(ssl.SSLContext, kwargs["context"])
             self.sock = MissingSocket(context, [])
 
         def request(self, *_args: object, **_kwargs: object) -> None:
-            nonlocal requests
-            requests += 1
+            raise AssertionError("request must not follow a missing binding accessor")
 
         def close(self) -> None:
             return None
@@ -315,7 +308,7 @@ def test_missing_service_identity_accessor_fails_closed(
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
     with pytest.raises(error_type) as raised:
         download(
-            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
+            "https://api.github.com/release",
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
@@ -323,68 +316,32 @@ def test_missing_service_identity_accessor_fails_closed(
         )
 
     assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
-    assert requests == 0
+    assert isinstance(raised.value.__cause__, AttributeError)
 
 
-def test_invalid_idna_reference_fails_closed(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    _, download, error_type = _load()
-    requests = 0
-    connections = 0
-
-    class FakeConnection:
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            nonlocal connections
-            connections += 1
-            context = cast(ssl.SSLContext, _kwargs["context"])
-            self.sock = _IdentitySocket(context, [], server_hostname="invalid.example")
-
-        def request(self, *_args: object, **_kwargs: object) -> None:
-            nonlocal requests
-            requests += 1
-
-        def close(self) -> None:
-            return None
-
-    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
-    with pytest.raises(error_type) as raised:
-        download(
-            "https://\ud800.example/release",
-            tmp_path / "release.json",
-            accept="application/vnd.github+json",
-            maximum_bytes=100,
-            maximum_redirects=0,
-        )
-
-    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
-    assert requests == 0
-    assert connections == 0
-
-
-@pytest.mark.parametrize("failure", (NotImplementedError(), OSError(), TypeError()))
-def test_certificate_inspection_failure_is_stable_and_content_silent(
+@pytest.mark.parametrize(
+    "failure",
+    (NotImplementedError(), OSError(), TypeError(), ValueError()),
+)
+def test_binding_inspection_failure_preserves_cause_without_content(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     failure: Exception,
 ) -> None:
     _, download, error_type = _load()
-    requests = 0
 
-    class FailingSocket(_IdentitySocket):
-        def getpeercert(self, *, binary_form: bool = False) -> object:
-            assert binary_form
+    class FailingSocket(_BoundSocket):
+        @property
+        def context(self) -> object:
             raise failure
 
     class FakeConnection:
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            context = cast(ssl.SSLContext, _kwargs["context"])
+        def __init__(self, *_args: object, **kwargs: object) -> None:
+            context = cast(ssl.SSLContext, kwargs["context"])
             self.sock = FailingSocket(context, [])
 
         def request(self, *_args: object, **_kwargs: object) -> None:
-            nonlocal requests
-            requests += 1
+            raise AssertionError("request must not follow binding inspection failure")
 
         def close(self) -> None:
             return None
@@ -392,7 +349,7 @@ def test_certificate_inspection_failure_is_stable_and_content_silent(
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
     with pytest.raises(error_type) as raised:
         download(
-            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
+            "https://api.github.com/release",
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
@@ -401,36 +358,74 @@ def test_certificate_inspection_failure_is_stable_and_content_silent(
 
     assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
     assert raised.value.__cause__ is failure
-    assert requests == 0
     assert "api.github.com" not in str(raised.value)
 
 
-def test_redirect_revalidates_independent_service_identity(
+@pytest.mark.parametrize("mutation", ("hostname", "minimum", "verify-flags"))
+def test_post_handshake_context_policy_mutation_fails_before_identity(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    mutation: str,
+) -> None:
+    _, download, error_type = _load()
+    events: list[str] = []
+
+    class FakeConnection:
+        def __init__(self, *_args: object, **kwargs: object) -> None:
+            self.context = cast(ssl.SSLContext, kwargs["context"])
+            self.sock: _BoundSocket | None = None
+
+        def connect(self) -> None:
+            self.sock = _BoundSocket(self.context, events)
+            if mutation == "hostname":
+                self.context.check_hostname = False
+            elif mutation == "minimum":
+                self.context.minimum_version = ssl.TLSVersion.MINIMUM_SUPPORTED
+            else:
+                self.context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+
+        def request(self, *_args: object, **_kwargs: object) -> None:
+            events.append("request")
+
+        def close(self) -> None:
+            return None
+
+    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
+    with pytest.raises(error_type) as raised:
+        download(
+            "https://api.github.com/release",
+            tmp_path / "release.json",
+            accept="application/vnd.github+json",
+            maximum_bytes=100,
+            maximum_redirects=0,
+        )
+
+    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
+    assert "certificate" not in events
+    assert "request" not in events
+
+
+def test_redirect_rebinds_an_independent_exact_client_context(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _, download, _ = _load()
-    events: list[str] = []
+    contexts: list[ssl.SSLContext] = []
     responses = iter(
         (
-            _RedirectResponse(b"", location="https://objects.example.test/asset"),
+            _RedirectResponse(location="https://objects.example.test/asset"),
             _Response(b"asset"),
         )
     )
 
     class FakeConnection:
-        def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
-            self.host = host
-            context = cast(ssl.SSLContext, _kwargs["context"])
-            self.sock = _IdentitySocket(
-                context,
-                events,
-                server_hostname=host.encode("idna").decode("ascii"),
-                certificate=f"certificate:{host}".encode(),
-            )
+        def __init__(self, host: str, *_args: object, **kwargs: object) -> None:
+            context = cast(ssl.SSLContext, kwargs["context"])
+            contexts.append(context)
+            self.sock = _BoundSocket(context, [], server_hostname=host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
-            events.append(f"request:{self.host}")
+            return None
 
         def getresponse(self) -> _Response:
             return next(responses)
@@ -451,19 +446,14 @@ def test_redirect_revalidates_independent_service_identity(
     )
 
     assert target.read_bytes() == b"asset"
-    assert events.count("reference-hostname") == 2
-    assert events.count("certificate:True") == 2
-    assert [event for event in events if event.startswith("request:")] == [
-        "request:api.github.com",
-        "request:objects.example.test",
-    ]
+    assert len(contexts) == 2
+    assert contexts[0] is not contexts[1]
 
 
-def test_m52_changes_no_workflow_runtime_dependency_or_package_boundary() -> None:
-    assert (
-        hashlib.sha256((_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()).hexdigest()
-        == _CI_SHA256
-    )
+def test_m53_changes_no_workflow_runtime_dependency_or_package_boundary() -> None:
+    assert hashlib.sha256(
+        (_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()
+    ).hexdigest() == (_CI_SHA256)
     assert (
         hashlib.sha256((_ROOT / ".github" / "workflows" / "release.yml").read_bytes()).hexdigest()
         == _RELEASE_SHA256
@@ -474,33 +464,35 @@ def test_m52_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
     source = _VERIFIER.read_text(encoding="utf-8")
     peer = source.index("_connect_public_peer(connection, deadline)")
+    binding = source.index("_validate_tls_context_binding(connection, tls_context)")
     identity = source.index("_validate_tls_identity(connection, reference_hostname)")
     session = source.index("_validate_tls_session(connection)")
     request = source.index('connection.request(\n                "GET",')
-    assert peer < identity < session < request
-    assert "peer.getpeercert(binary_form=True)" in source
-    assert 'hostname.encode("idna").decode("ascii")' in source
+    assert peer < binding < identity < session < request
+    assert "actual_context is not expected_context" in source
+    assert "server_side is not False" in source
+    assert source.count("_require_public_tls_context(") == 3
 
 
-def test_m52_public_and_maintainer_docs_define_the_exact_boundary() -> None:
+def test_m53_public_and_maintainer_docs_define_the_exact_boundary() -> None:
     paths = (
         _ROOT / "README.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",
         _ROOT / "docs" / "release-process.md",
-        _ROOT / "docs" / "rfcs" / "0035-public-release-tls-service-identity.md",
+        _ROOT / "docs" / "rfcs" / "0036-public-release-tls-context-binding.md",
     )
     documents = tuple(path.read_text(encoding="utf-8").lower() for path in paths)
     combined = "\n".join(documents)
 
-    assert all("m52" in document for document in documents)
+    assert all("m53" in document for document in documents)
     for term in (
-        "service identity",
-        "reference hostname",
-        "peer certificate",
-        "idna",
+        "exact context",
+        "client-side",
+        "after the handshake",
         "before",
+        "every redirect",
         "no workflow",
         "not a real public release observation",
     ):

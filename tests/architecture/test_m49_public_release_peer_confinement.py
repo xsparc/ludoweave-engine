@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import http.client
 import importlib.util
+import ssl
 import sys
 from collections.abc import Mapping
 from pathlib import Path
@@ -74,10 +75,13 @@ class _RedirectResponse(_Response):
 class _PeerSocket:
     def __init__(
         self,
+        context: ssl.SSLContext,
         address: str,
         port: int = 443,
         server_hostname: str = "api.github.com",
     ) -> None:
+        self.context = context
+        self.server_side = False
         self.address = address
         self.port = port
         self.server_hostname = server_hostname
@@ -156,11 +160,12 @@ def test_non_global_connected_peer_is_rejected_before_request(
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:
+            self.context = cast(ssl.SSLContext, _kwargs["context"])
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
             events.append("connect")
-            self.sock = _PeerSocket(address)
+            self.sock = _PeerSocket(self.context, address)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append("request")
@@ -198,14 +203,17 @@ def test_global_connected_peer_is_accepted_before_request(
 ) -> None:
     _, download, _ = _load()
     events: list[str] = []
-    socket = _PeerSocket(address)
+    socket: _PeerSocket | None = None
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:
+            self.context = cast(ssl.SSLContext, _kwargs["context"])
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
+            nonlocal socket
             events.append("connect")
+            socket = _PeerSocket(self.context, address)
             self.sock = socket
 
         def request(
@@ -242,7 +250,7 @@ def test_global_connected_peer_is_accepted_before_request(
         "response",
         "close",
     ]
-    assert socket.timeouts
+    assert socket is not None and socket.timeouts
 
 
 def test_redirect_peer_is_rechecked_before_redirect_request(
@@ -262,10 +270,15 @@ def test_redirect_peer_is_rechecked_before_redirect_request(
     class FakeConnection:
         def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
             self.host = host
+            self.context = cast(ssl.SSLContext, _kwargs["context"])
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
-            self.sock = _PeerSocket(next(addresses), server_hostname=self.host)
+            self.sock = _PeerSocket(
+                self.context,
+                next(addresses),
+                server_hostname=self.host,
+            )
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             requests.append(self.host)
@@ -319,13 +332,14 @@ def test_peer_discovery_failures_retain_stable_request_codes(
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:
+            self.context = cast(ssl.SSLContext, _kwargs["context"])
             self.sock: BrokenPeerSocket | None = None
 
         def connect(self) -> None:
             if phase == "connect_timeout":
                 raise TimeoutError
             if phase != "missing_socket":
-                self.sock = BrokenPeerSocket("8.8.8.8")
+                self.sock = BrokenPeerSocket(self.context, "8.8.8.8")
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             raise AssertionError("request must not follow peer-discovery failure")

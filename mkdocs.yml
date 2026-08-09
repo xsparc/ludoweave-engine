@@ -76,6 +76,7 @@ nav:
       - RFC-0033 - Public release TLS key-log isolation: rfcs/0033-public-release-tls-keylog-isolation.md
       - RFC-0034 - Public release negotiated TLS conformance: rfcs/0034-public-release-negotiated-tls-session-conformance.md
       - RFC-0035 - Public release TLS service identity: rfcs/0035-public-release-tls-service-identity.md
+      - RFC-0036 - Public release TLS context binding: rfcs/0036-public-release-tls-context-binding.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
