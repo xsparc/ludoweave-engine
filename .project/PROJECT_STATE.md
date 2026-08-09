@@ -1,6 +1,6 @@
 # Project State
 
-## M55 public release HTTP response framing - feature integrated
+## M55 public release HTTP response framing - complete
 
 - Base: exact clean synchronized M54 closeout
   `aab15d601eb4402213f2e058f270237b964f1000`, with only `main` present and no
@@ -69,8 +69,24 @@
   `879de01c5e1869c6493b59f4fbd904e361f9ddb6` has the exact corrected feature
   tree, sole parent M54 closeout, valid signature, and standalone DCO. The
   feature branch is deleted locally/remotely; no post-merge `main` run, tag, or
-  release exists. The remaining integration record changes exactly four
-  documentation/project paths.
+  release exists.
+- Integration record: the exact four-file record passed local lock, format,
+  lint, 567-test architecture, strict-docs, reproducible-build,
+  installed-wheel, release-smoke, whitespace, and Git-object gates. Initial
+  hosted run `31325924046` passed the bounded documentation lane, but review
+  correctly found one stale pending-validation sentence. The corrected exact
+  head `ff71acdadbee98043f3d9f06fa1bb08371f89bfc` passed replacement run
+  `31326132049` in one 38-second Linux allocation; the desktop umbrella skipped
+  with zero steps. The sole thread was answered and resolved, and the delayed
+  audit found no new issue.
+- Record integration: head-pinned GitHub-verified squash
+  `d0a230e2329daecf4e248350289351c1e81827f6` has tree
+  `c079de60da5e3b24e8e9b11507f012ad9fbae13e` exactly equal to the corrected
+  record head, sole parent feature squash
+  `879de01c5e1869c6493b59f4fbd904e361f9ddb6`, a valid signature, and standalone
+  DCO. No post-merge `main` run was allocated; both M55 working branches are
+  deleted locally/remotely, and no tag or release exists. The remaining
+  three-file `.project/**` closeout must allocate zero hosted runs or checks.
 
 ## M54 public release TLS session freshness - complete
 

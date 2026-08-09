@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M55 - public release HTTP response framing
-- **Status:** Corrected feature PR #117 is fully validated, review-clean, and
-  squash-integrated; publishing the exact four-file integration record on
-  `records/m55-integration`.
+- **Status:** Complete. Corrected feature PR #117 and integration-record PR
+  #118 are fully validated, review-clean, squash-integrated, and branch-clean;
+  publishing the exact three-file closeout on `records/m55-closeout`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -43,6 +43,12 @@
   GitHub-verified squash `879de01c5e1869c6493b59f4fbd904e361f9ddb6`
   reproduces the exact corrected tree with M54 closeout as sole parent, valid
   signature, and standalone DCO. No post-merge run, tag, or release exists and
-  the feature branch is deleted locally/remotely.
-- **Integration gate:** The exact four-file record may allocate one bounded
-  Linux documentation job; its desktop umbrella must skip with zero steps.
+  the feature branch is deleted locally/remotely. Integration PR #118 required
+  one valid stale-status correction, then exact head
+  `ff71acdadbee98043f3d9f06fa1bb08371f89bfc` passed run `31326132049` with one
+  Linux allocation and a zero-step skipped desktop umbrella. GitHub-verified
+  squash `d0a230e2329daecf4e248350289351c1e81827f6` reproduces the reviewed
+  record tree with the feature squash as sole parent, valid signature, and
+  standalone DCO; both integration branches are deleted locally/remotely.
+- **Closeout gate:** The exact three-file `.project/**` record must allocate
+  zero hosted runs or checks.
