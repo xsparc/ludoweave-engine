@@ -16,7 +16,7 @@ import time
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import cast
+from typing import Protocol, cast
 from urllib.parse import SplitResult, urljoin, urlsplit, urlunsplit
 
 import smoke_release
@@ -37,6 +37,9 @@ _CONNECT_TIMEOUT_SECONDS = 10.0
 _REQUEST_TIMEOUT_SECONDS = 30.0
 _MAX_ASSET_REDIRECTS = 3
 _READ_BYTES = 1024 * 1024
+_HTTP_ALPN = "http/1.1"
+_ALLOWED_TLS_VERSIONS = frozenset(("TLSv1.2", "TLSv1.3"))
+_MINIMUM_TLS_SECRET_BITS = 128
 _ID_PATTERN = re.compile(r"[1-9][0-9]{0,18}")
 _SIZE_PATTERN = re.compile(r"(?:0|[1-9][0-9]{0,8})")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
@@ -69,6 +72,16 @@ class PublicReleaseVerificationError(RuntimeError):
     def __init__(self, message: str, *, code: str) -> None:
         super().__init__(message)
         self.code = code
+
+
+class _TlsPeer(Protocol):
+    def version(self) -> str | None: ...
+
+    def cipher(self) -> tuple[str, str, int] | None: ...
+
+    def compression(self) -> str | None: ...
+
+    def selected_alpn_protocol(self) -> str | None: ...
 
 
 def main(
@@ -380,6 +393,7 @@ def _download(
         response: http.client.HTTPResponse | None = None
         try:
             _connect_public_peer(connection, deadline)
+            _validate_tls_session(connection)
             path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
             headers = {
                 "Accept": accept,
@@ -474,7 +488,8 @@ def _public_tls_context() -> ssl.SSLContext:
         context.verify_flags |= ssl.VERIFY_X509_PARTIAL_CHAIN
         context.verify_flags |= ssl.VERIFY_X509_STRICT
         context.load_default_certs(ssl.Purpose.SERVER_AUTH)
-    except (OSError, ValueError) as error:
+        context.set_alpn_protocols([_HTTP_ALPN])
+    except (NotImplementedError, OSError, ValueError) as error:
         raise PublicReleaseVerificationError(
             "public release TLS context failed",
             code="public_release.tls_failed",
@@ -491,6 +506,52 @@ def _public_tls_context() -> ssl.SSLContext:
             code="public_release.tls_failed",
         )
     return context
+
+
+def _validate_tls_session(connection: http.client.HTTPSConnection) -> None:
+    """Reject an unexpected negotiated TLS session before HTTP transmission."""
+
+    socket = connection.sock
+    if socket is None:
+        raise PublicReleaseVerificationError(
+            "public release TLS session failed",
+            code="public_release.tls_failed",
+        )
+    peer = cast(_TlsPeer, socket)
+    try:
+        version: object = peer.version()
+        cipher: object = peer.cipher()
+        compression: object = peer.compression()
+        alpn: object = peer.selected_alpn_protocol()
+    except (AttributeError, NotImplementedError, OSError, TypeError, ValueError) as error:
+        raise PublicReleaseVerificationError(
+            "public release TLS session failed",
+            code="public_release.tls_failed",
+        ) from error
+    if not isinstance(cipher, tuple) or len(cipher) != 3:
+        raise PublicReleaseVerificationError(
+            "public release TLS session failed",
+            code="public_release.tls_failed",
+        )
+    cipher_parts = cast(tuple[object, ...], cipher)
+    name, cipher_protocol, secret_bits = cipher_parts
+    if (
+        not isinstance(version, str)
+        or version not in _ALLOWED_TLS_VERSIONS
+        or not isinstance(name, str)
+        or not name
+        or not isinstance(cipher_protocol, str)
+        or not cipher_protocol
+        or not isinstance(secret_bits, int)
+        or isinstance(secret_bits, bool)
+        or secret_bits < _MINIMUM_TLS_SECRET_BITS
+        or compression is not None
+        or alpn not in (None, _HTTP_ALPN)
+    ):
+        raise PublicReleaseVerificationError(
+            "public release TLS session failed",
+            code="public_release.tls_failed",
+        )
 
 
 def _connect_public_peer(

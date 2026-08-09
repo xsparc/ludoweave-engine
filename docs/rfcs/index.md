@@ -38,3 +38,4 @@ was adopted.
 - [RFC-0031: constrain public release HTTP responses and failures](0031-public-release-http-response-conformance.md)
 - [RFC-0032: confine public release requests to global connected peers](0032-public-release-peer-confinement.md)
 - [RFC-0033: isolate public release TLS key logging](0033-public-release-tls-keylog-isolation.md)
+- [RFC-0034: constrain negotiated public release TLS sessions](0034-public-release-negotiated-tls-session-conformance.md)

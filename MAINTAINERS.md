@@ -42,27 +42,27 @@ claims.
 
 ## Current boundary
 
-M50 isolates M49's portable public-release client from ambient TLS key logging
-without widening release authority. Create one explicit
-`PROTOCOL_TLS_CLIENT` context per fixed API or redirected asset hop, load
-system server-auth roots, require certificate and hostname validation, set TLS
-1.2 as the minimum, retain strict/partial-chain X.509 flags, and require key
-logging to remain disabled even when `SSLKEYLOGFILE` exists. Context creation
-or validation failures use `public_release.tls_failed`; public output may
-disclose no environment value or local path.
+M51 constrains the actual negotiated TLS session used by M50's portable public-
+release client without widening release authority. Advertise only `http/1.1`;
+after the M49 actual connected-peer check and before every HTTP request,
+require exactly TLSv1.2 or TLSv1.3, a well-formed cipher report with at least
+128 secret bits, no TLS compression, and ALPN `http/1.1` or no negotiated ALPN.
+Session access or validation failures use `public_release.tls_failed`; public
+output may disclose no host, peer, URL, session value, response, or credential.
 
-Preserve M49's connected-peer check and every M48 response/header/error bound,
-plus all M47 identity, document, plan, ID, name, count, byte, exact-set,
-partial, validation, and installed-smoke bounds. M50 may add no proxy, custom
-CA bundle, certificate/SPKI pin, client certificate, workflow edit, runner,
-action, permission, trigger, credential, release mutation, retry, rollback,
-cleanup, artifact-set, dependency, lock, version, runtime, package, or
-public-API change. It must not claim full environment isolation, a real release
-observation, independent/external evidence, every delivery path, future
-availability, immutability, artifact security, PyPI, or a supported release
-channel. M0 through M49 are complete, reviewed, hosted-validated, and
-integrated into `main`. M50 starts from exact verified M49 closeout commit
-`f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`.
+Preserve M50's explicit per-hop context and key-log isolation, M49's connected-
+peer check, every M48 response/header/error bound, and all M47 identity,
+document, plan, ID, name, count, byte, exact-set, partial, validation, and
+installed-smoke bounds. M51 may add no cipher-name allowlist, proxy, custom CA
+bundle, certificate/SPKI pin, client certificate, revocation policy, workflow
+edit, runner, action, permission, trigger, credential, release mutation, retry,
+rollback, cleanup, artifact-set, dependency, lock, version, runtime, package,
+or public-API change. It must not claim a real release observation,
+independent/external evidence, every delivery path, future availability,
+immutability, artifact security, PyPI, or a supported release channel. M0
+through M50 are complete, reviewed, hosted-validated, and integrated into
+`main`. M51 starts from exact verified M50 closeout commit
+`53f3804010f1556ecaff21a61b1e9c405a26e203`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
@@ -70,8 +70,8 @@ checks constrained provenance and wheel-SBOM attestations, M45 repeats exact
 public retrieval without a release credential, and M46 separates that public
 consumer observation onto a fresh runner, and M47 widens only its verifier and
   cross-platform operating-system portability. M48 narrows response/failure
-  semantics, M49 confines the actual connected peer, and M50 disables ambient
-  TLS key logging; none of these
+  semantics, M49 confines the actual connected peer, M50 disables ambient TLS
+  key logging, and M51 validates the actual negotiated session; none of these
   milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final

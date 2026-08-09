@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M51/RFC-0034 actual negotiated TLS-session validation before every
+  public-release HTTP request: exact TLSv1.2/TLSv1.3, a well-formed cipher
+  report with at least 128 secret bits, no compression, and HTTP/1.1-compatible
+  ALPN, without changing workflows, dependencies, runtime APIs, or release
+  authority.
 - Add M50/RFC-0033 explicit verified public-release TLS contexts that preserve
   system trust and modern certificate/hostname validation while preventing
   ambient `SSLKEYLOGFILE` session-secret logging, without changing workflows,
