@@ -1,12 +1,9 @@
 # Current Task
 
 - **Task:** M55 - public release HTTP response framing
-- **Status:** PR #117's first exact-head gate passed, then delayed review found
-  that CPython normalizes other raw `HTTP/1.x` status-line tokens to public
-  `version=11`. The contract/test correction on
-  `security/m55-http-response-framing` is fully validated locally and review-
-  clean; corrected DCO commit and hosted exact-head validation remain. No merge
-  is authorized yet.
+- **Status:** Corrected feature PR #117 is fully validated, review-clean, and
+  squash-integrated; publishing the exact four-file integration record on
+  `records/m55-integration`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -37,9 +34,15 @@
   strict docs passed after RFC/public/maintainer documentation was added. All
   supported-Python, real-graphics, profile, vertical-slice, benchmark,
   reproducible-build, installed-wheel, and release-smoke gates pass locally;
-  findings-first local review had no actionable issue. Hosted run
-  `31324078779` passed exactly three Linux-first allocations, but delayed review
-  produced one valid P2 about CPython status-line normalization. The correction
-  must pass full local and hosted validation before merge.
-- **Hosted gate:** A substantive ready PR must allocate exactly three
-  Linux-first jobs, followed only by Windows and macOS after Linux succeeds.
+  findings-first local review had no actionable issue. Initial hosted run
+  `31324078779` passed, but delayed review produced one valid P2 about CPython
+  status-line normalization. Correction `f57c28b9cc3a05ef1da830c8ad478d85d46b4a3a`
+  added a real parser fixture and removed the exact-token overclaim. Corrected
+  run `31325192734` passed exactly three Linux-first allocations; the finding
+  was answered and resolved, and the delayed re-audit found no new issue.
+  GitHub-verified squash `879de01c5e1869c6493b59f4fbd904e361f9ddb6`
+  reproduces the exact corrected tree with M54 closeout as sole parent, valid
+  signature, and standalone DCO. No post-merge run, tag, or release exists and
+  the feature branch is deleted locally/remotely.
+- **Integration gate:** The exact four-file record may allocate one bounded
+  Linux documentation job; its desktop umbrella must skip with zero steps.

@@ -63,7 +63,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M52 public release TLS service-identity evidence | PR #108 corrected real-connection invalid-IDNA ordering during review, passed actual socket identity/certificate checks in the exact three-allocation gate, and squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M53 public release TLS context binding | PR #111 passed exact post-handshake socket/context identity, strict client-role and policy revalidation in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M54 public release TLS session freshness | PR #114 passed exact post-handshake `session_reused is False` evidence on every hop in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
-| In progress | M55 public release HTTP response framing | Require the documented HTTP/1.1-class value and unambiguous supported framing before response status, redirect, or body use, without claiming exact raw status-line identity or changing workflows/release authority |
+| Done | M55 public release HTTP response framing | PR #117 corrected the CPython status-line normalization overclaim, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated documented HTTP/1.1-class framing checks with unchanged workflows/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.

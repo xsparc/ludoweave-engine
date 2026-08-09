@@ -1,6 +1,6 @@
 # Project State
 
-## M55 public release HTTP response framing - in progress
+## M55 public release HTTP response framing - feature integrated
 
 - Base: exact clean synchronized M54 closeout
   `aab15d601eb4402213f2e058f270237b964f1000`, with only `main` present and no
@@ -23,14 +23,13 @@
   token evidence because CPython can normalize another raw `HTTP/1.x` value.
 - Decision: accepted RFC-0038 records the exact metadata, ordering, ownership,
   failure, non-claim, and authority boundaries.
-- Development evidence: all 157 inherited M47-M54 assertions pass after valid
-  fakes gained documented HTTP/1.1 metadata; all 30 behavior assertions and all
-  188 focused M47-M55 assertions pass. All 298 Python files are format clean;
-  Ruff and strict Pyright report zero findings; 566 architecture assertions and
-  strict docs pass. Complete graphics-enabled CPython 3.12-3.14 suites each
-  pass 2,106 tests with 14 expected skips. Real-wgpu, profiles, both vertical
-  slices, documented benchmark validators, reproducible builds, isolated-wheel
-  smoke, and complete release smoke pass.
+- Development evidence: after the hosted review correction, all 189 focused
+  M47-M55 assertions pass. All 298 Python files are format clean; Ruff and
+  strict Pyright report zero findings; 567 architecture assertions and strict
+  docs pass. Complete graphics-enabled CPython 3.12-3.14 suites each pass 2,107
+  tests with 14 expected skips. Real-wgpu, profiles, both vertical slices,
+  documented benchmark validators, reproducible builds, isolated-wheel smoke,
+  and complete release smoke pass.
 - Review: a first credential expression overmatched the legitimate `ghp-import`
   lock entry and was corrected to actual token lengths. Repeat findings-first
   correctness, security, scope, history, archive, credential, identity, and
@@ -39,7 +38,7 @@
 - Local status: final fail-fast lock, format, lint, type, architecture, strict-
   docs, reproducible-build, installed-wheel, complete release-smoke,
   whitespace, and Git-object gates pass. The final evidence-inclusive static
-  gate also passes; hosted exact-head validation remains pending.
+  gate and corrected exact-head hosted validation also pass.
 - Hosted review correction: initial exact head
   `77812ae6b25635a9831b43088bd4397645fb4adf` passed run `31324078779` in
   exactly three Linux-first allocations. Delayed review then correctly found
@@ -50,8 +49,28 @@
   CPython 3.12-3.14 suites, real-wgpu, profiles, both vertical slices,
   reproducible builds, isolated-wheel smoke, and complete release smoke pass.
   Corrected findings-first review and final evidence-inclusive static gate have
-  no remaining local issue. Hosted validation remains pending; the PR is not
-  mergeable by policy until it passes and the finding is resolved.
+  no remaining local issue.
+- Hosted evidence: corrected exact head
+  `f57c28b9cc3a05ef1da830c8ad478d85d46b4a3a` passed run `31325192734` in
+  exactly three Linux-first allocations. Linux passed in 7m26s before macOS and
+  Windows began; macOS passed in 2m44s and Windows in 2m57s. Baseline and every
+  compatibility suite passed 2,111 tests, with one expected skip outside the
+  baseline; all three platforms passed real graphics, profiles, Clockwork
+  Arena, and Agent World Builder.
+- Hosted artifacts: exact corrected-head reproducibility produced a pure
+  270,593-byte wheel at
+  `4b6917302282746f301e082003a4474cef230bc77bda7a0b19d90b59a7f566af`
+  and a 1,077,996-byte source distribution at
+  `bd8378618ca43f52ea4049ecde33eed5a8a33a40228e891a3073710221df9e26`;
+  installed-wheel and complete release smoke passed.
+- Integration: the sole P2 was answered with the correction evidence and its
+  thread resolved. Two delayed audits found no new review, issue comment, or
+  unresolved thread. GitHub-verified squash
+  `879de01c5e1869c6493b59f4fbd904e361f9ddb6` has the exact corrected feature
+  tree, sole parent M54 closeout, valid signature, and standalone DCO. The
+  feature branch is deleted locally/remotely; no post-merge `main` run, tag, or
+  release exists. The remaining integration record changes exactly four
+  documentation/project paths.
 
 ## M54 public release TLS session freshness - complete
 
