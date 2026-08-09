@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M56 - public release status and redirect-reference conformance
-- **Status:** The corrected feature is squash-integrated on `main`; preparing
-  the four-file integration record on `records/m56-integration`.
+- **Status:** Complete. Corrected feature PR #120 and integration-record PR
+  #121 are fully validated, review-clean, squash-integrated, and branch-clean;
+  publishing the exact three-file closeout on `records/m56-closeout`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -51,6 +52,15 @@
   `22c432310fae2f9ac372062cbd465cc2617fb95c` has the exact corrected feature
   tree, sole parent M55 closeout, valid signature, and standalone DCO. The
   feature branch is deleted locally and remotely. Synchronized `main` has no
-  post-merge run, open PR, non-main remote branch, tag, or release.
-- **Current gate:** This exact four-file documentation/project record requires
-  one Linux allocation; its desktop umbrella must skip with zero steps.
+  post-merge run, open PR, non-main remote branch, tag, or release. Integration
+  PR #121 exact head `db7c50009243fa7cf3bf9cd8f57afb4589dec7e7`
+  passed run `31330464522` in one 38-second Linux allocation; all 604
+  architecture assertions, strict docs, reproducible builds, installed-wheel
+  smoke, and complete release smoke passed, while the desktop umbrella skipped
+  with zero steps. Two delayed audits found no comment, review, or thread.
+  GitHub-verified squash `acc6893ef4cadf9a17c87cd578e38b7802a3ed77`
+  reproduces the reviewed integration-record tree with the feature squash as
+  sole parent, valid signature, and standalone DCO. Both integration branches
+  are deleted locally/remotely.
+- **Closeout gate:** The exact three-file `.project/**` record must allocate
+  zero hosted runs or checks.
