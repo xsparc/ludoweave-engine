@@ -1,5 +1,66 @@
 # Project State
 
+## M52 public release TLS service-identity evidence - in progress
+
+- Base: clean synchronized M51 closeout
+  `047478d0c7fb873ae94aaa6e322b5b08903ed354`, with only `main` present
+  locally/remotely and no open pull request, tag, GitHub release, or post-
+  closeout `main` run.
+- Outcome: observe the URL-derived reference hostname and peer certificate on
+  every fixed API or bounded redirected asset TLS socket before negotiated-
+  session inspection or HTTP transmission.
+- Identity boundary: normalize the URL hostname through built-in IDNA; require
+  the socket's non-empty `server_hostname` to match case-insensitively and
+  require `getpeercert(binary_form=True)` to return non-empty immutable DER
+  bytes.
+- Ordering and ownership: every hop connects, validates its actual global
+  port-443 peer, validates service identity, validates its M51 session, and
+  only then transmits HTTP. The existing connection owns and closes the socket
+  on success or failure; every redirect repeats the complete sequence.
+- Failure: unavailable or unsupported access, invalid IDNA, malformed or
+  mismatched reference state, missing/non-byte certificate, or inspection
+  failure uses content-silent `public_release.tls_failed` without revealing a
+  host, certificate, peer, URL, session value, response, or credential.
+- Preserved: M51 session conformance, M50 explicit context/key-log isolation,
+  M49 connected-peer confinement, M48 response/header/failure conformance, and
+  every M47 identity, deadline, size, path, exact-validation, and installed-
+  smoke bound.
+- No scope growth: no certificate parser or independent matcher, custom trust,
+  certificate/SPKI/fingerprint pin, chain export, revocation/OCSP/CRL/CT,
+  DNSSEC, workflow, runner, action, permission, trigger, credential, release
+  mutation, retry, cleanup, dependency, lock, version, runtime package, or
+  public API change.
+- Decision: accepted RFC-0035 records the service-identity observation,
+  ownership, failure, authority, and non-claim boundary. M50/OpenSSL remains
+  authoritative for certificate-path, validity, and hostname verification.
+- Development evidence: official Python 3.14.7 and RFC 9525 review supports the
+  selected surfaces and terminology. Findings-first review corrected a Unicode
+  case-fold confusable and added missing-accessor/invalid-IDNA coverage. The
+  focused M52 suite, final static/architecture/docs and supported-Python
+  suites, real-wgpu, profiles, both vertical slices, benchmark validation,
+  reproducible build, isolated wheel, and release smoke pass. Exact commands,
+  counts, hashes, and corrected attempts are recorded in
+  `.project/TEST_EVIDENCE.md`. Each final CPython 3.12-3.14 graphics-enabled
+  suite passed 2,044 tests with 14 expected skips. Record-inclusive
+  reproducible build, isolated-wheel, and complete ten-artifact release smoke
+  also pass. The final review and hosted gates remain pending and are not
+  claimed.
+- Review correction: the first invalid-IDNA regression supplied an already
+  connected fake socket, while a real connection could attempt its own IDNA
+  conversion first and escape as a generic request failure. The corrected
+  candidate derives and uses the ASCII reference before constructing the
+  connection; actual socket comparison and certificate observation remain
+  after peer confinement. The corrected focused Ruff, strict-Pyright, docs,
+  and 126-assertion M47-M52 behavior gate passes. Corrected complete CPython
+  3.12-3.14 suites each pass 2,044 tests with 14 expected skips. Corrected
+  reproducible build, isolated-wheel, complete release smoke, post-record
+  static/architecture/docs, archive/scope scans, and repeat findings-first
+  review pass with no remaining finding. Hosted gates remain pending.
+- Non-claim: fixture and pull-request conformance are not a real public release
+  observation, independent/external verification, every TLS/CDN/geographic
+  path, future availability, immutability, artifact security, PyPI, or a
+  supported release channel.
+
 ## M51 public release negotiated TLS-session conformance - complete
 
 - Base: clean synchronized M50 closeout

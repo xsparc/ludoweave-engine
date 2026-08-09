@@ -69,6 +69,9 @@ Maintainers will acknowledge the report through the same private channel, assess
   before every request: exactly TLSv1.2 or TLSv1.3, a well-formed cipher report
   with at least 128 secret bits, no TLS compression, and ALPN `http/1.1` or no
   negotiated ALPN.
+- M52 validates the socket's URL-derived TLS service identity before the M51
+  session check: its observed IDNA-normalized reference hostname must match and
+  its verified peer certificate must be available as non-empty DER bytes.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -122,6 +125,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   revocation policy, TLS fingerprint, session-ticket policy, workflow,
   dependency, or release authority. Fixture checks are not a real public
   release observation or a claim about every TLS endpoint or future protocol.
+- M52 does not parse or rematch certificates, add a pin/fingerprint allowlist,
+  custom trust, certificate-chain export, revocation, OCSP/CRL, certificate-
+  transparency, DNSSEC, workflow, dependency, or release authority. Its
+  fixture checks are not a real public release observation or proof for every
+  endpoint, certificate, delivery path, or future connection.
 
 ## Initial security boundaries
 

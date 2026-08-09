@@ -75,6 +75,10 @@ class PublicReleaseVerificationError(RuntimeError):
 
 
 class _TlsPeer(Protocol):
+    server_hostname: str | None
+
+    def getpeercert(self, binary_form: bool = False) -> object: ...
+
     def version(self) -> str | None: ...
 
     def cipher(self) -> tuple[str, str, int] | None: ...
@@ -378,9 +382,10 @@ def _download(
         parsed = _https_url(current_url)
         hostname = parsed.hostname
         assert hostname is not None
+        reference_hostname = _tls_reference_hostname(hostname)
         try:
             connection = http.client.HTTPSConnection(
-                hostname,
+                reference_hostname,
                 parsed.port,
                 timeout=min(_CONNECT_TIMEOUT_SECONDS, _remaining(deadline)),
                 context=_public_tls_context(),
@@ -393,6 +398,7 @@ def _download(
         response: http.client.HTTPResponse | None = None
         try:
             _connect_public_peer(connection, deadline)
+            _validate_tls_identity(connection, reference_hostname)
             _validate_tls_session(connection)
             path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
             headers = {
@@ -552,6 +558,66 @@ def _validate_tls_session(connection: http.client.HTTPSConnection) -> None:
             "public release TLS session failed",
             code="public_release.tls_failed",
         )
+
+
+def _validate_tls_identity(
+    connection: http.client.HTTPSConnection,
+    reference_hostname: str,
+) -> None:
+    """Require the verified socket to retain its URL-derived service identity."""
+
+    socket = connection.sock
+    if socket is None:
+        raise PublicReleaseVerificationError(
+            "public release TLS identity failed",
+            code="public_release.tls_failed",
+        )
+    peer = cast(_TlsPeer, socket)
+    try:
+        server_hostname: object = peer.server_hostname
+        certificate: object = peer.getpeercert(binary_form=True)
+    except (
+        AttributeError,
+        NotImplementedError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as error:
+        raise PublicReleaseVerificationError(
+            "public release TLS identity failed",
+            code="public_release.tls_failed",
+        ) from error
+    if (
+        not reference_hostname
+        or not isinstance(server_hostname, str)
+        or not server_hostname
+        or not server_hostname.isascii()
+        or server_hostname.casefold() != reference_hostname.casefold()
+        or not isinstance(certificate, bytes)
+        or not certificate
+    ):
+        raise PublicReleaseVerificationError(
+            "public release TLS identity failed",
+            code="public_release.tls_failed",
+        )
+
+
+def _tls_reference_hostname(hostname: str) -> str:
+    """Return the bounded ASCII reference hostname before opening a connection."""
+
+    try:
+        reference_hostname = hostname.encode("idna").decode("ascii")
+    except UnicodeError as error:
+        raise PublicReleaseVerificationError(
+            "public release TLS identity failed",
+            code="public_release.tls_failed",
+        ) from error
+    if not reference_hostname:
+        raise PublicReleaseVerificationError(
+            "public release TLS identity failed",
+            code="public_release.tls_failed",
+        )
+    return reference_hostname
 
 
 def _connect_public_peer(
