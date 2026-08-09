@@ -46,6 +46,18 @@
   tree, sole parent M52 closeout, valid signature, and standalone DCO. The
   feature branch is deleted locally/remotely; no post-merge `main` run, tag, or
   release was created.
+- Integration record: exact head
+  `de488d1e305026f724a155bf692653cd5f8cb454` passed run `31320201771` in one
+  36-second Linux documentation allocation. All 296 files were format clean,
+  Ruff passed, strict docs built, 522 architecture assertions passed,
+  reproducible build plus wheel/release smoke passed, and desktop umbrella
+  `93261877229` skipped with zero steps. No review, comment, or thread existed.
+- Record integration: GitHub-verified squash
+  `9217862df30d51efa7754cc8a9300c4b05fb2426` has the exact reviewed record
+  tree, sole parent feature squash, valid signature, and standalone DCO. Both
+  working branches are deleted locally/remotely; no post-merge `main` run, tag,
+  or release exists. The remaining closeout is exactly three `.project/**`
+  files and must allocate zero hosted runs/checks.
 
 ## M52 public release TLS service-identity evidence - complete
 
