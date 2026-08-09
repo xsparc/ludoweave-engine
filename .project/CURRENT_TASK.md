@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M57 - public release response-body conformance
-- **Status:** Implementation and contract documentation are in progress on
-  `security/m57-response-body-conformance`.
+- **Status:** The feature is squash-integrated on `main`; preparing the
+  four-file integration record on `docs/m57-integration-record`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -32,7 +32,7 @@
   delimited bodies retain their existing boundary without a general
   completeness claim. Fixture/PR evidence is not a real release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Evidence:** The clean M47-M56 baseline passed 226 assertions. Official
+- **Local evidence:** The clean M47-M56 baseline passed 226 assertions. Official
   Python 3.14 documentation defines `HTTPResponse` as a binary buffered reader
   whose `read(amount)` returns up to that many bytes; RFC 9112 defines message
   bodies as octets and a shorter-than-declared body as incomplete. An initial
@@ -58,8 +58,21 @@
   and complete release smoke pass. Findings-first scope, archive, credential,
   identity, history, and integrity review reports no remaining actionable
   issue. Final record-inclusive static, documentation, reproducible-build,
-  installed-wheel, and complete release-smoke gates pass. Hosted exact-head
-  validation remains pending.
-- **Hosted gate:** This substantive release-tooling change requires exactly
-  three Linux-first allocations, with Windows and macOS starting only after
-  Linux qualification succeeds.
+  installed-wheel, and complete release-smoke gates pass.
+- **Hosted evidence:** PR #123 exact head
+  `f7347965d7e9a78218fa08a34f76aed7d32ba67d` passed run `31332655171` in
+  exactly three Linux-first allocations. Linux job `93293248918` passed in
+  5m37s before macOS `93293864546` and Windows `93293864554` began; they passed
+  in 1m51s and 3m48s. Linux baseline and every compatibility suite passed
+  2,165 tests, with one expected skip outside the baseline. Every platform
+  passed ten real-graphics tests, profile smoke, Clockwork Arena, and Agent
+  World Builder. Hosted reproducibility, installed-wheel smoke, and complete
+  release smoke passed.
+- **Integration:** Two delayed audits found no issue comment, review comment,
+  review, or thread. Head-pinned, GitHub-verified squash
+  `800050c74530d74a72338b5d444ee4751c5ad155` has the exact reviewed feature
+  tree, sole parent M56 closeout, valid signature, and standalone DCO. The
+  feature branch is deleted locally and remotely. Synchronized `main` has no
+  post-merge run, open pull request, non-main remote branch, tag, or release.
+- **Current gate:** This exact four-file documentation/project record requires
+  one Linux allocation; its desktop umbrella must skip with zero steps.

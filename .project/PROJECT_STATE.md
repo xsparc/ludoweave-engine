@@ -1,6 +1,6 @@
 # Project State
 
-## M57 public release response-body conformance - in progress
+## M57 public release response-body conformance - feature integrated
 
 - Base: exact clean synchronized M56 closeout
   `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, with only `main` present and no
@@ -45,7 +45,32 @@
   first scope, archive, credential, identity, history, and integrity review
   reports no remaining actionable issue. Final record-inclusive static,
   documentation, reproducible-build, installed-wheel, and complete release-
-  smoke gates pass. Hosted exact-head validation remains pending.
+  smoke gates pass.
+- Hosted evidence: exact head
+  `f7347965d7e9a78218fa08a34f76aed7d32ba67d` passed run `31332655171` in
+  exactly three Linux-first allocations. Linux job `93293248918` passed in
+  5m37s before macOS `93293864546` and Windows `93293864554` began; they passed
+  in 1m51s and 3m48s. Linux baseline passed 2,165 tests; Ubuntu CPython
+  3.13/3.14 and both desktop CPython 3.14 suites passed 2,165 tests with one
+  expected skip. Every platform passed ten real-graphics tests, profile smoke,
+  Clockwork Arena, and Agent World Builder.
+- Hosted artifacts: exact-head reproducibility produced a pure 271,119-byte
+  wheel at
+  `a24b3d068c351370dca59d320a15dc8148ea64bfbcf6f8540591c4aeed96be61`
+  and a 1,099,375-byte source distribution at
+  `61add34b6732f399d772a556bf59d06816c30c794f1bd1c6a0d09905f2645602`;
+  installed-wheel and complete release smoke passed.
+- Integration: two delayed audits found no issue comment, review comment,
+  review, or thread. PR #123 was ready, `MERGEABLE/CLEAN`, exact-head/exact-
+  base, and had exactly three successful checks. Head-pinned squash
+  `800050c74530d74a72338b5d444ee4751c5ad155` has tree
+  `44b379cdcc510ee55bbaf35dce0bc826ffadb3ab` exactly equal to the reviewed
+  head, sole parent M56 closeout
+  `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, a valid GitHub signature, and
+  standalone DCO. The feature branch is deleted locally/remotely. Synchronized
+  `main` has no post-merge run, open pull request, non-main remote branch, tag,
+  or release. The exact four-file integration record now requires one Linux
+  documentation allocation and a zero-step skipped desktop umbrella.
 
 ## M56 public release status and redirect-reference conformance - complete
 
