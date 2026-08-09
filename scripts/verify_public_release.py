@@ -33,12 +33,11 @@ _MAX_TOTAL_BYTES = 512 * 1024 * 1024
 _MAX_PLAN_BYTES = 16 * 1024
 _CONNECT_TIMEOUT_SECONDS = 10.0
 _REQUEST_TIMEOUT_SECONDS = 30.0
-_MAX_REDIRECTS = 3
+_MAX_ASSET_REDIRECTS = 3
 _READ_BYTES = 1024 * 1024
 _ID_PATTERN = re.compile(r"[1-9][0-9]{0,18}")
 _SIZE_PATTERN = re.compile(r"(?:0|[1-9][0-9]{0,8})")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
-_REDIRECT_STATUSES = frozenset((301, 302, 303, 307, 308))
 
 
 @dataclass(frozen=True, slots=True)
@@ -140,6 +139,7 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
         public_document,
         accept="application/vnd.github+json",
         maximum_bytes=_MAX_DOCUMENT_BYTES,
+        maximum_redirects=0,
     )
     verify_arguments = [
         str(context.expected_directory),
@@ -174,6 +174,7 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
             public_directory / item.name,
             accept="application/octet-stream",
             maximum_bytes=item.bytes,
+            maximum_redirects=_MAX_ASSET_REDIRECTS,
             expected_bytes=item.bytes,
             partial_name=f".asset-{item.asset_id}.part",
         )
@@ -340,6 +341,7 @@ def _download(
     *,
     accept: str,
     maximum_bytes: int,
+    maximum_redirects: int,
     expected_bytes: int | None = None,
     partial_name: str | None = None,
 ) -> None:
@@ -376,22 +378,25 @@ def _download(
         response: http.client.HTTPResponse | None = None
         try:
             path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
+            headers = {
+                "Accept": accept,
+                "Accept-Encoding": "identity",
+                "Connection": "close",
+                "User-Agent": "LudoWeave-release-verifier/1",
+            }
+            if hostname == _API_HOST:
+                headers["X-GitHub-Api-Version"] = _API_VERSION
             connection.request(
                 "GET",
                 path,
-                headers={
-                    "Accept": accept,
-                    "Accept-Encoding": "identity",
-                    "Connection": "close",
-                    "User-Agent": "LudoWeave-release-verifier/1",
-                    "X-GitHub-Api-Version": _API_VERSION,
-                },
+                headers=headers,
             )
+            _set_socket_timeout(connection, deadline)
             response = connection.getresponse()
-            if response.status in _REDIRECT_STATUSES:
+            if response.status == 302:
                 location = response.getheader("Location")
                 redirects += 1
-                if not location or redirects > _MAX_REDIRECTS:
+                if not location or redirects > maximum_redirects:
                     raise PublicReleaseVerificationError(
                         "public release redirect is invalid",
                         code="public_release.redirect_failed",
@@ -399,6 +404,11 @@ def _download(
                 current_url = urljoin(current_url, location)
                 _https_url(current_url)
                 continue
+            if 300 <= response.status < 400:
+                raise PublicReleaseVerificationError(
+                    "public release redirect is invalid",
+                    code="public_release.redirect_failed",
+                )
             if response.status != 200:
                 raise PublicReleaseVerificationError(
                     "public release request failed",
@@ -436,7 +446,12 @@ def _download(
             return
         except PublicReleaseVerificationError:
             raise
-        except (OSError, TimeoutError, http.client.HTTPException, ValueError) as error:
+        except TimeoutError as error:
+            raise PublicReleaseVerificationError(
+                "public release request exceeded the time limit",
+                code="public_release.request_timeout",
+            ) from error
+        except (OSError, http.client.HTTPException, ValueError) as error:
             raise PublicReleaseVerificationError(
                 "public release request failed",
                 code="public_release.request_failed",
@@ -459,10 +474,11 @@ def _stream_response(
     try:
         with target.open("xb") as stream:
             while True:
-                remaining = _remaining(deadline)
-                if connection.sock is not None:
-                    connection.sock.settimeout(min(_CONNECT_TIMEOUT_SECONDS, remaining))
-                block = response.read(min(_READ_BYTES, maximum_bytes + 1 - received))
+                _set_socket_timeout(connection, deadline)
+                block = _read_response_block(
+                    response,
+                    min(_READ_BYTES, maximum_bytes + 1 - received),
+                )
                 if not block:
                     break
                 received += len(block)
@@ -477,6 +493,20 @@ def _stream_response(
             "public release target already exists",
             code="public_release.output_exists",
         ) from error
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release output could not be written",
+            code="public_release.output_failed",
+        ) from error
+    return received
+
+
+def _set_socket_timeout(connection: http.client.HTTPSConnection, deadline: float) -> None:
+    socket = connection.sock
+    if socket is None:
+        return
+    try:
+        socket.settimeout(min(_CONNECT_TIMEOUT_SECONDS, _remaining(deadline)))
     except TimeoutError as error:
         raise PublicReleaseVerificationError(
             "public release request exceeded the time limit",
@@ -484,10 +514,24 @@ def _stream_response(
         ) from error
     except OSError as error:
         raise PublicReleaseVerificationError(
-            "public release output could not be written",
-            code="public_release.output_failed",
+            "public release request failed",
+            code="public_release.request_failed",
         ) from error
-    return received
+
+
+def _read_response_block(response: http.client.HTTPResponse, amount: int) -> bytes:
+    try:
+        return response.read(amount)
+    except TimeoutError as error:
+        raise PublicReleaseVerificationError(
+            "public release request exceeded the time limit",
+            code="public_release.request_timeout",
+        ) from error
+    except (OSError, http.client.HTTPException) as error:
+        raise PublicReleaseVerificationError(
+            "public release request failed",
+            code="public_release.request_failed",
+        ) from error
 
 
 def _publish_partial(partial: Path, target: Path) -> None:

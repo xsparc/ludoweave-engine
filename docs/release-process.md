@@ -74,7 +74,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
 15. M47 replaces the Bash-only public verifier and expands that tag-only fresh
     rehearsal to Ubuntu, Windows, and macOS. Every runner creates its own plan,
     revalidates exact public bytes, and runs complete installed release smoke.
-16. Independently download the public assets, verify checksums and
+16. M48 requires a direct `200` release document, only bounded `200`/`302`
+    asset handling, API-only headers confined to `api.github.com`, and distinct
+    timeout, transport/protocol, and local-output failure codes.
+17. Independently download the public assets, verify checksums and
     attestations, install the wheel in a clean environment, and run the sample
     bundle before announcing.
 
@@ -177,7 +180,7 @@ This is a same-workflow, same-provider Linux rehearsal, not independent or
 external verification, a cross-platform public matrix, a clean machine outside
 GitHub-hosted Actions, every delivery path, future availability, immutability,
 artifact security, PyPI, or a supported release channel. M46 by itself does not
-replace maintainer gate 16. No real fresh-runner pass exists until an authorized
+replace maintainer gate 17. No real fresh-runner pass exists until an authorized
 signed-tag release run executes.
 
 M47/RFC-0030 replaces the shared Bash verifier with one typed standard-library
@@ -199,8 +202,22 @@ M47 supplies same-workflow hosted observations for all three supported
 operating systems, but it is still not independent/external verification, a
 clean machine outside GitHub-hosted Actions, every delivery path, future
 availability, immutability, artifact security, PyPI, or a supported channel.
-It does not replace maintainer gate 16. No real M47 pass exists until an
+It does not replace maintainer gate 17. No real M47 pass exists until an
 authorized signed-tag release run executes.
+
+M48/RFC-0031 narrows the shared portable client's accepted response and failure
+semantics. The release document must return a direct `200`; an asset request may
+return `200` or follow at most three `302` responses through the inherited
+HTTPS/default-port bound. Other redirects fail. The API-version header is sent
+only to `api.github.com`. Request/header/body timeouts share one stable timeout
+code, other network/protocol errors remain request failures, and local
+filesystem errors remain output failures.
+
+M48 changes no workflow or release authority and does not create a real public
+observation in pull-request CI. It preserves M47's cross-platform same-workflow
+claim boundary and does not replace the independent consumer check in
+maintainer gate 17. No real M48 pass exists until an authorized signed-tag
+release run executes.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
@@ -282,9 +299,15 @@ check in maintainer gate 15.
 M46 repeats that check from a dependent fresh Linux runner using the exact
 candidate preserved by the publishing job. It improves runner/workspace and
 isolated-install separation but remains inside the same workflow and provider,
-so it is also not a substitute for the independent consumer check in gate 16.
+so it is also not a substitute for the independent consumer check in gate 17.
 
 M47 runs that same exact public-byte and installed-candidate observation from
 fresh Ubuntu, Windows, and macOS runners through one portable Python verifier.
 This establishes no real matrix result until an authorized tag run executes and
-remains no substitute for the independent consumer check in gate 16.
+remains no substitute for the independent consumer check in gate 17.
+
+M48 makes that verifier accept only the documented release/asset response set,
+keeps API-only headers on the fixed API host, and reports timeout,
+transport/protocol, and local-output failures distinctly. Fixture and
+pull-request evidence do not substitute for an authorized tag run or the
+independent consumer check in gate 17.

@@ -1,88 +1,68 @@
 # Current Task
 
-- **Task:** M47 - cross-platform public consumer rehearsal
-- **Status:** Feature and integration record fully validated and
-  squash-integrated; closing factual records on `records/m47-closeout`.
+- **Task:** M48 - public release HTTP response conformance
+- **Status:** Final local gate complete on
+  `release/m48-http-response-conformance`; reviewing the exact diff before
+  commit and hosted validation.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
 - **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  M46 closeout commit `2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5`.
+  M47 closeout commit `8d8d9e4a5790d7b74ec06139d314ffdf30a4ef41`.
   Only `main` existed locally/remotely; no open pull request, local/remote tag,
   or GitHub release existed; full Git-object checking passed.
-- **Outcome:** Replace the Bash-only public release verifier with one portable,
-  typed standard-library Python program and run the tag-only fresh consumer on
-  Ubuntu, Windows, and macOS without widening release authority or pull-request
-  allocations.
+- **Outcome:** Constrain the portable public release client to GitHub's
+  documented release/asset response shapes and make timeout,
+  transport/protocol, and local-output failures consistently actionable without
+  changing workflow topology or release authority.
 - **Acceptance gate:**
-  - Keep the release job's verified numeric release ID and validated version as
-    the only scalar handoff; retain the exact named same-workflow candidate.
-  - Expand the existing dependent fresh-consumer job to exactly
-    `ubuntu-latest`, `windows-latest`, and `macos-latest` with `fail-fast:
-    false`, a 25-minute timeout, explicit `contents: read`, and no dependency
-    cache or release/attestation/identity-token write permission.
-  - Use one Python verifier in the publishing and fresh jobs. Publishing mode
-    must require M43's plan; fresh mode must reject a preexisting plan and
-    create one exclusively after candidate/public-document validation.
-  - Make initial hosts repository-fixed, reject credentials and non-HTTPS,
-    user information, fragments, non-default ports, and more than three remote
-    redirects; use verified TLS, 10-second blocking time, and a 30-second
-    monotonic deadline without ambient proxy/client configuration.
-  - Retain the 4-MiB document, 16-KiB plan, positive 63-bit IDs, safe unique
-    names, exclusive ID-derived partials, 32 assets, 256 MiB per asset, 512 MiB
-    total, exact length/set validation, and complete installed release smoke.
-  - Emit only a versioned status, stable generic failure, and bounded aggregate
-    count/bytes; do not expose paths, URLs, response bodies, notes, environment
-    values, or credentials.
-  - Add no pull-request CI allocation, release trigger, credential, mutation,
-    retry, rollback, artifact-set, attestation, publication command, dependency,
-    lock, version, runtime, package, or public-API change.
-  - Document same-workflow/repository/account/provider and independent/external,
-    clean-machine, delivery-path, future, immutability, artifact-security,
-    PyPI, and supported-channel non-claims.
-  - Pass fixture-driven plan, exact-byte, timeout/redirect, credential, and
-    architecture tests; complete CPython 3.12-3.14, graphics, docs, build,
-    installed wheel/release smoke, and the exact three-allocation hosted gate.
+  - Require the fixed public release-document request to return a direct `200`.
+  - Allow a fixed asset-ID request to return `200` or follow at most three
+    `302` responses through M47's HTTPS/default-port/user-info/fragment bounds;
+    reject every other `3xx` response.
+  - Send `X-GitHub-Api-Version` only when the current request host is the fixed
+    `api.github.com`; never send authorization, cookies, ambient client/proxy
+    configuration, browser URLs, or caller-selected initial hosts.
+  - Retain a ten-second blocking timeout inside one 30-second monotonic request
+    deadline; refresh the connected socket timeout before response headers and
+    every bounded body read.
+  - Map request/header/body `TimeoutError` to
+    `public_release.request_timeout`, other socket/HTTP protocol failures to
+    `public_release.request_failed`, and only local create/write/finalize/remove
+    failures to `public_release.output_failed`.
+  - Retain M47's fixed repository/IDs, verified TLS, document/plan/count/byte,
+    safe-name, exclusive-partial, exact-validation, and installed-smoke bounds.
+  - Change no workflow, runner allocation, action, permission, trigger,
+    credential, release mutation, retry, cleanup, dependency, lock, version,
+    runtime, package, or public API.
+  - Add fixture-driven direct/redirect/header/timeout/transport/output tests,
+    an accepted RFC, architecture protection, and aligned public/maintainer
+    documentation.
+  - Pass complete CPython 3.12-3.14, graphics, docs, build, installed
+    wheel/release smoke, and the exact three-allocation hosted gate.
 - **Non-scope:** Creating or pushing a tag; creating, uploading, publishing,
-  editing, deleting, or unpublishing a release; external monitoring or
-  independently owned verification; machines outside GitHub-hosted Actions;
-  automatic retry/rollback/cleanup; every delivery path; future availability;
-  immutable releases; artifact security; PyPI; a supported release channel;
-  runtime/public API, package version/dependency/lock, or deferred subsystems.
+  editing, deleting, or unpublishing a release; redirect-host allowlists;
+  retries or automatic cleanup; external monitoring; independently owned
+  verification; every CDN/geographic path; future availability; immutability;
+  artifact security; PyPI; a supported release channel; runtime/public API,
+  dependency/lock/version, or deferred subsystems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Current evidence:** M46 feature PR #89, documentation record PR #90, and
-  zero-run closeout PR #91 are fully validated and squash-integrated. Final
-  closeout `2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5` has the exact reviewed
-  tree, sole parent the M46 integration-record squash, a GitHub-valid signature,
+- **Current evidence:** M47 feature PR #92, documentation record PR #93, and
+  zero-run closeout PR #94 are fully validated and squash-integrated. Final
+  closeout `8d8d9e4a5790d7b74ec06139d314ffdf30a4ef41` has exact reviewed tree,
+  sole parent the M47 integration-record squash, a GitHub-valid signature,
   standalone DCO, and no post-merge run. Only synchronized `main` remained with
-  no open PR, tag, or release. Official GitHub documentation supports
-  same-workflow artifact handoff and OS matrices; current Python documentation
-  supports explicit verified HTTPS connections, blocking timeouts, response
-  status/headers, and bounded reads. The focused M45-M47 gate passes 39 tests
-  under strict static typing. The final graphics-enabled CPython 3.12, 3.13,
-  and 3.14 suites each pass 1,945 tests with 14 expected capability skips.
-  Ten real-wgpu tests, both profile contracts, Clockwork Arena, Agent World
-  Builder, reproducible distribution, isolated-wheel smoke, and complete
-  release smoke pass locally. The final static gate covers 290 formatted files,
-  zero Ruff/Pyright findings, 405 architecture assertions, strict docs/YAML,
-  and reproducible wheel/sdist bytes; isolated wheel and complete release smoke
-  pass. Ready PR #92 exact head
-  `fdddaa986b647e68a0a027445c11547b878ad246` passed run `31286321895` in
-  exactly three allocations: Linux first in 7m20s, then macOS in 2m40s and
-  Windows in 3m55s. The PR was clean with no review, comment, or thread.
-  Verified squash `c3f5d9c4b9f21315b7ae8f113cc643f978d75746` has exact reviewed tree
-  `e222ebff0655b9d86548bab6e8d19fb79ba3afc5`, sole parent the M46
-  closeout, a GitHub-valid signature, standalone DCO, and no post-merge run.
-  The feature branch is deleted locally/remotely. No real M47 tag/release
-  execution exists or is claimed.
-- **Integration record:** Four-Markdown PR #93 exact head
-  `19d0c9f21701acd4fa731c567d3927177374dbce` classified documentation-only.
-  Run `31286982718` passed in one 37-second Linux allocation with 405
-  architecture tests, strict docs, reproducible build, wheel smoke, and
-  release smoke; the desktop umbrella job had zero steps and was skipped.
-  The PR had no review, comment, or thread. Verified squash
-  `7bea262210afd5b22265fede596d2d5117b14854` has exact reviewed tree, sole
-  parent the M47 feature squash, a GitHub-valid signature, standalone DCO, and
-  no post-merge run. Its branch is deleted locally/remotely. Only this
-  three-file zero-run closeout remains before selecting the next milestone.
+  no open PR, tag, or release. Official GitHub documentation defines `200` for
+  Get a release and `200`/`302` for Get a release asset; Python documentation
+  defines blocking socket timeout behavior and `TimeoutError` as an `OSError`.
+  The documentation-integrated M45/M47/M48 focus passes all 54 tests under
+  strict Ruff and Pyright. The final graphics-enabled CPython 3.12, 3.13, and
+  3.14 suites each pass 1,966 tests with 14 expected skips. Ten real-wgpu tests,
+  both profile contracts, Clockwork Arena, Agent World Builder, reproducible
+  distribution, isolated-wheel smoke, and complete release smoke pass locally.
+  The final static gate covers 291 formatted files, zero Ruff/Pyright findings,
+  426 architecture assertions, strict docs, whitespace, and healthy Git
+  objects. Commit-candidate reproducibility, isolated-wheel smoke, and complete
+  release smoke pass. Exact diff review, hosted validation, and integration
+  remain pending. No real M48 tag/release execution exists or is claimed.

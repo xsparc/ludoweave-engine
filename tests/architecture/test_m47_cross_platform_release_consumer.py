@@ -41,6 +41,7 @@ class _Download(Protocol):
         *,
         accept: str,
         maximum_bytes: int,
+        maximum_redirects: int,
         expected_bytes: int | None = None,
         partial_name: str | None = None,
     ) -> None: ...
@@ -192,14 +193,17 @@ def test_portable_verifier_creates_fresh_plan_and_smokes_exact_public_bytes(
         *,
         accept: str,
         maximum_bytes: int,
+        maximum_redirects: int,
         expected_bytes: int | None = None,
         partial_name: str | None = None,
     ) -> None:
         del maximum_bytes, partial_name
         requests.append((url, accept))
         if url.endswith("/releases/123"):
+            assert maximum_redirects == 0
             target.write_bytes(public_document.read_bytes())
             return
+        assert maximum_redirects == 3
         asset_id = int(url.rsplit("/", 1)[1])
         content = assets[asset_id]
         assert expected_bytes == len(content)
@@ -369,6 +373,7 @@ def test_https_client_follows_at_most_three_remote_https_redirects(
         target,
         accept="application/octet-stream",
         maximum_bytes=5,
+        maximum_redirects=3,
         expected_bytes=5,
         partial_name=".asset-456.part",
     )
@@ -419,6 +424,7 @@ def test_https_client_rejects_fourth_redirect(
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
+            maximum_redirects=3,
         )
 
 
@@ -451,6 +457,7 @@ def test_https_client_rejects_non_https_redirect(
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
+            maximum_redirects=3,
         )
 
 
@@ -496,6 +503,7 @@ def test_https_client_rejects_declared_or_streamed_size_mismatch(
             tmp_path / "asset.bin",
             accept="application/octet-stream",
             maximum_bytes=maximum,
+            maximum_redirects=3,
             expected_bytes=expected,
             partial_name=".asset-456.part",
         )
@@ -546,6 +554,7 @@ def test_socket_read_timeout_is_reported_as_request_timeout(
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
+            maximum_redirects=0,
         )
 
 

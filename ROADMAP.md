@@ -56,6 +56,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M45 public release consumer-path integrity | PR #86 passed credential-free exact-ID public document/assets, complete revalidation, installed release smoke, and the three-allocation hosted gate before verified squash integration |
 | Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
 | Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
+| Active | M48 public release HTTP response conformance | Exact documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, unchanged workflows and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -608,6 +609,21 @@ has exact reviewed tree `e222ebff0655b9d86548bab6e8d19fb79ba3afc5`,
 sole parent the M46 closeout, valid GitHub signature, and standalone DCO. No
 post-merge run was allocated, the feature branch is deleted, and no real tag or
 release was created.
+
+M48 starts from verified M47 closeout commit
+`8d8d9e4a5790d7b74ec06139d314ffdf30a4ef41`. It narrows the portable public
+release client to a direct `200` release document and either direct `200` or at
+most three bounded `302` asset responses. Other redirects fail closed;
+`X-GitHub-Api-Version` remains on `api.github.com`. Socket deadlines are
+refreshed before response headers and body reads, with stable distinct codes for
+timeouts, other transport/protocol failures, and local-output failures.
+
+The slice changes no workflow, runner allocation, action, permission,
+credential, trigger, release mutation, retry, cleanup, dependency, runtime,
+package, or public API. Fixture and pull-request evidence are not a real public
+release observation, independent/external verification, future availability,
+immutability, artifact security, PyPI, or a supported release channel. A real
+pass remains unclaimed until an authorized signed-tag release run executes.
 
 ## Good-first contribution queue
 

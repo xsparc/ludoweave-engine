@@ -1226,6 +1226,33 @@ or external consumer/provider/build, a clean machine outside GitHub-hosted
 Actions, every delivery path, future availability, immutability, artifact
 security, PyPI, or a supported channel. RFC-0030 defines the complete boundary.
 
+## M48 public release HTTP response-conformance boundary
+
+M48 narrows the shared M47 verifier to the exact documented endpoint response
+shapes. The fixed public release-document request accepts only a direct `200`.
+Each fixed asset-ID request accepts a direct `200` or follows at most three
+`302` responses through the existing bounded HTTPS/default-port URL parser.
+Every other redirect status fails closed. The GitHub API-version header is
+included only when the current host is `api.github.com`, so remote object hosts
+receive no API-only request metadata.
+
+The initial connection retains M47's ten-second blocking timeout within a
+30-second monotonic request deadline. The connected socket timeout is refreshed
+after request transmission and before response headers, then before each
+bounded body read. `TimeoutError` maps to the stable request-timeout code before
+the broader `OSError` hierarchy is handled. Other socket/HTTP protocol failures
+map to request failure, while exclusive local creation, write, finalization, or
+removal failures map to output failure. Internal exception chaining preserves
+the cause; public JSON remains generic and content-silent.
+
+M48 changes no workflow, allocation, action, permission, credential, trigger,
+release mutation, retry, cleanup, dependency, runtime, package, or public API.
+It preserves every M47 identity, TLS, document, plan, count, byte, path,
+partial, exact-validation, and installed-smoke bound. Pull-request evidence is
+not a real public release observation, independent/external verification,
+future availability, immutability, artifact security, PyPI, or a supported
+channel. RFC-0031 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

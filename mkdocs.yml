@@ -71,6 +71,7 @@ nav:
       - RFC-0028 - Public release consumer-path integrity: rfcs/0028-verify-public-release-consumer-path.md
       - RFC-0029 - Fresh-runner consumer rehearsal: rfcs/0029-fresh-runner-consumer-rehearsal.md
       - RFC-0030 - Cross-platform consumer rehearsal: rfcs/0030-cross-platform-release-consumer-rehearsal.md
+      - RFC-0031 - Public release HTTP response conformance: rfcs/0031-public-release-http-response-conformance.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

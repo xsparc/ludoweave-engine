@@ -35,3 +35,4 @@ was adopted.
 - [RFC-0028: verify the public release consumer path](0028-verify-public-release-consumer-path.md)
 - [RFC-0029: add a fresh-runner public consumer rehearsal](0029-fresh-runner-consumer-rehearsal.md)
 - [RFC-0030: add a cross-platform public release consumer rehearsal](0030-cross-platform-release-consumer-rehearsal.md)
+- [RFC-0031: constrain public release HTTP responses and failures](0031-public-release-http-response-conformance.md)
