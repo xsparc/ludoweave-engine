@@ -1,17 +1,19 @@
 # Current Task
 
 - **Task:** M52 - public release TLS service-identity evidence
-- **Status:** Implementation, corrected complete local validation, and final
-  review are complete on `security/m52-tls-service-identity`; hosted gates are
-  pending.
+- **Status:** Feature PR #108 is fully validated, review-clean, and squash-
+  integrated; publishing the exact four-file integration record on
+  `records/m52-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  M51 closeout `047478d0c7fb873ae94aaa6e322b5b08903ed354`.
-  Only `main` existed locally/remotely; no open pull request, tag, GitHub
-  release, or post-closeout `main` run existed; full Git-object checking passed.
+- **Base:** The feature began from exact clean synchronized M51 closeout
+  `047478d0c7fb873ae94aaa6e322b5b08903ed354`. The current record is based on
+  exact synchronized M52 feature squash
+  `eb083089bfff774c0df2b115428901357c9084b2`; the feature branch is deleted
+  locally/remotely, no open pull request, tag, GitHub release, or post-merge
+  `main` run exists, and full Git-object checking passes.
 - **Outcome:** Observe the URL-derived TLS service identity on every fixed API
   or bounded redirected asset hop after connected-peer confinement and before
   negotiated-session inspection or HTTP transmission.
@@ -68,5 +70,13 @@
   every corrected complete CPython 3.12-3.14 suite passes 2,044 tests with 14
   expected skips. Corrected reproducible build, isolated-wheel, and complete
   release smoke, post-record static/architecture/docs, archive/scope scans, and
-  repeat findings-first review pass with no remaining finding. Hosted
-  validation remains; no hosted run, PR, merge, tag, or release is yet claimed.
+  repeat findings-first review pass with no remaining finding. Exact feature
+  head `170db846112e27b9d11377da69784c69a6565bb4` passed hosted run
+  `31316474864` in exactly three Linux-first allocations. Every hosted test,
+  graphics, profile, vertical-slice, reproducible-build, wheel, and release
+  smoke step passed. After a delayed audit found no review, comment, or thread,
+  verified squash `eb083089bfff774c0df2b115428901357c9084b2` reproduced the
+  exact reviewed tree with the M51 closeout as sole parent, valid GitHub
+  signature, and standalone DCO. No post-merge `main` run, tag, or release was
+  created or claimed. The four-file integration record requires one Linux
+  documentation allocation and a zero-step skipped desktop umbrella.

@@ -60,7 +60,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
 | Done | M50 public release TLS key-log isolation | PR #102 passed explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and the exact three-allocation gate before verified squash integration |
 | Done | M51 public release negotiated TLS-session conformance | PR #105 corrected malformed unhashable-version handling after review, passed the exact three-allocation gate, and squash-integrated pre-request TLSv1.2/TLSv1.3, cipher-strength, compression, and ALPN checks without changing release authority |
-| In progress | M52 public release TLS service-identity evidence | Observe the IDNA-normalized reference hostname and non-empty peer certificate before negotiated-session checks and HTTP, with unchanged workflows, dependencies, and release authority |
+| Done | M52 public release TLS service-identity evidence | PR #108 corrected real-connection invalid-IDNA ordering during review, passed actual socket identity/certificate checks in the exact three-allocation gate, and squash-integrated with unchanged workflows, dependencies, and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -745,6 +745,16 @@ request evidence are not a real public release observation, independent or
 external verification, every TLS/CDN path, future availability, immutability,
 artifact security, PyPI, or a supported channel. A real pass remains unclaimed
 until an authorized signed-tag release run executes.
+
+Feature PR #108 exact head `170db846112e27b9d11377da69784c69a6565bb4`
+passed run `31316474864` in exactly three Linux-first allocations, including
+all supported-Python, graphics, profile, vertical-slice, reproducible-build,
+installed-wheel, and release-smoke gates. A delayed review audit found no
+review, comment, or thread. GitHub-verified squash
+`eb083089bfff774c0df2b115428901357c9084b2` has the exact reviewed tree, the
+M51 closeout as sole parent, valid signature, and standalone DCO. No post-merge
+run was allocated, the feature branch is deleted, and no real tag or release
+was created.
 
 ## Good-first contribution queue
 
