@@ -1,6 +1,6 @@
 # Project State
 
-## M56 public release status and redirect-reference conformance - feature integrated
+## M56 public release status and redirect-reference conformance - complete
 
 - Base: exact clean synchronized M55 closeout
   `e7f700454adf1c11c80cb1ba684ed3318f7876e4`, with only `main` present and no
@@ -85,9 +85,22 @@
   `e7f700454adf1c11c80cb1ba684ed3318f7876e4`, a valid signature, and
   standalone DCO. The feature branch is deleted locally/remotely; no
   post-merge `main` run, open PR, non-main remote branch, tag, or release
-  exists. The remaining integration record changes exactly four
-  documentation/project paths and requires one Linux allocation with a
-  zero-step skipped desktop umbrella.
+  exists.
+- Integration record: exact head
+  `db7c50009243fa7cf3bf9cd8f57afb4589dec7e7` passed run `31330464522` in one
+  38-second Linux allocation. All 299 Python files were format clean, Ruff and
+  strict docs passed, 604 documentation architecture assertions passed,
+  reproducible distributions plus installed-wheel and complete release smoke
+  passed, and desktop umbrella `93287863357` skipped with zero steps. Two
+  delayed audits found no comment, review, or thread. Head-pinned GitHub-
+  verified squash `acc6893ef4cadf9a17c87cd578e38b7802a3ed77` has tree
+  `69ed3d44d8eab6cfa98cb646f897a9cb295296f8` exactly equal to the record
+  head, sole parent feature squash
+  `22c432310fae2f9ac372062cbd465cc2617fb95c`, a valid signature, and
+  standalone DCO. No post-merge `main` run was allocated; both working
+  branches are deleted locally/remotely, and no open PR, non-main remote
+  branch, tag, or release exists. The remaining three-file `.project/**`
+  closeout must allocate zero hosted runs or checks.
 
 ## M55 public release HTTP response framing - complete
 
