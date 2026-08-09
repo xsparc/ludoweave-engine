@@ -6,6 +6,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M54/RFC-0037 exact post-handshake public-release TLS session-freshness
+  evidence through `session_reused is False` on every hop before later TLS
+  observations or HTTP, without changing workflows, dependencies, runtime
+  APIs, or release authority.
+- Add M53/RFC-0036 exact post-handshake TLS context binding, client-role
+  validation, and complete context-policy revalidation before later public-
+  release TLS evidence or HTTP, without changing workflows, dependencies,
+  runtime APIs, or release authority.
+- Add M52/RFC-0035 URL-derived public-release TLS service-identity and non-empty
+  peer-certificate observations before negotiated-session validation or HTTP,
+  without replacing platform trust or changing workflows, dependencies,
+  runtime APIs, or release authority.
 - Add M51/RFC-0034 actual negotiated TLS-session validation before every
   public-release HTTP request: exact TLSv1.2/TLSv1.3, a well-formed cipher
   report with at least 128 secret bits, no compression, and HTTP/1.1-compatible

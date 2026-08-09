@@ -93,6 +93,7 @@ class _Socket:
         self.timeouts: list[float] = []
         self.context = context
         self.server_side = False
+        self.session_reused = False
         self.server_hostname = server_hostname
 
     def settimeout(self, value: float) -> None:

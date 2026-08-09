@@ -1,5 +1,42 @@
 # Project State
 
+## M54 public release TLS session freshness - in progress
+
+- Base: exact clean synchronized M53 closeout
+  `fe585f8bd2313feac39b70cadf088c57bbb1960e`, with only `main` present and no
+  open pull request, tag, release, or post-closeout `main` run.
+- Scope: after the handshake, M49 peer confinement, and M53 exact context
+  binding, require the actual socket's `session_reused` observation to be
+  exactly `False` before M52 identity, M51 session inspection, or HTTP. Repeat
+  independently on every redirect.
+- Failure: a missing socket/accessor, unsupported observation, resumed session,
+  malformed value, or inspection exception uses stable, content-silent
+  `public_release.tls_failed`; an available local exception remains chained.
+- Boundary: no workflow, allocation, dependency, package, public API, release
+  authority, session cache, session assignment, ticket control, custom TLS
+  implementation, trust replacement, pinning, parser, revocation, channel
+  binding, proxy, or network sandbox. Reported non-reuse does not independently
+  prove a full handshake or certificate exchange. Fixture/PR evidence is not a
+  real public release observation.
+- Decision: accepted RFC-0037 records the exact observation, ordering,
+  ownership, failure, non-claim, and authority boundaries.
+- Development evidence: all 157 focused M47-M54 assertions pass. All 297
+  Python files are format clean; Ruff and strict Pyright report zero findings;
+  535 architecture assertions and strict docs pass. Complete graphics-enabled
+  CPython 3.12-3.14 suites each pass 2,075 tests with 14 expected skips. Real-
+  wgpu, profiles, both vertical slices, documented benchmarks, reproducible
+  build, isolated wheel, and release smoke pass. Exact commands, counts,
+  hashes, and the sandbox-blocked attempt are recorded in test evidence.
+- Review: an initial documentation review found that the RFC index ended at
+  RFC-0034 and the changelog ended at M51; both are corrected through M54. A
+  first post-record guard was overly broad and is corrected. Repeat findings-
+  first correctness, security, scope, history, archive, credential, identity,
+  and integrity review found no actionable issue. The 23-path candidate changes
+  no workflow, runtime package, benchmark, metadata, or lock.
+- Local status: final fail-fast static, architecture, docs, reproducible build,
+  installed-wheel, release-smoke, archive, whitespace, and Git-object gates
+  pass. Hosted exact-head validation remains pending before publication.
+
 ## M53 public release TLS context binding - complete
 
 - Base: exact clean synchronized M52 closeout

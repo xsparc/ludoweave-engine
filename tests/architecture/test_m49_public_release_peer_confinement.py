@@ -82,6 +82,7 @@ class _PeerSocket:
     ) -> None:
         self.context = context
         self.server_side = False
+        self.session_reused = False
         self.address = address
         self.port = port
         self.server_hostname = server_hostname

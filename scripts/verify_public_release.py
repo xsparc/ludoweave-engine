@@ -79,6 +79,7 @@ class _TlsPeer(Protocol):
     context: ssl.SSLContext
     server_side: bool
     server_hostname: str | None
+    session_reused: bool
 
     def getpeercert(self, binary_form: bool = False) -> object: ...
 
@@ -403,6 +404,7 @@ def _download(
         try:
             _connect_public_peer(connection, deadline)
             _validate_tls_context_binding(connection, tls_context)
+            _validate_tls_session_freshness(connection)
             _validate_tls_identity(connection, reference_hostname)
             _validate_tls_session(connection)
             path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
@@ -553,6 +555,32 @@ def _validate_tls_context_binding(
             code="public_release.tls_failed",
         )
     _require_public_tls_context(expected_context)
+
+
+def _validate_tls_session_freshness(
+    connection: http.client.HTTPSConnection,
+) -> None:
+    """Reject TLS session resumption before later evidence or HTTP."""
+
+    socket = connection.sock
+    if socket is None:
+        raise PublicReleaseVerificationError(
+            "public release TLS session freshness failed",
+            code="public_release.tls_failed",
+        )
+    peer = cast(_TlsPeer, socket)
+    try:
+        session_reused: object = peer.session_reused
+    except (AttributeError, NotImplementedError, OSError, TypeError, ValueError) as error:
+        raise PublicReleaseVerificationError(
+            "public release TLS session freshness failed",
+            code="public_release.tls_failed",
+        ) from error
+    if session_reused is not False:
+        raise PublicReleaseVerificationError(
+            "public release TLS session freshness failed",
+            code="public_release.tls_failed",
+        )
 
 
 def _validate_tls_session(connection: http.client.HTTPSConnection) -> None:
