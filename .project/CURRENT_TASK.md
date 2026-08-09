@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M49 - public release connected-peer confinement
-- **Status:** Final local gate complete on
-  `security/m49-public-peer-confinement`; reviewing the exact diff before
-  commit and hosted validation.
+- **Status:** Hosted review correction validated locally; retiring feature PR
+  #98 without merge and preparing a fresh immutable replacement branch.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -65,13 +64,21 @@
   CPython 3.12-3.14 classification probe produced identical results for the
   documented corrected special-purpose ranges. The documentation-integrated
   focus passes 83 tests; all 292 Python files pass Ruff formatting/lint and
-  strict Pyright, and strict docs build. All 455 architecture tests pass. The
+  strict Pyright, and strict docs build. All 457 architecture tests pass. The
   exact graphics-enabled CPython 3.12, 3.13, and 3.14 trees each pass 1,995
   tests with 14 expected skips. Ten real-wgpu tests, both profile contracts,
   Clockwork Arena, Agent World Builder, reproducible distribution,
   isolated-wheel smoke, and complete release smoke pass locally. Final
   record-inclusive static and distribution gates pass; the 94-entry wheel has
   no script, test, native, or WASM payload. Scope, credential, identity,
-  documentation, and findings-first review are clean. Hosted validation and
-  integration remain pending. No real M49 tag/release execution exists or is
-  claimed.
+  documentation, and initial findings-first review passed. Feature PR #98
+  exact head `c19d37f24516bbdc8bea71b521936ac7daf1f8e9` then passed exactly three
+  hosted allocations, but hosted review correctly identified CPython
+  classifications that left deprecated IPv6 site-local and reserved peers
+  permitted. The unmerged correction explicitly rejects both classifications
+  and adds `fec0::1`/`5f00::1` regressions. Formatting, Ruff, strict Pyright,
+  31 focused assertions, and complete graphics-enabled CPython 3.12-3.14
+  suites now pass; each complete suite has 1,997 passes and 14 expected skips.
+  Ten real-wgpu tests, both three-repeat profiles, Clockwork Arena, and Agent
+  World Builder also revalidate. Replacement hosted validation and integration
+  remain pending. No real M49 tag/release execution exists or is claimed.

@@ -509,7 +509,13 @@ def _connect_public_peer(
         ) from error
     if isinstance(address, ipaddress.IPv6Address) and address.ipv4_mapped is not None:
         address = address.ipv4_mapped
-    if not address.is_global or address.is_multicast or address.is_unspecified:
+    if (
+        not address.is_global
+        or address.is_multicast
+        or address.is_reserved
+        or address.is_unspecified
+        or (isinstance(address, ipaddress.IPv6Address) and address.is_site_local)
+    ):
         raise PublicReleaseVerificationError(
             "public release peer is not globally reachable",
             code="public_release.peer_forbidden",

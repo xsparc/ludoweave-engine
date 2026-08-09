@@ -24,12 +24,22 @@
   Ruff/Pyright and all 74 non-documentation M47-M49 assertions pass after two
   factual fixture corrections. CPython 3.12-3.14 classify the probed corrected
   special-purpose ranges identically. The documentation-integrated focus, all
-  455 architecture tests, complete graphics-enabled CPython 3.12-3.14 suites,
+  457 architecture tests, complete graphics-enabled CPython 3.12-3.14 suites,
   ten real-wgpu tests, profiles, both deterministic vertical slices,
   reproducible distribution, isolated-wheel smoke, and complete release smoke
   pass. Final record-inclusive static/docs/architecture/distribution, scope,
-  credential, identity, package-content, and findings-first review pass. Hosted
-  validation and integration remain pending.
+  credential, identity, package-content, and initial findings-first review
+  pass. Feature PR #98 exact head
+  `c19d37f24516bbdc8bea71b521936ac7daf1f8e9` passed its exact three hosted
+  allocations. Hosted review then identified that CPython can report
+  deprecated IPv6 site-local and reserved ranges as globally classified. PR
+  #98 will remain unmerged. The corrected tree explicitly rejects
+  `is_site_local` and `is_reserved`, adds `fec0::1` and `5f00::1` regressions,
+  and passes formatting, Ruff, strict Pyright, 31 focused assertions, complete
+  graphics-enabled CPython 3.12-3.14 suites with 1,997 passes and 14 expected
+  skips each, ten real-wgpu tests, both profiles, both deterministic vertical
+  slices, reproducible distribution, isolated-wheel smoke, and complete
+  release smoke. Replacement hosted validation and integration remain pending.
 
 ## M48 public release HTTP response conformance - complete
 
