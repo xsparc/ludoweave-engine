@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M57 - public release response-body conformance
-- **Status:** The feature is squash-integrated on `main`; preparing the
-  four-file integration record on `docs/m57-integration-record`.
+- **Status:** Complete. Feature PR #123 and integration-record PR #124 are
+  fully validated, review-clean, squash-integrated, and branch-clean;
+  publishing the exact three-file closeout on `records/m57-closeout`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -72,7 +73,16 @@
   review, or thread. Head-pinned, GitHub-verified squash
   `800050c74530d74a72338b5d444ee4751c5ad155` has the exact reviewed feature
   tree, sole parent M56 closeout, valid signature, and standalone DCO. The
-  feature branch is deleted locally and remotely. Synchronized `main` has no
-  post-merge run, open pull request, non-main remote branch, tag, or release.
-- **Current gate:** This exact four-file documentation/project record requires
-  one Linux allocation; its desktop umbrella must skip with zero steps.
+  feature branch is deleted locally and remotely. Integration PR #124 exact
+  head `b959cad56d0c9e9b3b34d02d313ce4a6b67a9fa9` passed run `31333440409` in
+  one 36-second Linux allocation; all 621 architecture assertions, strict docs,
+  reproducible builds, installed-wheel smoke, and complete release smoke
+  passed, while the desktop umbrella skipped with zero steps. Two delayed
+  audits found no comment, review, or thread. GitHub-verified squash
+  `f28d5ee6e9b1e3d65b1ff47c4574e8525cb6c85e` reproduces the reviewed record
+  tree with the feature squash as sole parent, valid signature, and standalone
+  DCO. Both M57 working branches are deleted locally/remotely. Synchronized
+  `main` has no post-merge run, open pull request, non-main remote branch, tag,
+  or release.
+- **Closeout gate:** The exact three-file `.project/**` record must allocate
+  zero hosted runs or checks.
