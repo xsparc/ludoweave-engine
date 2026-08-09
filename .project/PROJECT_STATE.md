@@ -1,6 +1,6 @@
 # Project State
 
-## M50 public release TLS key-log isolation - implementation complete
+## M50 public release TLS key-log isolation - feature integrated
 
 - Base: clean synchronized M49 closeout
   `f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`, with only `main` present
@@ -31,12 +31,30 @@
   suites each pass 2,004 tests with 14 expected skips. Ten real-wgpu tests,
   both three-repeat profile contracts, Clockwork Arena, Agent World Builder,
   reproducible distributions, isolated-wheel smoke, and complete release smoke
-  pass. Exact hosted-head evidence remains pending.
+  pass.
+- Hosted evidence: ready PR #102 exact head
+  `99134b6be68bb7978431710228e788250561659e` passed run `31309759226` in
+  exactly three allocations. Linux job `93235618328` passed in 7m43s before
+  macOS `93236421634` and Windows `93236421636` began; they passed in 2m08s
+  and 3m01s. Linux baseline and every hosted compatibility suite passed 2,008
+  tests; each nonbaseline suite had one expected skip. All platforms passed ten
+  graphics tests, both profiles, Clockwork Arena, and Agent World Builder.
+- Integration: PR #102 was `MERGEABLE/CLEAN` at the exact head/base with zero
+  submitted reviews, issue comments, review comments, or review threads.
+  GitHub-verified squash `5fb56120e1a96a0a25db96baa3836699e435611c`
+  has tree `2ec52b638069d23aabd68af04f3ada426aab803d` exactly equal to the reviewed
+  head, sole parent M49 closeout
+  `f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`, and standalone DCO. No
+  post-merge `main` run was allocated. The feature branch is deleted
+  locally/remotely and only synchronized `main` remains.
 - Non-claim: no real signed tag or release was created or exercised. Fixture
   and pull-request evidence are not a real public release observation,
   negotiated-session audit, independent/external verification, every delivery
   path, future-availability/immutability proof, artifact-security result, PyPI
   availability, or a supported release channel.
+- Remaining closeout: record this integration through the bounded
+  documentation-only gate, then publish a three-`.project/**` zero-run factual
+  closeout. Neither record widens M50.
 
 ## M49 public release connected-peer confinement - complete
 
