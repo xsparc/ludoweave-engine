@@ -2,6 +2,14 @@
 
 No architecture decision is currently blocked.
 
+RFC-0031 resolves M48 public release HTTP response conformance. The fixed
+release-document request accepts only direct `200`; asset-ID requests accept
+direct `200` or at most three bounded `302` responses. API-only headers remain
+on `api.github.com`; timeout, other transport/protocol, and local-output
+failures have distinct stable codes. All M47 identity, TLS, path, size,
+validation, smoke, workflow, allocation, and authority bounds remain. A real
+pass remains pending an explicitly authorized signed-tag release execution.
+
 RFC-0030 resolves M47 cross-platform public consumer rehearsal. One typed
 standard-library Python verifier replaces the Bash-only public path and the
 existing tag-only fresh-consumer job expands to Ubuntu, Windows, and macOS.

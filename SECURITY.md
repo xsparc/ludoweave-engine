@@ -54,6 +54,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   program and expands that tag-only fresh rehearsal to Ubuntu, Windows, and
   macOS. Each runner creates its own bounded plan and isolated installation;
   all retain read-only contents permission and credential-free public requests.
+- M48 requires a direct `200` release document and only documented `200`/`302`
+  asset handling, confines the API-version header to `api.github.com`, refreshes
+  socket timeouts before headers/body reads, and separates timeout,
+  transport/protocol, and local-output failure codes.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -94,6 +98,9 @@ Maintainers will acknowledge the report through the same private channel, assess
   not independent or external verification, a clean machine outside that
   provider, every delivery path, future availability, immutability, artifact
   security, PyPI, or a supported channel.
+- M48 hardens fixture-driven client behavior only. It adds no real public
+  release observation, host/CDN allowlist claim, retry, cleanup, mutation,
+  publication authority, or supported-channel evidence.
 
 ## Initial security boundaries
 

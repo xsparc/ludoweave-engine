@@ -1,5 +1,36 @@
 # Project State
 
+## M48 public release HTTP response conformance - in progress
+
+- Base: exact verified M47 closeout
+  `8d8d9e4a5790d7b74ec06139d314ffdf30a4ef41`; clean synchronized `main`
+  only, no open PR, tag, or release, and healthy Git objects.
+- Outcome: constrain the portable public release client to the documented
+  direct-`200` release response and `200`/bounded-`302` asset responses, while
+  separating timeout, transport/protocol, and local-output failure codes.
+- Bounds: fixed repository/IDs and initial host, verified HTTPS/default port,
+  three asset `302` responses, API-version header only on `api.github.com`,
+  10/30-second time limits, bounded document/plan/assets, exact revalidation,
+  complete installed release smoke, and content-silent structured results.
+- Authority unchanged: no workflow, runner allocation, action, permission,
+  trigger, credential, release mutation, retry, cleanup, dependency, lock,
+  version, runtime, package, or public API.
+- Non-claim: fixture/pull-request conformance is not a real public release
+  observation, independent/external verification, every CDN/geographic path,
+  future availability, immutability, artifact security, PyPI, or a supported
+  release channel. No real pass exists without an authorized signed-tag run.
+- Current evidence: official GitHub endpoint documentation defines the bounded
+  response set; Python documents blocking timeout behavior and the
+  `TimeoutError`/`OSError` relationship. Strict Ruff/Pyright and all 54 focused
+  M45/M47/M48 assertions pass. Complete graphics-enabled CPython 3.12-3.14 runs
+  each pass 1,966 tests with 14 expected skips. Ten real-wgpu tests, both M7
+  profiles, both deterministic vertical slices, reproducible distribution,
+  isolated-wheel smoke, and complete release smoke pass locally. The final
+  static gate covers 291 Python files, zero Ruff/Pyright findings, 426
+  architecture assertions, strict docs, whitespace, and healthy Git objects.
+  The final commit-candidate distributions matched byte-for-byte and passed
+  isolated-wheel plus complete release smoke.
+
 ## M47 cross-platform public consumer rehearsal - complete
 
 - Base: exact verified M46 closeout
