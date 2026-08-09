@@ -1,5 +1,69 @@
 # Project State
 
+## M56 public release status and redirect-reference conformance - in progress
+
+- Base: exact clean synchronized M55 closeout
+  `e7f700454adf1c11c80cb1ba684ed3318f7876e4`, with only `main` present and no
+  open pull request, tag, release, or post-closeout `main` run.
+- Scope: after M55 framing and before comparison, redirect resolution, or body
+  use, require a non-boolean integer status from 100 through 599. A followed
+  `302` must expose exactly one Location field through the documented header-
+  pair list. Its value is one 1-to-8,000-octet ASCII URI-reference using RFC
+  3986 characters and complete percent escapes. Bracket delimiters are valid
+  only inside the parsed authority, not its path, query, or fragment.
+  Revalidate the resolved HTTPS URL before another request.
+- Failure: malformed, unavailable, unsupported, out-of-range, and raising
+  status uses stable, content-silent `public_release.request_failed`. Missing,
+  duplicate, malformed, oversized, and raising Location metadata or invalid
+  resolution uses `public_release.redirect_failed`; a supported local cause is
+  chained.
+- Boundary: relative and cross-host absolute references remain supported, with
+  M49-M55 peer, TLS, framing, deadline, size, and exact-byte checks repeated on
+  every hop. No host allowlist, private response state, raw HTTP/URI parser,
+  alternate client, proxy, DNS preflight, network sandbox, workflow,
+  allocation, dependency, package, runtime API, release authority, or general
+  SSRF claim. Fixture/PR evidence is not a real public release observation.
+- Decision: accepted RFC-0039 records the exact status, header occurrence,
+  syntax, resolution, failure, ownership, and non-claim boundaries.
+- Development evidence: the clean M47-M55 baseline passed 189 assertions.
+  Official Python 3.14 and RFC 9110/3986 review defined the public metadata and
+  URI boundary. A tests-first probe failed 25 of 31 executed behavior cases and
+  confirmed the status-shape, raw-failure, joined-Location, and permissive-
+  recovery gaps. The implementation passes all 34 M56 behavior, boundary, and
+  documentation cases; all 223 focused M47-M56 assertions pass together. All
+  299 Python files are format clean; Ruff and strict Pyright report zero
+  findings; all 601 architecture assertions and strict docs pass. Complete
+  graphics-enabled CPython 3.12-3.14 suites each pass 2,141 tests with 14
+  expected skips. Real-wgpu, profiles, both vertical slices, every documented
+  benchmark validator, reproducible builds, installed-wheel smoke, and
+  complete release smoke pass.
+- Review: findings-first correctness, failure-ordering, scope, documentation,
+  archive, credential, identity, history, and integrity review corrected one
+  RFC consequence that could imply a general URI syntax validator. All 223
+  focused assertions and strict docs passed after the narrower wording; no
+  local issue was found at that point. Initial exact head
+  `86b2d4eaf404b15100bfc7d083fe119adc3e9f11` then passed hosted run
+  `31328303442` in exactly three Linux-first allocations. Delayed review found
+  a valid P2: the global character set allowed bracket delimiters in path and
+  query components even though RFC 3986 reserves them for IP-literal authority
+  syntax. Two reviewer-derived regressions failed tests-first while 14 controls
+  passed. The component-aware correction now rejects path/query/fragment
+  brackets while retaining a valid bracketed IPv6 authority; its targeted 16-
+  case gate passes. All 226 focused M47-M56 assertions, 604 architecture
+  assertions, strict static/docs gates, and complete graphics-enabled CPython
+  3.12-3.14 suites pass on the correction. Real-wgpu, profiles, both vertical
+  slices, reproducible builds, isolated-wheel smoke, complete release smoke,
+  archive/scope/integrity checks, and repeat findings-first review pass.
+- Local status: the final exact-tree lock and 45-package graphics environment
+  check; formatting; Ruff; strict Pyright; 601 architecture assertions; strict
+  docs; whitespace; and full Git-object gates pass. Two fresh builds reproduce
+  the pure wheel and source distribution; isolated-wheel and complete ten-
+  artifact release smoke passed for the initial head. Corrected pre-record
+  reproducibility and smokes also pass. The final corrected record-inclusive
+  lock/static/604-assertion/docs/integrity gate, two-build reproducibility,
+  isolated-wheel smoke, and complete release smoke pass. Replacement exact-
+  head validation remains pending.
+
 ## M55 public release HTTP response framing - complete
 
 - Base: exact clean synchronized M54 closeout

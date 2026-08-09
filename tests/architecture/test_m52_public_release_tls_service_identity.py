@@ -53,6 +53,9 @@ class _Response:
     def getheader(self, name: str) -> str | None:
         return self._location if name == "Location" else None
 
+    def getheaders(self) -> list[tuple[str, str]]:
+        return [] if self._location is None else [("Location", self._location)]
+
     def read(self, amount: int = -1) -> bytes:
         if amount < 0:
             amount = len(self._body) - self._offset

@@ -68,6 +68,10 @@ class _Response:
         self.events.append(f"header:{name}")
         return self.headers.get(name)
 
+    def getheaders(self) -> list[tuple[str, object]]:
+        self.events.append("headers")
+        return list(self.headers.items())
+
     def read(self, amount: int = -1) -> bytes:
         self.events.append("read")
         if amount < 0:
@@ -434,7 +438,7 @@ def test_m55_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
     source = _VERIFIER.read_text(encoding="utf-8")
     response = source.index("response = connection.getresponse()")
     framing = source.index("_validate_http_response_framing(response)")
-    status = source.index("if response.status == 302:")
+    status = source.index("_validate_http_response_status(response)")
     stream = source.index("received = _stream_response(")
     assert response < framing < status < stream
     assert 'response.getheader("Transfer-Encoding")' in source

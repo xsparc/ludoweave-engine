@@ -42,34 +42,33 @@ claims.
 
 ## Current boundary
 
-M55 requires the M47-M54 portable public-release client to validate documented
-HTTP/1.1-class response framing without widening release authority. After all
-peer and TLS checks and `getresponse()`, but before status, redirect, or body
-use, require `HTTPResponse.version` to be the integer `11`; require
-`Transfer-Encoding` to be absent or exactly `chunked` case-insensitively;
-reject its coexistence with `Content-Length`; and require any content length to
-be a string before the existing ASCII-decimal and bounded-size checks. Missing,
-unsupported, malformed, ambiguous, or raising observations use the content-
-silent `public_release.request_failed` code. Every redirect repeats the check.
-CPython may normalize another raw `HTTP/1.x` status-line token to value `11`,
-so maintainers must not present this public-property check as exact wire-token
-evidence.
+M56 requires the M47-M55 portable public-release client to validate documented
+response status and redirect references without widening release authority.
+After M55 framing and before status comparison, redirect resolution, or body
+use, require `HTTPResponse.status` to be a non-boolean integer from 100 through
+599. A followed `302` must expose exactly one case-insensitive Location field
+through the documented header-pair list. Its value must be a single 1-to-8,000-
+octet ASCII URI-reference using valid RFC 3986 characters and complete percent
+escapes. Bracket delimiters may occur only inside a parsed authority, not its
+path, query, or fragment. Resolve only that validated reference, then reapply
+the existing bounded HTTPS URL policy before another request. Status failures
+use content-silent `public_release.request_failed`; Location failures use
+`public_release.redirect_failed`; supported local causes remain chained.
 
-Preserve M54's fresh-session contract, M51's negotiated-session contract,
-M50's explicit per-hop context and key-log isolation, M49's connected-peer
-check, every M48 response/header/error bound, and all M47 identity, document,
-plan, ID, name, count, byte, exact-set, partial, validation, and installed-smoke
-bounds. M55 may add no private `HTTPResponse` state, raw header/chunk parser,
-alternate client, HTTP/2 or HTTP/3, proxy, retry, decompression, cache, network
-sandbox, workflow edit, runner, action, permission, trigger, credential,
-release mutation, rollback, cleanup, artifact-set, dependency, lock, version,
-runtime, package, or public-API change. It must not claim a real release
-observation, exact status-line identity, general request-smuggling protection,
-independent/external evidence, every intermediary or delivery path, future availability,
-immutability, artifact security, PyPI, or a supported release channel. M0
-through M54 are complete, reviewed, hosted-validated, and integrated into
-`main`. M55 starts from exact verified M54 closeout commit
-`aab15d601eb4402213f2e058f270237b964f1000`.
+Preserve M55 framing, M54 fresh-session, M53 context-binding, M52 service-
+identity, M51 negotiated-session, M50 context/key-log, M49 connected-peer, M48
+response/error, and M47 identity/artifact/smoke bounds. Absolute references may
+change host, so every resulting hop repeats the complete peer/TLS/HTTP checks;
+M56 adds no host allowlist. It may add no private response state, raw HTTP/URI
+parser, alternate client, proxy, DNS preflight, network sandbox, workflow edit,
+runner, action, permission, trigger, credential, release mutation, rollback,
+cleanup, dependency, lock, version, runtime, package, or public-API change. It
+must not claim a real release observation, general SSRF protection,
+independent/external evidence, every intermediary or delivery path, future
+availability, immutability, artifact security, PyPI, or a supported release
+channel. M0 through M55 are complete, reviewed, hosted-validated, and integrated
+into `main`. M56 starts from exact verified M55 closeout commit
+`e7f700454adf1c11c80cb1ba684ed3318f7876e4`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44

@@ -36,6 +36,7 @@ _MAX_PLAN_BYTES = 16 * 1024
 _CONNECT_TIMEOUT_SECONDS = 10.0
 _REQUEST_TIMEOUT_SECONDS = 30.0
 _MAX_ASSET_REDIRECTS = 3
+_MAX_REDIRECT_URI_OCTETS = 8_000
 _READ_BYTES = 1024 * 1024
 _HTTP_ALPN = "http/1.1"
 _ALLOWED_TLS_VERSIONS = frozenset(("TLSv1.2", "TLSv1.3"))
@@ -44,6 +45,9 @@ _REQUIRED_TLS_VERIFY_FLAGS = ssl.VERIFY_X509_PARTIAL_CHAIN | ssl.VERIFY_X509_STR
 _ID_PATTERN = re.compile(r"[1-9][0-9]{0,18}")
 _SIZE_PATTERN = re.compile(r"(?:0|[1-9][0-9]{0,8})")
 _NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
+_URI_REFERENCE_PATTERN = re.compile(
+    r"(?:[0-9A-Za-z._~:/?#\[\]@!$&'()*+,;=\-]|%[0-9A-Fa-f]{2}){1,8000}"
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -424,23 +428,23 @@ def _download(
             _set_socket_timeout(connection, deadline)
             response = connection.getresponse()
             length_header = _validate_http_response_framing(response)
-            if response.status == 302:
-                location = response.getheader("Location")
+            status = _validate_http_response_status(response)
+            if status == 302:
+                next_url = _validated_redirect_url(current_url, response)
                 redirects += 1
-                if not location or redirects > maximum_redirects:
+                if redirects > maximum_redirects:
                     raise PublicReleaseVerificationError(
                         "public release redirect is invalid",
                         code="public_release.redirect_failed",
                     )
-                current_url = urljoin(current_url, location)
-                _https_url(current_url)
+                current_url = next_url
                 continue
-            if 300 <= response.status < 400:
+            if 300 <= status < 400:
                 raise PublicReleaseVerificationError(
                     "public release redirect is invalid",
                     code="public_release.redirect_failed",
                 )
-            if response.status != 200:
+            if status != 200:
                 raise PublicReleaseVerificationError(
                     "public release request failed",
                     code="public_release.request_failed",
@@ -532,6 +536,113 @@ def _validate_http_response_framing(
             code="public_release.request_failed",
         )
     return content_length
+
+
+def _validate_http_response_status(response: http.client.HTTPResponse) -> int:
+    """Return one documented HTTP status-code integer or fail content-silently."""
+
+    try:
+        status = cast(object, response.status)
+    except (
+        AttributeError,
+        http.client.HTTPException,
+        NotImplementedError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as error:
+        raise PublicReleaseVerificationError(
+            "public release HTTP response status failed",
+            code="public_release.request_failed",
+        ) from error
+    if not isinstance(status, int) or isinstance(status, bool) or not 100 <= status <= 599:
+        raise PublicReleaseVerificationError(
+            "public release HTTP response status failed",
+            code="public_release.request_failed",
+        )
+    return status
+
+
+def _validated_redirect_url(
+    current_url: str,
+    response: http.client.HTTPResponse,
+) -> str:
+    """Resolve exactly one bounded Location URI-reference and revalidate it."""
+
+    try:
+        raw_headers = cast(object, response.getheaders())
+    except (
+        AttributeError,
+        http.client.HTTPException,
+        NotImplementedError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as error:
+        raise PublicReleaseVerificationError(
+            "public release redirect is invalid",
+            code="public_release.redirect_failed",
+        ) from error
+    if not isinstance(raw_headers, list):
+        raise PublicReleaseVerificationError(
+            "public release redirect is invalid",
+            code="public_release.redirect_failed",
+        )
+    locations: list[str] = []
+    for raw_header in cast(list[object], raw_headers):
+        if not isinstance(raw_header, tuple):
+            raise PublicReleaseVerificationError(
+                "public release redirect is invalid",
+                code="public_release.redirect_failed",
+            )
+        header = cast(tuple[object, ...], raw_header)
+        if len(header) != 2 or not isinstance(header[0], str) or not isinstance(header[1], str):
+            raise PublicReleaseVerificationError(
+                "public release redirect is invalid",
+                code="public_release.redirect_failed",
+            )
+        name = header[0]
+        value = header[1]
+        if name.casefold() == "location":
+            locations.append(value)
+    if len(locations) != 1:
+        raise PublicReleaseVerificationError(
+            "public release redirect is invalid",
+            code="public_release.redirect_failed",
+        )
+    location = locations[0]
+    if (
+        len(location) > _MAX_REDIRECT_URI_OCTETS
+        or _URI_REFERENCE_PATTERN.fullmatch(location) is None
+    ):
+        raise PublicReleaseVerificationError(
+            "public release redirect is invalid",
+            code="public_release.redirect_failed",
+        )
+    try:
+        reference = urlsplit(location)
+        if any(
+            bracket in component
+            for component in (reference.path, reference.query, reference.fragment)
+            for bracket in "[]"
+        ):
+            raise ValueError("bracket delimiter outside URI authority")
+        first_path_segment = reference.path.split("/", 1)[0]
+        if (
+            not reference.scheme
+            and not reference.netloc
+            and not reference.path.startswith("/")
+            and ":" in first_path_segment
+        ):
+            raise ValueError("relative path starts with a scheme-like segment")
+        next_url = urljoin(current_url, location)
+    except (TypeError, ValueError) as error:
+        raise PublicReleaseVerificationError(
+            "public release redirect is invalid",
+            code="public_release.redirect_failed",
+        ) from error
+    _https_url(next_url)
+    return next_url
 
 
 def _public_tls_context() -> ssl.SSLContext:

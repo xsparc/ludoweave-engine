@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+RFC-0039 resolves M56 public release status and redirect-reference conformance.
+Every response status is a non-boolean integer from 100 through 599. Every
+followed `302` exposes exactly one Location field through the documented header-
+pair list; its value is one 1-to-8,000-octet ASCII URI-reference using valid RFC
+3986 characters and complete percent escapes. Bracket delimiters are accepted
+only inside the parsed authority and rejected in its path, query, or fragment.
+The resolved target repeats the existing bounded HTTPS and per-hop peer/TLS/HTTP
+checks. This adds no host
+allowlist, private parser state, raw HTTP/URI parser, alternate client,
+workflow, dependency, runtime API, or release authority and makes no general
+SSRF claim. A real pass remains pending an explicitly authorized signed-tag
+release execution.
+
 RFC-0038 resolves M55 public release HTTP response-framing conformance. Every
 response must expose documented HTTP/1.1-class value `11`; this is explicitly
 not exact raw status-line token evidence because CPython can normalize another

@@ -1464,6 +1464,38 @@ defense, independent or external verification, every intermediary or delivery pa
 availability, immutability, artifact security, PyPI availability, or a
 supported channel. RFC-0038 defines the complete boundary.
 
+## M56 public release status and redirect-reference boundary
+
+M56 validates documented response status after M55 framing and before status
+comparison, redirect resolution, or body use. Every response status must be an
+integer, but not a boolean, from 100 through 599. Each followed `302` must expose
+a documented header-pair list containing exactly one case-insensitive Location
+field. Its value must be a single URI-reference from 1 through 8,000 ASCII
+octets, use RFC 3986 reference characters, and contain only complete percent
+escapes. Bracket delimiters are permitted only inside a parsed authority and
+are rejected in its path, query, or fragment.
+
+Only the validated Location is resolved against the current URL. The resolved
+value must pass the existing bounded HTTPS URL policy before it becomes the
+next hop. Relative references and cross-host absolute references remain
+supported; every resulting hop independently repeats connected-peer, TLS
+context/freshness/identity/session, HTTP framing, deadline, byte-bound, and
+exact-artifact validation. There is no host allowlist.
+
+Malformed or raising status uses stable, content-silent
+`public_release.request_failed`. Missing, duplicate, malformed, unsupported,
+oversized, or raising Location metadata and invalid resolution use
+`public_release.redirect_failed`; supported local causes remain chained.
+
+M56 uses only documented `status` and `getheaders()` surfaces. It adds no
+private response state, raw HTTP or general URI parser, alternate client,
+proxy, DNS preflight, network sandbox, workflow, allocation, dependency,
+package, runtime API, or release authority. Fixture and pull-request evidence
+are not a real public release observation, general SSRF defense, independent
+or external verification, every delivery path, future availability,
+immutability, artifact security, PyPI availability, or a supported channel.
+RFC-0039 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
