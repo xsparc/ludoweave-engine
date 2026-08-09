@@ -1,4 +1,4 @@
-"""Protect M53 public release TLS context binding."""
+"""Protect M54 public release TLS session-freshness evidence."""
 
 from __future__ import annotations
 
@@ -70,30 +70,25 @@ class _RedirectResponse(_Response):
     status = 302
 
 
-class _BoundSocket:
+class _FreshSocket:
     def __init__(
         self,
-        context: object,
+        context: ssl.SSLContext,
         events: list[str],
         *,
-        server_side: object = False,
+        session_reused: object = False,
         server_hostname: str = "api.github.com",
     ) -> None:
-        self._context = context
-        self._server_side = server_side
-        self.session_reused = False
-        self.events = events
+        self.context = context
+        self.server_side = False
+        self._session_reused = session_reused
         self.server_hostname = server_hostname
+        self.events = events
 
     @property
-    def context(self) -> object:
-        self.events.append("context")
-        return self._context
-
-    @property
-    def server_side(self) -> object:
-        self.events.append("server-side")
-        return self._server_side
+    def session_reused(self) -> object:
+        self.events.append("session-reused")
+        return self._session_reused
 
     def getpeername(self) -> tuple[str, int]:
         self.events.append("peer")
@@ -125,7 +120,7 @@ class _BoundSocket:
 
 
 def _load() -> tuple[ModuleType, _Download, type[Exception]]:
-    spec = importlib.util.spec_from_file_location("m53_public_release_verifier", _VERIFIER)
+    spec = importlib.util.spec_from_file_location("m54_public_release_verifier", _VERIFIER)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -142,13 +137,12 @@ def _load() -> tuple[ModuleType, _Download, type[Exception]]:
     )
 
 
-def test_exact_client_context_binding_precedes_identity_session_and_request(
+def test_exact_false_freshness_precedes_identity_session_and_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _, download, _ = _load()
     events: list[str] = []
-    contexts: list[ssl.SSLContext] = []
 
     class FakeConnection:
         def __init__(
@@ -159,15 +153,18 @@ def test_exact_client_context_binding_precedes_identity_session_and_request(
             timeout: float,
             context: ssl.SSLContext,
         ) -> None:
-            assert host == "api.github.com"
             assert timeout > 0
-            contexts.append(context)
             self.context = context
-            self.sock: _BoundSocket | None = None
+            self.host = host
+            self.sock: _FreshSocket | None = None
 
         def connect(self) -> None:
             events.append("connect")
-            self.sock = _BoundSocket(self.context, events)
+            self.sock = _FreshSocket(
+                self.context,
+                events,
+                server_hostname=self.host,
+            )
 
         def request(
             self,
@@ -196,12 +193,10 @@ def test_exact_client_context_binding_precedes_identity_session_and_request(
     )
 
     assert target.read_bytes() == b"{}"
-    assert len(contexts) == 1
     assert events == [
         "connect",
         "peer",
-        "context",
-        "server-side",
+        "session-reused",
         "certificate",
         "version",
         "cipher",
@@ -212,11 +207,11 @@ def test_exact_client_context_binding_precedes_identity_session_and_request(
     ]
 
 
-@pytest.mark.parametrize("server_side", (True, None, 0, "false"))
-def test_non_client_socket_role_fails_before_identity_or_request(
+@pytest.mark.parametrize("session_reused", (True, None, 0, "false"))
+def test_non_false_freshness_fails_before_identity_session_or_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    server_side: object,
+    session_reused: object,
 ) -> None:
     _, download, error_type = _load()
     events: list[str] = []
@@ -224,7 +219,11 @@ def test_non_client_socket_role_fails_before_identity_or_request(
     class FakeConnection:
         def __init__(self, *_args: object, **kwargs: object) -> None:
             context = cast(ssl.SSLContext, kwargs["context"])
-            self.sock = _BoundSocket(context, events, server_side=server_side)
+            self.sock = _FreshSocket(
+                context,
+                events,
+                session_reused=session_reused,
+            )
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append("request")
@@ -243,65 +242,28 @@ def test_non_client_socket_role_fails_before_identity_or_request(
         )
 
     assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
-    assert "certificate" not in events
-    assert "request" not in events
-    assert events[-1] == "close"
+    assert str(session_reused) not in str(raised.value)
+    assert events == ["peer", "session-reused", "close"]
 
 
-def test_substituted_context_fails_closed_and_content_silent(
+def test_missing_freshness_accessor_fails_closed_and_preserves_cause(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _, download, error_type = _load()
-    events: list[str] = []
-    substitute = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 
-    class FakeConnection:
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            self.sock = _BoundSocket(substitute, events)
-
-        def request(self, *_args: object, **_kwargs: object) -> None:
-            events.append("request")
-
-        def close(self) -> None:
-            events.append("close")
-
-    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
-    with pytest.raises(error_type) as raised:
-        download(
-            "https://api.github.com/release",
-            tmp_path / "release.json",
-            accept="application/vnd.github+json",
-            maximum_bytes=100,
-            maximum_redirects=0,
-        )
-
-    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
-    assert "api.github.com" not in str(raised.value)
-    assert "request" not in events
-
-
-@pytest.mark.parametrize("missing", ("context", "server_side"))
-def test_missing_binding_accessor_fails_closed(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-    missing: str,
-) -> None:
-    _, download, error_type = _load()
-
-    class MissingSocket(_BoundSocket):
+    class MissingSocket(_FreshSocket):
         def __getattribute__(self, name: str) -> object:
-            if name == missing:
-                raise AttributeError("binding accessor unavailable")
+            if name == "session_reused":
+                raise AttributeError("freshness accessor unavailable")
             return super().__getattribute__(name)
 
     class FakeConnection:
         def __init__(self, *_args: object, **kwargs: object) -> None:
-            context = cast(ssl.SSLContext, kwargs["context"])
-            self.sock = MissingSocket(context, [])
+            self.sock = MissingSocket(cast(ssl.SSLContext, kwargs["context"]), [])
 
         def request(self, *_args: object, **_kwargs: object) -> None:
-            raise AssertionError("request must not follow a missing binding accessor")
+            raise AssertionError("request must not follow missing freshness evidence")
 
         def close(self) -> None:
             return None
@@ -318,31 +280,31 @@ def test_missing_binding_accessor_fails_closed(
 
     assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
     assert isinstance(raised.value.__cause__, AttributeError)
+    assert "freshness accessor unavailable" not in str(raised.value)
 
 
 @pytest.mark.parametrize(
     "failure",
     (NotImplementedError(), OSError(), TypeError(), ValueError()),
 )
-def test_binding_inspection_failure_preserves_cause_without_content(
+def test_freshness_inspection_failure_is_stable_chained_and_content_silent(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     failure: Exception,
 ) -> None:
     _, download, error_type = _load()
 
-    class FailingSocket(_BoundSocket):
+    class FailingSocket(_FreshSocket):
         @property
-        def context(self) -> object:
+        def session_reused(self) -> object:
             raise failure
 
     class FakeConnection:
         def __init__(self, *_args: object, **kwargs: object) -> None:
-            context = cast(ssl.SSLContext, kwargs["context"])
-            self.sock = FailingSocket(context, [])
+            self.sock = FailingSocket(cast(ssl.SSLContext, kwargs["context"]), [])
 
         def request(self, *_args: object, **_kwargs: object) -> None:
-            raise AssertionError("request must not follow binding inspection failure")
+            raise AssertionError("request must not follow freshness inspection failure")
 
         def close(self) -> None:
             return None
@@ -362,99 +324,58 @@ def test_binding_inspection_failure_preserves_cause_without_content(
     assert "api.github.com" not in str(raised.value)
 
 
-@pytest.mark.parametrize("mutation", ("hostname", "minimum", "verify-flags"))
-def test_post_handshake_context_policy_mutation_fails_before_identity(
+def test_redirect_rechecks_freshness_and_rejects_second_hop_before_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    mutation: str,
 ) -> None:
     _, download, error_type = _load()
+    reused_values = iter((False, True))
+    responses = iter((_RedirectResponse(location="https://objects.example.test/asset"),))
     events: list[str] = []
 
     class FakeConnection:
-        def __init__(self, *_args: object, **kwargs: object) -> None:
-            self.context = cast(ssl.SSLContext, kwargs["context"])
-            self.sock: _BoundSocket | None = None
-
-        def connect(self) -> None:
-            self.sock = _BoundSocket(self.context, events)
-            if mutation == "hostname":
-                self.context.check_hostname = False
-            elif mutation == "minimum":
-                self.context.minimum_version = ssl.TLSVersion.MINIMUM_SUPPORTED
-            else:
-                self.context.verify_flags &= ~ssl.VERIFY_X509_STRICT
-
-        def request(self, *_args: object, **_kwargs: object) -> None:
-            events.append("request")
-
-        def close(self) -> None:
-            return None
-
-    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
-    with pytest.raises(error_type) as raised:
-        download(
-            "https://api.github.com/release",
-            tmp_path / "release.json",
-            accept="application/vnd.github+json",
-            maximum_bytes=100,
-            maximum_redirects=0,
-        )
-
-    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
-    assert "certificate" not in events
-    assert "request" not in events
-
-
-def test_redirect_rebinds_an_independent_exact_client_context(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    _, download, _ = _load()
-    contexts: list[ssl.SSLContext] = []
-    responses = iter(
-        (
-            _RedirectResponse(location="https://objects.example.test/asset"),
-            _Response(b"asset"),
-        )
-    )
-
-    class FakeConnection:
         def __init__(self, host: str, *_args: object, **kwargs: object) -> None:
-            context = cast(ssl.SSLContext, kwargs["context"])
-            contexts.append(context)
-            self.sock = _BoundSocket(context, [], server_hostname=host)
+            self.host = host
+            self.sock = _FreshSocket(
+                cast(ssl.SSLContext, kwargs["context"]),
+                events,
+                session_reused=next(reused_values),
+                server_hostname=host,
+            )
 
         def request(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            events.append(f"request:{self.host}")
 
         def getresponse(self) -> _Response:
             return next(responses)
 
         def close(self) -> None:
-            return None
+            events.append(f"close:{self.host}")
 
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
-    target = tmp_path / "asset.bin"
-    download(
-        "https://api.github.com/repos/xsparc/ludoweave-engine/releases/assets/456",
-        target,
-        accept="application/octet-stream",
-        maximum_bytes=5,
-        maximum_redirects=3,
-        expected_bytes=5,
-        partial_name=".asset-456.part",
+    with pytest.raises(error_type) as raised:
+        download(
+            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/assets/456",
+            tmp_path / "asset.bin",
+            accept="application/octet-stream",
+            maximum_bytes=5,
+            maximum_redirects=3,
+            expected_bytes=5,
+            partial_name=".asset-456.part",
+        )
+
+    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
+    assert events.count("session-reused") == 2
+    assert "request:api.github.com" in events
+    assert "request:objects.example.test" not in events
+    assert events[-1] == "close:objects.example.test"
+
+
+def test_m54_changes_no_workflow_runtime_dependency_or_package_boundary() -> None:
+    assert (
+        hashlib.sha256((_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()).hexdigest()
+        == _CI_SHA256
     )
-
-    assert target.read_bytes() == b"asset"
-    assert len(contexts) == 2
-    assert contexts[0] is not contexts[1]
-
-
-def test_m53_changes_no_workflow_runtime_dependency_or_package_boundary() -> None:
-    assert hashlib.sha256(
-        (_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()
-    ).hexdigest() == (_CI_SHA256)
     assert (
         hashlib.sha256((_ROOT / ".github" / "workflows" / "release.yml").read_bytes()).hexdigest()
         == _RELEASE_SHA256
@@ -466,33 +387,40 @@ def test_m53_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
     source = _VERIFIER.read_text(encoding="utf-8")
     peer = source.index("_connect_public_peer(connection, deadline)")
     binding = source.index("_validate_tls_context_binding(connection, tls_context)")
+    freshness = source.index("_validate_tls_session_freshness(connection)")
     identity = source.index("_validate_tls_identity(connection, reference_hostname)")
     session = source.index("_validate_tls_session(connection)")
     request = source.index('connection.request(\n                "GET",')
-    assert peer < binding < identity < session < request
-    assert "actual_context is not expected_context" in source
-    assert "server_side is not False" in source
-    assert source.count("_require_public_tls_context(") == 3
+    assert peer < binding < freshness < identity < session < request
+    assert "session_reused: object = peer.session_reused" in source
+    assert "session_reused is not False" in source
+    for term in ("session_stats", "num_tickets", "SSLSession"):
+        assert term not in source
 
 
-def test_m53_public_and_maintainer_docs_define_the_exact_boundary() -> None:
+def test_m54_public_and_maintainer_docs_define_the_exact_boundary() -> None:
     paths = (
         _ROOT / "README.md",
+        _ROOT / "CHANGELOG.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",
         _ROOT / "docs" / "release-process.md",
-        _ROOT / "docs" / "rfcs" / "0036-public-release-tls-context-binding.md",
+        _ROOT / "docs" / "rfcs" / "index.md",
+        _ROOT / "docs" / "rfcs" / "0037-public-release-tls-session-freshness.md",
     )
     documents = tuple(path.read_text(encoding="utf-8").lower() for path in paths)
     combined = "\n".join(documents)
 
-    assert all("m53" in document for document in documents)
+    for path, document in zip(paths, documents, strict=True):
+        if path.name != "index.md":
+            assert "m54" in document
+    assert "(0037-public-release-tls-session-freshness.md)" in combined
     for term in (
-        "exact context",
-        "client-side",
+        "session_reused",
+        "exactly `false`",
         "after the handshake",
-        "before",
+        "before service identity",
         "every redirect",
         "no workflow",
         "not a real public release observation",

@@ -1406,6 +1406,32 @@ observation, independent/external verification, every delivery path, future-
 availability proof, immutability proof, artifact-security result, PyPI
 availability, or a supported channel. RFC-0036 defines the complete boundary.
 
+## M54 public release TLS session-freshness boundary
+
+M54 observes whether the actual connected TLS socket reports session reuse.
+After the handshake, M49 peer confinement, and M53 exact context binding, but
+before service identity, negotiated-session inspection, or HTTP transmission,
+the socket's `session_reused` property must be exactly `False`. A falsey
+non-boolean value does not satisfy this contract.
+
+The connection remains the sole socket owner. Every redirect creates its own
+context and connection, then repeats the post-handshake freshness observation.
+A missing socket or accessor, unsupported observation, resumed session,
+malformed value, or inspection failure uses the stable, content-silent
+`public_release.tls_failed` code before later TLS evidence or a request. An
+available local inspection exception remains chained as its cause.
+
+This check consumes the supported TLS implementation's per-connection report;
+it does not reconstruct the handshake or independently prove a certificate
+exchange. M54 changes no workflow, runner allocation, dependency, package,
+runtime API, or release authority. It adds no session cache, session
+assignment, ticket control, TLS implementation introspection, custom trust,
+pinning, certificate/chain parser, revocation, channel binding, proxy policy,
+or network sandbox. Fixture and pull-request evidence are not a real public
+release observation, independent/external verification, every delivery path,
+future-availability proof, immutability proof, artifact-security result, PyPI
+availability, or a supported channel. RFC-0037 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

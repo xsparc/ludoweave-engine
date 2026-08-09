@@ -71,6 +71,7 @@ class _PeerSocket:
     def __init__(self, context: ssl.SSLContext, server_hostname: str = "api.github.com") -> None:
         self.context = context
         self.server_side = False
+        self.session_reused = False
         self.server_hostname = server_hostname
 
     def getpeername(self) -> tuple[str, int]:

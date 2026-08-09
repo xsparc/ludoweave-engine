@@ -42,31 +42,31 @@ claims.
 
 ## Current boundary
 
-M53 binds the M50/M51 portable public-release client to its exact per-hop TLS
-context without widening release authority. After the handshake and M49 actual
-connected-peer check, but before M52 service-identity evidence, M51 session
-inspection, or any HTTP request, require the socket to retain the exact context
-object supplied to the connection and an exactly client-side role. Revalidate
-the complete M50 context policy at that point. Binding, role, accessor, or
-policy failures use `public_release.tls_failed`; public output may disclose no
-context value, host, certificate, peer, URL, session value, response, or
-credential. Every redirect repeats the exact context check independently.
+M54 requires the M50-M53 portable public-release client to observe a fresh TLS
+session without widening release authority. After the handshake, M49 actual-
+peer check, and M53 exact context binding, but before M52 service identity, M51
+negotiated-session inspection, or any HTTP request, require the actual socket's
+`session_reused` value to be exactly `False`. Missing, unsupported, malformed,
+resumed, or raising observations use `public_release.tls_failed`; public output
+may disclose no reuse value, context, host, certificate, peer, URL, response,
+or credential. Every redirect repeats the freshness check independently.
 
 Preserve M51's negotiated-session contract, M50's explicit per-hop context and
 key-log isolation, M49's connected-peer check, every M48 response/header/error
 bound, and all M47 identity, document, plan, ID, name, count, byte, exact-set,
-partial, validation, and installed-smoke bounds. M53 may add no certificate
-parser/export, pin/fingerprint allowlist, proxy, custom CA bundle, client
-certificate, revocation/OCSP/CRL/CT policy, session reuse, channel binding,
-workflow edit, runner, action,
-permission, trigger, credential, release mutation, retry, rollback, cleanup,
-artifact-set, dependency, lock, version, runtime, package, or public-API
-change. It must not claim a real release observation,
+partial, validation, and installed-smoke bounds. M54 may add no session cache,
+session assignment, ticket disabling/count policy, TLS implementation
+introspection, certificate parser/export, pin/fingerprint allowlist, proxy,
+custom CA bundle, client certificate, revocation/OCSP/CRL/CT policy, channel
+binding, workflow edit, runner, action, permission, trigger, credential,
+release mutation, retry, rollback, cleanup, artifact-set, dependency, lock,
+version, runtime, package, or public-API change. It must not claim a real
+release observation, a reconstructed/full handshake, certificate exchange,
 independent/external evidence, every delivery path, future availability,
 immutability, artifact security, PyPI, or a supported release channel. M0
-through M52 are complete, reviewed, hosted-validated, and integrated into
-`main`. M53 starts from exact verified M52 closeout commit
-`8d69f5b265277edb95ae47ea3a0af001217a4575`.
+through M53 are complete, reviewed, hosted-validated, and integrated into
+`main`. M54 starts from exact verified M53 closeout commit
+`fe585f8bd2313feac39b70cadf088c57bbb1960e`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
@@ -77,8 +77,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   semantics, M49 confines the actual connected peer, M50 disables ambient TLS
   key logging, M51 validates the actual negotiated session, M52 observes the
   verified socket's reference hostname and peer certificate, and M53 proves
-  the socket retained the exact client context after the handshake; none of
-  these milestones authorizes a real release.
+  the socket retained the exact client context after the handshake. M54 then
+  requires the actual socket to report that its session was not reused; none
+  of these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

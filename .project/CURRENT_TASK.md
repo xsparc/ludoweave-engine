@@ -1,47 +1,35 @@
 # Current Task
 
-- **Task:** M53 - public release TLS context binding
-- **Status:** Feature PR #111 and integration-record PR #112 are fully
-  validated and squash-integrated; publishing the exact three-file closeout
-  record on `records/m53-closeout`.
+- **Task:** M54 - public release TLS session freshness
+- **Status:** In implementation and local validation on
+  `security/m54-tls-session-freshness`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** The feature began from exact clean synchronized M52 closeout
-  `8d69f5b265277edb95ae47ea3a0af001217a4575`. The current closeout record is
-  based on exact synchronized M53 integration-record squash
-  `9217862df30d51efa7754cc8a9300c4b05fb2426`; only `main` and this intended
-  local record branch exist, no remote feature/record branch or open pull
-  request remains, and no tag or release was created.
-- **Outcome:** Prove after the handshake that every actual public-release TLS
-  socket retained the exact verified client context supplied for its hop and
-  an exactly client-side role, then revalidate the complete context policy
-  before later TLS evidence or HTTP transmission.
-- **Acceptance:** Exact object binding and client role are checked after M49
-  peer confinement and before M52 identity, M51 session, or HTTP. The M50
-  protocol, certificate verification, hostname checking, TLSv1.2 minimum,
-  strict/partial-chain flags, and no-key-log policy are revalidated. Every
-  redirect repeats the check independently; failures are content-silent under
-  `public_release.tls_failed` with an available cause chained.
+- **Base:** Exact clean synchronized M53 closeout
+  `fe585f8bd2313feac39b70cadf088c57bbb1960e`; only `main` existed locally and
+  remotely, with no open pull request, tag, release, or post-closeout `main`
+  run.
+- **Outcome:** Observe after the handshake that every actual public-release TLS
+  socket reports a fresh, non-reused session before later TLS evidence or HTTP
+  transmission.
+- **Acceptance:** After M49 peer confinement and M53 exact context binding,
+  require `session_reused` to be exactly `False` before M52 service identity,
+  M51 negotiated-session inspection, or a request. Every redirect repeats the
+  observation independently. Missing, unsupported, malformed, resumed, and
+  raising observations fail content-silently under `public_release.tls_failed`
+  with an available local cause chained.
 - **Boundary:** No workflow, runner allocation, action, permission, trigger,
   credential, release mutation, dependency, lock, version, runtime package,
-  public API, trust replacement, pinning, certificate/chain parser,
-  revocation, session reuse, channel binding, proxy, or network sandbox.
+  public API, session cache, session assignment, ticket control, custom TLS
+  implementation, trust replacement, pinning, certificate/chain parser,
+  revocation, channel binding, proxy, or network sandbox. The reported value
+  does not independently prove a full handshake or certificate exchange.
   Fixture/PR evidence is not a real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Evidence:** Local focused behavior, whole-tree static/architecture/docs,
-  complete graphics-enabled CPython 3.12-3.14, real-wgpu, profiles, both
-  vertical slices, documented benchmarks, reproducible build, isolated wheel,
-  release smoke, integrity, scope, and findings-first review passed. Feature
-  head `0b3eaad213a149fb96c138cd4eabc1d861d053e9` passed run `31319422736` in
-  exactly three Linux-first allocations. Verified feature squash
-  `66f9d84eea57c270e9b18326348eb1ea5c4ebfa4` reproduced the exact reviewed
-  tree. Four-file integration head `de488d1e305026f724a155bf692653cd5f8cb454`
-  passed run `31320201771` in one 36-second Linux allocation; desktop umbrella
-  `93261877229` skipped with zero steps. Verified integration squash
-  `9217862df30d51efa7754cc8a9300c4b05fb2426` reproduced the exact reviewed
-  record tree with the feature squash as sole parent, valid signature, and
-  standalone DCO. No post-merge `main` run, tag, or release was created. The
-  closeout changes only three `.project/**` records and must allocate no hosted
-  run or check.
+- **Validation:** Run focused M47-M54 compatibility and adversarial tests,
+  whole-tree format/lint/type/architecture/docs, complete supported-Python
+  suites, real-wgpu, profiles, vertical slices, documented benchmarks,
+  reproducible build, isolated-wheel and release smoke, then findings-first
+  scope/security/integrity review before the bounded hosted gate.

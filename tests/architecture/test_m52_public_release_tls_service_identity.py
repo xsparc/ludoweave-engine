@@ -77,6 +77,7 @@ class _IdentitySocket:
     ) -> None:
         self.context = context
         self.server_side = False
+        self.session_reused = False
         self.events = events
         self._server_hostname = server_hostname
         self.certificate = certificate

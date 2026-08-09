@@ -80,6 +80,7 @@ class _TlsSocket:
     ) -> None:
         self.context = context
         self.server_side = False
+        self.session_reused = False
         self.events = events
         self.server_hostname = server_hostname
         self.negotiated_version = version
@@ -305,6 +306,7 @@ def test_missing_tls_session_accessor_fails_closed(
         def __init__(self, context: ssl.SSLContext) -> None:
             self.context = context
             self.server_side = False
+            self.session_reused = False
             self.server_hostname = "api.github.com"
 
         def getpeername(self) -> tuple[str, int]:

@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0037 resolves M54 public release TLS session freshness. Every fixed API or
+bounded redirected asset connection must report `session_reused` as exactly
+`False` after the handshake and M53 binding, before service identity,
+negotiated-session inspection, or HTTP. Missing, unsupported, resumed,
+malformed, and raising observations fail content-silently. This adds no session
+cache, session assignment, ticket control, workflow, dependency, runtime API,
+or release authority, and does not claim a reconstructed handshake or
+certificate exchange. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0034 resolves M51 public release negotiated TLS-session conformance. Every
 fixed API or redirected asset connection advertises only `http/1.1` and, after
 actual connected-peer validation but before HTTP transmission, requires exactly

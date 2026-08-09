@@ -39,3 +39,6 @@ was adopted.
 - [RFC-0032: confine public release requests to global connected peers](0032-public-release-peer-confinement.md)
 - [RFC-0033: isolate public release TLS key logging](0033-public-release-tls-keylog-isolation.md)
 - [RFC-0034: constrain negotiated public release TLS sessions](0034-public-release-negotiated-tls-session-conformance.md)
+- [RFC-0035: observe public release TLS service identity](0035-public-release-tls-service-identity.md)
+- [RFC-0036: bind the public release socket to its exact TLS context](0036-public-release-tls-context-binding.md)
+- [RFC-0037: require fresh public release TLS sessions](0037-public-release-tls-session-freshness.md)
