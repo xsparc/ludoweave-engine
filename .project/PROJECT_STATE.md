@@ -54,6 +54,18 @@
   feature branch is deleted locally/remotely; no post-merge `main` run, tag, or
   release was created. The remaining integration record changes exactly four
   documentation/project paths.
+- Integration record: exact head
+  `baec3a2bac0c0bdd8dd4bceb66cdb6e26973538b` passed run `31322470238` in one
+  37-second Linux documentation allocation. All 297 files were format clean,
+  Ruff passed, strict docs built, 535 architecture assertions passed,
+  reproducible build plus wheel/release smoke passed, and desktop umbrella
+  `93267534507` skipped with zero steps. No review, comment, or thread existed.
+- Record integration: GitHub-verified squash
+  `50a14e0674c4e7468faf1c8ec4490846255558ce` has the exact reviewed record
+  tree, sole parent feature squash, valid signature, and standalone DCO. Both
+  working branches are deleted locally/remotely; no post-merge `main` run, tag,
+  or release exists. The remaining closeout is exactly three `.project/**`
+  files and must allocate zero hosted runs/checks.
 
 ## M53 public release TLS context binding - complete
 
