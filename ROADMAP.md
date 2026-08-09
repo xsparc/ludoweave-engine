@@ -65,6 +65,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M54 public release TLS session freshness | PR #114 passed exact post-handshake `session_reused is False` evidence on every hop in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M55 public release HTTP response framing | PR #117 corrected the CPython status-line normalization overclaim, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated documented HTTP/1.1-class framing checks with unchanged workflows/release authority |
 | Done | M56 public release redirect-reference conformance | PR #120 corrected bracket-component validation, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated strict status/Location checks with unchanged workflows/release authority |
+| In progress | M57 public release response-body conformance | Require bounded immutable bytes blocks and declared-versus-streamed `Content-Length` agreement with unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -856,9 +857,34 @@ bracketed IPv6 authorities. Corrected exact head
 hosted allocations. GitHub-verified squash
 `22c432310fae2f9ac372062cbd465cc2617fb95c` has the exact corrected feature
 tree, sole parent M55 closeout, standalone DCO, and no workflow, dependency,
-runtime package, public API, or release-authority change. The feature branch is
-deleted locally/remotely; the remaining four-file integration record requires
-one Linux documentation allocation and a zero-step skipped desktop umbrella.
+runtime package, public API, or release-authority change. The feature branch
+was deleted locally/remotely; at feature integration, the remaining four-file
+record required one Linux documentation allocation and a zero-step skipped
+desktop umbrella.
+
+That M56 integration record subsequently passed run `31330464522` in one
+38-second Linux allocation while the desktop umbrella skipped with zero steps.
+GitHub-verified record squash `acc6893ef4cadf9a17c87cd578e38b7802a3ed77`
+and closeout squash `187cbfb1c857e62594e49d1cf8e7591024aff8c9` preserve exact reviewed trees,
+standalone DCO, and no workflow or release-authority change. Only `main`
+remained after closeout.
+
+M57 starts from verified M56 closeout commit
+`187cbfb1c857e62594e49d1cf8e7591024aff8c9`. Each successful response-body
+read must return immutable bytes no larger than the requested amount before
+EOF handling, byte accounting, or local output. If M55 exposed a valid
+`Content-Length`, the declaration must equal the total streamed octets for the
+release document and each final asset response. Existing expected asset sizes
+remain independently enforced.
+
+The slice adds no private response/socket state, raw HTTP/chunk parser,
+content decoder, alternate client, cleanup, proxy, DNS preflight, network
+sandbox, workflow, runner allocation, action, permission, credential, release
+mutation, dependency, runtime package, public API, or release authority. It
+makes no general completeness claim for unframed close-delimited responses.
+Fixture and pull-request evidence are not a real public release observation.
+A real pass remains unclaimed until an authorized signed-tag release run
+executes.
 
 ## Good-first contribution queue
 

@@ -1496,6 +1496,32 @@ or external verification, every delivery path, future availability,
 immutability, artifact security, PyPI availability, or a supported channel.
 RFC-0039 defines the complete boundary.
 
+## M57 public release response-body boundary
+
+M57 validates every successful response body after M55 framing and M56
+status/redirect checks. Each `HTTPResponse.read(amount)` result must be
+immutable bytes no larger than the requested amount. Validation occurs before
+EOF interpretation, byte accounting, or local output, so malformed text,
+mutable buffers, absent values, and oversized blocks fail closed.
+
+When M55 exposes a `Content-Length`, M57 retains the validated integer and
+requires it to equal the total streamed octets after EOF. The check applies to
+the public release document and every successful response after an asset
+redirect. Existing expected asset sizes remain independently enforced with or
+without a declared length. Malformed block shapes use content-silent
+`public_release.request_failed`; declared-versus-streamed disagreement uses
+`public_release.size_mismatch`; supported local causes remain chained.
+
+M57 uses only documented `HTTPResponse.read(amount)` and the already validated
+M55 length. It adds no private response/socket state, raw HTTP/chunk parser,
+content decoder, alternate client, cleanup, proxy, DNS preflight, network
+sandbox, workflow, allocation, dependency, package, runtime API, or release
+authority. It does not claim general completeness for unframed close-delimited
+bodies. Fixture and pull-request evidence are not a real public release
+observation, independent or external verification, every delivery path,
+future availability, immutability, artifact security, PyPI availability, or a
+supported channel. RFC-0040 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -42,33 +42,29 @@ claims.
 
 ## Current boundary
 
-M56 requires the M47-M55 portable public-release client to validate documented
-response status and redirect references without widening release authority.
-After M55 framing and before status comparison, redirect resolution, or body
-use, require `HTTPResponse.status` to be a non-boolean integer from 100 through
-599. A followed `302` must expose exactly one case-insensitive Location field
-through the documented header-pair list. Its value must be a single 1-to-8,000-
-octet ASCII URI-reference using valid RFC 3986 characters and complete percent
-escapes. Bracket delimiters may occur only inside a parsed authority, not its
-path, query, or fragment. Resolve only that validated reference, then reapply
-the existing bounded HTTPS URL policy before another request. Status failures
-use content-silent `public_release.request_failed`; Location failures use
-`public_release.redirect_failed`; supported local causes remain chained.
+M57 requires the M47-M56 portable public-release client to validate documented
+response-body reads and declared-length agreement without widening release
+authority. Every successful response read must return immutable bytes no
+larger than the requested amount before EOF interpretation, length accounting,
+or local output. If M55 exposed a `Content-Length`, require it to equal the
+total streamed octets for the release document and every successful response
+after an asset redirect. Malformed read shapes use content-silent
+`public_release.request_failed`; declared-length disagreement uses
+`public_release.size_mismatch`; supported local causes remain chained.
 
-Preserve M55 framing, M54 fresh-session, M53 context-binding, M52 service-
+Preserve M56 status/Location, M55 framing, M54 fresh-session, M53 context-binding, M52 service-
 identity, M51 negotiated-session, M50 context/key-log, M49 connected-peer, M48
-response/error, and M47 identity/artifact/smoke bounds. Absolute references may
-change host, so every resulting hop repeats the complete peer/TLS/HTTP checks;
-M56 adds no host allowlist. It may add no private response state, raw HTTP/URI
-parser, alternate client, proxy, DNS preflight, network sandbox, workflow edit,
+response/error, and M47 identity/artifact/smoke bounds. M57 may add no private
+response or socket state, raw HTTP/chunk parser, content decoder, alternate client,
+proxy, DNS preflight, network sandbox, workflow edit,
 runner, action, permission, trigger, credential, release mutation, rollback,
 cleanup, dependency, lock, version, runtime, package, or public-API change. It
-must not claim a real release observation, general SSRF protection,
+must not claim a real release observation, general response completeness,
 independent/external evidence, every intermediary or delivery path, future
 availability, immutability, artifact security, PyPI, or a supported release
-channel. M0 through M55 are complete, reviewed, hosted-validated, and integrated
-into `main`. M56 starts from exact verified M55 closeout commit
-`e7f700454adf1c11c80cb1ba684ed3318f7876e4`.
+channel. M0 through M56 are complete, reviewed, hosted-validated, and integrated
+into `main`. M57 starts from exact verified M56 closeout commit
+`187cbfb1c857e62594e49d1cf8e7591024aff8c9`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
@@ -82,8 +78,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   the socket retained the exact client context after the handshake. M54 then
   requires the actual socket to report that its session was not reused, and
   M55 validates the documented HTTP/1.1-class value and unambiguous response
-  framing without claiming the exact raw status-line token; none of these
-  milestones authorizes a real release.
+  framing without claiming the exact raw status-line token. M56 then validates
+  status and redirect references before body use; none of these milestones
+  authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

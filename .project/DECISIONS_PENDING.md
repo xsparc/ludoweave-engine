@@ -2,6 +2,18 @@
 
 No architecture decision is currently blocked.
 
+RFC-0040 resolves M57 public release response-body conformance. Every
+successful `HTTPResponse.read(amount)` returns immutable bytes no larger than
+the requested amount before EOF interpretation, accounting, or output. Any
+validated `Content-Length` must equal the total streamed octets for the release
+document and every successful response after an asset redirect. Malformed read
+shapes use content-silent request failure; declared-length disagreement remains
+a size mismatch. This adds no private response/socket state, raw parser,
+content decoder, alternate client, workflow, dependency, runtime API, cleanup,
+or release authority and makes no general completeness claim for unframed
+close-delimited bodies. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0039 resolves M56 public release status and redirect-reference conformance.
 Every response status is a non-boolean integer from 100 through 599. Every
 followed `302` exposes exactly one Location field through the documented header-

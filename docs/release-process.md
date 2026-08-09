@@ -373,6 +373,23 @@ authority, or general SSRF claim. Pull-request fixtures are not a real public
 release observation. No real M56 pass exists until an authorized signed-tag
 release run exercises the public path.
 
+M57/RFC-0040 validates every successful response body after the existing
+framing, status, and redirect gates. Each `HTTPResponse.read(amount)` result
+must be immutable bytes no larger than the requested amount before EOF
+interpretation, length accounting, or local output. Any validated
+`Content-Length` must equal the streamed octets for both the public release
+document and a final asset response. Malformed read shapes use content-silent
+`public_release.request_failed`; declared-length disagreement uses
+`public_release.size_mismatch`; supported local causes remain chained.
+
+M57 retains short reads, chunked decoding through `http.client`, unframed
+close-delimited bodies, and independent expected asset sizes. It adds no raw
+HTTP/chunk parser, alternate client, content decoder, cleanup, workflow,
+allocation, dependency, runtime API, or release authority and makes no general
+response-completeness claim. Pull-request fixtures are not a real public
+release observation. No real M57 pass exists until an authorized signed-tag
+release run exercises the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

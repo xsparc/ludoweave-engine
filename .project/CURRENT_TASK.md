@@ -1,66 +1,65 @@
 # Current Task
 
-- **Task:** M56 - public release status and redirect-reference conformance
-- **Status:** Complete. Corrected feature PR #120 and integration-record PR
-  #121 are fully validated, review-clean, squash-integrated, and branch-clean;
-  publishing the exact three-file closeout on `records/m56-closeout`.
+- **Task:** M57 - public release response-body conformance
+- **Status:** Implementation and contract documentation are in progress on
+  `security/m57-response-body-conformance`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M55 closeout
-  `e7f700454adf1c11c80cb1ba684ed3318f7876e4`, with only `main` present and no
+- **Base:** Exact clean synchronized M56 closeout
+  `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, with only `main` present and no
   open pull request, tag, release, or post-closeout `main` run.
-- **Outcome:** Validate every public-release response status and every followed
-  redirect reference before comparison, resolution, or body use.
-- **Acceptance:** Require status to be a non-boolean integer from 100 through
-  599. Require every followed `302` to expose a documented header-pair list
-  containing exactly one case-insensitive Location field whose value is one
-  1-to-8,000-octet ASCII URI-reference with valid RFC 3986 characters and
-  complete percent escapes. Permit bracket delimiters only inside the parsed
-  authority, not its path, query, or fragment. Revalidate the resolved bounded
-  HTTPS URL before another request. Stable content-silent errors preserve
-  supported local causes, and every redirect repeats the complete check.
-- **Boundary:** Relative and cross-host absolute references remain supported,
-  with M49-M55 peer, TLS, framing, deadline, size, and exact-byte checks on
-  every hop. No host allowlist, private response state, raw HTTP/URI parser,
-  alternate client, proxy, DNS preflight, network sandbox, workflow, runner,
-  action, permission, trigger, credential, release mutation, dependency, lock,
-  version, runtime package, public API, or release authority. Fixture/PR
-  evidence is not a real public release observation or general SSRF defense.
+- **Outcome:** Validate each public-release response-body block and any declared
+  body length before successful local publication or later document/artifact
+  validation.
+- **Acceptance:** Require every successful `HTTPResponse.read(amount)` result
+  to be immutable bytes no larger than the requested amount before EOF
+  interpretation, byte accounting, or local output. If M55 exposed a valid
+  `Content-Length`, require it to equal the total streamed octets after EOF for
+  both the public release document and every successful response after an
+  asset redirect. Retain independent expected asset-size validation.
+- **Failure:** Malformed block shapes and supported read/access failures use
+  stable content-silent `public_release.request_failed`; declared-versus-
+  streamed disagreement uses `public_release.size_mismatch`. Supported local
+  causes remain chained, and timeout, transport, output, byte-limit, and exact-
+  artifact failures keep their existing codes and ordering.
+- **Boundary:** No private response/socket state, raw HTTP/chunk parser,
+  content decoder, alternate client, response-header requirement, cleanup,
+  retry, proxy, DNS preflight, network sandbox, workflow, runner, action,
+  permission, trigger, credential, release mutation, dependency, lock,
+  version, runtime package, public API, or release authority. Unframed close-
+  delimited bodies retain their existing boundary without a general
+  completeness claim. Fixture/PR evidence is not a real release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Local evidence:** The final corrected candidate passes all 226 focused
-  M47-M56 assertions, 604 architecture assertions, strict static/docs gates,
-  and 2,144 tests with 14 expected skips on each supported Python. Ten
-  real-wgpu tests, both profiles, both vertical slices, reproducible builds,
-  isolated-wheel smoke, complete release smoke, archive/scope checks, and
-  repeat findings-first review pass. The reviewer-derived tests-first probe
-  failed the two malformed bracket references while 14 controls passed; the
-  component-aware correction then passed all 16 cases, including a bracketed
-  IPv6 authority.
-- **Hosted evidence:** Corrected PR #120 head
-  `35b94a42b10cbd8f75048d3200e95a4aca81fa5d` passed run `31329613114` in
-  exactly three Linux-first allocations. Linux passed in 7m22s before macOS
-  and Windows began; they passed in 2m19s and 4m00s. Baseline and every
-  compatibility suite passed 2,148 tests, with one expected skip outside the
-  baseline. Every platform passed real graphics, profiles, Clockwork Arena,
-  and Agent World Builder. Hosted reproducibility, installed-wheel smoke, and
-  complete release smoke passed.
-- **Integration:** The sole valid P2 review thread was answered and resolved.
-  Two delayed audits found no new issue comment, review activity, or unresolved
-  thread. Head-pinned, GitHub-verified squash
-  `22c432310fae2f9ac372062cbd465cc2617fb95c` has the exact corrected feature
-  tree, sole parent M55 closeout, valid signature, and standalone DCO. The
-  feature branch is deleted locally and remotely. Synchronized `main` has no
-  post-merge run, open PR, non-main remote branch, tag, or release. Integration
-  PR #121 exact head `db7c50009243fa7cf3bf9cd8f57afb4589dec7e7`
-  passed run `31330464522` in one 38-second Linux allocation; all 604
-  architecture assertions, strict docs, reproducible builds, installed-wheel
-  smoke, and complete release smoke passed, while the desktop umbrella skipped
-  with zero steps. Two delayed audits found no comment, review, or thread.
-  GitHub-verified squash `acc6893ef4cadf9a17c87cd578e38b7802a3ed77`
-  reproduces the reviewed integration-record tree with the feature squash as
-  sole parent, valid signature, and standalone DCO. Both integration branches
-  are deleted locally/remotely.
-- **Closeout gate:** The exact three-file `.project/**` record must allocate
-  zero hosted runs or checks.
+- **Evidence:** The clean M47-M56 baseline passed 226 assertions. Official
+  Python 3.14 documentation defines `HTTPResponse` as a binary buffered reader
+  whose `read(amount)` returns up to that many bytes; RFC 9112 defines message
+  bodies as octets and a shorter-than-declared body as incomplete. An initial
+  tests-first attempt correctly exposed defects but also reloaded the verifier
+  inside a helper, invalidating one exception-class assertion; no clean count
+  is claimed from it. The corrected unchanged-verifier probe failed 12 cases
+  and passed two controls, demonstrating raw type/access exceptions, accepted
+  mutable/absent/oversized blocks, and missing declared-length agreement. The
+  implementation passed all 14 initial M57 behavior assertions with focused
+  format, Ruff, and strict Pyright clean; all 240 inherited M47-M57 behavior
+  assertions passed together. After one explicit documentation-phrase
+  correction, all 242 focused implementation, compatibility, boundary, and
+  documentation assertions passed with strict docs. Findings-first review then
+  demonstrated that `isinstance(..., bytes)` admitted a hostile bytes subclass
+  whose length operation could raise an unwrapped exception: the regression
+  failed and 16 controls passed. Exact built-in-bytes validation corrects that
+  finding; all 243 focused assertions now pass. Whole-tree lock/sync,
+  formatting, Ruff, strict Pyright, 621 architecture assertions, and strict
+  docs pass. Complete graphics-enabled CPython 3.12-3.14 suites each pass 2,161
+  tests with 14 expected skips. Ten real-wgpu tests, both three-repeat profile
+  contracts, both vertical slices, and all documented M1-M4 benchmark
+  validators pass. Two pre-record builds are byte-identical; installed-wheel
+  and complete release smoke pass. Findings-first scope, archive, credential,
+  identity, history, and integrity review reports no remaining actionable
+  issue. Final record-inclusive static, documentation, reproducible-build,
+  installed-wheel, and complete release-smoke gates pass. Hosted exact-head
+  validation remains pending.
+- **Hosted gate:** This substantive release-tooling change requires exactly
+  three Linux-first allocations, with Windows and macOS starting only after
+  Linux qualification succeeds.
