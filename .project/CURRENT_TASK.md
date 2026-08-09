@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M56 - public release status and redirect-reference conformance
-- **Status:** Corrected candidate locally complete and review-clean on
-  `security/m56-http-redirect-reference`; preparing replacement publication.
+- **Status:** The corrected feature is squash-integrated on `main`; preparing
+  the four-file integration record on `records/m56-integration`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -28,32 +28,29 @@
   version, runtime package, public API, or release authority. Fixture/PR
   evidence is not a real public release observation or general SSRF defense.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Evidence:** The clean M47-M55 baseline passed 189 assertions. Official
-  Python 3.14 and RFC 9110/3986 review established the public metadata and URI
-  boundary. A tests-first probe produced 25 failures, six passes, and two
-  intentionally deselected documentation/boundary checks, confirming float
-  status acceptance, raw malformed-status failures, joined Location use, and
-  permissive URL recovery. The implementation and compatible fixtures now pass
-  all 34 M56 behavior, boundary, and documentation assertions, while all 223
-  focused M47-M56 assertions pass together. Whole-tree formatting, Ruff,
-  Pyright, 601 architecture assertions, strict docs, and all graphics-enabled
-  CPython 3.12-3.14 suites pass. Real-wgpu, profiles, both vertical slices,
-  every documented benchmark validator, reproducible builds, installed-wheel
-  smoke, and complete ten-artifact release smoke pass. Findings-first review
-  corrected one narrow RFC wording implication, revalidated all 223 focused
-  assertions and strict docs, and found no local issue at that point. Initial
-  head `86b2d4eaf404b15100bfc7d083fe119adc3e9f11` then passed run `31328303442`
-  in exactly three Linux-first allocations, but delayed review correctly found
-  that bracket delimiters were still accepted outside URI authorities. The
-  reviewer-derived test-first probe failed those two exact path/query cases
-  while 14 controls passed; the corrected component-aware check passes all 16
-  cases, including a valid bracketed IPv6 authority. The corrected candidate
-  passes all 226 focused assertions, 604 architecture assertions, strict
-  static/docs gates, and 2,144 tests with 14 expected skips on each supported
-  Python. Real-wgpu, profiles, both vertical slices, reproducible builds,
-  isolated-wheel smoke, complete release smoke, and repeat findings-first
-  review and the final record-inclusive gate pass. A replacement exact-head
-  hosted gate remains pending.
-- **Hosted gate:** This substantive security/release-tooling change requires
-  exactly three Linux-first allocations, with Windows and macOS starting only
-  after Linux qualification succeeds.
+- **Local evidence:** The final corrected candidate passes all 226 focused
+  M47-M56 assertions, 604 architecture assertions, strict static/docs gates,
+  and 2,144 tests with 14 expected skips on each supported Python. Ten
+  real-wgpu tests, both profiles, both vertical slices, reproducible builds,
+  isolated-wheel smoke, complete release smoke, archive/scope checks, and
+  repeat findings-first review pass. The reviewer-derived tests-first probe
+  failed the two malformed bracket references while 14 controls passed; the
+  component-aware correction then passed all 16 cases, including a bracketed
+  IPv6 authority.
+- **Hosted evidence:** Corrected PR #120 head
+  `35b94a42b10cbd8f75048d3200e95a4aca81fa5d` passed run `31329613114` in
+  exactly three Linux-first allocations. Linux passed in 7m22s before macOS
+  and Windows began; they passed in 2m19s and 4m00s. Baseline and every
+  compatibility suite passed 2,148 tests, with one expected skip outside the
+  baseline. Every platform passed real graphics, profiles, Clockwork Arena,
+  and Agent World Builder. Hosted reproducibility, installed-wheel smoke, and
+  complete release smoke passed.
+- **Integration:** The sole valid P2 review thread was answered and resolved.
+  Two delayed audits found no new issue comment, review activity, or unresolved
+  thread. Head-pinned, GitHub-verified squash
+  `22c432310fae2f9ac372062cbd465cc2617fb95c` has the exact corrected feature
+  tree, sole parent M55 closeout, valid signature, and standalone DCO. The
+  feature branch is deleted locally and remotely. Synchronized `main` has no
+  post-merge run, open PR, non-main remote branch, tag, or release.
+- **Current gate:** This exact four-file documentation/project record requires
+  one Linux allocation; its desktop umbrella must skip with zero steps.
