@@ -43,6 +43,14 @@
   `1986f691633d94a5b980c2be0b7e1d0b364de37e`, sole parent the M47 closeout,
   and standalone DCO. No post-merge run was allocated, and the feature branch
   is deleted locally/remotely. No signed-tag release rehearsal ran.
+- Record: documentation-only PR #96 exact head
+  `609e0977ba879be84270c2d4fd47a8b9ad23b4c5` passed run `31288912878` in
+  one 33-second Linux allocation; its desktop umbrella was skipped with zero
+  steps. The PR had no review, comment, or thread. Verified squash
+  `ee98b591abb8e8ecd37b8fa32c01acb0ce279b52` has exact reviewed tree
+  `bf4dc989ae014f33b89f81ef67246eb22401ea36`, sole parent the M48 feature
+  squash, valid GitHub signature, and standalone DCO. No post-merge run was
+  allocated, and the record branch is deleted locally/remotely.
 
 ## M47 cross-platform public consumer rehearsal - complete
 
