@@ -56,7 +56,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M45 public release consumer-path integrity | PR #86 passed credential-free exact-ID public document/assets, complete revalidation, installed release smoke, and the three-allocation hosted gate before verified squash integration |
 | Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
 | Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
-| Active | M48 public release HTTP response conformance | Exact documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, unchanged workflows and release authority |
+| Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -624,6 +624,15 @@ package, or public API. Fixture and pull-request evidence are not a real public
 release observation, independent/external verification, future availability,
 immutability, artifact security, PyPI, or a supported release channel. A real
 pass remains unclaimed until an authorized signed-tag release run executes.
+
+PR #95 exact head `9b5c533d1e73ee985945fa0feb7e876417ee0126`
+passed run `31288303182` in exactly three allocations: Linux qualified first in
+415 seconds, then macOS passed in 118 seconds and Windows in 228 seconds. The
+PR had no review, comment, or thread. Verified squash
+`c32ff1bf71b53278ef2ff616c2fc3cfce5cf20a3` has exact reviewed tree
+`1986f691633d94a5b980c2be0b7e1d0b364de37e`, sole parent the M47 closeout,
+valid GitHub signature, and standalone DCO. No post-merge run was allocated,
+the feature branch is deleted, and no real tag or release was created.
 
 ## Good-first contribution queue
 
