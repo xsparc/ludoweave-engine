@@ -1,5 +1,52 @@
 # Project State
 
+## M57 public release response-body conformance - in progress
+
+- Base: exact clean synchronized M56 closeout
+  `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, with only `main` present and no
+  open pull request, tag, release, or post-closeout `main` run.
+- Scope: after M55 framing and M56 status/redirect checks, every successful
+  response-body read returns immutable bytes no larger than the requested
+  amount before EOF handling, accounting, or output. Any valid
+  `Content-Length` must equal the total streamed octets for the release
+  document and every successful final asset response. Pre-known asset sizes
+  remain independently enforced.
+- Failure: malformed block shapes and supported read/access failures use stable
+  content-silent `public_release.request_failed`; declared-versus-streamed
+  disagreement uses `public_release.size_mismatch`. Supported causes remain
+  chained and existing timeout/transport/output/byte-limit/artifact ordering is
+  unchanged.
+- Boundary: no private response/socket state, raw HTTP/chunk parser, content
+  decoder, alternate client, new required header, cleanup, retry, proxy, DNS
+  preflight, network sandbox, workflow, allocation, dependency, package,
+  runtime API, or release authority. There is no general completeness claim
+  for an unframed close-delimited body and no real release observation.
+- Decision: accepted RFC-0040 records the exact block-shape, requested-amount,
+  declared-length, failure, ownership, and non-claim boundaries.
+- Development evidence: the clean M47-M56 baseline passed 226 assertions.
+  Official Python 3.14 and RFC 9112 review defined the binary-read and declared-
+  length boundary. The first tests-first run exposed intended failures but had
+  one invalid exception-class comparison because a helper reloaded the
+  verifier. The corrected unchanged-verifier run failed 12 cases and passed
+  two controls. Focused format, Ruff, and strict Pyright pass; all 14 initial
+  M57 behavior assertions and all 240 inherited M47-M57 behavior assertions
+  passed. One explicit `no alternate client` wording mismatch was corrected;
+  all 242 focused implementation, compatibility, boundary, and documentation
+  assertions and strict docs then passed. Findings-first review reproduced an
+  unwrapped exception from a hostile bytes subclass: the new regression failed
+  while 16 controls passed. Requiring exact built-in bytes closes that gap; all
+  243 focused assertions now pass. All 300 Python files are format clean; Ruff
+  and strict Pyright report zero findings; all 621 architecture assertions and
+  strict docs pass. Complete graphics-enabled CPython 3.12-3.14 suites each
+  pass 2,161 tests with 14 expected skips. Ten real-wgpu tests, three-repeat
+  base/graphics profiles, Clockwork Arena, Agent World Builder, and every
+  documented M1-M4 benchmark validator pass. Two pre-record builds reproduce
+  byte-for-byte; installed-wheel and complete release smoke pass. Findings-
+  first scope, archive, credential, identity, history, and integrity review
+  reports no remaining actionable issue. Final record-inclusive static,
+  documentation, reproducible-build, installed-wheel, and complete release-
+  smoke gates pass. Hosted exact-head validation remains pending.
+
 ## M56 public release status and redirect-reference conformance - complete
 
 - Base: exact clean synchronized M55 closeout

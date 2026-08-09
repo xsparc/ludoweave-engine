@@ -449,15 +449,16 @@ def _download(
                     "public release request failed",
                     code="public_release.request_failed",
                 )
+            declared_bytes: int | None = None
             if length_header is not None:
                 if not length_header.isascii() or not length_header.isdecimal():
                     raise PublicReleaseVerificationError(
                         "public release response length is invalid",
                         code="public_release.size_mismatch",
                     )
-                length = int(length_header)
-                if length > maximum_bytes or (
-                    expected_bytes is not None and length != expected_bytes
+                declared_bytes = int(length_header)
+                if declared_bytes > maximum_bytes or (
+                    expected_bytes is not None and declared_bytes != expected_bytes
                 ):
                     raise PublicReleaseVerificationError(
                         "public release response length does not match",
@@ -470,6 +471,11 @@ def _download(
                 maximum_bytes=maximum_bytes,
                 deadline=deadline,
             )
+            if declared_bytes is not None and received != declared_bytes:
+                raise PublicReleaseVerificationError(
+                    "public release response length does not match",
+                    code="public_release.size_mismatch",
+                )
             if expected_bytes is not None and received != expected_bytes:
                 raise PublicReleaseVerificationError(
                     "public release response length does not match",
@@ -958,17 +964,30 @@ def _set_socket_timeout(connection: http.client.HTTPSConnection, deadline: float
 
 def _read_response_block(response: http.client.HTTPResponse, amount: int) -> bytes:
     try:
-        return response.read(amount)
+        block = cast(object, response.read(amount))
     except TimeoutError as error:
         raise PublicReleaseVerificationError(
             "public release request exceeded the time limit",
             code="public_release.request_timeout",
         ) from error
-    except (OSError, http.client.HTTPException) as error:
+    except (
+        AttributeError,
+        http.client.HTTPException,
+        NotImplementedError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as error:
         raise PublicReleaseVerificationError(
             "public release request failed",
             code="public_release.request_failed",
         ) from error
+    if type(block) is not bytes or len(block) > amount:
+        raise PublicReleaseVerificationError(
+            "public release response body is invalid",
+            code="public_release.request_failed",
+        )
+    return block
 
 
 def _publish_partial(partial: Path, target: Path) -> None:

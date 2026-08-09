@@ -93,6 +93,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   authority, never its path, query, or fragment; the resolved URL repeats the
   existing bounded HTTPS, peer, TLS, framing, size, and exact-byte checks before
   use.
+- M57 requires every successful response body read to return immutable bytes
+  no larger than the requested amount before EOF handling or local output. If
+  `Content-Length` exists, the declared value must equal the streamed octets;
+  malformed read shapes use a content-silent request failure and length
+  disagreement remains a size mismatch.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

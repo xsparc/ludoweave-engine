@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M57/RFC-0040 immutable bytes-block and declared-versus-streamed
+  `Content-Length` validation for every successful response body, without an
+  alternate client, workflow, dependency, runtime API, or release-authority
+  change.
 - Add M56/RFC-0039 strict integer response-status and single bounded Location
   URI-reference validation before public-release redirect resolution, without
   adding a host allowlist, workflow, dependency, runtime API, or release
