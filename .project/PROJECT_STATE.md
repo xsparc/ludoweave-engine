@@ -1,5 +1,33 @@
 # Project State
 
+## M47 cross-platform public consumer rehearsal - in progress
+
+- Base: exact verified M46 closeout
+  `2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5`; clean synchronized `main`
+  only, no open PR, tag, or release, and healthy Git objects.
+- Outcome: replace the internal Bash public-release verifier with one typed
+  standard-library Python program and expand the existing tag-only fresh
+  consumer to Ubuntu, Windows, and macOS.
+- Bounds: fixed repository/IDs, verified HTTPS, three redirects, 10/30-second
+  time limits, 4-MiB document, 16-KiB plan, 32 assets, 256 MiB each, 512 MiB
+  total, safe unique names, exclusive partials, exact-set validation, complete
+  installed release smoke, content-silent structured results, and no public
+  request credential.
+- Authority unchanged: two additional tag-only fresh allocations; no
+  pull-request allocation, trigger, release mutation, publication command,
+  credential, dependency, lock, version, runtime, package, or public API.
+- Non-claim: same-workflow hosted cross-platform rehearsal is not independent
+  or external verification, a clean machine outside GitHub-hosted Actions,
+  every delivery path, future availability, immutability, artifact security,
+  PyPI, or a supported release channel. No real pass exists without an
+  authorized signed-tag run.
+- Local evidence: all 39 focused M45-M47 assertions, the 405-test architecture
+  suite, strict static/docs/YAML, ten real-wgpu tests, profiles, both vertical
+  slices, and complete graphics-enabled CPython 3.12-3.14 suites pass. Each
+  supported interpreter passed 1,945 tests with 14 expected skips. Final
+  reproducible distribution, isolated-wheel smoke, and complete release smoke
+  pass; hosted exact-head evidence remains required.
+
 ## M46 fresh-runner public consumer rehearsal - complete
 
 - Base: exact verified M45 closeout commit

@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0030 resolves M47 cross-platform public consumer rehearsal. One typed
+standard-library Python verifier replaces the Bash-only public path and the
+existing tag-only fresh-consumer job expands to Ubuntu, Windows, and macOS.
+Each runner creates a bounded plan, retrieves exact public bytes without a
+release credential, and runs complete installed release smoke. The result
+remains same-workflow/provider rather than independent/external evidence. Two
+tag-only allocations are added; pull-request allocations, release authority,
+runtime, dependency, package, and public API remain unchanged. A real pass
+remains pending an explicitly authorized signed-tag release execution.
+
 RFC-0029 resolves M46 fresh-runner consumer rehearsal. After the publishing
 job succeeds, one additional read-only Linux job receives only the verified
 release ID/version, retrieves the exact same-workflow admitted candidate,

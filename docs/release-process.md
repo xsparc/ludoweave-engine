@@ -71,7 +71,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
     Linux runner to retrieve the same workflow's admitted candidate and the
     exact public bytes, revalidate them, install the wheel in a new isolated
     environment, and run the sample bundle.
-15. Independently download the public assets, verify checksums and
+15. M47 replaces the Bash-only public verifier and expands that tag-only fresh
+    rehearsal to Ubuntu, Windows, and macOS. Every runner creates its own plan,
+    revalidates exact public bytes, and runs complete installed release smoke.
+16. Independently download the public assets, verify checksums and
     attestations, install the wheel in a clean environment, and run the sample
     bundle before announcing.
 
@@ -173,9 +176,31 @@ no release mutation or publication authority.
 This is a same-workflow, same-provider Linux rehearsal, not independent or
 external verification, a cross-platform public matrix, a clean machine outside
 GitHub-hosted Actions, every delivery path, future availability, immutability,
-artifact security, PyPI, or a supported release channel. It does not replace
-maintainer gate 15. No real fresh-runner pass exists until an authorized signed-
-tag release run executes.
+artifact security, PyPI, or a supported release channel. M46 by itself does not
+replace maintainer gate 16. No real fresh-runner pass exists until an authorized
+signed-tag release run executes.
+
+M47/RFC-0030 replaces the shared Bash verifier with one typed standard-library
+Python program and expands the existing fresh-consumer job to the exact Ubuntu,
+Windows, and macOS matrix. Every execution depends on release success, uses
+read-only contents permission and no dependency cache, retrieves the exact named
+same-workflow candidate through the pinned artifact action, creates a fresh
+exclusive M43-format plan, and repeats complete public byte validation plus
+installed release smoke.
+
+The portable client uses a verified TLS context without ambient proxy/client
+configuration. Initial hosts are fixed; at most three remote redirects may
+remain on HTTPS port 443. Blocking socket operations are capped at 10 seconds
+inside one 30-second monotonic deadline. Existing document, plan, ID, name,
+count, byte, partial, exact-set, and smoke bounds remain fail-closed. Success
+reports only aggregate count/bytes; failures use stable content-silent codes.
+
+M47 supplies same-workflow hosted observations for all three supported
+operating systems, but it is still not independent/external verification, a
+clean machine outside GitHub-hosted Actions, every delivery path, future
+availability, immutability, artifact security, PyPI, or a supported channel.
+It does not replace maintainer gate 16. No real M47 pass exists until an
+authorized signed-tag release run executes.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
@@ -257,4 +282,9 @@ check in maintainer gate 15.
 M46 repeats that check from a dependent fresh Linux runner using the exact
 candidate preserved by the publishing job. It improves runner/workspace and
 isolated-install separation but remains inside the same workflow and provider,
-so it is also not a substitute for the independent consumer check in gate 15.
+so it is also not a substitute for the independent consumer check in gate 16.
+
+M47 runs that same exact public-byte and installed-candidate observation from
+fresh Ubuntu, Windows, and macOS runners through one portable Python verifier.
+This establishes no real matrix result until an authorized tag run executes and
+remains no substitute for the independent consumer check in gate 16.

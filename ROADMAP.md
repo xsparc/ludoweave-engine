@@ -55,6 +55,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M44 published release attestation integrity | PR #83 passed exact-source SLSA provenance policy for every retrieved asset plus SPDX wheel-SBOM verification in three bounded hosted allocations, then squash-integrated with unchanged release authority |
 | Done | M45 public release consumer-path integrity | PR #86 passed credential-free exact-ID public document/assets, complete revalidation, installed release smoke, and the three-allocation hosted gate before verified squash integration |
 | Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
+| Active | M47 cross-platform public consumer rehearsal | Portable bounded verifier, exact Ubuntu/Windows/macOS tag-only matrix, unchanged pull-request allocations and release authority, plus cross-platform hosted validation |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -585,6 +586,19 @@ profiles/samples, reproducible distribution, installed wheel, and release
 smoke. Verified squash `d4cb4410d1dd9f684d3b169932ea3251801d3884`
 has the exact reviewed tree, sole M45-closeout parent, valid signature, and DCO;
 no post-merge run was allocated and the feature branch is deleted.
+
+M47 starts from verified M46 closeout commit
+`2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5`. It replaces the internal
+Bash public-release verifier with one typed standard-library Python program and
+expands the existing tag-only fresh-consumer job to Ubuntu, Windows, and macOS.
+Every fresh runner receives only the verified release ID/version and exact
+same-workflow candidate, creates its own bounded plan, fetches exact public
+bytes without a release credential, and runs complete installed release smoke.
+The slice adds two tag-only allocations but no pull-request allocation,
+credential, trigger, release mutation, publication authority, artifact,
+dependency, runtime, package, or public-API change. Same-workflow cross-platform
+evidence is not independent/external verification; a real pass remains
+unclaimed until an authorized signed-tag release run executes.
 
 ## Good-first contribution queue
 

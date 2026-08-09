@@ -50,6 +50,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   fresh Linux runner with read-only contents permission. It retrieves the exact
   admitted candidate through the pinned same-workflow artifact channel and
   supplies no release credential to public HTTP requests.
+- M47 replaces the Bash-only verifier with one typed standard-library Python
+  program and expands that tag-only fresh rehearsal to Ubuntu, Windows, and
+  macOS. Each runner creates its own bounded plan and isolated installation;
+  all retain read-only contents permission and credential-free public requests.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -83,10 +87,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   cross-platform matrix, every browser/CDN/cache/geographic path, future
   availability, immutability, artifact security, PyPI, or a supported channel.
 - M46 adds workspace/runner separation but remains inside the same GitHub-hosted
-  workflow and uses scoped checkout/artifact services. It is not independent or
-  external verification, a cross-platform public matrix, a clean machine
-  outside that provider, future availability, immutability, artifact security,
-  PyPI, or a supported channel.
+  workflow and uses scoped checkout/artifact services. M46 alone is not a
+  cross-platform public matrix.
+- M47 supplies the three supported hosted operating-system observations but
+  remains inside the same workflow, repository, account, and provider. It is
+  not independent or external verification, a clean machine outside that
+  provider, every delivery path, future availability, immutability, artifact
+  security, PyPI, or a supported channel.
 
 ## Initial security boundaries
 
