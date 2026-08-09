@@ -65,7 +65,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M54 public release TLS session freshness | PR #114 passed exact post-handshake `session_reused is False` evidence on every hop in the three-allocation hosted gate, then squash-integrated with unchanged workflows, dependencies, and release authority |
 | Done | M55 public release HTTP response framing | PR #117 corrected the CPython status-line normalization overclaim, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated documented HTTP/1.1-class framing checks with unchanged workflows/release authority |
 | Done | M56 public release redirect-reference conformance | PR #120 corrected bracket-component validation, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated strict status/Location checks with unchanged workflows/release authority |
-| In progress | M57 public release response-body conformance | Require bounded immutable bytes blocks and declared-versus-streamed `Content-Length` agreement with unchanged workflow/release authority |
+| Done | M57 public release response-body conformance | PR #123 passed exact built-in bytes-block and declared-versus-streamed `Content-Length` checks in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -849,6 +849,18 @@ runtime package, public API, or release authority. Fixture and pull-request
 evidence are not a real public release observation or a general SSRF defense.
 A real pass remains unclaimed until an authorized signed-tag release run
 executes.
+
+M57 exact head `f7347965d7e9a78218fa08a34f76aed7d32ba67d` passed run
+`31332655171` in exactly three Linux-first allocations. Linux passed in 5m37s
+before macOS and Windows began; they passed in 1m51s and 3m48s. Hosted tests,
+real graphics, profiles, both vertical slices, reproducible builds, installed-
+wheel smoke, and complete release smoke passed. Two delayed audits found no
+comment, review, or thread. GitHub-verified squash
+`800050c74530d74a72338b5d444ee4751c5ad155` has the exact reviewed tree, sole
+parent M56 closeout, standalone DCO, and no workflow, dependency, runtime
+package, public API, or release-authority change. The feature branch is deleted
+locally/remotely; the four-file integration record requires one Linux
+documentation allocation and a zero-step skipped desktop umbrella.
 
 M56 PR #120 corrected one delayed review finding by rejecting bracket
 delimiters in path, query, and fragment components while retaining valid
