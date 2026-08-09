@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M49 - public release connected-peer confinement
-- **Status:** Corrected feature integration complete; publishing the factual
-  M49 integration record before the zero-run closeout.
+- **Status:** Feature and integration record fully validated and
+  squash-integrated; closing factual records on `records/m49-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -93,3 +93,13 @@
   and standalone DCO. No post-merge `main` run was allocated; the feature
   branch is deleted locally/remotely. Integration record and zero-run closeout
   remain. No real M49 tag/release execution exists or is claimed.
+- **Integration record:** Four-Markdown PR #100 exact head
+  `6d04bbf9f77382b5df3c4d1a7f5d0b70496751f9` classified documentation-only.
+  Run `31308454299` passed in one 31-second Linux allocation with 457
+  architecture tests, strict docs, reproducible build, wheel smoke, and
+  release smoke; desktop umbrella job `93232491763` had zero steps and was
+  skipped. The PR had no review, comment, or thread. Verified squash
+  `d6ef4fef7f42a8bd961ea549eb3deb618a0c073f` has exact reviewed tree, sole
+  parent the M49 feature squash, a GitHub-valid signature, standalone DCO, and
+  no post-merge run. Its branch is deleted locally/remotely. Only this
+  three-file zero-run closeout remains before selecting the next milestone.

@@ -1,6 +1,6 @@
 # Project State
 
-## M49 public release connected-peer confinement - in progress
+## M49 public release connected-peer confinement - complete
 
 - Base: exact verified M48 closeout
   `049cdbcf2769a1c2359593f642e37697d5bf7400`; clean synchronized `main`
@@ -57,6 +57,14 @@
   `a9755cbf65dfeba5087f5037f73bc6027c408444`, sole parent the M48 closeout,
   and standalone DCO. No post-merge run was allocated, and the feature branch
   is deleted locally/remotely. No signed-tag release rehearsal ran.
+- Record: documentation-only PR #100 exact head
+  `6d04bbf9f77382b5df3c4d1a7f5d0b70496751f9` passed run `31308454299` in
+  one 31-second Linux allocation; its desktop umbrella was skipped with zero
+  steps. The PR had no review, comment, or thread. Verified squash
+  `d6ef4fef7f42a8bd961ea549eb3deb618a0c073f` has exact reviewed tree
+  `55048621e219b915879736730011393b14caf49e`, sole parent the M49 feature
+  squash, valid GitHub signature, and standalone DCO. No post-merge run was
+  allocated, and the record branch is deleted locally/remotely.
 
 ## M48 public release HTTP response conformance - complete
 
