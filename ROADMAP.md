@@ -57,6 +57,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
 | Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
 | Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
+| Active | M49 public release connected-peer confinement | Actual port-443 TLS peer validated before every request; global-unicast IPv4/IPv6 only; unchanged workflows and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -633,6 +634,22 @@ PR had no review, comment, or thread. Verified squash
 `1986f691633d94a5b980c2be0b7e1d0b364de37e`, sole parent the M47 closeout,
 valid GitHub signature, and standalone DCO. No post-merge run was allocated,
 the feature branch is deleted, and no real tag or release was created.
+
+M49 starts from verified M48 closeout commit
+`049cdbcf2769a1c2359593f642e37697d5bf7400`. It explicitly connects each
+fixed API or redirected asset hop and validates the actual port-443 TLS socket
+peer before transmitting HTTP. IPv4-mapped IPv6 is classified by its embedded
+address; only globally reachable unicast IPv4/IPv6 is accepted. Non-global
+peers fail with a stable content-silent code, while timeout and malformed peer
+inspection preserve M48's request taxonomy.
+
+The slice adds no hostname/IP allowlist, separate DNS preflight, workflow,
+runner allocation, action, permission, credential, trigger, release mutation,
+retry, cleanup, dependency, runtime, package, or public API. Fixture and
+pull-request evidence are not a real public release observation, network
+sandbox, independent/external verification, every delivery path, future
+availability, immutability, artifact security, PyPI, or a supported channel. A
+real pass remains unclaimed until an authorized signed-tag release run executes.
 
 ## Good-first contribution queue
 

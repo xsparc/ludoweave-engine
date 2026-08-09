@@ -58,6 +58,9 @@ Maintainers will acknowledge the report through the same private channel, assess
   asset handling, confines the API-version header to `api.github.com`, refreshes
   socket timeouts before headers/body reads, and separates timeout,
   transport/protocol, and local-output failure codes.
+- M49 explicitly connects and inspects the actual port-443 TLS peer before
+  sending each fixed API or redirected asset request. Only globally reachable
+  unicast IPv4/IPv6 is accepted; mapped IPv6 uses its embedded IPv4 identity.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -101,6 +104,9 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M48 hardens fixture-driven client behavior only. It adds no real public
   release observation, host/CDN allowlist claim, retry, cleanup, mutation,
   publication authority, or supported-channel evidence.
+- M49 does not provide a hostname/IP allowlist, separate DNS preflight, DNSSEC,
+  packet-level network sandbox, every-CDN result, real release observation,
+  independent verification, retry, cleanup, mutation, or new authority.
 
 ## Initial security boundaries
 

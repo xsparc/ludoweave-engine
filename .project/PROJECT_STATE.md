@@ -1,5 +1,36 @@
 # Project State
 
+## M49 public release connected-peer confinement - in progress
+
+- Base: exact verified M48 closeout
+  `049cdbcf2769a1c2359593f642e37697d5bf7400`; clean synchronized `main`
+  only, no open PR, tag, or release, and healthy Git objects.
+- Outcome: connect and validate the actual TLS peer before every fixed API or
+  redirected asset HTTP request, allowing only globally reachable unicast IPv4
+  or IPv6 at port 443.
+- Bounds: actual `getpeername()` rather than a separate DNS preflight; mapped
+  IPv4 normalization; stable forbidden/timeout/request codes; no hostname/IP
+  allowlist; all M48 identity, response, TLS, timeout, byte, path, validation,
+  and smoke bounds retained.
+- Authority unchanged: no workflow, runner allocation, action, permission,
+  trigger, credential, release mutation, retry, cleanup, dependency, lock,
+  version, runtime, package, or public API.
+- Non-claim: fixture/pull-request conformance is not a real public release
+  observation, independent/external verification, network sandbox, every CDN
+  path, future availability, immutability, artifact security, PyPI, or a
+  supported channel. No real pass exists without an authorized signed-tag run.
+- Current evidence: official GitHub, Python, and IANA sources support the
+  retained redirect and connected-peer/global-reachability boundaries. Strict
+  Ruff/Pyright and all 74 non-documentation M47-M49 assertions pass after two
+  factual fixture corrections. CPython 3.12-3.14 classify the probed corrected
+  special-purpose ranges identically. The documentation-integrated focus, all
+  455 architecture tests, complete graphics-enabled CPython 3.12-3.14 suites,
+  ten real-wgpu tests, profiles, both deterministic vertical slices,
+  reproducible distribution, isolated-wheel smoke, and complete release smoke
+  pass. Final record-inclusive static/docs/architecture/distribution, scope,
+  credential, identity, package-content, and findings-first review pass. Hosted
+  validation and integration remain pending.
+
 ## M48 public release HTTP response conformance - complete
 
 - Base: exact verified M47 closeout

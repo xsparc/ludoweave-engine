@@ -67,6 +67,9 @@ class _Socket:
     def settimeout(self, value: float) -> None:
         self.timeouts.append(value)
 
+    def getpeername(self) -> tuple[str, int]:
+        return ("8.8.8.8", 443)
+
 
 def _load() -> tuple[ModuleType, _Download, type[Exception]]:
     spec = importlib.util.spec_from_file_location("m48_public_release_verifier", _VERIFIER)
@@ -301,6 +304,9 @@ def test_socket_timeout_update_failure_uses_timeout_code(
     _, download, error_type = _load()
 
     class TimeoutSocket:
+        def getpeername(self) -> tuple[str, int]:
+            return ("8.8.8.8", 443)
+
         def settimeout(self, _value: float) -> None:
             raise TimeoutError
 

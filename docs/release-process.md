@@ -77,7 +77,10 @@ same-job check is not an independent or cross-platform rebuild claim; see
 16. M48 requires a direct `200` release document, only bounded `200`/`302`
     asset handling, API-only headers confined to `api.github.com`, and distinct
     timeout, transport/protocol, and local-output failure codes.
-17. Independently download the public assets, verify checksums and
+17. M49 validates the actual port-443 TLS socket peer before every fixed API or
+    redirected asset HTTP request and allows only globally reachable unicast
+    IPv4/IPv6.
+18. Independently download the public assets, verify checksums and
     attestations, install the wheel in a clean environment, and run the sample
     bundle before announcing.
 
@@ -180,7 +183,7 @@ This is a same-workflow, same-provider Linux rehearsal, not independent or
 external verification, a cross-platform public matrix, a clean machine outside
 GitHub-hosted Actions, every delivery path, future availability, immutability,
 artifact security, PyPI, or a supported release channel. M46 by itself does not
-replace maintainer gate 17. No real fresh-runner pass exists until an authorized
+replace maintainer gate 18. No real fresh-runner pass exists until an authorized
 signed-tag release run executes.
 
 M47/RFC-0030 replaces the shared Bash verifier with one typed standard-library
@@ -202,7 +205,7 @@ M47 supplies same-workflow hosted observations for all three supported
 operating systems, but it is still not independent/external verification, a
 clean machine outside GitHub-hosted Actions, every delivery path, future
 availability, immutability, artifact security, PyPI, or a supported channel.
-It does not replace maintainer gate 17. No real M47 pass exists until an
+It does not replace maintainer gate 18. No real M47 pass exists until an
 authorized signed-tag release run executes.
 
 M48/RFC-0031 narrows the shared portable client's accepted response and failure
@@ -216,8 +219,22 @@ filesystem errors remain output failures.
 M48 changes no workflow or release authority and does not create a real public
 observation in pull-request CI. It preserves M47's cross-platform same-workflow
 claim boundary and does not replace the independent consumer check in
-maintainer gate 17. No real M48 pass exists until an authorized signed-tag
+maintainer gate 18. No real M48 pass exists until an authorized signed-tag
 release run executes.
+
+M49/RFC-0032 establishes each normal verified TLS connection before HTTP
+transmission, inspects its actual `getpeername()` result, requires actual port
+443, and accepts only globally reachable unicast IPv4/IPv6. IPv4-mapped IPv6 is
+classified by its embedded address. The check repeats for the fixed API host
+and every bounded `302` asset hop. Non-global peers have one stable forbidden
+code; connect/inspection timeout and malformed/unavailable peer failures retain
+M48's timeout/request taxonomy without exposing host or address values.
+
+M49 adds no hostname/IP allowlist, separate DNS preflight, network sandbox,
+workflow, allocation, dependency, retry, cleanup, mutation, or release
+authority. Pull-request fixtures are not a real public release observation and
+do not replace the independent consumer check in maintainer gate 18. No real
+M49 pass exists until an authorized signed-tag release run executes.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
@@ -299,15 +316,20 @@ check in maintainer gate 15.
 M46 repeats that check from a dependent fresh Linux runner using the exact
 candidate preserved by the publishing job. It improves runner/workspace and
 isolated-install separation but remains inside the same workflow and provider,
-so it is also not a substitute for the independent consumer check in gate 17.
+so it is also not a substitute for the independent consumer check in gate 18.
 
 M47 runs that same exact public-byte and installed-candidate observation from
 fresh Ubuntu, Windows, and macOS runners through one portable Python verifier.
 This establishes no real matrix result until an authorized tag run executes and
-remains no substitute for the independent consumer check in gate 17.
+remains no substitute for the independent consumer check in gate 18.
 
 M48 makes that verifier accept only the documented release/asset response set,
 keeps API-only headers on the fixed API host, and reports timeout,
 transport/protocol, and local-output failures distinctly. Fixture and
 pull-request evidence do not substitute for an authorized tag run or the
-independent consumer check in gate 17.
+independent consumer check in gate 18.
+
+M49 makes every fixed API and redirected asset request prove its actual
+port-443 TLS peer is globally reachable unicast before HTTP transmission. It
+does not add a hostname/IP allowlist, separate DNS pass, network sandbox, real
+release result, or substitute for the independent consumer check in gate 18.
