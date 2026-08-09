@@ -1,6 +1,6 @@
 # Project State
 
-## M52 public release TLS service-identity evidence - in progress
+## M52 public release TLS service-identity evidence - feature integrated
 
 - Base: clean synchronized M51 closeout
   `047478d0c7fb873ae94aaa6e322b5b08903ed354`, with only `main` present
@@ -43,8 +43,7 @@
   `.project/TEST_EVIDENCE.md`. Each final CPython 3.12-3.14 graphics-enabled
   suite passed 2,044 tests with 14 expected skips. Record-inclusive
   reproducible build, isolated-wheel, and complete ten-artifact release smoke
-  also pass. The final review and hosted gates remain pending and are not
-  claimed.
+  also pass. Exact review, hosted, and integration evidence follows below.
 - Review correction: the first invalid-IDNA regression supplied an already
   connected fake socket, while a real connection could attempt its own IDNA
   conversion first and escape as a generic request failure. The corrected
@@ -55,7 +54,36 @@
   3.12-3.14 suites each pass 2,044 tests with 14 expected skips. Corrected
   reproducible build, isolated-wheel, complete release smoke, post-record
   static/architecture/docs, archive/scope scans, and repeat findings-first
-  review pass with no remaining finding. Hosted gates remain pending.
+  review pass with no remaining finding.
+- Hosted evidence: exact head
+  `170db846112e27b9d11377da69784c69a6565bb4` passed run `31316474864` in
+  exactly three Linux-first allocations. Linux job `93252443745` passed in
+  7m02s before macOS `93253220602` and Windows `93253220599` began; they
+  passed in 2m16s and 3m59s. Linux baseline passed 2,048 tests; Ubuntu
+  CPython 3.13/3.14 and both desktop CPython 3.14 suites passed 2,048 tests
+  with one expected skip. All platforms passed ten graphics tests, profiles,
+  Clockwork Arena, and Agent World Builder. Reproducibility passed for the
+  269,957-byte wheel
+  `0bbdcc263fa1b28b7c0b8e29559b45b47df28b7d61a43eb23feb941d6e1e3386`
+  and 1,053,252-byte sdist
+  `ec58993d27bdfdfe06f16bd963651fb68cd04c842a50649f1e8ed675f1af4581`;
+  installed-wheel and complete release smoke passed.
+- Feature integration: PR #108 remained `MERGEABLE/CLEAN` at its exact
+  reviewed head/base after a delayed audit found zero reviews, issue comments,
+  inline comments, or threads. GitHub-verified squash
+  `eb083089bfff774c0df2b115428901357c9084b2` has tree
+  `ab92b60f4e05faccc2b0059d3d9cfad6b0e0eaef` exactly equal to the reviewed
+  feature tree, sole parent M51 closeout
+  `047478d0c7fb873ae94aaa6e322b5b08903ed354`, and standalone DCO. No post-
+  merge `main` run was allocated; the feature branch is deleted locally and
+  remotely. No real tag or release was created.
+- Integration-record review correction: initial PR #109 head
+  `92427931151106f7b1ce9c77c4809bf794d1f7f9` passed docs-only run
+  `31317421319` in one Linux allocation with a zero-step skipped desktop
+  umbrella. External review then found the stale pending-gates sentence above,
+  which contradicted the exact hosted and integration evidence. The corrected
+  record removes that sentence; the initial otherwise-green head will not be
+  merged, and corrected hosted validation remains pending.
 - Non-claim: fixture and pull-request conformance are not a real public release
   observation, independent/external verification, every TLS/CDN/geographic
   path, future availability, immutability, artifact security, PyPI, or a
