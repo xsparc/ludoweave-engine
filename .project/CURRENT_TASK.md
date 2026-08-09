@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M50 - public release TLS key-log isolation
-- **Status:** Feature implementation, complete local/hosted validation, review,
-  and squash integration passed; recording exact integration evidence on
-  `records/m50-integration`.
+- **Status:** Feature and integration record are fully validated and
+  squash-integrated; closing factual records on `records/m50-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -57,6 +56,11 @@
   squash-integrated as `5fb56120e1a96a0a25db96baa3836699e435611c`
   with the exact reviewed tree, sole M49-closeout parent, GitHub-valid
   signature, and DCO. No `main` run was allocated and only synchronized
-  `main` remains locally/remotely. The documentation-only integration record
-  and zero-run closeout remain. No real tag or release has been created or
-  claimed.
+  `main` remains locally/remotely. Documentation-only PR #103 exact head
+  `7441e9fae142a67a9d30075ac4c28127978cc750` then passed run
+  `31310482277` in one 40-second Linux allocation; the desktop umbrella had
+  zero steps and was skipped. It had zero reviews/comments/threads and
+  squash-integrated as `7764ea32645c3455fb08bfbd5a3c4e2d8cabbd47`
+  with exact reviewed tree, sole feature-squash parent, valid signature, DCO,
+  no `main` run, and deleted branch. Only the three-`.project/**` zero-run
+  closeout remains. No real tag or release has been created or claimed.

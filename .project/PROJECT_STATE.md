@@ -1,6 +1,6 @@
 # Project State
 
-## M50 public release TLS key-log isolation - feature integrated
+## M50 public release TLS key-log isolation - complete
 
 - Base: clean synchronized M49 closeout
   `f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`, with only `main` present
@@ -52,9 +52,20 @@
   negotiated-session audit, independent/external verification, every delivery
   path, future-availability/immutability proof, artifact-security result, PyPI
   availability, or a supported release channel.
-- Remaining closeout: record this integration through the bounded
-  documentation-only gate, then publish a three-`.project/**` zero-run factual
-  closeout. Neither record widens M50.
+- Integration record: four-Markdown PR #103 exact head
+  `7441e9fae142a67a9d30075ac4c28127978cc750` passed documentation-only run
+  `31310482277` in one 40-second Linux allocation. All 464 architecture tests,
+  strict docs, reproducible build, wheel smoke, and release smoke passed; the
+  desktop umbrella had zero steps and was skipped. The PR had zero reviews,
+  comments, or threads. Verified squash
+  `7764ea32645c3455fb08bfbd5a3c4e2d8cabbd47` has exact reviewed tree
+  `d2ea7fe46d4a807c17f896ba0cfaa87e2f499a44`, sole parent the M50 feature
+  squash, valid signature, and standalone DCO. No post-merge `main` run was
+  allocated and the branch is deleted locally/remotely.
+- Closeout boundary: only `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` may change. The
+  final PR must trigger zero runs/checks and contain no review/comment/thread
+  before exact-tree squash integration. M50 is otherwise complete.
 
 ## M49 public release connected-peer confinement - complete
 
