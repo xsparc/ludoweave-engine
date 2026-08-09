@@ -358,7 +358,8 @@ before comparison, redirect resolution, or body use. The status must be a non-
 boolean integer from 100 through 599. Each followed `302` must expose exactly
 one Location field through the documented header-pair list; its value must be a
 single 1-to-8,000-octet ASCII URI-reference with valid RFC 3986 characters and
-complete percent escapes. Invalid status uses content-silent
+complete percent escapes. Bracket delimiters may appear only within a parsed
+authority, not its path, query, or fragment. Invalid status uses content-silent
 `public_release.request_failed`; invalid Location metadata or resolution uses
 `public_release.redirect_failed`, and supported local causes remain chained.
 Every redirect repeats the validation.

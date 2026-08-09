@@ -170,9 +170,14 @@ def _install_responses(
             "objects.example.test",
             "/asset?token=a%2Bb",
         ),
+        (
+            "https://[2606:4700:4700::1111]/asset",
+            "2606:4700:4700::1111",
+            "/asset",
+        ),
         ("/" + "a" * 7_999, "api.github.com", "/" + "a" * 7_999),
     ),
-    ids=("relative", "cross-host", "eight-thousand-octets"),
+    ids=("relative", "cross-host", "ipv6-authority", "eight-thousand-octets"),
 )
 def test_single_bounded_uri_reference_redirects_after_metadata_validation(
     tmp_path: Path,
@@ -323,6 +328,8 @@ def test_location_requires_one_well_formed_public_header_field(
         "/asset%2",
         "/caf\u00e9",
         "/" + "a" * 8_000,
+        "/asset[stale]",
+        "?token=[bad]",
         "https://[::1",
         "::::",
     ),
@@ -335,6 +342,8 @@ def test_location_requires_one_well_formed_public_header_field(
         "incomplete-percent",
         "non-ascii",
         "over-eight-thousand-octets",
+        "brackets-in-path",
+        "brackets-in-query",
         "invalid-ipv6",
         "colon-in-first-relative-segment",
     ),
@@ -427,6 +436,7 @@ def test_m56_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
     assert framing < status < location < stream
     assert "response.getheaders()" in source
     assert "_URI_REFERENCE_PATTERN.fullmatch(location)" in source
+    assert "bracket in component" in source
 
 
 def test_m56_public_and_maintainer_docs_define_the_exact_boundary() -> None:
@@ -449,6 +459,7 @@ def test_m56_public_and_maintainer_docs_define_the_exact_boundary() -> None:
         "location",
         "single uri-reference",
         "8,000",
+        "bracket",
         "every redirect",
         "no host allowlist",
         "no workflow",

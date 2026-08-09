@@ -49,9 +49,10 @@ use, require `HTTPResponse.status` to be a non-boolean integer from 100 through
 599. A followed `302` must expose exactly one case-insensitive Location field
 through the documented header-pair list. Its value must be a single 1-to-8,000-
 octet ASCII URI-reference using valid RFC 3986 characters and complete percent
-escapes. Resolve only that validated reference, then reapply the existing
-bounded HTTPS URL policy before another request. Status failures use content-
-silent `public_release.request_failed`; Location failures use
+escapes. Bracket delimiters may occur only inside a parsed authority, not its
+path, query, or fragment. Resolve only that validated reference, then reapply
+the existing bounded HTTPS URL policy before another request. Status failures
+use content-silent `public_release.request_failed`; Location failures use
 `public_release.redirect_failed`; supported local causes remain chained.
 
 Preserve M55 framing, M54 fresh-session, M53 context-binding, M52 service-

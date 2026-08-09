@@ -33,9 +33,11 @@ For an accepted `302` response, the documented `getheaders()` collection must
 be a list of two-string tuples and contain exactly one case-insensitive
 `Location` field. Its value must be a single URI-reference from 1 through 8,000
 ASCII octets using RFC 3986 URI-reference characters and complete `%HH`
-escapes. Raw whitespace, controls, backslashes, non-ASCII characters,
-incomplete percent escapes, missing values, duplicate field lines, malformed
-header collections, and oversized references fail before another request.
+escapes. Bracket delimiters are accepted only inside the parsed authority and
+rejected in its path, query, or fragment. Raw whitespace, controls,
+backslashes, non-ASCII characters, incomplete percent escapes, missing values,
+duplicate field lines, malformed header collections, and oversized references
+fail before another request.
 
 The validated reference is resolved against the current URL. The result must
 again pass the existing bounded HTTPS URL policy before it becomes the next
@@ -78,7 +80,8 @@ signed-tag release run.
 - A redirect has one unambiguous Location field and one bounded reference using
   the accepted character and percent-escape subset before URL resolution.
 - Valid relative references, cross-host absolute references, percent escapes,
-  and exactly 8,000-octet references remain supported.
+  exactly 8,000-octet references, and valid bracketed IPv6 authorities remain
+  supported.
 - Existing direct-`200`, bounded-`302`, per-hop TLS/peer, exact-byte, timeout,
   output, and installed-smoke behavior remains authoritative.
 

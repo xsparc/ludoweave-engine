@@ -524,10 +524,11 @@ M56 validates the documented response status after M55 framing and before
 comparison, redirect resolution, or body use. The status is a non-boolean
 integer from 100 through 599. Every followed `302` exposes exactly one Location
 field whose value is a single URI-reference from 1 through 8,000 ASCII octets
-with complete percent escapes. The resolved target then repeats the bounded
-HTTPS, peer, TLS, framing, deadline, size, and exact-byte checks. RFC-0039 adds
-no host allowlist, raw parser, workflow, dependency, runtime API, release
-authority, or real public release observation.
+with complete percent escapes; bracket delimiters are permitted only in a
+parsed authority, not a path, query, or fragment. The resolved target then
+repeats the bounded HTTPS, peer, TLS, framing, deadline, size, and exact-byte
+checks. RFC-0039 adds no host allowlist, raw parser, workflow, dependency,
+runtime API, release authority, or real public release observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

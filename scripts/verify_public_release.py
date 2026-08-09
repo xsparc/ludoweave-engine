@@ -621,6 +621,12 @@ def _validated_redirect_url(
         )
     try:
         reference = urlsplit(location)
+        if any(
+            bracket in component
+            for component in (reference.path, reference.query, reference.fragment)
+            for bracket in "[]"
+        ):
+            raise ValueError("bracket delimiter outside URI authority")
         first_path_segment = reference.path.split("/", 1)[0]
         if (
             not reference.scheme

@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M56 - public release status and redirect-reference conformance
-- **Status:** Locally complete and review-clean on
-  `security/m56-http-redirect-reference`; preparing exact-head publication.
+- **Status:** Corrected candidate locally complete and review-clean on
+  `security/m56-http-redirect-reference`; preparing replacement publication.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -16,9 +16,10 @@
   599. Require every followed `302` to expose a documented header-pair list
   containing exactly one case-insensitive Location field whose value is one
   1-to-8,000-octet ASCII URI-reference with valid RFC 3986 characters and
-  complete percent escapes. Revalidate the resolved bounded HTTPS URL before
-  another request. Stable content-silent errors preserve supported local
-  causes, and every redirect repeats the complete check.
+  complete percent escapes. Permit bracket delimiters only inside the parsed
+  authority, not its path, query, or fragment. Revalidate the resolved bounded
+  HTTPS URL before another request. Stable content-silent errors preserve
+  supported local causes, and every redirect repeats the complete check.
 - **Boundary:** Relative and cross-host absolute references remain supported,
   with M49-M55 peer, TLS, framing, deadline, size, and exact-byte checks on
   every hop. No host allowlist, private response state, raw HTTP/URI parser,
@@ -40,9 +41,19 @@
   every documented benchmark validator, reproducible builds, installed-wheel
   smoke, and complete ten-artifact release smoke pass. Findings-first review
   corrected one narrow RFC wording implication, revalidated all 223 focused
-  assertions and strict docs, and found no remaining actionable issue. The
-  final record-inclusive local gate also passes. Hosted exact-head validation
-  remains pending.
+  assertions and strict docs, and found no local issue at that point. Initial
+  head `86b2d4eaf404b15100bfc7d083fe119adc3e9f11` then passed run `31328303442`
+  in exactly three Linux-first allocations, but delayed review correctly found
+  that bracket delimiters were still accepted outside URI authorities. The
+  reviewer-derived test-first probe failed those two exact path/query cases
+  while 14 controls passed; the corrected component-aware check passes all 16
+  cases, including a valid bracketed IPv6 authority. The corrected candidate
+  passes all 226 focused assertions, 604 architecture assertions, strict
+  static/docs gates, and 2,144 tests with 14 expected skips on each supported
+  Python. Real-wgpu, profiles, both vertical slices, reproducible builds,
+  isolated-wheel smoke, complete release smoke, and repeat findings-first
+  review and the final record-inclusive gate pass. A replacement exact-head
+  hosted gate remains pending.
 - **Hosted gate:** This substantive security/release-tooling change requires
   exactly three Linux-first allocations, with Windows and macOS starting only
   after Linux qualification succeeds.

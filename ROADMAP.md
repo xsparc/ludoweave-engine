@@ -836,7 +836,8 @@ non-boolean integer from 100 through 599. Every followed `302` must expose
 exactly one Location field through the documented header-pair list. Its value
 must be a single 1-to-8,000-octet ASCII URI-reference using valid RFC 3986
 characters and complete percent escapes. The resolved URL must pass the
-existing bounded HTTPS policy before the next request.
+existing bounded HTTPS policy before the next request. Bracket delimiters are
+valid only inside a parsed authority, not its path, query, or fragment.
 
 Relative and cross-host absolute references remain supported, so every hop
 repeats M49-M55 peer, TLS, framing, deadline, size, and exact-byte checks. The

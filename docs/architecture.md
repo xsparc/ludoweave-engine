@@ -1472,7 +1472,8 @@ integer, but not a boolean, from 100 through 599. Each followed `302` must expos
 a documented header-pair list containing exactly one case-insensitive Location
 field. Its value must be a single URI-reference from 1 through 8,000 ASCII
 octets, use RFC 3986 reference characters, and contain only complete percent
-escapes.
+escapes. Bracket delimiters are permitted only inside a parsed authority and
+are rejected in its path, query, or fragment.
 
 Only the validated Location is resolved against the current URL. The resolved
 value must pass the existing bounded HTTPS URL policy before it becomes the
