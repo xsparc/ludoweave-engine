@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0038 resolves M55 public release HTTP response-framing conformance. Every
+response must expose documented HTTP/1.1 version `11`; transfer encoding is
+absent or exactly `chunked` case-insensitively, cannot coexist with content
+length, and any present content length is a string before existing bounded
+checks. Every redirect repeats the validation before status or body use. This
+adds no private response-state dependency, raw HTTP parser, alternate client,
+workflow, dependency, runtime API, or release authority and makes no general
+request-smuggling claim. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0037 resolves M54 public release TLS session freshness. Every fixed API or
 bounded redirected asset connection must report `session_reused` as exactly
 `False` after the handshake and M53 binding, before service identity,

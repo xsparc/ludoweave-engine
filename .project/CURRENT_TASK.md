@@ -1,49 +1,38 @@
 # Current Task
 
-- **Task:** M54 - public release TLS session freshness
-- **Status:** Feature PR #114 and integration-record PR #115 are fully
-  validated and squash-integrated; publishing the exact three-file closeout
-  record on `records/m54-closeout`.
+- **Task:** M55 - public release HTTP response framing
+- **Status:** The exact 24-path candidate on
+  `security/m55-http-response-framing` is locally validated and review-clean;
+  DCO commit, ready pull request, and hosted exact-head validation remain.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** The feature began from exact clean synchronized M53 closeout
-  `fe585f8bd2313feac39b70cadf088c57bbb1960e`. The closeout record begins from
-  GitHub-verified M54 integration-record squash
-  `50a14e0674c4e7468faf1c8ec4490846255558ce`; only `main` and this intended
-  local closeout branch exist, with no remote working branch, open pull request,
-  tag, release, or post-merge `main` run.
-- **Outcome:** Observe after the handshake that every actual public-release TLS
-  socket reports a fresh, non-reused session before later TLS evidence or HTTP
-  transmission.
-- **Acceptance:** After M49 peer confinement and M53 exact context binding,
-  require `session_reused` to be exactly `False` before M52 service identity,
-  M51 negotiated-session inspection, or a request. Every redirect repeats the
-  observation independently. Missing, unsupported, malformed, resumed, and
-  raising observations fail content-silently under `public_release.tls_failed`
-  with an available local cause chained.
+- **Base:** Exact clean synchronized M54 closeout
+  `aab15d601eb4402213f2e058f270237b964f1000`, with only `main` present and no
+  open pull request, tag, release, or post-closeout `main` run.
+- **Outcome:** Validate documented HTTP/1.1 response framing on every public-
+  release response before status, redirect, or body data is consumed.
+- **Acceptance:** Require response version integer `11`; permit
+  `Transfer-Encoding` only when its string value is exactly `chunked` under
+  case-insensitive comparison; reject transfer coding with `Content-Length`;
+  and require any content length to be a string before existing syntax and
+  bounds. Repeat on every redirect. Stable content-silent failures preserve a
+  supported local cause.
 - **Boundary:** No workflow, runner allocation, action, permission, trigger,
   credential, release mutation, dependency, lock, version, runtime package,
-  public API, session cache, session assignment, ticket control, custom TLS
-  implementation, trust replacement, pinning, certificate/chain parser,
-  revocation, channel binding, proxy, or network sandbox. The reported value
-  does not independently prove a full handshake or certificate exchange.
-  Fixture/PR evidence is not a real public release observation.
+  public API, private response-state dependency, raw HTTP/chunk parser,
+  alternate client, HTTP/2 or HTTP/3, proxy, decompression, retry, cache, or
+  network sandbox. Fixture/PR evidence is not a real public release observation
+  or a general request-smuggling defense.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Evidence:** Feature head `d5d02a38ea302c0e314f966376e267c45508d14b`
-  passed run `31321661693` in exactly three Linux-first allocations. Every
-  static, supported-Python, real-graphics, profile, sample, reproducible-build,
-  installed-wheel, and release-smoke step passed. Delayed review found no
-  review, comment, or thread. Squash `c333f2b9aad98b9a55d986076fe8b09153d30762`
-  reproduces the exact reviewed tree with the M53 closeout as sole parent,
-  valid GitHub signature, and standalone DCO. The feature branch is deleted
-  locally/remotely; no post-merge run, tag, or release exists.
-  Four-file integration head `baec3a2bac0c0bdd8dd4bceb66cdb6e26973538b`
-  passed run `31322470238` in one 37-second Linux allocation; its desktop
-  umbrella skipped with zero steps. Integration squash
-  `50a14e0674c4e7468faf1c8ec4490846255558ce` reproduces the exact reviewed
-  record tree with the feature squash as sole parent, valid GitHub signature,
-  and standalone DCO. The integration branch is deleted locally/remotely.
-- **Closeout gate:** This exact three-file `.project/**` record must allocate
-  no hosted run or check.
+- **Evidence:** Official Python 3.14 and RFC 9112 review defines the public
+  metadata and ambiguity boundary. All 157 inherited M47-M54 assertions passed
+  after compatible valid fakes exposed `version=11`; all 30 M55 behavior
+  assertions excluding docs passed, then all 188 focused M47-M55 assertions and
+  strict docs passed after RFC/public/maintainer documentation was added. All
+  supported-Python, real-graphics, profile, vertical-slice, benchmark,
+  reproducible-build, installed-wheel, and release-smoke gates pass locally;
+  findings-first review has no actionable issue.
+- **Hosted gate:** A substantive ready PR must allocate exactly three
+  Linux-first jobs, followed only by Windows and macOS after Linux succeeds.

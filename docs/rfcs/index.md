@@ -42,3 +42,4 @@ was adopted.
 - [RFC-0035: observe public release TLS service identity](0035-public-release-tls-service-identity.md)
 - [RFC-0036: bind the public release socket to its exact TLS context](0036-public-release-tls-context-binding.md)
 - [RFC-0037: require fresh public release TLS sessions](0037-public-release-tls-session-freshness.md)
+- [RFC-0038: constrain public release HTTP response framing](0038-public-release-http-response-framing.md)

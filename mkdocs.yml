@@ -78,6 +78,7 @@ nav:
       - RFC-0035 - Public release TLS service identity: rfcs/0035-public-release-tls-service-identity.md
       - RFC-0036 - Public release TLS context binding: rfcs/0036-public-release-tls-context-binding.md
       - RFC-0037 - Public release TLS session freshness: rfcs/0037-public-release-tls-session-freshness.md
+      - RFC-0038 - Public release HTTP response framing: rfcs/0038-public-release-http-response-framing.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

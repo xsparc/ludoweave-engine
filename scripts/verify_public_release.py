@@ -423,6 +423,7 @@ def _download(
             )
             _set_socket_timeout(connection, deadline)
             response = connection.getresponse()
+            length_header = _validate_http_response_framing(response)
             if response.status == 302:
                 location = response.getheader("Location")
                 redirects += 1
@@ -444,7 +445,6 @@ def _download(
                     "public release request failed",
                     code="public_release.request_failed",
                 )
-            length_header = response.getheader("Content-Length")
             if length_header is not None:
                 if not length_header.isascii() or not length_header.isdecimal():
                     raise PublicReleaseVerificationError(
@@ -490,6 +490,48 @@ def _download(
             if response is not None:
                 response.close()
             connection.close()
+
+
+def _validate_http_response_framing(
+    response: http.client.HTTPResponse,
+) -> str | None:
+    """Require unambiguous HTTP/1.1 response framing metadata."""
+
+    try:
+        version = cast(object, response.version)
+        transfer_encoding = cast(object, response.getheader("Transfer-Encoding"))
+        content_length = cast(object, response.getheader("Content-Length"))
+    except (
+        AttributeError,
+        http.client.HTTPException,
+        NotImplementedError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as error:
+        raise PublicReleaseVerificationError(
+            "public release HTTP response framing failed",
+            code="public_release.request_failed",
+        ) from error
+    if (
+        not isinstance(version, int)
+        or isinstance(version, bool)
+        or version != 11
+        or (
+            transfer_encoding is not None
+            and (
+                not isinstance(transfer_encoding, str)
+                or transfer_encoding.casefold() != "chunked"
+                or content_length is not None
+            )
+        )
+        or (content_length is not None and not isinstance(content_length, str))
+    ):
+        raise PublicReleaseVerificationError(
+            "public release HTTP response framing failed",
+            code="public_release.request_failed",
+        )
+    return content_length
 
 
 def _public_tls_context() -> ssl.SSLContext:

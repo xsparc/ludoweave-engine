@@ -1432,6 +1432,33 @@ release observation, independent/external verification, every delivery path,
 future-availability proof, immutability proof, artifact-security result, PyPI
 availability, or a supported channel. RFC-0037 defines the complete boundary.
 
+## M55 public release HTTP response-framing boundary
+
+M55 validates the documented HTTP response metadata after all connected-peer
+and TLS checks and `getresponse()`, but before status, redirect, or body use.
+Every response, including every redirect, must report `version` as the non-
+boolean integer `11`. `Transfer-Encoding` must be absent or exactly `chunked`
+under case-insensitive comparison and cannot coexist with `Content-Length`.
+Any present content length must be a string before the existing ASCII-decimal,
+maximum-size, and exact-size validation runs.
+
+The standard-library HTTP connection remains the owner and decoder. Valid
+chunked payloads reach the existing deadline-aware, byte-bounded decoded-body
+reader. Unsupported versions or transfer codings, ambiguous framing, malformed
+metadata, and inspection failures use stable, content-silent
+`public_release.request_failed`; supported local inspection errors remain
+chained. Redirect responses are checked before their status or `Location` is
+used.
+
+M55 uses no private response `chunked`, `length`, or `will_close` state, adds no
+raw HTTP or chunk parser, alternate client, HTTP/2 or HTTP/3, proxy,
+decompression, workflow, allocation, dependency, package, runtime API, or
+release authority. Fixture and pull-request evidence are not a real public
+release observation, a general request-smuggling defense, independent or
+external verification, every intermediary or delivery path, future
+availability, immutability, artifact security, PyPI availability, or a
+supported channel. RFC-0038 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

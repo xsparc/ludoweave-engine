@@ -42,31 +42,31 @@ claims.
 
 ## Current boundary
 
-M54 requires the M50-M53 portable public-release client to observe a fresh TLS
-session without widening release authority. After the handshake, M49 actual-
-peer check, and M53 exact context binding, but before M52 service identity, M51
-negotiated-session inspection, or any HTTP request, require the actual socket's
-`session_reused` value to be exactly `False`. Missing, unsupported, malformed,
-resumed, or raising observations use `public_release.tls_failed`; public output
-may disclose no reuse value, context, host, certificate, peer, URL, response,
-or credential. Every redirect repeats the freshness check independently.
+M55 requires the M47-M54 portable public-release client to validate documented
+HTTP/1.1 response framing without widening release authority. After all peer
+and TLS checks and `getresponse()`, but before status, redirect, or body use,
+require `HTTPResponse.version` to be the integer `11`; require
+`Transfer-Encoding` to be absent or exactly `chunked` case-insensitively;
+reject its coexistence with `Content-Length`; and require any content length to
+be a string before the existing ASCII-decimal and bounded-size checks. Missing,
+unsupported, malformed, ambiguous, or raising observations use the content-
+silent `public_release.request_failed` code. Every redirect repeats the check.
 
-Preserve M51's negotiated-session contract, M50's explicit per-hop context and
-key-log isolation, M49's connected-peer check, every M48 response/header/error
-bound, and all M47 identity, document, plan, ID, name, count, byte, exact-set,
-partial, validation, and installed-smoke bounds. M54 may add no session cache,
-session assignment, ticket disabling/count policy, TLS implementation
-introspection, certificate parser/export, pin/fingerprint allowlist, proxy,
-custom CA bundle, client certificate, revocation/OCSP/CRL/CT policy, channel
-binding, workflow edit, runner, action, permission, trigger, credential,
-release mutation, retry, rollback, cleanup, artifact-set, dependency, lock,
-version, runtime, package, or public-API change. It must not claim a real
-release observation, a reconstructed/full handshake, certificate exchange,
-independent/external evidence, every delivery path, future availability,
+Preserve M54's fresh-session contract, M51's negotiated-session contract,
+M50's explicit per-hop context and key-log isolation, M49's connected-peer
+check, every M48 response/header/error bound, and all M47 identity, document,
+plan, ID, name, count, byte, exact-set, partial, validation, and installed-smoke
+bounds. M55 may add no private `HTTPResponse` state, raw header/chunk parser,
+alternate client, HTTP/2 or HTTP/3, proxy, retry, decompression, cache, network
+sandbox, workflow edit, runner, action, permission, trigger, credential,
+release mutation, rollback, cleanup, artifact-set, dependency, lock, version,
+runtime, package, or public-API change. It must not claim a real release
+observation, general request-smuggling protection, independent/external
+evidence, every intermediary or delivery path, future availability,
 immutability, artifact security, PyPI, or a supported release channel. M0
-through M53 are complete, reviewed, hosted-validated, and integrated into
-`main`. M54 starts from exact verified M53 closeout commit
-`fe585f8bd2313feac39b70cadf088c57bbb1960e`.
+through M54 are complete, reviewed, hosted-validated, and integrated into
+`main`. M55 starts from exact verified M54 closeout commit
+`aab15d601eb4402213f2e058f270237b964f1000`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
@@ -78,8 +78,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   key logging, M51 validates the actual negotiated session, M52 observes the
   verified socket's reference hostname and peer certificate, and M53 proves
   the socket retained the exact client context after the handshake. M54 then
-  requires the actual socket to report that its session was not reused; none
-  of these milestones authorizes a real release.
+  requires the actual socket to report that its session was not reused, and
+  M55 validates unambiguous documented HTTP/1.1 response framing; none of these
+  milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

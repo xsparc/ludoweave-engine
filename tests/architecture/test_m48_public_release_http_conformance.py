@@ -41,6 +41,8 @@ class _CodedError(Protocol):
 
 
 class _Response:
+    version = 11
+
     def __init__(self, status: int, body: bytes, headers: Mapping[str, str]) -> None:
         self.status = status
         self._body = body
