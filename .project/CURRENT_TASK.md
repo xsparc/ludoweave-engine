@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M47 - cross-platform public consumer rehearsal
-- **Status:** Feature fully validated and squash-integrated; recording exact
-  hosted and integration evidence on `records/m47-integration`.
+- **Status:** Feature and integration record fully validated and
+  squash-integrated; closing factual records on `records/m47-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -76,3 +76,13 @@
   closeout, a GitHub-valid signature, standalone DCO, and no post-merge run.
   The feature branch is deleted locally/remotely. No real M47 tag/release
   execution exists or is claimed.
+- **Integration record:** Four-Markdown PR #93 exact head
+  `19d0c9f21701acd4fa731c567d3927177374dbce` classified documentation-only.
+  Run `31286982718` passed in one 37-second Linux allocation with 405
+  architecture tests, strict docs, reproducible build, wheel smoke, and
+  release smoke; the desktop umbrella job had zero steps and was skipped.
+  The PR had no review, comment, or thread. Verified squash
+  `7bea262210afd5b22265fede596d2d5117b14854` has exact reviewed tree, sole
+  parent the M47 feature squash, a GitHub-valid signature, standalone DCO, and
+  no post-merge run. Its branch is deleted locally/remotely. Only this
+  three-file zero-run closeout remains before selecting the next milestone.
