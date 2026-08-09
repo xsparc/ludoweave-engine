@@ -55,7 +55,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M44 published release attestation integrity | PR #83 passed exact-source SLSA provenance policy for every retrieved asset plus SPDX wheel-SBOM verification in three bounded hosted allocations, then squash-integrated with unchanged release authority |
 | Done | M45 public release consumer-path integrity | PR #86 passed credential-free exact-ID public document/assets, complete revalidation, installed release smoke, and the three-allocation hosted gate before verified squash integration |
 | Done | M46 fresh-runner public consumer rehearsal | PR #89 corrected Bash 3.2 plan reuse, passed the exact three-allocation hosted gate, and squash-integrated the separate read-only same-workflow consumer without new release authority |
-| Active | M47 cross-platform public consumer rehearsal | Portable bounded verifier, exact Ubuntu/Windows/macOS tag-only matrix, unchanged pull-request allocations and release authority, plus cross-platform hosted validation |
+| Done | M47 cross-platform public consumer rehearsal | PR #92 passed the exact three-allocation hosted gate and squash-integrated the portable verifier plus Ubuntu/Windows/macOS tag-only consumer matrix with unchanged pull-request allocations and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -599,6 +599,15 @@ credential, trigger, release mutation, publication authority, artifact,
 dependency, runtime, package, or public-API change. Same-workflow cross-platform
 evidence is not independent/external verification; a real pass remains
 unclaimed until an authorized signed-tag release run executes.
+
+PR #92 exact head `fdddaa986b647e68a0a027445c11547b878ad246` passed run
+`31286321895` in exactly three allocations: Linux qualified first in 7m20s,
+then macOS passed in 2m40s and Windows in 3m55s. The PR had no review, comment,
+or thread. Verified squash `c3f5d9c4b9f21315b7ae8f113cc643f978d75746`
+has exact reviewed tree `e222ebff0655b9d86548bab6e8d19fb79ba3afc5`,
+sole parent the M46 closeout, valid GitHub signature, and standalone DCO. No
+post-merge run was allocated, the feature branch is deleted, and no real tag or
+release was created.
 
 ## Good-first contribution queue
 
