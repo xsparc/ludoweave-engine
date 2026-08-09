@@ -43,7 +43,8 @@ def test_public_document_and_assets_use_exact_bounded_https_requests() -> None:
 
     for required in (
         "http.client.HTTPSConnection",
-        "ssl.create_default_context()",
+        "ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)",
+        "context.load_default_certs(ssl.Purpose.SERVER_AUTH)",
         "_MAX_ASSET_REDIRECTS = 3",
         "_CONNECT_TIMEOUT_SECONDS = 10.0",
         "_REQUEST_TIMEOUT_SECONDS = 30.0",

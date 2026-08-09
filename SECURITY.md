@@ -61,6 +61,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M49 explicitly connects and inspects the actual port-443 TLS peer before
   sending each fixed API or redirected asset request. Only globally reachable
   unicast IPv4/IPv6 is accepted; mapped IPv6 uses its embedded IPv4 identity.
+- M50 creates an explicit verified TLS client context per hop, retains system
+  server-auth trust and TLS 1.2-or-newer certificate/hostname validation, and
+  prevents ambient `SSLKEYLOGFILE` from enabling session-secret logging or
+  creating its target.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -107,6 +111,9 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M49 does not provide a hostname/IP allowlist, separate DNS preflight, DNSSEC,
   packet-level network sandbox, every-CDN result, real release observation,
   independent verification, retry, cleanup, mutation, or new authority.
+- M50 does not replace system trust policy, add certificate pinning, disable
+  platform trust configuration, inspect every negotiated cipher/session, or
+  establish a real release observation or new release authority.
 
 ## Initial security boundaries
 

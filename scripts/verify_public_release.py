@@ -370,7 +370,7 @@ def _download(
                 hostname,
                 parsed.port,
                 timeout=min(_CONNECT_TIMEOUT_SECONDS, _remaining(deadline)),
-                context=ssl.create_default_context(),
+                context=_public_tls_context(),
             )
         except (OSError, ValueError) as error:
             raise PublicReleaseVerificationError(
@@ -463,6 +463,34 @@ def _download(
             if response is not None:
                 response.close()
             connection.close()
+
+
+def _public_tls_context() -> ssl.SSLContext:
+    """Create one verified client context without ambient TLS key logging."""
+
+    try:
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        context.minimum_version = ssl.TLSVersion.TLSv1_2
+        context.verify_flags |= ssl.VERIFY_X509_PARTIAL_CHAIN
+        context.verify_flags |= ssl.VERIFY_X509_STRICT
+        context.load_default_certs(ssl.Purpose.SERVER_AUTH)
+    except (OSError, ValueError) as error:
+        raise PublicReleaseVerificationError(
+            "public release TLS context failed",
+            code="public_release.tls_failed",
+        ) from error
+    if (
+        context.protocol != ssl.PROTOCOL_TLS_CLIENT
+        or context.verify_mode != ssl.CERT_REQUIRED
+        or not context.check_hostname
+        or context.minimum_version != ssl.TLSVersion.TLSv1_2
+        or getattr(context, "keylog_filename", None) is not None
+    ):
+        raise PublicReleaseVerificationError(
+            "public release TLS context failed",
+            code="public_release.tls_failed",
+        )
+    return context
 
 
 def _connect_public_peer(

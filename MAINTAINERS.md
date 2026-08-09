@@ -42,28 +42,27 @@ claims.
 
 ## Current boundary
 
-M49 confines M48's portable public-release client to globally reachable
-connected peers without widening release authority. Before transmitting an
-HTTP request, explicitly connect each fixed API or redirected asset hop,
-inspect the actual socket peer, require actual port 443, normalize IPv4-mapped
-IPv6, and accept only globally reachable unicast IPv4/IPv6. Apply the check to
-every bounded hop. Non-global peers use `public_release.peer_forbidden`;
-connect/inspection timeouts retain `public_release.request_timeout`; malformed,
-unavailable, wrong-port, or other peer inspection failures retain
-`public_release.request_failed`. Public output may disclose no host, address,
-URL, or response content.
+M50 isolates M49's portable public-release client from ambient TLS key logging
+without widening release authority. Create one explicit
+`PROTOCOL_TLS_CLIENT` context per fixed API or redirected asset hop, load
+system server-auth roots, require certificate and hostname validation, set TLS
+1.2 as the minimum, retain strict/partial-chain X.509 flags, and require key
+logging to remain disabled even when `SSLKEYLOGFILE` exists. Context creation
+or validation failures use `public_release.tls_failed`; public output may
+disclose no environment value or local path.
 
-Preserve M48's exact response/header/error contract and all M47 identity, TLS,
-document, plan, ID, name, count, byte, exact-set, partial, validation, and
-installed-smoke bounds. M49 may add no hostname/IP allowlist, separate DNS
-preflight, runner, action, permission, workflow edit, trigger, credential,
-release mutation, retry, rollback, cleanup, artifact-set, dependency, lock,
-version, runtime, package, or public-API change. It must not claim a network
-sandbox, real release observation, independent/external evidence, every
-delivery path, future availability, immutability, artifact security, PyPI, or a
-supported release channel. M0 through M48 are complete, reviewed,
-hosted-validated, and integrated into `main`. M49 starts from exact verified
-M48 closeout commit `049cdbcf2769a1c2359593f642e37697d5bf7400`.
+Preserve M49's connected-peer check and every M48 response/header/error bound,
+plus all M47 identity, document, plan, ID, name, count, byte, exact-set,
+partial, validation, and installed-smoke bounds. M50 may add no proxy, custom
+CA bundle, certificate/SPKI pin, client certificate, workflow edit, runner,
+action, permission, trigger, credential, release mutation, retry, rollback,
+cleanup, artifact-set, dependency, lock, version, runtime, package, or
+public-API change. It must not claim full environment isolation, a real release
+observation, independent/external evidence, every delivery path, future
+availability, immutability, artifact security, PyPI, or a supported release
+channel. M0 through M49 are complete, reviewed, hosted-validated, and
+integrated into `main`. M50 starts from exact verified M49 closeout commit
+`f6214992b02a9ef0bc44d6a9e4e6d72dc9d33de0`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
@@ -71,7 +70,8 @@ checks constrained provenance and wheel-SBOM attestations, M45 repeats exact
 public retrieval without a release credential, and M46 separates that public
 consumer observation onto a fresh runner, and M47 widens only its verifier and
   cross-platform operating-system portability. M48 narrows response/failure
-  semantics and M49 confines the actual connected peer; none of these
+  semantics, M49 confines the actual connected peer, and M50 disables ambient
+  TLS key logging; none of these
   milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final

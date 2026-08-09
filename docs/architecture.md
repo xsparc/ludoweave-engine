@@ -1281,6 +1281,34 @@ independent/external verification, every CDN path, future availability,
 immutability, artifact security, PyPI, or a supported channel. RFC-0032 defines
 the complete boundary.
 
+## M50 public release TLS key-log isolation boundary
+
+M50 removes the portable client's ambient TLS debugging hook. Each fixed API
+or bounded redirect hop receives a newly constructed `PROTOCOL_TLS_CLIENT`
+context. The verifier explicitly loads system server-auth roots, requires
+certificate and hostname validation, sets TLS 1.2 as the minimum protocol
+version, and enables strict plus partial-chain X.509 verification. It verifies
+that TLS key logging remains disabled before the context reaches an
+`HTTPSConnection`.
+
+The standard-library default-context helper is not used because supported
+CPython intentionally enables key logging when `SSLKEYLOGFILE` is present.
+That behavior can append TLS session secrets to an ambient path. M50 neither
+removes nor changes the process environment: the variable remains untouched,
+its target is not created, and an independent context is built for every hop.
+Context creation, root loading, or invariant failure uses the stable,
+content-silent `public_release.tls_failed` code.
+
+M50 retains M49 connected-peer confinement and all M48/M47 request, response,
+identity, deadline, size, path, exact-validation, and installed-smoke bounds.
+It adds no custom CA bundle, certificate/SPKI pinning, client certificate,
+proxy, workflow, allocation, permission, credential, dependency, runtime,
+package, public API, retry, cleanup, or release mutation. System trust remains
+the trust boundary. Pull-request fixtures are not a real public release
+observation, negotiated-session audit, independent/external verification,
+future-availability proof, immutability proof, artifact-security result, PyPI
+availability, or a supported channel. RFC-0033 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
