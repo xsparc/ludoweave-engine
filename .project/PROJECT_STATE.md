@@ -38,7 +38,7 @@
 - Local status: final fail-fast lock, format, lint, type, architecture, strict-
   docs, reproducible-build, installed-wheel, complete release-smoke,
   whitespace, and Git-object gates pass. The final evidence-inclusive static
-  gate also passes; hosted exact-head validation remains pending.
+  gate and corrected exact-head hosted validation also pass.
 - Hosted review correction: initial exact head
   `77812ae6b25635a9831b43088bd4397645fb4adf` passed run `31324078779` in
   exactly three Linux-first allocations. Delayed review then correctly found
