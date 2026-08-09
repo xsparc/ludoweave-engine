@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0034 resolves M51 public release negotiated TLS-session conformance. Every
+fixed API or redirected asset connection advertises only `http/1.1` and, after
+actual connected-peer validation but before HTTP transmission, requires exactly
+TLSv1.2 or TLSv1.3, a well-formed cipher report with at least 128 secret bits,
+no TLS compression, and ALPN `http/1.1` or no negotiated ALPN. There is no
+cipher-name allowlist, workflow/dependency/release mutation, or authority
+change. A real pass remains pending an explicitly authorized signed-tag release
+execution.
+
 RFC-0033 resolves M50 public release TLS key-log isolation. Every public API or
 asset hop receives a new explicit verified client context with system
 server-auth roots, certificate/hostname validation, TLS 1.2 minimum, strict

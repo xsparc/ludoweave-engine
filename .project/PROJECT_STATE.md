@@ -1,5 +1,50 @@
 # Project State
 
+## M51 public release negotiated TLS-session conformance - implementation ready
+
+- Base: clean synchronized M50 closeout
+  `53f3804010f1556ecaff21a61b1e9c405a26e203`, with only `main` present
+  locally/remotely and no open pull request, tag, or GitHub release.
+- Outcome: advertise only HTTP/1.1 and validate the actual negotiated TLS
+  session on every fixed API or bounded redirected asset hop after connected-
+  peer confinement and before HTTP transmission.
+- Session boundary: require exactly TLSv1.2 or TLSv1.3, a well-formed three-
+  field cipher report with at least 128 integer secret bits, no TLS
+  compression, and ALPN `http/1.1` or no negotiated ALPN.
+- Ordering and failure: each hop connects, validates its actual global port-443
+  peer, validates the session, and only then sends the request. Missing,
+  unsupported, malformed, or unexpected session state uses content-silent
+  `public_release.tls_failed`; the existing connection close path is retained.
+- Preserved: M50 explicit context/key-log isolation, M49 connected-peer
+  confinement, M48 response/header/failure conformance, and every M47 identity,
+  deadline, size, path, exact-validation, and installed-smoke bound.
+- No scope growth: no cipher-name allowlist, custom trust, certificate/SPKI pin,
+  revocation or ticket policy, TLS fingerprint, workflow, runner, action,
+  permission, trigger, credential, release mutation, retry, cleanup,
+  dependency, lock, package version, runtime package, or public API change.
+- Decision: accepted RFC-0034 records the exact session, ownership, failure,
+  authority, and non-claim boundary. A future protocol label requires another
+  reviewed decision rather than implicit acceptance.
+- Local evidence: all 294 Python files format cleanly; Ruff and strict Pyright
+  report zero findings; all 485 architecture assertions pass; strict docs
+  build passes. Complete graphics-enabled CPython 3.12.13, 3.13.13, and 3.14.5
+  suites each pass 2,025 tests with 14 expected skips. Ten real-wgpu tests,
+  both three-repeat profile contracts, Clockwork Arena, Agent World Builder,
+  and all documented M1-M4 benchmark validators pass. Candidate-tree
+  reproducible-distribution, isolated-wheel, and release-smoke identities are
+  recorded in `.project/TEST_EVIDENCE.md`; exact-head hosted artifacts remain
+  pending pull-request validation.
+- Review correction: initial PR #105 head `cdd3cc8fd943861072efafed593462fac7ffc3f4`
+  passed its exact three-allocation hosted gate, but pre-merge review found that
+  an unhashable malformed negotiated-version value could escape the stable
+  failure boundary. The corrected candidate first type-checks the version and
+  adds sequence/mapping regressions; the initial head will not be merged.
+- Non-claim: no real signed tag or release was created or exercised. Fixture
+  and pull-request evidence are not a real public release observation,
+  independent/external verification, every delivery path, future-availability
+  or immutability proof, artifact-security result, PyPI availability, or a
+  supported release channel.
+
 ## M50 public release TLS key-log isolation - complete
 
 - Base: clean synchronized M49 closeout

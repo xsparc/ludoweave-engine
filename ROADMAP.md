@@ -59,6 +59,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M48 public release HTTP response conformance | PR #95 passed the documented `200`/`302` response policy, API-header confinement, stable timeout/transport/output failures, and unchanged workflow/release authority |
 | Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
 | Done | M50 public release TLS key-log isolation | PR #102 passed explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and the exact three-allocation gate before verified squash integration |
+| In progress | M51 public release negotiated TLS-session conformance | Require TLSv1.2/TLSv1.3, a well-formed 128-bit-or-stronger cipher report, no compression, and HTTP/1.1-compatible ALPN before every request without changing release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -695,6 +696,24 @@ thread. GitHub-verified squash
 `2ec52b638069d23aabd68af04f3ada426aab803d`, sole parent the M49 closeout,
 valid signature, and standalone DCO. No post-merge run was allocated, the
 feature branch is deleted, and no real tag or release was created.
+
+M51 starts from verified M50 closeout commit
+`53f3804010f1556ecaff21a61b1e9c405a26e203`. It advertises only HTTP/1.1 and,
+after connected-peer confinement but before HTTP transmission, validates the
+actual negotiated TLS version, cipher report, compression, and ALPN on every
+fixed API or redirected asset hop. The accepted session is exactly TLSv1.2 or
+TLSv1.3, at least 128 reported secret bits, no compression, and ALPN
+`http/1.1` or no negotiated ALPN. Failures remain content-silent under
+`public_release.tls_failed`.
+
+The slice adds no cipher-name allowlist, custom trust, certificate/SPKI pin,
+revocation policy, TLS fingerprint, workflow, runner allocation, action,
+permission, credential, trigger, release mutation, retry, cleanup, dependency,
+runtime, package, or public API. Fixture and pull-request evidence are not a
+real public release observation, independent/external verification, every
+delivery path, future availability, immutability, artifact security, PyPI, or
+a supported channel. A real pass remains unclaimed until an authorized signed-
+tag release run executes.
 
 ## Good-first contribution queue
 

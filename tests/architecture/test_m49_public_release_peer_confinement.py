@@ -83,6 +83,18 @@ class _PeerSocket:
     def settimeout(self, value: float) -> None:
         self.timeouts.append(value)
 
+    def version(self) -> str:
+        return "TLSv1.3"
+
+    def cipher(self) -> tuple[str, str, int]:
+        return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
+
+    def compression(self) -> None:
+        return None
+
+    def selected_alpn_protocol(self) -> str:
+        return "http/1.1"
+
 
 def _load() -> tuple[ModuleType, _Download, type[Exception]]:
     spec = importlib.util.spec_from_file_location("m49_public_release_verifier", _VERIFIER)
@@ -346,6 +358,18 @@ def test_malformed_or_wrong_port_peer_fails_closed(
 
         def getpeername(self) -> object:
             return peer
+
+        def version(self) -> str:
+            return "TLSv1.3"
+
+        def cipher(self) -> tuple[str, str, int]:
+            return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
+
+        def compression(self) -> None:
+            return None
+
+        def selected_alpn_protocol(self) -> str:
+            return "http/1.1"
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:

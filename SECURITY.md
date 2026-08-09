@@ -65,6 +65,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   server-auth trust and TLS 1.2-or-newer certificate/hostname validation, and
   prevents ambient `SSLKEYLOGFILE` from enabling session-secret logging or
   creating its target.
+- M51 advertises only HTTP/1.1 and validates the actual negotiated session
+  before every request: exactly TLSv1.2 or TLSv1.3, a well-formed cipher report
+  with at least 128 secret bits, no TLS compression, and ALPN `http/1.1` or no
+  negotiated ALPN.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -114,6 +118,10 @@ Maintainers will acknowledge the report through the same private channel, assess
 - M50 does not replace system trust policy, add certificate pinning, disable
   platform trust configuration, inspect every negotiated cipher/session, or
   establish a real release observation or new release authority.
+- M51 adds no cipher-name allowlist, custom trust, certificate/SPKI pin,
+  revocation policy, TLS fingerprint, session-ticket policy, workflow,
+  dependency, or release authority. Fixture checks are not a real public
+  release observation or a claim about every TLS endpoint or future protocol.
 
 ## Initial security boundaries
 

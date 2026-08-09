@@ -74,6 +74,18 @@ class _PeerSocket:
     def settimeout(self, _value: float) -> None:
         return None
 
+    def version(self) -> str:
+        return "TLSv1.3"
+
+    def cipher(self) -> tuple[str, str, int]:
+        return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
+
+    def compression(self) -> None:
+        return None
+
+    def selected_alpn_protocol(self) -> str:
+        return "http/1.1"
+
 
 def _load() -> tuple[
     ModuleType,
@@ -271,6 +283,9 @@ def test_tls_context_invariant_failure_fails_closed(
         verify_flags = ssl.VerifyFlags(0)
 
         def load_default_certs(self, _purpose: ssl.Purpose) -> None:
+            return None
+
+        def set_alpn_protocols(self, _protocols: list[str]) -> None:
             return None
 
     def insecure_context(_protocol: object) -> ssl.SSLContext:

@@ -1309,6 +1309,39 @@ observation, negotiated-session audit, independent/external verification,
 future-availability proof, immutability proof, artifact-security result, PyPI
 availability, or a supported channel. RFC-0033 defines the complete boundary.
 
+## M51 public release negotiated TLS-session boundary
+
+M51 validates the actual session established by each M50 context. The context
+advertises only `http/1.1`. After the M49 actual connected-peer check and
+before any HTTP method, path, or header is sent, the verifier reads the socket's
+negotiated version, cipher, compression, and ALPN state.
+
+Only TLSv1.2 and TLSv1.3 are accepted. The cipher report must contain a non-
+empty name, a non-empty protocol-that-defines-the-cipher field, and an integer
+secret-bit count of at least 128. TLS compression must be absent. Negotiated
+ALPN may be `http/1.1` or `None`; any other explicit application protocol is
+rejected. There is no cipher-name allowlist, and the cipher report's protocol
+field need not equal the negotiated TLS version. A future protocol label must
+be admitted by a reviewed decision rather than silently widening this exact
+contract.
+
+The connection owns the negotiated socket. Its existing close path remains
+authoritative after session validation succeeds or fails. Every redirect owns
+a new context, connection, peer check, and session check. Missing accessors,
+malformed values, unsupported inspection, or failed invariants use the stable,
+content-silent `public_release.tls_failed` code and occur before HTTP
+transmission.
+
+M51 retains every M50-M47 trust, key-log, peer, response, identity, deadline,
+size, path, exact-validation, and installed-smoke bound. It adds no custom
+trust, certificate/SPKI pinning, revocation policy, TLS fingerprint, workflow,
+allocation, permission, credential, dependency, runtime, package, public API,
+retry, cleanup, or release mutation. Fixture and pull-request evidence are not
+a real public release observation, independent/external verification, every
+delivery path, future-availability proof, immutability proof, artifact-security
+result, PyPI availability, or a supported channel. RFC-0034 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

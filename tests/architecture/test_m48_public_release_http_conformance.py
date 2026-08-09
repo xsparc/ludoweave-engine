@@ -70,6 +70,18 @@ class _Socket:
     def getpeername(self) -> tuple[str, int]:
         return ("8.8.8.8", 443)
 
+    def version(self) -> str:
+        return "TLSv1.3"
+
+    def cipher(self) -> tuple[str, str, int]:
+        return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
+
+    def compression(self) -> None:
+        return None
+
+    def selected_alpn_protocol(self) -> str:
+        return "http/1.1"
+
 
 def _load() -> tuple[ModuleType, _Download, type[Exception]]:
     spec = importlib.util.spec_from_file_location("m48_public_release_verifier", _VERIFIER)
@@ -309,6 +321,18 @@ def test_socket_timeout_update_failure_uses_timeout_code(
 
         def settimeout(self, _value: float) -> None:
             raise TimeoutError
+
+        def version(self) -> str:
+            return "TLSv1.3"
+
+        def cipher(self) -> tuple[str, str, int]:
+            return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
+
+        def compression(self) -> None:
+            return None
+
+        def selected_alpn_protocol(self) -> str:
+            return "http/1.1"
 
     class FakeConnection:
         sock = TimeoutSocket()
