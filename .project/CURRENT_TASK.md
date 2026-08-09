@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M47 - cross-platform public consumer rehearsal
-- **Status:** Final local gate complete on
-  `release/m47-cross-platform-consumer`; reviewing the exact diff before
-  commit and hosted validation.
+- **Status:** Feature fully validated and squash-integrated; recording exact
+  hosted and integration evidence on `records/m47-integration`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -68,5 +67,12 @@
   release smoke pass locally. The final static gate covers 290 formatted files,
   zero Ruff/Pyright findings, 405 architecture assertions, strict docs/YAML,
   and reproducible wheel/sdist bytes; isolated wheel and complete release smoke
-  pass. Exact diff review and the three-allocation hosted gate remain. No real
-  M47 tag/release execution exists or is claimed.
+  pass. Ready PR #92 exact head
+  `fdddaa986b647e68a0a027445c11547b878ad246` passed run `31286321895` in
+  exactly three allocations: Linux first in 7m20s, then macOS in 2m40s and
+  Windows in 3m55s. The PR was clean with no review, comment, or thread.
+  Verified squash `c3f5d9c4b9f21315b7ae8f113cc643f978d75746` has exact reviewed tree
+  `e222ebff0655b9d86548bab6e8d19fb79ba3afc5`, sole parent the M46
+  closeout, a GitHub-valid signature, standalone DCO, and no post-merge run.
+  The feature branch is deleted locally/remotely. No real M47 tag/release
+  execution exists or is claimed.

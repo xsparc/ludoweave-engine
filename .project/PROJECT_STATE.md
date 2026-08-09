@@ -1,6 +1,6 @@
 # Project State
 
-## M47 cross-platform public consumer rehearsal - in progress
+## M47 cross-platform public consumer rehearsal - complete
 
 - Base: exact verified M46 closeout
   `2d27b139c6bf4a130ca97e7f0b518f6ebfe191c5`; clean synchronized `main`
@@ -26,7 +26,20 @@
   slices, and complete graphics-enabled CPython 3.12-3.14 suites pass. Each
   supported interpreter passed 1,945 tests with 14 expected skips. Final
   reproducible distribution, isolated-wheel smoke, and complete release smoke
-  pass; hosted exact-head evidence remains required.
+  pass.
+- Hosted evidence: ready PR #92 head
+  `fdddaa986b647e68a0a027445c11547b878ad246` passed run `31286321895` in
+  exactly three allocations. Linux qualified first in 440 seconds; macOS then
+  passed in 160 seconds and Windows in 235 seconds. Linux passed 1,949 baseline
+  tests and Ubuntu CPython 3.13/3.14 each passed 1,949 with one skip. Each
+  desktop passed ten real-wgpu tests, both vertical slices, profiling, and
+  1,949 CPython 3.14 tests with one skip.
+- Integration: PR #92 was clean and mergeable with no review, comment, or
+  thread. GitHub-verified squash
+  `c3f5d9c4b9f21315b7ae8f113cc643f978d75746` has exact reviewed tree
+  `e222ebff0655b9d86548bab6e8d19fb79ba3afc5`, sole parent the M46 closeout,
+  and standalone DCO. No post-merge run was allocated, and the feature branch
+  is deleted locally/remotely. No signed-tag release rehearsal ran.
 
 ## M46 fresh-runner public consumer rehearsal - complete
 
