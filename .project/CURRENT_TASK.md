@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M48 - public release HTTP response conformance
-- **Status:** Feature fully validated and squash-integrated; recording exact
-  hosted and integration evidence on `records/m48-integration`.
+- **Status:** Feature and integration record fully validated and
+  squash-integrated; closing factual records on `records/m48-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -73,3 +73,13 @@
   closeout, a GitHub-valid signature, standalone DCO, and no post-merge run.
   The feature branch is deleted locally/remotely. No real M48 tag/release
   execution exists or is claimed.
+- **Integration record:** Four-Markdown PR #96 exact head
+  `609e0977ba879be84270c2d4fd47a8b9ad23b4c5` classified documentation-only.
+  Run `31288912878` passed in one 33-second Linux allocation with 426
+  architecture tests, strict docs, reproducible build, wheel smoke, and
+  release smoke; desktop umbrella job `93182693323` had zero steps and was
+  skipped. The PR had no review, comment, or thread. Verified squash
+  `ee98b591abb8e8ecd37b8fa32c01acb0ce279b52` has exact reviewed tree, sole
+  parent the M48 feature squash, a GitHub-valid signature, standalone DCO, and
+  no post-merge run. Its branch is deleted locally/remotely. Only this
+  three-file zero-run closeout remains before selecting the next milestone.
