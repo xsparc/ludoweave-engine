@@ -80,6 +80,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   `session_reused` observation is exactly `False` before service identity,
   negotiated-session inspection, or any request. Every redirect repeats the
   freshness check independently.
+- M55 validates documented HTTP/1.1-class response metadata on every response
+  before status, redirect, or body use. The public version value must be integer
+  `11`; this does not prove an exact raw status-line token because CPython may
+  normalize another `HTTP/1.x` value. `Transfer-Encoding` must be absent or
+  exactly `chunked` case-insensitively, cannot coexist with `Content-Length`,
+  and any present content length remains a string for existing bounded checks.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -148,6 +154,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   dependency, or release authority. Its `session_reused` fixture checks are
   not a real public release observation or proof of a full handshake,
   certificate exchange, every endpoint, or future connection.
+- M55 adds no private HTTP-response introspection, raw chunk parser, alternate
+  client, HTTP/2 or HTTP/3, proxy, decompression, workflow, dependency, or
+  release authority. Its framing fixtures are not a real public release
+  observation, exact status-line evidence, or a general intermediary/request-
+  smuggling defense.
 
 ## Initial security boundaries
 

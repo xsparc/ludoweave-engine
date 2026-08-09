@@ -42,6 +42,8 @@ class _CodedError(Protocol):
 
 
 class _Response:
+    version = 11
+
     status = 200
 
     def __init__(self, body: bytes, *, location: str | None = None) -> None:

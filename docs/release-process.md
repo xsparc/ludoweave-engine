@@ -93,6 +93,11 @@ same-job check is not an independent or cross-platform rebuild claim; see
 22. M54 requires the actual socket's `session_reused` observation to be exactly
     `False` after the handshake and M53 binding, before service identity,
     negotiated-session inspection, or every HTTP request.
+    M55 then validates every response, including every redirect, with the
+    documented HTTP/1.1-class value `11`, absent or exactly `chunked`
+    `Transfer-Encoding`, no
+    `Transfer-Encoding`/`Content-Length` ambiguity, and a string content length
+    before status, redirect, or body use.
 23. Independently download the public assets, verify checksums and
     attestations, install the wheel in a clean environment, and run the sample
     bundle before announcing.
@@ -328,6 +333,25 @@ prove a full handshake or certificate exchange. Pull-request fixtures are not
 a real public release observation and do not replace the independent consumer
 check in maintainer gate 23. No real M54 pass exists until an authorized
 signed-tag release run executes.
+
+M55/RFC-0038 validates response framing after every `getresponse()` and before
+status, `Location`, or body use. The response version must be the documented
+HTTP/1.1-class integer value `11`. CPython can normalize another raw
+`HTTP/1.x` status-line token to `11`, so this is not exact wire-token evidence.
+`Transfer-Encoding` is absent or exactly `chunked`
+case-insensitively and cannot coexist with `Content-Length`; any present
+content length remains subject to the existing string, ASCII-decimal, maximum,
+and exact-size rules. Valid chunked bodies continue through the standard-
+library decoder and existing bounded reader. Malformed, unsupported,
+ambiguous, or raising metadata uses content-silent
+`public_release.request_failed`, repeating on every redirect.
+
+M55 changes no workflow, allocation, dependency, package, runtime API, or
+release authority and adds no private response-state dependency, raw HTTP/chunk
+parser, alternate client, HTTP/2 or HTTP/3, proxy, or general request-smuggling
+claim or exact status-line proof. Pull-request fixtures are not a real public
+release observation. No real M55 pass exists until an authorized signed-tag
+release run exercises the public path.
 
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
