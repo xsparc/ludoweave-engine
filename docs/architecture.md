@@ -1342,6 +1342,40 @@ delivery path, future-availability proof, immutability proof, artifact-security
 result, PyPI availability, or a supported channel. RFC-0034 defines the
 complete boundary.
 
+## M52 public release TLS service-identity boundary
+
+M52 observes the service identity attached to the actual verified TLS socket.
+Before opening the connection, the verifier normalizes the current URL
+hostname through built-in IDNA to its ASCII reference hostname and uses that
+reference for the hop. After M49 validates the connected peer and before M51
+reads negotiated-session state, the socket's `server_hostname` must be a non-
+empty case-insensitive match, and `getpeercert(binary_form=True)` must return a
+non-empty immutable DER peer certificate.
+
+M50's `PROTOCOL_TLS_CLIENT`, `CERT_REQUIRED`, system trust, hostname checking,
+strict X.509 flags, and per-hop context remain authoritative for path,
+validity, and certificate/hostname matching. M52 proves only that the actual
+socket retained the expected reference hostname and peer certificate; it does
+not parse, export, rematch, pin, fingerprint, or independently validate a
+certificate or chain.
+
+The connection remains the sole socket owner. Every redirect creates and
+checks an independent context, connection, peer, service identity, session,
+and close path. Missing or unsupported accessors, invalid IDNA, malformed or
+mismatched reference hostname, unavailable/non-byte certificate, or inspection
+failure uses the stable, content-silent `public_release.tls_failed` code before
+HTTP transmission.
+
+M52 retains every M51-M47 trust, key-log, peer, session, response, identity,
+deadline, size, path, exact-validation, and installed-smoke bound. It adds no
+custom trust, certificate/SPKI pinning, certificate-chain parser/export,
+revocation/OCSP/CRL/CT policy, DNSSEC, workflow, allocation, permission,
+credential, dependency, runtime, package, public API, retry, cleanup, or
+release mutation. Fixture and pull-request evidence are not a real public
+release observation, independent/external verification, every delivery path,
+future-availability proof, immutability proof, artifact-security result, PyPI
+availability, or a supported channel. RFC-0035 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

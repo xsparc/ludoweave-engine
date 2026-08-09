@@ -72,13 +72,23 @@ class _RedirectResponse(_Response):
 
 
 class _PeerSocket:
-    def __init__(self, address: str, port: int = 443) -> None:
+    def __init__(
+        self,
+        address: str,
+        port: int = 443,
+        server_hostname: str = "api.github.com",
+    ) -> None:
         self.address = address
         self.port = port
+        self.server_hostname = server_hostname
         self.timeouts: list[float] = []
 
     def getpeername(self) -> tuple[str, int]:
         return (self.address, self.port)
+
+    def getpeercert(self, *, binary_form: bool = False) -> bytes:
+        assert binary_form
+        return b"verified-leaf-certificate"
 
     def settimeout(self, value: float) -> None:
         self.timeouts.append(value)
@@ -255,7 +265,7 @@ def test_redirect_peer_is_rechecked_before_redirect_request(
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
-            self.sock = _PeerSocket(next(addresses))
+            self.sock = _PeerSocket(next(addresses), server_hostname=self.host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             requests.append(self.host)

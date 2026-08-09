@@ -68,8 +68,15 @@ class _RedirectResponse(_Response):
 
 
 class _PeerSocket:
+    def __init__(self, server_hostname: str = "api.github.com") -> None:
+        self.server_hostname = server_hostname
+
     def getpeername(self) -> tuple[str, int]:
         return ("8.8.8.8", 443)
+
+    def getpeercert(self, *, binary_form: bool = False) -> bytes:
+        assert binary_form
+        return b"verified-leaf-certificate"
 
     def settimeout(self, _value: float) -> None:
         return None
@@ -146,10 +153,11 @@ def test_ambient_keylog_path_is_not_created_or_used(
         ) -> None:
             assert timeout > 0
             contexts.append(context)
+            self.host = _host
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
-            self.sock = _PeerSocket()
+            self.sock = _PeerSocket(self.host)
 
         def request(
             self,
@@ -209,10 +217,11 @@ def test_redirect_hop_receives_an_independent_isolated_context(
         ) -> None:
             assert timeout > 0
             contexts.append(context)
+            self.host = _host
             self.sock: _PeerSocket | None = None
 
         def connect(self) -> None:
-            self.sock = _PeerSocket()
+            self.sock = _PeerSocket(self.host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None

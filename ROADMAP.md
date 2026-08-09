@@ -60,6 +60,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M49 public release connected-peer confinement | PR #99 corrected reserved/site-local handling, passed actual port-443 peer confinement in the exact three-allocation gate, and squash-integrated with unchanged workflows and release authority |
 | Done | M50 public release TLS key-log isolation | PR #102 passed explicit verified per-hop context, ambient `SSLKEYLOGFILE` noninterference, stable TLS-context failure, and the exact three-allocation gate before verified squash integration |
 | Done | M51 public release negotiated TLS-session conformance | PR #105 corrected malformed unhashable-version handling after review, passed the exact three-allocation gate, and squash-integrated pre-request TLSv1.2/TLSv1.3, cipher-strength, compression, and ALPN checks without changing release authority |
+| In progress | M52 public release TLS service-identity evidence | Observe the IDNA-normalized reference hostname and non-empty peer certificate before negotiated-session checks and HTTP, with unchanged workflows, dependencies, and release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -725,6 +726,25 @@ thread was resolved. GitHub-verified squash
 `c331ea93e5332b47a3df20906dfb6f6e77c6cdb3`, sole parent the M50 closeout,
 valid signature, and standalone DCO. No post-merge run was allocated, the
 feature branch is deleted, and no real tag or release was created.
+
+M52 starts from verified M51 closeout commit
+`047478d0c7fb873ae94aaa6e322b5b08903ed354`. After connected-peer confinement
+and before negotiated-session inspection or HTTP transmission, it normalizes
+the current URL hostname with built-in IDNA, requires the actual socket's
+reference hostname to match case-insensitively, and requires a non-empty DER
+peer certificate on every fixed API or redirected asset hop. The existing M50
+verified context remains authoritative for certificate-path, validity, and
+hostname matching. Failures remain content-silent under
+`public_release.tls_failed`.
+
+The slice adds no certificate parser/export, custom trust, certificate/SPKI
+pin, fingerprint allowlist, revocation/OCSP/CRL/CT policy, DNSSEC, workflow,
+runner allocation, action, permission, credential, trigger, release mutation,
+retry, cleanup, dependency, runtime, package, or public API. Fixture and pull-
+request evidence are not a real public release observation, independent or
+external verification, every TLS/CDN path, future availability, immutability,
+artifact security, PyPI, or a supported channel. A real pass remains unclaimed
+until an authorized signed-tag release run executes.
 
 ## Good-first contribution queue
 

@@ -89,14 +89,19 @@ class _Response:
 
 
 class _Socket:
-    def __init__(self) -> None:
+    def __init__(self, server_hostname: str = "api.github.com") -> None:
         self.timeouts: list[float] = []
+        self.server_hostname = server_hostname
 
     def settimeout(self, value: float) -> None:
         self.timeouts.append(value)
 
     def getpeername(self) -> tuple[str, int]:
         return ("8.8.8.8", 443)
+
+    def getpeercert(self, *, binary_form: bool = False) -> bytes:
+        assert binary_form
+        return b"verified-leaf-certificate"
 
     def version(self) -> str:
         return "TLSv1.3"
@@ -369,7 +374,7 @@ def test_https_client_follows_at_most_three_remote_https_redirects(
             context: ssl.SSLContext,
         ) -> None:
             del context
-            self.sock = _Socket()
+            self.sock = _Socket(host)
             connections.append((host, port, timeout, self.sock))
 
         def request(self, method: str, path: str, *, headers: Mapping[str, str]) -> None:
@@ -417,10 +422,8 @@ def test_https_client_rejects_fourth_redirect(
     ]
 
     class FakeConnection:
-        sock = _Socket()
-
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+        def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
+            self.sock = _Socket(host)
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             return None

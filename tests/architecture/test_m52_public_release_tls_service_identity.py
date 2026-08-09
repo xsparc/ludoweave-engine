@@ -1,13 +1,12 @@
-"""Protect M51 public release negotiated TLS-session conformance."""
+"""Protect M52 public release TLS service-identity evidence."""
 
 from __future__ import annotations
 
 import hashlib
 import http.client
 import importlib.util
-import ssl
 import sys
-from collections.abc import Callable, Mapping
+from collections.abc import Mapping
 from pathlib import Path
 from types import ModuleType
 from typing import Protocol, cast
@@ -66,23 +65,17 @@ class _RedirectResponse(_Response):
     status = 302
 
 
-class _TlsSocket:
+class _IdentitySocket:
     def __init__(
         self,
         events: list[str],
         *,
-        version: object = "TLSv1.3",
-        cipher: object = ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256),
-        compression: object = None,
-        alpn: object = "http/1.1",
         server_hostname: object = "api.github.com",
+        certificate: object = b"verified-leaf-certificate",
     ) -> None:
         self.events = events
-        self.server_hostname = server_hostname
-        self.negotiated_version = version
-        self.negotiated_cipher = cipher
-        self.negotiated_compression = compression
-        self.negotiated_alpn = alpn
+        self._server_hostname = server_hostname
+        self.certificate = certificate
 
     def getpeername(self) -> tuple[str, int]:
         self.events.append("peer")
@@ -91,30 +84,34 @@ class _TlsSocket:
     def settimeout(self, _value: float) -> None:
         return None
 
-    def getpeercert(self, *, binary_form: bool = False) -> bytes:
-        assert binary_form
-        self.events.append("certificate")
-        return b"verified-leaf-certificate"
+    @property
+    def server_hostname(self) -> object:
+        self.events.append("reference-hostname")
+        return self._server_hostname
 
-    def version(self) -> object:
+    def getpeercert(self, *, binary_form: bool = False) -> object:
+        self.events.append(f"certificate:{binary_form}")
+        return self.certificate
+
+    def version(self) -> str:
         self.events.append("version")
-        return self.negotiated_version
+        return "TLSv1.3"
 
-    def cipher(self) -> object:
+    def cipher(self) -> tuple[str, str, int]:
         self.events.append("cipher")
-        return self.negotiated_cipher
+        return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
 
-    def compression(self) -> object:
+    def compression(self) -> None:
         self.events.append("compression")
-        return self.negotiated_compression
+        return None
 
-    def selected_alpn_protocol(self) -> object:
+    def selected_alpn_protocol(self) -> str:
         self.events.append("alpn")
-        return self.negotiated_alpn
+        return "http/1.1"
 
 
 def _load() -> tuple[ModuleType, _Download, type[Exception]]:
-    spec = importlib.util.spec_from_file_location("m51_public_release_verifier", _VERIFIER)
+    spec = importlib.util.spec_from_file_location("m52_public_release_verifier", _VERIFIER)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -131,64 +128,42 @@ def _load() -> tuple[ModuleType, _Download, type[Exception]]:
     )
 
 
-def test_tls_context_advertises_only_http_1_1(
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    module, _, _ = _load()
-    advertised: list[list[str]] = []
-
-    class FakeContext:
-        protocol = ssl.PROTOCOL_TLS_CLIENT
-        verify_mode = ssl.CERT_REQUIRED
-        check_hostname = True
-        minimum_version = ssl.TLSVersion.MINIMUM_SUPPORTED
-        keylog_filename = None
-        verify_flags = ssl.VerifyFlags(0)
-
-        def load_default_certs(self, purpose: ssl.Purpose) -> None:
-            assert purpose == ssl.Purpose.SERVER_AUTH
-
-        def set_alpn_protocols(self, protocols: list[str]) -> None:
-            advertised.append(protocols)
-
-    def fake_context(protocol: object) -> ssl.SSLContext:
-        assert protocol == ssl.PROTOCOL_TLS_CLIENT
-        return cast(ssl.SSLContext, FakeContext())
-
-    monkeypatch.setattr(module.ssl, "SSLContext", fake_context)
-    context_factory = cast(Callable[[], ssl.SSLContext], module._public_tls_context)
-
-    context_factory()
-
-    assert advertised == [["http/1.1"]]
-
-
 @pytest.mark.parametrize(
-    ("version", "cipher", "alpn"),
+    ("url", "observed_hostname", "expected_reference", "expected_path"),
     (
-        ("TLSv1.2", ("ECDHE-RSA-AES128-GCM-SHA256", "TLSv1.2", 128), None),
-        ("TLSv1.2", ("ECDHE-RSA-AES256-GCM-SHA384", "TLSv1.2", 256), "http/1.1"),
-        ("TLSv1.3", ("TLS_AES_128_GCM_SHA256", "TLSv1.3", 128), None),
-        ("TLSv1.3", ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256), "http/1.1"),
+        (
+            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
+            "API.GITHUB.COM",
+            "api.github.com",
+            "/repos/xsparc/ludoweave-engine/releases/123",
+        ),
+        (
+            "https://PYTHÖN.example/release",
+            "xn--pythn-mua.example",
+            "xn--pythn-mua.example",
+            "/release",
+        ),
     ),
 )
-def test_conforming_tls_session_is_checked_before_request(
+def test_verified_service_identity_precedes_session_and_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    version: str,
-    cipher: tuple[str, str, int],
-    alpn: str | None,
+    url: str,
+    observed_hostname: str,
+    expected_reference: str,
+    expected_path: str,
 ) -> None:
     _, download, _ = _load()
     events: list[str] = []
 
     class FakeConnection:
-        def __init__(self, *_args: object, **_kwargs: object) -> None:
-            self.sock: _TlsSocket | None = None
+        def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
+            events.append(f"connection:{host}")
+            self.sock: _IdentitySocket | None = None
 
         def connect(self) -> None:
             events.append("connect")
-            self.sock = _TlsSocket(events, version=version, cipher=cipher, alpn=alpn)
+            self.sock = _IdentitySocket(events, server_hostname=observed_hostname)
 
         def request(
             self,
@@ -209,7 +184,7 @@ def test_conforming_tls_session_is_checked_before_request(
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
     target = tmp_path / "release.json"
     download(
-        "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
+        url,
         target,
         accept="application/vnd.github+json",
         maximum_bytes=100,
@@ -218,48 +193,62 @@ def test_conforming_tls_session_is_checked_before_request(
 
     assert target.read_bytes() == b"{}"
     assert events == [
+        f"connection:{expected_reference}",
         "connect",
         "peer",
-        "certificate",
+        "reference-hostname",
+        "certificate:True",
         "version",
         "cipher",
         "compression",
         "alpn",
-        "request:GET:/repos/xsparc/ludoweave-engine/releases/123",
+        f"request:GET:{expected_path}",
         "close",
     ]
 
 
 @pytest.mark.parametrize(
-    ("overrides", "description"),
+    ("url", "server_hostname", "certificate"),
     (
-        ({"version": None}, "missing protocol"),
-        ({"version": []}, "unhashable sequence protocol"),
-        ({"version": {}}, "unhashable mapping protocol"),
-        ({"version": "TLSv1.1"}, "old protocol"),
-        ({"version": "TLSv1.4"}, "unknown protocol"),
-        ({"cipher": None}, "missing cipher"),
-        ({"cipher": ("", "TLSv1.3", 256)}, "empty cipher name"),
-        ({"cipher": ("TLS_AES_256_GCM_SHA384", "", 256)}, "empty cipher protocol"),
-        ({"cipher": ("TLS_AES_128_GCM_SHA256", "TLSv1.3", True)}, "boolean bits"),
-        ({"cipher": ("TLS_AES_128_GCM_SHA256", "TLSv1.3", 127)}, "weak cipher"),
-        ({"compression": "DEFLATE"}, "TLS compression"),
-        ({"alpn": "h2"}, "unsupported ALPN"),
+        ("https://api.github.com/release", None, b"verified-leaf-certificate"),
+        ("https://api.github.com/release", [], b"verified-leaf-certificate"),
+        ("https://api.github.com/release", "", b"verified-leaf-certificate"),
+        (
+            "https://api.github.com/release",
+            "secret.example",
+            b"verified-leaf-certificate",
+        ),
+        ("https://k.example/release", "\u212a.example", b"verified-leaf-certificate"),
+        ("https://api.github.com/release", "api.github.com", None),
+        ("https://api.github.com/release", "api.github.com", b""),
+        (
+            "https://api.github.com/release",
+            "api.github.com",
+            bytearray(b"certificate"),
+        ),
     ),
 )
-def test_nonconforming_tls_session_fails_before_request(
+def test_invalid_service_identity_fails_before_session_or_request(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    overrides: dict[str, object],
-    description: str,
+    url: str,
+    server_hostname: object,
+    certificate: object,
 ) -> None:
-    del description
     _, download, error_type = _load()
     events: list[str] = []
 
     class FakeConnection:
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            self.sock = _TlsSocket(events, **overrides)
+            self.sock: _IdentitySocket | None = None
+
+        def connect(self) -> None:
+            events.append("connect")
+            self.sock = _IdentitySocket(
+                events,
+                server_hostname=server_hostname,
+                certificate=certificate,
+            )
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append("request")
@@ -270,7 +259,7 @@ def test_nonconforming_tls_session_fails_before_request(
     monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
     with pytest.raises(error_type) as raised:
         download(
-            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
+            url,
             tmp_path / "release.json",
             accept="application/vnd.github+json",
             maximum_bytes=100,
@@ -279,44 +268,30 @@ def test_nonconforming_tls_session_fails_before_request(
 
     assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
     assert "request" not in events
+    assert "version" not in events
     assert events[-1] == "close"
     assert "api.github.com" not in str(raised.value)
+    assert "secret.example" not in str(raised.value)
 
 
-def test_missing_tls_session_accessor_fails_closed(
+@pytest.mark.parametrize("missing", ("server_hostname", "getpeercert"))
+def test_missing_service_identity_accessor_fails_closed(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
+    missing: str,
 ) -> None:
     _, download, error_type = _load()
     requests = 0
 
-    class IncompleteSocket:
-        server_hostname = "api.github.com"
-
-        def getpeername(self) -> tuple[str, int]:
-            return ("8.8.8.8", 443)
-
-        def settimeout(self, _value: float) -> None:
-            return None
-
-        def getpeercert(self, *, binary_form: bool = False) -> bytes:
-            assert binary_form
-            return b"verified-leaf-certificate"
-
-        def version(self) -> str:
-            return "TLSv1.3"
-
-        def cipher(self) -> tuple[str, str, int]:
-            return ("TLS_AES_256_GCM_SHA384", "TLSv1.3", 256)
-
-        def compression(self) -> None:
-            return None
+    class MissingSocket(_IdentitySocket):
+        def __getattribute__(self, name: str) -> object:
+            if name == missing:
+                raise AttributeError("identity accessor is unavailable")
+            return super().__getattribute__(name)
 
     class FakeConnection:
-        sock = IncompleteSocket()
-
         def __init__(self, *_args: object, **_kwargs: object) -> None:
-            return None
+            self.sock = MissingSocket([])
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             nonlocal requests
@@ -339,7 +314,84 @@ def test_missing_tls_session_accessor_fails_closed(
     assert requests == 0
 
 
-def test_redirect_revalidates_an_independent_tls_session(
+def test_invalid_idna_reference_fails_closed(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _, download, error_type = _load()
+    requests = 0
+    connections = 0
+
+    class FakeConnection:
+        def __init__(self, *_args: object, **_kwargs: object) -> None:
+            nonlocal connections
+            connections += 1
+            self.sock = _IdentitySocket([], server_hostname="invalid.example")
+
+        def request(self, *_args: object, **_kwargs: object) -> None:
+            nonlocal requests
+            requests += 1
+
+        def close(self) -> None:
+            return None
+
+    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
+    with pytest.raises(error_type) as raised:
+        download(
+            "https://\ud800.example/release",
+            tmp_path / "release.json",
+            accept="application/vnd.github+json",
+            maximum_bytes=100,
+            maximum_redirects=0,
+        )
+
+    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
+    assert requests == 0
+    assert connections == 0
+
+
+@pytest.mark.parametrize("failure", (NotImplementedError(), OSError(), TypeError()))
+def test_certificate_inspection_failure_is_stable_and_content_silent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    failure: Exception,
+) -> None:
+    _, download, error_type = _load()
+    requests = 0
+
+    class FailingSocket(_IdentitySocket):
+        def getpeercert(self, *, binary_form: bool = False) -> object:
+            assert binary_form
+            raise failure
+
+    class FakeConnection:
+        def __init__(self, *_args: object, **_kwargs: object) -> None:
+            self.sock = FailingSocket([])
+
+        def request(self, *_args: object, **_kwargs: object) -> None:
+            nonlocal requests
+            requests += 1
+
+        def close(self) -> None:
+            return None
+
+    monkeypatch.setattr(http.client, "HTTPSConnection", FakeConnection)
+    with pytest.raises(error_type) as raised:
+        download(
+            "https://api.github.com/repos/xsparc/ludoweave-engine/releases/123",
+            tmp_path / "release.json",
+            accept="application/vnd.github+json",
+            maximum_bytes=100,
+            maximum_redirects=0,
+        )
+
+    assert cast(_CodedError, raised.value).code == "public_release.tls_failed"
+    assert raised.value.__cause__ is failure
+    assert requests == 0
+    assert "api.github.com" not in str(raised.value)
+
+
+def test_redirect_revalidates_independent_service_identity(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -355,7 +407,11 @@ def test_redirect_revalidates_an_independent_tls_session(
     class FakeConnection:
         def __init__(self, host: str, *_args: object, **_kwargs: object) -> None:
             self.host = host
-            self.sock = _TlsSocket(events, server_hostname=host)
+            self.sock = _IdentitySocket(
+                events,
+                server_hostname=host.encode("idna").decode("ascii"),
+                certificate=f"certificate:{host}".encode(),
+            )
 
         def request(self, *_args: object, **_kwargs: object) -> None:
             events.append(f"request:{self.host}")
@@ -379,17 +435,15 @@ def test_redirect_revalidates_an_independent_tls_session(
     )
 
     assert target.read_bytes() == b"asset"
-    assert events.count("version") == 2
-    assert events.count("cipher") == 2
-    assert events.count("compression") == 2
-    assert events.count("alpn") == 2
+    assert events.count("reference-hostname") == 2
+    assert events.count("certificate:True") == 2
     assert [event for event in events if event.startswith("request:")] == [
         "request:api.github.com",
         "request:objects.example.test",
     ]
 
 
-def test_m51_changes_no_workflow_runtime_dependency_or_package_boundary() -> None:
+def test_m52_changes_no_workflow_runtime_dependency_or_package_boundary() -> None:
     assert (
         hashlib.sha256((_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()).hexdigest()
         == _CI_SHA256
@@ -403,37 +457,33 @@ def test_m51_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
     )
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
     source = _VERIFIER.read_text(encoding="utf-8")
-    assert "context.set_alpn_protocols([_HTTP_ALPN])" in source
-    assert "peer.version()" in source
-    assert "peer.cipher()" in source
-    assert "peer.compression()" in source
-    assert "peer.selected_alpn_protocol()" in source
-    assert source.index("_validate_tls_session(connection)") < source.index(
-        'connection.request(\n                "GET",'
-    )
+    peer = source.index("_connect_public_peer(connection, deadline)")
+    identity = source.index("_validate_tls_identity(connection, reference_hostname)")
+    session = source.index("_validate_tls_session(connection)")
+    request = source.index('connection.request(\n                "GET",')
+    assert peer < identity < session < request
+    assert "peer.getpeercert(binary_form=True)" in source
+    assert 'hostname.encode("idna").decode("ascii")' in source
 
 
-def test_m51_public_and_maintainer_docs_define_the_exact_boundary() -> None:
+def test_m52_public_and_maintainer_docs_define_the_exact_boundary() -> None:
     paths = (
         _ROOT / "README.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",
         _ROOT / "docs" / "release-process.md",
-        _ROOT / "docs" / "rfcs" / "0034-public-release-negotiated-tls-session-conformance.md",
+        _ROOT / "docs" / "rfcs" / "0035-public-release-tls-service-identity.md",
     )
     documents = tuple(path.read_text(encoding="utf-8").lower() for path in paths)
     combined = "\n".join(documents)
 
-    assert all("m51" in document for document in documents)
+    assert all("m52" in document for document in documents)
     for term in (
-        "actual negotiated",
-        "tlsv1.2",
-        "tlsv1.3",
-        "128",
-        "compression",
-        "http/1.1",
-        "cipher-name allowlist",
+        "service identity",
+        "reference hostname",
+        "peer certificate",
+        "idna",
         "before",
         "no workflow",
         "not a real public release observation",
