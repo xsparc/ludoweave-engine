@@ -1,6 +1,6 @@
 # Project State
 
-## M51 public release negotiated TLS-session conformance - feature complete
+## M51 public release negotiated TLS-session conformance - complete
 
 - Base: clean synchronized M50 closeout
   `53f3804010f1556ecaff21a61b1e9c405a26e203`, with only `main` present
@@ -48,8 +48,8 @@
   Clockwork Arena, and Agent World Builder. Exact-head reproducibility passed
   for wheel `9539b42da0143fb893e107eeb554dfe0229125439627f361b3b7507b9f3df989`
   and sdist `27c0604758c1d9eb391bf26a093c9c5f85396e33a6a84e4af49004bf0f1bbc5f`.
-- Integration: the sole prior review thread is outdated and resolved after the
-  correction; no issue comment or unresolved thread remains. PR #105 was
+- Feature integration: the sole prior review thread is outdated and resolved
+  after the correction; no issue comment or unresolved thread remains. PR #105 was
   `MERGEABLE/CLEAN` at the exact corrected head/base. GitHub-verified squash
   `ce4184b4ecedd9163a654cc96ae6c96086683760` has tree
   `c331ea93e5332b47a3df20906dfb6f6e77c6cdb3` exactly equal to the reviewed
@@ -57,6 +57,32 @@
   `53f3804010f1556ecaff21a61b1e9c405a26e203`, and standalone DCO. No post-
   merge `main` run was allocated; the feature branch is deleted locally and
   remotely.
+- Integration-record review: four-file record PR #106 initially passed exact-
+  head docs-only run `31313663654` at
+  `bea144e9d0444237c08a3be6a56905f6d66b2c65` in one Linux allocation, but
+  review found a stale sentence claiming hosted validation remained pending.
+  The sentence was corrected; its one thread is resolved and no issue comment
+  remains.
+- Integration-record hosted evidence: corrected exact head
+  `aa94d62a06d51f635a6dce1dcbfd686a8c0ac2dd` passed run `31313847857`.
+  Linux job `93245782842` passed in 38 seconds with formatting, lint, strict
+  docs, 485 documentation architecture assertions, reproducible build,
+  isolated-wheel smoke, and complete release smoke. The 269,728-byte wheel was
+  `9539b42da0143fb893e107eeb554dfe0229125439627f361b3b7507b9f3df989`;
+  the 1,043,265-byte sdist was
+  `5b66b95d6976c88943afccf1731ee359cd82e08b9bb0d46bb779b46fc3378b40`.
+  Desktop umbrella job `93245857571` skipped with zero steps and no runner
+  allocation.
+- Integration-record squash: PR #106 was `MERGEABLE/CLEAN` at the exact
+  corrected head/base with its sole thread resolved. GitHub-verified squash
+  `d2cc5d630b15351289008976d192232cde184afc` has tree
+  `706324da08b466e14f77fe34eb2f1cad727eecca` exactly equal to the reviewed
+  record head, sole parent feature squash
+  `ce4184b4ecedd9163a654cc96ae6c96086683760`, and standalone DCO. No post-
+  merge `main` run was allocated; both merged record branches are deleted
+  locally/remotely. Synchronized `main`, `origin/main`, and `origin/HEAD` now
+  resolve to that squash; no open PR, tag, or GitHub release exists and full
+  Git-object checking passes.
 - Non-claim: no real signed tag or release was created or exercised. Fixture
   and pull-request evidence are not a real public release observation,
   independent/external verification, every delivery path, future-availability

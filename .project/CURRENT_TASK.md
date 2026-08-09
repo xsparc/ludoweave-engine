@@ -1,16 +1,20 @@
 # Current Task
 
 - **Task:** M51 - public release negotiated TLS-session conformance
-- **Status:** Corrected PR #105 is fully validated and squash-integrated;
-  recording exact integration evidence on `records/m51-integration`.
+- **Status:** Corrected feature PR #105 and corrected integration-record PR
+  #106 are fully validated and squash-integrated; publishing the exact
+  three-file closeout record on `records/m51-closeout`.
 - **Started:** 2026-08-09
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized `main`, `origin/main`, and `origin/HEAD`
-  M50 closeout commit `53f3804010f1556ecaff21a61b1e9c405a26e203`.
-  Only `main` existed locally/remotely; no open pull request, tag, or GitHub
-  release existed; full Git-object checking passed at M50 closeout.
+- **Base:** The feature began from exact clean synchronized M50 closeout
+  `53f3804010f1556ecaff21a61b1e9c405a26e203`. The current closeout record is
+  based on exact synchronized M51 integration-record squash
+  `d2cc5d630b15351289008976d192232cde184afc`; only `main` and this intended
+  local record branch exist, no remote feature/record branch remains, no open
+  pull request, tag, GitHub release, or post-merge `main` run exists, and full
+  Git-object checking passes.
 - **Outcome:** Validate the actual negotiated TLS session on every fixed API or
   bounded redirected asset hop after connected-peer confinement and before any
   HTTP request.
@@ -60,3 +64,13 @@
   squash `ce4184b4ecedd9163a654cc96ae6c96086683760` has the exact reviewed
   tree, sole M50-closeout parent, valid GitHub signature, and standalone DCO.
   No post-merge `main` run, real tag, or release was created or claimed.
+  Four-file integration-record PR #106 first passed docs-only run
+  `31313663654` at head `bea144e9d0444237c08a3be6a56905f6d66b2c65`.
+  Review found one stale pending-validation sentence, which was corrected and
+  revalidated at head `aa94d62a06d51f635a6dce1dcbfd686a8c0ac2dd` by run
+  `31313847857` in one Linux allocation; its zero-step desktop umbrella was
+  skipped. The thread is resolved. Verified squash
+  `d2cc5d630b15351289008976d192232cde184afc` exactly matches the corrected
+  record tree, has the feature squash as its sole parent, a valid GitHub
+  signature, and standalone DCO. The closeout changes only the three
+  `.project/**` records and must allocate no hosted runner.
