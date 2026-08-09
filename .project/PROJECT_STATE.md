@@ -1,6 +1,6 @@
 # Project State
 
-## M57 public release response-body conformance - feature integrated
+## M57 public release response-body conformance - complete
 
 - Base: exact clean synchronized M56 closeout
   `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, with only `main` present and no
@@ -69,8 +69,26 @@
   `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, a valid GitHub signature, and
   standalone DCO. The feature branch is deleted locally/remotely. Synchronized
   `main` has no post-merge run, open pull request, non-main remote branch, tag,
-  or release. The exact four-file integration record now requires one Linux
-  documentation allocation and a zero-step skipped desktop umbrella.
+  or release.
+- Integration record: exact head
+  `b959cad56d0c9e9b3b34d02d313ce4a6b67a9fa9` passed run `31333440409` in one
+  36-second Linux allocation. All 300 Python files were format clean, Ruff and
+  strict docs passed, 621 documentation architecture assertions passed,
+  reproducible distributions plus installed-wheel and complete release smoke
+  passed, and desktop umbrella `93295290611` skipped with zero steps. The exact-
+  head 271,119-byte wheel was
+  `a24b3d068c351370dca59d320a15dc8148ea64bfbcf6f8540591c4aeed96be61`;
+  the 1,100,675-byte source distribution was
+  `b1c10ecfd5b3dedcf2cf2bf0a25f5277d1d40f76ef3da4e79292810a80a6c603`.
+  Two delayed audits found no comment, review, or thread. Head-pinned GitHub-
+  verified squash `f28d5ee6e9b1e3d65b1ff47c4574e8525cb6c85e` has tree
+  `f8dcbfab5044a58bcfe9e1f0600ac82661d1dc8a` exactly equal to the reviewed
+  record head, sole parent feature squash
+  `800050c74530d74a72338b5d444ee4751c5ad155`, valid signature, and standalone
+  DCO. Both M57 working branches are deleted locally/remotely. No post-
+  integration `main` run, open pull request, non-main remote branch, tag, or
+  release exists. The exact three-file `.project/**` closeout must allocate
+  zero hosted runs or checks.
 
 ## M56 public release status and redirect-reference conformance - complete
 
