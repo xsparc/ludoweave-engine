@@ -49,3 +49,4 @@ was adopted.
 - [RFC-0042: tool-neutral repository metadata](0042-tool-neutral-repository-metadata.md)
 - [RFC-0043: constrain public release output paths](0043-public-release-output-path-conformance.md)
 - [RFC-0044: separate the public release candidate and output root](0044-public-release-root-separation.md)
+- [RFC-0045: constrain public release asset names portably](0045-portable-public-release-asset-names.md)
