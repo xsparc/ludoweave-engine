@@ -1,6 +1,6 @@
 # Project State
 
-## M63 public release subordinate-output confinement - locally implemented
+## M63 public release subordinate-output confinement - feature integrated
 
 - Base: exact clean synchronized M62 closeout
   `1cdc1b452cbe79c9e4f082acb4dd1205f4b3648f`, with tree
@@ -59,8 +59,20 @@
   reproduced a pure 272,051-byte wheel and 1,150,415-byte source archive;
   installed-wheel, ten-artifact release smoke, and archive inspection pass.
   This evidence record changes the source archive afterward, so exact commit-
-  tree artifact identity remains delegated to the hosted gate. Hosted
-  validation and integration remain pending.
+  tree artifact identity remains delegated to the hosted gate.
+- Hosted evidence: ready PR #141 exact head `8fe7518efb1855c69f3f093eba921721421072ce`
+  passed run `31507526704` in exactly three Linux-first allocations. Linux
+  `93832810911` passed in 7m07s before macOS `93835048148` and Windows
+  `93835048154` began; they passed in 2m59s and 3m11s. Baseline passed 2,233
+  tests; Ubuntu 3.13/3.14 and desktop 3.14 suites each passed 2,233 with one
+  expected skip. Exact hosted wheel/sdist identities, installed-wheel smoke,
+  complete release smoke, profiles, real-wgpu checks, and both vertical slices
+  passed. Two delayed review audits were empty. GitHub-verified squash
+  `e0f1dc683d5e38b69d01d342f843074470a8418a` has the exact reviewed tree, sole
+  parent exact M62 closeout, and parsed DCO. The bounded integration record is
+  locally validated with 689 architecture assertions, strict docs/static/
+  whitespace gates, and reproducible artifact smoke; hosted review and
+  integration remain pending.
 
 ## M62 portable public release asset names - complete
 

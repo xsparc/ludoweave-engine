@@ -71,7 +71,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M60 public release filesystem collision conformance | PR #132 passed final-entry collision detection before network/validator side effects, stable errors, exact three-allocation hosted validation, and verified squash integration with unchanged workflow/release authority |
 | Done | M61 public release candidate/output-root separation | PR #135 passed alias- and filesystem-identity-aware read-only candidate ownership, corrected exact three-allocation hosted validation after review, and verified squash integration with unchanged workflow/release authority |
 | Done | M62 portable public release asset names | PR #138 passed deterministic portable retrieval-plan basenames, fail-before-asset-side-effect validation, exact three-allocation hosted qualification, and verified squash integration with unchanged workflow/release authority |
-| In progress | M63 public release output confinement | One-document consumer output, exact subordinate status conformance, single-thread boundary, and unchanged workflow/release authority |
+| Done | M63 public release output confinement | PR #141 passed one-document consumer output, exact subordinate status conformance, exact three-allocation hosted qualification, and verified squash integration with unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
