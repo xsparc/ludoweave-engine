@@ -115,6 +115,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   differently spelled aliases on a case-insensitive filesystem. Resolution and
   identity-inspection failures are content-silent. This is no race-free
   filesystem guarantee and makes no workflow or release-authority change.
+- M62 admits only a deterministic portable asset name in the public-release
+  retrieval plan: at most 255 ASCII characters, no trailing period or Windows
+  device stem, and case-insensitive uniqueness. Invalid plans fail before asset
+  download or output-directory creation. This uses no filesystem probing and
+  makes no workflow or release-authority change.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

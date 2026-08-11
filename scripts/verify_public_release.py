@@ -44,7 +44,10 @@ _MINIMUM_TLS_SECRET_BITS = 128
 _REQUIRED_TLS_VERIFY_FLAGS = ssl.VERIFY_X509_PARTIAL_CHAIN | ssl.VERIFY_X509_STRICT
 _ID_PATTERN = re.compile(r"[1-9][0-9]{0,18}")
 _SIZE_PATTERN = re.compile(r"(?:0|[1-9][0-9]{0,8})")
-_NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,255}")
+_NAME_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
+_WINDOWS_DEVICE_STEMS = frozenset(
+    ("aux", "con", "nul", "prn"),
+) | frozenset(f"{prefix}{number}" for prefix in ("com", "lpt") for number in range(1, 10))
 _URI_REFERENCE_PATTERN = re.compile(
     r"(?:[0-9A-Za-z._~:/?#\[\]@!$&'()*+,;=\-]|%[0-9A-Fa-f]{2}){1,8000}"
 )
@@ -420,7 +423,7 @@ def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:
         )
     items: list[AssetPlanItem] = []
     asset_ids: set[int] = set()
-    names: set[str] = set()
+    name_keys: set[str] = set()
     total = 0
     for line in lines[1:]:
         fields = line.split("\t")
@@ -430,10 +433,11 @@ def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:
                 code="public_release.invalid_plan",
             )
         asset_id_text, size_text, name = fields
+        name_key = name.casefold()
         if (
             _ID_PATTERN.fullmatch(asset_id_text) is None
             or _SIZE_PATTERN.fullmatch(size_text) is None
-            or _NAME_PATTERN.fullmatch(name) is None
+            or not _is_portable_asset_name(name)
         ):
             raise PublicReleaseVerificationError(
                 "release asset plan contains an invalid record",
@@ -445,7 +449,7 @@ def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:
             asset_id > _MAX_RELEASE_ID
             or size > _MAX_ASSET_BYTES
             or asset_id in asset_ids
-            or name in names
+            or name_key in name_keys
         ):
             raise PublicReleaseVerificationError(
                 "release asset plan contains an invalid or duplicate record",
@@ -458,9 +462,19 @@ def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:
                 code="public_release.invalid_plan",
             )
         asset_ids.add(asset_id)
-        names.add(name)
+        name_keys.add(name_key)
         items.append(AssetPlanItem(asset_id, size, name))
     return tuple(items)
+
+
+def _is_portable_asset_name(name: str) -> bool:
+    """Return whether one ASCII basename is portable across supported hosts."""
+
+    return (
+        _NAME_PATTERN.fullmatch(name) is not None
+        and not name.endswith(".")
+        and name.split(".", 1)[0].casefold() not in _WINDOWS_DEVICE_STEMS
+    )
 
 
 def _download(

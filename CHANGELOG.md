@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M62/RFC-0045 deterministic portable asset name validation for public-
+  release plans, rejecting Windows device stems, trailing periods, over-255-
+  character names, and case-insensitive collisions before asset download,
+  without changing workflows, dependencies, runtime APIs, or release authority.
 - Add M61/RFC-0044 alias- and filesystem-identity-aware separation between the
   read-only public-release candidate directory and runner-owned output root
   before network or validator work, without changing workflows, dependencies,

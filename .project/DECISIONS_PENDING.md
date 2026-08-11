@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0045 resolves M62 portable public-release asset-name conformance. The plan
+consumer admits 1 through 255 restricted ASCII characters, rejects a trailing
+period or case-insensitive Windows device stem, and requires case-insensitive
+uniqueness before asset download or output-directory creation. Violations use
+content-silent `public_release.invalid_plan`. This uses no filesystem probing,
+locale, normalization, rewriting, cleanup, rollback, retry, workflow,
+dependency, runtime API, or release authority. A real pass remains pending an
+explicitly authorized signed-tag release execution.
+
 RFC-0044 resolves M61 public release candidate/output-root separation. The
 expected candidate directory is read-only input. It and the runner-owned output
 root are strictly resolved before network or validator side effects; an output

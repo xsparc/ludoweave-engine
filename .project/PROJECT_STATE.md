@@ -1,5 +1,60 @@
 # Project State
 
+## M62 portable public release asset names - locally implemented
+
+- Base: exact clean synchronized M61 closeout
+  `14f848c92021d54c9140e01b0333c0725c45145d`, with tree
+  `0d62fdda4864c1b4f92083bbd59ee63afc6d38aa` exactly matching the reviewed
+  closeout candidate. GitHub reports a valid signature and parsed DCO trailer.
+  Only `main` existed locally/remotely after pruning, with no open pull request,
+  closeout run/check, or post-closeout `main` run.
+- Gap: the public-release plan grammar admitted 256-character basenames,
+  trailing periods, classic Windows device stems with or without extensions,
+  and case-only pairs. Those spellings do not preserve one portable child-file
+  identity across supported hosts.
+- Scope: plan parsing now admits at most 255 existing restricted ASCII
+  characters, rejects a trailing period or case-insensitive Windows device
+  stem, and tracks case-insensitive uniqueness. Violations retain stable
+  content-silent `public_release.invalid_plan` before asset download and before
+  creation of the asset output directory. Existing portable names are unchanged.
+- Decision: RFC-0045 records the lexical portable policy, failure ordering, and
+  nonclaim boundary. There is no filesystem probing, host-dependent reserved-
+  name API, locale, normalization, rewriting, path resolution, race-free claim,
+  cleanup, rollback, retry, workflow, dependency, lock, version, runtime API,
+  release authority, tag, release, or publication.
+- Development evidence: the initial 16-case M62 file failed 14 assertions and
+  passed two in 0.51 seconds against unchanged production code. Every invalid
+  name and case-only duplicate was accepted, the end-to-end existing-plan case
+  reached an intentionally forbidden asset download, and the RFC was absent.
+  The portable-name sample and protected-surface guard passed. After the parser-
+  only correction, all 15 non-documentation assertions pass with the docs case
+  deselected in 0.22 seconds; both changed Python files are formatted, Ruff
+  clean, and strict-Pyright clean. The full documented M62 group passes 16
+  assertions. A mistakenly parallel architecture/release-draft invocation
+  caused one real stale M45 literal-guard failure plus one shared temporary-root
+  setup error; after strengthening the guard and rerunning sequentially, all
+  677 architecture assertions pass, while the independently completed release-
+  draft run passes 56 tests with two platform-capability skips. Whole-tree
+  formatting for 305 files, Ruff, strict Pyright, and strict docs pass. The
+  complete graphics-enabled candidate passes 2,217 tests with 14 expected skips
+  on each of CPython 3.12.13, 3.13.13, and 3.14.5. Ten real-wgpu tests, both
+  five-repeat profiles, Clockwork Arena, Agent World Builder, and every M1-M4
+  artifact validator pass. M1 observed one of two targets, M3 observed zero of
+  two, and M4 observed its baseline target; those local measurements remain
+  diagnostic only. Two confirmed-absent builds reproduced a pure 271,854-byte
+  wheel and 1,141,325-byte source archive; isolated-wheel and complete ten-
+  artifact smoke pass. The wheel has 94 entries and the source archive 490,
+  with no native, WASM, bytecode, cache, site, or dist payload. Findings-first
+  review identified the inherited README's stale M0-M59 completion boundary.
+  A new assertion failed against it, then all 16 M62 assertions and strict docs
+  passed after aligning the status to completed M61 and repairing the stale M61
+  internal closeout sentence. The final post-review lock/static/docs gate,
+  whitespace, protected-surface, credential, tool-identity, and Git-object
+  audits pass. Two new builds reproduce a pure 271,887-byte wheel and
+  1,142,219-byte source archive; isolated-wheel and ten-artifact release smoke
+  pass, and the 94/490-entry archive inventory has no native, WASM, bytecode,
+  cache, site, or dist payload. Exact-head hosted qualification remains pending.
+
 ## M61 public release candidate/output-root separation - complete
 
 - Base: exact clean synchronized M60 closeout
@@ -100,9 +155,10 @@
   delayed audits found no comment, review, or thread. GitHub-verified squash
   `9d1c4d4f967e97c7c77cf3b95d82c2d57367162e` has the exact reviewed tree
   `8da574c0f2642369a725e6eb32d3983176e38dac`, sole parent the feature squash,
-  and a parsed DCO trailer. Both working branches are deleted locally/remotely;
-  no open PR or post-integration `main` run exists. M61 is complete pending only
-  this zero-allocation three-file closeout record.
+  and a parsed DCO trailer. Zero-allocation closeout PR #137 was then squash-
+  merged as `14f848c92021d54c9140e01b0333c0725c45145d`; both working branches were
+  deleted locally/remotely, no open PR or post-closeout `main` run exists, and
+  M61 is complete.
 
 ## M60 public release filesystem collision conformance - complete
 

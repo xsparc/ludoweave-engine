@@ -437,6 +437,20 @@ dependency, runtime API, release authority, or real public release observation.
 No real M61 pass exists until an authorized signed-tag release run exercises
 the public path.
 
+M62/RFC-0045 constrains the public consumer's retrieval-plan asset names to a
+deterministic portable subset: 1 through 255 allowed ASCII characters, no
+trailing period, no classic Windows device stem even before an extension, and
+case-insensitive uniqueness. Invalid plans use content-silent
+`public_release.invalid_plan` before asset download or creation of the asset
+output directory.
+
+This is a lexical plan-consumer policy with no filesystem probing, locale,
+normalization, cleanup, rollback, retry, workflow, dependency, runtime API, or
+release authority. It does not change the earlier release-document download or
+validator ordering. Pull-request evidence is not a real public release
+observation; no real M62 pass exists until an authorized signed-tag release run
+exercises the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

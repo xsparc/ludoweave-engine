@@ -1580,6 +1580,23 @@ rollback, cleanup, retry, workflow, allocation, dependency, lockfile, version,
 runtime API, release authority, or real public release observation. RFC-0044
 defines the complete boundary.
 
+## M62 portable public release asset-name boundary
+
+The public-release retrieval-plan parser admits one portable asset name as 1
+through 255 ASCII characters from the existing restricted basename alphabet.
+It rejects a trailing period, a first period-delimited Windows device stem, and
+any case-insensitive duplicate in the same plan. The existing
+`public_release.invalid_plan` failure is content-silent and occurs before asset
+download and before creation of the asset output directory. Portable existing
+release names remain byte-for-byte identities; the verifier never rewrites or
+normalizes them.
+
+M62 uses no filesystem probing, host-specific reserved-name API, locale,
+Unicode normalization, path resolution, or race isolation. It adds no cleanup,
+rollback, retry, workflow, dependency, lockfile, version, runtime API, release
+authority, or real public release observation. RFC-0045 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

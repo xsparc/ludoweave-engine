@@ -42,22 +42,17 @@ claims.
 
 ## Current boundary
 
-M61 public-release root separation keeps the expected candidate directory
-read-only. The candidate directory and runner-owned output root are strictly
-resolved before network or validator side effects. An output root that equals
-or resolves beneath the candidate fails content-silently with stable
-`public_release.path_overlap`; a separate candidate child of the output root
-remains valid. Filesystem-identity comparison across the output ancestry also
-rejects aliases whose resolved spelling differs on a case-insensitive
-filesystem.
+M62 public-release plan parsing admits a portable asset name of 1 through 255
+ASCII characters, rejects a trailing period and Windows device stem, and
+requires case-insensitive uniqueness before asset download or output-directory
+creation. Existing portable release artifact names remain valid.
 
-M61 is no race-free filesystem guarantee and adds no directory-descriptor or
-general filesystem sandbox, rollback, cleanup, retry, workflow, allocation,
-dependency, lock, version, runtime source/API, release authority, tag, release,
-or publication. Pull-request fixtures are not a real public release
-observation. M0 through M60 are complete, reviewed, hosted-validated, and
-integrated into `main`. M61 starts from exact verified M60 closeout
-`a8fc787a7b04b4fe8ed3766167e58258aa62c8d6`.
+M62 uses no filesystem probing and adds no cleanup, rollback, retry, workflow,
+allocation, dependency, lock, version, runtime source/API, release authority,
+tag, release, or publication. Pull-request fixtures are not a real public
+release observation. M0 through M61 are complete, reviewed, hosted-validated,
+and integrated into `main`. M62 starts from exact verified M61 closeout
+`14f848c92021d54c9140e01b0333c0725c45145d`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
