@@ -1,65 +1,62 @@
 # Project State
 
-## M64 bounded sample-bundle extraction - review correction
+## M64 bounded sample-bundle extraction - feature integrated
 
 - Base: exact clean synchronized M63 closeout
   `a92330c5d592eaeba69e75e25dd94d83b22d367f`, tree
   `86cf786b01eb92ff39fcdbdc5464540f4b3c8eea`.
-- Current branch: `security/m64-bounded-sample-bundle-extraction`.
-- Measured predecessor bundle: 50 members, 379,577 declared uncompressed bytes
-  total, 33,018-byte largest member, and 111,168 compressed bytes.
 - Gap: the release smoke trusted unbounded member count and declared expansion,
   wrote earlier members before discovering a later metadata violation, and
   allocated each complete expanded member through `ZipFile.read()`.
 - Decision: RFC-0047 admits at most 256 members, 1 MiB declared uncompressed per
-  member, and 8 MiB declared uncompressed total. Complete path, link, count, and
-  size preflight precedes extraction; admitted files stream in 64 KiB blocks
-  and must exactly reproduce declared size. Only stored and deflated methods are
-  admitted; BZIP2, LZMA, and unknown methods fail before extraction.
+  member, and 8 MiB declared uncompressed total. Complete path, link, codec,
+  count, and size preflight precedes extraction; stored and deflated files
+  stream in 64 KiB blocks and must exactly reproduce declared size. BZIP2,
+  LZMA, and unknown methods fail before extraction.
 - Boundary: private release tooling only. No general archive sandbox,
   transactional cleanup, filename-policy expansion, workflow, dependency,
   runtime API, release authority, or real public release observation.
-- Development state: the eight-case test started with seven expected failures
-  and one protected-surface pass against unchanged M63 production code. The
-  seven non-documentation assertions pass after the bounded streaming change.
-  The first combined focused command exposed only intentional private-seam
-  Pyright diagnostics. The first file-local directive included unsupported
-  trailing prose and was rejected in a fail-fast gate. The corrected exact
-  directive passes: formatting, Ruff, strict Pyright, all eight M64 assertions,
-  and strict docs are green. All 699 inherited architecture and release-
-  artifact assertions also pass.
-- Complete source state: unchanged lock/environment, formatting, Ruff, strict
-  Pyright, 699 architecture/release assertions, strict docs, and whitespace are
-  green. The graphics-enabled candidate passes 2,237 tests with 14 expected
-  skips on all three supported CPython versions. Renderer/profile/example and
-  all four diagnostic benchmark validators pass. Two builds reproduce the
-  wheel/source pair, and installed-wheel plus complete bounded release smoke
-  pass. Findings-first review found no scope/credential/backend/native/archive
-  leakage, clarified the initial central-directory parsing boundary, and added
-  direct short/long copied-size regressions. The corrected strengthened gate is
-  format/Ruff/Pyright clean with all ten M64 and 701 inherited assertions
-  passing. The final record-inclusive source gate also passes. The strengthened
-  candidate passes 2,239 tests with 14 expected skips on all supported CPython
-  versions; final renderer/profile/example and diagnostic benchmark gates pass.
-  Final reproducible artifacts, isolated-wheel smoke, and complete bounded
-  release smoke pass. The final record-frozen source gate passes. Exact commit
-  review and hosted qualification remain.
-- Initial hosted state: exact head `c5813633f8ff7970311cc7ab8e1159f844c056f7`
-  passed run `31513476270` in exactly three Linux-first allocations. All hosted
-  test, graphics, profile, example, reproducibility, wheel, and release-smoke
-  slices passed.
-- Review correction: the first audit found that CPython's BZIP2/LZMA member
-  readers decompress without the deflate path's maximum-output argument before
-  truncating to forged declared size. Exact local source inspection confirmed
-  the issue. Three reviewer-derived assertions failed and ten passed against the
-  hosted head; stored/deflated-only admission is now implemented and focused
-  formatting, Ruff, strict Pyright, all 13 M64 assertions, and strict docs pass.
-  All 704 inherited architecture/release-artifact assertions also pass. Full
-  corrected validation passes 2,242 tests with 14 expected skips on all
-  supported CPython versions, real-wgpu, profiles, vertical slices, reproducible
-  builds, installed-wheel smoke, and complete release smoke. Final record/commit
-  validation and a new hosted run remain. The final record-inclusive source
-  gate is green.
+- Local evidence: the final corrected candidate is format/Ruff/strict-Pyright
+  clean. All 13 focused M64 assertions and 704 inherited architecture/release-
+  artifact assertions pass. Every supported graphics-enabled CPython suite
+  passes 2,242 tests with 14 expected skips; real-wgpu, profiles, vertical
+  slices, and all four diagnostic benchmark validators pass. Two fresh builds
+  reproduce a 272,239-byte wheel and 1,163,429-byte source archive; isolated-
+  wheel and complete bounded release smoke pass.
+- Hosted correction: initial head `c5813633f8ff7970311cc7ab8e1159f844c056f7`
+  passed its three allocations but was not merged because review found that
+  BZIP2/LZMA reads could decompress without a maximum-output argument before
+  truncating to forged declared size. The corrected stored/deflated-only
+  admission and regressions pass, the response was accepted, and the sole
+  thread is resolved.
+- Hosted evidence: corrected exact head
+  `8b6861df891f12d194bc9b7e98b41ac8ab81f7d1` passed run `31515782370` in
+  exactly three Linux-first allocations. Linux `93860439338` passed in 7m13s,
+  macOS `93862476671` in 2m55s, and Windows `93862476577` in 4m06s. Baseline
+  passed 2,246 tests; each compatibility suite passed 2,246 with one expected
+  skip. Real-wgpu, profiles, both vertical slices, reproducible builds,
+  installed-wheel smoke, and complete release smoke passed. Hosted artifacts
+  were a 272,227-byte wheel at
+  `4eb1cb0b2524f188056c619c7e5757b41c739ff3d889f49982c026dba7a60a3b` and
+  a 1,163,806-byte source archive at
+  `718d719b0c0c40cf1af93aa5e5aa398fbfbdd5439de1067003deb6dba40c69b2`.
+- Review and integration: two delayed corrected-head audits found no later
+  review or comment. GitHub-verified PR #144 squash
+  `8399e0f94838f455ead604eceee0a17e1b2c9a91` has exact reviewed tree
+  `3f46ec8c23a044a20823a7d9132906cc2efdb3fa`, sole parent exact M63 closeout,
+  and a valid signature. Both source commits carry exact DCO sign-offs; the
+  generated squash message contains escaped line-break text, so no standalone
+  trailer claim is made for that merge commit. The feature branch is deleted
+  remotely. This four-document integration record requests one Linux
+  documentation/distribution allocation and a skipped zero-step desktop
+  umbrella; the subsequent three-record closeout requests none.
+- Integration-record local gate: the exact four-file scope passes the unchanged
+  lock, formatting for 307 files, Ruff, strict Pyright, all 702 architecture
+  assertions, strict docs, and whitespace. Two pre-final-record builds
+  reproduced the unchanged 272,239-byte wheel and a 1,163,698-byte record-
+  updated source archive; installed-wheel and complete release smoke pass. The
+  final evidence edit changes the source archive again, so exact commit-tree
+  artifact identity remains delegated to the one-allocation hosted gate.
 
 ## M63 public release subordinate-output confinement - complete
 

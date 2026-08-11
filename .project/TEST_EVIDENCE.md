@@ -49,6 +49,23 @@ the verified M63 closeout created no run or check.
 | Codec-corrected reproducible distribution and release gate | 0 | Two fresh confirmed-absent builds reproduced a pure 272,239-byte wheel at `38eb28c126aa0245744ded463c3d327423c25b99375c0a9680a7012723c4c7c0` and a 1,163,429-byte source distribution at `a2750f2411faac4e1a2aa5b72ef63b5bd9b2bdfed843e1613492594fe89dfee0`. Isolated-wheel smoke, fresh ten-artifact staging, and the corrected complete release smoke passed. The diagnostic M1-M4 benchmarks were not repeated because the correction changes only private release-smoke archive admission and documentation; their earlier reviewed-candidate results remain applicable to unchanged runtime code. |
 | Final codec-correction record-inclusive source gate | 0 | The unchanged lock resolved 46 packages in 0.94 ms; all 307 Python files were format clean; Ruff and strict Pyright reported zero findings; all 704 architecture/release-artifact assertions passed in 5.84 seconds; strict docs built in 1.09 seconds with only the known upstream notice; and whitespace was clean. |
 
+## M64 hosted feature evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Corrected ready PR #144 CI run `31515782370` | 0 | Exact corrected head `8b6861df891f12d194bc9b7e98b41ac8ab81f7d1` passed in exactly three Linux-first allocations. Linux `93860439338` passed in 7m13s before macOS `93862476671` and Windows `93862476577` began; they passed in 2m55s and 4m06s. |
+| Hosted supported-Python and graphics suites | 0 | Linux baseline passed 2,246 tests in 127.19 seconds; Ubuntu 3.13 and 3.14 each passed 2,246 with one expected skip in 107.93 and 109.64 seconds. Windows and macOS 3.14 each passed 2,246 with one expected skip in 185.20 and 121.22 seconds. Real-wgpu passed ten tests on Linux in 13.22 seconds, Windows in 9.42 seconds, and macOS in 8.76 seconds. |
+| Hosted profiles, examples, distribution, and smoke | 0 | Both profiles, Clockwork Arena, Agent World Builder, staging, installed-wheel smoke, and complete release smoke passed. Two builds reproduced a pure 272,227-byte wheel at `4eb1cb0b2524f188056c619c7e5757b41c739ff3d889f49982c026dba7a60a3b` and a 1,163,806-byte source archive at `718d719b0c0c40cf1af93aa5e5aa398fbfbdd5439de1067003deb6dba40c69b2`. |
+| Corrected-head review surfaces | 0 | The first and both delayed audits found no new issue comment, review comment, or unresolved thread. The earlier BZIP2/LZMA finding remained answered and resolved; the PR stayed clean, mergeable, and exact-head with all three checks successful. |
+| Feature squash verification | 0 | PR #144 squash `8399e0f94838f455ead604eceee0a17e1b2c9a91` has tree `3f46ec8c23a044a20823a7d9132906cc2efdb3fa`, exactly matching the corrected reviewed head; its sole parent is exact M63 closeout `a92330c5d592eaeba69e75e25dd94d83b22d367f`. GitHub reports a valid signature. Both source commits carry exact DCO sign-offs. The merge command passed escaped newline text in its body, which GitHub preserved literally, so the squash message is not claimed to contain a standalone parsed DCO trailer. The merged feature branch is absent remotely. |
+
+## M64 integration-record local evidence - 2026-08-12, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact scope, lock, static, architecture, docs, and whitespace gate | 0 | The diff named exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; whitespace was clean; the unchanged lock resolved 46 packages in 0.76 ms; all 307 Python files were format clean; Ruff and strict Pyright reported zero findings; all 702 architecture assertions passed in 5.10 seconds; and strict docs built in 1.09 seconds with only the known upstream Material notice. |
+| Reproducible distribution and smoke | 0 | Two builds reproduced a pure 272,239-byte wheel at `38eb28c126aa0245744ded463c3d327423c25b99375c0a9680a7012723c4c7c0` and a 1,163,698-byte source archive at `c08fb4bab14fa51c4ec1d6499e016bec2d32184e3b0b3abe1a8d1817e9830e3d`. Isolated-wheel smoke, deterministic ten-artifact staging, and complete bounded release smoke passed. This evidence edit changes the source archive afterward, so exact commit-tree artifact identities remain delegated to hosted evidence. |
+
 ## M63 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M63 starts from exact synchronized M62 closeout
