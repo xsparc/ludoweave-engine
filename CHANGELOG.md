@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M67/RFC-0050 exact sample-bundle inventory preflight. The verifier now
+  rejects any unexpected member or missing member among the 50 source-defined
+  regular files before extraction, using one content-silent failure category,
+  without changing workflows, dependencies, the sample producer, runtime APIs,
+  or release authority.
 - Add M66/RFC-0049 same-filesystem temporary staging and single-rename sample
   publication. An incomplete or otherwise failed extraction cleans its partial
   owned staging tree, existing final roots fail before archive reads, and no

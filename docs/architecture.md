@@ -1687,6 +1687,26 @@ M66 adds no workflow, dependency, sample producer, runtime API, release
 authority, or real public release observation. RFC-0049 defines the complete
 boundary.
 
+## M67 exact sample-bundle inventory boundary
+
+M67 adds one independent source-defined expectation to the complete M64-M66
+preflight. The verifier collects the validated relative identities and requires
+them to equal the exact sample-bundle inventory of 50 regular files. Archive
+order is irrelevant. Any unexpected member or missing member fails with one
+content-silent category before extraction opens a member or creates the owned
+temporary staging directory.
+
+The sample producer remains unchanged and independently reviewable. An
+architecture test builds its current deterministic ZIP and compares its members
+with the verifier expectation, so producer drift fails closed and an intentional
+inventory change requires both sides to be reviewed explicitly.
+
+This private product-shape check is not a content scanner, malware detector,
+file-format validator, permission policy, provenance system, or general archive
+sandbox. It adds no workflow, dependency, sample producer, runtime API, release
+authority, or real public release observation. RFC-0050 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

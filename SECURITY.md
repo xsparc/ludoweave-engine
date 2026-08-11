@@ -150,6 +150,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   is not crash-durable, provides no concurrent filesystem race isolation, adds
   no workflow or release authority, and is not a real public release
   observation.
+- M67 requires the exact sample-bundle inventory of 50 regular files after the
+  complete metadata/path preflight and before extraction. An unexpected member
+  or missing member fails with one content-silent category before any archive
+  member is opened. The expectation is source-defined independently of the
+  unchanged sample producer. This is not content scanning or a general archive
+  sandbox, adds no workflow or release authority, and is not a real public
+  release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

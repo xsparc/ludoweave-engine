@@ -71,6 +71,10 @@ class _SmokeModule(Protocol):
     ) -> tuple[str, ...]: ...
 
 
+def _allow_scoped_inventory(members: set[str]) -> None:
+    del members
+
+
 def _load() -> _SmokeModule:
     spec = importlib.util.spec_from_file_location("m65_smoke_release", _SMOKE)
     assert spec is not None and spec.loader is not None
@@ -82,6 +86,7 @@ def _load() -> _SmokeModule:
         spec.loader.exec_module(module)
     finally:
         sys.path.remove(scripts)
+    module.__dict__["_validate_sample_inventory"] = _allow_scoped_inventory
     return cast(_SmokeModule, module)
 
 
