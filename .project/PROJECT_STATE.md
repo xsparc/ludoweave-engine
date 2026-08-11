@@ -1,11 +1,11 @@
 # Project State
 
-## M65 portable sample member paths - implementation
+## M65 portable sample member paths - feature integrated
 
 - Base: exact clean synchronized M64 closeout
   `92e706961e2ecd4e2c187a205cc045a8c6506ab9`, tree
   `8df4aaa8222517d729234792d162dfc115674767`.
-- Current branch: `security/m65-portable-sample-member-paths`.
+- Current branch: `docs/m65-integration-record`.
 - Gap: M64 confines and resource-bounds sample extraction but admits duplicate,
   case-only, case-ambiguous-ancestor, explicit-directory, Windows-device,
   trailing-period, non-ASCII, overlong, and file/directory prefix-collision
@@ -63,8 +63,28 @@
   `f563d5a7f2ab11c28404462de33454108d74e68528c65742d9417dc9736a3020`
   and a 1,172,451-byte source archive at
   `fabf9855670bef2801fa7951a5f9c38cb737fc89a1ad037548b922ca254ea154`;
-  isolated-wheel and complete release smoke pass. Amended commit review and a
-  fresh exact-head hosted gate remain.
+  isolated-wheel and complete release smoke pass. Exact commit-tree artifact
+  identity was then delegated to the corrected hosted gate recorded below.
+- Hosted correction: exact amended head
+  `9de1e2e6ea11b4058bb61b4102043273715875ee` passed run `31523863615` in
+  the unchanged three Linux-first allocations. Linux `93887270228` passed in
+  7m32s, macOS `93889429991` in 2m09s, and Windows `93889429975` in 4m11s.
+  Baseline and every compatibility suite passed 2,269 tests, with one expected
+  compatibility skip; real-wgpu, profiles, vertical slices, reproducibility,
+  installed-wheel smoke, staging, and complete release smoke passed.
+- Hosted artifacts: two builds reproduced a pure 272,473-byte wheel at
+  `4bb773ae13a5b8f4a132ef7488b783cb0249f6e4ff7e3640016c7207872c5c87`
+  and a 1,174,818-byte source archive at
+  `123f08b48bf2c0eef3058024182cc1389544fd70eb361c00b30b1fba73530738`.
+- Review and integration: the one valid review finding was answered and its
+  thread resolved after the corrected hosted pass. Two delayed audits found no
+  later activity. GitHub-verified squash
+  `b01335592d0e984c6b3eb6a35d31294081cff0d5` has the exact reviewed tree,
+  sole parent exact M64 closeout, valid signature, and parsed DCO trailer. The
+  feature branch is absent remotely and deleted locally. This four-document
+  record requests one Linux documentation/distribution allocation and a
+  skipped zero-step desktop umbrella; the following three-record closeout will
+  request none.
 
 ## M64 bounded sample-bundle extraction - complete
 
