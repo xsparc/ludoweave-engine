@@ -75,6 +75,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M64 bounded sample-bundle extraction | PR #144 corrected codec admission after review, passed exact three-allocation hosted qualification, and squash-integrated bounded preflight plus 64 KiB stored/deflated streaming without changing workflow or release authority |
 | Done | M65 portable sample member paths | PR #147 corrected explicit non-regular mode admission after review, passed exact three-allocation hosted qualification, and squash-integrated portable collision-free staged sample paths without changing workflow, producer, runtime, or release authority |
 | Done | M66 staged sample-root publication | PR #150 passed exact three-allocation hosted qualification and squash-integrated same-filesystem staging, completeness-before-publication, single-rename visibility, and owned failure cleanup without workflow, runtime, or release-authority expansion |
+| In progress | M67 exact sample-bundle inventory conformance | Complete local matrix and findings-first review require the independent exact 50-file product shape before extraction; exact-head hosted qualification remains pending without a workflow or producer change |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.

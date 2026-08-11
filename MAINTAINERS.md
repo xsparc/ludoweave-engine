@@ -64,9 +64,17 @@ remains untouched. This is not crash-durable and supplies no concurrent
 filesystem race isolation or post-publication rollback. It adds no workflow,
 allocation, dependency, lock, version, sample producer, runtime source/API,
 release authority, tag, release, or publication. Pull-request fixtures are not
-a real public release observation. M0 through M65 are complete, reviewed,
-hosted-validated, and integrated into `main`. M66 starts from exact verified
-M65 closeout `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`.
+a real public release observation.
+
+M67 compares the complete preflighted archive identity with the exact
+source-defined sample-bundle inventory of 50 regular files. Any unexpected
+member or missing member fails content-silently before extraction or staging.
+This is not content scanning or a general archive sandbox. It adds no workflow,
+allocation, dependency, lock, version, sample producer, runtime source/API,
+release authority, tag, release, or publication. Pull-request fixtures are not
+a real public release observation. M0 through M66 are complete, reviewed,
+hosted-validated, and integrated into `main`. M67 starts from exact verified
+M66 closeout `995fdda097a418a7a0e570bb6b492d3f5609d471`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
@@ -91,8 +99,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   filesystem collision checks before network or validator work, M61 separates
   candidate and output roots, M62 constrains portable asset names, M63 confines
   subordinate text output, M64 bounds staged sample-bundle extraction, M65
-  constrains portable sample member paths, and M66 stages complete sample roots
-  before publication; none of these milestones authorizes a real release.
+  constrains portable sample member paths, M66 stages complete sample roots
+  before publication, and M67 requires the exact expected inventory; none of
+  these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

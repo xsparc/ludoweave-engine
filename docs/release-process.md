@@ -515,6 +515,19 @@ transaction, or concurrent race isolation. It adds no workflow, dependency,
 sample producer, runtime API, or release authority, and pull-request evidence
 is not a real public release observation.
 
+M67/RFC-0050 adds an exact source-defined sample-bundle inventory to that same
+complete preflight. The 50 validated relative regular-file identities must
+match exactly, independent of archive order. An unexpected member or missing
+member fails with one content-silent category before extraction opens any
+member or creates a staging directory. The sample producer remains unchanged;
+an architecture test independently requires its current deterministic ZIP to
+match the verifier expectation.
+
+This is a project-product identity check, not content scanning, provenance, a
+permission policy, or a general archive sandbox. It adds no workflow,
+dependency, sample producer, runtime API, or release authority, and pull-request
+evidence is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -1,85 +1,62 @@
 # Current Task
 
-- **Task:** M66 - staged sample-root publication
-- **Status:** Feature PR #150 and integration-record PR #151 are fully
-  validated, reviewed, squash-integrated, and verified. This exact three-record
-  closeout establishes the clean M67 selection base without requesting hosted
-  CI.
+- **Task:** M67 - exact sample-bundle inventory conformance
+- **Status:** Full local candidate validation, findings-first review, and the
+  record-frozen source gate pass. The feature is ready for a DCO commit and
+  exact-head hosted qualification.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** GitHub-verified integration squash
-  `bcc91aa97d3157971eb4ba52f2430b8bb65c4ab6`, whose tree
-  `8ed42b87e04ed93fb205f06878bc5f85cf26b8b5` exactly matches reviewed PR
-  #151 head `595eb77c42de31211c4d164e949cf0fa4d5db3c3`. Its sole parent is the
-  M66 feature squash `79593b01d670dd07fb761e493382685765d13d7a`;
-  GitHub reports a valid signature and exact parsed DCO trailer.
-- **Outcome:** Prevent a failed release-sample extraction from leaving a
-  partial tree at the final versioned sample-root identity.
-- **Acceptance:** Require an existing real caller-owned output directory and an
-  absent final root, including dangling links; retain complete M64/M65 archive
-  preflight; stream into an owned same-filesystem temporary staging directory;
-  validate required files there; publish through one rename; clean the owned
-  stage on every pre-publication failure; and preserve the original failure.
-- **Boundary:** Private single-process release smoke only. No general archive
-  sandbox, crash durability, `fsync`, journal, concurrent filesystem race
-  isolation, post-publication rollback, cleanup of unowned paths, workflow,
-  dependency, sample producer, runtime API, release authority, tag, release,
-  publication, or real public release observation.
+- **Branch:** `release/m67-exact-sample-inventory`.
+- **Base:** Exact synchronized M66 closeout
+  `995fdda097a418a7a0e570bb6b492d3f5609d471`, tree
+  `54da91c867211007156d5006512a426815a8374b`. Only `main` existed locally
+  and remotely, and no pull request was open before branching.
+- **Outcome:** Reject any unexpected or missing file in the project-produced
+  sample ZIP before extraction or publication.
+- **Acceptance:** Define the independent exact 50-file relative inventory;
+  collect identities only after the complete M64/M65 metadata/path preflight;
+  reject either set mismatch with one stable content-silent category before
+  member reads or staging; preserve archive-order independence and M64-M66
+  behavior; and prove that the unchanged producer emits the expected set.
+- **Boundary:** Private release smoke only. No content scanning, malware
+  detection, file-format validation, general archive sandbox, workflow,
+  dependency, version, sample-producer, runtime API, release authority, tag,
+  release, publication, or real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Failing baseline:** The new M66 file produced 8 failures, 2 passing guards,
-  and 1 Windows symbolic-link capability skip in 0.36 seconds against exact M65
-  production code. Stream-size and incomplete-bundle failures left partial
-  final roots; existing roots were read into or raised host exceptions; a
-  missing output parent was silently created; publish-failure injection was
-  never reached; staged source structure and RFC-0049 were absent.
-- **Local candidate evidence:** Whole-tree format/Ruff/strict-Pyright, 736
-  architecture assertions, strict docs, and whitespace pass. CPython 3.12
-  passes 2,266 tests with 15 skips; 3.13 and 3.14 each pass 2,266 with 16 skips.
-  Ten real-wgpu tests, both five-repeat profiles, both vertical slices, and all
-  four diagnostic benchmark validators pass. Final reviewed builds reproduce a
-  pure 272,709-byte wheel and 1,183,308-byte source archive; installed-wheel,
-  deterministic staging, and complete updated release smoke pass.
-- **Review:** Findings-first review found that the first implementation rejected
-  symbolic-link parents but not Windows directory junctions despite the real-
-  directory contract. A tests-first junction simulation reproduced the gap and
-  now passes. Mid-stream I/O cleanup and a late final-root collision were also
-  added as lifecycle proofs. The review-strengthened file passes 13 assertions
-  with 1 local symbolic-link capability skip; no further blocker or non-blocking
-  finding remains.
-- **Environment correction:** Two initial full-suite attempts were invalidated
-  by a full system drive. After isolating pytest fixtures on the spacious `D:`
-  drive, every supported-version suite passed. No behavioral pass is claimed
-  from the two disk-exhausted attempts.
-- **Hosted evidence:** Run `31529725573` passed exact head `facda315` in the
-  unchanged three Linux-first allocations: Linux in 7m17s, macOS in 2m07s, and
-  Windows in 3m21s. Baseline and every compatibility suite passed 2,283 tests,
-  with one compatibility skip; real-wgpu, profiles, vertical slices,
-  reproducibility, installed-wheel smoke, staging, and complete M66 release
-  smoke passed.
-- **Review resolution:** One hosted comment incorrectly cited absent commit
-  `dd958c5` as lacking DCO. GitHub and local Git proved PR #150 contains only
-  `facda315` with the exact trailer. The evidence reply was posted, the thread
-  resolved, and two delayed exact-head audits found no later activity.
-- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
-  request only the existing documentation-qualified Linux allocation and a
-  skipped zero-step desktop umbrella; then create a three-record closeout that
-  requests no hosted runner.
-- **Integration local evidence:** The exact four-file record passes the
-  unchanged lock, formatting for 309 files, Ruff, strict Pyright, all 738
-  architecture assertions with 1 local capability skip, strict docs,
-  whitespace, two-build reproducibility, installed-wheel smoke, 10-artifact
-  staging, and complete M66 release smoke.
-- **Integration hosted evidence:** Exact four-file head `595eb77` passed run
-  `31531603994` in one 43-second Linux allocation; the desktop umbrella skipped
-  with zero steps. Hosted formatting, Ruff, strict docs, 739 documentation-
-  selected architecture assertions, reproducibility, installed-wheel smoke,
-  staging, and complete release smoke passed. Two delayed audits were empty.
-- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture,
-  strict docs, scope, Git-object, and whitespace checks; create a DCO-signed
-  ready PR that requests no hosted runner; verify its squash; delete every M66
-  branch locally/remotely; remove only verified generated outputs; and leave
-  synchronized clean `main` before selecting M67.
+- **Research:** Focused primary-source review of Python `zipfile`, OWASP upload
+  validation, and SLSA 1.2 expectation verification supports exact fail-closed
+  source-defined inventory validation. This is advisory design evidence, not a
+  claim of SLSA compliance or general archive safety.
+- **Failing baseline:** The new M67 file produced 5 failures and 3 passing
+  guards in 0.33 seconds against exact M66 production code. The verifier had no
+  exact inventory expectation; both an extra portable member and a missing
+  nested receipt asset reached member reads; source ordering and RFC-0050 were
+  absent. The producer-inventory, exact-valid-bundle, and protected-surface
+  guards passed.
+- **Local candidate:** The unchanged lock and restored 45-package CPython 3.12
+  graphics environment pass whole-tree formatting for 310 files, Ruff, strict
+  Pyright, 747 reviewed architecture assertions with 1 local capability skip, 2 release-
+  artifact tests, strict docs, and whitespace. CPython 3.12 passes 2,286 tests
+  with 15 skips; 3.13 and 3.14 each pass 2,276 with 16 skips. Ten real-wgpu
+  tests, both five-repeat profiles, both vertical slices, and all four
+  diagnostic benchmark validators pass. Two builds reproduce a pure 272,880-
+  byte wheel and 1,190,493-byte source archive; installed-wheel, deterministic
+  staging, and complete M67 release smoke pass.
+- **Review:** Findings-first review found a test-strength gap: separate 49- and
+  51-member fixtures could be satisfied by a count-only check. A 50-member
+  one-for-one substitution and direct no-staging proof now pass. The correction
+  changes tests only; the strengthened M64-M67 contract passes 58 assertions
+  with 1 capability skip. No blocking or non-blocking finding remains.
+- **Environment:** Full-suite temporary repositories used disposable
+  `D:\LudoWeaveValidation\m67` paths to avoid the known low-space system drive;
+  the locked CPython 3.12 graphics environment was restored afterward.
+- **Hosted policy:** The implementation changes release verification and must
+  receive the existing substantive Linux-first three-allocation qualification.
+  No workflow edit or additional allocation is authorized.
+- **Integration gate:** After exact-head hosted qualification and review,
+  change only `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`,
+  `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; request only the existing
+  documentation-qualified Linux allocation and zero-step skipped desktop
+  umbrella; then create a three-record closeout with no hosted runner.

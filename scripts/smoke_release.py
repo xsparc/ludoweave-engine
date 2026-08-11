@@ -54,6 +54,60 @@ _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
     ("aux", "con", "nul", "prn"),
 ) | frozenset(f"{prefix}{number}" for prefix in ("com", "lpt") for number in range(1, 10))
+_EXPECTED_SAMPLE_MEMBERS: frozenset[str] = frozenset(
+    (
+        "README.md",
+        "agent_tool_conformance.py",
+        "agent_tool_recovery_rate_readiness.py",
+        "agent_world_builder.py",
+        "alpha_acceptance.py",
+        "assets/agent_tool_recovery_rate.json",
+        "assets/benchmark_regression_rate.json",
+        "assets/clockwork_arena.scene.json",
+        "assets/cross_version_receipt_corpus.json",
+        "assets/external_contributor_rehearsal.json",
+        "assets/external_contributor_retention.json",
+        "assets/external_consumer_feedback.json",
+        "assets/external_sample_game_adoption.json",
+        "assets/installation_matrix.json",
+        "assets/receipt_v1/committed.json",
+        "assets/receipt_v1/dry_run.json",
+        "assets/receipt_v1/manifest.json",
+        "assets/receipt_v1/rejected.json",
+        "assets/replay_divergence_rate.json",
+        "assets/response_review_latency.json",
+        "assets/supported_release_channel.json",
+        "assets/third_party_conformance_adoption.json",
+        "benchmark_regression_rate_readiness.py",
+        "clockwork_arena.assets.json",
+        "clockwork_arena.py",
+        "command_receipt_stability_decision.py",
+        "constrained_3d_decision.py",
+        "cross_version_corpus_readiness.py",
+        "example.plugin.json",
+        "external_contributor_rehearsal_readiness.py",
+        "external_contributor_retention_readiness.py",
+        "external_consumer_feedback_readiness.py",
+        "external_sample_game_adoption_readiness.py",
+        "fixed_step_world.py",
+        "hello_headless.py",
+        "hello_sprite.py",
+        "installation_matrix_readiness.py",
+        "operation_argument_compatibility.py",
+        "receipt_reader.py",
+        "receipt_semantic_compatibility.py",
+        "render_device_conformance.py",
+        "replay_divergence_rate_readiness.py",
+        "response_review_latency_readiness.py",
+        "rich_2d_showcase.py",
+        "rollback_readiness.py",
+        "supported_release_channel_readiness.py",
+        "third_party_conformance_adoption_readiness.py",
+        "visual_editor_decision.py",
+        "wasm_mod_security_decision.py",
+        "world_store_conformance.py",
+    )
+)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -373,6 +427,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         total_bytes = 0
         member_parts: list[tuple[str, ...]] = []
         member_keys: set[tuple[str, ...]] = set()
+        observed_members: set[str] = set()
         directory_spellings: dict[tuple[str, ...], tuple[str, ...]] = {}
         for info in infos:
             path = PurePosixPath(info.filename)
@@ -396,6 +451,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
                     raise RuntimeError("sample bundle member paths collide")
             member_keys.add(member_key)
             member_parts.append((expected_root, *relative_parts))
+            observed_members.add("/".join(relative_parts))
             mode = info.external_attr >> 16
             if stat.S_ISLNK(mode):
                 raise RuntimeError("sample bundle must not contain symbolic links")
@@ -416,6 +472,7 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             for depth in range(1, len(member_key))
         ):
             raise RuntimeError("sample bundle member paths collide")
+        _validate_sample_inventory(observed_members)
 
         with tempfile.TemporaryDirectory(
             prefix=".ludoweave-samples-",
@@ -472,6 +529,13 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
                 raise RuntimeError("sample bundle output already exists")
             staged_root.replace(root)
     return root
+
+
+def _validate_sample_inventory(observed_members: set[str]) -> None:
+    """Require the exact source-defined project sample inventory."""
+
+    if observed_members != set(_EXPECTED_SAMPLE_MEMBERS):
+        raise RuntimeError("sample bundle inventory is unexpected")
 
 
 def _portable_sample_member_parts(

@@ -1,5 +1,48 @@
 # Project State
 
+## M67 exact sample-bundle inventory conformance - reviewed candidate
+
+- Base: exact clean synchronized M66 closeout
+  `995fdda097a418a7a0e570bb6b492d3f5609d471`, tree
+  `54da91c867211007156d5006512a426815a8374b`.
+- Current branch: `release/m67-exact-sample-inventory`.
+- Gap: M64-M66 validate bounded portable transactional extraction, but the
+  final completeness check covers only a root-level subset. Extra portable
+  files and missing nested assets are not rejected as an exact product-shape
+  mismatch before extraction.
+- Decision: RFC-0050 adds an independent source-defined expectation for the 50
+  regular files currently emitted by the unchanged sample producer. The
+  complete preflighted identity set must match exactly before member reads or
+  staging; either mismatch uses one content-silent category.
+- Boundary: private project sample verification only. No content scanning,
+  general archive sandbox, workflow, dependency, producer, runtime API,
+  release authority, or real public release observation.
+- Research: Python requires archive inspection before untrusted extraction;
+  OWASP recommends allowlist and pre-extraction checks; SLSA 1.2 recommends
+  comparing artifacts to source-defined expectations and rejecting unrecognized
+  inputs. M67 adopts only the narrow exact-inventory consequence.
+- Failing baseline: 5 failures and 3 passing guards in 0.33 seconds proved the
+  missing expectation, pre-read mismatch rejection, source-ordering contract,
+  and documentation gap while preserving producer and boundary guards.
+- Local candidate: the unchanged lock and restored graphics environment pass
+  whole-tree static checks, 747 reviewed architecture assertions with 1 capability skip,
+  strict docs, release-artifact tests, and whitespace. CPython 3.12 passes 2,286
+  tests with 15 skips; 3.13/3.14 each pass 2,276 with 16 skips. Ten real-wgpu
+  tests, both profiles, both vertical slices, four diagnostic benchmark
+  validators, reproducible distributions, isolated-wheel smoke, deterministic
+  staging, and complete release smoke pass.
+- Artifacts: two builds reproduced a pure 272,880-byte wheel at
+  `dba45ae505702b2bb04e1666adce518f87239158f2e5ba3cafd19ee82c50016b`
+  and a 1,190,493-byte source archive at
+  `962068fd8537e13639efc0d528179911e2beeab8a0a8ccce1776a641c09ade12`.
+  The wheel contains 94 entries, the sdist 500 including the M67 test and RFC,
+  and the staged sample ZIP exactly 50 files; no inspected archive contains a
+  native library or WASM file.
+- Review: separate 49/51-member fixtures left a count-only test loophole. The
+  strengthened test uses a 50-member substitution and rejects staging creation
+  directly. This changed tests only; M64-M67 now pass 58 assertions with 1
+  capability skip. No remaining finding was identified.
+
 ## M66 staged sample-root publication - feature integrated
 
 - Base: exact clean synchronized M65 closeout
