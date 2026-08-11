@@ -1,6 +1,6 @@
 # Project State
 
-## M62 portable public release asset names - locally implemented
+## M62 portable public release asset names - feature integrated
 
 - Base: exact clean synchronized M61 closeout
   `14f848c92021d54c9140e01b0333c0725c45145d`, with tree
@@ -53,7 +53,25 @@
   audits pass. Two new builds reproduce a pure 271,887-byte wheel and
   1,142,219-byte source archive; isolated-wheel and ten-artifact release smoke
   pass, and the 94/490-entry archive inventory has no native, WASM, bytecode,
-  cache, site, or dist payload. Exact-head hosted qualification remains pending.
+  cache, site, or dist payload.
+- Hosted evidence: ready PR #138 exact head
+  `3bb7539463e34859b5ef8a63d2ea4bc1ff4c2cb2` passed run `31501434063`
+  in exactly three allocations. Linux job `93812142249` passed in 7m20s before
+  macOS `93814459679` and Windows `93814459742` began; they passed in 3m11s and
+  4m18s. Linux baseline passed 2,221 tests, while Ubuntu 3.13/3.14 and both
+  desktop 3.14 suites passed 2,221 with one expected skip. All platforms passed
+  ten real-wgpu tests, profiles, Clockwork Arena, and Agent World Builder.
+  Hosted same-source builds reproduced a pure 271,874-byte wheel at
+  `00c026e3800aa4ab4f46adc55bc91e21a0d09a9bfecf22a0b882a3b2349f306a`
+  and 1,142,880-byte source distribution at
+  `efe8f58254a38949d9ae3b170d4b8d6f369c55fe65fc6616d48011bf06b7bcde`;
+  installed-wheel and ten-artifact release smoke passed. Two delayed audits
+  found no comment, review, or thread. Head-pinned GitHub-verified squash
+  `a96fac6b4fdd2eb3c0d65ede17f66cede2faa232` has tree
+  `0bbacc706be88a4aab7ed13a444f1657db90fdb6` exactly equal to the reviewed
+  head, sole parent exact M61 closeout, and parsed DCO. The feature branch is
+  deleted locally/remotely; only `main` remained before this bounded integration
+  record branch was created.
 
 ## M61 public release candidate/output-root separation - complete
 
