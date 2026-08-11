@@ -1,6 +1,6 @@
 # Project State
 
-## M62 portable public release asset names - feature integrated
+## M62 portable public release asset names - complete
 
 - Base: exact clean synchronized M61 closeout
   `14f848c92021d54c9140e01b0333c0725c45145d`, with tree
@@ -70,8 +70,20 @@
   `a96fac6b4fdd2eb3c0d65ede17f66cede2faa232` has tree
   `0bbacc706be88a4aab7ed13a444f1657db90fdb6` exactly equal to the reviewed
   head, sole parent exact M61 closeout, and parsed DCO. The feature branch is
-  deleted locally/remotely; only `main` remained before this bounded integration
-  record branch was created.
+  deleted locally/remotely; only `main` remained before the bounded integration
+  record branch was created. Ready integration-record PR #139 exact head
+  `5252987bc6b1da546f49f09b9358a2735e6b34f1` changed exactly four
+  documentation paths and passed run `31503119877` in one 41-second Linux
+  allocation. All 305 Python files were format clean, Ruff passed, strict docs
+  built, all 677 documentation architecture assertions passed, and reproducible
+  build plus installed-wheel and ten-artifact release smoke passed. The desktop
+  umbrella `93818148618` skipped with zero steps. Two delayed audits found no
+  comment, review, or thread. Head-pinned GitHub-verified squash
+  `de6ead04124b889318b5ab854d25a6b5324d05aa` has tree
+  `baa594eb17a548482b81ef11e868ce0d4175051b` exactly equal to the reviewed
+  integration head, sole parent the feature squash, and parsed DCO. Both merged
+  branches are deleted locally/remotely; only synchronized `main` remained
+  before this exact three-file closeout branch was created.
 
 ## M61 public release candidate/output-root separation - complete
 

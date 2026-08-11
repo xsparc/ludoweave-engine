@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M62 - portable public release asset names
-- **Status:** Feature implementation, review, exact three-allocation hosted
-  qualification, and verified squash integration are complete. This bounded
-  four-file integration record is in progress on `records/m62-integration`.
+- **Status:** M62 implementation, review, feature integration, and integration-
+  record integration are complete. This exact three-file zero-allocation
+  closeout record establishes the verified M63 base on `records/m62-closeout`.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -58,3 +58,9 @@
   tests; every compatibility suite passed 2,221 with one expected skip.
   GitHub-verified squash `a96fac6b4fdd2eb3c0d65ede17f66cede2faa232`
   has the exact reviewed tree, sole parent exact M61 closeout, and parsed DCO.
+  Ready integration-record PR #139 exact head
+  `5252987bc6b1da546f49f09b9358a2735e6b34f1` passed run `31503119877`
+  in one 41-second Linux allocation; the desktop umbrella skipped with zero
+  steps. GitHub-verified squash
+  `de6ead04124b889318b5ab854d25a6b5324d05aa` has the exact reviewed tree,
+  sole parent the feature squash, and parsed DCO.
