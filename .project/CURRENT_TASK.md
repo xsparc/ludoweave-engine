@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M63 - public release subordinate-output confinement
-- **Status:** Implementation, local review, exact three-allocation hosted
-  qualification, and feature squash integration are complete. This bounded
-  four-document integration record is locally validated on
-  `records/m63-integration`; hosted review remains pending.
+- **Status:** M63 implementation, review, feature integration, and integration-
+  record integration are complete. This exact three-file zero-allocation
+  closeout record establishes the verified M64 base on `records/m63-closeout`.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -64,3 +63,11 @@
   audits were empty. GitHub-verified squash
   `e0f1dc683d5e38b69d01d342f843074470a8418a` has the exact reviewed tree, sole
   parent exact M62 closeout, and parsed DCO trailer.
+- **Integration evidence:** Ready four-document PR #142 exact head
+  `88ec556325bfbb278232dbfafb546a066e266b63` passed run `31509382982` in one
+  41-second Linux allocation. All 306 files were format clean; Ruff, strict
+  docs, 689 architecture assertions, reproducible distribution, installed-
+  wheel smoke, and complete release smoke passed. The desktop umbrella skipped
+  with zero steps. Two delayed review audits were empty. GitHub-verified squash
+  `abc51243e5e4612f5e7f1ca20cb5eeedb6dc0a8a` has the exact reviewed tree, sole
+  parent the feature squash, and parsed DCO trailer.
