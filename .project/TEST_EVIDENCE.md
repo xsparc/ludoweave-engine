@@ -51,7 +51,18 @@ squash signature valid with the exact reviewed tree and parsed DCO trailer.
 | Four-record reproducible distribution and release gate | 0 | Two fresh builds reproduced a pure 272,051-byte wheel at `9ecf0cc835b1cc61628e9045e593bbbe0a2ac7d36e40f672aa304926dcb86125` and a 1,152,579-byte source distribution at `ba86098f1015aba3197fa11dc79459c14b26047ff5a420488b56987f140ccfc5`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed. This row changes the source archive afterward, so exact integration-head identities remain delegated to hosted evidence. |
 | Final four-record source gate | 0 | Exact four-file scope passed; the unchanged lock resolved 46 packages in 0.77 ms; all 306 Python files were format clean; Ruff and strict Pyright reported zero findings; all 689 architecture assertions passed in 4.74 seconds; strict docs built in 1.06 seconds with only the known upstream notice; and whitespace was clean. |
 
-No integration-record hosted pass or integration squash is claimed yet.
+## M63 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #142 CI run `31509382982` | 0 | Exact four-document head `88ec556325bfbb278232dbfafb546a066e266b63` passed in one 41-second Linux allocation. All 306 files were format clean; Ruff, strict docs, and all 689 architecture assertions passed. The desktop umbrella skipped with zero steps. |
+| Hosted reproducible distribution and smoke | 0 | Two builds reproduced the 272,038-byte wheel at `df7348f0a9911611e1df59e91151b00320f8a4a5a86fcf97def39ac008d41b22` and the record-updated 1,152,973-byte source archive at `445df3aaae7877ef2aa485033f59e29da48ab96a111e869d0a47d5c77228f386`. Installed-wheel and complete release smoke passed. |
+| Integration review surfaces | 0 | The initial audit and two delayed audits found no issue comment, review comment, review, or review decision. The PR remained clean, mergeable, and exact-head. |
+| Integration squash verification | 0 | PR #142 squash `abc51243e5e4612f5e7f1ca20cb5eeedb6dc0a8a` has tree `86c4cbd8d24dfa3c0e81dc115d2765a273bfdb7c`, exactly matching the reviewed head; its sole parent is feature squash `e0f1dc683d5e38b69d01d342f843074470a8418a`. GitHub reports a valid signature and exact parsed DCO trailer. |
+| Three-record closeout local gate | 0 | Exact three-file scope passed; all 689 architecture assertions passed in 4.87 seconds; and whitespace was clean. No hosted validation is requested for this project-record-only closeout. |
+
+The pending three-record closeout requests no hosted runner and will establish
+the exact M64 base after review and verified squash integration.
 
 ## M62 local development evidence - 2026-08-12, Windows, CPython 3.12
 

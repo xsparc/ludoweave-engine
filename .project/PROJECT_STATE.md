@@ -1,6 +1,6 @@
 # Project State
 
-## M63 public release subordinate-output confinement - feature integrated
+## M63 public release subordinate-output confinement - complete
 
 - Base: exact clean synchronized M62 closeout
   `1cdc1b452cbe79c9e4f082acb4dd1205f4b3648f`, with tree
@@ -71,8 +71,17 @@
   `e0f1dc683d5e38b69d01d342f843074470a8418a` has the exact reviewed tree, sole
   parent exact M62 closeout, and parsed DCO. The bounded integration record is
   locally validated with 689 architecture assertions, strict docs/static/
-  whitespace gates, and reproducible artifact smoke; hosted review and
-  integration remain pending.
+  whitespace gates, and reproducible artifact smoke.
+- Integration evidence: ready four-document PR #142 exact head
+  `88ec556325bfbb278232dbfafb546a066e266b63` passed run `31509382982` in one
+  41-second Linux allocation; the desktop umbrella skipped with zero steps.
+  Hosted formatting, Ruff, strict docs, all 689 architecture assertions,
+  reproducible distribution, installed-wheel smoke, and complete release smoke
+  passed. Two delayed review audits were empty. GitHub-verified squash
+  `abc51243e5e4612f5e7f1ca20cb5eeedb6dc0a8a` has exact reviewed tree
+  `86c4cbd8d24dfa3c0e81dc115d2765a273bfdb7c`, sole parent the feature squash,
+  valid signature, and parsed DCO. This three-record closeout establishes the
+  exact M64 base without requesting a hosted runner.
 
 ## M62 portable public release asset names - complete
 
