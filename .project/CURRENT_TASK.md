@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M59 - repository metadata hygiene
-- **Status:** The initial exact head passed hosted validation. One valid P2
-  review finding now has a tests-first, fully locally qualified correction on
-  `maintenance/m59-repository-hygiene`; corrected exact-head validation is
-  pending.
+- **Status:** The corrected feature is squash-integrated on `main`; the
+  four-file integration record is locally validated on
+  `records/m59-integration` and ready for publication.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -49,6 +48,17 @@
 - **Hosted gate:** This test/documentation maintenance slice is substantive and
   requires exactly three Linux-first allocations; desktop jobs may begin only
   after Linux qualification succeeds.
-- **Integration:** Pending complete local qualification, findings-first review,
-  exact-head hosted validation, delayed review, verified squash integration,
-  bounded integration record, and zero-run closeout.
+- **Hosted evidence:** Corrected exact head
+  `28e80e66eb16656a998353627ef78a8fe6e4c80b` passed run `31484028669` in
+  exactly three Linux-first allocations. Linux passed in 6m05s before macOS
+  and Windows began; they passed in 2m53s and 4m08s. Baseline and compatibility
+  suites passed 2,182 tests, with one expected skip outside baseline. Every
+  platform passed ten real-graphics tests, profile smoke, and both vertical
+  slices; reproducible build, installed-wheel smoke, and release smoke passed.
+- **Integration:** The valid P2 was corrected, answered, and resolved. Two
+  delayed audits found no unresolved or later review activity. Head-pinned,
+  GitHub-verified squash
+  `f12f65ab7c1f8426b0232bb4b414e48276bbad56` has the exact corrected tree,
+  sole parent M58 closeout, and standalone DCO. The feature branch is deleted
+  locally/remotely; the four-file integration record now requires one Linux
+  allocation and a zero-step skipped desktop umbrella before zero-run closeout.

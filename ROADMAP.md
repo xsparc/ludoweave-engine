@@ -67,7 +67,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M56 public release redirect-reference conformance | PR #120 corrected bracket-component validation, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated strict status/Location checks with unchanged workflows/release authority |
 | Done | M57 public release response-body conformance | PR #123 passed exact built-in bytes-block and declared-versus-streamed `Content-Length` checks in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 | Done | M58 public release cleanup conformance | PR #126 passed ordered response/connection cleanup, primary-failure preservation, and publication-after-cleanup in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
-| Active | M59 repository metadata hygiene | Enforce tool-neutral current-tree records and fixtures while preserving immutable Git/DCO provenance and all runtime, workflow, dependency, version, and release boundaries |
+| Done | M59 repository metadata hygiene | PR #129 corrected dangling-root-link detection after review, passed the corrected exact three-allocation gate, and squash-integrated tool-neutral current-tree metadata with immutable provenance and runtime/workflow boundaries intact |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -935,6 +935,17 @@ centralizes the absent-root and tracked-text convention in one architecture
 test. Immutable Git history, commit/PR/workflow/artifact evidence, product-
 facing agent language, runtime source, public protocols, workflows,
 dependencies, version, and release authority remain unchanged.
+
+M59 corrected exact head `28e80e66eb16656a998353627ef78a8fe6e4c80b`
+passed run `31484028669` in exactly three Linux-first allocations. Linux passed
+in 6m05s before macOS and Windows began; they passed in 2m53s and 4m08s. The
+valid dangling-root-link P2 was corrected tests-first, answered, and resolved;
+two delayed audits found no unresolved or later review activity. GitHub-
+verified squash `f12f65ab7c1f8426b0232bb4b414e48276bbad56` has the exact
+corrected tree, sole parent M58 closeout, standalone DCO, and no runtime,
+workflow, dependency, version, or release-authority change. The feature branch
+is deleted locally/remotely; the four-file integration record requires one
+Linux documentation allocation and a zero-step skipped desktop umbrella.
 
 ## Good-first contribution queue
 
