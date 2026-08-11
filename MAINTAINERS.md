@@ -55,9 +55,18 @@ sandbox, Unicode-normalization policy, filesystem portability guarantee, or
 transactional cleanup guarantee. It adds no workflow, allocation, dependency,
 lock, version, sample producer, runtime source/API, release authority, tag,
 release, or publication. Pull-request fixtures are not a real public release
-observation. M0 through M64 are complete, reviewed, hosted-validated, and
-integrated into `main`. M65 starts from exact verified M64 closeout
-`92e706961e2ecd4e2c187a205cc045a8c6506ab9`.
+observation.
+
+M66 adds an owned same-filesystem temporary staging directory. Completeness is
+validated before a single rename publishes the final sample root; partial pre-
+publication failures trigger cleanup, and any final entry that already exists
+remains untouched. This is not crash-durable and supplies no concurrent
+filesystem race isolation or post-publication rollback. It adds no workflow,
+allocation, dependency, lock, version, sample producer, runtime source/API,
+release authority, tag, release, or publication. Pull-request fixtures are not
+a real public release observation. M0 through M65 are complete, reviewed,
+hosted-validated, and integrated into `main`. M66 starts from exact verified
+M65 closeout `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
@@ -81,9 +90,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   cleanup before redirect continuation or publication. M60 adds final-entry
   filesystem collision checks before network or validator work, M61 separates
   candidate and output roots, M62 constrains portable asset names, M63 confines
-  subordinate text output, M64 bounds staged sample-bundle extraction, and M65
-  constrains portable sample member paths; none of these milestones authorizes
-  a real release.
+  subordinate text output, M64 bounds staged sample-bundle extraction, M65
+  constrains portable sample member paths, and M66 stages complete sample roots
+  before publication; none of these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

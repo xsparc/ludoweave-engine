@@ -1664,6 +1664,29 @@ path rewriting, race isolation, or transactional cleanup. M65 adds no workflow,
 dependency, sample-producer, runtime API, release authority, or real public
 release observation. RFC-0048 defines the complete boundary.
 
+## M66 staged sample-root publication boundary
+
+M66 requires the release smoke's caller-owned output parent to exist as a real
+directory and the versioned final sample root not to exist, including as a
+dangling symbolic link. These checks run before archive content is opened.
+After the complete M64/M65 preflight, admitted files stream into the expected
+root beneath an owned same-filesystem temporary staging directory.
+
+Required-file completeness is checked against that staged root. Only a complete
+tree becomes the final sample root through a single rename. The temporary-
+directory context performs cleanup after a copy, decompression, write,
+completeness, or publish failure, so a partial tree never occupies the final
+identity. Existing final entries remain untouched.
+
+This is a private single-process visibility boundary, not a general archive
+sandbox, filesystem transaction, recovery journal, or cleanup authority over
+unowned paths. It is not crash-durable, performs no `fsync`, supplies no
+concurrent filesystem race isolation, and cannot roll back after successful
+publication. The private random staging name is never emitted or retained.
+M66 adds no workflow, dependency, sample producer, runtime API, release
+authority, or real public release observation. RFC-0049 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

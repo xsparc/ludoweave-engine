@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0049 resolves M66 staged sample-root publication. The existing real output
+directory owns a same-filesystem temporary staging directory; completeness is
+validated there before one rename exposes the final sample root. A final entry
+that already exists fails before archive reads and remains untouched. Copy,
+decompression, write, incompleteness, and publication failures clean the partial
+owned stage and preserve their cause. This is not crash-durable, a general
+archive sandbox, a recovery journal, concurrent filesystem race isolation, or
+post-publication rollback. It adds no workflow, dependency, sample producer,
+runtime API, or release authority. A real pass remains pending an explicitly
+authorized signed-tag release execution.
+
 RFC-0048 resolves M65 portable staged sample-member paths. Every member is a
 regular file beneath the exact root with at most 255 relative ASCII characters
 and portable components. Complete paths are unique case-insensitively,
