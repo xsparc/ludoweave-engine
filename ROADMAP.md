@@ -74,6 +74,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M63 public release output confinement | PR #141 passed one-document consumer output, exact subordinate status conformance, exact three-allocation hosted qualification, and verified squash integration with unchanged workflow/release authority |
 | Done | M64 bounded sample-bundle extraction | PR #144 corrected codec admission after review, passed exact three-allocation hosted qualification, and squash-integrated bounded preflight plus 64 KiB stored/deflated streaming without changing workflow or release authority |
 | Done | M65 portable sample member paths | PR #147 corrected explicit non-regular mode admission after review, passed exact three-allocation hosted qualification, and squash-integrated portable collision-free staged sample paths without changing workflow, producer, runtime, or release authority |
+| Active | M66 staged sample-root publication | Same-filesystem temporary extraction, staged completeness validation, single-rename publication, and owned failure cleanup without workflow, runtime, or release-authority expansion |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.

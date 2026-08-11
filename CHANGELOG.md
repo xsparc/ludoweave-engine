@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M66/RFC-0049 same-filesystem temporary staging and single-rename sample
+  publication. An incomplete or otherwise failed extraction cleans its partial
+  owned staging tree, existing final roots fail before archive reads, and no
+  workflow, dependency, sample producer, runtime API, or release authority
+  changes.
 - Add M65/RFC-0048 portable sample member path preflight, rejecting non-ASCII,
   Windows-device, trailing-period, duplicate/case-ambiguous, explicit-directory,
   explicitly non-regular, over-255-character, and file/directory prefix

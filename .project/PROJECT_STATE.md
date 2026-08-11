@@ -1,5 +1,45 @@
 # Project State
 
+## M66 staged sample-root publication - reviewed local candidate
+
+- Base: exact clean synchronized M65 closeout
+  `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`, tree
+  `a8e028df3db9b6eb0293cd9177cedcda3367666a`.
+- Current branch: `security/m66-atomic-sample-extraction`.
+- Gap: after complete M64/M65 preflight, release smoke writes directly beneath
+  the final versioned sample root. A later streamed-size, decompression, I/O, or
+  completeness failure can leave a partial tree at the complete-tree identity.
+- Decision: RFC-0049 requires an existing real output directory and absent final
+  entry. Extraction uses an owned same-filesystem temporary staging directory;
+  required files are validated there; one rename publishes the complete root;
+  and context-owned cleanup removes partial staging after any pre-publication
+  failure while preserving the cause and unowned paths.
+- Boundary: private single-process release smoke only. No crash durability,
+  `fsync`, journal, general archive sandbox, concurrent filesystem race
+  isolation, post-publication rollback, workflow, dependency, producer,
+  runtime API, release authority, or real public release observation.
+- Failing baseline: 8 failures, 2 passing guards, and 1 Windows symbolic-link
+  capability skip in 0.36 seconds proved surviving partial roots, unstable
+  existing-entry handling, silent output-parent creation, and the absence of a
+  staged publication boundary and RFC.
+- Local candidate: whole-tree format/Ruff/strict-Pyright, 736 architecture
+  assertions, strict docs, and whitespace pass. Supported CPython suites each
+  pass 2,266 tests; 3.12 has 15 expected skips and 3.13/3.14 each have 16. Ten
+  real-wgpu tests, both profiles, both vertical slices, and all four diagnostic
+  benchmark validators pass. Final reviewed builds reproduce a pure 272,709-
+  byte wheel and 1,183,308-byte sdist; installed-wheel and complete staged-
+  release smoke pass.
+- Review: a tests-first review correction added `Path.is_junction()` to the
+  real-directory admission check. Review also added direct proof of mid-stream
+  I/O cleanup and preservation of a final-root collision created after initial
+  preflight. The final focused file passes 13 assertions with 1 local symbolic-
+  link capability skip. No further blocker or non-blocking finding remains.
+- Environment: two earlier full-suite attempts were invalidated by a full
+  system drive. The first produced no valid summary; the second passed 2,265
+  tests before its only fixture write failed. Moving only pytest temporary
+  repositories to `D:` produced the complete passing matrix above. Final
+  record-frozen validation and hosted qualification remain pending.
+
 ## M65 portable sample member paths - feature integrated
 
 - Base: exact clean synchronized M64 closeout

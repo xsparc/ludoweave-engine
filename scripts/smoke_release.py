@@ -361,6 +361,11 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
     expected_root = f"ludoweave-samples-{version}"
+    root = output / expected_root
+    if not output.is_dir() or output.is_symlink() or output.is_junction():
+        raise RuntimeError("sample bundle output directory is unavailable")
+    if os.path.lexists(root):
+        raise RuntimeError("sample bundle output already exists")
     with zipfile.ZipFile(bundle) as archive:
         infos = tuple(archive.infolist())
         if len(infos) > _MAX_SAMPLE_MEMBERS:
@@ -412,49 +417,60 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         ):
             raise RuntimeError("sample bundle member paths collide")
 
-        for info, parts in zip(infos, member_parts, strict=True):
-            destination = output.joinpath(*parts)
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            written = 0
-            with archive.open(info) as source, destination.open("wb") as target:
-                while block := source.read(_SAMPLE_COPY_BYTES):
-                    written += len(block)
-                    if written > info.file_size:
-                        raise RuntimeError("sample bundle member size changed during extraction")
-                    target.write(block)
-            if written != info.file_size:
-                raise RuntimeError("sample bundle member size changed during extraction")
-    root = output / expected_root
-    required = {
-        "README.md",
-        "agent_tool_recovery_rate_readiness.py",
-        "agent_tool_conformance.py",
-        "alpha_acceptance.py",
-        "benchmark_regression_rate_readiness.py",
-        "clockwork_arena.py",
-        "command_receipt_stability_decision.py",
-        "constrained_3d_decision.py",
-        "cross_version_corpus_readiness.py",
-        "external_contributor_rehearsal_readiness.py",
-        "external_contributor_retention_readiness.py",
-        "external_consumer_feedback_readiness.py",
-        "external_sample_game_adoption_readiness.py",
-        "installation_matrix_readiness.py",
-        "operation_argument_compatibility.py",
-        "render_device_conformance.py",
-        "receipt_reader.py",
-        "receipt_semantic_compatibility.py",
-        "replay_divergence_rate_readiness.py",
-        "response_review_latency_readiness.py",
-        "rollback_readiness.py",
-        "supported_release_channel_readiness.py",
-        "third_party_conformance_adoption_readiness.py",
-        "visual_editor_decision.py",
-        "wasm_mod_security_decision.py",
-        "world_store_conformance.py",
-    }
-    if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:
-        raise RuntimeError("sample bundle is incomplete")
+        with tempfile.TemporaryDirectory(
+            prefix=".ludoweave-samples-",
+            dir=output,
+        ) as staging_name:
+            staged_root = Path(staging_name) / expected_root
+            for info, parts in zip(infos, member_parts, strict=True):
+                destination = staged_root.joinpath(*parts[1:])
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                written = 0
+                with archive.open(info) as source, destination.open("wb") as target:
+                    while block := source.read(_SAMPLE_COPY_BYTES):
+                        written += len(block)
+                        if written > info.file_size:
+                            raise RuntimeError(
+                                "sample bundle member size changed during extraction"
+                            )
+                        target.write(block)
+                if written != info.file_size:
+                    raise RuntimeError("sample bundle member size changed during extraction")
+            required = {
+                "README.md",
+                "agent_tool_recovery_rate_readiness.py",
+                "agent_tool_conformance.py",
+                "alpha_acceptance.py",
+                "benchmark_regression_rate_readiness.py",
+                "clockwork_arena.py",
+                "command_receipt_stability_decision.py",
+                "constrained_3d_decision.py",
+                "cross_version_corpus_readiness.py",
+                "external_contributor_rehearsal_readiness.py",
+                "external_contributor_retention_readiness.py",
+                "external_consumer_feedback_readiness.py",
+                "external_sample_game_adoption_readiness.py",
+                "installation_matrix_readiness.py",
+                "operation_argument_compatibility.py",
+                "render_device_conformance.py",
+                "receipt_reader.py",
+                "receipt_semantic_compatibility.py",
+                "replay_divergence_rate_readiness.py",
+                "response_review_latency_readiness.py",
+                "rollback_readiness.py",
+                "supported_release_channel_readiness.py",
+                "third_party_conformance_adoption_readiness.py",
+                "visual_editor_decision.py",
+                "wasm_mod_security_decision.py",
+                "world_store_conformance.py",
+            }
+            if not staged_root.is_dir() or not required <= {
+                path.name for path in staged_root.iterdir()
+            }:
+                raise RuntimeError("sample bundle is incomplete")
+            if os.path.lexists(root):
+                raise RuntimeError("sample bundle output already exists")
+            staged_root.replace(root)
     return root
 
 

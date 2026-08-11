@@ -499,6 +499,22 @@ every filesystem. This private policy adds no workflow, dependency, sample-
 producer, runtime API, cleanup guarantee, or release authority. Pull-request
 evidence is not a real public release observation.
 
+M66/RFC-0049 adds pre-publication cleanup to the same private extraction path.
+The caller supplies an existing runner-owned output directory, and the final
+sample root must not already exist as a file, directory, live link, or dangling
+link. After complete archive preflight, admitted files stream beneath the
+expected root inside a same-filesystem temporary staging directory. Required-
+file completeness is validated there, and a single rename publishes only the
+complete staged root.
+
+Any pre-publication copy, decompression, write, incomplete-bundle, or rename
+failure triggers owned temporary-directory cleanup and leaves the final sample
+root absent. Existing entries are never replaced or removed. This is a
+single-process visibility boundary, not crash-durable storage, a filesystem
+transaction, or concurrent race isolation. It adds no workflow, dependency,
+sample producer, runtime API, or release authority, and pull-request evidence
+is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

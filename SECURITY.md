@@ -142,6 +142,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   fail before extraction. This performs no Unicode normalization or filesystem
   probing and is not a general archive sandbox, workflow change, or real public
   release observation.
+- M66 requires an existing runner-owned output directory and an absent final
+  sample root. It extracts into a same-filesystem temporary staging directory,
+  rejects an incomplete staged set, and uses a single rename only after
+  validation. Failure cleanup removes the partial owned stage and preserves the
+  final path, while any final entry that already exists remains untouched. This
+  is not crash-durable, provides no concurrent filesystem race isolation, adds
+  no workflow or release authority, and is not a real public release
+  observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
