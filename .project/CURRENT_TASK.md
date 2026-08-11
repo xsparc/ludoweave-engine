@@ -1,10 +1,10 @@
 # Current Task
 
 - **Task:** M63 - public release subordinate-output confinement
-- **Status:** Script correction, regression suite, RFC, public documentation,
-  complete local validation, and findings-first review are complete on
-  `security/m63-public-release-output-confinement`; hosted publication remains
-  pending.
+- **Status:** Implementation, local review, exact three-allocation hosted
+  qualification, and feature squash integration are complete. This bounded
+  four-document integration record is locally validated on
+  `records/m63-integration`; hosted review remains pending.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -51,6 +51,16 @@
   skips on each supported CPython version, final renderer/profile/examples and
   diagnostic benchmark gates, and a twice-reproduced local distribution with
   installed-wheel and complete release smoke.
-- **Hosted gate:** This security/documentation maintenance slice is substantive
-  and requires exactly three Linux-first allocations; desktop jobs may begin
-  only after Linux qualification succeeds.
+- **Hosted evidence:** Ready PR #141 exact head
+  `8fe7518efb1855c69f3f093eba921721421072ce` passed run `31507526704` in
+  exactly three Linux-first allocations. Linux job `93832810911` passed in
+  7m07s before macOS `93835048148` and Windows `93835048154` began; they passed
+  in 2m59s and 3m11s. Baseline passed 2,233 tests; Ubuntu 3.13/3.14 and both
+  desktop 3.14 suites each passed 2,233 with one expected skip. Hosted builds
+  reproduced a 272,038-byte wheel at `df7348f0a9911611e1df59e91151b00320f8a4a5a86fcf97def39ac008d41b22`
+  and a 1,151,376-byte source archive at
+  `eb400512913e1d2cd748dc93f1c4bab26699d4878edb882e54cab2661c261cfb`;
+  installed-wheel and complete release smoke passed. Two delayed full review
+  audits were empty. GitHub-verified squash
+  `e0f1dc683d5e38b69d01d342f843074470a8418a` has the exact reviewed tree, sole
+  parent exact M62 closeout, and parsed DCO trailer.
