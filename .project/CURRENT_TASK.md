@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M61 - public release candidate/output-root separation
-- **Status:** Feature is hosted-qualified, reviewed, and squash-integrated;
-  four-file factual integration record is in progress on
-  `records/m61-integration`.
+- **Status:** Feature and factual integration record are hosted-qualified,
+  reviewed, and squash-integrated; three-file closeout is in progress on
+  `records/m61-closeout`.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -87,3 +87,12 @@
   head, sole parent exact M60 closeout, and a parsed DCO trailer. The feature
   branch is deleted locally/remotely; no post-merge `main` run or open feature
   PR exists.
+- **Integration record:** Ready PR #136 exact head
+  `d80292ab4be734093bed52d0b0435da4d8b164e6` changed exactly four
+  documentation paths and passed run `31497995187` in one 38-second Linux
+  allocation. The desktop umbrella skipped with zero steps. Two delayed audits
+  found no comment, review, or thread. GitHub-verified squash
+  `9d1c4d4f967e97c7c77cf3b95d82c2d57367162e` has the exact reviewed tree
+  `8da574c0f2642369a725e6eb32d3983176e38dac`, sole parent the feature squash,
+  and a parsed DCO trailer. Both working branches are deleted locally/remotely;
+  no post-integration `main` run or open PR exists.
