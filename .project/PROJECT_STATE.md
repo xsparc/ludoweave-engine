@@ -1,6 +1,6 @@
 # Project State
 
-## M61 public release candidate/output-root separation - feature integrated
+## M61 public release candidate/output-root separation - complete
 
 - Base: exact clean synchronized M60 closeout
   `a8fc787a7b04b4fe8ed3766167e58258aa62c8d6`, with tree
@@ -91,8 +91,18 @@
   `7feded4ed2e37157b87a7f3bb733caf96805187e` has the exact reviewed tree
   `3ae8059dc5a4f61a8a3b31d245b20f0373e0ffe4`, sole parent exact M60 closeout,
   and a parsed DCO trailer. The feature branch is deleted locally/remotely;
-  there is no open feature PR or post-feature `main` run. Four-file factual
-  integration recording is in progress.
+  there is no open feature PR or post-feature `main` run. Ready integration-
+  record PR #136 exact head `d80292ab4be734093bed52d0b0435da4d8b164e6`
+  changed exactly four documentation paths and passed run `31497995187` in one
+  38-second Linux allocation. Formatting, Ruff, strict docs, 661 documentation-
+  architecture assertions, distribution build, installed-wheel smoke, staging,
+  and release smoke passed. The desktop umbrella skipped with zero steps. Two
+  delayed audits found no comment, review, or thread. GitHub-verified squash
+  `9d1c4d4f967e97c7c77cf3b95d82c2d57367162e` has the exact reviewed tree
+  `8da574c0f2642369a725e6eb32d3983176e38dac`, sole parent the feature squash,
+  and a parsed DCO trailer. Both working branches are deleted locally/remotely;
+  no open PR or post-integration `main` run exists. M61 is complete pending only
+  this zero-allocation three-file closeout record.
 
 ## M60 public release filesystem collision conformance - complete
 
