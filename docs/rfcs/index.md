@@ -46,3 +46,4 @@ was adopted.
 - [RFC-0039: constrain public release status and redirect references](0039-public-release-redirect-reference.md)
 - [RFC-0040: constrain public release response bodies](0040-public-release-response-body-conformance.md)
 - [RFC-0041: constrain public release transport cleanup](0041-public-release-cleanup-conformance.md)
+- [RFC-0042: tool-neutral repository metadata](0042-tool-neutral-repository-metadata.md)

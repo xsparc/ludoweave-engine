@@ -42,27 +42,22 @@ claims.
 
 ## Current boundary
 
-M58 requires the M47-M57 portable public-release client to close every obtained
-response before its created connection, attempt both closes when response
-close fails, and preserve an already-active primary failure. Cleanup-only
-ordinary failures use content-silent `public_release.request_failed` with the
-first local cleanup cause chained. Cleanup control signals remain unwrapped.
-Successful cleanup must precede redirect continuation and separate partial
-publication.
+M59 current-tree metadata hygiene standardizes role-, purpose-, product-, and
+milestone-based repository records. Retired branch and control-path labels in
+current project records become descriptive redactions while commit, tree,
+pull-request, workflow, artifact, test, timing, authorship, and DCO evidence
+remain intact. One command-schema fixture uses a neutral actor identity, and
+one architecture guard owns the current tracked-text and absent-root
+convention.
 
-Preserve M56 status/Location, M55 framing, M54 fresh-session, M53 context-binding, M52 service-
-identity, M51 negotiated-session, M50 context/key-log, M49 connected-peer, M48
-response/error, and M47 identity/artifact/smoke bounds. M58 may add no private
-response or socket state, raw HTTP/chunk parser, content decoder, alternate client,
-proxy, DNS preflight, network sandbox, workflow edit,
-runner, action, permission, trigger, credential, release mutation, rollback,
-retry, dependency, lock, version, runtime, package, or public-API change. It
-must not claim a real release observation, general response completeness,
-independent/external evidence, every intermediary or delivery path, future
-availability, immutability, artifact security, PyPI, or a supported release
-channel. M0 through M57 are complete, reviewed, hosted-validated, and integrated
-into `main`. M58 starts from exact verified M57 closeout commit
-`26826822547d6d8df6ce1bfc05d8cf728a32d505`.
+M59 does not rewrite Git history, alter attribution, delete Git objects, change
+runtime source, change product-facing agent terminology, modify a public API or
+protocol, edit a workflow, add a dependency, change the lock or version,
+publish a release, or change release authority. The working-tree guard is a
+repository disclosure convention, not a forensic erasure claim for immutable
+history or external systems. M0 through M58 are complete, reviewed, hosted-
+validated, and integrated into `main`. M59 starts from exact verified M58
+closeout `d4487565d4fda57ec05437dfcadc687d2507dafa`.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44

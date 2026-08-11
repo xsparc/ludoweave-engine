@@ -1,84 +1,48 @@
 # Current Task
 
-- **Task:** M58 - public release transport-cleanup conformance
-- **Status:** Complete. Feature PR #126 and integration-record PR #127 are
-  fully validated, review-clean, squash-integrated, and branch-clean;
-  publishing the exact three-file closeout on `records/m58-closeout`.
-- **Started:** 2026-08-10
+- **Task:** M59 - repository metadata hygiene
+- **Status:** Tests-first implementation, local qualification, and findings-
+  first review are complete on `maintenance/m59-repository-hygiene`; exact-
+  head hosted validation is pending.
+- **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M57 closeout
-  `26826822547d6d8df6ce1bfc05d8cf728a32d505`, with only `main` present and no
-  open pull request, tag, release, or post-closeout `main` run.
-- **Outcome:** Make public-release response/connection ownership cleanup
-  ordered, complete, stable, and subordinate to any active primary failure.
-- **Acceptance:** Every obtained response receives one close attempt before its
-  created connection receives one close attempt. Both attempts occur when the
-  first fails. Active failures remain primary. Cleanup-only ordinary failures
-  use content-silent `public_release.request_failed`; cleanup control signals
-  remain unwrapped. Redirect continuation and separate partial publication
-  occur only after successful cleanup.
-- **Boundary:** No rollback, retry, private response/socket state, raw parser,
-  alternate client, workflow, allocation, dependency, package/runtime API,
-  version, credential, release mutation, or release authority. Direct-target
-  and partial bytes may remain after failure. Fixture and pull-request evidence
-  are not a real public release observation.
+- **Base:** Exact clean synchronized M58 closeout
+  `d4487565d4fda57ec05437dfcadc687d2507dafa`, with only `main` present and no
+  open pull request, tag, release, closeout run/check, or post-closeout `main`
+  run.
+- **Outcome:** Make current tracked repository metadata tool-neutral without
+  weakening maintenance guards or altering immutable provenance.
+- **Acceptance:** Current tracked and non-ignored working-tree text contains no
+  retired tooling-identity marker. Retired root control paths remain absent.
+  The one legacy actor fixture is neutral, three duplicated checks defer to one
+  centralized architecture guard, and current project records use descriptive
+  redactions while retaining exact commit, PR, workflow, artifact, test, and
+  timing evidence.
+- **Boundary:** No Git-history rewrite, attribution or DCO change, Git-object
+  deletion, runtime source, product-facing agent terminology, public API,
+  protocol, workflow, dependency, lock, version, tag, release, publication, or
+  release-authority change. The working-tree guard is not a forensic erasure
+  claim for immutable history or external systems.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Local evidence:** The clean M47-M57 baseline passed 243 assertions. Official
-  Python 3.14 documentation confirms the public `HTTPConnection.close()` and
-  stream close contracts. Against the unchanged verifier, all nine focused
-  behavior/boundary assertions failed on early partial publication, raw or
-  masking cleanup failures, a skipped connection attempt, redirect progress,
-  and source ordering. The corrected implementation passes all ten focused
-  behavior/boundary/documentation assertions with Ruff and strict Pyright
-  clean; all 253 inherited M47-M58 assertions and strict docs pass. Whole-tree
-  static/docs and 631 architecture assertions pass. Complete graphics-enabled
-  CPython 3.12-3.14 suites each pass 2,171 tests with 14 expected skips. Ten
-  real-wgpu tests, both five-repeat profiles, both vertical slices, and all
-  documented M1-M4 benchmark validators pass. Findings-first review then found
-  that first-error selection invoked attacker-defined exception truthiness; a
-  reviewer-derived regression failed tests-first and now passes with explicit
-  identity selection. All 11 focused M58, 254 inherited M47-M58, and 632
-  architecture assertions pass on the correction with static/docs clean.
-  Corrected complete graphics-enabled CPython 3.12-3.14 suites each pass 2,172
-  tests with 14 expected skips. Corrected real-wgpu, both five-repeat profiles,
-  both vertical slices, and all documented M1-M4 benchmark validators pass. A
-  second reviewer-derived regression proved ambient `sys.exception()` could
-  suppress cleanup failure inside a caller's unrelated exception handler; it
-  failed tests-first and now passes with an explicit exchange-local failure
-  flag. The final candidate passes all 12 focused M58, 255 inherited M47-M58,
-  and 633 architecture assertions; whole-tree static/docs; graphics-enabled
-  complete suites on CPython 3.12-3.14 with 2,173 passes and 14 expected skips
-  each; ten real-wgpu tests; both five-repeat profiles; both vertical slices;
-  and all documented M1-M4 benchmark validators. Two final-record builds
-  reproduce the pure wheel and source distribution; isolated-wheel and
-  complete release smoke pass. Findings-first scope, archive, credential,
-  identity, history, and integrity review found no actionable M58 issue. Final
-  record-inclusive lock/static/633-assertion/docs/integrity validation passes.
-- **Hosted evidence:** PR #126 exact head
-  `8bd11f0ab6575edee6a5e7b5c78e36af59e55088` passed run `31478254138` in
-  exactly three Linux-first allocations. Linux job `93736984444` passed in
-  7m48s before macOS `93738860983` and Windows `93738860996` began; they
-  passed in 2m00s and 4m01s. Linux baseline and every compatibility suite
-  passed 2,177 tests, with one expected skip outside the baseline. Every
-  platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and
-  Agent World Builder. Hosted reproducibility, installed-wheel smoke, and
-  complete release smoke passed.
-- **Integration:** Two delayed feature audits found no issue comment, review
-  comment, review, or thread. Head-pinned, GitHub-verified squash
-  `17ea7354c80b9d140350b88cd0ae3e615f700e45` has the exact reviewed feature
-  tree, sole parent M57 closeout, valid signature, and standalone DCO.
-  Integration PR #127 exact head
-  `4a72ae994714a4c2040547c568c5d625ee4a7ab9` passed run `31479930394` in one
-  40-second Linux allocation; all 633 architecture assertions, strict docs,
-  reproducible builds, installed-wheel smoke, and complete release smoke
-  passed, while desktop umbrella `93742463489` skipped with no runner and zero
-  steps. Two delayed integration audits found no comment, review, or thread.
-  GitHub-verified squash `26ec103a2ff3da55c4f2c4a8dca506f92ca3195e`
-  reproduces the reviewed record tree with the feature squash as sole parent,
-  valid signature, and standalone DCO. Both M58 working branches are deleted
-  locally/remotely. Synchronized `main` has no post-merge run or non-main
-  branch.
-- **Closeout gate:** The exact three-file `.project/**` record must allocate
-  zero hosted runs or checks.
+- **Local evidence:** The initial tracked-tree scan found 107 matching
+  lines across the two current project-record files and four tests. The new
+  central guard then failed one assertion and passed its absent-root control,
+  naming all six affected files. After neutralizing those files, 56 focused
+  inherited and new assertions passed; focused Pyright was clean. The first
+  documentation-contract run passed both hygiene assertions and failed only
+  because the M59 contract had not yet been added. After implementation and
+  review corrections, whole-tree formatting, Ruff, strict Pyright, 637
+  architecture assertions, strict docs, graphics-enabled complete suites on
+  CPython 3.12-3.14, real-wgpu tests, five-repeat profiles, both vertical
+  slices, M1-M4 benchmark validators, reproducible pure distributions,
+  isolated-wheel smoke, complete release smoke, archive review, whitespace,
+  credential-pattern, protected-surface, and Git-object checks pass. The
+  immutable history retains expected unreachable development objects.
+- **Hosted gate:** This test/documentation maintenance slice is substantive and
+  requires exactly three Linux-first allocations; desktop jobs may begin only
+  after Linux qualification succeeds.
+- **Integration:** Pending complete local qualification, findings-first review,
+  exact-head hosted validation, delayed review, verified squash integration,
+  bounded integration record, and zero-run closeout.

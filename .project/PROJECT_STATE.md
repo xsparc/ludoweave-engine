@@ -1,5 +1,60 @@
 # Project State
 
+## M59 repository metadata hygiene - in progress
+
+- Base: exact clean synchronized M58 closeout
+  `d4487565d4fda57ec05437dfcadc687d2507dafa`, with only `main` present and no
+  open pull request, tag, release, closeout run/check, or post-closeout `main`
+  run.
+- Scope: current tracked and non-ignored working-tree text uses tool-neutral
+  role, purpose, product, and milestone names. Current project records replace
+  obsolete tooling-specific labels with descriptive redactions while exact
+  commit, tree, PR, workflow, artifact, test, and timing evidence remains.
+- Guard: one architecture test owns the encoded retired-marker set, scans
+  tracked plus non-ignored working-tree text, and separately proves retired
+  root control paths remain absent. Three older duplicated absence loops now
+  retain only their milestone-specific neutral-convention assertions.
+- Fixture: the persistent-command schema test uses a neutral client identity;
+  command behavior, canonical bytes, public protocols, and runtime source are
+  unchanged.
+- Decision: accepted RFC-0042 records the current-tree convention, descriptive
+  redaction, central enforcement, product-terminology distinction, immutable-
+  history boundary, and nonclaims.
+- Boundary: no Git-history rewrite, attribution/DCO change, Git-object
+  deletion, runtime source, product-facing agent terminology, public API,
+  protocol, workflow, dependency, lock, version, tag, release, publication, or
+  release-authority change. The guard does not claim forensic erasure from
+  immutable history, clones, forks, logs, external databases, or caches.
+- Development evidence: the initial tracked-tree scan found 107 matching lines
+  across the two current project-record files and four tests. Against the
+  unchanged tree, the new guard failed one assertion and passed its absent-root
+  control in 0.28 seconds, identifying all six affected files. After the
+  implementation, 56 focused inherited and new assertions passed in 0.70
+  seconds and focused strict Pyright reported zero diagnostics. The new test
+  initially required one formatter rewrite and one import-order correction;
+  both were applied. A subsequent three-assertion documentation gate passed
+  both hygiene checks and failed only on the intentionally absent M59 contract.
+  The documented contract then required one README wording correction before
+  all 57 selected assertions passed. Whole-tree lock, synchronization,
+  formatting, Ruff, strict Pyright, 636 architecture assertions, and strict
+  docs pass. Complete graphics-enabled CPython 3.12-3.14 suites each pass
+  2,176 tests with 14 expected skips. Ten real-wgpu tests, both five-repeat
+  profiles, both vertical slices, and every documented M1-M4 benchmark
+  validator pass. Two pre-record builds reproduced the pure wheel and source
+  distribution; isolated-wheel and complete release smoke pass. Findings-first
+  review found and corrected two uppercase legacy instruction-name remnants,
+  expanded the marker set to cover direct automation-attribution wording, and
+  hardened the guard to inspect path names and symlink targets without
+  following links outside the repository. All four final focused assertions
+  pass with formatting, Ruff, and strict Pyright clean. The record-inclusive
+  candidate passes lock/sync, whole-tree formatting, Ruff, strict Pyright, 637
+  architecture assertions, strict docs, reproducible pure distributions,
+  isolated-wheel smoke, complete release smoke, and archive-content review.
+  Final evidence-inclusive review is clean; hosted exact-head qualification
+  remains pending.
+- Hosted evidence: pending exact-head substantive validation in exactly three
+  Linux-first allocations.
+
 ## M58 public release transport-cleanup conformance - complete
 
 - Base: exact clean synchronized M57 closeout
@@ -1914,7 +1969,7 @@ base, and the squash message retains DCO sign-off.
 
 M27 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
-`codex/m27-external-contributor-rehearsal-readiness` from exact clean
+`[historical branch name redacted]` from exact clean
 synchronized GitHub-verified `main` commit
 `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. Its bounded outcome is a strict
 offline admission harness for the design-plan objective that documentation
@@ -1971,7 +2026,7 @@ assigned base `c1c3be08f7f75d90e7d1b517adbc30d56902ece4` as its sole parent
 and carries the DCO sign-off. The milestone branch remains the audit trail.
 
 M26 is complete, reviewed, hosted-validated, and squash-integrated. It was
-implemented on `codex/m26-supported-release-channel-readiness` from exact clean
+implemented on `[historical branch name redacted]` from exact clean
 synchronized `main` commit
 `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. Its bounded outcome is a strict
 offline admission harness for RFC-0003 gate 6. The current reviewed manifest is
@@ -2009,7 +2064,7 @@ assigned base as its sole parent, and the milestone branch remains the audit
 trail.
 
 M25 is complete, reviewed, hosted-validated, and squash-integrated. It was
-implemented on `codex/m25-external-consumer-feedback-readiness` from
+implemented on `[historical branch name redacted]` from
 exact clean synchronized `main` commit
 `680e90dd8f9377fece23c43bd9f07ca9d76297de`. Its bounded outcome is a strict
 offline admission harness for RFC-0003 gate 2. A record can count only after
@@ -2054,7 +2109,7 @@ is assigned base `680e90dd8f9377fece23c43bd9f07ca9d76297de`, and its message con
 DCO sign-off. The milestone branch remains the audit trail.
 
 M24 is complete, reviewed, hosted-validated, and squash-integrated. It was
-implemented on `codex/m24-cross-version-corpus-readiness` from exact clean
+implemented on `[historical branch name redacted]` from exact clean
 synchronized `main` commit
 `55c7a72337913303b6b1f6bd31edbca7ff28683b`. Its bounded outcome is a strict
 offline admission harness over the immutable M21 receipt corpus. Gate 1 can
@@ -2096,7 +2151,7 @@ sign-off. The milestone branch remains the audit trail.
 
 M23 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
-`codex/m23-receipt-diagnostic-policy` from exact clean
+`[historical branch name redacted]` from exact clean
 synchronized `main` commit
 `415859e19d9d29caa1168fabc96def509897b056`. Its bounded result is an exact
 machine-readable receipt-v1 semantic-diff and diagnostic-code evolution policy,
@@ -2109,8 +2164,8 @@ local gate passes lock/sync,
 isolated wheel/release smoke, 10 real-wgpu tests, both graphics vertical slices,
 and every documented M1-M4/M7 benchmark/profile validator. M1 simulation and
 both M3 timing targets remain observed misses rather than pass claims.
-The optional `.agents` task/ledger files expected by the review role
-are absent, so the authoritative `.ai` task, accepted RFCs, AGENTS boundary,
+The optional `[retired control directory]` task/ledger files expected by the review role
+are absent, so the authoritative `[retired control directory]` task, accepted RFCs, `[retired control file]` boundary,
 call sites, tests, and executed evidence were used as the review baseline.
 DCO-signed implementation commit
 `a6dc30ec62d91b1f6640db2c23797967f2aefefe` is published through ready PR
@@ -2138,7 +2193,7 @@ DCO sign-off. The milestone branch remains the audit trail.
 
 M22 is complete, reviewed, hosted-validated, and squash-integrated. It was
 implemented on
-`codex/m22-operation-argument-policy` from exact clean
+`[historical branch name redacted]` from exact clean
 synchronized `main` commit
 `291dfb3fd6895a2fdac7a2f0016bb181f0e5bca4`. Its bounded result is an exact
 machine-readable policy for all seven built-in operation-v1 argument shapes,
@@ -2161,7 +2216,7 @@ both trees are `f513bec716d1735cc47a6aab862bca0f5f770af9`, and the sole
 parent is the assigned base. The milestone branch remains the audit trail.
 
 M21 is complete, independently reviewed, hosted-validated, and squash-
-integrated. It started on `codex/m21-receipt-reader-baseline` from exact clean
+integrated. It started on `[historical branch name redacted]` from exact clean
 synchronized `main` commit `feed793e94c345fac4b146c358a68264ef6e5f62`.
 Its bounded result is a public resource-limited reader for the unchanged
 `ludoweave.receipt/1` graph plus exact single-version fixtures, installed
@@ -2177,27 +2232,27 @@ as GitHub-verified `main` commit
 M0 through M7 are complete, independently accepted, integrated into `main`,
 and validated by hosted CI. M8 gamepad/SDL3 evaluation is complete,
 independently accepted, published as PR #9 from
-`codex/m8-gamepad-sdl3-evaluation`, and validated across all 14 hosted jobs.
+`[historical branch name redacted]`, and validated across all 14 hosted jobs.
 M9 Box2D v3 plugin admission evaluation is locally complete on
-`codex/m9-box2d-plugin-evaluation`, stacked from the exact M8 head. ADR-0024
+`[historical branch name redacted]`, stacked from the exact M8 head. ADR-0024
 defers the plugin; repeat independent review accepted the ownership correction
 with no remaining blockers. It is published as ready stacked PR #10 and GitHub
 Actions run `31015885190` passed all 14 hosted jobs.
 M10's headless semantic inspector is complete, independently accepted, and
-published as ready stacked PR #11 from `codex/m10-live-semantic-inspector`,
+published as ready stacked PR #11 from `[historical branch name redacted]`,
 based on exact M9 final head
 `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. ADR-0025 accepts one isolated,
 owned local MCP child with detached observations and receipted writes. GitHub
 Actions run `31020096463` passed all eight essential hosted jobs.
 M11 is complete and independently accepted on
-`codex/m11-rich-2d-modules`, based on exact M10
+`[historical branch name redacted]`, based on exact M10
 evidence head `bae799900671481cfd6f03fe502dea95b2c7f96c`. ADR-0026 bounds it
 to dependency-free headless audio mixing, bitmap text, tick animation,
 immutable tilemaps, and fixed-point particles through existing render records.
 It is published as ready stacked PR #12; GitHub Actions run `31024155710`
 passed all eight essential hosted jobs on signed implementation commit
 `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d`.
-M12 is assigned on `codex/m12-plugin-manifest-compatibility`, based on exact
+M12 is assigned on `[historical branch name redacted]`, based on exact
 M11 evidence head `840a8b06d461fa1d5e649911b22f5995154728a7`. Its bounded contract is a
 data-only preview plugin-manifest schema and deterministic compatibility
 evaluator. RFC-0002 is accepted and implementation plus focused review
@@ -2207,7 +2262,7 @@ passed. It is published as ready stacked PR #13; GitHub Actions run
 `31028863469` passed all eight essential hosted jobs on signed implementation
 commit `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`.
 M13 is complete and independently accepted on
-`codex/m13-rollback-network-readiness`, based on exact
+`[historical branch name redacted]`, based on exact
 M12 hosted-evidence head
 `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Its bounded contract is an
 offline Clockwork Arena correction-branch proof plus an evidence-based network
@@ -2220,7 +2275,7 @@ reports no remaining finding. It is published as ready stacked PR #14; GitHub
 Actions run `31031590206` passed all eight essential hosted jobs on signed
 implementation commit `ba62b650191cfb982100692e7ec694da318956ae`.
 M14 is complete and independently accepted on
-`codex/m14-constrained-3d-decision`, based on exact M13
+`[historical branch name redacted]`, based on exact M13
 hosted-evidence head
 `48f8f296113e3f2794bae7f4c67997d433e4dd36`. Its bounded contract is an
 installed-surface audit and product-scope decision only. ADR-0028 retains
@@ -2244,7 +2299,7 @@ superseded, with branches retained for audit history.
 Repository-state evidence was then integrated through PR #18 as verified main
 commit `bfea67d2d922e8c591224d18f56c14d572d7f7da`. M15 is locally complete and
 independently accepted from that exact clean base on
-`codex/m15-visual-editor-admission`. Its bounded contract is
+`[historical branch name redacted]`. Its bounded contract is
 an installed-surface product decision only: confirm the versioned
 command/receipt, typed-tool, local MCP, and read-only inspector foundation;
 retain the headless inspector; and defer visual-editor implementation until
@@ -2260,7 +2315,7 @@ DCO-signed implementation commit `7e85570056dde3678aaeee13eee4036067876d8c`.
 
 PR #19 squash-integrated the exact final M15 tree into `main` as verified
 commit `c013dad38b1b64f0f4ccddc19681d643f6414427`. M16 is assigned on
-`codex/m16-wasm-mod-security-decision` from that exact clean base. Its bounded
+`[historical branch name redacted]` from that exact clean base. Its bounded
 contract is an executable-WASM-mod security admission decision only: preserve
 the M12 data-only plugin boundary, document the prospective threat surface and
 complete gate, and add deterministic source/wheel/release evidence plus
@@ -2281,7 +2336,7 @@ audit trail.
 
 M16 integration evidence was then squash-integrated through PR #21 as verified
 `main` commit `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`. M17 is assigned on
-`codex/m17-render-device-conformance` from that exact clean base. Its bounded
+`[historical branch name redacted]` from that exact clean base. Its bounded
 contract is one installed experimental `RenderDevice` baseline profile over an
 explicit trusted factory. It adds sanitized versioned reports, Null/wgpu
 evidence, artifact smoke, architecture guards, ADR-0031, and public guidance.
@@ -2299,7 +2354,7 @@ retained.
 
 M17 integration evidence was then squash-integrated through PR #23 as verified
 `main` commit `ed65b12fa02f672113eac5939a0f616079fee44a`. M18 is assigned on
-`codex/m18-agent-tool-conformance` from that exact clean base. Its bounded
+`[historical branch name redacted]` from that exact clean base. Its bounded
 contract is one installed experimental 12-tool agent-service profile over an
 explicit trusted factory, with sanitized reports, source/wheel/release smoke,
 architecture guards, ADR-0032, and public guidance. It adds no discovery,
@@ -2316,18 +2371,18 @@ retained.
 
 ## Repository identity
 
-M3 rendering is complete on `codex/m3-rendering-vertical-slice`, published as
+M3 rendering is complete on `[historical branch name redacted]`, published as
 stacked PR #3, and validated by corrected hosted run `30993554807` across the
 14-job quality, CPython/OS, wheel, and graphics matrix. M4 is complete on
-`codex/m4-clockwork-arena`, published as stacked PR #4, and validated by hosted
+`[historical branch name redacted]`, published as stacked PR #4, and validated by hosted
 run `30996905660` across the same 14-job matrix.
-M5 agent control is complete on `codex/m5-agent-control`, published as stacked
+M5 agent control is complete on `[historical branch name redacted]`, published as stacked
 PR #5, and validated by hosted run `30999777517` across the same 14-job matrix.
-M6 community-alpha hardening is complete on `codex/m6-release-hardening`,
+M6 community-alpha hardening is complete on `[historical branch name redacted]`,
 published as stacked PR #6, and validated by hosted run `31002365370` across the
 same 14-job matrix, including complete candidate smoke on all three platforms.
 M7 performance/native decision is complete on
-`codex/m7-performance-decision`, published as stacked PR #7, and validated by
+`[historical branch name redacted]`, published as stacked PR #7, and validated by
 hosted run `31005165849` across all 14 jobs, including the new base and
 real-wgpu profiling-contract smokes.
 The validated M1-M7 tree was squash-integrated to `main` by PR #8 as commit

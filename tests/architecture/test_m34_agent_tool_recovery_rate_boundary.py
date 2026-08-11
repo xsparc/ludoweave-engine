@@ -230,5 +230,3 @@ def test_m34_public_contract_and_indices_are_registered() -> None:
 def test_neutral_repository_metadata_convention_remains_active() -> None:
     assert (_ROOT / "MAINTAINERS.md").is_file()
     assert (_ROOT / ".project").is_dir()
-    for retired in (".ai", ".agents", ".codex", "AGENTS.md"):
-        assert not (_ROOT / retired).exists()
