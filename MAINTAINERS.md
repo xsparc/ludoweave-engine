@@ -42,18 +42,18 @@ claims.
 
 ## Current boundary
 
-M63 confines subordinate stdout and subordinate stderr while the standalone
-public-release consumer runs its in-process validator and complete smoke.
-Success emits one JSON document, and subordinate success requires an exact zero
-integer without invoking custom comparison or truth hooks.
+M64 preflights the complete staged sample ZIP before extraction. It admits at
+most 256 members, 1 MiB declared uncompressed per member, and 8 MiB declared
+uncompressed in total. After preflight, admitted files stream in 64 KiB blocks
+and must exactly match their declared uncompressed sizes.
 
-M63 relies on single-thread command ownership and adds no descriptor capture,
-subprocess wrapper, cleanup, rollback, retry, workflow, allocation, dependency,
-lock, version, runtime source/API, release authority, tag, release, or
-publication. Pull-request fixtures are not a real public release observation.
-M0 through M62 are complete, reviewed, hosted-validated, and integrated into
-`main`. M63 starts from exact verified M62 closeout
-`1cdc1b452cbe79c9e4f082acb4dd1205f4b3648f`.
+M64 is a narrow release-smoke resource boundary, not a general archive sandbox
+or transactional cleanup guarantee. It adds no workflow, allocation,
+dependency, lock, version, runtime source/API, release authority, tag, release,
+or publication. Pull-request fixtures are not a real public release
+observation. M0 through M63 are complete, reviewed, hosted-validated, and
+integrated into `main`. M64 starts from exact verified M63 closeout
+`a92330c5d592eaeba69e75e25dd94d83b22d367f`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
@@ -76,9 +76,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   blocks and declared-length agreement, and M58 orders response/connection
   cleanup before redirect continuation or publication. M60 adds final-entry
   filesystem collision checks before network or validator work, M61 separates
-  candidate and output roots, M62 constrains portable asset names, and M63
-  confines subordinate text output; none of these milestones authorizes a real
-  release.
+  candidate and output roots, M62 constrains portable asset names, M63 confines
+  subordinate text output, and M64 bounds staged sample-bundle extraction;
+  none of these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

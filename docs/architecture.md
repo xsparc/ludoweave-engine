@@ -1617,6 +1617,25 @@ library, direct file-descriptor, or arbitrary subprocess-output claim. M63 adds
 no workflow, dependency, lockfile, version, runtime API, release authority, or
 real public release observation. RFC-0046 defines the complete boundary.
 
+## M64 bounded sample-bundle extraction boundary
+
+The release smoke preflights every staged sample ZIP member before extraction
+creates a path. The archive may contain at most 256 members, each member may
+declare at most 1 MiB uncompressed, and all members together may declare at
+most 8 MiB uncompressed. Existing path confinement and symbolic-link rejection
+are part of the same complete preflight.
+
+After preflight, regular files stream through `ZipFile.open()` in 64 KiB blocks.
+The extracted byte count must exactly equal the preflight declaration, avoiding
+whole-expanded-member allocation and failing closed on a size disagreement.
+The actual M63 sample bundle is far below every limit.
+
+This boundary is private release tooling, not a runtime or public Python API.
+It adds no cleanup or rollback guarantee after preflight, general archive
+sandbox, or raw parser that bounds `zipfile`'s initial central-directory parse.
+It adds no workflow, dependency, release authority, or real public release
+observation. RFC-0047 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

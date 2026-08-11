@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0047 resolves M64 bounded staged sample-bundle extraction. Complete
+count/path/link/declared-size preflight admits at most 256 members, 1 MiB per
+member, and 8 MiB total before extraction; admitted files stream in 64 KiB
+blocks and must exactly reproduce declared sizes. This is not a general archive
+sandbox, metadata-authentication claim, filename-policy expansion, or
+transactional cleanup guarantee. It adds no workflow, dependency, runtime API,
+or release authority. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0046 resolves M63 public-release subordinate-output confinement. Both in-
 process release-document validation and complete smoke redirect subordinate
 stdout and subordinate stderr, restore the process-global streams on return or

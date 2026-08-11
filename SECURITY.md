@@ -126,6 +126,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   admitted failure remain content-silent. The process-global stream redirection
   is limited to this single-thread utility and makes no workflow or release-
   authority change.
+- M64 preflights a staged sample bundle before extraction, rejecting more than
+  256 members, any member over 1 MiB, or more than 8 MiB total declared
+  expansion. Admitted members stream in 64 KiB blocks with exact copied-size
+  validation. This is not a general archive sandbox, transactional cleanup
+  guarantee, workflow change, or real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
