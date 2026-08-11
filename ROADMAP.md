@@ -66,7 +66,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M55 public release HTTP response framing | PR #117 corrected the CPython status-line normalization overclaim, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated documented HTTP/1.1-class framing checks with unchanged workflows/release authority |
 | Done | M56 public release redirect-reference conformance | PR #120 corrected bracket-component validation, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated strict status/Location checks with unchanged workflows/release authority |
 | Done | M57 public release response-body conformance | PR #123 passed exact built-in bytes-block and declared-versus-streamed `Content-Length` checks in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
-| Active | M58 public release cleanup conformance | Require ordered response/connection close attempts, primary-failure preservation, and successful cleanup before redirect continuation or separate partial publication, with no rollback or workflow/release-authority change |
+| Done | M58 public release cleanup conformance | PR #126 passed ordered response/connection cleanup, primary-failure preservation, and publication-after-cleanup in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -914,6 +914,18 @@ runner allocation, action, permission, credential, release mutation,
 dependency, runtime package, public API, or release authority. Fixture and
 pull-request evidence are not a real public release observation. A real pass
 remains unclaimed until an authorized signed-tag release run executes.
+
+M58 exact head `8bd11f0ab6575edee6a5e7b5c78e36af59e55088` passed run
+`31478254138` in exactly three Linux-first allocations. Linux passed in 7m48s
+before macOS and Windows began; they passed in 2m00s and 4m01s. Hosted tests,
+real graphics, profiles, both vertical slices, reproducible builds, installed-
+wheel smoke, and complete release smoke passed. Two delayed audits found no
+comment, review, or thread. GitHub-verified squash
+`17ea7354c80b9d140350b88cd0ae3e615f700e45` has the exact reviewed tree, sole
+parent M57 closeout, standalone DCO, and no workflow, dependency, runtime
+package, public API, or release-authority change. The feature branch is deleted
+locally/remotely; the four-file integration record requires one Linux
+documentation allocation and a zero-step skipped desktop umbrella.
 
 ## Good-first contribution queue
 
