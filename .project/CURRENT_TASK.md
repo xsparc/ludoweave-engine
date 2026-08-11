@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M60 - public release filesystem collision conformance
-- **Status:** Feature hosted-qualified, reviewed, and squash-integrated;
-  factual integration record is in progress on `records/m60-integration`.
+- **Status:** Feature and factual integration record are hosted-qualified,
+  reviewed, and squash-integrated; three-file closeout is in progress on
+  `records/m60-closeout`.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -60,3 +61,12 @@
   escaped newline text, so no parsed-trailer claim is made for that commit and
   public history is not rewritten. The feature branch is deleted locally and
   remotely; no post-merge `main` run or open PR exists.
+- **Integration record:** Ready PR #133 exact head
+  `f4a41d848a9e9bfa85da2c34d09e705ad7493c87` classified exactly four changed
+  paths as documentation and passed run `31490571527` in one 43-second Linux
+  allocation. The desktop umbrella skipped in zero seconds with no steps.
+  Two delayed audits found no comment, review, or thread. GitHub-verified squash
+  `6861198cf32d04f1e802525c2327335ca1c8be86` has the exact reviewed tree,
+  sole parent the feature squash, and a parsed DCO trailer. Both working
+  branches are deleted locally/remotely; no post-integration `main` run or open
+  PR exists.
