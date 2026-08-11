@@ -43,6 +43,12 @@ from third_party_conformance_adoption_evidence import (
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
+_MAX_SAMPLE_MEMBERS = 256
+_MAX_SAMPLE_MEMBER_BYTES = 1024 * 1024
+_MAX_SAMPLE_TOTAL_BYTES = 8 * 1024 * 1024
+_SAMPLE_COPY_BYTES = 64 * 1024
+_SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
+
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -350,7 +356,11 @@ def main(argv: Sequence[str] | None = None) -> int:
 def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
     expected_root = f"ludoweave-samples-{version}"
     with zipfile.ZipFile(bundle) as archive:
-        for info in archive.infolist():
+        infos = tuple(archive.infolist())
+        if len(infos) > _MAX_SAMPLE_MEMBERS:
+            raise RuntimeError("sample bundle has too many members")
+        total_bytes = 0
+        for info in infos:
             path = PurePosixPath(info.filename)
             if (
                 path.is_absolute()
@@ -363,10 +373,30 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             mode = info.external_attr >> 16
             if stat.S_ISLNK(mode):
                 raise RuntimeError("sample bundle must not contain symbolic links")
+            if info.compress_type not in _SAMPLE_COMPRESSION_METHODS:
+                raise RuntimeError("sample bundle uses an unsupported compression method")
+            if info.file_size > _MAX_SAMPLE_MEMBER_BYTES:
+                raise RuntimeError("sample bundle member is too large")
+            total_bytes += info.file_size
+            if total_bytes > _MAX_SAMPLE_TOTAL_BYTES:
+                raise RuntimeError("sample bundle expands beyond the total limit")
+
+        for info in infos:
+            path = PurePosixPath(info.filename)
             destination = output.joinpath(*path.parts)
             destination.parent.mkdir(parents=True, exist_ok=True)
             if not info.is_dir():
-                destination.write_bytes(archive.read(info))
+                written = 0
+                with archive.open(info) as source, destination.open("wb") as target:
+                    while block := source.read(_SAMPLE_COPY_BYTES):
+                        written += len(block)
+                        if written > info.file_size:
+                            raise RuntimeError(
+                                "sample bundle member size changed during extraction"
+                            )
+                        target.write(block)
+                if written != info.file_size:
+                    raise RuntimeError("sample bundle member size changed during extraction")
     root = output / expected_root
     required = {
         "README.md",

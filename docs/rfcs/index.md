@@ -51,3 +51,4 @@ was adopted.
 - [RFC-0044: separate the public release candidate and output root](0044-public-release-root-separation.md)
 - [RFC-0045: constrain public release asset names portably](0045-portable-public-release-asset-names.md)
 - [RFC-0046: confine public release subordinate output](0046-public-release-output-confinement.md)
+- [RFC-0047: bound sample-bundle extraction](0047-bounded-sample-bundle-extraction.md)
