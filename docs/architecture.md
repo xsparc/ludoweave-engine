@@ -1639,6 +1639,31 @@ sandbox, or raw parser that bounds `zipfile`'s initial central-directory parse.
 It adds no workflow, dependency, release authority, or real public release
 observation. RFC-0047 defines the complete boundary.
 
+## M65 portable sample member path boundary
+
+M65 extends the same complete preflight with deterministic lexical identity.
+Each regular-file member has the exact expected root and a relative portable
+sample member path of at most 255 ASCII characters. Every component begins
+with an ASCII alphanumeric, uses only the admitted ASCII punctuation, excludes
+a trailing period and Windows device stem, and is retained without rewriting.
+Explicit directory members are rejected; extraction derives directories only
+from admitted file ancestors. An explicitly encoded ZIP file type must be a
+regular file; missing type bits remain compatible with common ZIP producers.
+
+Complete paths are unique case-insensitively, every case-insensitive directory
+ancestor has one exact spelling, and no admitted file is a prefix ancestor of
+another file. Duplicate, case-ambiguous, or file/directory prefix collision
+paths therefore fail before extraction creates a directory or file. Validated
+component tuples are paired with the already-preflighted `ZipInfo` sequence for
+M64's stored/deflated bounded streaming pass.
+
+This is a private project-bundle policy, not a general archive sandbox or a
+guarantee that every host accepts every admitted absolute extraction path. It
+performs no Unicode normalization, locale comparison, filesystem probing,
+path rewriting, race isolation, or transactional cleanup. M65 adds no workflow,
+dependency, sample-producer, runtime API, release authority, or real public
+release observation. RFC-0048 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -52,3 +52,4 @@ was adopted.
 - [RFC-0045: constrain public release asset names portably](0045-portable-public-release-asset-names.md)
 - [RFC-0046: confine public release subordinate output](0046-public-release-output-confinement.md)
 - [RFC-0047: bound sample-bundle extraction](0047-bounded-sample-bundle-extraction.md)
+- [RFC-0048: constrain sample-bundle member paths portably](0048-portable-sample-member-paths.md)

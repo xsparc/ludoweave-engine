@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+RFC-0048 resolves M65 portable staged sample-member paths. Every member is a
+regular file beneath the exact root with at most 255 relative ASCII characters
+and portable components. Complete paths are unique case-insensitively,
+directory ancestors retain one exact spelling, and file/directory prefix
+collisions fail before extraction. Windows device stems, trailing periods,
+Unicode, empty/dot components, explicit directory entries, and explicitly
+encoded non-regular file types are rejected. Missing ZIP file-type mode bits
+remain common-producer compatible. This performs no Unicode normalization or
+filesystem probing and is not a general archive sandbox, absolute-path
+portability claim, or cleanup guarantee. It adds no workflow, dependency,
+sample producer, runtime API, or release authority. A real pass remains pending
+an explicitly authorized signed-tag release execution.
+
 RFC-0047 resolves M64 bounded staged sample-bundle extraction. Complete
 count/path/link/declared-size preflight admits at most 256 members, 1 MiB per
 member, and 8 MiB total before extraction; admitted files stream in 64 KiB

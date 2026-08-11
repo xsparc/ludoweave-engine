@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import stat
 import subprocess
@@ -48,6 +49,11 @@ _MAX_SAMPLE_MEMBER_BYTES = 1024 * 1024
 _MAX_SAMPLE_TOTAL_BYTES = 8 * 1024 * 1024
 _SAMPLE_COPY_BYTES = 64 * 1024
 _SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
+_MAX_SAMPLE_PATH_CHARS = 255
+_SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
+_WINDOWS_DEVICE_STEMS = frozenset(
+    ("aux", "con", "nul", "prn"),
+) | frozenset(f"{prefix}{number}" for prefix in ("com", "lpt") for number in range(1, 10))
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -360,6 +366,9 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         if len(infos) > _MAX_SAMPLE_MEMBERS:
             raise RuntimeError("sample bundle has too many members")
         total_bytes = 0
+        member_parts: list[tuple[str, ...]] = []
+        member_keys: set[tuple[str, ...]] = set()
+        directory_spellings: dict[tuple[str, ...], tuple[str, ...]] = {}
         for info in infos:
             path = PurePosixPath(info.filename)
             if (
@@ -370,9 +379,24 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
                 or "\\" in info.filename
             ):
                 raise RuntimeError("sample bundle contains an unsafe path")
+            relative_parts = _portable_sample_member_parts(info, expected_root=expected_root)
+            member_key = tuple(part.casefold() for part in relative_parts)
+            if member_key in member_keys:
+                raise RuntimeError("sample bundle member paths collide")
+            for depth in range(1, len(relative_parts)):
+                directory_key = member_key[:depth]
+                directory_spelling = relative_parts[:depth]
+                previous = directory_spellings.setdefault(directory_key, directory_spelling)
+                if previous != directory_spelling:
+                    raise RuntimeError("sample bundle member paths collide")
+            member_keys.add(member_key)
+            member_parts.append((expected_root, *relative_parts))
             mode = info.external_attr >> 16
             if stat.S_ISLNK(mode):
                 raise RuntimeError("sample bundle must not contain symbolic links")
+            file_type = stat.S_IFMT(mode)
+            if file_type not in (0, stat.S_IFREG):
+                raise RuntimeError("sample bundle contains a non-regular member")
             if info.compress_type not in _SAMPLE_COMPRESSION_METHODS:
                 raise RuntimeError("sample bundle uses an unsupported compression method")
             if info.file_size > _MAX_SAMPLE_MEMBER_BYTES:
@@ -381,22 +405,25 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             if total_bytes > _MAX_SAMPLE_TOTAL_BYTES:
                 raise RuntimeError("sample bundle expands beyond the total limit")
 
-        for info in infos:
-            path = PurePosixPath(info.filename)
-            destination = output.joinpath(*path.parts)
+        if any(
+            member_key[:depth] in member_keys
+            for member_key in member_keys
+            for depth in range(1, len(member_key))
+        ):
+            raise RuntimeError("sample bundle member paths collide")
+
+        for info, parts in zip(infos, member_parts, strict=True):
+            destination = output.joinpath(*parts)
             destination.parent.mkdir(parents=True, exist_ok=True)
-            if not info.is_dir():
-                written = 0
-                with archive.open(info) as source, destination.open("wb") as target:
-                    while block := source.read(_SAMPLE_COPY_BYTES):
-                        written += len(block)
-                        if written > info.file_size:
-                            raise RuntimeError(
-                                "sample bundle member size changed during extraction"
-                            )
-                        target.write(block)
-                if written != info.file_size:
-                    raise RuntimeError("sample bundle member size changed during extraction")
+            written = 0
+            with archive.open(info) as source, destination.open("wb") as target:
+                while block := source.read(_SAMPLE_COPY_BYTES):
+                    written += len(block)
+                    if written > info.file_size:
+                        raise RuntimeError("sample bundle member size changed during extraction")
+                    target.write(block)
+            if written != info.file_size:
+                raise RuntimeError("sample bundle member size changed during extraction")
     root = output / expected_root
     required = {
         "README.md",
@@ -429,6 +456,33 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
     if not root.is_dir() or not required <= {path.name for path in root.iterdir()}:
         raise RuntimeError("sample bundle is incomplete")
     return root
+
+
+def _portable_sample_member_parts(
+    info: zipfile.ZipInfo,
+    *,
+    expected_root: str,
+) -> tuple[str, ...]:
+    """Return one portable relative file path or fail before extraction."""
+
+    raw_parts = info.filename.split("/")
+    if (
+        info.is_dir()
+        or len(raw_parts) < 2
+        or raw_parts[0] != expected_root
+        or len("/".join(raw_parts[1:])) > _MAX_SAMPLE_PATH_CHARS
+        or any(not _is_portable_sample_member_name(part) for part in raw_parts[1:])
+    ):
+        raise RuntimeError("sample bundle contains a non-portable member path")
+    return tuple(raw_parts[1:])
+
+
+def _is_portable_sample_member_name(name: str) -> bool:
+    return (
+        _SAMPLE_MEMBER_PATTERN.fullmatch(name) is not None
+        and not name.endswith(".")
+        and name.split(".", 1)[0].casefold() not in _WINDOWS_DEVICE_STEMS
+    )
 
 
 def _verify_sbom(sbom: Path, *, wheel: Path, version: str) -> None:

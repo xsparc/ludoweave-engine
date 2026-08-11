@@ -482,6 +482,23 @@ temporary directory because cleanup and rollback are not part of M64. There is
 no workflow, dependency, runtime API, or release-authority change, and pull-
 request evidence is not a real public release observation.
 
+M65/RFC-0048 adds portable sample member path identity to that same complete
+preflight. Every member is a regular file beneath the exact expected root; its
+relative path contains at most 255 ASCII characters and each component uses
+the restricted portable ASCII grammar without a trailing period or Windows
+device stem. Explicit directory entries, explicitly encoded non-regular file
+types, case-insensitive duplicate paths, case-ambiguous directory ancestors,
+and every file/directory prefix collision fail before extraction. A missing ZIP
+file-type mode remains admitted because common producers encode permissions
+without encoding a file type.
+
+The verifier preserves admitted spellings exactly. It performs no Unicode
+normalization, locale-sensitive comparison, filesystem probing, or rewriting,
+and it does not guarantee every possible absolute runner path is accepted by
+every filesystem. This private policy adds no workflow, dependency, sample-
+producer, runtime API, cleanup guarantee, or release authority. Pull-request
+evidence is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

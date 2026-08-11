@@ -133,6 +133,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   BZIP2/LZMA paths do not provide the same bounded-output read behavior. This
   is not a general archive sandbox, transactional cleanup guarantee, workflow
   change, or real public release observation.
+- M65 admits only a portable sample member path beneath the expected bundle
+  root: at most 255 ASCII characters, portable components without Windows
+  device stems or trailing periods, case-insensitive uniqueness, one ancestor
+  spelling, no explicit directory member, no explicitly encoded non-regular
+  file type, and no file/directory prefix collision. ZIP members that omit file-
+  type mode bits remain admitted for common-producer compatibility. Violations
+  fail before extraction. This performs no Unicode normalization or filesystem
+  probing and is not a general archive sandbox, workflow change, or real public
+  release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

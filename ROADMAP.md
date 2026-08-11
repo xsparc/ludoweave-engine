@@ -73,6 +73,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M62 portable public release asset names | PR #138 passed deterministic portable retrieval-plan basenames, fail-before-asset-side-effect validation, exact three-allocation hosted qualification, and verified squash integration with unchanged workflow/release authority |
 | Done | M63 public release output confinement | PR #141 passed one-document consumer output, exact subordinate status conformance, exact three-allocation hosted qualification, and verified squash integration with unchanged workflow/release authority |
 | Done | M64 bounded sample-bundle extraction | PR #144 corrected codec admission after review, passed exact three-allocation hosted qualification, and squash-integrated bounded preflight plus 64 KiB stored/deflated streaming without changing workflow or release authority |
+| Active | M65 portable sample member paths | Preflight regular-file mode, 255-ASCII-character portable components, case-insensitive identity, ancestor spelling, and file/directory prefix collisions before extraction without changing workflow, producer, runtime, or release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.

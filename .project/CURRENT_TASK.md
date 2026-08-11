@@ -1,46 +1,77 @@
 # Current Task
 
-- **Task:** M64 - bounded sample-bundle extraction closeout
-- **Status:** Feature and integration-record PRs are fully validated,
-  squash-integrated, and reviewed. This exact three-record closeout will
-  establish the clean M65 selection base without requesting hosted CI.
+- **Task:** M65 - portable sample member paths
+- **Status:** Initial ready PR #147 passed the unchanged three-allocation hosted
+  gate at exact head `fce4140dd2d1b2982a1e90091dd2b157b00e861c`, but review
+  found that explicitly encoded non-regular ZIP modes were not rejected. The
+  tests-first correction passes the complete local source, supported-Python,
+  real-wgpu, profile, example, reproducibility, wheel, and release gates. A DCO-
+  signed amended head and fresh hosted qualification remain required.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** GitHub-verified integration squash
-  `6f3c0352420d39f9c4666101f7de3c23a52ac2d2`, whose tree
-  `7fec531dd168a8ae96a074177d72c9589975264c` exactly matches reviewed PR #145
-  head `49857245d37aaf8ea1b8a0cf702897a17b3f79ab` and whose sole parent is M64
-  feature squash `8399e0f94838f455ead604eceee0a17e1b2c9a91`. GitHub reports a valid
-  signature and exact parsed DCO trailer.
-- **Outcome:** M64 bounds staged sample-ZIP expansion and memory use before the
-  installed-candidate release smoke extracts any member.
-- **Implemented contract:** Complete preflight admits at most 256 members,
-  1 MiB declared uncompressed per member, and 8 MiB declared uncompressed
-  total; path, symbolic-link, codec, count, and size checks precede writes;
-  stored/deflated members stream in 64 KiB blocks and must exactly match their
-  declared size; BZIP2, LZMA, and unknown methods fail closed.
-- **Boundary:** Private release-smoke limits only. No general archive sandbox,
-  cleanup or rollback guarantee, workflow, dependency, runtime API, release
+- **Base:** Exact clean synchronized M64 closeout
+  `92e706961e2ecd4e2c187a205cc045a8c6506ab9`, whose tree
+  `8df4aaa8222517d729234792d162dfc115674767` exactly matches the reviewed
+  closeout head. GitHub reports a valid signature and parsed DCO trailer. Only
+  `main` existed locally/remotely, no pull request was open, `git fsck` passed,
+  and the closeout created no run or check.
+- **Outcome:** Give every admitted staged sample-ZIP file one deterministic
+  portable extraction identity before the first filesystem write.
+- **Acceptance:** Require an exact expected root; one or more portable ASCII
+  components; at most 255 relative characters; no trailing period or Windows
+  device stem; no explicit directory entry or explicitly encoded non-regular
+  file type; case-insensitive complete-path uniqueness; one exact ancestor
+  spelling; and no file/directory prefix collision. Retain exact spelling,
+  common-producer compatibility for missing type bits, and all M64 bounds.
+- **Boundary:** Private project-owned sample-bundle verification only. No
+  Unicode normalization, locale comparison, filesystem probing, path rewriting,
+  general archive sandbox, absolute-path portability guarantee, cleanup or
+  rollback, workflow, dependency, sample producer, runtime API, release
   authority, tag, release, publication, or real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Feature evidence:** Corrected PR #144 head
-  `8b6861df891f12d194bc9b7e98b41ac8ab81f7d1` passed exactly three Linux-first
-  allocations in run `31515782370`, including all supported Python, real-wgpu,
-  profiles, vertical slices, reproducible builds, installed-wheel smoke, and
-  complete release smoke. Its sole review thread was answered and resolved;
-  two delayed audits found no later activity. Squash `8399e0f` has the exact
-  reviewed tree and sole parent exact M63 closeout.
-- **Integration evidence:** Four-document PR #145 exact head
-  `49857245d37aaf8ea1b8a0cf702897a17b3f79ab` passed run `31517725574` in one
-  42-second Linux allocation; the desktop umbrella skipped with zero steps.
-  Hosted formatting, Ruff, strict docs, all 702 architecture assertions,
-  reproducible distribution, installed-wheel smoke, and complete release smoke
-  passed. Two delayed audits were empty. Squash `6f3c035` has the exact reviewed
-  tree, valid signature, sole parent the feature squash, and parsed DCO.
-- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture
-  and whitespace checks; create a DCO-signed ready PR; request no hosted runner;
-  verify the squash; delete every merged milestone branch locally/remotely; and
-  leave only synchronized `main` before selecting M65.
+- **Failing baseline:** The new 18-case M65 file failed 16 assertions and passed
+  the valid nested-shape plus protected-surface guards in 0.56 seconds against
+  unchanged M64 production code. Nonportable inputs wrote before incomplete-
+  bundle failure or reached host `OSError`; duplicate/case-only paths overwrote
+  or merged; prefix collisions failed after writes; the 255-character constant,
+  collision preflight, and RFC-0048 were absent.
+- **Development evidence:** The first focused gate stopped because Ruff would
+  reformat the new test file. After mechanical formatting, both changed Python
+  files are format/Ruff/strict-Pyright clean and all 17 non-documentation M65
+  assertions pass in 0.26 seconds. The complete 18-case contract passes in 0.23
+  seconds; strict docs build in 1.11 seconds with only the known upstream
+  notice; all 720 architecture assertions and both release-artifact tests pass.
+- **Pre-hosted candidate evidence:** Each graphics-enabled CPython 3.12.13,
+  3.13.13, and
+  3.14.5 suite passes 2,260 tests with 14 expected skips. Ten real-wgpu tests,
+  five-repeat base/graphics profiles, Clockwork Arena, Agent World Builder, and
+  all four diagnostic benchmark validators pass. Two builds reproduce a pure
+  272,430-byte wheel and 1,169,917-byte source archive; isolated-wheel and
+  complete release smoke pass.
+- **Review:** Local findings-first review first strengthened the admitted exact
+  255-character boundary. Hosted review then found a production defect: a ZIP
+  FIFO, socket, or device mode without a trailing slash passed the filename-
+  based directory and symlink guards. Four reviewer-derived regressions failed
+  against the published head and pass after explicit file-type validation.
+- **Corrected source and matrix gate:** After the correction, the unchanged lock
+  and restored 45-package graphics environment pass whole-tree formatting,
+  Ruff, strict Pyright, 727 architecture/release assertions, strict docs, and
+  whitespace. Each supported graphics-enabled CPython suite passes 2,265 tests
+  with 14 expected skips. Ten real-wgpu tests, both five-repeat profiles, and
+  both vertical slices pass. Two builds reproduce a pure 272,430-byte wheel and
+  1,172,451-byte source archive; isolated-wheel, staging, and complete release
+  smoke pass.
+- **Initial hosted evidence:** Run `31521633593` passed exact initial head
+  `fce4140dd2d1b2982a1e90091dd2b157b00e861c` in three Linux-first
+  allocations: Linux `93879809651` in 5m24s, macOS `93881371543` in 2m50s,
+  and Windows `93881371674` in 4m05s. Merge remains blocked pending a fresh run
+  because that head contains the confirmed non-regular-mode gap.
+- **Required validation:** Unchanged lock/environment; whole-tree formatting,
+  Ruff, strict Pyright, focused and inherited architecture/release tests, strict
+  docs, all supported CPython versions, real-wgpu, profiles, both vertical
+  slices, documented diagnostic benchmarks, twice-reproducible distribution,
+  isolated-wheel smoke, complete release smoke, diff/history/security/archive
+  review, exact amended DCO commit, and a fresh unchanged three-allocation
+  hosted gate.
