@@ -1,6 +1,6 @@
 # Project State
 
-## M60 public release filesystem collision conformance - feature integrated
+## M60 public release filesystem collision conformance - complete
 
 - Base: exact clean synchronized M59 closeout
   `9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`, with tree
@@ -89,6 +89,28 @@
   does not rewrite public history. The feature branch is deleted locally and
   remotely. Synchronized `main` has no post-merge run or open pull request.
   No tag, release, publication, or real public release observation exists.
+- Integration record: exact four-path documentation head
+  `f4a41d848a9e9bfa85da2c34d09e705ad7493c87` passed ready PR #133 run
+  `31490571527` in one 43-second Linux allocation. All 303 Python files were
+  format clean, Ruff passed, strict docs built in 1.53 seconds, all 648
+  documentation architecture assertions passed in 8.51 seconds, same-source
+  distributions reproduced, and installed-wheel plus complete release smoke
+  passed. Desktop umbrella `93776026071` skipped with zero steps and no runner
+  allocation. The exact-head wheel was 271,493 bytes at
+  `ed79ae64bbda70b105fea3eaf61fedfa175998ea55191a7127d764063579f784`;
+  the 1,127,269-byte source distribution was
+  `02d7bc6c928068e4c562b3674cfd76fbec204ab0c31cc33933d1acf0254d2a6a`.
+- Integration-record merge: two delayed audits found exact head/base,
+  `MERGEABLE/CLEAN`, one successful Linux check, one zero-step skipped
+  umbrella, and no issue comment, review comment, review, or thread. Head-
+  pinned GitHub-verified squash
+  `6861198cf32d04f1e802525c2327335ca1c8be86` has tree
+  `280d9e41e4f04d73f99dc5d324ede72f8fc7a472` exactly equal to the reviewed
+  record head, sole parent feature squash
+  `8967bd8cfc11f1b29caadbf01da9255bd6eb4584`, and a parsed DCO trailer. No
+  post-integration `main` run was allocated; both M60 working branches are
+  deleted locally/remotely, and no open pull request exists. The exact three-
+  file `.project/**` closeout must allocate zero hosted runs or checks.
 
 ## M59 repository metadata hygiene - complete
 
