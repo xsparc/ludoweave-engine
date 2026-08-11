@@ -1540,6 +1540,24 @@ retry, workflow, allocation, dependency, package, runtime API, or release
 authority. Fixture and pull-request evidence are not a real public release
 observation. RFC-0041 defines the complete boundary.
 
+## M60 public release output-path boundary
+
+M60 makes filesystem collision detection a fail-before-side-effect boundary
+for the portable public-release verifier. Before network or validator work,
+the verifier inspects the final directory entry for its fresh release document,
+download directory, and retrieval plan without following that final link. Each
+asset target and separate asset partial receives the same check before a
+connection is created. A file, directory, live link, or dangling link therefore
+blocks the operation with the existing output- or plan-collision taxonomy.
+Inspection failures are content-silent output or plan failures.
+
+The existing `x`/`xb` exclusive creation and hard-link publication remain the
+authoritative no clobber operations after preflight. M60 makes no race-free
+filesystem guarantee and adds no descriptor-confined sandbox, rollback,
+cleanup, retry, workflow, allocation, dependency, lock, version, runtime API,
+release authority, or real public release observation. RFC-0043 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -404,6 +404,22 @@ allocation, dependency, runtime API, release authority, or real public release
 observation. No real M58 pass exists until an authorized signed-tag release run
 exercises the public path.
 
+M60/RFC-0043 treats every pre-existing final directory entry for the fresh
+public document, download directory, retrieval plan, asset target, and asset
+partial as a filesystem collision. The `lstat()` preflight observes the entry
+itself, so files, directories, live links, and dangling links fail before
+network or validator side effects. Normal output collisions keep
+`public_release.output_exists`; a fresh-plan collision keeps
+`public_release.plan_exists`; inspection failures use content-silent output or
+plan failure codes.
+
+The writer still relies on `x`/`xb` exclusive creation and hard-link
+publication for no clobber behavior after preflight. M60 is no race-free
+filesystem guarantee and adds no directory-descriptor sandbox, rollback,
+cleanup, retry, workflow, allocation, dependency, runtime API, release
+authority, or real public release observation. No real M60 pass exists until an
+authorized signed-tag release run exercises the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

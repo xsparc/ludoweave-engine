@@ -2,6 +2,73 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M60 local development and pre-record validation - 2026-08-11
+
+M60 starts from exact synchronized M59 closeout
+`9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`. The worktree was clean, local
+`main`, `origin/main`, and `origin/HEAD` matched, only `main` remained after
+remote pruning, no pull request was open, and GitHub reported the closeout
+squash signature valid with the exact reviewed tree and DCO trailer.
+
+| Command | Exit | Result |
+| --- | ---: | --- |
+| `uv lock --check` | 1 | The first sandboxed attempt stopped before project execution because uv's existing user cache was inaccessible. |
+| Approved `uv lock --check` rerun | 0 | Resolved the unchanged 46-package lock in 0.83 ms. |
+| Baseline focused M45-M58/release-draft group | 0 | 317 tests passed with two platform-capability skips in 7.19 seconds. |
+| Initial `pytest -q tests/architecture/test_m60_public_release_output_paths.py` | 1 | All eight tests failed as designed: six behavior cases reached forbidden side effects, the scope fixture had one stale release-workflow hash, and RFC-0043 was absent. |
+| Corrected M60 behavior/scope group | 0 | Seven selected assertions passed in 0.21 seconds; focused format, Ruff, and strict Pyright were clean. |
+| First complete M60 documentation group | 1 | Seven assertions passed; the documentation contract identified one missing exact `before validator` phrase. |
+| Corrected initial M60 group | 0 | Eight assertions passed in 0.19 seconds. |
+| Expanded M45-M60/release-draft group | 1 | 325 tests passed with two skips; M58's inherited documentation guard identified missing `M58` wording in `MAINTAINERS.md`. |
+| Corrected expanded M45-M60/release-draft group | 0 | 326 tests passed with two skips in 7.12 seconds. |
+| First complete architecture suite | 1 | 645 assertions passed; M46's literal old implementation check and M59's documentation-preservation check failed. |
+| Second complete architecture suite | 1 | 646 assertions passed; the remaining M59 README phrase was identified. |
+| Corrected complete architecture suite | 0 | 647 assertions passed in 4.41 seconds. |
+| `uv sync --frozen --all-groups --extra graphics` | 0 | Checked 45 locked packages in 2 ms. |
+| Whole-tree Ruff format/check and strict Pyright | 0 | 303 Python files were format-clean; Ruff had no finding; Pyright reported zero diagnostics. |
+| `uv run --frozen mkdocs build --strict` | 0 | Strict docs built in 1.09 seconds with only the recorded upstream MkDocs Material notice. |
+| CPython 3.12.13 graphics-enabled complete suite | 0 | 2,187 tests passed with 14 expected skips in 101.84 seconds. |
+| CPython 3.13.13 graphics-enabled complete suite | 0 | 2,187 tests passed with 14 expected skips in 99.87 seconds. |
+| CPython 3.14.5 graphics-enabled complete suite | 0 | 2,187 tests passed with 14 expected skips in 106.60 seconds. |
+| `uv run --python 3.12 --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py` | 0 | Ten real-wgpu tests passed in 6.48 seconds. |
+| Five-repeat M7 base profile and validator | 0 | The versioned profile validated two workloads. |
+| Five-repeat M7 graphics profile and validator | 0 | The versioned real-wgpu profile validated three workloads. |
+| Clockwork Arena wgpu 30-tick slice | 0 | Deterministic arena/capture summary completed with three draw calls. |
+| Agent World Builder slice | 0 | Typed-tool loop completed with committed apply/adjust receipts, six query matches, passing embedded tests, and replay evidence. |
+| M1 benchmark and validator | 0 | Seven workloads validated; fixed 3,600 ticks observed its target at 35.7375 ms p95, while the 10,000-entity simulation retained its miss at 117.7404 ms p95. |
+| M2 benchmark and validator | 0 | Four informational target-free workloads validated. |
+| M3 benchmark and validator | 0 | Six workloads validated; 10,000-wgpu submission observed its target at 2.8034 ms p95, while 10,000-sprite extraction retained its miss at 23.3646 ms p95. |
+| M4 benchmark and validator | 0 | Three workloads validated; baseline observed its target at 1.8545 ms p95, and stress 4/8 p95 values were 2.9241/4.3010 ms without targets. |
+| Two `uv build --out-dir .tmp/m60-dist-*` runs | 0 | Both built the pure wheel and source distribution. |
+| Distribution reproducibility validator | 0 | The 271,507-byte wheel (`03115989...e83a6`) and 1,121,988-byte sdist (`ed6904e...8b2fc`) reproduced byte-for-byte. |
+| Isolated-wheel smoke | 0 | The built wheel passed the complete installed smoke. |
+| Release staging and smoke | 0 | Ten artifacts staged; checksum, manifest, SPDX SBOM, sample, safe extraction, and installed-release smoke passed. |
+| Final expanded M60 group after two additional regressions | 0 | Ten assertions passed in 0.74 seconds; focused format/Ruff and whole-project strict Pyright remained clean. |
+
+The record-inclusive local candidate passes `uv lock --check` (46 packages in
+0.81 ms), whole-tree format/Ruff/Pyright, 648 architecture assertions in 5.20
+seconds, strict docs in 1.16 seconds, and 2,188 CPython 3.12 graphics-enabled
+tests with 14 expected skips in 101.93 seconds. The final ten M60 assertions
+also pass on CPython 3.13.13 in 1.08 seconds and CPython 3.14.5 in 0.55 seconds.
+Two record-inclusive builds reproduce; isolated-wheel and ten-artifact release
+smoke pass. Archive review finds 94 pure-wheel entries, 486 source-distribution
+entries, every M60 source/test/RFC/record, and no native or WASM wheel member.
+Protected workflow/metadata/lock/runtime comparison, credential/backend pattern
+review, `git fsck --no-dangling`, and `git diff --check` report no finding. The
+exact immutable candidate artifact hashes are recorded with commit/PR evidence
+rather than embedded into the source distribution that contains this file.
+
+The first post-record Pyright rerun exited 1 with 17 missing/unknown optional-
+graphics diagnostics because the preceding CPython 3.13/3.14 focused commands
+had recreated `.venv` without the graphics extra. `uv sync --frozen
+--all-groups --extra graphics` installed the six locked graphics packages, and
+the immediate Pyright rerun exited 0 with zero diagnostics. No source change was
+made for this environment correction.
+
+No hosted run, pull request, merge, tag, release, package publication, real
+public release observation, race-free filesystem guarantee, or stability
+promotion is claimed.
+
 ## M59 development evidence - 2026-08-11, Windows, CPython 3.12
 
 | Command or review | Exit | Result |
