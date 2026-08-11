@@ -1,16 +1,19 @@
 # Current Task
 
 - **Task:** M66 - staged sample-root publication
-- **Status:** Reviewed local candidate; final record-frozen validation remains
-  before hosted qualification.
+- **Status:** Feature PR #150 is fully validated, reviewed, squash-integrated,
+  and verified. This four-record integration update is pending its bounded
+  documentation/distribution gate.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M65 closeout
-  `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`, tree
-  `a8e028df3db9b6eb0293cd9177cedcda3367666a`. Local `main`, `origin/main`,
-  and `origin/HEAD` matched; only `main` existed locally and remotely.
+- **Base:** GitHub-verified feature squash
+  `79593b01d670dd07fb761e493382685765d13d7a`, whose tree
+  `dc776056d2cdb15c30944dbe2dae5f7c2ffb0c8e` exactly matches reviewed PR
+  #150 head `facda31545cd490187e7679d613cd9bb5149028d`. Its sole parent is the
+  exact M65 closeout `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`; GitHub reports a valid
+  signature and the squash message carries an exact parsed DCO trailer.
 - **Outcome:** Prevent a failed release-sample extraction from leaving a
   partial tree at the final versioned sample-root identity.
 - **Acceptance:** Require an existing real caller-owned output directory and an
@@ -48,7 +51,23 @@
   by a full system drive. After isolating pytest fixtures on the spacious `D:`
   drive, every supported-version suite passed. No behavioral pass is claimed
   from the two disk-exhausted attempts.
-- **Hosted plan:** Because the change touches release-smoke Python, retain the
-  existing substantive three-allocation Linux-first CI. Add no workflow or
-  runner. Publish only after the record-frozen local gate; squash-integrate only
-  after exact-head hosted success and delayed review audits.
+- **Hosted evidence:** Run `31529725573` passed exact head `facda315` in the
+  unchanged three Linux-first allocations: Linux in 7m17s, macOS in 2m07s, and
+  Windows in 3m21s. Baseline and every compatibility suite passed 2,283 tests,
+  with one compatibility skip; real-wgpu, profiles, vertical slices,
+  reproducibility, installed-wheel smoke, staging, and complete M66 release
+  smoke passed.
+- **Review resolution:** One hosted comment incorrectly cited absent commit
+  `dd958c5` as lacking DCO. GitHub and local Git proved PR #150 contains only
+  `facda315` with the exact trailer. The evidence reply was posted, the thread
+  resolved, and two delayed exact-head audits found no later activity.
+- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
+  request only the existing documentation-qualified Linux allocation and a
+  skipped zero-step desktop umbrella; then create a three-record closeout that
+  requests no hosted runner.
+- **Integration local evidence:** The exact four-file record passes the
+  unchanged lock, formatting for 309 files, Ruff, strict Pyright, all 738
+  architecture assertions with 1 local capability skip, strict docs,
+  whitespace, two-build reproducibility, installed-wheel smoke, 10-artifact
+  staging, and complete M66 release smoke.

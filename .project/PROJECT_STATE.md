@@ -1,11 +1,11 @@
 # Project State
 
-## M66 staged sample-root publication - reviewed local candidate
+## M66 staged sample-root publication - feature integrated
 
 - Base: exact clean synchronized M65 closeout
   `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`, tree
   `a8e028df3db9b6eb0293cd9177cedcda3367666a`.
-- Current branch: `security/m66-atomic-sample-extraction`.
+- Current branch: `docs/m66-integration-record`.
 - Gap: after complete M64/M65 preflight, release smoke writes directly beneath
   the final versioned sample root. A later streamed-size, decompression, I/O, or
   completeness failure can leave a partial tree at the complete-tree identity.
@@ -37,8 +37,33 @@
 - Environment: two earlier full-suite attempts were invalidated by a full
   system drive. The first produced no valid summary; the second passed 2,265
   tests before its only fixture write failed. Moving only pytest temporary
-  repositories to `D:` produced the complete passing matrix above. Final
-  record-frozen validation and hosted qualification remain pending.
+  repositories to `D:` produced the complete passing matrix above.
+- Hosted qualification: exact DCO head `facda31545cd490187e7679d613cd9bb5149028d`
+  passed run `31529725573` in exactly three Linux-first allocations. Linux
+  passed in 7m17s, macOS in 2m07s, and Windows in 3m21s. Linux baseline and
+  Ubuntu 3.13/3.14 each passed 2,283 tests, with one expected compatibility
+  skip; macOS and Windows 3.14 each passed 2,283 with one skip. Real-wgpu
+  passed 10 tests on every operating system; profiles, vertical slices,
+  reproducibility, installed-wheel smoke, staging, and release smoke passed.
+- Hosted artifacts: two builds reproduced a pure 272,695-byte wheel at
+  `d72a13dcecdcaa1cef53392b0c2fb6d7eba10b817894985588e3524f8f2a2874` and a
+  1,183,498-byte source archive at
+  `89f1e1cd845445c3a55030c32af2f1c247d43639cd2c0eb18a47b7a8994ec360`.
+- Review and integration: one review comment cited an absent commit as missing
+  DCO. Exact GitHub/local commit-list and trailer evidence disproved it; the
+  response is attached, the thread resolved, and two delayed audits found no
+  later activity. GitHub-verified squash `79593b01d670dd07fb761e493382685765d13d7a`
+  has the exact reviewed tree, sole parent exact M65 closeout, valid signature,
+  and parsed DCO. The feature branch is absent locally/remotely. This four-file
+  record requests one Linux documentation/distribution allocation and a skipped
+  zero-step desktop umbrella; the following three-record closeout requests none.
+- Integration-record local gate: the exact four-file scope passes the unchanged
+  lock, formatting for 309 files, Ruff, strict Pyright, all 738 architecture
+  assertions with 1 local capability skip, strict docs, and whitespace. Two
+  builds reproduce the unchanged 272,709-byte wheel and a 1,185,006-byte
+  record-updated sdist; installed-wheel and complete release smoke pass. This
+  evidence edit changes the source archive again, so exact commit-tree artifact
+  identity remains delegated to the one-allocation hosted gate.
 
 ## M65 portable sample member paths - feature integrated
 
