@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M62 - portable public release asset names
-- **Status:** Implementation, RFC, complete local validation, artifact
-  reproducibility, release smoke, and findings-first review are complete on
-  `security/m62-portable-release-asset-names`; exact-head hosted qualification
-  remains pending.
+- **Status:** Feature implementation, review, exact three-allocation hosted
+  qualification, and verified squash integration are complete. This bounded
+  four-file integration record is in progress on `records/m62-integration`.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -52,6 +51,10 @@
   pure 271,887-byte wheel and 1,142,219-byte source archive; archive inventory,
   protected-surface, credential, tool-identity, whitespace, and Git-object
   audits are clean apart from expected unreachable historical objects.
-- **Hosted gate:** This security/documentation maintenance slice is substantive
-  and requires exactly three Linux-first allocations; desktop jobs may begin
-  only after Linux qualification succeeds.
+- **Hosted evidence:** Ready PR #138 exact head
+  `3bb7539463e34859b5ef8a63d2ea4bc1ff4c2cb2` passed run `31501434063`
+  in exactly three Linux-first allocations. Linux passed in 7m20s before macOS
+  and Windows began; they passed in 3m11s and 4m18s. Baseline passed 2,221
+  tests; every compatibility suite passed 2,221 with one expected skip.
+  GitHub-verified squash `a96fac6b4fdd2eb3c0d65ede17f66cede2faa232`
+  has the exact reviewed tree, sole parent exact M61 closeout, and parsed DCO.
