@@ -31,6 +31,23 @@ locally and remotely before creating the neutral feature branch.
 | Final reviewed archive inventory | 0 | The wheel contains 94 entries and no native library or WASM file. The 498-entry source archive contains the exact M66 architecture test and RFC-0049. The 50-entry staged sample ZIP has exactly one expected `ludoweave-samples-0.1.0a1` root. |
 | Final record-frozen source gate | 0 | The unchanged lock resolved 46 packages in 0.87 ms; all 309 Python files were format clean; Ruff and strict Pyright reported zero findings; all 738 architecture assertions passed with 1 capability skip in 4.74 seconds; both release-artifact tests passed in 0.51 seconds; strict docs built in 1.20 seconds with only the known upstream Material notice; and whitespace was clean. |
 
+## M66 hosted feature evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #150 run `31529725573` | 0 | Exact DCO head `facda31545cd490187e7679d613cd9bb5149028d` passed in exactly three Linux-first allocations. Linux `93906589413` passed in 7m17s before macOS `93908604436` passed in 2m07s and Windows `93908604437` in 3m21s. |
+| Hosted supported-Python and graphics suites | 0 | Linux baseline passed 2,283 tests in 122.00 seconds; Ubuntu 3.13 and 3.14 each passed 2,283 with 1 expected skip in 104.30 and 108.79 seconds. macOS and Windows 3.14 each passed 2,283 with 1 skip in 88.60 and 150.89 seconds. Real-wgpu passed 10 tests on Linux in 5.39 seconds, macOS in 7.27 seconds, and Windows in 7.47 seconds. |
+| Hosted profiles, examples, distribution, and smoke | 0 | Both profiles and both vertical slices passed on every allocated operating system. Two hosted builds reproduced a pure 272,695-byte wheel at `d72a13dcecdcaa1cef53392b0c2fb6d7eba10b817894985588e3524f8f2a2874` and a 1,183,498-byte source archive at `89f1e1cd845445c3a55030c32af2f1c247d43639cd2c0eb18a47b7a8994ec360`. Installed-wheel smoke, 10-artifact staging, and complete M66 release smoke passed. |
+| Hosted review resolution and delayed audits | Resolved | Review comment `3761229485` incorrectly cited commit `dd958c5`, which is absent from PR #150. GitHub's PR commit endpoint and local `origin/main..HEAD` each contained only `facda315`; its exact message and parsed trailer contain `Signed-off-by: Louijie Compo <louijie.compo@gmail.com>`. Evidence reply `3761286817` was posted and thread `PRRT_kwDOTtqoGs6YW4Bn` resolved. Two delayed audits found no later review, issue comment, review comment, or unresolved thread. |
+| Feature squash verification | 0 | PR #150 squash `79593b01d670dd07fb761e493382685765d13d7a` has tree `dc776056d2cdb15c30944dbe2dae5f7c2ffb0c8e`, exactly matching reviewed head `facda31545cd490187e7679d613cd9bb5149028d`; its sole parent is exact M65 closeout `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1`. GitHub reports a valid signature verified at `2026-08-11T20:04:35Z`, and the squash has an exact parsed DCO trailer. The feature branch is absent locally and remotely. |
+
+## M66 integration-record local evidence - 2026-08-12, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact scope, lock, static, architecture, docs, and whitespace gate | 0 | The diff names exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; no implementation/workflow/dependency surface differs from verified feature squash `79593b0`. The unchanged lock resolved 46 packages in 0.76 ms. All 309 Python files were format clean; Ruff and strict Pyright reported zero findings; all 738 architecture assertions passed with 1 capability skip in 5.10 seconds; strict docs built in 1.12 seconds with only the known upstream Material notice; and whitespace was clean. |
+| Reproducible distribution and smoke | 0 | Two builds reproduced the unchanged pure 272,709-byte wheel at `c781d27046ee92131208802fdef6d800e1fc5fc28f6baeb4a4ef8234b0cc58f8` and a 1,185,006-byte record-updated source archive at `762db81c1fbffa374af536cca0b5e646f7ff9af5f432f315d936bee7fe5f4a1c`. Installed-wheel smoke, deterministic 10-artifact staging, and complete M66 release smoke passed. This factual row changes the source archive afterward, so exact commit-tree artifact identity remains delegated to the one-allocation hosted gate. |
+
 ## M65 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M65 starts from exact synchronized M64 closeout
