@@ -1,6 +1,6 @@
 # Project State
 
-## M61 public release candidate/output-root separation - review correction locally complete
+## M61 public release candidate/output-root separation - feature integrated
 
 - Base: exact clean synchronized M60 closeout
   `a8fc787a7b04b4fe8ed3766167e58258aa62c8d6`, with tree
@@ -77,7 +77,22 @@
   661 architecture assertions, strict docs, and 2,201 tests with 14 expected
   skips on CPython 3.12.13 in 113.87 seconds, CPython 3.13.13 in 110.05
   seconds, and CPython 3.14.5 in 114.92 seconds. Exact corrected-head hosted
-  qualification and review remain pending.
+  qualification passed ready PR #135 run `31496532379` in exactly three Linux-
+  first jobs. Linux `93795541158` passed in 7m18s before macOS `93797741480`
+  and Windows `93797741693` began; they passed in 3m18s and 4m05s. The Linux
+  baseline and every compatibility suite passed 2,205 tests, with one expected
+  skip outside the baseline. Hosted artifacts reproduced a 271,706-byte wheel
+  at `88e5b70b34896ed136ee80e268adec8e60c439c9ad3e02d38493fc3933ce27ad`
+  and 1,135,916-byte source distribution at
+  `db036d8e628c5ab061ae38bcf07f3635f06c98096b86fbe9b5444644f31ded5c`;
+  installed-wheel and complete release smoke passed. Two delayed audits found
+  no new actionable review item: the sole P1 thread was addressed and resolved.
+  Head-pinned GitHub-verified squash
+  `7feded4ed2e37157b87a7f3bb733caf96805187e` has the exact reviewed tree
+  `3ae8059dc5a4f61a8a3b31d245b20f0373e0ffe4`, sole parent exact M60 closeout,
+  and a parsed DCO trailer. The feature branch is deleted locally/remotely;
+  there is no open feature PR or post-feature `main` run. Four-file factual
+  integration recording is in progress.
 
 ## M60 public release filesystem collision conformance - complete
 
