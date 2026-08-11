@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M58 - public release transport-cleanup conformance
-- **Status:** The feature is squash-integrated on `main`; preparing the
-  four-file integration record on `docs/m58-integration-record`.
+- **Status:** Complete. Feature PR #126 and integration-record PR #127 are
+  fully validated, review-clean, squash-integrated, and branch-clean;
+  publishing the exact three-file closeout on `records/m58-closeout`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -64,11 +65,20 @@
   platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and
   Agent World Builder. Hosted reproducibility, installed-wheel smoke, and
   complete release smoke passed.
-- **Integration:** Two delayed audits found no issue comment, review comment,
-  review, or thread. Head-pinned, GitHub-verified squash
+- **Integration:** Two delayed feature audits found no issue comment, review
+  comment, review, or thread. Head-pinned, GitHub-verified squash
   `17ea7354c80b9d140350b88cd0ae3e615f700e45` has the exact reviewed feature
-  tree, sole parent M57 closeout, valid signature, and standalone DCO. The
-  feature branch is deleted locally and remotely. Synchronized `main` has no
-  post-merge run or non-main branch.
-- **Current gate:** This exact four-file documentation/project record requires
-  one Linux allocation; its desktop umbrella must skip with zero steps.
+  tree, sole parent M57 closeout, valid signature, and standalone DCO.
+  Integration PR #127 exact head
+  `4a72ae994714a4c2040547c568c5d625ee4a7ab9` passed run `31479930394` in one
+  40-second Linux allocation; all 633 architecture assertions, strict docs,
+  reproducible builds, installed-wheel smoke, and complete release smoke
+  passed, while desktop umbrella `93742463489` skipped with no runner and zero
+  steps. Two delayed integration audits found no comment, review, or thread.
+  GitHub-verified squash `26ec103a2ff3da55c4f2c4a8dca506f92ca3195e`
+  reproduces the reviewed record tree with the feature squash as sole parent,
+  valid signature, and standalone DCO. Both M58 working branches are deleted
+  locally/remotely. Synchronized `main` has no post-merge run or non-main
+  branch.
+- **Closeout gate:** The exact three-file `.project/**` record must allocate
+  zero hosted runs or checks.

@@ -1,6 +1,6 @@
 # Project State
 
-## M58 public release transport-cleanup conformance - feature integrated
+## M58 public release transport-cleanup conformance - complete
 
 - Base: exact clean synchronized M57 closeout
   `26826822547d6d8df6ce1bfc05d8cf728a32d505`, with only `main` present and no
@@ -75,9 +75,25 @@
   head, sole parent M57 closeout
   `26826822547d6d8df6ce1bfc05d8cf728a32d505`, a valid GitHub signature, and
   standalone DCO. The feature branch is deleted locally/remotely. Synchronized
-  `main` has no post-merge run or non-main remote branch. The exact four-file
-  integration record now requires one Linux documentation allocation and a
-  zero-step skipped desktop umbrella.
+  `main` has no post-merge run or non-main remote branch.
+- Integration record: exact head
+  `4a72ae994714a4c2040547c568c5d625ee4a7ab9` passed run `31479930394` in one
+  40-second Linux allocation. All 301 Python files were format clean, Ruff and
+  strict docs passed, 633 documentation architecture assertions passed,
+  reproducible distributions plus installed-wheel and complete release smoke
+  passed, and desktop umbrella `93742463489` skipped with no runner and zero
+  steps. The exact-head 271,274-byte wheel was
+  `04147c9b56fa5caf3c012172c043e4f0d1580257a0be513e8a274d0fe60d0f98`;
+  the 1,109,741-byte source distribution was
+  `bbe2929eefcc98486065667902b36c8100b93cdf2c623d66d9e8888c20348257`.
+  Two delayed audits found no comment, review, or thread. Head-pinned GitHub-
+  verified squash `26ec103a2ff3da55c4f2c4a8dca506f92ca3195e` has tree
+  `ebff30df07c5797d3f85956ea9bb3a95ba833e66` exactly equal to the reviewed
+  record head, sole parent feature squash
+  `17ea7354c80b9d140350b88cd0ae3e615f700e45`, valid signature, and standalone
+  DCO. Both M58 working branches are deleted locally/remotely. No post-
+  integration `main` run or non-main remote branch exists. The exact three-
+  file `.project/**` closeout must allocate zero hosted runs or checks.
 
 ## M57 public release response-body conformance - complete
 
