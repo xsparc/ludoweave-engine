@@ -68,7 +68,8 @@ def test_fresh_consumer_reuses_exact_bounded_public_verifier() -> None:
     assert "python scripts/verify_public_release.py .tmp/m47-expected-release" in consumer
     assert 'environment.get("GITHUB_REPOSITORY") != _REPOSITORY' in script
     assert "context.use_existing_plan" in script
-    assert "elif plan.exists()" in script
+    assert "elif _path_entry_exists(" in script
+    assert 'failure_code="public_release.plan_unavailable"' in script
     assert 'verify_arguments.extend(("--asset-plan", str(plan)))' in script
     assert "_run_release_validator(verify_arguments)" in script
     assert "_run_release_validator(final_arguments)" in script

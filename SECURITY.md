@@ -103,6 +103,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   continuation and separate partial publication occur only after successful
   cleanup. It provides no rollback and makes no workflow or release-authority
   change.
+- M60 treats every pre-existing fresh-output directory entry, including a
+  dangling link, as a filesystem collision before network or validator side
+  effects. Path-inspection failures remain content-silent, and exclusive
+  creation plus hard-link publication retain no clobber behavior. This is no
+  race-free filesystem guarantee and makes no workflow or release-authority
+  change.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

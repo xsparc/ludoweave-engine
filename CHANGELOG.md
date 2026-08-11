@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M60/RFC-0043 fail-before-side-effect public-release filesystem collision
+  handling for files, directories, live links, and dangling links while
+  retaining exclusive creation, no clobber behavior, workflows, dependencies,
+  runtime APIs, version, and release authority.
 - Add M59/RFC-0042 tool-neutral current-tree repository metadata, centralized
   absence enforcement, neutral fixtures, and descriptive historical-record
   redaction without rewriting Git history or changing runtime, workflows,

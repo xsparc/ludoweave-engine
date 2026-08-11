@@ -79,6 +79,21 @@ class PublicReleaseVerificationError(RuntimeError):
         self.code = code
 
 
+def _path_entry_exists(path: Path, *, failure_code: str) -> bool:
+    """Return whether a directory entry exists without following its final link."""
+
+    try:
+        path.lstat()
+    except FileNotFoundError:
+        return False
+    except OSError as error:
+        raise PublicReleaseVerificationError(
+            "public release filesystem path inspection failed",
+            code=failure_code,
+        ) from error
+    return True
+
+
 def _close_http_exchange(
     response: http.client.HTTPResponse | None,
     connection: http.client.HTTPSConnection,
@@ -172,7 +187,13 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
     plan = context.runner_temp / "release-assets.plan"
     public_document = context.runner_temp / "release-public.json"
     public_directory = context.runner_temp / "release-public-download"
-    if public_document.exists() or public_directory.exists():
+    if _path_entry_exists(
+        public_document,
+        failure_code="public_release.output_failed",
+    ) or _path_entry_exists(
+        public_directory,
+        failure_code="public_release.output_failed",
+    ):
         raise PublicReleaseVerificationError(
             "public release output already exists",
             code="public_release.output_exists",
@@ -183,7 +204,10 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
                 "existing release plan is unavailable",
                 code="public_release.plan_unavailable",
             )
-    elif plan.exists():
+    elif _path_entry_exists(
+        plan,
+        failure_code="public_release.plan_unavailable",
+    ):
         raise PublicReleaseVerificationError(
             "fresh release plan path already exists",
             code="public_release.plan_exists",
@@ -218,6 +242,11 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
     items = _asset_plan(plan)
     try:
         public_directory.mkdir()
+    except FileExistsError as error:
+        raise PublicReleaseVerificationError(
+            "public release output already exists",
+            code="public_release.output_exists",
+        ) from error
     except OSError as error:
         raise PublicReleaseVerificationError(
             "public release output could not be created",
@@ -401,13 +430,19 @@ def _download(
     expected_bytes: int | None = None,
     partial_name: str | None = None,
 ) -> None:
-    if target.exists():
+    if _path_entry_exists(
+        target,
+        failure_code="public_release.output_failed",
+    ):
         raise PublicReleaseVerificationError(
             "public release target already exists",
             code="public_release.output_exists",
         )
     partial = target if partial_name is None else target.parent / partial_name
-    if partial.exists():
+    if _path_entry_exists(
+        partial,
+        failure_code="public_release.output_failed",
+    ):
         raise PublicReleaseVerificationError(
             "public release partial target already exists",
             code="public_release.output_exists",

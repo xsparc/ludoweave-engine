@@ -68,6 +68,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M57 public release response-body conformance | PR #123 passed exact built-in bytes-block and declared-versus-streamed `Content-Length` checks in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 | Done | M58 public release cleanup conformance | PR #126 passed ordered response/connection cleanup, primary-failure preservation, and publication-after-cleanup in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 | Done | M59 repository metadata hygiene | PR #129 corrected dangling-root-link detection after review, passed the corrected exact three-allocation gate, and squash-integrated tool-neutral current-tree metadata with immutable provenance and runtime/workflow boundaries intact |
+| In progress | M60 public release filesystem collision conformance | Final-entry collision detection before network/validator side effects, stable errors, exclusive no-clobber operations, and unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -946,6 +947,13 @@ corrected tree, sole parent M58 closeout, standalone DCO, and no runtime,
 workflow, dependency, version, or release-authority change. The feature branch
 is deleted locally/remotely; the four-file integration record requires one
 Linux documentation allocation and a zero-step skipped desktop umbrella.
+
+M60 starts from verified M59 closeout
+`9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`. It treats any pre-existing final
+directory entry for fresh release output or plan paths as a filesystem
+collision before network or validator work, while retaining exclusive creation
+and no clobber publication. No workflow, dependency, version, runtime API,
+release authority, tag, release, or publication changes.
 
 ## Good-first contribution queue
 

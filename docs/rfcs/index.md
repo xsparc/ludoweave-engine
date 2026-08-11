@@ -47,3 +47,4 @@ was adopted.
 - [RFC-0040: constrain public release response bodies](0040-public-release-response-body-conformance.md)
 - [RFC-0041: constrain public release transport cleanup](0041-public-release-cleanup-conformance.md)
 - [RFC-0042: tool-neutral repository metadata](0042-tool-neutral-repository-metadata.md)
+- [RFC-0043: constrain public release output paths](0043-public-release-output-path-conformance.md)

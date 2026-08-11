@@ -1,5 +1,72 @@
 # Project State
 
+## M60 public release filesystem collision conformance - locally complete
+
+- Base: exact clean synchronized M59 closeout
+  `9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`, with tree
+  `426ee37f3a3c7b19cab70d9f20b4be590c2cd4b5` exactly matching the reviewed
+  closeout candidate. GitHub reports a valid signature and standalone DCO.
+  Only `main` existed locally/remotely after pruning, with no open pull request,
+  closeout run/check, or post-closeout `main` run.
+- Gap: the portable public-release verifier used following `Path.exists()`
+  preflight for its fresh release document, output directory, plan, target, and
+  partial paths. A dangling link was therefore reported absent and could allow
+  network or validator work to begin before the existing exclusive writer or
+  hard-link publisher rejected the collision.
+- Scope: a private helper now uses final-entry `Path.lstat()`. Files,
+  directories, live links, dangling links, and other existing directory entries
+  block fresh output before side effects. Non-absence inspection failures map
+  to stable, content-silent output/plan failures. A late output-directory
+  `FileExistsError` maps to `public_release.output_exists`.
+- Ownership: direct and partial file creation remains `x`/`xb` exclusive, and
+  asset publication remains hard-link creation followed by owned-partial
+  removal. These retain no clobber behavior after preflight.
+- Decision: accepted RFC-0043 records the collision, error, ordering,
+  ownership, and nonclaim boundary. This is no race-free filesystem guarantee;
+  there is no descriptor-confined sandbox, rollback, cleanup, retry, workflow,
+  dependency, lock, version, runtime/API, release-authority, tag, release, or
+  publication change. Pull-request fixtures are not a real public release
+  observation.
+- Development evidence: the inherited M45-M58/release-draft boundary first
+  passed 317 tests with two platform-capability skips. All eight initial M60
+  assertions then failed against unchanged code: six reached intentionally
+  forbidden download/connection paths, one scope fixture held a stale workflow
+  hash, and the documentation contract named the intentionally absent RFC. The
+  fixture hash was corrected. The implementation then passed seven behavior
+  and scope assertions; documentation initially missed one exact phrase and
+  passed after correction. A late-directory-collision regression and a
+  content-silent fresh-plan inspection regression were added, bringing the M60
+  group to ten passing assertions. Focused formatting, Ruff, and strict Pyright
+  are clean.
+- Compatibility corrections: the first complete architecture run found two
+  stale inherited contracts. M46 required literal `plan.exists()` and now
+  requires the stronger non-following plan check and stable failure code. M59
+  required its disclosure wording in maintainer/public docs; that historical
+  boundary was restored without weakening the new M60 contract. The corrected
+  architecture suite passed 647 assertions before the final M60 test addition;
+  the record-inclusive suite passes 648 assertions.
+- Broad local evidence: before the final test addition, graphics-enabled
+  CPython 3.12.13, 3.13.13, and 3.14.5 complete suites each passed 2,187 tests
+  with 14 expected skips. Ten real-wgpu tests, both five-repeat M7 profiles,
+  Clockwork Arena, Agent World Builder, and every M1-M4 benchmark validator
+  pass. M1 observed one of two targets; M3 observed one of two targets; M4
+  observed its baseline target. Target misses remain recorded facts. The final
+  record-inclusive CPython 3.12 suite passes 2,188 tests with 14 expected skips;
+  the final ten M60 assertions pass on CPython 3.13 and 3.14.
+- Pre-record distributions: two builds reproduced a 271,507-byte pure wheel at
+  `03115989c614f5627ece94d4d794364510f0b88e1dcb65a5ddec2489a23e83a6`
+  and a 1,121,988-byte source distribution at
+  `ed6904e06a882742017a63e26d4b23a8b5beb2a6a9a9a96778b3c7edd228b2fc`.
+  Isolated-wheel smoke and the complete ten-artifact release smoke pass. The
+  record-inclusive candidate also reproduces twice, passes both smokes, contains
+  94 pure-wheel and 486 source-distribution entries, and contains no native or
+  WASM wheel member. Exact immutable candidate hashes are captured with the
+  commit/PR evidence rather than self-embedded into the source distribution.
+- Hosted gate: this substantive security/documentation slice requires exactly
+  three Linux-first allocations. Desktop work may begin only after Linux
+  qualification succeeds. No hosted run, PR, tag, release, or publication is
+  claimed yet.
+
 ## M59 repository metadata hygiene - complete
 
 - Base: exact clean synchronized M58 closeout

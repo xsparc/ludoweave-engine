@@ -42,22 +42,25 @@ claims.
 
 ## Current boundary
 
-M59 current-tree metadata hygiene standardizes role-, purpose-, product-, and
-milestone-based repository records. Retired branch and control-path labels in
-current project records become descriptive redactions while commit, tree,
-pull-request, workflow, artifact, test, timing, authorship, and DCO evidence
-remain intact. One command-schema fixture uses a neutral actor identity, and
-one architecture guard owns the current tracked-text and absent-root
-convention.
+M60 public-release filesystem collision conformance makes the final directory
+entry of every fresh release document, download directory, retrieval plan,
+asset target, and asset partial explicit before network or validator side
+effects. A file, directory, live link, or dangling link is a collision. Failure
+to inspect an output entry fails content-silently. Normal output and fresh-plan
+collisions retain their existing stable codes, while exclusive creation and
+hard-link publication retain no clobber behavior.
 
-M59 does not rewrite Git history, alter attribution, delete Git objects, change
-runtime source, change product-facing agent terminology, modify a public API or
-protocol, edit a workflow, add a dependency, change the lock or version,
-publish a release, or change release authority. The working-tree guard is a
-repository disclosure convention, not a forensic erasure claim for immutable
-history or external systems. M0 through M58 are complete, reviewed, hosted-
-validated, and integrated into `main`. M59 starts from exact verified M58
-closeout `d4487565d4fda57ec05437dfcadc687d2507dafa`.
+M60 is no race-free filesystem guarantee and adds no directory-descriptor
+sandbox, rollback, cleanup, retry, workflow, allocation, dependency, lock,
+version, runtime source/API, release authority, tag, release, or publication.
+Pull-request fixtures are not a real public release observation. M0 through
+M59 are complete, reviewed, hosted-validated, and integrated into `main`. M60
+starts from exact verified M59 closeout
+`9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`.
+
+M59 current-tree metadata hygiene remains the repository disclosure convention.
+It does not rewrite Git history, attribution, DCO evidence, or external records;
+its centralized guard and product-terminology boundary remain in force.
 
 Preserve the release-integrity lineage: M42 keeps one exact release identity
 across publication, M43 revalidates authenticated exact-ID asset bytes, M44
@@ -73,8 +76,10 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   M55 validates the documented HTTP/1.1-class value and unambiguous response
   framing without claiming the exact raw status-line token. M56 then validates
   status and redirect references before body use. M57 then validates body
-  blocks and declared-length agreement; none of these milestones authorizes a
-  real release.
+  blocks and declared-length agreement, and M58 orders response/connection
+  cleanup before redirect continuation or publication. M60 adds final-entry
+  filesystem collision checks before network or validator work; none of these
+  milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
