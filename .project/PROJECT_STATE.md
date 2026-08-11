@@ -1,5 +1,71 @@
 # Project State
 
+## M65 portable sample member paths - implementation
+
+- Base: exact clean synchronized M64 closeout
+  `92e706961e2ecd4e2c187a205cc045a8c6506ab9`, tree
+  `8df4aaa8222517d729234792d162dfc115674767`.
+- Current branch: `security/m65-portable-sample-member-paths`.
+- Gap: M64 confines and resource-bounds sample extraction but admits duplicate,
+  case-only, case-ambiguous-ancestor, explicit-directory, Windows-device,
+  trailing-period, non-ASCII, overlong, and file/directory prefix-collision
+  member paths as well as explicitly encoded non-regular types. Host behavior
+  can overwrite, merge, reinterpret, or fail after earlier writes.
+- Decision: RFC-0048 admits only regular files beneath the exact root. Relative
+  paths contain at most 255 ASCII characters; each component follows the
+  portable grammar, has no trailing period or Windows device stem, and is not
+  rewritten. Complete paths are case-insensitively unique, directory ancestors
+  retain one spelling, and no file path prefixes another file. Explicit non-
+  regular mode types fail; omitted type bits remain common-producer compatible.
+- Boundary: private release tooling only. No Unicode normalization, filesystem
+  probing, general archive sandbox, cleanup, workflow, dependency, producer,
+  runtime API, release authority, or real public release observation.
+- Development state: the new 18-case file initially failed 16 assertions and
+  passed two guards in 0.56 seconds against unchanged M64 code. The first
+  implementation gate stopped on one Ruff formatting change. After formatting,
+  both changed Python files are format/Ruff/strict-Pyright clean and all 17
+  non-documentation assertions pass in 0.26 seconds. The complete contract
+  passes all 18 assertions in 0.23 seconds; strict docs build in 1.11 seconds;
+  all 720 architecture assertions and both release-artifact tests pass. Full
+  candidate validation and review remain pending.
+- Pre-hosted candidate state: the graphics-enabled candidate passes 2,260 tests with 14
+  expected skips on each supported CPython version. Real-wgpu, both five-repeat
+  profiles, both vertical slices, and all four diagnostic benchmark validators
+  pass. Two builds reproduce a 272,430-byte wheel and 1,169,917-byte source
+  archive; isolated-wheel and complete release smoke pass.
+- Review: local review strengthened the exact upper boundary with direct proof
+  that a 255-ASCII-character relative path is admitted. Hosted review then
+  found that FIFO, socket, and device modes without a trailing slash passed the
+  filename-based directory and symlink checks. Four reviewer-derived fixtures
+  reproduced the defect before the correction and now pass. The implementation
+  accepts absent type bits, explicit regular files, and rejects every explicit
+  non-regular file type before extraction.
+- Pre-hosted reviewed source/matrix state: the unchanged lock and restored 45-package
+  graphics environment pass whole-tree formatting, Ruff, strict Pyright, all
+  721 architecture assertions, strict docs, and whitespace. The reviewed
+  candidate passes 2,261 tests with 14 expected skips on every supported
+  CPython version. Earlier real-wgpu, profiles, vertical slices, and diagnostic
+  benchmark results remain applicable because review changed only tests and
+  records. Two final builds reproduce a 272,430-byte wheel and 1,171,921-byte
+  source archive; installed-wheel, staging, and complete release smoke pass.
+  This evidence edit changes the source archive again, so exact commit-tree
+  artifact identity remains delegated to hosted qualification. The final
+  record-frozen source gate passes.
+- Initial hosted state: ready PR #147 exact head
+  `fce4140dd2d1b2982a1e90091dd2b157b00e861c` passed run `31521633593`
+  in the unchanged three Linux-first allocations. Linux `93879809651` passed
+  in 5m24s, macOS `93881371543` in 2m50s, and Windows `93881371674` in 4m05s.
+  Review comment `3760580215` is valid and blocks merging that initial head.
+- Corrected candidate state: whole-tree static/docs and all 727 architecture/
+  release assertions pass. Each graphics-enabled local supported-Python suite
+  passes 2,265 tests with 14 expected skips; real-wgpu, profiles, and vertical
+  slices pass. Two builds reproduce a 272,430-byte wheel at
+  `f563d5a7f2ab11c28404462de33454108d74e68528c65742d9417dc9736a3020`
+  and a 1,172,451-byte source archive at
+  `fabf9855670bef2801fa7951a5f9c38cb737fc89a1ad037548b922ca254ea154`;
+  isolated-wheel and complete release smoke pass. Amended commit review and a
+  fresh exact-head hosted gate remain.
+
 ## M64 bounded sample-bundle extraction - complete
 
 - Base: exact clean synchronized M63 closeout

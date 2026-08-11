@@ -88,6 +88,7 @@ nav:
       - RFC-0045 - Portable public release asset names: rfcs/0045-portable-public-release-asset-names.md
       - RFC-0046 - Public release output confinement: rfcs/0046-public-release-output-confinement.md
       - RFC-0047 - Bounded sample-bundle extraction: rfcs/0047-bounded-sample-bundle-extraction.md
+      - RFC-0048 - Portable sample member paths: rfcs/0048-portable-sample-member-paths.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

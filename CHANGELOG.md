@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M65/RFC-0048 portable sample member path preflight, rejecting non-ASCII,
+  Windows-device, trailing-period, duplicate/case-ambiguous, explicit-directory,
+  explicitly non-regular, over-255-character, and file/directory prefix
+  collision members before extraction, without changing workflows,
+  dependencies, the sample producer, runtime APIs, or release authority.
 - Add M64/RFC-0047 complete preflight and 64 KiB streaming extraction for
   staged sample bundles, limiting them to 256 members, 1 MiB per member, and
   8 MiB total declared expansion while admitting only bounded-read stored and

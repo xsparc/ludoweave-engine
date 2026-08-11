@@ -42,20 +42,22 @@ claims.
 
 ## Current boundary
 
-M64 preflights the complete staged sample ZIP before extraction. It admits at
-most 256 members, 1 MiB declared uncompressed per member, and 8 MiB declared
-uncompressed in total. After preflight, admitted files stream in 64 KiB blocks
-and must exactly match their declared uncompressed sizes. Only stored and
-deflated members are admitted; BZIP2, LZMA, and unknown methods fail before
-extraction.
+M65 extends M64's complete staged sample-ZIP preflight with one portable sample
+member path identity. The relative path is at most 255 ASCII characters; every
+component uses the restricted portable grammar, excludes trailing periods and
+Windows device stems, and retains one case-insensitive ancestor spelling.
+Duplicate/case-only complete paths, explicit directory entries, explicitly
+encoded non-regular file types, and file/directory prefix collisions fail
+before extraction. Missing ZIP file-type mode bits remain compatible.
 
-M64 is a narrow release-smoke resource boundary, not a general archive sandbox
-or transactional cleanup guarantee. It adds no workflow, allocation,
-dependency, lock, version, runtime source/API, release authority, tag, release,
-or publication. Pull-request fixtures are not a real public release
-observation. M0 through M63 are complete, reviewed, hosted-validated, and
-integrated into `main`. M64 starts from exact verified M63 closeout
-`a92330c5d592eaeba69e75e25dd94d83b22d367f`.
+M65 is a narrow private release-smoke lexical boundary, not a general archive
+sandbox, Unicode-normalization policy, filesystem portability guarantee, or
+transactional cleanup guarantee. It adds no workflow, allocation, dependency,
+lock, version, sample producer, runtime source/API, release authority, tag,
+release, or publication. Pull-request fixtures are not a real public release
+observation. M0 through M64 are complete, reviewed, hosted-validated, and
+integrated into `main`. M65 starts from exact verified M64 closeout
+`92e706961e2ecd4e2c187a205cc045a8c6506ab9`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
@@ -79,8 +81,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   cleanup before redirect continuation or publication. M60 adds final-entry
   filesystem collision checks before network or validator work, M61 separates
   candidate and output roots, M62 constrains portable asset names, M63 confines
-  subordinate text output, and M64 bounds staged sample-bundle extraction;
-  none of these milestones authorizes a real release.
+  subordinate text output, M64 bounds staged sample-bundle extraction, and M65
+  constrains portable sample member paths; none of these milestones authorizes
+  a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
