@@ -1,6 +1,6 @@
 # Project State
 
-## M58 public release transport-cleanup conformance - in progress
+## M58 public release transport-cleanup conformance - feature integrated
 
 - Base: exact clean synchronized M57 closeout
   `26826822547d6d8df6ce1bfc05d8cf728a32d505`, with only `main` present and no
@@ -52,10 +52,32 @@
   pure wheel and source distribution; isolated-wheel and complete release
   smoke pass. Findings-first scope, archive, credential, identity, history,
   and integrity review found no actionable M58 issue. Final record-inclusive
-  lock/static/633-assertion/docs/integrity validation passes. Local M58 is
-  complete; hosted exact-head evidence is pending.
-- Hosted evidence: pending exact-head substantive validation in exactly three
-  Linux-first allocations.
+  lock/static/633-assertion/docs/integrity validation passes.
+- Hosted evidence: exact head
+  `8bd11f0ab6575edee6a5e7b5c78e36af59e55088` passed run `31478254138` in
+  exactly three Linux-first allocations. Linux job `93736984444` passed in
+  7m48s before macOS `93738860983` and Windows `93738860996` began; they
+  passed in 2m00s and 4m01s. Linux baseline passed 2,177 tests; Ubuntu CPython
+  3.13/3.14 and both desktop CPython 3.14 suites passed 2,177 tests with one
+  expected skip. Every platform passed ten real-graphics tests, profile smoke,
+  Clockwork Arena, and Agent World Builder.
+- Hosted artifacts: exact-head reproducibility produced a pure 271,274-byte
+  wheel at
+  `04147c9b56fa5caf3c012172c043e4f0d1580257a0be513e8a274d0fe60d0f98`
+  and a 1,108,291-byte source distribution at
+  `30f98c24226d4cc588f122d0623d13a6e575e5abc8396c2a428cf22509134500`;
+  installed-wheel and complete ten-artifact release smoke passed.
+- Integration: two delayed audits found no issue comment, review comment,
+  review, or thread. PR #126 was ready, `MERGEABLE/CLEAN`, exact-head/exact-
+  base, and had exactly three successful checks. Head-pinned squash
+  `17ea7354c80b9d140350b88cd0ae3e615f700e45` has tree
+  `feea8788e3a1c0e34505be6e752aa7d0e721b693` exactly equal to the reviewed
+  head, sole parent M57 closeout
+  `26826822547d6d8df6ce1bfc05d8cf728a32d505`, a valid GitHub signature, and
+  standalone DCO. The feature branch is deleted locally/remotely. Synchronized
+  `main` has no post-merge run or non-main remote branch. The exact four-file
+  integration record now requires one Linux documentation allocation and a
+  zero-step skipped desktop umbrella.
 
 ## M57 public release response-body conformance - complete
 

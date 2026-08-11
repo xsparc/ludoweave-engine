@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M58 - public release transport-cleanup conformance
-- **Status:** Local implementation, review, and validation complete on
-  `security/m58-release-cleanup-conformance`; hosted exact-head PR validation
-  is pending.
+- **Status:** The feature is squash-integrated on `main`; preparing the
+  four-file integration record on `docs/m58-integration-record`.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -56,9 +55,20 @@
   complete release smoke pass. Findings-first scope, archive, credential,
   identity, history, and integrity review found no actionable M58 issue. Final
   record-inclusive lock/static/633-assertion/docs/integrity validation passes.
-- **Hosted evidence:** Pending exact-head substantive validation. The accepted
-  gate remains exactly three Linux-first runner allocations; desktop jobs may
-  start only after Linux passes.
-- **Integration:** Pending validated feature pull request, delayed review,
-  squash integration, bounded documentation-record pull request, and exact
-  `.project/**` zero-run closeout.
+- **Hosted evidence:** PR #126 exact head
+  `8bd11f0ab6575edee6a5e7b5c78e36af59e55088` passed run `31478254138` in
+  exactly three Linux-first allocations. Linux job `93736984444` passed in
+  7m48s before macOS `93738860983` and Windows `93738860996` began; they
+  passed in 2m00s and 4m01s. Linux baseline and every compatibility suite
+  passed 2,177 tests, with one expected skip outside the baseline. Every
+  platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and
+  Agent World Builder. Hosted reproducibility, installed-wheel smoke, and
+  complete release smoke passed.
+- **Integration:** Two delayed audits found no issue comment, review comment,
+  review, or thread. Head-pinned, GitHub-verified squash
+  `17ea7354c80b9d140350b88cd0ae3e615f700e45` has the exact reviewed feature
+  tree, sole parent M57 closeout, valid signature, and standalone DCO. The
+  feature branch is deleted locally and remotely. Synchronized `main` has no
+  post-merge run or non-main branch.
+- **Current gate:** This exact four-file documentation/project record requires
+  one Linux allocation; its desktop umbrella must skip with zero steps.
