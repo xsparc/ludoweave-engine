@@ -18,8 +18,11 @@ also make lexically separate roots resolve to that relationship.
 
 Python 3.12-3.14 documents `Path.resolve(strict=True)` as making a path absolute,
 resolving symbolic links, and failing when the path does not exist. This public
-contract is sufficient for a bounded static alias comparison; it is not a
-descriptor-confined or race-free filesystem sandbox.
+contract supports bounded static alias comparison, but it does not promise
+canonical spelling on every case-insensitive filesystem. `Path.samefile()`
+compares filesystem identity and therefore closes that remaining equivalence
+gap. Neither operation provides a descriptor-confined or race-free filesystem
+sandbox.
 
 ## Decision
 
@@ -32,8 +35,12 @@ code and retains the local cause only through exception chaining.
 Before network side effects and before validator side effects, reject the
 output root when its resolved identity equals the resolved candidate directory
 or when the output root is a resolved descendant of that candidate. Use stable
-`public_release.path_overlap`. Store the resolved directories in the validated
-context so later work uses the identities that were compared.
+`public_release.path_overlap`. Compare the resolved output root and each of its
+ancestors to the candidate with `Path.samefile()` as well, so a differently
+spelled alias on a case-insensitive filesystem receives the same decision.
+Filesystem-identity inspection failure uses content-silent
+`public_release.temp_unavailable`. Store the resolved directories in the
+validated context so later work uses the identities that were compared.
 
 A candidate directory may remain a separate child of the output root. In that
 layout, the fixed document, plan, and download paths are siblings of the
@@ -61,6 +68,8 @@ security, PyPI availability, or a supported channel.
 - The expected candidate directory remains read-only during verifier output.
 - Lexically different roots that resolve to the same unsafe relationship fail
   before network or validator work.
+- Filesystem-identity-equivalent aliases fail even when resolved spellings
+  differ on a case-insensitive filesystem.
 - Root-resolution failures remain stable and content-silent.
 - A safe candidate child of the output root remains supported.
 - M60 final-entry collision and exclusive no-clobber operations remain intact.
@@ -82,4 +91,5 @@ security, PyPI availability, or a supported channel.
 ## References
 
 - [Python 3.14 `Path.resolve()`](https://docs.python.org/3.14/library/pathlib.html#pathlib.Path.resolve)
+- [Python 3.14 `Path.samefile()`](https://docs.python.org/3.14/library/pathlib.html#pathlib.Path.samefile)
 - [RFC-0043: constrain public release output paths](0043-public-release-output-path-conformance.md)

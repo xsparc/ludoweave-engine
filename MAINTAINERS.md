@@ -47,7 +47,9 @@ read-only. The candidate directory and runner-owned output root are strictly
 resolved before network or validator side effects. An output root that equals
 or resolves beneath the candidate fails content-silently with stable
 `public_release.path_overlap`; a separate candidate child of the output root
-remains valid.
+remains valid. Filesystem-identity comparison across the output ancestry also
+rejects aliases whose resolved spelling differs on a case-insensitive
+filesystem.
 
 M61 is no race-free filesystem guarantee and adds no directory-descriptor or
 general filesystem sandbox, rollback, cleanup, retry, workflow, allocation,

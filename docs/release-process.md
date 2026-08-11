@@ -424,7 +424,9 @@ M61/RFC-0044 treats the expected candidate directory as read-only input. The
 candidate directory and runner-owned output root are strictly resolved before
 network or validator side effects. The output root cannot equal or resolve
 beneath the candidate directory, including through a resolved alias; overlap
-uses stable `public_release.path_overlap`, and resolution failures retain
+uses stable `public_release.path_overlap`. Filesystem-identity comparison across
+the output ancestry also rejects differently spelled aliases on a case-
+insensitive filesystem. Resolution and identity-inspection failures retain
 content-silent candidate or temporary-directory codes. A separate candidate
 child of the output root remains valid because fixed output entries remain its
 siblings.

@@ -1566,10 +1566,13 @@ directory and the runner-owned output root. A resolution failure remains a
 content-silent candidate- or temporary-directory failure. Before network or
 validator side effects, the output root must neither equal nor resolve beneath
 the candidate directory; a resolved alias receives stable
-`public_release.path_overlap`. The resolved directories become the owned
-verification context. A separate candidate directory beneath the output root
-remains valid when the fixed M60 output entries are siblings rather than
-ancestors.
+`public_release.path_overlap`. Each resolved output ancestor is also compared
+to the candidate by filesystem identity, covering an alias whose spelling
+differs on a case-insensitive filesystem. Identity inspection fails closed as
+a content-silent temporary-directory error. The resolved directories become
+the owned verification context. A separate candidate directory beneath the
+output root remains valid when the fixed M60 output entries are siblings rather
+than ancestors.
 
 M61 makes no race-free filesystem guarantee. It does not add descriptor-
 relative opens, a directory-descriptor or general path sandbox, locks,

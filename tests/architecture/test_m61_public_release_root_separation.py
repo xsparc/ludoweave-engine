@@ -113,6 +113,59 @@ def test_resolved_parent_alias_overlap_fails_before_download(
     assert str(tmp_path) not in report["message"]
 
 
+def test_filesystem_identity_parent_alias_fails_before_download(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    module, main = _load()
+    expected = tmp_path / "expected"
+    expected.mkdir()
+    runner_parent = tmp_path / "runner-parent"
+    runner_parent.mkdir()
+    runner = runner_parent / "child"
+    runner.mkdir()
+    original_samefile = Path.samefile
+
+    def aliased_samefile(path: Path, other: Path) -> bool:
+        if path == runner_parent and other == expected:
+            return True
+        return original_samefile(path, other)
+
+    monkeypatch.setattr(Path, "samefile", aliased_samefile)
+    _forbid_download(module, monkeypatch)
+
+    assert main([str(expected)], environment=_environment(runner)) == 1
+    report = json.loads(capsys.readouterr().err)
+    assert report["code"] == "public_release.path_overlap"
+    assert str(tmp_path) not in report["message"]
+
+
+def test_filesystem_identity_inspection_failure_is_content_silent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    module, main = _load()
+    expected = tmp_path / "expected"
+    expected.mkdir()
+    runner = tmp_path / "runner"
+    runner.mkdir()
+
+    def denied_samefile(path: Path, other: Path) -> bool:
+        del path, other
+        raise PermissionError("sensitive identity detail")
+
+    monkeypatch.setattr(Path, "samefile", denied_samefile)
+    _forbid_download(module, monkeypatch)
+
+    assert main([str(expected)], environment=_environment(runner)) == 1
+    report = json.loads(capsys.readouterr().err)
+    assert report["code"] == "public_release.temp_unavailable"
+    assert str(tmp_path) not in report["message"]
+    assert "sensitive" not in report["message"]
+
+
 @pytest.mark.parametrize(
     ("failed_root", "error_type", "expected_code"),
     (
@@ -246,6 +299,8 @@ def test_m61_docs_define_root_separation_and_nonclaim_boundary() -> None:
         "candidate directory",
         "output root",
         "resolved alias",
+        "filesystem identity",
+        "case-insensitive",
         "before network",
         "before validator",
         "read-only",

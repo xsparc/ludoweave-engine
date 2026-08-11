@@ -350,6 +350,10 @@ def _context(args: argparse.Namespace, environment: Mapping[str, str]) -> Verifi
     if (
         runner_temp_resolved == expected_resolved
         or expected_resolved in runner_temp_resolved.parents
+        or _is_same_or_descendant_directory(
+            runner_temp_resolved,
+            expected_resolved,
+        )
     ):
         raise PublicReleaseVerificationError(
             "public release candidate and output root overlap",
@@ -372,6 +376,18 @@ def _resolve_directory(path: Path, *, message: str, code: str) -> Path:
         return path.resolve(strict=True)
     except (OSError, RuntimeError) as error:
         raise PublicReleaseVerificationError(message, code=code) from error
+
+
+def _is_same_or_descendant_directory(path: Path, ancestor: Path) -> bool:
+    """Compare existing directories using filesystem identity."""
+
+    try:
+        return any(candidate.samefile(ancestor) for candidate in (path, *path.parents))
+    except (OSError, RuntimeError) as error:
+        raise PublicReleaseVerificationError(
+            "runner temporary directory is unavailable",
+            code="public_release.temp_unavailable",
+        ) from error
 
 
 def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:

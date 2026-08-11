@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M61 - public release candidate/output-root separation
-- **Status:** Complete locally on `security/m61-release-root-separation`;
-  hosted qualification and review remain pending.
+- **Status:** Review correction is complete locally on
+  `security/m61-release-root-separation`; exact corrected-head hosted
+  qualification and review remain pending.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -19,7 +20,9 @@
   silently, use the resolved directories for later work, reject equality and
   candidate-containing-output relationships with stable
   `public_release.path_overlap`, and retain a separate candidate child of the
-  output root as valid. Resolved parent aliases receive the same decision.
+  output root as valid. Resolved parent aliases and filesystem-identity aliases
+  whose spelling differs on a case-insensitive filesystem receive the same
+  decision.
 - **Boundary:** No race-free filesystem claim, directory-descriptor sandbox,
   general path sandbox, rollback, cleanup, retry, workflow, runner-allocation,
   dependency, lock, version, runtime package/API, release authority, tag,
@@ -46,12 +49,26 @@
   format/Ruff/Pyright clean. The evidence-inclusive candidate passes the
   unchanged lock, 304-file formatting, Ruff, strict Pyright, 659 architecture
   assertions, strict docs, and 2,199 CPython 3.12 tests with 14 expected skips;
-  all 11 final M61 assertions also pass on CPython 3.13 and 3.14.
+  all 11 final M61 assertions also pass on CPython 3.13 and 3.14. The first
+  review audit found that resolved path equality alone did not promise
+  canonical spelling on a case-insensitive POSIX filesystem. Both new identity-
+  alias and identity-inspection regressions failed against the hosted head by
+  reaching the forbidden download, while the expanded documentation contract
+  also failed. After filesystem-identity ancestry comparison and aligned docs,
+  all 13 M61 assertions pass; focused format, Ruff, strict Pyright, and strict
+  docs are clean. The correction-inclusive whole-tree gate passes 304-file
+  formatting, Ruff, strict Pyright, 661 architecture assertions, strict docs,
+  and 2,201 tests with 14 expected skips on each of CPython 3.12-3.14.
 - **Artifacts:** The evidence-inclusive candidate reproduces a pure wheel and
   source distribution byte-for-byte, passes isolated-wheel and complete ten-
   artifact release smoke, contains 94 wheel and 488 source entries, and has no
   native/WASM wheel member. Exact immutable candidate hashes are captured with
   commit/PR evidence rather than self-embedded into the source distribution.
-- **Hosted gate:** This security/documentation maintenance slice is
-  substantive and requires exactly three Linux-first allocations; desktop jobs
-  may begin only after Linux qualification succeeds.
+- **Hosted gate:** Ready PR #135 exact initial head
+  `e17476380d979e2bec891db9fdf9a8523734e8b5` passed run `31494364000` in
+  exactly three Linux-first allocations. Linux `93788273122` passed in 7m09s
+  before macOS `93790316767` and Windows `93790316678` began; they passed in
+  3m22s and 4m11s. Every complete hosted suite passed 2,203 tests with one
+  expected skip outside the baseline. This first run is superseded by the
+  review correction and is not final-head qualification or integration
+  authority.

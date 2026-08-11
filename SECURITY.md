@@ -111,9 +111,10 @@ Maintainers will acknowledge the report through the same private channel, assess
   change.
 - M61 treats the candidate directory as read-only: the strictly resolved output
   root cannot equal or descend from it, including through a resolved alias,
-  before network or validator work. Resolution failures are content-silent.
-  This is no race-free filesystem guarantee and makes no workflow or release-
-  authority change.
+  before network or validator work. Filesystem-identity comparison also catches
+  differently spelled aliases on a case-insensitive filesystem. Resolution and
+  identity-inspection failures are content-silent. This is no race-free
+  filesystem guarantee and makes no workflow or release-authority change.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

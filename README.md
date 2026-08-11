@@ -564,10 +564,13 @@ M61 keeps the expected candidate directory read-only by strictly resolving it
 and the runner-owned output root before network or validator side effects. The
 output root may not equal or resolve beneath the candidate directory; a
 resolved alias receives the same stable `public_release.path_overlap` failure.
-Resolution failures retain content-silent candidate or temporary-directory
-codes, while a separate candidate child of the output root remains valid.
-RFC-0044 makes no race-free filesystem claim and adds no workflow, dependency,
-runtime API, release authority, rollback, or real public release observation.
+Filesystem-identity comparison across the output ancestry also catches aliases
+whose resolved spelling differs on a case-insensitive filesystem. Resolution
+or identity-inspection failures retain content-silent candidate or temporary-
+directory codes, while a separate candidate child of the output root remains
+valid. RFC-0044 makes no race-free filesystem claim and adds no workflow,
+dependency, runtime API, release authority, rollback, or real public release
+observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:
