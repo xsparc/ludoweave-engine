@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M61/RFC-0044 alias-aware separation between the read-only public-release
+  candidate directory and runner-owned output root before network or validator
+  work, without changing workflows, dependencies, runtime APIs, version, or
+  release authority.
 - Add M60/RFC-0043 fail-before-side-effect public-release filesystem collision
   handling for files, directories, live links, and dangling links while
   retaining exclusive creation, no clobber behavior, workflows, dependencies,

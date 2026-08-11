@@ -330,6 +330,11 @@ def _context(args: argparse.Namespace, environment: Mapping[str, str]) -> Verifi
             "expected release directory is unavailable",
             code="public_release.candidate_unavailable",
         )
+    expected_resolved = _resolve_directory(
+        expected,
+        message="expected release directory is unavailable",
+        code="public_release.candidate_unavailable",
+    )
     runner_temp_text = environment.get("RUNNER_TEMP", "")
     runner_temp = Path(runner_temp_text) if runner_temp_text else Path()
     if not runner_temp_text or runner_temp.is_symlink() or not runner_temp.is_dir():
@@ -337,14 +342,36 @@ def _context(args: argparse.Namespace, environment: Mapping[str, str]) -> Verifi
             "runner temporary directory is unavailable",
             code="public_release.temp_unavailable",
         )
+    runner_temp_resolved = _resolve_directory(
+        runner_temp,
+        message="runner temporary directory is unavailable",
+        code="public_release.temp_unavailable",
+    )
+    if (
+        runner_temp_resolved == expected_resolved
+        or expected_resolved in runner_temp_resolved.parents
+    ):
+        raise PublicReleaseVerificationError(
+            "public release candidate and output root overlap",
+            code="public_release.path_overlap",
+        )
     return VerificationContext(
-        expected_directory=expected,
-        runner_temp=runner_temp,
+        expected_directory=expected_resolved,
+        runner_temp=runner_temp_resolved,
         release_id=release_id,
         release_tag=release_tag,
         release_title=release_title,
         use_existing_plan=bool(args.use_existing_plan),
     )
+
+
+def _resolve_directory(path: Path, *, message: str, code: str) -> Path:
+    """Resolve one validated directory or fail without disclosing its path."""
+
+    try:
+        return path.resolve(strict=True)
+    except (OSError, RuntimeError) as error:
+        raise PublicReleaseVerificationError(message, code=code) from error
 
 
 def _asset_plan(path: Path) -> tuple[AssetPlanItem, ...]:

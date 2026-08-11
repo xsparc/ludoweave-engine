@@ -42,21 +42,20 @@ claims.
 
 ## Current boundary
 
-M60 public-release filesystem collision conformance makes the final directory
-entry of every fresh release document, download directory, retrieval plan,
-asset target, and asset partial explicit before network or validator side
-effects. A file, directory, live link, or dangling link is a collision. Failure
-to inspect an output entry fails content-silently. Normal output and fresh-plan
-collisions retain their existing stable codes, while exclusive creation and
-hard-link publication retain no clobber behavior.
+M61 public-release root separation keeps the expected candidate directory
+read-only. The candidate directory and runner-owned output root are strictly
+resolved before network or validator side effects. An output root that equals
+or resolves beneath the candidate fails content-silently with stable
+`public_release.path_overlap`; a separate candidate child of the output root
+remains valid.
 
-M60 is no race-free filesystem guarantee and adds no directory-descriptor
-sandbox, rollback, cleanup, retry, workflow, allocation, dependency, lock,
-version, runtime source/API, release authority, tag, release, or publication.
-Pull-request fixtures are not a real public release observation. M0 through
-M59 are complete, reviewed, hosted-validated, and integrated into `main`. M60
-starts from exact verified M59 closeout
-`9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`.
+M61 is no race-free filesystem guarantee and adds no directory-descriptor or
+general filesystem sandbox, rollback, cleanup, retry, workflow, allocation,
+dependency, lock, version, runtime source/API, release authority, tag, release,
+or publication. Pull-request fixtures are not a real public release
+observation. M0 through M60 are complete, reviewed, hosted-validated, and
+integrated into `main`. M61 starts from exact verified M60 closeout
+`a8fc787a7b04b4fe8ed3766167e58258aa62c8d6`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;

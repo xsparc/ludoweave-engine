@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0044 resolves M61 public release candidate/output-root separation. The
+expected candidate directory is read-only input. It and the runner-owned output
+root are strictly resolved before network or validator side effects; an output
+root that equals or resolves beneath the candidate fails with stable
+`public_release.path_overlap`. Resolution failures retain content-silent
+candidate/temporary-directory codes, while a separate candidate child of the
+output root remains valid. This adds no race-free guarantee, filesystem
+sandbox, rollback, cleanup, retry, workflow, dependency, runtime API, or
+release authority. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0041 resolves M58 public release transport-cleanup conformance. Every
 obtained response receives one response close attempt before its created
 connection receives one connection close attempt, and both close attempts
