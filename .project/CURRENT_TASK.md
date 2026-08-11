@@ -1,88 +1,64 @@
 # Current Task
 
-- **Task:** M57 - public release response-body conformance
-- **Status:** Complete. Feature PR #123 and integration-record PR #124 are
-  fully validated, review-clean, squash-integrated, and branch-clean;
-  publishing the exact three-file closeout on `records/m57-closeout`.
+- **Task:** M58 - public release transport-cleanup conformance
+- **Status:** Local implementation, review, and validation complete on
+  `security/m58-release-cleanup-conformance`; hosted exact-head PR validation
+  is pending.
 - **Started:** 2026-08-10
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M56 closeout
-  `187cbfb1c857e62594e49d1cf8e7591024aff8c9`, with only `main` present and no
+- **Base:** Exact clean synchronized M57 closeout
+  `26826822547d6d8df6ce1bfc05d8cf728a32d505`, with only `main` present and no
   open pull request, tag, release, or post-closeout `main` run.
-- **Outcome:** Validate each public-release response-body block and any declared
-  body length before successful local publication or later document/artifact
-  validation.
-- **Acceptance:** Require every successful `HTTPResponse.read(amount)` result
-  to be immutable bytes no larger than the requested amount before EOF
-  interpretation, byte accounting, or local output. If M55 exposed a valid
-  `Content-Length`, require it to equal the total streamed octets after EOF for
-  both the public release document and every successful response after an
-  asset redirect. Retain independent expected asset-size validation.
-- **Failure:** Malformed block shapes and supported read/access failures use
-  stable content-silent `public_release.request_failed`; declared-versus-
-  streamed disagreement uses `public_release.size_mismatch`. Supported local
-  causes remain chained, and timeout, transport, output, byte-limit, and exact-
-  artifact failures keep their existing codes and ordering.
-- **Boundary:** No private response/socket state, raw HTTP/chunk parser,
-  content decoder, alternate client, response-header requirement, cleanup,
-  retry, proxy, DNS preflight, network sandbox, workflow, runner, action,
-  permission, trigger, credential, release mutation, dependency, lock,
-  version, runtime package, public API, or release authority. Unframed close-
-  delimited bodies retain their existing boundary without a general
-  completeness claim. Fixture/PR evidence is not a real release observation.
+- **Outcome:** Make public-release response/connection ownership cleanup
+  ordered, complete, stable, and subordinate to any active primary failure.
+- **Acceptance:** Every obtained response receives one close attempt before its
+  created connection receives one close attempt. Both attempts occur when the
+  first fails. Active failures remain primary. Cleanup-only ordinary failures
+  use content-silent `public_release.request_failed`; cleanup control signals
+  remain unwrapped. Redirect continuation and separate partial publication
+  occur only after successful cleanup.
+- **Boundary:** No rollback, retry, private response/socket state, raw parser,
+  alternate client, workflow, allocation, dependency, package/runtime API,
+  version, credential, release mutation, or release authority. Direct-target
+  and partial bytes may remain after failure. Fixture and pull-request evidence
+  are not a real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Local evidence:** The clean M47-M56 baseline passed 226 assertions. Official
-  Python 3.14 documentation defines `HTTPResponse` as a binary buffered reader
-  whose `read(amount)` returns up to that many bytes; RFC 9112 defines message
-  bodies as octets and a shorter-than-declared body as incomplete. An initial
-  tests-first attempt correctly exposed defects but also reloaded the verifier
-  inside a helper, invalidating one exception-class assertion; no clean count
-  is claimed from it. The corrected unchanged-verifier probe failed 12 cases
-  and passed two controls, demonstrating raw type/access exceptions, accepted
-  mutable/absent/oversized blocks, and missing declared-length agreement. The
-  implementation passed all 14 initial M57 behavior assertions with focused
-  format, Ruff, and strict Pyright clean; all 240 inherited M47-M57 behavior
-  assertions passed together. After one explicit documentation-phrase
-  correction, all 242 focused implementation, compatibility, boundary, and
-  documentation assertions passed with strict docs. Findings-first review then
-  demonstrated that `isinstance(..., bytes)` admitted a hostile bytes subclass
-  whose length operation could raise an unwrapped exception: the regression
-  failed and 16 controls passed. Exact built-in-bytes validation corrects that
-  finding; all 243 focused assertions now pass. Whole-tree lock/sync,
-  formatting, Ruff, strict Pyright, 621 architecture assertions, and strict
-  docs pass. Complete graphics-enabled CPython 3.12-3.14 suites each pass 2,161
-  tests with 14 expected skips. Ten real-wgpu tests, both three-repeat profile
-  contracts, both vertical slices, and all documented M1-M4 benchmark
-  validators pass. Two pre-record builds are byte-identical; installed-wheel
-  and complete release smoke pass. Findings-first scope, archive, credential,
-  identity, history, and integrity review reports no remaining actionable
-  issue. Final record-inclusive static, documentation, reproducible-build,
-  installed-wheel, and complete release-smoke gates pass.
-- **Hosted evidence:** PR #123 exact head
-  `f7347965d7e9a78218fa08a34f76aed7d32ba67d` passed run `31332655171` in
-  exactly three Linux-first allocations. Linux job `93293248918` passed in
-  5m37s before macOS `93293864546` and Windows `93293864554` began; they passed
-  in 1m51s and 3m48s. Linux baseline and every compatibility suite passed
-  2,165 tests, with one expected skip outside the baseline. Every platform
-  passed ten real-graphics tests, profile smoke, Clockwork Arena, and Agent
-  World Builder. Hosted reproducibility, installed-wheel smoke, and complete
-  release smoke passed.
-- **Integration:** Two delayed audits found no issue comment, review comment,
-  review, or thread. Head-pinned, GitHub-verified squash
-  `800050c74530d74a72338b5d444ee4751c5ad155` has the exact reviewed feature
-  tree, sole parent M56 closeout, valid signature, and standalone DCO. The
-  feature branch is deleted locally and remotely. Integration PR #124 exact
-  head `b959cad56d0c9e9b3b34d02d313ce4a6b67a9fa9` passed run `31333440409` in
-  one 36-second Linux allocation; all 621 architecture assertions, strict docs,
-  reproducible builds, installed-wheel smoke, and complete release smoke
-  passed, while the desktop umbrella skipped with zero steps. Two delayed
-  audits found no comment, review, or thread. GitHub-verified squash
-  `f28d5ee6e9b1e3d65b1ff47c4574e8525cb6c85e` reproduces the reviewed record
-  tree with the feature squash as sole parent, valid signature, and standalone
-  DCO. Both M57 working branches are deleted locally/remotely. Synchronized
-  `main` has no post-merge run, open pull request, non-main remote branch, tag,
-  or release.
-- **Closeout gate:** The exact three-file `.project/**` record must allocate
-  zero hosted runs or checks.
+- **Local evidence:** The clean M47-M57 baseline passed 243 assertions. Official
+  Python 3.14 documentation confirms the public `HTTPConnection.close()` and
+  stream close contracts. Against the unchanged verifier, all nine focused
+  behavior/boundary assertions failed on early partial publication, raw or
+  masking cleanup failures, a skipped connection attempt, redirect progress,
+  and source ordering. The corrected implementation passes all ten focused
+  behavior/boundary/documentation assertions with Ruff and strict Pyright
+  clean; all 253 inherited M47-M58 assertions and strict docs pass. Whole-tree
+  static/docs and 631 architecture assertions pass. Complete graphics-enabled
+  CPython 3.12-3.14 suites each pass 2,171 tests with 14 expected skips. Ten
+  real-wgpu tests, both five-repeat profiles, both vertical slices, and all
+  documented M1-M4 benchmark validators pass. Findings-first review then found
+  that first-error selection invoked attacker-defined exception truthiness; a
+  reviewer-derived regression failed tests-first and now passes with explicit
+  identity selection. All 11 focused M58, 254 inherited M47-M58, and 632
+  architecture assertions pass on the correction with static/docs clean.
+  Corrected complete graphics-enabled CPython 3.12-3.14 suites each pass 2,172
+  tests with 14 expected skips. Corrected real-wgpu, both five-repeat profiles,
+  both vertical slices, and all documented M1-M4 benchmark validators pass. A
+  second reviewer-derived regression proved ambient `sys.exception()` could
+  suppress cleanup failure inside a caller's unrelated exception handler; it
+  failed tests-first and now passes with an explicit exchange-local failure
+  flag. The final candidate passes all 12 focused M58, 255 inherited M47-M58,
+  and 633 architecture assertions; whole-tree static/docs; graphics-enabled
+  complete suites on CPython 3.12-3.14 with 2,173 passes and 14 expected skips
+  each; ten real-wgpu tests; both five-repeat profiles; both vertical slices;
+  and all documented M1-M4 benchmark validators. Two final-record builds
+  reproduce the pure wheel and source distribution; isolated-wheel and
+  complete release smoke pass. Findings-first scope, archive, credential,
+  identity, history, and integrity review found no actionable M58 issue. Final
+  record-inclusive lock/static/633-assertion/docs/integrity validation passes.
+- **Hosted evidence:** Pending exact-head substantive validation. The accepted
+  gate remains exactly three Linux-first runner allocations; desktop jobs may
+  start only after Linux passes.
+- **Integration:** Pending validated feature pull request, delayed review,
+  squash integration, bounded documentation-record pull request, and exact
+  `.project/**` zero-run closeout.

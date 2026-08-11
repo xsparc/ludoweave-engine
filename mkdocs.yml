@@ -81,6 +81,7 @@ nav:
       - RFC-0038 - Public release HTTP response framing: rfcs/0038-public-release-http-response-framing.md
       - RFC-0039 - Public release status and redirect references: rfcs/0039-public-release-redirect-reference.md
       - RFC-0040 - Public release response bodies: rfcs/0040-public-release-response-body-conformance.md
+      - RFC-0041 - Public release transport cleanup: rfcs/0041-public-release-cleanup-conformance.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

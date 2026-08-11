@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M58/RFC-0041 ordered public-release response close and connection close
+  attempts that preserve the primary failure and complete before redirect
+  continuation or separate partial publication, with no rollback, workflow,
+  dependency, runtime API, or release-authority change.
 - Add M57/RFC-0040 immutable bytes-block and declared-versus-streamed
   `Content-Length` validation for every successful response body, without an
   alternate client, workflow, dependency, runtime API, or release-authority
