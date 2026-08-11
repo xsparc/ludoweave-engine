@@ -66,6 +66,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M55 public release HTTP response framing | PR #117 corrected the CPython status-line normalization overclaim, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated documented HTTP/1.1-class framing checks with unchanged workflows/release authority |
 | Done | M56 public release redirect-reference conformance | PR #120 corrected bracket-component validation, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated strict status/Location checks with unchanged workflows/release authority |
 | Done | M57 public release response-body conformance | PR #123 passed exact built-in bytes-block and declared-versus-streamed `Content-Length` checks in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
+| Active | M58 public release cleanup conformance | Require ordered response/connection close attempts, primary-failure preservation, and successful cleanup before redirect continuation or separate partial publication, with no rollback or workflow/release-authority change |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -897,6 +898,22 @@ makes no general completeness claim for unframed close-delimited responses.
 Fixture and pull-request evidence are not a real public release observation.
 A real pass remains unclaimed until an authorized signed-tag release run
 executes.
+
+M58 starts from verified M57 closeout commit
+`26826822547d6d8df6ce1bfc05d8cf728a32d505`. Every obtained response receives
+one response close attempt before its created connection receives one
+connection close attempt. Both close attempts occur when response close fails.
+An active primary failure remains primary; cleanup-only ordinary failures use
+content-silent `public_release.request_failed`, and cleanup control signals
+remain unwrapped.
+
+Successful cleanup occurs before redirect continuation and before partial
+publication from a separate asset partial path. The slice adds no rollback,
+retry, private response/socket state, raw parser, alternate client, workflow,
+runner allocation, action, permission, credential, release mutation,
+dependency, runtime package, public API, or release authority. Fixture and
+pull-request evidence are not a real public release observation. A real pass
+remains unclaimed until an authorized signed-tag release run executes.
 
 ## Good-first contribution queue
 

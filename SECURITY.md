@@ -98,6 +98,11 @@ Maintainers will acknowledge the report through the same private channel, assess
   `Content-Length` exists, the declared value must equal the streamed octets;
   malformed read shapes use a content-silent request failure and length
   disagreement remains a size mismatch.
+- M58 requires response close before connection close, both close attempts even
+  when the first fails, and preservation of the primary failure. Redirect
+  continuation and separate partial publication occur only after successful
+  cleanup. It provides no rollback and makes no workflow or release-authority
+  change.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

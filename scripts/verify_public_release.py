@@ -79,6 +79,35 @@ class PublicReleaseVerificationError(RuntimeError):
         self.code = code
 
 
+def _close_http_exchange(
+    response: http.client.HTTPResponse | None,
+    connection: http.client.HTTPSConnection,
+    *,
+    suppress_failure: bool,
+) -> None:
+    """Close one response/connection pair without masking an active failure."""
+
+    close_error: BaseException | None = None
+    if response is not None:
+        try:
+            response.close()
+        except BaseException as error:
+            close_error = error
+    try:
+        connection.close()
+    except BaseException as error:
+        if close_error is None:
+            close_error = error
+    if suppress_failure or close_error is None:
+        return
+    if isinstance(close_error, Exception):
+        raise PublicReleaseVerificationError(
+            "public release transport cleanup failed",
+            code="public_release.request_failed",
+        ) from close_error
+    raise close_error
+
+
 class _TlsPeer(Protocol):
     context: ssl.SSLContext
     server_side: bool
@@ -405,6 +434,7 @@ def _download(
                 code="public_release.request_failed",
             ) from error
         response: http.client.HTTPResponse | None = None
+        primary_failure = False
         try:
             _connect_public_peer(connection, deadline)
             _validate_tls_context_binding(connection, tls_context)
@@ -481,25 +511,33 @@ def _download(
                     "public release response length does not match",
                     code="public_release.size_mismatch",
                 )
-            if partial != target:
-                _publish_partial(partial, target)
-            return
         except PublicReleaseVerificationError:
+            primary_failure = True
             raise
         except TimeoutError as error:
+            primary_failure = True
             raise PublicReleaseVerificationError(
                 "public release request exceeded the time limit",
                 code="public_release.request_timeout",
             ) from error
         except (OSError, http.client.HTTPException, ValueError) as error:
+            primary_failure = True
             raise PublicReleaseVerificationError(
                 "public release request failed",
                 code="public_release.request_failed",
             ) from error
+        except BaseException:
+            primary_failure = True
+            raise
         finally:
-            if response is not None:
-                response.close()
-            connection.close()
+            _close_http_exchange(
+                response,
+                connection,
+                suppress_failure=primary_failure,
+            )
+        if partial != target:
+            _publish_partial(partial, target)
+        return
 
 
 def _validate_http_response_framing(

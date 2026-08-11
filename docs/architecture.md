@@ -1522,6 +1522,24 @@ observation, independent or external verification, every delivery path,
 future availability, immutability, artifact security, PyPI availability, or a
 supported channel. RFC-0040 defines the complete boundary.
 
+## M58 public release cleanup boundary
+
+M58 makes ownership cleanup explicit after the M47-M57 public-release checks.
+Every obtained response receives one response close attempt before its created
+connection receives one connection close attempt. Both close attempts occur
+when response close fails. An already-active request, protocol, validation,
+output, or control-flow failure remains the primary failure; cleanup-only
+ordinary failures use content-silent `public_release.request_failed` with the
+first cleanup cause chained.
+
+Cleanup completes successfully before redirect continuation and before partial
+publication from a separate asset partial path. Cleanup control signals remain
+unwrapped after both close attempts. M58 uses only documented public close
+methods and adds no private state, alternate client, raw parser, rollback,
+retry, workflow, allocation, dependency, package, runtime API, or release
+authority. Fixture and pull-request evidence are not a real public release
+observation. RFC-0041 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

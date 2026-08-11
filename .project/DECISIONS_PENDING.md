@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0041 resolves M58 public release transport-cleanup conformance. Every
+obtained response receives one response close attempt before its created
+connection receives one connection close attempt, and both close attempts
+occur when response close fails. Active failures remain primary. Cleanup-only
+ordinary failures use content-silent `public_release.request_failed` with the
+first cause chained; cleanup control signals remain unwrapped. Redirect
+continuation and separate partial publication require successful cleanup. This
+adds no rollback, retry, private state, alternate client, workflow, dependency,
+runtime API, or release authority. A real pass remains pending an explicitly
+authorized signed-tag release execution.
+
 RFC-0040 resolves M57 public release response-body conformance. Every
 successful `HTTPResponse.read(amount)` returns immutable bytes no larger than
 the requested amount before EOF interpretation, accounting, or output. Any

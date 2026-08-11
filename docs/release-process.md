@@ -390,6 +390,20 @@ response-completeness claim. Pull-request fixtures are not a real public
 release observation. No real M57 pass exists until an authorized signed-tag
 release run exercises the public path.
 
+M58/RFC-0041 gives each public-release exchange explicit ordered cleanup.
+Every obtained response gets one response close attempt before its created
+connection gets one connection close attempt, and both close attempts occur if
+the first fails. An active primary failure remains primary; a cleanup-only
+ordinary failure uses content-silent `public_release.request_failed`, while a
+cleanup control signal remains unwrapped.
+
+Successful cleanup occurs before redirect continuation and before partial
+publication from a separate asset partial path. M58 provides no rollback for
+already written direct-target or partial bytes and adds no retry, workflow,
+allocation, dependency, runtime API, release authority, or real public release
+observation. No real M58 pass exists until an authorized signed-tag release run
+exercises the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

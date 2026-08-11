@@ -1,5 +1,62 @@
 # Project State
 
+## M58 public release transport-cleanup conformance - in progress
+
+- Base: exact clean synchronized M57 closeout
+  `26826822547d6d8df6ce1bfc05d8cf728a32d505`, with only `main` present and no
+  open pull request, tag, release, closeout run/check, or post-closeout `main`
+  run.
+- Scope: every obtained response receives one close attempt before its created
+  connection receives one close attempt. Both attempts occur if response close
+  fails. Active request, protocol, validation, output, and control-flow
+  failures remain primary. Cleanup-only ordinary failures use stable,
+  content-silent `public_release.request_failed`; cleanup control signals remain
+  unwrapped.
+- Ordering: redirect continuation and separate asset partial publication occur
+  only after successful response/connection cleanup. The release-document
+  direct target and partial bytes retain their existing no-rollback behavior.
+- Decision: accepted RFC-0041 records public close-method ownership, failure
+  priority, ordering, and the no-rollback/non-claim boundary.
+- Boundary: no retry, private response/socket state, raw parser, alternate
+  client, pooling, cache, proxy, DNS preflight, network sandbox, workflow,
+  runner allocation, action, permission, trigger, credential, release mutation,
+  dependency, lock, version, runtime package, public API, or release authority.
+  Fixture and pull-request evidence are not a real public release observation.
+- Development evidence: the clean M47-M57 baseline passed 243 assertions.
+  Official Python 3.14 documentation review established the public close
+  surface. Against unchanged production code, all nine focused behavior and
+  boundary assertions failed as expected. After correcting six Ruff findings
+  and seven Pyright findings in the test harness, the implementation passes all
+  ten focused behavior/boundary/documentation assertions with Ruff and strict
+  Pyright clean. All 253 inherited M47-M58 assertions and strict docs pass.
+  Whole-tree lock, formatting, Ruff, strict Pyright, 631 architecture
+  assertions, and strict docs pass. Complete graphics-enabled CPython
+  3.12-3.14 suites each pass 2,171 tests with 14 expected skips. Ten real-wgpu
+  tests, both five-repeat profiles, both vertical slices, and every documented
+  M1-M4 benchmark validator pass. Findings-first review then demonstrated that
+  `close_error or error` invoked attacker-defined truthiness while selecting
+  the first cleanup failure. The regression failed tests-first; explicit
+  identity selection corrects it. All 11 focused M58, 254 inherited M47-M58,
+  and 632 architecture assertions now pass with static/docs clean. Corrected
+  complete graphics-enabled CPython 3.12-3.14 suites each pass 2,172 tests with
+  14 expected skips. Corrected real-wgpu, both five-repeat profiles, both
+  vertical slices, and every documented M1-M4 benchmark validator pass. A
+  second findings-first regression then proved ambient `sys.exception()` could
+  suppress cleanup failure when a caller was handling an unrelated exception.
+  An explicit exchange-local primary-failure flag corrects the defect. The
+  final candidate passes all 12 focused M58, 255 inherited M47-M58, and 633
+  architecture assertions; whole-tree static/docs; graphics-enabled complete
+  suites on CPython 3.12-3.14 with 2,173 passes and 14 expected skips each; ten
+  real-wgpu tests; both five-repeat profiles; both vertical slices; and every
+  documented M1-M4 benchmark validator. Two final-record builds reproduce the
+  pure wheel and source distribution; isolated-wheel and complete release
+  smoke pass. Findings-first scope, archive, credential, identity, history,
+  and integrity review found no actionable M58 issue. Final record-inclusive
+  lock/static/633-assertion/docs/integrity validation passes. Local M58 is
+  complete; hosted exact-head evidence is pending.
+- Hosted evidence: pending exact-head substantive validation in exactly three
+  Linux-first allocations.
+
 ## M57 public release response-body conformance - complete
 
 - Base: exact clean synchronized M56 closeout
