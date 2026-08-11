@@ -69,7 +69,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M58 public release cleanup conformance | PR #126 passed ordered response/connection cleanup, primary-failure preservation, and publication-after-cleanup in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 | Done | M59 repository metadata hygiene | PR #129 corrected dangling-root-link detection after review, passed the corrected exact three-allocation gate, and squash-integrated tool-neutral current-tree metadata with immutable provenance and runtime/workflow boundaries intact |
 | Done | M60 public release filesystem collision conformance | PR #132 passed final-entry collision detection before network/validator side effects, stable errors, exact three-allocation hosted validation, and verified squash integration with unchanged workflow/release authority |
-| In progress | M61 public release candidate/output-root separation | Alias-aware read-only candidate ownership before network/validator side effects, stable errors, and unchanged workflow/release authority |
+| Done | M61 public release candidate/output-root separation | PR #135 passed alias- and filesystem-identity-aware read-only candidate ownership, corrected exact three-allocation hosted validation after review, and verified squash integration with unchanged workflow/release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.

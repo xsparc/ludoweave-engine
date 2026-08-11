@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M61 - public release candidate/output-root separation
-- **Status:** Review correction is complete locally on
-  `security/m61-release-root-separation`; exact corrected-head hosted
-  qualification and review remain pending.
+- **Status:** Feature is hosted-qualified, reviewed, and squash-integrated;
+  four-file factual integration record is in progress on
+  `records/m61-integration`.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -72,3 +72,18 @@
   expected skip outside the baseline. This first run is superseded by the
   review correction and is not final-head qualification or integration
   authority.
+- **Corrected hosted gate:** Exact corrected head
+  `75d985f40bec2c073952172e53075ddadc8bc214` passed run `31496532379` in
+  exactly three Linux-first allocations. Linux `93795541158` passed in 7m18s
+  before macOS `93797741480` and Windows `93797741693` began; they passed in
+  3m18s and 4m05s. The Linux baseline and every compatibility suite passed
+  2,205 tests, with one expected skip outside the baseline. Every platform
+  passed ten real-graphics tests, both profiles, and both vertical slices.
+- **Review and integration:** Two delayed corrected-head audits found exact
+  head/base, `MERGEABLE/CLEAN`, three successful checks, no conversation
+  comment, and only the addressed/resolved P1 thread. Head-pinned GitHub-
+  verified squash `7feded4ed2e37157b87a7f3bb733caf96805187e` has tree
+  `3ae8059dc5a4f61a8a3b31d245b20f0373e0ffe4` exactly equal to the reviewed
+  head, sole parent exact M60 closeout, and a parsed DCO trailer. The feature
+  branch is deleted locally/remotely; no post-merge `main` run or open feature
+  PR exists.
