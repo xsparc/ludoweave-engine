@@ -64,6 +64,23 @@
   record-updated sdist; installed-wheel and complete release smoke pass. This
   evidence edit changes the source archive again, so exact commit-tree artifact
   identity remains delegated to the one-allocation hosted gate.
+- Integration evidence: ready PR #151 exact four-document head
+  `595eb77c42de31211c4d164e949cf0fa4d5db3c3` passed run `31531603994` in
+  one 43-second Linux allocation; the desktop umbrella skipped with zero steps.
+  Hosted formatting for 309 files, Ruff, strict docs in 1.66 seconds, 739
+  documentation-selected architecture assertions in 8.91 seconds, two-build
+  reproducibility, installed-wheel smoke, staging, and complete release smoke
+  passed. The hosted wheel remained 272,695 bytes at
+  `d72a13dcecdcaa1cef53392b0c2fb6d7eba10b817894985588e3524f8f2a2874`;
+  the record-updated 1,185,305-byte sdist was
+  `d9ebe95fe0a30777e0138ce1434e9c31ac21bbfb6ba4b6856740310a1b087c5f`.
+  Two delayed audits found no review, issue comment, or review comment.
+- Integration squash: GitHub-verified
+  `bcc91aa97d3157971eb4ba52f2430b8bb65c4ab6` has exact reviewed tree
+  `8ed42b87e04ed93fb205f06878bc5f85cf26b8b5`, sole parent the feature
+  squash, valid signature verified at `2026-08-11T20:14:33Z`, and parsed DCO.
+  The integration branch is absent locally/remotely. This pending exact three-
+  record closeout requests no hosted runner and establishes the M67 base.
 
 ## M65 portable sample member paths - feature integrated
 
