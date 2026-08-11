@@ -1,6 +1,6 @@
 # Project State
 
-## M59 repository metadata hygiene - feature integrated
+## M59 repository metadata hygiene - complete
 
 - Base: exact clean synchronized M58 closeout
   `d4487565d4fda57ec05437dfcadc687d2507dafa`, with only `main` present and no
@@ -96,12 +96,29 @@
   reviewed head, sole parent M58 closeout
   `d4487565d4fda57ec05437dfcadc687d2507dafa`, a valid GitHub signature, and
   standalone DCO. The feature branch is deleted locally/remotely. Synchronized
-  `main` has no post-merge run or non-main remote branch. The exact four-file
-  integration record requires one Linux documentation allocation and a zero-
-  step skipped desktop umbrella. Its local gate passes exact four-file scope,
+  `main` has no post-merge run or non-main remote branch. Its local integration-
+  record gate passes exact four-file scope,
   lock/sync, whole-tree formatting, Ruff, strict Pyright, 638 architecture
   assertions, strict docs, reproducible pure distributions, isolated-wheel
   smoke, complete release smoke, and whitespace.
+- Integration record: exact head
+  `f142ceae1381c5c8c6cb15001229cfd4679ff028` passed run `31485465637` in one
+  42-second Linux allocation. All 302 Python files were format clean, Ruff and
+  strict docs passed, 638 documentation architecture assertions passed,
+  reproducible distributions plus installed-wheel and complete release smoke
+  passed, and desktop umbrella `93759917789` skipped with no runner and zero
+  steps. The exact-head 271,281-byte wheel was
+  `90d0e8daed42c217ae3fd5795feea821744c2e154f361112dbb5c6135998e28a`;
+  the 1,117,495-byte source distribution was
+  `b8c4a21345ff809e7bb078ded52daae5993f863e6f54379345cc0683a92f86be`.
+  Two delayed audits found no comment, review, or thread. Head-pinned GitHub-
+  verified squash `f6b734878738ca6408afeabb793c5cd591c0d607` has tree
+  `da5e3b4404a9385990685467d920806b290de282` exactly equal to the reviewed
+  record head, sole parent feature squash
+  `f12f65ab7c1f8426b0232bb4b414e48276bbad56`, valid signature, and standalone
+  DCO. Both M59 working branches are deleted locally/remotely. No post-
+  integration `main` run or non-main remote branch exists. The exact three-
+  file `.project/**` closeout must allocate zero hosted runs or checks.
 
 ## M58 public release transport-cleanup conformance - complete
 
