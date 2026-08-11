@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M60 - public release filesystem collision conformance
-- **Status:** Complete locally on `security/m60-output-path-conformance`;
-  hosted qualification and review remain pending.
+- **Status:** Feature hosted-qualified, reviewed, and squash-integrated;
+  factual integration record is in progress on `records/m60-integration`.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -44,6 +44,19 @@
   Earlier complete graphics-enabled suites on CPython 3.13/3.14 each passed
   2,187 tests with 14 expected skips before the final test addition; the final
   ten M60 assertions pass on both versions.
-- **Hosted gate:** This security/documentation maintenance slice is
-  substantive and requires exactly three Linux-first allocations; desktop jobs
-  may begin only after Linux qualification succeeds.
+- **Hosted gate:** Ready PR #132 exact head
+  `836c1e14bbfe0e9bb94dbe1fc84df600279e0b23` passed run `31488972656`
+  in exactly three Linux-first allocations. Linux job `93770741704` passed in
+  7m25s before macOS `93772531511` and Windows `93772531611` began; they passed
+  in 2m28s and 3m17s. Every complete compatibility suite passed 2,192 tests,
+  with one expected skip outside the baseline. Every platform passed ten real-
+  graphics tests, profile smoke, Clockwork Arena, and Agent World Builder.
+- **Integration:** Two review audits found exact head/base, `MERGEABLE/CLEAN`,
+  three successful checks, and no comment, review, or thread. Head-pinned
+  GitHub-verified squash `8967bd8cfc11f1b29caadbf01da9255bd6eb4584` has tree
+  `e17d11565f30e58b6eb705926702e257026f9b3b` exactly equal to the reviewed
+  feature head and sole parent exact M59 closeout. The DCO-signed feature commit
+  remains attached to PR #132. The generated squash body contains literal
+  escaped newline text, so no parsed-trailer claim is made for that commit and
+  public history is not rewritten. The feature branch is deleted locally and
+  remotely; no post-merge `main` run or open PR exists.
