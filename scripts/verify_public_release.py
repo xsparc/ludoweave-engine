@@ -236,7 +236,7 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
     ]
     if not context.use_existing_plan:
         verify_arguments.extend(("--asset-plan", str(plan)))
-    if _run_release_validator(verify_arguments) != 0:
+    if not _is_exact_success_status(_run_release_validator(verify_arguments)):
         raise PublicReleaseVerificationError(
             "public release document does not match the admitted candidate",
             code="public_release.document_mismatch",
@@ -277,19 +277,19 @@ def verify_public_release(context: VerificationContext) -> tuple[int, int]:
         "--expected-state",
         "published",
     ]
-    if _run_release_validator(final_arguments) != 0:
+    if not _is_exact_success_status(_run_release_validator(final_arguments)):
         raise PublicReleaseVerificationError(
             "downloaded public assets do not match the release document",
             code="public_release.asset_mismatch",
         )
     try:
-        smoke_result = smoke_release.main([str(public_directory)])
+        smoke_result = _run_release_smoke([str(public_directory)])
     except (OSError, RuntimeError, ValueError) as error:
         raise PublicReleaseVerificationError(
             "installed public release smoke failed",
             code="public_release.smoke_failed",
         ) from error
-    if smoke_result != 0:
+    if not _is_exact_success_status(smoke_result):
         raise PublicReleaseVerificationError(
             "installed public release smoke failed",
             code="public_release.smoke_failed",
@@ -1145,6 +1145,15 @@ def _publish_partial(partial: Path, target: Path) -> None:
 def _run_release_validator(arguments: Sequence[str]) -> int:
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         return verify_release_draft.main(arguments)
+
+
+def _run_release_smoke(arguments: Sequence[str]) -> int:
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+        return smoke_release.main(arguments)
+
+
+def _is_exact_success_status(status: object) -> bool:
+    return type(status) is int and status == 0
 
 
 def _https_url(url: str) -> SplitResult:

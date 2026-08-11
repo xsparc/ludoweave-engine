@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import re
 import sys
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -198,7 +199,8 @@ def test_m62_docs_define_portable_asset_names_and_nonclaim_boundary() -> None:
     combined = "\n".join(documents)
 
     assert all("m62" in document for document in documents)
-    assert "m0 through m61" in documents[0]
+    completed = re.search(r"m0 through m([0-9]+) are hosted-validated", documents[0])
+    assert completed is not None and int(completed.group(1)) >= 61
     for term in (
         "portable asset name",
         "windows device",

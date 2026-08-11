@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M63/RFC-0046 public-release subordinate-output confinement and exact
+  built-in integer exit-status validation, preserving one content-silent JSON
+  document without changing workflows, dependencies, runtime APIs, or release
+  authority.
 - Add M62/RFC-0045 deterministic portable asset name validation for public-
   release plans, rejecting Windows device stems, trailing periods, over-255-
   character names, and case-insensitive collisions before asset download,

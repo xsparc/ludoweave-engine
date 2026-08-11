@@ -451,6 +451,20 @@ validator ordering. Pull-request evidence is not a real public release
 observation; no real M62 pass exists until an authorized signed-tag release run
 exercises the public path.
 
+M63/RFC-0046 confines subordinate stdout and subordinate stderr while the
+portable public consumer runs its in-process release-document validator and
+complete release smoke. Success emits exactly one JSON document on stdout;
+admitted failure emits exactly one content-silent JSON document on stderr. A
+subordinate succeeds only with an exact zero integer, so boolean, float,
+integer-subclass, and custom comparison results fail closed.
+
+The Python stream redirection is process-global and is admitted only for this
+single-thread standalone utility. It does not capture direct file-descriptor or
+arbitrary subprocess writes. M63 adds no workflow, dependency, runtime API,
+release authority, cleanup, or publication. Pull-request evidence is not a real
+public release observation; no real M63 pass exists until an authorized signed-
+tag release run exercises the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

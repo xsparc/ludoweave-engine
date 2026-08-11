@@ -120,6 +120,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   device stem, and case-insensitive uniqueness. Invalid plans fail before asset
   download or output-directory creation. This uses no filesystem probing and
   makes no workflow or release-authority change.
+- M63 confines subordinate stdout and subordinate stderr during the public
+  release validator and complete smoke calls. Success emits one JSON document;
+  subordinate success requires an exact zero integer, while invalid status and
+  admitted failure remain content-silent. The process-global stream redirection
+  is limited to this single-thread utility and makes no workflow or release-
+  authority change.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

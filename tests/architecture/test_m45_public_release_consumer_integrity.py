@@ -97,7 +97,8 @@ def test_public_retrieval_revalidates_plan_set_and_installed_candidate() -> None
         "os.link(partial, target)",
         "_run_release_validator(verify_arguments)",
         "_run_release_validator(final_arguments)",
-        "smoke_release.main([str(public_directory)])",
+        "_run_release_smoke([str(public_directory)])",
+        "_is_exact_success_status(smoke_result)",
     ):
         assert required in public
 
@@ -105,7 +106,7 @@ def test_public_retrieval_revalidates_plan_set_and_installed_candidate() -> None
         "for item in items:"
     )
     assert public.index("_run_release_validator(final_arguments)") < public.index(
-        "smoke_release.main([str(public_directory)])"
+        "_run_release_smoke([str(public_directory)])"
     )
 
 

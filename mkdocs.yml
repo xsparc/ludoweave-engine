@@ -86,6 +86,7 @@ nav:
       - RFC-0043 - Public release output paths: rfcs/0043-public-release-output-path-conformance.md
       - RFC-0044 - Public release root separation: rfcs/0044-public-release-root-separation.md
       - RFC-0045 - Portable public release asset names: rfcs/0045-portable-public-release-asset-names.md
+      - RFC-0046 - Public release output confinement: rfcs/0046-public-release-output-confinement.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
