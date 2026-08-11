@@ -1,19 +1,20 @@
 # Current Task
 
 - **Task:** M66 - staged sample-root publication
-- **Status:** Feature PR #150 is fully validated, reviewed, squash-integrated,
-  and verified. This four-record integration update is pending its bounded
-  documentation/distribution gate.
+- **Status:** Feature PR #150 and integration-record PR #151 are fully
+  validated, reviewed, squash-integrated, and verified. This exact three-record
+  closeout establishes the clean M67 selection base without requesting hosted
+  CI.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** GitHub-verified feature squash
-  `79593b01d670dd07fb761e493382685765d13d7a`, whose tree
-  `dc776056d2cdb15c30944dbe2dae5f7c2ffb0c8e` exactly matches reviewed PR
-  #150 head `facda31545cd490187e7679d613cd9bb5149028d`. Its sole parent is the
-  exact M65 closeout `0892f4b234be5ea06d6a91f3b1f0b50a1f44eb1f`; GitHub reports a valid
-  signature and the squash message carries an exact parsed DCO trailer.
+- **Base:** GitHub-verified integration squash
+  `bcc91aa97d3157971eb4ba52f2430b8bb65c4ab6`, whose tree
+  `8ed42b87e04ed93fb205f06878bc5f85cf26b8b5` exactly matches reviewed PR
+  #151 head `595eb77c42de31211c4d164e949cf0fa4d5db3c3`. Its sole parent is the
+  M66 feature squash `79593b01d670dd07fb761e493382685765d13d7a`;
+  GitHub reports a valid signature and exact parsed DCO trailer.
 - **Outcome:** Prevent a failed release-sample extraction from leaving a
   partial tree at the final versioned sample-root identity.
 - **Acceptance:** Require an existing real caller-owned output directory and an
@@ -71,3 +72,14 @@
   architecture assertions with 1 local capability skip, strict docs,
   whitespace, two-build reproducibility, installed-wheel smoke, 10-artifact
   staging, and complete M66 release smoke.
+- **Integration hosted evidence:** Exact four-file head `595eb77` passed run
+  `31531603994` in one 43-second Linux allocation; the desktop umbrella skipped
+  with zero steps. Hosted formatting, Ruff, strict docs, 739 documentation-
+  selected architecture assertions, reproducibility, installed-wheel smoke,
+  staging, and complete release smoke passed. Two delayed audits were empty.
+- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture,
+  strict docs, scope, Git-object, and whitespace checks; create a DCO-signed
+  ready PR that requests no hosted runner; verify its squash; delete every M66
+  branch locally/remotely; remove only verified generated outputs; and leave
+  synchronized clean `main` before selecting M67.

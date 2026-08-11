@@ -48,6 +48,15 @@ locally and remotely before creating the neutral feature branch.
 | Exact scope, lock, static, architecture, docs, and whitespace gate | 0 | The diff names exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; no implementation/workflow/dependency surface differs from verified feature squash `79593b0`. The unchanged lock resolved 46 packages in 0.76 ms. All 309 Python files were format clean; Ruff and strict Pyright reported zero findings; all 738 architecture assertions passed with 1 capability skip in 5.10 seconds; strict docs built in 1.12 seconds with only the known upstream Material notice; and whitespace was clean. |
 | Reproducible distribution and smoke | 0 | Two builds reproduced the unchanged pure 272,709-byte wheel at `c781d27046ee92131208802fdef6d800e1fc5fc28f6baeb4a4ef8234b0cc58f8` and a 1,185,006-byte record-updated source archive at `762db81c1fbffa374af536cca0b5e646f7ff9af5f432f315d936bee7fe5f4a1c`. Installed-wheel smoke, deterministic 10-artifact staging, and complete M66 release smoke passed. This factual row changes the source archive afterward, so exact commit-tree artifact identity remains delegated to the one-allocation hosted gate. |
 
+## M66 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #151 run `31531603994` | 0 | Exact four-document head `595eb77c42de31211c4d164e949cf0fa4d5db3c3` passed in one 43-second Linux allocation. The desktop compatibility umbrella skipped with zero steps. All 309 Python files were format clean; Ruff, strict docs, and all 739 documentation-selected architecture assertions passed. |
+| Hosted reproducible distribution and smoke | 0 | Two builds reproduced the 272,695-byte wheel at `d72a13dcecdcaa1cef53392b0c2fb6d7eba10b817894985588e3524f8f2a2874` and the record-updated 1,185,305-byte source archive at `d9ebe95fe0a30777e0138ce1434e9c31ac21bbfb6ba4b6856740310a1b087c5f`. Installed-wheel smoke, deterministic staging, and complete M66 release smoke passed. |
+| Delayed integration-record audits | 0 | Both delayed exact-head audits found no review, issue comment, or review comment. PR #151 remained clean, mergeable, exact-head, and exact-base with its Linux check successful and desktop umbrella skipped. |
+| Integration squash verification | 0 | PR #151 squash `bcc91aa97d3157971eb4ba52f2430b8bb65c4ab6` has tree `8ed42b87e04ed93fb205f06878bc5f85cf26b8b5`, exactly matching reviewed head `595eb77c42de31211c4d164e949cf0fa4d5db3c3`; its sole parent is feature squash `79593b01d670dd07fb761e493382685765d13d7a`. GitHub reports a valid signature verified at `2026-08-11T20:14:33Z`, and the squash has an exact parsed DCO trailer. The integration branch is absent locally and remotely. |
+
 ## M65 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M65 starts from exact synchronized M64 closeout
