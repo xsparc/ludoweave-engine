@@ -42,17 +42,18 @@ claims.
 
 ## Current boundary
 
-M62 public-release plan parsing admits a portable asset name of 1 through 255
-ASCII characters, rejects a trailing period and Windows device stem, and
-requires case-insensitive uniqueness before asset download or output-directory
-creation. Existing portable release artifact names remain valid.
+M63 confines subordinate stdout and subordinate stderr while the standalone
+public-release consumer runs its in-process validator and complete smoke.
+Success emits one JSON document, and subordinate success requires an exact zero
+integer without invoking custom comparison or truth hooks.
 
-M62 uses no filesystem probing and adds no cleanup, rollback, retry, workflow,
-allocation, dependency, lock, version, runtime source/API, release authority,
-tag, release, or publication. Pull-request fixtures are not a real public
-release observation. M0 through M61 are complete, reviewed, hosted-validated,
-and integrated into `main`. M62 starts from exact verified M61 closeout
-`14f848c92021d54c9140e01b0333c0725c45145d`.
+M63 relies on single-thread command ownership and adds no descriptor capture,
+subprocess wrapper, cleanup, rollback, retry, workflow, allocation, dependency,
+lock, version, runtime source/API, release authority, tag, release, or
+publication. Pull-request fixtures are not a real public release observation.
+M0 through M62 are complete, reviewed, hosted-validated, and integrated into
+`main`. M63 starts from exact verified M62 closeout
+`1cdc1b452cbe79c9e4f082acb4dd1205f4b3648f`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
@@ -74,8 +75,10 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   status and redirect references before body use. M57 then validates body
   blocks and declared-length agreement, and M58 orders response/connection
   cleanup before redirect continuation or publication. M60 adds final-entry
-  filesystem collision checks before network or validator work; none of these
-  milestones authorizes a real release.
+  filesystem collision checks before network or validator work, M61 separates
+  candidate and output roots, M62 constrains portable asset names, and M63
+  confines subordinate text output; none of these milestones authorizes a real
+  release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

@@ -1,5 +1,67 @@
 # Project State
 
+## M63 public release subordinate-output confinement - locally implemented
+
+- Base: exact clean synchronized M62 closeout
+  `1cdc1b452cbe79c9e4f082acb4dd1205f4b3648f`, with tree
+  `03abc8d3a45b568e98eebcd9a492e6f96ff71049` exactly matching the reviewed
+  closeout candidate. GitHub reports a valid signature and parsed DCO trailer.
+  Only `main` existed locally/remotely after pruning, with no open pull request,
+  closeout run/check, or post-closeout `main` run.
+- Gap: the real complete release smoke prints a success line before the public
+  consumer's JSON. Nested smoke output could also prefix a stable failure, and
+  numeric inequality admitted `False`, `0.0`, or custom comparison behavior as
+  a process success status.
+- Scope: both in-process subordinate types now redirect stdout and stderr to
+  private text sinks. Success is exact built-in integer zero, checked without
+  invoking comparison or truth hooks. Invalid validator/smoke status retains
+  content-silent document/smoke failure; consumer payloads and codes are
+  unchanged.
+- Decision: RFC-0046 records one-document output ownership, exact status
+  conformance, restoration on exception, and the single-thread boundary. There
+  is no direct descriptor or arbitrary subprocess capture, thread-safe library
+  claim, subprocess wrapper, cleanup, rollback, retry, workflow, dependency,
+  lock, version, runtime API, release authority, tag, release, or publication.
+- Development evidence: the initial 11-case M63 file failed ten assertions and
+  passed its protected-surface guard in 0.46 seconds against unchanged M62
+  production code. After the minimal correction, all ten non-documentation
+  assertions pass with docs deselected in 0.69 seconds. The first focused static
+  gate exposed a non-public pytest capture-result annotation; after replacing it
+  with plain strings, both changed Python files are format clean, Ruff clean,
+  and strict-Pyright clean. The complete documented contract passes all 11
+  assertions in 0.24 seconds and strict docs build in 1.14 seconds. The first
+  inherited architecture run passed 685 assertions and exposed three stale
+  literal guards; the first correction passed 687 and exposed one remaining
+  order guard. After strengthening all inherited guards, 688 architecture
+  assertions pass in 4.81 seconds and the release-draft suite passes 56 tests
+  with two expected skips in 5.15 seconds.
+- Candidate evidence: each graphics-enabled CPython 3.12.13, 3.13.13, and
+  3.14.5 suite passes 2,228 tests with 14 expected skips. The locked baseline
+  was restored; ten real-wgpu tests, five-repeat base/graphics profiles,
+  Clockwork Arena, Agent World Builder, and all four diagnostic benchmark
+  artifact validators pass. Two pre-review builds reproduced a pure 272,051-
+  byte wheel and 1,149,252-byte source archive; isolated-wheel and complete
+  ten-artifact release smoke pass.
+- Review: findings-first review found one evidence gap and no production defect:
+  the contract did not directly prove validator stream restoration on
+  exception. The added regression passes, taking the M63 file to 12 tests and
+  architecture to 689 assertions. A subsequent chained command used a
+  nonexistent release-draft test path after those passes; the corrected actual
+  suite passes 56 tests with two skips. The retired metadata directory is
+  absent, no automation-identity or credential patterns were found, protected
+  workflows/dependencies/runtime source remain byte-unchanged, and artifact/
+  native/backend boundaries remain intact.
+- Final local candidate: the record-inclusive source gate passes 689
+  architecture assertions, all 12 M63 assertions, 56 release-draft tests with
+  two skips, strict docs, static analysis, and whitespace. Each supported
+  graphics-enabled CPython suite passes 2,229 tests with 14 skips. Final
+  renderer/profile/examples and diagnostic benchmarks pass. Two fresh builds
+  reproduced a pure 272,051-byte wheel and 1,150,415-byte source archive;
+  installed-wheel, ten-artifact release smoke, and archive inspection pass.
+  This evidence record changes the source archive afterward, so exact commit-
+  tree artifact identity remains delegated to the hosted gate. Hosted
+  validation and integration remain pending.
+
 ## M62 portable public release asset names - complete
 
 - Base: exact clean synchronized M61 closeout

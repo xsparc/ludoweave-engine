@@ -73,7 +73,8 @@ def test_fresh_consumer_reuses_exact_bounded_public_verifier() -> None:
     assert 'verify_arguments.extend(("--asset-plan", str(plan)))' in script
     assert "_run_release_validator(verify_arguments)" in script
     assert "_run_release_validator(final_arguments)" in script
-    assert "smoke_release.main([str(public_directory)])" in script
+    assert "_run_release_smoke([str(public_directory)])" in script
+    assert "_is_exact_success_status(smoke_result)" in script
 
 
 def test_fresh_consumer_has_no_release_mutation_or_public_request_credential() -> None:

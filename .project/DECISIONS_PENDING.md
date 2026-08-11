@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0046 resolves M63 public-release subordinate-output confinement. Both in-
+process release-document validation and complete smoke redirect subordinate
+stdout and subordinate stderr, restore the process-global streams on return or
+exception, and succeed only with an exact built-in zero integer. The consumer
+retains one content-silent JSON document on its designated channel. This relies
+on the verifier's single-thread utility ownership and adds no descriptor or
+arbitrary subprocess capture, concurrency claim, workflow, dependency, runtime
+API, or release authority. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0045 resolves M62 portable public-release asset-name conformance. The plan
 consumer admits 1 through 255 restricted ASCII characters, rejects a trailing
 period or case-insensitive Windows device stem, and requires case-insensitive

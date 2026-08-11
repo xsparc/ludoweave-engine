@@ -1597,6 +1597,26 @@ rollback, retry, workflow, dependency, lockfile, version, runtime API, release
 authority, or real public release observation. RFC-0045 defines the complete
 boundary.
 
+## M63 public release subordinate-output boundary
+
+The standalone public-release consumer owns stdout and stderr around both
+in-process subordinate types: the release-document validator and complete
+release smoke. Subordinate stdout and subordinate stderr are redirected to
+private text sinks and restored on normal return or exception. The consumer
+therefore emits one JSON document on stdout for success or one content-silent
+JSON document on stderr for an admitted failure.
+
+Subordinate success is an exact built-in zero integer. Boolean, float, integer-
+subclass, and custom comparison values fail without calling their comparison or
+truth hooks. Invalid validator status retains document mismatch; invalid smoke
+status retains smoke failure.
+
+Python stream redirection is process-global, so this boundary relies on the
+verifier's existing single-thread command ownership. It makes no thread-safe
+library, direct file-descriptor, or arbitrary subprocess-output claim. M63 adds
+no workflow, dependency, lockfile, version, runtime API, release authority, or
+real public release observation. RFC-0046 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
