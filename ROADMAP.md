@@ -67,6 +67,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M56 public release redirect-reference conformance | PR #120 corrected bracket-component validation, passed the corrected exact three-allocation gate, resolved its review finding, and squash-integrated strict status/Location checks with unchanged workflows/release authority |
 | Done | M57 public release response-body conformance | PR #123 passed exact built-in bytes-block and declared-versus-streamed `Content-Length` checks in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
 | Done | M58 public release cleanup conformance | PR #126 passed ordered response/connection cleanup, primary-failure preservation, and publication-after-cleanup in the exact three-allocation gate, then squash-integrated with unchanged workflow/release authority |
+| Active | M59 repository metadata hygiene | Enforce tool-neutral current-tree records and fixtures while preserving immutable Git/DCO provenance and all runtime, workflow, dependency, version, and release boundaries |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
@@ -926,6 +927,14 @@ parent M57 closeout, standalone DCO, and no workflow, dependency, runtime
 package, public API, or release-authority change. The feature branch is deleted
 locally/remotely; the four-file integration record requires one Linux
 documentation allocation and a zero-step skipped desktop umbrella.
+
+M59 starts from verified M58 closeout
+`d4487565d4fda57ec05437dfcadc687d2507dafa`. It replaces one legacy fixture
+identity, redacts retired labels from current maintenance records, and
+centralizes the absent-root and tracked-text convention in one architecture
+test. Immutable Git history, commit/PR/workflow/artifact evidence, product-
+facing agent language, runtime source, public protocols, workflows,
+dependencies, version, and release authority remain unchanged.
 
 ## Good-first contribution queue
 

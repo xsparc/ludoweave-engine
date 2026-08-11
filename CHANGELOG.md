@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M59/RFC-0042 tool-neutral current-tree repository metadata, centralized
+  absence enforcement, neutral fixtures, and descriptive historical-record
+  redaction without rewriting Git history or changing runtime, workflows,
+  dependencies, version, or release authority.
 - Add M58/RFC-0041 ordered public-release response close and connection close
   attempts that preserve the primary failure and complete before redirect
   continuation or separate partial publication, with no rollback, workflow,

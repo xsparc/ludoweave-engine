@@ -29,7 +29,7 @@ def _command(
     return CommandEnvelope(
         command_id=command_id,
         transaction_id=transaction_id,
-        actor=CommandActor(kind="agent", id="codex"),
+        actor=CommandActor(kind="agent", id="test-client"),
         operation="entity.spawn",
         arguments={} if arguments is None else arguments,
         expected_world_hash=expected_hash,

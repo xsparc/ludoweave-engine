@@ -2,6 +2,38 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M59 development evidence - 2026-08-11, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| M58 closeout and repository baseline audit | 0 | Exact synchronized `main`, `origin/main`, and `origin/HEAD` resolved to GitHub-verified M58 closeout `d4487565d4fda57ec05437dfcadc687d2507dafa`. PR #128 had zero checks and merged with exact reviewed tree, sole parent M58 integration squash, valid signature, and standalone DCO; neither its branch nor squash allocated a run. Only `main` existed locally/remotely and no open PR remained. |
+| Current tracked-tree identity scan | Finding | The explicit maintenance-marker scan found 107 matching lines across `.project/TEST_EVIDENCE.md` (78), `.project/PROJECT_STATE.md` (25), three duplicated architecture guards, and one persistent-command actor fixture. No other tracked file matched. This establishes the bounded current-tree cleanup set without making an immutable-history erasure claim. |
+| M59 tests-first tracked-tree guard | Expected failure | The new centralized architecture file failed one tracked-text assertion and passed one absent-root control in 0.28 seconds against the unchanged repository. Its failure identified exactly the two project-record files and four tests from the baseline scan. |
+| First implementation-focused gate | Corrected | After descriptive record redaction, a neutral actor fixture, and consolidation of the three duplicate loops, all 56 selected inherited and M59 assertions passed in 0.70 seconds and focused strict Pyright reported zero diagnostics. The new guard itself required one formatter rewrite and one import-order correction; no format/lint pass is claimed from that initial check, and both mechanical findings were corrected. A direct current-tree scan returned no match. |
+| M59 documentation-contract tests-first gate | Expected failure | Both current-tree hygiene assertions passed. The third assertion failed because the README, maintainer boundary, changelog, roadmap, accepted RFC-0042, RFC index, and MkDocs navigation had not yet recorded M59. No documentation-integrated pass is claimed from this run. |
+| First documentation-integrated gate | Corrected | Ruff formatting required one rewrite in the new architecture test while Ruff and strict Pyright were otherwise clean. All 56 selected implementation assertions passed, but the documentation assertion found that the required README phrase was split across lines; strict docs still built in 1.12 seconds with only the known upstream notice. No format or focused-suite pass is claimed from this combined attempt. |
+| Corrected focused implementation and documentation gate | 0 | After making the README contract phrase contiguous, all 57 selected inherited and M59 assertions passed in 0.52 seconds. The new guard remained format clean, Ruff clean, and strict-Pyright clean. |
+| Whole-tree static, architecture, and documentation gate | 0 | The unchanged lock resolved 46 packages in 0.92 ms and synchronized the locked 45-package graphics environment. All 302 Python files were format clean; Ruff and strict Pyright reported zero findings; all 636 architecture assertions passed in 5.48 seconds; strict docs built in 1.12 seconds with only the known upstream notice. |
+| Complete supported-Python candidate gate | 0 | The graphics-enabled candidate passed 2,176 tests with 14 expected skips on CPython 3.12.13 in 110.33 seconds, CPython 3.13.13 in 107.47 seconds, and CPython 3.14.5 in 113.21 seconds. |
+| Real-wgpu, profiles, and vertical slices | 0 | The locked CPython 3.12.13 graphics environment was restored with 45 packages. All ten real-wgpu tests passed in 7.31 seconds. Five-repeat two-workload base and three-workload graphics profiles validated. Clockwork Arena reproduced state `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`, three draw calls, and 16 sprites. Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`, capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`, replay `sha256:d505438522850586a0eef226927b4833234e52612e413bf5e5de8c57df34b2ef`, six query matches, five replay batches, and registered tests passing. The initial restricted-cache profile invocation was blocked before producing output; only the approved fresh rerun is represented as passing. |
+| Documented benchmark gate | 0 | M1 validated seven workloads with one of two recorded targets observed; M2 validated four target-free informational workloads; M3 validated six workloads with zero of two observed targets met and no target claim; M4 validated three workloads with its baseline target observed. These are local dirty-tree observations, not regression or support claims. |
+| Pre-record reproducible distribution and release gate | 0 | Two confirmed-absent output directories reproduced a pure 271,295-byte wheel at SHA-256 `cdaead3b189dbbd17e9b84287dfd0316ada659bf25d888b6b1a78b8240448bb8` and a 1,112,752-byte source distribution at `79747c1f813a195dd8758ef64f8836d77e83479a661a4caded95b836fdf83c2b`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed. This factual row changes the source archive afterward, so replacement final and hosted artifact identities remain authoritative. |
+| Pre-record archive and scope review | Corrected | The wheel contained 94 entries and the source distribution 484 file entries, with no native library, WASM, bytecode, cache, or encoded retired marker. Protected workflow, project-metadata, lock, runtime, benchmark, and script surfaces had no diff. Review then found two uppercase legacy instruction-name remnants in current project records that the first case-insensitive marker set did not reject. Both were descriptively redacted, the exact-case guard was added, and three focused assertions passed in 0.26 seconds with formatting, Ruff, and strict Pyright clean. No clean final-review claim is made from the pre-correction scan. |
+| Final focused guard hardening | 0 | The encoded set now covers direct automation-attribution wording. The scanner checks path names and symlink targets without following links outside the repository; no tracked symlink currently exists. The matcher explicitly preserves product-facing engine-agent terminology. All four M59 assertions passed in 0.27 seconds with formatting, Ruff, and strict Pyright clean. A direct retired-marker scan returned no match; a deliberately broader search returned only legitimate engine-agent terminology. |
+| First record-inclusive static attempt | Blocked | The uv lock command failed before project validation because the managed environment denied access to uv's existing user cache. No lock, sync, formatting, lint, or type-check pass is claimed from that sequence. The concurrently independent architecture and documentation commands did complete successfully. |
+| Record-inclusive static, architecture, and documentation gate | 0 | With approved existing-cache access, the unchanged lock resolved 46 packages in 0.89 ms and checked the locked 45-package graphics environment. All 302 Python files were format clean; Ruff and strict Pyright reported zero findings. Independently, all 637 architecture assertions passed in 4.96 seconds and strict docs built in 1.11 seconds with only the known upstream notice. |
+| Record-inclusive reproducible distribution and release gate | 0 | Two fresh confirmed-absent output directories reproduced a pure 271,295-byte wheel at SHA-256 `cdaead3b189dbbd17e9b84287dfd0316ada659bf25d888b6b1a78b8240448bb8` and a 1,114,038-byte source distribution at `e1e8ed474723ee7b5d0d79d225b9e18a4627697869ab98de7f703716f6b1422c`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed. The first archive-helper invocation was found to still target the pre-record directory, so no final-artifact audit claim is made from it; after correcting the ignored helper argument, the exact final wheel's 94 entries and source archive's 484 file entries had no native library, WASM, bytecode, cache, or encoded retired-marker hit. This row changes the source archive afterward, so hosted exact-head artifact identity remains authoritative. |
+| Final evidence-inclusive local gate and findings-first review | 0 | The unchanged lock resolved 46 packages in 0.76 ms; all 302 Python files were format clean; Ruff and strict Pyright reported zero findings. The first parallel architecture/docs invocation was blocked before either command ran by restricted existing-cache access; the approved identical rerun passed all 637 architecture assertions in 4.48 seconds and built strict docs in 1.03 seconds with only the known upstream notice. Whitespace and length-bounded credential scans passed. No tracked symlink exists. Protected workflow, project-metadata, lock, runtime, benchmark, and script surfaces have no diff. Full Git-object checking passed with only expected unreachable development objects; history remains linear from exact M58 closeout, and only `main` plus the intended neutral feature branch exist. Review of every changed and added file found no actionable issue or backend/native leakage. |
+| Initial hosted exact-head feature gate | Corrected | PR #129 exact head `3d7329311d326692dd725024d312b73bb420ef16` passed run `31482750494` in exactly three Linux-first allocations. Linux job `93751196748` passed in 7m27s before macOS `93752915784` and Windows `93752915830` began; they passed in 2m21s and 4m20s. Linux baseline passed 2,181 tests; Ubuntu CPython 3.13/3.14 and both desktop CPython 3.14 suites passed 2,181 tests with one expected skip. Every platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and Agent World Builder. Hosted reproducibility produced a pure 271,281-byte wheel (`90d0e8daed42c217ae3fd5795feea821744c2e154f361112dbb5c6135998e28a`) and 1,114,755-byte source distribution (`1801d4c777f60c77366cabbb52eca38ca141253014387b5b3ffd4b10671ea124`); installed-wheel and complete release smoke passed. Review then found a valid dangling-symlink gap, so this initial head is not represented as merge-ready. |
+| Dangling-root review regression | Expected failure | The reviewer-derived platform-independent regression simulated `exists() == False` with `is_symlink() == True` for a retired root entry and failed because no lexical root-path violation helper existed. This reproduces the P2 without requiring Windows symlink privileges. |
+| First focused review-correction attempt | Blocked | The managed environment denied uv's existing user cache before formatting began. No formatter, lint, type, or test pass is claimed from that sequence. |
+| Second focused review-correction attempt | Corrected | The correction was format clean and Ruff clean, but strict Pyright rejected five unknown-type diagnostics from untyped monkeypatch lambdas. No type-check or test pass is claimed from that stopped sequence; typed local functions replaced the lambdas. |
+| Corrected focused review gate | 0 | The lexical root helper treats `path.exists() or path.is_symlink()` as a violation, so dangling retired root links fail closed even when ignored by Git. The focused file was format clean, Ruff clean, and strict-Pyright clean; all five assertions passed in 0.28 seconds. Corrected whole-tree and hosted exact-head validation remain pending. |
+| Corrected whole-tree local gate | 0 | The unchanged lock resolved 46 packages in 0.93 ms; all 302 Python files were format clean; Ruff and strict Pyright reported zero findings; all 638 architecture assertions passed in 4.42 seconds; strict docs built in 1.02 seconds with only the known upstream notice; whitespace was clean. Corrected hosted exact-head validation remains pending. |
+
+Hosted exact-head evidence follows only after publication and the required
+Linux-first allocation sequence actually execute.
+
 ## M58 development evidence - 2026-08-10 through 2026-08-11, Windows, CPython 3.12
 
 | Command or review | Exit | Result |
@@ -70,7 +102,7 @@ evidence follows only after those operations actually execute.
 | Corrected real-wgpu, profiles, and vertical slices | 0 | After restoring the locked 45-package CPython 3.12.13 graphics environment, all ten real-wgpu tests passed in 6.62 seconds. Three-repeat two-workload base and three-workload graphics profiles validated. Clockwork Arena reproduced state `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`, three draws, and 16 sprites. Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`, capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`, replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`, committed receipts, six query matches, five replay batches, and passing tests. |
 | Corrected documented M1-M4 benchmark gate | 0 | All four fresh artifact contracts validated on dirty Windows CPython 3.12.13. M1 accepted seven workloads with one of two historical targets observed; M2 accepted four informational workloads with no timing targets; M3 accepted six workloads with zero of two historical targets met; M4 accepted three workloads with its baseline target observed. These local observations are diagnostic, not regression, release, support, or native-admission claims. |
 | Pre-record reproducible distribution and release gate | 0 | Two confirmed-absent builds reproduced a pure 271,132-byte wheel at SHA-256 `60bbe7949601cf2b47d2fadb4bbf9174e8679f030195d40b54dc0c428573f669` and a 1,098,995-byte source distribution at `70d7bd8f117c5a59bc9d73d5de377554142d17e5c5788539c09cb30d45ef0297`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed for `0.1.0a1`. This factual row changes the source archive afterward, so final exact-tree artifact identities remain pending. |
-| Findings-first correctness, scope, archive, credential, identity, history, and integrity review | 0 | No actionable issue remains after exact-built-in-bytes validation. The candidate is confined to 16 verifier/test/RFC/public-document/project-record paths and changes no workflow, runtime package, benchmark, project metadata, or lock. Failure ordering remains framing, status, body block, declared length, independent expected size, then publication; no private response state, raw parser, new header requirement, or unframed completeness claim was added. The 94-entry pure wheel and 480-entry source distribution contain no retired repository-control path, native library, WASM, or bytecode payload. Token-length credential/private-key and added-line identity-marker scans returned no match; `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent. History is linear from exact M56 closeout, only `main` plus the intended neutral feature branch exist, whitespace is clean, and full Git-object checking passes with only expected unreachable historical objects reported. |
+| Findings-first correctness, scope, archive, credential, identity, history, and integrity review | 0 | No actionable issue remains after exact-built-in-bytes validation. The candidate is confined to 16 verifier/test/RFC/public-document/project-record paths and changes no workflow, runtime package, benchmark, project metadata, or lock. Failure ordering remains framing, status, body block, declared length, independent expected size, then publication; no private response state, raw parser, new header requirement, or unframed completeness claim was added. The 94-entry pure wheel and 480-entry source distribution contain no retired repository-control path, native library, WASM, or bytecode payload. Token-length credential/private-key and added-line identity-marker scans returned no match; `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remain absent. History is linear from exact M56 closeout, only `main` plus the intended neutral feature branch exist, whitespace is clean, and full Git-object checking passes with only expected unreachable historical objects reported. |
 | Final record-inclusive static, architecture, documentation, and integrity gate | 0 | The unchanged lock resolved 46 packages and checked the locked 45-package CPython 3.12.13 graphics environment. All 300 Python files were format clean; Ruff and strict Pyright reported zero findings; all 621 architecture assertions passed in 4.78 seconds; strict docs built in 1.06 seconds with only the known upstream notice; whitespace was clean. |
 | Final record-inclusive reproducible distribution and release gate | 0 | Two new confirmed-absent output directories reproduced the pure 271,132-byte wheel at SHA-256 `60bbe7949601cf2b47d2fadb4bbf9174e8679f030195d40b54dc0c428573f669` and the 1,099,267-byte source distribution at `91a3b4e12c1542ab047fce560da8b98c9455e6618f2524e16f661861b3c8d886`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed for `0.1.0a1`. This factual row changes the source archive afterward, so hosted exact-head distribution identity remains authoritative. |
 | Final evidence-inclusive local gate | 0 | The unchanged 46-package lock resolved in 0.82 ms; all 300 Python files remained format clean; Ruff and strict Pyright reported zero findings; all 621 architecture assertions passed in 4.31 seconds; strict docs built in 1.03 seconds with only the known upstream notice; whitespace and full Git-object checking passed, with only expected unreachable historical objects reported. |
@@ -106,7 +138,7 @@ evidence follows only after those operations actually execute.
 | First reproducible-build attempt inside the restricted sandbox | Blocked | `uv build --out-dir .tmp/m56-dist-first` failed before project build because the configured uv cache was outside sandbox access. No build pass is claimed from this attempt; both output directories had been confirmed absent and the same command was rerun with approved cache access. |
 | Pre-record reproducible distribution and release gate | 0 | Two confirmed-absent builds reproduced a pure 270,842-byte wheel at SHA-256 `90766e19603c2e9bda56418d8f41ebbe817ef378fac968b81d5dc5dba9e2a3be` and a 1,087,149-byte source distribution at `93c86e3b89b002075a0af3f4de33c83ac27e1146979deb25e9f34f286f10ab93`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed for `0.1.0a1`. This factual row changes the source archive afterward, so final exact-tree artifact identities remain pending. |
 | First archive inspection attempt | Corrected | The first PowerShell wheel inspection lacked the compression assembly and returned type/null errors, so no archive result is claimed from it. Loading the standard compression assembly corrected the inspection. |
-| Findings-first correctness, scope, archive, credential, identity, history, and integrity review | 0 | Review corrected one RFC consequence that could imply a general URI syntax validator; the accepted wording now describes the bounded character and percent-escape subset. Repeat review found no actionable issue in status/framing/redirect ordering, stable errors, header occurrence, URI bounds, cross-host handling, or per-hop revalidation. The 25-path candidate changes no workflow, runtime package, benchmark, project metadata, or lock. The 94-entry pure wheel and 478-entry source distribution contain no retired repository-control path, native library, WASM, or bytecode payload. Token-length credential/private-key and current-added-line identity-marker scans returned no match; `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent. History is linear from exact M55 closeout, only `main` plus the intended neutral feature branch exist, whitespace is clean, and full Git-object checking passes. |
+| Findings-first correctness, scope, archive, credential, identity, history, and integrity review | 0 | Review corrected one RFC consequence that could imply a general URI syntax validator; the accepted wording now describes the bounded character and percent-escape subset. Repeat review found no actionable issue in status/framing/redirect ordering, stable errors, header occurrence, URI bounds, cross-host handling, or per-hop revalidation. The 25-path candidate changes no workflow, runtime package, benchmark, project metadata, or lock. The 94-entry pure wheel and 478-entry source distribution contain no retired repository-control path, native library, WASM, or bytecode payload. Token-length credential/private-key and current-added-line identity-marker scans returned no match; `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remain absent. History is linear from exact M55 closeout, only `main` plus the intended neutral feature branch exist, whitespace is clean, and full Git-object checking passes. |
 | Post-review focused implementation and documentation gate | 0 | All 223 M47-M56 assertions passed in 2.67 seconds after the wording correction; strict docs built in 1.05 seconds with only the known upstream notice. |
 | Final record-inclusive static, architecture, documentation, and integrity gate | 0 | The unchanged lock resolved 46 packages and checked the locked 45-package graphics environment. All 299 Python files were format clean; Ruff and strict Pyright reported zero findings; all 601 architecture assertions passed in 4.77 seconds; strict docs built in 1.12 seconds with only the known upstream notice; whitespace and full Git-object checks passed. |
 | Final record-inclusive reproducible distribution and release gate | 0 | Two new confirmed-absent output directories reproduced the pure 270,842-byte wheel at SHA-256 `90766e19603c2e9bda56418d8f41ebbe817ef378fac968b81d5dc5dba9e2a3be` and the 1,088,119-byte source distribution at `ff2476fbccf5b260a04d0fc98b4e3d0df33045449ef29c66795915caf1790937`. Isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed for `0.1.0a1`. This factual row changes the source archive afterward, so hosted exact-head distribution identity remains required. |
@@ -262,7 +294,7 @@ execute.
 | Corrected complete supported-Python gate | 0 | The corrected graphics-enabled candidate passed 2,044 tests with 14 expected skips on CPython 3.12.13 in 104.30 seconds, CPython 3.13.13 in 102.38 seconds, and CPython 3.14.5 in 109.80 seconds. |
 | Corrected reproducible distribution, wheel, and release gate | 0 | Two new confirmed-absent build directories reproduced the pure 269,970-byte wheel at `0b225a11e59c265389594f2bebcb7b169c15f85d2c201b0db40278cc256dacf2` and the 1,052,840-byte source distribution at `fb77adbe15a3934e00eac20eed48f33d47ed5fe53cbe67c5eb6d436114c93e67`. Corrected isolated-wheel smoke, fresh ten-artifact staging, and complete release smoke passed for `0.1.0a1`. This factual row changes the source archive afterward, so hosted exact-head build evidence remains authoritative rather than the pre-row sdist hash. |
 | Corrected post-record static, architecture, documentation, and integrity gate | 0 | The unchanged 46-package lock resolved in 0.89 ms; all 295 Python files were format clean; Ruff and strict Pyright reported zero findings; all 504 architecture assertions passed in 5.05 seconds; strict docs built in 1.08 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
-| Final findings-first scope, security, archive, and disclosure review | 0 | Review first identified and corrected the real-connection IDNA ordering gap above. Repeat review found no remaining blocking or non-blocking finding across correctness, failure mapping, ordering, ownership, redirect independence, tests, architecture, documentation, or compatibility. Changed hunks and both new files contained no workflow-identity marker or credential pattern; workflow, metadata, lock, runtime package, and benchmark paths were unchanged; executable/test changes introduced no wgpu, GLFW, NumPy, native, subprocess, or dynamic-evaluation dependency. The corrected wheel and sdist contained no `.ai`, `.agents`, `.codex`, `AGENTS.md`, native-library, WASM, or bytecode payload. |
+| Final findings-first scope, security, archive, and disclosure review | 0 | Review first identified and corrected the real-connection IDNA ordering gap above. Repeat review found no remaining blocking or non-blocking finding across correctness, failure mapping, ordering, ownership, redirect independence, tests, architecture, documentation, or compatibility. Changed hunks and both new files contained no workflow-identity marker or credential pattern; workflow, metadata, lock, runtime package, and benchmark paths were unchanged; executable/test changes introduced no wgpu, GLFW, NumPy, native, subprocess, or dynamic-evaluation dependency. The corrected wheel and sdist contained no `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, `[retired control file]`, native-library, WASM, or bytecode payload. |
 | Hosted exact-head feature gate | 0 | Ready PR #108 exact head `170db846112e27b9d11377da69784c69a6565bb4` passed run `31316474864` in exactly three Linux-first allocations: Linux `93252443745` passed in 7m02s, then macOS `93253220602` passed in 2m16s and Windows `93253220599` in 3m59s. Linux baseline passed 2,048 tests; Ubuntu CPython 3.13/3.14 and both desktop CPython 3.14 suites each passed 2,048 tests with one expected skip. Every platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and Agent World Builder. Hosted reproducibility passed for a 269,957-byte wheel (`0bbdcc263fa1b28b7c0b8e29559b45b47df28b7d61a43eb23feb941d6e1e3386`) and 1,053,252-byte sdist (`ec58993d27bdfdfe06f16bd963651fb68cd04c842a50649f1e8ed675f1af4581`); installed-wheel and complete ten-artifact release smoke passed. |
 | Feature review, squash, and cleanup audit | 0 | PR #108 remained ready, exact-head/exact-base, `MERGEABLE/CLEAN`, and three-check green after a delayed audit found zero reviews, issue comments, inline comments, or threads. Head-pinned GitHub-verified squash `eb083089bfff774c0df2b115428901357c9084b2` has tree `ab92b60f4e05faccc2b0059d3d9cfad6b0e0eaef` exactly equal to reviewed feature head `170db846112e27b9d11377da69784c69a6565bb4`, sole parent M51 closeout `047478d0c7fb873ae94aaa6e322b5b08903ed354`, and standalone DCO. No post-merge `main` run was allocated; the feature branch was deleted locally/remotely, and no tag or release was created. |
 | Four-file integration-record local gate | 0 | Exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md` changed. The unchanged lock resolved; all 295 Python files were format clean; Ruff and strict Pyright reported zero findings; all 504 architecture assertions passed in 3.65 seconds; strict docs built in 1.06 seconds; and whitespace was clean. Two fresh builds reproduced a 269,970-byte wheel (`0b225a11e59c265389594f2bebcb7b169c15f85d2c201b0db40278cc256dacf2`) and 1,054,384-byte sdist (`457aa72b9b515fcf2e8d70b6ab588ac9f7926da9adcd2342b571d30ae3a4f5f1`); isolated-wheel and complete ten-artifact release smoke passed. This factual row changes the source archive, so the documentation-only hosted exact-head result remains authoritative. |
@@ -460,7 +492,7 @@ Closeout-record evidence follows only after those commands actually complete.
 | Corrected synthetic public-shell cross-version gate | 0 | The seven M45 architecture tests, including exact extracted-shell execution under GitHub Actions' fail-fast/pipefail flags, passed on CPython 3.12 in 0.50 seconds, CPython 3.13 in 0.85 seconds, and CPython 3.14 in 0.89 seconds. This is deterministic local fixture evidence, not a real release request. |
 | Final recorded-tree static and architecture gate | 0 | The unchanged lock resolved 46 packages in 0.82 ms; all 287 Python files passed Ruff format and lint; strict Pyright reported zero diagnostics; all 373 architecture tests passed in 3.13 seconds; strict docs built in 0.95 seconds; the exact extracted Bash step parsed under Git Bash; workflow YAML and whitespace passed. |
 | Final recorded-tree complete suite | 0 | The complete exact CPython 3.12 graphics-enabled suite passed 1,913 tests with 14 expected platform/capability skips in 109.16 seconds. |
-| Final scope, credential, identity, and Git-object audit | 0 | No diff exists in the pull-request CI workflow, runtime source, `pyproject.toml`, `uv.lock`, or benchmarks. CI, release-workflow, pyproject, and lock SHA-256 values are respectively `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`, `84da9dfd05f02cbf13403d9ab266808b2ed771fa549fd26a1aad0518f3855a6f`, `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`, and `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. New additions contain no repository-visible assistant identity terms or credential values; full Git object checking passed. No remaining local review finding was identified. |
+| Final scope, credential, identity, and Git-object audit | 0 | No diff exists in the pull-request CI workflow, runtime source, `pyproject.toml`, `uv.lock`, or benchmarks. CI, release-workflow, pyproject, and lock SHA-256 values are respectively `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`, `84da9dfd05f02cbf13403d9ab266808b2ed771fa549fd26a1aad0518f3855a6f`, `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`, and `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. New additions contain no repository-visible tooling identity terms or credential values; full Git object checking passed. No remaining local review finding was identified. |
 | Post-record exact-tree gate | Corrected | The first `uv lock --check` attempt exited 1 before lock evaluation because the restricted sandbox denied access to uv's existing user cache; the approved cache-access rerun resolved the unchanged 46-package lock in 0.80 ms. All 287 Python files passed formatting, Ruff passed, strict Pyright reported zero diagnostics, all 373 architecture tests passed in 3.31 seconds, strict docs built in 1.05 seconds, and whitespace passed. |
 | Staged-inventory reproducibility and release gate | 0 | The exact 29-path staged inventory had no whitespace error. Two fresh builds matched exactly: the 268,458-byte wheel SHA-256 is `01cbd4bb5d9693ffd6289d513c6bba1d56f71db4863383b50f653597a9cd4775`, and the 981,484-byte source distribution SHA-256 is `ed3df9ff0627943c6e2baa689e1faa6e83a4181aa6a9b9f695ad9c87ff7267bc`. Isolated-wheel smoke passed; complete ten-artifact staging and release smoke passed. |
 | Final precommit history and publication audit | 0 | After `git fetch --prune origin`, branch `HEAD`, local `main`, `origin/main`, `origin/HEAD`, and the merge base all resolved to exact M44 closeout `2c5e312a97028d0b835fc174b8abb51df22ea314`; no commit existed on the feature branch yet. The only local branches were `main` and the intended M45 branch, and the only remote branch was `origin/main`. GitHub reported `main` as default, no open pull request, no release, and no remote tag. |
@@ -557,10 +589,10 @@ Closeout-record evidence follows only after those commands actually complete.
 | Final thread-aware review audit | 0 | The helper re-fetch found the sole P2 thread outdated after correction. A reply linked exact correction commit `3a5004217598c82eca5b8286442e7d8a502642b1`, bounded-stream semantics, and corrected hosted run `31274622529`; GraphQL then reported thread `PRRT_kwDOTtqoGs6XgHH9` resolved. A final re-fetch found no unresolved thread or new conversation comment. GitHub reported exact head/base, all three checks successful, `MERGEABLE`, and `CLEAN`. |
 | PR #80 squash integration audit | 0 | PR #80 merged at `2026-08-08T19:44:48Z` as squash `8b7038cc203cead16d1dd88c746b584b6d0c37ca`. Its sole parent is exact M42 closeout `2ed26ebc5e5a388a02ddd1ae0fd8114f4c3e1e79`; tree `6c5ed36a8454a3ab16fec82152df13038c41ce84` exactly equals the reviewed corrected head; GitHub reports `verified=true`, `reason=valid`; and the message contains a standalone maintainer DCO trailer. No `main` run was allocated. The remote feature branch was deleted by the merge, the local feature branch was deleted after fast-forwarding `main`, and remote pruning left only synchronized `main` before this record branch. Full Git object checking reported only expected unreachable historical objects and no corruption error. |
 | Integration-record local gate | 0 | The unchanged lock resolved 46 packages in 0.86 ms; all 283 Python files passed formatting and Ruff; strict Pyright reported zero diagnostics; all 361 architecture tests passed in 2.15 seconds; and strict docs built in 0.91 seconds with only the known upstream notice. Confirmed-absent `.tmp/m43-integration-dist` and `.tmp/m43-integration-release` paths then received a universal wheel/sdist and complete ten-artifact candidate; isolated-wheel and release smoke passed. Exactly four Markdown paths changed. |
-| Final integration-record gate | 0 | On the recorded tree, the unchanged lock resolved 46 packages in 0.77 ms; all 283 Python files passed formatting and Ruff; strict Pyright reported zero diagnostics; all 361 architecture tests passed in 2.04 seconds; and strict docs built in 0.91 seconds. Exactly four Markdown paths changed, whitespace and full Git-object checks passed, and `.ai`, `.agents`, `.codex`, and `AGENTS.md` remained absent. |
+| Final integration-record gate | 0 | On the recorded tree, the unchanged lock resolved 46 packages in 0.77 ms; all 283 Python files passed formatting and Ruff; strict Pyright reported zero diagnostics; all 361 architecture tests passed in 2.04 seconds; and strict docs built in 0.91 seconds. Exactly four Markdown paths changed, whitespace and full Git-object checks passed, and `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remained absent. |
 | Integration-record hosted gate | 0 | PR #81 exact head `3350a8eb59fae09cd0764a400540d0d51722866e` classified four paths as `documentation`. Run `31275425828` allocated only Linux job `93148087116`, which passed in 33 seconds: lock, documentation environment, formatting, Ruff, strict docs, all 361 architecture tests in 3.08 seconds, two universal builds, isolated-wheel smoke, release staging, and complete release smoke. Desktop umbrella job `93148143924` skipped with zero steps and no runner; substantive type/full-suite, compatibility, graphics, profile, and vertical-slice steps did not run. |
 | Integration-record review, squash, and cleanup | 0 | Immediately before merge, GitHub reported PR #81 exact base `8b7038cc203cead16d1dd88c746b584b6d0c37ca`, exact head `3350a8eb59fae09cd0764a400540d0d51722866e`, `MERGEABLE`, `CLEAN`, one successful Linux check, one skipped zero-step desktop umbrella, and no review, comment, or thread. Squash `deab03fd1f01c3baea8c55494ec1205f53495417` has sole parent the feature squash, exact reviewed tree `0725d4a05a2033b868e44b050d58023b4cdb61e3`, a valid GitHub signature, and standalone DCO trailer. No post-merge `main` run was allocated. The branch was deleted remotely, then locally after fast-forwarding `main`; remote pruning left only `main` before this closeout branch. |
-| Closeout-record local gate | 0 | The unchanged lock resolved 46 packages in 0.79 ms; all 283 Python files passed formatting and Ruff; strict Pyright reported zero diagnostics; all 361 architecture tests passed in 2.03 seconds; and strict docs built in 0.88 seconds with only the known upstream notice. Exactly three `.project` Markdown paths changed, whitespace and full Git-object checks passed, and `.ai`, `.agents`, `.codex`, and `AGENTS.md` remained absent. |
+| Closeout-record local gate | 0 | The unchanged lock resolved 46 packages in 0.79 ms; all 283 Python files passed formatting and Ruff; strict Pyright reported zero diagnostics; all 361 architecture tests passed in 2.03 seconds; and strict docs built in 0.88 seconds with only the known upstream notice. Exactly three `.project` Markdown paths changed, whitespace and full Git-object checks passed, and `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remained absent. |
 
 ## M42 development evidence - 2026-08-09, Windows, CPython 3.12
 
@@ -579,25 +611,25 @@ Closeout-record evidence follows only after those commands actually complete.
 | Real-wgpu, profile, and vertical-slice gate | 0 | All ten real-wgpu integration tests passed in 6.23 seconds; the two-workload base and three-workload graphics M7 profiles validated; Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7` and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`; all five replay batches/tests passed. |
 | Complete cross-version compatibility gate | 0 | Exact frozen non-graphics CPython 3.13 passed 1,840 tests with 14 expected skips in 92.16 seconds. Exact CPython 3.14 passed the same counts in 97.07 seconds. Exact CPython 3.12 plus the graphics extra was then restored. |
 | Fresh reproducible distribution and release gate | 0 | Five output paths were confirmed absent before use. Two fresh same-source builds matched exactly: the 267,707-byte wheel SHA-256 is `6957bcc95af86ae36832549615e4324a32a86bbb9669af87de9f6318617536d5`; the 942,424-byte sdist SHA-256 is `84c2f28f610745ee0bbc3a497b2a0bb2678b7f6e233627a41beba394c3df90ad`. Installed-wheel smoke, complete ten-artifact staging/release smoke, and source-archive M42 inventory passed. Exact staged synthetic documents passed protocol `/3` for mutable draft, mutable published prerelease, and immutable published prerelease state without emitting timestamps or immutable policy. |
-| Scope, credential, archive, and Git-object audit | 0 | No diff exists in the pull-request CI workflow, runtime source, pyproject, or lock. CI, release workflow, pyproject, and lock SHA-256 values are `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`, `a15921df77a64c51889d8d6353cce7e5f6924b38396a5b84bd39c5a5accbfefe`, `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`, and `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Credential/private-key scanning found no value; the validator contains no eval, exec, subprocess, shell, requests, urllib, socket, or HTTP client; the wheel contains no verifier/native object; `.ai` is absent; and full Git object checking passed. |
+| Scope, credential, archive, and Git-object audit | 0 | No diff exists in the pull-request CI workflow, runtime source, pyproject, or lock. CI, release workflow, pyproject, and lock SHA-256 values are `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`, `a15921df77a64c51889d8d6353cce7e5f6924b38396a5b84bd39c5a5accbfefe`, `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`, and `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Credential/private-key scanning found no value; the validator contains no eval, exec, subprocess, shell, requests, urllib, socket, or HTTP client; the wheel contains no verifier/native object; `[retired control directory]` is absent; and full Git object checking passed. |
 | Final recorded-tree static and architecture gate | 0 | The unchanged lock resolved 46 packages in 0.83 ms; whole-tree formatting reported 282 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.94 seconds, all 397 validator plus complete architecture tests passed with two Windows symlink-capability skips in 6.87 seconds, the changed release workflow parsed as YAML, CI/runtime/metadata/lock scope and whitespace passed, and full Git object checking remained clean. |
 | Hosted exact-head gate | 0 | Ready PR #77 run `31271273535` passed exact head `45cd04e627f44400e8bd3adcbeeaf1756160f745` in exactly three allocations. Linux job `93137568146` passed in 6m54s, Windows `93138322832` in 3m39s, and macOS `93138322836` in 1m59s. Ubuntu CPython 3.12 passed 1,853 tests; Ubuntu 3.13/3.14 and both desktop 3.14 suites each passed 1,853 tests with one expected skip. All platforms passed ten real-wgpu tests, graphics profiling, and both deterministic samples. Hosted reproducibility reported a 267,693-byte wheel SHA-256 `9a9881ce0fa918e1652b2be8019aede5b2e4c4c403565cc5eb570db8454101d7` and a 943,096-byte sdist SHA-256 `370278b63994c913c74c7675e2ed02f2ca17cf3023ff26f96b64cf44faf26fc0`; installed-wheel and complete ten-artifact release smoke passed. |
 | Review and squash integration audit | 0 | Immediately before merge, PR #77 was ready, `MERGEABLE`/`CLEAN`, exact-base/exact-head, all three checks successful, and had zero review, issue comment, review comment, or review thread. Squash `28dd9d7e282ec85c06b71ed340f3cfcea379d6be` has sole parent exact M41 closeout `0dec2254a9d9483b27d158aaad108340e9c94e28`; tree `7e65795a6b44de7b3ff393128274eda207c58dc3` exactly equals reviewed head; GitHub reports `verified=true`, `reason=valid`; and the message has a standalone DCO trailer. No post-merge `main` run was allocated. |
 | Post-merge cleanup baseline | 0 | Fetch pruned the deleted remote feature branch. The exact reviewed tree was proven before the local squash-source branch was force-deleted. Clean local `main`, `origin/main`, and `origin/HEAD` resolve to the M42 squash, and only `main` remained locally/remotely before the integration-record branch was created. |
 | Integration-record sandbox gate | Mixed | Strict docs built in 0.95 seconds and all 356 architecture tests passed in 2.34 seconds. The concurrently requested static commands did not execute because the managed filesystem sandbox denied uv access to its existing user cache, so no pass is claimed for that first static batch. |
 | Corrected integration-record local gate | 0 | With the required read access to the existing uv cache, the unchanged lock resolved 46 packages in 0.79 ms, whole-tree formatting reported 282 files, Ruff passed, and strict Pyright reported zero diagnostics. The four-path documentation scope and whitespace checks passed. |
-| Final integration-record gate | 0 | The unchanged lock resolved 46 packages in 0.85 ms; whole-tree formatting reported 282 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.89 seconds, and all 356 architecture tests passed in 2.02 seconds. Exactly four Markdown paths changed, whitespace and full Git object checking passed, and `.ai` remained absent. |
+| Final integration-record gate | 0 | The unchanged lock resolved 46 packages in 0.85 ms; whole-tree formatting reported 282 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.89 seconds, and all 356 architecture tests passed in 2.02 seconds. Exactly four Markdown paths changed, whitespace and full Git object checking passed, and `[retired control directory]` remained absent. |
 | Integration-record hosted gate | 0 | PR #78 exact head `b08c4ff57c2d995fdce73f2e835f2ca3a8075a70` classified four changed paths as documentation. Run `31271986168` allocated only Linux job `93139403348`, which passed in 33 seconds with 356 architecture tests, universal build, installed-wheel smoke, and complete release smoke. Desktop umbrella job `93139476046` skipped with zero steps and no runner. The PR had no review, issue comment, review comment, or thread. |
 | Integration-record squash and cleanup audit | 0 | PR #78 squash-integrated as `35aa6c46f0d128f66535d75dff342f0b7f6bcdeb`; its sole parent is feature squash `28dd9d7e282ec85c06b71ed340f3cfcea379d6be`, tree `fbdb7c0caf0ec1db7c0c331309c92e1abc66d5f5` exactly equals the reviewed record head, GitHub reports `verified=true` and `reason=valid`, and the message contains a standalone DCO trailer. No post-merge `main` run was allocated. Fetch pruned the deleted remote record branch and the local branch was force-deleted only after equality was established. Only clean synchronized `main` remains. |
 | Redundant local tree spelling | 1 | A supplementary `rev-parse` spelling was mangled by PowerShell and failed, so no evidence is claimed from it. The authenticated feature-head and squash-commit API documents independently reported the same exact tree used by the successful integration audit. |
-| Closeout-record local gate | 0 | The unchanged lock resolved 46 packages in 0.91 ms; whole-tree formatting reported 282 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.89 seconds, and all 356 architecture tests passed in 2.01 seconds. Exactly three `.project` Markdown paths changed, whitespace and full Git object checking passed, and `.ai` remained absent. |
+| Closeout-record local gate | 0 | The unchanged lock resolved 46 packages in 0.91 ms; whole-tree formatting reported 282 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.89 seconds, and all 356 architecture tests passed in 2.01 seconds. Exactly three `.project` Markdown paths changed, whitespace and full Git object checking passed, and `[retired control directory]` remained absent. |
 
 ## M41 development evidence - 2026-08-09, Windows, CPython 3.12
 
 | Command or check | Exit | Result |
 | --- | ---: | --- |
 | M40 final closeout audit | 0 | Zero-run PR #73 exact head `e1b07f781096370fa3b6f820bc80dc1d4c585279` changed only three `.project` paths and had no check, run, review, comment, or thread. Squash `9983e0da88b6aef999d26498cc6438f0b3c5927b` has sole parent `67d03d41430dc24bf81a894752b3641de8e521ed`; tree `d76b9a348690d6a35af774755cdc4a836240069a` exactly equals the reviewed head; GitHub reports `verified=true`, `reason=valid`; and the message has a standalone DCO trailer. No post-merge `main` run was allocated. The branch was pruned remotely and deleted locally. |
-| Repository/history/release baseline audit | 0 | Clean local `main`, `origin/main`, and `origin/HEAD` all resolved to `9983e0da88b6aef999d26498cc6438f0b3c5927b`; only `main` existed locally/remotely, no PR, local/remote tag, or GitHub release existed, and `git fsck --full --no-dangling` passed. `AGENTS.md` is absent; `MAINTAINERS.md` is authoritative. |
+| Repository/history/release baseline audit | 0 | Clean local `main`, `origin/main`, and `origin/HEAD` all resolved to `9983e0da88b6aef999d26498cc6438f0b3c5927b`; only `main` existed locally/remotely, no PR, local/remote tag, or GitHub release existed, and `git fsck --full --no-dangling` passed. `[retired control file]` is absent; `MAINTAINERS.md` is authoritative. |
 | Baseline hashes and release focus | 0 | CI SHA-256 was `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow was `3983cd82f0201fcac8fe2156f77715e1136998781b428c60a192b3f3a3522871`; M40 verifier was `f618eeb897ba8a9b48fb01cb79ca8f8337453053610656102adef5abc7a5f141`; pyproject and lock were `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1` and `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. All 25 inherited validator/M40/workflow tests passed with one Windows symlink-capability skip in 2.30 seconds. |
 | Current primary release-notes direction | 0 | Official GitHub CLI documentation states that `--notes-file` reads release notes from a file, and the versioned REST release schema exposes the source notes as `body`. The existing authenticated draft document therefore supports an exact local/source-body comparison without another API call, permission, workflow step, or runner allocation. |
 | Initial M41 behavior gate | Mixed | Focused formatting, Ruff, and strict Pyright passed. The first behavior run exposed Windows text-mode LF/CRLF normalization in the test fixture, causing valid synthetic drafts to mismatch, and pytest derived an overlong temporary path from the oversized byte parameter. No behavior-suite pass is claimed from that run. |
@@ -611,7 +643,7 @@ Closeout-record evidence follows only after those commands actually complete.
 | Findings-first notes-member correction | Corrected | Review found that a symlink substituted specifically for `RELEASE_NOTES.md` failed safely but used the generic asset-entry code because asset scanning ran first. Notes validation now precedes asset scanning, so every invalid notes member uses `release_draft.invalid_notes`; a capability-aware symlink regression covers the correction. Focused format/lint/strict typing passed with 30 tests and two Windows symlink-capability skips in 3.61 seconds. |
 | Corrected complete architecture and suite gate | 0 | All 377 validator plus complete architecture tests passed with two Windows symlink-capability skips in 4.95 seconds. The complete exact CPython 3.12 graphics suite then passed 1,830 tests with 13 expected skips in 98.95 seconds. |
 | Corrected fresh distribution and release gate | 0 | Three final output paths were confirmed absent before use. Two fresh same-source builds matched exactly: the 267,535-byte wheel SHA-256 is `7a33fd4d3224db7f1a8fb790a6bcbfa694c3b7312a3a43c75e82d9577c4e968c`; the 933,796-byte sdist SHA-256 is `891a004f3762761c6e2a1871f5e0d0b59a6730c635138d7e8250d4b32891b592`. Installed-wheel smoke, complete ten-artifact staging/release smoke, source-archive M41 inventory, and exact staged synthetic-draft notes-and-assets verification under protocol `/2` passed. |
-| Scope, credential, archive, and Git-object audit | 0 | Both workflow hashes remain exact baseline values, and no diff exists in either workflow, `src/ludoweave`, `pyproject.toml`, or `uv.lock`. Credential/private-key scanning found no value, and the validator contains no eval, exec, subprocess, shell, requests, urllib, socket, or HTTP client. The wheel contains no verifier or native object; the sdist contains the M41 verifier, RFC, unit tests, and architecture test. `.ai` is absent, whitespace passed, and `git fsck --full --no-dangling` passed. No remaining blocking or non-blocking review finding was identified. |
+| Scope, credential, archive, and Git-object audit | 0 | Both workflow hashes remain exact baseline values, and no diff exists in either workflow, `src/ludoweave`, `pyproject.toml`, or `uv.lock`. Credential/private-key scanning found no value, and the validator contains no eval, exec, subprocess, shell, requests, urllib, socket, or HTTP client. The wheel contains no verifier or native object; the sdist contains the M41 verifier, RFC, unit tests, and architecture test. `[retired control directory]` is absent, whitespace passed, and `git fsck --full --no-dangling` passed. No remaining blocking or non-blocking review finding was identified. |
 | Final recorded-tree static and architecture gate | 0 | The unchanged lock resolved 46 packages in 0.83 ms; whole-tree formatting reported 281 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.89 seconds, all 377 validator plus complete architecture tests passed with two Windows symlink-capability skips in 5.10 seconds, whitespace and scope-boundary checks passed, and full Git object checking remained clean. |
 | Hosted exact-head gate | 0 | Ready PR #74 run `31269399211` passed exact head `ec051d4fd2da80235da1a94642158ebe384cb2b0` in exactly three allocations. Linux job `93132713018` passed in 6m55s, Windows `93133449986` in 2m44s, and macOS `93133449993` in 2m12s. Classification reported 18 changed paths and `substantive`. Ubuntu CPython 3.12 passed 1,833 tests; Ubuntu 3.13/3.14 and both desktop 3.14 suites each passed 1,833 tests with one expected skip. All platforms passed ten real-wgpu tests, graphics profiling, and both deterministic samples. Hosted reproducibility reported a 267,521-byte wheel SHA-256 `5f74478b0516e15ae3e0caa841f6b125f19f742efba290b8f0c0c031ab65ce68` and a 934,831-byte sdist SHA-256 `426080ee88d0ce9c040a053e3258e8cd74f6f4602b78b90cec0df9ad8eed700f`; installed-wheel and complete release smoke passed. |
 | Review and squash integration audit | 0 | Immediately before merge, PR #74 was ready, `MERGEABLE`/`CLEAN`, exact-base/exact-head, all three checks successful, and had zero review, issue comment, review comment, review, or review thread. Squash `89a641559c246e971869a3ae06a878de81bffcee` has sole parent exact M40 closeout `9983e0da88b6aef999d26498cc6438f0b3c5927b`; tree `6446826ee0b35c02dcebc78b9fad3f55caaca0c5` exactly equals reviewed head; GitHub reports `verified=true`, `reason=valid`; and the message has a standalone DCO trailer. No post-merge `main` run was allocated. |
@@ -639,7 +671,7 @@ Closeout-record evidence follows only after those commands actually complete.
 | Real-wgpu, profile, and vertical-slice gate | 0 | All ten real-wgpu integration tests passed in 6.07 seconds; the two-workload base and three-workload graphics M7 profiles validated; Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7` and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`; all five replay batches/tests passed. |
 | Complete cross-version compatibility gate | 0 | Exact frozen non-graphics CPython 3.13 passed 1,808 tests with 13 expected skips in 93.40 seconds. Exact CPython 3.14 passed the same counts in 98.05 seconds. Exact CPython 3.12 plus the graphics extra was then restored. |
 | Fresh reproducible distribution and release gate | 0 | Three output paths were confirmed absent before use. Two fresh same-source builds matched exactly: the 267,351-byte wheel SHA-256 is `a1a7cf55d515d80481d84d7e48452b43ba4395c3643157f0eb7d2d12c5244a10`; the 925,549-byte sdist SHA-256 is `3e3023e9d74173bce63713c12090d3796e18c00da5137436cc2cd8f18ce82bf7`. Installed-wheel smoke passed, ten artifacts totaling 1,324,128 bytes were staged, complete release smoke passed, and the M40 verifier accepted a synthetic uploaded draft carrying the exact staged names, sizes, and SHA-256 digests. |
-| Scope, archive, credential, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `pyproject.toml`, `uv.lock`, or the pull-request CI workflow. The wheel contains only Python/package metadata and no new script or native object; the sdist contains the M40 verifier, RFC, unit tests, and architecture test. Credential-value scanning found no credential/private-key material; the verifier contains no eval, exec, subprocess, shell, socket, request, URL, or network client. Both workflows parsed as YAML, `.ai` is absent, whitespace passed, and `git fsck --full --no-dangling` passed. CI SHA-256 remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow is `3983cd82f0201fcac8fe2156f77715e1136998781b428c60a192b3f3a3522871`. |
+| Scope, archive, credential, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `pyproject.toml`, `uv.lock`, or the pull-request CI workflow. The wheel contains only Python/package metadata and no new script or native object; the sdist contains the M40 verifier, RFC, unit tests, and architecture test. Credential-value scanning found no credential/private-key material; the verifier contains no eval, exec, subprocess, shell, socket, request, URL, or network client. Both workflows parsed as YAML, `[retired control directory]` is absent, whitespace passed, and `git fsck --full --no-dangling` passed. CI SHA-256 remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow is `3983cd82f0201fcac8fe2156f77715e1136998781b428c60a192b3f3a3522871`. |
 | Final recorded-tree static and architecture gate | 0 | The unchanged lock resolved 46 packages in 0.78 ms; whole-tree formatting reported 280 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 1.05 seconds, all 365 validator plus complete architecture tests passed with one Windows symlink-capability skip in 6.16 seconds, both workflows parsed as YAML, and whitespace passed. |
 | Final recorded-tree complete suite | 0 | The complete exact CPython 3.12 graphics implementation-tree suite passed 1,818 tests with 12 expected skips in 101.70 seconds. |
 | Hosted exact-head gate on initial implementation commit | Review finding | Pull request #71 run `31266763465` passed exact head `d3184c06df974ffecf61c55f78f44fb32edae466` in exactly three allocations: Linux job `93126055035` in 6m41s, Windows job `93126750452` in 2m55s, and macOS job `93126750459` in 2m56s. Review then identified that `json.loads` can raise `RecursionError` for pathological nesting or `ValueError` for an integer beyond Python's digit limit; neither was converted into the promised structured failure. No merge is claimed for this head. |
@@ -755,7 +787,7 @@ Closeout-record evidence follows only after those commands actually complete.
 | Final corrected static and focused gate | 0 | Whole-tree formatting reported 271 files, Ruff passed, strict Pyright reported zero diagnostics, strict docs built in 0.94 seconds, all 70 focused M34-M37 workflow/release/classifier tests passed in 0.76 seconds, and whitespace passed. |
 | Final corrected cross-version tests | 0 | The complete final 3.12 suite passed 1,760 tests with nine skips in 93.38 seconds. The focused hardened classifier/boundary gate passed 36 tests on CPython 3.13 in 1.20 seconds and CPython 3.14 in 0.88 seconds after their earlier complete-suite passes. |
 | Final corrected artifact gate | 0 | Restored exact CPython 3.12 plus graphics, rebuilt the universal wheel/sdist, passed isolated-wheel smoke, staged ten artifacts in confirmed-absent `.tmp/m37-reviewed-final`, and passed complete release smoke. The wheel contains 94 entries and no native/WASM file; the 431-entry sdist contains the M37 classifier, RFC, unit tests, and architecture tests. |
-| Final static, scope, package, credential, identity, and Git-object audit | 0 | The unchanged 46-package lock resolved in 0.96 ms; whole-tree formatting reported 271 files; Ruff and strict Pyright passed; strict docs built in 1.00 second; all 70 focused tests passed in 1.14 seconds; YAML and whitespace passed. No diff exists in `src`, `benchmarks`, `pyproject.toml`, `uv.lock`, or `release.yml`. CI SHA-256 is `e162010dddab856dd0621957b88efaec6ab20bc6cace1116a842226da4431223`; release SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; lock SHA-256 remains `e2c7b4c801e59dba77a6c0cc6efc45e27d0ba466d17c2e5ed76c0dd27ea11ed`. Credential vocabulary matched only the maintainer checklist; no value pattern was found. New/changed public surfaces contain no retired workflow-marker or non-neutral branch reference; `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent. `git fsck --full --no-dangling` passed. |
+| Final static, scope, package, credential, identity, and Git-object audit | 0 | The unchanged 46-package lock resolved in 0.96 ms; whole-tree formatting reported 271 files; Ruff and strict Pyright passed; strict docs built in 1.00 second; all 70 focused tests passed in 1.14 seconds; YAML and whitespace passed. No diff exists in `src`, `benchmarks`, `pyproject.toml`, `uv.lock`, or `release.yml`. CI SHA-256 is `e162010dddab856dd0621957b88efaec6ab20bc6cace1116a842226da4431223`; release SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; lock SHA-256 remains `e2c7b4c801e59dba77a6c0cc6efc45e27d0ba466d17c2e5ed76c0dd27ea11ed`. Credential vocabulary matched only the maintainer checklist; no value pattern was found. New/changed public surfaces contain no retired workflow-marker or non-neutral branch reference; `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remain absent. `git fsck --full --no-dangling` passed. |
 
 ## M37 feature review, correction, hosted validation, and integration - 2026-08-08
 
@@ -814,7 +846,7 @@ allocations; no run result is pre-claimed here.
 | Restored CPython 3.12 complete suite | 0 | Restored the exact 45-package graphics environment; the complete suite passed 1,724 tests with nine expected skips in 105.48 seconds. |
 | Distribution, graphics, profile, and vertical-slice gate | 0 | Built the universal wheel and sdist; isolated-wheel smoke passed; confirmed-absent `.tmp/release-candidate-m36-reviewed` received ten artifacts and release smoke passed; ten real-wgpu tests passed in 6.60 seconds; base and graphics profile artifacts validated; and both deterministic vertical slices reproduced their M35 hashes. |
 | Findings-first fail-early refinement | 0 | Operational review moved managed 3.13/3.14 installation immediately after uv setup so interpreter availability fails before expensive quality/build/graphics work. Architecture regressions fix that ordering. Final 268-file formatting, Ruff, strict Pyright, strict docs, YAML parsing, 34 focused tests, and whitespace passed. |
-| Scope, workflow, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or `release.yml`; the release-workflow SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. Final CI SHA-256 is `ab4d4e5e71e733abfccc20b35944e90dcf9c5cf6dba433f3bdf62a999a1d5fa7`. The 94-entry wheel has no native/WASM payload. Credential-pattern matches were expected test/service vocabulary only; `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent; `git fsck --full --no-dangling` passed. |
+| Scope, workflow, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or `release.yml`; the release-workflow SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. Final CI SHA-256 is `ab4d4e5e71e733abfccc20b35944e90dcf9c5cf6dba433f3bdf62a999a1d5fa7`. The 94-entry wheel has no native/WASM payload. Credential-pattern matches were expected test/service vocabulary only; `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remain absent; `git fsck --full --no-dangling` passed. |
 | Final implementation-tree `uv run --frozen pytest -q` | 0 | The complete CPython 3.12 suite passed 1,724 tests with nine expected skips in 106.27 seconds after the fail-early refinement. Only these factual `.project/**` evidence rows were added afterward. Hosted proof remains pending. |
 | DCO feature commit and ready PR | 0 | DCO-signed commit `38589bbe6b4c688b581bc972f0ba1e4e39d5cd93`, exact tree `39d29fa863fee46665bf02856f4d9657068b573f`, was pushed and published as ready PR #60 against exact base `ba9125389ab2b2b760ca7115b5b1b03c447f4190`. |
 | Hosted consolidation and review audit | 0 | Pull-request run `31232803658` passed exactly three allocations on the exact feature head: Linux quality/compatibility/graphics/distribution in 6m36s, Windows graphics/3.14 compatibility in 3m32s, and macOS graphics/3.14 compatibility in 2m16s. Step-level inspection confirmed every retained slice passed. GitHub reported PR #60 `MERGEABLE` and `CLEAN`, with no top-level comment, review, or review thread. This proves allocation consolidation and retained coverage; it does not claim a billed-minute reduction. |
@@ -844,7 +876,7 @@ allocations; no run result is pre-claimed here.
 | Fresh release stage and smoke | 0 | Confirmed `.tmp/release-candidate-m35-reviewed` absent, staged ten deterministic artifacts, and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M35 evidence smoke. |
 | Real-wgpu and profiling gates | 0 | All ten wgpu integration tests passed in 6.45 seconds. The two-workload base and three-workload graphics M7 profile artifacts both validated under `ludoweave.profile.m7/1`. |
 | Deterministic vertical slices | 0 | Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7` and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`. |
-| Scope, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or either workflow. CI SHA-256 remains `3ca17d0e1fad70cd898c90451701ba6733ecfb5235d5c03d898fc9c75bf5871d`; release SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. The 94-entry wheel has no native/WASM file; the 50-entry sample bundle contains the M35 evaluator and exact manifest. Credential-pattern matches were expected command/service vocabulary only; no credential value was found. `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent, and `git fsck --full --no-dangling` passed. Hosted validation remains pending. |
+| Scope, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or either workflow. CI SHA-256 remains `3ca17d0e1fad70cd898c90451701ba6733ecfb5235d5c03d898fc9c75bf5871d`; release SHA-256 remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. The 94-entry wheel has no native/WASM file; the 50-entry sample bundle contains the M35 evaluator and exact manifest. Credential-pattern matches were expected command/service vocabulary only; no credential value was found. `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remain absent, and `git fsck --full --no-dangling` passed. Hosted validation remains pending. |
 | DCO feature commit and ready PR | 0 | DCO-signed commit `74da3c169552c658528b3cfeb64ca2f11ae613d0` was pushed and published as ready PR #58 against exact base `277de9052e768a5f70d32f1a2f67ec9f93353723`. One PowerShell audit command misparsed unquoted `^{tree}` syntax and made no repository change; its quoted retry verified the tree and clean worktree. |
 | Initial hosted run `31231040437` | Corrected | All eight essential jobs passed on exact head `74da3c169552c658528b3cfeb64ca2f11ae613d0`, but automated review correctly found that the generic identifier grammar disagreed with all three installed conformance runners. IDs without a separator could be admitted and valid underscore IDs could be rejected. No merge-ready claim is made for this head. |
 | Review-requested adapter-ID correction | 0 | Implementation and adapter identities now use the exact shared M17-M19 grammar `[a-z][a-z0-9]*(?:[._-][a-z0-9]+){1,15}` and remain equal. Regressions prove underscore admission and separator-free rejection. All 100 focused admission/installed-conformance tests passed in 3.62 seconds; 267-file formatting, Ruff, strict Pyright, whitespace, and strict docs passed; the complete suite passed 1,718 tests with nine skips in 101.99 seconds; all ten real-wgpu tests passed in 6.45 seconds; the rebuilt universal wheel, isolated smoke, and a fresh ten-artifact release candidate passed. Corrected hosted validation remains pending. |
@@ -871,7 +903,7 @@ allocations; no run result is pre-claimed here.
 | `uv build` and installed-wheel smoke | 0 | Built `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`; isolated no-dependency wheel smoke passed with exact M34 evidence. |
 | Fresh release stage and smoke | 0 | Confirmed `.tmp/release-candidate-m34-reviewed` absent, staged ten deterministic artifacts, and passed checksum, manifest, SBOM, safe-extraction, isolated-installation, and bundled M34 evidence smoke. |
 | Real-wgpu and vertical-slice gate | 0 | All ten wgpu integration tests passed in 6.89 seconds; the three-workload M7 graphics profile validated; Clockwork Arena reproduced state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7` and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`. |
-| Scope, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or the release workflow. CI hash is `3ca17d0e1fad70cd898c90451701ba6733ecfb5235d5c03d898fc9c75bf5871d`; release hash remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. The 94-entry wheel has no native/WASM file. The 48-entry sample bundle contains the M34 evaluator and manifest. Focused credential-pattern scanning returned no match; `.ai`, `.agents`, `.codex`, and `AGENTS.md` remain absent; whitespace and `git fsck --full --no-dangling` passed. |
+| Scope, archive, credential, identity, and Git-object audit | 0 | No diff exists in `src/ludoweave`, `benchmarks`, `pyproject.toml`, `uv.lock`, or the release workflow. CI hash is `3ca17d0e1fad70cd898c90451701ba6733ecfb5235d5c03d898fc9c75bf5871d`; release hash remains `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`. The 94-entry wheel has no native/WASM file. The 48-entry sample bundle contains the M34 evaluator and manifest. Focused credential-pattern scanning returned no match; `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` remain absent; whitespace and `git fsck --full --no-dangling` passed. |
 | DCO feature commit and ready PR | 0 | DCO-signed commit `1b10e021651b2320addf40f56fc9597953585771` was pushed and published as ready PR #56 against exact base `d12c30a02782c0ebf892e27c5daf6e9fec1c93ee`. |
 | Initial hosted run `31228373123` | 1 | All three graphics jobs and Windows CPython 3.14 compatibility passed. Quality/distribution, Ubuntu CPython 3.13/3.14, and macOS CPython 3.14 each failed only `test_missing_manifest_error_is_path_free`: POSIX rendered the chained `FileNotFoundError` traceback with the deliberately missing path. Quality completed 1,622 other tests. No hosted pass is claimed for this head. |
 | Initial correction selector | 4 | Focused formatting and Ruff passed, but pytest used a nonexistent architecture-test filename and collected no tests. No focused-test pass is claimed from that invocation. |
@@ -906,7 +938,7 @@ allocations; no run result is pre-claimed here.
 | Documented M1/M2/M4 benchmark integrity | 0 | All three benchmark commands and validators completed. M1 recorded one of two historical absolute targets observed; M2 validated four informational workloads with no targets; M4 validated three workloads with its baseline target observed. Dirty-tree local results are not admitted M33 comparison evidence. |
 | Documented M3 and M7 integrity | 0 | The graphics M3 benchmark/validator recorded six workloads and both historical targets, with zero met. Base and graphics M7 cProfile documents validated two and three diagnostic workloads respectively. These local outputs are not admitted M33 timing comparisons. |
 | Real-wgpu regression and vertical slices | 0 | All ten real-wgpu integration tests passed in 7.86 seconds. Clockwork Arena completed 30 ticks with three draws, 16 sprites, state hash `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`. Agent World Builder passed registered tests with five replay batches, state hash `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`, and capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`. |
-| Artifact, scope, history, and credential audit | 0 | Protected `.github`, metadata, lock, `src/ludoweave`, and `benchmarks` surfaces are unchanged from exact base. CI/release workflow SHA-256 values remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; whitespace and `git fsck --full --no-dangling` passed. The 94-entry wheel and 46-entry sample bundle contain no native/WASM artifact; the sample bundle contains the exact 33,018-byte evaluator and 199-byte manifest. Focused credential-pattern scanning returned no match; retired `.ai`, `.agents`, `.codex`, and `AGENTS.md` paths remain absent. GitHub reported no open PR. |
+| Artifact, scope, history, and credential audit | 0 | Protected `.github`, metadata, lock, `src/ludoweave`, and `benchmarks` surfaces are unchanged from exact base. CI/release workflow SHA-256 values remain `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21` and `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`; whitespace and `git fsck --full --no-dangling` passed. The 94-entry wheel and 46-entry sample bundle contain no native/WASM artifact; the sample bundle contains the exact 33,018-byte evaluator and 199-byte manifest. Focused credential-pattern scanning returned no match; retired `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` paths remain absent. GitHub reported no open PR. |
 | Final post-record gate | 0 | The unchanged lock resolved 46 packages in 0.89 ms; all 259 files were formatted; Ruff passed; strict Pyright reported zero diagnostics; all 344 architecture, M33 evaluator, and release-artifact tests passed in 3.32 seconds; strict docs built in 0.88 seconds with only the known upstream notice; whitespace and exact-base protected-surface comparison passed. |
 | DCO feature commit, ready PR, and hosted validation | 0 | Commit `3bd7e17eed26028592cb39d37e77e15c6f4371f1` was DCO-signed, pushed, and published as ready PR #54 against exact base `60ddf57216d1054ac44df8d834756312c3864e3e`. Hosted run `31225942698` passed all eight essential jobs: quality/tests/distribution; Ubuntu CPython 3.13/3.14; Windows and macOS CPython 3.14; and Ubuntu/Windows/macOS graphics smoke. |
 | Hosted review and merge audit | 0 | GitHub reported exact PR head/base, all eight successful completed checks, `MERGEABLE`/`CLEAN`, no top-level comment, no review, and no review thread. |
@@ -944,7 +976,7 @@ claim, or native-code authorization.
 | Final reviewed lock/static/repository gate | 0 | The unchanged lock resolved 46 packages in 15 ms; strict Pyright reported zero diagnostics; whitespace, exact protected-surface comparison against `b4de1d115ddb620ecddccab84637c0e66cfad9fd`, and `git fsck --full --no-dangling` passed. CI and release workflow SHA-256 values remain exact. |
 | Final reviewed complete suite | 0 | All 1,498 tests passed with nine expected platform-capability skips in 163.56 seconds. |
 | Final reviewed distribution gate | 0 | `uv build` produced `ludoweave-0.1.0a1.tar.gz` and universal `ludoweave-0.1.0a1-py3-none-any.whl`; isolated-wheel smoke passed; the confirmed-absent `.tmp/release-candidate-m32-reviewed` target staged ten artifacts; and complete release smoke passed. |
-| Artifact, scope, and credential audit | 0 | The wheel contains 94 entries and no native/WASM file; the sample bundle contains 44 entries including `replay_divergence_rate_readiness.py` and `assets/replay_divergence_rate.json`, with no native/WASM file. The manifest remains 175 bytes at exact reviewed SHA-256. Protected `.github`, metadata, lock, and `src/ludoweave` surfaces are unchanged. Focused credential-pattern scanning found no plausible credential, and retired `.ai`, `.agents`, `.codex`, and `AGENTS.md` paths remain absent. |
+| Artifact, scope, and credential audit | 0 | The wheel contains 94 entries and no native/WASM file; the sample bundle contains 44 entries including `replay_divergence_rate_readiness.py` and `assets/replay_divergence_rate.json`, with no native/WASM file. The manifest remains 175 bytes at exact reviewed SHA-256. Protected `.github`, metadata, lock, and `src/ludoweave` surfaces are unchanged. Focused credential-pattern scanning found no plausible credential, and retired `[retired control directory]`, `[retired control directory]`, `[retired control directory]`, and `[retired control file]` paths remain absent. |
 | Initial hosted validation and review | Corrected | Ready PR #52 exact implementation head `7046e59eb4840e6df492c886ce78baf4ad51cd95` passed all eight unchanged essential jobs in run `31194645068`. Hosted review then correctly found that the evaluator required nonexistent `world.replay.divergence` while the runtime emits stable `world.replay.diverged`, which would reject authentic divergent evidence. No merge or final hosted pass is claimed for that head. The evaluator, synthetic fixture, docs, task contract, and architecture regression now use and pin the runtime code. |
 | Post-hosted-review correction gate | 0 | The first focused correction run passed 80 replay/M32 tests with one Windows symlink-capability skip, Ruff lint, and strict Pyright, while formatting requested one architecture-test layout update; no complete format pass is claimed from that run. After applying the locked formatter, all 255 files were formatted; strict docs built in 0.83 seconds; the unchanged 46-package lock resolved in 1 ms; protected-surface and whitespace checks passed; and all 1,499 tests passed with nine platform-capability skips in 100.02 seconds. `uv build`, isolated-wheel smoke, confirmed-absent fresh ten-artifact staging, and complete release smoke all passed. Corrected hosted validation remains pending. |
 | Corrected hosted validation and review closure | 0 | Ready PR #52 exact corrected head `f6f574c2e9b54341e77d1b9ba2d9268bffe5439a` passed all eight unchanged essential jobs in run `31195402467`: quality/tests/distribution; Ubuntu CPython 3.13/3.14; Windows and macOS CPython 3.14; and Ubuntu/Windows/macOS real graphics. The sole review thread was replied to, resolved, and became outdated; no top-level comment or unresolved thread remained. GitHub reported the PR `MERGEABLE` and `CLEAN`. |
@@ -1153,7 +1185,7 @@ than treated as retention evidence.
 | Exact documented release staging and smoke | 0 | A fresh `.tmp/release-candidate` contained ten deterministic artifacts, and complete release smoke passed. |
 | Final documented M1-M4 generators and validators | 0 | All schemas validated. M1 fixed-step p95 was 46.5708 ms and observed its target; simulation p95 was 195.7832 ms and missed 4 ms. M2's target-free p95 values were 44.8821, 17.0150, 23.1025, and 259.5819 ms. M3 extraction/submission p95 values were 28.0267/4.0673 ms and both missed 3 ms. M4 baseline p95 was 2.5603 ms and observed its target; stress 4/8 p95 values were 3.8675/4.7666 ms with no targets. |
 | Final documented M7 base and graphics profile generators and validators | 0 | The two-workload base and three-workload graphics profile artifacts validated; timings remain diagnostic only. |
-| Neutral repository-convention inspection | 0 | `.ai` and `AGENTS.md` are absent from the working tree; maintenance guidance is `MAINTAINERS.md`, current records live under `.project/`, and current references resolve to those paths. Historical branch names remain only where required for factual Git/test evidence; no history was rewritten. |
+| Neutral repository-convention inspection | 0 | `[retired control directory]` and `[retired control file]` are absent from the working tree; maintenance guidance is `MAINTAINERS.md`, current records live under `.project/`, and current references resolve to those paths. Historical branch names remain only where required for factual Git/test evidence; no history was rewritten. |
 | Final remote-history refresh and graph audit | 0 | `git fetch origin --prune` completed; `HEAD`, `main`, `origin/main`, `origin/HEAD`, and the merge base all remained exact `e4125bf31a751473d2af4fecc05a9744d551063c`, with zero commits on either side. The graph is linear through the verified M28 integration record, `git fsck --full --no-dangling` passed, and only local `main` plus the neutral M29 branch and remote `main` exist. |
 | Final protected-surface and workflow/manifest identity audit | 0 | The staged diff against the exact base is empty for `.github`, `pyproject.toml`, `uv.lock`, and `src/ludoweave`. CI, release, and M29 manifest SHA-256 values remain exact `06a5e07918c83fc8de61e6746cb344f865b6421d81f554d79f4455d3718a3b21`, `d1d61988e48e752d1d100f4ac3ad4df9508590dba6e87bd0344d9101aa5e5dd8`, and `61785ec165e9f9a7c1025c37f7b714d6fa42b2c7081145a0f843395a325b36ee`. |
 | First final credential scan invocation | 1 | The pattern began with hyphens and was interpreted as an `rg` option, so the scan did not execute and no clean result is claimed from that attempt. |
@@ -1176,7 +1208,7 @@ the M29 correction section above.
 | Command | Exit | Result |
 | --- | ---: | --- |
 | M27 feature/state integration verification and branch preparation | 0 | PR #42 squash-integrated exact final M27 evidence head `349dc3b78dcae2b1c725ed3dc8e5e646ca3d3ac1` as GitHub-verified `ff1c81f8aaa96245706586096f400a5fb03bdd04`; no-CI PR #43 integrated the exact five-file state tree as GitHub-verified `17401eb32be30862496bbe02366d886a60752fb3`; local `main`, `origin/main`, and `origin/HEAD` matched with a clean worktree, and `git fsck --full --no-dangling` exited 0. |
-| `git switch -c codex/m28-external-sample-game-adoption-readiness` | 0 | Created M28 from exact integrated `main` commit `17401eb32be30862496bbe02366d886a60752fb3`. |
+| `git switch -c [historical branch name redacted]` | 0 | Created M28 from exact integrated `main` commit `17401eb32be30862496bbe02366d886a60752fb3`. |
 | First `uv lock --check` in the managed sandbox | 1 | uv failed before project execution because the sandbox denied access to existing user-cache metadata; no lock pass is claimed from this attempt. |
 | `uv lock --check` with approved cache access | 0 | The unchanged lock resolved 46 packages in 0.83 ms. |
 | Focused M25/M27/adoption-artifact baseline | 0 | 94 external-feedback, contributor-rehearsal, architecture, and release-artifact tests passed with two Windows symlink-capability skips in 4.75 seconds. |
@@ -1256,7 +1288,7 @@ execution, or review digest.
 | Corrected `uv build`, isolated wheel smoke, fresh release staging, and release smoke | 0 | Rebuilt the pure `0.1.0a1` sdist/wheel, passed isolated wheel smoke, staged a fresh ten-artifact candidate, and passed complete release smoke with the corrected bundled M28 evaluator. |
 
 The correction changes only the M28 evaluator, regressions, readiness guide,
-RFC, and factual `.ai` state. It does not widen scope or change runtime source,
+RFC, and factual `[retired control directory]` state. It does not widen scope or change runtime source,
 public APIs/exports, persistent formats, dependencies, lock, version, workflow,
 CI topology, tag, release, publication, provider, network behavior, or current
 zero-adoption result.
@@ -1310,7 +1342,7 @@ documentation-only integration record was created.
 | Command | Exit | Result |
 | --- | ---: | --- |
 | M26 feature/state integration verification and branch preparation | 0 | PR #40 squash-integrated the exact final M26 tree as GitHub-verified `a62d28e8c36d9a590e7ad7e7a9e8b49266dcbdde`; zero-run PR #41 integrated its exact five-file state tree as GitHub-verified `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`; local `main` was clean and synchronized. |
-| `git switch -c codex/m27-external-contributor-rehearsal-readiness` | 0 | Created M27 from exact integrated `main` commit `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. |
+| `git switch -c [historical branch name redacted]` | 0 | Created M27 from exact integrated `main` commit `c1c3be08f7f75d90e7d1b517adbc30d56902ece4`. |
 | Initial contributor-document inspection | 1 | The inspection read `CONTRIBUTING.md` and related public templates but also requested nonexistent `docs/contributor-walkthrough.md`. No content is claimed from that path; the actual guide `docs/first-contribution.md` was located and read next. |
 | `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.82 ms. |
 | Focused prior release/M25/M26 baseline | 0 | 64 tests passed with two Windows symlink-capability skips in 3.73 seconds. |
@@ -1421,7 +1453,7 @@ inspection confirmed that all three branch commits contain a DCO
 `Signed-off-by` trailer.
 
 The final thread-aware reread found one unresolved, non-outdated automated
-comment anchored to `AGENTS.md`. It alleged missing DCO on
+comment anchored to `[retired control file]`. It alleged missing DCO on
 `b8dcedce82bb6da786297dd5a0942e4019f4df6e`, which is GitHub's ephemeral PR
 test-merge commit and is absent from the exact three-commit branch history.
 The comment therefore does not identify a branch defect; it was neither
@@ -1446,7 +1478,7 @@ the recorded upstream Material warning.
 | Command | Exit | Result |
 | --- | ---: | --- |
 | M25 feature/state integration verification and branch preparation | 0 | PR #38 squash-integrated exact final M25 tree `fcaa7b11a4aa8d1c87e57a810db16682cf9f00e6` as GitHub-verified `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`; zero-run PR #39 integrated its exact state tree as GitHub-verified `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`; local `main` was clean and synchronized. |
-| `git switch -c codex/m26-supported-release-channel-readiness` | 0 | Created M26 from exact integrated `main` commit `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. |
+| `git switch -c [historical branch name redacted]` | 0 | Created M26 from exact integrated `main` commit `0de919a699dee6b10b6fef9ba2cdce5e3c0f2e62`. |
 | Initial release-policy scope probe | 1 | Relevant RFC/policy/workflow searches and RFC-0003 read succeeded, but the final `Get-Content docs/release.md` failed because that file does not exist. No content is claimed from it; the actual guide is `docs/release-process.md` and was read next. |
 | `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.91 ms. |
 | Focused release/stability baseline | 0 | 61 release-workflow, artifact, command-stability, cross-version, external-feedback, and API-stability tests passed with one Windows symlink-capability skip in 5.90 seconds. |
@@ -1602,8 +1634,8 @@ publication. Local `main` fast-forwarded cleanly to the verified squash commit;
 quoted tree probes, sole-parent inspection, DCO message inspection, and
 `git fsck --full --no-dangling` passed.
 
-The integration-record branch changes exactly `.ai/CURRENT_TASK.md`,
-`.ai/PROJECT_STATE.md`, `.ai/TEST_EVIDENCE.md`, `AGENTS.md`, and `ROADMAP.md`.
+The integration-record branch changes exactly `[retired control directory]/CURRENT_TASK.md`,
+`[retired control directory]/PROJECT_STATE.md`, `[retired control directory]/TEST_EVIDENCE.md`, `[retired control file]`, and `ROADMAP.md`.
 Strict docs built in 0.72 seconds with the known upstream Material warning;
 whitespace, exact scope, and Git-object checks passed. The state commit and PR
 must use `[skip ci]` and create no Actions run.
@@ -1613,7 +1645,7 @@ must use `[skip ci]` and create no Actions run.
 | Command | Exit | Result |
 | --- | ---: | --- |
 | M24 feature/state integration verification and branch preparation | 0 | PR #36 squash-integrated the exact corrected M24 tree as GitHub-verified `b7b16697d28410567cbddf8eb962c7e6c9e664b8`; zero-run PR #37 integrated its exact state tree as GitHub-verified `680e90dd8f9377fece23c43bd9f07ca9d76297de`; local `main` was clean and synchronized before branch creation. |
-| `git switch -c codex/m25-external-consumer-feedback-readiness` | 0 | Created M25 from exact integrated `main` commit `680e90dd8f9377fece23c43bd9f07ca9d76297de`. |
+| `git switch -c [historical branch name redacted]` | 0 | Created M25 from exact integrated `main` commit `680e90dd8f9377fece23c43bd9f07ca9d76297de`. |
 | `uv lock --check` | 0 | The unchanged lock resolved 46 packages in 0.88 ms. |
 | Focused M20/M24/release baseline | 0 | 45 tests passed in 4.40 seconds. |
 | M25 manifest identity probe | 0 | The reviewed feedback manifest is exactly 283 bytes with SHA-256 `b113444f60946461ec6774e2c278b9e82e7d80e08a37450b6cc153e5c5c1500e` and contains zero feedback records. |
@@ -1771,7 +1803,7 @@ release history, supported release channel, or stability promotion is claimed.
 
 After `git fetch origin main`, local `main` fast-forwarded cleanly from assigned
 base to verified squash commit `9ec6eeaaed40fefeb64d738d4eaaf3f7a9c4009b`.
-`codex/m25-main-integration` was created from that exact commit for this factual
+`[historical branch name redacted]` was created from that exact commit for this factual
 record. Strict docs, whitespace, scope, Git-object, commit/tree, zero-extra-run,
 and review-state checks precede its CI-skipping publication.
 
@@ -1781,7 +1813,7 @@ and review-state checks precede its CI-skipping publication.
 | --- | ---: | --- |
 | M23 feature/integration PR verification, `git fetch`, fast-forward, and `git fsck --full --no-dangling` | 0 | PR #34 squash was GitHub-verified as exact-tree commit `2f7152565d369225dbf69055b7d42a4c80f46d1a`; zero-run PR #35 integrated its exact-tree state record as GitHub-verified `55c7a72337913303b6b1f6bd31edbca7ff28683b`; local `main` was clean and synchronized. |
 | M24 branch creation | 128 | The first sandboxed `git switch -c` could not create the Git ref lock; no branch was created. The same command was rerun with approved repository-metadata access. |
-| `git switch -c codex/m24-cross-version-corpus-readiness` | 0 | Created M24 from exact integrated `main` commit `55c7a72337913303b6b1f6bd31edbca7ff28683b`. |
+| `git switch -c [historical branch name redacted]` | 0 | Created M24 from exact integrated `main` commit `55c7a72337913303b6b1f6bd31edbca7ff28683b`. |
 | M21 manifest identity probe | 0 | Preserved source manifest remained exactly 762 bytes with SHA-256 `ed3f1040294376fafce523e129897ce756d785b2f6d90c54335ad5f8abb84ac3`. |
 | `uv lock --check` | 0 | Baseline lock remained current; 46 packages resolved in 0.76 ms. |
 | Focused receipt corpus/reader/policy/architecture baseline | 0 | 71 tests passed in 4.05 seconds. |
@@ -1948,7 +1980,7 @@ commit `b7b16697d28410567cbddf8eb962c7e6c9e664b8` with sole parent
 `fa3c455ccd9722c666cc07cae325f1b50e37ddc7`, a valid GitHub signature verified
 at `2026-08-06T14:08:40Z`, and the DCO trailer. The tree exactly matches final
 evidence head `1a8bd6f19f656eb5c4a0d6bd90f057a69bddbc34` on retained branch
-`codex/m24-cross-version-corpus-readiness`; literal tree comparison and
+`[historical branch name redacted]`; literal tree comparison and
 `git diff --exit-code` reported no difference.
 
 GitHub still lists exactly the initial successful run `31107800179` and the one
@@ -1963,14 +1995,14 @@ stability promotion is claimed.
 After `git fetch --prune origin`, local `main` fast-forwarded to the verified
 squash commit and matched `origin/main` with a clean worktree. Full repository
 connectivity passed `git fsck --full --no-dangling`. Documentation-only branch
-`codex/m24-main-integration` was created from that exact clean commit; it adds no
+`[historical branch name redacted]` was created from that exact clean commit; it adds no
 subsequent milestone work.
 
 On the documentation-only integration branch, strict MkDocs built in 0.70
 seconds, `git diff --check`, the non-state-surface comparison to `main`, and
 `git fsck --full --no-dangling` exited 0. `git diff --name-only main` listed
-exactly `.ai/CURRENT_TASK.md`, `.ai/PROJECT_STATE.md`, `.ai/TEST_EVIDENCE.md`,
-`AGENTS.md`, and `ROADMAP.md`. The focused credential-assignment scan returned
+exactly `[retired control directory]/CURRENT_TASK.md`, `[retired control directory]/PROJECT_STATE.md`, `[retired control directory]/TEST_EVIDENCE.md`,
+`[retired control file]`, and `ROADMAP.md`. The focused credential-assignment scan returned
 no match.
 
 ## M23 development evidence - 2026-08-06, Windows, CPython 3.12
@@ -2028,10 +2060,10 @@ Findings-first review inspected changed behavior, current transaction/receipt
 call sites, status invariants, error wrapping, exact fixture/evidence matching,
 security/privacy, compatibility, resource ownership, tests, release smoke,
 architecture boundaries, and documentation state. It found no blocking or
-non-blocking defect and no open question. The optional `.agents/tasks.json` and
-`.agents/ledger.md` inputs named by the review role do not exist, so no shared-
-workflow acceptance claim is made; the repository's `.ai` task, accepted RFCs,
-and AGENTS contract supplied the authoritative criteria. Final strict MkDocs
+non-blocking defect and no open question. The optional `[retired control directory]/tasks.json` and
+`[retired control directory]/ledger.md` inputs named by the review role do not exist, so no shared-
+workflow acceptance claim is made; the repository's `[retired control directory]` task, accepted RFCs,
+and `[retired control file]` contract supplied the authoritative criteria. Final strict MkDocs
 then exited 0 in 0.67 seconds, `git diff --check` exited 0, the new-file
 credential-assignment scan matched nothing, and the scope check reported no
 change under `src/`, `.github/`, `pyproject.toml`, or `uv.lock`.
@@ -2164,11 +2196,11 @@ their current adjacent definitions and exact-diff assertion satisfied both
 findings, as recorded above. No tag, release, publication, runtime source,
 dependency, lock, version, workflow, or subsequent-milestone work is included.
 
-On `codex/m23-main-integration`, `uv run --frozen mkdocs build --strict`
+On `[historical branch name redacted]`, `uv run --frozen mkdocs build --strict`
 exited 0 and built documentation in 0.70 seconds with Material's upstream
 informational warning. `git diff --check` and
 `git fsck --full --no-dangling` exited 0 with no output. The diff contains
-only `.ai` state, `AGENTS.md`, and `ROADMAP.md`.
+only `[retired control directory]` state, `[retired control file]`, and `ROADMAP.md`.
 
 ## M22 development evidence — 2026-08-06, Windows, CPython 3.12
 
@@ -2225,7 +2257,7 @@ provider, filesystem, process, or network dependency.
 
 ## M22 hosted validation — PR #32
 
-Ready PR #32 targets `main` from `codex/m22-operation-argument-policy` at
+Ready PR #32 targets `main` from `[historical branch name redacted]` at
 DCO-signed implementation commit
 `f1a89ad460467039f966ed37955144840cd96a12`. GitHub Actions run
 `31100821087`, triggered by that pull request, completed successfully on
@@ -2321,7 +2353,7 @@ dependency, lock, version, workflow, or M23 work is included.
 On the integration-record branch, `uv run --frozen mkdocs build --strict`
 exited 0 and built the documentation in 0.64 seconds with Material's upstream
 informational warning. `git diff --check` exited 0 with no whitespace errors;
-the diff contains only `.ai` state, `AGENTS.md`, and `ROADMAP.md`.
+the diff contains only `[retired control directory]` state, `[retired control file]`, and `ROADMAP.md`.
 
 ## Baseline — 2026-08-04
 
@@ -2708,7 +2740,7 @@ claim is made.
 ## M2 hosted validation — GitHub Actions run 30947073913
 
 The DCO-signed M2 commit `6bf3f99e94e30e4204af221064331e4b01c487dc`
-was pushed to `codex/m2-command-transaction-replay` and published as stacked
+was pushed to `[historical branch name redacted]` and published as stacked
 pull request #2 against the open M1 branch. The resulting least-privilege CI
 run completed successfully:
 
@@ -2790,7 +2822,7 @@ NOTICE; it contains no native objects, tests, generated docs, or credentials.
 
 The DCO-signed M3 implementation commit
 `230687b16dfc02a8d2762af66f6bf2db4ef87f21` was pushed to
-`codex/m3-rendering-vertical-slice` and published as stacked PR #3 against the
+`[historical branch name redacted]` and published as stacked PR #3 against the
 M2 branch. Initial run `30951328011` was not green and is not reported as a
 pass: all base test and wheel jobs plus Windows/macOS graphics passed, while
 strict Pyright failed because the quality job had not installed optional
@@ -2871,7 +2903,7 @@ M4 hosted CI has not yet run, so no cross-platform M4 pass is claimed here.
 
 The DCO-signed M4 implementation commit
 `e46bceec62fb20886fbb705149b07d083f4a46de` was pushed to
-`codex/m4-clockwork-arena` and published as stacked pull request #4 against the
+`[historical branch name redacted]` and published as stacked pull request #4 against the
 validated M3 branch. The resulting least-privilege CI run completed
 successfully:
 
@@ -2928,7 +2960,7 @@ no cross-platform claim.
 
 The DCO-signed M5 implementation commit
 `b85bfcd13c56d6ffcfc292823c6e0be33c78f945` was pushed to
-`codex/m5-agent-control` and published as stacked pull request #5 against the
+`[historical branch name redacted]` and published as stacked pull request #5 against the
 validated M4 branch. The resulting least-privilege CI run completed
 successfully:
 
@@ -2992,7 +3024,7 @@ claimed there.
 
 The DCO-signed M6 implementation commit
 `84cc318c7c14ccbd2efbda6b61e19cec7c375612` was pushed to
-`codex/m6-release-hardening` and published as stacked pull request #6 against
+`[historical branch name redacted]` and published as stacked pull request #6 against
 the validated M5 branch. The least-privilege CI run completed successfully:
 
 | Hosted job | Result |
@@ -3095,7 +3127,7 @@ run at the time of this local section, so no cross-platform result is claimed.
 
 The DCO-signed M7 implementation commit
 `b14e6c5581e2ca797adc9d71e46d460b941005b8` was pushed to
-`codex/m7-performance-decision` and published as stacked pull request #7
+`[historical branch name redacted]` and published as stacked pull request #7
 against the validated M6 branch. The least-privilege pull-request run completed
 successfully:
 
@@ -3110,7 +3142,7 @@ successfully:
 
 All 14 jobs passed. Run `31005165849` completed with conclusion `success` for
 head `b14e6c5581e2ca797adc9d71e46d460b941005b8`. GitHub reports PR #7 open,
-mergeable, and `CLEAN` against `codex/m6-release-hardening`. The hosted
+mergeable, and `CLEAN` against `[historical branch name redacted]`. The hosted
 profiling steps validate portable execution and artifact contracts only; they
 do not create uncontrolled cross-platform timing claims.
 
@@ -3240,7 +3272,7 @@ No M8 benchmark was run and no performance statement is made.
 ## M8 hosted validation — 2026-08-05
 
 Commit `2a654e03005481d61c6cbeb054b31e260b960659` was pushed to
-`codex/m8-gamepad-sdl3-evaluation` and published as ready PR #9 against
+`[historical branch name redacted]` and published as ready PR #9 against
 `main`. GitHub reported the PR mergeable. Actions run `31012696753` completed
 successfully with all 14 jobs passing:
 
@@ -3340,7 +3372,7 @@ recommended M9 for final sign-off. Hosted M9 CI had not run at that point.
 
 DCO-signed implementation commit
 `8b429aaf07684651f6d538419701c049ee55fc4f` was pushed to
-`codex/m9-box2d-plugin-evaluation` and published as ready stacked PR #10 against
+`[historical branch name redacted]` and published as ready stacked PR #10 against
 the hosted-validated M8 branch. GitHub Actions run `31015885190` completed with
 conclusion `success`; all 14 jobs passed:
 
@@ -3354,7 +3386,7 @@ conclusion `success`; all 14 jobs passed:
   Builder smoke on Ubuntu, Windows, and macOS.
 
 GitHub reports PR #10 open, ready, mergeable, and `CLEAN` against
-`codex/m8-gamepad-sdl3-evaluation`, whose exact base is
+`[historical branch name redacted]`, whose exact base is
 `187ad4503a40325a1e334da3cb4078969e2e043b`. The hosted result validates project
 execution and artifact contracts; it does not install the deferred candidate,
 exercise controller hardware, or create Box2D performance/cross-platform
@@ -3440,7 +3472,7 @@ cross-platform or hosted pass was claimed.
 
 DCO-signed implementation commit
 `2e60b3f1c4884dba71df5f23b779bc49187d68c6` was pushed to
-`codex/m10-live-semantic-inspector` and published as ready stacked PR #11
+`[historical branch name redacted]` and published as ready stacked PR #11
 against exact final M9 head
 `22bc2de9f8450f60fe483bd4fea10a86702d2f0f`. GitHub Actions run
 `31020096463` completed with conclusion `success`; all eight jobs passed:
@@ -3455,7 +3487,7 @@ against exact final M9 head
   Builder passed on Ubuntu software Vulkan, Windows, and macOS.
 
 GitHub reports PR #11 open, ready, mergeable, and `CLEAN` against
-`codex/m9-box2d-plugin-evaluation`. This is the first run of the consolidated
+`[historical branch name redacted]`. This is the first run of the consolidated
 eight-job topology; it replaces the former 14-job topology without dropping a
 supported Python version, desktop operating system, complete distribution
 gate, or real three-OS graphics gate. No merge, tag, release, or package
@@ -3487,7 +3519,7 @@ graphics, independent review, and hosted validation remain pending.
 
 Environment: Windows, uv-managed CPython 3.12.13 with the exact locked graphics
 extra. Base: `bae799900671481cfd6f03fe502dea95b2c7f96c`. Branch:
-`codex/m11-rich-2d-modules`.
+`[historical branch name redacted]`.
 
 The final independently reviewed command sequence produced these results:
 
@@ -3578,8 +3610,8 @@ merge, tag, release, or package-publication claim was made.
 
 ## M11 hosted validation - 2026-08-06
 
-Ready stacked PR #12 targets `codex/m10-live-semantic-inspector` from
-`codex/m11-rich-2d-modules`. GitHub Actions pull-request run `31024155710`
+Ready stacked PR #12 targets `[historical branch name redacted]` from
+`[historical branch name redacted]`. GitHub Actions pull-request run `31024155710`
 executed signed implementation commit
 `aca6d93165a52d88451e8e06d5f1aa8d2e323f1d` and completed successfully from
 `2026-08-05T16:12:36Z` through `2026-08-05T16:14:40Z`.
@@ -3606,7 +3638,7 @@ a package, create a tag or release, or admit any deferred provider/native work.
 Environment: Windows 11, uv-managed CPython 3.12.13 with the exact locked
 graphics extra. Base and current pre-commit `HEAD`:
 `840a8b06d461fa1d5e649911b22f5995154728a7`. Branch:
-`codex/m12-plugin-manifest-compatibility`.
+`[historical branch name redacted]`.
 
 The complete independently reviewed command sequence produced these results:
 
@@ -3705,8 +3737,8 @@ editor/GUI, deferred Box2D/SDL3 adapter, or native-code claim is made.
 
 ## M12 hosted validation - 2026-08-06
 
-Ready stacked PR #13 targets `codex/m11-rich-2d-modules` from
-`codex/m12-plugin-manifest-compatibility`. Its one DCO-signed implementation
+Ready stacked PR #13 targets `[historical branch name redacted]` from
+`[historical branch name redacted]`. Its one DCO-signed implementation
 commit is `e1f6e3cd8572d20a4f0a5c62a96b9aa52a986b38`; GitHub reports the PR open,
 ready, mergeable, and `CLEAN` against exact final M11 evidence head
 `840a8b06d461fa1d5e649911b22f5995154728a7`.
@@ -3735,7 +3767,7 @@ authorize any deferred networking/editor/native work.
 Environment: Windows 11, uv-managed CPython 3.12.13 with the exact locked
 graphics extra. Base and current pre-commit `HEAD`:
 `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`. Branch:
-`codex/m13-rollback-network-readiness`.
+`[historical branch name redacted]`.
 
 The complete post-review command sequence produced these results:
 
@@ -3847,8 +3879,8 @@ or native-code claim is made.
 
 ## M13 hosted validation - 2026-08-06
 
-Ready stacked PR #14 targets `codex/m12-plugin-manifest-compatibility` from
-`codex/m13-rollback-network-readiness`. Its one DCO-signed implementation
+Ready stacked PR #14 targets `[historical branch name redacted]` from
+`[historical branch name redacted]`. Its one DCO-signed implementation
 commit is `ba62b650191cfb982100692e7ec694da318956ae`; GitHub reports the PR open,
 ready, mergeable, and `CLEAN` against exact final M12 evidence head
 `7cb834c7b5e84e1b1a945905a68b947b3a4bdd3f`.
@@ -3936,8 +3968,8 @@ dependency, or new performance-target claim is made.
 
 ## M14 hosted validation - 2026-08-06
 
-Ready stacked PR #15 targets `codex/m13-rollback-network-readiness` from
-`codex/m14-constrained-3d-decision`. Its DCO-signed implementation commit is
+Ready stacked PR #15 targets `[historical branch name redacted]` from
+`[historical branch name redacted]`. Its DCO-signed implementation commit is
 `47443046834eb423be977973775f80494161533d`. GitHub reports the PR open,
 ready, mergeable, and `CLEAN` against exact final M13 evidence head
 `48f8f296113e3f2794bae7f4c67997d433e4dd36`.
@@ -4058,7 +4090,7 @@ is made.
 
 ## M15 hosted validation - 2026-08-06
 
-Ready PR #19 targets `main` from `codex/m15-visual-editor-admission`. Before
+Ready PR #19 targets `main` from `[historical branch name redacted]`. Before
 the evidence-only follow-up, GitHub reported exact base
 `bfea67d2d922e8c591224d18f56c14d572d7f7da`, implementation head
 `7e85570056dde3678aaeee13eee4036067876d8c`, `MERGEABLE`, and `CLEAN`. The
@@ -4160,7 +4192,7 @@ claim is made.
 ## M16 hosted validation - 2026-08-06
 
 Ready PR #20 targets `main` from
-`codex/m16-wasm-mod-security-decision`. Before the evidence-only follow-up,
+`[historical branch name redacted]`. Before the evidence-only follow-up,
 GitHub reported exact base `c013dad38b1b64f0f4ccddc19681d643f6414427`,
 implementation head `bcaf78fbc78bda8a13a95e397ab15d003dd4a6ce`,
 `MERGEABLE`, and `CLEAN`. The implementation history contains one DCO-signed
@@ -4209,7 +4241,7 @@ acceptance criteria are assigned by the current plan.
 
 M17 was subsequently assigned from the design plan's longer-term metric for
 third-party adapters/plugins passing conformance. Branch
-`codex/m17-render-device-conformance` started from exact clean synchronized
+`[historical branch name redacted]` started from exact clean synchronized
 `main` commit `27d2ee9d1f7f75dacc17568650f00ce833ef4fce` (`main...origin/main`
 left/right count `0 0`). The bounded slice is one experimental installed
 `RenderDevice` baseline over an explicitly supplied trusted factory. It adds
@@ -4276,7 +4308,7 @@ passed. No product failure remains unresolved.
 ## M17 hosted validation - 2026-08-06
 
 Ready PR #22 targets `main` from
-`codex/m17-render-device-conformance`. GitHub reported exact base
+`[historical branch name redacted]`. GitHub reported exact base
 `27d2ee9d1f7f75dacc17568650f00ce833ef4fce`, implementation head
 `8e592f329424719214239bf97bd85dad9c9c5928`, `MERGEABLE`, and `CLEAN`. The
 implementation history contains one DCO-signed commit.
@@ -4343,7 +4375,7 @@ commit.
 
 ## M18 installed agent-tool conformance - local final gate - 2026-08-06
 
-Branch `codex/m18-agent-tool-conformance` started from exact clean synchronized
+Branch `[historical branch name redacted]` started from exact clean synchronized
 `main` commit `ed65b12fa02f672113eac5939a0f616079fee44a`. The bounded slice is
 one experimental installed 12-tool agent-service baseline over an explicitly
 supplied trusted factory. It adds no discovery, dynamic import, installation,
@@ -4419,7 +4451,7 @@ publication is claimed.
 ## M18 hosted validation - 2026-08-06
 
 Ready PR #24 targets `main` from
-`codex/m18-agent-tool-conformance`. GitHub reported exact base
+`[historical branch name redacted]`. GitHub reported exact base
 `ed65b12fa02f672113eac5939a0f616079fee44a`, DCO-signed implementation head
 `c4dde705393eebb7c99af428745e9383750f6b4d`, `MERGEABLE`, and `CLEAN` after
 checks completed.
@@ -4468,7 +4500,7 @@ authored adapter adoption or establish real-agent manual-recovery rates.
 
 ## M19 installed WorldStore conformance - local final gate - 2026-08-06
 
-Branch `codex/m19-world-store-conformance` starts from exact clean synchronized
+Branch `[historical branch name redacted]` starts from exact clean synchronized
 `main` commit `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`, with local `main`,
 `origin/main`, both merge bases, and `HEAD` initially equal and left/right count
 `0 0`. The bounded slice adds one experimental installed ten-check profile over
@@ -4548,7 +4580,7 @@ claimed at this stage.
 ## M19 hosted validation - 2026-08-06
 
 Ready PR #26 targets `main` from
-`codex/m19-world-store-conformance`. GitHub reported exact base
+`[historical branch name redacted]`. GitHub reported exact base
 `4076f3d7ac0c0a82834a1c98dcb36426ba67ac5e`, DCO-signed implementation head
 `1da692a693c1f92e10b676c2d4539354ce3ff59f`, `MERGEABLE`, and `CLEAN` after
 checks completed.
@@ -4582,7 +4614,7 @@ merged commit `1a7219e540d8f4cb3c1f60ff12981513c6860ef9` with sole parent
 `7fcd614fdde76daf1807f27dbe78ec306a501cc3`, a valid GitHub signature, and the
 DCO trailer. The tree exactly matches final evidence head
 `b93ca591f7063a1500cf105e6b0496b33573c69a` on retained branch
-`codex/m19-world-store-conformance`; `git diff --exit-code` reported no
+`[historical branch name redacted]`; `git diff --exit-code` reported no
 difference between those trees.
 
 GitHub still lists only successful run `31092244573` for the milestone branch;
@@ -4596,7 +4628,7 @@ or independently authored WorldStore adoption is claimed.
 
 M20 starts from exact clean synchronized `main` commit
 `2fdeccd697f09f3e165130eb8564a6c585d472d2` on branch
-`codex/m20-command-receipt-stability-decision`.
+`[historical branch name redacted]`.
 
 | Command | Exit | Result |
 | --- | ---: | --- |
@@ -4693,7 +4725,7 @@ history is linear and GitHub reports `main` as the default branch.
 ## M20 hosted validation - 2026-08-06
 
 Ready PR #28 targets `main` from
-`codex/m20-command-receipt-stability-decision`. GitHub reports exact base
+`[historical branch name redacted]`. GitHub reports exact base
 `2fdeccd697f09f3e165130eb8564a6c585d472d2`, DCO-signed implementation head
 `d96d132da5ee847d6e86645be5e87a1e4aa5e89e`, `MERGEABLE`, and `CLEAN` after
 checks completed.
@@ -4728,7 +4760,7 @@ merged commit `6bfb56555cafc93a7312f64465ea15cd7c450e79` with sole parent
 `ea3f410fac31d7a32faee4e697c4fb0941b657df`, a valid GitHub signature verified
 at `2026-08-06T11:50:31Z`, and the DCO trailer. The tree exactly matches final
 evidence head `4e378756b2a1733de28e7160ac2d6d72921f3e4a` on retained branch
-`codex/m21-receipt-reader-baseline`; literal tree comparison reported no
+`[historical branch name redacted]`; literal tree comparison reported no
 difference.
 
 GitHub still lists only successful run `31098563810` for the milestone branch;
@@ -4755,7 +4787,7 @@ merged commit `d166ef86bf25526d9d7715f63263d3cac6db78d4` with sole parent
 `c3e2dc1224f530fb483d1b9684ff55329bf9557b`, a valid GitHub signature verified
 at `2026-08-06T10:58:16Z`, and the DCO trailer. The tree exactly matches final
 evidence head `d04561184996fac507071ad9e7dd0ef9c5e3cb7c` on retained branch
-`codex/m20-command-receipt-stability-decision`; corrected literal-revision
+`[historical branch name redacted]`; corrected literal-revision
 `git rev-parse` checks and `git diff --exit-code` reported equal trees and no
 difference.
 
@@ -4779,7 +4811,7 @@ MkDocs Material/MkDocs 2.0 informational warning.
 
 M21 starts from exact clean synchronized `main` commit
 `feed793e94c345fac4b146c358a68264ef6e5f62` on branch
-`codex/m21-receipt-reader-baseline`. The branch was created before any M21
+`[historical branch name redacted]`. The branch was created before any M21
 change and the initial history inspection showed that commit as local `main`,
 `origin/main`, `origin/HEAD`, and the feature-branch base.
 
@@ -4881,7 +4913,7 @@ cross-version compatibility is claimed at this stage.
 
 ## M21 hosted validation - 2026-08-06
 
-Ready PR #30 targets `main` from `codex/m21-receipt-reader-baseline`. GitHub
+Ready PR #30 targets `main` from `[historical branch name redacted]`. GitHub
 reports exact base `feed793e94c345fac4b146c358a68264ef6e5f62`, DCO-signed
 implementation head `cec339be07318a7c1586bb3405e8f9b1904859f5`, `MERGEABLE`,
 and `CLEAN` after checks completed.
