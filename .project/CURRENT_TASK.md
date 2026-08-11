@@ -1,9 +1,10 @@
 # Current Task
 
 - **Task:** M59 - repository metadata hygiene
-- **Status:** Tests-first implementation, local qualification, and findings-
-  first review are complete on `maintenance/m59-repository-hygiene`; exact-
-  head hosted validation is pending.
+- **Status:** The initial exact head passed hosted validation. One valid P2
+  review finding now has a tests-first, fully locally qualified correction on
+  `maintenance/m59-repository-hygiene`; corrected exact-head validation is
+  pending.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -39,7 +40,12 @@
   slices, M1-M4 benchmark validators, reproducible pure distributions,
   isolated-wheel smoke, complete release smoke, archive review, whitespace,
   credential-pattern, protected-surface, and Git-object checks pass. The
-  immutable history retains expected unreachable development objects.
+  immutable history retains expected unreachable development objects. Review
+  then identified that `Path.exists()` alone misses a dangling retired root
+  symlink. The reviewer-derived regression failed before the lexical check was
+  added; the correction treats existence or symlink identity as a violation,
+  and all five focused assertions now pass with format, Ruff, and strict
+  Pyright clean.
 - **Hosted gate:** This test/documentation maintenance slice is substantive and
   requires exactly three Linux-first allocations; desktop jobs may begin only
   after Linux qualification succeeds.

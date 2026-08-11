@@ -52,8 +52,29 @@
   isolated-wheel smoke, complete release smoke, and archive-content review.
   Final evidence-inclusive review is clean; hosted exact-head qualification
   remains pending.
-- Hosted evidence: pending exact-head substantive validation in exactly three
-  Linux-first allocations.
+- Initial hosted evidence: exact head
+  `3d7329311d326692dd725024d312b73bb420ef16` passed run `31482750494` in
+  exactly three Linux-first allocations. Linux job `93751196748` passed in
+  7m27s before macOS `93752915784` and Windows `93752915830` began; they
+  passed in 2m21s and 4m20s. Linux baseline and every compatibility suite
+  passed 2,181 tests, with one expected skip outside the baseline. Every
+  platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and
+  Agent World Builder. Hosted reproducibility produced a pure 271,281-byte
+  wheel at
+  `90d0e8daed42c217ae3fd5795feea821744c2e154f361112dbb5c6135998e28a`
+  and a 1,114,755-byte source distribution at
+  `1801d4c777f60c77366cabbb52eca38ca141253014387b5b3ffd4b10671ea124`;
+  installed-wheel and complete release smoke passed.
+- Review correction: one valid P2 found that `Path.exists()` follows a
+  dangling retired root symlink and may report the forbidden directory entry
+  absent. The platform-independent regression failed tests-first. The guard
+  now treats ordinary existence or symlink identity as a violation. After
+  replacing initially untyped monkeypatch lambdas rejected by strict Pyright,
+  all five focused assertions pass in 0.28 seconds with format, Ruff, and
+  strict Pyright clean. The corrected whole-tree candidate passes lock,
+  formatting, Ruff, strict Pyright, 638 architecture assertions, strict docs,
+  and whitespace. Corrected hosted exact-head validation remains pending; the
+  initial hosted pass is not sufficient to merge.
 
 ## M58 public release transport-cleanup conformance - complete
 

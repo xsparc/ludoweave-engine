@@ -5,6 +5,8 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
+from pytest import MonkeyPatch
+
 _ROOT = Path(__file__).resolve().parents[2]
 _RETIRED_MARKER_HEX = (
     "636f646578",
@@ -58,6 +60,15 @@ def _repository_text_paths() -> tuple[Path, ...]:
     return tuple(_ROOT / relative for relative in completed.stdout.split("\0") if relative)
 
 
+def _retired_root_path_violations(root: Path = _ROOT) -> tuple[Path, ...]:
+    violations: list[Path] = []
+    for encoded in _RETIRED_ROOT_PATH_HEX:
+        path = root / _decode(encoded)
+        if path.exists() or path.is_symlink():
+            violations.append(path)
+    return tuple(violations)
+
+
 def test_repository_text_is_free_of_retired_tooling_identity_markers() -> None:
     violations: list[str] = []
 
@@ -91,8 +102,24 @@ def test_hygiene_matcher_preserves_product_agent_terminology() -> None:
 
 
 def test_retired_root_control_paths_remain_absent() -> None:
-    for encoded in _RETIRED_ROOT_PATH_HEX:
-        assert not (_ROOT / _decode(encoded)).exists()
+    assert _retired_root_path_violations() == ()
+
+
+def test_dangling_retired_root_symlink_is_not_considered_absent(
+    monkeypatch: MonkeyPatch,
+) -> None:
+    dangling = _ROOT / _decode(_RETIRED_ROOT_PATH_HEX[0])
+
+    def missing(_path: Path) -> bool:
+        return False
+
+    def is_dangling(path: Path) -> bool:
+        return path == dangling
+
+    monkeypatch.setattr(Path, "exists", missing)
+    monkeypatch.setattr(Path, "is_symlink", is_dangling)
+
+    assert _retired_root_path_violations() == (dangling,)
 
 
 def test_repository_metadata_hygiene_contract_is_documented() -> None:
