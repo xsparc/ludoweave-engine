@@ -66,6 +66,19 @@ the verified M63 closeout created no run or check.
 | Exact scope, lock, static, architecture, docs, and whitespace gate | 0 | The diff named exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; whitespace was clean; the unchanged lock resolved 46 packages in 0.76 ms; all 307 Python files were format clean; Ruff and strict Pyright reported zero findings; all 702 architecture assertions passed in 5.10 seconds; and strict docs built in 1.09 seconds with only the known upstream Material notice. |
 | Reproducible distribution and smoke | 0 | Two builds reproduced a pure 272,239-byte wheel at `38eb28c126aa0245744ded463c3d327423c25b99375c0a9680a7012723c4c7c0` and a 1,163,698-byte source archive at `c08fb4bab14fa51c4ec1d6499e016bec2d32184e3b0b3abe1a8d1817e9830e3d`. Isolated-wheel smoke, deterministic ten-artifact staging, and complete bounded release smoke passed. This evidence edit changes the source archive afterward, so exact commit-tree artifact identities remain delegated to hosted evidence. |
 
+## M64 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #145 CI run `31517725574` | 0 | Exact four-document head `49857245d37aaf8ea1b8a0cf702897a17b3f79ab` passed in one 42-second Linux allocation. All 307 Python files were format clean; Ruff, strict docs, and all 702 architecture assertions passed. The desktop umbrella skipped with zero steps. |
+| Hosted reproducible distribution and smoke | 0 | Two builds reproduced the 272,227-byte wheel at `4eb1cb0b2524f188056c619c7e5757b41c739ff3d889f49982c026dba7a60a3b` and the record-updated 1,163,996-byte source archive at `d6ed5eef92c48c40f97749ad95d69b718551bafbd1024b8ee69e8dd517bbd077`. Installed-wheel smoke, deterministic staging, and complete release smoke passed. |
+| Integration review surfaces | 0 | The initial audit and two delayed audits found no issue comment, review comment, review, or review thread. The PR remained clean, mergeable, and exact-head. |
+| Integration squash verification | 0 | PR #145 squash `6f3c0352420d39f9c4666101f7de3c23a52ac2d2` has tree `7fec531dd168a8ae96a074177d72c9589975264c`, exactly matching the reviewed head; its sole parent is feature squash `8399e0f94838f455ead604eceee0a17e1b2c9a91`. GitHub reports a valid signature and exact parsed DCO trailer. |
+| Three-record closeout local gate | 0 | The diff named exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; all 702 architecture assertions passed in 5.07 seconds; and whitespace was clean. No hosted validation is requested for this project-record-only closeout. |
+
+The pending exact three-record closeout requests no hosted runner and will
+establish the clean M65 selection base after review and verified squash.
+
 ## M63 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M63 starts from exact synchronized M62 closeout

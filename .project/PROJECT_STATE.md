@@ -1,6 +1,6 @@
 # Project State
 
-## M64 bounded sample-bundle extraction - feature integrated
+## M64 bounded sample-bundle extraction - complete
 
 - Base: exact clean synchronized M63 closeout
   `a92330c5d592eaeba69e75e25dd94d83b22d367f`, tree
@@ -57,6 +57,21 @@
   updated source archive; installed-wheel and complete release smoke pass. The
   final evidence edit changes the source archive again, so exact commit-tree
   artifact identity remains delegated to the one-allocation hosted gate.
+- Integration evidence: ready PR #145 exact head
+  `49857245d37aaf8ea1b8a0cf702897a17b3f79ab` passed run `31517725574` in one
+  42-second Linux allocation. The desktop umbrella skipped with zero steps.
+  Hosted formatting, Ruff, strict docs, all 702 architecture assertions,
+  reproducible distribution, installed-wheel smoke, staging, and complete
+  release smoke passed. The exact hosted wheel remained 272,227 bytes at
+  `4eb1cb0b2524f188056c619c7e5757b41c739ff3d889f49982c026dba7a60a3b`;
+  the record-updated source archive was 1,163,996 bytes at
+  `d6ed5eef92c48c40f97749ad95d69b718551bafbd1024b8ee69e8dd517bbd077`.
+  Two delayed audits found no review, issue comment, review comment, or thread.
+  GitHub-verified squash `6f3c0352420d39f9c4666101f7de3c23a52ac2d2`
+  has exact reviewed tree `7fec531dd168a8ae96a074177d72c9589975264c`,
+  sole parent the feature squash, a valid signature, and exact parsed DCO.
+  This three-record closeout establishes the exact M65 selection base without
+  requesting a hosted runner.
 
 ## M63 public release subordinate-output confinement - complete
 
