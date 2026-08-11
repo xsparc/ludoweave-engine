@@ -1,72 +1,74 @@
 # Current Task
 
-- **Task:** M60 - public release filesystem collision conformance
-- **Status:** Feature and factual integration record are hosted-qualified,
-  reviewed, and squash-integrated; three-file closeout is in progress on
-  `records/m60-closeout`.
+- **Task:** M61 - public release candidate/output-root separation
+- **Status:** Review correction is complete locally on
+  `security/m61-release-root-separation`; exact corrected-head hosted
+  qualification and review remain pending.
 - **Started:** 2026-08-11
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M59 closeout
-  `9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`, whose tree exactly matches the
-  reviewed closeout candidate. GitHub reports a valid signature and DCO; only
+- **Base:** Exact clean synchronized M60 closeout
+  `a8fc787a7b04b4fe8ed3766167e58258aa62c8d6`, whose tree
+  `784bf3b82a3dfd51842edad622b3ae1dc0b78ea5` exactly matches the reviewed
+  closeout head. GitHub reports a valid signature and parsed DCO trailer; only
   `main` existed locally/remotely, with no open pull request or closeout run.
-- **Outcome:** Reject every pre-existing final directory entry used for fresh
-  public-release output before network or validator side effects, including a
-  dangling link that ordinary following existence checks report absent.
-- **Acceptance:** The release document, output directory, fresh retrieval plan,
-  asset target, and asset partial use non-following final-entry inspection.
-  Files, directories, live links, dangling links, and inspection failures fail
-  closed with stable, content-silent codes before download/connection work.
-  Exclusive creation and hard-link publication retain no clobber behavior.
+- **Outcome:** Keep the admitted candidate directory read-only by rejecting a
+  runner-owned output root that is the same directory or a resolved descendant
+  before public network or validator side effects.
+- **Acceptance:** Resolve both validated directories strictly and content-
+  silently, use the resolved directories for later work, reject equality and
+  candidate-containing-output relationships with stable
+  `public_release.path_overlap`, and retain a separate candidate child of the
+  output root as valid. Resolved parent aliases and filesystem-identity aliases
+  whose spelling differs on a case-insensitive filesystem receive the same
+  decision.
 - **Boundary:** No race-free filesystem claim, directory-descriptor sandbox,
-  rollback, cleanup, retry, workflow, runner-allocation, dependency, lock,
-  version, runtime package/API, release authority, tag, release, publication,
-  or real public release observation. Community-reserved tasks and deferred
-  product proposals remain untouched.
+  general path sandbox, rollback, cleanup, retry, workflow, runner-allocation,
+  dependency, lock, version, runtime package/API, release authority, tag,
+  release, publication, or real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Baseline:** The focused inherited M45-M58 and release-draft boundary passed
-  317 tests with two platform-capability skips in 7.19 seconds. The first
-  sandboxed `uv lock --check` was denied access to uv's existing user cache;
-  the approved rerun resolved the unchanged 46-package lock in 0.83 ms.
-- **Development evidence:** All eight initial assertions failed on the unchanged
-  verifier. Six behavior cases reached an intentionally forbidden download or
-  connection path; the scope fixture initially used one stale release-workflow
-  hash; and the documentation contract named the intentionally absent RFC.
-  After correcting the test-fixture hash and implementing final-entry
-  `lstat()` inspection, the seven behavior/scope assertions passed in 0.21
-  seconds. Documentation and two later edge-case regressions brought the final
-  M60 group to ten passing assertions on CPython 3.12-3.14. The record-inclusive
-  gate passes the unchanged lock, 303-file formatting, Ruff, strict Pyright,
-  648 architecture assertions, strict docs, 2,188 baseline tests with 14
-  expected skips, reproducible pure distributions, isolated-wheel smoke,
-  complete release smoke, archive/scope/credential checks, and whitespace.
-  Earlier complete graphics-enabled suites on CPython 3.13/3.14 each passed
-  2,187 tests with 14 expected skips before the final test addition; the final
-  ten M60 assertions pass on both versions.
-- **Hosted gate:** Ready PR #132 exact head
-  `836c1e14bbfe0e9bb94dbe1fc84df600279e0b23` passed run `31488972656`
-  in exactly three Linux-first allocations. Linux job `93770741704` passed in
-  7m25s before macOS `93772531511` and Windows `93772531611` began; they passed
-  in 2m28s and 3m17s. Every complete compatibility suite passed 2,192 tests,
-  with one expected skip outside the baseline. Every platform passed ten real-
-  graphics tests, profile smoke, Clockwork Arena, and Agent World Builder.
-- **Integration:** Two review audits found exact head/base, `MERGEABLE/CLEAN`,
-  three successful checks, and no comment, review, or thread. Head-pinned
-  GitHub-verified squash `8967bd8cfc11f1b29caadbf01da9255bd6eb4584` has tree
-  `e17d11565f30e58b6eb705926702e257026f9b3b` exactly equal to the reviewed
-  feature head and sole parent exact M59 closeout. The DCO-signed feature commit
-  remains attached to PR #132. The generated squash body contains literal
-  escaped newline text, so no parsed-trailer claim is made for that commit and
-  public history is not rewritten. The feature branch is deleted locally and
-  remotely; no post-merge `main` run or open PR exists.
-- **Integration record:** Ready PR #133 exact head
-  `f4a41d848a9e9bfa85da2c34d09e705ad7493c87` classified exactly four changed
-  paths as documentation and passed run `31490571527` in one 43-second Linux
-  allocation. The desktop umbrella skipped in zero seconds with no steps.
-  Two delayed audits found no comment, review, or thread. GitHub-verified squash
-  `6861198cf32d04f1e802525c2327335ca1c8be86` has the exact reviewed tree,
-  sole parent the feature squash, and a parsed DCO trailer. Both working
-  branches are deleted locally/remotely; no post-integration `main` run or open
-  PR exists.
+- **Development evidence:** Against unchanged production code, the initial
+  eight-assertion M61 file failed six cases and passed two. All five unsafe or
+  inspection cases reached an intentionally forbidden download path; the
+  documentation contract named the intentionally absent RFC. The safe sibling
+  layout and protected-surface guard passed. After the focused implementation,
+  all seven non-documentation assertions pass in 0.21 seconds; both changed
+  Python files are format/Ruff clean and strict Pyright reports zero findings.
+  The explicit documentation wording correction brings the complete M61 file
+  to eight passing assertions in 0.20 seconds, and the corrected inherited
+  M45-M61/release-draft group passes 346 tests with two platform-capability
+  skips in 7.56 seconds. Whole-tree lock/static/docs and 656 architecture
+  assertions pass. Complete graphics-enabled CPython 3.12-3.14 suites each
+  pass 2,196 tests with 14 expected skips. Ten real-wgpu tests, both five-
+  repeat profiles, both vertical slices, and all M1-M4 benchmark validators
+  pass; timing target misses remain recorded facts rather than pass claims.
+  Two pre-record builds reproduce a pure wheel and source distribution;
+  isolated-wheel and complete release smoke pass. The two added resolver proof
+  points bring the final focused M61 group to 11 passing assertions with
+  format/Ruff/Pyright clean. The evidence-inclusive candidate passes the
+  unchanged lock, 304-file formatting, Ruff, strict Pyright, 659 architecture
+  assertions, strict docs, and 2,199 CPython 3.12 tests with 14 expected skips;
+  all 11 final M61 assertions also pass on CPython 3.13 and 3.14. The first
+  review audit found that resolved path equality alone did not promise
+  canonical spelling on a case-insensitive POSIX filesystem. Both new identity-
+  alias and identity-inspection regressions failed against the hosted head by
+  reaching the forbidden download, while the expanded documentation contract
+  also failed. After filesystem-identity ancestry comparison and aligned docs,
+  all 13 M61 assertions pass; focused format, Ruff, strict Pyright, and strict
+  docs are clean. The correction-inclusive whole-tree gate passes 304-file
+  formatting, Ruff, strict Pyright, 661 architecture assertions, strict docs,
+  and 2,201 tests with 14 expected skips on each of CPython 3.12-3.14.
+- **Artifacts:** The evidence-inclusive candidate reproduces a pure wheel and
+  source distribution byte-for-byte, passes isolated-wheel and complete ten-
+  artifact release smoke, contains 94 wheel and 488 source entries, and has no
+  native/WASM wheel member. Exact immutable candidate hashes are captured with
+  commit/PR evidence rather than self-embedded into the source distribution.
+- **Hosted gate:** Ready PR #135 exact initial head
+  `e17476380d979e2bec891db9fdf9a8523734e8b5` passed run `31494364000` in
+  exactly three Linux-first allocations. Linux `93788273122` passed in 7m09s
+  before macOS `93790316767` and Windows `93790316678` began; they passed in
+  3m22s and 4m11s. Every complete hosted suite passed 2,203 tests with one
+  expected skip outside the baseline. This first run is superseded by the
+  review correction and is not final-head qualification or integration
+  authority.

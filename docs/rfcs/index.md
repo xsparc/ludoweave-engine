@@ -48,3 +48,4 @@ was adopted.
 - [RFC-0041: constrain public release transport cleanup](0041-public-release-cleanup-conformance.md)
 - [RFC-0042: tool-neutral repository metadata](0042-tool-neutral-repository-metadata.md)
 - [RFC-0043: constrain public release output paths](0043-public-release-output-path-conformance.md)
+- [RFC-0044: separate the public release candidate and output root](0044-public-release-root-separation.md)

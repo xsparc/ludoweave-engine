@@ -1,5 +1,84 @@
 # Project State
 
+## M61 public release candidate/output-root separation - review correction locally complete
+
+- Base: exact clean synchronized M60 closeout
+  `a8fc787a7b04b4fe8ed3766167e58258aa62c8d6`, with tree
+  `784bf3b82a3dfd51842edad622b3ae1dc0b78ea5` exactly matching the reviewed
+  closeout candidate. GitHub reports a valid signature and parsed DCO trailer.
+  Only `main` existed locally/remotely after pruning, with no open pull request,
+  closeout run/check, or post-closeout `main` run.
+- Gap: the verifier independently accepted an existing non-symlink candidate
+  directory and runner output root but did not compare their resolved
+  identities. If the output root equalled or resolved beneath the candidate,
+  the fresh document, plan, or downloads could mutate the candidate before its
+  validation.
+- Scope: both validated roots now use strict `Path.resolve()`. Resolution
+  failures preserve the existing content-silent candidate/temporary-directory
+  codes. Equality or an output root beneath the candidate fails with stable
+  `public_release.path_overlap`; the resolved paths become the context-owned
+  roots. Filesystem-identity comparison across the output ancestry also rejects
+  an equivalent alias whose resolved spelling differs on a case-insensitive
+  filesystem; inspection failure maps content-silently to the temporary-root
+  code. A separate candidate child of the output root remains valid because its
+  sibling outputs do not enter the candidate.
+- Decision: RFC-0044 records read-only candidate ownership, resolved-alias
+  comparison, failure ordering, and the nonclaim boundary. This remains no
+  race-free filesystem guarantee and adds no descriptor-confined or general
+  filesystem sandbox, rollback, cleanup, retry, workflow, dependency, lock,
+  version, runtime/API, release authority, tag, release, or publication.
+- Development evidence: all five unsafe/inspection cases in the initial M61
+  run reached an intentionally forbidden download path, the absent-RFC case
+  failed, and the safe sibling/protected-surface assertions passed. After the
+  focused implementation, all seven non-documentation assertions pass in 0.21
+  seconds; both changed Python files are format clean, Ruff clean, and strict-
+  Pyright clean. The first documentation-integrated run required an explicit
+  `before validator` phrase; after correction, all eight M61 assertions pass in
+  0.20 seconds and strict docs build. The first inherited-boundary command used
+  a nonexistent test filename and collected nothing. Its corrected invocation
+  passes 346 M45-M61/release-draft tests with two platform-capability skips in
+  7.56 seconds. The unchanged 46-package lock and 45-package graphics
+  environment pass whole-tree formatting for 304 files, Ruff, strict Pyright,
+  all 656 architecture assertions, and strict docs. Complete graphics-enabled
+  CPython 3.12.13, 3.13.13, and 3.14.5 suites each pass 2,196 tests with 14
+  expected skips. Ten real-wgpu tests, both five-repeat profiles, Clockwork
+  Arena, Agent World Builder, and every M1-M4 validator pass. M1 observed one
+  of two targets, M3 observed zero of two, and M4 observed its baseline target;
+  target misses are retained as facts. Two pre-record builds reproduce a pure
+  271,671-byte wheel and 1,132,009-byte source distribution; isolated-wheel and
+  complete ten-artifact release smoke pass. Archive review finds 94 wheel and
+  488 source entries with no native/WASM wheel member or cache output. Added
+  RuntimeError and resolved-root-use proof points bring the final focused M61
+  group to 11 passing assertions with static checks clean. Final record-
+  inclusive lock/static/docs and 659 architecture assertions pass. The final
+  graphics-enabled CPython 3.12 candidate passes 2,199 tests with 14 expected
+  skips, and all 11 final M61 assertions pass on CPython 3.13 and 3.14. Exact
+  pre-review builds reproduce a pure 271,671-byte wheel and 1,132,688-byte
+  source distribution; isolated-wheel and complete release smoke pass. The
+  wheel has 94 entries, the source distribution has 488, and no native/WASM
+  wheel member or cache/build output is present. Protected workflow, metadata,
+  lock, and runtime package surfaces are unchanged. Exact immutable final
+  artifact identities are delegated to commit/PR evidence because this record
+  is part of the source archive. Ready PR #135 initial head
+  `e17476380d979e2bec891db9fdf9a8523734e8b5` passed run `31494364000` in
+  exactly three Linux-first jobs: Linux passed in 7m09s before macOS and Windows
+  began, and they passed in 3m22s and 4m11s. Every complete hosted suite passed
+  2,203 tests with one expected skip outside the baseline; all platforms passed
+  ten real-graphics tests and both vertical slices. The first review audit then
+  identified that `Path.resolve()` alone does not promise canonical case on a
+  case-insensitive POSIX filesystem. Two test-first identity regressions and
+  the expanded documentation contract failed against the hosted head. The
+  correction compares every resolved output ancestor to the candidate with
+  `Path.samefile()` and fails identity-inspection errors content-silently. All
+  12 corrected non-documentation assertions pass in 0.23 seconds; after aligned
+  RFC/public documentation, all 13 M61 assertions pass in 0.23 seconds with
+  focused formatting, Ruff, strict Pyright, and strict docs clean. The complete
+  correction-inclusive gate passes 304-file formatting, Ruff, strict Pyright,
+  661 architecture assertions, strict docs, and 2,201 tests with 14 expected
+  skips on CPython 3.12.13 in 113.87 seconds, CPython 3.13.13 in 110.05
+  seconds, and CPython 3.14.5 in 114.92 seconds. Exact corrected-head hosted
+  qualification and review remain pending.
+
 ## M60 public release filesystem collision conformance - complete
 
 - Base: exact clean synchronized M59 closeout

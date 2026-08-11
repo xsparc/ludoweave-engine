@@ -420,6 +420,23 @@ cleanup, retry, workflow, allocation, dependency, runtime API, release
 authority, or real public release observation. No real M60 pass exists until an
 authorized signed-tag release run exercises the public path.
 
+M61/RFC-0044 treats the expected candidate directory as read-only input. The
+candidate directory and runner-owned output root are strictly resolved before
+network or validator side effects. The output root cannot equal or resolve
+beneath the candidate directory, including through a resolved alias; overlap
+uses stable `public_release.path_overlap`. Filesystem-identity comparison across
+the output ancestry also rejects differently spelled aliases on a case-
+insensitive filesystem. Resolution and identity-inspection failures retain
+content-silent candidate or temporary-directory codes. A separate candidate
+child of the output root remains valid because fixed output entries remain its
+siblings.
+
+This is no race-free filesystem guarantee and adds no directory-descriptor or
+general filesystem sandbox, rollback, cleanup, retry, workflow, allocation,
+dependency, runtime API, release authority, or real public release observation.
+No real M61 pass exists until an authorized signed-tag release run exercises
+the public path.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
