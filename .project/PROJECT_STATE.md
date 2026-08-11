@@ -85,6 +85,22 @@
   record requests one Linux documentation/distribution allocation and a
   skipped zero-step desktop umbrella; the following three-record closeout will
   request none.
+- Integration evidence: ready PR #148 exact four-document head
+  `1401a2423bdbd001c359735a365f4be14a010d60` passed run `31525664897` in
+  one 43-second Linux allocation. The desktop umbrella skipped with zero steps.
+  Hosted formatting, Ruff, strict docs, 725 architecture assertions, two-build
+  reproducibility, installed-wheel smoke, staging, and complete release smoke
+  passed. The hosted wheel remained 272,473 bytes at
+  `4bb773ae13a5b8f4a132ef7488b783cb0249f6e4ff7e3640016c7207872c5c87`;
+  the record-updated 1,176,061-byte source archive was
+  `d148c700f4b09a35518cb3a61e3116088f28c4549137de85ac73b7c82d799b85`.
+  Two delayed audits found no review, issue comment, review comment, or thread.
+  GitHub-verified squash `b88090a78fdd6cb4978863e0792d7741cd07efb3`
+  has exact reviewed tree `2c24ce9d68e7068d745f794a423b6d6d60d971b2`,
+  sole parent the feature squash, valid signature, and parsed DCO trailer. The
+  integration branch is absent remotely and deleted locally. This pending exact
+  three-record closeout requests no hosted runner and will establish the M66
+  selection base.
 
 ## M64 bounded sample-bundle extraction - complete
 

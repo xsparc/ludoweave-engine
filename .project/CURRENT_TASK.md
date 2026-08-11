@@ -1,19 +1,19 @@
 # Current Task
 
 - **Task:** M65 - portable sample member paths
-- **Status:** Corrected feature PR #147 is fully validated, reviewed, resolved,
-  and squash-integrated. This exact four-document integration record will use
-  the unchanged documentation-only classifier: one Linux allocation and a
-  skipped zero-step desktop umbrella.
+- **Status:** Corrected feature PR #147 and integration-record PR #148 are fully
+  validated, reviewed, squash-integrated, and verified. This exact three-record
+  closeout establishes the clean M66 selection base without requesting hosted
+  CI.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** GitHub-verified M65 feature squash
-  `b01335592d0e984c6b3eb6a35d31294081cff0d5`, whose tree
-  `34bfb5e87ef22e56c3414a9072cbad2e0bd3c74b` exactly matches corrected
-  reviewed head `9de1e2e6ea11b4058bb61b4102043273715875ee`. Its sole parent is exact
-  M64 closeout `92e706961e2ecd4e2c187a205cc045a8c6506ab9`; GitHub reports a valid
+- **Base:** GitHub-verified integration squash
+  `b88090a78fdd6cb4978863e0792d7741cd07efb3`, whose tree
+  `2c24ce9d68e7068d745f794a423b6d6d60d971b2` exactly matches reviewed PR
+  #148 head `1401a2423bdbd001c359735a365f4be14a010d60`. Its sole parent is the M65
+  feature squash `b01335592d0e984c6b3eb6a35d31294081cff0d5`; GitHub reports a valid
   signature and exact parsed DCO trailer.
 - **Outcome:** Give every admitted staged sample-ZIP file one deterministic
   portable extraction identity before the first filesystem write.
@@ -76,10 +76,16 @@
   tests-first correction and resolved only after the fresh hosted pass. Two
   delayed exact-head audits found no later review, issue comment, review
   comment, or unresolved thread.
-- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
-  run the unchanged lock, whole-tree static, architecture, strict-docs,
-  reproducible-distribution, wheel/release-smoke, scope, and whitespace gates;
-  publish a DCO-signed ready PR; require one Linux docs/distribution allocation
-  and zero desktop steps; verify the squash; then create an exact three-record
-  closeout without requesting another hosted runner.
+- **Integration evidence:** Exact four-document head `1401a242` passed run
+  `31525664897` in one 43-second Linux allocation; the desktop umbrella skipped
+  with zero steps. Hosted formatting, Ruff, strict docs, 725 architecture
+  assertions, reproducible distribution, isolated-wheel smoke, staging, and
+  complete release smoke passed. Two delayed audits were empty. Squash
+  `b88090a` has the exact reviewed tree, valid signature, sole parent the
+  feature squash, and parsed DCO.
+- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture,
+  strict docs, scope, Git-object, and whitespace checks; create a DCO-signed
+  ready PR that requests no hosted runner; verify the squash; delete every M65
+  branch locally/remotely; clean only verified generated M65 outputs; and leave
+  synchronized clean `main` before selecting M66.
