@@ -1,6 +1,6 @@
 # Project State
 
-## M60 public release filesystem collision conformance - locally complete
+## M60 public release filesystem collision conformance - feature integrated
 
 - Base: exact clean synchronized M59 closeout
   `9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`, with tree
@@ -62,10 +62,33 @@
   94 pure-wheel and 486 source-distribution entries, and contains no native or
   WASM wheel member. Exact immutable candidate hashes are captured with the
   commit/PR evidence rather than self-embedded into the source distribution.
-- Hosted gate: this substantive security/documentation slice requires exactly
-  three Linux-first allocations. Desktop work may begin only after Linux
-  qualification succeeds. No hosted run, PR, tag, release, or publication is
-  claimed yet.
+- Hosted evidence: ready PR #132 exact head
+  `836c1e14bbfe0e9bb94dbe1fc84df600279e0b23` passed run `31488972656` in
+  exactly three Linux-first allocations. Linux job `93770741704` passed in
+  7m25s before macOS job `93772531511` and Windows job `93772531611` began;
+  they passed in 2m28s and 3m17s. Linux baseline passed 2,192 tests; Ubuntu
+  CPython 3.13/3.14 and both desktop CPython 3.14 suites passed 2,192 tests with
+  one expected skip. All platforms passed ten real-graphics tests, valid
+  three-workload graphics profiles, Clockwork Arena, and Agent World Builder.
+- Hosted artifacts: same-source reproducibility produced a pure 271,493-byte
+  wheel at
+  `ed79ae64bbda70b105fea3eaf61fedfa175998ea55191a7127d764063579f784`
+  and a 1,125,477-byte source distribution at
+  `462b6659990f222fe2c06c1deca5e124fdc897ec08d4d75cde3020f919ba2aab`.
+  Installed-wheel and complete ten-artifact release smoke passed.
+- Integration: two audits found PR #132 ready, exact-head/exact-base,
+  `MERGEABLE/CLEAN`, with exactly three successful checks and no issue comment,
+  review comment, review, or thread. Head-pinned GitHub-verified squash
+  `8967bd8cfc11f1b29caadbf01da9255bd6eb4584` has tree
+  `e17d11565f30e58b6eb705926702e257026f9b3b` exactly equal to reviewed head
+  `836c1e14bbfe0e9bb94dbe1fc84df600279e0b23`, and sole parent exact M59
+  closeout `9ba74e55b5c47d5f0bd030b53ad6a35a361c5735`. The source commit has the
+  required DCO trailer and remains attached to PR #132. The generated squash
+  body retained literal escaped newline text before its displayed sign-off, so
+  this record does not claim that generated commit has a parsed trailer and
+  does not rewrite public history. The feature branch is deleted locally and
+  remotely. Synchronized `main` has no post-merge run or open pull request.
+  No tag, release, publication, or real public release observation exists.
 
 ## M59 repository metadata hygiene - complete
 
