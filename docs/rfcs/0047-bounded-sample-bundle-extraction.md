@@ -33,6 +33,8 @@ complete central directory and requires all of the following:
 3. At most **8 MiB** declared uncompressed size across all members.
 4. Every member continues to satisfy the existing path-confinement and
    symbolic-link rejection rules.
+5. Every member uses ZIP stored or deflated compression. BZIP2, LZMA, and
+   unknown methods are rejected before extraction.
 
 After the complete preflight succeeds, regular files stream from
 `ZipFile.open()` to an exclusively selected temporary workspace in **64 KiB**
@@ -54,12 +56,18 @@ count, so the 256-member rule bounds admitted extraction work rather than the
 library's initial archive-parsing allocation. A raw bounded ZIP parser is not
 introduced.
 
+CPython passes the requested output limit to its deflate decompressor, while
+its BZIP2/LZMA paths decompress an input chunk without that output limit before
+truncating to the declared remaining size. Admitting only stored and deflated
+members is therefore part of the streaming memory boundary; a forged small
+`file_size` cannot select those unbounded library paths.
+
 Extraction still has no transactional cleanup or rollback guarantee after a
 successful preflight. A later I/O, decompression, or declared-size mismatch can
 leave partial output only inside the runner-owned temporary smoke directory.
 Duplicate-name, case-folding, Unicode-normalization, encrypted-member, and
-cross-platform filename-portability policies are unchanged and outside this
-milestone.
+cross-platform filename-portability policies are otherwise unchanged and
+outside this milestone.
 
 M64 adds no workflow, runner allocation, action, permission, trigger,
 credential, dependency, lock, version, runtime package/API, release mutation,
@@ -74,6 +82,8 @@ a real public release observation.
   size.
 - Exact copied-size validation fails closed if streamed bytes disagree with the
   preflight metadata.
+- BZIP2, LZMA, and unknown compression methods fail before filesystem writes;
+  stored and deflated members remain admitted.
 - Current project sample bundles retain ample space below every admitted limit.
 
 ## Alternatives considered
@@ -87,6 +97,8 @@ a real public release observation.
 - Add a third-party archive or sandbox dependency. Rejected because the
   standard library provides the bounded metadata and streaming seams required
   for this narrow smoke utility.
+- Admit every standard-library ZIP codec. Rejected because CPython's BZIP2 and
+  LZMA member readers do not pass a maximum-output length to their decompressor.
 - Delete partial output after an extraction-time failure. Deferred because the
   output already lives in a disposable runner-owned temporary directory and
   cleanup semantics are a separate decision.

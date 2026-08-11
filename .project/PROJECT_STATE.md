@@ -1,6 +1,6 @@
 # Project State
 
-## M64 bounded sample-bundle extraction - locally validated
+## M64 bounded sample-bundle extraction - review correction
 
 - Base: exact clean synchronized M63 closeout
   `a92330c5d592eaeba69e75e25dd94d83b22d367f`, tree
@@ -14,7 +14,8 @@
 - Decision: RFC-0047 admits at most 256 members, 1 MiB declared uncompressed per
   member, and 8 MiB declared uncompressed total. Complete path, link, count, and
   size preflight precedes extraction; admitted files stream in 64 KiB blocks
-  and must exactly reproduce declared size.
+  and must exactly reproduce declared size. Only stored and deflated methods are
+  admitted; BZIP2, LZMA, and unknown methods fail before extraction.
 - Boundary: private release tooling only. No general archive sandbox,
   transactional cleanup, filename-policy expansion, workflow, dependency,
   runtime API, release authority, or real public release observation.
@@ -43,6 +44,22 @@
   Final reproducible artifacts, isolated-wheel smoke, and complete bounded
   release smoke pass. The final record-frozen source gate passes. Exact commit
   review and hosted qualification remain.
+- Initial hosted state: exact head `c5813633f8ff7970311cc7ab8e1159f844c056f7`
+  passed run `31513476270` in exactly three Linux-first allocations. All hosted
+  test, graphics, profile, example, reproducibility, wheel, and release-smoke
+  slices passed.
+- Review correction: the first audit found that CPython's BZIP2/LZMA member
+  readers decompress without the deflate path's maximum-output argument before
+  truncating to forged declared size. Exact local source inspection confirmed
+  the issue. Three reviewer-derived assertions failed and ten passed against the
+  hosted head; stored/deflated-only admission is now implemented and focused
+  formatting, Ruff, strict Pyright, all 13 M64 assertions, and strict docs pass.
+  All 704 inherited architecture/release-artifact assertions also pass. Full
+  corrected validation passes 2,242 tests with 14 expected skips on all
+  supported CPython versions, real-wgpu, profiles, vertical slices, reproducible
+  builds, installed-wheel smoke, and complete release smoke. Final record/commit
+  validation and a new hosted run remain. The final record-inclusive source
+  gate is green.
 
 ## M63 public release subordinate-output confinement - complete
 

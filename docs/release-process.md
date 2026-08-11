@@ -469,7 +469,10 @@ M64/RFC-0047 bounds the staged sample bundle consumed by the complete release
 smoke. Before extraction, the complete central directory must contain at most
 256 members, no member may declare more than 1 MiB uncompressed, and aggregate
 declared expansion may not exceed 8 MiB. Existing path and symbolic-link checks
-run in that same complete preflight, before extraction creates any path.
+run in that same complete preflight, before extraction creates any path. The
+bundle may use only stored or deflated members; BZIP2, LZMA, and unknown methods
+are rejected before extraction because their library paths do not provide the
+same bounded decompressor-output behavior.
 
 Admitted regular files then stream in 64 KiB blocks and must reproduce their
 declared sizes exactly. The limits bound smoke resource use; they do not make

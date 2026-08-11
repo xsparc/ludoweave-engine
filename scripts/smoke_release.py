@@ -47,6 +47,7 @@ _MAX_SAMPLE_MEMBERS = 256
 _MAX_SAMPLE_MEMBER_BYTES = 1024 * 1024
 _MAX_SAMPLE_TOTAL_BYTES = 8 * 1024 * 1024
 _SAMPLE_COPY_BYTES = 64 * 1024
+_SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -372,6 +373,8 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             mode = info.external_attr >> 16
             if stat.S_ISLNK(mode):
                 raise RuntimeError("sample bundle must not contain symbolic links")
+            if info.compress_type not in _SAMPLE_COMPRESSION_METHODS:
+                raise RuntimeError("sample bundle uses an unsupported compression method")
             if info.file_size > _MAX_SAMPLE_MEMBER_BYTES:
                 raise RuntimeError("sample bundle member is too large")
             total_bytes += info.file_size

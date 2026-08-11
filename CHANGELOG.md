@@ -8,8 +8,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - Add M64/RFC-0047 complete preflight and 64 KiB streaming extraction for
   staged sample bundles, limiting them to 256 members, 1 MiB per member, and
-  8 MiB total declared expansion without changing workflows, dependencies,
-  runtime APIs, or release authority.
+  8 MiB total declared expansion while admitting only bounded-read stored and
+  deflated codecs, without changing workflows, dependencies, runtime APIs, or
+  release authority.
 - Add M63/RFC-0046 public-release subordinate-output confinement and exact
   built-in integer exit-status validation, preserving one content-silent JSON
   document without changing workflows, dependencies, runtime APIs, or release

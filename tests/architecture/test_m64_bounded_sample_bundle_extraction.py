@@ -62,6 +62,7 @@ class _SmokeModule(Protocol):
     _MAX_SAMPLE_MEMBER_BYTES: int
     _MAX_SAMPLE_TOTAL_BYTES: int
     _SAMPLE_COPY_BYTES: int
+    _SAMPLE_COMPRESSION_METHODS: frozenset[int]
 
     def _extract_bundle(self, bundle: Path, output: Path, *, version: str) -> Path: ...
 
@@ -80,8 +81,13 @@ def _load() -> _SmokeModule:
     return cast(_SmokeModule, module)
 
 
-def _bundle(path: Path, members: Sequence[tuple[str, bytes]]) -> None:
-    with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+def _bundle(
+    path: Path,
+    members: Sequence[tuple[str, bytes]],
+    *,
+    compression: int = zipfile.ZIP_DEFLATED,
+) -> None:
+    with zipfile.ZipFile(path, "w", compression=compression) as archive:
         for name, payload in members:
             archive.writestr(f"{_PREFIX}/{name}", payload)
 
@@ -94,11 +100,13 @@ def _empty_output(tmp_path: Path) -> Path:
 
 def test_m64_pins_conservative_sample_expansion_limits() -> None:
     module = _load()
+    supported_compression = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
 
     assert module._MAX_SAMPLE_MEMBERS == 256
     assert module._MAX_SAMPLE_MEMBER_BYTES == _ONE_MIB
     assert module._MAX_SAMPLE_TOTAL_BYTES == 8 * _ONE_MIB
     assert module._SAMPLE_COPY_BYTES == 64 * 1024
+    assert supported_compression == module._SAMPLE_COMPRESSION_METHODS
 
 
 def test_member_count_limit_fails_before_extraction(tmp_path: Path) -> None:
@@ -135,6 +143,35 @@ def test_total_size_limit_fails_before_extraction(tmp_path: Path) -> None:
         module._extract_bundle(bundle, output, version=_VERSION)
 
     assert list(output.iterdir()) == []
+
+
+@pytest.mark.parametrize("compression", (zipfile.ZIP_BZIP2, zipfile.ZIP_LZMA))
+def test_unbounded_read_codecs_fail_before_extraction(
+    tmp_path: Path,
+    compression: int,
+) -> None:
+    module = _load()
+    bundle = tmp_path / "unsupported-codec.zip"
+    _bundle(bundle, (("payload.bin", b"x"),), compression=compression)
+    output = _empty_output(tmp_path)
+
+    with pytest.raises(RuntimeError, match="unsupported compression method"):
+        module._extract_bundle(bundle, output, version=_VERSION)
+
+    assert list(output.iterdir()) == []
+
+
+def test_stored_members_remain_admitted(tmp_path: Path) -> None:
+    module = _load()
+    bundle = tmp_path / "stored.zip"
+    _bundle(
+        bundle,
+        tuple((name, b"") for name in sorted(_REQUIRED)),
+        compression=zipfile.ZIP_STORED,
+    )
+    output = _empty_output(tmp_path)
+
+    assert module._extract_bundle(bundle, output, version=_VERSION) == (output / _PREFIX)
 
 
 def test_valid_boundary_member_streams_without_zipfile_read(
@@ -192,6 +229,9 @@ def test_m64_source_preflights_then_streams_archive_members() -> None:
     assert source.index("infos = tuple(archive.infolist())") < source.index(
         "destination.parent.mkdir"
     )
+    assert source.index("info.compress_type not in _SAMPLE_COMPRESSION_METHODS") < (
+        source.index("destination.parent.mkdir")
+    )
     assert "archive.open(info)" in source
     assert "source.read(_SAMPLE_COPY_BYTES)" in source
     assert "archive.read(info)" not in source
@@ -237,6 +277,9 @@ def test_m64_docs_define_bounded_streaming_extraction_and_nonclaim_boundary() ->
         "1 mib",
         "8 mib",
         "64 kib",
+        "stored and deflated",
+        "bzip2",
+        "lzma",
         "before extraction",
         "stream",
         "no workflow",

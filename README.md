@@ -591,9 +591,10 @@ real public release observation.
 
 M64 preflights staged sample bundles before extraction: at most 256 members,
 1 MiB per member, and 8 MiB total declared expansion. Valid members stream in
-64 KiB blocks and must reproduce their declared size. RFC-0047 adds no workflow,
-dependency, runtime API, cleanup guarantee, release authority, or real public
-release observation.
+64 KiB blocks and must reproduce their declared size. Only stored and deflated
+ZIP members are admitted; BZIP2, LZMA, and unknown methods fail before
+extraction. RFC-0047 adds no workflow, dependency, runtime API, cleanup
+guarantee, release authority, or real public release observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

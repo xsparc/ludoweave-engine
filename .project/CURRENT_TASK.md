@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M64 - bounded sample-bundle extraction
-- **Status:** Implementation, review, and complete local validation are ready
-  for the substantive feature pull request on
-  `security/m64-bounded-sample-bundle-extraction`.
+- **Status:** Ready PR #144 passed its first three-allocation hosted gate; the
+  actionable BZIP2/LZMA review finding is corrected and fully locally validated
+  for a DCO-signed follow-up commit and fresh hosted qualification.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -19,7 +19,8 @@
 - **Acceptance:** Preflight no more than 256 members, 1 MiB declared
   uncompressed per member, and 8 MiB declared uncompressed total before the
   first filesystem write; retain path and symbolic-link validation; stream
-  admitted members in 64 KiB blocks; require copied size to match metadata.
+  admitted stored/deflated members in 64 KiB blocks; reject BZIP2, LZMA, and
+  unknown methods; require copied size to match metadata.
 - **Boundary:** Private release-smoke limits only. No general archive sandbox,
   authentication claim, duplicate/case/Unicode filename policy, cleanup or
   rollback guarantee, workflow, runner allocation, dependency, lock, version,
@@ -62,5 +63,23 @@
   twice-reproducible artifacts, isolated-wheel smoke, and complete bounded
   release smoke pass. The final record-frozen source gate passes; only exact
   commit review and hosted qualification remain.
-- **Hosted evidence:** Pending full local validation, review, exact commit, and
-  one substantive three-allocation pull-request gate.
+- **Hosted evidence:** Ready PR #144 exact initial head
+  `c5813633f8ff7970311cc7ab8e1159f844c056f7` passed run `31513476270` in
+  exactly three Linux-first allocations: Linux `93852742523` passed in 7m33s,
+  then macOS `93854944611` passed in 2m56s and Windows `93854944488` in 4m28s.
+  Linux baseline and all compatibility suites passed 2,243 tests; compatibility
+  suites reported one expected skip. Hosted builds reproduced a 272,176-byte
+  wheel at `80a52b31109504d23a6d4fc5c5c36c9427c3f3d11ef3a2fa83362043236aedc4`
+  and a 1,160,677-byte source archive at
+  `d0b61cc6b97aabdf2eeb6166385dad6c1201858b5b647aee359426a9d7e9efdf`;
+  installed-wheel and complete release smoke passed. The first review audit
+  then identified CPython's unbounded-output BZIP2/LZMA read path. Local source
+  inspection confirmed the distinction; the reviewer-derived test failed three
+  assertions and passed ten against the hosted head. The correction admits only
+  stored/deflated members. Its corrected focused formatting, Ruff, strict
+  Pyright, all 13 M64 assertions, 704 inherited architecture/release-artifact
+  assertions, strict docs, and whitespace pass. The corrected candidate passes
+  2,242 tests with 14 expected skips on every supported CPython, real-wgpu,
+  profiles, vertical slices, twice-reproducible builds, installed-wheel smoke,
+  and corrected complete release smoke. Final record/commit validation and a
+  new hosted run remain; the final record-inclusive source gate is green.

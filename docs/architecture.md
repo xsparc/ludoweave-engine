@@ -1623,7 +1623,10 @@ The release smoke preflights every staged sample ZIP member before extraction
 creates a path. The archive may contain at most 256 members, each member may
 declare at most 1 MiB uncompressed, and all members together may declare at
 most 8 MiB uncompressed. Existing path confinement and symbolic-link rejection
-are part of the same complete preflight.
+are part of the same complete preflight. Stored and deflated are the only
+admitted compression methods; BZIP2, LZMA, and unknown methods fail before a
+filesystem write because their standard-library read paths do not share the
+deflate path's bounded decompressor-output behavior.
 
 After preflight, regular files stream through `ZipFile.open()` in 64 KiB blocks.
 The extracted byte count must exactly equal the preflight declaration, avoiding

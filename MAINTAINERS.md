@@ -45,7 +45,9 @@ claims.
 M64 preflights the complete staged sample ZIP before extraction. It admits at
 most 256 members, 1 MiB declared uncompressed per member, and 8 MiB declared
 uncompressed in total. After preflight, admitted files stream in 64 KiB blocks
-and must exactly match their declared uncompressed sizes.
+and must exactly match their declared uncompressed sizes. Only stored and
+deflated members are admitted; BZIP2, LZMA, and unknown methods fail before
+extraction.
 
 M64 is a narrow release-smoke resource boundary, not a general archive sandbox
 or transactional cleanup guarantee. It adds no workflow, allocation,
