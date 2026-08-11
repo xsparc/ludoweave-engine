@@ -1,6 +1,6 @@
 # Project State
 
-## M59 repository metadata hygiene - in progress
+## M59 repository metadata hygiene - feature integrated
 
 - Base: exact clean synchronized M58 closeout
   `d4487565d4fda57ec05437dfcadc687d2507dafa`, with only `main` present and no
@@ -50,8 +50,7 @@
   candidate passes lock/sync, whole-tree formatting, Ruff, strict Pyright, 637
   architecture assertions, strict docs, reproducible pure distributions,
   isolated-wheel smoke, complete release smoke, and archive-content review.
-  Final evidence-inclusive review is clean; hosted exact-head qualification
-  remains pending.
+  Final evidence-inclusive review was clean before hosted qualification.
 - Initial hosted evidence: exact head
   `3d7329311d326692dd725024d312b73bb420ef16` passed run `31482750494` in
   exactly three Linux-first allocations. Linux job `93751196748` passed in
@@ -73,8 +72,36 @@
   all five focused assertions pass in 0.28 seconds with format, Ruff, and
   strict Pyright clean. The corrected whole-tree candidate passes lock,
   formatting, Ruff, strict Pyright, 638 architecture assertions, strict docs,
-  and whitespace. Corrected hosted exact-head validation remains pending; the
-  initial hosted pass is not sufficient to merge.
+  and whitespace. The initial hosted pass was not sufficient to merge.
+- Corrected hosted evidence: exact head
+  `28e80e66eb16656a998353627ef78a8fe6e4c80b` passed run `31484028669` in
+  exactly three Linux-first allocations. Linux job `93755205753` passed in
+  6m05s before macOS `93756589084` and Windows `93756589057` began; they
+  passed in 2m53s and 4m08s. Linux baseline and every compatibility suite
+  passed 2,182 tests, with one expected skip outside the baseline. Every
+  platform passed ten real-graphics tests, profile smoke, Clockwork Arena, and
+  Agent World Builder.
+- Corrected hosted artifacts: exact-head reproducibility produced a pure
+  271,281-byte wheel at
+  `90d0e8daed42c217ae3fd5795feea821744c2e154f361112dbb5c6135998e28a`
+  and a 1,116,015-byte source distribution at
+  `5650d9a3df594799e09969f305419829b4345d6e85b8682b130b78fe926be987`;
+  installed-wheel and complete ten-artifact release smoke passed.
+- Integration: the valid P2 was answered with the correction evidence and its
+  sole thread resolved. Two delayed audits found exact corrected head/base,
+  `MERGEABLE/CLEAN`, exactly three successful checks, zero issue comments, and
+  no unresolved or later review activity. Head-pinned squash
+  `f12f65ab7c1f8426b0232bb4b414e48276bbad56` has tree
+  `759107195ba7094fb78cbc25b62a5d6011dd637d` exactly equal to the corrected
+  reviewed head, sole parent M58 closeout
+  `d4487565d4fda57ec05437dfcadc687d2507dafa`, a valid GitHub signature, and
+  standalone DCO. The feature branch is deleted locally/remotely. Synchronized
+  `main` has no post-merge run or non-main remote branch. The exact four-file
+  integration record requires one Linux documentation allocation and a zero-
+  step skipped desktop umbrella. Its local gate passes exact four-file scope,
+  lock/sync, whole-tree formatting, Ruff, strict Pyright, 638 architecture
+  assertions, strict docs, reproducible pure distributions, isolated-wheel
+  smoke, complete release smoke, and whitespace.
 
 ## M58 public release transport-cleanup conformance - complete
 
