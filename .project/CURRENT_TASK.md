@@ -1,22 +1,20 @@
 # Current Task
 
 - **Task:** M65 - portable sample member paths
-- **Status:** Initial ready PR #147 passed the unchanged three-allocation hosted
-  gate at exact head `fce4140dd2d1b2982a1e90091dd2b157b00e861c`, but review
-  found that explicitly encoded non-regular ZIP modes were not rejected. The
-  tests-first correction passes the complete local source, supported-Python,
-  real-wgpu, profile, example, reproducibility, wheel, and release gates. A DCO-
-  signed amended head and fresh hosted qualification remain required.
+- **Status:** Corrected feature PR #147 is fully validated, reviewed, resolved,
+  and squash-integrated. This exact four-document integration record will use
+  the unchanged documentation-only classifier: one Linux allocation and a
+  skipped zero-step desktop umbrella.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact clean synchronized M64 closeout
-  `92e706961e2ecd4e2c187a205cc045a8c6506ab9`, whose tree
-  `8df4aaa8222517d729234792d162dfc115674767` exactly matches the reviewed
-  closeout head. GitHub reports a valid signature and parsed DCO trailer. Only
-  `main` existed locally/remotely, no pull request was open, `git fsck` passed,
-  and the closeout created no run or check.
+- **Base:** GitHub-verified M65 feature squash
+  `b01335592d0e984c6b3eb6a35d31294081cff0d5`, whose tree
+  `34bfb5e87ef22e56c3414a9072cbad2e0bd3c74b` exactly matches corrected
+  reviewed head `9de1e2e6ea11b4058bb61b4102043273715875ee`. Its sole parent is exact
+  M64 closeout `92e706961e2ecd4e2c187a205cc045a8c6506ab9`; GitHub reports a valid
+  signature and exact parsed DCO trailer.
 - **Outcome:** Give every admitted staged sample-ZIP file one deterministic
   portable extraction identity before the first filesystem write.
 - **Acceptance:** Require an exact expected root; one or more portable ASCII
@@ -66,12 +64,22 @@
 - **Initial hosted evidence:** Run `31521633593` passed exact initial head
   `fce4140dd2d1b2982a1e90091dd2b157b00e861c` in three Linux-first
   allocations: Linux `93879809651` in 5m24s, macOS `93881371543` in 2m50s,
-  and Windows `93881371674` in 4m05s. Merge remains blocked pending a fresh run
-  because that head contains the confirmed non-regular-mode gap.
-- **Required validation:** Unchanged lock/environment; whole-tree formatting,
-  Ruff, strict Pyright, focused and inherited architecture/release tests, strict
-  docs, all supported CPython versions, real-wgpu, profiles, both vertical
-  slices, documented diagnostic benchmarks, twice-reproducible distribution,
-  isolated-wheel smoke, complete release smoke, diff/history/security/archive
-  review, exact amended DCO commit, and a fresh unchanged three-allocation
-  hosted gate.
+  and Windows `93881371674` in 4m05s. Merge was blocked because that head
+  contained the confirmed non-regular-mode gap.
+- **Corrected hosted evidence:** Exact amended head `9de1e2e6` passed run
+  `31523863615` in three Linux-first allocations: Linux `93887270228` in
+  7m32s, macOS `93889429991` in 2m09s, and Windows `93889429975` in 4m11s.
+  Static/docs, supported Python, real-wgpu, profiles, both vertical slices,
+  reproducible distribution, isolated-wheel smoke, staging, and corrected
+  complete release smoke all passed.
+- **Review resolution:** The valid mode-type finding was answered with the
+  tests-first correction and resolved only after the fresh hosted pass. Two
+  delayed exact-head audits found no later review, issue comment, review
+  comment, or unresolved thread.
+- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
+  run the unchanged lock, whole-tree static, architecture, strict-docs,
+  reproducible-distribution, wheel/release-smoke, scope, and whitespace gates;
+  publish a DCO-signed ready PR; require one Linux docs/distribution allocation
+  and zero desktop steps; verify the squash; then create an exact three-record
+  closeout without requesting another hosted runner.
