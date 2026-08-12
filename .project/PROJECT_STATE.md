@@ -1,5 +1,69 @@
 # Project State
 
+## M71 checksum-admitted sample snapshot - in progress
+
+- Base: exact clean synchronized M70 closeout
+  `f62631e2541f8f6a34b0ed84f489c2d7f9503747`, tree
+  `f1e8ecc9b0d681a6fb4006354c8d983b2f4f119c`.
+- Gap: M70 compared the source descriptor before parsing and publication, but
+  `ZipFile` still consumed externally mutable bytes between those checks. A
+  capable local actor could change and restore bytes without altering either
+  observed digest.
+- Decision: RFC-0054 copies at most 16 MiB into an owned binary spooled
+  temporary file while hashing, admits only the expected digest, and gives that
+  exact rewound snapshot to `ZipFile`.
+- Boundary: private complete release smoke only. No persistent copy, cache,
+  lock, source-immutability guarantee, raw parser, general archive sandbox,
+  workflow, dependency, producer, runtime API, or release authority.
+- Failing baseline: exact M70 code produced 7 failures and 2 passing guards in
+  0.36 seconds; the helper, owned parser input, source independence, ordering,
+  RFC, and docs were absent.
+- Implementation checkpoint: M70/M71 produced 13 passes with only the absent
+  documentation assertion failing in 0.41 seconds. Strict Pyright was clean;
+  import ordering remained before documentation/static completion.
+- Focused gate: after import normalization and the M68 historical test update,
+  M71 passes 9 assertions; inherited M64-M71 passes 90 with 1 local capability
+  skip; formatting, Ruff, strict Pyright, strict docs, and whitespace pass.
+  Full qualification remains.
+- Full local candidate: the unchanged lock resolved 46 packages; all 314
+  Python files were format clean; Ruff and strict Pyright reported zero
+  findings; strict docs and whitespace passed. CPython 3.12 passed 2,309
+  non-wgpu tests with 15 skips, all 779 architecture assertions passed with 1
+  local capability skip, and CPython 3.13/3.14 each passed 2,309 tests with 16
+  skips.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic validators
+  passed. M1 observed one of two engineering targets, M2 retained no targets,
+  M3 observed neither graphics target, and M4 observed its baseline target.
+- Pre-review artifacts: two builds reproduced a pure 273,524-byte wheel at
+  `791f2c909cf9b89381443f0b89d6baa79ed56f7a0bd96fa7de4d09521f597671`
+  and a 1,225,504-byte sdist at
+  `ef631bcdb169baa8e41036cafaaa0720edd38402db127847fb9a683e3d8e3166`;
+  installed-wheel, deterministic ten-artifact staging, and complete release
+  smoke passed. The 111,168-byte 50-entry sample ZIP has SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  no inspected wheel, sdist, or sample entry is native or WASM.
+- Review: no implementation defect, stale contract, or overclaim remains.
+  Runtime proof was strengthened to observe `ZipFile` receiving the distinct
+  snapshot and to verify source/snapshot closure after mismatch; M71 now passes
+  10 assertions. Exact scope remains 18 paths with no workflow, runtime package,
+  producer, benchmark, dependency, metadata, lock, or release-authority change.
+  Record-inclusive qualification remains before DCO publication.
+- Record-inclusive qualification: the unchanged lock, whole-tree formatting,
+  Ruff, strict Pyright, all 780 architecture assertions with 1 local capability
+  skip, strict docs, whitespace, and full Git-object checking pass. Two builds
+  reproduce the feature-identical pure 273,524-byte wheel and a 1,227,248-byte
+  record-updated sdist at
+  `530ebef65bd489cf16a74760c84d4b308fc9180b62849345da4bf70b19349de0`;
+  installed-wheel, deterministic staging, and complete release smoke pass.
+  Recording this fact changes the sdist, so exact commit artifact identity is
+  delegated to quota-bounded hosted qualification.
+- Final frozen gate: the unchanged lock resolves 46 packages; all 314 files are
+  format clean; Ruff and strict Pyright are clean; all 780 architecture
+  assertions pass with 1 local capability skip; strict docs and whitespace
+  pass. The candidate is ready for exact-scope/history review and DCO
+  publication.
+
 ## M70 sample-archive checksum binding - feature integrated
 
 - Base: exact clean synchronized M69 closeout

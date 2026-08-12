@@ -206,7 +206,7 @@ def test_current_producer_stays_well_below_archive_limit(tmp_path: Path) -> None
     assert bundle.stat().st_size * 100 < module._MAX_SAMPLE_ARCHIVE_BYTES
 
 
-def test_m68_source_validates_same_open_handle_before_zipfile_construction() -> None:
+def test_m68_source_validates_open_handle_before_snapshot_and_parser() -> None:
     source = _SMOKE.read_text(encoding="utf-8")
     extraction_source = source[source.index("def _extract_bundle") :]
 
@@ -217,7 +217,8 @@ def test_m68_source_validates_same_open_handle_before_zipfile_construction() -> 
     descriptor_admission = extraction_source.index(
         "_validate_sample_archive_source(", descriptor_stat
     )
-    parser = extraction_source.index("zipfile.ZipFile(bundle_stream)")
+    snapshot = extraction_source.index("_snapshot_sample_archive(")
+    parser = extraction_source.index("zipfile.ZipFile(snapshot_stream)")
     inventory = extraction_source.index("_validate_sample_inventory(observed_members)")
 
     assert (
@@ -226,6 +227,7 @@ def test_m68_source_validates_same_open_handle_before_zipfile_construction() -> 
         < open_handle
         < descriptor_stat
         < descriptor_admission
+        < snapshot
         < parser
         < inventory
     )

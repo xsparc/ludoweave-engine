@@ -1,166 +1,77 @@
 # Current Task
 
-- **Task:** M70 - sample-archive checksum binding
-- **Status:** Feature PR #162 and integration-record PR #163 are fully
-  validated, twice audited, squash-integrated with their exact reviewed trees,
-  and branch-pruned; the exact three-record closeout is in progress.
+- **Task:** M71 - checksum-admitted sample snapshot
+- **Status:** Implementation, documentation, complete local qualification,
+  findings-first review, record-inclusive qualification, and final static/docs
+  freeze are complete. Ready for DCO publication and quota-bounded hosted
+  qualification.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** Exact synchronized M69 closeout
-  `55b409d40c32c9268ee62b8c2a14aa036bcc935f`, tree
-  `51b5bdfad0a139d141ea4ea2c0195fa8ece72d6c`.
-- **Base qualification:** M69 feature PR #159, integration-record PR #160,
-  and no-run closeout PR #161 were squash-integrated with exact reviewed trees,
-  valid GitHub signatures, and exact DCO trailers. All milestone branches and
-  generated outputs were pruned; synchronized `main` was the only branch.
-- **Outcome:** Bind sample-archive parsing and staged-root publication to the
-  sample digest already admitted from `SHA256SUMS`.
-- **Acceptance:** Complete release smoke passes `checksums[bundle.name]` into
-  extraction; the same opened handle is hashed and rewound before ZIP parsing
-  and after member reads/completeness but before publication; either mismatch
-  uses one stable content-silent category; second-check failure cleans owned
-  staging; the current deterministic producer remains admitted.
-- **Boundary:** Private project release smoke only. No snapshot, copy, lock,
-  raw ZIP parser, filesystem isolation, race-free or immutable-input guarantee,
-  defense against change-and-restore, signature, general archive sandbox,
-  workflow, dependency, sample producer, runtime API, release authority, tag,
-  release, publication, or real public release observation.
+- **Base:** Exact synchronized M70 closeout
+  `f62631e2541f8f6a34b0ed84f489c2d7f9503747`, tree
+  `f1e8ecc9b0d681a6fb4006354c8d983b2f4f119c`.
+- **Base qualification:** M70 feature PR #162, one-runner integration-record PR
+  #163, and no-run closeout PR #164 were squash-integrated with exact reviewed
+  trees, valid GitHub signatures, and exact DCO trailers. All M70 branches and
+  18 generated targets were pruned; synchronized `main` was the only branch.
+- **Outcome:** Make one owned, bounded, checksum-admitted sample snapshot the
+  exact byte source for ZIP parsing and extraction.
+- **Acceptance:** After path/descriptor admission, copy at most 16 MiB plus one
+  rejection byte into an owned binary spooled temporary file while hashing;
+  clear and fail content-silently on limit/digest mismatch before ZIP parsing;
+  parse the rewound admitted snapshot; prove source changes cannot alter it;
+  close snapshot/source on success and failure; admit the unchanged producer.
+- **Boundary:** Private complete release smoke only. No persistent copy, cache,
+  recovery artifact, lock, source-immutability guarantee, raw ZIP parser,
+  general archive sandbox, workflow, dependency, sample producer, runtime API,
+  release authority, tag, release, publication, or real public observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Research:** Python 3.12 documents seekable file-object ZIP input and binary
-  hashing primitives; CWE-367 describes resource changes between check and
-  use; SLSA treats artifact verification as a consumer responsibility.
-- **Invalid setup attempt:** The first focused command used a nonexistent
-  `D:\LudoWeaveValidation\m70` parent and produced 5 setup errors, 2 failures,
-  and 1 pass. It is an environment failure, not a behavioral baseline.
-- **Failing baseline:** After creating the exact disposable parent, unchanged
-  M69 code produced 7 failures and 1 passing protected-surface guard in 0.28
-  seconds. The helper, checksum argument, two comparisons, ordering contract,
-  RFC, and documentation were absent.
-- **Implementation checkpoint:** Runtime/test implementation produced 7 passes
-  and only the intentionally absent documentation assertion failed in 0.30
-  seconds. After documentation, the M70 file passes 8 assertions in 0.26
-  seconds and inherited M64-M70 passes 84 with 1 local capability skip in 0.71
-  seconds. Both changed Python files are format/Ruff clean, strict Pyright is
-  clean, strict docs build in 1.22 seconds, and whitespace passes.
-- **Local candidate:** An initial full-gate launch was denied access to the
-  existing user uv cache and is recorded as an environment failure. The
-  approved identical launch passes the unchanged 46-package lock, restored
-  45-package CPython 3.12 graphics environment, formatting for 313 files,
-  Ruff, strict Pyright, and strict docs.
-- **Supported Python:** CPython 3.12 passes 2,303 non-wgpu tests with 15 skips;
-  CPython 3.13.13 and 3.14.5 each pass 2,303 tests with 16 skips. All 773
-  architecture assertions pass with 1 local capability skip.
-- **Graphics and examples:** All 10 real-wgpu tests pass. Five-repeat base and
-  graphics profiles validate; Clockwork Arena and Agent World Builder reproduce
-  their established state/capture/replay evidence.
-- **Diagnostics:** M1 accepts 7 workloads with 1 of 2 historical targets
-  observed, M2 accepts 4 informational workloads, M3 accepts 6 workloads with
-  0 of 2 targets met, and M4 accepts 3 with its baseline target observed.
-- **Artifacts:** Two builds reproduce a pure 273,388-byte wheel at
-  `865d6a8275886ecb3dab9e407c6401ab3eccf2e63a25a07ace91c4a641406f11`
-  and a 1,216,959-byte source archive at
-  `892b2cefdf9300f87d504dca89cf1a4cf654f46e77cea0c3b9366c6717372dc6`.
-  Installed-wheel smoke, deterministic ten-artifact staging, and complete
-  release smoke pass. The wheel has 94 entries, the sdist 506 including the
-  M70 test/RFC, the sample has 50 entries, and no archive has native/WASM
-  content.
-- **Review:** Findings-first review identified that the first implementation
-  read until EOF after descriptor admission, allowing a concurrently growing
-  source to exceed M68's 16 MiB work bound. The sample-specific hash now reads
-  at most the limit plus one rejection byte and rewinds. An unbounded-stream
-  regression protects this correction.
-- **Review gate:** M70 passes 9 assertions in 0.32 seconds; M64-M70 passes 85
-  with 1 capability skip in 0.78 seconds; Ruff, strict Pyright, strict docs,
-  and whitespace pass. The complete corrected CPython 3.12 suite passes 2,304
-  non-wgpu tests with 15 skips in 110.05 seconds, and the corrected archive
-  chain passes on 3.13/3.14 with 85 passes and 1 skip.
-- **Record-inclusive gate:** The unchanged lock, all 313 formatted files, Ruff,
-  strict Pyright, 774 architecture assertions with 1 capability skip, strict
-  docs, whitespace, and full Git-object checking pass. Two reviewed builds
-  reproduce the same pure 273,388-byte wheel and a 1,219,320-byte source
-  archive at
-  `acb09696c3f920423262c81fdacd1d072eb00491a7028c0b48b3124e6f3aafb2`;
+- **Research:** Python 3.12 documents `SpooledTemporaryFile` as a file-like
+  temporary object and `ZipFile` seekable file-object input; CWE-367 motivates
+  reducing check/use separation; SLSA assigns digest verification to consumers.
+- **Failing baseline:** Exact M70 code produced 7 failures and 2 passing
+  protected/producer guards in 0.36 seconds. The snapshot helper, owned parser
+  input, source-independent behavior, ordering contract, RFC, and docs were
+  absent; parsing still received the source descriptor.
+- **Implementation checkpoint:** After implementation, the M70/M71 pair
+  produced 13 passes with only deliberately absent documentation failing in
+  0.41 seconds. Strict Pyright was clean; Ruff identified only import ordering.
+- **Focused gate:** Import ordering was normalized. M71 passes 9 assertions in
+  0.29 seconds; inherited M64-M71 passes 90 with 1 local capability skip in
+  0.90 seconds. Four affected Python files are format/Ruff clean; strict
+  Pyright is clean; strict docs build in 1.20 seconds; whitespace passes. The
+  M68 historical guard retains path/descriptor admission and now recognizes
+  the checksum-admitted snapshot before parser construction.
+- **Complete local gate:** The unchanged lock, whole-tree formatting, Ruff,
+  strict Pyright/docs, all supported interpreters, architecture suite, 10
+  real-wgpu tests, both profiles, both vertical slices, and all four diagnostic
+  benchmark validators pass. CPython 3.12 passed 2,309 non-wgpu tests with 15
+  skips; CPython 3.13 and 3.14 each passed 2,309 with 16 skips; architecture
+  passed 779 assertions with 1 local capability skip.
+- **Artifacts:** Two pre-review builds reproduced a pure 273,524-byte wheel at
+  `791f2c909cf9b89381443f0b89d6baa79ed56f7a0bd96fa7de4d09521f597671`
+  and a 1,225,504-byte sdist at
+  `ef631bcdb169baa8e41036cafaaa0720edd38402db127847fb9a683e3d8e3166`.
+  Installed-wheel, deterministic staging, and complete release smoke pass; no
+  inspected wheel, sdist, or sample entry is native or WASM.
+- **Review:** No implementation defect or overclaim remains. Review
+  strengthened the runtime proof so the test observes `ZipFile` receiving the
+  distinct snapshot and verifies both owned streams close after checksum
+  failure; the focused file now passes 10 assertions. No workflow, runtime
+  package, producer, dependency, metadata, lock, or release authority changed.
+- **Record-inclusive gate:** The unchanged lock resolves 46 packages; all 314
+  files are format clean; Ruff and strict Pyright are clean; all 780
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, and full Git-object checking pass. Two builds reproduce the
+  feature-identical wheel and a 1,227,248-byte record-updated sdist at
+  `530ebef65bd489cf16a74760c84d4b308fc9180b62849345da4bf70b19349de0`;
   wheel, staging, and complete release smoke pass.
-- **Scope and hygiene:** The exact 15-path candidate changes only the private
-  release verifier, its M70 regression/RFC, public release/security/architecture
-  docs, and neutral project records. CI/release workflows, runtime package,
-  producer, benchmarks, dependencies, package metadata, and lock are unchanged.
-  Added/current changed content has no credential/private-key or explicit
-  development-tool identity match.
-- **Record-frozen gate:** The unchanged lock, formatting for 313 files, Ruff,
-  strict Pyright, 774 architecture assertions with 1 capability skip, strict
-  docs, whitespace, and full Git-object checking pass on the exact candidate.
-- **Hosted gate:** Exact DCO head
-  `7dfadaf72e74ee29d5fc0c98ef6484f6fec423a8`, tree
-  `7a3ac1bb2ef9f89934325fb44228d770881c0528`, passed run
-  `31611083245` in exactly three Linux-first allocations. Linux job
-  `94162276734` passed in 7m12s; only then did macOS `94164509233` and Windows
-  `94164509371` begin, passing in 3m08s and 4m08s.
-- **Hosted suites:** All 313 files were format clean; Ruff, strict Pyright,
-  and strict docs passed. Linux CPython 3.12 and every hosted 3.13/3.14 suite
-  passed 2,319 tests, with one expected compatibility skip. Every operating
-  system passed 10 real-wgpu tests, its graphics profile, Clockwork Arena, and
-  Agent World Builder; Linux also passed the base profile.
-- **Hosted artifacts:** Two exact-head builds reproduced a pure 273,374-byte
-  wheel at
-  `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a`
-  and a 1,220,441-byte source archive at
-  `f3c9705985eb8bc3a12d71147269c181149c3dcbb77d3aa47c183b4236310790`.
-  Installed-wheel smoke, deterministic ten-artifact staging, and complete
-  release smoke passed.
-- **Hosted review:** Two separated exact-head audits found no issue comment,
-  review, inline comment, or review thread; the PR remained ready, clean,
-  mergeable, exact-head, exact-base, and fully checked.
-- **Feature integration:** PR #162 squash
-  `cae3454089b4f0453859360de00129399533e2d7` has tree
-  `7a3ac1bb2ef9f89934325fb44228d770881c0528`, exactly matching the reviewed
-  head; its sole parent is M69 closeout `55b409d`, GitHub reports a valid
-  signature verified at `2026-08-12T15:26:46Z`, and the DCO trailer is exact.
-  The feature branch is absent remotely and locally.
-- **Integration local gate:** Exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`
-  pass the unchanged lock, formatting for 313 files, Ruff, strict Pyright, all
-  774 architecture assertions with 1 capability skip, strict docs, whitespace,
-  full Git-object checking, two-build reproducibility, installed-wheel smoke,
-  deterministic staging, and complete release smoke.
-- **Integration artifacts:** The feature-identical pure wheel remains 273,388
-  bytes at
-  `865d6a8275886ecb3dab9e407c6401ab3eccf2e63a25a07ace91c4a641406f11`;
-  the record-updated source archive is 1,221,890 bytes at
-  `af404f69f25311480130913367a1459deb21437cd0b9a800963a886bde0cee6a`.
-- **Integration frozen gate:** The unchanged lock, all 313 formatted files,
-  Ruff, strict Pyright, 774 architecture assertions with 1 capability skip,
-  strict docs, whitespace, full Git-object checking, exact four-file scope,
-  and credential/metadata-identity hygiene pass.
-- **Integration hosted gate:** Exact four-file DCO head
-  `dda00757d1ee9365f2f3fbeddc0b89183585c9d2`, tree
-  `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, passed run
-  `31612786971` in one 36-second Linux allocation. The desktop umbrella job
-  skipped with zero steps; no compatibility, graphics, profile, example, or
-  full-suite runner executed.
-- **Integration hosted evidence:** All 313 files were format clean; Ruff and
-  strict docs passed; 775 documentation-selected architecture assertions
-  passed in 7.19 seconds. Two builds reproduced the feature-identical
-  273,374-byte wheel at
-  `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a`
-  and a record-updated 1,222,477-byte source archive at
-  `aa903ca95706abac5f31b7f27ee0f8855e7b19162074c4a0fe422388f3e17c38`;
-  installed-wheel smoke, staging, and complete release smoke passed.
-- **Integration review:** Two separated exact-head audits found no issue
-  comment, review, inline comment, or review thread.
-- **Integration squash:** PR #163 squash
-  `504d5bbe7c3ee46c71023d77748d27abd3484c74` has tree
-  `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, exactly matching the reviewed
-  record head; its sole parent is feature squash `cae3454`, GitHub reports a
-  valid signature verified at `2026-08-12T15:34:14Z`, and the DCO trailer is
-  exact. The integration branch is absent remotely and locally.
-- **Closeout local gate:** Exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` pass all 774
-  architecture assertions with 1 local capability skip, strict docs,
-  whitespace, full Git-object checking, exact scope, and credential/metadata-
-  identity hygiene. No workflow, runtime, verifier, producer, dependency,
-  package, test, public documentation, or roadmap surface changes.
-- **Next gate:** DCO-publish and squash-integrate the exact no-run closeout,
-  then prune all M70 generated outputs and branches before selecting M71.
+- **Final freeze:** The unchanged lock resolves 46 packages; all 314 files are
+  format clean; Ruff and strict Pyright are clean; all 780 architecture
+  assertions pass with 1 local capability skip; strict docs and whitespace
+  pass. Exact commit artifact identity remains a hosted qualification fact
+  because recording an sdist digest changes it.
+- **Next gate:** Review exact scope and Git history, then DCO-publish for
+  Linux-first hosted qualification.

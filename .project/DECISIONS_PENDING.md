@@ -2,6 +2,15 @@
 
 No architecture decision is currently blocked.
 
+RFC-0054 resolves M71 checksum-admitted sample snapshot parsing. After bounded
+source admission, complete release smoke copies at most 16 MiB into one owned
+binary spooled temporary file while hashing, clears/fails on mismatch, and
+gives that exact rewound snapshot to `ZipFile`. Later source change-and-restore
+cannot alter parser input. This creates no persistent copy, source-immutability
+guarantee, lock, raw ZIP parser, or general archive sandbox. It adds no
+workflow, dependency, sample producer, runtime API, or release authority. A
+real pass remains pending an explicitly authorized signed-tag release execution.
+
 RFC-0053 resolves M70 sample-archive checksum binding. Complete release smoke
 passes the already admitted `SHA256SUMS` digest into extraction, hashes and
 rewinds the same opened handle before ZIP parsing, and repeats the comparison

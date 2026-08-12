@@ -109,6 +109,17 @@ observation. M0 through M69 are complete, reviewed, hosted-validated, and
 integrated into `main`. M70 starts from exact verified M69 closeout
 `55b409d40c32c9268ee62b8c2a14aa036bcc935f`.
 
+M71 copies the bounded source into one owned checksum-admitted snapshot and
+passes that binary spooled temporary file to `ZipFile`. The parser consumes the
+exact bytes matching `SHA256SUMS`, independent of later source changes. This
+adds no persistent copy or source-immutability guarantee and is not a general
+archive sandbox. It adds no workflow, allocation, dependency, lock, version,
+sample producer, runtime source/API, release authority, tag, release, or
+publication. Pull-request fixtures are not a real public release observation.
+M0 through M70 are complete, reviewed, hosted-validated, and integrated into
+`main`. M71 starts from exact verified M70 closeout
+`f62631e2541f8f6a34b0ed84f489c2d7f9503747`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -136,8 +147,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   before publication, M67 requires the exact expected inventory, and M68
   bounds the regular archive container before parsing. M69 rejects encrypted
   sample-member indicators before reads or staging. M70 binds sample parsing
-  and publication to the staged-release checksum on the same opened handle;
-  none of these milestones authorizes a real release.
+  and publication to the staged-release checksum on the same opened handle.
+  M71 makes an owned checksum-admitted snapshot the exact parser input; none of
+  these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
