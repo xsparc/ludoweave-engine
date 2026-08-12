@@ -165,6 +165,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   make later bytes immutable or replace expanded-size controls, is not a
   general archive sandbox, adds no workflow or release authority, and is not a
   real public release observation.
+- M69 rejects ZIP general-purpose bit flags for traditional encryption,
+  strong encryption, and masked header values during complete sample-member
+  preflight. The stable content-silent failure occurs before member reads,
+  password handling, or staging. No password or decryption path is added; this
+  is not a general archive sandbox, adds no workflow or release authority, and
+  is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

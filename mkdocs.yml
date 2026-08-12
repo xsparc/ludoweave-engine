@@ -92,6 +92,7 @@ nav:
       - RFC-0049 - Atomic sample extraction: rfcs/0049-atomic-sample-extraction.md
       - RFC-0050 - Exact sample-bundle inventory: rfcs/0050-exact-sample-bundle-inventory.md
       - RFC-0051 - Bounded sample-archive container: rfcs/0051-bounded-sample-archive-container.md
+      - RFC-0052 - Encrypted sample-member rejection: rfcs/0052-reject-encrypted-sample-members.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

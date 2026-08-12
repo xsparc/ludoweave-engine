@@ -1,5 +1,59 @@
 # Project State
 
+## M69 encrypted sample-member preflight rejection - validated local candidate
+
+- Base: exact clean synchronized M68 closeout
+  `fec3df4d490d363a9ab538f6b99ec86859e7acdc`, tree
+  `519955303ba8638ed9847df6b0d9cb62ded25436`.
+- Gap: M64 explicitly left encrypted members unchanged, so exact-inventory
+  members with encryption-indicating ZIP flags reached member-open only after
+  staging began and could produce an archive-controlled library message.
+- Decision: RFC-0052 rejects general-purpose bits 0, 6, or 13 during the
+  complete metadata preflight with one content-silent category before member
+  reads or staging. The unchanged producer must emit none of those flags.
+- Boundary: private project release smoke only. No password, decryption, raw
+  ZIP parser, metadata-authentication guarantee, workflow, dependency,
+  producer, runtime API, release authority, or real public release observation.
+- Research: Python 3.12 documents ZIP decryption and password-bearing member
+  reads; CPython performs traditional/strong encryption handling during
+  member-open. PKWARE assigns the admitted encryption indicators to general-
+  purpose bits 0, 6, and 13.
+- Failing baseline: 7 failures and 1 passing boundary guard in 0.52 seconds
+  proved the missing mask/helper, fail-before-staging behavior, producer
+  assertion, ordering contract, RFC, and documentation.
+- Local candidate: the unchanged lock and restored CPython 3.12 graphics
+  environment pass whole-tree formatting/Ruff/strict-Pyright, 766 selected
+  architecture/release assertions with 1 capability skip, strict docs,
+  whitespace, real graphics, both profiles, both vertical slices, all four
+  diagnostic validators, reproducible builds, installed-wheel smoke,
+  deterministic staging, and complete release smoke.
+- Supported Python: 3.12 passes 2,304 tests with 15 skips; 3.13 and the clean
+  final 3.14 rerun each pass 2,294 with 16 skips. Storage-exhausted 3.14 setup
+  and cache-finalization attempts are recorded as environment failures, not
+  passes.
+- Artifacts: two builds reproduce a pure 273,229-byte wheel at
+  `bba4773ecedf1b2c749daa7e8d930da482ed040df8e7d4e25a68e4a8127d66de`
+  and a 1,206,202-byte source archive at
+  `22420057c1c8d7c6283666501a05f596461a3505c2ac4425bee07463caeaa3bd`;
+  wheel/release smoke pass.
+- Review: no implementation defect was identified. The runtime test originally
+  proved fail-before-read/staging while source ordering alone covered exact-
+  inventory evaluation. The strengthened regression now forbids inventory
+  evaluation and checks every expected identity is absent from the error.
+  Review-affected whole-tree static checks, M64-M69 behavior, architecture/
+  release tests, strict docs, reproducible builds, installed-wheel smoke,
+  staging, and complete release smoke pass.
+- Reviewed artifacts: two record-inclusive builds reproduce the feature-
+  identical pure 273,229-byte wheel and a 1,207,763-byte source archive at
+  `54cc3fd021dfc120cf51fc7d3db31a3a3054b345c7a09547d7e6982298a9a671`.
+  The factual record changes the sdist afterward; exact commit-tree artifacts
+  remain delegated to hosted qualification.
+- Final local gate: the unchanged lock, whole-tree static checks, 766 selected
+  assertions with 1 capability skip, strict docs, whitespace, full Git-object
+  checking, all protected hashes, exact 14-path scope, and added-content
+  credential/identity hygiene pass. The candidate is ready for hosted feature
+  qualification.
+
 ## M68 bounded sample-archive container admission - feature integrated
 
 - Base: exact clean synchronized M67 closeout
@@ -86,11 +140,12 @@
   `69fe032bfa0af6513d46e7c7492ffa3a5720d163` with the exact same tree, sole
   parent feature squash, valid GitHub signature, and exact DCO trailer. The
   integration branch is absent remotely and locally.
-- Closeout state: the three project records capture verified feature and
-  integration evidence and are excluded from hosted CI by the existing path
-  policy. All 756 architecture assertions pass with 1 local capability skip;
-  strict docs, whitespace, full Git-object checking, and exact scope pass.
-  Closeout squash verification and final branch/output pruning remain pending.
+- Closeout state: PR #158 squash
+  `fec3df4d490d363a9ab538f6b99ec86859e7acdc` has the exact three-record tree
+  `519955303ba8638ed9847df6b0d9cb62ded25436`, sole parent M68 integration
+  squash, valid GitHub signature, and exact DCO trailer. It requested no hosted
+  runner. Every M68 branch and generated output is absent; synchronized clean
+  `main` is the M69 base.
 
 ## M67 exact sample-bundle inventory conformance - fully integrated
 

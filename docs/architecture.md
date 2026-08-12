@@ -1730,6 +1730,25 @@ input guarantee, or concurrent filesystem race isolation. It adds no workflow,
 dependency, sample producer, runtime API, release authority, or real public
 release observation. RFC-0051 defines the complete boundary.
 
+## M69 encrypted sample-member preflight boundary
+
+M69 closes the encrypted-member policy explicitly deferred by M64. During the
+existing complete metadata preflight, the release smoke checks every member's
+ZIP general-purpose bit flags and rejects traditional encryption, strong
+encryption, or masked header values. The stable content-silent failure occurs
+before exact-inventory validation, member reads, password handling, staging,
+or extraction output.
+
+The public deterministic sample bundle has no confidentiality requirement, so
+the verifier adds no password or key lifecycle and the unchanged producer must
+emit no encryption indicators. Other ZIP flags retain their existing behavior.
+
+This private check is not a raw ZIP parser, central-directory decryptor,
+metadata-authentication scheme, content scanner, malware detector, or general
+archive sandbox. It adds no workflow, dependency, sample producer, runtime API,
+release authority, or real public release observation. RFC-0052 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
