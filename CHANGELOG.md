@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M71/RFC-0054 bounded checksum-admitted sample snapshots. Complete
+  release smoke copies at most 16 MiB into an owned spooled temporary file
+  while hashing, then parses those exact admitted bytes without changing
+  workflows, dependencies, the sample producer, runtime APIs, or release
+  authority.
 - Add M70/RFC-0053 same-opened-handle sample-archive checksum validation
   before ZIP parsing and again before staged-root publication, binding the
   consumer to the sample digest already admitted from `SHA256SUMS` without

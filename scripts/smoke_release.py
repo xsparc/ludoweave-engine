@@ -15,7 +15,7 @@ import zipfile
 from collections.abc import Iterable, Sequence
 from contextlib import ExitStack
 from pathlib import Path, PurePosixPath
-from typing import BinaryIO, cast
+from typing import IO, BinaryIO, cast
 
 from agent_tool_recovery_rate_evidence import validate_agent_tool_recovery_rate_evidence
 from benchmark_regression_rate_evidence import validate_benchmark_regression_rate_evidence
@@ -446,12 +446,18 @@ def _extract_bundle(
             mode=bundle_metadata.st_mode,
             size=bundle_metadata.st_size,
         )
-        if expected_sha256 is not None:
-            _validate_sample_archive_checksum(
-                bundle_stream,
-                expected_sha256=expected_sha256,
+        snapshot_stream = resources.enter_context(
+            tempfile.SpooledTemporaryFile(
+                max_size=_MAX_SAMPLE_ARCHIVE_BYTES,
+                mode="w+b",
             )
-        archive = resources.enter_context(zipfile.ZipFile(bundle_stream))
+        )
+        _snapshot_sample_archive(
+            bundle_stream,
+            snapshot_stream,
+            expected_sha256=expected_sha256,
+        )
+        archive = resources.enter_context(zipfile.ZipFile(snapshot_stream))
         infos = tuple(archive.infolist())
         if len(infos) > _MAX_SAMPLE_MEMBERS:
             raise RuntimeError("sample bundle has too many members")
@@ -559,11 +565,6 @@ def _extract_bundle(
                 path.name for path in staged_root.iterdir()
             }:
                 raise RuntimeError("sample bundle is incomplete")
-            if expected_sha256 is not None:
-                _validate_sample_archive_checksum(
-                    bundle_stream,
-                    expected_sha256=expected_sha256,
-                )
             if os.path.lexists(root):
                 raise RuntimeError("sample bundle output already exists")
             staged_root.replace(root)
@@ -579,33 +580,42 @@ def _validate_sample_archive_source(*, mode: int, size: int) -> None:
         raise RuntimeError("sample bundle archive is too large")
 
 
-def _validate_sample_archive_checksum(
-    stream: BinaryIO,
+def _snapshot_sample_archive(
+    source: IO[bytes],
+    snapshot: IO[bytes],
     *,
-    expected_sha256: str,
+    expected_sha256: str | None,
 ) -> None:
-    """Bind sample parsing and publication to one staged-release digest."""
+    """Copy one bounded source into the exact checksum-admitted parser input."""
 
-    if _sha256_bounded_stream(stream, max_bytes=_MAX_SAMPLE_ARCHIVE_BYTES) != expected_sha256:
+    source.seek(0)
+    snapshot.seek(0)
+    snapshot.truncate(0)
+    digest = hashlib.sha256()
+    remaining = _MAX_SAMPLE_ARCHIVE_BYTES + 1
+    total_bytes = 0
+    while remaining > 0:
+        block = source.read(min(1024 * 1024, remaining))
+        if not block:
+            break
+        total_bytes += len(block)
+        remaining -= len(block)
+        if total_bytes > _MAX_SAMPLE_ARCHIVE_BYTES:
+            _clear_sample_snapshot(source, snapshot)
+            raise RuntimeError("sample bundle checksum does not match staged release")
+        digest.update(block)
+        snapshot.write(block)
+    source.seek(0)
+    snapshot.seek(0)
+    if expected_sha256 is not None and digest.hexdigest() != expected_sha256:
+        snapshot.truncate(0)
         raise RuntimeError("sample bundle checksum does not match staged release")
 
 
-def _sha256_bounded_stream(stream: BinaryIO, *, max_bytes: int) -> str | None:
-    """Hash a bounded stream, returning ``None`` if it exceeds the limit."""
-
-    stream.seek(0)
-    digest = hashlib.sha256()
-    remaining = max_bytes + 1
-    total_bytes = 0
-    while remaining > 0:
-        block = stream.read(min(1024 * 1024, remaining))
-        if not block:
-            break
-        digest.update(block)
-        total_bytes += len(block)
-        remaining -= len(block)
-    stream.seek(0)
-    return digest.hexdigest() if total_bytes <= max_bytes else None
+def _clear_sample_snapshot(source: IO[bytes], snapshot: IO[bytes]) -> None:
+    source.seek(0)
+    snapshot.seek(0)
+    snapshot.truncate(0)
 
 
 def _sha256_stream(stream: BinaryIO) -> str:

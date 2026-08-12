@@ -58,3 +58,4 @@ was adopted.
 - [RFC-0051: bound the sample-archive container before parsing](0051-bounded-sample-archive-container.md)
 - [RFC-0052: reject encrypted sample members before extraction](0052-reject-encrypted-sample-members.md)
 - [RFC-0053: bind sample-archive parsing and publication to its checksum](0053-bind-sample-archive-checksum.md)
+- [RFC-0054: parse a checksum-admitted sample snapshot](0054-checksum-admitted-sample-snapshot.md)

@@ -1767,6 +1767,21 @@ archive sandbox. It adds no workflow, dependency, sample producer, runtime API,
 release authority, or real public release observation. RFC-0053 defines the
 complete boundary.
 
+## M71 checksum-admitted sample-snapshot boundary
+
+M71 replaces parsing of the mutable source descriptor with one owned
+checksum-admitted snapshot. After path and descriptor admission, the verifier
+copies at most 16 MiB into a binary spooled temporary file while hashing. A
+mismatch or rejection byte fails content-silently before ZIP parsing or
+staging; success rewinds the snapshot and gives it to `ZipFile`. The parser and
+member reads therefore consume the exact bytes that matched `SHA256SUMS`.
+
+The snapshot is private and closes before its source, but this creates no
+persistent copy, source-immutability guarantee, lock, raw ZIP parser, or general
+archive sandbox. It adds no workflow, dependency, sample producer, runtime API,
+release authority, or real public release observation. RFC-0054 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

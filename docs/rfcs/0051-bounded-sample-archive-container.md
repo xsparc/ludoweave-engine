@@ -45,6 +45,11 @@ retains M64 through M67's existing complete metadata, expansion, path,
 inventory, streaming, and publication checks. The outer file context closes
 the handle after the archive context and on every failure.
 
+M71/RFC-0054 supersedes only that direct-parser detail: descriptor admission
+still occurs on the opened source, then a bounded checksum-admitted snapshot
+copies its bytes and becomes the `ZipFile` input. The source and snapshot retain
+the same verifier-owned close ordering.
+
 The limit and helper remain private implementation details of the release-smoke
 script. They are not engine configuration, public Python API, or a general ZIP
 format promise.

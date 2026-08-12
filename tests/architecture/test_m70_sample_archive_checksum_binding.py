@@ -11,7 +11,7 @@ import sys
 import tempfile
 import zipfile
 from pathlib import Path
-from typing import BinaryIO, NoReturn, Protocol, cast
+from typing import NoReturn, Protocol, cast
 
 import pytest
 
@@ -30,7 +30,6 @@ _CHECKSUM_ERROR = "sample bundle checksum does not match staged release"
 
 class _SmokeModule(Protocol):
     _EXPECTED_SAMPLE_MEMBERS: frozenset[str]
-    _MAX_SAMPLE_ARCHIVE_BYTES: int
 
     def _extract_bundle(
         self,
@@ -40,13 +39,6 @@ class _SmokeModule(Protocol):
         version: str,
         expected_sha256: str | None = None,
     ) -> Path: ...
-
-    def _validate_sample_archive_checksum(
-        self,
-        stream: BinaryIO,
-        *,
-        expected_sha256: str,
-    ) -> None: ...
 
 
 class _StagerModule(Protocol):
@@ -91,56 +83,6 @@ def _empty_output(tmp_path: Path) -> Path:
     return output
 
 
-def test_checksum_validator_hashes_complete_stream_and_rewinds(tmp_path: Path) -> None:
-    module = _smoke()
-    source = tmp_path / "source.bin"
-    source.write_bytes(b"complete sample archive bytes")
-
-    with source.open("rb") as stream:
-        stream.seek(9)
-        module._validate_sample_archive_checksum(
-            stream,
-            expected_sha256=_sha256(source),
-        )
-        assert stream.tell() == 0
-
-        with pytest.raises(RuntimeError, match=rf"^{re.escape(_CHECKSUM_ERROR)}$"):
-            module._validate_sample_archive_checksum(
-                stream,
-                expected_sha256="0" * 64,
-            )
-
-    assert stream.closed
-
-
-def test_checksum_validator_bounds_a_growing_stream() -> None:
-    module = _smoke()
-
-    class GrowingStream:
-        position = 0
-        bytes_read = 0
-
-        def seek(self, offset: int) -> int:
-            self.position = offset
-            return offset
-
-        def read(self, size: int = -1) -> bytes:
-            assert size >= 0
-            self.position += size
-            self.bytes_read += size
-            return b"x" * size
-
-    stream = GrowingStream()
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_CHECKSUM_ERROR)}$"):
-        module._validate_sample_archive_checksum(
-            cast(BinaryIO, stream),
-            expected_sha256="0" * 64,
-        )
-
-    assert stream.bytes_read == module._MAX_SAMPLE_ARCHIVE_BYTES + 1
-    assert stream.position == 0
-
-
 def test_changed_archive_fails_before_zip_parser_or_staging(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -174,71 +116,6 @@ def test_changed_archive_fails_before_zip_parser_or_staging(
     assert list(output.iterdir()) == []
 
 
-def test_second_checksum_failure_cleans_stage_before_publication(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    module = _smoke()
-    bundle = tmp_path / "changed-during-use.zip"
-    _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    expected_sha256 = _sha256(bundle)
-    output = _empty_output(tmp_path)
-    original = module._validate_sample_archive_checksum
-    checks = 0
-
-    def controlled_checksum(stream: BinaryIO, *, expected_sha256: str) -> None:
-        nonlocal checks
-        checks += 1
-        if checks == 2:
-            raise RuntimeError(_CHECKSUM_ERROR)
-        original(stream, expected_sha256=expected_sha256)
-
-    monkeypatch.setattr(module, "_validate_sample_archive_checksum", controlled_checksum)
-
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_CHECKSUM_ERROR)}$"):
-        module._extract_bundle(
-            bundle,
-            output,
-            version=_VERSION,
-            expected_sha256=expected_sha256,
-        )
-
-    assert checks == 2
-    assert not (output / _PREFIX).exists()
-    assert list(output.iterdir()) == []
-
-
-def test_valid_bundle_checks_same_open_handle_twice(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    module = _smoke()
-    bundle = tmp_path / "valid.zip"
-    _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    expected_sha256 = _sha256(bundle)
-    output = _empty_output(tmp_path)
-    original = module._validate_sample_archive_checksum
-    observed: list[BinaryIO] = []
-
-    def recording_checksum(stream: BinaryIO, *, expected_sha256: str) -> None:
-        observed.append(stream)
-        original(stream, expected_sha256=expected_sha256)
-
-    monkeypatch.setattr(module, "_validate_sample_archive_checksum", recording_checksum)
-
-    root = module._extract_bundle(
-        bundle,
-        output,
-        version=_VERSION,
-        expected_sha256=expected_sha256,
-    )
-
-    assert root == output / _PREFIX
-    assert len(observed) == 2
-    assert observed[0] is observed[1]
-    assert observed[0].closed
-
-
 def test_current_producer_is_admitted_by_its_exact_digest(tmp_path: Path) -> None:
     module = _smoke()
     bundle = tmp_path / "samples.zip"
@@ -260,16 +137,12 @@ def test_m70_source_binds_release_digest_before_parser_and_publication() -> None
 
     assert "expected_sha256=checksums[bundle.name]" in main_source
     descriptor = extraction_source.index("os.fstat(bundle_stream.fileno())")
-    first_checksum = extraction_source.index("_validate_sample_archive_checksum(")
-    parser = extraction_source.index("zipfile.ZipFile(bundle_stream)")
+    checksum_binding = extraction_source.index("_snapshot_sample_archive(")
+    parser = extraction_source.index("zipfile.ZipFile(snapshot_stream)")
     member_read = extraction_source.index("archive.open(info)")
-    second_checksum = extraction_source.index(
-        "_validate_sample_archive_checksum(",
-        first_checksum + 1,
-    )
     publication = extraction_source.index("staged_root.replace(root)")
 
-    assert descriptor < first_checksum < parser < member_read < second_checksum < publication
+    assert descriptor < checksum_binding < parser < member_read < publication
 
 
 def test_m70_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:

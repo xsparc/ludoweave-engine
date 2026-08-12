@@ -570,6 +570,19 @@ general archive sandbox and adds no workflow, dependency, sample producer,
 runtime API, or release authority. Pull-request evidence is not a real public
 release observation.
 
+M71/RFC-0054 makes the checksum-admitted byte sequence itself the ZIP parser
+input. After source path and descriptor admission, complete release smoke copies
+at most 16 MiB into an owned binary spooled temporary file while computing the
+expected digest. A mismatch or extra rejection byte clears that target and
+fails content-silently before ZIP parsing or staging. Success rewinds the
+snapshot, and `ZipFile` plus all member reads consume those exact bytes.
+
+Later source mutation cannot alter the admitted parser snapshot. This creates
+no persistent copy, source-immutability guarantee, filesystem lock, raw parser,
+or general archive sandbox. M71 adds no workflow, dependency, sample producer,
+runtime API, or release authority, and pull-request evidence is not a real
+public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

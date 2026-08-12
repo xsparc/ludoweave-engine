@@ -177,6 +177,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   partial owned staging cleaned. This creates no immutable-input guarantee,
   is not a general archive sandbox, adds no workflow or sample producer
   change, and is not a real public release observation.
+- M71 copies the bounded source into one owned checksum-admitted snapshot and
+  gives that spooled temporary file to `ZipFile`. Parsing therefore consumes
+  the exact bytes whose digest matched `SHA256SUMS`; later source changes cannot
+  alter parser input. This adds no persistent copy or source-immutability
+  guarantee, is not a general archive sandbox, adds no workflow or sample
+  producer change, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
