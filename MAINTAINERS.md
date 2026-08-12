@@ -76,6 +76,18 @@ a real public release observation. M0 through M66 are complete, reviewed,
 hosted-validated, and integrated into `main`. M67 starts from exact verified
 M66 closeout `995fdda097a418a7a0e570bb6b492d3f5609d471`.
 
+M68 rejects obvious non-regular or oversized project sample archives from path
+metadata before opening, revalidates the opened descriptor, and supplies that
+same admitted handle to `ZipFile`. Invalid containers fail content-silently
+before parser construction or staging. This is not a general archive sandbox
+or immutable-input guarantee.
+It adds no workflow, allocation, dependency, lock, version, sample producer,
+runtime source/API, release authority, tag, release, or publication. Pull-
+request fixtures are not a real public release observation. M0 through M67 are
+complete, reviewed, hosted-validated, and integrated into `main`. M68 starts
+from exact verified M67 closeout
+`ea3de73f5ef1792df729c1f271b3d84a28db1028`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -100,8 +112,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   candidate and output roots, M62 constrains portable asset names, M63 confines
   subordinate text output, M64 bounds staged sample-bundle extraction, M65
   constrains portable sample member paths, M66 stages complete sample roots
-  before publication, and M67 requires the exact expected inventory; none of
-  these milestones authorizes a real release.
+  before publication, M67 requires the exact expected inventory, and M68
+  bounds the regular archive container before parsing; none of these
+  milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

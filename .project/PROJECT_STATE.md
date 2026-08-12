@@ -1,5 +1,49 @@
 # Project State
 
+## M68 bounded sample-archive container admission - local candidate
+
+- Base: exact clean synchronized M67 closeout
+  `ea3de73f5ef1792df729c1f271b3d84a28db1028`, tree
+  `feed6f892798f0030974c957fa6b5f1352c8b53c`.
+- Gap: M64-M67 bound admitted extraction work only after `zipfile` receives an
+  unbounded archive path and parses its central directory.
+- Decision: RFC-0051 adds a private 16 MiB container limit. Path metadata
+  rejects obvious non-regular or oversized inputs before open; descriptor
+  metadata revalidates the opened source; that same handle is passed to
+  `ZipFile` and closed after the archive.
+- Boundary: private project release smoke only. No raw parser, general archive
+  sandbox, immutable-input or concurrent-race guarantee, workflow, dependency,
+  producer, runtime API, release authority, or real public release observation.
+- Research: Python documents seekable file-object input and archive resource
+  limits; OWASP recommends stored-file and post-decompression size limits. The
+  exact project sample is 111,168 bytes, giving the 16 MiB cap over 150-fold
+  current headroom while complementing the unchanged 8 MiB expansion cap.
+- Failing baseline: 6 failures and 2 passing guards in 0.34 seconds proved the
+  missing limit/helper, fail-before-parser behavior, same-handle identity, and
+  ordering contract.
+- Local candidate: all 311 Python files are format clean; Ruff and strict
+  Pyright report zero findings; strict docs and whitespace pass. Pre-review
+  complete suites passed 2,295 tests with 15 skips on CPython 3.12 and 2,285
+  with 16 skips on CPython 3.13/3.14. Real-wgpu, profiles, vertical slices, and
+  all M1-M4 diagnostic validators pass.
+- Review correction: descriptor-only validation could block while opening a
+  FIFO and could miss the intended stable category for a directory. Pre-open
+  path metadata now rejects obvious special sources, while authoritative
+  descriptor revalidation catches replacement. The reviewed M64-M68 contract
+  passes 67 assertions with 1 local capability skip on every supported Python;
+  corrected CPython 3.12 passes 2,296 tests with 15 skips.
+- Pre-review artifacts: two builds reproduced a pure 273,082-byte wheel at
+  `089c787bd156e3af5f36fa20dbab1a69e953cc913b9367d9b023e1ccb18977fe`
+  and a 1,198,756-byte source archive at
+  `f135564122dacca5e3cd3c10e20005a7d40e4a9eda774b00a2771bb036d23f68`.
+  Installed-wheel and complete release smoke passed. A later record-inclusive
+  rebuild reproduced a pure 273,106-byte wheel at
+  `685c3baaa66ed325c471b5deb5f3f44590eb1bbc2c177ebdd53bc39366119c22`
+  and a 1,200,373-byte source archive at
+  `5d1bcb8424c13145977d53484a164457911ddfeb7d0e6e972e27399708afeaeb`;
+  both smoke paths passed again. Exact commit-tree artifacts and hosted
+  qualification remain pending because this factual record changes the sdist.
+
 ## M67 exact sample-bundle inventory conformance - fully integrated
 
 - Base: exact clean synchronized M66 closeout

@@ -1,98 +1,68 @@
 # Current Task
 
-- **Task:** M67 - exact sample-bundle inventory conformance
-- **Status:** Feature PR #153 and integration-record PR #154 are fully
-  validated, reviewed, squash-integrated, and verified. This exact three-record
-  closeout establishes the clean M68 selection base without requesting hosted
-  CI.
+- **Task:** M68 - bounded sample-archive container admission
+- **Status:** Local feature candidate is implemented, review-corrected, and
+  fully validated. Exact-head hosted pull-request qualification is pending.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Base:** GitHub-verified integration squash
-  `5025877d31a2bc8a9a0a1b7bb2e106869f76066f`, whose tree
-  `eb532eddbd368efaaa1a896efd930727cc5b3059` exactly matches reviewed PR
-  #154 head `565053e8cf0f3961f8bfbc1a54df04a604240183`. Its sole parent is the
-  M67 feature squash `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2`; GitHub reports a valid
-  signature and exact parsed DCO trailer.
-- **Outcome:** Reject any unexpected or missing file in the project-produced
-  sample ZIP before extraction or publication.
-- **Acceptance:** Define the independent exact 50-file relative inventory;
-  collect identities only after the complete M64/M65 metadata/path preflight;
-  reject either set mismatch with one stable content-silent category before
-  member reads or staging; preserve archive-order independence and M64-M66
-  behavior; and prove that the unchanged producer emits the expected set.
-- **Boundary:** Private release smoke only. No content scanning, malware
-  detection, file-format validation, general archive sandbox, workflow,
-  dependency, version, sample-producer, runtime API, release authority, tag,
-  release, publication, or real public release observation.
+- **Base:** Exact synchronized M67 closeout
+  `ea3de73f5ef1792df729c1f271b3d84a28db1028`, tree
+  `feed6f892798f0030974c957fa6b5f1352c8b53c`.
+- **Outcome:** Bound the sample ZIP container before standard-library archive
+  parsing while retaining the existing M64-M67 extraction policies.
+- **Acceptance:** Reject an obvious non-regular or over-16-MiB source before
+  opening; revalidate the opened descriptor before `ZipFile`; parse through
+  that same handle; fail content-silently before parser or staging side effects;
+  close the handle on success and failure; and preserve the unchanged producer,
+  workflows, runtime, dependencies, version, and public package surface.
+- **Boundary:** Private project release smoke only. No raw ZIP parser, general
+  archive sandbox, immutable-input guarantee, concurrent filesystem isolation,
+  content scanning, workflow, dependency, producer, runtime API, release
+  authority, tag, release, publication, or real public release observation.
 - **SemVer:** No package/public-Python change; version remains `0.1.0a1`.
-- **Research:** Focused primary-source review of Python `zipfile`, OWASP upload
-  validation, and SLSA 1.2 expectation verification supports exact fail-closed
-  source-defined inventory validation. This is advisory design evidence, not a
-  claim of SLSA compliance or general archive safety.
-- **Failing baseline:** The new M67 file produced 5 failures and 3 passing
-  guards in 0.33 seconds against exact M66 production code. The verifier had no
-  exact inventory expectation; both an extra portable member and a missing
-  nested receipt asset reached member reads; source ordering and RFC-0050 were
-  absent. The producer-inventory, exact-valid-bundle, and protected-surface
-  guards passed.
-- **Local candidate:** The unchanged lock and restored 45-package CPython 3.12
-  graphics environment pass whole-tree formatting for 310 files, Ruff, strict
-  Pyright, 747 reviewed architecture assertions with 1 local capability skip,
-  2 release-artifact tests, strict docs, and whitespace. CPython 3.12 passes 2,286 tests
-  with 15 skips; 3.13 and 3.14 each pass 2,276 with 16 skips. Ten real-wgpu
-  tests, both five-repeat profiles, both vertical slices, and all four
-  diagnostic benchmark validators pass. Two builds reproduce a pure 272,880-
-  byte wheel and 1,190,493-byte source archive; installed-wheel, deterministic
-  staging, and complete M67 release smoke pass.
-- **Review:** Findings-first review found a test-strength gap: separate 49- and
-  51-member fixtures could be satisfied by a count-only check. A 50-member
-  one-for-one substitution and direct no-staging proof now pass. The correction
-  changes tests only; the strengthened M64-M67 contract passes 58 assertions
-  with 1 capability skip. No blocking or non-blocking finding remains.
-- **Environment:** Full-suite temporary repositories used disposable
-  `D:\LudoWeaveValidation\m67` paths to avoid the known low-space system drive;
-  the locked CPython 3.12 graphics environment was restored afterward.
-- **Hosted evidence:** Run `31534773135` passed exact head `3cb44d4` in the
-  unchanged three Linux-first allocations: Linux in 7m44s, macOS in 3m22s, and
-  Windows in 4m15s. Baseline and every compatibility suite passed 2,292 tests,
-  with one compatibility skip; real-wgpu, profiles, vertical slices,
-  reproducibility, installed-wheel smoke, staging, and complete M67 release
-  smoke passed.
-- **Hosted review:** Two delayed exact-head audits found no review, comment, or
-  unresolved thread. PR #153 remained clean, mergeable, exact-head, and exact-
-  base before squash integration.
-- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
-  request only the existing documentation-qualified Linux allocation and a
-  skipped zero-step desktop umbrella; then create a three-record closeout that
-  requests no hosted runner.
-- **Integration local evidence:** The exact four-file record passes the
-  unchanged lock, formatting for 310 files, Ruff, strict Pyright, all 747
-  architecture assertions with 1 local capability skip, 2 release-artifact
-  tests, strict docs, whitespace, full Git-object checking, two-build
-  reproducibility, installed-wheel smoke, 10-artifact staging, and complete M67
-  release smoke.
-- **Integration hosted evidence:** Exact four-file head `565053e` passed run
-  `31536520514` in one 41-second Linux allocation; the desktop umbrella skipped
-  with zero steps. Hosted formatting, Ruff, strict docs, 748 documentation-
-  selected architecture assertions, reproducibility, installed-wheel smoke,
-  staging, and complete release smoke passed.
-- **Integration review resolution:** One delayed review incorrectly claimed the
-  sole integration commit lacked DCO. GitHub's commit endpoint and local
-  `git interpret-trailers --parse` each returned the exact authorized trailer.
-  Evidence reply `3765169173` was posted, thread
-  `PRRT_kwDOTtqoGs6YYOGq` resolved, and two post-resolution audits found no
-  later activity.
-- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture,
-  strict docs, scope, Git-object, and whitespace checks; create a DCO-signed
-  ready PR that requests no hosted runner; verify its squash; delete every M67
-  branch locally/remotely; remove only verified generated outputs; and leave
-  synchronized clean `main` before selecting M68.
-- **Closeout local evidence:** The exact three-file record passes all 747
-  architecture assertions with 1 local capability skip, strict docs,
-  whitespace, full Git-object checking, and exact scope. It changes no
-  workflow, runtime, verifier, producer, dependency, package, test, public-doc,
-  or roadmap surface and is excluded from CI by the existing path policy.
+- **Research:** Focused primary-source review of Python 3.12 `zipfile` and the
+  OWASP File Upload Cheat Sheet supports complementary compressed-input and
+  expanded-output limits plus one seekable file-handle identity. The 16 MiB
+  private cap is over 150 times the exact 111,168-byte project sample bundle.
+- **Failing baseline:** The new M68 architecture file produced 6 failures and 2
+  passing guards in 0.34 seconds against exact M67 code. The cap/helper were
+  absent, invalid sources reached the parser, valid parsing reopened the path,
+  and source ordering was absent.
+- **Local candidate:** The unchanged 46-package lock and restored 45-package
+  CPython 3.12 graphics environment pass whole-tree formatting for 311 files,
+  Ruff, strict Pyright, strict docs, and whitespace. The pre-review complete
+  suites passed 2,295 tests with 15 skips on CPython 3.12 and 2,285 with 16
+  skips on CPython 3.13/3.14. Ten real-wgpu tests, both five-repeat profiles,
+  both vertical slices, and all four diagnostic benchmark validators pass.
+- **Review:** Findings-first review identified that descriptor-only admission
+  could block while opening a FIFO or surface a directory-open failure before
+  the stable non-regular category. A pre-open path-metadata check now rejects
+  obvious invalid sources; descriptor revalidation remains authoritative after
+  open. The strengthened M64-M68 contract passes 67 assertions with 1 local
+  symlink-capability skip on CPython 3.12, 3.13, and 3.14. The corrected full
+  CPython 3.12 suite passes 2,296 tests with 15 skips.
+- **Pre-review artifacts:** Two builds reproduced a pure 273,082-byte wheel at
+  `089c787bd156e3af5f36fa20dbab1a69e953cc913b9367d9b023e1ccb18977fe`
+  and a 1,198,756-byte source archive at
+  `f135564122dacca5e3cd3c10e20005a7d40e4a9eda774b00a2771bb036d23f68`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke
+  passed. The sample ZIP is exactly 111,168 bytes, contains 50 files, and has
+  SHA-256 `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+  A record-inclusive rebuild also reproduced a pure 273,106-byte wheel at
+  `685c3baaa66ed325c471b5deb5f3f44590eb1bbc2c177ebdd53bc39366119c22`
+  and a 1,200,373-byte source archive at
+  `5d1bcb8424c13145977d53484a164457911ddfeb7d0e6e972e27399708afeaeb`;
+  installed-wheel and complete release smoke passed again. This factual update
+  changes the source archive afterward, so exact commit-tree artifact identity
+  remains delegated to hosted qualification.
+- **Hosted gate:** Create one DCO-signed ready feature PR. The unchanged
+  substantive workflow should request exactly its Linux-first three runner
+  allocations; no workflow edit or additional allocation is authorized.
+- **Integration gate:** After exact-head hosted success and delayed review,
+  squash-integrate the feature. Then update only the current project records
+  and roadmap through the existing documentation-qualified one-Linux gate,
+  squash-integrate that record, and close with three project records that are
+  excluded from hosted CI. Delete every M68 branch and generated output after
+  verified integration.
