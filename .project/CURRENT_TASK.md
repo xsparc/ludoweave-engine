@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M71 - checksum-admitted sample snapshot
-- **Status:** Feature PR #165 is hosted-qualified, review-clean, and
-  squash-integrated with its exact reviewed tree. The current four-file
-  integration record remains to validate and publish.
+- **Status:** M71 feature and integration evidence are hosted-qualified,
+  review-clean, squash-integrated, and fully verified. The current three-file
+  closeout records only completion facts and requests no hosted allocation.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -104,6 +104,28 @@
   `791f2c909cf9b89381443f0b89d6baa79ed56f7a0bd96fa7de4d09521f597671`;
   the record-updated sdist is 1,229,599 bytes at
   `88e50fabed0299caa603166043967123997b8ecb686d10c3953fd2fc3cca24d7`.
-- **Next gate:** Freeze and DCO-publish this exact four-file record for the
-  bounded documentation gate, then close M71 without another hosted
-  allocation.
+- **Integration hosted qualification:** Exact DCO head
+  `f4bb6ef2fac3d4e8d58203c7028aee0f9aa5a73a`, tree
+  `ac55309b8a9a31a4706849f5954504e5292f81bf`, passed run `31617678812`
+  in one 44-second Linux allocation. The desktop umbrella skipped with zero
+  steps. All 314 files were format clean; Ruff and strict docs passed; 781
+  selected architecture assertions passed in 9.50 seconds; wheel/staging/
+  release smoke passed.
+- **Integration hosted artifacts:** The feature-identical pure wheel is
+  273,509 bytes at
+  `06c2501eb5fcc999ff2d59716bd47bc5ecafb0a25473d485d314327a57867e82`;
+  the exact integration-head sdist is 1,229,985 bytes at
+  `5b7a5d3d1de4de06ea83a4274c8d67fe449d7c0b24c665919acd5a2e1d348d8a`.
+- **Integration review/integration:** Two separated audits were clean. PR #166
+  squash `9ce08e520c97ddb06de446718fbdc8ada90060ad` has the exact reviewed tree,
+  sole parent feature squash `a408198b2a3ce9e59d50372095dde2afb6ac9fe5`,
+  valid GitHub signature verified at `2026-08-12T16:30:25Z`, and exact DCO.
+  The integration branch is absent remotely and locally.
+- **Closeout local qualification:** Exactly the three `.project` records pass
+  all 780 architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, exact scope, and credential/metadata-
+  identity hygiene. No workflow, runtime, verifier, producer, dependency,
+  package, test, public documentation, or roadmap surface changes.
+- **Next gate:** DCO-publish and squash-integrate this exact no-run closeout;
+  prune generated M71 targets and leave only a clean synchronized `main`
+  before selecting M72.
