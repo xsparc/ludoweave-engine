@@ -5,6 +5,9 @@
 - **Owners:** LudoWeave maintainers
 - **Milestone:** M69
 
+M75/RFC-0058 extends the same all-member preflight with the separate exact
+compressed-patch flag while preserving this decision's encryption precedence.
+
 ## Context
 
 M64 through M68 bound the project sample ZIP's parser input, member count,

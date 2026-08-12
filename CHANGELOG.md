@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M75/RFC-0058 compressed-patch sample-member preflight. ZIP general-
+  purpose bit 5 now fails content-silently before inventory validation, member
+  reads, or staging, without adding a broad flag allowlist or changing
+  workflows, dependencies, the sample producer, runtime APIs, or release
+  authority.
 - Add M74/RFC-0057 content-silent sample ZIP decompression-failure
   normalization. Exact `zlib.error` from checksum-admitted deflated members
   now uses the existing stable outer error after owned cleanup, without

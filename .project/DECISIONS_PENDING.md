@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0058 resolves M75 compressed-patch sample-member preflight. Private
+complete release smoke rejects exactly ZIP general-purpose bit 5 during M69's
+all-member flag preflight, after encryption and before metadata, inventory,
+staging, or reads. The stable policy error is content-silent; later flagged
+members preempt earlier metadata failures and owned resources close first.
+This is not a broad flag allowlist, reserved-bit policy, implementation-error
+catch, patch decoder, repair path, raw parser, scanner, or general archive
+sandbox. It adds no workflow, dependency, sample producer, runtime API, or
+release authority. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0057 resolves M74 content-silent sample ZIP decompression-failure
 normalization. Private complete release smoke adds exactly `zlib.error` from a
 checksum-admitted invalid deflated-member payload to the existing stable outer

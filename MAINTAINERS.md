@@ -153,6 +153,15 @@ publication. M0 through M73 are complete, reviewed, hosted-validated, and
 integrated into `main`. M74 starts from exact verified M73 closeout
 `7ecb584e71a375d1ab63ee8134e7493e418dedff`.
 
+M75 rejects compressed patched data, ZIP general-purpose bit 5, during M69's
+all-member preflight. It fails content-silently before inventory validation,
+member reads, or staging, while encryption retains its established precedence.
+This is no broad flag allowlist or general archive sandbox and adds no
+workflow, allocation, dependency, version, sample producer, runtime source/API,
+release authority, tag, release, or publication. M0 through M74 are complete,
+reviewed, hosted-validated, and integrated into `main`. M75 starts from exact
+verified M74 closeout `674d74c8fc852846404813ab541aab3deffd8608`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
