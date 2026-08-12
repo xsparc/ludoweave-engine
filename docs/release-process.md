@@ -543,6 +543,19 @@ There is no workflow, dependency, sample producer, runtime API, or release-
 authority change, and pull-request evidence is not a real public release
 observation.
 
+M69/RFC-0052 rejects sample members whose ZIP general-purpose bit flags
+indicate traditional encryption, strong encryption, or masked header values.
+The check runs during the complete central-directory preflight, before exact-
+inventory validation, member reads, password handling, staging, or extraction
+output. Every failure uses one content-silent category rather than a library
+message containing the archive-controlled member identity.
+
+The project sample is public deterministic evidence and has no password or key
+lifecycle. M69 adds no password, decryption support, raw ZIP parser,
+dependency, sample producer, runtime API, workflow, or release authority. It
+does not authenticate central-directory metadata or create a general archive
+sandbox, and pull-request evidence is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

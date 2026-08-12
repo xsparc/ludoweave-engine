@@ -56,3 +56,4 @@ was adopted.
 - [RFC-0049: stage sample extraction before publication](0049-atomic-sample-extraction.md)
 - [RFC-0050: require the exact sample-bundle inventory](0050-exact-sample-bundle-inventory.md)
 - [RFC-0051: bound the sample-archive container before parsing](0051-bounded-sample-archive-container.md)
+- [RFC-0052: reject encrypted sample members before extraction](0052-reject-encrypted-sample-members.md)

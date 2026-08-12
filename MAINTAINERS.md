@@ -88,6 +88,16 @@ complete, reviewed, hosted-validated, and integrated into `main`. M68 starts
 from exact verified M67 closeout
 `ea3de73f5ef1792df729c1f271b3d84a28db1028`.
 
+M69 rejects sample members whose ZIP general-purpose bit flags indicate
+traditional encryption, strong encryption, or masked header values. The
+content-silent rejection occurs before member reads or staging and adds no
+password path. This is not a general archive sandbox. It adds no workflow,
+allocation, dependency, lock, version, sample producer, runtime source/API,
+release authority, tag, release, or publication. Pull-request fixtures are
+not a real public release observation. M0 through M68 are complete, reviewed,
+hosted-validated, and integrated into `main`. M69 starts from exact verified
+M68 closeout `fec3df4d490d363a9ab538f6b99ec86859e7acdc`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -113,7 +123,8 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   subordinate text output, M64 bounds staged sample-bundle extraction, M65
   constrains portable sample member paths, M66 stages complete sample roots
   before publication, M67 requires the exact expected inventory, and M68
-  bounds the regular archive container before parsing; none of these
+  bounds the regular archive container before parsing. M69 rejects encrypted
+  sample-member indicators before reads or staging; none of these
   milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final

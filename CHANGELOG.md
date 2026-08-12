@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M69/RFC-0052 preflight rejection for traditional encryption, strong
+  encryption, and masked header values in sample ZIP members before reads or
+  staging, without adding password handling or changing workflows,
+  dependencies, the sample producer, runtime APIs, or release authority.
 - Add M68/RFC-0051 regular-file and 16 MiB sample-archive container
   admission before ZIP parsing, using the same opened handle for descriptor
   validation and archive reads without changing workflows, dependencies, the

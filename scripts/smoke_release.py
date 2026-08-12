@@ -51,6 +51,7 @@ _MAX_SAMPLE_MEMBER_BYTES = 1024 * 1024
 _MAX_SAMPLE_TOTAL_BYTES = 8 * 1024 * 1024
 _SAMPLE_COPY_BYTES = 64 * 1024
 _SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
+_SAMPLE_ENCRYPTION_FLAGS = 0x0001 | 0x0040 | 0x2000
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -438,6 +439,9 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         infos = tuple(archive.infolist())
         if len(infos) > _MAX_SAMPLE_MEMBERS:
             raise RuntimeError("sample bundle has too many members")
+        for info in infos:
+            _validate_sample_member_flags(flag_bits=info.flag_bits)
+
         total_bytes = 0
         member_parts: list[tuple[str, ...]] = []
         member_keys: set[tuple[str, ...]] = set()
@@ -559,6 +563,13 @@ def _validate_sample_inventory(observed_members: set[str]) -> None:
 
     if observed_members != set(_EXPECTED_SAMPLE_MEMBERS):
         raise RuntimeError("sample bundle inventory is unexpected")
+
+
+def _validate_sample_member_flags(*, flag_bits: int) -> None:
+    """Reject member encryption before reads or extraction staging."""
+
+    if flag_bits & _SAMPLE_ENCRYPTION_FLAGS:
+        raise RuntimeError("sample bundle contains an encrypted member")
 
 
 def _portable_sample_member_parts(
