@@ -1,6 +1,6 @@
 # Project State
 
-## M74 content-silent sample ZIP decompression failures - in progress
+## M74 content-silent sample ZIP decompression failures - complete
 
 - Base: exact clean synchronized M73 closeout
   `7ecb584e71a375d1ab63ee8134e7493e418dedff`, tree
@@ -122,6 +122,35 @@
   capability skip; strict docs, whitespace, and Git-object checking pass. The
   diff remains exactly four record/roadmap files with clean credential/private-
   key and explicit development-tool identity scans.
+- Hosted integration qualification: exact DCO head
+  `fd3185ab0213ffdecb2225877145ebf865199513`, tree
+  `f3cc51c38ce0c3682449225e84426b722e04724d`, passed run
+  `31630962285` in one 38-second Linux allocation; the desktop umbrella
+  skipped with zero steps. The gate resolved 46 packages, found all 317 files
+  format clean, passed Ruff and strict docs, passed 806 documentation-selected
+  architecture assertions, reproduced artifacts, and passed installed-wheel,
+  staging, and complete release smokes.
+- Hosted integration artifacts: two exact-head builds reproduced the feature-
+  identical pure 273,938-byte wheel at
+  `711a4379ef59c4c2cd2bf1b3d11ce6a84de805d2d7c7ab97f5c4bab4ee841238`
+  and a 1,252,100-byte sdist at
+  `4b974e44eed847474d621ebfc4065b9011b177986374287de7dbe50f6076e5e8`.
+- Integration review: two separated audits found no issue comment, review,
+  inline comment, or review thread. PR #175 remained clean, mergeable, and on
+  its exact qualified head.
+- Integration squash: GitHub-verified commit
+  `01d79609c81f13ea637addd9c41bd019d0bdebb0` has the exact reviewed tree,
+  sole parent M74 feature squash `88960cccf31458a0d654062876b46eea616374dc`,
+  exact DCO, and a valid signature verified at `2026-08-12T19:07:49Z`. The
+  integration branch is deleted locally and remotely. M74 is substantively
+  complete; only its exact three-record closeout remains.
+- Closeout qualification: the unchanged lock resolves 46 packages; all 317
+  files are format clean; Ruff and strict Pyright are clean; all 805
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, and Git-object checking pass. The diff is exactly the three
+  neutral project records, with no workflow, substantive, public-documentation,
+  or roadmap change and clean credential/private-key and explicit development-
+  tool identity scans.
 
 ## M73 content-silent sample ZIP text failures - complete
 
