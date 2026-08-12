@@ -1,6 +1,6 @@
 # Project State
 
-## M68 bounded sample-archive container admission - local candidate
+## M68 bounded sample-archive container admission - feature integrated
 
 - Base: exact clean synchronized M67 closeout
   `ea3de73f5ef1792df729c1f271b3d84a28db1028`, tree
@@ -41,8 +41,32 @@
   `685c3baaa66ed325c471b5deb5f3f44590eb1bbc2c177ebdd53bc39366119c22`
   and a 1,200,373-byte source archive at
   `5d1bcb8424c13145977d53484a164457911ddfeb7d0e6e972e27399708afeaeb`;
-  both smoke paths passed again. Exact commit-tree artifacts and hosted
-  qualification remain pending because this factual record changes the sdist.
+  both smoke paths passed again. Those factual local records changed the sdist;
+  exact commit-tree artifacts are recorded below from hosted qualification.
+- Feature integration: PR #156 reviewed head
+  `0fbccca248e6a00a79631ca12c2afa6e7b9acdac`, tree
+  `7e03726ebea72d074e0404f6c8073f96e0e8cce5`, squash-integrated as
+  `5bd0196128aeffcf21094d0a0c6d78b624aaf49b` with the exact same tree, sole
+  parent M67 closeout, valid GitHub signature, and exact DCO trailer.
+- Hosted qualification: exact head `0fbccca` passed run `31585838550` in
+  exactly three Linux-first allocations. Linux passed in 7m34s; macOS passed
+  in 2m58s; Windows passed in 4m13s. Baseline and every compatibility suite
+  passed 2,301 tests with one compatibility skip. All real-wgpu, profile,
+  vertical-slice, reproducibility, wheel, staging, and release-smoke gates
+  passed.
+- Hosted artifacts: two builds reproduced a pure 273,092-byte wheel at
+  `85378f6485a06a8e1496e775fa8f71b122a899bdd0731ba3d67e1eda0f06db58`
+  and a 1,200,886-byte source archive at
+  `d1ac76ec6d3e62be894e894a862fbde09fa0aca07b58a8277b2ea33f96fdc977`.
+- Hosted review: two delayed exact-head audits found no comment, review, or
+  unresolved thread. The feature branch is absent remotely and locally.
+- Integration record: exactly the three `.project` records and `ROADMAP.md`
+  pass the unchanged lock, whole-tree formatting/Ruff/strict-Pyright, all 758
+  selected architecture/release-artifact assertions with 1 local capability
+  skip, strict docs, whitespace, full Git-object checking, two-build
+  reproducibility, installed-wheel smoke, deterministic staging, and complete
+  M68 release smoke. The pure 273,106-byte wheel remains unchanged; exact
+  integration-commit sdist identity is delegated to hosted qualification.
 
 ## M67 exact sample-bundle inventory conformance - fully integrated
 
