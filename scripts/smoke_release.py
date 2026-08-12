@@ -54,6 +54,7 @@ _SAMPLE_COPY_BYTES = 64 * 1024
 _SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
 _SAMPLE_ENCRYPTION_FLAGS = 0x0001 | 0x0040 | 0x2000
 _SAMPLE_COMPRESSED_PATCH_FLAG = 0x0020
+_SAMPLE_ENHANCED_DEFLATE_FLAG = 0x0010
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -485,6 +486,10 @@ def _extract_checksum_admitted_bundle(
             raise RuntimeError("sample bundle has too many members")
         for info in infos:
             _validate_sample_member_flags(flag_bits=info.flag_bits)
+            _validate_sample_compression_flags(
+                flag_bits=info.flag_bits,
+                compress_type=info.compress_type,
+            )
 
         total_bytes = 0
         member_parts: list[tuple[str, ...]] = []
@@ -665,6 +670,13 @@ def _validate_sample_member_flags(*, flag_bits: int) -> None:
         raise RuntimeError("sample bundle contains an encrypted member")
     if flag_bits & _SAMPLE_COMPRESSED_PATCH_FLAG:
         raise RuntimeError("sample bundle uses compressed patched data")
+
+
+def _validate_sample_compression_flags(*, flag_bits: int, compress_type: int) -> None:
+    """Reject compression-method flags outside the fixed sample profile."""
+
+    if compress_type == zipfile.ZIP_DEFLATED and flag_bits & _SAMPLE_ENHANCED_DEFLATE_FLAG:
+        raise RuntimeError("sample bundle uses enhanced deflating")
 
 
 def _portable_sample_member_parts(

@@ -162,6 +162,17 @@ release authority, tag, release, or publication. M0 through M74 are complete,
 reviewed, hosted-validated, and integrated into `main`. M75 starts from exact
 verified M74 closeout `674d74c8fc852846404813ab541aab3deffd8608`.
 
+M76 rejects enhanced deflating when central-directory ZIP general-purpose bit 4
+is paired with compression method 8 during the same all-member preflight. It
+fails content-silently before inventory validation, member reads, or staging;
+established processing errors retain precedence, while stored members and
+local-header inconsistencies remain outside this exact decision. This is no
+broad flag allowlist or general archive sandbox and adds no workflow,
+allocation, dependency, version, sample producer, runtime source/API, release
+authority, tag, release, or publication. M0 through M75 are complete, reviewed,
+hosted-validated, and integrated into `main`. M76 starts from exact verified
+M75 closeout `ddf262dff7a8c93defad5a205adbaec460563439`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

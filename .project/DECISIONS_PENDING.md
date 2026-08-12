@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+RFC-0059 resolves M76 enhanced-deflate sample-member preflight. Private
+complete release smoke rejects exactly ZIP general-purpose bit 4 when paired
+with compression method 8, after established processing checks and before
+metadata, inventory, staging, or reads. The stable policy error is content-
+silent; later flagged members preempt earlier metadata failures and owned
+resources close first. Stored-member bit 4 and other flag/method combinations
+remain outside this exact decision. The check consumes central-directory flags
+exposed by `ZipInfo`; local-header inconsistencies remain outside scope. This is
+not a broad flag allowlist, enhanced-deflate decoder, repair path, raw parser,
+scanner, or general archive sandbox. It adds no workflow, dependency, sample
+producer, runtime API, or release authority. A real pass remains pending an
+explicitly authorized signed-tag release execution.
+
 RFC-0058 resolves M75 compressed-patch sample-member preflight. Private
 complete release smoke rejects exactly ZIP general-purpose bit 5 during M69's
 all-member flag preflight, after encryption and before metadata, inventory,

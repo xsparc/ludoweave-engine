@@ -637,6 +637,19 @@ broad flag allowlist, raw parser, repair, workflow, dependency, sample
 producer, runtime API, or release authority, is not a general archive sandbox,
 and is not a real public release observation.
 
+M76/RFC-0059 rejects enhanced deflating, ZIP general-purpose bit 4, only for
+compression method 8 during the existing all-member preflight. Complete
+release smoke emits the stable content-silent policy error before inventory
+validation, staging, or member reads. Encryption and compressed-patch checks
+retain their established precedence.
+
+The check consumes central-directory flags exposed by `ZipInfo`. Stored members
+carrying bit 4, local-header inconsistencies, and every other unexamined flag/
+method combination remain outside this exact decision. M76 adds no broad flag
+allowlist, enhanced-deflate decoder, raw parser, repair, workflow, dependency,
+sample producer, runtime API, or release authority, is not a general archive
+sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

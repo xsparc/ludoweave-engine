@@ -1,5 +1,78 @@
 # Project State
 
+## M76 enhanced-deflate sample-member preflight - active
+
+- Base: exact clean synchronized M75 closeout
+  `ddf262dff7a8c93defad5a205adbaec460563439`, tree
+  `c124cb2573a4329c8032d1d4eeb416e2e1556d24`.
+- Gap: PKWARE reserves ZIP general-purpose bit 4 for enhanced deflating with
+  compression method 8. Supported CPython does not inspect that indicator and
+  reads otherwise normal deflate bytes carrying it.
+- Decision: RFC-0059 adds exact flag `0x0010` and one separate method-scoped
+  validator to the all-member preflight. The stable content-silent error occurs
+  before metadata, inventory, staging, or reads. Existing encryption and
+  compressed-patch errors retain precedence.
+- Boundary: bit 4 on stored members remains out of scope. No broad flag
+  allowlist, enhanced-deflate decoder, repair, raw parser, scanner, workflow,
+  dependency, producer, runtime API, or release authority is added. The check
+  consumes central-directory flags exposed by `ZipInfo`; local-header
+  inconsistencies remain outside scope.
+- Baseline: after one invalid missing-parent basetemp launch, exact unchanged
+  M75 passed 3 standard-library/precedence/protected guards and failed 7 M76
+  contract assertions in 0.41 seconds. The constant, validator, early policy,
+  producer/source contract, and RFC/docs were absent.
+- Implementation checkpoint: the M69/M75/M76 group passed 28 behavioral,
+  source, and protected assertions; only the deliberately absent RFC/docs
+  assertion failed. Lint and strict Pyright were clean; Ruff requested and
+  applied one mechanical verifier formatting change.
+- Focused gate: all 10 M76 assertions pass in 0.25 seconds; exact M64-M76 passes
+  136 assertions with 1 local filesystem-capability skip in 1.66 seconds.
+  Affected formatting, Ruff, and strict Pyright are clean; strict docs build in
+  1.26 seconds with only the known upstream notice; whitespace passes.
+- Complete suite: after removing workspace-local generated pytest basetemps,
+  the unchanged 46-package lock, 45-package graphics environment, all 319
+  formatted files, Ruff, and strict Pyright pass. CPython 3.12 passes 2,355
+  tests with 15 skips; CPython 3.13 and 3.14 each pass 2,355 with 16 skips; all
+  825 architecture assertions pass with 1 local capability skip.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic
+  validators pass. M1/M3 each observe one of two targets, M2 has no targets,
+  and M4 observes its baseline target.
+- Pre-review artifacts: two builds reproduce a pure 274,258-byte wheel at
+  `7ced651e7231f4308c9b092c2f4a6b6447fff7277095bd1b2f252167f0d4dff1`
+  and a 1,262,791-byte sdist at
+  `dfb4ee65626ac2c4d7f00137421cda4b71397feec2507bd78f6407a25a22c729`;
+  wheel, staging, and complete release smoke pass. The unchanged sample is
+  111,168 bytes/50 entries at
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  no inspected archive entry is native, WASM, bytecode, or retired metadata.
+- Review: the runtime/test design is sound. Review corrected one documentation
+  overclaim by stating that the policy observes central-directory flags exposed
+  by `ZipInfo`; local-header inconsistencies remain outside scope because M76
+  adds no raw parser. Corrected focused/architecture/static/docs/whitespace
+  gates pass.
+- Record-inclusive artifacts: two builds reproduce a 274,273-byte wheel at
+  `373dbe9ad78c4c2ba6ff96e7533a84cc812057f2a985aea06c491706112fe40f`
+  and a 1,264,049-byte sdist at
+  `d11c63366f4e44405f8b4b02442ef6cca9db952c3068ac82202017fc1191e96a`;
+  wheel, staging, and complete release smokes pass. Exact commit artifact
+  identity remains delegated to hosted qualification because recording this
+  result changes the sdist.
+- Final audit: the candidate is exactly 16 intended paths. Protected CI,
+  release workflow, sample producer, metadata, and lock hashes are unchanged;
+  archive/content boundaries, credential/private-key hygiene, explicit
+  development-tool identity hygiene, and retired repository-control metadata
+  absence pass. Feature `HEAD`, `main`, `origin/main`, and merge base are exact
+  M75 closeout with symmetric difference `0 0`; history is linear. Only
+  `origin/main` exists remotely, and GitHub reports no open PR, tag, or release.
+- Remaining: DCO publication, hosted exact-head qualification, squash
+  verification, integration/closeout records, branch/artifact cleanup, and
+  synchronized-main audit.
+- Post-record correction: M59 caught three project-record references that
+  literally named a retired control directory. They were neutralized, after
+  which all 825 architecture assertions pass with 1 capability skip; static,
+  strict docs, whitespace, and exact 16-path scope also pass.
+
 ## M75 compressed-patch sample-member preflight - complete
 
 - Base: exact clean synchronized M74 closeout

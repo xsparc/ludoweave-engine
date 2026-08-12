@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M76/RFC-0059 enhanced-deflate sample-member preflight. Central-directory
+  ZIP general-purpose bit 4 on compression method 8 now fails content-silently
+  before inventory validation, member reads, or staging. Stored members and
+  local-header inconsistencies remain outside this exact decision; no broad
+  flag allowlist, workflow, dependency, sample producer, runtime API, or
+  release authority is added.
 - Add M75/RFC-0058 compressed-patch sample-member preflight. ZIP general-
   purpose bit 5 now fails content-silently before inventory validation, member
   reads, or staging, without adding a broad flag allowlist or changing

@@ -210,6 +210,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   M69's encryption category retains precedence. This adds no broad flag
   allowlist, workflow, or sample producer change, is not a general archive
   sandbox, and is not a real public release observation.
+- M76 rejects enhanced deflating when central-directory ZIP general-purpose bit
+  4 is paired with compression method 8. The stable content-silent policy error
+  occurs before inventory validation, member reads, or staging; earlier
+  encryption and compressed-patch categories retain precedence. Stored members
+  and local-header inconsistencies remain outside this exact decision. This
+  adds no broad flag allowlist, workflow, or sample producer change, is not a
+  general archive sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
