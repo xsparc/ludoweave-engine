@@ -73,6 +73,29 @@
 - Exact post-record freeze: all 318 files are format clean; Ruff and strict
   Pyright are clean; all 815 architecture assertions pass with 1 local
   capability skip; strict docs, whitespace, and exact 16-path scope pass.
+- Hosted qualification: exact DCO head
+  `77ab1757ea52be4c5532adfe26c27bfa202504ef`, tree
+  `b0aac18c83fc6e93bd5fd1e1f154100e2bc75799`, passed run
+  `31633932748` in exactly three Linux-first allocations: Linux 7m21s, macOS
+  3m25s, and Windows 4m06s. Every hosted suite, graphics/profile/example, and
+  distribution/release smoke passed.
+- Hosted artifacts: pure 274,089-byte wheel
+  `af0ea15e0ac4851461a93d79b11b587d2d230fc91219c2da47acee5574901d4b`
+  and 1,257,945-byte sdist
+  `7f68ef379d335c9a4b3cefb7e9409af26fb759f8ebffc28dc7a7bb11e8d43917`.
+- Hosted review/integration: two audits found no review activity. GitHub-
+  verified squash `b86013397d5ad5f28d9a9adfe7c7f30996cbad65` has the exact
+  reviewed tree, sole M74-closeout parent, exact DCO, and a valid signature
+  verified at `2026-08-12T19:55:01Z`. The feature branch is deleted.
+- Integration local qualification: the unchanged lock resolves 46 packages;
+  all 318 files are format clean; Ruff and strict Pyright are clean; all 815
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, and Git-object checking pass. Two builds reproduce the feature-
+  identical 274,103-byte wheel
+  `60824005e82908164ad7a6433d3647cdf011d9aa03dec884aa8d142904084784`
+  and 1,259,225-byte record-updated sdist
+  `5f5051d0e2831634eb2b2bb596258a2782fa83fd5063cac3854df4e296e1d2a7`;
+  wheel, staging, and release smoke pass.
 - Intended scope: exactly 16 paths, with no workflow, producer, runtime-package,
   dependency, metadata, lock, benchmark, version, or release-authority change.
 
