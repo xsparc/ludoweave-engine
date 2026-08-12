@@ -77,6 +77,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M66 staged sample-root publication | PR #150 passed exact three-allocation hosted qualification and squash-integrated same-filesystem staging, completeness-before-publication, single-rename visibility, and owned failure cleanup without workflow, runtime, or release-authority expansion |
 | Done | M67 exact sample-bundle inventory conformance | PR #153 passed exact three-allocation hosted qualification and squash-integrated the independent exact 50-file product shape before extraction without a workflow, producer, runtime, or release-authority change |
 | Done | M68 bounded sample-archive container admission | PR #156 passed exact three-allocation hosted qualification and squash-integrated pre-open regular-file/16 MiB admission plus same-handle descriptor revalidation before ZIP parsing without a workflow, producer, runtime, or release-authority change |
+| Done | M69 encrypted sample-member preflight rejection | PR #159 corrected archive-order masking after review, passed the corrected exact three-allocation hosted gate, resolved its finding, and squash-integrated all-member encryption-flag preflight before any per-member metadata validation without changing workflow, producer, runtime, or release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
