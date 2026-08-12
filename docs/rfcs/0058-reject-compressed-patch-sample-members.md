@@ -37,6 +37,10 @@ no broad flag allowlist, complement mask, or reserved-bit policy. The unchanged
 sample producer is admitted only after an executable assertion proves it emits
 no compressed-patch indicator.
 
+M76/RFC-0059 later adds a separate method-scoped preflight for bit 4 paired
+with compression method 8. That follow-on does not retroactively turn M75 into
+a broad flag allowlist.
+
 ## Boundary
 
 M75 is private complete-release-smoke behavior. It creates no public error

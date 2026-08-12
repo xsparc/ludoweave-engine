@@ -1854,6 +1854,26 @@ dependency, sample producer, runtime API, release authority, or real public
 release observation and is not a general archive sandbox. RFC-0058 defines the
 complete boundary.
 
+## M76 enhanced-deflate sample-member preflight
+
+M76 adds one method-scoped check to the all-member preflight. PKWARE reserves
+ZIP general-purpose bit 4 for enhanced deflating with compression method 8.
+Supported CPython versions do not reject that indicator when otherwise normal
+deflate bytes are read. The private release smoke raises the stable content-
+silent policy error `sample bundle uses enhanced deflating` before member
+metadata validation, exact-inventory validation, staging, or member reads.
+
+M69's encryption and M75's compressed-patch checks execute first. The new
+policy applies only when central-directory bit 4 exposed by `ZipInfo` and
+compression method 8 coexist; stored members carrying bit 4 remain outside
+this decision. The verifier does not raw-parse or compare local-header flags,
+so local-header inconsistencies also remain outside scope. M76 defines no broad
+flag allowlist and makes no claim that unexamined flag/method combinations are
+safe. It adds no enhanced-deflate decoder, raw parser, repair, content scanner,
+workflow, dependency, sample producer, runtime API, release authority, or real
+public release observation and is not a general archive sandbox. RFC-0059
+defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
