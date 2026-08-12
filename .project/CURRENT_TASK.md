@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M73 - content-silent sample ZIP text failures
-- **Status:** Feature PR #171 passed exact-head hosted qualification, two
-  separated review audits, and verified squash integration. The exact
-  four-file integration record is in progress.
+- **Status:** Feature PR #171 and integration-record PR #172 passed exact-head
+  hosted qualification, two separated review audits each, and verified squash
+  integration. The exact three-file no-run closeout record is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -129,5 +129,37 @@
 - **Integration freeze:** All 316 files are format clean; Ruff and strict
   Pyright are clean; all 797 architecture assertions pass with 1 local
   capability skip; strict docs, whitespace, and exact four-file scope pass.
-- **Next gate:** Publish the exact DCO integration-record commit and verify the
-  one-allocation Linux documentation gate on that exact head.
+- **Integration hosted qualification:** Exact DCO head
+  `ddee71f4a4a9ed84679092c5734e282975004bcd`, tree
+  `b1c99b4cc173e82bd35592ed59406198e935b461`, passed run
+  `31626186623` in one 46-second Linux allocation; the desktop umbrella
+  skipped with zero steps. The gate resolved 46 packages, found all 316 files
+  format clean, passed Ruff, strict docs in 1.67 seconds, 798 selected
+  architecture assertions in 9.66 seconds, reproducible artifacts,
+  installed-wheel smoke, staging, and complete release smoke.
+- **Integration hosted artifacts:** Two exact-head builds reproduced the pure
+  273,827-byte wheel at
+  `b959f2ef31753f1a4514fbdcdc29695d25f3d82f71203df01f6208c24ea76afd`
+  and a 1,245,053-byte sdist at
+  `59e8a080bdc3e3e1b6680f52c17de7c903d91c68eb6dc4001232d7240f7634dd`.
+- **Integration hosted review:** Two separated audits found no issue comment,
+  review, inline comment, or review thread. PR #172 remained clean,
+  mergeable, and on the exact qualified head.
+- **Integration record:** PR #172 squash
+  `bb7ca9da09d36fb166057b73e4db4d0fc806cdd0` has the exact reviewed tree,
+  sole parent M73 feature squash
+  `5b9d42fba4cfc1a990bce70c1d4ea4f2e7ab04e4`, exact DCO, and a valid GitHub
+  signature verified at `2026-08-12T18:11:17Z`. The integration branch is
+  absent remotely and locally.
+- **Closeout local qualification:** The unchanged lock resolves 46 packages;
+  all 316 files are format clean; Ruff and strict Pyright are clean; all 797
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, full Git-object checking, and exact three-file scope pass.
+- **Closeout freeze:** All 316 files remain format clean; Ruff and strict
+  Pyright are clean; all 797 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, protected-surface isolation,
+  credential/private-key hygiene, explicit development-tool identity hygiene,
+  and exact three-file scope pass.
+- **Next gate:** Publish the exact DCO no-run closeout, verify its reviewed
+  squash, prune generated M73 artifacts, and return to a clean synchronized
+  `main` before selecting M74.
