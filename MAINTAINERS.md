@@ -143,6 +143,16 @@ M72 are complete, reviewed, hosted-validated, and integrated into `main`. M73
 starts from exact verified M72 closeout
 `f4afb40aade2b1a59b7ceabf6f1db158b450b7cd`.
 
+M74 adds exactly `zlib.error` raised while the standard ZIP reader processes
+an invalid checksum-admitted deflated member. Rendered output remains content-
+silent through suppressed context, and owned cleanup completes first. EOF,
+policy, filesystem, and unexpected failures remain specific. This is not a
+general archive sandbox and adds no workflow, allocation, dependency, version,
+sample producer, runtime source/API, release authority, tag, release, or
+publication. M0 through M73 are complete, reviewed, hosted-validated, and
+integrated into `main`. M74 starts from exact verified M73 closeout
+`7ecb584e71a375d1ab63ee8134e7493e418dedff`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -172,9 +182,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   sample-member indicators before reads or staging. M70 binds sample parsing
   and publication to the staged-release checksum on the same opened handle.
   M71 makes an owned checksum-admitted snapshot the exact parser input, M72
-  confines documented parser failures content-silently, and M73 adds the exact
-  ZIP UTF-8 decoding failure; none of these
-  milestones authorizes a real release.
+  confines documented parser failures content-silently, M73 adds the exact ZIP
+  UTF-8 decoding failure, and M74 adds the exact deflate decompression failure;
+  none of these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

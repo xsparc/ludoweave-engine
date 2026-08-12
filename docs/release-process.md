@@ -610,6 +610,21 @@ raw parser, workflow, dependency, sample producer, runtime API, or release
 authority, is not a general archive sandbox, and is not a real public release
 observation.
 
+M74/RFC-0057 adds exactly `zlib.error` to that same outer boundary. A
+checksum-admitted archive can carry the exact inventory and valid ZIP metadata
+but contain an invalid raw-deflate payload. The standard ZIP member reader can
+raise the documented decompression exception while a bounded member copy is in
+progress. That path becomes the existing stable
+`sample bundle ZIP data is invalid` error after owned source, snapshot,
+archive, member, target, and staging cleanup.
+
+The original decompression exception remains programmatic context; suppressed
+context keeps its library- and content-determined diagnostic out of normal
+rendered output. EOF, policy, filesystem, subprocess, and unexpected failures
+remain specific. M74 adds no broad catch, replacement decompressor, raw parser,
+workflow, dependency, sample producer, runtime API, or release authority, is
+not a general archive sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

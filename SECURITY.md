@@ -197,6 +197,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   failures remain specific. This is not a general archive sandbox, adds no
   workflow or sample producer change, and is not a real public release
   observation.
+- M74 adds exactly `zlib.error` from checksum-admitted deflated sample members
+  to the same stable content-silent error. Suppressed context hides the
+  decompressor diagnostic from rendered output after owned cleanup while
+  retaining the original exception programmatically. EOF, policy, filesystem,
+  and unexpected failures remain specific. This is not a general archive
+  sandbox, adds no workflow or sample producer change, and is not a real public
+  release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

@@ -1,4 +1,4 @@
-"""Protect M73 content-silent sample ZIP text-decoding failures."""
+"""Protect M74 content-silent sample ZIP decompression failures."""
 
 # pyright: reportPrivateUsage=false
 
@@ -10,6 +10,7 @@ import re
 import sys
 import traceback
 import zipfile
+import zlib
 from pathlib import Path
 from typing import IO, Protocol, cast
 
@@ -26,7 +27,6 @@ _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed
 _VERSION = "0.1.0a1"
 _PREFIX = f"ludoweave-samples-{_VERSION}"
 _ZIP_ERROR = "sample bundle ZIP data is invalid"
-_UTF8_FLAG = 0x0800
 
 
 class _SmokeModule(Protocol):
@@ -69,11 +69,11 @@ def _load(path: Path, name: str) -> object:
 
 
 def _smoke() -> _SmokeModule:
-    return cast(_SmokeModule, _load(_SMOKE, "m73_smoke_release"))
+    return cast(_SmokeModule, _load(_SMOKE, "m74_smoke_release"))
 
 
 def _stager() -> _StagerModule:
-    return cast(_StagerModule, _load(_STAGER, "m73_release_artifacts"))
+    return cast(_StagerModule, _load(_STAGER, "m74_release_artifacts"))
 
 
 def _bundle(path: Path, names: frozenset[str]) -> None:
@@ -82,27 +82,19 @@ def _bundle(path: Path, names: frozenset[str]) -> None:
             archive.writestr(f"{_PREFIX}/{name}", name.encode())
 
 
-def _set_flag(data: bytearray, offset: int) -> None:
-    flags = int.from_bytes(data[offset : offset + 2], "little") | _UTF8_FLAG
-    data[offset : offset + 2] = flags.to_bytes(2, "little")
-
-
-def _corrupt_central_utf8_name(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    end = data.rfind(b"PK\x05\x06")
-    assert end >= 0
-    central = int.from_bytes(data[end + 16 : end + 20], "little")
-    assert data[central : central + 4] == b"PK\x01\x02"
-    _set_flag(data, central + 8)
-    data[central + 46] = 0xFF
-    path.write_bytes(data)
-
-
-def _corrupt_local_utf8_name(path: Path) -> None:
+def _corrupt_first_deflate_block(path: Path) -> None:
     data = bytearray(path.read_bytes())
     assert data[:4] == b"PK\x03\x04"
-    _set_flag(data, 6)
-    data[30] = 0xFF
+    assert int.from_bytes(data[8:10], "little") == zipfile.ZIP_DEFLATED
+    compressed_size = int.from_bytes(data[18:22], "little")
+    name_size = int.from_bytes(data[26:28], "little")
+    extra_size = int.from_bytes(data[28:30], "little")
+    compressed_start = 30 + name_size + extra_size
+    assert compressed_size > 0
+    assert compressed_start + compressed_size <= len(data)
+    original = data[compressed_start]
+    data[compressed_start] = (original & 0xF9) | 0x06
+    assert data[compressed_start] != original
     path.write_bytes(data)
 
 
@@ -120,21 +112,21 @@ def _assert_content_silent(error: RuntimeError) -> None:
     assert str(error) == _ZIP_ERROR
     assert error.__suppress_context__
     context = error.__context__
-    assert isinstance(context, UnicodeDecodeError)
-    assert context.object.startswith(b"\xff")
+    assert isinstance(context, zlib.error)
     private_detail = str(context)
+    assert private_detail
     rendered = "".join(traceback.format_exception(error))
     assert private_detail not in rendered
     assert type(context).__name__ not in rendered
 
 
-def test_central_directory_utf8_failure_is_stable_and_content_silent(
+def test_corrupt_deflate_failure_is_stable_content_silent_and_cleans_stage(
     tmp_path: Path,
 ) -> None:
     module = _smoke()
-    bundle = tmp_path / "central-name.zip"
+    bundle = tmp_path / "invalid-deflate.zip"
     _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    _corrupt_central_utf8_name(bundle)
+    _corrupt_first_deflate_block(bundle)
     output = _empty_output(tmp_path)
 
     with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
@@ -146,54 +138,28 @@ def test_central_directory_utf8_failure_is_stable_and_content_silent(
         )
 
     _assert_content_silent(caught.value)
+    assert not (output / _PREFIX).exists()
     assert list(output.iterdir()) == []
 
 
-def test_local_header_utf8_failure_cleans_stage_and_is_content_silent(
+def test_decompression_failure_closes_owned_resources(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     module = _smoke()
-    bundle = tmp_path / "local-name.zip"
+    bundle = tmp_path / "invalid-deflate.zip"
     _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    _corrupt_local_utf8_name(bundle)
+    _corrupt_first_deflate_block(bundle)
     output = _empty_output(tmp_path)
     archives: list[zipfile.ZipFile] = []
+    streams: list[tuple[IO[bytes], IO[bytes]]] = []
     original_zipfile = zipfile.ZipFile
+    original_snapshot = module._snapshot_sample_archive
 
     def recording_zipfile(file: IO[bytes]) -> zipfile.ZipFile:
         archive = original_zipfile(file)
         archives.append(archive)
         return archive
-
-    monkeypatch.setattr(zipfile, "ZipFile", recording_zipfile)
-
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
-        module._extract_bundle(
-            bundle,
-            output,
-            version=_VERSION,
-            expected_sha256=_sha256(bundle),
-        )
-
-    _assert_content_silent(caught.value)
-    assert len(archives) == 1
-    assert archives[0].fp is None
-    assert not (output / _PREFIX).exists()
-    assert list(output.iterdir()) == []
-
-
-def test_text_failure_closes_owned_source_and_snapshot(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    module = _smoke()
-    bundle = tmp_path / "central-name.zip"
-    _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    _corrupt_central_utf8_name(bundle)
-    output = _empty_output(tmp_path)
-    observed: list[tuple[IO[bytes], IO[bytes]]] = []
-    original_snapshot = module._snapshot_sample_archive
 
     def recording_snapshot(
         source: IO[bytes],
@@ -201,9 +167,10 @@ def test_text_failure_closes_owned_source_and_snapshot(
         *,
         expected_sha256: str | None,
     ) -> None:
-        observed.append((source, snapshot))
+        streams.append((source, snapshot))
         original_snapshot(source, snapshot, expected_sha256=expected_sha256)
 
+    monkeypatch.setattr(zipfile, "ZipFile", recording_zipfile)
     monkeypatch.setattr(module, "_snapshot_sample_archive", recording_snapshot)
 
     with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$"):
@@ -214,10 +181,13 @@ def test_text_failure_closes_owned_source_and_snapshot(
             expected_sha256=_sha256(bundle),
         )
 
-    assert len(observed) == 1
-    source, snapshot = observed[0]
+    assert len(archives) == 1
+    assert archives[0].fp is None
+    assert len(streams) == 1
+    source, snapshot = streams[0]
     assert source.closed
     assert snapshot.closed
+    assert list(output.iterdir()) == []
 
 
 def test_verifier_policy_error_remains_specific(tmp_path: Path) -> None:
@@ -240,6 +210,27 @@ def test_verifier_policy_error_remains_specific(tmp_path: Path) -> None:
     assert not caught.value.__suppress_context__
 
 
+def test_eof_failure_is_not_recategorized(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _smoke()
+    private_detail = "private end-of-stream detail"
+
+    def raise_eof(*args: object, **kwargs: object) -> Path:
+        del args, kwargs
+        raise EOFError(private_detail)
+
+    monkeypatch.setattr(module, "_extract_checksum_admitted_bundle", raise_eof)
+
+    with pytest.raises(EOFError, match=rf"^{re.escape(private_detail)}$"):
+        module._extract_bundle(
+            tmp_path / "unused.zip",
+            tmp_path,
+            version=_VERSION,
+        )
+
+
 def test_current_producer_remains_admitted(tmp_path: Path) -> None:
     module = _smoke()
     bundle = tmp_path / "samples.zip"
@@ -254,7 +245,7 @@ def test_current_producer_remains_admitted(tmp_path: Path) -> None:
     ) == (output / _PREFIX)
 
 
-def test_m73_source_normalizes_only_documented_zip_and_text_failures() -> None:
+def test_m74_source_normalizes_only_the_documented_decompression_failure() -> None:
     source = _SMOKE.read_text(encoding="utf-8")
     start = source.index("def _extract_bundle")
     end = source.index("def _extract_checksum_admitted_bundle", start)
@@ -262,16 +253,13 @@ def test_m73_source_normalizes_only_documented_zip_and_text_failures() -> None:
     catch_start = extraction.index("except (")
     catch = extraction[catch_start : extraction.index("):", catch_start)]
 
-    assert "zipfile.BadZipFile" in catch
-    assert "zipfile.LargeZipFile" in catch
-    assert "UnicodeDecodeError" in catch
+    assert catch.count("zlib.error") == 1
     assert f'raise RuntimeError("{_ZIP_ERROR}") from None' in extraction
-    assert "UnicodeError" not in catch
-    assert "ValueError" not in catch
-    assert "Exception" not in catch
+    for excluded in ("EOFError", "OSError", "UnicodeError", "ValueError", "Exception"):
+        assert excluded not in catch
 
 
-def test_m73_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:
+def test_m74_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:
     assert (
         hashlib.sha256((_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()).hexdigest()
         == _CI_SHA256
@@ -286,12 +274,12 @@ def test_m73_changes_no_workflow_producer_runtime_dependency_or_package_boundary
     )
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
     assert not any(
-        "m73" in path.read_text(encoding="utf-8").casefold()
+        "m74" in path.read_text(encoding="utf-8").casefold()
         for path in (_ROOT / "src" / "ludoweave").rglob("*.py")
     )
 
 
-def test_m73_docs_define_content_silent_zip_text_failure_boundary() -> None:
+def test_m74_docs_define_content_silent_zip_decompression_failure_boundary() -> None:
     paths = (
         _ROOT / "README.md",
         _ROOT / "CHANGELOG.md",
@@ -299,19 +287,18 @@ def test_m73_docs_define_content_silent_zip_text_failure_boundary() -> None:
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",
         _ROOT / "docs" / "release-process.md",
-        _ROOT / "docs" / "rfcs" / "0056-content-silent-sample-zip-text-failures.md",
+        _ROOT / "docs" / "rfcs" / "0057-content-silent-sample-zip-decompression-failures.md",
     )
     documents = tuple(path.read_text(encoding="utf-8").casefold() for path in paths)
     combined = "\n".join(documents)
 
-    assert all("m73" in document for document in documents)
+    assert all("m74" in document for document in documents)
     completed = re.search(r"m0 through m([0-9]+) are hosted-validated", documents[0])
-    assert completed is not None and int(completed.group(1)) >= 72
+    assert completed is not None and int(completed.group(1)) >= 73
     for term in (
-        "unicodedecodeerror",
-        "central directory",
-        "local header",
-        "archive-controlled",
+        "zlib.error",
+        "deflated",
+        "checksum-admitted",
         "stable error",
         "content-silent",
         "suppressed context",
