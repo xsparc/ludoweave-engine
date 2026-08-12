@@ -13,6 +13,7 @@ import subprocess
 import tempfile
 import zipfile
 from collections.abc import Iterable, Sequence
+from contextlib import ExitStack
 from pathlib import Path, PurePosixPath
 from typing import cast
 
@@ -44,6 +45,7 @@ from third_party_conformance_adoption_evidence import (
 from visual_editor_evidence import validate_visual_editor_evidence
 from wasm_mod_security_evidence import validate_wasm_mod_security_evidence
 
+_MAX_SAMPLE_ARCHIVE_BYTES = 16 * 1024 * 1024
 _MAX_SAMPLE_MEMBERS = 256
 _MAX_SAMPLE_MEMBER_BYTES = 1024 * 1024
 _MAX_SAMPLE_TOTAL_BYTES = 8 * 1024 * 1024
@@ -420,7 +422,19 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         raise RuntimeError("sample bundle output directory is unavailable")
     if os.path.lexists(root):
         raise RuntimeError("sample bundle output already exists")
-    with zipfile.ZipFile(bundle) as archive:
+    bundle_metadata = bundle.stat()
+    _validate_sample_archive_source(
+        mode=bundle_metadata.st_mode,
+        size=bundle_metadata.st_size,
+    )
+    with ExitStack() as resources:
+        bundle_stream = resources.enter_context(bundle.open("rb"))
+        bundle_metadata = os.fstat(bundle_stream.fileno())
+        _validate_sample_archive_source(
+            mode=bundle_metadata.st_mode,
+            size=bundle_metadata.st_size,
+        )
+        archive = resources.enter_context(zipfile.ZipFile(bundle_stream))
         infos = tuple(archive.infolist())
         if len(infos) > _MAX_SAMPLE_MEMBERS:
             raise RuntimeError("sample bundle has too many members")
@@ -529,6 +543,15 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
                 raise RuntimeError("sample bundle output already exists")
             staged_root.replace(root)
     return root
+
+
+def _validate_sample_archive_source(*, mode: int, size: int) -> None:
+    """Admit one bounded regular sample archive before ZIP parsing."""
+
+    if not stat.S_ISREG(mode):
+        raise RuntimeError("sample bundle is not a regular file")
+    if size > _MAX_SAMPLE_ARCHIVE_BYTES:
+        raise RuntimeError("sample bundle archive is too large")
 
 
 def _validate_sample_inventory(observed_members: set[str]) -> None:

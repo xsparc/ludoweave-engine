@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M68/RFC-0051 regular-file and 16 MiB sample-archive container
+  admission before ZIP parsing, using the same opened handle for descriptor
+  validation and archive reads without changing workflows, dependencies, the
+  sample producer, runtime APIs, or release authority.
 - Add M67/RFC-0050 exact sample-bundle inventory preflight. The verifier now
   rejects any unexpected member or missing member among the 50 source-defined
   regular files before extraction, using one content-silent failure category,

@@ -528,6 +528,21 @@ permission policy, or a general archive sandbox. It adds no workflow,
 dependency, sample producer, runtime API, or release authority, and pull-request
 evidence is not a real public release observation.
 
+M68/RFC-0051 bounds the sample archive itself before the standard-library ZIP
+parser receives it. Release smoke first rejects an obvious non-regular or
+oversized source from path metadata without opening it, then opens the bundle
+once and revalidates its descriptor as a regular file no larger than 16 MiB.
+It gives that same opened handle to `ZipFile`. A non-regular or oversized source
+fails with a stable content-silent category before central-directory parsing,
+member reads, staging, or extraction output.
+
+This input limit complements rather than replaces M64's member and expanded-
+size bounds. It does not make later bytes immutable, authenticate ZIP metadata,
+isolate concurrent filesystem actors, or create a general archive sandbox.
+There is no workflow, dependency, sample producer, runtime API, or release-
+authority change, and pull-request evidence is not a real public release
+observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

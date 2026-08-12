@@ -1707,6 +1707,29 @@ sandbox. It adds no workflow, dependency, sample producer, runtime API, release
 authority, or real public release observation. RFC-0050 defines the complete
 boundary.
 
+## M68 bounded sample-archive container boundary
+
+M68 bounds the parser input that precedes the M64-M67 archive preflight. The
+release smoke rejects an obvious non-regular or oversized bundle from path
+metadata before opening it. It then opens the bundle once in binary read mode,
+revalidates mode and length from that descriptor, and admits only a regular
+file no larger than 16 MiB. A non-regular or oversized input fails with a stable
+content-silent category before `ZipFile` construction, central-directory
+parsing, archive member reads, staging, or extraction output.
+
+The descriptor check is authoritative after the pre-open check, and the same
+opened handle is supplied to `ZipFile`, so admission and parsing do not reopen
+the source path as separate identities. The archive context closes before its
+underlying stream on success and failure. M64's member count,
+compression, and expanded-size limits remain necessary and unchanged; a small
+container can still expand greatly.
+
+This private project-bundle input boundary is not a raw ZIP parser, general
+archive sandbox, authenticated-metadata scheme, malware detector, immutable-
+input guarantee, or concurrent filesystem race isolation. It adds no workflow,
+dependency, sample producer, runtime API, release authority, or real public
+release observation. RFC-0051 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -54,3 +54,5 @@ was adopted.
 - [RFC-0047: bound sample-bundle extraction](0047-bounded-sample-bundle-extraction.md)
 - [RFC-0048: constrain sample-bundle member paths portably](0048-portable-sample-member-paths.md)
 - [RFC-0049: stage sample extraction before publication](0049-atomic-sample-extraction.md)
+- [RFC-0050: require the exact sample-bundle inventory](0050-exact-sample-bundle-inventory.md)
+- [RFC-0051: bound the sample-archive container before parsing](0051-bounded-sample-archive-container.md)

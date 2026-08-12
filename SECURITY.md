@@ -157,6 +157,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   unchanged sample producer. This is not content scanning or a general archive
   sandbox, adds no workflow or release authority, and is not a real public
   release observation.
+- M68 rejects an obvious non-regular or oversized sample archive from path
+  metadata before opening it, then requires the opened descriptor to identify
+  a regular file no larger than 16 MiB before `ZipFile` construction. Parsing
+  uses that same handle. Invalid containers fail content-silently before
+  central-directory parsing or staging. This does not
+  make later bytes immutable or replace expanded-size controls, is not a
+  general archive sandbox, adds no workflow or release authority, and is not a
+  real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
