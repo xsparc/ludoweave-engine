@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0057 resolves M74 content-silent sample ZIP decompression-failure
+normalization. Private complete release smoke adds exactly `zlib.error` from a
+checksum-admitted invalid deflated-member payload to the existing stable outer
+error after owned cleanup. Suppressed context confines the decompressor
+diagnostic while retaining the original exception programmatically. EOF,
+policy, filesystem, and unexpected failures remain specific. This is not a
+broad compression/general catch, replacement decompressor, payload repair, raw
+parser, scanner, or general archive sandbox. It adds no workflow, dependency,
+sample producer, runtime API, or release authority. A real pass remains pending
+an explicitly authorized signed-tag release execution.
+
 RFC-0056 resolves M73 content-silent sample ZIP text-failure normalization.
 Private complete release smoke adds exactly `UnicodeDecodeError` from strict
 archive-controlled UTF-8 name decoding in the central directory or local

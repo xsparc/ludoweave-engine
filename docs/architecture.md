@@ -1816,6 +1816,27 @@ workflow, dependency, sample producer, runtime API, release authority, or real
 public release observation and is not a general archive sandbox. RFC-0056
 defines the complete boundary.
 
+## M74 content-silent sample ZIP decompression-failure boundary
+
+M74 adds exactly `zlib.error` to the same private outer catch. After checksum
+and exact-inventory admission, Python's ZIP member reader sends deflated bytes
+to a raw-deflate decompressor. Invalid compressed payload bytes can therefore
+fail after owned staging begins even though the container metadata, declared
+sizes, paths, method, and checksum are internally admitted. That exact failure
+now becomes the existing stable error `sample bundle ZIP data is invalid`
+after the inner `ExitStack`, member/target contexts, and staging context finish
+cleanup.
+
+The original decompression exception remains programmatic context, while
+suppressed context keeps its library- and content-determined diagnostic out of
+the rendered exception. The catch does not include `EOFError`, `OSError`, or
+`Exception`; verifier policy, truncated-stream categories outside this
+decision, filesystem failures, and unexpected failures remain specific. M74
+adds no replacement decompressor, raw parser, content scanner, workflow,
+dependency, sample producer, runtime API, release authority, or real public
+release observation and is not a general archive sandbox. RFC-0057 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

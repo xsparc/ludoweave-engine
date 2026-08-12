@@ -12,6 +12,7 @@ import stat
 import subprocess
 import tempfile
 import zipfile
+import zlib
 from collections.abc import Iterable, Sequence
 from contextlib import ExitStack
 from pathlib import Path, PurePosixPath
@@ -437,7 +438,7 @@ def _extract_bundle(
             version=version,
             expected_sha256=expected_sha256,
         )
-    except (zipfile.BadZipFile, zipfile.LargeZipFile, UnicodeDecodeError):
+    except (zipfile.BadZipFile, zipfile.LargeZipFile, UnicodeDecodeError, zlib.error):
         raise RuntimeError("sample bundle ZIP data is invalid") from None
 
 

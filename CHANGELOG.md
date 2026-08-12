@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M74/RFC-0057 content-silent sample ZIP decompression-failure
+  normalization. Exact `zlib.error` from checksum-admitted deflated members
+  now uses the existing stable outer error after owned cleanup, without
+  broadening to EOF/filesystem/general failures or changing workflows,
+  dependencies, the sample producer, runtime APIs, or release authority.
 - Add M73/RFC-0056 content-silent sample ZIP text-failure normalization.
   `UnicodeDecodeError` from archive-controlled UTF-8 central-directory or
   local-header names now uses the existing stable outer error after owned

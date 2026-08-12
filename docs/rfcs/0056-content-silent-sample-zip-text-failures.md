@@ -4,6 +4,10 @@
 - **Date:** 2026-08-13
 - **Milestone:** M73
 
+M74/RFC-0057 extends the same private outer boundary with exactly `zlib.error`
+for checksum-admitted deflated-member failures; M73's UTF-8 decoding decision
+and exclusions remain unchanged.
+
 ## Context
 
 M72 normalizes documented `BadZipFile` and `LargeZipFile` failures around the
