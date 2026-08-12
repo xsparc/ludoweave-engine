@@ -1837,6 +1837,23 @@ dependency, sample producer, runtime API, release authority, or real public
 release observation and is not a general archive sandbox. RFC-0057 defines the
 complete boundary.
 
+## M75 compressed-patch sample-member preflight
+
+M75 extends M69's all-member flag preflight with exactly ZIP general-purpose
+bit 5. PKWARE assigns that bit to compressed patched data, and supported
+CPython `ZipFile.open` paths reject it with `NotImplementedError` only when a
+member is opened. The private release smoke instead raises the stable content-
+silent policy error `sample bundle uses compressed patched data` before member
+metadata validation, exact-inventory validation, staging, or member reads.
+
+Encryption remains the first check, preserving M69's established error when a
+member carries both indicators. Other general-purpose bits remain outside this
+decision: M75 defines no broad flag allowlist and makes no claim that unexamined
+bits are safe. It adds no raw parser, repair, content scanner, workflow,
+dependency, sample producer, runtime API, release authority, or real public
+release observation and is not a general archive sandbox. RFC-0058 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -98,6 +98,7 @@ nav:
       - RFC-0055 - Content-silent sample ZIP failures: rfcs/0055-content-silent-sample-zip-failures.md
       - RFC-0056 - Content-silent sample ZIP text failures: rfcs/0056-content-silent-sample-zip-text-failures.md
       - RFC-0057 - Content-silent sample ZIP decompression failures: rfcs/0057-content-silent-sample-zip-decompression-failures.md
+      - RFC-0058 - Reject compressed-patch sample members: rfcs/0058-reject-compressed-patch-sample-members.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -1,5 +1,81 @@
 # Project State
 
+## M75 compressed-patch sample-member preflight - in progress
+
+- Base: exact clean synchronized M74 closeout
+  `674d74c8fc852846404813ab541aab3deffd8608`, tree
+  `cbe1b75ae6c3174c04b0712894244918cae69010`.
+- Gap: ZIP general-purpose bit 5 declares compressed patched data. Supported
+  CPython versions reject it only from `ZipFile.open`, after the existing
+  all-member flag preflight and after inventory/staging work can begin.
+- Decision: RFC-0058 adds exact flag `0x0020` to M69's all-member preflight,
+  after encryption so that established category retains precedence. The new
+  stable content-silent policy error occurs before metadata, inventory,
+  staging, or reads.
+- Boundary: no broad flag allowlist, reserved-bit policy, implementation-error
+  catch, patch decoder, repair, raw parser, scanner, workflow, dependency,
+  producer, runtime API, or release authority.
+- Research: PKWARE APPNOTE 6.3.9 assigns bit 5 to compressed patched data;
+  exact installed CPython 3.12.13, 3.13.13, and 3.14.5 all reject it at member
+  open with the same `NotImplementedError`.
+- Baseline: exact M74 passed 3 standard-library/protected/out-of-scope guards
+  and failed 7 M75 contract assertions in 0.34 seconds. The actual exact-
+  inventory archive progressed beyond flag preflight; the constant, early
+  policy branch, producer assertion, source contract, and docs were absent.
+- Implementation checkpoint: one exact constant and ordered policy branch are
+  implemented. Affected formatting, Ruff, and strict Pyright pass. All 9 M75
+  behavioral/source/protected assertions and all 9 M69 compatibility
+  assertions pass; only the deliberately absent RFC/docs assertion failed.
+- Focused gate: after correcting one exact documentation phrase, all 10 M75
+  assertions pass in 0.21 seconds; inherited M64-M75 passes 126 assertions with
+  1 local filesystem-capability skip in 1.18 seconds. Affected formatting,
+  Ruff, and strict Pyright are clean; strict docs and whitespace pass.
+- Complete local candidate: the unchanged lock resolves 46 packages and the
+  restored graphics environment contains 45 packages. All 318 files are
+  format clean; Ruff and strict Pyright report zero findings. CPython 3.12,
+  3.13, and 3.14 each pass 2,345 tests with 15 skips; all 815 architecture
+  assertions pass with 1 local capability skip.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic
+  validators pass. M1/M3 each observe one of two targets, M2 has no targets,
+  and M4 observes its baseline target.
+- Pre-review artifacts: two builds reproduce a pure 274,103-byte wheel at
+  `60824005e82908164ad7a6433d3647cdf011d9aa03dec884aa8d142904084784`
+  and a 1,256,257-byte sdist at
+  `9d33bf47e294d63a5dc6bce66d60781562676e5881158d414d849b23d785df49`;
+  wheel, staging, and complete release smoke pass. The unchanged sample is
+  111,168 bytes/50 entries at
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  no inspected wheel or sample entry is native or WASM.
+- Review: no product, test, RFC, or scope defect remains. Exact bit mutation,
+  all-member ordering, cleanup, encryption precedence, unrelated-flag non-
+  expansion, producer compatibility, protected surfaces, and documentation
+  non-claims are covered.
+- Record-inclusive qualification: the unchanged lock and 45-package graphics
+  environment, all 318 formatted files, Ruff, strict Pyright, 815 architecture
+  assertions with 1 local capability skip, strict docs, whitespace, and full
+  Git-object checking pass. Two builds reproduce the pure 274,103-byte wheel at
+  `60824005e82908164ad7a6433d3647cdf011d9aa03dec884aa8d142904084784`
+  and a 1,257,198-byte record-updated sdist at
+  `ece63f8b3f70b3aa9600e4a64543b5a0143ba0f3c794e119d29461560936600d`;
+  wheel, staging, and complete release smoke pass. Exact commit artifact
+  identity remains delegated to hosted qualification because recording this
+  result changes the sdist.
+- Final frozen gate: the unchanged lock resolves 46 packages; all 318 files are
+  format clean; Ruff and strict Pyright are clean; all 815 architecture
+  assertions pass with 1 local capability skip; strict docs, whitespace, and
+  Git-object checking pass. Exact 16-path scope, protected hashes, credential/
+  private-key hygiene, and explicit development-tool identity hygiene pass.
+- Prepublication audit: feature `HEAD`, local `main`, `origin/main`, and merge
+  base are exact M74 closeout `674d74c8fc852846404813ab541aab3deffd8608`
+  with symmetric difference `0 0`; history is linear. Only remote `main`
+  exists; GitHub reports no open PR, tag, or release.
+- Exact post-record freeze: all 318 files are format clean; Ruff and strict
+  Pyright are clean; all 815 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, and exact 16-path scope pass.
+- Intended scope: exactly 16 paths, with no workflow, producer, runtime-package,
+  dependency, metadata, lock, benchmark, version, or release-authority change.
+
 ## M74 content-silent sample ZIP decompression failures - complete
 
 - Base: exact clean synchronized M73 closeout

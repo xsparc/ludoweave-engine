@@ -204,6 +204,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   and unexpected failures remain specific. This is not a general archive
   sandbox, adds no workflow or sample producer change, and is not a real public
   release observation.
+- M75 rejects compressed patched data, ZIP general-purpose bit 5, during the
+  all-member preflight before inventory validation, member reads, or staging.
+  The stable policy error contains no archive-controlled member identity;
+  M69's encryption category retains precedence. This adds no broad flag
+  allowlist, workflow, or sample producer change, is not a general archive
+  sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

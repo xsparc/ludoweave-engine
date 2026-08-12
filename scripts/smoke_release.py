@@ -53,6 +53,7 @@ _MAX_SAMPLE_TOTAL_BYTES = 8 * 1024 * 1024
 _SAMPLE_COPY_BYTES = 64 * 1024
 _SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED))
 _SAMPLE_ENCRYPTION_FLAGS = 0x0001 | 0x0040 | 0x2000
+_SAMPLE_COMPRESSED_PATCH_FLAG = 0x0020
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -658,10 +659,12 @@ def _validate_sample_inventory(observed_members: set[str]) -> None:
 
 
 def _validate_sample_member_flags(*, flag_bits: int) -> None:
-    """Reject member encryption before reads or extraction staging."""
+    """Reject unsupported member processing before reads or staging."""
 
     if flag_bits & _SAMPLE_ENCRYPTION_FLAGS:
         raise RuntimeError("sample bundle contains an encrypted member")
+    if flag_bits & _SAMPLE_COMPRESSED_PATCH_FLAG:
+        raise RuntimeError("sample bundle uses compressed patched data")
 
 
 def _portable_sample_member_parts(

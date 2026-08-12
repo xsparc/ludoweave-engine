@@ -625,6 +625,18 @@ remain specific. M74 adds no broad catch, replacement decompressor, raw parser,
 workflow, dependency, sample producer, runtime API, or release authority, is
 not a general archive sandbox, and is not a real public release observation.
 
+M75/RFC-0058 rejects compressed patched data, ZIP general-purpose bit 5,
+during the existing all-member flag preflight. Supported CPython versions
+otherwise raise `NotImplementedError` only from member open. Complete release
+smoke now emits the stable content-silent policy error before inventory
+validation, staging, or member reads. Encryption retains its M69 precedence
+when indicators are combined.
+
+Other general-purpose bits remain outside this exact decision. M75 adds no
+broad flag allowlist, raw parser, repair, workflow, dependency, sample
+producer, runtime API, or release authority, is not a general archive sandbox,
+and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
