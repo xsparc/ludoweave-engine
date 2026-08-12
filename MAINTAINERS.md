@@ -120,6 +120,18 @@ M0 through M70 are complete, reviewed, hosted-validated, and integrated into
 `main`. M71 starts from exact verified M70 closeout
 `f62631e2541f8f6a34b0ed84f489c2d7f9503747`.
 
+M72 normalizes documented `BadZipFile` and `LargeZipFile` failures from the
+private sample parser to one stable error. Archive-controlled parser detail is
+retained as programmatic context but hidden from rendered output through
+suppressed context; owned cleanup completes before normalization. Verifier
+policy failures remain specific. This is not a general archive sandbox and
+adds no workflow, allocation, dependency, version, sample producer, runtime
+source/API, release authority, tag, release, or publication. Pull-request
+fixtures are not a real public release observation. M0 through M71 are
+complete, reviewed, hosted-validated, and integrated into `main`. M72 starts
+from exact verified M71 closeout
+`de510b5cb44a011264a4b28f6fbbf0b59e0339e8`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -148,8 +160,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   bounds the regular archive container before parsing. M69 rejects encrypted
   sample-member indicators before reads or staging. M70 binds sample parsing
   and publication to the staged-release checksum on the same opened handle.
-  M71 makes an owned checksum-admitted snapshot the exact parser input; none of
-  these milestones authorizes a real release.
+  M71 makes an owned checksum-admitted snapshot the exact parser input, and M72
+  confines documented parser failures content-silently; none of these
+  milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party

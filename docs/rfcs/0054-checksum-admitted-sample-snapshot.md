@@ -41,6 +41,10 @@ test utility behavior: they still parse a bounded owned snapshot but make no
 staged-release checksum claim. Complete release smoke always supplies the
 already validated `SHA256SUMS` entry.
 
+M72/RFC-0055 adds a narrow content-silent boundary around documented ZIP
+parser failures. It does not change the checksum-admitted snapshot, byte
+identity, source ownership, or parser input decided here.
+
 ## Boundary
 
 M71 creates no persistent copy, public cache, recovery artifact, filesystem

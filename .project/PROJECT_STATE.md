@@ -1,5 +1,78 @@
 # Project State
 
+## M72 content-silent sample ZIP failures - in progress
+
+- Base: exact clean synchronized M71 closeout
+  `de510b5cb44a011264a4b28f6fbbf0b59e0339e8`, tree
+  `498e6e8f06509075b05d58e2be72f94c1d0818cb`.
+- Gap: `BadZipFile` diagnostics can embed archive-controlled member names, and
+  private complete release smoke rendered those parser exceptions directly
+  despite its content-silent policy failures.
+- Decision: RFC-0055 catches exactly documented `BadZipFile` and
+  `LargeZipFile` outside the checksum-admitted extractor, performs owned
+  cleanup first, then raises one stable error with suppressed rendered context
+  while retaining the original exception programmatically.
+- Boundary: private complete release smoke only. No broad catch, public error
+  protocol, raw parser, scanner, telemetry, recovery, workflow, dependency,
+  producer, runtime API, or release authority.
+- Research: Python documents the two ZIP exceptions; local exact CPython
+  3.12-3.14 source confirms archive-controlled filenames in CRC,
+  central/local-name mismatch, and overlap diagnostics.
+- Failing baseline: exact M71 produced 6 failures and 3 passing guards in 0.41
+  seconds; raw constructor/member/ZIP64 errors escaped and docs were absent.
+- Implementation checkpoint: 8 behavioral/source/protected assertions pass
+  with only the deliberately absent docs/RFC assertion failing in 0.29
+  seconds. Both affected Python files are format/Ruff clean and strict Pyright
+  is clean.
+- Focused gate: M72 passes all 9 assertions; inherited M64-M72 passes 100 with
+  1 local capability skip; formatting, Ruff, strict Pyright, strict docs, and
+  whitespace pass.
+- Full local candidate: the unchanged lock resolved 46 packages; all 315
+  Python files were format clean; Ruff and strict Pyright reported zero
+  findings. CPython 3.12 passed 2,329 non-wgpu tests with 15 skips; CPython
+  3.13/3.14 each passed 2,319 with 16 skips; all 789 architecture assertions
+  passed with 1 local capability skip.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic validators
+  passed. M1 observed one of two engineering targets, M2 retained no targets,
+  M3 observed neither graphics target, and M4 observed its baseline target.
+- Pre-review artifacts: two builds reproduced a pure 273,687-byte wheel at
+  `c2a2ea16e22be7151b0944096a96305d161d935d57e15ad94932d9721ca4e759`
+  and a 1,234,046-byte sdist at
+  `b9a318bc9f8b1aaa684d96f8bad56a10de74656b7c16a636908160403005b151`;
+  installed-wheel, deterministic staging, and complete release smoke passed.
+  The 111,168-byte 50-entry sample ZIP remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  no inspected wheel, sdist, or sample entry is native or WASM.
+- Review: no implementation, test, or RFC defect remains. The stale legacy
+  README detail that ended at M70 was corrected to M0-M71 and now names M71's
+  snapshot. The corrected M64-M72 chain, affected static checks, strict docs,
+  and whitespace pass.
+- Record-inclusive qualification: the unchanged lock, whole-tree formatting,
+  Ruff, strict Pyright, all 789 architecture assertions with 1 local capability
+  skip, strict docs, whitespace, and full Git-object checking pass. Two builds
+  reproduce a pure 273,704-byte review-corrected wheel at
+  `11e929dbab9214c48bc621878de553a030589b39967abc87f43fab40bf4cd77e`
+  and a 1,235,263-byte record-updated sdist at
+  `b0372c2b5efbc486fef9cc52dd63fd515f3d095c205d1e32aa6103e1c9735a3a`;
+  wheel, staging, and complete release smoke pass. Final static/docs freeze
+  remains before publication.
+- Final frozen gate: the unchanged lock resolves 46 packages; all 315 files are
+  format clean; Ruff and strict Pyright are clean; all 789 architecture
+  assertions pass with 1 local capability skip; strict docs and whitespace
+  pass. The candidate is ready for exact-scope/history review and DCO
+  publication.
+- Prepublication audit: exact feature base, local `main`, and `origin/main` are
+  M71 closeout `de510b5cb44a011264a4b28f6fbbf0b59e0339e8` with symmetric
+  difference `0 0`; history is linear; the candidate is exactly 16 paths.
+  Protected hashes remain exact; GitHub reports no open PR, only remote `main`,
+  no tag, and no release. Credential/private-key and explicit development-tool
+  identity hygiene pass.
+- Exact post-record freeze: all 315 files are format clean; Ruff and strict
+  Pyright are clean; all 789 architecture assertions pass with 1 local
+  capability skip; strict docs and whitespace pass. The exact candidate is
+  ready for DCO publication and Linux-first hosted qualification.
+
 ## M71 checksum-admitted sample snapshot - complete
 
 - Base: exact clean synchronized M70 closeout

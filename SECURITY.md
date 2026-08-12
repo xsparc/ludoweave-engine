@@ -183,6 +183,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   alter parser input. This adds no persistent copy or source-immutability
   guarantee, is not a general archive sandbox, adds no workflow or sample
   producer change, and is not a real public release observation.
+- M72 maps documented `BadZipFile` and `LargeZipFile` failures from the private
+  sample parser to one stable content-silent error. Archive-controlled detail
+  remains programmatic context but suppressed context keeps it out of rendered
+  output; owned cleanup completes first. Verifier policy errors remain
+  specific. This is not a general archive sandbox, adds no workflow or sample
+  producer change, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

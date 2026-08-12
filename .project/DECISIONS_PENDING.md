@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0055 resolves M72 content-silent sample ZIP failure normalization. Private
+complete release smoke catches exactly documented `BadZipFile` and
+`LargeZipFile` around its checksum-admitted extractor, lets owned cleanup
+finish, then raises one stable error with suppressed rendered context. The
+original exception remains available programmatically; verifier policy and
+non-parser failures retain their categories. This is not a broad catch, public
+error protocol, raw parser, scanner, or general archive sandbox. It adds no
+workflow, dependency, sample producer, runtime API, or release authority. A
+real pass remains pending an explicitly authorized signed-tag release
+execution.
+
 RFC-0054 resolves M71 checksum-admitted sample snapshot parsing. After bounded
 source admission, complete release smoke copies at most 16 MiB into one owned
 binary spooled temporary file while hashing, clears/fails on mismatch, and
