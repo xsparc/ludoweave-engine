@@ -107,6 +107,35 @@
   `6eaf97ad765abf4e28ca4107231cdb0861adcef05e2ab24b942bc56961922b13`.
   Recording this fact changes the sdist, so exact integration-commit artifact
   identity remains delegated to the quota-bounded hosted documentation gate.
+- Integration hosted qualification: exact head `7a19c9d`, tree `c5ebdd4`,
+  passed run `31607127000` in one 41-second Linux allocation; the desktop
+  umbrella skipped with zero steps. The run did not allocate compatibility,
+  software-rendering, full-suite, profile, graphics, example, or desktop work.
+- Integration hosted evidence: formatting, Ruff, strict docs, 766 selected
+  architecture assertions, two-build reproducibility, installed-wheel smoke,
+  deterministic staging, and complete release smoke passed. The pure wheel is
+  feature-identical at 273,216 bytes and
+  `805a0348c76a45a302a271c0386057eaa545594bf254818a5be2d6745f062d32`;
+  the record-updated source archive is 1,212,886 bytes at
+  `a262564238b30683cedc5ff7e07005318f2590c0804f9bacd96fd3f765ff8de9`.
+- Integration review: two separated exact-head audits found no issue comment,
+  review, or thread.
+- Integration squash: PR #160 head
+  `7a19c9d4005992afbb4f3ee738f2d26f93515d65`, tree
+  `c5ebdd4769118ed86fb7c50f557dcdd42be87597`, squash-integrated as
+  `9fcd61d1a3b93801b1bfd5a56392007fa15c6e03` with the exact same tree, sole
+  parent feature squash `9d298f800964b4237f204ea4acc366d224bcf76f`,
+  valid GitHub signature verified at `2026-08-12T14:32:43Z`, and exact DCO.
+  The integration branch is absent remotely and locally. The current exact
+  three-record closeout changes no substantive or public project surface and
+  is excluded from hosted CI.
+- Closeout local qualification: exactly the three `.project` records pass all
+  765 architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, exact scope, and added-content
+  credential/identity hygiene. No workflow, runtime, verifier, producer,
+  dependency, package, test, public documentation, or roadmap surface changes.
+  The closeout is ready for a no-run ready PR; all generated M69 outputs and
+  the closeout branch remain pending verified squash cleanup.
 
 ## M68 bounded sample-archive container admission - feature integrated
 
