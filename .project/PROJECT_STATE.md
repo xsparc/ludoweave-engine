@@ -1,6 +1,6 @@
 # Project State
 
-## M73 content-silent sample ZIP text failures - in progress
+## M73 content-silent sample ZIP text failures - complete
 
 - Base: exact clean synchronized M72 closeout
   `f4afb40aade2b1a59b7ceabf6f1db158b450b7cd`, tree
@@ -114,6 +114,38 @@
 - Integration freeze: all 316 files are format clean; Ruff and strict Pyright
   are clean; all 797 architecture assertions pass with 1 local capability
   skip; strict docs, whitespace, and exact four-file scope pass.
+- Integration hosted qualification: exact DCO head
+  `ddee71f4a4a9ed84679092c5734e282975004bcd`, tree
+  `b1c99b4cc173e82bd35592ed59406198e935b461`, passed run
+  `31626186623` in one 46-second Linux allocation; the desktop umbrella
+  skipped with zero steps. The gate resolved 46 packages, found all 316 files
+  format clean, passed Ruff, strict docs in 1.67 seconds, 798 selected
+  architecture assertions in 9.66 seconds, reproducible artifacts,
+  installed-wheel smoke, staging, and complete release smoke.
+- Integration hosted artifacts: two exact-head builds reproduced the pure
+  273,827-byte wheel at
+  `b959f2ef31753f1a4514fbdcdc29695d25f3d82f71203df01f6208c24ea76afd`
+  and a 1,245,053-byte sdist at
+  `59e8a080bdc3e3e1b6680f52c17de7c903d91c68eb6dc4001232d7240f7634dd`.
+- Integration hosted review: two separated audits found no issue comment,
+  review, inline comment, or review thread. PR #172 stayed clean, mergeable,
+  and on the exact qualified head.
+- Integration record: PR #172 squash
+  `bb7ca9da09d36fb166057b73e4db4d0fc806cdd0` has the exact reviewed tree,
+  sole parent M73 feature squash
+  `5b9d42fba4cfc1a990bce70c1d4ea4f2e7ab04e4`, exact DCO, and a valid GitHub
+  signature verified at `2026-08-12T18:11:17Z`. The integration branch is
+  absent remotely and locally. M73 is complete subject only to this factual
+  no-run closeout record and generated-artifact pruning.
+- Closeout local qualification: the unchanged lock resolves 46 packages; all
+  316 files are format clean; Ruff and strict Pyright are clean; all 797
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, full Git-object checking, and exact three-file scope pass.
+- Closeout freeze: all 316 files remain format clean; Ruff and strict Pyright
+  are clean; all 797 architecture assertions pass with 1 local capability
+  skip; strict docs, whitespace, protected-surface isolation,
+  credential/private-key hygiene, explicit development-tool identity hygiene,
+  and exact three-file scope pass.
 
 ## M72 content-silent sample ZIP failures - complete
 
