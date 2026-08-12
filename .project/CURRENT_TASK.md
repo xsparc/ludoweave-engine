@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M75 - compressed-patch sample-member preflight
-- **Status:** Direction research, a statically clean failing regression, the
-  minimal runtime change, and its behavioral checkpoint are complete. RFC and
-  public boundary documentation are drafted; focused qualification is next.
+- **Status:** Feature implementation, complete local and exact-head hosted
+  qualification, two review audits, and verified squash integration are
+  complete. The four-file integration record is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -99,6 +99,31 @@
 - **Exact post-record freeze:** All 318 files are format clean; Ruff and strict
   Pyright are clean; all 815 architecture assertions pass with 1 local
   capability skip; strict docs, whitespace, and exact 16-path scope pass.
-- **Next gate:** Create the exact DCO feature commit, push the neutral branch,
-  open its ready PR, and verify Linux-first hosted qualification against that
-  exact head.
+- **Hosted qualification:** Exact DCO head
+  `77ab1757ea52be4c5532adfe26c27bfa202504ef`, tree
+  `b0aac18c83fc6e93bd5fd1e1f154100e2bc75799`, passed run
+  `31633932748` in exactly three Linux-first allocations. Linux passed in
+  7m21s, macOS in 3m25s, and Windows in 4m06s.
+- **Hosted suites/artifacts:** All 318 files and static/docs gates passed.
+  Linux CPython 3.12/3.13/3.14 and macOS/Windows 3.14 each passed 2,360
+  tests, with 1 expected skip outside Linux 3.12; every OS passed 10 real-wgpu
+  tests. Two builds reproduced a pure 274,089-byte wheel at
+  `af0ea15e0ac4851461a93d79b11b587d2d230fc91219c2da47acee5574901d4b`
+  and a 1,257,945-byte sdist at
+  `7f68ef379d335c9a4b3cefb7e9409af26fb759f8ebffc28dc7a7bb11e8d43917`;
+  profiles, examples, wheel, staging, and release smokes passed.
+- **Hosted review/integration:** Two separated audits found zero comment,
+  review, inline comment, or thread. PR #177 squash
+  `b86013397d5ad5f28d9a9adfe7c7f30996cbad65` has the exact reviewed tree,
+  sole parent M74 closeout, exact DCO, and a valid GitHub signature verified at
+  `2026-08-12T19:55:01Z`; the feature branch is absent locally and remotely.
+- **Integration local qualification:** The unchanged lock resolves 46
+  packages; all 318 files are format clean; Ruff and strict Pyright are clean;
+  all 815 architecture assertions pass with 1 local capability skip; strict
+  docs, whitespace, and Git-object checking pass. Two builds reproduce the
+  feature-identical 274,103-byte wheel at
+  `60824005e82908164ad7a6433d3647cdf011d9aa03dec884aa8d142904084784`
+  and a 1,259,225-byte record-updated sdist at
+  `5f5051d0e2831634eb2b2bb596258a2782fa83fd5063cac3854df4e296e1d2a7`;
+  wheel, staging, and release smoke pass.
+- **Next gate:** Freeze and publish the exact four-file integration record.
