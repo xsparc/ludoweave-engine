@@ -1,11 +1,16 @@
 # Project State
 
-## M67 exact sample-bundle inventory conformance - reviewed candidate
+## M67 exact sample-bundle inventory conformance - feature integrated
 
 - Base: exact clean synchronized M66 closeout
   `995fdda097a418a7a0e570bb6b492d3f5609d471`, tree
   `54da91c867211007156d5006512a426815a8374b`.
-- Current branch: `release/m67-exact-sample-inventory`.
+- Feature integration: PR #153 reviewed head
+  `3cb44d412d71a930f84a1545e59f893643d68666`, tree
+  `cd8833bbd93e11c7e7e678ee324711503a921d97`, squash-integrated as
+  `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2` with the exact same tree, sole
+  parent M66 closeout, valid GitHub signature, and exact DCO trailer.
+- Current branch: `docs/m67-integration-record`.
 - Gap: M64-M66 validate bounded portable transactional extraction, but the
   final completeness check covers only a root-level subset. Extra portable
   files and missing nested assets are not rejected as an exact product-shape
@@ -42,6 +47,23 @@
   strengthened test uses a 50-member substitution and rejects staging creation
   directly. This changed tests only; M64-M67 now pass 58 assertions with 1
   capability skip. No remaining finding was identified.
+- Hosted qualification: exact feature head `3cb44d4` passed run `31534773135`
+  in exactly three Linux-first allocations. Linux passed in 7m44s; only then
+  macOS and Windows began, passing in 3m22s and 4m15s. Every baseline and
+  compatibility suite passed 2,292 tests with one compatibility skip; all
+  real-wgpu, profile, vertical-slice, reproducibility, wheel, staging, and
+  release-smoke gates passed.
+- Hosted artifacts: two builds reproduced a pure 272,867-byte wheel at
+  `5b67653c5f4374ffc52f55eadc9d2e29fc72e8281969d6c891da3b56042475a8`
+  and a 1,191,892-byte source archive at
+  `79bf91855560aa26b4a2a8c6082b08b164eb22e7baece36b05397191f171bdb1`.
+- Hosted review: two delayed exact-head audits found no review, comment, or
+  unresolved thread. The feature branch is absent locally and remotely.
+- Integration record: exactly the three `.project` records and `ROADMAP.md`
+  pass the unchanged lock, whole-tree formatting/Ruff/strict-Pyright, all 747
+  architecture assertions with 1 capability skip, both release-artifact tests,
+  strict docs, whitespace, full Git-object checking, two-build reproducibility,
+  installed-wheel smoke, deterministic staging, and complete release smoke.
 
 ## M66 staged sample-root publication - feature integrated
 

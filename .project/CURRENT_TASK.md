@@ -1,18 +1,19 @@
 # Current Task
 
 - **Task:** M67 - exact sample-bundle inventory conformance
-- **Status:** Full local candidate validation, findings-first review, and the
-  record-frozen source gate pass. The feature is ready for a DCO commit and
-  exact-head hosted qualification.
+- **Status:** Feature PR #153 is fully validated, reviewed, squash-integrated,
+  and verified. The exact four-file integration record is in progress.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Branch:** `release/m67-exact-sample-inventory`.
-- **Base:** Exact synchronized M66 closeout
-  `995fdda097a418a7a0e570bb6b492d3f5609d471`, tree
-  `54da91c867211007156d5006512a426815a8374b`. Only `main` existed locally
-  and remotely, and no pull request was open before branching.
+- **Branch:** `docs/m67-integration-record`.
+- **Base:** GitHub-verified feature squash
+  `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2`, whose tree
+  `cd8833bbd93e11c7e7e678ee324711503a921d97` exactly matches reviewed PR
+  #153 head `3cb44d412d71a930f84a1545e59f893643d68666`. Its sole parent is exact M66
+  closeout `995fdda097a418a7a0e570bb6b492d3f5609d471`; GitHub reports a valid
+  signature and exact parsed DCO trailer.
 - **Outcome:** Reject any unexpected or missing file in the project-produced
   sample ZIP before extraction or publication.
 - **Acceptance:** Define the independent exact 50-file relative inventory;
@@ -52,11 +53,23 @@
 - **Environment:** Full-suite temporary repositories used disposable
   `D:\LudoWeaveValidation\m67` paths to avoid the known low-space system drive;
   the locked CPython 3.12 graphics environment was restored afterward.
-- **Hosted policy:** The implementation changes release verification and must
-  receive the existing substantive Linux-first three-allocation qualification.
-  No workflow edit or additional allocation is authorized.
-- **Integration gate:** After exact-head hosted qualification and review,
-  change only `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`,
-  `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; request only the existing
-  documentation-qualified Linux allocation and zero-step skipped desktop
-  umbrella; then create a three-record closeout with no hosted runner.
+- **Hosted evidence:** Run `31534773135` passed exact head `3cb44d4` in the
+  unchanged three Linux-first allocations: Linux in 7m44s, macOS in 3m22s, and
+  Windows in 4m15s. Baseline and every compatibility suite passed 2,292 tests,
+  with one compatibility skip; real-wgpu, profiles, vertical slices,
+  reproducibility, installed-wheel smoke, staging, and complete M67 release
+  smoke passed.
+- **Hosted review:** Two delayed exact-head audits found no review, comment, or
+  unresolved thread. PR #153 remained clean, mergeable, exact-head, and exact-
+  base before squash integration.
+- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
+  request only the existing documentation-qualified Linux allocation and a
+  skipped zero-step desktop umbrella; then create a three-record closeout that
+  requests no hosted runner.
+- **Integration local evidence:** The exact four-file record passes the
+  unchanged lock, formatting for 310 files, Ruff, strict Pyright, all 747
+  architecture assertions with 1 local capability skip, 2 release-artifact
+  tests, strict docs, whitespace, full Git-object checking, two-build
+  reproducibility, installed-wheel smoke, 10-artifact staging, and complete M67
+  release smoke.
