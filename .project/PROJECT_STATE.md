@@ -1,6 +1,6 @@
 # Project State
 
-## M71 checksum-admitted sample snapshot - in progress
+## M71 checksum-admitted sample snapshot - complete
 
 - Base: exact clean synchronized M70 closeout
   `f62631e2541f8f6a34b0ed84f489c2d7f9503747`, tree
@@ -97,6 +97,32 @@
   `88e50fabed0299caa603166043967123997b8ecb686d10c3953fd2fc3cca24d7`.
   Exact integration-commit artifact identity remains delegated to the bounded
   hosted documentation gate because recording this result changes the sdist.
+- Integration hosted qualification: exact DCO head
+  `f4bb6ef2fac3d4e8d58203c7028aee0f9aa5a73a`, tree
+  `ac55309b8a9a31a4706849f5954504e5292f81bf`, passed run `31617678812`
+  in one 44-second Linux allocation; the desktop umbrella skipped with zero
+  steps. All 314 files were format clean; Ruff and strict docs passed; 781
+  selected architecture assertions passed in 9.50 seconds; reproducible
+  artifacts, wheel smoke, staging, and complete release smoke passed.
+- Integration hosted artifacts: the feature-identical pure wheel is 273,509
+  bytes at `06c2501eb5fcc999ff2d59716bd47bc5ecafb0a25473d485d314327a57867e82`;
+  the exact integration-head sdist is 1,229,985 bytes at
+  `5b7a5d3d1de4de06ea83a4274c8d67fe449d7c0b24c665919acd5a2e1d348d8a`.
+- Integration review: two separated exact-head audits found no issue comment,
+  review, inline comment, or review thread.
+- Integration squash: PR #166 head `f4bb6ef`, tree `ac55309`, squash-integrated
+  as `9ce08e520c97ddb06de446718fbdc8ada90060ad` with the exact same tree,
+  sole parent feature squash `a408198b2a3ce9e59d50372095dde2afb6ac9fe5`,
+  valid GitHub signature verified at `2026-08-12T16:30:25Z`, and exact DCO.
+  The integration branch is absent remotely and locally. The current exact
+  three-record closeout changes no substantive or public project surface and
+  is excluded from hosted CI.
+- Closeout local qualification: exactly the three `.project` records pass all
+  780 architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, exact scope, and credential/metadata-
+  identity hygiene. No workflow, runtime, verifier, producer, dependency,
+  package, test, public documentation, or roadmap surface changes. The
+  closeout is ready for a no-run ready PR.
 
 ## M70 sample-archive checksum binding - feature integrated
 
