@@ -1,18 +1,19 @@
 # Current Task
 
 - **Task:** M67 - exact sample-bundle inventory conformance
-- **Status:** Feature PR #153 is fully validated, reviewed, squash-integrated,
-  and verified. The exact four-file integration record is in progress.
+- **Status:** Feature PR #153 and integration-record PR #154 are fully
+  validated, reviewed, squash-integrated, and verified. This exact three-record
+  closeout establishes the clean M68 selection base without requesting hosted
+  CI.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
   vital hosted checks.
-- **Branch:** `docs/m67-integration-record`.
-- **Base:** GitHub-verified feature squash
-  `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2`, whose tree
-  `cd8833bbd93e11c7e7e678ee324711503a921d97` exactly matches reviewed PR
-  #153 head `3cb44d412d71a930f84a1545e59f893643d68666`. Its sole parent is exact M66
-  closeout `995fdda097a418a7a0e570bb6b492d3f5609d471`; GitHub reports a valid
+- **Base:** GitHub-verified integration squash
+  `5025877d31a2bc8a9a0a1b7bb2e106869f76066f`, whose tree
+  `eb532eddbd368efaaa1a896efd930727cc5b3059` exactly matches reviewed PR
+  #154 head `565053e8cf0f3961f8bfbc1a54df04a604240183`. Its sole parent is the
+  M67 feature squash `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2`; GitHub reports a valid
   signature and exact parsed DCO trailer.
 - **Outcome:** Reject any unexpected or missing file in the project-produced
   sample ZIP before extraction or publication.
@@ -38,8 +39,8 @@
   guards passed.
 - **Local candidate:** The unchanged lock and restored 45-package CPython 3.12
   graphics environment pass whole-tree formatting for 310 files, Ruff, strict
-  Pyright, 747 reviewed architecture assertions with 1 local capability skip, 2 release-
-  artifact tests, strict docs, and whitespace. CPython 3.12 passes 2,286 tests
+  Pyright, 747 reviewed architecture assertions with 1 local capability skip,
+  2 release-artifact tests, strict docs, and whitespace. CPython 3.12 passes 2,286 tests
   with 15 skips; 3.13 and 3.14 each pass 2,276 with 16 skips. Ten real-wgpu
   tests, both five-repeat profiles, both vertical slices, and all four
   diagnostic benchmark validators pass. Two builds reproduce a pure 272,880-
@@ -73,3 +74,25 @@
   tests, strict docs, whitespace, full Git-object checking, two-build
   reproducibility, installed-wheel smoke, 10-artifact staging, and complete M67
   release smoke.
+- **Integration hosted evidence:** Exact four-file head `565053e` passed run
+  `31536520514` in one 41-second Linux allocation; the desktop umbrella skipped
+  with zero steps. Hosted formatting, Ruff, strict docs, 748 documentation-
+  selected architecture assertions, reproducibility, installed-wheel smoke,
+  staging, and complete release smoke passed.
+- **Integration review resolution:** One delayed review incorrectly claimed the
+  sole integration commit lacked DCO. GitHub's commit endpoint and local
+  `git interpret-trailers --parse` each returned the exact authorized trailer.
+  Evidence reply `3765169173` was posted, thread
+  `PRRT_kwDOTtqoGs6YYOGq` resolved, and two post-resolution audits found no
+  later activity.
+- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture,
+  strict docs, scope, Git-object, and whitespace checks; create a DCO-signed
+  ready PR that requests no hosted runner; verify its squash; delete every M67
+  branch locally/remotely; remove only verified generated outputs; and leave
+  synchronized clean `main` before selecting M68.
+- **Closeout local evidence:** The exact three-file record passes all 747
+  architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, and exact scope. It changes no
+  workflow, runtime, verifier, producer, dependency, package, test, public-doc,
+  or roadmap surface and is excluded from CI by the existing path policy.
