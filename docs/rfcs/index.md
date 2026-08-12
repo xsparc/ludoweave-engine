@@ -60,3 +60,4 @@ was adopted.
 - [RFC-0053: bind sample-archive parsing and publication to its checksum](0053-bind-sample-archive-checksum.md)
 - [RFC-0054: parse a checksum-admitted sample snapshot](0054-checksum-admitted-sample-snapshot.md)
 - [RFC-0055: normalize sample ZIP failures content-silently](0055-content-silent-sample-zip-failures.md)
+- [RFC-0056: normalize sample ZIP text failures content-silently](0056-content-silent-sample-zip-text-failures.md)

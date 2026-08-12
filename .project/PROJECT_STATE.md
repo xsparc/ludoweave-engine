@@ -1,5 +1,81 @@
 # Project State
 
+## M73 content-silent sample ZIP text failures - in progress
+
+- Base: exact clean synchronized M72 closeout
+  `f4afb40aade2b1a59b7ceabf6f1db158b450b7cd`, tree
+  `90e987138c2fa09fe62db2428e23421ec511a7a5`.
+- Gap: CPython's standard ZIP reader strictly decodes UTF-8-marked archive-
+  controlled central-directory and local-header names. Malformed bytes raise
+  `UnicodeDecodeError`, bypassing M72's exact parser-exception pair and
+  exposing decode details.
+- Decision: RFC-0056 adds exactly `UnicodeDecodeError` to M72's private outer
+  catch, reuses the stable ZIP-data error after owned cleanup, suppresses its
+  rendered context, and retains the original exception programmatically.
+- Boundary: no broad Unicode/value/general catch, replacement decoder,
+  metadata repair, raw parser, scanner, workflow, dependency, producer,
+  runtime API, or release authority.
+- Research: Python documents invalid input and offset state on decoding errors;
+  exact installed CPython 3.12.13, 3.13.13, and 3.14.5 source confirms strict
+  UTF-8 decoding in both central-directory and local-header paths.
+- Baseline: after correcting an external test-parent setup failure, exact M72
+  produced 5 failures and 3 passing guards in 0.41 seconds. Both actual decode
+  paths escaped raw; the catch contract and RFC/docs were absent.
+- Implementation checkpoint: format, Ruff, and strict Pyright pass; 16 M72/M73
+  assertions pass with only the deliberately absent RFC/docs assertion failing
+  in 0.48 seconds.
+- Focused gate: all 8 M73 assertions pass; inherited M64-M73 passes 108 with 1
+  local capability skip; affected static checks, strict docs, and whitespace
+  pass.
+- Complete local candidate: the unchanged lock resolved 46 packages and the
+  locked graphics environment contains 45 packages. All 316 files were format
+  clean; Ruff and strict Pyright reported zero findings. CPython 3.12 passed
+  2,337 tests with 15 skips; CPython 3.13/3.14 each passed 2,327 with 16 skips;
+  all 797 architecture assertions passed with 1 local capability skip.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic validators
+  passed. M1 observed one of two engineering targets, M2 retained no targets,
+  M3 observed neither graphics target, and M4 observed its baseline target.
+- Pre-review artifacts: two builds reproduced a pure 273,839-byte wheel at
+  `32553b1c0bf9eea3bbd3b6ab63d51ee97ef4a2d6429054dc2049439b3175af5d`
+  and a 1,240,741-byte sdist at
+  `5c39589b70170715d04a1a4c83a147616f7953b53ec8f9348cb9c3c78f746877`;
+  wheel, staging, and complete release smoke passed. The unchanged 111,168-byte
+  50-entry sample remains at
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  no inspected archive contains native/WASM entries.
+- Review: no product, RFC, or scope defect remains. The local-header regression
+  now observes archive closure, and the M72 catch guard uses a precise range.
+  The first strengthened static gate exposed and corrected an overly generic
+  test-recorder signature. The corrected focused/inherited/static/docs gate
+  passes.
+- Record-inclusive qualification: the unchanged lock and 45-package graphics
+  environment, all 316 formatted files, Ruff, strict Pyright, 797 architecture
+  assertions with 1 local capability skip, strict docs, whitespace, and full
+  Git-object checking pass. Two builds reproduce the pure 273,839-byte wheel at
+  `32553b1c0bf9eea3bbd3b6ab63d51ee97ef4a2d6429054dc2049439b3175af5d`
+  and a 1,242,180-byte record-updated sdist at
+  `5fc6b835edafdc6903b343ca038ed2b71a3f02f048536ed2e523b31ba5d82e8e`;
+  wheel, staging, and complete release smoke pass. Exact commit artifact
+  identity remains delegated to hosted qualification because recording this
+  result changes the sdist.
+- Scope: exactly 17 intended paths. Protected CI/release workflow, producer,
+  package metadata, and lock hashes remain exact; no runtime package,
+  dependency, benchmark, version, workflow, or release-authority change.
+- Final frozen gate: the unchanged lock resolves 46 packages; all 316 files are
+  format clean; Ruff and strict Pyright are clean; all 797 architecture
+  assertions pass with 1 local capability skip; strict docs, whitespace, and
+  full Git-object checking pass.
+- Prepublication audit: feature `HEAD`, local `main`, and `origin/main` are
+  exact M72 closeout `f4afb40aade2b1a59b7ceabf6f1db158b450b7cd` with
+  symmetric difference `0 0`; history is linear and the candidate remains
+  exactly 17 paths. GitHub reports only remote `main`, no open PR, no tag, and
+  no release. Credential/private-key and explicit development-tool identity
+  hygiene pass.
+- Exact post-record freeze: all 316 files are format clean; Ruff and strict
+  Pyright are clean; all 797 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, and exact 17-path scope pass.
+
 ## M72 content-silent sample ZIP failures - complete
 
 - Base: exact clean synchronized M71 closeout

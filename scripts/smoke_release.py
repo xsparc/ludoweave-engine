@@ -437,7 +437,7 @@ def _extract_bundle(
             version=version,
             expected_sha256=expected_sha256,
         )
-    except (zipfile.BadZipFile, zipfile.LargeZipFile):
+    except (zipfile.BadZipFile, zipfile.LargeZipFile, UnicodeDecodeError):
         raise RuntimeError("sample bundle ZIP data is invalid") from None
 
 

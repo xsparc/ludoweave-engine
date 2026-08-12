@@ -1798,6 +1798,24 @@ exception catch, content inspection, raw parser, workflow, dependency, sample
 producer, runtime API, release authority, or real public release observation;
 it is not a general archive sandbox. RFC-0055 defines the complete boundary.
 
+## M73 content-silent sample ZIP text-failure boundary
+
+M73 adds exactly `UnicodeDecodeError` to M72's private outer catch. CPython's
+standard ZIP reader decodes UTF-8-marked archive-controlled names while reading
+the central directory and again while reading a local header. Invalid bytes can
+therefore fail at constructor time or after owned staging begins. Both paths
+now become the existing stable error `sample bundle ZIP data is invalid` after
+the inner `ExitStack` and staging contexts finish cleanup.
+
+The original decoding exception remains programmatic context, while suppressed
+context keeps its invalid byte sequence, offset, codec, and reason out of the
+rendered exception. The catch does not include `UnicodeError`, `ValueError`, or
+`Exception`; verifier policy, other text failures, filesystem failures, and
+unexpected failures remain specific. M73 adds no raw parser, content scanner,
+workflow, dependency, sample producer, runtime API, release authority, or real
+public release observation and is not a general archive sandbox. RFC-0056
+defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
