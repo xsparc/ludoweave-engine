@@ -1,10 +1,9 @@
 # Current Task
 
 - **Task:** M72 - content-silent sample ZIP failures
-- **Status:** Implementation, documentation, complete local qualification,
-  findings-first review, record-inclusive qualification, and final static/docs
-  freeze are complete. Ready for exact-scope/history review, DCO publication,
-  and quota-bounded hosted qualification.
+- **Status:** Feature PR #168 is hosted-qualified, review-clean, and
+  squash-integrated with its exact reviewed tree. The current four-file
+  integration record is locally qualified and ready to freeze and publish.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -84,5 +83,43 @@
   Pyright are clean; all 789 architecture assertions pass with 1 local
   capability skip; strict docs and whitespace pass. The exact candidate is
   ready for DCO publication and Linux-first hosted qualification.
-- **Next gate:** Create the exact DCO feature commit, push the neutral branch,
-  open the ready PR, and verify hosted qualification is tied to that head.
+- **Hosted qualification:** Exact DCO head
+  `a8af08274f9e4f8cc686ee0782ef2e2fbb27e4d2`, tree
+  `df4fd81c99f16b0e95f00eb485509079be73ac55`, passed run `31620403869`
+  in exactly three Linux-first allocations. Linux completed in 4m59s, macOS
+  in 3m6s, and Windows in 3m57s.
+- **Hosted suites:** Linux CPython 3.12, 3.13, and 3.14 passed 2,334 tests,
+  with 1 expected compatibility skip on 3.13/3.14. macOS and Windows CPython
+  3.14 each passed 2,334 tests with 1 expected skip. Each OS passed 10
+  real-wgpu tests, its graphics profile, Clockwork Arena, and Agent World
+  Builder; Linux also passed formatting, Ruff, strict Pyright/docs, the base
+  profile, reproducible builds, wheel smoke, staging, and release smoke.
+- **Hosted artifacts:** Two exact-head builds reproduced a pure 273,690-byte
+  wheel at
+  `4deb9529de9a328e2d9c6f422527c21b6faf47d1c7f726865a10dffb6a26e4a9`
+  and a 1,236,335-byte sdist at
+  `602a9380711ecc9fe7856af6489ef10fd8b5e66edec31b3f672d737586fcf6fe`.
+- **Hosted review:** Two separated exact-head audits found no issue comment,
+  review, inline comment, or review thread; the PR remained clean and
+  mergeable.
+- **Feature integration:** PR #168 squash
+  `65a1e90901964f40f3ef9ace63d7700f0fccd796` has the exact reviewed tree,
+  sole parent M71 closeout `de510b5cb44a011264a4b28f6fbbf0b59e0339e8`,
+  valid GitHub signature verified at `2026-08-12T17:10:27Z`, and exact DCO.
+  The feature branch is absent remotely and locally.
+- **Integration local qualification:** The exact four-file record passes the
+  unchanged lock, whole-tree formatting/Ruff/strict-Pyright, all 789
+  architecture assertions with 1 capability skip, strict docs, whitespace,
+  full Git-object checking, two-build reproducibility, installed-wheel smoke,
+  deterministic staging, and complete release smoke. The feature-identical
+  pure wheel is 273,704 bytes at
+  `11e929dbab9214c48bc621878de553a030589b39967abc87f43fab40bf4cd77e`;
+  the record-updated sdist is 1,237,546 bytes at
+  `981ad66a21e308ca29cd14abade30c4e8a80228425b479fd2645557d15607ac8`.
+- **Integration freeze:** The unchanged lock resolves 46 packages; all 315
+  files are format clean; Ruff and strict Pyright are clean; all 789
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, and exact four-file scope pass.
+- **Next gate:** Freeze and DCO-publish this exact four-file record for the
+  bounded documentation gate, then close M72 without another hosted
+  allocation.
