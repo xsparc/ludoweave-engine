@@ -1,9 +1,10 @@
 # Current Task
 
 - **Task:** M68 - bounded sample-archive container admission
-- **Status:** Feature PR #156 is locally and hosted validated, twice audited,
-  squash-integrated, and verified. The exact four-file integration record is
-  being prepared for the documentation-qualified gate.
+- **Status:** Feature PR #156 and integration-record PR #157 are fully
+  validated, twice audited, squash-integrated, and verified. This exact three-
+  record closeout establishes the clean M69 selection base without requesting
+  hosted CI.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -92,3 +93,34 @@
   reproducibility, installed-wheel smoke, ten-artifact staging, and complete
   M68 release smoke. The pure 273,106-byte wheel remains feature-identical;
   exact integration-commit sdist identity is delegated to the hosted gate.
+- **Integration hosted evidence:** Exact four-file head
+  `cd65d1345b2725eb3be4daeb899535eacb740dee`, tree
+  `83e765ba0fa92038aeefaaf2dcf9d2fb85eec052`, passed run `31587335592`
+  in one 43-second Linux allocation; the desktop umbrella skipped with zero
+  steps. Hosted formatting, Ruff, strict docs, 757 documentation-selected
+  architecture assertions, reproducibility, installed-wheel smoke, staging,
+  and complete M68 release smoke passed.
+- **Integration hosted artifacts:** Two builds reproduced the feature-identical
+  pure 273,092-byte wheel at
+  `85378f6485a06a8e1496e775fa8f71b122a899bdd0731ba3d67e1eda0f06db58`
+  and a record-updated 1,202,598-byte source archive at
+  `32d390922dbfc9a62eb19fdf0ea4f35f6817a2da7c676534d6849bafbee3cc6e`.
+- **Integration review:** Two delayed exact-head audits found no comment,
+  review, or unresolved thread. PR #157 remained clean, mergeable, exact-head,
+  and exact-base before squash integration.
+- **Integration squash:** PR #157 squash
+  `69fe032bfa0af6513d46e7c7492ffa3a5720d163` has the exact reviewed tree,
+  sole parent feature squash, valid GitHub signature verified at
+  `2026-08-12T10:28:06Z`, and exact DCO trailer. The integration branch is
+  deleted remotely and locally.
+- **Closeout gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; run architecture,
+  strict docs, scope, Git-object, and whitespace checks; create a DCO-signed
+  ready PR that requests no hosted runner; verify its squash; delete every M68
+  branch locally/remotely; remove only verified generated outputs; and leave
+  synchronized clean `main` before selecting M69.
+- **Closeout local evidence:** The exact three-file record passes all 756
+  architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, and exact scope. It changes no
+  workflow, runtime, verifier, producer, dependency, package, test, public-doc,
+  or roadmap surface and is excluded from CI by the existing path policy.
