@@ -1,6 +1,6 @@
 # Project State
 
-## M75 compressed-patch sample-member preflight - in progress
+## M75 compressed-patch sample-member preflight - complete
 
 - Base: exact clean synchronized M74 closeout
   `674d74c8fc852846404813ab541aab3deffd8608`, tree
@@ -96,6 +96,20 @@
   and 1,259,225-byte record-updated sdist
   `5f5051d0e2831634eb2b2bb596258a2782fa83fd5063cac3854df4e296e1d2a7`;
   wheel, staging, and release smoke pass.
+- Hosted integration: exact DCO head
+  `26640c723b48a208301c86dacc5f53772bc745fe` passed run `31635295952`
+  in one 38-second Linux allocation; desktop skipped with zero steps. It passed
+  816 selected architecture assertions, strict docs, reproducible artifacts,
+  and all smokes. Hosted wheel `af0ea15e...` was feature-identical; sdist was
+  `bf99be5f80bf644173b309efb8c75950c5de718efaff8acdcea71e34361c3a1c`.
+- Integration merge: two audits were clean. GitHub-verified squash
+  `57dc9af600a5e651bc051fb5a47b2902cb2e2403` has the exact reviewed tree,
+  sole feature-squash parent, exact DCO, and valid signature verified at
+  `2026-08-12T20:00:32Z`. Only the closeout record remains.
+- Closeout qualification: all 318 files are format clean; Ruff and strict
+  Pyright are clean; all 815 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, and Git-object checking pass. The
+  diff is exactly the three neutral project records.
 - Intended scope: exactly 16 paths, with no workflow, producer, runtime-package,
   dependency, metadata, lock, benchmark, version, or release-authority change.
 
