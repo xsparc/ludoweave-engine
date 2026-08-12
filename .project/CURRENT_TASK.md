@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M74 - content-silent sample ZIP decompression failures
-- **Status:** Direction research, failing regression, minimal implementation,
-  and corrected implementation checkpoint are complete. RFC and public
-  boundary documentation are in progress.
+- **Status:** Feature implementation, complete local qualification, exact-head
+  hosted qualification, review audit, and verified squash integration are
+  complete. The four-file integration record is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -99,6 +99,46 @@
 - **Exact post-record freeze:** All 317 files are format clean; Ruff and strict
   Pyright are clean; all 805 architecture assertions pass with 1 local
   capability skip; strict docs, whitespace, and exact 17-path scope pass.
-- **Next gate:** Create the DCO feature commit, push the neutral branch, open
-  the ready PR, and verify Linux-first hosted qualification is tied to that
-  exact head.
+- **Hosted qualification:** Ready PR #174 exact DCO head
+  `49f38b841d497c4bc84666d64674185290adb836`, tree
+  `5bf17270a8bf9f84314bff38c93c7aeb0502b347`, passed run
+  `31629156916` in exactly three Linux-first allocations. Linux passed in
+  7m19s; only then did macOS and Windows begin, passing in 2m50s and 4m17s.
+- **Hosted suites/artifacts:** All 317 files were format clean; Ruff, strict
+  Pyright, and strict docs passed. Linux CPython 3.12/3.13/3.14 and
+  macOS/Windows 3.14 each passed 2,350 tests with the expected single skip
+  outside Linux 3.12; every OS passed 10 real-wgpu tests, its graphics profile,
+  Clockwork Arena, and Agent World Builder. Two builds reproduced a pure
+  273,938-byte wheel at
+  `711a4379ef59c4c2cd2bf1b3d11ce6a84de805d2d7c7ab97f5c4bab4ee841238`
+  and a 1,249,974-byte sdist at
+  `6b7e7c90247251c0922eb895a3ded86b1ca785587f4e5505a6425380c0e507b6`;
+  wheel, staging, and complete release smoke passed.
+- **Hosted review:** Two separated exact-head audits found zero issue comment,
+  review, inline comment, or review thread. PR #174 remained ready, clean,
+  mergeable, and tied to the qualified head.
+- **Feature integration:** PR #174 squash
+  `88960cccf31458a0d654062876b46eea616374dc` has the exact reviewed tree,
+  sole parent M73 closeout `7ecb584e71a375d1ab63ee8134e7493e418dedff`,
+  exact DCO, and a valid GitHub signature verified at
+  `2026-08-12T18:59:26Z`. The feature branch is absent remotely and locally;
+  the current integration record changes only four neutral project/roadmap
+  files.
+- **Integration local qualification:** The unchanged lock resolves 46
+  packages; all 317 files are format clean; Ruff and strict Pyright are clean;
+  all 805 architecture assertions pass with 1 local capability skip; strict
+  docs, whitespace, and Git-object checking pass. Two builds reproduce the
+  feature-identical pure 273,952-byte wheel at
+  `ada989ae548bdf51f124d39080a83580711e58e5148b149b28a72dbaf59c8bcf`
+  and a 1,251,607-byte record-updated sdist at
+  `53a335c20066cc5b7f004ebb66f41ec14aecefec45dbcbecd898ffc7f110ccfa`;
+  wheel, staging, and complete release smoke pass. Exact integration-commit
+  artifact identity remains delegated to hosted qualification because this
+  record changes the sdist.
+- **Integration record freeze:** All 317 files remain format clean; Ruff and
+  strict Pyright are clean; all 805 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, and Git-object checking pass. The
+  diff remains exactly the four intended record/roadmap files and contains no
+  credential/private-key or explicit development-tool identity marker.
+- **Next gate:** Freeze the exact four-file record, publish its minimal one-
+  Linux-runner PR, and verify hosted qualification against the exact head.

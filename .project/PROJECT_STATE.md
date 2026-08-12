@@ -83,6 +83,45 @@
 - Exact post-record freeze: all 317 files are format clean; Ruff and strict
   Pyright are clean; all 805 architecture assertions pass with 1 local
   capability skip; strict docs, whitespace, and exact 17-path scope pass.
+- Hosted qualification: exact DCO head
+  `49f38b841d497c4bc84666d64674185290adb836`, tree
+  `5bf17270a8bf9f84314bff38c93c7aeb0502b347`, passed run
+  `31629156916` in exactly three Linux-first allocations. Linux passed in
+  7m19s; macOS passed in 2m50s and Windows in 4m17s after Linux completed.
+- Hosted suites: all 317 files were format clean; Ruff, strict Pyright, strict
+  docs, every supported Python gate, real graphics, both profiles, both
+  vertical slices, reproducible builds, installed-wheel smoke, staging, and
+  complete release smoke passed. Each hosted Python suite passed 2,350 tests;
+  all but Linux 3.12 had 1 expected skip.
+- Hosted artifacts: two exact-head builds reproduced a pure 273,938-byte wheel
+  at `711a4379ef59c4c2cd2bf1b3d11ce6a84de805d2d7c7ab97f5c4bab4ee841238`
+  and a 1,249,974-byte sdist at
+  `6b7e7c90247251c0922eb895a3ded86b1ca785587f4e5505a6425380c0e507b6`.
+- Hosted review: two separated audits found no issue comment, review, inline
+  comment, or review thread. PR #174 remained ready, clean, mergeable, and at
+  the exact qualified head.
+- Feature integration: GitHub-verified squash
+  `88960cccf31458a0d654062876b46eea616374dc` has the exact reviewed tree,
+  sole parent M73 closeout `7ecb584e71a375d1ab63ee8134e7493e418dedff`,
+  exact DCO, and a valid signature verified at `2026-08-12T18:59:26Z`. The
+  feature branch is deleted locally and remotely. The current four-file
+  integration record changes no substantive M74 surface.
+- Integration local qualification: the unchanged lock resolves 46 packages;
+  all 317 files are format clean; Ruff and strict Pyright are clean; all 805
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, and Git-object checking pass. Two builds reproduce the feature-
+  identical pure 273,952-byte wheel at
+  `ada989ae548bdf51f124d39080a83580711e58e5148b149b28a72dbaf59c8bcf`
+  and a 1,251,607-byte record-updated sdist at
+  `53a335c20066cc5b7f004ebb66f41ec14aecefec45dbcbecd898ffc7f110ccfa`;
+  wheel, staging, and complete release smoke pass. Exact integration-commit
+  artifact identity remains delegated to hosted qualification because this
+  record changes the sdist.
+- Integration record freeze: all 317 files remain format clean; Ruff and
+  strict Pyright are clean; all 805 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, and Git-object checking pass. The
+  diff remains exactly four record/roadmap files with clean credential/private-
+  key and explicit development-tool identity scans.
 
 ## M73 content-silent sample ZIP text failures - complete
 
