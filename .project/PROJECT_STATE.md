@@ -108,6 +108,33 @@
   capability skip, strict docs, whitespace, full Git-object checking, scope,
   and credential/metadata-identity hygiene. The record is ready for bounded
   hosted documentation qualification.
+- Integration hosted qualification: exact head `dda00757d1ee9365f2f3fbeddc0b89183585c9d2`,
+  tree `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, passed run
+  `31612786971` in one 36-second Linux allocation; the desktop umbrella skipped
+  with zero steps. No compatibility, graphics, profile, example, or full-suite
+  runner executed.
+- Integration hosted evidence: all 313 files were format clean; Ruff and
+  strict docs passed; 775 selected architecture assertions passed in 7.19
+  seconds. Reproducible artifacts were the feature-identical 273,374-byte
+  wheel at `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a`
+  and record-updated 1,222,477-byte sdist at
+  `aa903ca95706abac5f31b7f27ee0f8855e7b19162074c4a0fe422388f3e17c38`;
+  wheel/staging/release smoke passed.
+- Integration review: two separated exact-head audits found no issue comment,
+  review, inline comment, or review thread.
+- Integration squash: PR #163 head `dda0075`, tree `29673a5`, squash-integrated
+  as `504d5bbe7c3ee46c71023d77748d27abd3484c74` with the exact same tree,
+  sole parent feature squash `cae3454089b4f0453859360de00129399533e2d7`,
+  valid GitHub signature verified at `2026-08-12T15:34:14Z`, and exact DCO.
+  The integration branch is absent remotely and locally. The current exact
+  three-record closeout changes no substantive or public project surface and
+  is excluded from hosted CI.
+- Closeout local qualification: exactly the three `.project` records pass all
+  774 architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, exact scope, and credential/metadata-
+  identity hygiene. No workflow, runtime, verifier, producer, dependency,
+  package, test, public documentation, or roadmap surface changes. The
+  closeout is ready for a no-run ready PR.
 
 ## M69 encrypted sample-member preflight rejection - feature integrated
 

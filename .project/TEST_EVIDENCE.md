@@ -49,6 +49,21 @@ created.
 | Reproducible distribution and smoke | 0 | Two builds reproduced the feature-identical pure 273,388-byte wheel at `865d6a8275886ecb3dab9e407c6401ab3eccf2e63a25a07ace91c4a641406f11` and a 1,221,890-byte record-updated source archive at `af404f69f25311480130913367a1459deb21437cd0b9a800963a886bde0cee6a`. Installed-wheel smoke, deterministic ten-artifact staging, and complete M70 release smoke passed. This factual row changes the sdist afterward, so exact integration-commit artifact identity remains delegated to hosted qualification. |
 | Record-frozen scope and hygiene gate | 0 | The unchanged lock resolved 46 packages in 0.84 ms; all 313 files were format clean; Ruff and strict Pyright were clean; all 774 architecture assertions passed with 1 capability skip in 6.06 seconds; strict docs built in 1.30 seconds with only the known upstream notice; whitespace and full Git-object checking passed. The diff remains exactly four record/roadmap files, with zero credential/private-key and zero explicit development-tool identity matches. |
 
+## M70 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #163 run `31612786971` | 0 | Exact four-file DCO head `dda00757d1ee9365f2f3fbeddc0b89183585c9d2`, tree `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, passed in one 36-second Linux allocation, job `94168073709`. Desktop umbrella job `94168302942` skipped with zero steps. No compatibility interpreter, software-rendering runtime, full suite, profile, graphics, example, or desktop runner executed. |
+| Hosted documentation, distribution, and smoke | 0 | All 313 Python files were format clean; Ruff was clean; strict docs built in 1.19 seconds; all 775 documentation-selected architecture assertions passed in 7.19 seconds. Two builds reproduced the feature-identical 273,374-byte wheel at `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a` and a record-updated 1,222,477-byte source archive at `aa903ca95706abac5f31b7f27ee0f8855e7b19162074c4a0fe422388f3e17c38`. Installed-wheel smoke, deterministic staging, and complete M70 release smoke passed. |
+| Delayed exact-head integration review audits | 0 | Two separated audits found no issue comment, review, inline comment, or review thread. PR #163 remained ready, clean, mergeable, exact-head, exact-base, and fully checked. |
+| Integration squash verification | 0 | PR #163 squash `504d5bbe7c3ee46c71023d77748d27abd3484c74` has tree `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, exactly matching reviewed record head `dda00757d1ee9365f2f3fbeddc0b89183585c9d2`; its sole parent is exact feature squash `cae3454089b4f0453859360de00129399533e2d7`. GitHub reports a valid signature verified at `2026-08-12T15:34:14Z` and an exact DCO trailer. The remote branch returns 404, and the exact-tree-equivalent local integration branch was deleted. |
+
+## M70 closeout local evidence - 2026-08-13, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | All 774 architecture assertions passed with 1 local capability skip in 5.49 seconds; strict docs built in 1.28 seconds with only the known upstream Material notice; whitespace and full Git-object checking passed. The closeout changes exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it changes no workflow, runtime, verifier, producer, dependency, package, test, public documentation, or roadmap surface and is excluded from hosted CI. Added/current changed content scans found zero credential/private-key or explicit development-tool identity markers. |
+
 ## M69 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M69 starts from exact synchronized M68 closeout

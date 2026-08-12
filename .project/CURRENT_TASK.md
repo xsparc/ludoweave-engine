@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M70 - sample-archive checksum binding
-- **Status:** Feature PR #162 is fully validated, twice audited,
-  squash-integrated with its exact reviewed tree, and branch-pruned; the
-  integration record is in progress.
+- **Status:** Feature PR #162 and integration-record PR #163 are fully
+  validated, twice audited, squash-integrated with their exact reviewed trees,
+  and branch-pruned; the exact three-record closeout is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -134,5 +134,33 @@
   Ruff, strict Pyright, 774 architecture assertions with 1 capability skip,
   strict docs, whitespace, full Git-object checking, exact four-file scope,
   and credential/metadata-identity hygiene pass.
-- **Next gate:** DCO-publish the exact four-file record and use the bounded
-  documentation-only hosted gate before closeout.
+- **Integration hosted gate:** Exact four-file DCO head
+  `dda00757d1ee9365f2f3fbeddc0b89183585c9d2`, tree
+  `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, passed run
+  `31612786971` in one 36-second Linux allocation. The desktop umbrella job
+  skipped with zero steps; no compatibility, graphics, profile, example, or
+  full-suite runner executed.
+- **Integration hosted evidence:** All 313 files were format clean; Ruff and
+  strict docs passed; 775 documentation-selected architecture assertions
+  passed in 7.19 seconds. Two builds reproduced the feature-identical
+  273,374-byte wheel at
+  `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a`
+  and a record-updated 1,222,477-byte source archive at
+  `aa903ca95706abac5f31b7f27ee0f8855e7b19162074c4a0fe422388f3e17c38`;
+  installed-wheel smoke, staging, and complete release smoke passed.
+- **Integration review:** Two separated exact-head audits found no issue
+  comment, review, inline comment, or review thread.
+- **Integration squash:** PR #163 squash
+  `504d5bbe7c3ee46c71023d77748d27abd3484c74` has tree
+  `29673a50d7bf46c7f56850117e4edd0c6f99eab8`, exactly matching the reviewed
+  record head; its sole parent is feature squash `cae3454`, GitHub reports a
+  valid signature verified at `2026-08-12T15:34:14Z`, and the DCO trailer is
+  exact. The integration branch is absent remotely and locally.
+- **Closeout local gate:** Exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` pass all 774
+  architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, exact scope, and credential/metadata-
+  identity hygiene. No workflow, runtime, verifier, producer, dependency,
+  package, test, public documentation, or roadmap surface changes.
+- **Next gate:** DCO-publish and squash-integrate the exact no-run closeout,
+  then prune all M70 generated outputs and branches before selecting M71.
