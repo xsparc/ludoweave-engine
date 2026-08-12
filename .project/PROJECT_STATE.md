@@ -1,6 +1,6 @@
 # Project State
 
-## M76 enhanced-deflate sample-member preflight - active
+## M76 enhanced-deflate sample-member preflight - feature integrated
 
 - Base: exact clean synchronized M75 closeout
   `ddf262dff7a8c93defad5a205adbaec460563439`, tree
@@ -65,9 +65,34 @@
   absence pass. Feature `HEAD`, `main`, `origin/main`, and merge base are exact
   M75 closeout with symmetric difference `0 0`; history is linear. Only
   `origin/main` exists remotely, and GitHub reports no open PR, tag, or release.
-- Remaining: DCO publication, hosted exact-head qualification, squash
-  verification, integration/closeout records, branch/artifact cleanup, and
-  synchronized-main audit.
+- Hosted feature qualification: PR #180 exact head
+  `2f93c32926dfb2aec4798fa5f4c13a2b096495c9` passed run `31638620625` in
+  three bounded allocations. Linux CPython 3.12 passed 2,370 tests; Linux
+  3.13/3.14, macOS 3.14, and Windows 3.14 each passed 2,370 with 1 expected
+  capability skip. Static, docs, real-wgpu, profiles, examples, installed
+  wheel, staging, and complete release smokes passed.
+- Hosted artifacts: the pure 274,260-byte wheel is
+  `74d28148c78151f56d366db8b64212e91ae409f722931dd0a1bc6a67150482ba`;
+  the 1,265,082-byte sdist is
+  `75db0570cdb93a3e7c317237712c7c717b275e8ae6417186b4119523ecb294238`.
+  Ten staged artifacts passed deterministic and release validation.
+- Review/integration: two separated audits found no issue comment, review,
+  inline comment, or unresolved thread. PR #180 remained clean, mergeable, and
+  exact. Its verified DCO squash
+  `425ed21ab99d91bf4661b304bea00137117a5d27` has the exact qualified tree
+  `8b7f50a2efba456f1015276f1b6345466d9fa5cb` and sole parent M75 closeout.
+- Integration-record local gate: exactly the four neutral project/roadmap
+  records change. The unchanged lock resolves 46 packages; all 319 Python
+  files are format clean; Ruff and strict Pyright report zero findings; all
+  825 architecture assertions pass with 1 capability skip; strict docs,
+  whitespace, and Git-object checking pass. Two fresh builds reproduce the
+  pure 274,273-byte wheel
+  `373dbe9ad78c4c2ba6ff96e7533a84cc812057f2a985aea06c491706112fe40f`
+  and 1,265,304-byte sdist
+  `1d55265954454f788d2a48adb6d5d7c8077272820f85b6185a7b5a4bbc094f0e`;
+  isolated-wheel, deterministic staging, and complete release smokes pass.
+- Remaining: bounded integration-record and closeout PRs, branch/artifact
+  cleanup, synchronized-main audit, and next-milestone selection.
 - Post-record correction: M59 caught three project-record references that
   literally named a retired control directory. They were neutralized, after
   which all 825 architecture assertions pass with 1 capability skip; static,

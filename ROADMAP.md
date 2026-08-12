@@ -84,6 +84,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M73 content-silent sample ZIP text failures | PR #171 passed exact three-allocation hosted qualification and squash-integrated stable content-silent normalization for malformed UTF-8 archive names after owned cleanup without changing workflow, producer, runtime, dependency, or release authority |
 | Done | M74 content-silent sample ZIP decompression failures | PR #174 passed exact three-allocation hosted qualification and squash-integrated stable content-silent normalization for invalid raw-deflate payloads after owned cleanup without changing workflow, producer, runtime, dependency, or release authority |
 | Done | M75 compressed-patch sample-member preflight | PR #177 passed exact three-allocation hosted qualification and squash-integrated exact ZIP general-purpose bit-5 rejection before metadata, inventory, staging, or reads without changing workflow, producer, runtime, dependency, or release authority |
+| Done | M76 enhanced-deflate sample-member preflight | PR #180 passed exact three-allocation hosted qualification and squash-integrated method-8 ZIP general-purpose bit-4 rejection before metadata, inventory, staging, or reads without changing workflow, producer, runtime, dependency, or release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
