@@ -1,5 +1,77 @@
 # Project State
 
+## M70 sample-archive checksum binding - in progress
+
+- Base: exact clean synchronized M69 closeout
+  `55b409d40c32c9268ee62b8c2a14aa036bcc935f`, tree
+  `51b5bdfad0a139d141ea4ea2c0195fa8ece72d6c`.
+- Gap: complete release smoke validated the staged sample artifact against
+  `SHA256SUMS`, then later reopened that path for extraction. M68 bound parsing
+  to the new descriptor's type and size but not to the already admitted bytes.
+- Decision: RFC-0053 passes the admitted sample digest to extraction, hashes
+  and rewinds the same opened handle before ZIP parsing, and repeats that check
+  after reads/completeness but before publication. Either mismatch uses one
+  stable content-silent category.
+- Boundary: private release smoke only. No snapshot, lock, immutable-input or
+  race-free guarantee, change-and-restore defense, raw ZIP parser, general
+  archive sandbox, workflow, dependency, sample producer, runtime API, release
+  authority, or real public release observation.
+- Research: Python 3.12 documents seekable file-object ZIP input and binary
+  hashing; CWE-367 describes resource changes between check and use; SLSA
+  identifies artifact verification as a consumer responsibility.
+- Invalid setup attempt: the first focused run used a nonexistent disposable
+  parent and produced 5 setup errors, 2 failures, and 1 pass. It is recorded as
+  an environment failure rather than a behavioral baseline.
+- Failing baseline: after creating the exact parent, unchanged M69 code
+  produced 7 failures and 1 passing protected-surface guard in 0.28 seconds.
+- Implementation checkpoint: the verifier and regression file produced 7
+  passes with only the deliberately absent documentation assertion failing in
+  0.30 seconds. After documentation, M70 passes 8 assertions in 0.26 seconds;
+  M64-M70 passes 84 with 1 local capability skip in 0.71 seconds; formatting,
+  Ruff, strict Pyright, strict docs, and whitespace pass. Full qualification
+  remains.
+- Full local candidate: after one sandbox cache-access denial, the identical
+  approved gate passes the unchanged lock, 313-file formatting, Ruff, strict
+  Pyright, strict docs, 2,303 non-wgpu CPython 3.12 tests with 15 skips, and
+  2,303 tests with 16 skips on each of CPython 3.13.13 and 3.14.5. All 773
+  architecture assertions pass with 1 local capability skip.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  both vertical slices, and all four diagnostic M1-M4 validators pass without
+  changing their established evidence interpretation.
+- Artifacts: two builds reproduce a pure 273,388-byte wheel at
+  `865d6a8275886ecb3dab9e407c6401ab3eccf2e63a25a07ace91c4a641406f11`
+  and a 1,216,959-byte source archive at
+  `892b2cefdf9300f87d504dca89cf1a4cf654f46e77cea0c3b9366c6717372dc6`;
+  wheel/release smoke pass.
+- Review correction: the first checksum implementation read until EOF after
+  descriptor admission, so a concurrently growing source could exceed M68's
+  16 MiB work bound. The sample-only hasher now consumes at most that limit
+  plus one rejection byte and rewinds; an unbounded-stream regression proves
+  the limit.
+- Corrected local gate: M70 passes 9 assertions; M64-M70 passes 85 with 1
+  capability skip; Ruff, strict Pyright, strict docs, and whitespace pass. The
+  complete corrected CPython 3.12 suite passes 2,304 non-wgpu tests with 15
+  skips; the corrected chain passes on CPython 3.13 and 3.14 with 85 passes and
+  1 skip.
+- Record-inclusive qualification: the unchanged lock, whole-tree formatting,
+  Ruff, strict Pyright, all 774 architecture assertions with 1 capability skip,
+  strict docs, whitespace, and full Git-object checking pass. Two builds
+  reproduce the feature-identical pure 273,388-byte wheel and a 1,219,320-byte
+  source archive at
+  `acb09696c3f920423262c81fdacd1d072eb00491a7028c0b48b3124e6f3aafb2`;
+  wheel/staging/release smoke pass.
+- Scope/review: no finding remains after the bounded-hash correction. The
+  exact 15-path scope changes no workflow, runtime package, producer,
+  benchmark, dependency, package metadata, or lock. Protected hashes remain
+  exact; changed content contains no credential/private-key or explicit
+  development-tool identity marker. The candidate is ready for record freeze
+  and hosted feature qualification.
+- Record-frozen qualification: the unchanged lock resolved 46 packages; all
+  313 files were format clean; Ruff and strict Pyright were clean; all 774
+  architecture assertions passed with 1 capability skip; strict docs,
+  whitespace, and full Git-object checking passed. The exact candidate is
+  ready for DCO publication and Linux-first hosted qualification.
+
 ## M69 encrypted sample-member preflight rejection - feature integrated
 
 - Base: exact clean synchronized M68 closeout
@@ -134,8 +206,12 @@
   whitespace, full Git-object checking, exact scope, and added-content
   credential/identity hygiene. No workflow, runtime, verifier, producer,
   dependency, package, test, public documentation, or roadmap surface changes.
-  The closeout is ready for a no-run ready PR; all generated M69 outputs and
-  the closeout branch remain pending verified squash cleanup.
+  PR #161 squash `55b409d40c32c9268ee62b8c2a14aa036bcc935f` has exact tree
+  `51b5bdfad0a139d141ea4ea2c0195fa8ece72d6c`, sole parent M69 integration
+  squash `9fcd61d1a3b93801b1bfd5a56392007fa15c6e03`, a valid GitHub
+  signature verified at `2026-08-12T14:38:30Z`, and exact DCO. No hosted run
+  was created. Every M69 branch and generated output is absent; synchronized
+  clean `main` is the M70 base.
 
 ## M68 bounded sample-archive container admission - feature integrated
 

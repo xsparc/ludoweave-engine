@@ -15,7 +15,7 @@ import zipfile
 from collections.abc import Iterable, Sequence
 from contextlib import ExitStack
 from pathlib import Path, PurePosixPath
-from typing import cast
+from typing import BinaryIO, cast
 
 from agent_tool_recovery_rate_evidence import validate_agent_tool_recovery_rate_evidence
 from benchmark_regression_rate_evidence import validate_benchmark_regression_rate_evidence
@@ -164,7 +164,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         samples = temp_root / "samples"
         samples.mkdir()
-        sample_root = _extract_bundle(bundle, samples, version=version)
+        sample_root = _extract_bundle(
+            bundle,
+            samples,
+            version=version,
+            expected_sha256=checksums[bundle.name],
+        )
         _run([str(python), "-I", "hello_headless.py", "--ticks", "5"], cwd=sample_root)
         _run([str(python), "-I", "fixed_step_world.py", "--ticks", "6"], cwd=sample_root)
         conformance_result = _run(
@@ -416,7 +421,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 0
 
 
-def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
+def _extract_bundle(
+    bundle: Path,
+    output: Path,
+    *,
+    version: str,
+    expected_sha256: str | None = None,
+) -> Path:
     expected_root = f"ludoweave-samples-{version}"
     root = output / expected_root
     if not output.is_dir() or output.is_symlink() or output.is_junction():
@@ -435,6 +446,11 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
             mode=bundle_metadata.st_mode,
             size=bundle_metadata.st_size,
         )
+        if expected_sha256 is not None:
+            _validate_sample_archive_checksum(
+                bundle_stream,
+                expected_sha256=expected_sha256,
+            )
         archive = resources.enter_context(zipfile.ZipFile(bundle_stream))
         infos = tuple(archive.infolist())
         if len(infos) > _MAX_SAMPLE_MEMBERS:
@@ -543,6 +559,11 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
                 path.name for path in staged_root.iterdir()
             }:
                 raise RuntimeError("sample bundle is incomplete")
+            if expected_sha256 is not None:
+                _validate_sample_archive_checksum(
+                    bundle_stream,
+                    expected_sha256=expected_sha256,
+                )
             if os.path.lexists(root):
                 raise RuntimeError("sample bundle output already exists")
             staged_root.replace(root)
@@ -556,6 +577,46 @@ def _validate_sample_archive_source(*, mode: int, size: int) -> None:
         raise RuntimeError("sample bundle is not a regular file")
     if size > _MAX_SAMPLE_ARCHIVE_BYTES:
         raise RuntimeError("sample bundle archive is too large")
+
+
+def _validate_sample_archive_checksum(
+    stream: BinaryIO,
+    *,
+    expected_sha256: str,
+) -> None:
+    """Bind sample parsing and publication to one staged-release digest."""
+
+    if _sha256_bounded_stream(stream, max_bytes=_MAX_SAMPLE_ARCHIVE_BYTES) != expected_sha256:
+        raise RuntimeError("sample bundle checksum does not match staged release")
+
+
+def _sha256_bounded_stream(stream: BinaryIO, *, max_bytes: int) -> str | None:
+    """Hash a bounded stream, returning ``None`` if it exceeds the limit."""
+
+    stream.seek(0)
+    digest = hashlib.sha256()
+    remaining = max_bytes + 1
+    total_bytes = 0
+    while remaining > 0:
+        block = stream.read(min(1024 * 1024, remaining))
+        if not block:
+            break
+        digest.update(block)
+        total_bytes += len(block)
+        remaining -= len(block)
+    stream.seek(0)
+    return digest.hexdigest() if total_bytes <= max_bytes else None
+
+
+def _sha256_stream(stream: BinaryIO) -> str:
+    """Hash a complete seekable stream and leave it rewound."""
+
+    stream.seek(0)
+    digest = hashlib.sha256()
+    for block in iter(lambda: stream.read(1024 * 1024), b""):
+        digest.update(block)
+    stream.seek(0)
+    return digest.hexdigest()
 
 
 def _validate_sample_inventory(observed_members: set[str]) -> None:
@@ -729,11 +790,8 @@ def _object(value: object, role: str) -> dict[str, object]:
 
 
 def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
     with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+        return _sha256_stream(stream)
 
 
 if __name__ == "__main__":

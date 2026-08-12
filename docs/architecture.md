@@ -1749,6 +1749,24 @@ archive sandbox. It adds no workflow, dependency, sample producer, runtime API,
 release authority, or real public release observation. RFC-0052 defines the
 complete boundary.
 
+## M70 sample-archive checksum binding boundary
+
+M70 binds the sample extractor to the digest already admitted from the staged
+release's `SHA256SUMS`. After M68 path and descriptor admission, the verifier
+hashes and rewinds the same opened handle before ZIP parsing. After every
+member read and staged-completeness check, it hashes and rewinds that handle
+again before publication by final rename. A content-silent mismatch prevents
+parser or publication progress as appropriate and preserves M66 cleanup. Each
+sample-specific hash reads at most M68's 16 MiB bound plus one rejection byte,
+so a growing source does not create unbounded checksum work.
+
+This closes a reopen gap between the earlier artifact checksum pass and sample
+consumption, but supplies no immutable-input guarantee: bytes changed and
+restored between comparisons may evade the boundary. It is not a general
+archive sandbox. It adds no workflow, dependency, sample producer, runtime API,
+release authority, or real public release observation. RFC-0053 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

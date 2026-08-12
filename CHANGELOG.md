@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M70/RFC-0053 same-opened-handle sample-archive checksum validation
+  before ZIP parsing and again before staged-root publication, binding the
+  consumer to the sample digest already admitted from `SHA256SUMS` without
+  changing workflows, dependencies, the sample producer, runtime APIs, or
+  release authority.
 - Add M69/RFC-0052 preflight rejection for traditional encryption, strong
   encryption, and masked header values in sample ZIP members before reads or
   staging, without adding password handling or changing workflows,

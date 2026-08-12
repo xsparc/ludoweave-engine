@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+RFC-0053 resolves M70 sample-archive checksum binding. Complete release smoke
+passes the already admitted `SHA256SUMS` digest into extraction, hashes and
+rewinds the same opened handle before ZIP parsing, and repeats the comparison
+after reads/completeness but before publication. A persistent mismatch uses one
+content-silent category and second-check failure cleans owned staging. This
+creates no snapshot, lock, immutable-input guarantee, change-and-restore
+defense, raw ZIP parser, or general archive sandbox. It adds no workflow,
+dependency, sample producer, runtime API, or release authority. A real pass
+remains pending an explicitly authorized signed-tag release execution.
+
 RFC-0049 resolves M66 staged sample-root publication. The existing real output
 directory owns a same-filesystem temporary staging directory; completeness is
 validated there before one rename exposes the final sample root. A final entry
