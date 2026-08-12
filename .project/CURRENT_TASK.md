@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M74 - content-silent sample ZIP decompression failures
-- **Status:** Feature implementation, complete local qualification, exact-head
-  hosted qualification, review audit, and verified squash integration are
-  complete. The four-file integration record is in progress.
+- **Status:** M74 implementation and its exact four-file integration record
+  are fully qualified and squash-integrated. The final three-record closeout
+  is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -140,5 +140,34 @@
   capability skip; strict docs, whitespace, and Git-object checking pass. The
   diff remains exactly the four intended record/roadmap files and contains no
   credential/private-key or explicit development-tool identity marker.
-- **Next gate:** Freeze the exact four-file record, publish its minimal one-
-  Linux-runner PR, and verify hosted qualification against the exact head.
+- **Hosted integration qualification:** Exact DCO head
+  `fd3185ab0213ffdecb2225877145ebf865199513`, tree
+  `f3cc51c38ce0c3682449225e84426b722e04724d`, passed run
+  `31630962285` in one 38-second Linux allocation; desktop job
+  `94229481755` skipped with zero steps. The gate resolved 46 packages, found
+  all 317 files format clean, passed Ruff, built strict docs in 1.29 seconds,
+  passed 806 documentation-selected architecture assertions in 7.95 seconds,
+  reproduced artifacts, and passed wheel, staging, and release smokes.
+- **Hosted integration artifacts:** Two exact-head builds reproduced the
+  feature-identical pure 273,938-byte wheel at
+  `711a4379ef59c4c2cd2bf1b3d11ce6a84de805d2d7c7ab97f5c4bab4ee841238`
+  and a 1,252,100-byte sdist at
+  `4b974e44eed847474d621ebfc4065b9011b177986374287de7dbe50f6076e5e8`.
+- **Integration review:** Two separated audits found zero issue comment,
+  review, inline comment, or review thread. PR #175 remained ready, clean,
+  mergeable, and tied to the exact qualified head.
+- **Integration squash:** PR #175 squash
+  `01d79609c81f13ea637addd9c41bd019d0bdebb0` has the exact reviewed tree,
+  sole parent M74 feature squash `88960cccf31458a0d654062876b46eea616374dc`,
+  exact DCO, and a valid GitHub signature verified at
+  `2026-08-12T19:07:49Z`. The integration branch is absent remotely and
+  locally.
+- **Closeout qualification:** The unchanged lock resolves 46 packages; all 317
+  files are format clean; Ruff and strict Pyright are clean; all 805
+  architecture assertions pass with 1 local capability skip; strict docs,
+  whitespace, and Git-object checking pass. The closeout changes exactly the
+  three neutral project records, with no workflow, runtime, verifier, producer,
+  dependency, package, test, public-documentation, or roadmap change and no
+  credential/private-key or explicit development-tool identity match.
+- **Next gate:** Publish and squash-integrate this exact no-CI closeout; then
+  prune M74 generated targets and branches and return to synchronized `main`.
