@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M70 - sample-archive checksum binding
-- **Status:** Implementation, documentation, full local qualification, and
-  findings-first review are complete; hosted exact-head qualification remains.
+- **Status:** Feature PR #162 is fully validated, twice audited,
+  squash-integrated with its exact reviewed tree, and branch-pruned; the
+  integration record is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -91,5 +92,47 @@
 - **Record-frozen gate:** The unchanged lock, formatting for 313 files, Ruff,
   strict Pyright, 774 architecture assertions with 1 capability skip, strict
   docs, whitespace, and full Git-object checking pass on the exact candidate.
-- **Next gate:** DCO-commit the exact candidate, push its neutral branch, and
-  open the quota-bounded ready PR for Linux-first hosted qualification.
+- **Hosted gate:** Exact DCO head
+  `7dfadaf72e74ee29d5fc0c98ef6484f6fec423a8`, tree
+  `7a3ac1bb2ef9f89934325fb44228d770881c0528`, passed run
+  `31611083245` in exactly three Linux-first allocations. Linux job
+  `94162276734` passed in 7m12s; only then did macOS `94164509233` and Windows
+  `94164509371` begin, passing in 3m08s and 4m08s.
+- **Hosted suites:** All 313 files were format clean; Ruff, strict Pyright,
+  and strict docs passed. Linux CPython 3.12 and every hosted 3.13/3.14 suite
+  passed 2,319 tests, with one expected compatibility skip. Every operating
+  system passed 10 real-wgpu tests, its graphics profile, Clockwork Arena, and
+  Agent World Builder; Linux also passed the base profile.
+- **Hosted artifacts:** Two exact-head builds reproduced a pure 273,374-byte
+  wheel at
+  `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a`
+  and a 1,220,441-byte source archive at
+  `f3c9705985eb8bc3a12d71147269c181149c3dcbb77d3aa47c183b4236310790`.
+  Installed-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke passed.
+- **Hosted review:** Two separated exact-head audits found no issue comment,
+  review, inline comment, or review thread; the PR remained ready, clean,
+  mergeable, exact-head, exact-base, and fully checked.
+- **Feature integration:** PR #162 squash
+  `cae3454089b4f0453859360de00129399533e2d7` has tree
+  `7a3ac1bb2ef9f89934325fb44228d770881c0528`, exactly matching the reviewed
+  head; its sole parent is M69 closeout `55b409d`, GitHub reports a valid
+  signature verified at `2026-08-12T15:26:46Z`, and the DCO trailer is exact.
+  The feature branch is absent remotely and locally.
+- **Integration local gate:** Exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`
+  pass the unchanged lock, formatting for 313 files, Ruff, strict Pyright, all
+  774 architecture assertions with 1 capability skip, strict docs, whitespace,
+  full Git-object checking, two-build reproducibility, installed-wheel smoke,
+  deterministic staging, and complete release smoke.
+- **Integration artifacts:** The feature-identical pure wheel remains 273,388
+  bytes at
+  `865d6a8275886ecb3dab9e407c6401ab3eccf2e63a25a07ace91c4a641406f11`;
+  the record-updated source archive is 1,221,890 bytes at
+  `af404f69f25311480130913367a1459deb21437cd0b9a800963a886bde0cee6a`.
+- **Integration frozen gate:** The unchanged lock, all 313 formatted files,
+  Ruff, strict Pyright, 774 architecture assertions with 1 capability skip,
+  strict docs, whitespace, full Git-object checking, exact four-file scope,
+  and credential/metadata-identity hygiene pass.
+- **Next gate:** DCO-publish the exact four-file record and use the bounded
+  documentation-only hosted gate before closeout.

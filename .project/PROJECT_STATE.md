@@ -1,6 +1,6 @@
 # Project State
 
-## M70 sample-archive checksum binding - in progress
+## M70 sample-archive checksum binding - feature integrated
 
 - Base: exact clean synchronized M69 closeout
   `55b409d40c32c9268ee62b8c2a14aa036bcc935f`, tree
@@ -71,6 +71,43 @@
   architecture assertions passed with 1 capability skip; strict docs,
   whitespace, and full Git-object checking passed. The exact candidate is
   ready for DCO publication and Linux-first hosted qualification.
+- Hosted qualification: exact DCO head `7dfadaf72e74ee29d5fc0c98ef6484f6fec423a8`,
+  tree `7a3ac1bb2ef9f89934325fb44228d770881c0528`, passed run
+  `31611083245` in exactly three Linux-first allocations. Linux passed in
+  7m12s, then macOS in 3m08s and Windows in 4m08s.
+- Hosted suites: Linux CPython 3.12 and every hosted 3.13/3.14 suite passed
+  2,319 tests with one expected compatibility skip. Each OS passed 10
+  real-wgpu tests, its graphics profile, Clockwork Arena, and Agent World
+  Builder; Linux also passed formatting, Ruff, strict Pyright/docs, the base
+  profile, reproducible builds, wheel smoke, staging, and release smoke.
+- Hosted artifacts: two exact-head builds reproduced a pure 273,374-byte wheel
+  at `18390d39f6c267fedb832e41a0b030a03838a04c9c574fc159b45e263d67e91a`
+  and a 1,220,441-byte source archive at
+  `f3c9705985eb8bc3a12d71147269c181149c3dcbb77d3aa47c183b4236310790`.
+- Hosted review: two separated audits found no issue comment, review, inline
+  comment, or review thread; the PR remained clean and exact.
+- Feature integration: PR #162 squash
+  `cae3454089b4f0453859360de00129399533e2d7` has the exact reviewed tree,
+  sole parent M69 closeout `55b409d40c32c9268ee62b8c2a14aa036bcc935f`,
+  valid GitHub signature verified at `2026-08-12T15:26:46Z`, and exact DCO.
+  The feature branch is absent remotely and locally. The current four-file
+  integration record changes no substantive M70 surface.
+- Integration local qualification: the exact four-file record passes the
+  unchanged lock, whole-tree formatting/Ruff/strict-Pyright, all 774
+  architecture assertions with 1 capability skip, strict docs, whitespace,
+  full Git-object checking, two-build reproducibility, installed-wheel smoke,
+  deterministic staging, and complete release smoke. The feature-identical
+  pure wheel remains 273,388 bytes at
+  `865d6a8275886ecb3dab9e407c6401ab3eccf2e63a25a07ace91c4a641406f11`;
+  the record-updated source archive is 1,221,890 bytes at
+  `af404f69f25311480130913367a1459deb21437cd0b9a800963a886bde0cee6a`.
+  Recording this fact changes the sdist, so exact integration-commit artifact
+  identity remains delegated to the quota-bounded hosted documentation gate.
+- Integration frozen gate: the exact four files pass the unchanged lock,
+  formatting, Ruff, strict Pyright, 774 architecture assertions with 1
+  capability skip, strict docs, whitespace, full Git-object checking, scope,
+  and credential/metadata-identity hygiene. The record is ready for bounded
+  hosted documentation qualification.
 
 ## M69 encrypted sample-member preflight rejection - feature integrated
 
