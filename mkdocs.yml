@@ -96,6 +96,7 @@ nav:
       - RFC-0053 - Sample-archive checksum binding: rfcs/0053-bind-sample-archive-checksum.md
       - RFC-0054 - Checksum-admitted sample snapshot: rfcs/0054-checksum-admitted-sample-snapshot.md
       - RFC-0055 - Content-silent sample ZIP failures: rfcs/0055-content-silent-sample-zip-failures.md
+      - RFC-0056 - Content-silent sample ZIP text failures: rfcs/0056-content-silent-sample-zip-text-failures.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

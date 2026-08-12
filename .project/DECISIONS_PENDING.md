@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0056 resolves M73 content-silent sample ZIP text-failure normalization.
+Private complete release smoke adds exactly `UnicodeDecodeError` from strict
+archive-controlled UTF-8 name decoding in the central directory or local
+header to M72's existing stable outer error after owned cleanup. Suppressed
+context confines invalid bytes, offsets, codec, and reason while retaining the
+original exception programmatically. This is not a broad Unicode/value catch,
+replacement decoder, metadata repair, raw parser, scanner, or general archive
+sandbox. It adds no workflow, dependency, sample producer, runtime API, or
+release authority. A real pass remains pending an explicitly authorized
+signed-tag release execution.
+
 RFC-0055 resolves M72 content-silent sample ZIP failure normalization. Private
 complete release smoke catches exactly documented `BadZipFile` and
 `LargeZipFile` around its checksum-admitted extractor, lets owned cleanup

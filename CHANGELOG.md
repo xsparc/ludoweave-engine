@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M73/RFC-0056 content-silent sample ZIP text-failure normalization.
+  `UnicodeDecodeError` from archive-controlled UTF-8 central-directory or
+  local-header names now uses the existing stable outer error after owned
+  cleanup, without broadening to all Unicode/value failures or changing
+  workflows, dependencies, the sample producer, runtime APIs, or release
+  authority.
 - Add M72/RFC-0055 content-silent sample ZIP failure normalization. Documented
   `BadZipFile` and `LargeZipFile` failures now use one stable outer error with
   suppressed rendered context and owned cleanup, without changing workflows,

@@ -595,6 +595,21 @@ and unexpected failures keep their existing categories. M72 adds no workflow,
 dependency, sample producer, runtime API, or release authority, is not a
 general archive sandbox, and is not a real public release observation.
 
+M73/RFC-0056 adds exactly `UnicodeDecodeError` to that same outer boundary.
+The standard ZIP reader can raise it while decoding archive-controlled UTF-8
+names in the central directory during construction or in a local header during
+member open. Either path becomes the existing stable
+`sample bundle ZIP data is invalid` error after owned source, snapshot,
+archive, and staging cleanup.
+
+The original decoding exception remains programmatic context; suppressed
+context keeps invalid bytes, offsets, codec, and reason out of normal rendered
+output. Other Unicode/value failures and verifier policy, filesystem,
+subprocess, and unexpected failures remain specific. M73 adds no broad catch,
+raw parser, workflow, dependency, sample producer, runtime API, or release
+authority, is not a general archive sandbox, and is not a real public release
+observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -132,6 +132,17 @@ complete, reviewed, hosted-validated, and integrated into `main`. M72 starts
 from exact verified M71 closeout
 `de510b5cb44a011264a4b28f6fbbf0b59e0339e8`.
 
+M73 adds exactly `UnicodeDecodeError` raised by archive-controlled UTF-8 ZIP
+names in the central directory or local header to the existing stable error.
+Rendered output remains content-silent through suppressed context, and owned
+cleanup completes first. Other Unicode, value, policy, filesystem, and
+unexpected failures remain specific. This is not a general archive sandbox
+and adds no workflow, allocation, dependency, version, sample producer,
+runtime source/API, release authority, tag, release, or publication. M0 through
+M72 are complete, reviewed, hosted-validated, and integrated into `main`. M73
+starts from exact verified M72 closeout
+`f4afb40aade2b1a59b7ceabf6f1db158b450b7cd`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -160,8 +171,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   bounds the regular archive container before parsing. M69 rejects encrypted
   sample-member indicators before reads or staging. M70 binds sample parsing
   and publication to the staged-release checksum on the same opened handle.
-  M71 makes an owned checksum-admitted snapshot the exact parser input, and M72
-  confines documented parser failures content-silently; none of these
+  M71 makes an owned checksum-admitted snapshot the exact parser input, M72
+  confines documented parser failures content-silently, and M73 adds the exact
+  ZIP UTF-8 decoding failure; none of these
   milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final

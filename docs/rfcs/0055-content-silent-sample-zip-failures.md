@@ -4,6 +4,10 @@
 - **Date:** 2026-08-13
 - **Milestone:** M72
 
+RFC-0056 extends the same stable boundary to the exact ZIP metadata text-decoding
+failure without changing this RFC's documented `BadZipFile`/`LargeZipFile`
+decision.
+
 ## Context
 
 M71 gives `ZipFile` an owned checksum-admitted snapshot, but the standard ZIP

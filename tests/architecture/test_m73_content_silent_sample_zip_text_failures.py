@@ -1,4 +1,4 @@
-"""Protect M72 content-silent sample ZIP parser failures."""
+"""Protect M73 content-silent sample ZIP text-decoding failures."""
 
 # pyright: reportPrivateUsage=false
 
@@ -26,6 +26,7 @@ _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed
 _VERSION = "0.1.0a1"
 _PREFIX = f"ludoweave-samples-{_VERSION}"
 _ZIP_ERROR = "sample bundle ZIP data is invalid"
+_UTF8_FLAG = 0x0800
 
 
 class _SmokeModule(Protocol):
@@ -68,11 +69,11 @@ def _load(path: Path, name: str) -> object:
 
 
 def _smoke() -> _SmokeModule:
-    return cast(_SmokeModule, _load(_SMOKE, "m72_smoke_release"))
+    return cast(_SmokeModule, _load(_SMOKE, "m73_smoke_release"))
 
 
 def _stager() -> _StagerModule:
-    return cast(_StagerModule, _load(_STAGER, "m72_release_artifacts"))
+    return cast(_StagerModule, _load(_STAGER, "m73_release_artifacts"))
 
 
 def _bundle(path: Path, names: frozenset[str]) -> None:
@@ -81,18 +82,28 @@ def _bundle(path: Path, names: frozenset[str]) -> None:
             archive.writestr(f"{_PREFIX}/{name}", name.encode())
 
 
-def _corrupt_first_local_name(path: Path) -> str:
+def _set_flag(data: bytearray, offset: int) -> None:
+    flags = int.from_bytes(data[offset : offset + 2], "little") | _UTF8_FLAG
+    data[offset : offset + 2] = flags.to_bytes(2, "little")
+
+
+def _corrupt_central_utf8_name(path: Path) -> None:
+    data = bytearray(path.read_bytes())
+    end = data.rfind(b"PK\x05\x06")
+    assert end >= 0
+    central = int.from_bytes(data[end + 16 : end + 20], "little")
+    assert data[central : central + 4] == b"PK\x01\x02"
+    _set_flag(data, central + 8)
+    data[central + 46] = 0xFF
+    path.write_bytes(data)
+
+
+def _corrupt_local_utf8_name(path: Path) -> None:
     data = bytearray(path.read_bytes())
     assert data[:4] == b"PK\x03\x04"
-    name_size = int.from_bytes(data[26:28], "little")
-    name_start = 30
-    name_end = name_start + name_size
-    original = bytes(data[name_start:name_end])
-    replacement = (b"private-member-detail-" + (b"x" * name_size))[:name_size]
-    assert replacement != original and len(replacement) == name_size
-    data[name_start:name_end] = replacement
+    _set_flag(data, 6)
+    data[30] = 0xFF
     path.write_bytes(data)
-    return replacement.decode("ascii")
 
 
 def _sha256(path: Path) -> str:
@@ -105,42 +116,25 @@ def _empty_output(tmp_path: Path) -> Path:
     return output
 
 
-def _assert_content_silent(error: RuntimeError, private_detail: str) -> None:
+def _assert_content_silent(error: RuntimeError) -> None:
     assert str(error) == _ZIP_ERROR
     assert error.__suppress_context__
     context = error.__context__
-    assert isinstance(context, (zipfile.BadZipFile, zipfile.LargeZipFile))
-    assert private_detail in str(context)
+    assert isinstance(context, UnicodeDecodeError)
+    assert context.object.startswith(b"\xff")
+    private_detail = str(context)
     rendered = "".join(traceback.format_exception(error))
     assert private_detail not in rendered
     assert type(context).__name__ not in rendered
 
 
-def test_invalid_zip_constructor_failure_is_stable_and_content_silent(tmp_path: Path) -> None:
-    module = _smoke()
-    bundle = tmp_path / "invalid.zip"
-    bundle.write_bytes(b"not a zip archive")
-    output = _empty_output(tmp_path)
-
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
-        module._extract_bundle(
-            bundle,
-            output,
-            version=_VERSION,
-            expected_sha256=_sha256(bundle),
-        )
-
-    _assert_content_silent(caught.value, "File is not a zip file")
-    assert list(output.iterdir()) == []
-
-
-def test_member_read_failure_hides_archive_controlled_name_and_cleans_stage(
+def test_central_directory_utf8_failure_is_stable_and_content_silent(
     tmp_path: Path,
 ) -> None:
     module = _smoke()
-    bundle = tmp_path / "local-name-mismatch.zip"
+    bundle = tmp_path / "central-name.zip"
     _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    private_detail = _corrupt_first_local_name(bundle)
+    _corrupt_central_utf8_name(bundle)
     output = _empty_output(tmp_path)
 
     with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
@@ -151,46 +145,52 @@ def test_member_read_failure_hides_archive_controlled_name_and_cleans_stage(
             expected_sha256=_sha256(bundle),
         )
 
-    _assert_content_silent(caught.value, private_detail)
+    _assert_content_silent(caught.value)
+    assert list(output.iterdir()) == []
+
+
+def test_local_header_utf8_failure_cleans_stage_and_is_content_silent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _smoke()
+    bundle = tmp_path / "local-name.zip"
+    _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
+    _corrupt_local_utf8_name(bundle)
+    output = _empty_output(tmp_path)
+    archives: list[zipfile.ZipFile] = []
+    original_zipfile = zipfile.ZipFile
+
+    def recording_zipfile(file: IO[bytes]) -> zipfile.ZipFile:
+        archive = original_zipfile(file)
+        archives.append(archive)
+        return archive
+
+    monkeypatch.setattr(zipfile, "ZipFile", recording_zipfile)
+
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
+        module._extract_bundle(
+            bundle,
+            output,
+            version=_VERSION,
+            expected_sha256=_sha256(bundle),
+        )
+
+    _assert_content_silent(caught.value)
+    assert len(archives) == 1
+    assert archives[0].fp is None
     assert not (output / _PREFIX).exists()
     assert list(output.iterdir()) == []
 
 
-def test_large_zip_failure_is_stable_and_content_silent(
+def test_text_failure_closes_owned_source_and_snapshot(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     module = _smoke()
-    bundle = tmp_path / "samples.zip"
+    bundle = tmp_path / "central-name.zip"
     _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    output = _empty_output(tmp_path)
-    private_detail = "private ZIP64 parser detail"
-
-    def rejected_zipfile(*args: object, **kwargs: object) -> zipfile.ZipFile:
-        del args, kwargs
-        raise zipfile.LargeZipFile(private_detail)
-
-    monkeypatch.setattr(zipfile, "ZipFile", rejected_zipfile)
-
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
-        module._extract_bundle(
-            bundle,
-            output,
-            version=_VERSION,
-            expected_sha256=_sha256(bundle),
-        )
-
-    _assert_content_silent(caught.value, private_detail)
-    assert list(output.iterdir()) == []
-
-
-def test_parser_failure_closes_owned_source_and_snapshot(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    module = _smoke()
-    bundle = tmp_path / "invalid.zip"
-    bundle.write_bytes(b"not a zip archive")
+    _corrupt_central_utf8_name(bundle)
     output = _empty_output(tmp_path)
     observed: list[tuple[IO[bytes], IO[bytes]]] = []
     original_snapshot = module._snapshot_sample_archive
@@ -254,21 +254,19 @@ def test_current_producer_remains_admitted(tmp_path: Path) -> None:
     ) == (output / _PREFIX)
 
 
-def test_m72_source_normalizes_only_documented_zip_failures() -> None:
+def test_m73_source_normalizes_only_documented_zip_and_text_failures() -> None:
     source = _SMOKE.read_text(encoding="utf-8")
     extraction = source[source.index("def _extract_bundle") :]
 
-    catch_start = extraction.index("except (")
-    catch = extraction[catch_start : extraction.index("):", catch_start)]
-    assert "zipfile.BadZipFile" in catch
-    assert "zipfile.LargeZipFile" in catch
+    expected = "except (zipfile.BadZipFile, zipfile.LargeZipFile, UnicodeDecodeError):"
+    assert expected in extraction
     assert f'raise RuntimeError("{_ZIP_ERROR}") from None' in extraction
-    assert extraction.index("def _extract_bundle") < extraction.index(
-        "def _extract_checksum_admitted_bundle"
-    )
+    assert "except UnicodeError" not in extraction
+    assert "except ValueError" not in extraction
+    assert "except Exception" not in extraction
 
 
-def test_m72_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:
+def test_m73_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:
     assert (
         hashlib.sha256((_ROOT / ".github" / "workflows" / "ci.yml").read_bytes()).hexdigest()
         == _CI_SHA256
@@ -283,12 +281,12 @@ def test_m72_changes_no_workflow_producer_runtime_dependency_or_package_boundary
     )
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
     assert not any(
-        "m72" in path.read_text(encoding="utf-8").casefold()
+        "m73" in path.read_text(encoding="utf-8").casefold()
         for path in (_ROOT / "src" / "ludoweave").rglob("*.py")
     )
 
 
-def test_m72_docs_define_content_silent_zip_failure_boundary() -> None:
+def test_m73_docs_define_content_silent_zip_text_failure_boundary() -> None:
     paths = (
         _ROOT / "README.md",
         _ROOT / "CHANGELOG.md",
@@ -296,17 +294,18 @@ def test_m72_docs_define_content_silent_zip_failure_boundary() -> None:
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",
         _ROOT / "docs" / "release-process.md",
-        _ROOT / "docs" / "rfcs" / "0055-content-silent-sample-zip-failures.md",
+        _ROOT / "docs" / "rfcs" / "0056-content-silent-sample-zip-text-failures.md",
     )
     documents = tuple(path.read_text(encoding="utf-8").casefold() for path in paths)
     combined = "\n".join(documents)
 
-    assert all("m72" in document for document in documents)
+    assert all("m73" in document for document in documents)
     completed = re.search(r"m0 through m([0-9]+) are hosted-validated", documents[0])
-    assert completed is not None and int(completed.group(1)) >= 71
+    assert completed is not None and int(completed.group(1)) >= 72
     for term in (
-        "badzipfile",
-        "largezipfile",
+        "unicodedecodeerror",
+        "central directory",
+        "local header",
         "archive-controlled",
         "stable error",
         "content-silent",
