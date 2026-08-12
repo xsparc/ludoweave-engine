@@ -1,6 +1,6 @@
 # Project State
 
-## M67 exact sample-bundle inventory conformance - feature integrated
+## M67 exact sample-bundle inventory conformance - fully integrated
 
 - Base: exact clean synchronized M66 closeout
   `995fdda097a418a7a0e570bb6b492d3f5609d471`, tree
@@ -10,7 +10,12 @@
   `cd8833bbd93e11c7e7e678ee324711503a921d97`, squash-integrated as
   `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2` with the exact same tree, sole
   parent M66 closeout, valid GitHub signature, and exact DCO trailer.
-- Current branch: `docs/m67-integration-record`.
+- Integration record: PR #154 exact four-file head
+  `565053e8cf0f3961f8bfbc1a54df04a604240183`, tree
+  `eb532eddbd368efaaa1a896efd930727cc5b3059`, squash-integrated as
+  `5025877d31a2bc8a9a0a1b7bb2e106869f76066f` with the exact same tree, sole
+  parent feature squash, valid GitHub signature, and exact DCO trailer.
+- Current branch: `docs/m67-closeout`.
 - Gap: M64-M66 validate bounded portable transactional extraction, but the
   final completeness check covers only a root-level subset. Extra portable
   files and missing nested assets are not rejected as an exact product-shape
@@ -30,8 +35,8 @@
   missing expectation, pre-read mismatch rejection, source-ordering contract,
   and documentation gap while preserving producer and boundary guards.
 - Local candidate: the unchanged lock and restored graphics environment pass
-  whole-tree static checks, 747 reviewed architecture assertions with 1 capability skip,
-  strict docs, release-artifact tests, and whitespace. CPython 3.12 passes 2,286
+  whole-tree static checks, 747 reviewed architecture assertions with 1
+  capability skip, strict docs, release-artifact tests, and whitespace. CPython 3.12 passes 2,286
   tests with 15 skips; 3.13/3.14 each pass 2,276 with 16 skips. Ten real-wgpu
   tests, both profiles, both vertical slices, four diagnostic benchmark
   validators, reproducible distributions, isolated-wheel smoke, deterministic
@@ -64,6 +69,27 @@
   architecture assertions with 1 capability skip, both release-artifact tests,
   strict docs, whitespace, full Git-object checking, two-build reproducibility,
   installed-wheel smoke, deterministic staging, and complete release smoke.
+- Integration hosted qualification: exact head `565053e` passed run
+  `31536520514` in one 41-second Linux allocation. The desktop compatibility
+  umbrella skipped with zero steps. Hosted formatting, Ruff, strict docs, all
+  748 documentation-selected architecture assertions, two-build
+  reproducibility, isolated-wheel smoke, deterministic staging, and complete
+  M67 release smoke passed.
+- Integration hosted artifacts: two builds reproduced the feature-identical
+  272,867-byte wheel at
+  `5b67653c5f4374ffc52f55eadc9d2e29fc72e8281969d6c891da3b56042475a8`
+  and a 1,193,131-byte record-updated source archive at
+  `ca246f1f23225cf43e5f81a5eda1b60629f6ff47dc389d4700e7a53b97606389`.
+- Integration review resolution: delayed review comment `3761750291`
+  incorrectly claimed the sole integration commit lacked DCO. GitHub and local
+  trailer parsing proved the exact authorized trailer; evidence reply
+  `3765169173` was posted, thread `PRRT_kwDOTtqoGs6YYOGq` resolved, and two
+  post-resolution audits found no later activity.
+- Closeout state: feature and integration branches are absent locally and
+  remotely; the three-file closeout records the verified integration squash and
+  requests no hosted runner. Its exact three-file tree passes all 747
+  architecture assertions with 1 capability skip, strict docs, whitespace,
+  full Git-object checking, and scope validation.
 
 ## M66 staged sample-root publication - feature integrated
 

@@ -44,6 +44,21 @@ neutral feature branch.
 | Exact scope, lock, static, architecture, docs, and whitespace gate | 0 | The diff names exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`; no implementation, workflow, producer, runtime, benchmark, dependency, or package surface differs from verified feature squash `bc8a3d9`. The unchanged lock resolved 46 packages in 0.93 ms. All 310 Python files were format clean; Ruff and strict Pyright reported zero findings; all 747 architecture assertions passed with 1 local capability skip in 6.38 seconds; both release-artifact tests passed in 0.61 seconds; strict docs built in 1.19 seconds with only the known upstream Material notice; whitespace and full Git-object checking passed. |
 | Reproducible distribution and smoke | 0 | Two builds reproduced the unchanged pure 272,880-byte wheel at `dba45ae505702b2bb04e1666adce518f87239158f2e5ba3cafd19ee82c50016b` and a 1,192,787-byte record-updated source archive at `2c0341630a35ec53fc5cf35b25a8aa20741a7092ef5e4c219ece5eccc2e738e8`. Installed-wheel smoke, deterministic 10-artifact staging, and complete M67 release smoke passed. This factual row changes the source archive afterward, so exact commit-tree artifact identity remains delegated to the one-allocation hosted gate. |
 
+## M67 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #154 run `31536520514` | 0 | Exact four-document DCO head `565053e8cf0f3961f8bfbc1a54df04a604240183` passed in one 41-second Linux allocation. The desktop compatibility umbrella job `93928999570` skipped with zero steps and no runner. All 310 Python files were format clean; Ruff, strict docs, and all 748 documentation-selected architecture assertions passed. |
+| Hosted reproducible distribution and smoke | 0 | Two builds reproduced the feature-identical 272,867-byte wheel at `5b67653c5f4374ffc52f55eadc9d2e29fc72e8281969d6c891da3b56042475a8` and a record-updated 1,193,131-byte source archive at `ca246f1f23225cf43e5f81a5eda1b60629f6ff47dc389d4700e7a53b97606389`. Installed-wheel smoke, deterministic staging, and complete M67 release smoke passed. |
+| Review resolution and delayed audits | Resolved | Delayed review comment `3761750291` incorrectly claimed the sole integration commit lacked DCO. GitHub's PR commit endpoint returned only `565053e` with the exact authorized trailer, and local `git interpret-trailers --parse` returned the same trailer. Evidence reply `3765169173` was posted and thread `PRRT_kwDOTtqoGs6YYOGq` resolved. Two post-resolution exact-head audits found no later review, issue comment, review comment, or unresolved thread. |
+| Integration squash verification | 0 | PR #154 squash `5025877d31a2bc8a9a0a1b7bb2e106869f76066f` has tree `eb532eddbd368efaaa1a896efd930727cc5b3059`, exactly matching reviewed head `565053e8cf0f3961f8bfbc1a54df04a604240183`; its sole parent is feature squash `bc8a3d9a24bab5860e48af919dbeab4ca4c913f2`. GitHub reports a valid signature verified at `2026-08-12T09:28:58Z`, and the squash has an exact parsed DCO trailer. The integration branch is absent locally and remotely. |
+
+## M67 closeout local evidence - 2026-08-12, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Three-file closeout source gate | 0 | Exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` differ from verified integration squash `5025877`. All 747 architecture assertions passed with 1 local capability skip in 6.04 seconds; strict docs built in 1.45 seconds with only the known upstream Material notice; whitespace and full Git-object checking passed. Workflow, runtime, verifier, producer, dependency, package, tests, public docs, and roadmap are unchanged. Existing CI path policy excludes this closeout from hosted execution. |
+
 ## M66 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M66 starts from exact synchronized M65 closeout
