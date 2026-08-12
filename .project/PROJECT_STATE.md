@@ -67,6 +67,30 @@
   reproducibility, installed-wheel smoke, deterministic staging, and complete
   M68 release smoke. The pure 273,106-byte wheel remains unchanged; exact
   integration-commit sdist identity is delegated to hosted qualification.
+- Integration hosted qualification: exact head `cd65d13` passed run
+  `31587335592` in one 43-second Linux allocation. The desktop compatibility
+  umbrella skipped with zero steps. Hosted formatting, Ruff, strict docs, all
+  757 documentation-selected architecture assertions, two-build
+  reproducibility, isolated-wheel smoke, deterministic staging, and complete
+  M68 release smoke passed.
+- Integration hosted artifacts: two builds reproduced the feature-identical
+  273,092-byte wheel at
+  `85378f6485a06a8e1496e775fa8f71b122a899bdd0731ba3d67e1eda0f06db58`
+  and a record-updated 1,202,598-byte source archive at
+  `32d390922dbfc9a62eb19fdf0ea4f35f6817a2da7c676534d6849bafbee3cc6e`.
+- Integration review: two delayed exact-head audits found no comment, review,
+  or unresolved thread.
+- Integration squash: PR #157 head
+  `cd65d1345b2725eb3be4daeb899535eacb740dee`, tree
+  `83e765ba0fa92038aeefaaf2dcf9d2fb85eec052`, squash-integrated as
+  `69fe032bfa0af6513d46e7c7492ffa3a5720d163` with the exact same tree, sole
+  parent feature squash, valid GitHub signature, and exact DCO trailer. The
+  integration branch is absent remotely and locally.
+- Closeout state: the three project records capture verified feature and
+  integration evidence and are excluded from hosted CI by the existing path
+  policy. All 756 architecture assertions pass with 1 local capability skip;
+  strict docs, whitespace, full Git-object checking, and exact scope pass.
+  Closeout squash verification and final branch/output pruning remain pending.
 
 ## M67 exact sample-bundle inventory conformance - fully integrated
 

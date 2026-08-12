@@ -47,6 +47,21 @@ branch was created.
 | Exact four-file source gate | 0 | `uv lock --check` resolved the unchanged 46-package lock in 2 ms. All 311 Python files were format clean; Ruff and strict Pyright reported zero findings; all 758 selected architecture/release-artifact assertions passed with 1 capability skip in 7.49 seconds; strict docs built in 1.59 seconds with only the known upstream Material notice; whitespace and exact scope passed. No substantive surface changed from verified feature squash `5bd0196`. |
 | Reproducible distribution and smoke | 0 | Two builds reproduced the feature-identical pure 273,106-byte wheel at `685c3baaa66ed325c471b5deb5f3f44590eb1bbc2c177ebdd53bc39366119c22` and a 1,202,267-byte record-updated source archive at `850c09e90f17ee4de792f9f6f2d7ff48741a02300fa94b81cdf4535df151f2f8`. Installed-wheel smoke, deterministic ten-artifact staging, and complete M68 release smoke passed. This factual row changes the sdist afterward, so exact integration-commit artifact identity remains delegated to hosted qualification. |
 
+## M68 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #157 run `31587335592` | 0 | Exact four-file DCO head `cd65d1345b2725eb3be4daeb899535eacb740dee` passed in one 43-second Linux allocation; the desktop matrix umbrella skipped with zero steps. No compatibility interpreter, software graphics runtime, baseline/full-suite, profile, graphics, example, or desktop runner executed. |
+| Hosted documentation, distribution, and smoke | 0 | All 311 Python files were format clean; Ruff was clean; strict docs built in 1.52 seconds; all 757 documentation-selected architecture assertions passed in 9.07 seconds. Two builds reproduced the feature-identical 273,092-byte wheel at `85378f6485a06a8e1496e775fa8f71b122a899bdd0731ba3d67e1eda0f06db58` and a record-updated 1,202,598-byte source archive at `32d390922dbfc9a62eb19fdf0ea4f35f6817a2da7c676534d6849bafbee3cc6e`. Installed-wheel smoke, deterministic staging, and complete M68 release smoke passed. |
+| Delayed exact-head integration review audits | 0 | Two separated audits found no issue comment, review, or review thread. PR #157 remained ready, clean, mergeable, exact-head, exact-base, and fully checked. |
+| Integration squash verification | 0 | PR #157 squash `69fe032bfa0af6513d46e7c7492ffa3a5720d163` has tree `83e765ba0fa92038aeefaaf2dcf9d2fb85eec052`, exactly matching reviewed head `cd65d1345b2725eb3be4daeb899535eacb740dee`; its sole parent is exact feature squash `5bd0196128aeffcf21094d0a0c6d78b624aaf49b`. GitHub reports a valid signature verified at `2026-08-12T10:28:06Z` and an exact parsed DCO trailer. The remote and local integration branches are absent. |
+
+## M68 closeout local evidence - 2026-08-12, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | All 756 architecture assertions passed with 1 local capability skip in 5.65 seconds; strict docs built in 1.20 seconds with only the known upstream Material notice; whitespace, exact scope, and full Git-object checking passed. The closeout changes exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it changes no workflow, runtime, verifier, producer, dependency, package, test, public documentation, or roadmap surface and is excluded from hosted CI. Only `main` plus the intended closeout branch exist locally, and only `origin/main` exists remotely. |
+
 ## M67 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M67 starts from exact synchronized M66 closeout
