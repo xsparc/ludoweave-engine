@@ -1,9 +1,8 @@
 # Current Task
 
 - **Task:** M75 - compressed-patch sample-member preflight
-- **Status:** Feature implementation, complete local and exact-head hosted
-  qualification, two review audits, and verified squash integration are
-  complete. The four-file integration record is in progress.
+- **Status:** M75 feature and integration records are fully qualified and
+  squash-integrated. The exact three-record no-CI closeout is in progress.
 - **Started:** 2026-08-13
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -126,4 +125,23 @@
   and a 1,259,225-byte record-updated sdist at
   `5f5051d0e2831634eb2b2bb596258a2782fa83fd5063cac3854df4e296e1d2a7`;
   wheel, staging, and release smoke pass.
-- **Next gate:** Freeze and publish the exact four-file integration record.
+- **Hosted integration:** Exact DCO head
+  `26640c723b48a208301c86dacc5f53772bc745fe`, tree
+  `a8ea9e89a40adaf0125623b86face642c721533e`, passed run
+  `31635295952` in one 38-second Linux allocation; desktop skipped with zero
+  steps. The gate passed 816 selected architecture assertions, strict docs,
+  reproducible artifacts, wheel, staging, and release smokes. Hosted wheel was
+  274,089 bytes at
+  `af0ea15e0ac4851461a93d79b11b587d2d230fc91219c2da47acee5574901d4b`;
+  sdist was 1,259,477 bytes at
+  `bf99be5f80bf644173b309efb8c75950c5de718efaff8acdcea71e34361c3a1c`.
+- **Integration merge:** Two audits found no review activity. PR #178 squash
+  `57dc9af600a5e651bc051fb5a47b2902cb2e2403` has the exact reviewed tree,
+  sole feature-squash parent, exact DCO, and valid GitHub signature verified at
+  `2026-08-12T20:00:32Z`; the branch is deleted.
+- **Closeout qualification:** All 318 files are format clean; Ruff and strict
+  Pyright are clean; all 815 architecture assertions pass with 1 local
+  capability skip; strict docs, whitespace, and Git-object checking pass. The
+  diff is exactly the three neutral project records.
+- **Next gate:** Qualify and publish the exact no-CI three-record closeout,
+  prune M75 artifacts/branches, and return to synchronized `main`.
