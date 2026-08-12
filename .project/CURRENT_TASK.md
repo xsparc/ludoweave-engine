@@ -1,8 +1,9 @@
 # Current Task
 
 - **Task:** M68 - bounded sample-archive container admission
-- **Status:** Local feature candidate is implemented, review-corrected, and
-  fully validated. Exact-head hosted pull-request qualification is pending.
+- **Status:** Feature PR #156 is locally and hosted validated, twice audited,
+  squash-integrated, and verified. The exact four-file integration record is
+  being prepared for the documentation-qualified gate.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -57,12 +58,37 @@
   installed-wheel and complete release smoke passed again. This factual update
   changes the source archive afterward, so exact commit-tree artifact identity
   remains delegated to hosted qualification.
-- **Hosted gate:** Create one DCO-signed ready feature PR. The unchanged
-  substantive workflow should request exactly its Linux-first three runner
-  allocations; no workflow edit or additional allocation is authorized.
-- **Integration gate:** After exact-head hosted success and delayed review,
-  squash-integrate the feature. Then update only the current project records
-  and roadmap through the existing documentation-qualified one-Linux gate,
-  squash-integrate that record, and close with three project records that are
-  excluded from hosted CI. Delete every M68 branch and generated output after
-  verified integration.
+- **Hosted evidence:** Ready PR #156 exact DCO head
+  `0fbccca248e6a00a79631ca12c2afa6e7b9acdac`, tree
+  `7e03726ebea72d074e0404f6c8073f96e0e8cce5`, passed run `31585838550`
+  in exactly three Linux-first allocations. Linux passed in 7m34s; only then
+  macOS and Windows began and passed in 2m58s and 4m13s. Baseline and every
+  compatibility suite passed 2,301 tests with one compatibility skip; all
+  real-wgpu, profile, vertical-slice, reproducibility, installed-wheel, staging,
+  and complete release-smoke gates passed.
+- **Hosted artifacts:** Two exact-head builds reproduced a pure 273,092-byte
+  wheel at
+  `85378f6485a06a8e1496e775fa8f71b122a899bdd0731ba3d67e1eda0f06db58`
+  and a 1,200,886-byte source archive at
+  `d1ac76ec6d3e62be894e894a862fbde09fa0aca07b58a8277b2ea33f96fdc977`.
+- **Hosted review:** Two delayed exact-head audits found no comment, review, or
+  unresolved thread. PR #156 remained clean, mergeable, exact-head, and exact-
+  base before integration.
+- **Feature integration:** PR #156 squash
+  `5bd0196128aeffcf21094d0a0c6d78b624aaf49b` has the exact reviewed tree,
+  sole parent M67 closeout, valid GitHub signature verified at
+  `2026-08-12T10:19:22Z`, and exact DCO trailer. The feature branch is deleted
+  remotely and locally.
+- **Integration gate:** Change exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`;
+  request only the existing documentation-qualified Linux allocation and a
+  skipped zero-step desktop umbrella; then create a three-record closeout that
+  requests no hosted runner. Delete every remaining M68 branch and generated
+  output after verified integration.
+- **Integration local evidence:** The exact four-file record passes the
+  unchanged lock, formatting for 311 files, Ruff, strict Pyright, all 758
+  selected architecture/release-artifact assertions with 1 local capability
+  skip, strict docs, whitespace, full Git-object checking, two-build
+  reproducibility, installed-wheel smoke, ten-artifact staging, and complete
+  M68 release smoke. The pure 273,106-byte wheel remains feature-identical;
+  exact integration-commit sdist identity is delegated to the hosted gate.

@@ -30,6 +30,23 @@ branch was created.
 | Final record-inclusive source gate | 0 | The unchanged lock resolved 46 packages in 0.81 ms; all 311 Python files were format clean; Ruff and strict Pyright reported zero findings; all 758 selected architecture/release-artifact assertions passed with 1 capability skip in 8.78 seconds; strict docs built in 1.72 seconds with only the known upstream Material notice; whitespace, protected-surface comparison, and full Git-object checking passed. No diff exists in either workflow, runtime source, benchmarks, project metadata/lock, or the sample producer. |
 | Record-inclusive reproducible distribution and release gate | 0 | After removing only the three verified old M68 artifact directories, two fresh builds reproduced a pure 273,106-byte wheel at `685c3baaa66ed325c471b5deb5f3f44590eb1bbc2c177ebdd53bc39366119c22` and a 1,200,373-byte source archive at `5d1bcb8424c13145977d53484a164457911ddfeb7d0e6e972e27399708afeaeb`. Installed-wheel smoke, deterministic ten-artifact staging, and complete M68 release smoke passed. This factual row changes the sdist afterward; exact commit-tree artifact identity remains delegated to hosted qualification. |
 
+## M68 hosted feature evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #156 run `31585838550` | 0 | Exact DCO head `0fbccca248e6a00a79631ca12c2afa6e7b9acdac` passed in exactly three Linux-first allocations. Linux job `94079347124` passed in 7m34s before macOS `94081155631` and Windows `94081155687` began; they passed in 2m58s and 4m13s. |
+| Hosted supported-Python and static/docs gates | 0 | Linux CPython 3.12 passed 2,301 tests. Ubuntu 3.13/3.14 and macOS/Windows 3.14 each passed 2,301 tests with 1 expected skip. All 311 Python files were format clean; Ruff and strict Pyright were clean; strict docs built in 1.75 seconds. |
+| Hosted graphics, profiles, examples, distribution, and smoke | 0 | Every allocated OS passed 10 real-wgpu tests, its graphics profile, Clockwork Arena, and Agent World Builder; Linux also passed the base profile. Two exact-head builds reproduced a pure 273,092-byte wheel at `85378f6485a06a8e1496e775fa8f71b122a899bdd0731ba3d67e1eda0f06db58` and a 1,200,886-byte source archive at `d1ac76ec6d3e62be894e894a862fbde09fa0aca07b58a8277b2ea33f96fdc977`. Installed-wheel smoke, deterministic ten-artifact staging, and complete M68 release smoke passed. |
+| Delayed exact-head review audits | 0 | Two separated audits found no issue comment, review, or review thread. PR #156 remained ready, clean, mergeable, exact-head, exact-base, and fully checked. |
+| Feature squash verification | 0 | PR #156 squash `5bd0196128aeffcf21094d0a0c6d78b624aaf49b` has tree `7e03726ebea72d074e0404f6c8073f96e0e8cce5`, exactly matching reviewed head `0fbccca248e6a00a79631ca12c2afa6e7b9acdac`; its sole parent is exact M67 closeout `ea3de73f5ef1792df729c1f271b3d84a28db1028`. GitHub reports a valid signature verified at `2026-08-12T10:19:22Z` and an exact parsed DCO trailer. The remote and local feature branches are absent. |
+
+## M68 integration-record local evidence - 2026-08-12, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact four-file source gate | 0 | `uv lock --check` resolved the unchanged 46-package lock in 2 ms. All 311 Python files were format clean; Ruff and strict Pyright reported zero findings; all 758 selected architecture/release-artifact assertions passed with 1 capability skip in 7.49 seconds; strict docs built in 1.59 seconds with only the known upstream Material notice; whitespace and exact scope passed. No substantive surface changed from verified feature squash `5bd0196`. |
+| Reproducible distribution and smoke | 0 | Two builds reproduced the feature-identical pure 273,106-byte wheel at `685c3baaa66ed325c471b5deb5f3f44590eb1bbc2c177ebdd53bc39366119c22` and a 1,202,267-byte record-updated source archive at `850c09e90f17ee4de792f9f6f2d7ff48741a02300fa94b81cdf4535df151f2f8`. Installed-wheel smoke, deterministic ten-artifact staging, and complete M68 release smoke passed. This factual row changes the sdist afterward, so exact integration-commit artifact identity remains delegated to hosted qualification. |
+
 ## M67 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M67 starts from exact synchronized M66 closeout
