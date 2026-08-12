@@ -556,6 +556,20 @@ dependency, sample producer, runtime API, workflow, or release authority. It
 does not authenticate central-directory metadata or create a general archive
 sandbox, and pull-request evidence is not a real public release observation.
 
+M70/RFC-0053 binds extraction to the sample digest already accepted from
+`SHA256SUMS`. After path and descriptor checks, complete release smoke hashes
+and rewinds the same opened handle before ZIP parsing. It hashes and rewinds
+that handle again after all member reads and staged-completeness validation but
+before publication by final rename. A persistent mismatch has one content-
+silent category, and a second-check failure cleans the owned partial stage.
+Each hash reads at most M68's 16 MiB limit plus one rejection byte.
+
+This narrows the previous reopen gap but provides no immutable-input guarantee;
+change-and-restore behavior between checks is outside the claim. M70 is not a
+general archive sandbox and adds no workflow, dependency, sample producer,
+runtime API, or release authority. Pull-request evidence is not a real public
+release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

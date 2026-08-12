@@ -171,6 +171,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   password handling, or staging. No password or decryption path is added; this
   is not a general archive sandbox, adds no workflow or release authority, and
   is not a real public release observation.
+- M70 binds sample extraction to the sample digest already admitted from
+  `SHA256SUMS`. The same opened handle is hashed before ZIP parsing and again
+  before publication, with persistent mismatch failing content-silently and
+  partial owned staging cleaned. This creates no immutable-input guarantee,
+  is not a general archive sandbox, adds no workflow or sample producer
+  change, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

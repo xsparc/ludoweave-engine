@@ -98,6 +98,17 @@ not a real public release observation. M0 through M68 are complete, reviewed,
 hosted-validated, and integrated into `main`. M69 starts from exact verified
 M68 closeout `fec3df4d490d363a9ab538f6b99ec86859e7acdc`.
 
+M70 binds sample extraction to the digest already admitted from `SHA256SUMS`.
+The same opened handle is checked before ZIP parsing and again before
+publication. A persistent mismatch fails content-silently and the second-check
+path cleans owned staging. This supplies no immutable-input guarantee and is
+not a general archive sandbox. It adds no workflow, allocation, dependency,
+lock, version, sample producer, runtime source/API, release authority, tag,
+release, or publication. Pull-request fixtures are not a real public release
+observation. M0 through M69 are complete, reviewed, hosted-validated, and
+integrated into `main`. M70 starts from exact verified M69 closeout
+`55b409d40c32c9268ee62b8c2a14aa036bcc935f`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
@@ -124,8 +135,9 @@ consumer observation onto a fresh runner, and M47 widens only its verifier and
   constrains portable sample member paths, M66 stages complete sample roots
   before publication, M67 requires the exact expected inventory, and M68
   bounds the regular archive container before parsing. M69 rejects encrypted
-  sample-member indicators before reads or staging; none of these
-  milestones authorizes a real release.
+  sample-member indicators before reads or staging. M70 binds sample parsing
+  and publication to the staged-release checksum on the same opened handle;
+  none of these milestones authorizes a real release.
 
 M35 adds strict offline admission readiness for the design plan's final
 ordered longer-term metric: the number of independently authored third-party
