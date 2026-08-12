@@ -1782,6 +1782,22 @@ archive sandbox. It adds no workflow, dependency, sample producer, runtime API,
 release authority, or real public release observation. RFC-0054 defines the
 complete boundary.
 
+## M72 content-silent sample ZIP failure boundary
+
+M72 places one narrow wrapper around the private checksum-admitted extractor.
+Only the standard library's documented `BadZipFile` and `LargeZipFile`
+exceptions become the stable error `sample bundle ZIP data is invalid`.
+Archive-controlled filenames and parser detail remain available as
+programmatic exception context, while suppressed context keeps them out of the
+rendered exception. The inner extractor's `ExitStack` and staging contexts
+finish owned cleanup before the wrapper normalizes the failure.
+
+Verifier policy failures, filesystem failures, subprocess failures, and other
+unexpected exceptions retain their existing categories. M72 adds no general
+exception catch, content inspection, raw parser, workflow, dependency, sample
+producer, runtime API, release authority, or real public release observation;
+it is not a general archive sandbox. RFC-0055 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

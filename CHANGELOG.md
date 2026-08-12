@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M72/RFC-0055 content-silent sample ZIP failure normalization. Documented
+  `BadZipFile` and `LargeZipFile` failures now use one stable outer error with
+  suppressed rendered context and owned cleanup, without changing workflows,
+  dependencies, the sample producer, runtime APIs, or release authority.
 - Add M71/RFC-0054 bounded checksum-admitted sample snapshots. Complete
   release smoke copies at most 16 MiB into an owned spooled temporary file
   while hashing, then parses those exact admitted bytes without changing

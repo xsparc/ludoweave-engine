@@ -583,6 +583,18 @@ or general archive sandbox. M71 adds no workflow, dependency, sample producer,
 runtime API, or release authority, and pull-request evidence is not a real
 public release observation.
 
+M72/RFC-0055 adds a content-silent outer failure boundary to that private
+extractor. A documented `BadZipFile` or `LargeZipFile` from constructor,
+metadata, member-open, or member-read work becomes the stable error
+`sample bundle ZIP data is invalid` after owned cleanup. The original parser
+exception remains programmatic context, but suppressed context prevents
+archive-controlled details from appearing in normal rendered output.
+
+The catch is deliberately narrow: verifier policy, filesystem, subprocess,
+and unexpected failures keep their existing categories. M72 adds no workflow,
+dependency, sample producer, runtime API, or release authority, is not a
+general archive sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

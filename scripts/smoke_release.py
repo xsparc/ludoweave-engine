@@ -428,6 +428,26 @@ def _extract_bundle(
     version: str,
     expected_sha256: str | None = None,
 ) -> Path:
+    """Extract one admitted sample bundle behind a content-silent ZIP boundary."""
+
+    try:
+        return _extract_checksum_admitted_bundle(
+            bundle,
+            output,
+            version=version,
+            expected_sha256=expected_sha256,
+        )
+    except (zipfile.BadZipFile, zipfile.LargeZipFile):
+        raise RuntimeError("sample bundle ZIP data is invalid") from None
+
+
+def _extract_checksum_admitted_bundle(
+    bundle: Path,
+    output: Path,
+    *,
+    version: str,
+    expected_sha256: str | None = None,
+) -> Path:
     expected_root = f"ludoweave-samples-{version}"
     root = output / expected_root
     if not output.is_dir() or output.is_symlink() or output.is_junction():
