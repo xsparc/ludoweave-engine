@@ -61,6 +61,21 @@ and remotely before the neutral feature branch was created.
 | Reproducible distribution and smoke | 0 | Two builds reproduced the feature-identical pure 273,229-byte wheel at `bba4773ecedf1b2c749daa7e8d930da482ed040df8e7d4e25a68e4a8127d66de` and a 1,212,288-byte record-updated source archive at `6eaf97ad765abf4e28ca4107231cdb0861adcef05e2ab24b942bc56961922b13`. Installed-wheel smoke, deterministic ten-artifact staging, and complete M69 release smoke passed. This factual row changes the sdist afterward, so exact integration-commit artifact identity remains delegated to hosted qualification. |
 | Final record-frozen and scope gate | 0 | The unchanged lock resolved 46 packages in 0.78 ms; all 312 files were format clean; Ruff and strict Pyright reported zero findings; all 767 architecture/release assertions passed with 1 capability skip in 5.21 seconds; strict docs built in 1.19 seconds with only the known upstream notice; whitespace and full Git-object checking passed. The exact four-path diff changes no workflow, runtime, verifier, producer, dependency, package, test, or public documentation beyond the roadmap evidence row; all five protected hashes remain exact, and added-content scans found zero credential/private-key or explicit development-tool identity markers. Only `main` plus the intended neutral integration branch exist locally; only `origin/main` exists remotely. |
 
+## M69 hosted integration-record evidence - 2026-08-12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Ready PR #160 run `31607127000` | 0 | Exact four-file DCO head `7a19c9d4005992afbb4f3ee738f2d26f93515d65` passed in one 41-second Linux allocation, job `94148855154`. Desktop umbrella job `94149098753` skipped with zero steps. No compatibility interpreter, software-rendering runtime, baseline/full suite, profile, graphics, example, or desktop runner executed. |
+| Hosted documentation, distribution, and smoke | 0 | All 312 Python files were format clean; Ruff was clean; strict docs built in 1.41 seconds; all 766 documentation-selected architecture assertions passed in 8.98 seconds. Two builds reproduced the feature-identical 273,216-byte wheel at `805a0348c76a45a302a271c0386057eaa545594bf254818a5be2d6745f062d32` and a record-updated 1,212,886-byte source archive at `a262564238b30683cedc5ff7e07005318f2590c0804f9bacd96fd3f765ff8de9`. Installed-wheel smoke, deterministic staging, and complete M69 release smoke passed. |
+| Delayed exact-head integration review audits | 0 | Two separated audits found no issue comment, review, or review thread. PR #160 remained ready, clean, mergeable, exact-head, exact-base, and fully checked. |
+| Integration squash verification | 0 | PR #160 squash `9fcd61d1a3b93801b1bfd5a56392007fa15c6e03` has tree `c5ebdd4769118ed86fb7c50f557dcdd42be87597`, exactly matching reviewed record head `7a19c9d4005992afbb4f3ee738f2d26f93515d65`; its sole parent is exact feature squash `9d298f800964b4237f204ea4acc366d224bcf76f`. GitHub reports a valid signature verified at `2026-08-12T14:32:43Z` and an exact DCO trailer. The remote branch returns 404, and the exact-tree-equivalent local branch was deleted. |
+
+## M69 closeout local evidence - 2026-08-13, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | All 765 architecture assertions passed with 1 local capability skip in 4.83 seconds; strict docs built in 1.23 seconds with only the known upstream Material notice; whitespace and full Git-object checking passed. The closeout changes exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it changes no workflow, runtime, verifier, producer, dependency, package, test, public documentation, or roadmap surface and is excluded from hosted CI. Added-content scans found zero credential/private-key or explicit development-tool identity markers. Only `main` plus the intended neutral closeout branch exist locally; only `origin/main` exists remotely. |
+
 ## M68 local development evidence - 2026-08-12, Windows, CPython 3.12
 
 M68 starts from exact synchronized M67 closeout
