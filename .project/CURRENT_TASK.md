@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M69 - encrypted sample-member preflight rejection
-- **Status:** Fully validated and reviewed local candidate; ready for DCO-
-  signed feature publication.
+- **Status:** Initial feature head passed hosted qualification; one hosted P2
+  ordering finding is corrected and locally revalidated for head update.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -51,21 +51,32 @@
   release smoke pass. The wheel has 94 entries, the sdist 504 including one
   M69 test/RFC, and the 50-member sample has no encryption indicator; no
   inspected archive contains native/WASM content.
-- **Review:** Findings-first review found no implementation defect. It found
-  that fail-before-inventory was proven only by source ordering. The runtime
-  regression now makes inventory evaluation forbidden and checks that no
-  expected member identity appears in the error. Review-affected static,
-  behavior, architecture, docs, reproducible-build, wheel, staging, and
-  complete release-smoke gates all pass.
+- **Review:** The pre-publication findings-first review strengthened fail-
+  before-inventory proof. Hosted review then correctly found that encryption
+  validation shared the per-member metadata loop, so an unsafe earlier member
+  could mask an encrypted later member. A dedicated all-member flag pass now
+  precedes every per-member metadata check, and an order-adversarial regression
+  requires the stable encrypted-member category.
 - **Reviewed artifacts:** Two record-inclusive builds reproduce the same pure
   273,229-byte wheel and a 1,207,763-byte source archive at
   `54cc3fd021dfc120cf51fc7d3db31a3a3054b345c7a09547d7e6982298a9a671`;
   installed-wheel and release smoke pass. This factual update changes the
   source archive afterward, so exact commit-tree identity remains delegated to
   hosted qualification.
-- **Final local gate:** The unchanged lock, all 312 formatted files, Ruff,
-  strict Pyright, 766 architecture/release assertions with 1 capability skip,
-  strict docs, whitespace, full Git-object checking, protected-surface hashes,
-  exact 14-path scope, and added-content credential/identity hygiene all pass.
-- **Next gate:** Publish a DCO-signed ready feature PR and qualify its exact
-  head through the existing three-allocation Linux-first hosted gate.
+- **Initial hosted gate:** PR #159 exact initial head `c4b7729` passed run
+  `31590079286` in three Linux-first allocations. Linux passed in 7m10s,
+  macOS in 2m31s, and Windows in 4m07s. All supported-Python, real-wgpu,
+  profile, vertical-slice, reproducibility, wheel, staging, and release-smoke
+  gates passed. This head is superseded by the review correction and is not a
+  merge candidate.
+- **Corrected local gate:** The unchanged lock, all 312 formatted files, Ruff,
+  strict Pyright, 76 focused M64-M69 assertions with 1 capability skip, 2,305
+  complete CPython 3.12 tests with 15 skips, 767 architecture/release
+  assertions with 1 skip, strict docs, whitespace, two-build reproducibility,
+  installed-wheel smoke, deterministic staging, and complete release smoke
+  pass. The corrected build retains the 273,229-byte wheel and produces a
+  1,208,657-byte source archive at
+  `85d8cc5f2d9cb9ecedc763176abb428726c8eab76e4c59e3b885e03b6df3ff6f`.
+- **Next gate:** Commit and push the DCO-signed correction, qualify the exact
+  updated head through the existing three-allocation Linux-first hosted gate,
+  then answer and resolve the review thread only with exact passing evidence.

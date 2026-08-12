@@ -68,10 +68,12 @@ def _bundle(path: Path, names: frozenset[str]) -> None:
             archive.writestr(f"{_PREFIX}/{name}", name.encode())
 
 
-def _set_first_member_flags(path: Path, flag_bits: int) -> None:
+def _set_member_flags(path: Path, *, member_index: int, flag_bits: int) -> None:
     data = bytearray(path.read_bytes())
     for signature, flag_offset in ((b"PK\x03\x04", 6), (b"PK\x01\x02", 8)):
-        header = data.index(signature)
+        header = -1
+        for _ in range(member_index + 1):
+            header = data.index(signature, header + 1)
         offset = header + flag_offset
         current = int.from_bytes(data[offset : offset + 2], "little")
         data[offset : offset + 2] = (current | flag_bits).to_bytes(2, "little")
@@ -107,7 +109,7 @@ def test_encryption_indicator_fails_content_silently_before_read_or_staging(
     module = _smoke()
     bundle = tmp_path / "encrypted.zip"
     _bundle(bundle, module._EXPECTED_SAMPLE_MEMBERS)
-    _set_first_member_flags(bundle, flag_bits)
+    _set_member_flags(bundle, member_index=0, flag_bits=flag_bits)
     output = _empty_output(tmp_path)
 
     def forbidden_open(*args: object, **kwargs: object) -> NoReturn:
@@ -136,6 +138,26 @@ def test_encryption_indicator_fails_content_silently_before_read_or_staging(
     assert list(output.iterdir()) == []
 
 
+def test_later_encryption_indicator_preempts_earlier_member_metadata_error(
+    tmp_path: Path,
+) -> None:
+    module = _smoke()
+    bundle = tmp_path / "ordered-errors.zip"
+    with zipfile.ZipFile(bundle, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("/unsafe-first.txt", b"unsafe")
+        archive.writestr(f"{_PREFIX}/encrypted-second.txt", b"encrypted")
+    _set_member_flags(bundle, member_index=1, flag_bits=0x0001)
+    output = _empty_output(tmp_path)
+
+    with pytest.raises(
+        RuntimeError,
+        match=r"^sample bundle contains an encrypted member$",
+    ):
+        module._extract_bundle(bundle, output, version=_VERSION)
+
+    assert list(output.iterdir()) == []
+
+
 def test_current_producer_uses_no_encryption_indicators(tmp_path: Path) -> None:
     module = _smoke()
     bundle = tmp_path / "samples.zip"
@@ -154,11 +176,12 @@ def test_m69_source_preflights_encryption_before_inventory_staging_or_read() -> 
     extraction_source = source[source.index("def _extract_bundle") :]
 
     encryption = extraction_source.index("_validate_sample_member_flags(flag_bits=info.flag_bits)")
+    metadata = extraction_source.index("total_bytes = 0")
     inventory = extraction_source.index("_validate_sample_inventory(observed_members)")
     staging = extraction_source.index("TemporaryDirectory(")
     member_read = extraction_source.index("archive.open(info)")
 
-    assert encryption < inventory < staging < member_read
+    assert encryption < metadata < inventory < staging < member_read
 
 
 def test_m69_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:

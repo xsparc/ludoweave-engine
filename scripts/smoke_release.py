@@ -439,13 +439,15 @@ def _extract_bundle(bundle: Path, output: Path, *, version: str) -> Path:
         infos = tuple(archive.infolist())
         if len(infos) > _MAX_SAMPLE_MEMBERS:
             raise RuntimeError("sample bundle has too many members")
+        for info in infos:
+            _validate_sample_member_flags(flag_bits=info.flag_bits)
+
         total_bytes = 0
         member_parts: list[tuple[str, ...]] = []
         member_keys: set[tuple[str, ...]] = set()
         observed_members: set[str] = set()
         directory_spellings: dict[tuple[str, ...], tuple[str, ...]] = {}
         for info in infos:
-            _validate_sample_member_flags(flag_bits=info.flag_bits)
             path = PurePosixPath(info.filename)
             if (
                 path.is_absolute()

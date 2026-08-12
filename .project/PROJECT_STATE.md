@@ -1,6 +1,6 @@
 # Project State
 
-## M69 encrypted sample-member preflight rejection - validated local candidate
+## M69 encrypted sample-member preflight rejection - review correction ready
 
 - Base: exact clean synchronized M68 closeout
   `fec3df4d490d363a9ab538f6b99ec86859e7acdc`, tree
@@ -36,13 +36,9 @@
   and a 1,206,202-byte source archive at
   `22420057c1c8d7c6283666501a05f596461a3505c2ac4425bee07463caeaa3bd`;
   wheel/release smoke pass.
-- Review: no implementation defect was identified. The runtime test originally
-  proved fail-before-read/staging while source ordering alone covered exact-
-  inventory evaluation. The strengthened regression now forbids inventory
-  evaluation and checks every expected identity is absent from the error.
-  Review-affected whole-tree static checks, M64-M69 behavior, architecture/
-  release tests, strict docs, reproducible builds, installed-wheel smoke,
-  staging, and complete release smoke pass.
+- Pre-publication review: no implementation defect was identified. The runtime
+  regression was strengthened to forbid exact-inventory evaluation and to
+  require every expected member identity to remain absent from the error.
 - Reviewed artifacts: two record-inclusive builds reproduce the feature-
   identical pure 273,229-byte wheel and a 1,207,763-byte source archive at
   `54cc3fd021dfc120cf51fc7d3db31a3a3054b345c7a09547d7e6982298a9a671`.
@@ -53,6 +49,30 @@
   checking, all protected hashes, exact 14-path scope, and added-content
   credential/identity hygiene pass. The candidate is ready for hosted feature
   qualification.
+- Initial hosted qualification: PR #159 head `c4b7729` passed run
+  `31590079286` in three Linux-first allocations: Linux 7m10s, macOS 2m31s,
+  and Windows 4m07s. Linux baseline and every compatibility suite passed 2,309
+  tests, with one expected compatibility skip. Every operating system passed
+  10 real-wgpu tests, its graphics profile, Clockwork Arena, and Agent World
+  Builder; Linux also passed the base profile. Reproducibility, wheel smoke,
+  ten-artifact staging, and release smoke passed.
+- Hosted review correction: the sole P2 thread correctly identified that
+  encryption validation shared the per-member metadata loop. An unsafe member
+  earlier in archive order could therefore mask a later encrypted member. The
+  verifier now completes a dedicated all-member encryption-flag pass before
+  any path or other member metadata validation; an order-adversarial regression
+  protects that precedence.
+- Corrected local qualification: all 312 Python files are format clean; Ruff
+  and strict Pyright are clean; M64-M69 pass 76 assertions with 1 capability
+  skip; the complete CPython 3.12 suite passes 2,305 tests with 15 skips; all
+  767 architecture/release assertions pass with 1 skip; strict docs and
+  whitespace pass. Two builds reproduce the unchanged pure 273,229-byte wheel
+  at `bba4773ecedf1b2c749daa7e8d930da482ed040df8e7d4e25a68e4a8127d66de`
+  and a 1,208,657-byte source archive at
+  `85d8cc5f2d9cb9ecedc763176abb428726c8eab76e4c59e3b885e03b6df3ff6f`;
+  installed-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Exact corrected-head hosted requalification remains
+  required before resolving the finding or merging.
 
 ## M68 bounded sample-archive container admission - feature integrated
 
