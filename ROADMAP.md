@@ -81,6 +81,7 @@ issues become the discussion and assignment record once a card is opened.
 | Done | M70 sample-archive checksum binding | PR #162 corrected unbounded growth during review, passed exact three-allocation hosted qualification, and squash-integrated bounded same-opened-handle digest checks before ZIP parsing and publication without changing workflow, producer, runtime, or release authority |
 | Done | M71 checksum-admitted sample snapshot | PR #165 passed exact three-allocation hosted qualification and squash-integrated a bounded owned spooled snapshot as the exact checksum-admitted ZIP parser input without changing workflow, producer, runtime, dependency, or release authority |
 | Done | M72 content-silent sample ZIP failures | PR #168 passed exact three-allocation hosted qualification and squash-integrated stable content-silent normalization for documented ZIP parser failures after owned cleanup without changing workflow, producer, runtime, dependency, or release authority |
+| Done | M73 content-silent sample ZIP text failures | PR #171 passed exact three-allocation hosted qualification and squash-integrated stable content-silent normalization for malformed UTF-8 archive names after owned cleanup without changing workflow, producer, runtime, dependency, or release authority |
 
 M6's implementation head passed hosted Windows, macOS, and Linux CI. Creating
 or publishing the `v0.1.0a1` tag remains a separate maintainer release action.
