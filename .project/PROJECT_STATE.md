@@ -1,6 +1,6 @@
 # Project State
 
-## M76 enhanced-deflate sample-member preflight - feature integrated
+## M76 enhanced-deflate sample-member preflight - complete
 
 - Base: exact clean synchronized M75 closeout
   `ddf262dff7a8c93defad5a205adbaec460563439`, tree
@@ -91,8 +91,32 @@
   and 1,265,304-byte sdist
   `1d55265954454f788d2a48adb6d5d7c8077272820f85b6185a7b5a4bbc094f0e`;
   isolated-wheel, deterministic staging, and complete release smokes pass.
-- Remaining: bounded integration-record and closeout PRs, branch/artifact
-  cleanup, synchronized-main audit, and next-milestone selection.
+- Hosted integration record: PR #181 exact head
+  `3ea7f503c9f8ce4e315bf6e119f23242c0e00c22` passed run `31640417965`.
+  Exactly four paths classified as documentation; one 42-second Linux job
+  passed and the desktop umbrella skipped with zero steps. All 319 files were
+  format clean; Ruff and strict docs passed; all 826 hosted architecture
+  assertions passed; reproducible distributions, installed-wheel smoke,
+  deterministic staging, and complete release smoke passed.
+- Hosted integration artifacts: the pure 274,260-byte wheel is
+  `74d28148c78151f56d366db8b64212e91ae409f722931dd0a1bc6a67150482ba`;
+  the 1,266,053-byte sdist is
+  `5a7352408529da88ffe29d8f0e1bec752c5e8a2359fe0b0088c5c4482b7af31d`.
+- Integration review/squash: two separated audits found no issue comment,
+  review, inline comment, or unresolved thread. PR #181 remained clean,
+  mergeable, and exact. Its GitHub-verified DCO squash
+  `224b595f185fdd16fb5ab733e60f78a61ab19f5a` has exact reviewed tree
+  `f626382619a628a961bbf34dbb146c1bdea6099f` and sole parent M76 feature
+  squash `425ed21ab99d91bf4661b304bea00137117a5d27`.
+- Closeout local gate: exactly three neutral project records change. The
+  unchanged lock resolves 46 packages; all 319 files are format clean; Ruff and
+  strict Pyright report zero findings; all 825 architecture assertions pass
+  with 1 local capability skip; strict docs, whitespace, and full Git-object
+  checking pass.
+- Remaining closeout mechanics: publish the exact three-record candidate,
+  verify no workflow allocation, audit and squash it, remove milestone
+  branches/generated artifacts, confirm clean synchronized `main`, and select
+  the next bounded milestone.
 - Post-record correction: M59 caught three project-record references that
   literally named a retired control directory. They were neutralized, after
   which all 825 architecture assertions pass with 1 capability skip; static,
