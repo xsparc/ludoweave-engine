@@ -1,6 +1,6 @@
 # Project State
 
-## M69 encrypted sample-member preflight rejection - review correction ready
+## M69 encrypted sample-member preflight rejection - feature integrated
 
 - Base: exact clean synchronized M68 closeout
   `fec3df4d490d363a9ab538f6b99ec86859e7acdc`, tree
@@ -71,8 +71,42 @@
   and a 1,208,657-byte source archive at
   `85d8cc5f2d9cb9ecedc763176abb428726c8eab76e4c59e3b885e03b6df3ff6f`;
   installed-wheel smoke, deterministic ten-artifact staging, and complete
-  release smoke pass. Exact corrected-head hosted requalification remains
-  required before resolving the finding or merging.
+  release smoke pass.
+- Corrected hosted qualification: exact head `cea31f5`, tree `9652eded`, passed
+  run `31591830264` in exactly three Linux-first allocations. Linux passed in
+  7m11s, then macOS in 2m02s and Windows in 3m59s. Linux baseline and every
+  hosted compatibility suite passed 2,310 tests with one expected compatibility
+  skip. Each OS passed 10 real-wgpu tests, its graphics profile, Clockwork
+  Arena, and Agent World Builder; Linux also passed the base profile.
+- Hosted artifacts: two exact-head builds reproduced a pure 273,216-byte wheel
+  at `805a0348c76a45a302a271c0386057eaa545594bf254818a5be2d6745f062d32`
+  and a 1,210,777-byte source archive at
+  `9783a01b07a22423e71414b6edfa64ea922ed3bc04df31f5018244206cd74dfc`;
+  installed-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke passed.
+- Hosted review: the sole P2 was answered with exact correction evidence and
+  resolved after the corrected head passed. Two separated delayed audits found
+  no issue comment, new actionable review, or unresolved thread.
+- Feature integration: PR #159 corrected head
+  `cea31f5e6b52ff8c6ba0858425266723924726a3`, tree
+  `9652eded10bb48251bd67393f93cd90ca307d1d8`, squash-integrated as
+  `9d298f800964b4237f204ea4acc366d224bcf76f` with the exact same tree, sole
+  parent M68 closeout `fec3df4d490d363a9ab538f6b99ec86859e7acdc`,
+  valid GitHub signature verified at `2026-08-12T14:23:14Z`, and exact DCO.
+  The feature branch is absent remotely and locally. The current four-file
+  integration record changes no substantive M69 surface.
+- Integration local qualification: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`
+  pass the unchanged lock, whole-tree formatting/Ruff/strict-Pyright, all 767
+  architecture/release assertions with 1 capability skip, strict docs,
+  whitespace, full Git-object checking, two-build reproducibility,
+  installed-wheel smoke, deterministic staging, and complete release smoke.
+  The feature-identical pure wheel remains 273,229 bytes at
+  `bba4773ecedf1b2c749daa7e8d930da482ed040df8e7d4e25a68e4a8127d66de`;
+  the record-updated source archive is 1,212,288 bytes at
+  `6eaf97ad765abf4e28ca4107231cdb0861adcef05e2ab24b942bc56961922b13`.
+  Recording this fact changes the sdist, so exact integration-commit artifact
+  identity remains delegated to the quota-bounded hosted documentation gate.
 
 ## M68 bounded sample-archive container admission - feature integrated
 

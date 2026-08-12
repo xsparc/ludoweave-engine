@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M69 - encrypted sample-member preflight rejection
-- **Status:** Initial feature head passed hosted qualification; one hosted P2
-  ordering finding is corrected and locally revalidated for head update.
+- **Status:** Corrected feature PR #159 is fully validated, twice audited,
+  squash-integrated, and branch-pruned; integration evidence is in progress.
 - **Started:** 2026-08-12
 - **Authority:** The standing maintainer instruction authorizes subsequent
   fully validated milestone pull requests while requiring only necessary,
@@ -77,6 +77,44 @@
   pass. The corrected build retains the 273,229-byte wheel and produces a
   1,208,657-byte source archive at
   `85d8cc5f2d9cb9ecedc763176abb428726c8eab76e4c59e3b885e03b6df3ff6f`.
-- **Next gate:** Commit and push the DCO-signed correction, qualify the exact
-  updated head through the existing three-allocation Linux-first hosted gate,
-  then answer and resolve the review thread only with exact passing evidence.
+- **Corrected hosted gate:** Exact DCO head
+  `cea31f5e6b52ff8c6ba0858425266723924726a3`, tree
+  `9652eded10bb48251bd67393f93cd90ca307d1d8`, passed run
+  `31591830264` in exactly three Linux-first allocations. Linux job
+  `94098335992` passed in 7m11s; only then did macOS `94100037726` and
+  Windows `94100037646` begin, passing in 2m02s and 3m59s.
+- **Hosted suites:** All 312 files were format clean; Ruff, strict Pyright,
+  and strict docs passed. Linux CPython 3.12 and every hosted 3.13/3.14
+  compatibility suite passed 2,310 tests, with one expected compatibility
+  skip. Every operating system passed 10 real-wgpu tests, its graphics
+  profile, Clockwork Arena, and Agent World Builder; Linux also passed the
+  base profile.
+- **Hosted artifacts:** Two exact-head builds reproduced a pure 273,216-byte
+  wheel at
+  `805a0348c76a45a302a271c0386057eaa545594bf254818a5be2d6745f062d32`
+  and a 1,210,777-byte source archive at
+  `9783a01b07a22423e71414b6edfa64ea922ed3bc04df31f5018244206cd74dfc`.
+  Installed-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke passed.
+- **Hosted review:** The P2 was answered with exact local and hosted evidence
+  and resolved. Two later separated audits found no issue comment, new
+  actionable review, or unresolved thread; the corrected PR remained ready,
+  clean, exact-head, exact-base, and fully checked.
+- **Feature integration:** PR #159 squash
+  `9d298f800964b4237f204ea4acc366d224bcf76f` has tree
+  `9652eded10bb48251bd67393f93cd90ca307d1d8`, exactly matching the reviewed
+  corrected head; its sole parent is M68 closeout `fec3df4`, GitHub reports a
+  valid signature verified at `2026-08-12T14:23:14Z`, and the DCO trailer is
+  exact. The remote and exact-tree-equivalent local feature branches are gone.
+- **Integration local gate:** The exact four-file record passes the unchanged
+  46-package lock, formatting for 312 files, Ruff, strict Pyright, 767
+  architecture/release assertions with 1 capability skip, strict docs,
+  whitespace, full Git-object checking, two-build reproducibility,
+  installed-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke. The pure 273,229-byte wheel remains at
+  `bba4773ecedf1b2c749daa7e8d930da482ed040df8e7d4e25a68e4a8127d66de`;
+  the record-updated source archive is 1,212,288 bytes at
+  `6eaf97ad765abf4e28ca4107231cdb0861adcef05e2ab24b942bc56961922b13`.
+- **Next gate:** DCO-commit and publish the exact four-file integration record
+  through the documentation-qualified single-Linux gate, then produce the
+  no-run three-record closeout.
