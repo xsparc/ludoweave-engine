@@ -1,6 +1,6 @@
 # Project State
 
-## M72 content-silent sample ZIP failures - in progress
+## M72 content-silent sample ZIP failures - complete
 
 - Base: exact clean synchronized M71 closeout
   `de510b5cb44a011264a4b28f6fbbf0b59e0339e8`, tree
@@ -111,6 +111,32 @@
   are format clean; Ruff and strict Pyright are clean; all 789 architecture
   assertions pass with 1 local capability skip; strict docs, whitespace, and
   exact four-file scope pass.
+- Integration hosted qualification: exact DCO head
+  `f4131213e2221e7316414448331decc09a6a2900`, tree
+  `d5533287cdc618391afb15d5ebeb73b2c109becb`, passed run `31621804212`
+  in one 44-second Linux allocation; the desktop umbrella skipped with zero
+  steps. All 315 files were format clean; Ruff and strict docs passed; 790
+  selected architecture assertions passed in 9.75 seconds; reproducible
+  artifacts, wheel smoke, staging, and complete release smoke passed.
+- Integration hosted artifacts: the feature-identical pure wheel is 273,690
+  bytes at `4deb9529de9a328e2d9c6f422527c21b6faf47d1c7f726865a10dffb6a26e4a9`;
+  the exact integration-head sdist is 1,238,037 bytes at
+  `b04518bab12b29d148eab9d6a76178c99320300472adfad38cdbd9cdd0c98b89`.
+- Integration review: two separated exact-head audits found no issue comment,
+  review, inline comment, or review thread.
+- Integration squash: PR #169 head `f413121`, tree `d553328`, squash-integrated
+  as `aaa2d762bc55681a5cada448ae6ec148413370de` with the exact same tree,
+  sole parent feature squash `65a1e90901964f40f3ef9ace63d7700f0fccd796`,
+  valid GitHub signature verified at `2026-08-12T17:18:48Z`, and exact DCO.
+  The integration branch is absent remotely and locally. The current exact
+  three-record closeout changes no substantive or public project surface and
+  is excluded from hosted CI.
+- Closeout local qualification: exactly the three `.project` records pass all
+  789 architecture assertions with 1 local capability skip, strict docs,
+  whitespace, full Git-object checking, exact scope, and credential/metadata-
+  identity hygiene. No workflow, runtime, verifier, producer, dependency,
+  package, test, public documentation, or roadmap surface changes. The
+  closeout is ready for a no-run ready PR.
 
 ## M71 checksum-admitted sample snapshot - complete
 
