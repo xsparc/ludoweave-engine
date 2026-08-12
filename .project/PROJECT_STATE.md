@@ -63,6 +63,40 @@
   assertions pass with 1 local capability skip; strict docs and whitespace
   pass. The candidate is ready for exact-scope/history review and DCO
   publication.
+- Hosted qualification: exact DCO head
+  `fd124202e95288f305fd57a74c918550c8104804`, tree
+  `e144b20a8ec372defd7766c9d81dd943342f6adf`, passed run `31616197801`
+  in exactly three Linux-first allocations. Linux passed in 7m21s, macOS in
+  3m10s, and Windows in 4m12s.
+- Hosted suites: Linux CPython 3.12 and every hosted 3.13/3.14 suite passed
+  2,325 tests with 1 expected compatibility skip where applicable. Each OS
+  passed 10 real-wgpu tests, its graphics profile, Clockwork Arena, and Agent
+  World Builder; Linux also passed formatting, Ruff, strict Pyright/docs, the
+  base profile, reproducible builds, wheel smoke, staging, and release smoke.
+- Hosted artifacts: two exact-head builds reproduced a pure 273,509-byte wheel
+  at `06c2501eb5fcc999ff2d59716bd47bc5ecafb0a25473d485d314327a57867e82`
+  and a 1,227,996-byte sdist at
+  `50dc7061ace2bbf1a4947246062aa355594cd95fbff44c250fe10ff8e15be678`.
+- Hosted review: two separated audits found no issue comment, review, inline
+  comment, or review thread; the PR stayed clean, mergeable, and on the exact
+  qualified head.
+- Feature integration: PR #165 squash
+  `a408198b2a3ce9e59d50372095dde2afb6ac9fe5` has the exact reviewed tree,
+  sole parent M70 closeout `f62631e2541f8f6a34b0ed84f489c2d7f9503747`,
+  valid GitHub signature verified at `2026-08-12T16:23:48Z`, and exact DCO.
+  The feature branch is absent remotely and locally. The current four-file
+  integration record changes no substantive M71 surface.
+- Integration local qualification: the exact four-file record passes the
+  unchanged lock, whole-tree formatting/Ruff/strict-Pyright, all 780
+  architecture assertions with 1 capability skip, strict docs, whitespace,
+  full Git-object checking, two-build reproducibility, installed-wheel smoke,
+  deterministic staging, and complete release smoke. The feature-identical
+  pure wheel is 273,524 bytes at
+  `791f2c909cf9b89381443f0b89d6baa79ed56f7a0bd96fa7de4d09521f597671`;
+  the record-updated sdist is 1,229,599 bytes at
+  `88e50fabed0299caa603166043967123997b8ecb686d10c3953fd2fc3cca24d7`.
+  Exact integration-commit artifact identity remains delegated to the bounded
+  hosted documentation gate because recording this result changes the sdist.
 
 ## M70 sample-archive checksum binding - feature integrated
 
