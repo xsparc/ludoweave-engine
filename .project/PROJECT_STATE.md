@@ -1,6 +1,82 @@
 # Project State
 
-## M77 NUL-suffixed sample-member name preflight - closeout active
+## M78 data-descriptor sample-member preflight - implementation active
+
+- Base: exact clean synchronized M77 closeout
+  `4bca618578f29629a7270ab5d9d308fd34363a06`, tree
+  `a47d36363bdc48a91ef55feae8e8f3b53077907a`.
+- Gap: PKWARE assigns ZIP general-purpose bit 3 to the deferred-size data-
+  descriptor representation. CPython exposes and accepts the flag, while the
+  fixed LudoWeave sample producer does not need or emit that representation.
+- Runtime evidence: installed CPython 3.12.13, 3.13.13, and 3.14.5 each
+  produced and read a genuine bit-3 descriptor-backed member from an
+  unseekable output stream; the equivalent seekable producer shape emitted
+  bit 3 clear.
+- Decision: RFC-0061 adds exact bit-3 rejection in a separate all-member pass
+  after all established M69/M75/M76 checks and before M77 names, metadata,
+  inventory, staging, or reads. The stable error renders no archive-controlled
+  content.
+- Boundary: no raw descriptor parser, broad flag allowlist, local-header
+  comparison, decoder, repair, scanner, workflow, dependency, sample-producer,
+  runtime-API, or release-authority change; this is not a general archive
+  sandbox or a real public release observation.
+- Regression baseline: the format/Ruff/Pyright-clean 16-case M78 regression
+  passed 9 compatibility, precedence, producer, and protected-surface guards
+  while 7 policy, ordering, cleanup, helper/source, and documentation contracts
+  failed in 0.37 seconds against unchanged M77.
+- Runtime checkpoint: one exact private constant/helper and one separate all-
+  member pass made 15 cases pass; only the deliberately absent RFC/public-doc
+  contract failed in 0.30 seconds.
+- Focused gate: after RFC-0061 and aligned public docs, both affected Python
+  files are format/Ruff/Pyright clean, all 16 M78 assertions pass in 0.23
+  seconds, strict docs build in 1.20 seconds with only the known upstream
+  notice, and whitespace passes.
+- Complete suites: the unchanged 46-package lock and restored 45-package
+  graphics environment resolve; all 321 files are format clean; Ruff and
+  strict Pyright report zero findings. The M64-M78 lineage passes 167
+  assertions with 1 capability skip; all 856 architecture assertions pass
+  with 1 skip. CPython 3.12, 3.13, and 3.14 each pass 2,386 tests with
+  15/16/16 capability skips.
+- Graphics/diagnostics: all 10 real-wgpu tests, both one-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic
+  validators pass. M1 observes 1 of 2 targets, M2 has no targets, M3 meets 0
+  of 2 current targets, and M4 observes its baseline target.
+- Reproducible release gate: two builds reproduce a pure 274,573-byte wheel at
+  `dcf1cce4641069365c6e572f5189aee237ba2b7ff7f9e3fde17cf89ecdbbab68`
+  and 1,280,223-byte sdist at
+  `5c9e860c7790f60af40f5155b2b2626149e688b9cd5ceed53caf65997bff7d18`;
+  isolated-wheel, deterministic ten-artifact staging, and complete release
+  smoke pass. The unchanged 111,168-byte sample remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Findings-first review removed a raw descriptor-signature absence assertion
+  from the producer guard because ordinary compressed payload bytes can match
+  that signature. Canonical `ZipInfo.flag_bits` evidence remains exact. The
+  corrected 16 focused and 856 architecture assertions, affected static gate,
+  strict docs, and whitespace pass.
+- Final audit: exactly 16 intended paths change. Protected CI, release
+  workflow, sample producer, package metadata, and lock hashes are unchanged;
+  no `src/ludoweave` file changes. Explicit development-tool identity scans
+  return zero matches. The credential scan finds only a historical literal
+  negative-test URI, not secret material. The 94-entry wheel and 522-entry
+  sdist contain no native, WASM, bytecode, or retired control metadata.
+- History/remote: feature `HEAD`, local `main`, `origin/main`, and merge base
+  are exact M77 closeout `4bca618578f29629a7270ab5d9d308fd34363a06`
+  with symmetric difference `0 0`. Only `origin/main` exists remotely and
+  GitHub reports no open PR, tag, or release.
+- Record-inclusive gate: the unchanged lock resolves 46 packages; all 321
+  files are format clean; Ruff and strict Pyright report zero findings; all
+  856 architecture assertions pass with 1 capability skip; strict docs and
+  whitespace pass. Two builds reproduce the pure 274,573-byte wheel
+  `dcf1cce4641069365c6e572f5189aee237ba2b7ff7f9e3fde17cf89ecdbbab68`
+  and 1,281,118-byte sdist
+  `2bbdb0167965d332b2d0f1e7b33065cc63915b92fdfdbd2fbd3a712cf30b015f`;
+  isolated-wheel, staging, and complete release smokes pass.
+- Evidence-inclusive post-record gate: the unchanged lock, all 321 formatted
+  files, Ruff, strict Pyright, all 856 architecture assertions with 1
+  capability skip, strict docs, whitespace, and exact 16-path scope pass.
+- Remaining: publish and exact-head qualify the neutral ready PR.
+
+## M77 NUL-suffixed sample-member name preflight - integrated and closed
 
 - Base: exact clean synchronized M76 closeout
   `701637f99447f4d64c84047e64ec5edfa0c6889f`, tree

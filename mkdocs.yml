@@ -101,6 +101,7 @@ nav:
       - RFC-0058 - Reject compressed-patch sample members: rfcs/0058-reject-compressed-patch-sample-members.md
       - RFC-0059 - Reject enhanced-deflate sample members: rfcs/0059-reject-enhanced-deflate-sample-members.md
       - RFC-0060 - Reject NUL-suffixed sample-member names: rfcs/0060-reject-nul-suffixed-sample-member-names.md
+      - RFC-0061 - Reject data-descriptor sample members: rfcs/0061-reject-data-descriptor-sample-members.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
