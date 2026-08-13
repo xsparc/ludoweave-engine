@@ -66,3 +66,4 @@ was adopted.
 - [RFC-0059: reject enhanced-deflate sample members before extraction](0059-reject-enhanced-deflate-sample-members.md)
 - [RFC-0060: reject NUL-suffixed sample-member names before extraction](0060-reject-nul-suffixed-sample-member-names.md)
 - [RFC-0061: reject data-descriptor sample members before extraction](0061-reject-data-descriptor-sample-members.md)
+- [RFC-0062: reject Unicode Path extra fields before extraction](0062-reject-unicode-path-extra-fields.md)

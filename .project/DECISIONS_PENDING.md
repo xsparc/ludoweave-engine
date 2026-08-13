@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0062 resolves M79 Unicode Path extra-field preflight. Private complete
+release smoke finishes every established archive-wide flag/descriptor pass,
+then performs a bounded extra-field walk and rejects exact Info-ZIP field ID
+`0x7075` before decoded-name checks, metadata, inventory, staging, or reads.
+The stable policy error is content-silent and owned resources close before
+control returns. This is not a broad extra-field ban, general name-difference
+rule, raw ZIP header parser, repair path, scanner, or general archive sandbox.
+It adds no workflow, dependency, sample producer, runtime API, or release
+authority. A real pass remains pending an explicitly authorized signed-tag
+release execution.
+
 RFC-0061 resolves M78 data-descriptor sample-member preflight. Private complete
 release smoke finishes the established archive-wide M69/M75/M76 flag pass,
 then rejects exact ZIP general-purpose bit 3 in a separate all-member pass

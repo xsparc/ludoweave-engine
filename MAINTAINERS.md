@@ -193,6 +193,16 @@ authority, tag, release, or publication. M0 through M77 are complete,
 reviewed, hosted-validated, and integrated into `main`. M78 starts from exact
 verified M77 closeout `4bca618578f29629a7270ab5d9d308fd34363a06`.
 
+M79 rejects exact Info-ZIP Unicode Path extra-field ID `0x7075` during a
+separate archive-wide pass after established flag/descriptor policy and before
+decoded-name checks, metadata, inventory, member reads, or staging. The stable
+error is content-silent. This bounded extra-field walk is no broad extra-field
+ban or general archive sandbox. It adds no workflow, allocation, dependency,
+version, sample producer, runtime source/API, release authority, tag, release,
+or publication. M0 through M78 are complete, reviewed, hosted-validated, and
+integrated into `main`. M79 starts from exact verified M78 closeout
+`5fe3134bf5a56e5cbf986ed33db698c830aa9219`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
