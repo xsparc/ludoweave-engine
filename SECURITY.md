@@ -254,6 +254,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   a split-volume member` is content-silent. This adds no raw end-record parser
   and no multi-volume assembler, changes no workflow or sample producer, is
   not a general archive sandbox, and is not a real public release observation.
+- M83 reads exactly the final conventional 22-byte end-of-central-directory
+  record after all established flag, extra-field, comment, and member-volume
+  preflights. Either nonzero disk field raises content-silent error `sample
+  bundle uses unsupported archive disk fields` before decoded-name policy,
+  metadata, inventory, member reads, or staging. The fixed producer emits both
+  fields as zero. This adds no ZIP64 end-record parser, end-record search, or
+  multi-volume assembler, changes no workflow or producer, is not a general
+  archive sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

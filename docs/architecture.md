@@ -1988,7 +1988,35 @@ The fixed producer emits volume zero for all 50 entries. RFC-0065 adds no raw
 end-record parser, no local-header parser, no multi-volume assembler, no
 neighboring-file discovery, workflow, producer, dependency, runtime API, or
 release authority. It is not a general archive sandbox and is not a real
-public release observation. End-record disk fields remain deferred.
+public release observation. M82 deferred end-record disk fields; M83 below
+addresses only the conventional final record.
+
+## M83 conventional archive disk-field preflight
+
+M83 closes the remaining conventional end-record disk-field gap for the fixed
+single-file sample profile. PKWARE defines current-disk and central-directory-
+start disk numbers in the end-of-central-directory record. Supported CPython
+3.12-3.14 parses but ignores those fields for an ordinary archive: patched
+nonzero and `0xFFFF` fixtures still expose a volume-zero member and readable
+payload.
+
+After every established flag, descriptor, exact extra-field, archive/member-
+comment, and member-volume pass completes, release smoke reads exactly the
+final conventional 22-byte record from the owned checksum-admitted snapshot.
+It requires the signature, zero comment length, and both disk fields equal to
+zero, restores the previous snapshot position, and then proceeds to M77 name
+policy. Either nonzero field raises stable content-silent error `sample bundle
+uses unsupported archive disk fields` before metadata, exact inventory,
+staging, or member reads. Structural mismatch uses the existing stable ZIP-
+data error. Owned source, snapshot, and archive resources close first.
+
+The fixed producer emits the conventional record at end of file with both
+disk fields zero. RFC-0066 adds no ZIP64 end-record parser, end-record search,
+central-directory/local-header parser, neighboring-volume discovery, or multi-
+volume assembler. It does not resolve `0xFFFF` or classify actual ZIP64 volume
+topology, is not a general archive sandbox, and is not a real public release
+observation. Workflows, producer, dependencies, runtime API, and release
+authority remain unchanged.
 
 ## Deferred architecture
 

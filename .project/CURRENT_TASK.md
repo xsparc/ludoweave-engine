@@ -1,127 +1,78 @@
 # Current Task
 
-- **Task:** M82 - split-volume sample-member preflight
-- **Status:** Corrected feature and bounded integration record are qualified,
-  reviewed, and squash-integrated; the three-record closeout is active.
-- **Base:** Verified M82 integration-record squash
-  `f0558e4e3864e54d8bf81c46c656becc505c7f80`, tree
-  `53295683df88430e6731fb75a794836ccafdc9f9`.
-- **Branch:** `release/m82-closeout`
+- **Task:** M83 - conventional archive disk-field preflight
+- **Status:** Corrected feature tree is fully locally qualified and reviewed;
+  exact-head hosted qualification is next.
+- **Base:** Verified M82 closeout squash
+  `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`, tree
+  `fc19f02ae8af1a432d23f0ccf8e4775ef10085c7`.
+- **Branch:** `release/m83-archive-disk-preflight`
 
 ## Accepted slice
 
-- Reject every parser-exposed nonzero `ZipInfo.volume` with stable content-
-  silent error `sample bundle uses a split-volume member`.
-- Preserve every established M69/M75/M76/M78/M79/M80/M81 category across all
-  members, then apply volume, M77 decoded-name, metadata, exact-inventory,
-  staging, and read policy in that order.
-- Close the owned source, checksum-admitted snapshot, and archive before the
-  policy error returns.
-- Add RFC-0065 plus aligned public, security, architecture, release, roadmap,
-  and repository evidence records.
-- Add no raw end-record parser, local-header parser, multi-volume assembler,
-  neighboring-volume discovery, workflow, dependency, lock, version, sample
-  producer, runtime package/API, release authority, tag, release, publication,
-  or general archive-sandbox claim.
+- After every established M69-M82 archive-wide policy, read exactly the final
+  conventional 22-byte end-of-central-directory record from the owned
+  checksum-admitted snapshot.
+- Require the signature, zero comment length, current-disk zero, and central-
+  directory-start disk zero; restore the prior snapshot position.
+- Reject either nonzero disk field with stable content-silent error `sample
+  bundle uses unsupported archive disk fields` before M77 decoded-name policy,
+  metadata, exact inventory, staging, or reads.
+- Preserve established flag, extra-field, comment, and member-volume error
+  precedence and owned source/snapshot/archive cleanup.
+- Add RFC-0066 plus aligned public, security, architecture, release, roadmap,
+  maintainer, and repository evidence records.
+- Add no ZIP64 end-record parser, end-record search, central-directory/local-
+  header parser, neighboring-volume discovery, multi-volume assembler,
+  workflow, dependency, lock, version, producer, runtime package/API, release
+  authority, tag, release, or publication.
 
 ## Direction evidence
 
-- PKWARE APPNOTE section 4.4.13 defines central-directory disk number start as
-  the disk on which a file begins.
-- CPython assigns that parsed field to `ZipInfo.volume`. Installed CPython
-  3.12.13, 3.13.13, and 3.14.5 each exposed patched value one, no extra field,
-  no general-purpose flag, and read the same deflated payload.
-- The fixed producer emits 50 members whose parser-exposed volume is zero, so
-  split-volume placement is outside the intended sample profile.
+- PKWARE APPNOTE sections 4.3.16, 4.4.19, and 4.4.20 define the conventional
+  EOCD current-disk and central-directory-start disk fields; `0xFFFF` defers a
+  value to a ZIP64 end record.
+- Exact installed CPython 3.12.13, 3.13.13, and 3.14.5 source parses those
+  fields but `ZipFile._RealGetContents()` does not consult them.
+- Cross-version probes show `(1,0)`, `(0,1)`, `(1,1)`, and
+  `(0xFFFF,0xFFFF)` all preserve a volume-zero member and readable deflated
+  payload.
+- The fixed producer emits one final conventional record with both disk fields
+  zero, so all other conventional values are outside the intended profile.
 
 ## Current evidence
 
-- M81 closeout PR #197 changed only the three project records, allocated no
-  workflow run, passed two exact-head audits, and squash-integrated exact tree
-  `63a1caf2bc270a6500466e24c800f4e6f454ddda` as
-  `ba90021304760284550e3c458901feb0e3e29dbc` with sole integration parent,
-  parsed DCO, and valid GitHub verification. Only clean synchronized `main`
-  remained locally/remotely; no open PR, tag, release, postmerge run, or M81
-  generated target remained before M82 selection.
-- The static-clean authoritative red baseline passed 12 controls and failed 8
-  missing policy, ordering, cleanup, helper/source, and documentation contracts
-  in 0.42 seconds.
-- One separate `ZipInfo.volume` pass and typed validator make 19 assertions
-  pass in 0.29 seconds; only the deliberately absent documentation contract
-  remained at that checkpoint. RFC-0065 and aligned public docs are now added.
-- Findings-first review corrected the ZIP64-precedence fixture to use an actual
-  `0xFFFF` disk-start sentinel and kept the stable error unbroken in RFC-0065.
-  The corrected 20-assertion contract passes on CPython 3.12.13, 3.13.13, and
-  3.14.5.
-- Complete local qualification is clean: CPython 3.12 passes 2,480 tests with
-  15 capability skips; the pre-correction full 3.13/3.14 suites each passed
-  2,470 with 16 skips and the corrected focused contract passes on both. Real-
-  wgpu, profiles, both vertical slices, M1-M4 diagnostic validators, byte-
-  reproducible builds, isolated-wheel smoke, ten-artifact staging, and release
-  smoke pass. Exact scope is 15 paths and protected/hygiene scans are clean.
-- Ready PR #198 initial head `d7e1eef7e857ef82a26af5ae27f2418592bfa745`
-  passed run `31723899463` in exactly three allocations. Hosted review then
-  correctly found that the ZIP64-precedence fixture set central disk start to
-  `0xFFFF` but omitted the corresponding 32-bit disk-start value from the
-  ZIP64 extra field. That head is not mergeable evidence. The helper now emits
-  the conditional 32-bit value and the test observes the well-formed field,
-  parser-exposed sentinel, and readable payload before checking precedence.
-- Corrected focused execution passes all 20 assertions on CPython 3.12.13,
-  3.13.13, and 3.14.5; affected format/Ruff/Pyright, strict docs, and whitespace
-  pass. The corrected complete 3.12 graphics-baseline suite passes 2,480 tests
-  with 15 capability skips.
-- Corrected exact DCO head `9edbe5e5bf706bd11b31546bd26fcb8421f1f5d9`
-  passed run `31725451119`, classified substantive with 15 paths, in exactly
-  three allocations: Linux 7m12s, Windows 4m17s, and macOS 2m16s. Linux
-  CPython 3.12/3.13/3.14 and both desktop 3.14 suites passed 2,485 tests, with
-  one compatibility skip outside baseline; every OS passed 10 real-wgpu tests,
-  graphics profiling, Clockwork Arena, and Agent World Builder.
-- Hosted reproducibility produced a 275,086-byte pure wheel at
-  `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99`
-  and 1,315,802-byte sdist at
-  `d16eb754e00e01d59aff425fedb0bd74db318c1b7e9ab044af3343c9a9db2a46`;
-  installed-wheel, ten-artifact staging, and release smoke passed.
-- The exact hosted finding received a concrete correction response and is now
-  resolved/outdated. Two separated corrected-head audits retained exact base/
-  head, `MERGEABLE`/`CLEAN`, three successful checks, zero issue comments, and
-  no unresolved thread or later finding.
-- Exact-head-guarded squash `f34b42f1ac9813ec2c46063774e8e86087dd67cf`
-  has the exact qualified tree, sole M81-closeout parent, parsed DCO, and valid
-  GitHub verification at `2026-08-13T17:37:04Z`. No postmerge run was allocated;
-  the feature branch is deleted locally/remotely and `main` is synchronized.
-- The exact four-record integration tree passes the lock/static/architecture/
-  docs/repository gate. Two builds reproduce a 275,100-byte wheel at
-  `b0fb35139e5c6bc47beb133d3602bd83b050ff282e78465a9708e3b996e01da5`
-  and 1,317,216-byte sdist at
-  `b668144e40744981c7b2e5b03dbeb885f31b2394c2a44996d1a4084e7e50ed96`;
-  isolated-wheel, ten-artifact staging, and complete release smoke pass.
-- Ready integration PR #199 exact DCO head
-  `78e440e87a3af11fa7123f40596bead906ef5786`, tree
-  `53295683df88430e6731fb75a794836ccafdc9f9`, classified documentation with
-  four paths. Run `31727082001` used one 43-second Linux job; the desktop
-  umbrella skipped with zero steps. All 325 files were format/Ruff clean,
-  strict docs built in 1.71 seconds, and all 941 hosted architecture assertions
-  passed in 10.40 seconds.
-- Hosted integration builds reproduced a 275,086-byte wheel at
-  `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99`
-  and 1,317,719-byte sdist at
-  `030ba0cc1a60452af81c260771c7ade982f576fc8753602e867766a5b8a40833`;
-  installed-wheel, ten-artifact staging, and release smoke passed.
-- Two separated audits retained exact base/head, `MERGEABLE`/`CLEAN`, one
-  successful bounded Linux check, one skipped zero-step desktop umbrella, and
-  zero comments, reviews, or threads. Exact-head-guarded squash
-  `f0558e4e3864e54d8bf81c46c656becc505c7f80` has the exact reviewed tree,
-  sole feature-squash parent, parsed DCO, and valid GitHub verification at
-  `2026-08-13T17:44:59Z`. No postmerge run was allocated and the integration
-  branch is deleted locally/remotely.
-- The exact three-record closeout passes the complete static, architecture,
-  docs, whitespace, Git-object, protected-surface, and added-content hygiene
-  gate. It changes no workflow, runtime, verifier, producer, dependency,
-  package, test, public documentation, roadmap, or release-authority surface.
+- M82 closeout PR #200 changed only the three project records, allocated no
+  workflow, passed two exact-head audits, and squash-integrated exact tree
+  `fc19f02ae8af1a432d23f0ccf8e4775ef10085c7` as
+  `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0` with sole integration-record
+  parent, parsed DCO, and valid GitHub verification. Only clean synchronized
+  `main` remained locally/remotely; no open PR, tag, release, postmerge run, or
+  M82 generated target remained before M83 selection.
+- The static-clean authoritative red baseline passed 16 standard-library,
+  established-precedence, producer, and protected-surface controls and failed
+  15 missing policy, ordering, cleanup, helper/source, and documentation
+  contracts in 0.52 seconds.
+- The bounded runtime helper and exact call ordering make 30 assertions pass in
+  0.32 seconds; only the deliberately absent RFC/public-document contract
+  failed at that checkpoint. RFC-0066 and aligned documentation are now added.
+- Strict docs initially caught missing RFC navigation; the omission was
+  corrected. Findings-first review then found the structural-error claim lacked
+  explicit regression coverage. Three test-only controls now prove signature,
+  declared-comment-length, and trailing-byte shapes retain stable ZIP-data
+  normalization; all 34 corrected assertions pass on CPython 3.12-3.14.
+- Complete local qualification is clean: CPython 3.12 passes 2,514 tests with
+  15 capability skips; initial full 3.13/3.14 suites each passed 2,501 with 16
+  skips and the corrected focused contract passes on both. Static, 974-case
+  architecture, 285-case M64-M83 lineage, real-wgpu, profiles, both vertical
+  slices, M1-M4 diagnostics, reproducible builds, isolated-wheel smoke, ten-
+  artifact staging, complete release smoke, strict docs, scope, disclosure,
+  credential, artifact, whitespace, and Git-object gates pass.
 
 ## Remaining gates
 
-1. Publish and integrate exactly the three-record closeout; confirm no workflow
-   allocation and twice audit exact head/review state.
-2. Remove M82 branches/generated targets and return to clean synchronized
-   `main` before selecting M83.
+1. Publish a ready feature PR, require exact-head hosted qualification and two
+   separated review audits, then squash-integrate only the qualified tree.
+2. Publish and integrate bounded factual records, close out M83, remove its
+   branches/generated targets, and return to clean synchronized `main` before
+   selecting M84.

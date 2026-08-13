@@ -2,6 +2,20 @@
 
 No architecture decision is currently blocked.
 
+RFC-0066 resolves M83 conventional archive disk-field preflight. Private
+complete release smoke finishes every M69-M82 archive-wide pass, then reads
+exactly the final conventional 22-byte end-of-central-directory record from
+the owned checksum-admitted snapshot. It requires the signature, zero comment
+length, current-disk zero, and central-directory-start disk zero before M77
+decoded-name policy, metadata, exact inventory, staging, or reads. The stable
+policy error is content-silent and the previous snapshot position is restored.
+`0xFFFF` is rejected as outside the fixed profile, not interpreted as proof of
+split-volume topology. This is not a ZIP64 end-record parser, end-record search,
+central/local-header parser, neighboring-volume discovery, multi-volume
+assembler, or general archive sandbox. It adds no workflow, dependency,
+producer, runtime API, or release authority. A real pass remains pending an
+explicitly authorized signed-tag release execution.
+
 M80 ZIP64 extra-field preflight is resolved for implementation. PKWARE assigns
 exact extra-field ID `0x0001` to ZIP64 alternate sizes, header offset, and disk-
 start metadata. Current CPython applies the size and header-offset values, not

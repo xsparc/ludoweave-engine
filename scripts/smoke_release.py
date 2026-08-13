@@ -58,6 +58,8 @@ _SAMPLE_ENHANCED_DEFLATE_FLAG = 0x0010
 _SAMPLE_DATA_DESCRIPTOR_FLAG = 0x0008
 _SAMPLE_UNICODE_PATH_EXTRA_FIELD = 0x7075
 _SAMPLE_ZIP64_EXTRA_FIELD = 0x0001
+_SAMPLE_EOCD_BYTES = 22
+_SAMPLE_EOCD_SIGNATURE = b"PK\x05\x06"
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -511,6 +513,8 @@ def _extract_checksum_admitted_bundle(
         for info in infos:
             _validate_sample_member_volume(volume=info.volume)
 
+        _validate_sample_archive_disk_fields(snapshot=snapshot_stream)
+
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
 
@@ -758,6 +762,27 @@ def _validate_sample_member_volume(*, volume: int) -> None:
 
     if volume != 0:
         raise RuntimeError("sample bundle uses a split-volume member")
+
+
+def _validate_sample_archive_disk_fields(*, snapshot: IO[bytes]) -> None:
+    """Require base-disk values in the conventional final ZIP end record."""
+
+    position = snapshot.tell()
+    try:
+        snapshot.seek(-_SAMPLE_EOCD_BYTES, os.SEEK_END)
+        end_record = snapshot.read(_SAMPLE_EOCD_BYTES)
+    finally:
+        snapshot.seek(position)
+    if (
+        len(end_record) != _SAMPLE_EOCD_BYTES
+        or end_record[:4] != _SAMPLE_EOCD_SIGNATURE
+        or end_record[-2:] != b"\x00\x00"
+    ):
+        raise zipfile.BadZipFile("invalid final end-of-central-directory record")
+    disk = int.from_bytes(end_record[4:6], "little")
+    central_disk = int.from_bytes(end_record[6:8], "little")
+    if disk != 0 or central_disk != 0:
+        raise RuntimeError("sample bundle uses unsupported archive disk fields")
 
 
 def _validate_sample_member_name(*, original_name: str) -> None:
