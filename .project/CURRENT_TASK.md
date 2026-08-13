@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M82 - split-volume sample-member preflight
-- **Status:** Direction, implementation, complete local qualification, and
-  findings-first review are complete; exact-head hosted qualification and
-  bounded integration/closeout remain.
+- **Status:** Initial exact-head hosted qualification passed, but hosted review
+  found a valid ZIP64 fixture defect; correction and requalification are
+  active before integration.
 - **Base:** Verified M81 closeout squash
   `ba90021304760284550e3c458901feb0e3e29dbc`, tree
   `63a1caf2bc270a6500466e24c800f4e6f454ddda`.
@@ -60,12 +60,23 @@
   wgpu, profiles, both vertical slices, M1-M4 diagnostic validators, byte-
   reproducible builds, isolated-wheel smoke, ten-artifact staging, and release
   smoke pass. Exact scope is 15 paths and protected/hygiene scans are clean.
+- Ready PR #198 initial head `d7e1eef7e857ef82a26af5ae27f2418592bfa745`
+  passed run `31723899463` in exactly three allocations. Hosted review then
+  correctly found that the ZIP64-precedence fixture set central disk start to
+  `0xFFFF` but omitted the corresponding 32-bit disk-start value from the
+  ZIP64 extra field. That head is not mergeable evidence. The helper now emits
+  the conditional 32-bit value and the test observes the well-formed field,
+  parser-exposed sentinel, and readable payload before checking precedence.
+- Corrected focused execution passes all 20 assertions on CPython 3.12.13,
+  3.13.13, and 3.14.5; affected format/Ruff/Pyright, strict docs, and whitespace
+  pass. The corrected complete 3.12 graphics-baseline suite passes 2,480 tests
+  with 15 capability skips.
 
 ## Remaining gates
 
-1. Publish a DCO-signed ready feature PR, require the exact three-allocation
-   substantive gate, twice audit exact head/review state, and guarded-squash
-   only after qualification is clean.
+1. Push the DCO-signed correction to ready PR #198, require a fresh exact-head
+   three-allocation substantive gate, address/resolve the review thread, twice
+   audit exact head/review state, and guarded-squash only when clean.
 2. Publish and integrate the bounded four-record integration and three-record
    closeout PRs, then remove M82 branches/generated targets and return to clean
    synchronized `main` before selecting M83.

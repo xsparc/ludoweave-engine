@@ -130,7 +130,7 @@ def _unicode_path_extra(*, legacy_name: str, replacement_name: str) -> bytes:
     return struct.pack("<HH", _UNICODE_PATH_ID, len(data)) + data
 
 
-def _inject_zip64_extra(data: bytes) -> bytes:
+def _inject_zip64_extra(data: bytes, *, disk_start: int | None = None) -> bytes:
     patched = bytearray(data)
     central = patched.index(b"PK\x01\x02")
     compressed_size = int.from_bytes(patched[central + 20 : central + 24], "little")
@@ -138,14 +138,15 @@ def _inject_zip64_extra(data: bytes) -> bytes:
     header_offset = int.from_bytes(patched[central + 42 : central + 46], "little")
     name_size = int.from_bytes(patched[central + 28 : central + 30], "little")
     extra_size = int.from_bytes(patched[central + 30 : central + 32], "little")
-    zip64 = struct.pack(
-        "<HHQQQ",
-        _ZIP64_ID,
-        24,
+    zip64_data = struct.pack(
+        "<QQQ",
         file_size,
         compressed_size,
         header_offset,
     )
+    if disk_start is not None:
+        zip64_data += struct.pack("<I", disk_start)
+    zip64 = struct.pack("<HH", _ZIP64_ID, len(zip64_data)) + zip64_data
     insert_at = central + 46 + name_size + extra_size
     patched[central + 20 : central + 24] = b"\xff" * 4
     patched[central + 24 : central + 28] = b"\xff" * 4
@@ -305,8 +306,15 @@ def test_established_extra_field_errors_precede_split_volume(
             ),
         )
     if established == "zip64":
-        bundle.write_bytes(_inject_zip64_extra(bundle.read_bytes()))
+        bundle.write_bytes(_inject_zip64_extra(bundle.read_bytes(), disk_start=0))
         _set_member_volume(bundle, volume=0xFFFF)
+        with zipfile.ZipFile(bundle) as archive:
+            [info] = archive.infolist()
+            assert info.volume == 0xFFFF
+            assert info.extra[:4] == struct.pack("<HH", _ZIP64_ID, 28)
+            assert len(info.extra) == 32
+            assert info.extra[-4:] == struct.pack("<I", 0)
+            assert archive.read(info) == b"combined"
     else:
         _set_member_volume(bundle, volume=1)
 

@@ -1,6 +1,6 @@
 # Project State
 
-## M82 split-volume sample-member preflight - locally qualified
+## M82 split-volume sample-member preflight - hosted correction active
 
 - Base: exact verified M81 closeout squash
   `ba90021304760284550e3c458901feb0e3e29dbc`, tree
@@ -45,6 +45,25 @@
   remaining actionable finding. Exactly 15 intended paths change; identity,
   credential, native/WASM/bytecode, and retired-control-metadata scans are
   empty.
+- Initial hosted qualification: ready PR #198 exact DCO head `d7e1eef7e857ef82a26af5ae27f2418592bfa745`
+  passed run `31723899463` in exactly three allocations: Linux 7m13s, Windows
+  4m07s, and macOS 3m08s. Linux CPython 3.12/3.13/3.14 and both desktop 3.14
+  suites passed 2,485 tests, with one compatibility skip on non-baseline runs;
+  every OS passed 10 real-wgpu tests, graphics profiles, and both vertical
+  slices. Static/docs, reproducibility, installed-wheel, staging, and release
+  smoke passed. The classifier reported substantive with 15 paths.
+- Hosted review correction: audit found the central disk-start sentinel
+  `0xFFFF` was combined with a ZIP64 field containing only the three 64-bit
+  values, not the format-defined following 32-bit disk-start value. The
+  production policy is unchanged. The test helper now conditionally appends
+  that value and the precedence case observes the well-formed field, parser-
+  exposed sentinel, and readable payload. Initial-head CI is retained only as
+  superseded evidence; a fresh exact-head run is required.
+- Corrected local evidence: all 20 focused assertions pass on CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.27/0.61/0.62 seconds. Affected format, Ruff, strict
+  Pyright, strict docs, and whitespace pass. The complete corrected 3.12
+  graphics-baseline suite passes 2,480 tests with 15 capability skips in
+  109.01 seconds.
 - Boundary: no raw end-record parser, local-header parser, multi-volume
   assembler, neighboring-volume discovery, broad flag/extra-field rule,
   workflow, allocation, dependency, lock, version, producer, runtime package/
@@ -52,8 +71,9 @@
   added. This is not a general archive sandbox or real public release
   observation.
 - Branch: `release/m82-split-volume-preflight`.
-- Remaining: exact three-allocation hosted feature qualification and bounded
-  integration/closeout before clean-main M83 selection.
+- Remaining: corrected exact-head hosted feature qualification, thread
+  resolution and two audits, then bounded integration/closeout before clean-
+  main M83 selection.
 
 ## M81 ZIP comment preflight - closed
 
