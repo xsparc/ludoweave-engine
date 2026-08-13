@@ -1,6 +1,6 @@
 # Project State
 
-## M80 ZIP64 extra-field preflight - implementation active
+## M80 ZIP64 extra-field preflight - feature integrated
 
 - Base: exact clean synchronized M79 closeout
   `892f17fce99d218905c6f624c730f735d21a794f`, tree
@@ -86,9 +86,51 @@
 - Final correction gate: the record-inclusive tree retains the unchanged lock,
   323 format-clean files, zero Ruff/Pyright findings, 894 passing architecture
   tests with 1 skip, strict docs, whitespace, and Git-object integrity.
-- Remaining: validate and publish the DCO correction, exact-head requalify it,
-  perform separated review audits, resolve the addressed thread, guarded-
-  squash integrate, record integration evidence, and close out.
+- Corrected hosted qualification: exact DCO head
+  `0a42620d3771bde90978a697b672d51bf66273a5`, tree
+  `c7703140e53afe5cdd8a7cf61ee7e97b71737a60`, passed run `31713078940` in
+  exactly three allocations. Linux job `94490785476` passed in 7m24s, macOS
+  `94493098093` in 2m42s, and Windows `94493098213` in 4m28s. Every hosted
+  Python suite passed 2,439 tests, with 1 capability skip on 3.13/3.14; all
+  static/docs, graphics, profiles, examples, artifacts, and smokes passed.
+- Corrected hosted artifacts: the pure 274,831-byte wheel is
+  `149e02344b1ca8fc779f7c7e410a6f497c99da4d372ae4b76e70865a6eac9255`;
+  the 1,297,189-byte sdist is
+  `0bea646a029b214de2152cbddba6c4353a63be6a24bb1d82c1b55314bcc2f3d7`.
+- Review/integration: two corrected-head audits found no new finding. The one
+  valid initial thread has two comments, is resolved, and is outdated. PR #192
+  was `MERGEABLE`/`CLEAN` with three successful checks. GitHub-verified squash
+  `13439d41551cd9c842b3e7a0a55e7ba72e540582` has the exact corrected tree,
+  sole M79-closeout parent, standalone DCO, and valid verification at
+  `2026-08-13T15:14:33Z`.
+- Branch/release state: the feature branch is deleted locally/remotely; local
+  `main` and `origin/main` are exact feature squash. No open PR, tag, release,
+  or publication exists.
+- Integration-record local gate: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`
+  change. The unchanged lock resolves; all 323 files are format clean; Ruff
+  and strict Pyright report zero findings; all 894 architecture tests pass
+  with 1 capability skip; strict docs, whitespace, and Git-object integrity
+  pass.
+- Integration-record reproducibility: two builds reproduce a pure 274,845-byte
+  wheel at
+  `018f4cb0bc3d231a3fdd3479027bb7e0a483851516273f7a7609ed610edb3c84`
+  and 1,298,516-byte sdist at
+  `ba5af9cde94f2cff5a619e31afd4550b4e9d1074ea16a2d91923dee60280c53c`;
+  isolated-wheel, deterministic ten-artifact staging, and complete release
+  smoke pass. Recording these facts changes the sdist, so hosted record-head
+  identities remain authoritative.
+- Integration-record audit: protected CI/release/producer/package/lock hashes
+  remain exact; added/current changed content contains no explicit development-
+  tool identity or credential/private-key marker. Only synchronized `main`
+  plus the intended integration branch exist locally; only `origin/main`
+  exists remotely.
+- Final record-frozen gate: the unchanged lock resolves; all 323 files remain
+  format clean; Ruff and strict Pyright report zero findings; all 894
+  architecture tests pass with 1 skip; strict docs, whitespace, and full Git-
+  object checking pass.
+- Remaining: publish and integrate the four-file record, then publish the exact
+  three-record closeout and select M81.
 
 ## M79 Unicode Path extra-field preflight - closed
 

@@ -1,15 +1,15 @@
 # Current Task
 
-- **Task:** M80 - exact ZIP64 extra-field preflight
-- **Status:** The review correction and strengthened regression are locally
-  green; final record-inclusive validation and exact-head requalification are
-  active.
-- **Base:** Verified M79 closeout
-  `892f17fce99d218905c6f624c730f735d21a794f`, tree
-  `1fca519b95832978516a22c3c6bd19ff93955afd`.
-- **Branch:** `release/m80-zip64-extra-preflight`
+- **Task:** M80 - feature integration record
+- **Status:** The review-corrected feature is hosted-qualified and squash-
+  integrated; the exact four-file integration record passes frozen local
+  source, artifact, smoke, scope, and repository gates; publication is active.
+- **Base:** Verified feature squash
+  `13439d41551cd9c842b3e7a0a55e7ba72e540582`, tree
+  `c7703140e53afe5cdd8a7cf61ee7e97b71737a60`.
+- **Branch:** `release/m80-integration-record`
 
-## Intended outcome
+## Completed feature outcome
 
 - Reject exact PKWARE ZIP64 extended-information extra-field ID `0x0001` for
   every sample member during a separate archive-wide preflight.
@@ -25,10 +25,23 @@
 - Add no broad extra-field ban, raw ZIP64 parser, large-file support change,
   workflow, dependency, version, sample producer, runtime package/API, release
   authority, tag, release, or publication.
+- Corrected exact head `0a42620d3771bde90978a697b672d51bf66273a5`
+  passed run `31713078940` in exactly three allocations after a valid review
+  correction distinguished PKWARE disk-start capacity from current CPython
+  behavior.
+- Feature squash `13439d41551cd9c842b3e7a0a55e7ba72e540582`
+  has the exact corrected tree, sole M79-closeout parent, standalone DCO, and
+  valid GitHub verification.
+- The addressed review thread is resolved and outdated; the feature branch is
+  deleted locally/remotely. No tag, release, publication, dependency,
+  workflow, producer, runtime-package, version, or release-authority change
+  was introduced.
 
 ## Remaining gates
 
-1. Run the final record-inclusive gate, push a DCO correction, and exact-head
-   requalify the existing three allocations.
-2. Audit review state twice, resolve the addressed thread, and squash only
-   after the complete result is clean.
+1. Publish a DCO-signed ready record PR, verify documentation classification
+   and its bounded hosted gate, audit review state twice, and squash only after
+   the complete result is clean.
+2. Create and validate the exact three-record closeout, publish/merge it without
+   a workflow allocation, remove obsolete branches/generated targets, and
+   return to clean synchronized `main` before selecting M81.
