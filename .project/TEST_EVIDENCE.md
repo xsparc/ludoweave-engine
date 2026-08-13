@@ -52,6 +52,22 @@ M85 starts from exact verified M84 closeout squash
 | Exact scope and hygiene audit | Clean | Exactly the four intended record paths change. CI, release workflow, verifier, producer, runtime, tests, docs, metadata, lock, and package contents are unchanged from the verified feature squash; no new identity, credential, native/WASM, bytecode, or retired-control surface is added. |
 | Final record-inclusive source/repository gate | 0 | All 328 files remained format clean; Ruff and strict Pyright reported zero findings; all 1,022 architecture assertions passed with 1 Windows capability skip in 8.91 seconds; strict docs built in 1.44 seconds with only the known upstream notice; whitespace passed. |
 
+## M85 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Documentation classification and hosted gate | 0 | Ready PR #208 exact DCO head `a44e540c282673064535aa3ab8f63454886894a3`, tree `7db97bfbfbcf5b1e480c143c8b339a6ba69f9fba`, changed exactly four intended record paths and classified `documentation` with `changed_count: 4`. Run `31741059247` used only 42-second Linux job `94584260656`; desktop umbrella `94584462801` skipped with zero steps. |
+| Hosted documentation/artifact evidence | 0 | All 328 files were format/Ruff clean; strict docs built in 1.74 seconds; all 1,023 hosted architecture assertions passed in 10.51 seconds. Two builds reproduced a pure 275,471-byte wheel at `1043613c43be614ef21ca34f56bf6da98323d380d47fc90a3d9997dc5a785ef5` and 1,338,272-byte sdist at `837eb2bddb871fd64bf0d9d4ae5c331ee4632ec8e4ad1687c4c5515233b5dbfd`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Substantive type/full/compatibility/graphics/profile/example work did not run. |
+| Two separated review audits | Clean | Both audits retained exact base `c9bb569fc1476d1aaf92c4fb01bfd9210d0398ed`, exact head `a44e540c282673064535aa3ab8f63454886894a3`, `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-step desktop umbrella, matching DCO identity, and zero issue comments, reviews, inline comments, or review threads. |
+| Guarded integration squash audit | 0 | Exact-head-guarded squash merged PR #208 as `c83a25012c7a0b3520852d35c55a4fc362a9e559`. Its tree `7db97bfbfbcf5b1e480c143c8b339a6ba69f9fba` exactly equals the reviewed head, its sole parent is feature squash `c9bb569fc1476d1aaf92c4fb01bfd9210d0398ed`, its trailer parses as DCO, and GitHub verification is valid at `2026-08-13T20:31:01Z`. No postmerge workflow was allocated; the integration branch was deleted locally/remotely. |
+
+## M85 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | From exact integration squash `c83a25012c7a0b3520852d35c55a4fc362a9e559`, exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. The unchanged lock resolved 46 packages in 1 ms; all 328 files were format clean; Ruff and strict Pyright reported zero findings; all 1,022 architecture assertions passed with 1 Windows capability skip in 8.90 seconds; strict docs built in 1.41 seconds with only the known upstream notice; whitespace passed. |
+| Closeout scope audit | Clean | No workflow-classified path, public/runtime/test/build/dependency/release surface, credential, identity marker, native/WASM content, bytecode, or generated artifact is added. Only the factual closeout records change. |
+
 ## M84 direction and implementation evidence - 2026-08-14, Windows
 
 M84 starts from exact verified M83 closeout squash
