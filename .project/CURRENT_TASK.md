@@ -1,15 +1,15 @@
 # Current Task
 
-- **Task:** M80 - feature integration record
-- **Status:** The review-corrected feature is hosted-qualified and squash-
-  integrated; the exact four-file integration record passes frozen local
-  source, artifact, smoke, scope, and repository gates; publication is active.
-- **Base:** Verified feature squash
-  `13439d41551cd9c842b3e7a0a55e7ba72e540582`, tree
-  `c7703140e53afe5cdd8a7cf61ee7e97b71737a60`.
-- **Branch:** `release/m80-integration-record`
+- **Task:** M80 - closeout
+- **Status:** The corrected feature and integration record are hosted-qualified
+  and squash-integrated; the exact three-record closeout passes local and
+  record-inclusive gates; publication is active.
+- **Base:** Verified integration-record squash
+  `218c761c55e71d0367823bdac5ff2c92f4c5adf6`, tree
+  `debee0bfa348af18509f8f5f0d7d4e01c4a8a30d`.
+- **Branch:** `release/m80-closeout`
 
-## Completed feature outcome
+## Completed outcome
 
 - Reject exact PKWARE ZIP64 extended-information extra-field ID `0x0001` for
   every sample member during a separate archive-wide preflight.
@@ -36,12 +36,21 @@
   deleted locally/remotely. No tag, release, publication, dependency,
   workflow, producer, runtime-package, version, or release-authority change
   was introduced.
+- Integration PR #193 classified exactly four paths as documentation. Run
+  `31714883660` used one 42-second Linux allocation, passed 895 hosted
+  architecture assertions and every artifact smoke, and skipped desktop with
+  zero steps.
+- Two separated integration audits found no review, comment, inline comment,
+  or thread. Integration squash
+  `218c761c55e71d0367823bdac5ff2c92f4c5adf6` has the exact reviewed tree,
+  sole feature-squash parent, DCO, and valid GitHub verification.
+- All obsolete feature and integration branches are deleted locally/remotely.
 
 ## Remaining gates
 
-1. Publish a DCO-signed ready record PR, verify documentation classification
-   and its bounded hosted gate, audit review state twice, and squash only after
-   the complete result is clean.
-2. Create and validate the exact three-record closeout, publish/merge it without
-   a workflow allocation, remove obsolete branches/generated targets, and
-   return to clean synchronized `main` before selecting M81.
+1. Publish a DCO-signed ready closeout PR, confirm no path-filtered
+   workflow is created, perform two review-state audits, and squash with an
+   exact-head guard and DCO body file.
+2. Delete the closeout branch and all M80 generated targets, return to clean
+   synchronized `main`, verify no PR/tag/release or extra branch remains, and
+   select M81.

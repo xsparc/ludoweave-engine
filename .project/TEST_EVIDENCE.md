@@ -52,6 +52,22 @@ M80 starts from exact synchronized M79 closeout
 | Exact scope and hygiene audit | Clean | Exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md` change. CI remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow `c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5`; sample producer `d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca`; package metadata `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`; lock `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Added/current changed content contains no explicit development-tool identity or credential/private-key marker. Only synchronized `main` plus the intended integration branch exist locally; only `origin/main` exists remotely. |
 | Final factual-record-inclusive source gate | 0 | The unchanged lock resolved 46 packages in 0.70 ms; all 323 files were format clean; Ruff and strict Pyright reported zero findings; all 894 architecture tests passed with 1 capability skip in 6.23 seconds; strict docs built in 1.24 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
 
+## M80 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Documentation classification and hosted gate | 0 | Ready PR #193 exact DCO head `b1e8f77da1ab73865cf08d959d7c242875bc3679`, tree `debee0bfa348af18509f8f5f0d7d4e01c4a8a30d`, changed exactly four intended record paths and classified `documentation` with `changed_count: 4`. Run `31714883660` used only 42-second Linux job `94496955617`: lock, documentation environment, 323-file format/Ruff checks, strict docs, all 895 architecture tests in 10.52 seconds, two universal builds, isolated-wheel smoke, release staging, and complete release smoke passed. Desktop umbrella job `94497186984` skipped with zero steps; substantive type/full/compatibility/graphics/profile/example work did not run. |
+| Hosted integration artifact identity | 0 | Same-head reproducibility produced a pure 274,831-byte wheel at `149e02344b1ca8fc779f7c7e410a6f497c99da4d372ae4b76e70865a6eac9255` and 1,299,075-byte sdist at `404f5921afb71915d57c735237dc1c71b00319c0425f94c3f9da53c39489ca6f`. Installed-wheel and complete release smoke passed. |
+| Two separated review audits | Clean | Both audits retained exact base/head and `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-step desktop umbrella, and zero reviews, issue comments, inline comments, or review threads. The integration commit carries standalone DCO. |
+| Guarded integration squash audit | 0 | Exact-head-guarded squash merged PR #193 at `218c761c55e71d0367823bdac5ff2c92f4c5adf6`. Its tree `debee0bfa348af18509f8f5f0d7d4e01c4a8a30d` exactly equals the reviewed head, its sole parent is feature squash `13439d41551cd9c842b3e7a0a55e7ba72e540582`, its body carries standalone DCO, and GitHub verification is valid at `2026-08-13T15:22:59Z`. No post-merge `main` run was allocated. After exact-tree verification, the squash-only local integration branch was deleted; remote deletion was confirmed. |
+
+## M80 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | From exact integration-record squash `218c761c55e71d0367823bdac5ff2c92f4c5adf6`, exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. All 323 files were format clean; Ruff and strict Pyright reported zero findings; all 894 architecture tests passed with 1 capability skip in 6.14 seconds; strict docs built in 1.24 seconds with only the known upstream notice; whitespace and full Git-object checking passed. The closeout changes no workflow, runtime, verifier, producer, dependency, package, test, public documentation, or roadmap surface and is excluded from hosted CI. |
+| Final record-inclusive closeout gate | 0 | All 323 files remained format clean; Ruff and strict Pyright reported zero findings; all 894 architecture tests passed with 1 capability skip in 6.15 seconds; strict docs built in 1.23 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
+
 ## M79 local development evidence - 2026-08-13, Windows, CPython 3.12
 
 M79 starts from exact synchronized M78 closeout
