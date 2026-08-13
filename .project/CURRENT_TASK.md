@@ -1,55 +1,45 @@
 # Current Task
 
-- **Task:** M77 - integration record
-- **Status:** The corrected feature is exact-head hosted-qualified and
-  squash-integrated. The bounded four-file integration record is in progress.
-- **Base:** Verified M77 feature squash
-  `0c3c407c1e5d86541570c665fd305fa95e32e07a`, tree
-  `923efabb7b6968a53db2035c107baa80b89119cc`.
-- **Branch:** `release/m77-integration-record`
+- **Task:** M77 - closeout
+- **Status:** Feature and integration records are hosted-qualified and
+  squash-integrated; the exact three-record closeout is in progress.
+- **Base:** Verified integration-record squash
+  `9c37857cb8d0cc68fa63128091d6c116f84ef66d`, tree
+  `baffa85b731086ba71a247411cfbca51c4bdbc72`.
+- **Branch:** `release/m77-closeout`
 
 ## Completed outcome
 
-- Complete release smoke now performs an archive-wide processing/compression
-  flag pass followed by a separate archive-wide NUL-name pass. This preserves
-  M69, M75, and M76 precedence even when the prohibited flag occurs on a later
-  member.
-- The exact NUL policy remains content-silent, precedes metadata, inventory,
-  staging, and reads, and adds no general name-normalization comparison, raw
-  parser, workflow, producer, dependency, runtime API, or release authority.
-- PR #183 first qualified head
-  `bd338004fc44d441b7190223645a8ad9802b7819`; review then found the
-  archive-wide precedence gap. DCO correction
-  `482aa76c68c1ab3d17f22f4fa1d286c7ab03ed9a` added the separate pass and
-  three cross-member regressions.
-- Corrected-head run `31697316773` passed Linux in 7m33s, macOS in 3m07s, and
-  Windows in 3m57s. All five hosted CPython suites passed 2,385 tests; the four
-  compatibility suites recorded one capability skip. Static checks, strict
-  docs, real-wgpu, profiles, vertical slices, reproducible distributions,
-  installed-wheel smoke, staging, and complete release smoke passed.
-- Two separated post-correction audits found no new review input. The single
-  original P2 thread remains unresolved because no thread-resolution write was
-  authorized, but its requested two-pass correction and all three regressions
-  are present on the exact qualified head; GitHub reported `CLEAN` and
-  `MERGEABLE` before squash.
-- PR #183 squash `0c3c407c1e5d86541570c665fd305fa95e32e07a`
-  has exact reviewed tree `923efabb7b6968a53db2035c107baa80b89119cc`,
-  sole parent M76 closeout, exact author identity, and valid GitHub verification
-  at `2026-08-13T12:04:14Z`.
-- Both feature source commits contain parseable DCO trailers. The squash body
-  records the same sign-off text after literal `\n\n` characters instead of
-  real blank lines, so the squash itself has no parseable trailer. This process
-  defect is retained explicitly and subsequent squashes must use a body file.
-- The obsolete feature branch is deleted locally and remotely; local `main`
-  fast-forwarded to the verified squash before this record branch was created.
+- M77 rejects an exact NUL in the decoded central-directory name retained by
+  `ZipInfo.orig_filename` during a separate all-member pass after all
+  established flag checks and before metadata, inventory, staging, or reads.
+- The correction preserves archive-wide M69/M75/M76 error precedence and owned
+  cleanup without adding a general normalized-name comparison, raw parser,
+  workflow, producer, dependency, runtime API, or release authority.
+- Corrected feature head `482aa76c68c1ab3d17f22f4fa1d286c7ab03ed9a`
+  passed full three-allocation run `31697316773`; feature squash
+  `0c3c407c1e5d86541570c665fd305fa95e32e07a` has exact qualified tree and
+  valid GitHub verification. Its literal-newline squash-message defect remains
+  explicitly recorded; both source commits are parseably DCO-signed.
+- Integration PR #184 classified exactly four paths as documentation. Run
+  `31698788838` used one 47-second Linux job, passed 841 hosted architecture
+  assertions and all package/release smokes, and skipped desktop with zero
+  steps.
+- Two separated integration audits found no comment, review, inline comment,
+  or thread. Integration squash
+  `9c37857cb8d0cc68fa63128091d6c116f84ef66d` has the exact reviewed tree,
+  sole feature-squash parent, parseable DCO trailer, exact identity, and valid
+  GitHub verification at `2026-08-13T12:13:08Z`.
+- All obsolete feature and integration branches are deleted locally and
+  remotely. M77 created no tag, release, publication, dependency, workflow, or
+  runtime-package change.
 
 ## Remaining gates
 
-1. Validate exactly the four integration-record files with lock, static,
-   architecture, strict docs, reproducible package, installed-wheel, staged
-   release, whitespace, and Git-object checks.
-2. Publish a DCO-signed ready PR, require the documentation classifier's
-   bounded Linux gate, perform two review-state audits, and squash with a real
-   body file.
-3. Publish the exact three-record closeout, delete all M77 branches and
-   generated targets, return to clean synchronized `main`, and select M78.
+1. Validate exactly these three project records with lock, static,
+   architecture, strict docs, whitespace, scope, and Git-object checks.
+2. Publish a DCO-signed ready closeout PR, confirm no path-filtered workflow is
+   created, perform two review-state audits, and squash with a body file.
+3. Delete the closeout branch and all M77 generated targets, return to clean
+   synchronized `main`, verify no PR/tag/release or extra branch remains, and
+   select M78.

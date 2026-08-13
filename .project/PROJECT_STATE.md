@@ -1,6 +1,6 @@
 # Project State
 
-## M77 NUL-suffixed sample-member name preflight - feature integrated
+## M77 NUL-suffixed sample-member name preflight - closeout active
 
 - Base: exact clean synchronized M76 closeout
   `701637f99447f4d64c84047e64ec5edfa0c6889f`, tree
@@ -102,8 +102,18 @@
   sign-off text, not real blank lines, so the squash message itself has no
   parseable DCO trailer. This is retained as factual process evidence; future
   squash messages use a body file. No history rewrite is authorized or made.
-- Remaining: bounded integration/closeout records, branch/artifact cleanup,
-  and selection of M78 from clean synchronized `main`.
+- Integration record: exact DCO head
+  `ed1eb024cc4098d03a02c06c5c5dda6e3df8792a` passed documentation-classified
+  run `31698788838`. One 47-second Linux job passed 841 hosted architecture
+  assertions, reproducible distribution, installed-wheel smoke, deterministic
+  staging, and complete release smoke; desktop skipped with zero steps.
+- Integration audits/squash: two separated audits found no review input. PR
+  #184 squash `9c37857cb8d0cc68fa63128091d6c116f84ef66d` has exact reviewed tree
+  `baffa85b731086ba71a247411cfbca51c4bdbc72`, sole feature-squash parent,
+  exact identity, a parseable DCO trailer, and valid GitHub verification at
+  `2026-08-13T12:13:08Z`.
+- Remaining: exact three-record closeout, branch/artifact cleanup, and
+  selection of M78 from clean synchronized `main`.
 
 ## M76 enhanced-deflate sample-member preflight - complete
 
