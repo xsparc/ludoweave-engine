@@ -1,6 +1,6 @@
 # Project State
 
-## M85 conventional central-directory placement preflight - locally qualified
+## M85 conventional central-directory placement preflight - integration records active
 
 - Base: exact verified M84 closeout squash
   `5b21c4798c16fb69b8ef08d40b02a2662677227a`, tree
@@ -35,6 +35,37 @@
   Static/type/docs, real wgpu, profiles, both sample applications, M1-M4
   diagnostics, reproducible distributions, isolated-wheel smoke,
   deterministic staging, and complete release smoke pass.
+- Hosted qualification: ready PR #207 exact DCO head
+  `6b1d7ef2c712c4d80a6bc4538e7ded3aec3ee5d5`, tree
+  `b3cab8d267fa26954b7ef2fe36d9dba530f3d393`, passed exact-head run
+  `31739467587`, classified substantive with 16 paths, in exactly three
+  allocations. Linux completed in 7m22s, macOS in 2m24s, and Windows in 4m14s.
+- Hosted tests: Linux CPython 3.12/3.13/3.14 and both desktop CPython 3.14
+  suites passed 2,567 tests, with one capability skip outside Linux baseline.
+  Every OS passed 10 real-wgpu tests, graphics profiling, Clockwork Arena, and
+  Agent World Builder. Static/docs, reproducibility, isolated-wheel smoke,
+  deterministic ten-artifact staging, and complete release smoke passed.
+- Hosted artifacts: exact-head reproducibility produced a pure 275,471-byte
+  wheel at
+  `1043613c43be614ef21ca34f56bf6da98323d380d47fc90a3d9997dc5a785ef5`
+  and 1,336,967-byte sdist at
+  `cfa907e23b9d74ae6168c9b40592d6dfc244a3700e12a9ef23e89c65a95bbb8f`.
+- Review/integration: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, three successful checks, matching DCO identity, and zero
+  feedback. Exact-head-guarded squash
+  `c9bb569fc1476d1aaf92c4fb01bfd9210d0398ed` has the exact qualified tree,
+  sole M84-closeout parent `5b21c4798c16fb69b8ef08d40b02a2662677227a`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T20:23:29Z`. No
+  postmerge run was allocated; the feature branch is deleted locally/remotely.
+- Integration-local evidence: exactly the three project records plus roadmap
+  change. The unchanged 46-package lock resolves; all 328 files are format/
+  Ruff clean; strict Pyright has zero findings; all 1,022 architecture
+  assertions pass with 1 Windows capability skip; strict docs, whitespace,
+  and Git-object checks pass. Two builds reproduce a 275,486-byte wheel at
+  `d290ade15c82ba8dc652b13fa7c14d63f90a87b6bdfa7991ce2cca680818c5f6`
+  and 1,337,914-byte sdist at
+  `0de7a63cbb7f36172926689e33b8cf6434ca9682f9a7df61972c1e28a313b03c`;
+  isolated-wheel, staging, and release smoke pass.
 
 ## M84 conventional archive entry-count preflight - closeout active
 

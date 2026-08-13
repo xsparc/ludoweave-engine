@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M85 - conventional central-directory placement preflight
-- **Status:** Locally qualified and independently reviewed; feature publication
-  and exact-head hosted qualification are pending.
+- **Status:** Feature exact-head qualified and squash-integrated; bounded
+  integration records are locally qualified for publication.
 - **Base:** Verified M84 closeout squash
   `5b21c4798c16fb69b8ef08d40b02a2662677227a`, tree
   `eb1e76fb5ccf1fb151acbfb4bb149c55c31ba06b`.
-- **Branch:** `release/m85-central-directory-placement`
+- **Branch:** `release/m85-integration-record`
 
 ## Accepted slice
 
@@ -69,11 +69,27 @@
   lineage pass with one Windows capability skip each. Static/type/docs,
   real-wgpu, profiles, samples, diagnostics, builds, wheel smoke, deterministic
   staging, and complete release smoke pass.
+- Ready PR #207 exact DCO head
+  `6b1d7ef2c712c4d80a6bc4538e7ded3aec3ee5d5`, tree
+  `b3cab8d267fa26954b7ef2fe36d9dba530f3d393`, passed exact-head run
+  `31739467587` in exactly three allocations. Linux passed in 7m22s, macOS in
+  2m24s, and Windows in 4m14s. Every hosted suite reported 2,567 passes, with
+  one capability skip outside Linux baseline; each OS passed 10 real-wgpu
+  tests, profiles, and both sample applications.
+- Two separated audits retained the exact base/head, `MERGEABLE`/`CLEAN`,
+  three successful checks, matching DCO identity, and zero feedback. Guarded
+  squash `c9bb569fc1476d1aaf92c4fb01bfd9210d0398ed` has the exact qualified
+  tree, sole M84-closeout parent, parsed DCO, and valid GitHub verification.
+  No postmerge run was allocated; the feature branch is deleted locally and
+  remotely.
+- The integration record changes exactly the three project records plus
+  roadmap. The unchanged lock, 328-file format/Ruff checks, strict Pyright,
+  all 1,022 architecture assertions, strict docs, whitespace, Git-object
+  checking, reproducible distributions, isolated-wheel smoke, deterministic
+  staging, and complete release smoke pass.
 
 ## Remaining gates
 
-1. Publish a ready feature PR, require exact-head hosted qualification and two
-   separated review audits, then squash-integrate only the qualified tree.
-2. Publish and integrate bounded factual records, close out M85, remove its
+1. Publish and integrate bounded factual records, close out M85, remove its
    branches/generated targets, and return to clean synchronized `main` before
    selecting M86.
