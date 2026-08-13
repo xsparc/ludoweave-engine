@@ -33,6 +33,24 @@ M83 starts from exact verified M82 closeout squash
 | Exact scope, protected-surface, disclosure, credential, and artifact audit | Clean | Exactly 16 intended paths change. CI remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow `c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5`; sample producer `d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca`; package metadata `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`; lock `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Added-content identity and credential/private-key scans are empty. The 94-entry wheel and 532-entry sdist contain no native, WASM, bytecode, or retired control metadata; full Git-object checking reports no corruption. |
 | Final factual-record-inclusive source/repository gate | 0 | The unchanged lock resolved 46 packages in 0.78 ms; all 326 files remained format clean; Ruff and strict Pyright reported zero findings; all 974 architecture assertions passed with 1 Windows capability skip in 6.47 seconds; strict docs built in 1.27 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
 
+## M83 hosted validation and feature integration - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact-head hosted qualification | 0 | Ready PR #201 exact DCO head `66045e4cebfcd857f332a511bd16286ea0a109d0`, tree `7ee06883ce29e75e9f8d6d972f00c4bde85f119e`, passed run `31730269653`, classified substantive with 16 paths, in exactly three allocations. Linux job `94548702512` passed in 8m02s; Windows `94551100735` in 4m00s; macOS `94551100705` in 2m40s. |
+| Hosted test and smoke evidence | 0 | Linux CPython 3.12 passed 2,519 tests. Linux CPython 3.13/3.14 and both desktop 3.14 suites passed 2,519 with 1 capability skip. Every OS passed 10 real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World Builder. Format, Ruff, strict Pyright, strict docs, isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. |
+| Hosted artifact identity | 0 | Same-head reproducibility produced a pure 275,225-byte wheel at `e6e219f4f6d3c0a5d128f0374a47c9004a239b56acd42b24eb509f660a5cefb8` and 1,323,928-byte sdist at `ff931882e9b83e77084951ac235c8f9ad47eaa4c93e983d7146887f35281fd08`. |
+| Two separated review audits | Clean | Both audits retained exact base `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`, exact head `66045e4cebfcd857f332a511bd16286ea0a109d0`, `MERGEABLE`/`CLEAN`, three successful checks, matching DCO identity, and zero issue comments, reviews, inline comments, or review threads. |
+| Guarded feature squash audit | 0 | Exact-head-guarded squash merged PR #201 as `870141014c540984420933122028ed870fa22119`. Its tree `7ee06883ce29e75e9f8d6d972f00c4bde85f119e` exactly equals the qualified head, its sole parent is M82 closeout `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`, its trailer parses as DCO, and GitHub verification is valid at `2026-08-13T18:35:45Z`. No postmerge workflow was allocated; the feature branch was deleted locally/remotely and synchronized `main` remained. |
+
+## M83 integration-record local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact four-record source/repository gate | 0 | From exact feature squash `870141014c540984420933122028ed870fa22119`, exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md` change. The unchanged lock resolved 46 packages in 0.72 ms; all 326 files were format clean; Ruff and strict Pyright reported zero findings; all 974 architecture assertions passed with 1 Windows capability skip in 6.69 seconds; strict docs built in 1.31 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
+| Integration-record reproducibility and release gate | 0 | Two builds reproduced a pure 275,238-byte wheel at `2c7b187266cebac06a3478ea3f5a0c515e38175ee74bda809a09f07eb2acc788` and 1,325,277-byte sdist at `9bf9d818c94d4eeeb53008d5fa41a49481a0a841741e9a8922f2818866838788`. Isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Recording this row changes the sdist; future hosted integration-head identities are authoritative. |
+| Exact scope and hygiene audit | Clean | Exactly the four intended record paths change. CI, release workflow, verifier, producer, runtime, tests, docs, metadata, lock, and package contents are unchanged from the verified feature squash; no new identity, credential, native/WASM, bytecode, or retired-control surface is added. |
+
 ## M82 direction and implementation evidence - 2026-08-14, Windows
 
 M82 starts from exact verified M81 closeout squash
