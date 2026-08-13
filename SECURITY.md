@@ -269,6 +269,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   silent. This adds no ZIP64 end-record parser, sentinel resolution, or multi-
   volume assembler, changes no workflow or producer, is not a general archive
   sandbox, and is not a real public release observation.
+- M85 requires the final conventional central-directory size plus offset to
+  equal the absolute final end-of-central-directory record offset after M84
+  entry-count policy and before decoded-name policy, metadata, inventory,
+  member reads, or staging. The error `sample bundle central directory
+  placement is inconsistent` is content-silent. This adds no central-directory
+  record parser, prepended executable support, self-extracting archive support,
+  or multi-volume assembler, changes no workflow or producer, is not a general
+  archive sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

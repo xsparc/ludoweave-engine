@@ -108,6 +108,7 @@ nav:
       - RFC-0065 - Reject split-volume sample members: rfcs/0065-reject-split-volume-sample-members.md
       - RFC-0066 - Reject unsupported archive disk fields: rfcs/0066-reject-unsupported-archive-disk-fields.md
       - RFC-0067 - Require consistent archive entry counts: rfcs/0067-require-consistent-archive-entry-counts.md
+      - RFC-0068 - Require exact central-directory placement: rfcs/0068-require-exact-central-directory-placement.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

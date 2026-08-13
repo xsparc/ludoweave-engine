@@ -1,5 +1,41 @@
 # Project State
 
+## M85 conventional central-directory placement preflight - locally qualified
+
+- Base: exact verified M84 closeout squash
+  `5b21c4798c16fb69b8ef08d40b02a2662677227a`, tree
+  `eb1e76fb5ccf1fb151acbfb4bb149c55c31ba06b`. Clean synchronized `main` was
+  the only local/remote branch; no open PR, tag, release, postmerge run,
+  disclosure marker, or M84 generated target remained before M85 selection.
+- Gap: PKWARE defines conventional central-directory size and offset. Exact
+  installed CPython 3.12.13, 3.13.13, and 3.14.5 accepts arbitrary prepended
+  bytes by computing a concatenation adjustment: one- and eleven-byte prefixes
+  preserve the same readable payload and shift the parsed header offset by the
+  prefix length. The fixed producer starts at byte zero.
+- Decision: after every policy through M84, private complete release smoke
+  requires declared central-directory size plus offset to equal the absolute
+  final-record offset before M77 name policy, metadata, inventory, staging, or
+  reads. The stable content-silent error is `sample bundle central directory
+  placement is inconsistent`.
+- Boundary: one arithmetic relationship only. No central-directory/local-
+  header parser, end-record search, ZIP64 parser, executable classifier,
+  prepended executable or self-extracting archive support, multi-volume
+  assembler, workflow, producer, dependency, runtime API, or release authority
+  is added.
+- Red-to-green: the static-clean authoritative baseline passed 6 controls and
+  failed 13 missing contracts in 0.71 seconds. The placement implementation and
+  shared structural helper make 80 M83-M85 runtime assertions pass in 0.51
+  seconds; only the deliberately absent public/RFC contract remained before
+  documentation was added.
+- Qualification: review corrected an evidence overclaim without finding a
+  production defect and added a negative-adjustment extraction-path control.
+  The 20-case contract passes on CPython 3.12-3.14; the corrected CPython 3.12
+  suite passes 2,562 tests with 15 skips; all 1,022 architecture assertions and
+  the 333-case M64-M85 lineage pass with one Windows capability skip each.
+  Static/type/docs, real wgpu, profiles, both sample applications, M1-M4
+  diagnostics, reproducible distributions, isolated-wheel smoke,
+  deterministic staging, and complete release smoke pass.
+
 ## M84 conventional archive entry-count preflight - closeout active
 
 - Base: exact verified M83 closeout squash
