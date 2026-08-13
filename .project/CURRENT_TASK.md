@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M83 - conventional archive disk-field preflight
-- **Status:** Corrected feature tree is fully locally qualified and reviewed;
-  exact-head hosted qualification is next.
-- **Base:** Verified M82 closeout squash
-  `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`, tree
-  `fc19f02ae8af1a432d23f0ccf8e4775ef10085c7`.
-- **Branch:** `release/m83-archive-disk-preflight`
+- **Status:** Corrected feature tree is hosted-qualified, reviewed, and squash-
+  integrated; the bounded integration record is active.
+- **Base:** Verified M83 feature squash
+  `870141014c540984420933122028ed870fa22119`, tree
+  `7ee06883ce29e75e9f8d6d972f00c4bde85f119e`.
+- **Branch:** `release/m83-integration-record`
 
 ## Accepted slice
 
@@ -68,11 +68,37 @@
   slices, M1-M4 diagnostics, reproducible builds, isolated-wheel smoke, ten-
   artifact staging, complete release smoke, strict docs, scope, disclosure,
   credential, artifact, whitespace, and Git-object gates pass.
+- Ready PR #201 exact DCO head
+  `66045e4cebfcd857f332a511bd16286ea0a109d0`, tree
+  `7ee06883ce29e75e9f8d6d972f00c4bde85f119e`, passed run `31730269653`,
+  classified substantive with 16 paths, in exactly three allocations: Linux
+  8m02s, Windows 4m00s, and macOS 2m40s.
+- Linux CPython 3.12/3.13/3.14 and both desktop 3.14 suites passed 2,519
+  tests, with one compatibility skip outside baseline. Every OS passed 10
+  real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World
+  Builder; static/docs, installed-wheel, staging, and release smoke passed.
+- Hosted reproducibility produced a pure 275,225-byte wheel at
+  `e6e219f4f6d3c0a5d128f0374a47c9004a239b56acd42b24eb509f660a5cefb8`
+  and 1,323,928-byte sdist at
+  `ff931882e9b83e77084951ac235c8f9ad47eaa4c93e983d7146887f35281fd08`.
+- Two separated audits retained exact base/head, `MERGEABLE`/`CLEAN`, three
+  successful checks, matching DCO identity, and zero comments, reviews, or
+  threads. Exact-head-guarded squash
+  `870141014c540984420933122028ed870fa22119` has the exact qualified tree,
+  sole M82-closeout parent, parsed DCO, and valid GitHub verification at
+  `2026-08-13T18:35:45Z`. No postmerge run was allocated; the feature branch
+  is deleted locally/remotely and `main` was synchronized before this record.
+- The exact four-record integration tree passes the lock/static/architecture/
+  docs/repository gate. Two builds reproduce a 275,238-byte wheel at
+  `2c7b187266cebac06a3478ea3f5a0c515e38175ee74bda809a09f07eb2acc788`
+  and 1,325,277-byte sdist at
+  `9bf9d818c94d4eeeb53008d5fa41a49481a0a841741e9a8922f2818866838788`;
+  isolated-wheel, ten-artifact staging, and complete release smoke pass.
 
 ## Remaining gates
 
-1. Publish a ready feature PR, require exact-head hosted qualification and two
-   separated review audits, then squash-integrate only the qualified tree.
-2. Publish and integrate bounded factual records, close out M83, remove its
+1. Pass the exact four-record local static, architecture, docs, reproducible-
+   build, installed-wheel, staging, release-smoke, scope, and hygiene gate.
+2. Publish and integrate the bounded factual record, close out M83, remove its
    branches/generated targets, and return to clean synchronized `main` before
    selecting M84.

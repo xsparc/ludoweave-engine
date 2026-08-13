@@ -47,6 +47,38 @@
   `6e01c1f0f3a68fb3ddcadaf1ec7232082217c3aee6e57d47094b0801dbf06cdf`;
   the evidence-record update changes the future sdist, so hosted exact-head
   identities remain authoritative.
+- Hosted qualification: ready PR #201 exact DCO head
+  `66045e4cebfcd857f332a511bd16286ea0a109d0`, tree
+  `7ee06883ce29e75e9f8d6d972f00c4bde85f119e`, passed exact-head run
+  `31730269653`, classified substantive with 16 paths, in exactly three
+  allocations. Linux completed in 8m02s, Windows in 4m00s, and macOS in 2m40s.
+- Hosted tests: Linux CPython 3.12/3.13/3.14 and both desktop CPython 3.14
+  suites passed 2,519 tests, with one skip outside baseline. Every OS passed
+  10 real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World
+  Builder. Static/docs, reproducibility, isolated-wheel smoke, deterministic
+  ten-artifact staging, and complete release smoke passed.
+- Hosted artifacts: exact-head reproducibility produced a pure 275,225-byte
+  wheel at
+  `e6e219f4f6d3c0a5d128f0374a47c9004a239b56acd42b24eb509f660a5cefb8`
+  and 1,323,928-byte sdist at
+  `ff931882e9b83e77084951ac235c8f9ad47eaa4c93e983d7146887f35281fd08`.
+- Review/integration: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, three successful checks, matching DCO identity, and zero
+  comments, reviews, inline comments, or review threads. Exact-head-guarded
+  squash `870141014c540984420933122028ed870fa22119` has the exact qualified
+  tree, sole M82-closeout parent `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T18:35:45Z`. No
+  postmerge run was allocated; the feature branch is deleted locally/remotely.
+- Integration-local evidence: exactly the three project records plus roadmap
+  change. The unchanged 46-package lock resolves; all 326 files are format/
+  Ruff clean; strict Pyright has zero findings; all 974 architecture assertions
+  pass with 1 Windows capability skip; strict docs, whitespace, and Git-object
+  checks pass. Two builds reproduce a 275,238-byte wheel at
+  `2c7b187266cebac06a3478ea3f5a0c515e38175ee74bda809a09f07eb2acc788`
+  and 1,325,277-byte sdist at
+  `9bf9d818c94d4eeeb53008d5fa41a49481a0a841741e9a8922f2818866838788`;
+  isolated-wheel, staging, and release smoke pass. Protected and added-content
+  hygiene remains clean.
 
 ## M82 split-volume sample-member preflight - closeout active
 
