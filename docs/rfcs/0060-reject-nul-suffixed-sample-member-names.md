@@ -22,18 +22,20 @@ the visible name satisfied the exact inventory.
 
 ## Decision
 
-Complete release smoke calls a private `_validate_sample_member_name` for every
-member immediately after the established processing/compression flag checks.
-The validator performs one exact NUL check on decoded
-`ZipInfo.orig_filename`. A match raises the stable content-silent policy error
-`sample bundle member name contains a NUL byte`.
+Complete release smoke first checks the established processing/compression
+flags for every member, then calls a private `_validate_sample_member_name` for
+every member in a separate archive-wide pass. The validator performs one exact
+NUL check on decoded `ZipInfo.orig_filename`. A match raises the stable
+content-silent policy error `sample bundle member name contains a NUL byte`.
 
 Because the check remains in the all-member preflight, a later NUL-suffixed
 member preempts an earlier member's metadata error. Failure occurs before
 metadata or exact-inventory validation, staging, or member reads. Surrounding
 ownership contexts close the source, snapshot, and archive before control
-returns. M69 encryption, M75 compressed-patch, and M76 enhanced-deflate errors
-retain their existing precedence.
+returns. Because all flag checks complete before name checks begin, M69
+encryption, M75 compressed-patch, and M76 enhanced-deflate errors retain their
+existing precedence even when the flagged member follows the NUL-suffixed
+member.
 
 M77 deliberately does not reject every difference between `orig_filename` and
 `filename`. The standard reader can normalize platform separators and may

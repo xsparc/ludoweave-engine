@@ -48,11 +48,13 @@
   wheel, staging, and complete release smokes pass. The unchanged 111,168-byte
   50-entry sample is
   `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
-- Review: implementation, ordering, cleanup, producer compatibility, and exact
-  non-scope are sound. Review corrected public wording that treated
-  `orig_filename` as a universal name record; it is specifically the decoded
-  central-directory filename used to construct `ZipInfo`. Corrected focused,
-  architecture, static, docs, and whitespace gates pass.
+- Local review corrected public wording that treated `orig_filename` as a
+  universal name record; it is specifically the decoded central-directory
+  filename used to construct `ZipInfo`. The first hosted review then found an
+  archive-wide precedence gap: an earlier NUL name could mask a prohibited
+  flag on a later member. The correction completes all-member flag validation
+  before a separate all-member name pass. Three cross-member regressions cover
+  M69, M75, and M76; all 15 focused cases and affected static/docs gates pass.
 - Record-inclusive artifacts: two builds reproduce the pure 274,448-byte wheel
   `ecf37cf1a420433cdc0b5a3ff07fefff5450e5d7ae0b6cdff1e2d3e88639dea9`
   and 1,273,541-byte sdist
@@ -71,9 +73,18 @@
 - Post-record gate: the unchanged lock, all 320 formatted files, Ruff, strict
   Pyright, all 837 architecture assertions with 1 local capability skip,
   strict docs, whitespace, and exact 16-path scope pass.
-- Remaining: DCO publication, exact-head hosted qualification, review audits,
-  verified squash integration, bounded integration/closeout records, and
-  branch/artifact cleanup.
+- First hosted head: exact DCO head
+  `bd338004fc44d441b7190223645a8ad9802b7819` passed run `31695444362` on
+  Linux, macOS, and Windows before the precedence finding. The corrected head
+  still requires full local and hosted qualification.
+- Corrected local qualification: all 15 focused assertions and all 840
+  architecture assertions pass with 1 local capability skip. CPython 3.12
+  passes 2,380 tests with 15 skips; CPython 3.13/3.14 each pass 2,370 with 16
+  skips. Real-wgpu, profiles, examples, reproducible distribution, isolated
+  wheel, deterministic staging, and complete release smoke all pass.
+- Remaining: corrected-head DCO publication, exact-head hosted qualification,
+  finding resolution, two clean review audits, verified squash integration,
+  bounded integration/closeout records, and branch/artifact cleanup.
 
 ## M76 enhanced-deflate sample-member preflight - complete
 

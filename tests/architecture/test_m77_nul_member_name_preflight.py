@@ -254,6 +254,36 @@ def test_existing_flag_errors_precede_nul_name_policy(
         )
 
 
+@pytest.mark.parametrize(
+    ("flag_bits", "expected_error"),
+    (
+        (0x0001, "sample bundle contains an encrypted member"),
+        (0x0020, "sample bundle uses compressed patched data"),
+        (0x0010, "sample bundle uses enhanced deflating"),
+    ),
+)
+def test_later_member_flag_errors_precede_earlier_nul_name_policy(
+    tmp_path: Path,
+    flag_bits: int,
+    expected_error: str,
+) -> None:
+    module = _smoke()
+    bundle = tmp_path / f"archive-wide-precedence-{flag_bits}.zip"
+    _bundle_with_hidden_suffix(
+        bundle,
+        frozenset(("README.md", "pyproject.toml")),
+        target_index=0,
+    )
+    _set_member_flags(bundle, member_index=1, flag_bits=flag_bits)
+
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(expected_error)}$"):
+        module._extract_bundle(
+            bundle,
+            _empty_output(tmp_path, f"archive-wide-output-{flag_bits}"),
+            version=_VERSION,
+        )
+
+
 def test_exact_nul_validator_does_not_reject_other_name_differences() -> None:
     module = _smoke()
 
@@ -284,14 +314,26 @@ def test_m77_source_preflights_exact_nul_without_general_name_comparison() -> No
 
     assert '"\\x00" in original_name' in validation
     assert "original_name !=" not in validation
+    flag_pass = extraction.index("for info in infos:")
     processing = extraction.index("_validate_sample_member_flags(flag_bits=info.flag_bits)")
     compression = extraction.index("_validate_sample_compression_flags(")
+    name_pass = extraction.index("for info in infos:", flag_pass + 1)
     name = extraction.index("_validate_sample_member_name(original_name=info.orig_filename)")
     metadata = extraction.index("total_bytes = 0")
     inventory = extraction.index("_validate_sample_inventory(observed_members)")
     staging = extraction.index("TemporaryDirectory(")
     member_read = extraction.index("archive.open(info)")
-    assert processing < compression < name < metadata < inventory < staging < member_read
+    assert (
+        flag_pass
+        < processing
+        < compression
+        < name_pass
+        < name
+        < metadata
+        < inventory
+        < staging
+        < member_read
+    )
 
 
 def test_m77_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:

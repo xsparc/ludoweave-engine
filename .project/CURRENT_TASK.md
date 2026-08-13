@@ -1,8 +1,10 @@
 # Current Task
 
 - **Task:** M77 - NUL-suffixed sample-member name preflight
-- **Status:** The exact 16-path feature candidate is fully locally qualified,
-  reviewed, and frozen for DCO publication.
+- **Status:** The first exact head passed hosted qualification; review then
+  found an archive-wide precedence gap. The separate flag/name preflights and
+  three cross-member regressions are implemented and fully locally qualified;
+  corrected-head DCO publication is next.
 - **Base:** Exact clean synchronized M76 closeout
   `701637f99447f4d64c84047e64ec5edfa0c6889f`, tree
   `27cfc273accb3190d0c50e6a344685875cce541b`.
@@ -80,11 +82,28 @@
 - The evidence-inclusive post-record gate passes the unchanged lock, all 320
   formatted files, Ruff, strict Pyright, all 837 architecture assertions with
   1 capability skip, strict docs, whitespace, and exact 16-path scope.
+- Ready PR #183 qualified exact first head
+  `bd338004fc44d441b7190223645a8ad9802b7819` in successful hosted run
+  `31695444362`. Linux passed first in 7m18s; guarded macOS and Windows passed
+  afterward in 2m08s and 4m09s. Each hosted CPython suite passed 2,382 tests;
+  the compatibility suites recorded one capability skip.
+- The first review audit found that the per-member loop allowed an earlier
+  NUL-suffixed name to mask an established prohibited flag on a later member.
+  Complete release smoke now completes archive-wide flag validation before a
+  separate archive-wide name pass. Three new cross-member cases cover M69,
+  M75, and M76; the corrected 15-case focus, affected static checks, strict
+  docs, and whitespace pass.
+- The corrected exact tree passes all 840 architecture assertions with 1 local
+  capability skip. CPython 3.12 passes 2,380 tests with 15 skips; CPython 3.13
+  and 3.14 each pass 2,370 with 16 skips. Ten real-wgpu tests, both profiling
+  contracts, both vertical slices, two byte-identical builds, installed-wheel
+  smoke, deterministic ten-artifact staging, and complete release smoke pass.
 
 ## Next gates
 
-1. Create the exact DCO feature commit and publish a ready PR.
-2. Wait for exact-head hosted qualification, complete two review-state audits,
-   squash-merge, and verify the resulting tree, parent, identity, and signature.
+1. Publish the corrected DCO commit to PR #183 and rerun exact-head hosted
+   qualification.
+2. Resolve the finding, complete two clean review-state audits, squash-merge,
+   and verify the resulting tree, parent, identity, and signature.
 3. Publish bounded integration/closeout records, delete all milestone branches
    and generated artifacts, then return to clean synchronized `main`.

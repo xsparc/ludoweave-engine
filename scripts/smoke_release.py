@@ -490,6 +490,8 @@ def _extract_checksum_admitted_bundle(
                 flag_bits=info.flag_bits,
                 compress_type=info.compress_type,
             )
+
+        for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
 
         total_bytes = 0
