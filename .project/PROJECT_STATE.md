@@ -1,6 +1,6 @@
 # Project State
 
-## M85 conventional central-directory placement preflight - integration records active
+## M85 conventional central-directory placement preflight - closeout active
 
 - Base: exact verified M84 closeout squash
   `5b21c4798c16fb69b8ef08d40b02a2662677227a`, tree
@@ -66,6 +66,30 @@
   and 1,337,914-byte sdist at
   `0de7a63cbb7f36172926689e33b8cf6434ca9682f9a7df61972c1e28a313b03c`;
   isolated-wheel, staging, and release smoke pass.
+- Hosted integration: ready PR #208 exact DCO head
+  `a44e540c282673064535aa3ab8f63454886894a3`, tree
+  `7db97bfbfbcf5b1e480c143c8b339a6ba69f9fba`, passed run `31741059247`.
+  Classification was `documentation` with four paths. The sole Linux job
+  passed in 42 seconds; the desktop umbrella skipped with zero steps. Strict
+  docs, 1,023 architecture assertions, reproducibility, isolated-wheel,
+  staging, and complete release smoke passed.
+- Hosted integration artifacts: the feature-identical 275,471-byte wheel is
+  `1043613c43be614ef21ca34f56bf6da98323d380d47fc90a3d9997dc5a785ef5`;
+  the 1,338,272-byte record-updated sdist is
+  `837eb2bddb871fd64bf0d9d4ae5c331ee4632ec8e4ad1687c4c5515233b5dbfd`.
+- Integration review/squash: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, one successful Linux check, one skipped zero-step
+  desktop umbrella, matching DCO identity, and zero feedback. Guarded squash
+  `c83a25012c7a0b3520852d35c55a4fc362a9e559` has the exact reviewed tree,
+  sole feature-squash parent `c9bb569fc1476d1aaf92c4fb01bfd9210d0398ed`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T20:31:01Z`. No
+  postmerge run was allocated; the integration branch is deleted locally and
+  remotely.
+- Closeout scope: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. No
+  workflow-classified, public, runtime, test, build, dependency, release,
+  credential, identity, native, WASM, bytecode, or generated-artifact surface
+  is added.
 
 ## M84 conventional archive entry-count preflight - closeout active
 
