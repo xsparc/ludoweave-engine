@@ -702,6 +702,20 @@ support, local-header comparison, repair, workflow, dependency, runtime API,
 sample producer, or release authority, is not a general archive sandbox, and
 is not a real public release observation.
 
+M81/RFC-0064 rejects parser-exposed non-empty ZIP archive and member comments
+after every established flag and exact extra-field pass. The archive comment
+is checked
+once before a separate all-member comment pass; both finish before decoded-
+name policy, member metadata, exact inventory validation, staging, or member
+reads. Complete release smoke emits stable content-silent errors `sample bundle
+uses an archive comment` and `sample bundle uses a member comment` without
+including comment bytes or member names.
+
+The fixed sample producer emits neither comment surface. M81 adds no raw ZIP
+parser, general comment scanner, comment decoder, rewriting, workflow,
+dependency, runtime API, release authority, or producer change. It is not a
+general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

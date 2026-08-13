@@ -1,5 +1,68 @@
 # Project State
 
+## M81 ZIP comment preflight - implementation active
+
+- Base: exact verified M80 closeout squash
+  `3241a348a75c24a764f167ade48798ed3ac06af1`, tree
+  `f5a1375cff72dfbbffa8ba755210815dac1bdfd7`. PR #194 merged the exact
+  reviewed closeout tree with sole integration parent, matching DCO identity,
+  and valid GitHub verification. Its false-positive DCO review thread was
+  answered from the published Git object and resolved. Only synchronized
+  `main` remained locally/remotely; no open PR, tag, release, or M80 generated
+  target remained before M81 selection.
+- Gap: PKWARE defines an end-of-central-directory archive comment and a per-
+  member central-directory file comment. Installed CPython 3.12.13, 3.13.13,
+  and 3.14.5 preserve both exact byte strings while reading the same deflated
+  payload; the probe exposed no member extra field or general-purpose flag.
+  The fixed producer emits 50 members with neither comment surface.
+- Decision: private complete release smoke retains every established
+  M69/M75/M76/M78/M79/M80 archive-wide category, then rejects a parser-exposed
+  non-empty
+  archive comment, rejects every non-empty member comment in a separate pass,
+  and only then begins M77 decoded-name policy, metadata, exact inventory,
+  staging, or reads. Stable content-silent errors are `sample bundle uses an
+  archive comment` and `sample bundle uses a member comment`.
+- Ownership: the existing `ExitStack` closes the caller-opened source, owned
+  checksum-admitted snapshot, and `ZipFile` before either error returns. No
+  member is opened and no staging directory or final sample root is created.
+- Contract: 26 M81 assertions cover actual CPython behavior, archive/member
+  policy, exact errors, no-read/no-staging/no-inventory ordering, cleanup,
+  every established flag category, Unicode Path/ZIP64 precedence, archive-
+  before-member precedence, comment-before-NUL ordering, direct validator
+  behavior, the 50-member producer invariant, source ordering, protected
+  hashes, runtime-package absence, and public nonclaims.
+- Documentation: RFC-0064 and README, changelog, security, maintainer,
+  architecture, release-process, RFC-index, MkDocs navigation, roadmap, and
+  repository evidence records define the exact private boundary. One focused
+  documentation regression initially failed because the RFC did not contain
+  exact phrase `no general comment scanner`; the wording was corrected and all
+  26 focused assertions plus strict docs then passed.
+- Qualification: all 324 Python files are format clean; Ruff and strict
+  Pyright report zero findings; 920 architecture assertions pass with 1
+  Windows capability skip; the exact M64-M81 lineage passes 231 assertions
+  with 1 skip. CPython 3.12.13, 3.13.13, and 3.14.5 each pass 2,450 tests with
+  15/16/16 capability skips. Ten real-wgpu tests, both profiling contracts,
+  Clockwork Arena, Agent World Builder, M1-M4 diagnostic validators, two-build
+  reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  complete release smoke, strict docs, whitespace, and Git-object checks pass.
+- Review: findings-first review tightened all public claims to parser-exposed
+  comments because malformed raw records can fail earlier through the existing
+  stable ZIP-data boundary. The corrected exact contract passes 26 assertions
+  and strict docs. Exactly 15 intended paths change; protected workflow,
+  producer, package, and lock hashes are unchanged; added-line identity and
+  credential scans are empty; the 94-entry wheel and 528-entry sdist contain
+  no native, WASM, bytecode, or retired control metadata. No remaining
+  actionable finding was identified.
+- Scope: no raw ZIP parser, general comment scanner, comment decoder, raw end-
+  record validator, broad extra-field rule, workflow, runner allocation,
+  action, permission, credential, dependency, lock, version, sample producer,
+  runtime package/API, release mutation, release authority, tag, release, or
+  publication is added. Passing pull-request evidence is not a real public
+  release observation and M81 is not a general archive sandbox.
+- Branch: `release/m81-zip-comment-preflight`.
+- Remaining: publish/qualify/review/squash the feature, then integrate its
+  bounded evidence and closeout records before selecting M82.
+
 ## M80 ZIP64 extra-field preflight - closeout active
 
 - Base: exact clean synchronized M79 closeout

@@ -2,6 +2,37 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M81 direction and focused implementation evidence - 2026-08-14, Windows
+
+M81 starts from exact verified M80 closeout squash
+`3241a348a75c24a764f167ade48798ed3ac06af1`, tree
+`f5a1375cff72dfbbffa8ba755210815dac1bdfd7`.
+
+| Command or gate | Exit | Factual result |
+| --- | ---: | --- |
+| M80 postmerge branch/PR/release/tag/temp/fsck audit | 0 | Local and remote refs contained only synchronized `main`; open PR, release, remote tag, and M80-generated-target queries were empty. `git fsck --full` reported only unreachable historical objects and no corruption. |
+| `uv run --no-project --python 3.12 python .tmp\\m81_zip_comment_probe.py` | 0 | CPython 3.12.13 preserved exact archive/member comments, exposed empty member extra bytes and flag value 0, and read payload `payload`. |
+| `uv run --no-project --python 3.13 python .tmp\\m81_zip_comment_probe.py` | 0 | CPython 3.13.13 produced the same exact observation. |
+| `uv run --no-project --python 3.14 python .tmp\\m81_zip_comment_probe.py` | 0 | CPython 3.14.5 produced the same exact observation. |
+| Code-focused M81 gate | 0 | Both affected Python files were formatted; Ruff and strict Pyright reported zero findings; 25 non-documentation M81 assertions passed in 0.28 seconds. |
+| First complete focused/docs gate | 1 | Static checks and strict docs passed, but the documentation regression reported one failure because combined public docs lacked exact phrase `no general comment scanner`; 25 other assertions passed. No pass was claimed for this run. |
+| Corrected M81 focused regression | 0 | After correcting RFC-0064 wording, all 26 M81 assertions passed in 0.27 seconds. |
+| `uv run --frozen mkdocs build --strict --site-dir .tmp\\m81-docs-second` | 0 | Strict docs built in 1.22 seconds with only the known upstream Material notice. |
+| `git diff --check` | 0 | No whitespace error was reported after the correction. |
+| Lock/environment gate | 0 | The initial sandboxed `uv lock --check` could not open the shared uv cache and made no product result. The approved retry resolved the unchanged 46-package lock in 0.75 ms; the locked CPython 3.12 graphics environment checked 45 packages. |
+| Whole-tree static and architecture gate | 0 | All 324 Python files were format clean; Ruff and strict Pyright reported zero findings; all 920 architecture tests passed with 1 Windows capability skip in 7.88 seconds. |
+| Exact M64-M81 release-consumer lineage | 0 | All 231 bounded-container, ownership, parser-normalization, flag/name/extra/comment policy, staging, and exact-profile assertions passed with 1 Windows capability skip; 689 unrelated architecture tests were deselected. |
+| Record-inclusive strict docs and repository gate | 0 | Strict docs built in 1.25 seconds with only the known upstream Material notice; whitespace passed; full Git-object checking reported only historical unreachable objects and no corruption. |
+| Complete supported-Python suites | 0 | CPython 3.12.13 passed 2,450 non-wgpu tests with 15 capability skips in 101.32 seconds. CPython 3.13.13 passed 2,450 tests with 16 skips in 98.88 seconds; CPython 3.14.5 passed 2,450 with 16 skips in 104.64 seconds. The locked CPython 3.12 graphics environment was restored afterward with 45 packages. |
+| Real-wgpu, profiles, and vertical slices | 0 | All 10 real-wgpu tests passed in 7.11 seconds. One-repeat base and graphics profiles validated with 2 and 3 workloads. Clockwork Arena reproduced state `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859` and capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`; Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`, capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`, and replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`. |
+| M1-M4 diagnostic validation | 0 | M1 validated 7 workloads and observed 1 of 2 targets; M2 validated 4 informational workloads with no targets; M3 validated 6 workloads and met 0 of 2 observed targets; M4 validated 3 workloads and observed its baseline target. These dirty-tree timing observations are diagnostic and make no new performance claim. |
+| Reproducible distribution and release gate | 0 | Two fresh builds reproduced a pure 274,963-byte wheel at `81ab7b863e25c2f57e86f8602b495106f451e7371eef4551308f9a7bb097e211` and a 1,305,125-byte sdist at `defc333ba0eafa3a65324a5de35f446123dce9ec4a60a038f3061ba70d0426c7`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. |
+| Findings-first parser-boundary review | Corrected | The runtime policy was sound, but broad wording could imply raw malformed records always reach the comment validator. Public and repository records now say parser-exposed comments; malformed structures remain behind the existing content-silent ZIP-data boundary. The corrected 26-assertion contract passed in 0.29 seconds; whole-tree format/Ruff/Pyright and strict docs also passed. |
+| Postreview reproducibility and release gate | 0 | Two fresh builds reproduced a pure 274,976-byte wheel at `afeb69c094c1121e9452d96c48da7a11e2af70e878f073c27343348c7a73994e` and a 1,305,615-byte sdist at `b40106ae02b6d6af38e889ec2dff371808d56c34618654613214e63b7d8edacc`. Isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Recording these results changes the sdist; hosted feature-head identities remain authoritative. |
+| Exact scope, protected-surface, disclosure, credential, and archive audit | Clean | Exactly 15 intended paths change. CI remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow `c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5`; sample producer `d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca`; package metadata `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`; lock `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Added-line explicit development-tool identity and credential/private-key scans found zero markers. The 94-entry wheel and 528-entry sdist contain no native, WASM, bytecode, or retired control metadata. |
+| First final record-inclusive source/repository gate | 0 | The unchanged lock resolved 46 packages in 0.87 ms; all 324 Python files were format clean; Ruff and strict Pyright reported zero findings; all 920 architecture tests passed with 1 capability skip in 7.96 seconds; strict docs built in 1.36 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
+| Exact prepublication history/remote audit | Clean | After `git fetch --prune origin`, feature `HEAD`, local `main`, `origin/main`, and merge base all resolve to exact M80 closeout `3241a348a75c24a764f167ade48798ed3ac06af1`; symmetric difference is `0 0` and the inspected history is linear. Only `origin/main` exists remotely; GitHub reports no open PR, tag, or release. |
+
 ## M80 local development evidence - 2026-08-14, Windows, CPython 3.12
 
 M80 starts from exact synchronized M79 closeout

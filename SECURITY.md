@@ -241,6 +241,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   extra-field walk fails content-silently. This is no broad extra-field ban or
   raw ZIP64 parser, changes no workflow or sample producer, is not a general
   archive sandbox, and is not a real public release observation.
+- M81 rejects parser-exposed non-empty ZIP archive and member comments in
+  separate preflights after established flag/extra-field policy and before
+  decoded-name policy,
+  metadata, inventory, member reads, or staging. Both errors are content-
+  silent. This adds no raw ZIP parser or general comment scanner, changes no
+  workflow or sample producer, is not a general archive sandbox, and is not a
+  real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

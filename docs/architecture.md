@@ -1946,6 +1946,30 @@ support change, local-header comparison, repair, workflow, dependency,
 runtime API, sample producer, release authority, or real public release
 observation. It is not a general archive sandbox.
 
+## M81 ZIP comment preflight
+
+M81 rejects both comment surfaces exposed by the standard ZIP reader for the
+fixed sample profile. A parser-exposed non-empty end-of-central-directory
+archive comment raises `sample bundle uses an archive comment`; a non-empty
+central-directory member comment raises `sample bundle uses a member comment`.
+Both errors are stable and content-silent.
+
+Complete release smoke first finishes every established M69/M75/M76 flag pass,
+M78 descriptor policy, M79 Unicode Path policy, and M80 ZIP64 policy. It then
+checks the archive comment once and every member comment in a separate all-
+member pass before M77 decoded-name policy, member metadata, exact inventory,
+staging, or member reads. Archive-comment policy therefore precedes member-
+comment policy, while established categories retain archive-wide precedence.
+Owned source, checksum-admitted snapshot, and archive resources close before
+either error returns.
+
+The fixed producer emits neither archive nor member comments. RFC-0064 adds no
+raw ZIP parser, general comment scanner, comment decoder, rewriting, repair,
+workflow, producer, dependency, runtime API, or release authority. It is not a
+general archive sandbox and is not a real public release observation.
+Malformed structures that fail before CPython exposes either comment retain
+the existing stable ZIP-data failure instead of an M81 comment error.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

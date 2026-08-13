@@ -503,6 +503,11 @@ def _extract_checksum_admitted_bundle(
         for info in infos:
             _validate_sample_zip64_extra_fields(extra=info.extra)
 
+        _validate_sample_archive_comment(comment=archive.comment)
+
+        for info in infos:
+            _validate_sample_member_comment(comment=info.comment)
+
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
 
@@ -729,6 +734,20 @@ def _validate_sample_extra_fields(*, extra: bytes) -> None:
         if field_id == _SAMPLE_UNICODE_PATH_EXTRA_FIELD:
             raise RuntimeError("sample bundle uses a Unicode Path extra field")
         offset = field_end
+
+
+def _validate_sample_archive_comment(*, comment: bytes) -> None:
+    """Reject archive comments outside the fixed sample profile."""
+
+    if comment:
+        raise RuntimeError("sample bundle uses an archive comment")
+
+
+def _validate_sample_member_comment(*, comment: bytes) -> None:
+    """Reject member comments outside the fixed sample profile."""
+
+    if comment:
+        raise RuntimeError("sample bundle uses a member comment")
 
 
 def _validate_sample_member_name(*, original_name: str) -> None:
