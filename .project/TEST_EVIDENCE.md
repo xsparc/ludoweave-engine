@@ -2,6 +2,25 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M81 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Documentation classification and hosted gate | 0 | Ready PR #196 exact DCO head `ab5cf860fcd82bce71dde458d8e0653c8415adf6`, tree `9a5d794198dddf925d4a52a91327f33c4352e2e3`, changed exactly four intended record paths and classified `documentation` with `changed_count: 4`. Run `31720707293` used only 42-second Linux job `94516687882`; desktop umbrella `94516893920` skipped with zero steps. |
+| Hosted documentation/artifact evidence | 0 | All 324 files were format/Ruff clean; strict docs built in 1.69 seconds; all 921 hosted architecture assertions passed in 10.15 seconds. Two builds reproduced a pure 274,962-byte wheel at `71faae79b33898e5ed417445bdb14793b934efb01c464db73e0f40eec173342e` and a 1,307,844-byte sdist at `2d6fe8b8fb4f97595c52addcadfe2f5c47831f631e220437885c775ddfb1d2c1`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Substantive type/full/compatibility/graphics/profile/example work did not run. |
+| Two separated review audits | Clean | Both audits retained exact base/head and `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-step desktop umbrella, matching remote source author/sign-off identity, and zero reviews, issue comments, inline comments, or review threads. |
+| Guarded integration squash audit | Process note | Exact-head-guarded squash merged PR #196 at `2054fda66c1dafb7c0594eada4cc01a3649209cd`. Its tree `9a5d794198dddf925d4a52a91327f33c4352e2e3` exactly equals the reviewed head, its sole parent is feature squash `8a3a156d08a7c40c9b34ae726311776c0e2f8611`, its author identity is exact, and GitHub verification is valid at `2026-08-13T16:29:37Z`. The reviewed source commit has a parsed DCO trailer. PowerShell passed the merge body's newline escapes literally, so the generated squash message has no parsed trailer; this process defect is retained and public history is not rewritten. No postmerge workflow was allocated. The remote and squash-only local integration branches were deleted after exact-tree verification. |
+
+## M81 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+Closeout starts from exact integration-record squash
+`2054fda66c1dafb7c0594eada4cc01a3649209cd`, tree
+`9a5d794198dddf925d4a52a91327f33c4352e2e3`.
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | Exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. All 324 Python files were format clean; Ruff and strict Pyright reported zero findings; all 920 architecture tests passed with 1 capability skip in 6.36 seconds; strict docs built in 1.20 seconds with only the known upstream notice; whitespace and full Git-object checking passed. The closeout changes no workflow, runtime, verifier, producer, dependency, package, test, public documentation, roadmap, or release-authority surface and is excluded from hosted CI. |
+
 ## M81 hosted feature validation and integration - 2026-08-14
 
 | Command or review | Exit | Factual result |
