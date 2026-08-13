@@ -1,13 +1,12 @@
 # Current Task
 
 - **Task:** M82 - split-volume sample-member preflight
-- **Status:** Initial exact-head hosted qualification passed, but hosted review
-  found a valid ZIP64 fixture defect; correction and requalification are
-  active before integration.
-- **Base:** Verified M81 closeout squash
-  `ba90021304760284550e3c458901feb0e3e29dbc`, tree
-  `63a1caf2bc270a6500466e24c800f4e6f454ddda`.
-- **Branch:** `release/m82-split-volume-preflight`
+- **Status:** Corrected feature PR #198 is qualified, reviewed, and squash-
+  integrated; the bounded integration record is active.
+- **Base:** Verified M82 feature squash
+  `f34b42f1ac9813ec2c46063774e8e86087dd67cf`, tree
+  `63677710315e48d32d83115bef5046476e669dd1`.
+- **Branch:** `release/m82-integration-record`
 
 ## Accepted slice
 
@@ -71,12 +70,37 @@
   3.13.13, and 3.14.5; affected format/Ruff/Pyright, strict docs, and whitespace
   pass. The corrected complete 3.12 graphics-baseline suite passes 2,480 tests
   with 15 capability skips.
+- Corrected exact DCO head `9edbe5e5bf706bd11b31546bd26fcb8421f1f5d9`
+  passed run `31725451119`, classified substantive with 15 paths, in exactly
+  three allocations: Linux 7m12s, Windows 4m17s, and macOS 2m16s. Linux
+  CPython 3.12/3.13/3.14 and both desktop 3.14 suites passed 2,485 tests, with
+  one compatibility skip outside baseline; every OS passed 10 real-wgpu tests,
+  graphics profiling, Clockwork Arena, and Agent World Builder.
+- Hosted reproducibility produced a 275,086-byte pure wheel at
+  `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99`
+  and 1,315,802-byte sdist at
+  `d16eb754e00e01d59aff425fedb0bd74db318c1b7e9ab044af3343c9a9db2a46`;
+  installed-wheel, ten-artifact staging, and release smoke passed.
+- The exact hosted finding received a concrete correction response and is now
+  resolved/outdated. Two separated corrected-head audits retained exact base/
+  head, `MERGEABLE`/`CLEAN`, three successful checks, zero issue comments, and
+  no unresolved thread or later finding.
+- Exact-head-guarded squash `f34b42f1ac9813ec2c46063774e8e86087dd67cf`
+  has the exact qualified tree, sole M81-closeout parent, parsed DCO, and valid
+  GitHub verification at `2026-08-13T17:37:04Z`. No postmerge run was allocated;
+  the feature branch is deleted locally/remotely and `main` is synchronized.
+- The exact four-record integration tree passes the lock/static/architecture/
+  docs/repository gate. Two builds reproduce a 275,100-byte wheel at
+  `b0fb35139e5c6bc47beb133d3602bd83b050ff282e78465a9708e3b996e01da5`
+  and 1,317,216-byte sdist at
+  `b668144e40744981c7b2e5b03dbeb885f31b2394c2a44996d1a4084e7e50ed96`;
+  isolated-wheel, ten-artifact staging, and complete release smoke pass.
 
 ## Remaining gates
 
-1. Push the DCO-signed correction to ready PR #198, require a fresh exact-head
-   three-allocation substantive gate, address/resolve the review thread, twice
-   audit exact head/review state, and guarded-squash only when clean.
-2. Publish and integrate the bounded four-record integration and three-record
-   closeout PRs, then remove M82 branches/generated targets and return to clean
-   synchronized `main` before selecting M83.
+1. Publish exactly the four-record integration slice, require the bounded
+   documentation gate, twice audit exact head/review state, and guarded-squash
+   only when clean.
+2. Publish and integrate the three-record closeout, then remove M82 branches/
+   generated targets and return to clean synchronized `main` before selecting
+   M83.
