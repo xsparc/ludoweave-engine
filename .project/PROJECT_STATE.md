@@ -1,6 +1,6 @@
 # Project State
 
-## M83 conventional archive disk-field preflight - implementation active
+## M83 conventional archive disk-field preflight - closeout active
 
 - Base: exact verified M82 closeout squash
   `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`, tree
@@ -79,6 +79,31 @@
   `9bf9d818c94d4eeeb53008d5fa41a49481a0a841741e9a8922f2818866838788`;
   isolated-wheel, staging, and release smoke pass. Protected and added-content
   hygiene remains clean.
+- Hosted integration record: ready PR #202 exact DCO head
+  `e2ebc31e1de15dd8486e8927627645593c43785b`, tree
+  `f65121dcc2c5945e41517666d1307860da831f9c`, classified documentation with
+  four paths. Run `31731878660` used only 48-second Linux job `94554071714`;
+  desktop umbrella `94554309063` skipped with zero steps. All 326 files were
+  format/Ruff clean; strict docs built in 1.85 seconds; all 975 hosted
+  architecture assertions passed in 10.95 seconds. Installed-wheel, staging,
+  and complete release smoke passed.
+- Hosted integration artifacts: same-head reproducibility produced a 275,225-
+  byte pure wheel at
+  `e6e219f4f6d3c0a5d128f0374a47c9004a239b56acd42b24eb509f660a5cefb8`
+  and 1,325,644-byte sdist at
+  `d3568d29a44f46c6dcefd381a46ba463bd44331c7d1c9a6dc8c08041cd89984`.
+- Integration audit: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-
+  step desktop umbrella, and zero comments, reviews, or threads. Exact-head-
+  guarded squash `de334e3ea93aeed299ae2913ed80d05ec1fa7575` has exact reviewed
+  tree, sole feature-squash parent `870141014c540984420933122028ed870fa22119`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T18:42:09Z`. No
+  postmerge run was allocated; the integration branch is deleted locally/
+  remotely.
+- Closeout scope: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. No
+  workflow, runtime, verifier, producer, dependency, package, test, public
+  documentation, roadmap, or release-authority surface changes.
 
 ## M82 split-volume sample-member preflight - closeout active
 
