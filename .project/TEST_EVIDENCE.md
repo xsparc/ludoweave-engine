@@ -2,6 +2,26 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M81 hosted feature validation and integration - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact-head hosted qualification | 0 | Ready PR #195 exact DCO head `fbff420391675c6519c606a251cc4a697efe9d62`, tree `30d6bf6db4272279c3f32dc3c9901399018e55bc`, passed run `31718815561` in exactly three allocations. Linux job `94510280379` passed in 7m08s; macOS `94512364384` in 2m30s; Windows `94512364395` in 4m10s. |
+| Hosted test and smoke evidence | 0 | Linux CPython 3.12 passed 2,465 tests; Linux 3.13/3.14 and both desktop 3.14 suites passed 2,465 with 1 capability skip. Every OS passed 10 real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World Builder. Format, Ruff, strict Pyright, strict docs, isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. |
+| Hosted artifact identity | 0 | Same-head reproducibility produced a pure 274,962-byte wheel at `71faae79b33898e5ed417445bdb14793b934efb01c464db73e0f40eec173342e` and a 1,306,054-byte sdist at `6d257296b8595e76cc1f1fdb73cdfea31d5152013c63ca1d69859e9ea40ef27f`. |
+| Two separated review audits | Clean | Both audits retained exact M80 base and M81 head, `MERGEABLE`/`CLEAN`, three successful checks, matching remote author/sign-off identity, and zero issue comments, reviews, inline comments, or review threads. |
+| Guarded feature squash audit | 0 | Exact-head-guarded squash merged PR #195 at `8a3a156d08a7c40c9b34ae726311776c0e2f8611`. Its tree `30d6bf6db4272279c3f32dc3c9901399018e55bc` exactly equals the qualified head, its sole parent is M80 closeout `3241a348a75c24a764f167ade48798ed3ac06af1`, its body carries standalone DCO, and GitHub verification is valid at `2026-08-13T16:18:01Z`. No postmerge workflow was allocated. Remote and squash-only local feature branches were deleted after exact-tree verification. |
+
+## M81 integration-record local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact four-path source/repository gate | 0 | From exact feature squash `8a3a156d08a7c40c9b34ae726311776c0e2f8611`, exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md` change. The unchanged lock resolved 46 packages in 0.86 ms; all 324 Python files were format clean; Ruff and strict Pyright reported zero findings; all 920 architecture tests passed with 1 capability skip in 8.05 seconds; strict docs built in 1.34 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
+| Integration-record reproducibility and release gate | 0 | Two fresh builds reproduced a pure 274,976-byte wheel at `afeb69c094c1121e9452d96c48da7a11e2af70e878f073c27343348c7a73994e` and a 1,307,623-byte sdist at `7ae809158653dd496a98e14fcfa6a09f7139351220d94197a1fb903ef7f0b279`. Isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Recording this row changes the sdist; hosted integration-head identities remain authoritative. |
+| Exact scope and hygiene audit | Clean | CI remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow `c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5`; sample producer `d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca`; package metadata `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`; lock `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Added-line explicit development-tool identity and credential/private-key scans found zero markers. Only synchronized `main` plus the intended integration branch exist locally; only `origin/main` exists remotely; no PR is open. |
+| First final record-inclusive invocation | Invalid setup | Whitespace and full Git-object checking ran, but every uv segment stopped before project validation because the managed sandbox denied access to uv's existing user cache. No uv pass is claimed for that invocation. |
+| Final factual-record-inclusive source gate | 0 | The approved cache-access retry resolved the unchanged 46-package lock in 0.92 ms; all 324 Python files were format clean; Ruff and strict Pyright reported zero findings; all 920 architecture tests passed with 1 capability skip in 6.43 seconds; strict docs built in 1.20 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
+
 ## M81 direction and focused implementation evidence - 2026-08-14, Windows
 
 M81 starts from exact verified M80 closeout squash
