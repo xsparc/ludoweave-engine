@@ -676,6 +676,18 @@ claim, repair, workflow, dependency, sample producer, runtime API, or release
 authority, is not a general archive sandbox, and is not a real public release
 observation.
 
+M79/RFC-0062 rejects exact Info-ZIP Unicode Path extra-field ID `0x7075`
+during a separate all-member preflight before M77 decoded-name policy, member
+metadata, inventory validation, member reads, or staging. A bounded extra-
+field walk consumes the already decoded central-directory extra bytes exposed
+by `ZipInfo`; the stable content-silent error does not render either name.
+Every established M69/M75/M76/M78 category retains archive-wide precedence.
+
+The fixed sample producer emits no extra fields. M79 adds no broad extra-field
+ban, general name-difference policy, local-header comparison, repair, workflow,
+dependency, runtime API, sample producer, or release authority, is not a
+general archive sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

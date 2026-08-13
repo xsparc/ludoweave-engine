@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M79/RFC-0062 Unicode Path sample-member preflight. Exact extra-field ID
+  `0x7075` now fails content-silently before member metadata, inventory,
+  reads, or staging, using a bounded extra-field walk without a broad extra-
+  field ban, workflow, dependency, sample producer, runtime API, or release-
+  authority change.
 - Add M78/RFC-0061 data-descriptor sample-member preflight. Exact ZIP general-
   purpose bit 3 now fails content-silently before member metadata, inventory
   validation, reads, or staging, without a raw descriptor parser, broad flag

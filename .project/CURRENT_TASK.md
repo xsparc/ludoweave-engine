@@ -1,40 +1,33 @@
 # Current Task
 
-- **Task:** M78 - closeout
-- **Status:** Feature and integration records are hosted-qualified and squash-
-  integrated; the exact three-record closeout passes local and post-record
-  gates; publication is active.
-- **Base:** Verified integration-record squash
-  `905d40a8091dd6b4e5cf8e4e72d8c7873b7aadb9`, tree
-  `c807cd3f72edc81c37597ec3744661bafd41d36f`.
-- **Branch:** `release/m78-closeout`
+- **Task:** M79 - exact Unicode Path extra-field preflight
+- **Status:** Complete local qualification, findings-first review, final audit,
+  record-inclusive release, and post-record gates are green; ready-PR
+  publication is active.
+- **Base:** Verified M78 closeout
+  `5fe3134bf5a56e5cbf986ed33db698c830aa9219`, tree
+  `1e1da7d8062433c2297d170643626413dfbd457f`.
+- **Branch:** `release/m79-unicode-path-preflight`
 
-## Completed outcome
+## Intended outcome
 
-- M78 rejects exact ZIP general-purpose data-descriptor bit 3 in a separate
-  archive-wide pass, preserves established flag precedence, runs before M77
-  name policy, and closes owned resources on stable content-silent failure.
-- Feature head `e897a2277b6c150ec77b88022e2f52a165ea978a` passed
-  full three-allocation run `31701501926`; feature squash
-  `180d93dbe6984fff43af07021efd000150b76132` has the exact qualified tree,
-  sole M77-closeout parent, DCO trailer, and valid GitHub verification.
-- Integration PR #187 classified exactly four documentation paths. Run
-  `31703080076` used one 44-second Linux job, passed 857 hosted architecture
-  assertions and every artifact smoke, and skipped desktop with zero steps.
-- Two separated integration audits found no comment, review, inline comment,
-  or thread. Integration squash
-  `905d40a8091dd6b4e5cf8e4e72d8c7873b7aadb9` has the exact reviewed tree,
-  sole feature-squash parent, DCO trailer, and valid GitHub verification at
-  `2026-08-13T13:06:46Z`.
-- All obsolete feature and integration branches are deleted locally/remotely.
-  M78 created no tag, release, publication, dependency, workflow, runtime-
-  package, sample-producer, version, or release-authority change.
+- Reject exact Info-ZIP Unicode Path extra-field ID `0x7075` for every sample
+  member during a separate archive-wide preflight.
+- Preserve M69/M75/M76/M78 precedence across every member, then run exact
+  extra-field policy before M77 decoded-name checks, metadata, inventory,
+  staging, or reads.
+- Return stable content-silent error `sample bundle uses a Unicode Path extra
+  field` and close owned source, snapshot, and archive resources.
+- Use a bounded field walk that ignores unrelated field IDs and does not add
+  malformed-extra policy beyond CPython's parser.
+- Add RFC-0062 and aligned public, security, architecture, release, roadmap,
+  and repository evidence records.
+- Add no broad extra-field ban, general name-difference rule, workflow,
+  dependency, version, sample producer, runtime package/API, release authority,
+  tag, release, or publication.
 
 ## Remaining gates
 
-1. Publish a DCO-signed ready closeout PR, confirm no path-filtered workflow is
-   created, perform two review-state audits, and squash with an exact-head
-   guard and DCO body file.
-3. Delete the closeout branch and all M78 generated targets, return to clean
-   synchronized `main`, verify no PR/tag/release or extra branch remains, and
-   select M79.
+1. Publish a DCO-signed ready PR, exact-head qualify it on the existing three-
+   allocation essential CI, audit review state twice, and squash only after the
+   complete result is clean.

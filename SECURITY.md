@@ -229,6 +229,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   precedes NUL-name policy. This is no raw descriptor parser or broad flag
   allowlist, changes no workflow or sample producer, is not a general archive
   sandbox, and is not a real public release observation.
+- M79 rejects exact Info-ZIP Unicode Path extra-field ID `0x7075` in a
+  separate archive-wide preflight before member reads or staging. The stable
+  content-silent error follows every established flag category and precedes
+  decoded-name policy. This bounded extra-field walk is no broad extra-field
+  ban, changes no workflow or sample producer, is not a general archive
+  sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

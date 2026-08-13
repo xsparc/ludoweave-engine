@@ -1908,6 +1908,24 @@ comparison, decoder, repair, workflow, dependency, sample producer, runtime
 API, release authority, or real public release observation. It is not a
 general archive sandbox and makes no claim about unrelated flag combinations.
 
+## M79 Unicode Path extra-field preflight
+
+M79 rejects exact Info-ZIP Unicode Path extra-field ID `0x7075`. Supported
+CPython versions parse that central-directory field and, when its version and
+CRC are valid, replace `ZipInfo.filename` with its UTF-8 path while retaining
+the legacy decoded name in `orig_filename`. Complete release smoke performs a
+bounded extra-field walk for every member after all M69/M75/M76/M78 policy and
+before M77 name checks, metadata, exact inventory, staging, or member reads.
+The stable content-silent error is `sample bundle uses a Unicode Path extra
+field`.
+
+The fixed producer emits no extra fields. RFC-0062 rejects only the exact
+extra-field ID: it adds no broad extra-field ban, general original-versus-
+normalized name comparison, arbitrary extra-field validation, local-header
+comparison, rewriting, repair, workflow, dependency, runtime API, sample
+producer, release authority, or real public release observation. It is not a
+general archive sandbox.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

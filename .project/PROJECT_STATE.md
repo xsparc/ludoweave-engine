@@ -1,6 +1,87 @@
 # Project State
 
-## M78 data-descriptor sample-member preflight - closeout active
+## M79 Unicode Path extra-field preflight - implementation active
+
+- Base: exact clean synchronized M78 closeout
+  `5fe3134bf5a56e5cbf986ed33db698c830aa9219`, tree
+  `1e1da7d8062433c2297d170643626413dfbd457f`.
+- Gap: CPython honors Info-ZIP central-directory extra-field ID `0x7075` by
+  substituting its valid UTF-8 path into `ZipInfo.filename` while retaining the
+  decoded legacy name in `orig_filename`. The fixed sample producer emits no
+  extra fields and has no need for this alternate-name representation.
+- Runtime evidence: installed CPython 3.12.13, 3.13.13, and 3.14.5 each exposed
+  the replacement path, retained the legacy name, and read the payload from the
+  same genuine archive. Current producer output has 50 members with empty
+  `ZipInfo.extra` values.
+- Decision: RFC-0062 adds an exact `0x7075` check through a bounded extra-field
+  walk in a separate all-member pass after M69/M75/M76/M78 policy and before
+  M77 names, metadata, inventory, staging, or reads. The stable error renders
+  no archive-controlled content.
+- Boundary: no broad extra-field ban, general original-versus-normalized name
+  comparison, raw ZIP header parser, arbitrary extra-field validator, repair,
+  workflow, dependency, sample-producer, runtime-API, or release-authority
+  change; this is not a general archive sandbox or real public release
+  observation.
+- First regression invocation was invalid baseline evidence because the new
+  test required formatting and contained one unused helper. After test-only
+  correction, formatting, Ruff, and strict Pyright pass; 11 compatibility,
+  precedence, producer, and protected-surface guards pass while 7 policy,
+  ordering, cleanup, helper/source, and docs contracts fail in 0.37 seconds
+  against unchanged M78.
+- Runtime checkpoint: one exact private constant/helper and one separate all-
+  member pass make 17 assertions pass; only the deliberately absent RFC/public-
+  document assertion fails in 0.31 seconds.
+- Focused gate: both affected Python files are format/Ruff/Pyright clean; all
+  18 M79 assertions pass in 0.24 seconds; strict docs build in 1.22 seconds and
+  whitespace passes.
+- Complete suites: the unchanged 46-package lock and restored 45-package
+  graphics environment resolve; all 322 files are format clean; Ruff and
+  strict Pyright report zero findings. The M64-M79 lineage passes 185
+  assertions with 1 capability skip; all 874 architecture assertions pass
+  with 1 skip. CPython 3.12, 3.13, and 3.14 each pass 2,404 tests with
+  15/16/16 capability skips.
+- Graphics/diagnostics: all 10 real-wgpu tests, both one-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic
+  validators pass. M1 observes 1 of 2 targets, M2 has no targets, M3 meets 0
+  of 2 current targets, and M4 observes its baseline target.
+- Reproducible release gate: two builds reproduce a pure 274,734-byte wheel at
+  `014e443b6bc0094c74521ba3211940cfc8db7c8c932212d4c1eea742a5c3f566`
+  and 1,287,732-byte sdist at
+  `fadce6c20313cb04ae83e71195b8fd7713e338e8c99b570473cc70635d2d226a`;
+  isolated-wheel, deterministic ten-artifact staging, and complete release
+  smoke pass. The unchanged sample remains 111,168 bytes at
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Findings-first review found no actionable defect. The helper honors field
+  boundaries, rejects exact `0x7075`, ignores unrelated IDs and incomplete
+  trailing bytes, and relies on CPython for malformed-field rejection before
+  preflight. Ordering, cleanup, stable error, and protected surfaces are sound.
+- Final audit: exactly 16 intended paths change. Protected CI, release
+  workflow, sample producer, package metadata, and lock hashes are unchanged;
+  no `src/ludoweave` file changes. Explicit development-tool identity and
+  credential/private-key scans return zero matches. The 94-entry wheel and
+  524-entry sdist contain no native, WASM, bytecode, or retired control
+  metadata.
+- History/remote: feature `HEAD`, local `main`, `origin/main`, and merge base
+  are exact M78 closeout `5fe3134bf5a56e5cbf986ed33db698c830aa9219`
+  with symmetric difference `0 0`. Only `origin/main` exists remotely and
+  GitHub reports no open PR, tag, or release.
+- Record-inclusive gate: the unchanged lock resolves 46 packages; all 322
+  files are format clean; Ruff and strict Pyright report zero findings; all
+  874 architecture assertions pass with 1 capability skip; strict docs,
+  whitespace, and full Git-object checking pass. Two builds reproduce the pure
+  274,734-byte wheel
+  `014e443b6bc0094c74521ba3211940cfc8db7c8c932212d4c1eea742a5c3f566`
+  and 1,288,301-byte sdist
+  `d8d7182eade2052978ea7c65f0178014f6b69ced9fbcac97ae63851d26787087`;
+  installed-wheel, staging, and complete release smokes pass.
+- Evidence-inclusive post-record gate: all 322 files are format clean; Ruff
+  and strict Pyright report zero findings; all 874 architecture assertions
+  pass with 1 capability skip; strict docs, whitespace, and exact 16-path scope
+  pass.
+- Remaining: publication, hosted exact-head qualification, integration, and
+  closeout.
+
+## M78 data-descriptor sample-member preflight - integrated and closed
 
 - Base: exact clean synchronized M77 closeout
   `4bca618578f29629a7270ab5d9d308fd34363a06`, tree
