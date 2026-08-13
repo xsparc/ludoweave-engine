@@ -1,6 +1,6 @@
 # Project State
 
-## M78 data-descriptor sample-member preflight - integration record active
+## M78 data-descriptor sample-member preflight - closeout active
 
 - Base: exact clean synchronized M77 closeout
   `4bca618578f29629a7270ab5d9d308fd34363a06`, tree
@@ -105,7 +105,32 @@
 - Post-record gate: the unchanged lock, all 321 formatted files, Ruff, strict
   Pyright, all 856 architecture assertions with 1 capability skip, strict
   docs, whitespace, and exact four-path scope pass.
-- Remaining: publish the exact four-record integration update.
+- Integration hosted gate: exact DCO head
+  `a542979555916edc1fb585bbe64eb9116c8beb85`, tree
+  `c807cd3f72edc81c37597ec3744661bafd41d36f`, passed run
+  `31703080076`. The trusted classifier identified exactly four documentation
+  paths; Linux passed in 44 seconds and the desktop umbrella skipped with zero
+  steps. Hosted architecture passed 857 assertions; distribution, installed-
+  wheel, staging, and complete release smokes passed.
+- Integration hosted artifacts: the pure 274,559-byte wheel remains
+  `ccbe8d92ed51ac31c4fc0e0ca1e52fbf697d20e4b7dc9250a15ad718944a8b5b`;
+  the 1,282,392-byte sdist is
+  `c3f58daeb5d7a4c307149b22358402abab390b738f33011453c335347a880e93`.
+- Integration review: two separated audits found no comment, review, inline
+  comment, or review thread. PR #187 remained ready, clean, mergeable, exact-
+  head, exact-base, and successful.
+- Integration squash: `905d40a8091dd6b4e5cf8e4e72d8c7873b7aadb9`
+  has exact reviewed tree, sole feature-squash parent, parseable DCO trailer,
+  exact identity, and valid GitHub verification at
+  `2026-08-13T13:06:46Z`. Its obsolete branch is deleted locally/remotely.
+- Closeout local gate: exactly three project records change. The unchanged
+  lock resolves 46 packages; all 321 files are format clean; Ruff and strict
+  Pyright report zero findings; all 856 architecture assertions pass with 1
+  capability skip; strict docs, whitespace, and full Git-object checking pass.
+- Closeout post-record gate: all 321 files are format clean; Ruff and strict
+  Pyright report zero findings; all 856 architecture assertions pass with 1
+  capability skip; strict docs, whitespace, and exact three-path scope pass.
+- Remaining: publish the exact three-record closeout.
 
 ## M77 NUL-suffixed sample-member name preflight - integrated and closed
 
