@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M82 - split-volume sample-member preflight
-- **Status:** Corrected feature PR #198 is qualified, reviewed, and squash-
-  integrated; the bounded integration record is active.
-- **Base:** Verified M82 feature squash
-  `f34b42f1ac9813ec2c46063774e8e86087dd67cf`, tree
-  `63677710315e48d32d83115bef5046476e669dd1`.
-- **Branch:** `release/m82-integration-record`
+- **Status:** Corrected feature and bounded integration record are qualified,
+  reviewed, and squash-integrated; the three-record closeout is active.
+- **Base:** Verified M82 integration-record squash
+  `f0558e4e3864e54d8bf81c46c656becc505c7f80`, tree
+  `53295683df88430e6731fb75a794836ccafdc9f9`.
+- **Branch:** `release/m82-closeout`
 
 ## Accepted slice
 
@@ -95,12 +95,33 @@
   and 1,317,216-byte sdist at
   `b668144e40744981c7b2e5b03dbeb885f31b2394c2a44996d1a4084e7e50ed96`;
   isolated-wheel, ten-artifact staging, and complete release smoke pass.
+- Ready integration PR #199 exact DCO head
+  `78e440e87a3af11fa7123f40596bead906ef5786`, tree
+  `53295683df88430e6731fb75a794836ccafdc9f9`, classified documentation with
+  four paths. Run `31727082001` used one 43-second Linux job; the desktop
+  umbrella skipped with zero steps. All 325 files were format/Ruff clean,
+  strict docs built in 1.71 seconds, and all 941 hosted architecture assertions
+  passed in 10.40 seconds.
+- Hosted integration builds reproduced a 275,086-byte wheel at
+  `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99`
+  and 1,317,719-byte sdist at
+  `030ba0cc1a60452af81c260771c7ade982f576fc8753602e867766a5b8a40833`;
+  installed-wheel, ten-artifact staging, and release smoke passed.
+- Two separated audits retained exact base/head, `MERGEABLE`/`CLEAN`, one
+  successful bounded Linux check, one skipped zero-step desktop umbrella, and
+  zero comments, reviews, or threads. Exact-head-guarded squash
+  `f0558e4e3864e54d8bf81c46c656becc505c7f80` has the exact reviewed tree,
+  sole feature-squash parent, parsed DCO, and valid GitHub verification at
+  `2026-08-13T17:44:59Z`. No postmerge run was allocated and the integration
+  branch is deleted locally/remotely.
+- The exact three-record closeout passes the complete static, architecture,
+  docs, whitespace, Git-object, protected-surface, and added-content hygiene
+  gate. It changes no workflow, runtime, verifier, producer, dependency,
+  package, test, public documentation, roadmap, or release-authority surface.
 
 ## Remaining gates
 
-1. Publish exactly the four-record integration slice, require the bounded
-   documentation gate, twice audit exact head/review state, and guarded-squash
-   only when clean.
-2. Publish and integrate the three-record closeout, then remove M82 branches/
-   generated targets and return to clean synchronized `main` before selecting
-   M83.
+1. Publish and integrate exactly the three-record closeout; confirm no workflow
+   allocation and twice audit exact head/review state.
+2. Remove M82 branches/generated targets and return to clean synchronized
+   `main` before selecting M83.

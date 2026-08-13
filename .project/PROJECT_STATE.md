@@ -1,6 +1,6 @@
 # Project State
 
-## M82 split-volume sample-member preflight - integration record active
+## M82 split-volume sample-member preflight - closeout active
 
 - Base: exact verified M81 closeout squash
   `ba90021304760284550e3c458901feb0e3e29dbc`, tree
@@ -96,15 +96,44 @@
   `b668144e40744981c7b2e5b03dbeb885f31b2394c2a44996d1a4084e7e50ed96`;
   isolated-wheel, staging, and release smoke pass. Protected hashes and added-
   content identity/credential scans remain clean.
+- Hosted integration record: ready PR #199 exact DCO head
+  `78e440e87a3af11fa7123f40596bead906ef5786`, tree
+  `53295683df88430e6731fb75a794836ccafdc9f9`, classified documentation with
+  four paths. Run `31727082001` used only 43-second Linux job `94538032073`;
+  desktop umbrella `94538237840` skipped with zero steps. All 325 files were
+  format/Ruff clean; strict docs built in 1.71 seconds; all 941 hosted
+  architecture assertions passed in 10.40 seconds. Installed-wheel, staging,
+  and complete release smoke passed.
+- Hosted integration artifacts: same-head reproducibility produced a 275,086-
+  byte pure wheel at
+  `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99`
+  and 1,317,719-byte sdist at
+  `030ba0cc1a60452af81c260771c7ade982f576fc8753602e867766a5b8a40833`.
+- Integration audit: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-
+  step desktop umbrella, and zero comments, reviews, or threads. Exact-head-
+  guarded squash `f0558e4e3864e54d8bf81c46c656becc505c7f80` has exact reviewed tree,
+  sole feature-squash parent `f34b42f1ac9813ec2c46063774e8e86087dd67cf`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T17:44:59Z`. No
+  postmerge run was allocated; the integration branch is deleted locally/
+  remotely.
+- Closeout-local evidence: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. All 325
+  files are format/Ruff clean; strict Pyright has zero findings; all 940
+  architecture assertions pass with 1 Windows capability skip; strict docs,
+  whitespace, and Git-object checks pass. Protected hashes and added-content
+  identity/credential scans are unchanged/empty. No workflow, runtime,
+  verifier, producer, dependency, package, test, public documentation, roadmap,
+  or release-authority surface changes.
 - Boundary: no raw end-record parser, local-header parser, multi-volume
   assembler, neighboring-volume discovery, broad flag/extra-field rule,
   workflow, allocation, dependency, lock, version, producer, runtime package/
   API, release mutation, release authority, tag, release, or publication is
   added. This is not a general archive sandbox or real public release
   observation.
-- Branch: `release/m82-integration-record`.
-- Remaining: bounded hosted integration and three-record closeout before clean-
-  main M83 selection.
+- Branch: `release/m82-closeout`.
+- Remaining: hosted-excluded three-record closeout and branch/generated-target
+  cleanup before clean-main M83 selection.
 
 ## M81 ZIP comment preflight - closed
 
