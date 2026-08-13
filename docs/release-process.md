@@ -728,6 +728,20 @@ end-record parser, no multi-volume assembler, no neighboring-file discovery,
 workflow, dependency, runtime API, release authority, or producer change. It
 is not a general archive sandbox and is not a real public release observation.
 
+M83/RFC-0066 requires zero current-disk and central-directory-start disk fields
+in the final conventional 22-byte end-of-central-directory record. The check
+runs after every established flag, exact extra-field, comment, and member-
+volume pass but before decoded-name policy, metadata, exact inventory, staging,
+or member reads. Either nonzero value emits stable content-silent error `sample
+bundle uses unsupported archive disk fields`; the owned snapshot position is
+restored and all owned resources close before control returns.
+
+The fixed sample producer emits the record at end of file with both fields
+zero. M83 adds no ZIP64 end-record parser, end-record search, neighboring-file
+discovery, multi-volume assembler, workflow, dependency, runtime API, release
+authority, or producer change. It does not resolve a `0xFFFF` sentinel, is not
+a general archive sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

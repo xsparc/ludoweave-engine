@@ -1,5 +1,53 @@
 # Project State
 
+## M83 conventional archive disk-field preflight - implementation active
+
+- Base: exact verified M82 closeout squash
+  `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`, tree
+  `fc19f02ae8af1a432d23f0ccf8e4775ef10085c7`. Clean synchronized `main` was
+  the only local/remote branch; no open PR, tag, release, postmerge run, or M82
+  generated target remained before M83 selection.
+- Gap: PKWARE defines two conventional EOCD disk fields. Exact installed
+  CPython 3.12.13, 3.13.13, and 3.14.5 parses but ignores them for ordinary
+  archives: asymmetric one values, matching one values, and matching `0xFFFF`
+  sentinels preserve a volume-zero member and readable deflated payload. The
+  fixed producer emits both fields as zero.
+- Decision: after all M69-M82 archive-wide passes, private complete release
+  smoke reads exactly the final 22-byte conventional record from its owned
+  checksum-admitted snapshot. It requires the signature, zero comment length,
+  and both disk fields zero before M77 name policy, metadata, inventory,
+  staging, or reads. The stable content-silent error is `sample bundle uses
+  unsupported archive disk fields`.
+- Boundary: `0xFFFF` is rejected as outside the fixed conventional profile,
+  not classified as a split archive. No ZIP64 end-record parser, end-record
+  search, local/central-header parser, neighboring-volume discovery, multi-
+  volume assembler, workflow, producer, dependency, runtime API, or release
+  authority is added.
+- Red-to-green: the static-clean authoritative baseline passed 16 controls and
+  failed 15 missing contracts in 0.52 seconds. The runtime implementation made
+  30 assertions pass in 0.32 seconds; only the deliberately absent public/RFC
+  contract remained before documentation was added.
+- Qualification: after review strengthening, all 34 focused assertions pass on
+  CPython 3.12.13, 3.13.13, and 3.14.5. The complete corrected 3.12 graphics-
+  baseline suite passes 2,514 tests with 15 capability skips; initial complete
+  3.13/3.14 suites each passed 2,501 with 16 skips before the test-only review
+  strengthening. All 974 architecture assertions pass with 1 Windows skip;
+  the M64-M83 lineage passes 285 with 1 skip. Static checks, strict docs, real-
+  wgpu, profiles, both vertical slices, M1-M4 diagnostics, byte-reproducible
+  builds, isolated-wheel smoke, staging, and complete release smoke pass.
+- Review: documentation navigation was corrected after its first strict-build
+  failure. Findings-first review found no production defect but added three
+  controls proving malformed final-record signature/comment-length/trailing-
+  byte shapes retain the existing stable ZIP-data error. Exactly 16 intended
+  paths change; protected hashes, disclosure/credential scans, artifact
+  inventories, whitespace, and Git-object checks are clean.
+- Local artifacts: the corrected tree reproduces a pure 275,238-byte wheel at
+  `2c7b187266cebac06a3478ea3f5a0c515e38175ee74bda809a09f07eb2acc788`
+  and a 1,322,725-byte sdist at
+  `6e01c1f0f3a68fb3ddcadaf1ec7232082217c3aee6e57d47094b0801dbf06cdf`;
+  the evidence-record update changes the future sdist, so hosted exact-head
+  identities remain authoritative.
+
 ## M82 split-volume sample-member preflight - closeout active
 
 - Base: exact verified M81 closeout squash

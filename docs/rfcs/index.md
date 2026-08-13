@@ -70,3 +70,4 @@ was adopted.
 - [RFC-0063: reject ZIP64 extra fields before extraction](0063-reject-zip64-extra-fields.md)
 - [RFC-0064: reject ZIP comments before extraction](0064-reject-zip-comments.md)
 - [RFC-0065: reject split-volume sample members before extraction](0065-reject-split-volume-sample-members.md)
+- [RFC-0066: reject unsupported archive disk fields before extraction](0066-reject-unsupported-archive-disk-fields.md)
