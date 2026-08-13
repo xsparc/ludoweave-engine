@@ -1874,6 +1874,23 @@ workflow, dependency, sample producer, runtime API, release authority, or real
 public release observation and is not a general archive sandbox. RFC-0059
 defines the complete boundary.
 
+## M77 NUL-suffixed sample-member name preflight
+
+M77 adds one exact NUL check to the existing all-member preflight. Supported
+CPython versions retain the decoded central-directory filename used to
+construct `ZipInfo` in `orig_filename` but truncate normalized `filename` at
+the first NUL byte. Without the new check, an exact visible inventory path can
+carry an unvalidated hidden suffix. Private release smoke raises the stable
+content-silent error `sample bundle member name contains a NUL byte` before
+member metadata validation, exact-inventory validation, staging, or reads.
+
+M69, M75, and M76 flag policy executes first and retains precedence. M77 is an
+exact NUL check only: it adds no general normalized-name comparison, no raw
+parser, no local-header/central-directory consistency claim, rewriting, repair,
+or content scanner. It adds no workflow, dependency, sample producer, runtime
+API, release authority, or real public release observation and is not a general
+archive sandbox. RFC-0060 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

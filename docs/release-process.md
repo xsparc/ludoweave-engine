@@ -650,6 +650,19 @@ allowlist, enhanced-deflate decoder, raw parser, repair, workflow, dependency,
 sample producer, runtime API, or release authority, is not a general archive
 sandbox, and is not a real public release observation.
 
+M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
+after the established flag preflight and before member metadata, inventory
+validation, staging, or member reads. Complete release smoke emits the stable
+content-silent policy error without rendering the archive-controlled name or
+hidden suffix. Existing encryption, compressed-patch, and enhanced-deflate
+categories retain precedence.
+
+The check does not compare arbitrary original and normalized names. M77 adds no
+general normalized-name comparison, no raw parser, header-consistency claim,
+rewriting, repair, workflow, dependency, sample producer, runtime API, or
+release authority, is not a general archive sandbox, and is not a real public
+release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

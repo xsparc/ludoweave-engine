@@ -491,6 +491,9 @@ def _extract_checksum_admitted_bundle(
                 compress_type=info.compress_type,
             )
 
+        for info in infos:
+            _validate_sample_member_name(original_name=info.orig_filename)
+
         total_bytes = 0
         member_parts: list[tuple[str, ...]] = []
         member_keys: set[tuple[str, ...]] = set()
@@ -677,6 +680,13 @@ def _validate_sample_compression_flags(*, flag_bits: int, compress_type: int) ->
 
     if compress_type == zipfile.ZIP_DEFLATED and flag_bits & _SAMPLE_ENHANCED_DEFLATE_FLAG:
         raise RuntimeError("sample bundle uses enhanced deflating")
+
+
+def _validate_sample_member_name(*, original_name: str) -> None:
+    """Reject a member name that the standard reader truncated at a NUL."""
+
+    if "\x00" in original_name:
+        raise RuntimeError("sample bundle member name contains a NUL byte")
 
 
 def _portable_sample_member_parts(
