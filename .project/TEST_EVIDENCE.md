@@ -53,6 +53,23 @@ M82 starts from exact verified M81 closeout squash
 | Exact scope and hygiene audit | Clean | Exactly the four intended record paths change. CI remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow `c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5`; sample producer `d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca`; package metadata `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`; lock `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Added-content identity and credential/private-key scans are empty. |
 | Final factual-record-inclusive source gate | 0 | The unchanged lock resolved 46 packages in 0.83 ms; all 325 files remained format clean; Ruff and strict Pyright reported zero findings; all 940 architecture assertions passed with 1 Windows capability skip in 6.42 seconds; strict docs built in 1.28 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
 
+## M82 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Documentation classification and hosted gate | 0 | Ready PR #199 exact DCO head `78e440e87a3af11fa7123f40596bead906ef5786`, tree `53295683df88430e6731fb75a794836ccafdc9f9`, changed exactly four intended record paths and classified `documentation` with `changed_count: 4`. Run `31727082001` used only 43-second Linux job `94538032073`; desktop umbrella `94538237840` skipped with zero steps. |
+| Hosted documentation/artifact evidence | 0 | All 325 files were format/Ruff clean; strict docs built in 1.71 seconds; all 941 hosted architecture assertions passed in 10.40 seconds. Two builds reproduced a pure 275,086-byte wheel at `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99` and a 1,317,719-byte sdist at `030ba0cc1a60452af81c260771c7ade982f576fc8753602e867766a5b8a40833`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Substantive type/full/compatibility/graphics/profile/example work did not run. |
+| Two separated review audits | Clean | Both audits retained exact base/head and `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-step desktop umbrella, matching remote source author/sign-off identity, and zero comments, reviews, inline comments, or review threads. |
+| Guarded integration squash audit | 0 | Exact-head-guarded squash merged PR #199 as `f0558e4e3864e54d8bf81c46c656becc505c7f80`. Its tree `53295683df88430e6731fb75a794836ccafdc9f9` exactly equals the reviewed head, its sole parent is feature squash `f34b42f1ac9813ec2c46063774e8e86087dd67cf`, its trailer parses as DCO, and GitHub verification is valid at `2026-08-13T17:44:59Z`. No postmerge workflow was allocated; the integration branch was deleted locally/remotely. |
+
+## M82 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | From exact integration squash `f0558e4e3864e54d8bf81c46c656becc505c7f80`, exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. All 325 files were format clean; Ruff and strict Pyright reported zero findings; all 940 architecture assertions passed with 1 Windows capability skip in 6.39 seconds; strict docs built in 1.27 seconds with only the known upstream notice; whitespace and full Git-object checking passed. The closeout changes no workflow, runtime, verifier, producer, dependency, package, test, public documentation, roadmap, or release-authority surface and is excluded from hosted CI. |
+| Exact protected-surface and hygiene audit | Clean | CI remains `258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946`; release workflow `c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5`; sample producer `d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca`; package metadata `42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1`; lock `e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed`. Added-content identity and credential/private-key scans are empty. |
+| Final record-inclusive closeout gate | 0 | All 325 files remained format clean; Ruff and strict Pyright reported zero findings; all 940 architecture assertions passed with 1 Windows capability skip in 6.36 seconds; strict docs built in 1.25 seconds with only the known upstream notice; whitespace and full Git-object checking passed. |
+
 ## M81 closeout publication and cleanup - 2026-08-14
 
 | Command or review | Exit | Factual result |
