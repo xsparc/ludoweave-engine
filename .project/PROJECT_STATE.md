@@ -1,6 +1,6 @@
 # Project State
 
-## M78 data-descriptor sample-member preflight - implementation active
+## M78 data-descriptor sample-member preflight - integration record active
 
 - Base: exact clean synchronized M77 closeout
   `4bca618578f29629a7270ab5d9d308fd34363a06`, tree
@@ -74,7 +74,38 @@
 - Evidence-inclusive post-record gate: the unchanged lock, all 321 formatted
   files, Ruff, strict Pyright, all 856 architecture assertions with 1
   capability skip, strict docs, whitespace, and exact 16-path scope pass.
-- Remaining: publish and exact-head qualify the neutral ready PR.
+- Hosted qualification: exact DCO head
+  `e897a2277b6c150ec77b88022e2f52a165ea978a` passed run
+  `31701501926`. Linux completed in 7m26s; guarded macOS and Windows passed in
+  3m07s and 3m52s. Each hosted suite passed 2,401 tests; compatibility suites
+  recorded one capability skip. Static/docs, 10 real-wgpu tests per OS,
+  profiles, examples, reproducible distribution, installed-wheel, staging,
+  and complete release smoke all passed.
+- Hosted artifacts: the pure 274,559-byte wheel is
+  `ccbe8d92ed51ac31c4fc0e0ca1e52fbf697d20e4b7dc9250a15ad718944a8b5b`;
+  the 1,281,259-byte sdist is
+  `13e5518654d192a646a08586b382967050c73a20fc36e51244148e7cb8a54309`.
+- Review state: two separated audits found no conversation comment, review,
+  inline comment, or review thread. The PR remained ready, `CLEAN`,
+  `MERGEABLE`, exact-head, exact-base, and successful.
+- Feature integration: PR #186 squash
+  `180d93dbe6984fff43af07021efd000150b76132` has exact qualified tree
+  `820e1a861fe4e84154515629ba43e98cc8024df3`, sole M77-closeout parent,
+  parseable DCO trailer, exact identity, and valid GitHub verification at
+  `2026-08-13T12:58:28Z`. Its feature branch is deleted locally/remotely.
+- Integration-record local gate: exactly four record paths change. The
+  unchanged lock resolves 46 packages; all 321 files are format clean; Ruff
+  and strict Pyright report zero findings; all 856 architecture assertions
+  pass with 1 capability skip; strict docs, whitespace, and full Git-object
+  checks pass. Two builds reproduce the pure 274,573-byte wheel
+  `dcf1cce4641069365c6e572f5189aee237ba2b7ff7f9e3fde17cf89ecdbbab68`
+  and 1,282,286-byte sdist
+  `daf0cf1f4f3d131be1a10095afc2bb1a32f349b13153b60ba23e986d45f95bae`;
+  wheel, staging, and complete release smokes pass.
+- Post-record gate: the unchanged lock, all 321 formatted files, Ruff, strict
+  Pyright, all 856 architecture assertions with 1 capability skip, strict
+  docs, whitespace, and exact four-path scope pass.
+- Remaining: publish the exact four-record integration update.
 
 ## M77 NUL-suffixed sample-member name preflight - integrated and closed
 
