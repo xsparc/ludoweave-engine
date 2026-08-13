@@ -223,6 +223,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   established flag errors retain precedence. This adds no general normalized-
   name comparison, no raw parser, workflow, or sample producer change, is not
   a general archive sandbox, and is not a real public release observation.
+- M78 rejects exact ZIP general-purpose bit 3, the data-descriptor indicator,
+  in a separate archive-wide preflight before member reads or staging. The
+  content-silent error follows established M69/M75/M76 flag categories and
+  precedes NUL-name policy. This is no raw descriptor parser or broad flag
+  allowlist, changes no workflow or sample producer, is not a general archive
+  sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

@@ -183,6 +183,16 @@ or publication. M0 through M76 are complete, reviewed, hosted-validated, and
 integrated into `main`. M77 starts from exact verified M76 closeout
 `701637f99447f4d64c84047e64ec5edfa0c6889f`.
 
+M78 rejects the exact ZIP general-purpose data-descriptor bit 3 in a separate
+all-member pass before member metadata, inventory validation, member reads, or
+staging. The content-silent policy preserves established M69/M75/M76 flag
+precedence and runs before M77 name policy. This is no raw descriptor parser,
+no broad flag allowlist, and no general archive sandbox. It adds no workflow,
+allocation, dependency, version, sample producer, runtime source/API, release
+authority, tag, release, or publication. M0 through M77 are complete,
+reviewed, hosted-validated, and integrated into `main`. M78 starts from exact
+verified M77 closeout `4bca618578f29629a7270ab5d9d308fd34363a06`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

@@ -663,6 +663,19 @@ rewriting, repair, workflow, dependency, sample producer, runtime API, or
 release authority, is not a general archive sandbox, and is not a real public
 release observation.
 
+M78/RFC-0061 rejects exact central-directory general-purpose bit 3, the data-
+descriptor indicator exposed by `ZipInfo.flag_bits`, during a separate all-
+member preflight before M77 name policy, member metadata, inventory validation,
+member reads, or staging. Complete release smoke emits the stable content-
+silent error without rendering archive-controlled content. The established
+M69/M75/M76 categories retain archive-wide precedence.
+
+The fixed sample producer continues to emit no data-descriptor flag. M78 adds
+no raw descriptor parser, no broad flag allowlist, local-header consistency
+claim, repair, workflow, dependency, sample producer, runtime API, or release
+authority, is not a general archive sandbox, and is not a real public release
+observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

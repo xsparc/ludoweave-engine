@@ -55,6 +55,7 @@ _SAMPLE_COMPRESSION_METHODS = frozenset((zipfile.ZIP_STORED, zipfile.ZIP_DEFLATE
 _SAMPLE_ENCRYPTION_FLAGS = 0x0001 | 0x0040 | 0x2000
 _SAMPLE_COMPRESSED_PATCH_FLAG = 0x0020
 _SAMPLE_ENHANCED_DEFLATE_FLAG = 0x0010
+_SAMPLE_DATA_DESCRIPTOR_FLAG = 0x0008
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -492,6 +493,9 @@ def _extract_checksum_admitted_bundle(
             )
 
         for info in infos:
+            _validate_sample_descriptor_flags(flag_bits=info.flag_bits)
+
+        for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
 
         total_bytes = 0
@@ -680,6 +684,13 @@ def _validate_sample_compression_flags(*, flag_bits: int, compress_type: int) ->
 
     if compress_type == zipfile.ZIP_DEFLATED and flag_bits & _SAMPLE_ENHANCED_DEFLATE_FLAG:
         raise RuntimeError("sample bundle uses enhanced deflating")
+
+
+def _validate_sample_descriptor_flags(*, flag_bits: int) -> None:
+    """Reject trailing data descriptors outside the fixed sample profile."""
+
+    if flag_bits & _SAMPLE_DATA_DESCRIPTOR_FLAG:
+        raise RuntimeError("sample bundle uses a data descriptor")
 
 
 def _validate_sample_member_name(*, original_name: str) -> None:

@@ -1891,6 +1891,23 @@ or content scanner. It adds no workflow, dependency, sample producer, runtime
 API, release authority, or real public release observation and is not a general
 archive sandbox. RFC-0060 defines the complete boundary.
 
+## M78 data-descriptor sample-member preflight
+
+M78 adds one exact check for ZIP general-purpose bit 3, the data-descriptor
+indicator exposed by `ZipInfo.flag_bits`. Complete release smoke finishes the
+established M69/M75/M76 all-member flag pass, then checks every member for bit
+3 in a separate archive-wide pass before M77 name checks, member metadata,
+exact-inventory validation, staging, or member reads. The stable content-silent
+error is `sample bundle uses a data descriptor`.
+
+The fixed sample profile does not need trailing descriptors because its
+producer writes to a seekable output. Rejecting the exact flag avoids adding a
+second, deferred-size representation to the private consumer boundary.
+RFC-0061 adds no raw descriptor parser, no broad flag allowlist, local-header
+comparison, decoder, repair, workflow, dependency, sample producer, runtime
+API, release authority, or real public release observation. It is not a
+general archive sandbox and makes no claim about unrelated flag combinations.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

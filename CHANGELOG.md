@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M78/RFC-0061 data-descriptor sample-member preflight. Exact ZIP general-
+  purpose bit 3 now fails content-silently before member metadata, inventory
+  validation, reads, or staging, without a raw descriptor parser, broad flag
+  allowlist, workflow, dependency, sample producer, runtime API, or release-
+  authority change.
 - Add M77/RFC-0060 NUL-suffixed sample-member name preflight. An exact NUL byte
   in decoded `ZipInfo.orig_filename` now fails content-silently before member
   metadata, inventory validation, reads, or staging, without a general

@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0061 resolves M78 data-descriptor sample-member preflight. Private complete
+release smoke finishes the established archive-wide M69/M75/M76 flag pass,
+then rejects exact ZIP general-purpose bit 3 in a separate all-member pass
+before M77 name checks, metadata, inventory, staging, or reads. The stable
+policy error is content-silent and owned resources close before control
+returns. This is not a raw descriptor parser, broad flag allowlist, local-
+header consistency claim, repair path, scanner, or general archive sandbox.
+It adds no workflow, dependency, sample producer, runtime API, or release
+authority. A real pass remains pending an explicitly authorized signed-tag
+release execution.
+
 RFC-0060 resolves M77 NUL-suffixed sample-member name preflight. Private
 complete release smoke checks every decoded `ZipInfo.orig_filename` for an
 exact NUL after established flag checks and before metadata, inventory,
