@@ -30,6 +30,24 @@ before the neutral feature branch was created.
 | Record-inclusive reproducibility and release gate | 0 | Two builds reproduced a pure 274,734-byte wheel at `014e443b6bc0094c74521ba3211940cfc8db7c8c932212d4c1eea742a5c3f566` and a 1,288,301-byte sdist at `d8d7182eade2052978ea7c65f0178014f6b69ced9fbcac97ae63851d26787087`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Recording this row changes the sdist; exact commit-tree artifact identity remains delegated to hosted qualification. |
 | Evidence-inclusive post-record gate | 0 | All 322 files were format clean; Ruff and strict Pyright reported zero findings; all 874 architecture assertions passed with 1 capability skip in 6.60 seconds; strict docs built in 1.17 seconds with only the known upstream notice. Whitespace and exact 16-path scope passed. |
 
+## M79 hosted validation and feature integration - 2026-08-13
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact-head hosted qualification | 0 | Ready PR #189 qualified exact DCO head `13b0134e2fb215701468b05edc9b278642f79a02` in successful run `31705986777`. Linux job `94466553453` passed in 7m13s; guarded macOS job `94468726505` passed in 3m15s and Windows job `94468726689` in 4m10s. Linux CPython 3.12/3.13/3.14 and desktop CPython 3.14 each passed 2,419 tests; compatibility suites recorded one capability skip. All 322 files were format clean; Ruff, strict Pyright, strict docs, 10 real-wgpu tests per OS, profiles, vertical slices, installed-wheel smoke, deterministic staging, and complete release smoke passed. |
+| Hosted artifact identity | 0 | Two hosted builds reproduced a pure 274,721-byte wheel at `3a3785fd9da167d4ad966dd51cae0293d10cd3e9d1da870a414f750c52d42898` and a 1,288,417-byte sdist at `089908bfc7637f070cab69232294c00412155bc30f9133684d791a48a942d5b1`. Deterministic state/replay identities passed; platform-specific capture hashes are not claimed identical. |
+| Two separated review-state audits | Clean | Both audits found zero conversation comments, reviews, inline comments, and review threads. PR #189 remained ready, mergeable, exact-head, and exact-base. GitHub briefly retained the completed Linux check as in-progress after the parent workflow succeeded and every Linux step completed; it finalized green without a rerun before merge. |
+| Feature squash integration verification | Clean | PR #189 merged at `2026-08-13T13:57:14Z` as `9bc8e3813a9e25bbb977d74201fceeed3db31be2`. Its tree exactly equals qualified feature tree `c6a4894b2d8306d814e3cd5087f21e73c9014a80`; its sole parent is M78 closeout `5fe3134bf5a56e5cbf986ed33db698c830aa9219`; author identity and standalone DCO trailer are exact; GitHub verification is valid at `2026-08-13T13:57:18Z`. The obsolete feature branch was deleted locally and remotely. |
+
+## M79 integration-record local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| First frozen-lock command in managed sandbox | Invalid setup | The sandbox denied access to uv's existing user cache before lock evaluation. No project result was produced; the identical cache-enabled run below is authoritative. |
+| Exact four-record local gate | 0 | Exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md` changed. The unchanged lock resolved 46 packages in 0.80 ms; all 322 files were format clean; Ruff and strict Pyright reported zero findings; all 874 architecture assertions passed with 1 capability skip in 6.04 seconds; strict docs built in 1.17 seconds with only the known upstream notice. Whitespace, exact base/HEAD history `0 0`, and full Git-object checking passed with expected unreachable development objects only. |
+| Integration-record reproducibility and release gate | 0 | Two builds reproduced a pure 274,734-byte wheel at `014e443b6bc0094c74521ba3211940cfc8db7c8c932212d4c1eea742a5c3f566` and a 1,289,550-byte sdist at `a6132131a6970508b55175622751d39cef99b2ac47d228cc8afe7b300f8c8583`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Recording this row changes the sdist; hosted integration-head identities remain authoritative. |
+| Integration-record post-record gate | 0 | The unchanged lock resolved 46 packages in 0.79 ms; all 322 files were format clean; Ruff and strict Pyright reported zero findings; all 874 architecture assertions passed with 1 capability skip in 6.09 seconds; strict docs built in 1.23 seconds with only the known upstream notice. Whitespace and exact four-path scope passed. |
+
 ## M78 local development evidence - 2026-08-13, Windows, CPython 3.12
 
 M78 starts from exact synchronized M77 closeout
