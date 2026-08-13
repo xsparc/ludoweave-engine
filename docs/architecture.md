@@ -1930,8 +1930,9 @@ general archive sandbox.
 
 M80 rejects exact PKWARE ZIP64 extended-information extra-field ID `0x0001`.
 Supported CPython versions substitute its alternate 64-bit size, compressed-
-size, local-header-offset, and disk-start values when corresponding central-
-directory fields contain ZIP64 sentinel values. Complete release smoke walks
+size, and local-header-offset values when corresponding central-directory
+fields contain ZIP64 sentinels; current CPython does not consume the field's
+defined disk-start value. Complete release smoke walks
 every member's already decoded central-directory extra bytes in a separate
 pass after M79 Unicode Path policy and before M77 name checks, metadata, exact
 inventory, staging, or member reads. The stable content-silent error is

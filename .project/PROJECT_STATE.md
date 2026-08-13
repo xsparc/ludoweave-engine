@@ -7,9 +7,10 @@
   `1fca519b95832978516a22c3c6bd19ff93955afd`.
 - Gap: PKWARE defines extra-field ID `0x0001` as ZIP64 alternate 64-bit size,
   compressed-size, local-header-offset, and disk-start metadata. Current
-  CPython applies those values to `ZipInfo` when central-directory fields use
-  sentinel values. The fixed small sample producer emits no extra fields and
-  has no need for this alternate metadata representation.
+  CPython applies the size and header-offset values to `ZipInfo` when central-
+  directory fields use sentinels; it does not consume the defined disk-start
+  value. The fixed small sample producer emits no extra fields and has no need
+  for this alternate metadata representation.
 - Runtime evidence: corrected sequential stdlib-only probes on installed
   CPython 3.12.13, 3.13.13, and 3.14.5 each applied genuine central-directory
   ZIP64 values for a 13-byte payload, exposed the 28-byte `0x0001` field, and
@@ -70,9 +71,24 @@
   are exact M79 closeout `892f17fce99d218905c6f624c730f735d21a794f`;
   symmetric difference is `0 0` and history is linear. Only `origin/main`
   exists remotely; GitHub reports no open PR, tag, or release.
-- Remaining: DCO commit/publication, exact-head hosted qualification, separated
-  review audits, guarded squash integration, evidence-record integration, and
-  closeout.
+- Initial hosted gate: exact DCO head
+  `30793a758fc57b8a23d92b84cd911c5b979f977d` passed all three allocations in
+  run `31711574308`, but review correctly found that public records blurred
+  PKWARE's defined disk-start capacity with the narrower values CPython
+  actually applies. The runtime policy remains sound; documentation now
+  distinguishes the specification from observed parser behavior.
+- Review correction checkpoint: RFC/project records now state that current
+  CPython applies uncompressed size, compressed size, and local-header offset
+  but does not consume the defined disk-start value. The genuine fixture is
+  explicitly limited to its three 64-bit values. The strengthened docs
+  regression, all 20 focused assertions, all 894 architecture tests with 1
+  skip, strict static checks, strict docs, and whitespace pass.
+- Final correction gate: the record-inclusive tree retains the unchanged lock,
+  323 format-clean files, zero Ruff/Pyright findings, 894 passing architecture
+  tests with 1 skip, strict docs, whitespace, and Git-object integrity.
+- Remaining: validate and publish the DCO correction, exact-head requalify it,
+  perform separated review audits, resolve the addressed thread, guarded-
+  squash integrate, record integration evidence, and close out.
 
 ## M79 Unicode Path extra-field preflight - closed
 

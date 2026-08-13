@@ -468,6 +468,7 @@ def test_m80_docs_define_zip64_preflight_and_nonclaims() -> None:
     )
     documents = tuple(path.read_text(encoding="utf-8").casefold() for path in paths)
     combined = "\n".join(documents)
+    rfc = documents[-1]
 
     assert all("m80" in document for document in documents)
     completed = re.search(r"m0 through m([0-9]+) are hosted-validated", documents[0])
@@ -488,3 +489,6 @@ def test_m80_docs_define_zip64_preflight_and_nonclaims() -> None:
         "not a real public release observation",
     ):
         assert term in combined
+    assert "disk-start" in rfc
+    assert "does not consume" in rfc
+    assert "fixture does not contain or establish" in rfc

@@ -10,12 +10,16 @@ PKWARE extra-field ID `0x0001` is the ZIP64 extended-information field. Its
 central-directory form can provide alternate 64-bit uncompressed size,
 compressed size, local-header offset, and a 32-bit disk-start value when the
 corresponding ordinary fields contain sentinel values. Supported CPython
-versions apply those values while constructing `ZipInfo`, before LudoWeave's
-private complete-release consumer receives the member records.
+versions apply the uncompressed size, compressed size, and local-header offset
+while constructing `ZipInfo`; current CPython does not consume the defined
+disk-start value. This happens before LudoWeave's private complete-release
+consumer receives the member records.
 
 A genuine central-directory fixture on installed CPython 3.12.13, 3.13.13,
 and 3.14.5 exposed the same 13-byte payload with ZIP64 size and offset values,
-retained the 28-byte `0x0001` extra field, and read the payload successfully.
+retained the 28-byte `0x0001` extra field containing three 64-bit values, and
+read the payload successfully. The fixture does not contain or establish disk-
+start handling.
 LudoWeave's fixed small sample producer emits 50 members with no extra fields,
 so it has no need for this alternate metadata representation.
 

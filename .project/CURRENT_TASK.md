@@ -1,9 +1,9 @@
 # Current Task
 
 - **Task:** M80 - exact ZIP64 extra-field preflight
-- **Status:** Implementation, complete local qualification, independent review,
-  exact-scope audit, and prepublication history audit are green; DCO feature
-  publication is active.
+- **Status:** The review correction and strengthened regression are locally
+  green; final record-inclusive validation and exact-head requalification are
+  active.
 - **Base:** Verified M79 closeout
   `892f17fce99d218905c6f624c730f735d21a794f`, tree
   `1fca519b95832978516a22c3c6bd19ff93955afd`.
@@ -28,6 +28,7 @@
 
 ## Remaining gates
 
-1. Publish a DCO-signed ready PR, exact-head qualify it on the existing three-
-   allocation essential CI, audit review state twice, and squash only after the
-   complete result is clean.
+1. Run the final record-inclusive gate, push a DCO correction, and exact-head
+   requalify the existing three allocations.
+2. Audit review state twice, resolve the addressed thread, and squash only
+   after the complete result is clean.
