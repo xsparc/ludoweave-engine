@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M84/RFC-0067 conventional archive entry-count consistency preflight.
+  Both final end-record counts must now match the standard reader's parsed
+  member count before decoded-name policy, metadata, inventory, reads, or
+  staging, without a ZIP64 end-record parser, sentinel resolution, multi-volume
+  assembler, workflow, dependency, producer, runtime API, or release-authority
+  change.
 - Add M83/RFC-0066 conventional archive disk-field preflight. Nonzero current-
   disk or central-directory-start disk fields now fail content-silently before
   decoded-name policy, member metadata, inventory, reads, or staging, without

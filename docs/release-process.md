@@ -742,6 +742,20 @@ discovery, multi-volume assembler, workflow, dependency, runtime API, release
 authority, or producer change. It does not resolve a `0xFFFF` sentinel, is not
 a general archive sandbox, and is not a real public release observation.
 
+M84/RFC-0067 requires both conventional end-of-central-directory entry counts
+to equal the standard reader's parsed member count. The check runs after all
+established member preflights and M83 archive disk policy but before decoded-
+name policy, metadata, exact inventory, staging, or member reads. A mismatch
+emits stable content-silent error `sample bundle archive entry counts are
+inconsistent`; the owned snapshot position is restored and all owned resources
+close before control returns.
+
+The fixed sample producer emits 50 in both fields and exposes 50 members. M84
+adds no ZIP64 end-record parser, sentinel resolution, end-record search,
+neighboring-file discovery, multi-volume assembler, workflow, dependency,
+runtime API, release authority, or producer change. It is not a general
+archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -514,6 +514,10 @@ def _extract_checksum_admitted_bundle(
             _validate_sample_member_volume(volume=info.volume)
 
         _validate_sample_archive_disk_fields(snapshot=snapshot_stream)
+        _validate_sample_archive_entry_counts(
+            snapshot=snapshot_stream,
+            parsed_entries=len(infos),
+        )
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -783,6 +787,31 @@ def _validate_sample_archive_disk_fields(*, snapshot: IO[bytes]) -> None:
     central_disk = int.from_bytes(end_record[6:8], "little")
     if disk != 0 or central_disk != 0:
         raise RuntimeError("sample bundle uses unsupported archive disk fields")
+
+
+def _validate_sample_archive_entry_counts(
+    *,
+    snapshot: IO[bytes],
+    parsed_entries: int,
+) -> None:
+    """Require conventional ZIP entry counts to match parsed members."""
+
+    position = snapshot.tell()
+    try:
+        snapshot.seek(-_SAMPLE_EOCD_BYTES, os.SEEK_END)
+        end_record = snapshot.read(_SAMPLE_EOCD_BYTES)
+    finally:
+        snapshot.seek(position)
+    if (
+        len(end_record) != _SAMPLE_EOCD_BYTES
+        or end_record[:4] != _SAMPLE_EOCD_SIGNATURE
+        or end_record[-2:] != b"\x00\x00"
+    ):
+        raise zipfile.BadZipFile("invalid final end-of-central-directory record")
+    entries_on_disk = int.from_bytes(end_record[8:10], "little")
+    total_entries = int.from_bytes(end_record[10:12], "little")
+    if entries_on_disk != parsed_entries or total_entries != parsed_entries:
+        raise RuntimeError("sample bundle archive entry counts are inconsistent")
 
 
 def _validate_sample_member_name(*, original_name: str) -> None:

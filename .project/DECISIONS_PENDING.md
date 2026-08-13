@@ -2,6 +2,20 @@
 
 No architecture decision is currently blocked.
 
+RFC-0067 resolves M84 conventional archive entry-count preflight. Private
+complete release smoke finishes every M69-M82 policy pass and M83 archive disk
+check, then reads exactly the final conventional 22-byte end-of-central-
+directory record from the owned checksum-admitted snapshot. Both entry counts
+must equal the standard reader's parsed member count before M77 decoded-name
+policy, metadata, exact inventory, staging, or reads. The stable policy error
+is content-silent and the previous snapshot position is restored. `0xFFFF` is
+rejected as outside the fixed profile, not resolved through ZIP64. This is not
+a ZIP64 end-record parser, sentinel resolver, end-record search, central/local-
+header parser, neighboring-volume discovery, multi-volume assembler, or
+general archive sandbox. It adds no workflow, dependency, producer, runtime
+API, or release authority. A real pass remains pending an explicitly
+authorized signed-tag release execution.
+
 RFC-0066 resolves M83 conventional archive disk-field preflight. Private
 complete release smoke finishes every M69-M82 archive-wide pass, then reads
 exactly the final conventional 22-byte end-of-central-directory record from
