@@ -1970,6 +1970,26 @@ general archive sandbox and is not a real public release observation.
 Malformed structures that fail before CPython exposes either comment retain
 the existing stable ZIP-data failure instead of an M81 comment error.
 
+## M82 split-volume sample-member preflight
+
+M82 rejects a central-directory disk-start value outside the fixed single-
+volume sample profile. PKWARE defines that field as the disk on which a member
+begins; CPython exposes it as `ZipInfo.volume`. A parser-exposed nonzero value
+raises stable content-silent error `sample bundle uses a split-volume member`.
+
+Complete release smoke finishes every established flag, descriptor, Unicode
+Path, ZIP64, archive-comment, and member-comment pass first. It then checks
+every `ZipInfo.volume` in a separate all-member pass before M77 decoded-name
+policy, member metadata, exact inventory, staging, or member reads. Established
+categories therefore retain archive-wide precedence. Owned source, checksum-
+admitted snapshot, and archive resources close before the error returns.
+
+The fixed producer emits volume zero for all 50 entries. RFC-0065 adds no raw
+end-record parser, no local-header parser, no multi-volume assembler, no
+neighboring-file discovery, workflow, producer, dependency, runtime API, or
+release authority. It is not a general archive sandbox and is not a real
+public release observation. End-record disk fields remain deferred.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

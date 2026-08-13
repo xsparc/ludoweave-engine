@@ -226,6 +226,16 @@ complete, reviewed, hosted-validated, and integrated into `main`. M81 starts
 from exact verified M80 closeout
 `3241a348a75c24a764f167ade48798ed3ac06af1`.
 
+M82 rejects every parser-exposed nonzero `ZipInfo.volume` after established
+flag, extra-field, and comment policy, but before decoded-name checks,
+metadata, inventory, member reads, or staging. Its stable error is content-
+silent. This is no raw end-record parser, no multi-volume assembler, and no
+general archive sandbox. It adds no workflow, allocation, dependency, version,
+sample producer, runtime source/API, release authority, tag, release, or
+publication. M0 through M81 are complete, reviewed, hosted-validated, and
+integrated into `main`. M82 starts from exact verified M81 closeout
+`ba90021304760284550e3c458901feb0e3e29dbc`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

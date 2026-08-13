@@ -248,6 +248,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   silent. This adds no raw ZIP parser or general comment scanner, changes no
   workflow or sample producer, is not a general archive sandbox, and is not a
   real public release observation.
+- M82 rejects parser-exposed nonzero `ZipInfo.volume` values in a separate all-
+  member pass after established comment policy and before decoded-name policy,
+  metadata, inventory, member reads, or staging. The error `sample bundle uses
+  a split-volume member` is content-silent. This adds no raw end-record parser
+  and no multi-volume assembler, changes no workflow or sample producer, is
+  not a general archive sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

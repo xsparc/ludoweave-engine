@@ -509,6 +509,9 @@ def _extract_checksum_admitted_bundle(
             _validate_sample_member_comment(comment=info.comment)
 
         for info in infos:
+            _validate_sample_member_volume(volume=info.volume)
+
+        for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
 
         total_bytes = 0
@@ -748,6 +751,13 @@ def _validate_sample_member_comment(*, comment: bytes) -> None:
 
     if comment:
         raise RuntimeError("sample bundle uses a member comment")
+
+
+def _validate_sample_member_volume(*, volume: int) -> None:
+    """Reject split-volume placement outside the fixed sample profile."""
+
+    if volume != 0:
+        raise RuntimeError("sample bundle uses a split-volume member")
 
 
 def _validate_sample_member_name(*, original_name: str) -> None:

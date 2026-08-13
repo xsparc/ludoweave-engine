@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M82/RFC-0065 split-volume sample-member preflight. Every parser-exposed
+  nonzero `ZipInfo.volume` now fails content-silently before decoded-name
+  policy, member metadata, inventory, reads, or staging, without a raw end-
+  record parser, multi-volume assembler, workflow, dependency, sample
+  producer, runtime API, or release-authority change.
 - Add M81/RFC-0064 ZIP comment preflight. Parser-exposed non-empty archive and
   member comments now fail content-silently before decoded-name policy, member
   metadata, inventory, reads, or staging, without a raw ZIP parser, general
