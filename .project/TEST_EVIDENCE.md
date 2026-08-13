@@ -48,6 +48,22 @@ before the neutral feature branch was created.
 | Integration-record reproducibility and release gate | 0 | Two builds reproduced a pure 274,734-byte wheel at `014e443b6bc0094c74521ba3211940cfc8db7c8c932212d4c1eea742a5c3f566` and a 1,289,550-byte sdist at `a6132131a6970508b55175622751d39cef99b2ac47d228cc8afe7b300f8c8583`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. Recording this row changes the sdist; hosted integration-head identities remain authoritative. |
 | Integration-record post-record gate | 0 | The unchanged lock resolved 46 packages in 0.79 ms; all 322 files were format clean; Ruff and strict Pyright reported zero findings; all 874 architecture assertions passed with 1 capability skip in 6.09 seconds; strict docs built in 1.23 seconds with only the known upstream notice. Whitespace and exact four-path scope passed. |
 
+## M79 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Hosted integration-record qualification | 0 | Exact DCO head `31169c0b90bea95277397e86f40a33f5fcd22287`, tree `761c2a6007ad8f3be340a0f6796ffe5983ea06a5`, passed run `31708261506`. The trusted classifier identified exactly four changed paths as documentation. Linux job `94474232250` passed in 47 seconds; desktop umbrella `94474491443` skipped with zero steps. |
+| Hosted documentation/artifact gate | 0 | All 322 files were format clean; Ruff passed; strict docs built in 1.75 seconds; all 875 hosted architecture assertions passed in 10.27 seconds. Two builds reproduced a pure 274,721-byte wheel at `3a3785fd9da167d4ad966dd51cae0293d10cd3e9d1da870a414f750c52d42898` and a 1,289,953-byte sdist at `dccb332e1e2faebe6c738a493deac55db3a1b13e7f1a1aac144e21fecf65545e`. Installed-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. |
+| Two separated integration review-state audits | Clean | GitHub reported zero conversation comments, reviews, inline comments, and review threads in both audits. PR #190 remained ready, clean, mergeable, exact-head, exact-base, and successful with only the expected skipped desktop umbrella. |
+| Verified integration-record squash | Clean | PR #190 merged at `2026-08-13T14:07:28Z` as `2de20b719d0c79d87187fea95b8a58f31491dad4`. Its tree exactly equals reviewed tree `761c2a6007ad8f3be340a0f6796ffe5983ea06a5`; its sole parent is feature squash `9bc8e3813a9e25bbb977d74201fceeed3db31be2`; the DCO trailer and identity are exact; GitHub verification is valid at `2026-08-13T14:07:36Z`. The obsolete integration branch was deleted locally and remotely. |
+
+## M79 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or review | Exit | Result |
+| --- | ---: | --- |
+| Exact three-record closeout gate | 0 | Exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` changed. The unchanged lock resolved 46 packages in 0.80 ms; all 322 files were format clean; Ruff and strict Pyright reported zero findings; all 874 architecture assertions passed with 1 capability skip in 6.14 seconds; strict docs built in 1.26 seconds with only the known upstream notice. Whitespace, exact base/HEAD history `0 0`, and full Git-object checking passed with expected unreachable development objects only. |
+| Closeout post-record gate | 0 | The unchanged lock resolved 46 packages in 0.84 ms; all 322 files were format clean; Ruff and strict Pyright reported zero findings; all 874 architecture assertions passed with 1 capability skip in 6.02 seconds; strict docs built in 1.22 seconds with only the known upstream notice. Whitespace and exact three-path scope passed. |
+
 ## M78 local development evidence - 2026-08-13, Windows, CPython 3.12
 
 M78 starts from exact synchronized M77 closeout
