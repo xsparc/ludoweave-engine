@@ -1,6 +1,6 @@
 # Project State
 
-## M77 NUL-suffixed sample-member name preflight - active
+## M77 NUL-suffixed sample-member name preflight - feature integrated
 
 - Base: exact clean synchronized M76 closeout
   `701637f99447f4d64c84047e64ec5edfa0c6889f`, tree
@@ -82,9 +82,28 @@
   passes 2,380 tests with 15 skips; CPython 3.13/3.14 each pass 2,370 with 16
   skips. Real-wgpu, profiles, examples, reproducible distribution, isolated
   wheel, deterministic staging, and complete release smoke all pass.
-- Remaining: corrected-head DCO publication, exact-head hosted qualification,
-  finding resolution, two clean review audits, verified squash integration,
-  bounded integration/closeout records, and branch/artifact cleanup.
+- Corrected hosted qualification: exact DCO head
+  `482aa76c68c1ab3d17f22f4fa1d286c7ab03ed9a` passed run `31697316773`.
+  Linux completed first in 7m33s; guarded macOS and Windows passed in 3m07s
+  and 3m57s. Each of the five hosted suites passed 2,385 tests; all but Linux
+  3.12 recorded one capability skip. All static/docs, real-wgpu, profile,
+  example, distribution, installed-wheel, staging, and release checks passed.
+- Review state: two separated post-correction audits found no new review input.
+  The original P2 thread remains unresolved because no resolution write was
+  authorized, but exact corrected head contains its requested separate
+  archive-wide passes and all three cross-member regressions. GitHub reported
+  the PR clean and mergeable before squash.
+- Feature integration: PR #183 squash
+  `0c3c407c1e5d86541570c665fd305fa95e32e07a` has exact reviewed tree
+  `923efabb7b6968a53db2035c107baa80b89119cc`, sole parent M76 closeout,
+  exact author identity, and valid GitHub verification at
+  `2026-08-13T12:04:14Z`. Both source commits have parseable DCO trailers.
+- Process note: the squash body contains literal `\n\n` characters before its
+  sign-off text, not real blank lines, so the squash message itself has no
+  parseable DCO trailer. This is retained as factual process evidence; future
+  squash messages use a body file. No history rewrite is authorized or made.
+- Remaining: bounded integration/closeout records, branch/artifact cleanup,
+  and selection of M78 from clean synchronized `main`.
 
 ## M76 enhanced-deflate sample-member preflight - complete
 
