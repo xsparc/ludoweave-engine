@@ -1,6 +1,6 @@
 # Project State
 
-## M81 ZIP comment preflight - feature integrated
+## M81 ZIP comment preflight - closeout active
 
 - Base: exact verified M80 closeout squash
   `3241a348a75c24a764f167ade48798ed3ac06af1`, tree
@@ -73,16 +73,41 @@
   `3241a348a75c24a764f167ade48798ed3ac06af1`, standalone DCO, and valid
   GitHub verification at `2026-08-13T16:18:01Z`. No postmerge run was
   allocated; the feature branch is deleted locally/remotely.
+- Integration record: exact DCO head
+  `ab5cf860fcd82bce71dde458d8e0653c8415adf6`, tree
+  `9a5d794198dddf925d4a52a91327f33c4352e2e3`, changed exactly four intended
+  record paths. Trusted-base classification reported `documentation` with
+  `changed_count: 4`. Run `31720707293` used one 42-second Linux job
+  `94516687882`; desktop umbrella `94516893920` skipped with zero steps. All
+  324 files were format/Ruff clean; strict docs built in 1.69 seconds; all 921
+  hosted architecture assertions passed in 10.15 seconds; two universal builds,
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke passed. Reproducibility produced a 274,962-byte wheel at
+  `71faae79b33898e5ed417445bdb14793b934efb01c464db73e0f40eec173342e`
+  and a 1,307,844-byte sdist at
+  `2d6fe8b8fb4f97595c52addcadfe2f5c47831f631e220437885c775ddfb1d2c1`.
+- Integration audit: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, one successful bounded Linux check, one skipped zero-step
+  desktop umbrella, and zero issue comments, reviews, inline comments, or
+  threads. Exact-head-guarded squash
+  `2054fda66c1dafb7c0594eada4cc01a3649209cd` has the exact reviewed tree, sole
+  feature-squash parent `8a3a156d08a7c40c9b34ae726311776c0e2f8611`,
+  exact author identity, and valid GitHub verification at
+  `2026-08-13T16:29:37Z`. The reviewed source commit has a parsed DCO trailer;
+  PowerShell passed the merge body's newline escapes literally, so the
+  generated squash message itself has no parsed trailer. The process defect is
+  retained factually and public history is not rewritten. No postmerge run was
+  allocated; the integration branch is deleted locally/remotely.
 - Scope: no raw ZIP parser, general comment scanner, comment decoder, raw end-
   record validator, broad extra-field rule, workflow, runner allocation,
   action, permission, credential, dependency, lock, version, sample producer,
   runtime package/API, release mutation, release authority, tag, release, or
   publication is added. Passing pull-request evidence is not a real public
   release observation and M81 is not a general archive sandbox.
-- Branch: `release/m81-integration-record`.
-- Remaining: validate/publish/audit/squash the exact four-path integration
-  record, then integrate the exact three-record closeout and remove milestone
-  branches/generated targets before selecting M82.
+- Branch: `release/m81-closeout`.
+- Remaining: validate/publish/twice-audit/squash the exact three-record closeout,
+  then remove the closeout branch and M81 generated targets before selecting
+  M82 from clean synchronized `main`.
 
 ## M80 ZIP64 extra-field preflight - closeout active
 
