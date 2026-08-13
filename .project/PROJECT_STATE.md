@@ -1,6 +1,6 @@
 # Project State
 
-## M82 split-volume sample-member preflight - hosted correction active
+## M82 split-volume sample-member preflight - integration record active
 
 - Base: exact verified M81 closeout squash
   `ba90021304760284550e3c458901feb0e3e29dbc`, tree
@@ -64,15 +64,46 @@
   Pyright, strict docs, and whitespace pass. The complete corrected 3.12
   graphics-baseline suite passes 2,480 tests with 15 capability skips in
   109.01 seconds.
+- Corrected hosted qualification: exact DCO head
+  `9edbe5e5bf706bd11b31546bd26fcb8421f1f5d9`, tree
+  `63677710315e48d32d83115bef5046476e669dd1`, passed run `31725451119`,
+  classified substantive with 15 paths, in exactly three allocations. Linux
+  job `94532583017` completed in 7m12s, Windows `94534595607` in 4m17s, and
+  macOS `94534595665` in 2m16s. Linux CPython 3.12/3.13/3.14 and both desktop
+  3.14 suites passed 2,485 tests, with one skip outside baseline. Every OS
+  passed 10 real-wgpu tests, graphics profiling, Clockwork Arena, and Agent
+  World Builder; static/docs, installed-wheel, staging, and release smoke pass.
+- Hosted artifacts: the exact corrected head reproduced a 275,086-byte pure
+  wheel at `fff5a33caafb89572e74cb41dd308611cae896e1c5a62630058f157e17214b99`
+  and 1,315,802-byte sdist at
+  `d16eb754e00e01d59aff425fedb0bd74db318c1b7e9ab044af3343c9a9db2a46`.
+- Review/integration: the valid P2 thread has a concrete correction response and
+  is resolved/outdated. Two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, three successful checks, zero issue comments, and no
+  unresolved or later finding. Exact-head-guarded squash
+  `f34b42f1ac9813ec2c46063774e8e86087dd67cf` has the exact reviewed tree,
+  sole M81-closeout parent `ba90021304760284550e3c458901feb0e3e29dbc`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T17:37:04Z`.
+  No postmerge run was allocated; the feature branch is deleted locally/
+  remotely and synchronized `main` was the only branch before this record.
+- Integration-local evidence: exactly the three project records plus roadmap
+  change. The unchanged 46-package lock resolves; all 325 files are format/
+  Ruff clean; strict Pyright has zero findings; all 940 architecture assertions
+  pass with 1 Windows capability skip; strict docs, whitespace, and Git-object
+  checks pass. Two builds reproduce a 275,100-byte wheel at
+  `b0fb35139e5c6bc47beb133d3602bd83b050ff282e78465a9708e3b996e01da5`
+  and 1,317,216-byte sdist at
+  `b668144e40744981c7b2e5b03dbeb885f31b2394c2a44996d1a4084e7e50ed96`;
+  isolated-wheel, staging, and release smoke pass. Protected hashes and added-
+  content identity/credential scans remain clean.
 - Boundary: no raw end-record parser, local-header parser, multi-volume
   assembler, neighboring-volume discovery, broad flag/extra-field rule,
   workflow, allocation, dependency, lock, version, producer, runtime package/
   API, release mutation, release authority, tag, release, or publication is
   added. This is not a general archive sandbox or real public release
   observation.
-- Branch: `release/m82-split-volume-preflight`.
-- Remaining: corrected exact-head hosted feature qualification, thread
-  resolution and two audits, then bounded integration/closeout before clean-
+- Branch: `release/m82-integration-record`.
+- Remaining: bounded hosted integration and three-record closeout before clean-
   main M83 selection.
 
 ## M81 ZIP comment preflight - closed
