@@ -103,6 +103,7 @@ nav:
       - RFC-0060 - Reject NUL-suffixed sample-member names: rfcs/0060-reject-nul-suffixed-sample-member-names.md
       - RFC-0061 - Reject data-descriptor sample members: rfcs/0061-reject-data-descriptor-sample-members.md
       - RFC-0062 - Reject Unicode Path extra fields: rfcs/0062-reject-unicode-path-extra-fields.md
+      - RFC-0063 - Reject ZIP64 extra fields: rfcs/0063-reject-zip64-extra-fields.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -1,6 +1,80 @@
 # Project State
 
-## M79 Unicode Path extra-field preflight - closeout active
+## M80 ZIP64 extra-field preflight - implementation active
+
+- Base: exact clean synchronized M79 closeout
+  `892f17fce99d218905c6f624c730f735d21a794f`, tree
+  `1fca519b95832978516a22c3c6bd19ff93955afd`.
+- Gap: PKWARE defines extra-field ID `0x0001` as ZIP64 alternate 64-bit size,
+  compressed-size, local-header-offset, and disk-start metadata. Current
+  CPython applies those values to `ZipInfo` when central-directory fields use
+  sentinel values. The fixed small sample producer emits no extra fields and
+  has no need for this alternate metadata representation.
+- Runtime evidence: corrected sequential stdlib-only probes on installed
+  CPython 3.12.13, 3.13.13, and 3.14.5 each applied genuine central-directory
+  ZIP64 values for a 13-byte payload, exposed the 28-byte `0x0001` field, and
+  read the payload. A first concurrent probe attempt is invalid setup evidence:
+  three uv processes raced over the shared `.venv` and none reached the probe.
+  The locked CPython 3.12 graphics environment was restored afterward.
+- Decision: add exact `0x0001` preflight through a bounded extra-field walk in
+  a separate all-member pass after M79 Unicode Path policy and before M77
+  names, metadata, inventory, staging, or reads.
+- Boundary: no broad extra-field ban, raw ZIP64 parser, ZIP64 archive-record
+  validator, large-file support change, repair, workflow, dependency, sample-
+  producer, runtime-API, or release-authority change; this is not a general
+  archive sandbox or real public release observation.
+- Red-to-green: the authoritative test-only baseline passed 13 controls and
+  failed the 7 missing policy, ordering, cleanup, helper/source, and docs
+  contracts. The exact constant/helper and separate all-member pass reduced
+  that to one deliberately absent docs contract. RFC-0063 and aligned public
+  docs make all 20 focused assertions pass; focused format, Ruff, strict
+  Pyright, strict docs, and whitespace gates are clean.
+- Setup note: the first strict-docs checkpoint exposed the earlier concurrent
+  probe race as a damaged local MkDocs install. A sandboxed repair attempt
+  could not access the shared uv cache; an approved locked-package reinstall
+  restored MkDocs 1.6.1, after which strict docs passed. Neither failed setup
+  attempt is product-test evidence.
+- Complete local qualification: the unchanged 46-package lock and restored
+  45-package graphics environment resolve; all 323 files are format clean;
+  Ruff and strict Pyright report zero findings; all 894 architecture tests
+  pass with 1 capability skip; the exact M64-M80 lineage passes 205 tests with
+  1 skip. Supported CPython 3.12/3.13/3.14 each pass 2,424 tests with
+  15/16/16 capability skips.
+- Graphics/diagnostics: all 10 real-wgpu tests, both one-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic
+  validators pass. M1 observes 1 of 2 targets, M2 has no targets, M3 meets 0
+  of 2 observed targets, and M4 observes its baseline target.
+- Reproducible release gate: two fresh builds reproduce a pure 274,845-byte
+  wheel at
+  `018f4cb0bc3d231a3fdd3479027bb7e0a483851516273f7a7609ed610edb3c84`
+  and 1,295,107-byte sdist at
+  `557235f0735245ebf82b7945ca77c7e183fb34af2237e613e0428ce9b8140de8`;
+  isolated-wheel, deterministic ten-artifact staging, and complete release
+  smoke pass.
+- Findings-first review identifies no actionable defect. The exact field-ID
+  check honors TLV boundaries, retains established archive-wide precedence,
+  fails before names/metadata/inventory/staging/reads, renders no controlled
+  content, and closes owned resources. Unrelated IDs and incomplete trailing
+  bytes remain accepted; malformed declared fields remain CPython policy.
+- Exact-scope audit: exactly 16 intended paths change. Protected CI, release
+  workflow, sample producer, package metadata, and lock hashes remain exact;
+  no runtime-package file changes. Explicit development-tool identity and
+  credential/private-key scans identify no added marker. The 94-entry wheel
+  and 526-entry sdist contain no native, WASM, bytecode, or retired control
+  metadata.
+- Final local gate: the record-inclusive tree retains the unchanged lock, 323
+  format-clean files, zero Ruff/Pyright findings, 894 passing architecture
+  tests with 1 capability skip, strict docs, whitespace, and Git-object
+  integrity.
+- History/remote: feature `HEAD`, local `main`, `origin/main`, and merge base
+  are exact M79 closeout `892f17fce99d218905c6f624c730f735d21a794f`;
+  symmetric difference is `0 0` and history is linear. Only `origin/main`
+  exists remotely; GitHub reports no open PR, tag, or release.
+- Remaining: DCO commit/publication, exact-head hosted qualification, separated
+  review audits, guarded squash integration, evidence-record integration, and
+  closeout.
+
+## M79 Unicode Path extra-field preflight - closed
 
 - Base: exact clean synchronized M78 closeout
   `5fe3134bf5a56e5cbf986ed33db698c830aa9219`, tree

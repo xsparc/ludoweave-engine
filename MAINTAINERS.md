@@ -203,6 +203,17 @@ or publication. M0 through M78 are complete, reviewed, hosted-validated, and
 integrated into `main`. M79 starts from exact verified M78 closeout
 `5fe3134bf5a56e5cbf986ed33db698c830aa9219`.
 
+M80 rejects exact PKWARE ZIP64 extended-information extra-field ID `0x0001`
+during a separate archive-wide pass after M79 policy and before decoded-name
+checks, metadata, inventory, member reads, or staging. The stable error is
+content-silent. This bounded extra-field walk is no broad extra-field ban, raw
+ZIP64 parser, large-file support change, or general archive sandbox. It adds
+no workflow, allocation, dependency, version, sample producer, runtime
+source/API, release authority, tag, release, or publication. M0 through M79
+are complete, reviewed, hosted-validated, and integrated into `main`. M80
+starts from exact verified M79 closeout
+`892f17fce99d218905c6f624c730f735d21a794f`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

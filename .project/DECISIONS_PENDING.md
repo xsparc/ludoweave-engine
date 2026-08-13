@@ -2,6 +2,16 @@
 
 No architecture decision is currently blocked.
 
+M80 ZIP64 extra-field preflight is resolved for implementation. PKWARE assigns
+exact extra-field ID `0x0001` to ZIP64 alternate size, offset, and disk-start
+metadata; CPython applies it before release smoke receives `ZipInfo`. The fixed
+50-member sample is small and emits no extra fields, so M80 rejects exact
+central-directory ID `0x0001` after established M79 policy and before decoded-
+name or metadata policy. Unrelated fields and malformed-extra handling remain
+outside M80. No broad extra-field ban, raw ZIP64 parser, large-file support
+change, workflow, dependency, producer, runtime API, or release authority is
+admitted.
+
 RFC-0062 resolves M79 Unicode Path extra-field preflight. Private complete
 release smoke finishes every established archive-wide flag/descriptor pass,
 then performs a bounded extra-field walk and rejects exact Info-ZIP field ID

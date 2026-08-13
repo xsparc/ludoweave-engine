@@ -235,6 +235,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   decoded-name policy. This bounded extra-field walk is no broad extra-field
   ban, changes no workflow or sample producer, is not a general archive
   sandbox, and is not a real public release observation.
+- M80 rejects exact PKWARE ZIP64 extended-information extra-field ID `0x0001`
+  in a separate archive-wide preflight after M79 policy and before decoded-
+  name policy, metadata, inventory, member reads, or staging. The bounded
+  extra-field walk fails content-silently. This is no broad extra-field ban or
+  raw ZIP64 parser, changes no workflow or sample producer, is not a general
+  archive sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

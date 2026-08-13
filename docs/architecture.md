@@ -1926,6 +1926,25 @@ comparison, rewriting, repair, workflow, dependency, runtime API, sample
 producer, release authority, or real public release observation. It is not a
 general archive sandbox.
 
+## M80 ZIP64 extra-field preflight
+
+M80 rejects exact PKWARE ZIP64 extended-information extra-field ID `0x0001`.
+Supported CPython versions substitute its alternate 64-bit size, compressed-
+size, local-header-offset, and disk-start values when corresponding central-
+directory fields contain ZIP64 sentinel values. Complete release smoke walks
+every member's already decoded central-directory extra bytes in a separate
+pass after M79 Unicode Path policy and before M77 name checks, metadata, exact
+inventory, staging, or member reads. The stable content-silent error is
+`sample bundle uses a ZIP64 extra field`.
+
+The fixed producer emits no extra fields and its bounded sample has no need
+for an alternate large-archive representation. RFC-0063 is an exact extra-
+field ID check implemented by a bounded extra-field walk. It adds no broad
+extra-field ban, raw ZIP64 parser, archive-record validator, large-file
+support change, local-header comparison, repair, workflow, dependency,
+runtime API, sample producer, release authority, or real public release
+observation. It is not a general archive sandbox.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
