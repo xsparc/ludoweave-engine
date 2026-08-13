@@ -1,5 +1,42 @@
 # Project State
 
+## M84 conventional archive entry-count preflight - locally qualified
+
+- Base: exact verified M83 closeout squash
+  `1c380897fc8ee43f5885c733c1c11f87878ff2a1`, tree
+  `c5bcfb19be359c828bcdd413f784ff4a9fa204e7`. Clean synchronized `main` was
+  the only local/remote branch; no open PR, tag, release, postmerge run,
+  disclosure marker, or M83 generated target remained before M84 selection.
+- Gap: PKWARE defines two conventional EOCD entry counts. Exact installed
+  CPython 3.12.13, 3.13.13, and 3.14.5 parses but ignores them for ordinary
+  archives: zero, asymmetric, inflated, and `0xFFFF` pairs preserve one parsed
+  member and readable deflated payload. The fixed producer emits 50 in both
+  fields and exposes 50 members.
+- Decision: after every M69-M82 policy pass and M83 archive disk check, private
+  complete release smoke reads exactly the final conventional record from its
+  owned checksum-admitted snapshot. It requires both entry counts to equal the
+  parsed member count before M77 name policy, metadata, inventory, staging, or
+  reads. The stable content-silent error is `sample bundle archive entry counts
+  are inconsistent`.
+- Boundary: `0xFFFF` is rejected as outside the fixed conventional profile,
+  not resolved through a ZIP64 end record. No new record grammar, end-record
+  search, local/central-header parser, neighboring-volume discovery, multi-
+  volume assembler, workflow, producer, dependency, runtime API, or release
+  authority is added.
+- Red-to-green: the static-clean authoritative baseline passed 9 controls and
+  failed 16 missing contracts in 0.50 seconds. The runtime implementation made
+  24 assertions pass in 0.31 seconds; only the deliberately absent public/RFC
+  contract remained before documentation was added.
+- Qualification: review found no production defect and added direct malformed-
+  final-record normalization controls while correcting stale status wording.
+  The strengthened contract passes on CPython 3.12-3.14; the corrected 3.12
+  suite passes 2,542 tests with 15 skips; 1,002 architecture assertions and
+  the 313-case M64-M84 lineage pass with one Windows capability skip each.
+  Static/docs, real wgpu, profiles, samples, diagnostic validators,
+  reproducible builds, isolated-wheel smoke, deterministic staging, and
+  complete release smoke pass. Exact-head hosted qualification remains
+  pending.
+
 ## M83 conventional archive disk-field preflight - closeout active
 
 - Base: exact verified M82 closeout squash

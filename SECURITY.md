@@ -262,6 +262,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   fields as zero. This adds no ZIP64 end-record parser, end-record search, or
   multi-volume assembler, changes no workflow or producer, is not a general
   archive sandbox, and is not a real public release observation.
+- M84 requires both conventional end-of-central-directory entry counts to
+  equal the standard reader's parsed member count after M83 disk policy and
+  before decoded-name policy, metadata, inventory, member reads, or staging.
+  The error `sample bundle archive entry counts are inconsistent` is content-
+  silent. This adds no ZIP64 end-record parser, sentinel resolution, or multi-
+  volume assembler, changes no workflow or producer, is not a general archive
+  sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

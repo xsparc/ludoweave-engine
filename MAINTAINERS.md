@@ -247,6 +247,16 @@ publication. M0 through M82 are complete, reviewed, hosted-validated, and
 integrated into `main`. M83 starts from exact verified M82 closeout
 `e0ade9928e19895d5074a40fd11fcbf6bfa6fbe0`.
 
+M84 requires both conventional end-of-central-directory entry counts to match
+the standard reader's parsed member count after M83 disk-field policy, but
+before decoded-name checks, metadata, inventory, member reads, or staging. Its
+stable error is content-silent. This is no ZIP64 end-record parser, sentinel
+resolution, multi-volume assembler, or general archive sandbox. It adds no
+workflow, allocation, dependency, version, producer, runtime source/API,
+release authority, tag, release, or publication. M0 through M83 are complete,
+reviewed, hosted-validated, and integrated into `main`. M84 starts from exact
+verified M83 closeout `1c380897fc8ee43f5885c733c1c11f87878ff2a1`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

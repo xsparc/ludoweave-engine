@@ -2018,6 +2018,31 @@ topology, is not a general archive sandbox, and is not a real public release
 observation. Workflows, producer, dependencies, runtime API, and release
 authority remain unchanged.
 
+## M84 conventional archive entry-count preflight
+
+M84 closes the next conventional end-record consistency gap for the fixed 50-
+member sample profile. PKWARE defines current-disk and total-entry counts in
+the end-of-central-directory record. Supported CPython 3.12-3.14 parses but
+ignores both for an ordinary archive: zero, asymmetric, inflated, and
+`0xFFFF` fixtures still expose the same readable central-directory members.
+
+After every established member policy and M83 disk-field check completes,
+release smoke reads exactly the final conventional 22-byte record from the
+owned checksum-admitted snapshot. It requires both counts to equal
+`len(archive.infolist())`, restores the previous snapshot position, and then
+proceeds to M77 name policy. A mismatch raises stable content-silent error
+`sample bundle archive entry counts are inconsistent` before metadata, exact
+inventory, staging, or member reads. Structural mismatch retains the existing
+stable ZIP-data error. Owned source, snapshot, and archive resources close
+first.
+
+The fixed producer emits 50 in both fields and exposes 50 parsed members.
+RFC-0067 adds no ZIP64 end-record parser, sentinel resolution, end-record
+search, central-directory/local-header parser, neighboring-volume discovery,
+or multi-volume assembler. It is not a general archive sandbox and is not a
+real public release observation. Workflows, producer, dependencies, runtime
+API, and release authority remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

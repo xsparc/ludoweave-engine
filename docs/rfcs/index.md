@@ -71,3 +71,4 @@ was adopted.
 - [RFC-0064: reject ZIP comments before extraction](0064-reject-zip-comments.md)
 - [RFC-0065: reject split-volume sample members before extraction](0065-reject-split-volume-sample-members.md)
 - [RFC-0066: reject unsupported archive disk fields before extraction](0066-reject-unsupported-archive-disk-fields.md)
+- [RFC-0067: require consistent archive entry counts before extraction](0067-require-consistent-archive-entry-counts.md)
