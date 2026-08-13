@@ -173,6 +173,16 @@ authority, tag, release, or publication. M0 through M75 are complete, reviewed,
 hosted-validated, and integrated into `main`. M76 starts from exact verified
 M75 closeout `ddf262dff7a8c93defad5a205adbaec460563439`.
 
+M77 rejects an exact NUL byte in decoded `ZipInfo.orig_filename` during the
+same all-member preflight. It fails content-silently before member metadata,
+inventory validation, member reads, or staging; established flag errors retain
+precedence. This is no general normalized-name comparison, no raw parser, and
+no general archive sandbox. It adds no workflow, allocation, dependency,
+version, sample producer, runtime source/API, release authority, tag, release,
+or publication. M0 through M76 are complete, reviewed, hosted-validated, and
+integrated into `main`. M77 starts from exact verified M76 closeout
+`701637f99447f4d64c84047e64ec5edfa0c6889f`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

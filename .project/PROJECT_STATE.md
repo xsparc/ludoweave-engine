@@ -1,5 +1,80 @@
 # Project State
 
+## M77 NUL-suffixed sample-member name preflight - active
+
+- Base: exact clean synchronized M76 closeout
+  `701637f99447f4d64c84047e64ec5edfa0c6889f`, tree
+  `27cfc273accb3190d0c50e6a344685875cce541b`.
+- Gap: CPython preserves the decoded central-directory filename used to
+  construct `ZipInfo` in `orig_filename`, then truncates `filename` at the
+  first NUL. The verifier currently validates only the truncated visible name,
+  allowing an exact-inventory path to carry an unvalidated hidden suffix.
+- Runtime evidence: installed CPython 3.12.13, 3.13.13, and 3.14.5 each expose
+  `root/README.md\0hidden` as the original name, expose `root/README.md` as the
+  normalized name, and read the payload successfully.
+- Decision: RFC-0060 adds one exact NUL check on `orig_filename` to the existing
+  all-member preflight after flag policy and before metadata, inventory,
+  staging, or reads. The stable error renders no archive-controlled content.
+- Boundary: no general normalized-name comparison, raw parser, header
+  consistency claim, rewriting, repair, scanner, workflow, dependency,
+  producer, runtime API, or release authority. Existing flag errors retain
+  precedence.
+- Regression baseline: on exact M76, the format/Ruff/Pyright-clean 12-case
+  regression passes 6 standard-library/precedence/producer/protected guards
+  and fails 6 early-policy/ordering/cleanup/helper/source/docs contracts in
+  0.91 seconds.
+- Runtime checkpoint: one exact private helper checks the decoded original name
+  after established flag validation. The corrected M69/M75/M76/M77 group
+  passed 40 assertions; only the deliberately absent RFC/docs assertion
+  failed. A prior checkpoint named a nonexistent inherited test and collected
+  nothing; it is invalid setup evidence.
+- Focused/inherited gate: after RFC-0060 and aligned records, all 12 M77
+  assertions pass in 0.89 seconds. The exact M64-M77 extraction lineage passes
+  148 assertions with 1 local capability skip in 1.68 seconds. Affected
+  format/Ruff/Pyright, strict docs, and whitespace pass.
+- Complete suites: the unchanged lock resolves 46 packages and the restored
+  graphics environment contains 45 packages. All 320 files are format clean;
+  Ruff and strict Pyright report zero findings. CPython 3.12, 3.13, and 3.14
+  each pass 2,367 tests with 15 skips; all 837 architecture assertions pass
+  with 1 local capability skip.
+- Graphics/diagnostics: all 10 real-wgpu tests, both five-repeat profiles,
+  Clockwork Arena, Agent World Builder, and all four M1-M4 diagnostic
+  validators pass. M1 observes 1 of 2 targets, M2 has no targets, M3 meets 0 of
+  2 current targets, and M4 observes its baseline target.
+- Pre-review artifacts: two builds reproduce a pure 274,448-byte wheel at
+  `ecf37cf1a420433cdc0b5a3ff07fefff5450e5d7ae0b6cdff1e2d3e88639dea9`
+  and 1,272,210-byte sdist at
+  `932b43823605e870598b08f0b54c98fd1bc491a38769e2440ea1aec8ab094892`;
+  wheel, staging, and complete release smokes pass. The unchanged 111,168-byte
+  50-entry sample is
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Review: implementation, ordering, cleanup, producer compatibility, and exact
+  non-scope are sound. Review corrected public wording that treated
+  `orig_filename` as a universal name record; it is specifically the decoded
+  central-directory filename used to construct `ZipInfo`. Corrected focused,
+  architecture, static, docs, and whitespace gates pass.
+- Record-inclusive artifacts: two builds reproduce the pure 274,448-byte wheel
+  `ecf37cf1a420433cdc0b5a3ff07fefff5450e5d7ae0b6cdff1e2d3e88639dea9`
+  and 1,273,541-byte sdist
+  `11f7a22829654db4dd855bf771bfd8d8cf391136872b7152d1ff5a817ddd765f`;
+  installed-wheel, deterministic staging, and complete release smokes pass.
+- Final audit: the candidate is exactly 16 intended paths. Protected CI,
+  release workflow, sample producer, package metadata, and lock hashes are
+  unchanged. Explicit development-tool identity and credential/private-key
+  scans return zero matches; inspected archives contain no native, WASM,
+  bytecode, or retired control metadata. Static, architecture, strict docs,
+  whitespace, and full Git-object checking pass.
+- History/remote: feature `HEAD`, local `main`, `origin/main`, and merge base
+  are exact M76 closeout `701637f99447f4d64c84047e64ec5edfa0c6889f`
+  with symmetric difference `0 0`. Only `origin/main` exists remotely and
+  GitHub reports no open PR, tag, or release.
+- Post-record gate: the unchanged lock, all 320 formatted files, Ruff, strict
+  Pyright, all 837 architecture assertions with 1 local capability skip,
+  strict docs, whitespace, and exact 16-path scope pass.
+- Remaining: DCO publication, exact-head hosted qualification, review audits,
+  verified squash integration, bounded integration/closeout records, and
+  branch/artifact cleanup.
+
 ## M76 enhanced-deflate sample-member preflight - complete
 
 - Base: exact clean synchronized M75 closeout
@@ -113,10 +188,14 @@
   strict Pyright report zero findings; all 825 architecture assertions pass
   with 1 local capability skip; strict docs, whitespace, and full Git-object
   checking pass.
-- Remaining closeout mechanics: publish the exact three-record candidate,
-  verify no workflow allocation, audit and squash it, remove milestone
-  branches/generated artifacts, confirm clean synchronized `main`, and select
-  the next bounded milestone.
+- Closeout integration: path-filtered PR #182 started no workflow. Two
+  separated audits were clean. Its verified DCO squash
+  `701637f99447f4d64c84047e64ec5edfa0c6889f` has exact reviewed tree
+  `27cfc273accb3190d0c50e6a344685875cce541b` and sole parent the M76
+  integration-record squash.
+- Cleanup: 32 verified workspace-local M76 validation targets were removed.
+  Only synchronized `main` remains locally/remotely with symmetric difference
+  `0 0`; no PR, tag, or release remains open or published.
 - Post-record correction: M59 caught three project-record references that
   literally named a retired control directory. They were neutralized, after
   which all 825 architecture assertions pass with 1 capability skip; static,

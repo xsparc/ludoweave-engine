@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+RFC-0060 resolves M77 NUL-suffixed sample-member name preflight. Private
+complete release smoke checks every decoded `ZipInfo.orig_filename` for an
+exact NUL after established flag checks and before metadata, inventory,
+staging, or reads. This prevents CPython's documented NUL truncation from
+hiding an unvalidated suffix behind an otherwise exact visible sample path.
+The stable policy error is content-silent; later ambiguous members preempt
+earlier metadata failures and owned resources close first. This is exactly a
+NUL check, not a general original-versus-normalized name comparison, raw ZIP
+parser, local-header/central-directory consistency claim, repair path, scanner,
+or general archive sandbox. It adds no workflow, dependency, sample producer,
+runtime API, or release authority. A real pass remains pending an explicitly
+authorized signed-tag release execution.
+
 RFC-0059 resolves M76 enhanced-deflate sample-member preflight. Private
 complete release smoke rejects exactly ZIP general-purpose bit 4 when paired
 with compression method 8, after established processing checks and before

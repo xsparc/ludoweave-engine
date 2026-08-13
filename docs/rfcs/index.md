@@ -64,3 +64,4 @@ was adopted.
 - [RFC-0057: normalize sample ZIP decompression failures content-silently](0057-content-silent-sample-zip-decompression-failures.md)
 - [RFC-0058: reject compressed-patch sample members before extraction](0058-reject-compressed-patch-sample-members.md)
 - [RFC-0059: reject enhanced-deflate sample members before extraction](0059-reject-enhanced-deflate-sample-members.md)
+- [RFC-0060: reject NUL-suffixed sample-member names before extraction](0060-reject-nul-suffixed-sample-member-names.md)

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M77/RFC-0060 NUL-suffixed sample-member name preflight. An exact NUL byte
+  in decoded `ZipInfo.orig_filename` now fails content-silently before member
+  metadata, inventory validation, reads, or staging, without a general
+  normalized-name comparison, raw parser, workflow, dependency, sample
+  producer, runtime API, or release-authority change.
 - Add M76/RFC-0059 enhanced-deflate sample-member preflight. Central-directory
   ZIP general-purpose bit 4 on compression method 8 now fails content-silently
   before inventory validation, member reads, or staging. Stored members and

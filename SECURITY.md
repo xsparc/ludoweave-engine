@@ -217,6 +217,12 @@ Maintainers will acknowledge the report through the same private channel, assess
   and local-header inconsistencies remain outside this exact decision. This
   adds no broad flag allowlist, workflow, or sample producer change, is not a
   general archive sandbox, and is not a real public release observation.
+- M77 inspects decoded `ZipInfo.orig_filename` and rejects an exact NUL byte
+  before member metadata, inventory validation, member reads, or staging. The
+  content-silent category prevents a hidden suffix from entering diagnostics;
+  established flag errors retain precedence. This adds no general normalized-
+  name comparison, no raw parser, workflow, or sample producer change, is not
+  a general archive sandbox, and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
