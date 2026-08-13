@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M85/RFC-0068 exact conventional central directory placement preflight.
+  The final record's declared size plus offset must now land exactly at that
+  final record before decoded-name policy, metadata, inventory, reads, or
+  staging, without a central-directory record parser, prepended executable
+  support, workflow, dependency, producer, runtime API, or release-authority
+  change.
 - Add M84/RFC-0067 conventional archive entry-count consistency preflight.
   Both final end-record counts must now match the standard reader's parsed
   member count before decoded-name policy, metadata, inventory, reads, or

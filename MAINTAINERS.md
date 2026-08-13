@@ -257,6 +257,17 @@ release authority, tag, release, or publication. M0 through M83 are complete,
 reviewed, hosted-validated, and integrated into `main`. M84 starts from exact
 verified M83 closeout `1c380897fc8ee43f5885c733c1c11f87878ff2a1`.
 
+M85 requires the final conventional central-directory size plus offset to land
+exactly at the final end-of-central-directory record after M84 entry-count
+policy, but before decoded-name checks, metadata, inventory, member reads, or
+staging. Its stable error is content-silent. This is no central-directory
+record parser, prepended executable support, self-extracting archive support,
+or general archive sandbox. It adds no workflow, allocation, dependency,
+version, producer, runtime source/API, release authority, tag, release, or
+publication. M0 through M84 are complete, reviewed, hosted-validated, and
+integrated into `main`. M85 starts from exact verified M84 closeout
+`5b21c4798c16fb69b8ef08d40b02a2662677227a`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

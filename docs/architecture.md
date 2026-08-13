@@ -2043,6 +2043,30 @@ or multi-volume assembler. It is not a general archive sandbox and is not a
 real public release observation. Workflows, producer, dependencies, runtime
 API, and release authority remain unchanged.
 
+## M85 conventional central-directory placement preflight
+
+M85 narrows the fixed sample container to zero concatenation adjustment.
+PKWARE defines conventional central-directory size and offset fields in
+the end-of-central-directory record. Supported CPython 3.12-3.14 deliberately
+computes a concatenation adjustment: one or eleven prepended bytes shift parsed
+member header offsets and preserve a readable payload.
+
+After every established policy through M84 completes, release smoke reads the
+final conventional record through the shared position-restoring structural
+helper. It requires the declared central-directory size plus offset to equal
+the absolute offset of that final record, then proceeds to M77 name policy. A
+nonzero adjustment raises stable content-silent error `sample bundle central
+directory placement is inconsistent` before metadata, exact inventory,
+staging, or member reads. Structural mismatch retains the existing stable ZIP-
+data error. Owned source, snapshot, and archive resources close first.
+
+The fixed producer starts at byte zero and satisfies the relationship exactly.
+RFC-0068 adds no central-directory record parser, local-header parser, end-
+record search, ZIP64 parser, prepended executable support, self-extracting
+archive support, or multi-volume assembler. It is not a general archive
+sandbox and is not a real public release observation. Workflows, producer,
+dependencies, runtime API, and release authority remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

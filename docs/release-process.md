@@ -756,6 +756,21 @@ neighboring-file discovery, multi-volume assembler, workflow, dependency,
 runtime API, release authority, or producer change. It is not a general
 archive sandbox and is not a real public release observation.
 
+M85/RFC-0068 requires the final conventional central-directory size plus
+offset to equal the absolute offset of the final end-of-central-directory
+record. The check runs after M84 archive entry-count policy but before decoded-
+name policy, metadata, exact inventory, staging, or member reads. A mismatch
+emits stable content-silent error `sample bundle central directory placement
+is inconsistent`; the shared helper restores the owned snapshot position and
+all owned resources close before control returns.
+
+The fixed sample producer starts at byte zero and satisfies the relationship
+exactly. M85 adds no central-directory record parser, local-header parser,
+prepended executable support, self-extracting archive support, neighboring-file
+discovery, multi-volume assembler, workflow, dependency, runtime API, release
+authority, or producer change. It is not a general archive sandbox and is not
+a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

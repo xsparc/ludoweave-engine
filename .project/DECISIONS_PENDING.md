@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+RFC-0068 resolves M85 conventional central-directory placement preflight.
+Private complete release smoke finishes every established policy through M84,
+then requires the final conventional central-directory size plus offset to
+equal the absolute final end-of-central-directory record offset before M77
+decoded-name policy, metadata, exact inventory, staging, or reads. The stable
+policy error is content-silent and the shared helper restores the previous
+snapshot position. This is not a central-directory/local-header parser, end-
+record search, ZIP64 parser, executable classifier, prepended executable or
+self-extracting archive support, multi-volume assembler, or general archive
+sandbox. It adds no workflow, dependency, producer, runtime API, or release
+authority. A real pass remains pending an explicitly authorized signed-tag
+release execution.
+
 RFC-0067 resolves M84 conventional archive entry-count preflight. Private
 complete release smoke finishes every M69-M82 policy pass and M83 archive disk
 check, then reads exactly the final conventional 22-byte end-of-central-

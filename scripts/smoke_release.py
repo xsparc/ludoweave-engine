@@ -518,6 +518,7 @@ def _extract_checksum_admitted_bundle(
             snapshot=snapshot_stream,
             parsed_entries=len(infos),
         )
+        _validate_sample_archive_placement(snapshot=snapshot_stream)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -771,18 +772,7 @@ def _validate_sample_member_volume(*, volume: int) -> None:
 def _validate_sample_archive_disk_fields(*, snapshot: IO[bytes]) -> None:
     """Require base-disk values in the conventional final ZIP end record."""
 
-    position = snapshot.tell()
-    try:
-        snapshot.seek(-_SAMPLE_EOCD_BYTES, os.SEEK_END)
-        end_record = snapshot.read(_SAMPLE_EOCD_BYTES)
-    finally:
-        snapshot.seek(position)
-    if (
-        len(end_record) != _SAMPLE_EOCD_BYTES
-        or end_record[:4] != _SAMPLE_EOCD_SIGNATURE
-        or end_record[-2:] != b"\x00\x00"
-    ):
-        raise zipfile.BadZipFile("invalid final end-of-central-directory record")
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
     disk = int.from_bytes(end_record[4:6], "little")
     central_disk = int.from_bytes(end_record[6:8], "little")
     if disk != 0 or central_disk != 0:
@@ -796,10 +786,35 @@ def _validate_sample_archive_entry_counts(
 ) -> None:
     """Require conventional ZIP entry counts to match parsed members."""
 
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    entries_on_disk = int.from_bytes(end_record[8:10], "little")
+    total_entries = int.from_bytes(end_record[10:12], "little")
+    if entries_on_disk != parsed_entries or total_entries != parsed_entries:
+        raise RuntimeError("sample bundle archive entry counts are inconsistent")
+
+
+def _validate_sample_archive_placement(*, snapshot: IO[bytes]) -> None:
+    """Require zero prepended-data adjustment for the fixed ZIP profile."""
+
+    end_record, end_record_offset = _read_final_sample_eocd(snapshot=snapshot)
+    directory_size = int.from_bytes(end_record[12:16], "little")
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    if directory_size + directory_offset != end_record_offset:
+        raise RuntimeError("sample bundle central directory placement is inconsistent")
+
+
+def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:
+    """Read and validate the final conventional EOCD without moving the caller."""
+
     position = snapshot.tell()
     try:
-        snapshot.seek(-_SAMPLE_EOCD_BYTES, os.SEEK_END)
-        end_record = snapshot.read(_SAMPLE_EOCD_BYTES)
+        snapshot.seek(0, os.SEEK_END)
+        end_record_offset = snapshot.tell() - _SAMPLE_EOCD_BYTES
+        if end_record_offset < 0:
+            end_record = b""
+        else:
+            snapshot.seek(-_SAMPLE_EOCD_BYTES, os.SEEK_END)
+            end_record = snapshot.read(_SAMPLE_EOCD_BYTES)
     finally:
         snapshot.seek(position)
     if (
@@ -808,10 +823,7 @@ def _validate_sample_archive_entry_counts(
         or end_record[-2:] != b"\x00\x00"
     ):
         raise zipfile.BadZipFile("invalid final end-of-central-directory record")
-    entries_on_disk = int.from_bytes(end_record[8:10], "little")
-    total_entries = int.from_bytes(end_record[10:12], "little")
-    if entries_on_disk != parsed_entries or total_entries != parsed_entries:
-        raise RuntimeError("sample bundle archive entry counts are inconsistent")
+    return end_record, end_record_offset
 
 
 def _validate_sample_member_name(*, original_name: str) -> None:
