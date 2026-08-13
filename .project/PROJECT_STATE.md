@@ -1,6 +1,6 @@
 # Project State
 
-## M80 ZIP64 extra-field preflight - feature integrated
+## M80 ZIP64 extra-field preflight - closeout active
 
 - Base: exact clean synchronized M79 closeout
   `892f17fce99d218905c6f624c730f735d21a794f`, tree
@@ -129,8 +129,34 @@
   format clean; Ruff and strict Pyright report zero findings; all 894
   architecture tests pass with 1 skip; strict docs, whitespace, and full Git-
   object checking pass.
-- Remaining: publish and integrate the four-file record, then publish the exact
-  three-record closeout and select M81.
+- Integration hosted gate: exact four-file DCO head
+  `b1e8f77da1ab73865cf08d959d7c242875bc3679`, tree
+  `debee0bfa348af18509f8f5f0d7d4e01c4a8a30d`, classified as documentation in
+  successful run `31714883660`. Linux job `94496955617` passed in 42 seconds
+  with 895 architecture assertions, strict docs, two reproducible builds,
+  installed-wheel smoke, staging, and release smoke. Desktop umbrella job
+  `94497186984` skipped with zero steps.
+- Integration hosted artifacts: the pure 274,831-byte wheel is
+  `149e02344b1ca8fc779f7c7e410a6f497c99da4d372ae4b76e70865a6eac9255`;
+  the 1,299,075-byte sdist is
+  `404f5921afb71915d57c735237dc1c71b00319c0425f94c3f9da53c39489ca6f`.
+- Integration audit: two separated audits found zero reviews, issue comments,
+  inline comments, or threads. PR #193 was `MERGEABLE`/`CLEAN`. Verified squash
+  `218c761c55e71d0367823bdac5ff2c92f4c5adf6` has exact reviewed tree, sole
+  feature-squash parent, standalone DCO, and valid GitHub verification at
+  `2026-08-13T15:22:59Z`.
+- Branch state: feature and integration branches are deleted locally/remotely;
+  synchronized `main` plus intended closeout exist locally and only
+  `origin/main` remotely. No open PR, tag, release, or publication exists.
+- Closeout local gate: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. All 323
+  files remain format clean; Ruff and strict Pyright report zero findings; all
+  894 architecture tests pass with 1 capability skip; strict docs, whitespace,
+  and full Git-object checking pass.
+- Final closeout-record gate retains the same 323-file/static, 894-test,
+  strict-docs, whitespace, exact-scope, and Git-object result.
+- Remaining: publish and integrate the exact three-record closeout, remove M80
+  generated targets, return to clean `main`, and select M81.
 
 ## M79 Unicode Path extra-field preflight - closed
 
