@@ -34,8 +34,38 @@
   the 313-case M64-M84 lineage pass with one Windows capability skip each.
   Static/docs, real wgpu, profiles, samples, diagnostic validators,
   reproducible builds, isolated-wheel smoke, deterministic staging, and
-  complete release smoke pass. Exact-head hosted qualification remains
-  pending.
+  complete release smoke pass.
+- Hosted qualification: ready PR #204 exact DCO head
+  `5c9d4cffb1392b4c7de960544ad13971c6db512b`, tree
+  `1a2bc67118919a6c6090f6bdf14794859f6bc452`, passed exact-head run
+  `31734854012`, classified substantive with 16 paths, in exactly three
+  allocations. Linux completed in 7m17s, Windows in 4m09s, and macOS in 2m21s.
+- Hosted tests: Linux CPython 3.12/3.13/3.14 and both desktop CPython 3.14
+  suites passed 2,547 tests, with one skip outside baseline. Every OS passed
+  10 real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World
+  Builder. Static/docs, reproducibility, isolated-wheel smoke, deterministic
+  ten-artifact staging, and complete release smoke passed.
+- Hosted artifacts: exact-head reproducibility produced a pure 275,344-byte
+  wheel at
+  `25a99abc2bd6f73ee15ccf1ebf524ad29854b34303321b087e8a53f2ab3858d9`
+  and 1,329,869-byte sdist at
+  `9e1b4ff35c3b6ddcd95c5e442f30ff0e627cce91b89b6ee60f85c237a42b4560`.
+- Review/integration: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, three successful checks, matching DCO identity, and zero
+  comments, reviews, inline comments, or review threads. Exact-head-guarded
+  squash `1ec97d0e5003dd92f21be6f49b528765de19506a` has the exact qualified
+  tree, sole M83-closeout parent `1c380897fc8ee43f5885c733c1c11f87878ff2a1`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T19:27:56Z`. No
+  postmerge run was allocated; the feature branch is deleted locally/remotely.
+- Integration-local evidence: exactly the three project records plus roadmap
+  change. The unchanged 46-package lock resolves; all 327 files are format/
+  Ruff clean; strict Pyright has zero findings; all 1,002 architecture
+  assertions pass with 1 Windows capability skip; strict docs, whitespace,
+  and Git-object checks pass. Two builds reproduce a 275,358-byte wheel at
+  `93750692bd8fddc37c9043c0fdfff46c3cce99f9bf15d0dec17189e530d40d20`
+  and 1,331,078-byte sdist at
+  `7e47faca5ebd49b5e688019c66deb2f465e1f7b74de455926989813e87c8324e`;
+  isolated-wheel, staging, and release smoke pass.
 
 ## M83 conventional archive disk-field preflight - closeout active
 
