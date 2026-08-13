@@ -1,6 +1,6 @@
 # Project State
 
-## M79 Unicode Path extra-field preflight - implementation active
+## M79 Unicode Path extra-field preflight - integration record active
 
 - Base: exact clean synchronized M78 closeout
   `5fe3134bf5a56e5cbf986ed33db698c830aa9219`, tree
@@ -78,8 +78,46 @@
   and strict Pyright report zero findings; all 874 architecture assertions
   pass with 1 capability skip; strict docs, whitespace, and exact 16-path scope
   pass.
-- Remaining: publication, hosted exact-head qualification, integration, and
-  closeout.
+- Hosted qualification: exact DCO head
+  `13b0134e2fb215701468b05edc9b278642f79a02` passed run
+  `31705986777`. Linux job `94466553453` passed in 7m13s; guarded macOS job
+  `94468726505` passed in 3m15s and Windows job `94468726689` in 4m10s. Linux
+  CPython 3.12/3.13/3.14 and desktop CPython 3.14 each passed 2,419 tests;
+  compatibility suites recorded one capability skip. Static/docs, 10 real-
+  wgpu tests per OS, profiles, examples, reproducible distribution, installed-
+  wheel, staging, and complete release smoke all passed.
+- Hosted artifacts: the pure 274,721-byte wheel is
+  `3a3785fd9da167d4ad966dd51cae0293d10cd3e9d1da870a414f750c52d42898`;
+  the 1,288,417-byte sdist is
+  `089908bfc7637f070cab69232294c00412155bc30f9133684d791a48a942d5b1`.
+- Review state: two separated audits found no conversation comment, review,
+  inline comment, or review thread. The PR remained ready, mergeable, exact-
+  head, exact-base, and successful. GitHub briefly retained the completed
+  Linux check as in-progress after the parent run succeeded and all Linux
+  steps completed; it finalized green before merge without a rerun.
+- Feature integration: PR #189 squash
+  `9bc8e3813a9e25bbb977d74201fceeed3db31be2` has exact qualified tree
+  `c6a4894b2d8306d814e3cd5087f21e73c9014a80`, sole M78-closeout parent,
+  parseable DCO trailer, exact identity, and valid GitHub verification at
+  `2026-08-13T13:57:18Z`. Its feature branch is deleted locally/remotely.
+- Integration-record local gate: the first frozen-lock command was invalid
+  setup evidence because the managed sandbox denied access to the existing uv
+  cache before project evaluation. The identical cache-enabled run resolved
+  the unchanged 46-package lock; all 322 files are format clean; Ruff and
+  strict Pyright report zero findings; all 874 architecture assertions pass
+  with 1 capability skip; strict docs, whitespace, exact four-path scope,
+  linear history, and full Git-object checking pass.
+- Integration-record release gate: two builds reproduce the pure 274,734-byte
+  wheel `014e443b6bc0094c74521ba3211940cfc8db7c8c932212d4c1eea742a5c3f566`
+  and 1,289,550-byte sdist
+  `a6132131a6970508b55175622751d39cef99b2ac47d228cc8afe7b300f8c8583`;
+  installed-wheel, deterministic ten-artifact staging, and complete release
+  smokes pass.
+- Post-record gate: the unchanged lock resolves 46 packages; all 322 files are
+  format clean; Ruff and strict Pyright report zero findings; all 874
+  architecture assertions pass with 1 capability skip; strict docs,
+  whitespace, and exact four-path scope pass.
+- Remaining: publish the exact four-record integration update.
 
 ## M78 data-descriptor sample-member preflight - integrated and closed
 
