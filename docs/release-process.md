@@ -716,6 +716,18 @@ parser, general comment scanner, comment decoder, rewriting, workflow,
 dependency, runtime API, release authority, or producer change. It is not a
 general archive sandbox and is not a real public release observation.
 
+M82/RFC-0065 rejects every parser-exposed nonzero `ZipInfo.volume` after all
+established flag, exact extra-field, and comment passes. The separate all-
+member pass finishes before decoded-name policy, member metadata, exact
+inventory validation, staging, or member reads. Complete release smoke emits
+stable content-silent error `sample bundle uses a split-volume member` without
+including a member name or archive-controlled volume value.
+
+The fixed sample producer emits volume zero for all 50 members. M82 adds no raw
+end-record parser, no multi-volume assembler, no neighboring-file discovery,
+workflow, dependency, runtime API, release authority, or producer change. It
+is not a general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

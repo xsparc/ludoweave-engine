@@ -1,6 +1,81 @@
 # Project State
 
-## M81 ZIP comment preflight - closeout active
+## M82 split-volume sample-member preflight - hosted correction active
+
+- Base: exact verified M81 closeout squash
+  `ba90021304760284550e3c458901feb0e3e29dbc`, tree
+  `63a1caf2bc270a6500466e24c800f4e6f454ddda`. Clean synchronized `main` was the
+  only local/remote branch; no open PR, tag, release, postmerge run, or M81
+  generated target remained before M82 selection.
+- Gap: PKWARE APPNOTE section 4.4.13 defines central-directory disk number
+  start as the disk on which a file begins. CPython assigns the parsed field to
+  `ZipInfo.volume`. Installed CPython 3.12.13, 3.13.13, and 3.14.5 each exposed
+  patched value one, no extra field, no general-purpose flag, and still read
+  the same deflated payload. The fixed producer emits 50 volume-zero members.
+- Decision: private complete release smoke retains every established flag,
+  descriptor, Unicode Path, ZIP64, archive-comment, and member-comment pass,
+  then rejects every nonzero parser-exposed `ZipInfo.volume` in a separate all-
+  member pass before M77 decoded-name policy, metadata, exact inventory,
+  staging, or reads. The stable content-silent error is `sample bundle uses a
+  split-volume member`.
+- Ownership: the existing `ExitStack` closes the caller-opened source, owned
+  checksum-admitted snapshot, and `ZipFile` before the error returns. No member
+  is opened and no staging directory or final sample root is created.
+- Red-to-green: the static-clean authoritative baseline passed 12 controls and
+  failed 8 missing policy, ordering, cleanup, helper/source, and documentation
+  contracts in 0.42 seconds. One separate pass and typed validator make 19
+  assertions pass in 0.29 seconds; only the deliberately absent documentation
+  contract remained at the runtime checkpoint. RFC-0065 and aligned public
+  docs are now implemented.
+- Qualification: all 325 Python files are format clean; Ruff and strict
+  Pyright report zero findings; all 940 architecture assertions pass with 1
+  Windows capability skip; the exact M64-M82 lineage passes 251 assertions
+  with 1 skip. The corrected CPython 3.12 suite passes 2,480 tests with 15
+  skips. Pre-correction complete 3.13/3.14 suites each passed 2,470 with 16
+  skips, and the corrected 20-case sentinel/precedence contract passes on
+  3.12.13, 3.13.13, and 3.14.5. Ten real-wgpu tests, both profiles, Clockwork
+  Arena, Agent World Builder, M1-M4 diagnostic validators, two-build byte
+  reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  complete release smoke, and strict docs pass.
+- Review: the first findings-first pass found the ZIP64-precedence fixture used
+  volume one rather than the documented `0xFFFF` sentinel and RFC-0065 split
+  the stable error inside its code span. Both are corrected. Exact nonzero-
+  volume policy, archive-wide ordering, content-silent failure, ownership,
+  producer compatibility, public nonclaims, and protected surfaces now have no
+  remaining actionable finding. Exactly 15 intended paths change; identity,
+  credential, native/WASM/bytecode, and retired-control-metadata scans are
+  empty.
+- Initial hosted qualification: ready PR #198 exact DCO head `d7e1eef7e857ef82a26af5ae27f2418592bfa745`
+  passed run `31723899463` in exactly three allocations: Linux 7m13s, Windows
+  4m07s, and macOS 3m08s. Linux CPython 3.12/3.13/3.14 and both desktop 3.14
+  suites passed 2,485 tests, with one compatibility skip on non-baseline runs;
+  every OS passed 10 real-wgpu tests, graphics profiles, and both vertical
+  slices. Static/docs, reproducibility, installed-wheel, staging, and release
+  smoke passed. The classifier reported substantive with 15 paths.
+- Hosted review correction: audit found the central disk-start sentinel
+  `0xFFFF` was combined with a ZIP64 field containing only the three 64-bit
+  values, not the format-defined following 32-bit disk-start value. The
+  production policy is unchanged. The test helper now conditionally appends
+  that value and the precedence case observes the well-formed field, parser-
+  exposed sentinel, and readable payload. Initial-head CI is retained only as
+  superseded evidence; a fresh exact-head run is required.
+- Corrected local evidence: all 20 focused assertions pass on CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.27/0.61/0.62 seconds. Affected format, Ruff, strict
+  Pyright, strict docs, and whitespace pass. The complete corrected 3.12
+  graphics-baseline suite passes 2,480 tests with 15 capability skips in
+  109.01 seconds.
+- Boundary: no raw end-record parser, local-header parser, multi-volume
+  assembler, neighboring-volume discovery, broad flag/extra-field rule,
+  workflow, allocation, dependency, lock, version, producer, runtime package/
+  API, release mutation, release authority, tag, release, or publication is
+  added. This is not a general archive sandbox or real public release
+  observation.
+- Branch: `release/m82-split-volume-preflight`.
+- Remaining: corrected exact-head hosted feature qualification, thread
+  resolution and two audits, then bounded integration/closeout before clean-
+  main M83 selection.
+
+## M81 ZIP comment preflight - closed
 
 - Base: exact verified M80 closeout squash
   `3241a348a75c24a764f167ade48798ed3ac06af1`, tree
@@ -105,9 +180,22 @@
   publication is added. Passing pull-request evidence is not a real public
   release observation and M81 is not a general archive sandbox.
 - Branch: `release/m81-closeout`.
-- Remaining: validate/publish/twice-audit/squash the exact three-record closeout,
-  then remove the closeout branch and M81 generated targets before selecting
-  M82 from clean synchronized `main`.
+- Status: feature, bounded integration record, and closeout are integrated;
+  branch and generated-target cleanup is complete.
+- Closeout: exact DCO head `36e1ce3cf8a05aaf684074a0557cbb63a1aae95a`,
+  tree `63a1caf2bc270a6500466e24c800f4e6f454ddda`, changed only the three project
+  records in ready PR #197. It allocated no workflow run. Two separated audits
+  retained exact integration base/head, `MERGEABLE`/`CLEAN`, no checks, and
+  zero review activity. Exact-head-guarded squash
+  `ba90021304760284550e3c458901feb0e3e29dbc` has the exact reviewed tree, sole
+  integration-record parent `2054fda66c1dafb7c0594eada4cc01a3649209cd`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T16:35:36Z`.
+- Final cleanup: no postmerge run was allocated; remote/local closeout branches
+  were deleted. A first guarded cleanup removed 33 M81 targets and the sandbox
+  denied 15 test directories; the approved identical-path retry removed all 15.
+  Local/remote refs then contained only exact synchronized `main`; open PR,
+  release, tag, and M81-target queries were empty. Full Git-object checking
+  reported only historical unreachable objects and no corruption.
 
 ## M80 ZIP64 extra-field preflight - closeout active
 

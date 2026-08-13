@@ -105,6 +105,7 @@ nav:
       - RFC-0062 - Reject Unicode Path extra fields: rfcs/0062-reject-unicode-path-extra-fields.md
       - RFC-0063 - Reject ZIP64 extra fields: rfcs/0063-reject-zip64-extra-fields.md
       - RFC-0064 - Reject ZIP comments: rfcs/0064-reject-zip-comments.md
+      - RFC-0065 - Reject split-volume sample members: rfcs/0065-reject-split-volume-sample-members.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
