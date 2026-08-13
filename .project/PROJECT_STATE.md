@@ -1,6 +1,6 @@
 # Project State
 
-## M79 Unicode Path extra-field preflight - integration record active
+## M79 Unicode Path extra-field preflight - closeout active
 
 - Base: exact clean synchronized M78 closeout
   `5fe3134bf5a56e5cbf986ed33db698c830aa9219`, tree
@@ -117,7 +117,35 @@
   format clean; Ruff and strict Pyright report zero findings; all 874
   architecture assertions pass with 1 capability skip; strict docs,
   whitespace, and exact four-path scope pass.
-- Remaining: publish the exact four-record integration update.
+- Integration hosted gate: exact DCO head
+  `31169c0b90bea95277397e86f40a33f5fcd22287`, tree
+  `761c2a6007ad8f3be340a0f6796ffe5983ea06a5`, passed run
+  `31708261506`. The trusted classifier identified exactly four documentation
+  paths; Linux job `94474232250` passed in 47 seconds and desktop umbrella
+  `94474491443` skipped with zero steps. Hosted architecture passed 875
+  assertions; distribution, installed-wheel, staging, and complete release
+  smokes passed.
+- Integration hosted artifacts: the pure 274,721-byte wheel remains
+  `3a3785fd9da167d4ad966dd51cae0293d10cd3e9d1da870a414f750c52d42898`;
+  the 1,289,953-byte sdist is
+  `dccb332e1e2faebe6c738a493deac55db3a1b13e7f1a1aac144e21fecf65545e`.
+- Integration review: two separated audits found no comment, review, inline
+  comment, or review thread. PR #190 remained ready, clean, mergeable, exact-
+  head, exact-base, and successful with the expected desktop skip.
+- Integration squash: `2de20b719d0c79d87187fea95b8a58f31491dad4`
+  has exact reviewed tree, sole feature-squash parent, parseable DCO trailer,
+  exact identity, and valid GitHub verification at
+  `2026-08-13T14:07:36Z`. Its obsolete branch is deleted locally/remotely.
+- Closeout local gate: exactly three project records change. The unchanged
+  lock resolves 46 packages; all 322 files are format clean; Ruff and strict
+  Pyright report zero findings; all 874 architecture assertions pass with 1
+  capability skip; strict docs, whitespace, exact base/HEAD history, and full
+  Git-object checking pass.
+- Closeout post-record gate: the unchanged lock resolves 46 packages; all 322
+  files are format clean; Ruff and strict Pyright report zero findings; all
+  874 architecture assertions pass with 1 capability skip; strict docs,
+  whitespace, and exact three-path scope pass.
+- Remaining: publish the exact three-record closeout.
 
 ## M78 data-descriptor sample-member preflight - integrated and closed
 
