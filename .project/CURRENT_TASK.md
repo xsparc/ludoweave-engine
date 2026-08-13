@@ -2,12 +2,12 @@
 
 - **Task:** M81 - ZIP comment preflight
 - **Status:** The runtime policy, regression contract, RFC, and aligned public
-  documentation are implemented; the complete local qualification and
-  findings-first review pass; publication is pending.
-- **Base:** Verified M80 closeout squash
-  `3241a348a75c24a764f167ade48798ed3ac06af1`, tree
-  `f5a1375cff72dfbbffa8ba755210815dac1bdfd7`.
-- **Branch:** `release/m81-zip-comment-preflight`
+  documentation are hosted-qualified, twice audited, and squash-integrated;
+  the bounded integration record is active.
+- **Base:** Verified feature squash
+  `8a3a156d08a7c40c9b34ae726311776c0e2f8611`, tree
+  `30d6bf6db4272279c3f32dc3c9901399018e55bc`.
+- **Branch:** `release/m81-integration-record`
 
 ## Accepted slice
 
@@ -37,11 +37,31 @@
 - The fixed LudoWeave producer emits 50 members with empty archive and member
   comments, so comments are outside the intended sample profile.
 
+## Hosted outcome
+
+- Exact DCO head `fbff420391675c6519c606a251cc4a697efe9d62`
+  passed run `31718815561` in exactly three allocations: Linux job
+  `94510280379` in 7m08s, macOS job `94512364384` in 2m30s, and Windows job
+  `94512364395` in 4m10s.
+- Linux CPython 3.12 passed 2,465 tests; Linux 3.13/3.14 and both desktop 3.14
+  suites passed 2,465 tests with one capability skip. Every OS passed 10 real-
+  wgpu tests, graphics profiles, Clockwork Arena, and Agent World Builder.
+- Hosted reproducibility produced a pure 274,962-byte wheel at
+  `71faae79b33898e5ed417445bdb14793b934efb01c464db73e0f40eec173342e`
+  and a 1,306,054-byte sdist at
+  `6d257296b8595e76cc1f1fdb73cdfea31d5152013c63ca1d69859e9ea40ef27f`;
+  installed-wheel, deterministic staging, and release smoke passed.
+- Two separated exact-head audits found no review, comment, inline comment, or
+  thread. Guarded squash `8a3a156d08a7c40c9b34ae726311776c0e2f8611`
+  has the exact qualified tree, sole M80-closeout parent, standalone DCO, and
+  valid GitHub verification. No postmerge workflow was allocated and the
+  feature branch is deleted locally/remotely.
+
 ## Remaining gates
 
-1. Publish a DCO-signed ready feature PR, require the exact three-allocation
-   substantive gate, address review findings, and squash only after two clean
-   exact-head audits.
-2. Publish the bounded integration record and exact three-record closeout, then
+1. Validate and publish the exact four-path integration record through the
+   documentation gate; audit and squash it only after the bounded result is
+   clean.
+2. Publish the exact three-record closeout, then
    delete milestone branches/generated targets and return to clean synchronized
    `main` before selecting M82.

@@ -1,6 +1,6 @@
 # Project State
 
-## M81 ZIP comment preflight - implementation active
+## M81 ZIP comment preflight - feature integrated
 
 - Base: exact verified M80 closeout squash
   `3241a348a75c24a764f167ade48798ed3ac06af1`, tree
@@ -17,11 +17,10 @@
   The fixed producer emits 50 members with neither comment surface.
 - Decision: private complete release smoke retains every established
   M69/M75/M76/M78/M79/M80 archive-wide category, then rejects a parser-exposed
-  non-empty
-  archive comment, rejects every non-empty member comment in a separate pass,
-  and only then begins M77 decoded-name policy, metadata, exact inventory,
-  staging, or reads. Stable content-silent errors are `sample bundle uses an
-  archive comment` and `sample bundle uses a member comment`.
+  non-empty archive comment, rejects every non-empty member comment in a
+  separate pass, and only then begins M77 decoded-name policy, metadata, exact
+  inventory, staging, or reads. Stable content-silent errors are `sample bundle
+  uses an archive comment` and `sample bundle uses a member comment`.
 - Ownership: the existing `ExitStack` closes the caller-opened source, owned
   checksum-admitted snapshot, and `ZipFile` before either error returns. No
   member is opened and no staging directory or final sample root is created.
@@ -53,15 +52,37 @@
   credential scans are empty; the 94-entry wheel and 528-entry sdist contain
   no native, WASM, bytecode, or retired control metadata. No remaining
   actionable finding was identified.
+- Hosted feature gate: ready PR #195 exact DCO head
+  `fbff420391675c6519c606a251cc4a697efe9d62` passed run `31718815561` in
+  exactly three allocations. Linux job `94510280379` completed in 7m08s;
+  macOS `94512364384` in 2m30s; Windows `94512364395` in 4m10s. Linux CPython
+  3.12 passed 2,465 tests; Linux 3.13/3.14 and both desktop 3.14 suites passed
+  2,465 with one capability skip. Every OS passed 10 real-wgpu tests, graphics
+  profiling, Clockwork Arena, and Agent World Builder. Static/docs, installed-
+  wheel, deterministic staging, and complete release smoke passed.
+- Hosted artifacts: same-head reproducibility produced a pure 274,962-byte
+  wheel at `71faae79b33898e5ed417445bdb14793b934efb01c464db73e0f40eec173342e`
+  and 1,306,054-byte sdist at
+  `6d257296b8595e76cc1f1fdb73cdfea31d5152013c63ca1d69859e9ea40ef27f`.
+- Review/integration: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, three successful checks, and zero issue comments,
+  reviews, inline comments, or threads. Exact-head-guarded squash
+  `8a3a156d08a7c40c9b34ae726311776c0e2f8611` has tree
+  `30d6bf6db4272279c3f32dc3c9901399018e55bc` exactly equal to the qualified
+  head, sole M80-closeout parent
+  `3241a348a75c24a764f167ade48798ed3ac06af1`, standalone DCO, and valid
+  GitHub verification at `2026-08-13T16:18:01Z`. No postmerge run was
+  allocated; the feature branch is deleted locally/remotely.
 - Scope: no raw ZIP parser, general comment scanner, comment decoder, raw end-
   record validator, broad extra-field rule, workflow, runner allocation,
   action, permission, credential, dependency, lock, version, sample producer,
   runtime package/API, release mutation, release authority, tag, release, or
   publication is added. Passing pull-request evidence is not a real public
   release observation and M81 is not a general archive sandbox.
-- Branch: `release/m81-zip-comment-preflight`.
-- Remaining: publish/qualify/review/squash the feature, then integrate its
-  bounded evidence and closeout records before selecting M82.
+- Branch: `release/m81-integration-record`.
+- Remaining: validate/publish/audit/squash the exact four-path integration
+  record, then integrate the exact three-record closeout and remove milestone
+  branches/generated targets before selecting M82.
 
 ## M80 ZIP64 extra-field preflight - closeout active
 
