@@ -68,3 +68,4 @@ was adopted.
 - [RFC-0061: reject data-descriptor sample members before extraction](0061-reject-data-descriptor-sample-members.md)
 - [RFC-0062: reject Unicode Path extra fields before extraction](0062-reject-unicode-path-extra-fields.md)
 - [RFC-0063: reject ZIP64 extra fields before extraction](0063-reject-zip64-extra-fields.md)
+- [RFC-0064: reject ZIP comments before extraction](0064-reject-zip-comments.md)

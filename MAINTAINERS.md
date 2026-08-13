@@ -214,6 +214,18 @@ are complete, reviewed, hosted-validated, and integrated into `main`. M80
 starts from exact verified M79 closeout
 `892f17fce99d218905c6f624c730f735d21a794f`.
 
+M81 rejects parser-exposed non-empty ZIP archive and member comments after
+established flag and extra-field policy, but before decoded-name checks,
+metadata, inventory,
+member reads, or staging. Archive comments precede a separate all-member
+comment pass and both stable errors are content-silent. This is no raw ZIP
+parser, general comment scanner, or general archive sandbox. It adds no
+workflow, allocation, dependency, version, sample producer, runtime source/
+API, release authority, tag, release, or publication. M0 through M80 are
+complete, reviewed, hosted-validated, and integrated into `main`. M81 starts
+from exact verified M80 closeout
+`3241a348a75c24a764f167ade48798ed3ac06af1`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

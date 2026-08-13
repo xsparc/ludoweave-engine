@@ -1,56 +1,47 @@
 # Current Task
 
-- **Task:** M80 - closeout
-- **Status:** The corrected feature and integration record are hosted-qualified
-  and squash-integrated; the exact three-record closeout passes local and
-  record-inclusive gates; publication is active.
-- **Base:** Verified integration-record squash
-  `218c761c55e71d0367823bdac5ff2c92f4c5adf6`, tree
-  `debee0bfa348af18509f8f5f0d7d4e01c4a8a30d`.
-- **Branch:** `release/m80-closeout`
+- **Task:** M81 - ZIP comment preflight
+- **Status:** The runtime policy, regression contract, RFC, and aligned public
+  documentation are implemented; the complete local qualification and
+  findings-first review pass; publication is pending.
+- **Base:** Verified M80 closeout squash
+  `3241a348a75c24a764f167ade48798ed3ac06af1`, tree
+  `f5a1375cff72dfbbffa8ba755210815dac1bdfd7`.
+- **Branch:** `release/m81-zip-comment-preflight`
 
-## Completed outcome
+## Accepted slice
 
-- Reject exact PKWARE ZIP64 extended-information extra-field ID `0x0001` for
-  every sample member during a separate archive-wide preflight.
-- Preserve M69/M75/M76/M78 and M79 precedence across every member, then run
-  ZIP64 policy before M77 decoded-name checks, metadata, inventory, staging,
-  or reads.
-- Return stable content-silent error `sample bundle uses a ZIP64 extra field`
-  and close owned source, snapshot, and archive resources.
-- Use a bounded field walk that ignores unrelated field IDs and does not add
-  malformed-extra policy beyond CPython's parser.
-- Add RFC-0063 and aligned public, security, architecture, release, roadmap,
+- Reject a parser-exposed non-empty end-of-central-directory archive comment
+  with stable content-silent error `sample bundle uses an archive comment`.
+- Reject every parser-exposed non-empty central-directory member comment in a
+  separate all-member pass with stable content-silent error `sample bundle
+  uses a member comment`.
+- Preserve every established M69/M75/M76/M78/M79/M80 category across all
+  members, then apply archive-comment policy, member-comment policy, M77 name
+  policy, metadata, exact inventory, staging, and reads in that order.
+- Close the owned source, checksum-admitted snapshot, and archive before either
+  policy error returns.
+- Add RFC-0064 plus aligned public, security, architecture, release, roadmap,
   and repository evidence records.
-- Add no broad extra-field ban, raw ZIP64 parser, large-file support change,
-  workflow, dependency, version, sample producer, runtime package/API, release
-  authority, tag, release, or publication.
-- Corrected exact head `0a42620d3771bde90978a697b672d51bf66273a5`
-  passed run `31713078940` in exactly three allocations after a valid review
-  correction distinguished PKWARE disk-start capacity from current CPython
-  behavior.
-- Feature squash `13439d41551cd9c842b3e7a0a55e7ba72e540582`
-  has the exact corrected tree, sole M79-closeout parent, standalone DCO, and
-  valid GitHub verification.
-- The addressed review thread is resolved and outdated; the feature branch is
-  deleted locally/remotely. No tag, release, publication, dependency,
-  workflow, producer, runtime-package, version, or release-authority change
-  was introduced.
-- Integration PR #193 classified exactly four paths as documentation. Run
-  `31714883660` used one 42-second Linux allocation, passed 895 hosted
-  architecture assertions and every artifact smoke, and skipped desktop with
-  zero steps.
-- Two separated integration audits found no review, comment, inline comment,
-  or thread. Integration squash
-  `218c761c55e71d0367823bdac5ff2c92f4c5adf6` has the exact reviewed tree,
-  sole feature-squash parent, DCO, and valid GitHub verification.
-- All obsolete feature and integration branches are deleted locally/remotely.
+- Add no raw ZIP parser, general comment scanner, comment decoder, workflow,
+  dependency, lock, version, sample producer, runtime package/API, release
+  authority, tag, release, publication, or general archive-sandbox claim.
+
+## Direction evidence
+
+- PKWARE defines the archive comment in the end-of-central-directory record and
+  the member comment in each central-directory file header.
+- Installed CPython 3.12.13, 3.13.13, and 3.14.5 preserve both exact byte
+  strings while reading the same deflated payload; the fixture has no member
+  extra field or general-purpose flag.
+- The fixed LudoWeave producer emits 50 members with empty archive and member
+  comments, so comments are outside the intended sample profile.
 
 ## Remaining gates
 
-1. Publish a DCO-signed ready closeout PR, confirm no path-filtered
-   workflow is created, perform two review-state audits, and squash with an
-   exact-head guard and DCO body file.
-2. Delete the closeout branch and all M80 generated targets, return to clean
-   synchronized `main`, verify no PR/tag/release or extra branch remains, and
-   select M81.
+1. Publish a DCO-signed ready feature PR, require the exact three-allocation
+   substantive gate, address review findings, and squash only after two clean
+   exact-head audits.
+2. Publish the bounded integration record and exact three-record closeout, then
+   delete milestone branches/generated targets and return to clean synchronized
+   `main` before selecting M82.
