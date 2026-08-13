@@ -1,6 +1,6 @@
 # Project State
 
-## M84 conventional archive entry-count preflight - locally qualified
+## M84 conventional archive entry-count preflight - closeout active
 
 - Base: exact verified M83 closeout squash
   `1c380897fc8ee43f5885c733c1c11f87878ff2a1`, tree
@@ -66,6 +66,29 @@
   and 1,331,078-byte sdist at
   `7e47faca5ebd49b5e688019c66deb2f465e1f7b74de455926989813e87c8324e`;
   isolated-wheel, staging, and release smoke pass.
+- Hosted integration: ready PR #205 exact DCO head
+  `80e3ab0fd5f367f98a8e645adbd7b825faf37e87`, tree
+  `f2041834401bd363e893c2363631d150819dc7df`, passed run `31736409489`.
+  Classification was `documentation` with four paths. The sole Linux job
+  passed in 30 seconds; the desktop umbrella skipped with zero steps. Strict
+  docs, 1,003 architecture assertions, reproducibility, isolated-wheel,
+  staging, and complete release smoke passed.
+- Hosted integration artifacts: the feature-identical 275,344-byte wheel is
+  `25a99abc2bd6f73ee15ccf1ebf524ad29854b34303321b087e8a53f2ab3858d9`;
+  the 1,331,514-byte record-updated sdist is
+  `59083d42a9f22fe2da878889d686ffcc0f9ae54ff32c28f3f4281d60df900da5`.
+- Integration review/squash: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, one successful Linux check, one skipped zero-step
+  desktop umbrella, matching DCO identity, and zero feedback. Guarded squash
+  `55657872aac9e9f7b29df99b14a2bee4d8f67397` has the exact reviewed tree,
+  sole feature-squash parent `1ec97d0e5003dd92f21be6f49b528765de19506a`,
+  parsed DCO, and valid GitHub verification at `2026-08-13T19:34:56Z`. No
+  postmerge run was allocated; the integration branch is deleted locally and
+  remotely.
+- Closeout-local evidence: exactly the three project records change. The
+  unchanged lock resolves; all 327 files remain format/Ruff clean with zero
+  Pyright findings; all 1,002 architecture assertions pass with 1 Windows
+  capability skip; strict docs, whitespace, and Git-object checking pass.
 
 ## M83 conventional archive disk-field preflight - closeout active
 
