@@ -57,6 +57,7 @@ _SAMPLE_COMPRESSED_PATCH_FLAG = 0x0020
 _SAMPLE_ENHANCED_DEFLATE_FLAG = 0x0010
 _SAMPLE_DATA_DESCRIPTOR_FLAG = 0x0008
 _SAMPLE_UNICODE_PATH_EXTRA_FIELD = 0x7075
+_SAMPLE_ZIP64_EXTRA_FIELD = 0x0001
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -500,6 +501,9 @@ def _extract_checksum_admitted_bundle(
             _validate_sample_extra_fields(extra=info.extra)
 
         for info in infos:
+            _validate_sample_zip64_extra_fields(extra=info.extra)
+
+        for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
 
         total_bytes = 0
@@ -695,6 +699,21 @@ def _validate_sample_descriptor_flags(*, flag_bits: int) -> None:
 
     if flag_bits & _SAMPLE_DATA_DESCRIPTOR_FLAG:
         raise RuntimeError("sample bundle uses a data descriptor")
+
+
+def _validate_sample_zip64_extra_fields(*, extra: bytes) -> None:
+    """Reject alternate ZIP64 metadata outside the fixed sample profile."""
+
+    offset = 0
+    while len(extra) - offset >= 4:
+        field_id = int.from_bytes(extra[offset : offset + 2], "little")
+        field_size = int.from_bytes(extra[offset + 2 : offset + 4], "little")
+        field_end = offset + 4 + field_size
+        if field_end > len(extra):
+            return
+        if field_id == _SAMPLE_ZIP64_EXTRA_FIELD:
+            raise RuntimeError("sample bundle uses a ZIP64 extra field")
+        offset = field_end
 
 
 def _validate_sample_extra_fields(*, extra: bytes) -> None:

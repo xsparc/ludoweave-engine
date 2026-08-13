@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M80/RFC-0063 ZIP64 sample-member preflight. Exact extra-field ID
+  `0x0001` now fails content-silently before member metadata, inventory,
+  reads, or staging, using a bounded extra-field walk without a broad extra-
+  field ban, raw ZIP64 parser, workflow, dependency, sample producer, runtime
+  API, large-file support, or release-authority change.
 - Add M79/RFC-0062 Unicode Path sample-member preflight. Exact extra-field ID
   `0x7075` now fails content-silently before member metadata, inventory,
   reads, or staging, using a bounded extra-field walk without a broad extra-

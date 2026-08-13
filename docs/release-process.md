@@ -688,6 +688,20 @@ ban, general name-difference policy, local-header comparison, repair, workflow,
 dependency, runtime API, sample producer, or release authority, is not a
 general archive sandbox, and is not a real public release observation.
 
+M80/RFC-0063 rejects exact PKWARE ZIP64 extended-information extra-field ID
+`0x0001` during a separate all-member preflight after M79 policy and before
+M77 decoded-name policy, member metadata, inventory validation, member reads,
+or staging. A bounded extra-field walk consumes the central-directory bytes
+already exposed by `ZipInfo`; the stable content-silent error exposes no
+archive-controlled content. Every established flag, descriptor, and Unicode
+Path category retains archive-wide precedence.
+
+The fixed sample producer continues to emit no extra fields. M80 adds no broad
+extra-field ban, raw ZIP64 parser, archive-record validator, large-file
+support, local-header comparison, repair, workflow, dependency, runtime API,
+sample producer, or release authority, is not a general archive sandbox, and
+is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
