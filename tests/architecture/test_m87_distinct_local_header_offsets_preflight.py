@@ -9,7 +9,6 @@ import importlib.util
 import re
 import sys
 import tempfile
-import warnings
 import zipfile
 from pathlib import Path
 from typing import NoReturn, Protocol, cast
@@ -140,6 +139,7 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+@pytest.mark.filterwarnings("ignore:Overlapped entries.*:UserWarning")
 def test_cpython_exposes_duplicate_offsets_and_defers_failure_to_member_open(
     tmp_path: Path,
 ) -> None:
@@ -150,10 +150,7 @@ def test_cpython_exposes_duplicate_offsets_and_defers_failure_to_member_open(
     with zipfile.ZipFile(bundle) as archive:
         first, second = archive.infolist()
         assert [first.header_offset, second.header_offset] == [0, 0]
-        with warnings.catch_warnings(record=True) as records:
-            warnings.simplefilter("always")
-            assert archive.read(first) == b"first"
-        assert any("Overlapped entries" in str(record.message) for record in records)
+        assert archive.read(first) == b"first"
         with pytest.raises(zipfile.BadZipFile, match=r"^File name in directory"):
             archive.read(second)
 

@@ -1,8 +1,8 @@
 # Current Task
 
 - **Task:** M87 - distinct local-header-offset preflight
-- **Status:** Locally qualified after findings-first review; ready for exact-head
-  publication and hosted validation.
+- **Status:** Hosted test-contract correction is locally qualified and ready
+  for a new exact-head DCO commit.
 - **Base:** Verified M86 closeout squash
   `ba9464e59678766dd23953c1ea71acf010103903`, tree
   `eb75ce1a1ebc675dd5c9eb34fde5ffd8619587e1`.
@@ -90,8 +90,22 @@
   `origin/main`, and merge base to exact M86 closeout `ba9464e5967...`, with
   symmetric difference `0 0`; only `main` and the necessary neutral M87 branch
   exist, authentication is valid, and no open PR competes with publication.
+- Initial ready PR #213 exact DCO head `769bcb04d3b60114b5c29ea31bce8a15e85471f0`
+  reached 2,599 hosted Linux passes before one M87 test-only assertion failed:
+  Linux did not emit the overlap warning seen by local Windows probes. The
+  duplicate offsets, successful first read, and deferred second-read mismatch
+  remained present. Desktop qualification stayed guarded. The correction drops
+  only the incidental warning assertion and narrows RFC/architecture wording;
+  production code and policy are unchanged.
+- The corrected 16-case contract passes without warning dependence on CPython
+  3.12.13, 3.13.13, and 3.14.5. All 330 files remain format/Ruff clean, strict
+  Pyright and docs pass, all 1,055 architecture assertions pass with one
+  established capability skip, whitespace is clean, and the corrected complete
+  CPython 3.12 baseline passes 2,585 tests with 15 established skips.
 
 ## Remaining gates
 
-1. Publish, exact-head qualify, audit, squash-integrate, record, close out, and
-   clean M87 before selecting the next bounded milestone.
+1. Commit and push the locally qualified correction, and exact-head qualify PR
+   #213.
+2. Audit, squash-integrate, record, close out, and clean M87 before selecting
+   the next bounded milestone.

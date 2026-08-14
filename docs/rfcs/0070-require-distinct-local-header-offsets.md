@@ -13,9 +13,10 @@ PKWARE APPNOTE sections 4.3.2, 4.3.6, 4.3.12, and 4.4.24 assign each stored
 file a preceding local header, a corresponding central record, and a relative
 offset identifying that local header. Supported CPython 3.12.13, 3.13.13, and
 3.14.5 nevertheless expose offsets `[0, 0]` when two central entries point at
-one local header. Reading the first entry succeeds with an overlap warning;
-reading the aliased second entry later raises a local/central filename
-mismatch.
+one local header. Reading the first entry succeeds, while reading the aliased
+second entry later raises a local/central filename mismatch. An overlap warning
+was present in local Windows probes but absent in hosted Linux; that diagnostic
+is implementation-dependent and is not part of this decision.
 
 That deferred failure is unnecessary for the fixed producer and occurs after
 the current verifier has begun staging.

@@ -1,6 +1,6 @@
 # Project State
 
-## M87 distinct local-header-offset preflight - locally qualified
+## M87 distinct local-header-offset preflight - hosted correction qualified
 
 - Base: exact verified M86 closeout squash
   `ba9464e59678766dd23953c1ea71acf010103903`, tree
@@ -60,6 +60,19 @@
 - Precommit history: local head, `main`, `origin/main`, and merge base are exact
   M86 closeout `ba9464e5967...` with symmetric difference `0 0`. Only `main`
   and the necessary neutral M87 branch exist; no open PR competes with it.
+- Initial hosted head `769bcb04d3b60114b5c29ea31bce8a15e85471f0`
+  failed one test-only assertion after 2,599 Linux passes. Linux preserved the
+  duplicate offsets, successful first read, and deferred second-read mismatch,
+  but did not emit the overlap warning seen by local Windows probes. The
+  warning is implementation-dependent and outside the policy. The correction
+  removes only that assertion and narrows public wording; runtime code,
+  workflow, dependency, producer, and release authority remain unchanged.
+- Corrected local gate: the 16-case contract passes on CPython 3.12.13,
+  3.13.13, and 3.14.5 without depending on warning emission. All 330 files are
+  format/Ruff clean, strict Pyright and docs pass, all 1,055 architecture
+  assertions pass with one established capability skip, whitespace is clean,
+  and the complete corrected CPython 3.12 baseline passes 2,585 tests with 15
+  established skips.
 
 ## M86 first local-header placement preflight - closed
 

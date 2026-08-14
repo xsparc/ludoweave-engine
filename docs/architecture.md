@@ -2094,9 +2094,9 @@ release authority remain unchanged.
 
 M87 narrows the fixed sample profile after M86 without parsing local headers.
 Supported CPython 3.12-3.14 exposes two central entries that identify one local
-header as offsets `[0, 0]`. Reading the first entry succeeds with an overlap
-warning, while reading the alias later raises a local/central filename
-mismatch.
+header as offsets `[0, 0]`. Reading the first entry succeeds, while reading the
+alias later raises a local/central filename mismatch. Any overlap warning is
+implementation-dependent and is not part of the M87 contract.
 
 After every established policy through M86 completes, release smoke requires
 all parser-exposed local-header offsets to be distinct, then proceeds to M77
