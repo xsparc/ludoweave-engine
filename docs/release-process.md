@@ -836,6 +836,20 @@ member layout validator, workflow, dependency, runtime API, release authority,
 or producer change. This profile is not a general archive sandbox and is not a
 real public release observation.
 
+M91/RFC-0074 requires every parser-exposed offset to leave room for ZIP's
+30-byte fixed local-header prefix before the conventional central directory.
+The prefix-bound classifier runs after M90 signatures but before decoded-name
+policy, metadata, exact inventory, staging, or member reads. Failure emits
+stable content-silent error `sample bundle local header prefixes are out of
+bounds`; all owned resources close before control returns.
+
+The fixed producer leaves room for the complete prefix at all 50 offsets. M91
+adds no local-header field parser, filename/extra-length interpretation,
+record-extent, payload-bound, adjacency, contiguity, or physical non-overlap
+rule, no inter-member layout validator, workflow, dependency, runtime API,
+release authority, or producer change. This profile is not a general archive
+sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -2183,6 +2183,30 @@ is not a general archive sandbox and is not a real public release observation.
 Workflows, producer, dependencies, runtime API, and release authority remain
 unchanged. RFC-0073 defines the complete boundary.
 
+## M91 fixed local-header-prefix bounds preflight
+
+M91 narrows the fixed sample profile after M90 without parsing local-header
+fields. Supported CPython 3.12-3.14 exposes a parser-reported offset four bytes
+before the conventional central directory when those bytes contain
+`PK\x03\x04`; the earlier member remains readable and the malformed member
+defers public `BadZipFile` until open.
+
+Private complete release smoke uses the owned checksum-admitted snapshot to
+read the conventional central-directory offset, then requires
+`ZipInfo.header_offset + 30` to be no greater than that offset for every parsed
+member. Thirty bytes is ZIP's fixed local-header prefix before its variable file
+name and extra field. Failure raises stable content-silent error `sample bundle
+local header prefixes are out of bounds` before decoded names, metadata, exact
+inventory, staging, or reads. Empty archives retain their later inventory
+failure, and the shared end-record reader restores the snapshot position.
+
+This is one prefix-bound classifier. It adds no local-header field parser,
+filename/extra-length interpretation, record-extent, payload-bound, adjacency,
+contiguity, or physical non-overlap rule, no inter-member layout validator, and
+no archive repair. It is not a general archive sandbox and is not a real public
+release observation. Workflows, producer, dependencies, runtime API, and
+release authority remain unchanged. RFC-0074 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

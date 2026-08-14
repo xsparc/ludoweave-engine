@@ -78,3 +78,4 @@ was adopted.
 - [RFC-0071: require local-header offset order](0071-require-local-header-offset-order.md)
 - [RFC-0072: bound local-header offsets before the central directory](0072-bound-local-header-offsets.md)
 - [RFC-0073: require local-header signatures](0073-require-local-header-signatures.md)
+- [RFC-0074: bound fixed local-header prefixes](0074-bound-local-header-prefixes.md)

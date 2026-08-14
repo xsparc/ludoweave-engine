@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0074 resolves the M91 fixed local-header-prefix bound. PKWARE defines 30
+fixed local-header bytes before variable name and extra fields, and Python
+exposes each purported header offset. Exact CPython 3.12-3.14 admits a pointer
+with a valid signature but only four bytes before the conventional central
+directory and defers `BadZipFile` until member open. The selected narrow fixed-
+profile rule is one arithmetic prefix-bound classifier after M90 and before
+names, metadata, inventory, staging, or reads. It adds no local-header field
+parser, record extent, payload bound, inter-member layout validator, workflow,
+dependency, producer, runtime API, or release authority. RFC-0074 records the
+accepted policy; implementation and qualification are active.
+
 RFC-0073 resolves M90 local-header signature preflight. PKWARE defines the four-byte
 local-file-header signature and Python exposes each purported header offset.
 Exact CPython 3.12-3.14 admits a pointer shifted one byte into a real header as
@@ -12,8 +23,8 @@ or reads. It adds no local-header field parser, record-extent or inter-member
 layout validator, workflow, dependency, producer, runtime API, or release
 authority. RFC-0073 records the accepted narrow policy. Complete local and
 exact-head cross-platform qualification are green, and the exact qualified
-feature tree is squash-integrated through PR #222. Factual integration and
-closeout records remain pending.
+feature tree, factual integration record, and closeout are squash-integrated
+through PRs #222, #223, and #224.
 
 RFC-0072 resolves M89 local-header-offset bounds preflight. PKWARE places local/data
 records before the central-directory sequence, and Python exposes the central
