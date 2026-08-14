@@ -74,3 +74,4 @@ was adopted.
 - [RFC-0067: require consistent archive entry counts before extraction](0067-require-consistent-archive-entry-counts.md)
 - [RFC-0068: require exact conventional central-directory placement](0068-require-exact-central-directory-placement.md)
 - [RFC-0069: require the first local-header offset at zero](0069-require-first-local-header-at-zero.md)
+- [RFC-0070: require distinct local-header offsets](0070-require-distinct-local-header-offsets.md)

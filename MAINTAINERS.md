@@ -278,6 +278,16 @@ release authority, tag, release, or publication. M0 through M85 are complete,
 reviewed, hosted-validated, and integrated into `main`. M86 starts from exact
 verified M85 closeout `3eb38c5e591f0d73687293f130254d8c8b3256c7`.
 
+M87 requires all parser-exposed local-header offsets to be distinct after M86
+first-offset policy, but before decoded-name checks, metadata, inventory,
+member reads, or staging. Its stable error is content-silent. This is no local-
+header parser, offset ordering/bounds rule, inter-member layout validator, or
+general archive sandbox. It adds no workflow, allocation, dependency, version,
+producer, runtime source/API, release authority, tag, release, or publication.
+M0 through M86 are complete, reviewed, hosted-validated, and integrated into
+`main`. M87 starts from exact verified M86 closeout
+`ba9464e59678766dd23953c1ea71acf010103903`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

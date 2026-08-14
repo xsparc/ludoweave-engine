@@ -1,97 +1,111 @@
 # Current Task
 
-- **Task:** M86 - first local-header placement preflight
-- **Status:** Feature and integration records are verified and integrated;
-  exact three-record closeout is locally qualified for publication.
-- **Base:** Verified M85 closeout squash
-  `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree
-  `2425b4bbe9fbdb302797fdc4618be9c34662f196`.
-- **Branch:** `release/m86-closeout`
+- **Task:** M87 - distinct local-header-offset preflight
+- **Status:** Hosted test-contract correction is locally qualified and ready
+  for a new exact-head DCO commit.
+- **Base:** Verified M86 closeout squash
+  `ba9464e59678766dd23953c1ea71acf010103903`, tree
+  `eb75ce1a1ebc675dd5c9eb34fde5ffd8619587e1`.
+- **Branch:** `release/m87-distinct-local-header-offsets`
 
 ## Accepted slice
 
-- After every established policy through M85, require the minimum parser-
-  exposed `ZipInfo.header_offset` to equal zero.
-- Reject a nonzero earliest offset with stable content-silent error `sample
-  bundle first local header placement is inconsistent` before M77 decoded-name
-  policy, metadata, exact inventory, staging, or reads.
-- Preserve the later exact-inventory error for an empty parsed archive and
-  preserve every established error precedence and owned-resource close rule.
-- Add RFC-0069 plus aligned public, security, architecture, release, roadmap,
+- After every established policy through M86, require every parser-exposed
+  `ZipInfo.header_offset` to be distinct.
+- Reject two or more central entries that expose the same offset with stable
+  content-silent error `sample bundle local header offsets are inconsistent`
+  before M77 decoded-name policy, metadata, exact inventory, staging, or reads.
+- Preserve empty/single-member admission, M84 entry-count and M86 first-offset
+  precedence, every later failure category, and owned-resource close rules.
+- Add RFC-0070 plus aligned public, security, architecture, release, roadmap,
   maintainer, and repository evidence records.
-- Add no local-header parser, central-directory parser, inter-member layout
-  validator, field-consistency validator, signature classifier, archive repair,
-  workflow, dependency, lock, version, producer, runtime package/API, release
-  authority, tag, release, or publication.
+- Add no local-header parser, central-directory parser, offset ordering/bounds
+  rule, inter-member layout validator, field-consistency validator, signature
+  classifier, archive repair, workflow, dependency, lock, version, producer,
+  runtime package/API, release authority, tag, release, or publication.
 
 ## Direction evidence
 
-- PKWARE APPNOTE sections 4.3.2, 4.3.6, 4.3.7, and 4.3.12 define local headers,
-  their position before the central directory, and each central header's
-  relative local-header offset.
-- Exact installed CPython 3.12.13, 3.13.13, and 3.14.5 reads one- and eleven-
-  byte leading-gap fixtures when their relative offsets are updated.
-- Those fixtures retain zero M85 concatenation adjustment while the parser-
-  exposed earliest local-header offset moves by exactly the gap length.
-- The fixed producer exposes 50 members and an earliest offset of zero.
+- PKWARE APPNOTE sections 4.3.2 and 4.3.6 require each stored file to have a
+  preceding local header and a corresponding central header, then repeat the
+  local-header/data sequence for each file.
+- Exact installed CPython 3.12.13, 3.13.13, and 3.14.5 expose two central
+  entries that point at one local header as offsets `[0, 0]`.
+- On all three versions, reading the first entry succeeds with an overlapped-
+  entry warning and reading the aliased second entry later raises a local/
+  central filename mismatch. The fixed profile can reject the public offset
+  alias before staging without relying on CPython's private `_end_offset`.
+- The fixed producer exposes 50 members and 50 distinct local-header offsets.
 
 ## Current evidence
 
-- M85 feature PR #207 passed exact three-allocation hosted qualification and
-  guarded squash integration. Its documentation-only integration PR #208 used
-  one 42-second Linux allocation while the desktop umbrella skipped with zero
-  steps. Closeout PR #209 changed only three project records and allocated no
-  workflow. Exact synchronized `main` is the sole local/remote branch; no open
-  PR, tag, release, postmerge run, disclosure marker, or M85 generated target
-  remained before M86 selection.
-- Cross-version probes on CPython 3.12.13, 3.13.13, and 3.14.5 each read
-  zero-, one-, and eleven-byte-gap fixtures. All retained zero M85 geometry
-  adjustment; exposed header offsets were exactly 0, 1, and 11.
-- The static-clean authoritative red baseline passed 6 compatibility,
-  precedence, producer, and protected-surface controls and failed 10 missing
-  runtime, ordering, cleanup, helper/source, and documentation contracts in
-  0.67 seconds.
-- The runtime helper and exact call order make the combined M85-M86 contract
-  pass 35 assertions in 0.37 seconds; only the deliberately absent RFC/public-
-  documentation contract failed at that checkpoint. RFC-0069 and aligned
-  documentation are now added.
-- Findings-first review found no production defect and added an end-to-end
-  empty-archive regression for the explicitly preserved exact-inventory error.
-  The strengthened 17-case M86 contract passes on CPython 3.12-3.14.
-- Ready PR #210 exact DCO head
-  `9ddf5a8852dfc127819eb4809d1aae142ed58625`, tree
-  `99ce8b240ef1403f0a2475bb844cfc045a0139c6`, passed exact-head run
-  `31789378596` in exactly three allocations. Linux passed in 7m28s, macOS in
-  1m57s, and Windows in 4m24s. Every hosted suite reported 2,584 passes, with
-  one capability skip outside Linux baseline; each OS passed 10 real-wgpu
-  tests, profiles, and both sample applications.
-- Two separated audits retained the exact base/head, `MERGEABLE`/`CLEAN`,
-  three successful checks, matching DCO identity, and zero feedback. Guarded
-  squash `1f8368c915c9f414ec51ea8af835241d7c3efea5` has the exact qualified
-  tree, sole M85-closeout parent, parsed DCO, and valid GitHub verification.
-  No postmerge run was allocated; the feature branch is deleted locally and
-  remotely.
-- The integration record changes exactly the three project records plus
-  roadmap. The unchanged lock, 329-file format/Ruff checks, strict Pyright,
-  all 1,039 architecture assertions, strict docs, whitespace, Git-object
-  checking, reproducible distributions, isolated-wheel smoke, deterministic
-  staging, and complete release smoke pass.
-- Ready PR #211 exact DCO head
-  `53cef7f8d37b27e85afe06aecc7fcb5c297b47ff`, tree
-  `0304c87018f6e2a31d2037c0b859a63fec0f9e76`, classified four paths as
-  documentation and passed run `31790820557` in one 48-second Linux
-  allocation; the desktop umbrella skipped with zero steps. Two audits were
-  clean. Guarded squash `cfc71a3e010e79652d450e1284a37c19e74df4f2`
-  has the exact record tree, sole feature-squash parent, DCO, and valid GitHub
-  verification. No postmerge run was allocated and the integration branch is
-  deleted locally/remotely.
-- The closeout changes exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it adds no
-  workflow, public, runtime, test, build, dependency, release, credential,
-  identity, native, WASM, bytecode, or generated-artifact surface.
+- M86 feature PR #210 passed exact three-allocation hosted qualification and
+  guarded squash integration. Documentation-only integration PR #211 used one
+  48-second Linux allocation while the desktop umbrella skipped with zero
+  steps. Three-record closeout PR #212 allocated no workflow and squash-merged
+  as exact base `ba9464e59678766dd23953c1ea71acf010103903`. Exact synchronized
+  `main` was the sole local/remote branch; no open PR, tag, release, postmerge
+  run, disclosure marker, or M86 generated target remained before M87.
+- Cross-version alias probes on CPython 3.12.13, 3.13.13, and 3.14.5 each
+  exposed offsets `[0, 0]`, read the first payload with an overlap warning,
+  and deferred the second-entry filename mismatch until member open.
+- The new regression contract is format/Ruff clean and strict Pyright reports
+  zero findings. Against unchanged M86 runtime/docs, its authoritative red
+  run passes 6 behavior, precedence, empty/archive, producer, and protected-
+  surface controls while 10 missing runtime, helper, ordering, cleanup, and
+  documentation contracts fail in 0.42 seconds.
+- The aggregate helper now runs immediately after M86. Combined M86-M87
+  runtime/source/precedence coverage passes 32 cases; the sole remaining
+  checkpoint failure was the deliberately absent RFC/public-document contract.
+- RFC-0070 and aligned public records are present. The initial documentation-
+  integrated gate passes all 33 combined M86-M87 assertions; affected format,
+  Ruff, strict Pyright, strict docs, and whitespace gates are clean.
+- The 16-case M87 contract passes on supported CPython 3.12.13, 3.13.13, and
+  3.14.5. A concurrent first 3.12 invocation lost Hypothesis during pytest's
+  terminal hook when parallel uv processes replaced the shared `.venv`; the
+  isolated serial correction passes all 16 cases.
+- Findings-first review corrected two stale project-record statements and found
+  no runtime, test, or scope defect. The unchanged lock, all 330 Python files,
+  Ruff, strict Pyright, 1,055 architecture assertions, exact 366-case M64-M87
+  lineage, strict docs, and whitespace pass with one established Windows
+  capability skip in each applicable architecture gate.
+- Complete non-wgpu suites pass 2,585 tests with 15 established skips on each
+  of CPython 3.12.13, 3.13.13, and 3.14.5. Ten real-wgpu tests, both one-repeat
+  profiles, Clockwork Arena, and Agent World Builder pass after restoring the
+  locked 45-package CPython 3.12 graphics environment.
+- Two fresh builds reproduce a 275,673-byte wheel at
+  `3659480bf9c924758529f34ce312f903a1bd652a5820284bfa11549fe9b428e7`
+  and a 1,349,517-byte source archive at
+  `936973c9dbf7dc0abd209705e35bccc4d2800a805128609ab65e3f5939d0a01b`.
+  Installed-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass.
+- Final local audit contains exactly 16 intended paths. CI, release workflow,
+  producer, project metadata, and lock retain protected hashes; identity and
+  credential scans are empty; the wheel exposes no backend/native object at
+  its root; Git object checking reports no corruption.
+- The record-inclusive rerun retains all 1,055 architecture assertions with one
+  capability skip; all 330 files remain format/Ruff clean, strict Pyright and
+  docs pass, and whitespace is clean.
+- Precommit remote history verification resolves branch head, `main`,
+  `origin/main`, and merge base to exact M86 closeout `ba9464e5967...`, with
+  symmetric difference `0 0`; only `main` and the necessary neutral M87 branch
+  exist, authentication is valid, and no open PR competes with publication.
+- Initial ready PR #213 exact DCO head `769bcb04d3b60114b5c29ea31bce8a15e85471f0`
+  reached 2,599 hosted Linux passes before one M87 test-only assertion failed:
+  Linux did not emit the overlap warning seen by local Windows probes. The
+  duplicate offsets, successful first read, and deferred second-read mismatch
+  remained present. Desktop qualification stayed guarded. The correction drops
+  only the incidental warning assertion and narrows RFC/architecture wording;
+  production code and policy are unchanged.
+- The corrected 16-case contract passes without warning dependence on CPython
+  3.12.13, 3.13.13, and 3.14.5. All 330 files remain format/Ruff clean, strict
+  Pyright and docs pass, all 1,055 architecture assertions pass with one
+  established capability skip, whitespace is clean, and the corrected complete
+  CPython 3.12 baseline passes 2,585 tests with 15 established skips.
 
 ## Remaining gates
 
-1. Qualify, publish, and integrate the exact closeout records, remove all M86
-   branches and generated targets, and return to clean synchronized `main`
-   before selecting M87.
+1. Commit and push the locally qualified correction, and exact-head qualify PR
+   #213.
+2. Audit, squash-integrate, record, close out, and clean M87 before selecting
+   the next bounded milestone.
