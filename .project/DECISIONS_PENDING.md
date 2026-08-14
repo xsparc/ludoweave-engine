@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0069 resolves M86 first local-header placement preflight. Private complete
+release smoke finishes every established policy through M85, then requires the
+minimum parser-exposed `ZipInfo.header_offset` to equal zero before M77 decoded-
+name policy, metadata, exact inventory, staging, or reads. The stable policy
+error is content-silent; empty archives retain the established later inventory
+failure. This is not a local-header parser, central-directory parser, inter-
+member layout validator, field-consistency validator, signature classifier,
+archive repair path, or general archive sandbox. It adds no workflow,
+dependency, producer, runtime API, or release authority. A real pass remains
+pending an explicitly authorized signed-tag release execution.
+
 RFC-0068 resolves M85 conventional central-directory placement preflight.
 Private complete release smoke finishes every established policy through M84,
 then requires the final conventional central-directory size plus offset to

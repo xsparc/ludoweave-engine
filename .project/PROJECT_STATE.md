@@ -1,5 +1,42 @@
 # Project State
 
+## M86 first local-header placement preflight - implementation active
+
+- Base: exact verified M85 closeout squash
+  `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree
+  `2425b4bbe9fbdb302797fdc4618be9c34662f196`. Clean synchronized `main` was
+  the only local/remote branch; no open PR, tag, release, postmerge run,
+  disclosure marker, or M85 generated target remained before M86 selection.
+- Gap: exact installed CPython 3.12.13, 3.13.13, and 3.14.5 reads archives with
+  one or eleven bytes before the first local header when the central relative
+  local-header offset and final central-directory offset are updated. M85
+  concatenation adjustment remains zero while the earliest parser-exposed
+  `header_offset` moves by exactly the gap length.
+- Decision: after every policy through M85, private complete release smoke
+  requires the minimum parser-exposed local-header offset to equal zero before
+  M77 name policy, metadata, inventory, staging, or reads. The stable content-
+  silent error is `sample bundle first local header placement is inconsistent`.
+- Boundary: one aggregate public-parser property only. No local-header parser,
+  central-directory parser, inter-member layout validator, field-consistency
+  validator, signature classifier, archive repair, workflow, producer,
+  dependency, runtime API, or release authority is added.
+- Red-to-green: the static-clean authoritative baseline passed 6 controls and
+  failed 10 missing contracts in 0.67 seconds. The runtime implementation makes
+  35 M85-M86 assertions pass in 0.37 seconds; only the deliberately absent
+  public/RFC contract remained before documentation was added.
+- Review: no production defect was found. One evidence gap was corrected with
+  an end-to-end empty-archive regression that proves the established exact-
+  inventory error still precedes staging and member reads. The strengthened
+  17-case contract passes on CPython 3.12-3.14.
+- Pre-record qualification: the corrected CPython 3.12 suite passes 2,579
+  tests with 15 capability skips; the prior complete 3.13 and 3.14 suites plus
+  the strengthened 17-case cross-version proof remain green. All 1,039
+  architecture assertions and the 350-case M64-M86 lineage pass with one
+  Windows capability skip each. Static/type/docs, real wgpu, profiles, both
+  sample applications, M1-M4 diagnostics, reproducible distributions,
+  isolated-wheel smoke, deterministic staging, and complete release smoke
+  pass. Exact recorded-tree qualification and publication remain active.
+
 ## M85 conventional central-directory placement preflight - closeout active
 
 - Base: exact verified M84 closeout squash

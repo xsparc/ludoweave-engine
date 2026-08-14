@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M86/RFC-0069 first local-header placement preflight. The earliest parser-
+  exposed local-header offset must now be zero before decoded-name policy,
+  metadata, inventory, reads, or staging, without a local-header parser, inter-
+  member layout validator, workflow, dependency, producer, runtime API, or
+  release-authority change.
 - Add M85/RFC-0068 exact conventional central directory placement preflight.
   The final record's declared size plus offset must now land exactly at that
   final record before decoded-name policy, metadata, inventory, reads, or

@@ -1,108 +1,71 @@
 # Current Task
 
-- **Task:** M85 - conventional central-directory placement preflight
-- **Status:** Feature and integration records are verified and integrated;
-  exact three-record closeout is locally qualified for publication.
-- **Base:** Verified M84 closeout squash
-  `5b21c4798c16fb69b8ef08d40b02a2662677227a`, tree
-  `eb1e76fb5ccf1fb151acbfb4bb149c55c31ba06b`.
-- **Branch:** `release/m85-closeout`
+- **Task:** M86 - first local-header placement preflight
+- **Status:** Runtime, documentation, findings-first review, and pre-record
+  local qualification are complete; exact recorded-tree qualification and
+  publication are active.
+- **Base:** Verified M85 closeout squash
+  `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree
+  `2425b4bbe9fbdb302797fdc4618be9c34662f196`.
+- **Branch:** `release/m86-first-local-header-placement`
 
 ## Accepted slice
 
-- After every established policy through M84, read the final conventional
-  22-byte end-of-central-directory record through one shared position-
-  restoring structural helper.
-- Require declared central-directory size plus offset to equal the absolute
-  offset of that final record, admitting no prepended-data adjustment.
-- Reject a mismatch with stable content-silent error `sample bundle central
-  directory placement is inconsistent` before M77 decoded-name policy,
-  metadata, exact inventory, staging, or reads.
-- Preserve established error precedence and owned source/snapshot/archive
-  cleanup.
-- Add RFC-0068 plus aligned public, security, architecture, release, roadmap,
+- After every established policy through M85, require the minimum parser-
+  exposed `ZipInfo.header_offset` to equal zero.
+- Reject a nonzero earliest offset with stable content-silent error `sample
+  bundle first local header placement is inconsistent` before M77 decoded-name
+  policy, metadata, exact inventory, staging, or reads.
+- Preserve the later exact-inventory error for an empty parsed archive and
+  preserve every established error precedence and owned-resource close rule.
+- Add RFC-0069 plus aligned public, security, architecture, release, roadmap,
   maintainer, and repository evidence records.
-- Add no central-directory/local-header parser, end-record search, ZIP64
-  parser or sentinel resolution, prepended executable support, self-extracting
-  archive support, multi-volume assembler, workflow, dependency, lock,
-  version, producer, runtime package/API, release authority, tag, release, or
-  publication.
+- Add no local-header parser, central-directory parser, inter-member layout
+  validator, field-consistency validator, signature classifier, archive repair,
+  workflow, dependency, lock, version, producer, runtime package/API, release
+  authority, tag, release, or publication.
 
 ## Direction evidence
 
-- PKWARE APPNOTE sections 4.4.23 and 4.4.24 define the conventional central-
-  directory size and starting offset.
-- Exact installed CPython 3.12.13, 3.13.13, and 3.14.5 computes a concatenation
-  adjustment from the final-record location minus those fields and applies it
-  to parsed member header offsets.
-- Cross-version probes show one- and eleven-byte prefixes preserve the same
-  parsed member and readable deflated payload; the exposed header offset moves
-  by exactly the prefix length.
-- The fixed producer starts at byte zero, so its declared size plus offset
-  lands exactly at the final record.
+- PKWARE APPNOTE sections 4.3.2, 4.3.6, 4.3.7, and 4.3.12 define local headers,
+  their position before the central directory, and each central header's
+  relative local-header offset.
+- Exact installed CPython 3.12.13, 3.13.13, and 3.14.5 reads one- and eleven-
+  byte leading-gap fixtures when their relative offsets are updated.
+- Those fixtures retain zero M85 concatenation adjustment while the parser-
+  exposed earliest local-header offset moves by exactly the gap length.
+- The fixed producer exposes 50 members and an earliest offset of zero.
 
 ## Current evidence
 
-- M84 closeout PR #206 changed only the three project records, allocated no
-  workflow, passed two exact-head audits, and squash-integrated exact tree
-  `eb1e76fb5ccf1fb151acbfb4bb149c55c31ba06b` as
-  `5b21c4798c16fb69b8ef08d40b02a2662677227a` with sole integration-record
-  parent, parsed DCO, and valid GitHub verification. Only clean synchronized
-  `main` remained locally/remotely; no open PR, tag, release, postmerge run,
-  disclosure marker, or M84 generated target remained before M85 selection.
-- The static-clean authoritative red baseline passed 6 standard-library,
-  established-precedence, producer, and protected-surface controls and failed
-  13 missing policy, ordering, cleanup, helper/source, and documentation
-  contracts in 0.71 seconds.
-- The shared final-record helper removes two duplicate structural readers.
-  The placement validator and exact call ordering make the entire M83-M85
-  runtime lineage pass 80 assertions in 0.51 seconds; only the deliberately
-  absent RFC/public-document contract failed at that checkpoint. RFC-0068 and
-  aligned documentation are now added.
-- Findings-first review corrected an overstatement: zero concatenation
-  adjustment is the enforced arithmetic invariant, not proof that no physical
-  prefix could exist. A negative-adjustment extraction fixture now joins the
-  positive case. The strengthened 20-case contract passes on CPython
-  3.12-3.14.
-- The corrected CPython 3.12 suite passes 2,562 tests with 15 capability skips;
-  all 1,022 architecture assertions and the 333-case M64-M85 release-consumer
-  lineage pass with one Windows capability skip each. Static/type/docs,
-  real-wgpu, profiles, samples, diagnostics, builds, wheel smoke, deterministic
-  staging, and complete release smoke pass.
-- Ready PR #207 exact DCO head
-  `6b1d7ef2c712c4d80a6bc4538e7ded3aec3ee5d5`, tree
-  `b3cab8d267fa26954b7ef2fe36d9dba530f3d393`, passed exact-head run
-  `31739467587` in exactly three allocations. Linux passed in 7m22s, macOS in
-  2m24s, and Windows in 4m14s. Every hosted suite reported 2,567 passes, with
-  one capability skip outside Linux baseline; each OS passed 10 real-wgpu
-  tests, profiles, and both sample applications.
-- Two separated audits retained the exact base/head, `MERGEABLE`/`CLEAN`,
-  three successful checks, matching DCO identity, and zero feedback. Guarded
-  squash `c9bb569fc1476d1aaf92c4fb01bfd9210d0398ed` has the exact qualified
-  tree, sole M84-closeout parent, parsed DCO, and valid GitHub verification.
-  No postmerge run was allocated; the feature branch is deleted locally and
-  remotely.
-- The integration record changes exactly the three project records plus
-  roadmap. The unchanged lock, 328-file format/Ruff checks, strict Pyright,
-  all 1,022 architecture assertions, strict docs, whitespace, Git-object
-  checking, reproducible distributions, isolated-wheel smoke, deterministic
-  staging, and complete release smoke pass.
-- Ready PR #208 exact DCO head
-  `a44e540c282673064535aa3ab8f63454886894a3`, tree
-  `7db97bfbfbcf5b1e480c143c8b339a6ba69f9fba`, classified four paths as
-  documentation and passed run `31741059247` in one 42-second Linux
-  allocation; the desktop umbrella skipped with zero steps. Two audits were
-  clean. Guarded squash `c83a25012c7a0b3520852d35c55a4fc362a9e559`
-  has the exact record tree, sole feature-squash parent, DCO, and valid GitHub
-  verification. No postmerge run was allocated and the integration branch is
-  deleted locally/remotely.
-- The closeout changes exactly `.project/CURRENT_TASK.md`,
-  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it adds no
-  workflow, public, runtime, test, build, dependency, release, credential,
-  identity, native, WASM, bytecode, or generated-artifact surface.
+- M85 feature PR #207 passed exact three-allocation hosted qualification and
+  guarded squash integration. Its documentation-only integration PR #208 used
+  one 42-second Linux allocation while the desktop umbrella skipped with zero
+  steps. Closeout PR #209 changed only three project records and allocated no
+  workflow. Exact synchronized `main` is the sole local/remote branch; no open
+  PR, tag, release, postmerge run, disclosure marker, or M85 generated target
+  remained before M86 selection.
+- Cross-version probes on CPython 3.12.13, 3.13.13, and 3.14.5 each read
+  zero-, one-, and eleven-byte-gap fixtures. All retained zero M85 geometry
+  adjustment; exposed header offsets were exactly 0, 1, and 11.
+- The static-clean authoritative red baseline passed 6 compatibility,
+  precedence, producer, and protected-surface controls and failed 10 missing
+  runtime, ordering, cleanup, helper/source, and documentation contracts in
+  0.67 seconds.
+- The runtime helper and exact call order make the combined M85-M86 contract
+  pass 35 assertions in 0.37 seconds; only the deliberately absent RFC/public-
+  documentation contract failed at that checkpoint. RFC-0069 and aligned
+  documentation are now added.
+- Findings-first review found no production defect and added an end-to-end
+  empty-archive regression for the explicitly preserved exact-inventory error.
+  The strengthened 17-case M86 contract passes on CPython 3.12-3.14.
 
 ## Remaining gates
 
-1. Publish and integrate the exact closeout records, remove all M85 branches
-   and generated targets, and return to clean synchronized `main` before
-   selecting M86.
+1. Pass exact recorded-tree static, architecture, lineage, reproducible-build,
+   installed-wheel, release-smoke, archive, scope, and hygiene gates.
+2. Publish a ready feature PR, require exact-head hosted qualification and two
+   separated review audits, then squash-integrate only the qualified tree.
+3. Publish and integrate bounded factual records, close out M86, remove its
+   branches/generated targets, and return to clean synchronized `main` before
+   selecting M87.

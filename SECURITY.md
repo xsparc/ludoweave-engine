@@ -277,6 +277,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   record parser, prepended executable support, self-extracting archive support,
   or multi-volume assembler, changes no workflow or producer, is not a general
   archive sandbox, and is not a real public release observation.
+- M86 requires the minimum parser-exposed `ZipInfo.header_offset` to be zero
+  after M85 placement policy and before decoded names, metadata, inventory,
+  staging, or reads. The content-silent error is `sample bundle first local
+  header placement is inconsistent`. This adds no local-header parser, inter-
+  member layout validator, workflow, dependency, producer, runtime API, or
+  release authority; it is not a general archive sandbox or a real public
+  release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
