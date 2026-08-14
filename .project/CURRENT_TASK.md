@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M87 - distinct local-header-offset preflight
-- **Status:** Hosted test-contract correction is locally qualified and ready
-  for a new exact-head DCO commit.
+- **Status:** Feature and hosted correction are verified and squash-integrated;
+  documentation-only integration record is locally qualified for publication.
 - **Base:** Verified M86 closeout squash
   `ba9464e59678766dd23953c1ea71acf010103903`, tree
   `eb75ce1a1ebc675dd5c9eb34fde5ffd8619587e1`.
-- **Branch:** `release/m87-distinct-local-header-offsets`
+- **Branch:** `release/m87-integration-record`
 
 ## Accepted slice
 
@@ -31,10 +31,11 @@
   local-header/data sequence for each file.
 - Exact installed CPython 3.12.13, 3.13.13, and 3.14.5 expose two central
   entries that point at one local header as offsets `[0, 0]`.
-- On all three versions, reading the first entry succeeds with an overlapped-
-  entry warning and reading the aliased second entry later raises a local/
-  central filename mismatch. The fixed profile can reject the public offset
-  alias before staging without relying on CPython's private `_end_offset`.
+- On all three local Windows versions, reading the first entry succeeds with an
+  overlap warning and reading the aliased second entry later raises a local/
+  central filename mismatch. Hosted Linux omitted the warning. The fixed
+  profile depends only on the public offsets and deferred read failure, not
+  warning emission or CPython's private `_end_offset`.
 - The fixed producer exposes 50 members and 50 distinct local-header offsets.
 
 ## Current evidence
@@ -102,10 +103,40 @@
   Pyright and docs pass, all 1,055 architecture assertions pass with one
   established capability skip, whitespace is clean, and the corrected complete
   CPython 3.12 baseline passes 2,585 tests with 15 established skips.
+- Corrected ready PR #213 exact DCO head
+  `b98aa8365b6d3742c91871a820170d6b73330f25`, tree
+  `2c4aff1985fa6e820a967323114ad6a3d73f9875`, passed run `31794063270`
+  in exactly three Linux-first allocations. Linux passed in 7m16s, macOS in
+  3m05s, and Windows in 3m52s. Linux CPython 3.12 passed 2,600 tests; Linux
+  3.13/3.14 and both desktop 3.14 suites passed 2,600 with one capability skip.
+  Each OS passed ten real-wgpu tests, its profile and both vertical slices.
+- Hosted static/docs, byte-reproducible distribution, isolated-wheel, ten-
+  artifact staging, and complete release smoke passed. The hosted wheel was
+  275,661 bytes at
+  `a0ef617c4ce29f59130155b143c457ceda740ba7950a2f1e01b4893f35ed2263`;
+  the source archive was 1,352,531 bytes at
+  `51d595e22e172cbdf74cddf7628db710d94a59c239edd4a90da34eeb40aa3fa3`.
+- Two separated audits retained the exact base/head, three successful checks,
+  `MERGEABLE/CLEAN`, DCO history, protected scope, and zero feedback. Guarded
+  squash `dff483e120d607105120d8c004838e609540a14d` has the exact qualified
+  tree, sole M86-closeout parent, standalone DCO, and valid GitHub signature.
+  No postmerge run was allocated; feature branches were removed locally and
+  remotely before this record branch.
+- Integration-record scope is exactly four project records plus roadmap. The
+  unchanged lock, all 330 files, Ruff, strict Pyright, 1,055 architecture
+  assertions, strict docs, whitespace, protected hashes, identity/credential
+  scans, and Git-object integrity pass with one established capability skip.
+  A pre-record pair of fresh builds reproduces a 275,673-byte wheel at
+  `3659480bf9c924758529f34ce312f903a1bd652a5820284bfa11549fe9b428e7`
+  and a 1,353,993-byte source archive at
+  `e58694e30441bc79b16d3842da647a95be2144015fd5bf4b5c28c2baa4bfc005`;
+  installed-wheel, ten-artifact staging, and complete release smoke pass. The
+  subsequent factual project-record lines differ only in the source archive;
+  exact record-tree artifact evidence remains a hosted gate.
 
 ## Remaining gates
 
-1. Commit and push the locally qualified correction, and exact-head qualify PR
-   #213.
-2. Audit, squash-integrate, record, close out, and clean M87 before selecting
-   the next bounded milestone.
+1. Validate and publish the documentation-only integration record, audit its
+   bounded hosted gate, and squash-integrate it.
+2. Publish the exact closeout records, remove all M87 branches and generated
+   targets, and return to clean synchronized `main` before selecting M88.

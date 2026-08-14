@@ -36,6 +36,26 @@ M87 starts from exact verified M86 closeout squash
 | Corrected source, architecture, and docs gate | 0 | The locked 45-package CPython 3.12 graphics environment was restored. All 330 files were format clean; Ruff and strict Pyright reported zero findings; all 1,055 architecture assertions passed with one established Windows capability skip in 9.81 seconds; strict docs built in 1.45 seconds with only the known upstream Material notice; whitespace passed. |
 | Corrected complete CPython 3.12 baseline | 0 | The exact stage that failed on the initial hosted head passed locally: 2,585 non-wgpu tests passed with 15 established skips in 128.17 seconds. |
 
+## M87 hosted validation and feature integration - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Corrected exact-head hosted qualification | 0 | Ready PR #213 exact DCO head `b98aa8365b6d3742c91871a820170d6b73330f25`, tree `2c4aff1985fa6e820a967323114ad6a3d73f9875`, passed run `31794063270`, classified substantive with 16 paths, in exactly three Linux-first allocations. Linux job `94747130079` passed in 7m16s; macOS `94748631530` in 3m05s; Windows `94748631497` in 3m52s. |
+| Hosted test and smoke evidence | 0 | Linux CPython 3.12 passed 2,600 tests. Linux CPython 3.13/3.14 and macOS/Windows CPython 3.14 each passed 2,600 with one capability skip. Every OS passed 10 real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World Builder; Linux also passed the base profile. All 330 files were format clean; Ruff, strict Pyright, strict docs, isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. |
+| Hosted distribution evidence | 0 | Two exact-head builds reproduced a pure 275,661-byte wheel SHA-256 `a0ef617c4ce29f59130155b143c457ceda740ba7950a2f1e01b4893f35ed2263` and 1,352,531-byte source archive SHA-256 `51d595e22e172cbdf74cddf7628db710d94a59c239edd4a90da34eeb40aa3fa3`. |
+| Separated merge-readiness audits | 0 | Both audits retained exact M86 closeout base `ba9464e59678766dd23953c1ea71acf010103903`, exact head/tree, synchronized local/remote refs, 16 intended paths, two standalone DCO commits, three successful checks, `MERGEABLE`/`CLEAN`, and zero PR comments, review comments, reviews, or threads. The intervening protected-scope, credential, identity, backend-leakage, whitespace, and focused 16-case audit was clean after one sandbox-denied uv-cache invocation was rerun successfully. |
+| Guarded squash integration | 0 | PR #213 squash `dff483e120d607105120d8c004838e609540a14d` has sole parent `ba9464e59678766dd23953c1ea71acf010103903`; tree `2c4aff1985fa6e820a967323114ad6a3d73f9875` exactly equals the qualified head; its message has a standalone DCO trailer and GitHub reports `verified=true`, `reason=valid`, at `2026-08-14T11:07:28Z`. No postmerge `main` run was allocated. The feature branch was removed remotely and locally; synchronized `main` was the sole branch before the integration record. |
+
+## M87 integration-record local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or gate | Exit | Factual result |
+| --- | ---: | --- |
+| Exact scope and history | 0 | Synchronized local and remote `main`, branch head, and merge base resolved to exact feature squash `dff483e120d607105120d8c004838e609540a14d`, with symmetric difference `0 0`. The record changes exactly `.project/CURRENT_TASK.md`, `.project/DECISIONS_PENDING.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`. |
+| Static, architecture, and docs gate | 0 | The unchanged 46-package lock resolved in 0.83 ms. All 330 files were format clean; Ruff and strict Pyright reported zero findings; all 1,055 architecture assertions passed with one established Windows capability skip in 8.95 seconds; strict docs built in 1.44 seconds with only the known upstream Material notice; whitespace passed. |
+| Pre-record reproducible distribution and release gate | 0 | Two fresh builds matched exactly: the 275,673-byte pure wheel SHA-256 is `3659480bf9c924758529f34ce312f903a1bd652a5820284bfa11549fe9b428e7`, and the 1,353,993-byte source archive SHA-256 is `e58694e30441bc79b16d3842da647a95be2144015fd5bf4b5c28c2baa4bfc005`. Isolated-wheel smoke passed, deterministic staging produced ten artifacts, and complete release smoke passed. Subsequent factual project-record lines differ only in the source archive; exact record-tree artifacts remain a hosted gate. |
+| Scope, security, identity, and integrity audit | 0 | CI, release workflow, private release verifier, sample producer, project metadata, and lock are unchanged from the integrated feature tree. Added-content identity and credential scans were empty; whitespace passed. Full Git-object checking reported only unreachable squash-era objects and no corruption. |
+| Record-inclusive static, architecture, and docs gate | 0 | All 330 files remained format clean; Ruff and strict Pyright reported zero findings; all 1,055 architecture assertions passed with one established Windows capability skip in 8.87 seconds; strict docs built in 1.44 seconds with only the known upstream Material notice; whitespace passed. |
+
 ## M86 direction and implementation evidence - 2026-08-14, Windows
 
 M86 starts from exact verified M85 closeout squash
