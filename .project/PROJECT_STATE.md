@@ -1,6 +1,6 @@
 # Project State
 
-## M89 local-header-offset bounds preflight - qualification active
+## M89 local-header-offset bounds preflight - integration record active
 
 - Base: exact verified M88 closeout squash
   `03f3723bf7365701c78a0fde072392b9f51da66b`, tree
@@ -57,6 +57,41 @@
   and merge base at exact M88 closeout with symmetric difference `0 0`. Only
   `main` and the required M89 feature branch exist; authentication is valid and
   there is no open PR, tag, or release.
+- Hosted qualification: ready PR #219 exact DCO head
+  `60559fd6ba5e3bc4583dc86c9b185f1175ac8f3d`, tree
+  `0eba3e7b2407d08a6b030746bd73e7af57211b77`, passed run `31801893736` in
+  exactly three Linux-first allocations. Linux `94771566336` passed in 7m33s,
+  macOS `94773345967` in 2m02s, and Windows `94773345983` in 4m12s.
+- Hosted suites: Linux passed 2,635 tests on CPython 3.12, 3.13, and 3.14,
+  with one capability skip on 3.13/3.14. macOS and Windows CPython 3.14 each
+  passed 2,635 with one skip. Every OS passed ten real-wgpu tests, graphics
+  profiling, Clockwork Arena, and Agent World Builder; Linux also passed base
+  profiling, static/docs, installed-wheel, staging, and release smoke.
+- Hosted artifacts: the 275,896-byte pure wheel SHA-256 is
+  `22a14f43b4cdc2afaee7c4f39bc04e9baaebea557b070d3131fa8820a256c3ee`;
+  the 1,365,606-byte source archive SHA-256 is
+  `6ae3d9d8f5e6190342ea0e588a6340cd2676e30da8a99fe2e2c07193452c09d5`.
+- Readiness/integration: two separated audits retained exact head/tree/base,
+  one DCO commit, 16 paths, three successful checks, `MERGEABLE`/`CLEAN`, one
+  hosted run, and zero feedback. Guarded squash
+  `61e5db38aef45a00788980227edf69663c82ce7b` has exact qualified tree, sole
+  parent exact M88 closeout, standalone DCO trailer, and valid GitHub signature
+  at `2026-08-14T13:03:08Z`. The feature branch is deleted remotely/locally.
+- Integration-record proof: exactly five repository records change. All 332
+  Python files are format/Ruff clean, strict Pyright reports zero findings,
+  all 1,090 architecture assertions pass with one established skip, strict
+  docs and whitespace pass. Two builds reproduce the unchanged 275,910-byte
+  local pure wheel and a 1,367,109-byte source archive at
+  `7081b7c9661fb27ff4046c85d2b891e61dfaa6252c31d57284a08c88fe831803`;
+  wheel, ten-artifact staging, and complete release smoke pass.
+- Final integration-record repeat remains 332-file format/Ruff clean, strict
+  Pyright at zero findings, architecture at 1,090 passed with one established
+  skip, strict docs green, and whitespace clean.
+- Precommit audit: the five-case metadata separator passes after one sandbox-
+  only external uv-cache denial. Branch head, `main`, `origin/main`, and merge
+  base remain exact feature squash with divergence `0 0`; only `main` and the
+  required integration-record branch exist, with no open PR, current-head
+  postmerge workflow, tag, or release.
 
 ## M88 local-header-order preflight - closeout active
 
