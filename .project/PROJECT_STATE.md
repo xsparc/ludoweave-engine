@@ -1,6 +1,6 @@
 # Project State
 
-## M86 first local-header placement preflight - integration records active
+## M86 first local-header placement preflight - closeout active
 
 - Base: exact verified M85 closeout squash
   `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree
@@ -67,6 +67,30 @@
   and 1,344,302-byte source distribution at
   `f8c2afa5cbef2fdb0dec95bb088e050234f47e4c14e4cf6317bc146663474f75`;
   isolated-wheel, staging, and release smoke pass.
+- Hosted integration: ready PR #211 exact DCO head
+  `53cef7f8d37b27e85afe06aecc7fcb5c297b47ff`, tree
+  `0304c87018f6e2a31d2037c0b859a63fec0f9e76`, passed run `31790820557`.
+  Classification was documentation-only with four paths. The sole Linux job
+  passed in 48 seconds; the desktop umbrella skipped with zero steps. Strict
+  docs, 1,040 architecture assertions, reproducibility, isolated-wheel,
+  staging, and complete release smoke passed.
+- Hosted integration artifacts: the feature-identical 275,547-byte wheel is
+  `2c7a6c8df143bc0f84c9ee4ba3cfe3f19f78e89310bd6e10b26224638a1c85ae`;
+  the 1,344,678-byte record-updated source distribution is
+  `9332b54152eb5deae3abf12cdba07ebd360f5d9982d02ad5caa866049e578b7a`.
+- Integration review/squash: two separated audits retained exact base/head,
+  `MERGEABLE`/`CLEAN`, one successful Linux check, one skipped zero-step
+  desktop umbrella, matching DCO identity, and zero feedback. Guarded squash
+  `cfc71a3e010e79652d450e1284a37c19e74df4f2` has the exact reviewed tree,
+  sole feature-squash parent `1f8368c915c9f414ec51ea8af835241d7c3efea5`,
+  parsed DCO, and valid GitHub verification at `2026-08-14T10:08:28Z`. No
+  postmerge run was allocated; the integration branch is deleted locally and
+  remotely.
+- Closeout scope: exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md` change. No
+  workflow-classified, public, runtime, test, build, dependency, release,
+  credential, identity, native, WASM, bytecode, or generated-artifact surface
+  is added.
 
 ## M85 conventional central-directory placement preflight - closeout active
 
