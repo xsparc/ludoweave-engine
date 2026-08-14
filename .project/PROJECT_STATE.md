@@ -1,6 +1,77 @@
 # Project State
 
-## M89 local-header-offset bounds preflight - closeout active
+## M90 local-header signature preflight - ready for publication
+
+- Base: exact verified M89 closeout squash
+  `92b3e2c351fe92ea0789b46636e0d0a08d29281a`, tree
+  `46fa37f60b603ffa79b5ed7354b55fa2da13b953`. Synchronized `main` is the
+  only local/remote branch; there is no open PR, current-head run, tag, release,
+  identity-control path, or M89 generated target. Full Git checking reports no
+  corruption.
+- Gap: shifting only the second central pointer by one byte leaves offsets
+  ordered, distinct, and in bounds as `[0, 47]` below directory offset `94`.
+  Exact CPython 3.12.13, 3.13.13, and 3.14.5 expose signature bytes
+  `504b0304`, `4b030414`, read the first payload, and defer `BadZipFile` until
+  the malformed second member is opened.
+- Decision: after every policy through M89, private complete release smoke
+  requires the four bytes at every parser-exposed offset to equal local-file-
+  header signature `PK\x03\x04` before decoded-name policy, metadata,
+  inventory, staging, or reads. The stable error is `sample bundle local header
+  signature is inconsistent`.
+- Boundary: one snapshot-backed four-byte signature classifier only. It adds
+  no local-header field parser, central-directory parser, record extent,
+  adjacency, contiguity, or inter-member layout validator, archive repair,
+  workflow, producer, dependency, runtime API, or release authority.
+- Red baseline: the static-clean 19-case contract passes 10 controls and fails
+  9 missing runtime, helper, cleanup, source-order, and documentation contracts
+  in 0.48 seconds against exact M89 code. No pass is claimed.
+- Implementation: release smoke reads exactly four bytes at each public offset
+  from the owned snapshot after M89 and restores the snapshot position.
+  RFC-0073 and aligned public, security, architecture, release, maintainer,
+  navigation, roadmap, and repository records state the fixed-profile rule.
+- Focused checkpoint: all 37 combined M89-M90 assertions pass on CPython 3.12
+  in 0.38 seconds. The two affected Python files are format/Ruff clean, strict
+  Pyright reports zero findings, and strict docs build in 1.52 seconds with
+  only the known upstream Material notice. A preceding command used a
+  nonexistent historical M89 filename, exited 1, and ran no tests; it is not
+  claimed as a pass.
+- Supported/local proof: the 19-case contract passes on exact CPython 3.12.13,
+  3.13.13, and 3.14.5. Complete non-wgpu suites pass 2,639 tests on each
+  interpreter with 15 established skips. The locked CPython 3.12 graphics
+  environment is restored.
+- Static/docs proof: the unchanged 46-package lock resolves and the 45-package
+  graphics environment is installed. All 333 Python files are format/Ruff
+  clean; strict Pyright reports zero findings; all 1,109 architecture
+  assertions pass with one established Windows capability skip; strict docs
+  and whitespace pass.
+- Graphics/slices proof: all ten real-wgpu tests pass in 8.81 seconds; two- and
+  three-workload profiles validate. Clockwork Arena and Agent World Builder
+  reproduce their established state, capture, and replay identities.
+- Distribution proof: two fresh builds reproduce a 276,061-byte pure wheel at
+  `c2b71f657baaaad330c9076a2cef25c13644874196005be74b8a436bcabc8cc2`
+  and a 1,371,380-byte source archive at
+  `807966575bc9b2141fefda88ef0ea4395dc8fc34e8307b9879ad5adb9883e262`.
+  Isolated-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Review: no actionable finding remains. Exactly 16 intended paths change;
+  workflows, producer, project metadata, lock, and runtime package remain
+  protected. Metadata hygiene passes five checks, credential scanning finds
+  zero matches, the 94-entry wheel and 546-entry source archive contain no
+  native/WASM/bytecode/retired-control payload, whitespace passes, and Git
+  object checking reports no corruption.
+- Record-inclusive proof: all 333 Python files remain format/Ruff clean,
+  strict Pyright reports zero findings, all 1,109 architecture assertions pass
+  with one established skip, strict docs and whitespace pass. Two fresh builds
+  retain the exact wheel and reproduce a 1,372,739-byte source archive at
+  `d3dacd616f590977116ee126a777c448654e78f24f4f5387cdcdb926a7d2215c`;
+  isolated-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Prepublication history: after fetch/prune, branch head, `main`,
+  `origin/main`, and merge base are exact M89 closeout
+  `92b3e2c351fe92ea0789b46636e0d0a08d29281a`, with symmetric difference
+  `0 0`. Only `main` and the necessary M90 feature branch exist locally, only
+  `origin/main` remotely, authentication is valid, and open PR, current-branch
+  workflow, tag, and release queries are empty.
+
+## M89 local-header-offset bounds preflight - complete
 
 - Base: exact verified M88 closeout squash
   `03f3723bf7365701c78a0fde072392b9f51da66b`, tree

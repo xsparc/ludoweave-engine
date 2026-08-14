@@ -310,6 +310,18 @@ release authority, tag, release, or publication. M0 through M88 are complete,
 reviewed, hosted-validated, and integrated into `main`. M89 starts from exact
 verified M88 closeout `03f3723bf7365701c78a0fde072392b9f51da66b`.
 
+M90 requires the fixed producer's four-byte local-header signature at every
+parser-exposed offset after M89 bounds and before decoded names, metadata,
+inventory, staging, or reads. Its stable content-silent error is `sample bundle
+local header signature is inconsistent`. This signature classifier adds no
+local-header field parser, central-directory record parser, record-extent rule,
+or inter-member layout validator. It adds no workflow, allocation, dependency,
+version, producer, runtime source/API, release authority, tag, release, or
+publication. It is not a general archive sandbox and is not a real public
+release observation. M0 through M89 are complete, reviewed, hosted-validated,
+and integrated into `main`. M90 starts from exact verified M89 closeout
+`92b3e2c351fe92ea0789b46636e0d0a08d29281a`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

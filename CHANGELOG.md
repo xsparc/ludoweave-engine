@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M90/RFC-0073 local-header-signature preflight. Every parser-exposed
+  offset must now identify the fixed producer's four-byte local-header
+  signature before decoded-name policy, metadata, inventory, reads, or staging,
+  without a local-header field parser, inter-member layout validator, workflow,
+  dependency, producer, runtime API, or release-authority change.
 - Add M89/RFC-0072 local-header-offset bounds preflight. Every parser-exposed
   offset must now remain strictly before the conventional central directory
   before decoded-name policy, metadata, inventory, reads, or staging, without
