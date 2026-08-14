@@ -1,12 +1,13 @@
 # Current Task
 
 - **Task:** M89 - local-header-offset bounds preflight
-- **Status:** Feature implementation, complete local qualification, and final
-  record-inclusive audit are green; exact-head publication is active.
-- **Base:** Verified M88 closeout squash
-  `03f3723bf7365701c78a0fde072392b9f51da66b`, tree
-  `141fe396a5313eccc1c706b2af114a021537ac90`.
-- **Branch:** `release/m89-local-header-bounds`
+- **Status:** Feature exact-head qualification, two readiness audits, and
+  guarded squash integration are complete; factual integration records are
+  active.
+- **Base:** Verified M89 feature squash
+  `61e5db38aef45a00788980227edf69663c82ce7b`, tree
+  `0eba3e7b2407d08a6b030746bd73e7af57211b77`.
+- **Branch:** `release/m89-integration-record`
 
 ## Accepted slice
 
@@ -86,11 +87,46 @@
   exact M88 closeout with symmetric difference `0 0`. Only `main` and the
   necessary neutral M89 branch exist; authentication is valid and open-PR,
   tag, and release queries are empty.
+- Ready PR #219 exact DCO head
+  `60559fd6ba5e3bc4583dc86c9b185f1175ac8f3d`, tree
+  `0eba3e7b2407d08a6b030746bd73e7af57211b77`, passed exact three-allocation
+  hosted run `31801893736`: Linux `94771566336` in 7m33s, macOS
+  `94773345967` in 2m02s, and Windows `94773345983` in 4m12s.
+- Hosted Linux passed 2,635 tests on every supported interpreter, with one
+  capability skip on 3.13 and 3.14. macOS and Windows 3.14 each passed 2,635
+  with one skip. Every OS passed ten real-wgpu tests, graphics profiling, and
+  both vertical slices; Linux also passed the base profile and all distribution
+  and release gates.
+- Hosted builds reproduced a 275,896-byte pure wheel at SHA-256
+  `22a14f43b4cdc2afaee7c4f39bc04e9baaebea557b070d3131fa8820a256c3ee`
+  and a 1,365,606-byte source archive at SHA-256
+  `6ae3d9d8f5e6190342ea0e588a6340cd2676e30da8a99fe2e2c07193452c09d5`.
+- Two separated readiness audits retained exact head/tree/base, one standalone
+  DCO commit, 16 paths, three successful checks, `MERGEABLE`/`CLEAN`, one
+  hosted run, and zero comments, reviews, or review threads.
+- Guarded squash `61e5db38aef45a00788980227edf69663c82ce7b` has sole
+  parent exact M88 closeout, exact qualified tree, standalone DCO trailer, and
+  valid GitHub signature at `2026-08-14T13:03:08Z`. The feature branch is
+  deleted remotely and locally.
+- The exact five-path integration record keeps all 332 Python files format/
+  Ruff clean, strict Pyright at zero findings, architecture at 1,090 passed
+  with one skip, strict docs green, and whitespace clean. Two builds reproduce
+  the unchanged 275,910-byte local pure wheel and a 1,367,109-byte source
+  archive at SHA-256
+  `7081b7c9661fb27ff4046c85d2b891e61dfaa6252c31d57284a08c88fe831803`;
+  wheel, staging, and complete release smoke pass.
+- Its final record-inclusive repeat remains 332-file format/Ruff clean, strict
+  Pyright zero, 1,090 architecture passes with one skip, strict docs green, and
+  whitespace clean.
+- The final metadata separator passed five assertions after one sandbox-only
+  uv-cache denial. Fetch/prune leaves branch head, `main`, `origin/main`, and
+  merge base at exact feature squash with divergence `0 0`; only `main` and the
+  necessary integration-record branch exist, with no open PR, current-head
+  postmerge run, tag, or release.
 
 ## Remaining acceptance
 
-- Publish one ready feature PR, qualify its exact head through the existing
-  quota-conscious hosted topology, perform two separated clean readiness
-  audits, and squash-integrate only the exact qualified tree.
-- Publish and integrate factual project-record and closeout PRs, clean all M89
-  branches/generated targets, and select the next bounded milestone.
+- Validate, publish, audit, and squash-integrate the exact factual integration
+  record without allocating substantive desktop work.
+- Publish and integrate the exact closeout record, clean all M89 generated
+  targets and branches, and select the next bounded milestone.

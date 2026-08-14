@@ -10,9 +10,10 @@ accepts a pointer equal to the conventional central-directory offset and defers
 every public offset to be strictly before that boundary after M88 and before
 names, metadata, inventory, staging, or reads. It admits no local-header parser,
 record-extent or inter-member layout validator, workflow, dependency, producer,
-runtime API, or release authority. RFC-0072 records the accepted narrow policy;
-complete local qualification is green and exact-head hosted qualification
-remains pending.
+runtime API, or release authority. RFC-0072 records the accepted narrow policy.
+Complete local and exact-head hosted qualification are green, and the exact
+qualified tree is squash-integrated through PR #219. Factual integration and
+closeout records remain pending.
 
 RFC-0071 resolves M88 local-header-order preflight. PKWARE permits arbitrary
 ZIP file order generally, while Python documents `ZipFile.infolist()` as archive-entry
