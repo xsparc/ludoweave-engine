@@ -61,6 +61,7 @@ _SAMPLE_UNICODE_PATH_EXTRA_FIELD = 0x7075
 _SAMPLE_ZIP64_EXTRA_FIELD = 0x0001
 _SAMPLE_EOCD_BYTES = 22
 _SAMPLE_EOCD_SIGNATURE = b"PK\x05\x06"
+_SAMPLE_LOCAL_HEADER_SIGNATURE = b"PK\x03\x04"
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -524,6 +525,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_local_header_offsets(infos=infos)
         _validate_sample_local_header_order(infos=infos)
         _validate_sample_local_header_bounds(snapshot=snapshot_stream, infos=infos)
+        _validate_sample_local_header_signatures(snapshot=snapshot_stream, infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -841,6 +843,23 @@ def _validate_sample_local_header_bounds(
     directory_offset = int.from_bytes(end_record[16:20], "little")
     if any(info.header_offset >= directory_offset for info in infos):
         raise RuntimeError("sample bundle local header offsets are out of bounds")
+
+
+def _validate_sample_local_header_signatures(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require every parser-exposed offset to identify a local-file header."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset)
+            if snapshot.read(4) != _SAMPLE_LOCAL_HEADER_SIGNATURE:
+                raise RuntimeError("sample bundle local header signature is inconsistent")
+    finally:
+        snapshot.seek(position)
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

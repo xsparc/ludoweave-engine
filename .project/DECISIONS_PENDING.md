@@ -2,7 +2,19 @@
 
 No architecture decision is currently blocked.
 
-M89 local-header-offset bounds preflight is active. PKWARE places local/data
+M90 local-header signature preflight is active. PKWARE defines the four-byte
+local-file-header signature and Python exposes each purported header offset.
+Exact CPython 3.12-3.14 admits a pointer shifted one byte into a real header as
+ordered, distinct, in-bounds public metadata and defers `BadZipFile` until
+member open. The selected narrow fixed-profile rule classifies only four bytes
+at each public offset after M89 and before names, metadata, inventory, staging,
+or reads. It adds no local-header field parser, record-extent or inter-member
+layout validator, workflow, dependency, producer, runtime API, or release
+authority. RFC-0073 records the accepted narrow policy. Complete local,
+graphics, distribution, review, and record-inclusive gates are green; exact-
+head hosted qualification remains pending.
+
+RFC-0072 resolves M89 local-header-offset bounds preflight. PKWARE places local/data
 records before the central-directory sequence, and Python exposes the central
 pointer as the byte offset to a member's file header. Exact CPython 3.12-3.14
 accepts a pointer equal to the conventional central-directory offset and defers
@@ -12,8 +24,8 @@ names, metadata, inventory, staging, or reads. It admits no local-header parser,
 record-extent or inter-member layout validator, workflow, dependency, producer,
 runtime API, or release authority. RFC-0072 records the accepted narrow policy.
 Complete local and exact-head hosted qualification are green, and the exact
-qualified tree is squash-integrated through PR #219. Factual integration and
-closeout records remain pending.
+qualified tree, factual integration record, and closeout are squash-integrated
+through PRs #219, #220, and #221.
 
 RFC-0071 resolves M88 local-header-order preflight. PKWARE permits arbitrary
 ZIP file order generally, while Python documents `ZipFile.infolist()` as archive-entry

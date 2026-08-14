@@ -2159,6 +2159,30 @@ member layout validator, and no archive repair. It is not a general archive
 sandbox and is not a real public release observation. Workflows, producer,
 dependencies, runtime API, and release authority remain unchanged.
 
+## M90 local-header-signature preflight
+
+M90 narrows the fixed sample profile after M89 without parsing local-header
+fields. Supported CPython 3.12-3.14 exposes a central pointer shifted by one
+byte as `[0, 47]`; the first payload remains readable and the malformed member
+defers public `BadZipFile` until open.
+
+After every established policy through M89 completes, release smoke reads four
+bytes at every parser-exposed offset from the owned checksum-admitted snapshot.
+Each must equal the fixed producer's four-byte local-header signature
+`PK\x03\x04`. A mismatch or short read raises stable content-silent error
+`sample bundle local header signature is inconsistent` before decoded names,
+metadata, exact inventory, staging, or member reads. Earlier placement,
+distinctness, ordering, and bounds policies retain precedence. Empty
+inventories satisfy the aggregate check. Owned source, snapshot, and archive
+resources close first.
+
+This signature classifier adds no local-header field parser, central-directory
+record parser, record-extent, adjacency, contiguity, payload-bound, or physical
+non-overlap rule, no inter-member layout validator, and no archive repair. It
+is not a general archive sandbox and is not a real public release observation.
+Workflows, producer, dependencies, runtime API, and release authority remain
+unchanged. RFC-0073 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

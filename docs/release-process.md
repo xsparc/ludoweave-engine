@@ -822,6 +822,20 @@ layout validator, workflow, dependency, runtime API, release authority, or
 producer change. This profile is not a general archive sandbox and is not a
 real public release observation.
 
+M90/RFC-0073 requires the fixed producer's four-byte local-header signature
+`PK\x03\x04` at every parser-exposed offset. The signature classifier runs
+after M89 bounds but before decoded-name policy, metadata, exact inventory,
+staging, or member reads. A mismatch or short read emits stable content-silent
+error `sample bundle local header signature is inconsistent`; all owned
+resources close before control returns.
+
+The fixed producer exposes that signature at all 50 member offsets. M90 adds no
+local-header field parser, central-directory record parser, record-extent,
+adjacency, contiguity, payload-bound, or physical non-overlap rule, no inter-
+member layout validator, workflow, dependency, runtime API, release authority,
+or producer change. This profile is not a general archive sandbox and is not a
+real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

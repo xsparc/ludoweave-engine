@@ -77,3 +77,4 @@ was adopted.
 - [RFC-0070: require distinct local-header offsets](0070-require-distinct-local-header-offsets.md)
 - [RFC-0071: require local-header offset order](0071-require-local-header-offset-order.md)
 - [RFC-0072: bound local-header offsets before the central directory](0072-bound-local-header-offsets.md)
+- [RFC-0073: require local-header signatures](0073-require-local-header-signatures.md)

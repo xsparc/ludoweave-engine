@@ -307,6 +307,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   local-record extent rule, inter-member layout validator, workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M90 requires the four-byte local-header signature at every parser-exposed
+  offset after M89 bounds and before decoded names, metadata, inventory,
+  staging, or reads. The content-silent error is `sample bundle local header
+  signature is inconsistent`. This fixed-producer signature classifier adds
+  no local-header field parser, no inter-member layout validator, workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
