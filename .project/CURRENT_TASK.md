@@ -1,13 +1,13 @@
 # Current Task
 
 - **Task:** M90 - local-header signature preflight
-- **Status:** Exact-head cross-platform qualification and guarded feature
-  squash integration are complete. The exact five-path factual integration
-  record is fully validated and ready for its standalone DCO commit.
-- **Base:** Verified M90 feature squash
-  `b35b2de7725f2a5367cc48e2acd22835220560ca`, tree
-  `4acdecef4265e972e15e4ce838cb91e530101cda`.
-- **Branch:** `release/m90-integration-record`
+- **Status:** Feature and factual integration-record squashes are verified and
+  integrated. The exact three-record M90 closeout is validated and ready for
+  its standalone DCO commit.
+- **Base:** Verified M90 integration-record squash
+  `808dff848f04f9ed7f665ad3a6f36047db4053b4`, tree
+  `e821498016a867fe4811a83ddafbebc6e5b5f641`.
+- **Branch:** `release/m90-closeout`
 
 ## Accepted slice
 
@@ -129,10 +129,31 @@
   feature squash with divergence `0 0`; only `main` plus this necessary record
   branch exist, and open PR, exact-head postmerge run, tag, and release queries
   are empty.
+- Ready integration-record PR #223 exact DCO head
+  `ba9d19a503cb748adcb05ad179d44c1047d2a5ae`, tree
+  `e821498016a867fe4811a83ddafbebc6e5b5f641`, passed bounded run
+  `31808445884` in Linux job `94792942983` in 50 seconds; desktop umbrella
+  `94793181074` skipped with zero steps. Hosted documentation architecture
+  passed 1,110 assertions, and wheel, staging, and release smoke passed.
+- Hosted record artifacts retain the 276,046-byte feature wheel at
+  `2b7b53ea14b1beef2d6ba1409e1c5a25920460d676672a8a41df227ba9a4a8a4`;
+  the 1,375,288-byte record-tree source archive is
+  `f6e9d306808c04f1c80233294578dc3304c4df4c5cb062f826f2279ee9ca2ee2`.
+- Two separated record audits retained exact head/tree/base, one DCO commit,
+  five paths, successful bounded Linux, zero-step desktop, and zero feedback.
+  Guarded squash `808dff848f04f9ed7f665ad3a6f36047db4053b4` has the exact
+  reviewed tree, sole parent feature squash, standalone DCO trailer, and valid
+  GitHub signature verified at `2026-08-14T14:16:01Z`. The record branch is
+  deleted remotely and locally.
+- Closeout proof: exactly three project records change; metadata hygiene passes
+  five assertions, whitespace and Git objects are clean. Fetch/prune leaves
+  branch head, `main`, `origin/main`, and merge base at exact integration
+  squash with divergence `0 0`; only `main` plus this necessary closeout branch
+  exist, and open PR, exact-head postmerge run, tag, and release queries are
+  empty.
 
 ## Remaining acceptance
 
-- Commit, publish, qualify, and squash-integrate the exact five-path factual
-  integration record.
-- Publish and integrate the three-path closeout, clean all M90 branches and
-  generated targets, and select the next bounded milestone.
+- Commit, publish, and squash-integrate the exact three-path closeout.
+- Clean all M90 generated targets, verify sole synchronized `main` and no open
+  PR/run/tag/release state, then select the next bounded milestone.
