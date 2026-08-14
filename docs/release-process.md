@@ -796,6 +796,18 @@ bounds rule, inter-member layout validator, workflow, dependency, runtime API,
 release authority, or producer change. It is not a general archive sandbox and
 is not a real public release observation.
 
+M88/RFC-0071 requires strictly increasing local-header offsets in parser-
+exposed archive order. The check runs after M87 distinctness but before decoded-
+name policy, metadata, exact inventory, staging, or member reads. A non-
+increasing pair emits stable content-silent error `sample bundle local header
+offsets are out of order`; all owned resources close before control returns.
+
+The fixed producer exposes 50 members in strict offset order. M88 adds no local-
+header parser, central-directory record parser, offset bounds/contiguity rule,
+inter-member layout validator, workflow, dependency, runtime API, release
+authority, or producer change. This profile is not a general archive sandbox
+and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

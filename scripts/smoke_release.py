@@ -15,6 +15,7 @@ import zipfile
 import zlib
 from collections.abc import Iterable, Sequence
 from contextlib import ExitStack
+from itertools import pairwise
 from pathlib import Path, PurePosixPath
 from typing import IO, BinaryIO, cast
 
@@ -521,6 +522,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_archive_placement(snapshot=snapshot_stream)
         _validate_sample_first_local_header(infos=infos)
         _validate_sample_local_header_offsets(infos=infos)
+        _validate_sample_local_header_order(infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -817,6 +819,14 @@ def _validate_sample_local_header_offsets(*, infos: tuple[zipfile.ZipInfo, ...])
 
     if len({info.header_offset for info in infos}) != len(infos):
         raise RuntimeError("sample bundle local header offsets are inconsistent")
+
+
+def _validate_sample_local_header_order(*, infos: tuple[zipfile.ZipInfo, ...]) -> None:
+    """Require parser-exposed members to follow physical local-header order."""
+
+    offsets = tuple(info.header_offset for info in infos)
+    if any(left >= right for left, right in pairwise(offsets)):
+        raise RuntimeError("sample bundle local header offsets are out of order")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

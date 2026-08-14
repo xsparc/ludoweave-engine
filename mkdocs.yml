@@ -111,6 +111,7 @@ nav:
       - RFC-0068 - Require exact central-directory placement: rfcs/0068-require-exact-central-directory-placement.md
       - RFC-0069 - Require first local-header offset at zero: rfcs/0069-require-first-local-header-at-zero.md
       - RFC-0070 - Require distinct local-header offsets: rfcs/0070-require-distinct-local-header-offsets.md
+      - RFC-0071 - Require local-header offset order: rfcs/0071-require-local-header-offset-order.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
