@@ -1,6 +1,6 @@
 # Project State
 
-## M87 distinct local-header-offset preflight - feature integrated
+## M87 distinct local-header-offset preflight - closeout active
 
 - Base: exact verified M86 closeout squash
   `ba9464e59678766dd23953c1ea71acf010103903`, tree
@@ -104,6 +104,26 @@
   installed-wheel, ten-artifact staging, and complete release smoke pass. The
   subsequent factual project-record lines differ only in the source archive;
   exact record-tree artifact evidence remains a hosted gate.
+- Hosted integration record: PR #214 exact DCO head
+  `6a99381dbe9ce88c4912f0976d4503a86ab4493d`, tree
+  `0b7b6f03d4ad7ce032d7fdb2b9aa43397bd47e2f`, passed run `31795436154`
+  in one 45-second Linux allocation; the desktop umbrella skipped with zero
+  steps. Documentation architecture passed 1,056 assertions. Reproducibility
+  reported a 275,661-byte wheel at
+  `a0ef617c4ce29f59130155b143c457ceda740ba7950a2f1e01b4893f35ed2263`
+  and 1,354,599-byte source archive at
+  `36b3ebff00339a36214830ac243ff0f64f34ec77ae71bdfffb57acdcf755821d`;
+  wheel, staging, and release smoke passed.
+- Integration-record squash: two audits were clean. Squash
+  `857633ad70e21c7c590dafd5c274263ac3184d37` has sole parent
+  `dff483e120d607105120d8c004838e609540a14d`, exact tree
+  `0b7b6f03d4ad7ce032d7fdb2b9aa43397bd47e2f`, standalone DCO, and valid
+  GitHub signature at `2026-08-14T11:17:23Z`. No postmerge run was allocated;
+  only synchronized `main` remained before the closeout branch.
+- Closeout local gate: exact scope is the three project records. Metadata
+  hygiene passes five assertions; whitespace and identity/credential scans are
+  clean. No public, runtime, test, workflow, build, dependency, release, or
+  generated surface is present.
 
 ## M86 first local-header placement preflight - closed
 

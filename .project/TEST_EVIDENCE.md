@@ -56,6 +56,22 @@ M87 starts from exact verified M86 closeout squash
 | Scope, security, identity, and integrity audit | 0 | CI, release workflow, private release verifier, sample producer, project metadata, and lock are unchanged from the integrated feature tree. Added-content identity and credential scans were empty; whitespace passed. Full Git-object checking reported only unreachable squash-era objects and no corruption. |
 | Record-inclusive static, architecture, and docs gate | 0 | All 330 files remained format clean; Ruff and strict Pyright reported zero findings; all 1,055 architecture assertions passed with one established Windows capability skip in 8.87 seconds; strict docs built in 1.44 seconds with only the known upstream Material notice; whitespace passed. |
 
+## M87 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Bounded hosted integration-record gate | 0 | Ready PR #214 exact DCO head `6a99381dbe9ce88c4912f0976d4503a86ab4493d`, tree `0b7b6f03d4ad7ce032d7fdb2b9aa43397bd47e2f`, changed exactly four project records plus roadmap and passed run `31795436154` in one 45-second Linux job `94751381714`; desktop umbrella job `94751552591` skipped with zero steps. |
+| Hosted docs and artifacts | 0 | All 330 files were format/Ruff clean; strict docs and all 1,056 documentation architecture assertions passed. Exact-head builds reproduced a 275,661-byte wheel SHA-256 `a0ef617c4ce29f59130155b143c457ceda740ba7950a2f1e01b4893f35ed2263` and 1,354,599-byte source archive SHA-256 `36b3ebff00339a36214830ac243ff0f64f34ec77ae71bdfffb57acdcf755821d`. Isolated-wheel smoke, ten-artifact staging, and complete release smoke passed. |
+| Separated integration-record audits | 0 | Both audits retained exact feature-squash base `dff483e120d607105120d8c004838e609540a14d`, exact head/tree, one standalone DCO commit, five intended paths, successful Linux check, zero-step skipped desktop umbrella, `MERGEABLE`/`CLEAN`, and zero feedback. An intervening metadata-hygiene invocation was sandbox-denied before pytest; its approved correction passed 5 tests in 0.34 seconds. |
+| Guarded integration-record squash | 0 | PR #214 squash `857633ad70e21c7c590dafd5c274263ac3184d37` has sole parent `dff483e120d607105120d8c004838e609540a14d`; tree `0b7b6f03d4ad7ce032d7fdb2b9aa43397bd47e2f` exactly equals the reviewed head; its message has a standalone DCO trailer and GitHub reports `verified=true`, `reason=valid`, at `2026-08-14T11:17:23Z`. No postmerge `main` run was allocated. The branch was removed remotely and locally; synchronized `main` was the sole branch before closeout. |
+
+## M87 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or gate | Exit | Factual result |
+| --- | ---: | --- |
+| Exact closeout scope and history | 0 | Synchronized local and remote `main`, branch head, and merge base resolved to integration-record squash `857633ad70e21c7c590dafd5c274263ac3184d37`, with symmetric difference `0 0`. Closeout changes exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it adds no public, runtime, test, workflow, build, dependency, release, credential, identity, native, WASM, bytecode, or generated-artifact surface. |
+| Exact closeout validation | 0 | Repository metadata hygiene passed 5 assertions in 0.35 seconds. Whitespace and added-content identity/credential scans were clean. |
+
 ## M86 direction and implementation evidence - 2026-08-14, Windows
 
 M86 starts from exact verified M85 closeout squash

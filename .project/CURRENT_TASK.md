@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M87 - distinct local-header-offset preflight
-- **Status:** Feature and hosted correction are verified and squash-integrated;
-  documentation-only integration record is locally qualified for publication.
+- **Status:** Feature and integration records are verified and squash-
+  integrated; exact three-record closeout is locally qualified for publication.
 - **Base:** Verified M86 closeout squash
   `ba9464e59678766dd23953c1ea71acf010103903`, tree
   `eb75ce1a1ebc675dd5c9eb34fde5ffd8619587e1`.
-- **Branch:** `release/m87-integration-record`
+- **Branch:** `release/m87-closeout`
 
 ## Accepted slice
 
@@ -133,10 +133,30 @@
   installed-wheel, ten-artifact staging, and complete release smoke pass. The
   subsequent factual project-record lines differ only in the source archive;
   exact record-tree artifact evidence remains a hosted gate.
+- Integration-record PR #214 exact DCO head
+  `6a99381dbe9ce88c4912f0976d4503a86ab4493d`, tree
+  `0b7b6f03d4ad7ce032d7fdb2b9aa43397bd47e2f`, passed run `31795436154`
+  in one 45-second Linux allocation; the desktop umbrella skipped with zero
+  steps. Hosted documentation architecture passed 1,056 assertions. Exact-head
+  byte reproducibility, isolated-wheel, ten-artifact staging, and complete
+  release smoke passed; the 275,661-byte wheel hash was
+  `a0ef617c4ce29f59130155b143c457ceda740ba7950a2f1e01b4893f35ed2263`
+  and the 1,354,599-byte source archive hash was
+  `36b3ebff00339a36214830ac243ff0f64f34ec77ae71bdfffb57acdcf755821d`.
+- Two separated integration-record audits retained exact scope, base/head,
+  DCO, successful/skipped checks, `MERGEABLE/CLEAN`, and zero feedback. Squash
+  `857633ad70e21c7c590dafd5c274263ac3184d37` has the exact record tree,
+  sole feature-squash parent, standalone DCO, and valid GitHub signature at
+  `2026-08-14T11:17:23Z`. No postmerge run was allocated; only synchronized
+  `main` remained before this closeout branch.
+- Closeout changes exactly the three project records. Metadata hygiene passes
+  five assertions; whitespace and identity/credential scans are clean. No
+  public, runtime, test, workflow, build, dependency, release, or generated
+  surface is present.
 
 ## Remaining gates
 
-1. Validate and publish the documentation-only integration record, audit its
-   bounded hosted gate, and squash-integrate it.
-2. Publish the exact closeout records, remove all M87 branches and generated
-   targets, and return to clean synchronized `main` before selecting M88.
+1. Validate, publish, audit, and squash-integrate the exact three-record
+   closeout without allocating CI.
+2. Remove all M87 branches and generated targets and return to clean
+   synchronized `main` before selecting M88.
