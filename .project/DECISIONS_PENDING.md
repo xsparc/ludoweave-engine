@@ -2,6 +2,18 @@
 
 No architecture decision is currently blocked.
 
+M89 local-header-offset bounds preflight is active. PKWARE places local/data
+records before the central-directory sequence, and Python exposes the central
+pointer as the byte offset to a member's file header. Exact CPython 3.12-3.14
+accepts a pointer equal to the conventional central-directory offset and defers
+`BadZipFile` until member open. The selected narrow fixed-profile rule requires
+every public offset to be strictly before that boundary after M88 and before
+names, metadata, inventory, staging, or reads. It admits no local-header parser,
+record-extent or inter-member layout validator, workflow, dependency, producer,
+runtime API, or release authority. RFC-0072 records the accepted narrow policy;
+complete local qualification is green and exact-head hosted qualification
+remains pending.
+
 RFC-0071 resolves M88 local-header-order preflight. PKWARE permits arbitrary
 ZIP file order generally, while Python documents `ZipFile.infolist()` as archive-entry
 order and the fixed LudoWeave producer emits physical local-header order.

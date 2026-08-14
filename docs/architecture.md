@@ -2136,6 +2136,29 @@ It is not a general archive sandbox and is not a real public release
 observation. Workflows, producer, dependencies, runtime API, and release
 authority remain unchanged.
 
+## M89 local-header-offset bounds preflight
+
+M89 narrows the fixed sample profile after M88 without parsing local headers.
+Supported CPython 3.12-3.14 exposes a central pointer changed only to the
+conventional central-directory offset as `[0, 94]`; the first payload remains
+readable and the malformed member defers public `BadZipFile` until open.
+
+After every established policy through M88 completes, release smoke requires
+every parser-exposed local-header offset to remain strictly before the
+conventional central directory, then proceeds to M77 name policy. An offset at
+or after that boundary raises stable content-silent error `sample bundle local
+header offsets are out of bounds` before metadata, exact inventory, staging, or
+member reads. All earlier placement, distinctness, and ordering rules retain
+precedence. Empty inventories satisfy the aggregate check. Owned source,
+snapshot, and archive resources close first.
+
+The fixed producer exposes all 50 local-header offsets below that boundary.
+RFC-0072 adds no local-header parser, central-directory record parser, local-
+record extent, adjacency, contiguity, or physical non-overlap rule, no inter-
+member layout validator, and no archive repair. It is not a general archive
+sandbox and is not a real public release observation. Workflows, producer,
+dependencies, runtime API, and release authority remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

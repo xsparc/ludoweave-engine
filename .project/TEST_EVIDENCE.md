@@ -2,6 +2,32 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M89 direction and red-regression evidence - 2026-08-14, Windows
+
+M89 starts from exact verified M88 closeout squash
+`03f3723bf7365701c78a0fde072392b9f51da66b`, tree
+`141fe396a5313eccc1c706b2af114a021537ac90`.
+
+| Command or gate | Exit | Factual result |
+| --- | ---: | --- |
+| M88 postmerge history/scope audit | 0 | Local `main`, `origin/main`, and merge base resolved to exact M88 closeout squash with symmetric difference `0 0`. GitHub and pruned local refs contained only `main`; open PR, release, tag, postmerge workflow, identity-control-directory, and M88 generated-target queries were empty; full Git-object checking found no corruption. |
+| Primary-source direction scan | Advisory | PKWARE APPNOTE 6.3.10 sections 4.3.2, 4.3.6, and 4.4.24 place local-header/data records before the central-directory sequence and assign each central record a relative local-header offset. Python documents `ZipInfo.header_offset` as the byte offset to the file header. M89 narrows only the fixed LudoWeave sample-producer profile. |
+| `uv run --no-project --python 3.12 python .tmp\m89_offset_bounds_probe.py` | 0 | CPython 3.12.13 exposed directory offset `94`, member offsets `[0, 94]`, readable first payload `first`, and deferred public `BadZipFile` on the malformed second member. |
+| `uv run --no-project --python 3.13 python .tmp\m89_offset_bounds_probe.py` | 0 | CPython 3.13.13 produced the same exact observation. |
+| `uv run --no-project --python 3.14 python .tmp\m89_offset_bounds_probe.py` | 0 | CPython 3.14.5 produced the same exact observation. |
+| Test-contract static gate | 0 | The new 18-case regression file is format/Ruff clean and strict Pyright reports zero findings. |
+| `uv run --frozen --python 3.12 pytest -q --tb=no tests/architecture/test_m89_local_header_offset_bounds_preflight.py --basetemp .tmp/m89-red-tests` | 1 | Against unchanged M88 runtime/docs, 9 standard-library behavior, inherited-precedence, empty-archive, producer, and protected-surface controls passed while 9 missing policy, cleanup, helper/source, and documentation contracts failed in 0.35 seconds. No pass is claimed. |
+| Runtime and documentation checkpoint | 0 | All 35 combined M88-M89 behavior, precedence, cleanup, source-order, and documentation assertions passed on CPython 3.12 in 0.41 seconds. The two affected Python files were format/Ruff clean, strict Pyright reported zero findings, and strict docs built in 1.38 seconds with only the known upstream Material notice. |
+| Supported-Python focused proof | 0 | All 18 M89 assertions passed on CPython 3.12.13 in 0.30 seconds, CPython 3.13.13 in 0.72 seconds, and CPython 3.14.5 in 0.72 seconds. Runs were serial so environment replacement could not overlap. |
+| Lock, environment, static, and docs gate | 0 | The first sandboxed `uv lock --check` could not open the external uv cache and exited 1 without changing the repository; its approved cache-access rerun resolved the unchanged 46-package lock in 1 ms. The locked 45-package CPython 3.12 graphics environment synced. All 332 Python files were format clean; Ruff passed; strict Pyright reported zero findings; strict docs built in 1.61 seconds with only the known upstream Material notice. |
+| Architecture gate | 0 | All 1,090 architecture assertions passed with one established Windows capability skip in 10.30 seconds. |
+| Complete supported-Python suites | 0 | CPython 3.12.13 passed 2,620 non-wgpu tests with 15 established skips in 140.36 seconds. CPython 3.13.13 passed 2,620 tests with 16 skips in 131.40 seconds. CPython 3.14.5 passed 2,620 tests with 16 skips in 134.16 seconds. The locked 45-package CPython 3.12 graphics environment was restored afterward. |
+| Real-wgpu, profiles, and vertical slices | 0 | All ten real-wgpu tests passed in 8.30 seconds. One-repeat base and graphics profiles validated with two and three workloads. Clockwork Arena reproduced state `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`, capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`, three draws, and 16 sprites. Agent World Builder reproduced state `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`, capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`, replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`, six query matches, five replay batches, and passing registered tests. |
+| Reproducible distribution and release gate | 0 | Two fresh builds matched exactly: the 275,910-byte pure wheel SHA-256 is `eca489c14cee629bf5f3403a78b3efc6670ffea56113b09981e6a34176bef0d4`, and the 1,364,259-byte source archive SHA-256 is `02e7801303a3465188750eedc95e2e957bb5d469b464a8da6b0a472c74b0d190`. Isolated-wheel smoke passed, deterministic staging produced ten artifacts, and complete release smoke passed. Subsequent factual project-record lines affect only the source archive; exact record-tree artifacts remain a hosted gate. |
+| Pre-publication findings-first and integrity audit | 0 | Review found no runtime, test, documentation, or scope defect. Exact scope is 16 intended paths. CI, release workflow, sample producer, project metadata, and lock retain protected SHA-256 hashes. Repository metadata hygiene passed five assertions; added-content credential scanning found zero matches; the 94-entry wheel and 544-entry source archive contain no native, WASM, bytecode, or retired control metadata; whitespace passed; full Git-object checking found only expected unreachable squash-era objects and no corruption. |
+| Record-inclusive source, architecture, and docs gate | 0 | All 332 Python files were format clean; Ruff and strict Pyright reported zero findings; all 1,090 architecture assertions passed with one established Windows capability skip in 8.17 seconds; strict docs built in 1.61 seconds with only the known upstream Material notice; whitespace passed. |
+| Precommit remote history and branch audit | 0 | After fetch/prune, branch head, `main`, `origin/main`, and merge base all resolved to exact M88 closeout `03f3723bf7365701c78a0fde072392b9f51da66b`, with symmetric difference `0 0`. Only `main` and the necessary neutral M89 feature branch existed; GitHub authentication was valid and open-PR, tag, and release queries were empty. |
+
 ## M88 direction and red-regression evidence - 2026-08-14, Windows
 
 M88 starts from exact verified M87 closeout squash

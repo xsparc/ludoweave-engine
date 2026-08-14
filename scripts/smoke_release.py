@@ -523,6 +523,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_first_local_header(infos=infos)
         _validate_sample_local_header_offsets(infos=infos)
         _validate_sample_local_header_order(infos=infos)
+        _validate_sample_local_header_bounds(snapshot=snapshot_stream, infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -827,6 +828,19 @@ def _validate_sample_local_header_order(*, infos: tuple[zipfile.ZipInfo, ...]) -
     offsets = tuple(info.header_offset for info in infos)
     if any(left >= right for left, right in pairwise(offsets)):
         raise RuntimeError("sample bundle local header offsets are out of order")
+
+
+def _validate_sample_local_header_bounds(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require parser-exposed local headers to precede the central directory."""
+
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    if any(info.header_offset >= directory_offset for info in infos):
+        raise RuntimeError("sample bundle local header offsets are out of bounds")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:
