@@ -1,6 +1,6 @@
 # Project State
 
-## M90 local-header signature preflight - feature integrated, records active
+## M90 local-header signature preflight - closeout active
 
 - Base: exact verified M89 closeout squash
   `92b3e2c351fe92ea0789b46636e0d0a08d29281a`, tree
@@ -107,6 +107,30 @@
   `main`, `origin/main`, and merge base at exact feature squash with divergence
   `0 0`; only `main` and the record branch exist, with no open PR, exact-head
   postmerge run, tag, or release.
+- Hosted integration record: ready PR #223 exact DCO head
+  `ba9d19a503cb748adcb05ad179d44c1047d2a5ae`, tree
+  `e821498016a867fe4811a83ddafbebc6e5b5f641`, passed run
+  `31808445884` in one 50-second Linux job `94792942983`; desktop umbrella
+  `94793181074` skipped with zero steps. Hosted documentation architecture
+  passed 1,110 assertions; isolated-wheel, ten-artifact staging, and complete
+  release smoke passed.
+- Hosted record artifacts: the 276,046-byte wheel remains
+  `2b7b53ea14b1beef2d6ba1409e1c5a25920460d676672a8a41df227ba9a4a8a4`;
+  the 1,375,288-byte source archive is
+  `f6e9d306808c04f1c80233294578dc3304c4df4c5cb062f826f2279ee9ca2ee2`.
+- Integration readiness/squash: two separated audits retained exact
+  head/tree/base, one DCO commit, five paths, bounded Linux success, zero-step
+  desktop, and zero feedback. PR #223 squash
+  `808dff848f04f9ed7f665ad3a6f36047db4053b4` has exact reviewed tree,
+  sole parent feature squash, standalone DCO trailer, and valid GitHub
+  signature at `2026-08-14T14:16:01Z`. The record branch is deleted remotely
+  and locally.
+- Closeout local proof: exactly three project records change; repository
+  metadata hygiene passes five assertions, whitespace passes, and Git object
+  checking reports no corruption. Fetch/prune leaves branch head, `main`,
+  `origin/main`, and merge base at exact integration-record squash with
+  divergence `0 0`; only `main` and the closeout branch exist, with no open PR,
+  exact-head postmerge run, tag, or release.
 
 ## M89 local-header-offset bounds preflight - complete
 
