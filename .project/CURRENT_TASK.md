@@ -1,13 +1,12 @@
 # Current Task
 
 - **Task:** M86 - first local-header placement preflight
-- **Status:** Runtime, documentation, findings-first review, and pre-record
-  local qualification are complete; exact recorded-tree qualification and
-  publication are active.
+- **Status:** Feature exact-head qualified and squash-integrated; bounded
+  integration records are active.
 - **Base:** Verified M85 closeout squash
   `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree
   `2425b4bbe9fbdb302797fdc4618be9c34662f196`.
-- **Branch:** `release/m86-first-local-header-placement`
+- **Branch:** `release/m86-integration-record`
 
 ## Accepted slice
 
@@ -59,13 +58,27 @@
 - Findings-first review found no production defect and added an end-to-end
   empty-archive regression for the explicitly preserved exact-inventory error.
   The strengthened 17-case M86 contract passes on CPython 3.12-3.14.
+- Ready PR #210 exact DCO head
+  `9ddf5a8852dfc127819eb4809d1aae142ed58625`, tree
+  `99ce8b240ef1403f0a2475bb844cfc045a0139c6`, passed exact-head run
+  `31789378596` in exactly three allocations. Linux passed in 7m28s, macOS in
+  1m57s, and Windows in 4m24s. Every hosted suite reported 2,584 passes, with
+  one capability skip outside Linux baseline; each OS passed 10 real-wgpu
+  tests, profiles, and both sample applications.
+- Two separated audits retained the exact base/head, `MERGEABLE`/`CLEAN`,
+  three successful checks, matching DCO identity, and zero feedback. Guarded
+  squash `1f8368c915c9f414ec51ea8af835241d7c3efea5` has the exact qualified
+  tree, sole M85-closeout parent, parsed DCO, and valid GitHub verification.
+  No postmerge run was allocated; the feature branch is deleted locally and
+  remotely.
+- The integration record changes exactly the three project records plus
+  roadmap. The unchanged lock, 329-file format/Ruff checks, strict Pyright,
+  all 1,039 architecture assertions, strict docs, whitespace, Git-object
+  checking, reproducible distributions, isolated-wheel smoke, deterministic
+  staging, and complete release smoke pass.
 
 ## Remaining gates
 
-1. Pass exact recorded-tree static, architecture, lineage, reproducible-build,
-   installed-wheel, release-smoke, archive, scope, and hygiene gates.
-2. Publish a ready feature PR, require exact-head hosted qualification and two
-   separated review audits, then squash-integrate only the qualified tree.
-3. Publish and integrate bounded factual records, close out M86, remove its
+1. Qualify, publish, and integrate bounded factual records, close out M86, remove its
    branches/generated targets, and return to clean synchronized `main` before
    selecting M87.
