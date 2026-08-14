@@ -1,6 +1,6 @@
 # Project State
 
-## M88 local-header-order preflight - implementation active
+## M88 local-header-order preflight - feature integrated
 
 - Base: exact verified M87 closeout squash
   `aba849aceec15342141a29fc105b85720a5e48ba`, tree
@@ -57,6 +57,30 @@
   merge base remain exact M87 closeout `aba849aceec1...` with symmetric
   difference `0 0`. Only `main` and the necessary neutral M88 feature branch
   exist; GitHub authentication is valid and no open PR competes with it.
+- Exact-head hosted qualification: ready PR #216 DCO head
+  `81b9d469623d5b656db747df6add7ed7dc7e5de6`, tree
+  `8cc30da90115fab18798e0001e21797e5b60d6ce`, passed run `31797986973` in
+  exactly three Linux-first allocations: Linux 7m22s, macOS 2m29s, and Windows
+  4m25s. Linux passed 2,617 tests per supported interpreter; macOS/Windows 3.14
+  passed 2,617 with one capability skip. Every OS passed ten real-wgpu tests,
+  profiles, and both vertical slices.
+- Hosted artifacts: exact-head builds reproduced a 275,781-byte pure wheel
+  SHA-256 `b68262c68a20aec3a9f8859648ff64a345d414dc2f8c5b55366fecdc4d4069a2`
+  and 1,359,270-byte source archive SHA-256
+  `79dd47608abd1c528118c3c0a7c96f06617081ffe4f9fcd1d6ad249f08061e17`;
+  installed-wheel smoke, ten-artifact staging, and release smoke passed.
+- Integration: two separated audits were clean with zero feedback. Squash
+  `b49d27fc15453be24021873a45bbe46f491a26bb` has sole parent exact M87
+  closeout, exact qualified tree, standalone DCO trailer, and valid GitHub
+  signature at `2026-08-14T12:06:55Z`. The feature branch is deleted remotely
+  and locally; integration-record publication is active.
+- Integration-record local gate: exactly four project records plus roadmap
+  differ from the verified feature squash. All 331 files are format/Ruff clean,
+  strict Pyright reports zero findings, 1,072 architecture assertions pass with
+  one established skip, and strict docs/whitespace pass. Two pre-record builds
+  reproduce the 275,794-byte wheel and 1,360,308-byte source archive SHA-256
+  `73aa02c5ee1f720c28ecbd6f9b611eb01930a0361b98397e98f2ba5ff3e7507d`;
+  installed-wheel, staging, and release smoke pass.
 
 ## M87 distinct local-header-offset preflight - closeout active
 

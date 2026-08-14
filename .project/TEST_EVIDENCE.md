@@ -28,6 +28,24 @@ M88 starts from exact verified M87 closeout squash
 | Record-inclusive source, architecture, and docs gate | 0 | All 331 files were format clean; Ruff and strict Pyright reported zero findings; all 1,072 architecture assertions passed with one established Windows capability skip in 7.70 seconds; strict docs built in 1.50 seconds with only the known upstream Material notice; whitespace passed. |
 | Precommit remote history and branch audit | 0 | After fetch/prune, local head, `main`, `origin/main`, and merge base all resolved to exact M87 closeout `aba849aceec15342141a29fc105b85720a5e48ba`, with symmetric difference `0 0`. Only `main` and the necessary neutral M88 feature branch existed; GitHub authentication was valid and the open-PR query was empty. The first restricted-network authentication/API invocation failed with a socket-permission error and no remote mutation; its approved rerun succeeded. |
 
+## M88 hosted validation and feature integration - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Exact-head hosted qualification | 0 | Ready PR #216 exact DCO head `81b9d469623d5b656db747df6add7ed7dc7e5de6`, tree `8cc30da90115fab18798e0001e21797e5b60d6ce`, passed run `31797986973`, classified substantive with 16 paths, in exactly three Linux-first allocations. Linux job `94759207212` passed in 7m22s; macOS `94760751342` in 2m29s; Windows `94760751227` in 4m25s. |
+| Hosted test and smoke evidence | 0 | Linux CPython 3.12 passed 2,617 tests. Linux CPython 3.13/3.14 and macOS/Windows CPython 3.14 each passed 2,617 with one capability skip. Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena, and Agent World Builder; Linux also passed the base profile. All 331 files were format clean; Ruff, strict Pyright, strict docs, isolated-wheel smoke, deterministic ten-artifact staging, and complete release smoke passed. |
+| Hosted distribution evidence | 0 | Two exact-head builds reproduced a pure 275,781-byte wheel SHA-256 `b68262c68a20aec3a9f8859648ff64a345d414dc2f8c5b55366fecdc4d4069a2` and 1,359,270-byte source archive SHA-256 `79dd47608abd1c528118c3c0a7c96f06617081ffe4f9fcd1d6ad249f08061e17`. |
+| Separated merge-readiness audits | 0 | Both audits retained exact M87 closeout base `aba849aceec15342141a29fc105b85720a5e48ba`, exact head/tree, synchronized local/remote refs, 16 intended paths, one standalone DCO commit, three successful checks, `MERGEABLE`/`CLEAN`, and zero PR comments, review comments, reviews, or threads. The intervening protected-scope/whitespace audit was clean and a fresh focused M88 separator passed all 17 assertions in 0.33 seconds. |
+| Guarded squash integration | 0 | PR #216 squash `b49d27fc15453be24021873a45bbe46f491a26bb` has sole parent `aba849aceec15342141a29fc105b85720a5e48ba`; tree `8cc30da90115fab18798e0001e21797e5b60d6ce` exactly equals the qualified head; its message has a standalone DCO trailer and GitHub reports `verified=true`, `reason=valid`, at `2026-08-14T12:06:55Z`. The feature branch was removed remotely and locally. |
+
+## M88 integration-record local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or gate | Exit | Factual result |
+| --- | ---: | --- |
+| Exact scope and history | 0 | Synchronized local and remote `main`, branch head, and merge base resolved to exact feature squash `b49d27fc15453be24021873a45bbe46f491a26bb`, with symmetric difference `0 0`. The record changes exactly `.project/CURRENT_TASK.md`, `.project/DECISIONS_PENDING.md`, `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`. The feature branch is deleted locally/remotely, no open PR remains, and no postmerge main run was allocated. |
+| Static, architecture, and docs gate | 0 | All 331 files were format clean; Ruff and strict Pyright reported zero findings; all 1,072 architecture assertions passed with one established Windows capability skip in 7.67 seconds; strict docs built in 1.47 seconds with only the known upstream Material notice; whitespace passed. |
+| Pre-record reproducible distribution and release gate | 0 | Two fresh builds matched exactly: the 275,794-byte pure wheel SHA-256 is `982da69788bbb475c58e73f6b4b09f1f424ebd064693a5923cfee07613152f9c`, and the 1,360,308-byte source archive SHA-256 is `73aa02c5ee1f720c28ecbd6f9b611eb01930a0361b98397e98f2ba5ff3e7507d`. Isolated-wheel smoke passed, deterministic staging produced ten artifacts, and complete release smoke passed. Subsequent factual project-record lines affect only the source archive; exact record-tree artifacts remain a hosted gate. |
+
 ## M87 direction and red-regression evidence - 2026-08-14, Windows
 
 M87 starts from exact verified M86 closeout squash

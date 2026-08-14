@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M88 - local-header-order preflight
-- **Status:** Runtime, regression contract, RFC, and aligned public records are
-  implemented; supported-version and complete qualification are active.
-- **Base:** Verified M87 closeout squash
-  `aba849aceec15342141a29fc105b85720a5e48ba`, tree
-  `d61bce3093e6a497bc40ff57f34dbca957f9a4de`.
-- **Branch:** `release/m88-local-header-order`
+- **Status:** Feature is exact-head hosted-validated, independently audited,
+  and squash-integrated; factual integration records are active.
+- **Base:** Verified M88 feature squash
+  `b49d27fc15453be24021873a45bbe46f491a26bb`, tree
+  `8cc30da90115fab18798e0001e21797e5b60d6ce`.
+- **Branch:** `release/m88-integration-record`
 
 ## Accepted slice
 
@@ -86,11 +86,34 @@
   exact M87 closeout `aba849aceec15342141a29fc105b85720a5e48ba` with symmetric
   difference `0 0`. Only `main` and the necessary neutral M88 branch exist,
   GitHub authentication is valid, and no open PR competes with publication.
+- Ready PR #216 exact DCO head
+  `81b9d469623d5b656db747df6add7ed7dc7e5de6`, tree
+  `8cc30da90115fab18798e0001e21797e5b60d6ce`, passed exact three-allocation
+  hosted run `31797986973`: Linux job `94759207212` in 7m22s, macOS job
+  `94760751342` in 2m29s, and Windows job `94760751227` in 4m25s.
+- Hosted Linux passed 2,617 tests on each supported interpreter; 3.13 and 3.14
+  each had one capability skip. macOS and Windows 3.14 each passed 2,617 tests
+  with one skip. Every OS passed ten real-wgpu tests, profiles, and both
+  vertical slices; exact-head wheel/release smoke passed.
+- Hosted builds reproduced a 275,781-byte pure wheel SHA-256
+  `b68262c68a20aec3a9f8859648ff64a345d414dc2f8c5b55366fecdc4d4069a2`
+  and 1,359,270-byte source archive SHA-256
+  `79dd47608abd1c528118c3c0a7c96f06617081ffe4f9fcd1d6ad249f08061e17`.
+- Two separated readiness audits retained exact head/tree/base, one standalone
+  DCO commit, 16 intended paths, three successful checks, `MERGEABLE`/`CLEAN`,
+  and zero comments, reviews, or review threads.
+- Guarded squash `b49d27fc15453be24021873a45bbe46f491a26bb` has sole
+  parent exact M87 closeout, exact qualified tree, standalone DCO trailer, and
+  valid GitHub signature at `2026-08-14T12:06:55Z`. The feature branch is
+  deleted remotely and locally.
+- The exact five-path integration record passes all 331-file static checks,
+  1,072 architecture assertions with one established skip, strict docs, and
+  whitespace. Two record-tree builds reproduce the unchanged 275,794-byte
+  wheel and a 1,360,308-byte source archive SHA-256
+  `73aa02c5ee1f720c28ecbd6f9b611eb01930a0361b98397e98f2ba5ff3e7507d`;
+  installed-wheel, staging, and release smoke pass.
 
 ## Remaining acceptance
 
-- Publish one ready feature PR, qualify its exact head through the existing
-  quota-conscious hosted topology, perform two separated clean readiness
-  audits, and squash-integrate only the exact qualified tree.
 - Publish and integrate factual project-record and closeout PRs, clean all M88
   branches/generated targets, and select the next bounded milestone.
