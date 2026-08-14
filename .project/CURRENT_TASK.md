@@ -1,12 +1,12 @@
 # Current Task
 
 - **Task:** M86 - first local-header placement preflight
-- **Status:** Feature exact-head qualified and squash-integrated; bounded
-  integration records are active.
+- **Status:** Feature and integration records are verified and integrated;
+  exact three-record closeout is locally qualified for publication.
 - **Base:** Verified M85 closeout squash
   `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree
   `2425b4bbe9fbdb302797fdc4618be9c34662f196`.
-- **Branch:** `release/m86-integration-record`
+- **Branch:** `release/m86-closeout`
 
 ## Accepted slice
 
@@ -76,9 +76,22 @@
   all 1,039 architecture assertions, strict docs, whitespace, Git-object
   checking, reproducible distributions, isolated-wheel smoke, deterministic
   staging, and complete release smoke pass.
+- Ready PR #211 exact DCO head
+  `53cef7f8d37b27e85afe06aecc7fcb5c297b47ff`, tree
+  `0304c87018f6e2a31d2037c0b859a63fec0f9e76`, classified four paths as
+  documentation and passed run `31790820557` in one 48-second Linux
+  allocation; the desktop umbrella skipped with zero steps. Two audits were
+  clean. Guarded squash `cfc71a3e010e79652d450e1284a37c19e74df4f2`
+  has the exact record tree, sole feature-squash parent, DCO, and valid GitHub
+  verification. No postmerge run was allocated and the integration branch is
+  deleted locally/remotely.
+- The closeout changes exactly `.project/CURRENT_TASK.md`,
+  `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it adds no
+  workflow, public, runtime, test, build, dependency, release, credential,
+  identity, native, WASM, bytecode, or generated-artifact surface.
 
 ## Remaining gates
 
-1. Qualify, publish, and integrate bounded factual records, close out M86, remove its
-   branches/generated targets, and return to clean synchronized `main` before
-   selecting M87.
+1. Qualify, publish, and integrate the exact closeout records, remove all M86
+   branches and generated targets, and return to clean synchronized `main`
+   before selecting M87.
