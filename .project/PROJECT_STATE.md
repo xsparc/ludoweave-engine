@@ -1,5 +1,63 @@
 # Project State
 
+## M89 local-header-offset bounds preflight - qualification active
+
+- Base: exact verified M88 closeout squash
+  `03f3723bf7365701c78a0fde072392b9f51da66b`, tree
+  `141fe396a5313eccc1c706b2af114a021537ac90`. Synchronized `main` was the
+  only local/remote branch; no open PR, tag, release, postmerge run, identity-
+  control directory, or M88 generated target remained before M89 selection.
+- Gap: changing only one central pointer makes public `ZipInfo.header_offset`
+  equal the conventional central-directory offset. Exact CPython 3.12.13,
+  3.13.13, and 3.14.5 expose offsets `[0, 94]`, read the first payload, and
+  defer `BadZipFile` until the malformed second member is opened.
+- Decision: after every policy through M88, private complete release smoke
+  requires every parser-exposed local-header offset to be strictly before the
+  conventional central-directory offset before decoded-name policy, metadata,
+  inventory, staging, or reads. The stable error is `sample bundle local header
+  offsets are out of bounds`.
+- Boundary: one aggregate public-parser upper bound only. It adds no local-
+  header parser, central-directory record parser, local-record extent or
+  physical-contiguity rule, inter-member layout validator, archive repair,
+  workflow, producer, dependency, runtime API, or release authority.
+- Red baseline: the static-clean 18-case contract passes 9 controls and fails 9
+  missing runtime, helper, cleanup, source-order, and documentation contracts
+  in 0.35 seconds against exact M88 code. No pass is claimed.
+- Implementation: release smoke now reads the conventional central-directory
+  boundary from the already-admitted final end record and rejects any public
+  offset at or after it immediately after M88. RFC-0072 and the aligned public,
+  security, architecture, release, maintainer, roadmap, and repository records
+  state the rule and explicit nonclaims.
+- Focused checkpoint: all 35 combined M88-M89 assertions pass on CPython 3.12
+  in 0.41 seconds. The two affected Python files are format/Ruff clean, strict
+  Pyright reports zero findings, and strict docs build in 1.38 seconds with
+  only the known upstream Material notice.
+- Supported/local proof: the 18-case M89 contract passes on CPython 3.12.13,
+  3.13.13, and 3.14.5. Complete suites pass 2,620 tests on each interpreter
+  with 15/16/16 established skips. All 1,090 architecture assertions pass with
+  one established Windows capability skip; all 332 Python files are format/
+  Ruff clean, strict Pyright reports zero findings, and strict docs pass.
+- Graphics and slices: all ten real-wgpu tests pass; two- and three-workload
+  one-repeat profiles validate. Clockwork Arena and Agent World Builder retain
+  their established state, capture, and replay identities.
+- Distribution: two fresh builds reproduce a 275,910-byte pure wheel at
+  `eca489c14cee629bf5f3403a78b3efc6670ffea56113b09981e6a34176bef0d4`
+  and a 1,364,259-byte source archive at
+  `02e7801303a3465188750eedc95e2e957bb5d469b464a8da6b0a472c74b0d190`.
+  Isolated-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Review: findings-first review found no defect. The exact 16-path scope keeps
+  all protected hashes unchanged; metadata hygiene and credential scans are
+  clean; the 94-entry wheel and 544-entry source archive contain no native,
+  WASM, bytecode, or retired control metadata; Git object checking reports no
+  corruption.
+- Record-inclusive gate: all 332 Python files remain format/Ruff clean, strict
+  Pyright reports zero findings, all 1,090 architecture assertions pass with
+  one established skip, strict docs build, and whitespace passes.
+- Prepublication history: fetch/prune leaves branch head, `main`, `origin/main`,
+  and merge base at exact M88 closeout with symmetric difference `0 0`. Only
+  `main` and the required M89 feature branch exist; authentication is valid and
+  there is no open PR, tag, or release.
+
 ## M88 local-header-order preflight - closeout active
 
 - Base: exact verified M87 closeout squash

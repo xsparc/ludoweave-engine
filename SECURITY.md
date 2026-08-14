@@ -299,6 +299,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   inter-member layout validator, workflow, dependency, producer, runtime API,
   or release authority; it is not a general archive sandbox and is not a real
   public release observation.
+- M89 requires every parser-exposed local-header offset to remain strictly
+  before the conventional central directory after M88 ordering and before
+  decoded names, metadata, inventory, staging, or reads. The content-silent
+  error is `sample bundle local header offsets are out of bounds`. This fixed-
+  producer rule adds no local-header parser, central-directory record parser,
+  local-record extent rule, inter-member layout validator, workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

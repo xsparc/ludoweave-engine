@@ -76,3 +76,4 @@ was adopted.
 - [RFC-0069: require the first local-header offset at zero](0069-require-first-local-header-at-zero.md)
 - [RFC-0070: require distinct local-header offsets](0070-require-distinct-local-header-offsets.md)
 - [RFC-0071: require local-header offset order](0071-require-local-header-offset-order.md)
+- [RFC-0072: bound local-header offsets before the central directory](0072-bound-local-header-offsets.md)

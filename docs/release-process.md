@@ -808,6 +808,20 @@ inter-member layout validator, workflow, dependency, runtime API, release
 authority, or producer change. This profile is not a general archive sandbox
 and is not a real public release observation.
 
+M89/RFC-0072 requires every parser-exposed local-header offset to remain
+strictly before the conventional central directory. The check runs after M88
+ordering but before decoded-name policy, metadata, exact inventory, staging, or
+member reads. An offset at or after the boundary emits stable content-silent
+error `sample bundle local header offsets are out of bounds`; all owned
+resources close before control returns.
+
+The fixed producer exposes all 50 member offsets below the admitted boundary.
+M89 adds no local-header parser, central-directory record parser, local-record
+extent, adjacency, contiguity, or physical non-overlap rule, no inter-member
+layout validator, workflow, dependency, runtime API, release authority, or
+producer change. This profile is not a general archive sandbox and is not a
+real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
