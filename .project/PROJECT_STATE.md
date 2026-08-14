@@ -1,6 +1,6 @@
 # Project State
 
-## M89 local-header-offset bounds preflight - integration record active
+## M89 local-header-offset bounds preflight - closeout active
 
 - Base: exact verified M88 closeout squash
   `03f3723bf7365701c78a0fde072392b9f51da66b`, tree
@@ -92,6 +92,27 @@
   base remain exact feature squash with divergence `0 0`; only `main` and the
   required integration-record branch exist, with no open PR, current-head
   postmerge workflow, tag, or release.
+- Integration-record hosted gate: ready PR #220 exact DCO head
+  `27b0f1e2b15e368b76704c6ec0ef0d46e22df759`, tree
+  `b7bdeed2c716f4016e5feac18c002a871d111cce`, passed run `31803536737` in
+  one 46-second Linux job `94776890212`; desktop umbrella job `94777088248`
+  skipped with zero steps. Hosted architecture passed 1,091 assertions;
+  installed-wheel, staging, and complete release smoke passed.
+- Hosted record-tree artifacts reproduce the feature wheel exactly at 275,896
+  bytes and `22a14f43b4cdc2afaee7c4f39bc04e9baaebea557b070d3131fa8820a256c3ee`;
+  the 1,367,929-byte source archive SHA-256 is
+  `a3328be13d9046151b6dec5a30866280d6dc894de693e749ea0996fbad0819ef`.
+- Two integration-record audits retained exact head/tree/base, one DCO commit,
+  five paths, one successful bounded run, skipped desktop umbrella, and zero
+  feedback. Guarded squash `96b6a2d40816aa94363cde67bb49f1943c7556f3`
+  has sole parent the feature squash, exact reviewed tree, standalone DCO
+  trailer, and valid GitHub signature at `2026-08-14T13:12:58Z`. Its branch is
+  deleted remotely and locally.
+- Closeout proof: exactly three project records change. Repository metadata
+  hygiene passes five assertions and whitespace is clean. Branch head, `main`,
+  `origin/main`, and merge base remain exact integration-record squash with
+  divergence `0 0`; only `main` and the necessary closeout branch exist, with
+  no open PR, current-head postmerge run, tag, or release.
 
 ## M88 local-header-order preflight - closeout active
 

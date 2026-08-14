@@ -1,13 +1,13 @@
 # Current Task
 
 - **Task:** M89 - local-header-offset bounds preflight
-- **Status:** Feature exact-head qualification, two readiness audits, and
-  guarded squash integration are complete; factual integration records are
+- **Status:** Feature and integration records are exact-head validated,
+  independently audited, and squash-integrated; exact three-record closeout is
   active.
-- **Base:** Verified M89 feature squash
-  `61e5db38aef45a00788980227edf69663c82ce7b`, tree
-  `0eba3e7b2407d08a6b030746bd73e7af57211b77`.
-- **Branch:** `release/m89-integration-record`
+- **Base:** Verified M89 integration-record squash
+  `96b6a2d40816aa94363cde67bb49f1943c7556f3`, tree
+  `b7bdeed2c716f4016e5feac18c002a871d111cce`.
+- **Branch:** `release/m89-closeout`
 
 ## Accepted slice
 
@@ -123,10 +123,32 @@
   merge base at exact feature squash with divergence `0 0`; only `main` and the
   necessary integration-record branch exist, with no open PR, current-head
   postmerge run, tag, or release.
+- Ready integration-record PR #220 exact DCO head
+  `27b0f1e2b15e368b76704c6ec0ef0d46e22df759`, tree
+  `b7bdeed2c716f4016e5feac18c002a871d111cce`, passed bounded run
+  `31803536737` in one 46-second Linux job `94776890212`; desktop umbrella job
+  `94777088248` skipped with zero steps.
+- Hosted documentation architecture passed 1,091 assertions. Hosted builds
+  reproduced the feature wheel exactly at 275,896 bytes and SHA-256
+  `22a14f43b4cdc2afaee7c4f39bc04e9baaebea557b070d3131fa8820a256c3ee`;
+  the 1,367,929-byte source archive SHA-256 is
+  `a3328be13d9046151b6dec5a30866280d6dc894de693e749ea0996fbad0819ef`.
+  Installed-wheel, staging, and release smoke passed.
+- Two integration-record readiness audits remained clean around a five-case
+  metadata separator. Guarded squash
+  `96b6a2d40816aa94363cde67bb49f1943c7556f3` has sole parent the feature
+  squash, exact reviewed tree, standalone DCO trailer, and valid GitHub
+  signature at `2026-08-14T13:12:58Z`. The record branch is deleted remotely
+  and locally.
+- Closeout changes exactly three project records. Repository metadata hygiene
+  passes five assertions; whitespace is clean. Fetch/prune leaves branch head,
+  `main`, `origin/main`, and merge base at exact integration-record squash with
+  divergence `0 0`; only `main` and the required closeout branch exist, with no
+  open PR, current-head postmerge run, tag, or release.
 
 ## Remaining acceptance
 
-- Validate, publish, audit, and squash-integrate the exact factual integration
-  record without allocating substantive desktop work.
-- Publish and integrate the exact closeout record, clean all M89 generated
-  targets and branches, and select the next bounded milestone.
+- Validate, publish, audit, and squash-integrate the exact three-record
+  closeout without allocating a hosted workflow.
+- Clean all M89 generated targets and branches, run the postmerge audit, and
+  select the next bounded milestone.
