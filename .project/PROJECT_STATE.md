@@ -1,5 +1,63 @@
 # Project State
 
+## M88 local-header-order preflight - implementation active
+
+- Base: exact verified M87 closeout squash
+  `aba849aceec15342141a29fc105b85720a5e48ba`, tree
+  `d61bce3093e6a497bc40ff57f34dbca957f9a4de`. Synchronized `main` was the
+  only local/remote branch; no open PR, tag, release, postmerge run, disclosure
+  marker, or M87 generated target remained before M88 selection.
+- Gap: a central-directory record swap leaves local records and payloads
+  unchanged but changes the public order returned by `ZipFile.infolist()`.
+  Exact CPython 3.12.13, 3.13.13, and 3.14.5 expose offsets `[46, 0]` and read
+  both payloads successfully. The established verifier did not reject this
+  deviation from the fixed producer profile before staging.
+- Decision: after every policy through M87, private complete release smoke
+  requires strictly increasing parser-exposed `ZipInfo.header_offset` values
+  before decoded-name policy, metadata, inventory, staging, or reads. The
+  stable error is `sample bundle local header offsets are out of order`.
+- Boundary: ZIP permits arbitrary file order generally; M88 is one fixed-
+  producer profile rule. It adds no local-header parser, central-directory
+  record parser, bounds/contiguity rule, inter-member layout validator,
+  archive repair, workflow, producer, dependency, runtime API, or release
+  authority.
+- Red baseline: the static-clean 17-case contract passes 7 controls and fails
+  10 missing runtime, helper, ordering, cleanup, and documentation contracts in
+  0.29 seconds against exact M87 code. No pass is claimed.
+- Runtime/documentation checkpoint: the strict-order helper runs immediately
+  after M87 distinctness. All 33 combined M87-M88 assertions pass in 0.42
+  seconds; affected format/Ruff and strict Pyright gates pass, and strict docs
+  build in 1.56 seconds with only the known upstream Material notice.
+- Supported-Python checkpoint: all 17 M88 assertions pass on exact installed
+  CPython 3.12.13, 3.13.13, and 3.14.5.
+- Findings-first review found no runtime, test, documentation, or scope defect.
+  The unchanged lock, 331-file format/Ruff checks, strict Pyright, 1,072
+  architecture assertions, strict docs, and whitespace pass; one established
+  Windows architecture capability skip remains.
+- Complete supported-Python suites each pass 2,602 non-wgpu tests with 15
+  established skips on CPython 3.12.13, 3.13.13, and 3.14.5.
+- Graphics/examples: ten real-wgpu tests, two- and three-workload one-repeat
+  profiles, Clockwork Arena, and Agent World Builder pass in the restored
+  locked 45-package CPython 3.12 graphics environment with established state,
+  capture, and replay identities.
+- Distribution/release: two fresh builds reproduce a 275,794-byte pure wheel
+  SHA-256 `982da69788bbb475c58e73f6b4b09f1f424ebd064693a5923cfee07613152f9c`
+  and 1,358,324-byte source archive SHA-256
+  `7c05d0b4832d30be3186baeca5c897c44b3dab3cc9de0837a02a3e4d88c98cda`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Scope/security: exactly 16 intended paths differ. CI, release workflow,
+  producer, project metadata, and lock retain protected hashes. Added-content
+  identity/credential scans are empty; the 94-entry wheel and 542-entry source
+  archive contain no native/WASM/bytecode or retired control metadata; object
+  checking reports only unreachable squash-era objects and no corruption.
+- Record-inclusive gate: all 331 files remain format/Ruff clean; strict Pyright
+  reports zero findings; all 1,072 architecture assertions pass with one
+  established capability skip; strict docs and whitespace pass.
+- Precommit history: after fetch/prune, local head, `main`, `origin/main`, and
+  merge base remain exact M87 closeout `aba849aceec1...` with symmetric
+  difference `0 0`. Only `main` and the necessary neutral M88 feature branch
+  exist; GitHub authentication is valid and no open PR competes with it.
+
 ## M87 distinct local-header-offset preflight - closeout active
 
 - Base: exact verified M86 closeout squash

@@ -288,6 +288,17 @@ M0 through M86 are complete, reviewed, hosted-validated, and integrated into
 `main`. M87 starts from exact verified M86 closeout
 `ba9464e59678766dd23953c1ea71acf010103903`.
 
+M88 requires strictly increasing local-header offsets in parser-exposed archive
+order after M87 distinctness, but before decoded-name checks, metadata,
+inventory, member reads, or staging. Its stable content-silent error is
+`sample bundle local header offsets are out of order`. This is no local-header
+parser, central-directory record parser, inter-member layout validator, or
+general archive sandbox. It adds no workflow, allocation, dependency, version,
+producer, runtime source/API, release authority, tag, release, or publication.
+M0 through M87 are complete, reviewed, hosted-validated, and integrated into
+`main`. M88 starts from exact verified M87 closeout
+`aba849aceec15342141a29fc105b85720a5e48ba`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

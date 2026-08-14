@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M88/RFC-0071 local-header-order preflight. Parser-exposed archive entries
+  must now have strictly increasing local-header offsets before decoded-name
+  policy, metadata, inventory, reads, or staging, without a local-header parser,
+  inter-member layout validator, workflow, dependency, producer, runtime API,
+  or release-authority change.
 - Add M87/RFC-0070 distinct local-header-offset preflight. Parser-exposed local-
   header offsets must now be distinct before decoded-name policy, metadata,
   inventory, reads, or staging, without a local-header parser, offset ordering/

@@ -2113,6 +2113,29 @@ signature classifier, or archive repair. It is not a general archive sandbox
 and is not a real public release observation. Workflows, producer,
 dependencies, runtime API, and release authority remain unchanged.
 
+## M88 local-header-order preflight
+
+M88 narrows the fixed sample profile after M87 without parsing local headers.
+Supported CPython 3.12-3.14 returns a central-directory-only record swap in
+that swapped entry order and exposes public local-header offsets `[46, 0]`;
+both members remain readable. ZIP permits arbitrary file ordering generally,
+so this is a producer-profile rule rather than a general validity claim.
+
+After every established policy through M87 completes, release smoke requires
+strictly increasing local-header offsets in parser-exposed archive order, then
+proceeds to M77 name policy. A non-increasing pair raises stable content-silent
+error `sample bundle local header offsets are out of order` before metadata,
+exact inventory, staging, or member reads. M87 distinctness retains precedence.
+Empty and single-member inventories satisfy the aggregate check. Owned source,
+snapshot, and archive resources close first.
+
+The fixed producer exposes 50 members with strictly increasing local-header
+offsets. RFC-0071 adds no local-header parser, central-directory record parser,
+offset bounds/contiguity rule, inter-member layout validator, or archive repair.
+It is not a general archive sandbox and is not a real public release
+observation. Workflows, producer, dependencies, runtime API, and release
+authority remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

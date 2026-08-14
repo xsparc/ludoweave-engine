@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0071 resolves M88 local-header-order preflight for implementation. PKWARE permits arbitrary ZIP file
+order generally, while Python documents `ZipFile.infolist()` as archive-entry
+order and the fixed LudoWeave producer emits physical local-header order.
+Cross-version CPython 3.12-3.14 probes expose a central-record-only swap as
+offsets `[46, 0]` and read both members successfully. The selected narrow rule
+requires strictly increasing public offsets after M87 distinctness and before
+names, metadata, inventory, staging, or reads. It is not a general ZIP-validity
+claim and admits no raw parser, inter-member layout validator, workflow,
+dependency, producer, runtime API, or release authority. Complete qualification
+and integration remain pending.
+
 RFC-0070 resolves M87 distinct local-header-offset preflight. PKWARE assigns a
 local header and corresponding central record to each stored file, while exact
 CPython 3.12-3.14 exposes duplicate central local-header pointers and defers
