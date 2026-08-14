@@ -1,6 +1,6 @@
 # Project State
 
-## M87 distinct local-header-offset preflight - hosted correction qualified
+## M87 distinct local-header-offset preflight - feature integrated
 
 - Base: exact verified M86 closeout squash
   `ba9464e59678766dd23953c1ea71acf010103903`, tree
@@ -9,8 +9,9 @@
   disclosure marker, or M86 generated target remained before M87 selection.
 - Gap: exact installed CPython 3.12.13, 3.13.13, and 3.14.5 accept two central
   records that expose the same local-header offset. The first member read
-  succeeds with an overlap warning; the second alias fails later on local/
-  central filename comparison, after the current verifier creates staging.
+  succeeds and the second alias fails later on local/central filename
+  comparison, after the current verifier creates staging. Warning emission is
+  implementation-dependent and outside the policy.
 - Decision: after every policy through M86, private complete release smoke
   requires all parser-exposed `ZipInfo.header_offset` values to be distinct
   before M77 name policy, metadata, inventory, staging, or reads. The stable
@@ -73,6 +74,36 @@
   assertions pass with one established capability skip, whitespace is clean,
   and the complete corrected CPython 3.12 baseline passes 2,585 tests with 15
   established skips.
+- Hosted qualification: corrected PR #213 head
+  `b98aa8365b6d3742c91871a820170d6b73330f25`, tree
+  `2c4aff1985fa6e820a967323114ad6a3d73f9875`, passed run `31794063270`
+  in exactly three Linux-first allocations. Linux finished in 7m16s, macOS in
+  3m05s, and Windows in 3m52s. Linux CPython 3.12 passed 2,600 tests; Linux
+  3.13/3.14 and both desktop 3.14 suites passed 2,600 with one capability skip.
+  Each OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena, and
+  Agent World Builder; static/docs, artifacts, wheel, staging, and release
+  smoke passed.
+- Hosted artifacts: byte reproducibility reported a 275,661-byte pure wheel at
+  `a0ef617c4ce29f59130155b143c457ceda740ba7950a2f1e01b4893f35ed2263`
+  and a 1,352,531-byte source archive at
+  `51d595e22e172cbdf74cddf7628db710d94a59c239edd4a90da34eeb40aa3fa3`.
+- Integration: two separated audits were clean. Squash
+  `dff483e120d607105120d8c004838e609540a14d` has the exact qualified
+  tree, sole M86-closeout parent, standalone DCO, and valid GitHub signature at
+  `2026-08-14T11:07:28Z`. No postmerge run was allocated; feature branches were
+  removed locally and remotely before this integration-record branch.
+- Integration-record local gate: scope is exactly four project records plus
+  roadmap. The unchanged lock, all 330 files, Ruff, strict Pyright, 1,055
+  architecture assertions, strict docs, whitespace, protected hashes,
+  identity/credential scans, and Git-object integrity pass with one established
+  capability skip. A pre-record pair of fresh builds reproduces a 275,673-byte
+  wheel at
+  `3659480bf9c924758529f34ce312f903a1bd652a5820284bfa11549fe9b428e7`
+  and a 1,353,993-byte source archive at
+  `e58694e30441bc79b16d3842da647a95be2144015fd5bf4b5c28c2baa4bfc005`;
+  installed-wheel, ten-artifact staging, and complete release smoke pass. The
+  subsequent factual project-record lines differ only in the source archive;
+  exact record-tree artifact evidence remains a hosted gate.
 
 ## M86 first local-header placement preflight - closed
 

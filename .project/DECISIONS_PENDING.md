@@ -7,9 +7,9 @@ local header and corresponding central record to each stored file, while exact
 CPython 3.12-3.14 exposes duplicate central local-header pointers and defers
 their consequences until member open. The selected fixed-profile response is
 one aggregate distinctness check over public `ZipInfo.header_offset` values
-after M86 and before names, metadata, inventory, staging, or reads. Local
-qualification is complete and exact-head hosted qualification remains pending.
-No raw parser, ordering/bounds rule, inter-
+after M86 and before names, metadata, inventory, staging, or reads. Corrected
+exact-head cross-platform hosted qualification and guarded squash integration
+are complete. No raw parser, ordering/bounds rule, inter-
 member layout validator, workflow, dependency, producer, runtime API, or
 release authority is admitted.
 
