@@ -46,6 +46,22 @@ M88 starts from exact verified M87 closeout squash
 | Static, architecture, and docs gate | 0 | All 331 files were format clean; Ruff and strict Pyright reported zero findings; all 1,072 architecture assertions passed with one established Windows capability skip in 7.67 seconds; strict docs built in 1.47 seconds with only the known upstream Material notice; whitespace passed. |
 | Pre-record reproducible distribution and release gate | 0 | Two fresh builds matched exactly: the 275,794-byte pure wheel SHA-256 is `982da69788bbb475c58e73f6b4b09f1f424ebd064693a5923cfee07613152f9c`, and the 1,360,308-byte source archive SHA-256 is `73aa02c5ee1f720c28ecbd6f9b611eb01930a0361b98397e98f2ba5ff3e7507d`. Isolated-wheel smoke passed, deterministic staging produced ten artifacts, and complete release smoke passed. Subsequent factual project-record lines affect only the source archive; exact record-tree artifacts remain a hosted gate. |
 
+## M88 hosted integration-record evidence - 2026-08-14
+
+| Command or review | Exit | Factual result |
+| --- | ---: | --- |
+| Bounded hosted integration-record gate | 0 | Ready PR #217 exact DCO head `c07c51f9f2a9ea8a54b130c4753f05ca6c50c63e`, tree `9df9c5f39f89759de7958ca2870ca77433d3d3ae`, changed exactly four project records plus roadmap and passed run `31799359383` in one 48-second Linux job `94763430967`; desktop umbrella job `94763618393` skipped with zero steps. |
+| Hosted docs and artifacts | 0 | All 331 files were format/Ruff clean; strict docs and all 1,073 documentation architecture assertions passed. Exact-head builds reproduced a 275,781-byte wheel SHA-256 `b68262c68a20aec3a9f8859648ff64a345d414dc2f8c5b55366fecdc4d4069a2` and 1,360,637-byte source archive SHA-256 `00a235058a3dacb35561053aaebaadf1aea9ef0736d964d1723ab7f0fdec0c5f`. Isolated-wheel smoke, ten-artifact staging, and complete release smoke passed. |
+| Separated integration-record audits | Corrected | Both audits retained exact feature-squash base `b49d27fc15453be24021873a45bbe46f491a26bb`, exact head/tree, one standalone DCO commit, five intended paths, successful Linux check, zero-step skipped desktop umbrella, `MERGEABLE`/`CLEAN`, and zero feedback. The first separator invocation named a nonexistent historical metadata test and ran zero tests; its corrected repository-metadata-hygiene invocation passed 5 tests in 0.37 seconds before audit two. |
+| Guarded integration-record squash | 0 | PR #217 squash `7285f5125b170239283f46483b22655a7e598a76` has sole parent `b49d27fc15453be24021873a45bbe46f491a26bb`; tree `9df9c5f39f89759de7958ca2870ca77433d3d3ae` exactly equals the reviewed head; its message has a standalone DCO trailer and GitHub reports `verified=true`, `reason=valid`, at `2026-08-14T12:14:53Z`. No postmerge `main` run was allocated. The branch was removed remotely and locally; synchronized `main` was the sole branch before closeout. |
+
+## M88 closeout local evidence - 2026-08-14, Windows, CPython 3.12
+
+| Command or gate | Exit | Factual result |
+| --- | ---: | --- |
+| Exact closeout scope and history | 0 | Synchronized local and remote `main`, branch head, and merge base resolved to integration-record squash `7285f5125b170239283f46483b22655a7e598a76`, with symmetric difference `0 0`. Closeout changes exactly `.project/CURRENT_TASK.md`, `.project/PROJECT_STATE.md`, and `.project/TEST_EVIDENCE.md`; it adds no public, runtime, test, workflow, build, dependency, release, credential, development-tool identity, native, WASM, bytecode, or generated-artifact surface. |
+| Exact closeout validation | 0 | Repository metadata hygiene passed 5 assertions in 0.38 seconds. Whitespace and added-content development-tool identity/credential scans were clean. |
+
 ## M87 direction and red-regression evidence - 2026-08-14, Windows
 
 M87 starts from exact verified M86 closeout squash

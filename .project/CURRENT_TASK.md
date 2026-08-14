@@ -1,12 +1,13 @@
 # Current Task
 
 - **Task:** M88 - local-header-order preflight
-- **Status:** Feature is exact-head hosted-validated, independently audited,
-  and squash-integrated; factual integration records are active.
-- **Base:** Verified M88 feature squash
-  `b49d27fc15453be24021873a45bbe46f491a26bb`, tree
-  `8cc30da90115fab18798e0001e21797e5b60d6ce`.
-- **Branch:** `release/m88-integration-record`
+- **Status:** Feature and integration records are exact-head validated,
+  independently audited, and squash-integrated; exact three-record closeout is
+  active.
+- **Base:** Verified M88 integration-record squash
+  `7285f5125b170239283f46483b22655a7e598a76`, tree
+  `9df9c5f39f89759de7958ca2870ca77433d3d3ae`.
+- **Branch:** `release/m88-closeout`
 
 ## Accepted slice
 
@@ -112,8 +113,29 @@
   wheel and a 1,360,308-byte source archive SHA-256
   `73aa02c5ee1f720c28ecbd6f9b611eb01930a0361b98397e98f2ba5ff3e7507d`;
   installed-wheel, staging, and release smoke pass.
+- Ready integration PR #217 exact DCO head
+  `c07c51f9f2a9ea8a54b130c4753f05ca6c50c63e`, tree
+  `9df9c5f39f89759de7958ca2870ca77433d3d3ae`, passed bounded run
+  `31799359383` in one 48-second Linux job `94763430967`; desktop umbrella job
+  `94763618393` skipped with zero steps. Hosted documentation architecture
+  passed 1,073 assertions; wheel/staging/release smoke passed.
+- Hosted integration-record artifacts reproduce the feature wheel exactly at
+  275,781 bytes and SHA-256
+  `b68262c68a20aec3a9f8859648ff64a345d414dc2f8c5b55366fecdc4d4069a2`;
+  the 1,360,637-byte source archive SHA-256 is
+  `00a235058a3dacb35561053aaebaadf1aea9ef0736d964d1723ab7f0fdec0c5f`.
+- Two integration-record readiness audits remained clean after a corrected
+  five-case metadata-hygiene separator. Guarded squash
+  `7285f5125b170239283f46483b22655a7e598a76` has sole parent the feature
+  squash, exact reviewed tree, standalone DCO trailer, and valid GitHub
+  signature at `2026-08-14T12:14:53Z`. The record branch is deleted remotely
+  and locally; no postmerge main run was allocated.
+- Closeout changes exactly three project records. Repository metadata hygiene
+  passes five assertions; whitespace and added-content identity/credential
+  scans are clean. It adds no public, runtime, test, workflow, build,
+  dependency, release, native/WASM/bytecode, or generated-artifact surface.
 
 ## Remaining acceptance
 
-- Publish and integrate factual project-record and closeout PRs, clean all M88
+- Publish and integrate the exact three-record closeout PR, clean all M88
   branches/generated targets, and select the next bounded milestone.
