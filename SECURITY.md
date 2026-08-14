@@ -284,6 +284,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   member layout validator, workflow, dependency, producer, runtime API, or
   release authority; it is not a general archive sandbox or a real public
   release observation.
+- M87 requires all parser-exposed local-header offsets to be distinct after
+  M86 first-offset policy and before decoded names, metadata, inventory,
+  staging, or reads. The content-silent error is `sample bundle local header
+  offsets are inconsistent`. This adds no local-header parser, offset ordering/
+  bounds rule, inter-member layout validator, workflow, dependency, producer,
+  runtime API, or release authority; it is not a general archive sandbox or a
+  real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

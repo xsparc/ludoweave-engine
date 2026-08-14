@@ -520,6 +520,7 @@ def _extract_checksum_admitted_bundle(
         )
         _validate_sample_archive_placement(snapshot=snapshot_stream)
         _validate_sample_first_local_header(infos=infos)
+        _validate_sample_local_header_offsets(infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -809,6 +810,13 @@ def _validate_sample_first_local_header(*, infos: tuple[zipfile.ZipInfo, ...]) -
 
     if infos and min(info.header_offset for info in infos) != 0:
         raise RuntimeError("sample bundle first local header placement is inconsistent")
+
+
+def _validate_sample_local_header_offsets(*, infos: tuple[zipfile.ZipInfo, ...]) -> None:
+    """Require every parser-exposed local-header offset to identify one member."""
+
+    if len({info.header_offset for info in infos}) != len(infos):
+        raise RuntimeError("sample bundle local header offsets are inconsistent")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

@@ -784,6 +784,18 @@ layout validator, prepended executable support, workflow, dependency, runtime
 API, release authority, or producer change. It is not a general archive sandbox
 and is not a real public release observation.
 
+M87/RFC-0070 requires all parser-exposed local-header offsets to be distinct.
+The check runs after M86 first-offset policy but before decoded-name policy,
+metadata, exact inventory, staging, or member reads. A duplicate emits stable
+content-silent error `sample bundle local header offsets are inconsistent`;
+all owned resources close before control returns.
+
+The fixed producer exposes 50 members and 50 distinct local-header offsets.
+M87 adds no local-header parser, central-directory parser, offset ordering/
+bounds rule, inter-member layout validator, workflow, dependency, runtime API,
+release authority, or producer change. It is not a general archive sandbox and
+is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

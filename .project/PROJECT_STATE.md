@@ -1,6 +1,67 @@
 # Project State
 
-## M86 first local-header placement preflight - closeout active
+## M87 distinct local-header-offset preflight - locally qualified
+
+- Base: exact verified M86 closeout squash
+  `ba9464e59678766dd23953c1ea71acf010103903`, tree
+  `eb75ce1a1ebc675dd5c9eb34fde5ffd8619587e1`. Clean synchronized `main` was
+  the only local/remote branch; no open PR, tag, release, postmerge run,
+  disclosure marker, or M86 generated target remained before M87 selection.
+- Gap: exact installed CPython 3.12.13, 3.13.13, and 3.14.5 accept two central
+  records that expose the same local-header offset. The first member read
+  succeeds with an overlap warning; the second alias fails later on local/
+  central filename comparison, after the current verifier creates staging.
+- Decision: after every policy through M86, private complete release smoke
+  requires all parser-exposed `ZipInfo.header_offset` values to be distinct
+  before M77 name policy, metadata, inventory, staging, or reads. The stable
+  content-silent error is `sample bundle local header offsets are inconsistent`.
+- Boundary: one aggregate public-parser property only. No local-header parser,
+  central-directory parser, offset ordering/bounds rule, inter-member layout
+  validator, field-consistency validator, signature classifier, archive repair,
+  workflow, producer, dependency, runtime API, or release authority is added.
+- Red baseline: the static-clean 16-case contract passes 6 controls and fails
+  10 missing runtime, helper, ordering, cleanup, and documentation contracts in
+  0.42 seconds against exact M86 code.
+- Runtime checkpoint: the distinctness helper and exact call ordering make 32
+  combined M86-M87 runtime/source/precedence assertions pass. Only the
+  deliberately absent RFC/public-document contract failed before documentation
+  was added.
+- Documentation checkpoint: RFC-0070 and aligned public records complete the
+  contract. All 33 combined M86-M87 assertions pass; affected format, Ruff,
+  strict Pyright, strict docs, and whitespace gates are clean.
+- Supported-Python checkpoint: the 16-case M87 contract passes on CPython
+  3.12.13, 3.13.13, and 3.14.5. One concurrent 3.12 harness invocation exited
+  1 after its test bodies because parallel uv processes replaced the shared
+  `.venv`; a serial isolated correction passes all 16 cases.
+- Findings-first review found no runtime, test, or scope defect. It corrected
+  stale task and decision records that still described the completed
+  implementation and accepted RFC as pending.
+- Full local gate: the unchanged lock, 330-file format/Ruff checks, strict
+  Pyright, 1,055 architecture assertions, exact 366-case M64-M87 lineage,
+  strict docs, whitespace, and complete 2,585-test supported-Python suites pass;
+  established Windows capability skips remain 1 in each applicable
+  architecture gate and 15 in each complete interpreter suite.
+- Graphics/examples: ten real-wgpu tests, the two- and three-workload one-
+  repeat profiles, Clockwork Arena, and Agent World Builder pass in the locked
+  45-package CPython 3.12 graphics environment with established deterministic
+  state, capture, and replay identities.
+- Distribution/release: two fresh builds reproduce a 275,673-byte wheel SHA-
+  256 `3659480bf9c924758529f34ce312f903a1bd652a5820284bfa11549fe9b428e7`
+  and 1,349,517-byte source archive SHA-256
+  `936973c9dbf7dc0abd209705e35bccc4d2800a805128609ab65e3f5939d0a01b`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Scope/security: exactly 16 intended paths differ. CI, release workflow,
+  producer, project metadata, and lock retain protected hashes. Identity and
+  credential scans are empty; wheel contents remain pure Python; object
+  checking reports only unreachable squash-era objects and no corruption.
+- Record-inclusive gate: all 1,055 architecture assertions pass again with one
+  capability skip; all 330 files remain format/Ruff clean, strict Pyright and
+  docs pass, and whitespace is clean.
+- Precommit history: local head, `main`, `origin/main`, and merge base are exact
+  M86 closeout `ba9464e5967...` with symmetric difference `0 0`. Only `main`
+  and the necessary neutral M87 branch exist; no open PR competes with it.
+
+## M86 first local-header placement preflight - closed
 
 - Base: exact verified M85 closeout squash
   `3eb38c5e591f0d73687293f130254d8c8b3256c7`, tree

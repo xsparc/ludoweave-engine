@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+RFC-0070 resolves M87 distinct local-header-offset preflight. PKWARE assigns a
+local header and corresponding central record to each stored file, while exact
+CPython 3.12-3.14 exposes duplicate central local-header pointers and defers
+their consequences until member open. The selected fixed-profile response is
+one aggregate distinctness check over public `ZipInfo.header_offset` values
+after M86 and before names, metadata, inventory, staging, or reads. Local
+qualification is complete and exact-head hosted qualification remains pending.
+No raw parser, ordering/bounds rule, inter-
+member layout validator, workflow, dependency, producer, runtime API, or
+release authority is admitted.
+
 RFC-0069 resolves M86 first local-header placement preflight. Private complete
 release smoke finishes every established policy through M85, then requires the
 minimum parser-exposed `ZipInfo.header_offset` to equal zero before M77 decoded-

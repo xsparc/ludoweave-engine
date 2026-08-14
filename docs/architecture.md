@@ -2090,6 +2090,29 @@ or archive repair. It is not a general archive sandbox and is not a real public
 release observation. Workflows, producer, dependencies, runtime API, and
 release authority remain unchanged.
 
+## M87 distinct local-header-offset preflight
+
+M87 narrows the fixed sample profile after M86 without parsing local headers.
+Supported CPython 3.12-3.14 exposes two central entries that identify one local
+header as offsets `[0, 0]`. Reading the first entry succeeds with an overlap
+warning, while reading the alias later raises a local/central filename
+mismatch.
+
+After every established policy through M86 completes, release smoke requires
+all parser-exposed local-header offsets to be distinct, then proceeds to M77
+name policy. A duplicate raises stable content-silent error `sample bundle
+local header offsets are inconsistent` before metadata, exact inventory,
+staging, or member reads. Empty and single-member parsed inventories satisfy
+this aggregate check. Owned source, snapshot, and archive resources close
+first.
+
+The fixed producer exposes 50 members and 50 distinct local-header offsets.
+RFC-0070 adds no local-header parser, central-directory parser, offset ordering/
+bounds rule, inter-member layout validator, field-consistency validator,
+signature classifier, or archive repair. It is not a general archive sandbox
+and is not a real public release observation. Workflows, producer,
+dependencies, runtime API, and release authority remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
