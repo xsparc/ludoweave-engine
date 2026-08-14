@@ -1,13 +1,13 @@
 # Current Task
 
 - **Task:** M90 - local-header signature preflight
-- **Status:** Runtime, RFC, documentation, complete local, graphics,
-  distribution, findings-first, record-inclusive, and prepublication history
-  gates are green. The exact 16-path feature candidate is ready to commit.
-- **Base:** Verified M89 closeout squash
-  `92b3e2c351fe92ea0789b46636e0d0a08d29281a`, tree
-  `46fa37f60b603ffa79b5ed7354b55fa2da13b953`.
-- **Branch:** `release/m90-local-header-signatures`
+- **Status:** Exact-head cross-platform qualification and guarded feature
+  squash integration are complete. The exact five-path factual integration
+  record is fully validated and ready for its standalone DCO commit.
+- **Base:** Verified M90 feature squash
+  `b35b2de7725f2a5367cc48e2acd22835220560ca`, tree
+  `4acdecef4265e972e15e4ce838cb91e530101cda`.
+- **Branch:** `release/m90-integration-record`
 
 ## Accepted slice
 
@@ -93,13 +93,46 @@
   neutral M90 feature branch exist locally, only `origin/main` remotely,
   authentication is valid, and open PR, current-branch workflow, tag, and
   release queries are empty.
+- Ready PR #222 exact DCO head
+  `e2fa04c4230756042bde239cfdcd2c6c2b1cfc5c`, tree
+  `4acdecef4265e972e15e4ce838cb91e530101cda`, passed hosted run
+  `31806688540` in exactly three Linux-first allocations. Linux job
+  `94787208676` passed in 7m30s, macOS `94789151633` in 3m15s, and Windows
+  `94789151556` in 4m05s.
+- Hosted Linux passed 2,654 tests on CPython 3.12 and 2,654 with one skip on
+  3.13/3.14. macOS and Windows CPython 3.14 each passed 2,654 with one skip.
+  Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena,
+  and Agent World Builder; Linux also passed static/docs, base profiling,
+  wheel, staging, and complete release smoke.
+- Hosted exact-head builds reproduced a 276,046-byte pure wheel at
+  `2b7b53ea14b1beef2d6ba1409e1c5a25920460d676672a8a41df227ba9a4a8a4`
+  and a 1,373,598-byte source archive at
+  `5b31e083331b030fabf8fd34353e850efd7e3b7830e30b5eb5f305a7fdda8ad9`.
+- Two separated readiness audits retained the exact head/tree/base, one DCO
+  commit, 16 paths, three successful checks, `MERGEABLE`/`CLEAN`, one hosted
+  run, and zero feedback. The 24-case separator passed in 0.48 seconds.
+- Guarded squash `b35b2de7725f2a5367cc48e2acd22835220560ca` has the exact
+  qualified tree, sole parent exact M89 closeout, standalone DCO trailer, and
+  a valid GitHub signature verified at `2026-08-14T14:05:47Z`. The feature
+  branch is deleted remotely and locally.
+- Integration-record local proof: exactly four project records plus roadmap
+  change. All 333 Python files are format/Ruff clean, strict Pyright reports
+  zero findings, all 1,109 architecture assertions pass with one established
+  skip, and strict docs and whitespace pass. Two fresh builds retain the exact
+  local feature wheel and reproduce a 1,374,693-byte source archive at
+  `1f637955f3878f088aa13c24b2e77553c537466d1460afc6f8c23c66efb3eb67`;
+  wheel, ten-artifact staging, and release smoke pass.
+- Final record-tree proof retains 333-file format/Ruff cleanliness, strict
+  Pyright zero findings, 1,109 passing architecture assertions with one skip,
+  strict docs, and whitespace. The five-case metadata separator passes.
+  Fetch/prune leaves branch head, `main`, `origin/main`, and merge base at exact
+  feature squash with divergence `0 0`; only `main` plus this necessary record
+  branch exist, and open PR, exact-head postmerge run, tag, and release queries
+  are empty.
 
 ## Remaining acceptance
 
-- Create one standalone DCO commit for the exact 16-path feature candidate,
-  push it, and open one ready PR against `main`.
-- Publish one ready feature PR, qualify its exact head through the existing
-  quota-conscious hosted topology, perform two separated clean readiness
-  audits, and squash-integrate only the exact qualified tree.
-- Publish and integrate factual project-record and closeout PRs, clean all M90
-  branches/generated targets, and select the next bounded milestone.
+- Commit, publish, qualify, and squash-integrate the exact five-path factual
+  integration record.
+- Publish and integrate the three-path closeout, clean all M90 branches and
+  generated targets, and select the next bounded milestone.

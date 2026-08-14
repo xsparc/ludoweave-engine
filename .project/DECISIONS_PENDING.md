@@ -2,7 +2,7 @@
 
 No architecture decision is currently blocked.
 
-M90 local-header signature preflight is active. PKWARE defines the four-byte
+RFC-0073 resolves M90 local-header signature preflight. PKWARE defines the four-byte
 local-file-header signature and Python exposes each purported header offset.
 Exact CPython 3.12-3.14 admits a pointer shifted one byte into a real header as
 ordered, distinct, in-bounds public metadata and defers `BadZipFile` until
@@ -10,9 +10,10 @@ member open. The selected narrow fixed-profile rule classifies only four bytes
 at each public offset after M89 and before names, metadata, inventory, staging,
 or reads. It adds no local-header field parser, record-extent or inter-member
 layout validator, workflow, dependency, producer, runtime API, or release
-authority. RFC-0073 records the accepted narrow policy. Complete local,
-graphics, distribution, review, and record-inclusive gates are green; exact-
-head hosted qualification remains pending.
+authority. RFC-0073 records the accepted narrow policy. Complete local and
+exact-head cross-platform qualification are green, and the exact qualified
+feature tree is squash-integrated through PR #222. Factual integration and
+closeout records remain pending.
 
 RFC-0072 resolves M89 local-header-offset bounds preflight. PKWARE places local/data
 records before the central-directory sequence, and Python exposes the central
