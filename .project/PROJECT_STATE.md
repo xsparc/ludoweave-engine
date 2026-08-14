@@ -1,6 +1,6 @@
 # Project State
 
-## M88 local-header-order preflight - feature integrated
+## M88 local-header-order preflight - closeout active
 
 - Base: exact verified M87 closeout squash
   `aba849aceec15342141a29fc105b85720a5e48ba`, tree
@@ -81,6 +81,26 @@
   reproduce the 275,794-byte wheel and 1,360,308-byte source archive SHA-256
   `73aa02c5ee1f720c28ecbd6f9b611eb01930a0361b98397e98f2ba5ff3e7507d`;
   installed-wheel, staging, and release smoke pass.
+- Hosted integration record: ready PR #217 exact DCO head
+  `c07c51f9f2a9ea8a54b130c4753f05ca6c50c63e`, tree
+  `9df9c5f39f89759de7958ca2870ca77433d3d3ae`, passed run `31799359383` in
+  one 48-second Linux allocation. Documentation architecture passed 1,073
+  assertions; exact-head build, wheel smoke, staging, and release smoke passed.
+  Desktop umbrella job `94763618393` skipped with zero steps.
+- Integration-record artifacts: 275,781-byte wheel SHA-256
+  `b68262c68a20aec3a9f8859648ff64a345d414dc2f8c5b55366fecdc4d4069a2`
+  and 1,360,637-byte source archive SHA-256
+  `00a235058a3dacb35561053aaebaadf1aea9ef0736d964d1723ab7f0fdec0c5f`.
+- Record integration: both audits were clean after a corrected metadata-
+  hygiene separator. Squash `7285f5125b170239283f46483b22655a7e598a76`
+  has sole parent the feature squash, exact reviewed tree, standalone DCO
+  trailer, and valid GitHub signature at `2026-08-14T12:14:53Z`. The branch is
+  deleted locally/remotely; no open PR or postmerge main run remains. Exact
+  three-record closeout is active.
+- Closeout local gate: exact scope is three project records. Repository
+  metadata hygiene passes five assertions; whitespace and added-content
+  identity/credential scans are clean, with no product/runtime/workflow/build
+  or generated-artifact surface.
 
 ## M87 distinct local-header-offset preflight - closeout active
 
