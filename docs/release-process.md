@@ -771,6 +771,19 @@ discovery, multi-volume assembler, workflow, dependency, runtime API, release
 authority, or producer change. It is not a general archive sandbox and is not
 a real public release observation.
 
+M86/RFC-0069 requires the minimum parser-exposed `ZipInfo.header_offset` to be
+zero. The check runs after M85 central-directory placement policy but before
+decoded-name policy, metadata, exact inventory, staging, or member reads. A
+nonzero value emits stable content-silent error `sample bundle first local
+header placement is inconsistent`; all owned resources close before control
+returns.
+
+The fixed producer exposes 50 members and an earliest local-header offset of
+zero. M86 adds no local-header parser, central-directory parser, inter-member
+layout validator, prepended executable support, workflow, dependency, runtime
+API, release authority, or producer change. It is not a general archive sandbox
+and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

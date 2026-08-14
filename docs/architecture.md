@@ -2067,6 +2067,29 @@ archive support, or multi-volume assembler. It is not a general archive
 sandbox and is not a real public release observation. Workflows, producer,
 dependencies, runtime API, and release authority remain unchanged.
 
+## M86 first local-header placement preflight
+
+M86 narrows the fixed sample profile after M85 without parsing local headers.
+Supported CPython 3.12-3.14 reads archives with one or eleven leading bytes when
+the central-directory relative local-header offset and end-record central-
+directory offset are both updated. Those archives retain zero M85 concatenation
+adjustment while the parser exposes an earliest `ZipInfo.header_offset` of one
+or eleven.
+
+After every established policy through M85 completes, release smoke requires
+the minimum parser-exposed local-header offset to be zero, then proceeds to M77
+name policy. A nonzero value raises stable content-silent error `sample bundle
+first local header placement is inconsistent` before metadata, exact inventory,
+staging, or member reads. Empty archives retain the established later exact-
+inventory failure. Owned source, snapshot, and archive resources close first.
+
+The fixed producer exposes 50 members and an earliest local-header offset of
+zero. RFC-0069 adds no local-header parser, central-directory parser, inter-
+member layout validator, signature classifier, prepended executable support,
+or archive repair. It is not a general archive sandbox and is not a real public
+release observation. Workflows, producer, dependencies, runtime API, and
+release authority remain unchanged.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

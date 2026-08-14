@@ -519,6 +519,7 @@ def _extract_checksum_admitted_bundle(
             parsed_entries=len(infos),
         )
         _validate_sample_archive_placement(snapshot=snapshot_stream)
+        _validate_sample_first_local_header(infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -801,6 +802,13 @@ def _validate_sample_archive_placement(*, snapshot: IO[bytes]) -> None:
     directory_offset = int.from_bytes(end_record[16:20], "little")
     if directory_size + directory_offset != end_record_offset:
         raise RuntimeError("sample bundle central directory placement is inconsistent")
+
+
+def _validate_sample_first_local_header(*, infos: tuple[zipfile.ZipInfo, ...]) -> None:
+    """Require the earliest parser-exposed local header to begin at byte zero."""
+
+    if infos and min(info.header_offset for info in infos) != 0:
+        raise RuntimeError("sample bundle first local header placement is inconsistent")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

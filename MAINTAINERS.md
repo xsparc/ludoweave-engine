@@ -268,6 +268,16 @@ publication. M0 through M84 are complete, reviewed, hosted-validated, and
 integrated into `main`. M85 starts from exact verified M84 closeout
 `5b21c4798c16fb69b8ef08d40b02a2662677227a`.
 
+M86 requires the earliest parser-exposed local-header offset to be zero after
+M85 central-directory placement policy, but before decoded-name checks,
+metadata, inventory, member reads, or staging. Its stable error is content-
+silent. This is no local-header parser, inter-member layout validator,
+prepended executable classifier, or general archive sandbox. It adds no
+workflow, allocation, dependency, version, producer, runtime source/API,
+release authority, tag, release, or publication. M0 through M85 are complete,
+reviewed, hosted-validated, and integrated into `main`. M86 starts from exact
+verified M85 closeout `3eb38c5e591f0d73687293f130254d8c8b3256c7`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
