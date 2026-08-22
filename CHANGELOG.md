@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M96/RFC-0079 local-header extra-field consistency preflight. Each bounded
+  local extra field must exactly equal public central `ZipInfo.extra` before
+  decoded-name policy, metadata, inventory, reads, or staging, without an
+  extra-field semantics parser, broad extra-field ban, version/time/CRC/size
+  comparison, next-header or payload bound, inter-member layout validator,
+  workflow, dependency, producer, runtime API, or release-authority change.
 - Add M95/RFC-0078 local-header compression-method consistency preflight. Each
   bounded two-byte local compression method must equal the parser-exposed
   central `ZipInfo.compress_type` before decoded-name policy, metadata,

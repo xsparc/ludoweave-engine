@@ -389,6 +389,19 @@ release observation. M0 through M94 are complete, reviewed, hosted-validated,
 and integrated into `main`. M95 starts from exact verified M94 closeout
 `a19db05c096c6d22e5871373bc738d282516635c`.
 
+M96 reads each bounded local extra field after M95 and requires exact equality
+with public central `ZipInfo.extra` before decoded names, metadata, inventory,
+staging, or reads. Its stable content-silent error is `sample bundle local
+header extra fields are inconsistent`. This one bounded local-extra equality
+classifier adds no extra-field semantics parser, broad extra-field ban,
+version/time/CRC/size or field-wide consistency comparison, next-header or
+payload bound, or inter-member layout validation. It adds no workflow,
+allocation, dependency, version, producer, runtime source/API, release
+authority, tag, release, or publication. It is not a general archive sandbox
+and is not a real public release observation. M0 through M95 are complete,
+reviewed, hosted-validated, and integrated into `main`. M96 starts from exact
+verified M95 closeout `e770f5538660b5edea5fd8ebc4fccf717b18b272`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

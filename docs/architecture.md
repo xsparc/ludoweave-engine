@@ -2305,6 +2305,29 @@ validator. It is not a general archive sandbox and is not a real public release
 observation. Workflows, producer, dependencies, runtime API, and release
 authority remain unchanged. RFC-0078 defines the complete boundary.
 
+## M96 local-header extra-field consistency preflight
+
+M96 narrows the fixed sample profile after M95 by reading each local extra
+field from the already bounded local-header envelope. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 retain central extras `feca02006f6b` and read both payloads
+when only the second same-length local extra changes to `feca02006f21`.
+
+Private complete release smoke uses the bounded local name and extra lengths to
+read the local extra bytes, then compares them with public central
+`ZipInfo.extra`. A mismatch raises stable content-silent error `sample bundle
+local header extra fields are inconsistent` before decoded-name policy,
+metadata, exact inventory, staging, or reads. Empty archives retain their later
+inventory failure, and the helper restores the caller's snapshot position.
+
+This is one bounded local-extra equality classifier. It adds no extra-field
+semantics parser, no broad extra-field ban, no new field-ID policy, no
+version/time/CRC/size or field-wide local/central comparison, no complete
+local-record or payload bound, no next-header bound, and no adjacency,
+contiguity, physical non-overlap rule, or inter-member layout validator. It is
+not a general archive sandbox and is not a real public release observation.
+Workflows, producer, dependencies, runtime API, and release authority remain
+unchanged. RFC-0079 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
