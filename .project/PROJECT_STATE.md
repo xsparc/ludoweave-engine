@@ -1,6 +1,6 @@
 # Project State
 
-## M94 local-header flag-consistency preflight - implementation active
+## M94 local-header flag-consistency preflight - feature integrated; record active
 
 - Base: verified M93 closeout squash
   `1b189da618d2d2ea0b3208707ba209f81d1368cc`; local and remote `main` were
@@ -28,6 +28,24 @@
   qualification, guarded integration, record, closeout, and cleanup remain.
   Findings-first review found no actionable defect; the record-inclusive wheel
   retained its exact byte identity and complete release smoke passed.
+- Hosted feature proof: ready PR #234 exact DCO head
+  `23ad66250455aab68e7478903b7f2238983406aa`, tree
+  `96bd9000efbc473d09f0c75d83c5e1231621409e`, passed run `32581692977`
+  in Linux 5m32s, macOS 2m59s, and Windows 4m22s. Hosted Linux CPython 3.12
+  passed 2,742 tests; Linux 3.13/3.14 and macOS/Windows 3.14 each passed 2,742
+  with one established skip. All real graphics/profile/vertical slices and
+  Linux build/wheel/release smoke passed. Hosted repeat builds reproduced a
+  276,592-byte wheel at `6167497499b5e87fac82007b9db3f2e30912229e64e9ca518e6e5a8d19b6d04d`
+  and a 1,404,176-byte sdist at
+  `57e87b11f0c5f6b16eb1c6351ca5770896a479e1585eccda268d01ca40f6cf36`.
+- Two separated readiness audits found no comment, review, or thread and
+  retained exact head/tree/base plus three successful checks. Guarded squash
+  `7974b6fc110f995cac25f7d69d9c48b55013a764` has the exact qualified tree,
+  sole parent M93 closeout, standalone DCO, and a valid GitHub signature. The
+  feature branch is gone, main is exact, and no postmerge workflow ran.
+- The integration record changes exactly five factual project/roadmap files;
+  no runtime, public API, test, workflow, build, dependency, version, release-
+  authority, tag, release, or publication surface changes.
 - Boundary: no local compression-method or extra-field comparison, broad flag
   allowlist, version/time/CRC/size or field-wide comparison, payload/next-header
   bound, inter-member layout validator, archive repair, general archive

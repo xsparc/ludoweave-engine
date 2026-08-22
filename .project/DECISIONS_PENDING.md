@@ -19,6 +19,15 @@ or general sandbox. It changes no workflow, dependency, producer, runtime API,
 or release authority. RFC-0077 records the accepted policy; no M94 design
 decision remains pending.
 
+Feature PR #234 integrates the accepted RFC-0077 policy as verified squash
+`7974b6fc110f995cac25f7d69d9c48b55013a764` after exact-head hosted run
+`32581692977` passed the unchanged three Linux-first allocations. The squash
+has exact qualified tree `96bd9000efbc473d09f0c75d83c5e1231621409e`,
+sole parent M93 closeout, standalone DCO, and a valid GitHub signature. This
+evidence does not widen the decision or establish a real public release
+observation. Only the factual integration record and closeout remain; no M94
+policy decision is pending.
+
 RFC-0076 resolves the M93 local-header name-consistency preflight. PKWARE
 requires corresponding local and central member records, places each variable
 name immediately after the fixed local prefix, and specifies CP437 by default
