@@ -1,30 +1,58 @@
 # Current task
 
 - **Task:** M97 - local-header extraction-version consistency preflight
-- **Status:** Implementation, complete local qualification, corrected review,
-  record-inclusive artifact/release smoke, and final source/history audit pass.
-  Publication readiness is active.
-- **Base:** Verified M96 closeout squash
-  `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`, tree
-  `27b7b4968c64816dcc39a20e01c0410d4e11c78e`.
-- **Branch:** `release/m97-local-version-consistency`.
+- **Status:** Feature PR #243 is exact-head hosted-validated and squash-
+  integrated. The factual integration record passes complete local validation
+  and precommit audit; commit and publication are ready. No product or policy
+  change remains.
+- **Base:** Verified M97 feature squash
+  `0f519c72c12d21e0a0001c21868bd0748c7d7b8c`, tree
+  `8abe71ab97716a767517d211106281f25d20bb25`.
+- **Branch:** `release/m97-integration-record`.
 
-## Accepted scope
+## Integrated scope
 
-- After M96 local-extra consistency, read exactly two bytes at each public
-  `ZipInfo.header_offset + 4`.
-- Require those local bytes to equal public central
+- After M96 local-extra consistency, private release smoke reads exactly two
+  bytes at each public `ZipInfo.header_offset + 4`.
+- Those local bytes must equal public central
   `bytes((info.extract_version, info.reserved))`.
-- Raise stable content-silent error `sample bundle local header extraction
+- Mismatch raises stable content-silent `sample bundle local header extraction
   versions are inconsistent` before decoded-name policy, metadata, exact
   inventory, staging, or member reads.
-- Preserve every established policy through M96, empty-archive inventory
-  behavior, owned-resource cleanup, and caller snapshot position.
-- Add RFC-0080 plus aligned public, security, architecture, release, roadmap,
-  maintainer, test, and factual project records.
-- Keep workflow, runner allocations, actions, permissions, credentials,
+- Every established policy through M96, empty-archive inventory behavior,
+  owned-resource cleanup, and caller snapshot position remain intact.
+- RFC-0080 and aligned public, security, architecture, release, roadmap,
+  maintainer, test, and factual project records define the boundary.
+- Workflow, runner allocations, actions, permissions, credentials,
   dependency/lock/version, sample producer, runtime package/API, release
-  authority, tag, release, and publication unchanged.
+  authority, tag, release, and publication remain unchanged.
+
+## Hosted evidence
+
+- Ready PR #243 exact DCO head
+  `aa37212f4ec50c040fa39bfc98457133ab2744dd`, tree
+  `8abe71ab97716a767517d211106281f25d20bb25`, passed run
+  `32590870976` in exactly three Linux-first allocations.
+- Linux job `97074392026` passed in 7m26s, macOS job `97075313835` in
+  2m35s, and Windows job `97075313836` in 3m20s.
+- Linux CPython 3.12 passed 2,820 tests. Linux 3.13/3.14 and macOS/Windows
+  3.14 each passed 2,820 with one established capability skip.
+- Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena,
+  and Agent World Builder. Linux also passed formatting, Ruff, strict Pyright,
+  strict docs, base profiling, installed-wheel smoke, ten-artifact staging,
+  and complete release smoke.
+- Two hosted builds reproduced a 276,933-byte pure wheel at
+  `39a2c02643778e823e119072a8c718cebb32f3bb3c7cc58a90981074b75e0326`
+  and a 1,423,352-byte source archive at
+  `e8a3ab4cb2c03b3ebb22ea284c50ca63d31e6ffe1e57fdeba96324c163d72090`.
+- Two separated readiness audits retained exact head/tree/base, one DCO
+  commit, 16 paths, three successful checks from one exact-head run,
+  `MERGEABLE/CLEAN`, and zero comments, reviews, review comments, or review
+  threads.
+- Guarded squash `0f519c72c12d21e0a0001c21868bd0748c7d7b8c` has the exact
+  qualified tree, sole M96 closeout parent, standalone DCO trailer, and a valid
+  GitHub signature verified at `2026-08-22T18:41:22Z`. The feature branch is
+  deleted remotely and locally.
 
 ## Explicit non-scope
 
@@ -37,31 +65,11 @@
   workflow change, runtime feature, dependency, native/WASM work, tag, release,
   or publication.
 
-## Direction and red evidence
-
-- Clean M96 audit found exact local/remote closeout
-  `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`, only `main`, no open PR,
-  release, tag, or remaining M96 scratch target, a valid three-squash
-  DCO/signature chain, and exactly the two intended hosted runs.
-- PKWARE APPNOTE 6.3.10 defines a two-byte extraction-version pair in
-  corresponding local and central member records. CPython exposes the central
-  pair through public `ZipInfo.extract_version` and `ZipInfo.reserved`, while
-  its member-open path ignores the local pair.
-- A temporary probe changed only the second local extraction-version byte from
-  20 to 21. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained central
-  pairs `[(20, 0), (20, 0)]`, observed local pairs `[(20, 0), (21, 0)]`,
-  offsets `[0, 54]`, and read both payloads. The corrected probe was
-  format/Ruff clean.
-- The new 27-assertion contract is format/Ruff clean and strict Pyright reports
-  zero findings.
-- The exact CPython 3.14.5 red regression passed 17 supported-runtime behavior,
-  inherited precedence, empty-archive, producer, and protected-surface
-  controls. Ten stable-error, helper, cleanup, ordering, and documentation
-  assertions failed because the M97 policy/RFC did not yet exist. No complete
-  pass is claimed from that red checkpoint.
-
 ## Remaining acceptance work
 
-- Publish one DCO feature commit, qualify the exact head in the existing three
-  essential allocations, then perform guarded feature, factual integration-
-  record, and closeout PR integration with branch and scratch cleanup.
+- Validate, commit, publish, audit, and squash-integrate exactly the five
+  factual integration-record paths through the bounded Linux documentation
+  gate.
+- Create and integrate the three-record closeout without runner allocation.
+- Delete verified M97 generated targets and all branches except `main`, verify
+  the final feature/integration/closeout sole-parent chain, then select M98.
