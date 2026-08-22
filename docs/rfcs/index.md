@@ -82,3 +82,4 @@ was adopted.
 - [RFC-0075: bound local-header variable envelopes](0075-bound-local-header-envelopes.md)
 - [RFC-0076: require consistent local-header names](0076-require-consistent-local-header-names.md)
 - [RFC-0077: require consistent local-header flags](0077-require-consistent-local-header-flags.md)
+- [RFC-0078: require consistent local-header compression methods](0078-require-consistent-local-header-compression-methods.md)

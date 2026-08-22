@@ -895,6 +895,21 @@ header or payload bound, and no inter-member layout validator, workflow,
 dependency, runtime API, release authority, or producer change. This profile
 is not a general archive sandbox and is not a real public release observation.
 
+M95/RFC-0078 reads the two-byte local compression-method field after M94 flag
+consistency and requires exact equality with the parser-exposed central
+`ZipInfo.compress_type`. The one two-byte local-compression-method consistency
+classifier runs before decoded-name policy, metadata, exact inventory, staging,
+or member reads. Failure emits stable content-silent error `sample bundle local
+header compression methods are inconsistent`; all owned resources close before
+control returns.
+
+The fixed producer's 50 local methods match their corresponding central
+methods. M95 performs no local extra-field comparison or parsing, no
+version/time/CRC/size or field-wide consistency check, no method allowlist, no
+next-header or payload bound, and no inter-member layout validator, workflow,
+dependency, runtime API, release authority, or producer change. This profile is
+not a general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

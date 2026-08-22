@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+RFC-0078 resolves the M95 local-header compression-method consistency
+preflight. PKWARE duplicates a two-byte compression method in corresponding
+local and central member records. Exact CPython 3.12.13, 3.13.13, and 3.14.5
+retain central methods `[8, 8]` and read both payloads when only the second
+local method changes to stored 0. Private release smoke therefore reads exactly
+two little-endian bytes at `ZipInfo.header_offset + 8` after M94 and requires
+equality with central `ZipInfo.compress_type` before decoded names, metadata,
+inventory, staging, or reads. The stable error is `sample bundle local header
+compression methods are inconsistent`.
+
+This is one two-byte local-compression-method consistency classifier, not a
+local extra-field comparison/parser, version/time/CRC/size or field-wide
+comparison, method allowlist, record/payload/next-header bound, gap/adjacency/
+contiguity/non-overlap rule, inter-member layout validator, archive repair, or
+general sandbox. It changes no workflow, dependency, producer, runtime API, or
+release authority. RFC-0078 records the accepted policy; no M95 design decision
+remains pending.
+
 RFC-0077 resolves the M94 local-header flag-consistency preflight. PKWARE
 defines a two-byte general-purpose flag in both local and central member
 records, while supported CPython exposes the central value and accepts a

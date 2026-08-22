@@ -64,6 +64,7 @@ _SAMPLE_EOCD_SIGNATURE = b"PK\x05\x06"
 _SAMPLE_LOCAL_HEADER_SIGNATURE = b"PK\x03\x04"
 _SAMPLE_FIXED_LOCAL_HEADER_BYTES = 30
 _SAMPLE_LOCAL_HEADER_FLAGS_OFFSET = 6
+_SAMPLE_LOCAL_HEADER_COMPRESSION_OFFSET = 8
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES = 4
 _SAMPLE_UTF8_FILENAME_FLAG = 1 << 11
@@ -535,6 +536,10 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_local_header_envelope_bounds(snapshot=snapshot_stream, infos=infos)
         _validate_sample_local_header_names(snapshot=snapshot_stream, infos=infos)
         _validate_sample_local_header_flags(snapshot=snapshot_stream, infos=infos)
+        _validate_sample_local_header_compression_methods(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -950,6 +955,26 @@ def _validate_sample_local_header_flags(
             local_flags = int.from_bytes(snapshot.read(2), "little")
             if local_flags != info.flag_bits:
                 raise RuntimeError("sample bundle local header flags are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_compression_methods(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local compression methods to match parser-exposed central methods."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_COMPRESSION_OFFSET)
+            local_method = int.from_bytes(snapshot.read(2), "little")
+            if local_method != info.compress_type:
+                raise RuntimeError(
+                    "sample bundle local header compression methods are inconsistent"
+                )
     finally:
         snapshot.seek(position)
 

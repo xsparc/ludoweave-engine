@@ -348,6 +348,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   validator, workflow, dependency, producer, runtime API, or release-authority
   change; it is not a general archive sandbox and is not a real public release
   observation.
+- M95 reads each bounded two-byte local compression method after M94 and
+  requires exact equality with the parser-exposed central
+  `ZipInfo.compress_type` before decoded names, metadata, inventory, staging,
+  or reads. Its content-silent error is `sample bundle local header compression
+  methods are inconsistent`. This one two-byte local-compression-method
+  consistency classifier performs no local extra-field comparison, no
+  version/time/CRC/size comparison, no inter-member layout validator, workflow,
+  dependency, producer, runtime API, or release-authority change; it is not a
+  general archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

@@ -1,6 +1,48 @@
 # Project State
 
-## M94 local-header flag-consistency preflight - complete; closeout active
+## M95 local-header compression-method consistency preflight - locally qualified
+
+- Base: exact verified M94 closeout squash
+  `a19db05c096c6d22e5871373bc738d282516635c`, tree
+  `82b7378fd5634202cf3d21e3fe8aa4590faea4d4`; local and remote `main` were
+  exact with only `main` present before creating the neutral M95 branch.
+- Accepted policy: after M94, compare each two-byte little-endian local
+  compression method at `ZipInfo.header_offset + 8` with central
+  `ZipInfo.compress_type`. Mismatch raises stable content-silent `sample bundle
+  local header compression methods are inconsistent` before decoded-name
+  policy, metadata, exact inventory, staging, or reads. The helper restores
+  position and existing ownership closes resources.
+- Direction evidence: PKWARE defines the duplicated two-byte fields. A clean
+  temporary probe on exact CPython 3.12.13, 3.13.13, and 3.14.5 showed local
+  method 0 can differ while central methods remain `[8, 8]`, offsets remain
+  `[0, 54]`, and both payload reads succeed.
+- Red evidence: after correcting one formatter request and 17 strict-Pyright
+  findings from untyped parameter lambdas, the 25-assertion M95 contract passed
+  15 established controls and failed ten expected missing-policy/helper/order/
+  docs assertions. No M95 implementation or complete-suite pass is claimed
+  from that red invocation.
+- Implementation boundary: one fixed two-byte equality classifier after M94
+  plus RFC-0078 and aligned records. No local extra-field comparison or parsing,
+  version/time/CRC/size or field-wide comparison, method allowlist, record/
+  payload/next-header bound, inter-member layout validator, workflow,
+  dependency, producer, runtime API, release authority, tag, release, or
+  publication is admitted.
+- Local proof: all 49 combined M94-M95 assertions pass; the 25-case M95
+  contract passes on exact CPython 3.12.13, 3.13.13, and 3.14.5; all three
+  complete suites pass 2,752 tests with 16 established skips. Repository-wide
+  static/docs/architecture/metadata, real-wgpu, profile, vertical-slice,
+  reproducible-build, wheel, staging, and release gates pass after the recorded
+  environment correction.
+- Artifact proof before record inclusion: two fresh builds reproduced the
+  276,765-byte pure wheel at
+  `6b62c8e03a71304b1782b33d124dda9494019997364574a3c4ded19f881dbe8c`
+  and the 1,409,347-byte source archive at
+  `bd30131119d32fcfd4b9eb8f3e1d8bc16cb9a6e8d46b6b0b35730e5dd3df1601`;
+  wheel, staging, and complete release smoke passed. Archive review found 94
+  wheel entries, 556 source entries, and zero prohibited identities or formats.
+  Hosted exact-head qualification and integration records remain pending.
+
+## M94 local-header flag-consistency preflight - complete and closed
 
 - Base: verified M93 closeout squash
   `1b189da618d2d2ea0b3208707ba209f81d1368cc`; local and remote `main` were
@@ -26,7 +68,7 @@
   docs/architecture/metadata, real-wgpu, profile, vertical-slice,
   reproducible-build, wheel, staging, and release gates pass. Exact-head hosted
   feature qualification and the bounded integration record are verified and
-  squash-integrated; only closeout and cleanup remain.
+  squash-integrated, closed out, and cleaned.
   Findings-first review found no actionable defect; the record-inclusive wheel
   retained its exact byte identity and complete release smoke passed.
 - Hosted feature proof: ready PR #234 exact DCO head
