@@ -955,6 +955,20 @@ or payload bound, inter-member layout validator, workflow, dependency, runtime
 API, release authority, or producer change. This profile is not a general
 archive sandbox and is not a real public release observation.
 
+M99/RFC-0082 reads the bounded four-byte local CRC-32 after M98 and requires it
+to match public central `ZipInfo.CRC` encoded little-endian. This one four-byte
+local-CRC-32 consistency classifier runs before decoded-name policy, metadata,
+exact inventory, staging, or member reads. Failure emits stable content-silent
+error `sample bundle local header CRC-32 values are inconsistent`; all owned
+resources close before control returns.
+
+The fixed producer's 50 local and central CRC values match. M99 performs no CRC
+recomputation, payload-integrity certification, compressed/uncompressed size
+comparison, field-wide consistency check, payload or next-header bound, or
+inter-member layout validator, workflow, dependency, runtime API, release
+authority, or producer change. This profile is not a general archive sandbox
+and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M99/RFC-0082 local-header CRC-32 consistency preflight. Each bounded
+  four-byte local CRC must equal public central `ZipInfo.CRC` before decoded-
+  name policy, metadata, inventory, reads, or staging, without CRC
+  recomputation, compressed/uncompressed size comparison, payload or next-
+  header bounds, inter-member layout validation, workflow, dependency,
+  producer, runtime API, or release-authority change.
 - Add M98/RFC-0081 local-header timestamp consistency preflight. Each bounded
   four-byte local DOS timestamp must exactly equal the bytes represented by
   public central `ZipInfo.date_time` before decoded-name policy, metadata,
