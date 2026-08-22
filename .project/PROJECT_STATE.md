@@ -1,6 +1,6 @@
 # Project State
 
-## M97 local-header extraction-version consistency preflight - active
+## M97 local-header extraction-version consistency preflight - complete; integration record active
 
 - Base: exact verified M96 closeout squash
   `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`, tree
@@ -36,7 +36,7 @@
   3.12.13, 3.13.13, and 3.14.5.
 - Complete supported-Python proof: exact CPython 3.12.13, 3.13.13, and 3.14.5
   each pass 2,805 tests with 16 established skips. Repository-wide graphics,
-  artifact, release, and findings-first qualification remain active.
+  artifact, release, and findings-first qualification are complete.
 - Local proof: the unchanged 46-package lock resolves and the exact CPython
   3.12.13 locked 45-package graphics environment is installed. Repository-wide
   formatting, Ruff, strict Pyright, all 1,275 architecture assertions with one
@@ -74,6 +74,47 @@
   workflow, dependency, producer, runtime package/API, and release-authority
   boundaries remain unchanged; credential and explicit development-tool-
   identity scans are empty; Git has no corruption; and whitespace is clean.
+- Hosted feature proof: ready PR #243 exact DCO head
+  `aa37212f4ec50c040fa39bfc98457133ab2744dd`, tree
+  `8abe71ab97716a767517d211106281f25d20bb25`, passed run `32590870976`
+  in exactly three allocations: Linux job `97074392026` in 7m26s, macOS job
+  `97075313835` in 2m35s, and Windows job `97075313836` in 3m20s. Linux
+  CPython 3.12 passed 2,820 tests; Linux 3.13/3.14 and macOS/Windows 3.14 each
+  passed 2,820 with one established capability skip. All hosted graphics,
+  profiles, vertical slices, and Linux static/build/release gates passed.
+- Hosted repeat builds reproduced a 276,933-byte wheel at
+  `39a2c02643778e823e119072a8c718cebb32f3bb3c7cc58a90981074b75e0326`
+  and a 1,423,352-byte source archive at
+  `e8a3ab4cb2c03b3ebb22ea284c50ca63d31e6ffe1e57fdeba96324c163d72090`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke
+  passed.
+- Two separated readiness audits around 32 passing local assertions retained
+  exact head/tree/base, one DCO commit, 16 paths, three successful checks from
+  one exact-head run, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `0f519c72c12d21e0a0001c21868bd0748c7d7b8c` has the exact qualified tree,
+  sole parent M96 closeout, standalone DCO, and a valid GitHub signature
+  verified at `2026-08-22T18:41:22Z`. The feature branch is gone remotely and
+  locally.
+- The integration record changes exactly five factual project/roadmap files;
+  no runtime, public API, test, workflow, build, dependency, version, release-
+  authority, tag, release, or publication surface changes.
+- Integration-record local proof: the unchanged 46-package lock and all 45
+  locked graphics packages check; repository-wide format, Ruff, strict
+  Pyright, all 1,275 architecture assertions with one established skip, strict
+  docs, metadata hygiene, and whitespace pass. Two fresh builds reproduce a
+  276,935-byte pure wheel at
+  `c98a6986f43db21cfddd645a976a4cade653f6c7adca1b0b319d99307cae60c1`
+  and a 1,424,078-byte source archive at
+  `c63339f89974c8f1be859d5f1958fcc5d7f780cb3efc842fc99db949c277e22c`;
+  isolated-wheel, staging, and complete release smoke pass.
+- Integration-record precommit audit: branch base, local and remote `main`,
+  and merge base are the exact feature squash with divergence `0 0`. Exactly
+  five intended factual paths change; only `main` plus the neutral record
+  branch exist locally and only `origin/main` remotely. Open PR, branch-run,
+  feature-squash postmerge-run, release, and tag queries are empty. Protected
+  code/workflow/dependency surfaces have no diff, credential and explicit
+  development-tool-identity scans are empty, Git has no corruption, and
+  whitespace is clean.
 
 ## M96 local-header extra-field consistency preflight - complete and closed
 
