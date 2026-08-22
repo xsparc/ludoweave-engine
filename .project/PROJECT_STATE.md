@@ -1,6 +1,6 @@
 # Project State
 
-## M96 local-header extra-field consistency preflight - implementation active
+## M96 local-header extra-field consistency preflight - complete; integration record active
 
 - Base: exact verified M95 closeout squash
   `e770f5538660b5edea5fd8ebc4fccf717b18b272`, tree
@@ -54,7 +54,30 @@
   `5038283415a3ec49531ccccf7a99b596dbbb0dafcb4199ac6bc9390979d58b21`;
   wheel, staging, and complete release smoke passed. Archive review found 94
   wheel entries, 558 source entries, and zero prohibited identities or formats.
-  Hosted exact-head qualification and integration records remain pending.
+- Hosted feature proof: ready PR #240 exact DCO head
+  `b876a27c099a03439b87710036ba05ec92627a84`, tree
+  `23b0cd47d9e764fab09361d75e412a7a91517bbe`, passed run `32587635235`
+  in exactly three allocations: Linux job `97066338343` in 7m04s, macOS job
+  `97067195975` in 2m18s, and Windows job `97067196001` in 4m14s. Linux
+  CPython 3.12 passed 2,793 tests; Linux 3.13/3.14 and macOS/Windows 3.14 each
+  passed 2,793 with one established capability skip. All hosted graphics,
+  profiles, vertical slices, and Linux static/build/release gates passed.
+- Hosted repeat builds reproduced a 276,851-byte wheel at
+  `525392485408079a242c42ce4be35c37ee2e43989f155abed566375ae36db66d`
+  and a 1,416,453-byte source archive at
+  `5275bbd6014c398eaf29910da1713d960beb1fb71e236361b1a4e324197a7f8e`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke
+  passed.
+- Two separated readiness audits around 31 passing local assertions retained
+  exact head/tree/base, one DCO commit, 16 paths, three successful checks from
+  one exact-head run, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `70ef2f635fd1f9b3c25a3b044a031a422280c57e` has the exact qualified tree,
+  sole parent M95 closeout, standalone DCO, and a valid GitHub signature
+  verified at `2026-08-22T17:37:48Z`. The feature branch is gone remotely and
+  locally.
+- The integration record changes exactly five factual project/roadmap files;
+  no runtime, public API, test, workflow, build, dependency, version, release-
+  authority, tag, release, or publication surface changes.
 
 ## M95 local-header compression-method consistency preflight - complete and closed
 

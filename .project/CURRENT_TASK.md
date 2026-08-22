@@ -1,12 +1,12 @@
 # Current task
 
 - **Task:** M96 - local-header extra-field consistency preflight
-- **Status:** Implementation, full local qualification, and findings-first
-  review are complete; exact-head hosted qualification and integration remain.
-- **Base:** Verified M95 closeout squash
-  `e770f5538660b5edea5fd8ebc4fccf717b18b272`, tree
-  `0f8e47c61c1e93147f6ba19c813c836dea514962`.
-- **Branch:** `release/m96-local-extra-consistency`.
+- **Status:** Feature PR #240 is hosted-qualified and squash-integrated. The
+  bounded integration record is active; no product or policy work remains.
+- **Base:** Verified M96 feature squash
+  `70ef2f635fd1f9b3c25a3b044a031a422280c57e`, tree
+  `23b0cd47d9e764fab09361d75e412a7a91517bbe`.
+- **Branch:** `release/m96-integration-record`.
 
 ## Accepted scope
 
@@ -61,7 +61,8 @@
 
 ## Remaining acceptance work
 
-- Publish the locally qualified, independently reviewed, exact 16-path DCO
-  feature commit through the existing quota-conscious three-
-  allocation gate, two exact-head audits, guarded squash, bounded integration
-  record, no-workflow closeout, and complete branch/generated-target cleanup.
+- Validate and publish exactly the five factual integration records through the
+  bounded documentation-class Linux gate, two readiness audits, and a guarded
+  squash.
+- Publish the no-workflow closeout record, remove all M96 branches and verified
+  generated targets, audit the final three-squash chain, then select M97.
