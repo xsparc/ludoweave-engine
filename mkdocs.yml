@@ -120,6 +120,7 @@ nav:
       - RFC-0077 - Require consistent local-header flags: rfcs/0077-require-consistent-local-header-flags.md
       - RFC-0078 - Require consistent local-header compression methods: rfcs/0078-require-consistent-local-header-compression-methods.md
       - RFC-0079 - Require consistent local-header extra fields: rfcs/0079-require-consistent-local-header-extra-fields.md
+      - RFC-0080 - Require consistent local-header extraction versions: rfcs/0080-require-consistent-local-header-extraction-versions.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

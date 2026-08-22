@@ -402,6 +402,19 @@ and is not a real public release observation. M0 through M95 are complete,
 reviewed, hosted-validated, and integrated into `main`. M96 starts from exact
 verified M95 closeout `e770f5538660b5edea5fd8ebc4fccf717b18b272`.
 
+M97 reads the two-byte local extraction-version pair after M96 and requires
+exact equality with public central `ZipInfo.extract_version` and
+`ZipInfo.reserved` before decoded names, metadata, inventory, staging, or
+reads. Its stable content-silent error is `sample bundle local header
+extraction versions are inconsistent`. This one two-byte local-extraction-
+version consistency classifier adds no supported-version allowlist, no
+time/CRC/size comparison, no inter-member layout validation, and no workflow,
+allocation, dependency, version, producer, runtime source/API, release
+authority, tag, release, or publication. It is not a general archive sandbox
+and is not a real public release observation. M0 through M96 are complete,
+reviewed, hosted-validated, and integrated into `main`. M97 starts from exact
+verified M96 closeout `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

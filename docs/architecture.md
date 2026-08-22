@@ -2328,6 +2328,29 @@ not a general archive sandbox and is not a real public release observation.
 Workflows, producer, dependencies, runtime API, and release authority remain
 unchanged. RFC-0079 defines the complete boundary.
 
+## M97 local-header extraction-version consistency preflight
+
+M97 narrows the fixed sample profile after M96 by reading the two bytes at
+each already bounded `ZipInfo.header_offset + 4`. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 retain central pairs `(20, 0)` and read both payloads when
+only the second local extraction-version byte changes from 20 to 21.
+
+Private complete release smoke compares those local bytes with public central
+`ZipInfo.extract_version` and `ZipInfo.reserved`. A mismatch raises stable
+content-silent error `sample bundle local header extraction versions are
+inconsistent` before decoded-name policy, metadata, exact inventory, staging,
+or reads. Empty archives retain their later inventory failure, and the helper
+restores the caller's snapshot position.
+
+This is one two-byte local-extraction-version consistency classifier. It adds
+no supported-version allowlist, minimum extractor-capability rule,
+reserved-byte policy, time/CRC/size comparison, field-wide local/central
+comparison, complete local-record or payload bound, next-header bound, or
+adjacency, contiguity, physical non-overlap rule, or inter-member layout
+validator. It is not a general archive sandbox and is not a real public
+release observation. Workflows, producer, dependencies, runtime API, and
+release authority remain unchanged. RFC-0080 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
