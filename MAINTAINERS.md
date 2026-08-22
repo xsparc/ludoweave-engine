@@ -335,6 +335,20 @@ complete, reviewed, hosted-validated, and integrated into `main`. M91 starts
 from exact verified M90 closeout
 `152a083c2965bf99d54ed5aaba222e6bde1e841f`.
 
+M92 reads the two local file-name and extra-field length declarations after
+M91 prefix bounds, then requires every local-header variable envelope to end
+no later than the conventional central directory before decoded names,
+metadata, inventory, staging, or reads. Its stable content-silent error is
+`sample bundle local header envelopes are out of bounds`. This two-field
+envelope-bound classifier performs no local-name comparison, extra-field
+parsing, next-header or payload bound, or inter-member layout validation. It
+adds no workflow, allocation, dependency, version, producer, runtime source/
+API, release authority, tag, release, or publication. It is not a general
+archive sandbox and is not a real public release observation. M0 through M91
+are complete, reviewed, hosted-validated, and integrated into `main`. M92
+starts from exact verified M91 closeout
+`0d89517265ffbca931c5fa9d76f666900371e23c`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

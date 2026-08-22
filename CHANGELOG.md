@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M92/RFC-0075 local-header variable-envelope bounds preflight. The two
+  local length declarations must keep each complete header envelope before
+  decoded-name policy, metadata, inventory, reads, or staging, without local-
+  name comparison, extra-field parsing, next-header or payload bounds, an
+  inter-member layout validator, workflow, dependency, producer, runtime API,
+  or release-authority change.
 - Add M91/RFC-0074 fixed local-header-prefix bounds preflight. Every parser-
   exposed offset must leave room for the 30-byte fixed local-header prefix
   before decoded-name policy, metadata, inventory, reads, or staging, without
