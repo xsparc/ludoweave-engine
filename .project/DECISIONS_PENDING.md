@@ -14,8 +14,9 @@ before decoded-name policy, metadata, inventory, staging, or reads. It adds no
 local-flag comparison, extra-field comparison, field-wide consistency,
 inter-member layout validator, repair, workflow, dependency, producer,
 runtime API, or release authority. RFC-0076 records the accepted policy;
-implementation and exact-head qualification remain active. No policy decision
-is pending.
+implementation and exact-head qualification are integrated by feature PR
+#231. The factual integration record and closeout remain active; no policy
+decision is pending.
 
 RFC-0075 resolves the M92 local-header variable-envelope bound. PKWARE defines
 two 16-bit local file-name and extra-field length declarations before their
