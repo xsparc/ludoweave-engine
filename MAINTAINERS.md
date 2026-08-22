@@ -322,6 +322,19 @@ release observation. M0 through M89 are complete, reviewed, hosted-validated,
 and integrated into `main`. M90 starts from exact verified M89 closeout
 `92b3e2c351fe92ea0789b46636e0d0a08d29281a`.
 
+M91 requires every parser-exposed offset to leave room for the 30-byte fixed
+local-header prefix before the conventional central directory after M90
+signatures and before decoded names, metadata, inventory, staging, or reads.
+Its stable content-silent error is `sample bundle local header prefixes are out
+of bounds`. This prefix-bound classifier adds no local-header field parser,
+record-extent or payload-bound rule, or inter-member layout validator. It adds
+no workflow, allocation, dependency, version, producer, runtime source/API,
+release authority, tag, release, or publication. It is not a general archive
+sandbox and is not a real public release observation. M0 through M90 are
+complete, reviewed, hosted-validated, and integrated into `main`. M91 starts
+from exact verified M90 closeout
+`152a083c2965bf99d54ed5aaba222e6bde1e841f`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

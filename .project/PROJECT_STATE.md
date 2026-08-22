@@ -1,6 +1,99 @@
 # Project State
 
-## M90 local-header signature preflight - closeout active
+## M91 fixed local-header-prefix bounds preflight - implementation active
+
+- Base: exact verified M90 closeout squash
+  `152a083c2965bf99d54ed5aaba222e6bde1e841f`, tree
+  `11a2be31ff96d55cb5f0ac035a2c226000eaf22c`. Synchronized `main` was the
+  only local/remote branch; there was no open PR, current-head run, tag,
+  release, identity-control path, or M90 generated target. Full Git checking
+  reported no corruption.
+- Gap: a central pointer can identify `PK\x03\x04` only four bytes before the
+  conventional central directory. Exact CPython 3.12.13, 3.13.13, and 3.14.5
+  expose offsets `[0, 90]` below directory offset `94`, read the first payload,
+  and defer public `BadZipFile` until the malformed second member is opened.
+- Decision: after every policy through M90, private complete release smoke
+  requires each parser-exposed offset plus ZIP's 30-byte fixed local-header
+  prefix to be no greater than the conventional central-directory offset
+  before decoded names, metadata, inventory, staging, or reads. The stable
+  error is `sample bundle local header prefixes are out of bounds`.
+- Boundary: one arithmetic prefix-bound classifier only. It adds no local-
+  header field parser, filename/extra-length interpretation, complete record
+  extent, payload bound, or inter-member layout validator, archive repair,
+  workflow, producer, dependency, runtime API, or release authority.
+- Red baseline: the static-clean 20-case contract passes 11 controls and fails
+  9 missing runtime, helper, cleanup, source-order, and documentation contracts
+  in 0.35 seconds against exact M90 code. No pass is claimed.
+- Implementation: release smoke now applies the 30-byte arithmetic bound after
+  M90 signatures and before names. RFC-0074 and aligned public, security,
+  architecture, release, maintainer, navigation, roadmap, and repository
+  records define the fixed-profile rule.
+- Focused/supported proof: all 39 combined M90-M91 assertions pass on CPython
+  3.12. The 20-case M91 contract passes on exact CPython 3.12.13, 3.13.13, and
+  3.14.5. Complete suites pass 2,659 tests on each interpreter, with 15
+  established skips on 3.12 and 16 on 3.13/3.14.
+- Static/architecture proof: the unchanged 46-package lock resolves and the
+  45-package graphics environment is restored. All 334 Python files are
+  format/Ruff clean; strict Pyright reports zero findings; all 1,129
+  architecture assertions pass with one established Windows capability skip;
+  strict docs and whitespace pass.
+- Graphics/slices proof: all ten real-wgpu tests pass; two- and three-workload
+  profiles validate. Clockwork Arena and Agent World Builder reproduce their
+  established state, capture, and replay identities.
+- Distribution proof: two fresh builds reproduce a 276,152-byte pure wheel at
+  `007272e5a687d66ccca7ae1a324b7274dd8b5464f2ae46e909c1303eaeb24750`
+  and a 1,377,835-byte source archive at
+  `c2b0f8e9dbd34625dc4d92158af6d9a379ca6fa84baefa0fd6a2f596b91c4ef3`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Review: no actionable finding remains. Exactly 16 intended paths change;
+  workflows, producer, project metadata, lock, and runtime package remain
+  protected. Metadata hygiene passes five checks; corrected credential and
+  explicit-identity scans find zero matches; the 94-entry wheel and 548-entry
+  source archive contain no native/WASM/bytecode/retired-control payload;
+  whitespace passes and Git object checking reports no corruption. One first
+  credential regex was malformed and performed no scan; no pass is claimed.
+- Record-inclusive proof: all 334 Python files remain format/Ruff clean,
+  strict Pyright reports zero findings, all 1,129 architecture assertions pass
+  with one established skip, strict docs and whitespace pass. Two fresh builds
+  retain the exact wheel and reproduce a 1,379,095-byte source archive at
+  `3ee670767c914049d48226cd245e83fbfe7e4891b6ef12cf71cae436cf880f3d`;
+  installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Prepublication history: after fetch/prune, branch head, `main`, `origin/main`,
+  and merge base are exact M90 closeout
+  `152a083c2965bf99d54ed5aaba222e6bde1e841f`, with symmetric difference
+  `0 0`. Only `main` and the necessary M91 feature branch exist locally and
+  only `origin/main` remotely; authentication is valid, the last three
+  integrated commits retain DCO, and open PR, current-branch workflow, tag,
+  and release queries are empty.
+- Initial hosted qualification: ready PR #225 exact DCO head
+  `0af7816ad989c9e66f7c90748df2f85cb2578861`, tree
+  `18eea0ceaa75a8afe47ce2977247ada6d5c2de89`, passed run
+  `31811384356` in exactly three Linux-first allocations: Linux in 7m22s,
+  macOS in 3m16s, and Windows in 4m12s. Linux passed 2,674 tests on CPython
+  3.12 and 2,674 with one skip on 3.13/3.14; macOS and Windows CPython 3.14
+  each passed 2,674 with one skip. Every OS passed ten real-wgpu tests,
+  graphics profiling, Clockwork Arena, and Agent World Builder.
+- Initial hosted artifacts: the 276,138-byte pure wheel SHA-256 is
+  `cb1ef8ded74d441df6c85c4f482a0142e7bd822d774562b203c6c368a5d4cf7a`;
+  the 1,379,557-byte source archive SHA-256 is
+  `6f8e54b385e96135f16262c66b955923d4c63d808e4a3d58d0f963f3aaace2af`.
+  Installed-wheel, staging, and complete release smoke passed.
+- Review correction: the first readiness audit found one actionable P2: the
+  detailed README status still named M0-M89 while the banner named M0-M90.
+  The tree was not merged. The sentence now names M0-M90 and the M91 test
+  protects both status statements. Twenty-five focused M91/metadata assertions,
+  strict Pyright, Ruff, strict docs, and whitespace pass. One initial local
+  tree query used PowerShell-sensitive braces and failed; a portable query is
+  required. One review-fix format check mistakenly targeted Markdown and Ruff
+  rejected that unsupported target; the corrected Python-only check passes.
+- Complete correction gate: the first attempt was intentionally interrupted
+  before a complete result, so no pass is claimed. A fresh rerun from separate
+  absent temporary roots found all 334 Python files format/Ruff clean, strict
+  Pyright zero findings, all 1,129 architecture assertions passing with one
+  established Windows capability skip in 8.81 seconds, strict docs passing in
+  1.44 seconds with only the known Material notice, and clean whitespace.
+
+## M90 local-header signature preflight - complete
 
 - Base: exact verified M89 closeout squash
   `92b3e2c351fe92ea0789b46636e0d0a08d29281a`, tree
@@ -131,6 +224,17 @@
   `origin/main`, and merge base at exact integration-record squash with
   divergence `0 0`; only `main` and the closeout branch exist, with no open PR,
   exact-head postmerge run, tag, or release.
+- Closeout readiness/squash: two separated audits retained exact head/tree/base,
+  one standalone DCO commit, exactly three project records, zero hosted
+  allocation, and zero feedback. PR #224 squash
+  `152a083c2965bf99d54ed5aaba222e6bde1e841f` has exact reviewed tree, sole
+  parent integration-record squash, standalone DCO trailer, and a valid GitHub
+  signature at `2026-08-14T14:22:27Z`.
+- Final cleanup: 25 verified generated M90 targets were removed. Exact
+  synchronized `main` is the closeout squash with divergence `0 0`; only
+  `main` exists locally and remotely, with no open PR, current-head workflow,
+  tag, release, retired control path, or M90 generated target. Git object
+  checking reports no corruption.
 
 ## M89 local-header-offset bounds preflight - complete
 

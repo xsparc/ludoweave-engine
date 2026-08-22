@@ -314,6 +314,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   no local-header field parser, no inter-member layout validator, workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M91 requires room for the 30-byte fixed local-header prefix at every parser-
+  exposed offset after M90 signatures and before decoded names, metadata,
+  inventory, staging, or reads. Its content-silent error is `sample bundle
+  local header prefixes are out of bounds`. This prefix-bound classifier adds
+  no local-header field parser, no inter-member layout validator, workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

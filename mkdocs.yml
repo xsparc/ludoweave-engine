@@ -114,6 +114,7 @@ nav:
       - RFC-0071 - Require local-header offset order: rfcs/0071-require-local-header-offset-order.md
       - RFC-0072 - Bound local-header offsets: rfcs/0072-bound-local-header-offsets.md
       - RFC-0073 - Require local-header signatures: rfcs/0073-require-local-header-signatures.md
+      - RFC-0074 - Bound fixed local-header prefixes: rfcs/0074-bound-local-header-prefixes.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

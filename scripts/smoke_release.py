@@ -62,6 +62,7 @@ _SAMPLE_ZIP64_EXTRA_FIELD = 0x0001
 _SAMPLE_EOCD_BYTES = 22
 _SAMPLE_EOCD_SIGNATURE = b"PK\x05\x06"
 _SAMPLE_LOCAL_HEADER_SIGNATURE = b"PK\x03\x04"
+_SAMPLE_FIXED_LOCAL_HEADER_BYTES = 30
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -526,6 +527,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_local_header_order(infos=infos)
         _validate_sample_local_header_bounds(snapshot=snapshot_stream, infos=infos)
         _validate_sample_local_header_signatures(snapshot=snapshot_stream, infos=infos)
+        _validate_sample_local_header_prefix_bounds(snapshot=snapshot_stream, infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -860,6 +862,21 @@ def _validate_sample_local_header_signatures(
                 raise RuntimeError("sample bundle local header signature is inconsistent")
     finally:
         snapshot.seek(position)
+
+
+def _validate_sample_local_header_prefix_bounds(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require each local header's fixed prefix to precede the directory."""
+
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    if any(
+        info.header_offset + _SAMPLE_FIXED_LOCAL_HEADER_BYTES > directory_offset for info in infos
+    ):
+        raise RuntimeError("sample bundle local header prefixes are out of bounds")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:
