@@ -2,15 +2,15 @@
 
 - **Task:** M98 - local-header timestamp consistency preflight
 - **Status:** Feature PR #246 is exact-head hosted-validated and
-  squash-integrated. The five-file factual integration record passes complete
-  local source, documentation, architecture, distribution, and release proof,
-  its precommit audit is complete, and its first exact-head hosted run passed.
-  One handoff-status review correction is applied; amended-head qualification
-  and integration remain. No product or policy change remains.
-- **Base:** Verified M98 feature squash
-  `f89fdbb733925344b8d362b60db035d7df575687`, tree
-  `65e83878ffb50e5c654ba3b4e7e53fb60458b9dd`.
-- **Branch:** `release/m98-integration-record`.
+  squash-integrated. Corrected integration-record PR #247 is exact-head
+  hosted-validated and squash-integrated. The three-file no-workflow closeout
+  record passes its local metadata, whitespace, and precommit remote/history/
+  integrity gates; commit and publication remain. No product or policy change
+  remains.
+- **Base:** Verified M98 integration-record squash
+  `0225660c0b24ca4a5831adf96b20b0cb922d2754`, tree
+  `1ab4b10f8665fb7edb376d8bd45315735d980ec2`.
+- **Branch:** `release/m98-closeout`.
 
 ## Integrated scope
 
@@ -56,6 +56,29 @@
   GitHub signature verified at `2026-08-22T19:40:48Z`. The feature branch is
   deleted remotely and locally.
 
+## Hosted integration-record evidence
+
+- Corrected ready PR #247 exact DCO head
+  `ab7378aae45e620afeedf737f16b3c65af8a0ef8`, tree
+  `1ab4b10f8665fb7edb376d8bd45315735d980ec2`, passed exact-head run
+  `32595002867` in one 44-second Linux allocation; the desktop matrix
+  placeholder skipped without allocating a runner.
+- Strict docs built in 2.01 seconds; all 1,304 hosted architecture assertions,
+  reproducible distribution, isolated-wheel smoke, deterministic ten-artifact
+  staging, and complete release smoke passed.
+- Hosted repeat builds reproduced a 277,034-byte pure wheel at
+  `eca01f9e9ed31a6d625583348e902adb55b6110f48a67cd82042c8313c415378`
+  and a 1,432,942-byte source archive at
+  `194fe3349cfc19b8aa5c576f5999631dc5754bbe9ebd2e2baee6710d80bf9f35`.
+- Two separated readiness audits retained exact head/tree/base, one DCO
+  commit, five paths, one exact-head successful run, and `MERGEABLE/CLEAN`.
+  The one corrected review thread remained resolved and outdated with zero
+  unresolved threads or issue comments.
+- Guarded squash `0225660c0b24ca4a5831adf96b20b0cb922d2754` has the exact
+  qualified tree, sole M98 feature-squash parent, standalone DCO trailer, and a
+  valid GitHub signature verified at `2026-08-22T19:54:43Z`. The integration
+  branch is deleted remotely and locally.
+
 ## Explicit non-scope
 
 - No timestamp semantics validator, timezone or UTC conversion, wall-clock
@@ -70,8 +93,7 @@
 
 ## Remaining acceptance work
 
-- Requalify and squash-integrate the corrected five-file factual
-  project/roadmap record through the bounded documentation path.
-- Create and integrate the no-workflow closeout record.
+- Commit, publish, audit, and squash-integrate exactly the three validated
+  factual closeout records without allocating a workflow.
 - Delete verified M98 generated targets and all branches except `main`, verify
   the final feature/integration/closeout sole-parent chain, then select M99.

@@ -1,6 +1,6 @@
 # Project State
 
-## M98 local-header timestamp consistency preflight - feature integrated; integration record active
+## M98 local-header timestamp consistency preflight - integration record merged; closeout active
 
 - Base: exact verified M97 closeout squash
   `9f4a3b915df40fe86a0fc5c759763186899ea1fe`, tree
@@ -109,6 +109,34 @@
   now distinguishes completed local/precommit/initial-hosted proof from the
   amended-head requalification still required. Runtime policy and public
   documentation are unchanged.
+- Corrected integration-record hosted proof: ready PR #247 exact DCO head
+  `ab7378aae45e620afeedf737f16b3c65af8a0ef8`, tree
+  `1ab4b10f8665fb7edb376d8bd45315735d980ec2`, passed exact-head run
+  `32595002867` in one 44-second Linux allocation; the desktop placeholder
+  skipped without allocating a runner. Strict docs built in 2.01 seconds; all
+  1,304 architecture assertions, reproducible distribution, isolated-wheel
+  smoke, deterministic ten-artifact staging, and complete release smoke passed.
+- Hosted repeat builds reproduced a 277,034-byte wheel at
+  `eca01f9e9ed31a6d625583348e902adb55b6110f48a67cd82042c8313c415378`
+  and a 1,432,942-byte source archive at
+  `194fe3349cfc19b8aa5c576f5999631dc5754bbe9ebd2e2baee6710d80bf9f35`.
+- Two separated corrected-head audits retained exact head/tree/base, one DCO
+  commit, five paths, one exact-head successful run, and `MERGEABLE/CLEAN`.
+  The one corrected review thread was resolved and outdated; there were zero
+  unresolved threads or issue comments.
+- Integration-record PR #247 merged at `2026-08-22T19:54:44Z` as verified
+  squash `0225660c0b24ca4a5831adf96b20b0cb922d2754`. It has the exact
+  qualified tree, sole M98 feature-squash parent, standalone DCO trailer, and a
+  valid GitHub signature verified at `2026-08-22T19:54:43Z`. The integration
+  branch is deleted remotely and locally; only `main` plus the closeout branch
+  exist locally and only `origin/main` remotely.
+- Closeout precommit proof: exactly three factual `.project` paths change; all
+  five metadata-hygiene assertions and whitespace pass. Branch base, local
+  `main`, `origin/main`, and merge base are exact integration squash with
+  divergence `0 0`. Open PR, closeout-branch run, integration-squash run,
+  release, and tag queries are empty. Protected source, tests, scripts, docs,
+  workflows, dependencies, README, and roadmap have no diff; Git integrity and
+  the integration squash's parent/tree/DCO/signature remain exact.
 
 ## M97 local-header extraction-version consistency preflight - complete and closed
 
