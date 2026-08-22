@@ -12,7 +12,9 @@ lengths after M91 and before names, metadata, inventory, staging, or reads. It
 adds no local-name comparison, extra-field parsing, next-header or payload
 bound, inter-member layout validator, workflow, dependency, producer, runtime
 API, or release authority. RFC-0075 records the accepted policy;
-implementation and qualification are active.
+implementation and exact-head qualification are integrated by feature PR
+#228. The factual integration record and closeout remain active; no policy
+decision is pending.
 
 RFC-0074 resolves the M91 fixed local-header-prefix bound. PKWARE defines 30
 fixed local-header bytes before variable name and extra fields, and Python
