@@ -2233,6 +2233,31 @@ not a general archive sandbox and is not a real public release observation.
 Workflows, producer, dependencies, runtime API, and release authority remain
 unchanged. RFC-0075 defines the complete boundary.
 
+## M93 local-header name consistency preflight
+
+M93 narrows the fixed sample profile after M92 by reading each already bounded
+local file-name. Supported CPython 3.12-3.14 accepts central names and offsets
+when one same-length local name is changed, keeps an earlier member readable,
+and defers public `BadZipFile` until the mismatched member opens.
+
+Private complete release smoke reconstructs each parser-exposed
+`ZipInfo.orig_filename` with UTF-8 when the central `flag_bits` language-
+encoding bit is set and CP437 otherwise. It compares those expected bytes with
+the declared local name from the owned checksum-admitted snapshot. A mismatch
+raises stable content-silent error `sample bundle local header names are
+inconsistent` before decoded-name policy, metadata, exact inventory, staging,
+or reads. Empty archives retain their later inventory failure, and the helper
+restores the caller's snapshot position.
+
+This is one raw local-name consistency classifier. It performs no local-flag
+comparison, extra-field comparison or parsing, local/central field-wide
+consistency check, complete local-record or payload bound, next-header bound,
+adjacency, contiguity, physical non-overlap rule, or inter-member layout
+validator, and no archive repair. It is not a general archive sandbox and is
+not a real public release observation. Workflows, producer, dependencies,
+runtime API, and release authority remain unchanged. RFC-0076 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -1,5 +1,88 @@
 # Project State
 
+## M93 local-header name-consistency preflight - locally validated
+
+- Base: exact verified M92 closeout squash
+  `74972042525041e9251ce245a1fd4ea75add6047`, tree
+  `d8c44c6639914c8a833e364d8600eb0ae7fedc8e`. Synchronized `main` was the
+  only local/remote branch; there was no open PR, current-head run, tag,
+  release, tracked identity-control path, or M92 generated target. Thirty-eight
+  verified M92 temporary targets were removed, and full Git checking reported
+  no corruption.
+- Gap: changing only the second local name from `second.txt` to the same-length
+  `second.txu` leaves central names `first.txt`/`second.txt` and offsets
+  `[0, 46]` visible. Exact CPython 3.12.13, 3.13.13, and 3.14.5 read the first
+  payload and defer public `BadZipFile` until the malformed second member
+  opens.
+- Decision: after every policy through M92, private complete release smoke
+  reconstructs each parser-exposed central `orig_filename` as UTF-8 under
+  central bit 11 and CP437 otherwise, then requires exact equality with the
+  already bounded raw local name. The stable error is
+  `sample bundle local header names are inconsistent`.
+- Boundary: one raw local-name consistency classifier only. It performs no
+  local-flag comparison, extra-field comparison or parsing, field-wide
+  local/central consistency, next-header or payload bound, complete record
+  extent, gap/adjacency/contiguity/non-overlap policy, inter-member layout
+  validation, archive repair, workflow, dependency, producer, runtime API, or
+  release authority. It is not a general archive sandbox or a real public
+  release observation.
+- Direction proof: PKWARE APPNOTE 6.3.10 sections 4.3.2 and 4.3.7 require
+  corresponding local/central records and place the variable name after the
+  fixed local prefix; Appendix D specifies CP437 by default and UTF-8 under bit
+  11. Python documents the same metadata encoding precedence and public
+  `flag_bits`/`header_offset`. CPython 3.14 defers its decoded local/central
+  name comparison until member open; M93 uses no private names.
+- Probe: the format/Ruff-clean temporary behavior probe produced the same
+  structural result on exact supported CPython 3.12.13, 3.13.13, and 3.14.5.
+- Red baseline: the first static-clean contract estimate named 22 cases but
+  collected 21, passing 13 controls and failing eight missing-policy
+  assertions in 0.32 seconds; no authoritative claim is made from it. An
+  explicit UTF-8 mismatch corrects the contract to 22 cases. The corrected
+  format/Ruff/Pyright-clean contract passes 13 inherited controls and fails
+  nine missing stable-error, helper, cleanup, source-order, and documentation
+  assertions in 0.35 seconds. No complete pass is claimed.
+- Implementation: release smoke now compares raw local names immediately after
+  M92. RFC-0076 and aligned public records define the narrow rule and explicit
+  nonclaims. The corrected combined checkpoint passes all 44 M92-M93
+  assertions; affected Python is format/Ruff clean, strict Pyright reports zero
+  findings, and strict docs build.
+- Supported proof: the 22-case M93 contract passes on exact CPython 3.12.13,
+  3.13.13, and 3.14.5. Corrected complete suites pass 2,703 tests with 16
+  established skips on each runtime. The first 3.12 suite correctly exposed a
+  retired-marker record phrase and two stale M72/M73 error-precedence
+  assertions; narrow corrections preserve the older parser/decoder categories
+  while asserting M93's earlier raw-name precedence.
+- Static/architecture proof: the unchanged 46-package lock resolves and the
+  locked 45-package graphics environment is restored. All 336 Python files are
+  format/Ruff clean; strict Pyright reports zero findings; all 1,173
+  architecture assertions pass with one established Windows capability skip;
+  strict docs, five metadata assertions, and whitespace pass.
+- Graphics/slices proof: all ten real-wgpu tests pass in 6.37 seconds; one-
+  repeat two- and three-workload profiles validate. Clockwork Arena and Agent
+  World Builder reproduce their established state, capture, and replay
+  identities.
+- Distribution proof: two fresh builds reproduce a 276,467-byte pure wheel at
+  `ca8d9bd9a94270f7b0a63b4e0bee173d47cddd88fb7fda46c5abec1e4ec3b1d7`
+  and a 1,395,653-byte source archive at
+  `e8d276fb2da5151a16182175004e8b1c8e32e82ce69dab9109ef039d6304a92a`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Review: no actionable issue is present across exactly 18 intended paths.
+  Workflows, producer, project metadata, lock, and runtime package remain
+  unchanged. Five protected hashes match, credential and backend-leakage scans
+  find zero hits, and the 94-entry wheel plus 552-entry source archive contain
+  no native/WASM/bytecode or retired control metadata.
+- Record-inclusive proof retains 336-file format/Ruff cleanliness, strict
+  Pyright zero findings, 1,173 passing architecture assertions with one skip,
+  strict docs, five metadata assertions, and clean whitespace. Two final fresh
+  builds retain the exact wheel and reproduce a 1,396,981-byte source archive
+  at `d26b4d1e71caf70384aefb7493d1f28738d6e46bce094556b4aecc12e64ffc4e`;
+  installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+  Precommit history confirms exact M92 base/main/origin/merge-base identity,
+  `0 0` divergence, only the necessary local branch plus `main`, only remote
+  `main`, valid authentication, no open PR/current-branch run/release/tag, and
+  no Git corruption. Exact-head hosted qualification and integration remain
+  pending.
+
 ## M92 local-header variable-envelope bounds preflight - complete
 
 - Base: exact verified M91 closeout squash

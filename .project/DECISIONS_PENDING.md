@@ -2,6 +2,21 @@
 
 No architecture decision is currently blocked.
 
+RFC-0076 resolves the M93 local-header name-consistency preflight. PKWARE
+requires corresponding local and central member records, places each variable
+name immediately after the fixed local prefix, and specifies CP437 by default
+with UTF-8 under bit 11. Python exposes the central decoded name, flags, and
+header offset; exact CPython 3.12-3.14 admits a same-length local-only name
+mutation and defers `BadZipFile` until member open. The selected fixed-profile
+rule reconstructs the central name bytes under the central bit-11 policy and
+requires exact equality with the already bounded raw local name after M92 and
+before decoded-name policy, metadata, inventory, staging, or reads. It adds no
+local-flag comparison, extra-field comparison, field-wide consistency,
+inter-member layout validator, repair, workflow, dependency, producer,
+runtime API, or release authority. RFC-0076 records the accepted policy;
+implementation and exact-head qualification remain active. No policy decision
+is pending.
+
 RFC-0075 resolves the M92 local-header variable-envelope bound. PKWARE defines
 two 16-bit local file-name and extra-field length declarations before their
 variable bytes, and Python exposes each purported header offset. Exact CPython

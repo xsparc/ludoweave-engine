@@ -330,6 +330,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   header or payload bound, inter-member layout validation, workflow,
   dependency, producer, runtime API, or release-authority change; it is not a
   general archive sandbox and is not a real public release observation.
+- M93 reads each already bounded local file-name and requires its bytes to
+  match the parser-exposed central name reconstructed with the central UTF-8
+  flag or default CP437 encoding before decoded names, metadata, inventory,
+  staging, or reads. Its content-silent error is `sample bundle local header
+  names are inconsistent`. This one raw local-name consistency classifier
+  performs no local-flag comparison, extra-field comparison, next-header or
+  payload bound, inter-member layout validation, workflow, dependency,
+  producer, runtime API, or release-authority change; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

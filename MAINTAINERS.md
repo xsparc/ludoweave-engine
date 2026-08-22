@@ -349,6 +349,19 @@ are complete, reviewed, hosted-validated, and integrated into `main`. M92
 starts from exact verified M91 closeout
 `0d89517265ffbca931c5fa9d76f666900371e23c`.
 
+M93 reads each bounded local file-name after M92, reconstructs the parser-
+exposed central name with the central UTF-8 flag or default CP437 encoding,
+and requires exact raw-byte equality before decoded names, metadata, inventory,
+staging, or reads. Its stable content-silent error is `sample bundle local
+header names are inconsistent`. This one raw local-name consistency classifier
+performs no local-flag comparison, extra-field comparison, next-header or
+payload bound, or inter-member layout validation. It adds no workflow,
+allocation, dependency, version, producer, runtime source/API, release
+authority, tag, release, or publication. It is not a general archive sandbox
+and is not a real public release observation. M0 through M92 are complete,
+reviewed, hosted-validated, and integrated into `main`. M93 starts from exact
+verified M92 closeout `74972042525041e9251ce245a1fd4ea75add6047`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
