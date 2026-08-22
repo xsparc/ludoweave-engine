@@ -1,58 +1,66 @@
 # Current task
 
-- **Task:** M94 - record verified feature integration
-- **Status:** Feature PR #234 is squash-integrated; the bounded integration-
-  record PR remains.
-- **Base:** Verified M94 feature squash
-  `7974b6fc110f995cac25f7d69d9c48b55013a764`, tree
-  `96bd9000efbc473d09f0c75d83c5e1231621409e`.
-- **Branch:** `release/m94-integration-record`.
+- **Task:** M94 - local-header flag-consistency preflight
+- **Status:** Feature PR #234 and integration-record PR #235 are verified and
+  squash-integrated. The closeout-only record is active; no product or policy
+  work remains in M94.
+- **Base:** Verified M94 integration-record squash
+  `f2c5c7865ba1cad42f8dc625f8da0895ca8f0b90`, tree
+  `3023d335b15b2e9f6839365551c10d4a8c9b988d`.
+- **Branch:** `release/m94-closeout`.
 
-## Verified feature result
+## Accepted result
 
-- Exact DCO feature head `23ad66250455aab68e7478903b7f2238983406aa`
-  had the qualified tree, sole parent exact M93 closeout, one commit, and 16
-  intended paths.
-- Ready PR #234 passed exact-head run `32581692977` in the unchanged three
-  Linux-first allocations: Linux job `97051923558` in 5m32s, macOS job
-  `97052612146` in 2m59s, and Windows job `97052612142` in 4m22s.
-- Hosted Linux CPython 3.12 passed 2,742 tests. Linux 3.13/3.14 and macOS/
-  Windows 3.14 each passed 2,742 with one established capability skip.
-- Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena,
-  and Agent World Builder. Linux also passed format, Ruff, strict Pyright,
-  strict docs, base profiling, installed-wheel smoke, ten-artifact staging,
-  and complete release smoke.
-- Hosted repeat builds reproduced a 276,592-byte pure wheel at SHA-256
-  `6167497499b5e87fac82007b9db3f2e30912229e64e9ca518e6e5a8d19b6d04d`
-  and a 1,404,176-byte source archive at SHA-256
-  `57e87b11f0c5f6b16eb1c6351ca5770896a479e1585eccda268d01ca40f6cf36`.
-- Two separated readiness audits retained exact head/tree/base, one DCO commit,
-  16 paths, three successful checks, one exact-head run, `MERGEABLE/CLEAN`, and
-  zero comments, reviews, review comments, or review threads. Their separator
-  passed all 24 M94 plus five metadata-hygiene assertions.
-- Guarded squash `7974b6fc110f995cac25f7d69d9c48b55013a764`
-  retained the exact qualified tree, sole parent M93 closeout, standalone DCO,
-  and a valid GitHub signature verified at `2026-08-22T15:39:19Z`. The feature
-  branch is deleted locally/remotely and no postmerge workflow ran.
+- After M93 local-name consistency, private release smoke reads exactly two
+  little-endian bytes at each parser-exposed `ZipInfo.header_offset + 6` from
+  the owned checksum-admitted snapshot.
+- The local general-purpose flag field must equal central
+  `ZipInfo.flag_bits`; mismatch raises stable content-silent `sample bundle
+  local header flags are inconsistent` before decoded-name policy, metadata,
+  exact inventory, staging, or reads.
+- The position-restoring helper preserves existing cleanup and failure
+  precedence. RFC-0077 records the bounded decision.
+- No local compression-method or extra-field comparison, broad flag allowlist,
+  field-wide parser, inter-member layout policy, workflow, dependency,
+  producer, runtime API, tag, release, publication, or release-authority change
+  was introduced.
 
-## Integration-record scope
+## Verified publication result
 
-- Change exactly `.project/CURRENT_TASK.md`, `.project/DECISIONS_PENDING.md`,
-  `.project/PROJECT_STATE.md`, `.project/TEST_EVIDENCE.md`, and `ROADMAP.md`.
-- Record only factual hosted qualification, guarded squash integration, and
-  the next closeout boundary.
-- Add no public/runtime/test/workflow/build/dependency/version/credential,
-  development-tool identity, native/WASM/bytecode, tag, release, publication,
-  or release-authority surface.
+- Feature PR #234 exact head `23ad66250455aab68e7478903b7f2238983406aa`
+  passed the full three-allocation gate and squash-integrated as
+  `7974b6fc110f995cac25f7d69d9c48b55013a764` with the exact qualified tree,
+  sole M93-closeout parent, DCO trailer, and valid GitHub signature.
+- Integration-record PR #235 exact DCO head
+  `77e14ca27eb8cf28fb19787647f7580f5488a4e9`, tree
+  `3023d335b15b2e9f6839365551c10d4a8c9b988d`, passed run `32582755728` in
+  one 49-second Linux job `97054488280`; desktop job `97054590470` skipped
+  with zero steps.
+- Hosted integration qualification passed 337-file formatting, Ruff, strict
+  docs, all 1,198 documentation-architecture assertions, reproducible builds,
+  installed-wheel smoke, ten-artifact staging, and complete release smoke.
+- The 276,592-byte wheel retained SHA-256
+  `6167497499b5e87fac82007b9db3f2e30912229e64e9ca518e6e5a8d19b6d04d`;
+  the 1,404,994-byte source archive has SHA-256
+  `e6ee886bee2ab5cfbd41019ac48264fe95b9008ad547bc494393075fb33cb4af`.
+- Two separated readiness audits retained exact head/tree/base, one DCO
+  commit, five paths, the bounded successful Linux check, a zero-step skipped
+  desktop umbrella, `MERGEABLE/CLEAN`, and zero feedback. Their separator
+  passed all five metadata-hygiene assertions.
+- Guarded integration squash
+  `f2c5c7865ba1cad42f8dc625f8da0895ca8f0b90` retained the exact reviewed
+  tree, sole feature-squash parent, DCO trailer, and a valid GitHub signature
+  at `2026-08-22T15:49:42Z`. Its branch is deleted locally/remotely and no
+  postmerge workflow ran.
+- The three-record closeout passes five metadata-hygiene assertions, whitespace,
+  and full Git checking with no corruption. Remote refresh retains exact
+  integration-squash branch/main/origin/merge-base identity, `0 0` divergence,
+  only the necessary local closeout branch plus `main`, only remote `main`, and
+  empty open-PR, branch-run, release, and tag queries.
 
 ## Remaining acceptance work
 
-- Run the bounded integration-record source/docs/architecture/metadata,
-  reproducible-build, wheel, staging, release, whitespace, history, and scope
-  gates.
-- Create one DCO-signed record commit, push the neutral branch, open a ready PR,
-  and require only the existing documentation-qualified Linux allocation with
-  the zero-step skipped desktop umbrella.
-- Complete two separated exact-head audits, guarded squash integration, then
-  publish the three-record no-workflow closeout PR and clean all M94 branches
-  and generated targets.
+- Validate, commit, publish, audit, and squash-integrate exactly the three
+  project closeout records without runner allocation.
+- Delete verified M94 generated targets and all branches except `main`, verify
+  the final feature/integration/closeout sole-parent chain, then select M95.

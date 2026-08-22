@@ -1,6 +1,6 @@
 # Project State
 
-## M94 local-header flag-consistency preflight - feature integrated; record active
+## M94 local-header flag-consistency preflight - complete; closeout active
 
 - Base: verified M93 closeout squash
   `1b189da618d2d2ea0b3208707ba209f81d1368cc`; local and remote `main` were
@@ -25,7 +25,8 @@
   suites pass 2,727 tests with 16 established skips. Repository-wide static/
   docs/architecture/metadata, real-wgpu, profile, vertical-slice,
   reproducible-build, wheel, staging, and release gates pass. Exact-head hosted
-  qualification, guarded integration, record, closeout, and cleanup remain.
+  feature qualification and the bounded integration record are verified and
+  squash-integrated; only closeout and cleanup remain.
   Findings-first review found no actionable defect; the record-inclusive wheel
   retained its exact byte identity and complete release smoke passed.
 - Hosted feature proof: ready PR #234 exact DCO head
@@ -46,6 +47,34 @@
 - The integration record changes exactly five factual project/roadmap files;
   no runtime, public API, test, workflow, build, dependency, version, release-
   authority, tag, release, or publication surface changes.
+- Hosted integration record: ready PR #235 exact DCO head
+  `77e14ca27eb8cf28fb19787647f7580f5488a4e9`, tree
+  `3023d335b15b2e9f6839365551c10d4a8c9b988d`, passed run `32582755728` in
+  one 49-second Linux job `97054488280`; desktop job `97054590470` skipped
+  with zero steps. Formatting, Ruff, strict docs, all 1,198 hosted
+  documentation-architecture assertions, reproducible builds, installed-wheel
+  smoke, ten-artifact staging, and complete release smoke passed.
+- Hosted record artifacts: the 276,592-byte wheel retained feature SHA-256
+  `6167497499b5e87fac82007b9db3f2e30912229e64e9ca518e6e5a8d19b6d04d`;
+  the 1,404,994-byte source archive SHA-256 is
+  `e6ee886bee2ab5cfbd41019ac48264fe95b9008ad547bc494393075fb33cb4af`.
+- Integration-record readiness/integration: two separated audits around five
+  passing metadata assertions retained exact head/tree/base, one DCO commit,
+  five paths, the successful bounded Linux gate, zero-step skipped desktop
+  umbrella, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `f2c5c7865ba1cad42f8dc625f8da0895ca8f0b90` has the exact reviewed tree,
+  sole parent the verified feature squash, standalone DCO, and a valid GitHub
+  signature. The branch is deleted locally/remotely, synchronized `main` has
+  `0 0` divergence, and no postmerge workflow ran.
+- Closeout changes exactly three project records and adds no product, policy,
+  workflow, dependency, build, version, release-authority, tag, release, or
+  publication surface.
+- Closeout local proof: all five metadata-hygiene assertions pass in 0.34
+  seconds; whitespace passes; and full Git checking reports no corruption with
+  only expected squash-era dangling objects. Remote refresh retains exact
+  integration-squash branch/main/origin/merge-base identity, `0 0` divergence,
+  only `main` plus the necessary local closeout branch, only remote `main`, and
+  empty open-PR, exact-branch-run, release, and tag queries.
 - Boundary: no local compression-method or extra-field comparison, broad flag
   allowlist, version/time/CRC/size or field-wide comparison, payload/next-header
   bound, inter-member layout validator, archive repair, general archive
