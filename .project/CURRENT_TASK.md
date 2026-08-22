@@ -1,161 +1,86 @@
-# Current Task
+# Current task
 
-- **Task:** M93 - local-header name-consistency preflight
-- **Status:** Feature PR #231 and integration-record PR #232 are verified and
-  squash-integrated. The closeout-only record is active; no product or policy
-  work remains in M93.
-- **Base:** Verified M93 integration-record squash
-  `e40078cfafc2369f8c4a106d20e45d75dd07e94b`, tree
-  `5aa94c16099a809510afd483c2735e2921154873`.
-- **Branch:** `release/m93-closeout`
+- **Task:** M94 - local-header flag-consistency preflight
+- **Status:** Implementation, complete local qualification, review, and record-
+  inclusive artifacts are green; exact-head hosted qualification remains.
+- **Base:** Verified M93 closeout squash
+  `1b189da618d2d2ea0b3208707ba209f81d1368cc`, synchronized exactly with
+  `origin/main` before branch creation.
+- **Branch:** `release/m94-local-header-flag-consistency`.
 
-## Accepted slice
+## Accepted scope
 
-- After every established policy through M92, read each already bounded local
-  file-name from the owned checksum-admitted snapshot.
-- Reconstruct `ZipInfo.orig_filename` as UTF-8 when central `flag_bits` bit 11
-  is set and CP437 otherwise, then require exact raw-byte equality.
-- Reject a mismatch or impossible central reconstruction with stable content-
-  silent error `sample bundle local header names are inconsistent` before
-  decoded-name policy, metadata, exact inventory, staging, or reads.
-- Preserve empty-archive admission, every M84-M92 precedence rule, snapshot-
-  position restoration, every later failure category, and owned-resource close
-  rules.
-- Add RFC-0076 plus aligned public, security, architecture, release, roadmap,
-  maintainer, navigation, and repository evidence records.
-- Add one raw local-name consistency classifier only: no local-flag comparison,
-  extra-field comparison or parsing, field-wide local/central consistency,
-  next-header or payload bound, complete local-record extent, gap/adjacency/
-  contiguity/non-overlap policy, inter-member layout validator, repair,
-  workflow, dependency, lock, version, producer, runtime package/API, release
-  authority, tag, release, or publication.
+- After M93 local-name consistency, read exactly two little-endian bytes at
+  each parser-exposed `ZipInfo.header_offset + 6` from the owned checksum-
+  admitted snapshot.
+- Require the local general-purpose flag field to equal the corresponding
+  central `ZipInfo.flag_bits`.
+- Raise stable content-silent error `sample bundle local header flags are
+  inconsistent` before decoded-name policy, metadata, exact inventory,
+  staging, or member reads.
+- Preserve every established policy through M93, empty-archive inventory
+  behavior, owned-resource cleanup, and caller snapshot position.
+- Add RFC-0077 plus aligned public, security, architecture, release, roadmap,
+  maintainer, test, and factual project records.
+- Keep workflow, runner allocations, actions, permissions, credentials,
+  dependency/lock/version, sample producer, runtime package/API, release
+  authority, tag, release, and publication unchanged.
 
-## Direction evidence
+## Explicit non-scope
 
-- PKWARE APPNOTE 6.3.10 sections 4.3.2 and 4.3.7 require corresponding local
-  and central member records and place the variable name immediately after the
-  fixed local prefix. Appendix D defines CP437 by default and UTF-8 under bit
-  11.
-- Python documents the same metadata encoding precedence and public
-  `ZipInfo.flag_bits`/`header_offset` fields. CPython 3.14 reads the local name,
-  decodes it under the local bit-11 policy, and compares it with
-  `orig_filename` only during member open; M93 does not import private names.
-- A same-length `second.txt` to `second.txu` local-only mutation leaves central
-  names `first.txt`/`second.txt` and offsets `[0, 46]` visible. Exact installed
-  CPython 3.12.13, 3.13.13, and 3.14.5 each read the first payload and defer
-  public `BadZipFile` until the malformed second member opens.
-- The fixed producer's 50 local names match the central names reconstructed
-  through their public central encoding flags.
+- No local compression-method comparison; no extra-field comparison or
+  parsing; no version/time/CRC/size or field-wide local/central comparison.
+- No broad flag allowlist, complete local-record or payload bound, next-header
+  bound, gap, adjacency, contiguity, physical overlap rule, or inter-member
+  layout validator.
+- No archive repair, general archive sandbox, public release observation,
+  workflow change, runtime feature, dependency, native/WASM work, tag, release,
+  or publication.
 
-## Current evidence
+## Direction and red evidence
 
-- M92 feature PR #228, integration-record PR #229, and closeout PR #230 are
-  squash-integrated as a sole-parent chain ending at exact synchronized
-  `main` `74972042525041e9251ce245a1fd4ea75add6047`. All three squashes retain
-  standalone DCO and valid GitHub signatures.
-- Only `main` remains locally and remotely; divergence is `0 0`. There is no
-  open PR, current-head run, tag, release, tracked retired identity-control
-  path, or M92 generated target. Thirty-eight verified M92 temporary targets
-  were removed. Full Git checking reports no corruption, with expected squash-
-  era dangling objects.
-- The temporary M93 behavior probe is format/Ruff clean and produces identical
-  structural observations on exact supported CPython 3.12.13, 3.13.13, and
-  3.14.5.
-- The first static-clean contract estimate named 22 cases, but collection
-  revealed 21. Its non-authoritative red run passed 13 controls and failed
-  eight missing-policy assertions in 0.32 seconds.
-- An explicit UTF-8 mismatch case corrects the contract to 22 cases. The
-  corrected contract is format/Ruff clean and strict Pyright reports zero
-  findings. Its authoritative red run passes 13 inherited behavior,
-  precedence, empty-archive, producer, and protected-surface controls while
-  nine missing stable-error, helper, cleanup, source-order, and documentation
-  assertions fail in 0.35 seconds. No complete pass is claimed.
-- Release smoke now contains the intended raw local-name comparison immediately
-  after M92. RFC-0076 and aligned public records define the rule and explicit
-  nonclaims.
-- The corrected contract passes all 44 combined M92-M93 assertions and each of
-  its 22 cases on exact CPython 3.12.13, 3.13.13, and 3.14.5. Complete suites
-  pass 2,703 tests with 16 established skips on each interpreter.
-- The first complete 3.12 run exposed one retired-marker record phrase and two
-  stale M72/M73 error-precedence expectations. The record phrase is neutral,
-  and both inherited tests now assert M93's earlier content-silent classifier;
-  the corrected targeted and complete gates pass.
-- The unchanged lock and protected files are verified. All 336 Python files
-  are format/Ruff clean, strict Pyright reports zero findings, all 1,173
-  architecture assertions pass with one established Windows skip, strict docs
-  and metadata hygiene pass, and whitespace is clean.
-- Ten real-wgpu tests, both profiles, both deterministic vertical slices, two
-  byte-identical builds, isolated-wheel smoke, ten-artifact staging, and
-  complete release smoke pass. Independent scope/security/archive review finds
-  no actionable issue across the exact 18-path change.
-- Precommit remote refresh retains exact M92 base/main/origin/merge-base
-  identity and `0 0` divergence. Only `main` and the necessary M93 branch exist
-  locally and only remote `main` exists; authentication is valid and open PR,
-  current-branch run, release, and tag queries are empty. Git checking finds no
-  corruption.
-- Ready PR #231 exact DCO head
-  `a0e160f4248cf8de88ee318960ee9bef41242f55`, tree
-  `5eb11bd7dbdb62d61bafdd94d2c94ec0ae4355aa`, passed run `32578695971` in
-  exactly three Linux-first allocations: Linux in 7m21s, macOS in 2m04s, and
-  Windows in 4m14s. Every hosted supported-Python suite passed 2,718 tests;
-  the 3.13/3.14 suites retained one established capability skip.
-- Every platform passed ten real-wgpu tests, graphics profiling, Clockwork
-  Arena, and Agent World Builder. Linux also passed formatting, Ruff, strict
-  Pyright, strict docs, base profiling, reproducible builds, installed-wheel
-  smoke, ten-artifact staging, and complete release smoke.
-- Hosted builds reproduced a 276,453-byte wheel at
-  `d30047cb6671e83592009410c9d75449084c80bfcafb6f828431150cbcd93b9a`
-  and a 1,397,392-byte source archive at
-  `e63abf65b518a4eb36a7753b1f93f7168bc26e5e498ad62f5a319003107914ad`.
-- Two separated audits retained exact head/tree/base, three successful checks,
-  one exact-head run, `MERGEABLE`/`CLEAN`, and zero feedback. Their separator
-  passed all 22 M93 plus five metadata assertions with protected hashes and
-  whitespace clean.
-- Guarded feature squash `64dbd6495ebeb0f8460340d84662a218498f9f03`
-  has the exact qualified tree, sole parent exact M92 closeout, standalone DCO,
-  and a valid GitHub signature. Local `main` is exact synchronized; the feature
-  branch is deleted locally/remotely and no postmerge workflow ran.
-- The five-record factual update is format/Ruff clean, strict Pyright reports
-  zero findings, all 1,173 architecture assertions pass with one established
-  skip, strict docs and metadata hygiene pass, and whitespace is clean.
-- Two fresh integration-record builds retain the 276,467-byte feature wheel at
-  `ca8d9bd9a94270f7b0a63b4e0bee173d47cddd88fb7fda46c5abec1e4ec3b1d7`
-  and reproduce a 1,398,640-byte source archive at
-  `4236d5f574d13cfddb7c6728aa68607552c8a93dfbad08deb307a9d109a386e2`;
-  installed-wheel, ten-artifact staging, and complete release smoke pass.
-- The final record separator retains 336-file format/Ruff cleanliness, strict
-  Pyright zero findings, 1,173 passing architecture assertions with one skip,
-  strict docs, five metadata assertions, and clean whitespace.
-- Precommit refresh retains exact feature-squash head/main/origin/merge-base
-  identity and `0 0` divergence. Only `main` and the necessary five-record
-  branch exist locally, only remote `main` exists, and open PR, branch-run,
-  release, and tag queries are empty.
-- Integration-record PR #232 exact DCO head
-  `2daefe6cc8aabb006c66def446489a4cdfd90770`, tree
-  `5aa94c16099a809510afd483c2735e2921154873`, passed run `32579739538` in one
-  49-second Linux allocation; the desktop umbrella skipped with zero steps.
-  The bounded gate passed formatting, Ruff, strict docs, 1,174 hosted
-  documentation-architecture assertions, reproducible builds, installed-wheel
-  smoke, ten-artifact staging, and complete release smoke.
-- Hosted record builds retained the 276,453-byte feature wheel at
-  `d30047cb6671e83592009410c9d75449084c80bfcafb6f828431150cbcd93b9a`
-  and produced a 1,399,230-byte source archive at
-  `d979978f28ad233d149838c67302cbba6b4543a619111d319636aeea33f94567`.
-- Two clean record audits, separated by five passing metadata assertions,
-  retained exact head/tree/base and zero feedback. Guarded squash
-  `e40078cfafc2369f8c4a106d20e45d75dd07e94b` has the exact reviewed tree,
-  sole parent the feature squash, standalone DCO, and a valid GitHub signature.
-  The record branch is deleted locally/remotely; synchronized `main` has `0 0`
-  divergence and no postmerge workflow ran.
-- The three-record closeout passes five metadata-hygiene assertions, whitespace,
-  and full Git checking with no corruption. Remote refresh retains exact
-  integration-squash head/main/origin/merge-base identity, `0 0` divergence,
-  only the necessary local closeout branch plus `main`, only remote `main`, and
-  empty open-PR, branch-run, release, and tag queries.
+- Clean-history audit found local `main`, `origin/main`, and `origin/HEAD` at
+  exact M93 closeout with only `main` present locally/remotely and no worktree
+  changes.
+- PKWARE APPNOTE 6.3.10 defines a two-byte general-purpose flag in both local
+  and central member records. CPython exposes the central value through public
+  `ZipInfo.flag_bits` and the local pointer through `header_offset`.
+- A format/Ruff-clean temporary probe changed only the second local flag from
+  zero to encryption bit 0. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  retained central flags `[0, 0]`, offsets `[0, 54]`, and successfully read
+  both payloads. Initial sandboxed runtime attempts were blocked only by uv
+  cache access and are not claimed as passes; the identical approved reruns
+  exited zero.
+- The initial M94 contract collected 24 assertions. Against unchanged M93
+  behavior, 14 controls passed and 10 missing-policy/helper/order/docs
+  assertions failed. The initial format check also requested one mechanical
+  reflow; Ruff lint passed and the formatter subsequently applied that reflow.
+  No complete pass was claimed from that red checkpoint.
 
-## Remaining acceptance
+## Local qualification
 
-- Validate, commit, publish, audit, and squash-integrate this three-record
-  closeout without runner allocation.
-- Clean all M93 generated targets and branches, verify the final sole-parent
-  chain, and select the next bounded milestone.
+- Corrected combined M93-M94 checkpoint: 46 passed; focused format, Ruff,
+  strict Pyright, and strict docs passed.
+- Exact focused proof: all 24 M94 assertions passed on CPython 3.12.13,
+  3.13.13, and 3.14.5.
+- Complete exact suites: 2,727 passed with 16 established skips on each of
+  CPython 3.12.13, 3.13.13, and 3.14.5.
+- Locked baseline: 46-package lock resolved; 45-package exact CPython 3.12.13
+  graphics environment restored.
+- Repository gate: 337 files format clean; Ruff and strict Pyright passed;
+  1,197 architecture assertions passed with one established skip after a fresh-
+  base correction of one inherited Windows filesystem permission denial;
+  strict docs, five metadata-hygiene assertions, and whitespace passed.
+- All ten real-wgpu tests, both one-repeat profile contracts, Clockwork Arena,
+  and Agent World Builder passed with established deterministic identities.
+- Two fresh builds reproduced the pure wheel and source archive; isolated-wheel
+  smoke, ten-artifact staging, and complete release smoke passed.
+
+## Remaining acceptance work
+
+- Create one DCO-signed feature commit, push the neutral branch, open a ready
+  PR, require the quota-conscious existing Linux-first three-allocation gate,
+  audit exact head twice, and squash only after all required checks pass.
+- Record integration through the bounded documentation-only PR, close the
+  milestone through its no-workflow closeout PR, then delete temporary targets
+  and all branches except `main`.

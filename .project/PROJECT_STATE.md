@@ -1,6 +1,40 @@
 # Project State
 
-## M93 local-header name-consistency preflight - complete; closeout active
+## M94 local-header flag-consistency preflight - implementation active
+
+- Base: verified M93 closeout squash
+  `1b189da618d2d2ea0b3208707ba209f81d1368cc`; local and remote `main` were
+  exact with only `main` present before creating the neutral M94 branch.
+- Accepted policy: after M93, compare each two-byte little-endian local general-
+  purpose flag at `ZipInfo.header_offset + 6` with central `ZipInfo.flag_bits`.
+  Mismatch raises stable content-silent `sample bundle local header flags are
+  inconsistent` before decoded-name policy, metadata, exact inventory,
+  staging, or reads. The helper restores position and existing ownership closes
+  resources.
+- Direction evidence: PKWARE defines the duplicated two-byte fields. A clean
+  temporary probe on exact CPython 3.12.13, 3.13.13, and 3.14.5 showed local
+  bit 0 can differ while central flags remain `[0, 0]`, offsets remain
+  `[0, 54]`, and both payload reads succeed.
+- Red evidence: the 24-assertion M94 contract passed 14 established controls
+  and failed 10 expected missing-policy/helper/order/docs assertions. One
+  mechanical format correction was then applied. No M94 implementation or
+  complete-suite pass is claimed from that red invocation.
+- Implementation adds only one two-byte comparison after M93 and RFC-0077 plus
+  aligned records. All 46 combined M93-M94 assertions pass; the 24-case M94
+  contract passes on all three exact supported interpreters; all three complete
+  suites pass 2,727 tests with 16 established skips. Repository-wide static/
+  docs/architecture/metadata, real-wgpu, profile, vertical-slice,
+  reproducible-build, wheel, staging, and release gates pass. Exact-head hosted
+  qualification, guarded integration, record, closeout, and cleanup remain.
+  Findings-first review found no actionable defect; the record-inclusive wheel
+  retained its exact byte identity and complete release smoke passed.
+- Boundary: no local compression-method or extra-field comparison, broad flag
+  allowlist, version/time/CRC/size or field-wide comparison, payload/next-header
+  bound, inter-member layout validator, archive repair, general archive
+  sandbox, workflow/dependency/producer/runtime/release-authority change, tag,
+  release, or publication.
+
+## M93 local-header name-consistency preflight - complete and closed
 
 - Base: exact verified M92 closeout squash
   `74972042525041e9251ce245a1fd4ea75add6047`, tree

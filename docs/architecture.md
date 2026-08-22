@@ -2258,6 +2258,29 @@ not a real public release observation. Workflows, producer, dependencies,
 runtime API, and release authority remain unchanged. RFC-0076 defines the
 complete boundary.
 
+## M94 local-header flag consistency preflight
+
+M94 narrows the fixed sample profile after M93 by reading the two-byte general-
+purpose flag field from each already bounded local-header prefix. Exact CPython
+3.12.13, 3.13.13, and 3.14.5 expose unchanged zero central flags and read both
+payloads when only the second local encryption bit is set.
+
+Private complete release smoke compares each little-endian local value with the
+parser-exposed central `ZipInfo.flag_bits`. A mismatch raises stable content-
+silent error `sample bundle local header flags are inconsistent` before
+decoded-name policy, metadata, exact inventory, staging, or reads. Empty
+archives retain their later inventory failure, and the helper restores the
+caller's snapshot position.
+
+This is one two-byte local-flag consistency classifier. It performs no local
+compression-method comparison, no extra-field comparison or parsing, no
+version/time/CRC/size comparison, no broad flag allowlist, no field-wide local/
+central consistency check, no complete local-record or payload bound, no next-
+header bound, and no adjacency, contiguity, physical non-overlap rule, or inter-
+member layout validator. It is not a general archive sandbox and is not a real
+public release observation. Workflows, producer, dependencies, runtime API,
+and release authority remain unchanged. RFC-0077 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -881,6 +881,20 @@ validation, workflow, dependency, runtime API, release authority, or producer
 change. This profile is not a general archive sandbox and is not a real public
 release observation.
 
+M94/RFC-0077 reads the two-byte local general-purpose flag field after M93 name
+consistency and requires exact equality with the parser-exposed central
+`ZipInfo.flag_bits`. The one two-byte local-flag consistency classifier runs
+before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle local header
+flags are inconsistent`; all owned resources close before control returns.
+
+The fixed producer's 50 local flags match their corresponding central flags.
+M94 performs no local compression-method comparison, no extra-field comparison
+or parsing, no version/time/CRC/size or field-wide consistency check, no next-
+header or payload bound, and no inter-member layout validator, workflow,
+dependency, runtime API, release authority, or producer change. This profile
+is not a general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

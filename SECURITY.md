@@ -339,6 +339,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   payload bound, inter-member layout validation, workflow, dependency,
   producer, runtime API, or release-authority change; it is not a general
   archive sandbox and is not a real public release observation.
+- M94 reads each two-byte local general-purpose flag field after M93 and
+  requires exact equality with the parser-exposed central `ZipInfo.flag_bits`
+  before decoded names, metadata, inventory, staging, or reads. Its content-
+  silent error is `sample bundle local header flags are inconsistent`. This
+  one two-byte local-flag consistency classifier performs no local compression-
+  method comparison, no extra-field comparison, no inter-member layout
+  validator, workflow, dependency, producer, runtime API, or release-authority
+  change; it is not a general archive sandbox and is not a real public release
+  observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

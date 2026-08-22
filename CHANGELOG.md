@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M94/RFC-0077 local-header flag-consistency preflight. Each bounded two-
+  byte local general-purpose flag field must equal the parser-exposed central
+  `ZipInfo.flag_bits` before decoded-name policy, metadata, inventory, reads,
+  or staging, without a local compression-method or extra-field comparison,
+  field-wide consistency check, next-header or payload bound, an inter-member
+  layout validator, workflow, dependency, producer, runtime API, or release-
+  authority change.
 - Add M93/RFC-0076 local-header name-consistency preflight. Each bounded local
   file-name must byte-match the parser-exposed central name under the central
   CP437/UTF-8 encoding before decoded-name policy, metadata, inventory, reads,

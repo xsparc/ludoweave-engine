@@ -117,6 +117,7 @@ nav:
       - RFC-0074 - Bound fixed local-header prefixes: rfcs/0074-bound-local-header-prefixes.md
       - RFC-0075 - Bound local-header variable envelopes: rfcs/0075-bound-local-header-envelopes.md
       - RFC-0076 - Require consistent local-header names: rfcs/0076-require-consistent-local-header-names.md
+      - RFC-0077 - Require consistent local-header flags: rfcs/0077-require-consistent-local-header-flags.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
