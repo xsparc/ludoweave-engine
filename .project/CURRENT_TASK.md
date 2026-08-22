@@ -1,13 +1,12 @@
 # Current Task
 
 - **Task:** M91 - fixed local-header-prefix bounds preflight
-- **Status:** The corrected exact feature tree is hosted-qualified, twice
-  audited, and squash-integrated. Factual integration-record validation is
-  active.
-- **Base:** Verified M90 closeout squash
-  `152a083c2965bf99d54ed5aaba222e6bde1e841f`, tree
-  `11a2be31ff96d55cb5f0ac035a2c226000eaf22c`.
-- **Branch:** `release/m91-integration-record`
+- **Status:** Feature and factual integration-record squashes are verified and
+  integrated. The exact three-record M91 closeout is active.
+- **Base:** Verified M91 integration-record squash
+  `9d4a0025e4e5a57a8946bb3a2ed887ca081c9955`, tree
+  `276aa74b790300e5128b6243cf7c42277aa1dda5`.
+- **Branch:** `release/m91-closeout`
 
 ## Accepted slice
 
@@ -133,8 +132,32 @@
   and a 1,382,764-byte source archive at
   `2b76156a210dc80955c339a4f445111957e2f91a26b9844e6d6a8b56c512202d`;
   isolated-wheel, ten-artifact staging, and complete release smoke pass.
+- Ready integration-record PR #226 exact DCO head
+  `c78ffa68563951e38a770491ace112b77e8463e6`, tree
+  `276aa74b790300e5128b6243cf7c42277aa1dda5`, passed run
+  `32573846472` in one 49-second Linux job `97033170709`; desktop umbrella
+  `97033267512` skipped with zero steps. Hosted documentation architecture
+  passed 1,130 assertions, and wheel, staging, and release smoke passed.
+- Hosted record artifacts retain the 276,136-byte feature wheel at
+  `a497834b481b073b9e31558745f6d42f53cb0c53b6e542331da55d85b0129222`;
+  the 1,383,520-byte record-tree source archive is
+  `b34bb2144f7aa7ca3bd69f021d05210cebe4e8b7eb804a401813b0a82eec351d`.
+- Two separated record audits retained exact head/tree/base, one DCO commit,
+  five paths, successful bounded Linux, zero-step desktop, and zero feedback.
+  Guarded squash `9d4a0025e4e5a57a8946bb3a2ed887ca081c9955` has the exact
+  reviewed tree, sole parent feature squash, standalone DCO trailer, and valid
+  GitHub signature verified at `2026-08-22T12:47:17Z`. The record branch is
+  deleted remotely and locally.
+- Closeout proof: exactly three project records change; metadata hygiene passes
+  five assertions in 0.35 seconds, whitespace is clean, and full Git object
+  checking reports no corruption. Fetch/prune leaves branch head, `main`,
+  `origin/main`, and merge base at exact integration squash with divergence
+  `0 0`; only `main` plus this necessary closeout branch exist locally and
+  only `origin/main` remotely. Open PR, exact-head postmerge run, tag, release,
+  and tracked identity-control-path queries are empty.
 
 ## Remaining acceptance
 
-- Publish and integrate factual project-record and closeout PRs, clean all M91
-  branches/generated targets, and select the next bounded milestone.
+- Commit, publish, and squash-integrate the exact three-path closeout.
+- Clean all M91 generated targets, verify sole synchronized `main` and no open
+  PR/run/tag/release state, then select the next bounded milestone.
