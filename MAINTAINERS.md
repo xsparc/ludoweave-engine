@@ -375,6 +375,20 @@ sandbox and is not a real public release observation. M0 through M93 are
 complete, reviewed, hosted-validated, and integrated into `main`. M94 starts
 from exact verified M93 closeout `1b189da618d2d2ea0b3208707ba209f81d1368cc`.
 
+M95 reads each bounded two-byte local compression method after M94 and requires
+exact equality with the parser-exposed central `ZipInfo.compress_type` before
+decoded names, metadata, inventory, staging, or reads. Its stable content-
+silent error is `sample bundle local header compression methods are
+inconsistent`. This one two-byte local-compression-method consistency
+classifier performs no local extra-field comparison, no version/time/CRC/size
+comparison, no field-wide consistency check, next-header or payload bound, or
+inter-member layout validation. It adds no workflow, allocation, dependency,
+version, producer, runtime source/API, release authority, tag, release, or
+publication. It is not a general archive sandbox and is not a real public
+release observation. M0 through M94 are complete, reviewed, hosted-validated,
+and integrated into `main`. M95 starts from exact verified M94 closeout
+`a19db05c096c6d22e5871373bc738d282516635c`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

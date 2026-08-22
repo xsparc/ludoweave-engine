@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M95/RFC-0078 local-header compression-method consistency preflight. Each
+  bounded two-byte local compression method must equal the parser-exposed
+  central `ZipInfo.compress_type` before decoded-name policy, metadata,
+  inventory, reads, or staging, without a local extra-field comparison,
+  version/time/CRC/size comparison, field-wide consistency check, next-header
+  or payload bound, an inter-member layout validator, workflow, dependency,
+  producer, runtime API, or release-authority change.
 - Add M94/RFC-0077 local-header flag-consistency preflight. Each bounded two-
   byte local general-purpose flag field must equal the parser-exposed central
   `ZipInfo.flag_bits` before decoded-name policy, metadata, inventory, reads,

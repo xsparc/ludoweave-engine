@@ -2281,6 +2281,30 @@ member layout validator. It is not a general archive sandbox and is not a real
 public release observation. Workflows, producer, dependencies, runtime API,
 and release authority remain unchanged. RFC-0077 defines the complete boundary.
 
+## M95 local-header compression-method consistency preflight
+
+M95 narrows the fixed sample profile after M94 by reading the two-byte
+compression-method field from each already bounded local-header prefix. Exact
+CPython 3.12.13, 3.13.13, and 3.14.5 expose unchanged central methods `[8, 8]`
+and read both payloads when only the second local method changes from deflate
+8 to stored 0.
+
+Private complete release smoke compares each little-endian local value with the
+parser-exposed central `ZipInfo.compress_type`. A mismatch raises stable
+content-silent error `sample bundle local header compression methods are
+inconsistent` before decoded-name policy, metadata, exact inventory, staging,
+or reads. Empty archives retain their later inventory failure, and the helper
+restores the caller's snapshot position.
+
+This is one two-byte local-compression-method consistency classifier. It
+performs no local extra-field comparison or parsing, no version/time/CRC/size
+comparison, no method allowlist, no field-wide local/central consistency check,
+no complete local-record or payload bound, no next-header bound, and no
+adjacency, contiguity, physical non-overlap rule, or inter-member layout
+validator. It is not a general archive sandbox and is not a real public release
+observation. Workflows, producer, dependencies, runtime API, and release
+authority remain unchanged. RFC-0078 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
