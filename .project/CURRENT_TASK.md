@@ -1,13 +1,13 @@
 # Current Task
 
 - **Task:** M92 - local-header variable-envelope bounds preflight
-- **Status:** Feature PR #228 passed exact-head hosted qualification, two
-  separated clean readiness audits, and guarded squash integration. The
-  factual integration record is active before the closeout-only PR.
+- **Status:** Feature PR #228 and integration-record PR #229 are verified and
+  squash-integrated. The closeout-only record is active; no product or policy
+  work remains in M92.
 - **Base:** Verified M91 closeout squash
   `0d89517265ffbca931c5fa9d76f666900371e23c`, tree
   `5e9b52d47d7d9b71ab5e803c30828bed53d8c94e`.
-- **Branch:** `release/m92-integration-record`
+- **Branch:** `release/m92-closeout`
 
 ## Accepted slice
 
@@ -127,11 +127,25 @@
   threads. The corrected separator passed five metadata assertions in 0.33
   seconds and retained protected hashes and clean whitespace. The feature
   squash allocated no postmerge workflow.
+- Integration-record PR #229 exact DCO head
+  `ec9f48ac7eb04f988e25cf3c555616823aebc752` passed run `32576516035` in one
+  44-second Linux allocation; the desktop matrix was skipped with zero steps.
+  The gate passed 335-file formatting, Ruff, strict docs, 1,152 Linux
+  documentation-architecture assertions, reproducible builds, installed-wheel
+  smoke, ten-artifact staging, and complete release smoke. It retained the
+  276,297-byte wheel identity and produced a 1,390,777-byte record-inclusive
+  source archive at
+  `0c4bfe7238b5d3ee60a2d44ad879a9d14552df13bd02a79a500a5282b71312b3`.
+- Two clean integration-record audits, separated by five passing metadata
+  assertions, retained exact head/tree/base and zero feedback. Guarded squash
+  `eb0b91697de00bd1bddbbb3b70b8362135c5accb` has tree
+  `3f06198b329aa5984be91ff21b2044ec1f94bb21`, sole parent the verified feature
+  squash, standalone DCO, and a valid GitHub signature. No postmerge workflow
+  ran.
 
 ## Remaining acceptance
 
-- Validate, publish, audit, and squash-integrate this factual project-record
-  slice with at most the single essential Linux allocation selected by trusted
-  change classification.
-- Publish and integrate the closeout-only PR without runner allocation, clean
-  all M92 branches/generated targets, and select the next bounded milestone.
+- Validate, publish, audit, and squash-integrate this three-record closeout
+  without runner allocation.
+- Clean all M92 branches/generated targets and select the next bounded
+  milestone.
