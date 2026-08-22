@@ -26,6 +26,7 @@ _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed
 _VERSION = "0.1.0a1"
 _PREFIX = f"ludoweave-samples-{_VERSION}"
 _ZIP_ERROR = "sample bundle ZIP data is invalid"
+_NAME_ERROR = "sample bundle local header names are inconsistent"
 _UTF8_FLAG = 0x0800
 
 
@@ -149,7 +150,7 @@ def test_central_directory_utf8_failure_is_stable_and_content_silent(
     assert list(output.iterdir()) == []
 
 
-def test_local_header_utf8_failure_cleans_stage_and_is_content_silent(
+def test_raw_local_name_preflight_precedes_local_utf8_decode_and_cleans_stage(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -168,7 +169,7 @@ def test_local_header_utf8_failure_cleans_stage_and_is_content_silent(
 
     monkeypatch.setattr(zipfile, "ZipFile", recording_zipfile)
 
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_NAME_ERROR)}$") as caught:
         module._extract_bundle(
             bundle,
             output,
@@ -176,7 +177,9 @@ def test_local_header_utf8_failure_cleans_stage_and_is_content_silent(
             expected_sha256=_sha256(bundle),
         )
 
-    _assert_content_silent(caught.value)
+    assert str(caught.value) == _NAME_ERROR
+    assert caught.value.__context__ is None
+    assert "\\xff" not in "".join(traceback.format_exception(caught.value))
     assert len(archives) == 1
     assert archives[0].fp is None
     assert not (output / _PREFIX).exists()

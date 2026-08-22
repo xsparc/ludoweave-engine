@@ -26,6 +26,7 @@ _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed
 _VERSION = "0.1.0a1"
 _PREFIX = f"ludoweave-samples-{_VERSION}"
 _ZIP_ERROR = "sample bundle ZIP data is invalid"
+_NAME_ERROR = "sample bundle local header names are inconsistent"
 
 
 class _SmokeModule(Protocol):
@@ -116,6 +117,12 @@ def _assert_content_silent(error: RuntimeError, private_detail: str) -> None:
     assert type(context).__name__ not in rendered
 
 
+def _assert_name_preflight_is_content_silent(error: RuntimeError, private_detail: str) -> None:
+    assert str(error) == _NAME_ERROR
+    assert error.__context__ is None
+    assert private_detail not in "".join(traceback.format_exception(error))
+
+
 def test_invalid_zip_constructor_failure_is_stable_and_content_silent(tmp_path: Path) -> None:
     module = _smoke()
     bundle = tmp_path / "invalid.zip"
@@ -134,7 +141,7 @@ def test_invalid_zip_constructor_failure_is_stable_and_content_silent(tmp_path: 
     assert list(output.iterdir()) == []
 
 
-def test_member_read_failure_hides_archive_controlled_name_and_cleans_stage(
+def test_local_name_preflight_precedes_member_read_and_cleans_stage(
     tmp_path: Path,
 ) -> None:
     module = _smoke()
@@ -143,7 +150,7 @@ def test_member_read_failure_hides_archive_controlled_name_and_cleans_stage(
     private_detail = _corrupt_first_local_name(bundle)
     output = _empty_output(tmp_path)
 
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ZIP_ERROR)}$") as caught:
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_NAME_ERROR)}$") as caught:
         module._extract_bundle(
             bundle,
             output,
@@ -151,7 +158,7 @@ def test_member_read_failure_hides_archive_controlled_name_and_cleans_stage(
             expected_sha256=_sha256(bundle),
         )
 
-    _assert_content_silent(caught.value, private_detail)
+    _assert_name_preflight_is_content_silent(caught.value, private_detail)
     assert not (output / _PREFIX).exists()
     assert list(output.iterdir()) == []
 

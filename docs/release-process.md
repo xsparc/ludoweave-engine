@@ -865,6 +865,22 @@ inter-member layout validation, workflow, dependency, runtime API, release
 authority, or producer change. This profile is not a general archive sandbox
 and is not a real public release observation.
 
+M93/RFC-0076 reads each bounded local file-name after M92 policy and requires
+its bytes to equal the parser-exposed central `orig_filename` reconstructed
+with UTF-8 when the central language-encoding flag is set and CP437 otherwise.
+The one raw local-name consistency classifier runs before decoded-name policy,
+metadata, exact inventory, staging, or member reads. Failure emits stable
+content-silent error `sample bundle local header names are inconsistent`; all
+owned resources close before control returns.
+
+The fixed producer's 50 local names match their corresponding central names.
+M93 performs no local-flag comparison, extra-field comparison or parsing,
+field-wide local/central consistency check, next-header or payload bound,
+adjacency, contiguity, physical non-overlap rule, or inter-member layout
+validation, workflow, dependency, runtime API, release authority, or producer
+change. This profile is not a general archive sandbox and is not a real public
+release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

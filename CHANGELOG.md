@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M93/RFC-0076 local-header name-consistency preflight. Each bounded local
+  file-name must byte-match the parser-exposed central name under the central
+  CP437/UTF-8 encoding before decoded-name policy, metadata, inventory, reads,
+  or staging, without local-flag or extra-field comparison, next-header or
+  payload bounds, an inter-member layout validator, workflow, dependency,
+  producer, runtime API, or release-authority change.
 - Add M92/RFC-0075 local-header variable-envelope bounds preflight. The two
   local length declarations must keep each complete header envelope before
   decoded-name policy, metadata, inventory, reads, or staging, without local-
