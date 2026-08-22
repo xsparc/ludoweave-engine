@@ -1,16 +1,18 @@
 # Current task
 
 - **Task:** M98 - local-header timestamp consistency preflight
-- **Status:** Implementation, exact supported-runtime suites, unchanged local
-  quality/graphics/distribution/release gates, and corrected findings-first
-  review pass. Final precommit audit and hosted qualification remain; no hosted
-  pass is claimed yet.
-- **Base:** Exact verified M97 closeout squash
-  `9f4a3b915df40fe86a0fc5c759763186899ea1fe`, tree
-  `678b6ff58513952a23041e6594fc621e71e9537b`.
-- **Branch:** `release/m98-local-timestamp-consistency`.
+- **Status:** Feature PR #246 is exact-head hosted-validated and
+  squash-integrated. The five-file factual integration record passes complete
+  local source, documentation, architecture, distribution, and release proof,
+  its precommit audit is complete, and its first exact-head hosted run passed.
+  One handoff-status review correction is applied; amended-head qualification
+  and integration remain. No product or policy change remains.
+- **Base:** Verified M98 feature squash
+  `f89fdbb733925344b8d362b60db035d7df575687`, tree
+  `65e83878ffb50e5c654ba3b4e7e53fb60458b9dd`.
+- **Branch:** `release/m98-integration-record`.
 
-## Approved scope
+## Integrated scope
 
 - After M97 extraction-version consistency, private release smoke reads exactly
   four bytes at each public `ZipInfo.header_offset + 10`.
@@ -27,27 +29,32 @@
   dependency/lock/version, sample producer, runtime package/API, release
   authority, tag, release, and publication remain unchanged.
 
-## Current evidence
+## Hosted feature evidence
 
-- Local branch base, local `main`, and `origin/main` are exact M97 closeout with
-  symmetric difference `0 0`; the worktree was clean and no PR was open before
-  M98 edits.
-- PKWARE APPNOTE 6.3.10 defines matching two-byte DOS time and two-byte DOS date
-  fields in local and central member records. Python documents public central
-  `ZipInfo.date_time` and public local `ZipInfo.header_offset`.
-- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained both central tuples
-  `(2026, 8, 23, 4, 6, 8)` and read both payloads after only the second local
-  time's low byte changed from `c4` to `e4`.
-- The formatted, Ruff-clean, strict-Pyright-clean 28-assertion M98 contract has
-  deliberate red evidence on exact CPython 3.14.5: 18 inherited/behavior/
-  producer/protected-surface controls passed and ten policy/helper/order/docs
-  assertions failed against unchanged M97.
-- All 28 M98 assertions pass on exact CPython 3.12.13, 3.13.13, and 3.14.5;
-  each complete suite passes 2,833 tests with 16 established skips.
-- Repository-wide static, architecture, docs, metadata, real-wgpu, profile,
-  Clockwork Arena, Agent World Builder, repeat-build, isolated-wheel,
-  deterministic staging, and complete release gates pass after review
-  correction.
+- Ready PR #246 exact DCO head
+  `403c050224262563f5a7e77d17d7cbfa62732420`, tree
+  `65e83878ffb50e5c654ba3b4e7e53fb60458b9dd`, passed run `32593756442`
+  in exactly three Linux-first allocations.
+- Linux job `97081449858` passed in 7m27s, macOS job `97082337246` in
+  2m01s, and Windows job `97082337331` in 3m58s.
+- Linux CPython 3.12 passed 2,848 tests. Linux 3.13/3.14 and macOS/Windows
+  3.14 each passed 2,848 with one established capability skip.
+- Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena,
+  and Agent World Builder. Linux also passed formatting, Ruff, strict Pyright,
+  strict docs, base profiling, installed-wheel smoke, ten-artifact staging,
+  and complete release smoke.
+- Two hosted builds reproduced a 277,044-byte pure wheel at
+  `02fe38271e0f0b450f4fe6a63d0fd759ac3bdb04b662d0283ab7d5cf81dad6d3`
+  and a 1,431,495-byte source archive at
+  `4ea71905c2a49a6de6898209f75e83f0560ee25d192cb98ce18b3c6813ce28cb`.
+- Two separated readiness audits retained exact head/tree/base, one DCO
+  commit, 16 paths, three successful checks from one exact-head run,
+  `MERGEABLE/CLEAN`, and zero comments, reviews, review comments, or review
+  threads.
+- Guarded squash `f89fdbb733925344b8d362b60db035d7df575687` has the exact
+  qualified tree, sole M97 closeout parent, standalone DCO trailer, and a valid
+  GitHub signature verified at `2026-08-22T19:40:48Z`. The feature branch is
+  deleted remotely and locally.
 
 ## Explicit non-scope
 
@@ -63,9 +70,8 @@
 
 ## Remaining acceptance work
 
-- Finish the final precommit scope/history/integrity audit, commit with DCO,
-  publish a ready PR, and qualify the exact head through the
-  unchanged quota-conscious three-allocation CI, then audit and squash-merge.
-- Record integration through the bounded documentation-only path, close out
-  without allocating a workflow, delete verified scratch targets and every
-  branch except `main`, and only then select M99.
+- Requalify and squash-integrate the corrected five-file factual
+  project/roadmap record through the bounded documentation path.
+- Create and integrate the no-workflow closeout record.
+- Delete verified M98 generated targets and all branches except `main`, verify
+  the final feature/integration/closeout sole-parent chain, then select M99.
