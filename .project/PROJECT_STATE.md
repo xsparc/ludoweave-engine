@@ -1,6 +1,6 @@
 # Project State
 
-## M92 local-header variable-envelope bounds preflight - feature integrated
+## M92 local-header variable-envelope bounds preflight - complete
 
 - Base: exact verified M91 closeout squash
   `0d89517265ffbca931c5fa9d76f666900371e23c`, tree
@@ -100,6 +100,22 @@
   `22e26cd732dcc4b0523e6cdb7d89ac7d3946b8ed` has the exact qualified tree,
   sole parent exact M91 closeout, standalone DCO, and a valid GitHub signature.
   No postmerge workflow ran.
+- Integration record: PR #229 exact DCO head
+  `ec9f48ac7eb04f988e25cf3c555616823aebc752`, tree
+  `3f06198b329aa5984be91ff21b2044ec1f94bb21`, passed run `32576516035` in one
+  44-second Linux allocation while the desktop matrix skipped with zero steps.
+  It passed formatting, Ruff, strict docs, 1,152 Linux documentation-
+  architecture assertions, reproducible builds, installed-wheel smoke,
+  staging, and complete release smoke. The 276,297-byte wheel retained its
+  feature identity; the 1,390,777-byte source archive was
+  `0c4bfe7238b5d3ee60a2d44ad879a9d14552df13bd02a79a500a5282b71312b3`.
+- Integration-record readiness: two separated audits retained exact
+  head/tree/base, one successful Linux check, one zero-step skipped matrix
+  check, `MERGEABLE`/`CLEAN`, and zero feedback. The separator passed five
+  metadata assertions in 0.33 seconds. Guarded squash
+  `eb0b91697de00bd1bddbbb3b70b8362135c5accb` has the exact record tree, sole
+  parent the verified feature squash, standalone DCO, and a valid GitHub
+  signature. No postmerge workflow ran.
 
 ## M91 fixed local-header-prefix bounds preflight - complete
 
