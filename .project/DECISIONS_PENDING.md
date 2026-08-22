@@ -11,7 +11,9 @@ profile rule is one arithmetic prefix-bound classifier after M90 and before
 names, metadata, inventory, staging, or reads. It adds no local-header field
 parser, record extent, payload bound, inter-member layout validator, workflow,
 dependency, producer, runtime API, or release authority. RFC-0074 records the
-accepted policy; implementation and qualification are active.
+accepted policy. The exact corrected feature tree is hosted-qualified, its one
+review finding is resolved, and it is squash-integrated through PR #225.
+Factual integration and closeout records remain active.
 
 RFC-0073 resolves M90 local-header signature preflight. PKWARE defines the four-byte
 local-file-header signature and Python exposes each purported header offset.

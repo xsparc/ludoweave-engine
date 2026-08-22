@@ -1,14 +1,13 @@
 # Current Task
 
 - **Task:** M91 - fixed local-header-prefix bounds preflight
-- **Status:** Initial exact-head hosted qualification passed, but its first
-  readiness audit found one stale README status. The correction, regression
-  guard, and complete amended-tree local gate are green; the single DCO feature
-  commit is ready to amend and requalify.
+- **Status:** The corrected exact feature tree is hosted-qualified, twice
+  audited, and squash-integrated. Factual integration-record validation is
+  active.
 - **Base:** Verified M90 closeout squash
   `152a083c2965bf99d54ed5aaba222e6bde1e841f`, tree
   `11a2be31ff96d55cb5f0ac035a2c226000eaf22c`.
-- **Branch:** `release/m91-local-header-prefix-bounds`
+- **Branch:** `release/m91-integration-record`
 
 ## Accepted slice
 
@@ -104,11 +103,38 @@
   established skip, strict docs, and whitespace. The first complete attempt
   was intentionally interrupted and makes no pass claim; the fresh rerun used
   separate absent temporary roots and passed.
+- Corrected DCO head `1e4da54e94525a77d087ad76ad069c5aacacb2a3`, tree
+  `6268e4a71ba1dc64c2be5eb3b460b97c979e1f4b`, passed run
+  `32572856843` in exactly three Linux-first allocations: Linux in 5m23s,
+  macOS in 2m39s, and Windows in 4m33s. Every required runtime passed 2,674
+  tests, with one established skip outside Linux CPython 3.12; every OS passed
+  ten real-wgpu tests, graphics profiling, and both vertical slices.
+- Corrected hosted artifacts are a 276,136-byte pure wheel at
+  `a497834b481b073b9e31558745f6d42f53cb0c53b6e542331da55d85b0129222`
+  and a 1,381,396-byte source archive at
+  `5777fbf69ad83964a787eca90a8c28ff4d60c9ad07c8e83fdaf89beab4b3a0c3`;
+  installed-wheel, staging, and complete release smoke passed.
+- Two separated corrected-head audits retained exact head/tree/base, one DCO
+  commit, 16 paths, three successful checks, `MERGEABLE`/`CLEAN`, one exact-
+  head run, no issue comments, and the single historical thread resolved. The
+  separator passed 25 M91/metadata assertions in 0.46 seconds.
+- PR #225 squash `33b9ed5ba0ed5503db82de0ce8ebb8537f67dc2b` has
+  the exact qualified tree, sole parent exact M90 closeout, standalone DCO
+  trailer, and valid GitHub signature at `2026-08-22T12:35:24Z`. The feature
+  branch is deleted remotely and locally; synchronized `main` has divergence
+  `0 0` and no postmerge run.
+- The factual integration-record gate is green: all 334 Python files are
+  format clean; Ruff and strict Pyright report zero findings; all 1,129
+  architecture assertions pass with one established Windows capability skip;
+  strict docs build with only the known Material notice; five metadata-hygiene
+  assertions pass; and whitespace is clean. Two fresh builds reproduce a
+  276,150-byte wheel at
+  `3df5bb9a259229645b05e20661bea30d41dc15541671ff84f204ff8a4c280ca8`
+  and a 1,382,764-byte source archive at
+  `2b76156a210dc80955c339a4f445111957e2f91a26b9844e6d6a8b56c512202d`;
+  isolated-wheel, ten-artifact staging, and complete release smoke pass.
 
 ## Remaining acceptance
 
-- Publish one ready feature PR, qualify its exact head through the existing
-  quota-conscious hosted topology, perform two separated clean readiness
-  audits, and squash-integrate only the exact qualified tree.
 - Publish and integrate factual project-record and closeout PRs, clean all M91
   branches/generated targets, and select the next bounded milestone.

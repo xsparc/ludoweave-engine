@@ -1,6 +1,6 @@
 # Project State
 
-## M91 fixed local-header-prefix bounds preflight - implementation active
+## M91 fixed local-header-prefix bounds preflight - integration record active
 
 - Base: exact verified M90 closeout squash
   `152a083c2965bf99d54ed5aaba222e6bde1e841f`, tree
@@ -92,6 +92,42 @@
   Pyright zero findings, all 1,129 architecture assertions passing with one
   established Windows capability skip in 8.81 seconds, strict docs passing in
   1.44 seconds with only the known Material notice, and clean whitespace.
+- Corrected hosted qualification: amended DCO head
+  `1e4da54e94525a77d087ad76ad069c5aacacb2a3`, tree
+  `6268e4a71ba1dc64c2be5eb3b460b97c979e1f4b`, passed run
+  `32572856843` in exactly three Linux-first allocations: Linux job
+  `97030804585` in 5m23s, macOS `97031385370` in 2m39s, and Windows
+  `97031385385` in 4m33s.
+- Corrected hosted suites: Linux passed 2,674 tests on CPython 3.12 and 2,674
+  with one skip on 3.13/3.14. macOS and Windows CPython 3.14 each passed 2,674
+  with one skip. Every OS passed ten real-wgpu tests, graphics profiling,
+  Clockwork Arena, and Agent World Builder; Linux also passed static/docs,
+  base profiling, installed-wheel, staging, and complete release smoke.
+- Corrected hosted artifacts: the 276,136-byte pure wheel SHA-256 is
+  `a497834b481b073b9e31558745f6d42f53cb0c53b6e542331da55d85b0129222`;
+  the 1,381,396-byte source archive SHA-256 is
+  `5777fbf69ad83964a787eca90a8c28ff4d60c9ad07c8e83fdaf89beab4b3a0c3`.
+- Corrected readiness/integration: two separated audits retained exact
+  head/tree/base, one DCO commit, 16 paths, three successful checks,
+  `MERGEABLE`/`CLEAN`, one exact-head run, no issue comments, and the sole
+  historical review thread resolved. The separator passed 25 M91/metadata
+  assertions in 0.46 seconds.
+- Guarded squash `33b9ed5ba0ed5503db82de0ce8ebb8537f67dc2b` has exact
+  qualified tree, sole parent exact M90 closeout, standalone DCO trailer, and
+  valid GitHub signature at `2026-08-22T12:35:24Z`. The feature branch is
+  deleted remotely and locally; exact synchronized `main` has divergence
+  `0 0`, and no postmerge workflow ran.
+- Integration-record local gate: all 334 Python files are format clean; Ruff
+  and strict Pyright report zero findings; all 1,129 architecture assertions
+  pass with one established Windows capability skip in 8.09 seconds; strict
+  docs build in 1.36 seconds with only the known Material notice; all five
+  metadata-hygiene assertions pass in 0.34 seconds; and whitespace is clean.
+  Two fresh builds reproduce a 276,150-byte pure wheel at SHA-256
+  `3df5bb9a259229645b05e20661bea30d41dc15541671ff84f204ff8a4c280ca8`
+  and a 1,382,764-byte source archive at SHA-256
+  `2b76156a210dc80955c339a4f445111957e2f91a26b9844e6d6a8b56c512202d`;
+  installed-wheel smoke, ten-artifact staging, and complete release smoke
+  pass.
 
 ## M90 local-header signature preflight - complete
 
