@@ -1,6 +1,6 @@
 # Project State
 
-## M92 local-header variable-envelope bounds preflight - implementation active
+## M92 local-header variable-envelope bounds preflight - feature integrated
 
 - Base: exact verified M91 closeout squash
   `0d89517265ffbca931c5fa9d76f666900371e23c`, tree
@@ -79,6 +79,27 @@
   only `origin/main` remotely; authentication is valid, the last three
   integrated commits retain DCO, full Git checking reports no corruption, and
   open PR, current-branch workflow, tag, and release queries are empty.
+- Hosted qualification: ready PR #228 exact DCO head
+  `379e5f74d8b40a36bcc1124a8a173113171a836e`, tree
+  `803cafd5b8e8e3d7d5d8484137a4d0ab531c2db9`, passed run `32575646939` in
+  exactly three Linux-first allocations. Linux completed in 7m22s, macOS in
+  2m29s, and Windows in 4m42s. Every hosted supported-Python suite passed 2,696
+  tests; the 3.13/3.14 suites retained one established capability skip.
+- Hosted graphics/distribution: every OS passed ten real-wgpu tests, the
+  three-workload graphics profile, Clockwork Arena, and Agent World Builder.
+  Linux also passed 335-file formatting, Ruff, strict Pyright, strict docs,
+  the two-workload base profile, reproducible builds, wheel smoke, ten-artifact
+  staging, and complete release smoke. The builds reproduced a 276,297-byte
+  wheel at `fdcb1dfcad52c6dd833b00e570d83cd1639f6eb16137ae8c6b2ef856df180858`
+  and a 1,389,514-byte source archive at
+  `c220e7ddffe34fd0418fdab3c00e4771e40a0f70fea3df21da45c723f2176f83`.
+- Readiness/integration: two separated audits retained exact head/tree/base,
+  three successful checks, `MERGEABLE`/`CLEAN`, and zero feedback or review
+  threads. The corrected separator passed five metadata assertions in 0.33
+  seconds with protected hashes and whitespace clean. Guarded squash
+  `22e26cd732dcc4b0523e6cdb7d89ac7d3946b8ed` has the exact qualified tree,
+  sole parent exact M91 closeout, standalone DCO, and a valid GitHub signature.
+  No postmerge workflow ran.
 
 ## M91 fixed local-header-prefix bounds preflight - complete
 

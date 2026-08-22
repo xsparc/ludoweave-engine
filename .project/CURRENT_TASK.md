@@ -1,13 +1,13 @@
 # Current Task
 
 - **Task:** M92 - local-header variable-envelope bounds preflight
-- **Status:** The narrow runtime/documentation implementation, complete local
-  validation, review, and prepublication history audit are green. The exact
-  feature tree is ready for its standalone DCO commit.
+- **Status:** Feature PR #228 passed exact-head hosted qualification, two
+  separated clean readiness audits, and guarded squash integration. The
+  factual integration record is active before the closeout-only PR.
 - **Base:** Verified M91 closeout squash
   `0d89517265ffbca931c5fa9d76f666900371e23c`, tree
   `5e9b52d47d7d9b71ab5e803c30828bed53d8c94e`.
-- **Branch:** `release/m92-local-header-envelope-bounds`
+- **Branch:** `release/m92-integration-record`
 
 ## Accepted slice
 
@@ -52,10 +52,10 @@
 ## Current evidence
 
 - M91 feature PR #225, integration-record PR #226, and closeout PR #227 are
-  squash-integrated. Exact synchronized `main` is closeout
-  `0d89517265ffbca931c5fa9d76f666900371e23c`; only `main` remains locally and
-  remotely, with no open PR, current-head run, tag, release, tracked identity-
-  control path, or M91 generated target.
+  squash-integrated. M92 feature PR #228 is also squash-integrated as
+  `22e26cd732dcc4b0523e6cdb7d89ac7d3946b8ed`, tree
+  `803cafd5b8e8e3d7d5d8484137a4d0ab531c2db9`, with sole parent exact M91
+  closeout, standalone DCO, and a valid GitHub signature.
 - The temporary M92 behavior probe is format/Ruff clean and produces identical
   structural observations on exact supported CPython 3.12.13, 3.13.13, and
   3.14.5.
@@ -110,11 +110,28 @@
   release queries are empty. The last three integrated commits retain DCO;
   full Git checking reports no corruption, with expected squash-era dangling
   objects.
+- Ready feature PR #228 exact head
+  `379e5f74d8b40a36bcc1124a8a173113171a836e` passed run `32575646939` in
+  exactly three Linux-first allocations: Linux in 7m22s, macOS in 2m29s, and
+  Windows in 4m42s. Each hosted supported-Python suite passed 2,696 tests; the
+  3.13/3.14 suites retained one established capability skip. Every platform
+  passed ten real-wgpu tests, graphics profiling, Clockwork Arena, and Agent
+  World Builder; Linux also passed static, documentation, base-profile,
+  reproducible-build, wheel, staging, and complete-release gates.
+- Hosted exact-head builds reproduced a 276,297-byte wheel at
+  `fdcb1dfcad52c6dd833b00e570d83cd1639f6eb16137ae8c6b2ef856df180858`
+  and a 1,389,514-byte source archive at
+  `c220e7ddffe34fd0418fdab3c00e4771e40a0f70fea3df21da45c723f2176f83`.
+- Two separated readiness audits retained the exact head/tree/base, all three
+  successful checks, `MERGEABLE`/`CLEAN`, and zero comments, reviews, or
+  threads. The corrected separator passed five metadata assertions in 0.33
+  seconds and retained protected hashes and clean whitespace. The feature
+  squash allocated no postmerge workflow.
 
 ## Remaining acceptance
 
-- Publish one ready feature PR, qualify its exact head through the existing
-  quota-conscious hosted topology, perform two separated clean readiness
-  audits, and squash-integrate only the exact qualified tree.
-- Publish and integrate factual project-record and closeout PRs, clean all M92
-  branches/generated targets, and select the next bounded milestone.
+- Validate, publish, audit, and squash-integrate this factual project-record
+  slice with at most the single essential Linux allocation selected by trusted
+  change classification.
+- Publish and integrate the closeout-only PR without runner allocation, clean
+  all M92 branches/generated targets, and select the next bounded milestone.
