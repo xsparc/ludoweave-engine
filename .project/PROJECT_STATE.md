@@ -1,6 +1,6 @@
 # Project State
 
-## M93 local-header name-consistency preflight - feature integrated; records active
+## M93 local-header name-consistency preflight - complete; closeout active
 
 - Base: exact verified M92 closeout squash
   `74972042525041e9251ce245a1fd4ea75add6047`, tree
@@ -119,6 +119,32 @@
   skip, strict docs, five metadata assertions, and clean whitespace. Remote
   refresh confirms exact feature-squash head/main/origin/merge-base identity,
   `0 0` divergence, only the necessary local branch plus `main`, only remote
+  `main`, and empty open-PR, branch-run, release, and tag queries.
+- Hosted integration record: ready PR #232 exact DCO head
+  `2daefe6cc8aabb006c66def446489a4cdfd90770`, tree
+  `5aa94c16099a809510afd483c2735e2921154873`, passed run `32579739538` in one
+  49-second Linux allocation. Its desktop umbrella skipped with zero steps.
+  Formatting, Ruff, strict docs, all 1,174 hosted documentation-architecture
+  assertions, reproducible builds, installed-wheel smoke, ten-artifact staging,
+  and complete release smoke passed.
+- Hosted record artifacts: the 276,453-byte wheel retained feature SHA-256
+  `d30047cb6671e83592009410c9d75449084c80bfcafb6f828431150cbcd93b9a`;
+  the 1,399,230-byte record-inclusive source archive SHA-256 is
+  `d979978f28ad233d149838c67302cbba6b4543a619111d319636aeea33f94567`.
+- Integration-record readiness/integration: two separated audits around five
+  passing metadata assertions retained exact head/tree/base, one DCO commit,
+  five paths, the successful bounded Linux gate, zero-step skipped desktop
+  umbrella, `MERGEABLE`/`CLEAN`, and zero feedback. Guarded squash
+  `e40078cfafc2369f8c4a106d20e45d75dd07e94b` has the exact reviewed tree,
+  sole parent the verified feature squash, standalone DCO, and a valid GitHub
+  signature. The branch is deleted locally/remotely, synchronized `main` has
+  `0 0` divergence, and no postmerge workflow ran. Only the closeout record and
+  final cleanup remain.
+- Closeout local proof: exactly three project records change. Five metadata-
+  hygiene assertions and whitespace pass; full Git checking reports no
+  corruption with expected squash-era dangling objects. Remote refresh retains
+  exact integration-squash head/main/origin/merge-base identity, `0 0`
+  divergence, only the necessary local closeout branch plus `main`, only remote
   `main`, and empty open-PR, branch-run, release, and tag queries.
 
 ## M92 local-header variable-envelope bounds preflight - complete

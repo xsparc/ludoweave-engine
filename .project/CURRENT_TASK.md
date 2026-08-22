@@ -1,13 +1,13 @@
 # Current Task
 
 - **Task:** M93 - local-header name-consistency preflight
-- **Status:** Feature PR #231 is exact-head qualified and squash-integrated.
-  The factual integration record is active; no product or policy work remains
-  in this branch.
-- **Base:** Verified M93 feature squash
-  `64dbd6495ebeb0f8460340d84662a218498f9f03`, tree
-  `5eb11bd7dbdb62d61bafdd94d2c94ec0ae4355aa`.
-- **Branch:** `release/m93-integration-record`
+- **Status:** Feature PR #231 and integration-record PR #232 are verified and
+  squash-integrated. The closeout-only record is active; no product or policy
+  work remains in M93.
+- **Base:** Verified M93 integration-record squash
+  `e40078cfafc2369f8c4a106d20e45d75dd07e94b`, tree
+  `5aa94c16099a809510afd483c2735e2921154873`.
+- **Branch:** `release/m93-closeout`
 
 ## Accepted slice
 
@@ -130,11 +130,32 @@
   identity and `0 0` divergence. Only `main` and the necessary five-record
   branch exist locally, only remote `main` exists, and open PR, branch-run,
   release, and tag queries are empty.
+- Integration-record PR #232 exact DCO head
+  `2daefe6cc8aabb006c66def446489a4cdfd90770`, tree
+  `5aa94c16099a809510afd483c2735e2921154873`, passed run `32579739538` in one
+  49-second Linux allocation; the desktop umbrella skipped with zero steps.
+  The bounded gate passed formatting, Ruff, strict docs, 1,174 hosted
+  documentation-architecture assertions, reproducible builds, installed-wheel
+  smoke, ten-artifact staging, and complete release smoke.
+- Hosted record builds retained the 276,453-byte feature wheel at
+  `d30047cb6671e83592009410c9d75449084c80bfcafb6f828431150cbcd93b9a`
+  and produced a 1,399,230-byte source archive at
+  `d979978f28ad233d149838c67302cbba6b4543a619111d319636aeea33f94567`.
+- Two clean record audits, separated by five passing metadata assertions,
+  retained exact head/tree/base and zero feedback. Guarded squash
+  `e40078cfafc2369f8c4a106d20e45d75dd07e94b` has the exact reviewed tree,
+  sole parent the feature squash, standalone DCO, and a valid GitHub signature.
+  The record branch is deleted locally/remotely; synchronized `main` has `0 0`
+  divergence and no postmerge workflow ran.
+- The three-record closeout passes five metadata-hygiene assertions, whitespace,
+  and full Git checking with no corruption. Remote refresh retains exact
+  integration-squash head/main/origin/merge-base identity, `0 0` divergence,
+  only the necessary local closeout branch plus `main`, only remote `main`, and
+  empty open-PR, branch-run, release, and tag queries.
 
 ## Remaining acceptance
 
-- Validate, commit, publish, audit, and squash-integrate this five-record
-  factual integration update through the bounded documentation gate.
-- Publish and integrate the closeout-only record without runner allocation,
-  clean all M93 branches/generated targets, and select the next bounded
-  milestone.
+- Validate, commit, publish, audit, and squash-integrate this three-record
+  closeout without runner allocation.
+- Clean all M93 generated targets and branches, verify the final sole-parent
+  chain, and select the next bounded milestone.
