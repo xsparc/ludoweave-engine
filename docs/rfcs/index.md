@@ -81,3 +81,4 @@ was adopted.
 - [RFC-0074: bound fixed local-header prefixes](0074-bound-local-header-prefixes.md)
 - [RFC-0075: bound local-header variable envelopes](0075-bound-local-header-envelopes.md)
 - [RFC-0076: require consistent local-header names](0076-require-consistent-local-header-names.md)
+- [RFC-0077: require consistent local-header flags](0077-require-consistent-local-header-flags.md)

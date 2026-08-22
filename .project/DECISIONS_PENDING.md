@@ -2,6 +2,23 @@
 
 No architecture decision is currently blocked.
 
+RFC-0077 resolves the M94 local-header flag-consistency preflight. PKWARE
+defines a two-byte general-purpose flag in both local and central member
+records, while supported CPython exposes the central value and accepts a
+demonstrated local-only encryption-bit mutation through both payload reads.
+The fixed sample producer emits equal values, so complete release smoke now
+compares exactly the two local bytes at `ZipInfo.header_offset + 6` with public
+central `ZipInfo.flag_bits` after M93 and before decoded names, metadata,
+inventory, staging, or reads. The stable error is `sample bundle local header
+flags are inconsistent`.
+
+This is one two-byte local-flag consistency classifier, not a local compression-
+method or extra-field comparison, broad flag allowlist, field-wide consistency
+check, payload/next-header bound, inter-member layout validator, archive repair,
+or general sandbox. It changes no workflow, dependency, producer, runtime API,
+or release authority. RFC-0077 records the accepted policy; no M94 design
+decision remains pending.
+
 RFC-0076 resolves the M93 local-header name-consistency preflight. PKWARE
 requires corresponding local and central member records, places each variable
 name immediately after the fixed local prefix, and specifies CP437 by default

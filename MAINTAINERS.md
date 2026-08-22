@@ -362,6 +362,19 @@ and is not a real public release observation. M0 through M92 are complete,
 reviewed, hosted-validated, and integrated into `main`. M93 starts from exact
 verified M92 closeout `74972042525041e9251ce245a1fd4ea75add6047`.
 
+M94 reads each two-byte local general-purpose flag field after M93 and requires
+exact equality with the parser-exposed central `ZipInfo.flag_bits` before
+decoded names, metadata, inventory, staging, or reads. Its stable content-
+silent error is `sample bundle local header flags are inconsistent`. This one
+two-byte local-flag consistency classifier performs no local compression-
+method comparison, no extra-field comparison, no field-wide consistency check,
+next-header or payload bound, or inter-member layout validation. It adds no
+workflow, allocation, dependency, version, producer, runtime source/API,
+release authority, tag, release, or publication. It is not a general archive
+sandbox and is not a real public release observation. M0 through M93 are
+complete, reviewed, hosted-validated, and integrated into `main`. M94 starts
+from exact verified M93 closeout `1b189da618d2d2ea0b3208707ba209f81d1368cc`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
