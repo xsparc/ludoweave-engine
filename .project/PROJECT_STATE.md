@@ -1,6 +1,6 @@
 # Project State
 
-## M97 local-header extraction-version consistency preflight - complete; integration record active
+## M97 local-header extraction-version consistency preflight - complete; closeout active
 
 - Base: exact verified M96 closeout squash
   `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`, tree
@@ -115,6 +115,36 @@
   code/workflow/dependency surfaces have no diff, credential and explicit
   development-tool-identity scans are empty, Git has no corruption, and
   whitespace is clean.
+- Hosted integration record: ready PR #244 exact DCO head
+  `cd590e88befe44d4dbcfcdf8a700b4e4c0efd90b`, tree
+  `881cf2cde38c5e833b2898b9fc652f0f116c08a7`, passed run `32591861207` in
+  one 45-second Linux job `97076836696`; desktop umbrella job `97076933484`
+  skipped with zero steps. Formatting, Ruff, strict docs, all 1,276 hosted
+  documentation-architecture assertions, reproducible builds, installed-wheel
+  smoke, ten-artifact staging, and complete release smoke passed.
+- Hosted record artifacts: the 276,921-byte wheel SHA-256 is
+  `cd857473dbe32729fe26ca30d6eb4f7ceac3431f927fe389c129af82e3d573d2`;
+  the 1,424,470-byte source archive SHA-256 is
+  `26d5de3ad8ddec68096e146c93db9f9c315af5f9b05efb2cf86592b2be755309`.
+- Integration-record readiness/integration: two separated audits around five
+  passing metadata assertions retained exact head/tree/base, one DCO commit,
+  five paths, the successful bounded Linux gate, zero-step skipped desktop
+  umbrella, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `e64264e2084b718b4f85338831ed806b088eb322` has the exact reviewed tree,
+  sole parent the verified feature squash, standalone DCO, and a valid GitHub
+  signature verified at `2026-08-22T18:51:16Z`. The branch is deleted locally
+  and remotely.
+- Closeout changes exactly three project records and adds no product, policy,
+  workflow, dependency, build, version, release-authority, tag, release, or
+  publication surface.
+- Closeout local proof: all five metadata-hygiene assertions pass in 0.33
+  seconds and whitespace is clean. Remote refresh retains exact integration-
+  squash branch/main/origin/merge-base identity with `0 0` divergence, only
+  `main` plus the necessary closeout branch locally and only `origin/main`
+  remotely, and empty open-PR, branch-run, postmerge-run, release, and tag
+  queries. The integration squash retains its exact tree/parent/DCO/signature;
+  full Git checking reports no corruption and only historical dangling
+  objects.
 
 ## M96 local-header extra-field consistency preflight - complete and closed
 

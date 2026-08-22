@@ -1,14 +1,13 @@
 # Current task
 
 - **Task:** M97 - local-header extraction-version consistency preflight
-- **Status:** Feature PR #243 is exact-head hosted-validated and squash-
-  integrated. The factual integration record passes complete local validation
-  and precommit audit; commit and publication are ready. No product or policy
-  change remains.
-- **Base:** Verified M97 feature squash
-  `0f519c72c12d21e0a0001c21868bd0748c7d7b8c`, tree
-  `8abe71ab97716a767517d211106281f25d20bb25`.
-- **Branch:** `release/m97-integration-record`.
+- **Status:** Feature PR #243 and integration-record PR #244 are verified and
+  squash-integrated. The closeout-only record passes local proof and audit;
+  commit and publication are ready. No product or policy work remains.
+- **Base:** Verified M97 integration-record squash
+  `e64264e2084b718b4f85338831ed806b088eb322`, tree
+  `881cf2cde38c5e833b2898b9fc652f0f116c08a7`.
+- **Branch:** `release/m97-closeout`.
 
 ## Integrated scope
 
@@ -53,6 +52,23 @@
   qualified tree, sole M96 closeout parent, standalone DCO trailer, and a valid
   GitHub signature verified at `2026-08-22T18:41:22Z`. The feature branch is
   deleted remotely and locally.
+- Ready integration-record PR #244 exact DCO head
+  `cd590e88befe44d4dbcfcdf8a700b4e4c0efd90b`, tree
+  `881cf2cde38c5e833b2898b9fc652f0f116c08a7`, passed run `32591861207`
+  in one 45-second Linux job `97076836696`; desktop umbrella job
+  `97076933484` skipped with zero steps. Hosted formatting, Ruff, strict docs,
+  all 1,276 documentation-architecture assertions, reproducible builds,
+  installed-wheel smoke, ten-artifact staging, and complete release smoke
+  passed.
+- Hosted record builds reproduced a 276,921-byte wheel at
+  `cd857473dbe32729fe26ca30d6eb4f7ceac3431f927fe389c129af82e3d573d2`
+  and a 1,424,470-byte source archive at
+  `26d5de3ad8ddec68096e146c93db9f9c315af5f9b05efb2cf86592b2be755309`.
+- Guarded integration-record squash
+  `e64264e2084b718b4f85338831ed806b088eb322` has the exact reviewed tree,
+  sole feature-squash parent, standalone DCO trailer, and a valid GitHub
+  signature verified at `2026-08-22T18:51:16Z`. The record branch is deleted
+  remotely and locally.
 
 ## Explicit non-scope
 
@@ -67,9 +83,7 @@
 
 ## Remaining acceptance work
 
-- Validate, commit, publish, audit, and squash-integrate exactly the five
-  factual integration-record paths through the bounded Linux documentation
-  gate.
-- Create and integrate the three-record closeout without runner allocation.
+- Validate, commit, publish, audit, and squash-integrate exactly the three
+  project closeout records without runner allocation.
 - Delete verified M97 generated targets and all branches except `main`, verify
   the final feature/integration/closeout sole-parent chain, then select M98.
