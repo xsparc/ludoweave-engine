@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+RFC-0080 resolves the M97 local-header extraction-version consistency
+preflight. PKWARE duplicates a two-byte version-needed pair in corresponding
+local and central member records. Exact CPython 3.12.13, 3.13.13, and 3.14.5
+retain central pairs `[(20, 0), (20, 0)]` and read both payloads when only the
+second local extraction-version byte changes to 21. Private release smoke
+therefore reads exactly two bytes at `ZipInfo.header_offset + 4` after M96 and
+requires equality with public central `ZipInfo.extract_version` and
+`ZipInfo.reserved` before decoded names, metadata, inventory, staging, or
+reads. The stable error is `sample bundle local header extraction versions are
+inconsistent`.
+
+This is one two-byte local-extraction-version consistency classifier, not a
+supported-version allowlist, minimum extractor-capability rule, reserved-byte
+policy, time/CRC/size or field-wide comparison,
+record/payload/next-header bound, gap/adjacency/contiguity/non-overlap rule,
+inter-member layout validator, archive repair, or general sandbox. It changes
+no workflow, dependency, producer, runtime API, or release authority. RFC-0080
+records the accepted policy; no M97 design decision remains pending.
+
 RFC-0079 resolves the M96 local-header extra-field consistency preflight.
 PKWARE defines separate variable extra fields in corresponding local and
 central member records. Exact CPython 3.12.13, 3.13.13, and 3.14.5 retain both

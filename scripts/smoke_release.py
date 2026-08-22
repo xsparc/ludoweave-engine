@@ -63,6 +63,7 @@ _SAMPLE_EOCD_BYTES = 22
 _SAMPLE_EOCD_SIGNATURE = b"PK\x05\x06"
 _SAMPLE_LOCAL_HEADER_SIGNATURE = b"PK\x03\x04"
 _SAMPLE_FIXED_LOCAL_HEADER_BYTES = 30
+_SAMPLE_LOCAL_HEADER_EXTRACTION_VERSION_OFFSET = 4
 _SAMPLE_LOCAL_HEADER_FLAGS_OFFSET = 6
 _SAMPLE_LOCAL_HEADER_COMPRESSION_OFFSET = 8
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
@@ -541,6 +542,10 @@ def _extract_checksum_admitted_bundle(
             infos=infos,
         )
         _validate_sample_local_header_extra_fields(snapshot=snapshot_stream, infos=infos)
+        _validate_sample_local_header_extraction_versions(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -997,6 +1002,25 @@ def _validate_sample_local_header_extra_fields(
             snapshot.seek(info.header_offset + _SAMPLE_FIXED_LOCAL_HEADER_BYTES + name_length)
             if snapshot.read(extra_length) != info.extra:
                 raise RuntimeError("sample bundle local header extra fields are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_extraction_versions(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local extraction versions to match parser-exposed central values."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_EXTRACTION_VERSION_OFFSET)
+            if snapshot.read(2) != bytes((info.extract_version, info.reserved)):
+                raise RuntimeError(
+                    "sample bundle local header extraction versions are inconsistent"
+                )
     finally:
         snapshot.seek(position)
 

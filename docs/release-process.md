@@ -924,6 +924,21 @@ payload bound, inter-member layout validator, workflow, dependency, runtime
 API, release authority, or producer change. This profile is not a general
 archive sandbox and is not a real public release observation.
 
+M97/RFC-0080 reads the bounded two-byte local extraction-version pair after
+M96 local-extra equality and requires it to match public central
+`ZipInfo.extract_version` and `ZipInfo.reserved`. This one two-byte local-
+extraction-version consistency classifier runs before decoded-name policy,
+metadata, exact inventory, staging, or member reads. Failure emits stable
+content-silent error `sample bundle local header extraction versions are
+inconsistent`; all owned resources close before control returns.
+
+The fixed producer's 50 local and central pairs match at `(20, 0)`. M97 adds
+no supported-version allowlist, time/CRC/size comparison, field-wide
+consistency check, next-header or payload bound, inter-member layout validator,
+workflow, dependency, runtime API, release authority, or producer change. This
+profile is not a general archive sandbox and is not a real public release
+observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M97/RFC-0080 local-header extraction-version consistency preflight. Each
+  bounded two-byte local pair must exactly equal public central
+  `ZipInfo.extract_version` and `ZipInfo.reserved` before decoded-name policy,
+  metadata, inventory, reads, or staging, without a supported-version
+  allowlist, time/CRC/size comparison, inter-member layout validator, workflow,
+  dependency, producer, runtime API, or release-authority change.
 - Add M96/RFC-0079 local-header extra-field consistency preflight. Each bounded
   local extra field must exactly equal public central `ZipInfo.extra` before
   decoded-name policy, metadata, inventory, reads, or staging, without an

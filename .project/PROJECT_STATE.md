@@ -1,6 +1,81 @@
 # Project State
 
-## M96 local-header extra-field consistency preflight - complete; closeout active
+## M97 local-header extraction-version consistency preflight - active
+
+- Base: exact verified M96 closeout squash
+  `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`, tree
+  `27b7b4968c64816dcc39a20e01c0410d4e11c78e`; local and remote `main` were
+  exact with only `main` present before creating the neutral M97 branch.
+- Accepted policy: after M96, read exactly two bytes at each public
+  `ZipInfo.header_offset + 4` and require equality with public central
+  `bytes((info.extract_version, info.reserved))`. Mismatch raises stable
+  content-silent `sample bundle local header extraction versions are
+  inconsistent` before decoded-name policy, metadata, exact inventory,
+  staging, or reads. The helper restores position and existing ownership
+  closes resources.
+- Direction evidence: PKWARE defines the duplicated two-byte extraction-
+  version pair. A corrected temporary probe on exact CPython 3.12.13, 3.13.13,
+  and 3.14.5 showed local pairs `[(20, 0), (21, 0)]` can differ while central
+  pairs remain `[(20, 0), (20, 0)]`, offsets remain `[0, 54]`, and both
+  payload reads succeed.
+- Red evidence: the 27-assertion M97 contract is format/Ruff clean and strict
+  Pyright reports zero findings. On exact CPython 3.14.5 it passed 17
+  established controls and failed ten expected missing-policy/helper/order/
+  docs assertions. No M97 implementation or complete-suite pass is claimed
+  from the red invocation.
+- Implementation boundary: one two-byte local-extraction-version consistency
+  classifier after M96 plus RFC-0080 and aligned records. No supported-version
+  allowlist, minimum capability or reserved-byte policy, time/CRC/size or
+  field-wide comparison, record/payload/next-header bound, inter-member layout
+  validator, workflow, dependency, producer, runtime API, release authority,
+  tag, release, or publication is admitted.
+- Implementation checkpoint: after correcting one Markdown line wrap exposed
+  by the focused contract, both affected Python files are format/Ruff clean,
+  strict Pyright reports zero findings, all 53 combined M96-M97 assertions
+  pass, and strict docs build. The 27-case M97 contract passes on exact CPython
+  3.12.13, 3.13.13, and 3.14.5.
+- Complete supported-Python proof: exact CPython 3.12.13, 3.13.13, and 3.14.5
+  each pass 2,805 tests with 16 established skips. Repository-wide graphics,
+  artifact, release, and findings-first qualification remain active.
+- Local proof: the unchanged 46-package lock resolves and the exact CPython
+  3.12.13 locked 45-package graphics environment is installed. Repository-wide
+  formatting, Ruff, strict Pyright, all 1,275 architecture assertions with one
+  established Windows skip, strict docs, metadata hygiene, real-wgpu, both
+  profiles, Clockwork Arena, and Agent World Builder pass.
+- Initial artifact proof: two fresh builds reproduced the 276,943-byte pure
+  wheel at
+  `23daeee5cbf95a9dd6c9232b8c35abfc7b42200dc9f6c3d5db3f1775aa6eafbc`
+  and the 1,421,917-byte source archive at
+  `724d9336e1b37c992f1465be03758d040a3f496dfa084a8ef2d0a98c165a452c`;
+  wheel, staging, and complete release smoke pass. Later record/review
+  corrections make this pre-final source-archive identity non-authoritative.
+- Review correction: findings-first review moved the misplaced README M97
+  paragraph after M96 and corrected "originating-system byte" to PKWARE's and
+  `ZipInfo.reserved`'s reserved-byte meaning. Strict docs and all 58 affected
+  metadata/M96/M97 assertions pass afterward. Corrected scope, credential,
+  identity, protected-boundary, and archive-content scans have no finding
+  across exactly 16 intended paths; the 94-entry wheel and 560-entry source
+  archive contain no prohibited format or retired control metadata.
+- Record-inclusive proof: repository-wide format, Ruff, strict Pyright, all
+  1,275 architecture assertions with one established skip, strict docs,
+  focused metadata/M97, and whitespace gates pass. Two fresh builds reproduce
+  a 276,947-byte pure wheel at
+  `5e0ace7e888b2bfe505ce82e8f10b47265f9a4e79232d8b038d29b2842d0c04a`
+  and a 1,422,803-byte source archive at
+  `75bbc3a6016c44e4a2adc9f46f3503cd9e05137db84c489adc62a7680a0fafbf`;
+  isolated-wheel, ten-artifact staging, and complete release smoke pass.
+  Hosted exact-head builds remain authoritative after this factual row changes
+  the source archive.
+- Precommit audit: after remote refresh, branch base, local and remote `main`,
+  and merge base are exact M96 closeout with divergence `0 0`. Exactly 16
+  intended paths change; only `main` and the neutral M97 branch exist locally
+  and only `origin/main` remotely. Open PR, branch-run, release, and tag queries
+  are empty. The M96 three-squash sole-parent/tree/DCO/signature chain is exact;
+  workflow, dependency, producer, runtime package/API, and release-authority
+  boundaries remain unchanged; credential and explicit development-tool-
+  identity scans are empty; Git has no corruption; and whitespace is clean.
+
+## M96 local-header extra-field consistency preflight - complete and closed
 
 - Base: exact verified M95 closeout squash
   `e770f5538660b5edea5fd8ebc4fccf717b18b272`, tree
@@ -107,6 +182,15 @@
   remotely, and empty open-PR, branch-run, postmerge-run, release, and tag
   queries. Full Git checking reports no corruption and only historical dangling
   objects.
+- Closeout integration: ready PR #242 exact DCO head
+  `3fd9a45da4908365f57a08be4ab0ac05de073ee6`, tree
+  `27b7b4968c64816dcc39a20e01c0410d4e11c78e`, allocated no workflow and
+  squash-integrated as `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42` with sole
+  integration-record parent, standalone DCO, and a valid GitHub signature
+  verified at `2026-08-22T17:52:05Z`. Local `main`, `origin/main`, and merge
+  base are exact with divergence `0 0`; only `main` exists locally/remotely,
+  no PR remains open, exactly the intended feature and integration-record runs
+  exist, and all 33 verified M96 scratch targets are permanently removed.
 
 ## M95 local-header compression-method consistency preflight - complete and closed
 
