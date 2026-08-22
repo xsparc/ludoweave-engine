@@ -415,6 +415,19 @@ and is not a real public release observation. M0 through M96 are complete,
 reviewed, hosted-validated, and integrated into `main`. M97 starts from exact
 verified M96 closeout `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`.
 
+M98 reads the four-byte local DOS timestamp after M97 and requires exact
+equality with the bytes represented by public central `ZipInfo.date_time`
+before decoded names, metadata, inventory, staging, or reads. Its stable
+content-silent error is `sample bundle local header timestamps are
+inconsistent`. This one four-byte local-timestamp consistency classifier is no
+timestamp semantics validator, performs no timezone or UTC conversion, adds
+no CRC/size comparison or inter-member layout validation, and changes no
+workflow, allocation, dependency, version, producer, runtime source/API,
+release authority, tag, release, or publication. It is not a general archive
+sandbox and is not a real public release observation. M0 through M97 are
+complete, reviewed, hosted-validated, and integrated into `main`. M98 starts
+from exact verified M97 closeout `9f4a3b915df40fe86a0fc5c759763186899ea1fe`.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

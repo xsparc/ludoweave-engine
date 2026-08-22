@@ -66,6 +66,8 @@ _SAMPLE_FIXED_LOCAL_HEADER_BYTES = 30
 _SAMPLE_LOCAL_HEADER_EXTRACTION_VERSION_OFFSET = 4
 _SAMPLE_LOCAL_HEADER_FLAGS_OFFSET = 6
 _SAMPLE_LOCAL_HEADER_COMPRESSION_OFFSET = 8
+_SAMPLE_LOCAL_HEADER_TIMESTAMP_OFFSET = 10
+_SAMPLE_LOCAL_HEADER_TIMESTAMP_BYTES = 4
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES = 4
 _SAMPLE_UTF8_FILENAME_FLAG = 1 << 11
@@ -546,6 +548,10 @@ def _extract_checksum_admitted_bundle(
             snapshot=snapshot_stream,
             infos=infos,
         )
+        _validate_sample_local_header_timestamps(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -1021,6 +1027,27 @@ def _validate_sample_local_header_extraction_versions(
                 raise RuntimeError(
                     "sample bundle local header extraction versions are inconsistent"
                 )
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_timestamps(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local DOS timestamps to match parser-exposed central values."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            year, month, day, hour, minute, second = info.date_time
+            dos_time = hour << 11 | minute << 5 | second // 2
+            dos_date = (year - 1980) << 9 | month << 5 | day
+            expected = dos_time.to_bytes(2, "little") + dos_date.to_bytes(2, "little")
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_TIMESTAMP_OFFSET)
+            if snapshot.read(_SAMPLE_LOCAL_HEADER_TIMESTAMP_BYTES) != expected:
+                raise RuntimeError("sample bundle local header timestamps are inconsistent")
     finally:
         snapshot.seek(position)
 
