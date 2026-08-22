@@ -384,6 +384,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   adds no CRC/size comparison or inter-member layout validator, and changes no
   workflow, dependency, producer, runtime API, or release authority; it is not
   a general archive sandbox and is not a real public release observation.
+- M99 reads each bounded four-byte local CRC after M98 and requires exact
+  equality with public central `ZipInfo.CRC` before decoded names, metadata,
+  inventory, staging, or reads. Its content-silent error is `sample bundle
+  local header CRC-32 values are inconsistent`. This one four-byte local-CRC-32
+  consistency classifier performs no CRC recomputation, payload-integrity
+  certification, compressed/uncompressed size comparison, payload or next-
+  header bound, or inter-member layout validator, and changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

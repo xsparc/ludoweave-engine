@@ -1,6 +1,99 @@
 # Project State
 
-## M98 local-header timestamp consistency preflight - integration record merged; closeout active
+## M99 local-header CRC-32 consistency preflight - implementation active
+
+- Base: exact verified M98 closeout squash
+  `6d4529efb0476f3e3e45f78204d2b0aa192da018`, tree
+  `7e3ffae0423fd2b4da1725db48864b9c04f8ad35`; local branch, local `main`, and
+  `origin/main` were exact with divergence `0 0`, a clean worktree, only
+  `main` present, and no open PR before M99.
+- Selected policy: after M98, read exactly four bytes at each public
+  `ZipInfo.header_offset + 14` and require equality with public central
+  `ZipInfo.CRC` encoded unsigned little-endian before decoded names, metadata,
+  exact inventory, staging, or reads. The stable content-silent error is
+  `sample bundle local header CRC-32 values are inconsistent`.
+- Primary-source basis: PKWARE APPNOTE 6.3.10 sections 4.1.5, 4.3.7, 4.3.12,
+  and 4.4.7 define CRC-32 integrity and the duplicated four-byte field. Python
+  documents public `ZipInfo.CRC` and `ZipInfo.header_offset`; CPython member
+  reads use the central value as their expected CRC.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained central
+  CRCs `[3724039362, 2868864084]` and read both payloads after only the second
+  local CRC changed from `2868864084` to `2868864085`.
+- Red contract: the 29-assertion M99 contract is format/Ruff clean and strict
+  Pyright reports zero findings. Exact CPython 3.14.5 passed 19 established
+  runtime, precedence, producer, empty-archive, and protected-surface controls;
+  ten stable-error, helper, cleanup, ordering, and documentation assertions
+  failed because closed M98 has no M99 policy/helper/RFC. No complete pass is
+  claimed.
+- Implementation scope: one four-byte equality classifier after M98 plus
+  RFC-0082 and aligned records. No CRC recomputation, size comparison, payload
+  or next-header bound, inter-member layout policy, workflow, dependency,
+  producer, runtime API, version, release authority, tag, release, or
+  publication is added.
+- First checkpoint correction: the implementation was Ruff-clean and strict
+  Pyright-clean, but format check requested one mechanical reflow. Combined
+  M98-M99 tests passed 55 of 57 because the helper used an equivalent named
+  four-byte constant while the contract required the literal encoding and the
+  non-scope phrase omitted a repeated `no`; strict docs also required RFC-0082
+  navigation. The corrected presentation changes no runtime policy.
+- Supported-runtime proof: all 57 combined M98-M99 assertions and strict docs
+  pass. All 29 M99 assertions pass on exact CPython 3.12.13, 3.13.13, and
+  3.14.5. Each complete suite passes 2,862 tests with 16 established skips in
+  109.49, 106.57, and 112.30 seconds respectively.
+- Local gate: the unchanged 46-package lock resolves in 0.90 milliseconds and
+  the exact CPython 3.12.13 locked 45-package graphics environment installs.
+  All 342 Python files are format clean; Ruff and strict Pyright pass; all
+  1,332 architecture assertions pass with one established Windows capability
+  skip in 10.89 seconds; strict docs build; the five metadata-hygiene plus 29
+  focused M99 assertions pass; and whitespace is clean.
+- Graphics/release proof: all ten real-wgpu tests pass in 6.31 seconds; both
+  one-repeat profiles validate; Clockwork Arena and Agent World Builder retain
+  canonical state/replay identities. Two fresh builds reproduce a 277,172-byte
+  pure wheel at
+  `99b11fdff73c87131b958abb41443b7c119dd3e6c2061df502c5965a647be29e`
+  and a 1,438,223-byte source archive at
+  `7c28281efdd4d9ab9f0da20479da1ae4fbfa1e60d7a73f2312ac4052e6286462`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 15 intended paths change. The runtime diff is
+  one two-constant/call/helper slice using public `ZipInfo.header_offset` and
+  `ZipInfo.CRC`, with M98 precedence, stable content-silent error, snapshot
+  restoration, and owned cleanup preserved. No workflow/release-workflow,
+  lock, metadata, runtime package/API, sample producer, dependency, version,
+  release authority, credential, backend/native/WASM, or development-tool-
+  identity change was found. The 94-entry wheel is pure `py3-none-any`; it and
+  the 564-entry source archive contain no banned native/WASM/bytecode/control
+  metadata. No remaining actionable review finding exists.
+- Review-inclusive artifacts: two fresh builds reproduce the 277,172-byte pure
+  wheel at
+  `99b11fdff73c87131b958abb41443b7c119dd3e6c2061df502c5965a647be29e`
+  and the 1,439,136-byte source archive at
+  `5171bd97e5f80c2906c88d075595a9dcf6c1be2bf5fd1e1ec79cf4d50dbf3c29`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Hosted exact-head artifacts will remain authoritative
+  after factual record updates change the source archive.
+- Post-record separator correction: lock, all static checks, strict docs, the
+  34 metadata/M99 assertions, and whitespace passed, but the architecture run
+  reported 1,331 passes, one established skip, and one M67 staging-directory
+  rename `WinError 5`; no clean separator is claimed from that invocation. The
+  exact assertion immediately passed in 0.21 seconds, then all 1,332
+  architecture assertions passed with one skip in 9.20 seconds. No source
+  correction was required.
+- Final source separator: the unchanged lock resolved in 1 millisecond; all 342
+  files remained format clean; Ruff and strict Pyright passed; all 1,332
+  architecture assertions passed with one established skip in 9.59 seconds;
+  strict docs built in 1.47 seconds; all 34 metadata/M99 assertions passed in
+  0.88 seconds; and whitespace remained clean.
+- Precommit audit: after fetch/prune, branch base, local `main`, `origin/main`,
+  and merge base remain exact M98 closeout with divergence `0 0`. Exactly 15
+  intended paths change; only `main` plus the neutral M99 branch exist locally
+  and only `origin/main` remotely. Authentication is valid; open PR, M99 run,
+  release, and tag queries are empty. Protected workflow, metadata, lock,
+  runtime package, and producer surfaces have no diff; credential and explicit
+  development-tool-identity scans are empty; Git has no corruption; and the
+  M98 three-squash chain retains exact parents, trees, and valid signatures.
+
+## M98 local-header timestamp consistency preflight - complete and closed
 
 - Base: exact verified M97 closeout squash
   `9f4a3b915df40fe86a0fc5c759763186899ea1fe`, tree
@@ -137,6 +230,19 @@
   release, and tag queries are empty. Protected source, tests, scripts, docs,
   workflows, dependencies, README, and roadmap have no diff; Git integrity and
   the integration squash's parent/tree/DCO/signature remain exact.
+- Closeout proof: ready PR #248 exact DCO head
+  `7e06f6897a5c58431b278a9ed7f9a1ac6e1b1960`, tree
+  `7e3ffae0423fd2b4da1725db48864b9c04f8ad35`, allocated no workflow and passed
+  two separated readiness audits around five metadata-hygiene assertions with
+  zero feedback. It squash-merged at `2026-08-22T19:59:48Z` as
+  `6d4529efb0476f3e3e45f78204d2b0aa192da018`, with exact tree, sole
+  integration-record parent, standalone DCO, and valid GitHub signature.
+- Final audit: local `main` and `origin/main` are exact with only `main`
+  locally/remotely; open PR, closeout run, closeout-squash run, release, and tag
+  queries are empty. The M98 feature/integration/closeout squash chain retains
+  exact parents, trees, DCO, and valid signatures. All 12 M98 `.tmp` targets
+  and ten exact M98 pytest directories were descendant-verified inside their
+  intended workspace roots and removed; none remain. Metadata hygiene passes.
 
 ## M97 local-header extraction-version consistency preflight - complete and closed
 

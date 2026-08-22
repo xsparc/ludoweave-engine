@@ -86,3 +86,4 @@ was adopted.
 - [RFC-0079: require consistent local-header extra fields](0079-require-consistent-local-header-extra-fields.md)
 - [RFC-0080: require consistent local-header extraction versions](0080-require-consistent-local-header-extraction-versions.md)
 - [RFC-0081: require consistent local-header timestamps](0081-require-consistent-local-header-timestamps.md)
+- [RFC-0082: require consistent local-header CRC-32 values](0082-require-consistent-local-header-crcs.md)

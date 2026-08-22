@@ -424,9 +424,20 @@ timestamp semantics validator, performs no timezone or UTC conversion, adds
 no CRC/size comparison or inter-member layout validation, and changes no
 workflow, allocation, dependency, version, producer, runtime source/API,
 release authority, tag, release, or publication. It is not a general archive
-sandbox and is not a real public release observation. M0 through M97 are
-complete, reviewed, hosted-validated, and integrated into `main`. M98 starts
-from exact verified M97 closeout `9f4a3b915df40fe86a0fc5c759763186899ea1fe`.
+sandbox and is not a real public release observation.
+
+M99 reads the four-byte local CRC after M98 and requires exact equality with
+public central `ZipInfo.CRC` before decoded names, metadata, inventory,
+staging, or reads. Its stable content-silent error is `sample bundle local
+header CRC-32 values are inconsistent`. This one four-byte local-CRC-32
+consistency classifier performs no CRC recomputation, compressed/uncompressed
+size comparison, payload or next-header bound, or inter-member layout
+validation. It adds no workflow, allocation, dependency, version, producer,
+runtime source/API, release authority, tag, release, or publication. It is not
+a general archive sandbox and is not a real public release observation. M0
+through M98 are complete, reviewed, hosted-validated, and integrated into
+`main`. M99 starts from exact verified M98 closeout
+`6d4529efb0476f3e3e45f78204d2b0aa192da018`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;

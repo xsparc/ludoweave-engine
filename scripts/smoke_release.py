@@ -68,6 +68,8 @@ _SAMPLE_LOCAL_HEADER_FLAGS_OFFSET = 6
 _SAMPLE_LOCAL_HEADER_COMPRESSION_OFFSET = 8
 _SAMPLE_LOCAL_HEADER_TIMESTAMP_OFFSET = 10
 _SAMPLE_LOCAL_HEADER_TIMESTAMP_BYTES = 4
+_SAMPLE_LOCAL_HEADER_CRC_OFFSET = 14
+_SAMPLE_LOCAL_HEADER_CRC_BYTES = 4
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES = 4
 _SAMPLE_UTF8_FILENAME_FLAG = 1 << 11
@@ -549,6 +551,10 @@ def _extract_checksum_admitted_bundle(
             infos=infos,
         )
         _validate_sample_local_header_timestamps(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
+        _validate_sample_local_header_crcs(
             snapshot=snapshot_stream,
             infos=infos,
         )
@@ -1048,6 +1054,24 @@ def _validate_sample_local_header_timestamps(
             snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_TIMESTAMP_OFFSET)
             if snapshot.read(_SAMPLE_LOCAL_HEADER_TIMESTAMP_BYTES) != expected:
                 raise RuntimeError("sample bundle local header timestamps are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_crcs(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local CRC-32 values to match parser-exposed central values."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_CRC_OFFSET)
+            expected = info.CRC.to_bytes(4, "little")
+            if snapshot.read(_SAMPLE_LOCAL_HEADER_CRC_BYTES) != expected:
+                raise RuntimeError("sample bundle local header CRC-32 values are inconsistent")
     finally:
         snapshot.seek(position)
 
