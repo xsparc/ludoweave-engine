@@ -939,6 +939,22 @@ workflow, dependency, runtime API, release authority, or producer change. This
 profile is not a general archive sandbox and is not a real public release
 observation.
 
+M98/RFC-0081 reads the bounded four-byte local DOS timestamp after M97 and
+requires it to match the bytes represented by public central
+`ZipInfo.date_time`. This one four-byte local-timestamp consistency classifier
+runs before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle local header
+timestamps are inconsistent`; all owned resources close before control
+returns.
+
+The fixed producer's 50 local and central timestamps match. M98 is no
+timestamp semantics validator and adds no timezone or UTC conversion,
+wall-clock comparison, calendar or reproducibility rule, extended-timestamp
+interpretation, CRC/size comparison, field-wide consistency check, next-header
+or payload bound, inter-member layout validator, workflow, dependency, runtime
+API, release authority, or producer change. This profile is not a general
+archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

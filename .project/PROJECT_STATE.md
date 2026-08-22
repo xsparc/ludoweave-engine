@@ -1,6 +1,71 @@
 # Project State
 
-## M97 local-header extraction-version consistency preflight - complete; closeout active
+## M98 local-header timestamp consistency preflight - locally qualified; publication pending
+
+- Base: exact verified M97 closeout squash
+  `9f4a3b915df40fe86a0fc5c759763186899ea1fe`, tree
+  `678b6ff58513952a23041e6594fc621e71e9537b`; local branch, local `main`, and
+  `origin/main` were exact with divergence `0 0`, a clean worktree, and no open
+  PR before M98 edits.
+- Accepted policy: after M97, read exactly four bytes at each public
+  `ZipInfo.header_offset + 10` and require equality with the DOS time/date bytes
+  represented by public central `ZipInfo.date_time` before decoded names,
+  metadata, exact inventory, staging, or reads. The stable content-silent error
+  is `sample bundle local header timestamps are inconsistent`.
+- Primary-source basis: PKWARE APPNOTE 6.3.10 sections 4.3.7, 4.3.12, and 4.4.6
+  define the duplicated two-byte DOS time and two-byte DOS date fields. Python
+  documents `ZipInfo.date_time` as the central-directory result and
+  `ZipInfo.header_offset` as the local-header byte offset; the documented tuple
+  represents local time rather than UTC and has two-second precision.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained central
+  tuples `[(2026, 8, 23, 4, 6, 8), (2026, 8, 23, 4, 6, 8)]`, observed local
+  timestamp hex `c420175d` and mutated `e420175d`, and read both payloads after
+  only the second local time's low byte changed.
+- Probe correction: the first sandboxed uv invocations were blocked before
+  execution by user-cache access, and the first formatter check requested one
+  mechanical reflow while Ruff lint passed. Corrected escalated exact-runtime
+  probes passed, then the formatted probe passed both static checks.
+- Red contract: the first static gate requested one mechanical reflow while
+  Ruff and strict Pyright passed. After formatting, all three static gates
+  passed. Exact CPython 3.14.5 then collected 28 assertions: 18 inherited
+  precedence, behavior, producer, empty-archive, and protected-surface controls
+  passed; ten stable-error, helper, cleanup, ordering, and documentation
+  assertions failed because unchanged M97 had no M98 policy/helper/RFC. No
+  complete or hosted pass is claimed.
+- Implementation scope: one four-byte classifier after M97 plus RFC-0081 and
+  aligned records. No timestamp semantics, timezone/UTC conversion, CRC/size
+  comparison, inter-member layout policy, workflow, dependency, producer,
+  runtime API, version, release authority, tag, release, or publication is
+  added.
+- Review correction: findings-first review closed the stale historical M97
+  state with its already verified closeout facts and made RFC-0081 explicitly
+  place APPNOTE's bit-13 masked-local-header exception outside the admitted
+  profile because established encryption policy rejects that bit before M98.
+  Runtime policy is unchanged.
+- Local proof: all 28 M98 assertions pass on exact CPython 3.12.13, 3.13.13,
+  and 3.14.5. Each complete suite passes 2,833 tests with 16 established skips.
+  The unchanged lock and exact 45-package graphics environment, all 341-file
+  format/Ruff checks, strict Pyright, 1,303 architecture assertions with one
+  established Windows skip, strict docs, metadata hygiene, ten real-wgpu
+  tests, both profiles, Clockwork Arena, Agent World Builder, and whitespace
+  gates pass.
+- Artifact proof: two review-inclusive fresh builds reproduce the 277,048-byte
+  pure wheel at
+  `2f69ece3b54e5fe6daccb1bcc3a4e75e0944e09a5fb7adc7d894d9fda4620c5c`
+  and the 1,430,987-byte source archive at
+  `4e8183c04fb637e4cfad3bfc96868cbfdf82607281fb24262bd5753ccc581822`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Hosted exact-head artifacts will remain authoritative
+  after recording changes the source archive.
+- Precommit audit: remote refresh retains exact M97 closeout branch/main/
+  origin/merge-base identity with divergence `0 0`; exactly 16 intended paths
+  change. Only `main` plus the neutral M98 branch exist locally and only
+  `origin/main` remotely; open PR, branch-run, release, and tag queries are
+  empty. The M97 three-squash sole-parent/tree/signature chain is exact;
+  protected surfaces, credential/identity scans, repository integrity, and
+  whitespace are clean.
+
+## M97 local-header extraction-version consistency preflight - complete and closed
 
 - Base: exact verified M96 closeout squash
   `bb1867f8cc2cd1e7a5cb56cc596761284e7dea42`, tree
@@ -145,6 +210,18 @@
   queries. The integration squash retains its exact tree/parent/DCO/signature;
   full Git checking reports no corruption and only historical dangling
   objects.
+- Closeout integration: ready PR #245 exact DCO head
+  `107f42537702bfd42e709c44b89ee6104211cdd9`, tree
+  `678b6ff58513952a23041e6594fc621e71e9537b`, allocated no workflow. Guarded
+  squash `9f4a3b915df40fe86a0fc5c759763186899ea1fe` has that exact reviewed tree,
+  sole parent the verified integration-record squash, standalone DCO, and a
+  valid GitHub signature verified at `2026-08-22T18:56:21Z`.
+- Final M97 audit: local `main`, `origin/main`, and merge base were exact
+  closeout with divergence `0 0`; only `main` remained locally/remotely, with
+  no open PR, tag, release, or unexpected run. The feature/integration/closeout
+  three-squash chain retained exact sole parents, trees, DCO trailers, and
+  valid GitHub signatures. All 34 verified M97 scratch targets were removed,
+  and five metadata-hygiene assertions passed in 0.34 seconds.
 
 ## M96 local-header extra-field consistency preflight - complete and closed
 

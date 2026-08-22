@@ -375,6 +375,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   time/CRC/size comparison, no inter-member layout validator, workflow,
   dependency, producer, runtime API, or release-authority change; it is not a
   general archive sandbox and is not a real public release observation.
+- M98 reads each bounded four-byte local DOS timestamp after M97 and requires
+  exact equality with the bytes represented by public central
+  `ZipInfo.date_time` before decoded names, metadata, inventory, staging, or
+  reads. Its content-silent error is `sample bundle local header timestamps are
+  inconsistent`. This one four-byte local-timestamp consistency classifier is
+  no timestamp semantics validator, performs no timezone or UTC conversion,
+  adds no CRC/size comparison or inter-member layout validator, and changes no
+  workflow, dependency, producer, runtime API, or release authority; it is not
+  a general archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

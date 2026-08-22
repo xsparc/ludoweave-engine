@@ -2351,6 +2351,31 @@ validator. It is not a general archive sandbox and is not a real public
 release observation. Workflows, producer, dependencies, runtime API, and
 release authority remain unchanged. RFC-0080 defines the complete boundary.
 
+## M98 local-header timestamp consistency preflight
+
+M98 narrows the fixed sample profile after M97 by reading the four bytes at
+each already bounded `ZipInfo.header_offset + 10`. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 retain central tuples `(2026, 8, 23, 4, 6, 8)` and read
+both payloads when only the second local time's low byte changes from `c4` to
+`e4`.
+
+Private complete release smoke reconstructs the corresponding central DOS
+time/date bytes from public `ZipInfo.date_time` and requires exact equality.
+A mismatch raises stable content-silent error `sample bundle local header
+timestamps are inconsistent` before decoded-name policy, metadata, exact
+inventory, staging, or reads. Empty archives retain their later inventory
+failure, and the helper restores the caller's snapshot position.
+
+This is one four-byte local-timestamp consistency classifier. It is no
+timestamp semantics validator and performs no timezone or UTC conversion,
+wall-clock comparison, calendar validation, reproducibility rule, extended-
+timestamp interpretation, CRC/size comparison, field-wide local/central
+comparison, complete local-record or payload bound, next-header bound, or
+inter-member layout validator. It is not a general archive sandbox and is not
+a real public release observation. Workflows, producer, dependencies, runtime
+API, and release authority remain unchanged. RFC-0081 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

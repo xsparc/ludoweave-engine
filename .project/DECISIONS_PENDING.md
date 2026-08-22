@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+RFC-0081 resolves the M98 local-header timestamp consistency preflight. PKWARE
+duplicates a two-byte DOS modification time and two-byte DOS modification date
+in corresponding local and central member records. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 retain both central tuples as
+`(2026, 8, 23, 4, 6, 8)` and read both payloads when only the second local
+time's low byte changes from `c4` to `e4`. Private release smoke therefore
+reads exactly four bytes at `ZipInfo.header_offset + 10` after M97 and requires
+equality with the DOS bytes represented by public central `ZipInfo.date_time`
+before decoded names, metadata, inventory, staging, or reads. The stable error
+is `sample bundle local header timestamps are inconsistent`.
+
+This is one four-byte local-timestamp consistency classifier, not a timestamp
+semantics validator, timezone or UTC conversion, wall-clock comparison,
+calendar or reproducibility policy, extended-timestamp interpretation,
+CRC/size or field-wide comparison, record/payload/next-header bound,
+gap/adjacency/contiguity/non-overlap rule, inter-member layout validator,
+archive repair, or general sandbox. It changes no workflow, dependency,
+producer, runtime API, or release authority. RFC-0081 records the accepted
+policy; no M98 design decision remains pending.
+
 RFC-0080 resolves the M97 local-header extraction-version consistency
 preflight. PKWARE duplicates a two-byte version-needed pair in corresponding
 local and central member records. Exact CPython 3.12.13, 3.13.13, and 3.14.5
