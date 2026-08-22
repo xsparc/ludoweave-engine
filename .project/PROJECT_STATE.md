@@ -1,6 +1,6 @@
 # Project State
 
-## M93 local-header name-consistency preflight - locally validated
+## M93 local-header name-consistency preflight - feature integrated; records active
 
 - Base: exact verified M92 closeout squash
   `74972042525041e9251ce245a1fd4ea75add6047`, tree
@@ -80,8 +80,46 @@
   Precommit history confirms exact M92 base/main/origin/merge-base identity,
   `0 0` divergence, only the necessary local branch plus `main`, only remote
   `main`, valid authentication, no open PR/current-branch run/release/tag, and
-  no Git corruption. Exact-head hosted qualification and integration remain
-  pending.
+  no Git corruption. Those prepublication observations are superseded by the
+  exact-head qualification and guarded integration below.
+- Hosted qualification: ready PR #231 exact DCO head
+  `a0e160f4248cf8de88ee318960ee9bef41242f55`, tree
+  `5eb11bd7dbdb62d61bafdd94d2c94ec0ae4355aa`, passed run `32578695971` in
+  exactly three Linux-first allocations. Linux completed in 7m21s, macOS in
+  2m04s, and Windows in 4m14s. Every hosted supported-Python suite passed 2,718
+  tests; 3.13/3.14 retained one established capability skip.
+- Hosted graphics/distribution: every OS passed ten real-wgpu tests, the
+  three-workload graphics profile, Clockwork Arena, and Agent World Builder.
+  Linux also passed 336-file formatting, Ruff, strict Pyright, strict docs,
+  the two-workload base profile, reproducible builds, wheel smoke, ten-artifact
+  staging, and complete release smoke. Builds reproduced a 276,453-byte wheel
+  at `d30047cb6671e83592009410c9d75449084c80bfcafb6f828431150cbcd93b9a`
+  and a 1,397,392-byte source archive at
+  `e63abf65b518a4eb36a7753b1f93f7168bc26e5e498ad62f5a319003107914ad`.
+- Readiness/integration: two separated audits retained exact head/tree/base,
+  three successful checks, one exact-head run, `MERGEABLE`/`CLEAN`, and zero
+  comments, reviews, review comments, or threads. The intervening 27-case
+  separator passed with protected hashes and whitespace clean. Guarded squash
+  `64dbd6495ebeb0f8460340d84662a218498f9f03` has the exact qualified tree,
+  sole parent exact M92 closeout, standalone DCO, and a valid GitHub signature.
+  The feature branch is deleted locally/remotely, synchronized `main` has `0 0`
+  divergence, and no postmerge workflow ran. Factual integration-record and
+  closeout PRs remain active.
+- Integration-record local proof: exactly five factual records change. All 336
+  Python files remain format/Ruff clean, strict Pyright reports zero findings,
+  all 1,173 architecture assertions pass with one established Windows skip,
+  strict docs, five metadata assertions, and whitespace pass. Two fresh builds
+  retain the 276,467-byte feature wheel at
+  `ca8d9bd9a94270f7b0a63b4e0bee173d47cddd88fb7fda46c5abec1e4ec3b1d7`
+  and reproduce a 1,398,640-byte source archive at
+  `4236d5f574d13cfddb7c6728aa68607552c8a93dfbad08deb307a9d109a386e2`;
+  installed-wheel, ten-artifact staging, and complete release smoke pass.
+- Final integration-record proof retains 336-file format/Ruff cleanliness,
+  strict Pyright zero findings, 1,173 passing architecture assertions with one
+  skip, strict docs, five metadata assertions, and clean whitespace. Remote
+  refresh confirms exact feature-squash head/main/origin/merge-base identity,
+  `0 0` divergence, only the necessary local branch plus `main`, only remote
+  `main`, and empty open-PR, branch-run, release, and tag queries.
 
 ## M92 local-header variable-envelope bounds preflight - complete
 
