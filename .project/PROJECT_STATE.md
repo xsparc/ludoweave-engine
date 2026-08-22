@@ -1,6 +1,6 @@
 # Project State
 
-## M95 local-header compression-method consistency preflight - complete; integration record active
+## M95 local-header compression-method consistency preflight - complete; closeout active
 
 - Base: exact verified M94 closeout squash
   `a19db05c096c6d22e5871373bc738d282516635c`, tree
@@ -64,6 +64,35 @@
 - The integration record changes exactly five factual project/roadmap files;
   no runtime, public API, test, workflow, build, dependency, version, release-
   authority, tag, release, or publication surface changes.
+- Hosted integration record: ready PR #238 exact DCO head
+  `72e5da098c67f0cbf8a1bc6b6667cadb6e9a9d6e`, tree
+  `4acdfa06f2a47656205e832b25cf5181b592a1b7`, passed run `32585810955` in
+  one 49-second Linux job `97061881376`; desktop umbrella job `97061981113`
+  skipped with zero steps. Formatting, Ruff, strict docs, all 1,223 hosted
+  documentation-architecture assertions, reproducible builds, installed-wheel
+  smoke, ten-artifact staging, and complete release smoke passed.
+- Hosted record artifacts: the 276,737-byte wheel SHA-256 is
+  `e4f104220bc5a7e247eaa2db2bb3eb701049a5a5fe1eb91ea1de68237051e329`;
+  the 1,411,281-byte source archive SHA-256 is
+  `6f63cd8ffc9050a7d1c2921619cb4e81b236d183ef28ee3a9d69503aeb16d8fa`.
+- Integration-record readiness/integration: two separated audits around five
+  passing metadata assertions retained exact head/tree/base, one DCO commit,
+  five paths, the successful bounded Linux gate, zero-step skipped desktop
+  umbrella, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `ddbeca5041dbac82e5e2004ed9fe3ee06371078b` has the exact reviewed tree,
+  sole parent the verified feature squash, standalone DCO, and a valid GitHub
+  signature verified at `2026-08-22T16:50:25Z`. The branch is deleted locally/
+  remotely, synchronized `main` has `0 0` divergence, and no postmerge workflow
+  ran.
+- Closeout changes exactly three project records and adds no product, policy,
+  workflow, dependency, build, version, release-authority, tag, release, or
+  publication surface.
+- Closeout local proof: all five metadata-hygiene assertions pass in 0.33
+  seconds and whitespace is clean. Remote refresh retains exact integration-
+  squash branch/main/origin/merge-base identity with `0 0` divergence, only
+  `main` plus the necessary closeout branch locally and only `origin/main`
+  remotely, and empty open-PR, branch-run, release, and tag queries. Full Git
+  checking reports no corruption and only historical dangling objects.
 
 ## M94 local-header flag-consistency preflight - complete and closed
 
