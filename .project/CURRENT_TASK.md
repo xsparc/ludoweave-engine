@@ -1,12 +1,13 @@
 # Current task
 
 - **Task:** M95 - local-header compression-method consistency preflight
-- **Status:** Feature PR #237 is hosted-qualified and squash-integrated. The
-  bounded integration record is active; no product or policy work remains.
-- **Base:** Verified M95 feature squash
-  `d0e4f1f59ba4347bbd9a403c4f0594e2243bf7c1`, tree
-  `a0a68132d1f3ca78e810cb79efd41659758b5339`.
-- **Branch:** `release/m95-integration-record`.
+- **Status:** Feature PR #237 and integration-record PR #238 are verified and
+  squash-integrated. The closeout-only record is active; no product or policy
+  work remains.
+- **Base:** Verified M95 integration-record squash
+  `ddbeca5041dbac82e5e2004ed9fe3ee06371078b`, tree
+  `4acdfa06f2a47656205e832b25cf5181b592a1b7`.
+- **Branch:** `release/m95-closeout`.
 
 ## Accepted scope
 
@@ -74,8 +75,7 @@
 
 ## Remaining acceptance work
 
-- Validate and publish exactly the five factual integration records through the
-  bounded documentation-class Linux gate, two readiness audits, and a guarded
-  squash.
-- Publish the no-workflow closeout record, remove all M95 branches and verified
-  generated targets, audit the final three-squash chain, then select M96.
+- Validate, commit, publish, audit, and squash-integrate exactly the three
+  project closeout records without runner allocation.
+- Delete verified M95 generated targets and all branches except `main`, verify
+  the final feature/integration/closeout sole-parent chain, then select M96.
