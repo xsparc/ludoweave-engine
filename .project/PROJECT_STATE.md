@@ -1,6 +1,86 @@
 # Project State
 
-## M91 fixed local-header-prefix bounds preflight - closeout active
+## M92 local-header variable-envelope bounds preflight - implementation active
+
+- Base: exact verified M91 closeout squash
+  `0d89517265ffbca931c5fa9d76f666900371e23c`, tree
+  `5e9b52d47d7d9b71ab5e803c30828bed53d8c94e`. Synchronized `main` was the
+  only local/remote branch; there was no open PR, current-head run, tag,
+  release, tracked identity-control path, or M91 generated target.
+- Gap: changing only the second local file-name length to 65,535 leaves parser-
+  exposed offsets `[0, 46]`, both signatures, and fixed-prefix end 76 before
+  conventional directory offset 94, but makes the declared envelope end at
+  65,611. Exact CPython 3.12.13, 3.13.13, and 3.14.5 read the first payload and
+  defer public `BadZipFile` until the malformed member opens.
+- Decision: after every policy through M91, private complete release smoke
+  reads exactly the two little-endian local name/extra length declarations and
+  requires each resulting header envelope to end no later than the
+  conventional central directory before names, metadata, inventory, staging,
+  or reads. The stable error is `sample bundle local header envelopes are out
+  of bounds`.
+- Boundary: one two-field envelope-bound classifier only. It performs no
+  local-name comparison, extra-field parsing, field consistency check, next-
+  header or payload bound, complete local-record extent, gap/adjacency/
+  contiguity/non-overlap policy, inter-member layout validation, archive
+  repair, workflow, producer, dependency, runtime API, or release authority.
+- Direction proof: PKWARE APPNOTE 6.3.10 section 4.3.7 defines the two fields
+  and their following variable regions; Python documents `header_offset`.
+  CPython 3.14 reads and skips those local regions before its later checks, but
+  M92 depends only on public offsets and owned snapshot bytes.
+- Red baseline: the static-clean 22-case contract passes 12 controls and fails
+  10 missing policy, helper, cleanup, source-order, and documentation contracts
+  in 0.30 seconds against exact M91 code. No pass is claimed.
+- Implementation: release smoke now reads four length bytes and applies the
+  arithmetic envelope bound after M91 prefix policy. RFC-0075 and aligned
+  public, security, architecture, release, maintainer, navigation, roadmap,
+  and repository records define the fixed-profile rule.
+- Focused/supported proof: all 42 combined M91-M92 assertions pass on CPython
+  3.12. The 22-case M92 contract passes on exact CPython 3.12.13, 3.13.13, and
+  3.14.5. Complete suites pass 2,681 tests with 16 established skips on each
+  interpreter. A first concurrent focused attempt raced the shared uv
+  environment; no combined pass is claimed from that attempt.
+- Static/architecture proof: the unchanged 46-package lock resolves and the
+  45-package graphics environment is restored. All 335 Python files are
+  format/Ruff clean; strict Pyright reports zero findings; all 1,151
+  architecture assertions pass with one established Windows capability skip;
+  strict docs and whitespace pass. A transient Windows directory-replace
+  denial in the first architecture run passed focused and complete fresh-root
+  corrections.
+- Graphics/slices proof: all ten real-wgpu tests pass in 7.54 seconds; one-
+  repeat two- and three-workload profiles validate. Clockwork Arena and Agent
+  World Builder reproduce their established state, capture, and replay
+  identities.
+- Distribution proof: two fresh builds reproduce a 276,310-byte pure wheel at
+  `142f42c79a44b23ef94836127cb011cce361354ce1758ce7e3784a0a464d72f3`
+  and a 1,387,194-byte source archive at
+  `3324e96e552134eee8151cb1e23598d8bad8c6ecea6f7ba2b2dae5acebde4c0c`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Review: no actionable finding is present. Exactly 17 intended paths change;
+  workflows, producer, project metadata, lock, and runtime package remain
+  protected. Metadata hygiene passes five checks; high-confidence credential
+  and backend-import scans find zero files; the 94-entry wheel and 550-entry
+  source archive contain no native/WASM/bytecode/retired-control payload; and
+  whitespace is clean.
+- Record-inclusive proof: all 335 Python files remain format/Ruff clean, strict
+  Pyright reports zero findings, all 1,151 architecture assertions pass with
+  one established skip, strict docs, five metadata checks, and whitespace
+  pass. Two fresh builds retain the exact wheel and reproduce a 1,388,803-byte
+  source archive at
+  `9a5594a7c13d0ad3fa4fc34986b1845aadac5e58cf5f350d69fb880b0dc67952`;
+  installed-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Final record-tree proof retains 335-file format/Ruff cleanliness, strict
+  Pyright zero findings, 1,151 passing architecture assertions with one skip
+  in 10.18 seconds, strict docs in 1.55 seconds, five metadata assertions in
+  0.43 seconds, and clean whitespace.
+- Prepublication history: after fetch/prune, branch head, `main`, `origin/main`,
+  and merge base are exact M91 closeout
+  `0d89517265ffbca931c5fa9d76f666900371e23c`, with symmetric difference
+  `0 0`. Only `main` and the necessary M92 feature branch exist locally and
+  only `origin/main` remotely; authentication is valid, the last three
+  integrated commits retain DCO, full Git checking reports no corruption, and
+  open PR, current-branch workflow, tag, and release queries are empty.
+
+## M91 fixed local-header-prefix bounds preflight - complete
 
 - Base: exact verified M90 closeout squash
   `152a083c2965bf99d54ed5aaba222e6bde1e841f`, tree

@@ -1,4 +1,4 @@
-"""Protect M91 fixed local-header-prefix bounds preflight."""
+"""Protect M92 local-header variable-envelope bounds preflight."""
 
 # pyright: reportPrivateUsage=false
 
@@ -30,7 +30,9 @@ _EOCD_SIGNATURE = b"PK\x05\x06"
 _CENTRAL_SIGNATURE = b"PK\x01\x02"
 _LOCAL_SIGNATURE = b"PK\x03\x04"
 _FIXED_LOCAL_HEADER_BYTES = 30
-_PREFIX_ERROR = "sample bundle local header prefixes are out of bounds"
+_LOCAL_NAME_LENGTH_OFFSET = 26
+_LOCAL_EXTRA_LENGTH_OFFSET = 28
+_ENVELOPE_ERROR = "sample bundle local header envelopes are out of bounds"
 
 
 class _SmokeModule(Protocol):
@@ -43,7 +45,7 @@ class _SmokeModule(Protocol):
         expected_sha256: str | None = None,
     ) -> Path: ...
 
-    def _validate_sample_local_header_prefix_bounds(
+    def _validate_sample_local_header_envelope_bounds(
         self,
         *,
         snapshot: IO[bytes],
@@ -72,11 +74,11 @@ def _load(path: Path, name: str) -> object:
 
 
 def _smoke() -> _SmokeModule:
-    return cast(_SmokeModule, _load(_SMOKE, "m91_smoke_release"))
+    return cast(_SmokeModule, _load(_SMOKE, "m92_smoke_release"))
 
 
 def _stager() -> _StagerModule:
-    return cast(_StagerModule, _load(_STAGER, "m91_release_artifacts"))
+    return cast(_StagerModule, _load(_STAGER, "m92_release_artifacts"))
 
 
 def _write_small_bundle(path: Path, *, members: int = 2) -> None:
@@ -111,26 +113,39 @@ def _set_member_offset(path: Path, member: int, offset: int) -> None:
     path.write_bytes(data)
 
 
-def _point_member_near_directory(
-    path: Path,
-    *,
-    member: int = -1,
-    patch_signature: bool = True,
-) -> int:
+def _point_member_near_directory(path: Path, *, member: int = -1) -> None:
     data = bytearray(path.read_bytes())
     directory_offset = _directory_offset(data)
     shifted_offset = directory_offset - len(_LOCAL_SIGNATURE)
     record, _ = _central_records(data)[member]
     data[record + 42 : record + 46] = shifted_offset.to_bytes(4, "little")
-    if patch_signature:
-        data[shifted_offset:directory_offset] = _LOCAL_SIGNATURE
+    data[shifted_offset:directory_offset] = _LOCAL_SIGNATURE
     path.write_bytes(data)
-    return shifted_offset
 
 
 def _point_member_at_central_directory(path: Path, member: int = -1) -> None:
     data = path.read_bytes()
     _set_member_offset(path, member, _directory_offset(data))
+
+
+def _set_local_header_lengths(
+    path: Path,
+    *,
+    member: int = -1,
+    name_length: int = 0xFFFF,
+    extra_length: int = 0,
+) -> int:
+    with zipfile.ZipFile(path) as archive:
+        offset = archive.infolist()[member].header_offset
+    data = bytearray(path.read_bytes())
+    data[offset + _LOCAL_NAME_LENGTH_OFFSET : offset + _LOCAL_EXTRA_LENGTH_OFFSET] = (
+        name_length.to_bytes(2, "little")
+    )
+    data[offset + _LOCAL_EXTRA_LENGTH_OFFSET : offset + _FIXED_LOCAL_HEADER_BYTES] = (
+        extra_length.to_bytes(2, "little")
+    )
+    path.write_bytes(data)
+    return offset
 
 
 def _set_archive_entry_counts(path: Path, count: int) -> None:
@@ -172,6 +187,14 @@ def _swap_first_two_central_records(path: Path) -> None:
     )
 
 
+def _corrupt_local_signature(path: Path, member: int = -1) -> None:
+    with zipfile.ZipFile(path) as archive:
+        offset = archive.infolist()[member].header_offset
+    data = bytearray(path.read_bytes())
+    data[offset : offset + len(_LOCAL_SIGNATURE)] = b"BAD!"
+    path.write_bytes(data)
+
+
 def _nul_suffix_first_central_name(path: Path) -> None:
     data = bytearray(path.read_bytes())
     first, *_ = _central_records(data)
@@ -196,26 +219,48 @@ def _info(name: str, offset: int) -> zipfile.ZipInfo:
     return info
 
 
-def _snapshot_with_directory_offset(offset: int) -> BytesIO:
-    data = bytearray(offset + 22)
-    data[offset : offset + 4] = _EOCD_SIGNATURE
-    data[offset + 16 : offset + 20] = offset.to_bytes(4, "little")
+def _snapshot_with_local_lengths(
+    *,
+    directory_offset: int,
+    header_offset: int,
+    name_length: int,
+    extra_length: int,
+) -> BytesIO:
+    data = bytearray(directory_offset + 22)
+    data[header_offset : header_offset + 4] = _LOCAL_SIGNATURE
+    data[header_offset + _LOCAL_NAME_LENGTH_OFFSET : header_offset + _LOCAL_EXTRA_LENGTH_OFFSET] = (
+        name_length.to_bytes(2, "little")
+    )
+    data[header_offset + _LOCAL_EXTRA_LENGTH_OFFSET : header_offset + _FIXED_LOCAL_HEADER_BYTES] = (
+        extra_length.to_bytes(2, "little")
+    )
+    data[directory_offset : directory_offset + 4] = _EOCD_SIGNATURE
+    data[directory_offset + 16 : directory_offset + 20] = directory_offset.to_bytes(4, "little")
     return BytesIO(data)
 
 
-def test_cpython_exposes_signature_with_only_four_prefix_bytes_and_defers_failure(
+def test_cpython_exposes_oversized_local_name_length_and_defers_failure(
     tmp_path: Path,
 ) -> None:
-    bundle = tmp_path / "prefix.zip"
+    bundle = tmp_path / "envelope.zip"
     _write_small_bundle(bundle)
-    shifted_offset = _point_member_near_directory(bundle)
+    offset = _set_local_header_lengths(bundle)
     data = bundle.read_bytes()
 
     with zipfile.ZipFile(bundle) as archive:
         infos = tuple(archive.infolist())
         directory_offset = _directory_offset(data)
-        assert [info.header_offset for info in infos] == [0, shifted_offset]
-        assert directory_offset - shifted_offset == len(_LOCAL_SIGNATURE)
+        name_length = int.from_bytes(
+            data[offset + _LOCAL_NAME_LENGTH_OFFSET : offset + _LOCAL_EXTRA_LENGTH_OFFSET],
+            "little",
+        )
+        extra_length = int.from_bytes(
+            data[offset + _LOCAL_EXTRA_LENGTH_OFFSET : offset + _FIXED_LOCAL_HEADER_BYTES],
+            "little",
+        )
+        assert [info.header_offset for info in infos] == [0, offset]
+        assert offset + _FIXED_LOCAL_HEADER_BYTES <= directory_offset
+        assert offset + _FIXED_LOCAL_HEADER_BYTES + name_length + extra_length > directory_offset
         assert all(
             data[info.header_offset : info.header_offset + 4] == _LOCAL_SIGNATURE for info in infos
         )
@@ -224,25 +269,25 @@ def test_cpython_exposes_signature_with_only_four_prefix_bytes_and_defers_failur
             archive.read(infos[1])
 
 
-def test_prefix_error_precedes_inventory_staging_and_reads(
+def test_envelope_error_precedes_inventory_staging_and_reads(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     module = _smoke()
-    bundle = tmp_path / "producer-prefix.zip"
+    bundle = tmp_path / "producer-envelope.zip"
     _stager()._write_sample_bundle(_ROOT, bundle, _VERSION)
-    _point_member_near_directory(bundle)
+    _set_local_header_lengths(bundle)
     output = _empty_output(tmp_path)
 
     def forbidden(*args: object, **kwargs: object) -> NoReturn:
         del args, kwargs
-        raise AssertionError("prefix policy must fail before later processing")
+        raise AssertionError("envelope policy must fail before later processing")
 
     monkeypatch.setattr(zipfile.ZipFile, "open", forbidden)
     monkeypatch.setattr(tempfile, "TemporaryDirectory", forbidden)
     monkeypatch.setattr(module, "_validate_sample_inventory", forbidden)
 
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_PREFIX_ERROR)}$"):
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ENVELOPE_ERROR)}$"):
         module._extract_bundle(
             bundle,
             output,
@@ -252,14 +297,14 @@ def test_prefix_error_precedes_inventory_staging_and_reads(
     assert list(output.iterdir()) == []
 
 
-def test_prefix_preflight_closes_owned_archive_and_source(
+def test_envelope_preflight_closes_owned_archive_and_source(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     module = _smoke()
-    bundle = tmp_path / "prefix-cleanup.zip"
+    bundle = tmp_path / "envelope-cleanup.zip"
     _write_small_bundle(bundle)
-    _point_member_near_directory(bundle)
+    _set_local_header_lengths(bundle)
     output = _empty_output(tmp_path)
     original_zipfile = zipfile.ZipFile
     archives: list[zipfile.ZipFile] = []
@@ -270,7 +315,7 @@ def test_prefix_preflight_closes_owned_archive_and_source(
         return archive
 
     monkeypatch.setattr(zipfile, "ZipFile", recording_zipfile)
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_PREFIX_ERROR)}$"):
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ENVELOPE_ERROR)}$"):
         module._extract_bundle(bundle, output, version=_VERSION)
 
     assert len(archives) == 1
@@ -281,10 +326,10 @@ def test_prefix_preflight_closes_owned_archive_and_source(
     assert list(output.iterdir()) == []
 
 
-def test_entry_count_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "counts-before-prefix.zip"
+def test_entry_count_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "counts-before-envelope.zip"
     _write_small_bundle(bundle)
-    _point_member_near_directory(bundle)
+    _set_local_header_lengths(bundle)
     _set_archive_entry_counts(bundle, 0)
     with pytest.raises(
         RuntimeError, match=r"^sample bundle archive entry counts are inconsistent$"
@@ -292,10 +337,10 @@ def test_entry_count_error_precedes_prefix_policy(tmp_path: Path) -> None:
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_directory_placement_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "placement-before-prefix.zip"
+def test_directory_placement_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "placement-before-envelope.zip"
     _write_small_bundle(bundle)
-    _point_member_near_directory(bundle)
+    _set_local_header_lengths(bundle)
     _shift_declared_directory_offset(bundle, -1)
     with pytest.raises(
         RuntimeError,
@@ -304,11 +349,11 @@ def test_directory_placement_error_precedes_prefix_policy(tmp_path: Path) -> Non
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_first_header_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "first-before-prefix.zip"
+def test_first_header_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "first-before-envelope.zip"
     _write_small_bundle(bundle)
+    _set_local_header_lengths(bundle)
     _insert_leading_gap(bundle, b"prefix")
-    _point_member_near_directory(bundle)
     with pytest.raises(
         RuntimeError,
         match=r"^sample bundle first local header placement is inconsistent$",
@@ -316,82 +361,106 @@ def test_first_header_error_precedes_prefix_policy(tmp_path: Path) -> None:
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_distinct_offset_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "distinct-before-prefix.zip"
+def test_distinct_offset_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "distinct-before-envelope.zip"
     _write_small_bundle(bundle, members=3)
-    shifted_offset = _point_member_near_directory(bundle)
-    _set_member_offset(bundle, 1, shifted_offset)
+    offset = _set_local_header_lengths(bundle)
+    _set_member_offset(bundle, 1, offset)
     with pytest.raises(
-        RuntimeError,
-        match=r"^sample bundle local header offsets are inconsistent$",
+        RuntimeError, match=r"^sample bundle local header offsets are inconsistent$"
     ):
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_order_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "order-before-prefix.zip"
-    _write_small_bundle(bundle, members=3)
-    _point_member_near_directory(bundle)
+def test_order_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "order-before-envelope.zip"
+    _write_small_bundle(bundle)
+    _set_local_header_lengths(bundle)
     _swap_first_two_central_records(bundle)
     with pytest.raises(
-        RuntimeError,
-        match=r"^sample bundle local header offsets are out of order$",
+        RuntimeError, match=r"^sample bundle local header offsets are out of order$"
     ):
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_offset_bounds_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "bounds-before-prefix.zip"
+def test_offset_bounds_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "bounds-before-envelope.zip"
     _write_small_bundle(bundle)
+    _set_local_header_lengths(bundle)
     _point_member_at_central_directory(bundle)
     with pytest.raises(
-        RuntimeError,
-        match=r"^sample bundle local header offsets are out of bounds$",
+        RuntimeError, match=r"^sample bundle local header offsets are out of bounds$"
     ):
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_signature_error_precedes_prefix_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "signature-before-prefix.zip"
+def test_signature_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "signature-before-envelope.zip"
     _write_small_bundle(bundle)
-    _point_member_near_directory(bundle, patch_signature=False)
+    _set_local_header_lengths(bundle)
+    _corrupt_local_signature(bundle)
     with pytest.raises(
-        RuntimeError,
-        match=r"^sample bundle local header signature is inconsistent$",
+        RuntimeError, match=r"^sample bundle local header signature is inconsistent$"
     ):
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_prefix_policy_precedes_nul_name_policy(tmp_path: Path) -> None:
-    bundle = tmp_path / "prefix-before-name.zip"
+def test_prefix_error_precedes_envelope_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "prefix-before-envelope.zip"
     _write_small_bundle(bundle)
     _point_member_near_directory(bundle)
-    _nul_suffix_first_central_name(bundle)
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_PREFIX_ERROR)}$"):
+    with pytest.raises(
+        RuntimeError, match=r"^sample bundle local header prefixes are out of bounds$"
+    ):
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_prefix_validator_accepts_empty_and_exact_boundary_and_restores_position() -> None:
+def test_envelope_policy_precedes_nul_name_policy(tmp_path: Path) -> None:
+    bundle = tmp_path / "envelope-before-name.zip"
+    _write_small_bundle(bundle)
+    _set_local_header_lengths(bundle)
+    _nul_suffix_first_central_name(bundle)
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ENVELOPE_ERROR)}$"):
+        _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
+
+
+def test_envelope_validator_accepts_empty_and_exact_boundary_and_restores_position() -> None:
     module = _smoke()
-    snapshot = _snapshot_with_directory_offset(40)
+    snapshot = _snapshot_with_local_lengths(
+        directory_offset=80,
+        header_offset=10,
+        name_length=20,
+        extra_length=20,
+    )
     snapshot.seek(3)
-    module._validate_sample_local_header_prefix_bounds(snapshot=snapshot, infos=())
-    module._validate_sample_local_header_prefix_bounds(
+    module._validate_sample_local_header_envelope_bounds(snapshot=snapshot, infos=())
+    module._validate_sample_local_header_envelope_bounds(
         snapshot=snapshot,
         infos=(_info("member", 10),),
     )
     assert snapshot.tell() == 3
 
 
-@pytest.mark.parametrize("offset", (11, 39, 40))
-def test_prefix_validator_rejects_offsets_without_fixed_prefix_space(offset: int) -> None:
+@pytest.mark.parametrize(
+    ("name_length", "extra_length"),
+    ((41, 0), (0, 41), (21, 20), (0xFFFF, 0)),
+)
+def test_envelope_validator_rejects_variable_fields_past_directory(
+    name_length: int,
+    extra_length: int,
+) -> None:
     module = _smoke()
-    snapshot = _snapshot_with_directory_offset(40)
+    snapshot = _snapshot_with_local_lengths(
+        directory_offset=80,
+        header_offset=10,
+        name_length=name_length,
+        extra_length=extra_length,
+    )
     snapshot.seek(7)
-    with pytest.raises(RuntimeError, match=rf"^{re.escape(_PREFIX_ERROR)}$"):
-        module._validate_sample_local_header_prefix_bounds(
+    with pytest.raises(RuntimeError, match=rf"^{re.escape(_ENVELOPE_ERROR)}$"):
+        module._validate_sample_local_header_envelope_bounds(
             snapshot=snapshot,
-            infos=(_info("member", offset),),
+            infos=(_info("member", 10),),
         )
     assert snapshot.tell() == 7
 
@@ -404,7 +473,7 @@ def test_empty_archive_retains_exact_inventory_error(tmp_path: Path) -> None:
         _smoke()._extract_bundle(bundle, _empty_output(tmp_path), version=_VERSION)
 
 
-def test_current_producer_fixed_prefixes_end_before_central_directory(tmp_path: Path) -> None:
+def test_current_producer_local_header_envelopes_end_before_directory(tmp_path: Path) -> None:
     bundle = tmp_path / "samples.zip"
     _stager()._write_sample_bundle(_ROOT, bundle, _VERSION)
     data = bundle.read_bytes()
@@ -412,24 +481,43 @@ def test_current_producer_fixed_prefixes_end_before_central_directory(tmp_path: 
     with zipfile.ZipFile(bundle) as archive:
         infos = tuple(archive.infolist())
     assert len(infos) == 50
-    assert all(info.header_offset + _FIXED_LOCAL_HEADER_BYTES <= directory_offset for info in infos)
+    for info in infos:
+        name_length = int.from_bytes(
+            data[
+                info.header_offset + _LOCAL_NAME_LENGTH_OFFSET : info.header_offset
+                + _LOCAL_EXTRA_LENGTH_OFFSET
+            ],
+            "little",
+        )
+        extra_length = int.from_bytes(
+            data[
+                info.header_offset + _LOCAL_EXTRA_LENGTH_OFFSET : info.header_offset
+                + _FIXED_LOCAL_HEADER_BYTES
+            ],
+            "little",
+        )
+        assert (
+            info.header_offset + _FIXED_LOCAL_HEADER_BYTES + name_length + extra_length
+            <= directory_offset
+        )
 
 
-def test_m91_source_checks_prefix_bounds_after_m90_before_names() -> None:
+def test_m92_source_checks_envelope_bounds_after_m91_before_names() -> None:
     source = _SMOKE.read_text(encoding="utf-8")
     extraction = source[source.index("def _extract_bundle") :]
-    signatures = extraction.index("_validate_sample_local_header_signatures(")
     prefixes = extraction.index("_validate_sample_local_header_prefix_bounds(")
+    envelopes = extraction.index("_validate_sample_local_header_envelope_bounds(")
     name = extraction.index("_validate_sample_member_name(original_name=info.orig_filename)")
     metadata = extraction.index("total_bytes = 0")
-    assert signatures < prefixes < name < metadata
-    helper = source[source.index("def _validate_sample_local_header_prefix_bounds") :]
+    assert prefixes < envelopes < name < metadata
+    helper = source[source.index("def _validate_sample_local_header_envelope_bounds") :]
     assert "info.header_offset" in helper
-    assert "_SAMPLE_FIXED_LOCAL_HEADER_BYTES" in helper
+    assert "_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET" in helper
+    assert "int.from_bytes" in helper
     assert "zipfile._" not in helper
 
 
-def test_m91_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:
+def test_m92_changes_no_workflow_producer_runtime_dependency_or_package_boundary() -> None:
     assert hashlib.sha256((_ROOT / ".github/workflows/ci.yml").read_bytes()).hexdigest() == (
         _CI_SHA256
     )
@@ -440,12 +528,12 @@ def test_m91_changes_no_workflow_producer_runtime_dependency_or_package_boundary
     assert hashlib.sha256((_ROOT / "pyproject.toml").read_bytes()).hexdigest() == _PYPROJECT_SHA256
     assert hashlib.sha256((_ROOT / "uv.lock").read_bytes()).hexdigest() == _LOCK_SHA256
     assert not any(
-        "m91" in path.read_text(encoding="utf-8").casefold()
+        "m92" in path.read_text(encoding="utf-8").casefold()
         for path in (_ROOT / "src/ludoweave").rglob("*.py")
     )
 
 
-def test_m91_docs_define_fixed_prefix_rule_and_nonclaims() -> None:
+def test_m92_docs_define_envelope_rule_and_nonclaims() -> None:
     paths = (
         _ROOT / "README.md",
         _ROOT / "CHANGELOG.md",
@@ -453,14 +541,14 @@ def test_m91_docs_define_fixed_prefix_rule_and_nonclaims() -> None:
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs/architecture.md",
         _ROOT / "docs/release-process.md",
-        _ROOT / "docs/rfcs/0074-bound-local-header-prefixes.md",
+        _ROOT / "docs/rfcs/0075-bound-local-header-envelopes.md",
     )
     combined = "\n".join(path.read_text(encoding="utf-8") for path in paths)
-    assert "M91" in combined
-    assert "30-byte fixed local-header prefix" in combined
-    assert _PREFIX_ERROR in combined
-    assert "prefix-bound classifier" in combined
-    assert "no local-header field parser" in combined
+    assert "M92" in combined
+    assert "local-header variable envelope" in combined
+    assert _ENVELOPE_ERROR in combined
+    assert "two-field envelope-bound classifier" in combined
+    assert "no local-name comparison" in combined
     assert "no inter-member layout validator" in combined
     assert "not a general archive sandbox" in combined
     assert "not a real public release observation" in combined
@@ -476,4 +564,4 @@ def test_m91_docs_define_fixed_prefix_rule_and_nonclaims() -> None:
     )
     assert current is not None and project is not None
     assert current.group("milestone") == project.group("milestone")
-    assert int(current.group("milestone")) >= 90
+    assert int(current.group("milestone")) >= 91

@@ -63,6 +63,8 @@ _SAMPLE_EOCD_BYTES = 22
 _SAMPLE_EOCD_SIGNATURE = b"PK\x05\x06"
 _SAMPLE_LOCAL_HEADER_SIGNATURE = b"PK\x03\x04"
 _SAMPLE_FIXED_LOCAL_HEADER_BYTES = 30
+_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
+_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES = 4
 _MAX_SAMPLE_PATH_CHARS = 255
 _SAMPLE_MEMBER_PATTERN = re.compile(r"[0-9A-Za-z][0-9A-Za-z._+-]{0,254}")
 _WINDOWS_DEVICE_STEMS = frozenset(
@@ -528,6 +530,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_local_header_bounds(snapshot=snapshot_stream, infos=infos)
         _validate_sample_local_header_signatures(snapshot=snapshot_stream, infos=infos)
         _validate_sample_local_header_prefix_bounds(snapshot=snapshot_stream, infos=infos)
+        _validate_sample_local_header_envelope_bounds(snapshot=snapshot_stream, infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -877,6 +880,31 @@ def _validate_sample_local_header_prefix_bounds(
         info.header_offset + _SAMPLE_FIXED_LOCAL_HEADER_BYTES > directory_offset for info in infos
     ):
         raise RuntimeError("sample bundle local header prefixes are out of bounds")
+
+
+def _validate_sample_local_header_envelope_bounds(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require each complete local-header envelope to precede the directory."""
+
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET)
+            lengths = snapshot.read(_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES)
+            name_length = int.from_bytes(lengths[:2], "little")
+            extra_length = int.from_bytes(lengths[2:], "little")
+            if (
+                info.header_offset + _SAMPLE_FIXED_LOCAL_HEADER_BYTES + name_length + extra_length
+                > directory_offset
+            ):
+                raise RuntimeError("sample bundle local header envelopes are out of bounds")
+    finally:
+        snapshot.seek(position)
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

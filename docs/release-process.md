@@ -850,6 +850,21 @@ rule, no inter-member layout validator, workflow, dependency, runtime API,
 release authority, or producer change. This profile is not a general archive
 sandbox and is not a real public release observation.
 
+M92/RFC-0075 reads exactly the local file-name and extra-field length
+declarations after M91 prefix policy. The two-field envelope-bound classifier
+requires each `header_offset + 30 + file_name_length + extra_field_length` to
+be no greater than the conventional central-directory offset before decoded-
+name policy, metadata, exact inventory, staging, or member reads. Failure emits
+stable content-silent error `sample bundle local header envelopes are out of
+bounds`; all owned resources close before control returns.
+
+The fixed producer's 50 local-header variable envelopes all end before the
+directory. M92 performs no local-name comparison, extra-field parsing, next-
+header or payload bound, adjacency, contiguity, physical non-overlap rule, or
+inter-member layout validation, workflow, dependency, runtime API, release
+authority, or producer change. This profile is not a general archive sandbox
+and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

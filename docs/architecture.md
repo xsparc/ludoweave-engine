@@ -2207,6 +2207,32 @@ no archive repair. It is not a general archive sandbox and is not a real public
 release observation. Workflows, producer, dependencies, runtime API, and
 release authority remain unchanged. RFC-0074 defines the complete boundary.
 
+## M92 local-header variable-envelope bounds preflight
+
+M92 narrows the fixed sample profile after M91 by reading only the two local
+file-name and extra-field length declarations. Supported CPython 3.12-3.14
+exposes a parser-reported second local-header offset of 46 before conventional
+central-directory offset 94 when that header declares a 65,535-byte name. Both
+signatures and fixed prefixes remain valid, the earlier member remains
+readable, and the malformed member defers public `BadZipFile` until open.
+
+Private complete release smoke reads the four length bytes from the owned
+checksum-admitted snapshot and requires
+`header_offset + 30 + file_name_length + extra_field_length` to be no greater
+than the conventional central-directory offset for every parsed member.
+Failure raises stable content-silent error `sample bundle local header
+envelopes are out of bounds` before decoded names, metadata, exact inventory,
+staging, or reads. Empty archives retain their later inventory failure, and
+both snapshot readers restore the caller position.
+
+This is one two-field envelope-bound classifier. It performs no local-name
+comparison, extra-field parsing, field consistency check, complete local-record
+or payload bound, next-header bound, adjacency, contiguity, physical non-
+overlap rule, or inter-member layout validator, and no archive repair. It is
+not a general archive sandbox and is not a real public release observation.
+Workflows, producer, dependencies, runtime API, and release authority remain
+unchanged. RFC-0075 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

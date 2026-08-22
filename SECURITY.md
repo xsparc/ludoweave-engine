@@ -321,6 +321,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   no local-header field parser, no inter-member layout validator, workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M92 reads exactly the local file-name and extra-field length declarations
+  after M91, then requires each local-header variable envelope to end no later
+  than the conventional central directory before decoded names, metadata,
+  inventory, staging, or reads. Its content-silent error is `sample bundle
+  local header envelopes are out of bounds`. This two-field envelope-bound
+  classifier performs no local-name comparison, extra-field parsing, next-
+  header or payload bound, inter-member layout validation, workflow,
+  dependency, producer, runtime API, or release-authority change; it is not a
+  general archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
