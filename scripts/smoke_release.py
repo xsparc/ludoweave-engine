@@ -540,6 +540,7 @@ def _extract_checksum_admitted_bundle(
             snapshot=snapshot_stream,
             infos=infos,
         )
+        _validate_sample_local_header_extra_fields(snapshot=snapshot_stream, infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -975,6 +976,27 @@ def _validate_sample_local_header_compression_methods(
                 raise RuntimeError(
                     "sample bundle local header compression methods are inconsistent"
                 )
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_extra_fields(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local extra bytes to match parser-exposed central extra bytes."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET)
+            lengths = snapshot.read(_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES)
+            name_length = int.from_bytes(lengths[:2], "little")
+            extra_length = int.from_bytes(lengths[2:], "little")
+            snapshot.seek(info.header_offset + _SAMPLE_FIXED_LOCAL_HEADER_BYTES + name_length)
+            if snapshot.read(extra_length) != info.extra:
+                raise RuntimeError("sample bundle local header extra fields are inconsistent")
     finally:
         snapshot.seek(position)
 

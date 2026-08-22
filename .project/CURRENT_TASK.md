@@ -1,27 +1,25 @@
 # Current task
 
-- **Task:** M95 - local-header compression-method consistency preflight
-- **Status:** Feature PR #237 and integration-record PR #238 are verified and
-  squash-integrated. The closeout-only record is active; no product or policy
-  work remains.
-- **Base:** Verified M95 integration-record squash
-  `ddbeca5041dbac82e5e2004ed9fe3ee06371078b`, tree
-  `4acdfa06f2a47656205e832b25cf5181b592a1b7`.
-- **Branch:** `release/m95-closeout`.
+- **Task:** M96 - local-header extra-field consistency preflight
+- **Status:** Implementation, full local qualification, and findings-first
+  review are complete; exact-head hosted qualification and integration remain.
+- **Base:** Verified M95 closeout squash
+  `e770f5538660b5edea5fd8ebc4fccf717b18b272`, tree
+  `0f8e47c61c1e93147f6ba19c813c836dea514962`.
+- **Branch:** `release/m96-local-extra-consistency`.
 
 ## Accepted scope
 
-- After M94 local-flag consistency, read exactly two little-endian bytes at
-  each parser-exposed `ZipInfo.header_offset + 8` from the owned checksum-
-  admitted snapshot.
-- Require the local compression method to equal the corresponding central
-  `ZipInfo.compress_type`.
-- Raise stable content-silent error `sample bundle local header compression
-  methods are inconsistent` before decoded-name policy, metadata, exact
-  inventory, staging, or member reads.
-- Preserve every established policy through M94, empty-archive inventory
+- After M95 compression-method consistency, read the already bounded local name
+  and extra lengths at each public `ZipInfo.header_offset + 26`.
+- Read exactly the declared local extra bytes after the fixed 30-byte prefix and
+  local name, then require equality with public central `ZipInfo.extra`.
+- Raise stable content-silent error `sample bundle local header extra fields
+  are inconsistent` before decoded-name policy, metadata, exact inventory,
+  staging, or member reads.
+- Preserve every established policy through M95, empty-archive inventory
   behavior, owned-resource cleanup, and caller snapshot position.
-- Add RFC-0078 plus aligned public, security, architecture, release, roadmap,
+- Add RFC-0079 plus aligned public, security, architecture, release, roadmap,
   maintainer, test, and factual project records.
 - Keep workflow, runner allocations, actions, permissions, credentials,
   dependency/lock/version, sample producer, runtime package/API, release
@@ -29,8 +27,10 @@
 
 ## Explicit non-scope
 
-- No local extra-field comparison or parsing; no version/time/CRC/size or
-  field-wide local/central comparison; no new compression-method allowlist.
+- No extra-field semantics parser, broad extra-field ban, new field-ID policy,
+  nested-length/order/duplication/canonicalization rule, or claim that general
+  ZIP producers must use identical local and central extra fields.
+- No version/time/CRC/size or field-wide local/central comparison.
 - No complete local-record or payload bound, next-header bound, gap, adjacency,
   contiguity, physical overlap rule, or inter-member layout validator.
 - No archive repair, general archive sandbox, public release observation,
@@ -39,43 +39,29 @@
 
 ## Direction and red evidence
 
-- Clean M94 audit found exact local/remote closeout
-  `a19db05c096c6d22e5871373bc738d282516635c`, only `main`, no open PR, exact-
-  squash run, tag, or release, valid DCO/signatures, and no M94 scratch targets.
-- PKWARE APPNOTE 6.3.10 defines a two-byte compression method in corresponding
-  local and central records. CPython exposes the central value through public
-  `ZipInfo.compress_type` and the local pointer through `header_offset`.
-- A temporary probe changed only the second local method from deflate 8 to
-  stored 0. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained central
-  methods `[8, 8]`, local methods `[8, 0]`, offsets `[0, 54]`, and read both
-  payloads. Its first format check required one mechanical wrap; Ruff passed,
-  then the corrected format/Ruff gate passed.
-- The first contract static checkpoint required formatting and strict Pyright
-  reported 17 unknown lambda-parameter findings; Ruff passed. Typed named
-  mutators and one formatter pass corrected it, after which format, Ruff, and
-  strict Pyright passed.
-- The corrected 25-assertion M95 contract passed 15 standard-library behavior,
+- Clean M95 audit found exact local/remote closeout
+  `e770f5538660b5edea5fd8ebc4fccf717b18b272`, only `main`, no open PR,
+  release, tag, or M95 scratch target, valid three-squash DCO/signature chain,
+  and exactly the two intended hosted runs.
+- PKWARE APPNOTE 6.3.10 defines separate variable extra fields in corresponding
+  local and central records. CPython exposes central bytes through public
+  `ZipInfo.extra` and advances over local extra bytes without comparing them.
+- A temporary valid-extra probe changed only the second local final byte from
+  `feca02006f6b` to `feca02006f21`. Exact CPython 3.12.13, 3.13.13, and
+  3.14.5 each retained both central extras as `feca02006f6b`, offsets
+  `[0, 60]`, and read both payloads. The probe was format/Ruff clean.
+- The first contract format check requested one mechanical reflow; Ruff and
+  strict Pyright passed. After Ruff formatting, format, Ruff, and strict
+  Pyright passed.
+- The corrected 26-assertion M96 contract passed 16 supported-runtime behavior,
   inherited precedence, empty-archive, producer, and protected-surface
   controls. Ten stable-error, helper, cleanup, ordering, and documentation
-  assertions failed because the M95 policy/RFC did not exist. No complete pass
-  is claimed from that red checkpoint.
-
-## Local acceptance evidence
-
-- The implementation is exactly one constant, one ordered call, and one
-  position-restoring equality helper plus RFC/public/project records. All 49
-  combined M94-M95 assertions pass.
-- All 25 focused assertions pass on exact CPython 3.12.13, 3.13.13, and 3.14.5.
-  Each complete suite passes 2,752 tests with 16 established skips.
-- Static, docs, all 1,222 architecture assertions with one established Windows
-  capability skip, metadata, real-wgpu, profiles, vertical slices,
-  reproducible artifacts, wheel/staging/release smoke, and the findings-first
-  scope/security/archive/integrity review pass after the recorded graphics-
-  environment correction.
+  assertions failed because the M96 policy/RFC did not exist in unchanged M95.
+  No complete pass is claimed from that red checkpoint.
 
 ## Remaining acceptance work
 
-- Validate, commit, publish, audit, and squash-integrate exactly the three
-  project closeout records without runner allocation.
-- Delete verified M95 generated targets and all branches except `main`, verify
-  the final feature/integration/closeout sole-parent chain, then select M96.
+- Publish the locally qualified, independently reviewed, exact 16-path DCO
+  feature commit through the existing quota-conscious three-
+  allocation gate, two exact-head audits, guarded squash, bounded integration
+  record, no-workflow closeout, and complete branch/generated-target cleanup.

@@ -1,6 +1,62 @@
 # Project State
 
-## M95 local-header compression-method consistency preflight - complete; closeout active
+## M96 local-header extra-field consistency preflight - implementation active
+
+- Base: exact verified M95 closeout squash
+  `e770f5538660b5edea5fd8ebc4fccf717b18b272`, tree
+  `0f8e47c61c1e93147f6ba19c813c836dea514962`; local and remote `main` were
+  exact with only `main` present before creating the neutral M96 branch.
+- M95 final audit: closeout PR #239 exact DCO head
+  `b595277463ac2303fa77d3b28bc8adac7ae38247`, tree
+  `0f8e47c61c1e93147f6ba19c813c836dea514962`, allocated no workflow and
+  squash-integrated as `e770f5538660b5edea5fd8ebc4fccf717b18b272` with sole
+  integration-record parent, standalone DCO, and a valid GitHub signature.
+  The feature/integration/closeout chain is exact and verified; only `main`
+  remains, the worktree is clean, and all 35 verified M95 scratch targets are
+  permanently removed.
+- Accepted policy: after M95, use the already bounded local name and extra
+  lengths to read each local extra field and require exact equality with public
+  central `ZipInfo.extra`. Mismatch raises stable content-silent `sample bundle
+  local header extra fields are inconsistent` before decoded-name policy,
+  metadata, exact inventory, staging, or reads. The helper restores position
+  and existing ownership closes resources.
+- Direction evidence: PKWARE defines separate local and central extra fields.
+  A clean temporary probe on exact CPython 3.12.13, 3.13.13, and 3.14.5 showed
+  a second local extra `feca02006f21` can differ from central
+  `feca02006f6b` while offsets remain `[0, 60]` and both payload reads succeed.
+- Red evidence: after one mechanical format correction, the 26-assertion M96
+  contract passed 16 established controls and failed ten expected missing-
+  policy/helper/order/docs assertions. Ruff and strict Pyright were already
+  clean; corrected formatting, Ruff, and strict Pyright pass. No M96
+  implementation or complete-suite pass is claimed from the red invocation.
+- Implementation boundary: one bounded local-extra equality classifier after
+  M95 plus RFC-0079 and aligned records. No extra-field semantics parser, broad
+  extra-field ban, new field-ID policy, version/time/CRC/size or field-wide
+  comparison, record/payload/next-header bound, inter-member layout validator,
+  workflow, dependency, producer, runtime API, release authority, tag, release,
+  or publication is admitted.
+- Implementation checkpoint: both affected Python files are format/Ruff clean,
+  strict Pyright reports zero findings, all 51 combined M95-M96 assertions pass,
+  and strict docs build. The 26-case M96 contract passes on exact CPython
+  3.12.13, 3.13.13, and 3.14.5; all three complete suites pass 2,778 tests with
+  16 established skips. Repository-wide and artifact qualification are
+  complete.
+- Local proof: repository-wide static/docs/architecture/metadata gates pass,
+  including all 1,248 architecture assertions with one established Windows
+  capability skip. Real-wgpu, both profiles, Clockwork Arena, Agent World
+  Builder, reproducible builds, installed-wheel smoke, ten-artifact staging,
+  and complete release smoke pass. Findings-first review found no actionable
+  defect across exactly 16 intended paths.
+- Artifact proof before record inclusion: two fresh builds reproduced the
+  276,866-byte pure wheel at
+  `c3da2a0d2171c15be3bb6b605c3a2e179d43cc4289db0abf9a4d7f14f5ff9237`
+  and the 1,416,021-byte source archive at
+  `5038283415a3ec49531ccccf7a99b596dbbb0dafcb4199ac6bc9390979d58b21`;
+  wheel, staging, and complete release smoke passed. Archive review found 94
+  wheel entries, 558 source entries, and zero prohibited identities or formats.
+  Hosted exact-head qualification and integration records remain pending.
+
+## M95 local-header compression-method consistency preflight - complete and closed
 
 - Base: exact verified M94 closeout squash
   `a19db05c096c6d22e5871373bc738d282516635c`, tree

@@ -910,6 +910,20 @@ next-header or payload bound, and no inter-member layout validator, workflow,
 dependency, runtime API, release authority, or producer change. This profile is
 not a general archive sandbox and is not a real public release observation.
 
+M96/RFC-0079 reads each already bounded local extra field after M95 compression-
+method consistency and requires exact equality with public central
+`ZipInfo.extra`. The one bounded local-extra equality classifier runs before
+decoded-name policy, metadata, exact inventory, staging, or member reads.
+Failure emits stable content-silent error `sample bundle local header extra
+fields are inconsistent`; all owned resources close before control returns.
+
+The fixed producer's 50 local and central extras are matching and empty. M96
+adds no extra-field semantics parser, broad extra-field ban, new field-ID
+policy, version/time/CRC/size or field-wide consistency check, next-header or
+payload bound, inter-member layout validator, workflow, dependency, runtime
+API, release authority, or producer change. This profile is not a general
+archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

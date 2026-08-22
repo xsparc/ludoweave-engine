@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+RFC-0079 resolves the M96 local-header extra-field consistency preflight.
+PKWARE defines separate variable extra fields in corresponding local and
+central member records. Exact CPython 3.12.13, 3.13.13, and 3.14.5 retain both
+central extras as `feca02006f6b` and read both payloads when only the second
+same-length local extra changes to `feca02006f21`. Private release smoke
+therefore reads the already bounded local bytes after M95 and requires exact
+equality with public central `ZipInfo.extra` before decoded names, metadata,
+inventory, staging, or reads. The stable error is `sample bundle local header
+extra fields are inconsistent`.
+
+This is one bounded local-extra equality classifier, not an extra-field
+semantics parser, broad extra-field ban, new field-ID policy,
+version/time/CRC/size or field-wide comparison, record/payload/next-header
+bound, gap/adjacency/contiguity/non-overlap rule, inter-member layout validator,
+archive repair, or general sandbox. It changes no workflow, dependency,
+producer, runtime API, or release authority. RFC-0079 records the accepted
+policy; no M96 design decision remains pending.
+
 RFC-0078 resolves the M95 local-header compression-method consistency
 preflight. PKWARE duplicates a two-byte compression method in corresponding
 local and central member records. Exact CPython 3.12.13, 3.13.13, and 3.14.5
