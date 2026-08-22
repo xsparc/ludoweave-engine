@@ -1,6 +1,6 @@
 # Project State
 
-## M95 local-header compression-method consistency preflight - locally qualified
+## M95 local-header compression-method consistency preflight - complete; integration record active
 
 - Base: exact verified M94 closeout squash
   `a19db05c096c6d22e5871373bc738d282516635c`, tree
@@ -40,7 +40,30 @@
   `bd30131119d32fcfd4b9eb8f3e1d8bc16cb9a6e8d46b6b0b35730e5dd3df1601`;
   wheel, staging, and complete release smoke passed. Archive review found 94
   wheel entries, 556 source entries, and zero prohibited identities or formats.
-  Hosted exact-head qualification and integration records remain pending.
+- Hosted feature proof: ready PR #237 exact DCO head
+  `311f4c4e141525f25b8cc64edd37b6413df2875b`, tree
+  `a0a68132d1f3ca78e810cb79efd41659758b5339`, passed run `32584858990`
+  in exactly three allocations: Linux job `97059599006` in 7m53s, macOS job
+  `97060564461` in 2m02s, and Windows job `97060564405` in 3m13s. Linux
+  CPython 3.12 passed 2,767 tests; Linux 3.13/3.14 and macOS/Windows 3.14 each
+  passed 2,767 with one established capability skip. All hosted graphics,
+  profiles, vertical slices, and Linux static/build/release gates passed.
+- Hosted repeat builds reproduced a 276,751-byte wheel at
+  `81db4ef5768dee617027ef04a8da5f725f1df00aa811353f9a9992cbaf7159b1`
+  and a 1,410,436-byte source archive at
+  `3bf0138f9aadd5bf0d5330f3337877e586504885858a91ee7ad17eea60597f93`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke
+  passed.
+- Two separated readiness audits around 30 passing local assertions retained
+  exact head/tree/base, one DCO commit, 16 paths, three successful checks from
+  one exact-head run, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `d0e4f1f59ba4347bbd9a403c4f0594e2243bf7c1` has the exact qualified tree,
+  sole parent M94 closeout, standalone DCO, and a valid GitHub signature
+  verified at `2026-08-22T16:42:14Z`. The feature branch is gone, synchronized
+  `main` has `0 0` divergence, and no postmerge workflow ran.
+- The integration record changes exactly five factual project/roadmap files;
+  no runtime, public API, test, workflow, build, dependency, version, release-
+  authority, tag, release, or publication surface changes.
 
 ## M94 local-header flag-consistency preflight - complete and closed
 

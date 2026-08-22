@@ -1,12 +1,12 @@
 # Current task
 
 - **Task:** M95 - local-header compression-method consistency preflight
-- **Status:** Implementation, local qualification, and precommit review are
-  complete; exact-head hosted qualification and integration remain.
-- **Base:** Verified M94 closeout squash
-  `a19db05c096c6d22e5871373bc738d282516635c`, tree
-  `82b7378fd5634202cf3d21e3fe8aa4590faea4d4`.
-- **Branch:** `release/m95-local-header-compression-consistency`.
+- **Status:** Feature PR #237 is hosted-qualified and squash-integrated. The
+  bounded integration record is active; no product or policy work remains.
+- **Base:** Verified M95 feature squash
+  `d0e4f1f59ba4347bbd9a403c4f0594e2243bf7c1`, tree
+  `a0a68132d1f3ca78e810cb79efd41659758b5339`.
+- **Branch:** `release/m95-integration-record`.
 
 ## Accepted scope
 
@@ -74,6 +74,8 @@
 
 ## Remaining acceptance work
 
-- Publish one DCO feature commit through the existing quota-conscious three-
-  allocation gate, two exact-head audits, guarded squash, bounded integration
-  record, no-workflow closeout, and complete branch/generated-target cleanup.
+- Validate and publish exactly the five factual integration records through the
+  bounded documentation-class Linux gate, two readiness audits, and a guarded
+  squash.
+- Publish the no-workflow closeout record, remove all M95 branches and verified
+  generated targets, audit the final three-squash chain, then select M96.
