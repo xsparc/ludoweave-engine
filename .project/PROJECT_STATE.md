@@ -1,6 +1,6 @@
 # Project State
 
-## M91 fixed local-header-prefix bounds preflight - integration record active
+## M91 fixed local-header-prefix bounds preflight - closeout active
 
 - Base: exact verified M90 closeout squash
   `152a083c2965bf99d54ed5aaba222e6bde1e841f`, tree
@@ -128,6 +128,31 @@
   `2b76156a210dc80955c339a4f445111957e2f91a26b9844e6d6a8b56c512202d`;
   installed-wheel smoke, ten-artifact staging, and complete release smoke
   pass.
+- Integration-record publication: ready PR #226 exact DCO head
+  `c78ffa68563951e38a770491ace112b77e8463e6`, tree
+  `276aa74b790300e5128b6243cf7c42277aa1dda5`, passed run
+  `32573846472` in one 49-second Linux job `97033170709`; desktop umbrella
+  `97033267512` skipped with zero steps. Hosted documentation architecture
+  passed 1,130 assertions; installed-wheel, ten-artifact staging, and complete
+  release smoke passed.
+- Hosted record artifacts: the 276,136-byte wheel remains
+  `a497834b481b073b9e31558745f6d42f53cb0c53b6e542331da55d85b0129222`;
+  the 1,383,520-byte source archive is
+  `b34bb2144f7aa7ca3bd69f021d05210cebe4e8b7eb804a401813b0a82eec351d`.
+- Integration readiness/squash: two separated audits retained exact
+  head/tree/base, one DCO commit, five paths, bounded Linux success, zero-step
+  desktop, and zero feedback. PR #226 squash
+  `9d4a0025e4e5a57a8946bb3a2ed887ca081c9955` has exact reviewed tree,
+  sole parent feature squash, standalone DCO trailer, and valid GitHub
+  signature at `2026-08-22T12:47:17Z`. The record branch is deleted remotely
+  and locally.
+- Closeout local proof: exactly three project records change; repository
+  metadata hygiene passes five assertions in 0.35 seconds, whitespace passes,
+  and full Git object checking reports no corruption. Fetch/prune leaves branch
+  head, `main`, `origin/main`, and merge base at exact integration-record
+  squash with divergence `0 0`; only `main` and the closeout branch exist
+  locally and only `origin/main` remotely, with no open PR, exact-head
+  postmerge run, tag, release, or tracked identity-control path.
 
 ## M90 local-header signature preflight - complete
 
