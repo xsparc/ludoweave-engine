@@ -1,12 +1,13 @@
 # Current task
 
 - **Task:** M96 - local-header extra-field consistency preflight
-- **Status:** Feature PR #240 is hosted-qualified and squash-integrated. The
-  bounded integration record is active; no product or policy work remains.
-- **Base:** Verified M96 feature squash
-  `70ef2f635fd1f9b3c25a3b044a031a422280c57e`, tree
-  `23b0cd47d9e764fab09361d75e412a7a91517bbe`.
-- **Branch:** `release/m96-integration-record`.
+- **Status:** Feature PR #240 and integration-record PR #241 are verified and
+  squash-integrated. The closeout-only record is active; no product or policy
+  work remains.
+- **Base:** Verified M96 integration-record squash
+  `74c3707f01b70348a4d47b2e9fccbd71da30fdf6`, tree
+  `f7733170103bbecd3b0d2197bcca1590727de1d9`.
+- **Branch:** `release/m96-closeout`.
 
 ## Accepted scope
 
@@ -61,8 +62,7 @@
 
 ## Remaining acceptance work
 
-- Validate and publish exactly the five factual integration records through the
-  bounded documentation-class Linux gate, two readiness audits, and a guarded
-  squash.
-- Publish the no-workflow closeout record, remove all M96 branches and verified
-  generated targets, audit the final three-squash chain, then select M97.
+- Validate, commit, publish, audit, and squash-integrate exactly the three
+  project closeout records without runner allocation.
+- Delete verified M96 generated targets and all branches except `main`, verify
+  the final feature/integration/closeout sole-parent chain, then select M97.
