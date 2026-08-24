@@ -565,6 +565,17 @@ release, or publication. It is not a general archive sandbox and is not a real
 public release observation. M110 is locally stacked on fully validated,
 unpushed M109; none of M100-M110 has hosted qualification.
 
+M111 retains sample-member permission compatibility. M65 continues to reject
+encoded symlinks and non-regular file types while admitting missing type bits
+and regular-file permission variants. The fixed producer remains UNIX mode
+`0100644`. This is one permission-bit compatibility decision with no exact
+external-attribute profile, no permission restoration, and no payload-content
+read. It adds no workflow, allocation, dependency, version, verifier, producer,
+runtime source/API, release authority, tag, release, or publication. It is not
+a general archive sandbox and is not a real public release observation. M111 is
+locally stacked on fully validated, unpushed M110; none of M100-M111 has hosted
+qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

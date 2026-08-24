@@ -711,6 +711,19 @@ parsing, or payload-content read. It adds no workflow, verifier, dependency,
 runtime API, release authority, or producer change, is not a general archive
 sandbox, and is not a real public release observation.
 
+M111/RFC-0094 retains sample-member permission compatibility. M65 still reads
+the upper 16 external-attribute bits, rejects encoded symlinks and other
+non-regular types, and admits missing type bits or a regular-file type across
+permission variants. The fixed producer's 50 members remain UNIX regular files
+with mode `0100644`.
+
+M111 is one permission-bit compatibility decision. Complete release smoke adds
+no exact external-attribute profile, host-system interpretation, permission
+allowlist, or chmod behavior; extraction performs no permission restoration and
+no payload-content read for this decision. It adds no workflow, verifier,
+dependency, runtime API, release authority, or producer change, is not a
+general archive sandbox, and is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

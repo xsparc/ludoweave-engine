@@ -2682,6 +2682,29 @@ archive sandbox, and not a real public release observation. No workflow,
 verifier, producer, dependency, runtime API, or release-authority changes.
 RFC-0093 defines the complete boundary.
 
+## M111 retain sample-member permission compatibility
+
+ZIP external attributes are interpreted relative to the creating host. Python
+exposes the complete public value as `ZipInfo.external_attr`; CPython's
+convenience writer emits mode `0600` without a file-type marker on Windows,
+while the fixed LudoWeave producer emits UNIX regular-file mode `0100644`.
+Exact CPython 3.12.13, 3.13.13, and 3.14.5 expose multiple regular-file
+permission variants and read every fixture payload.
+
+M65 remains the verifier boundary. It reads the upper 16 bits, rejects encoded
+symlinks, rejects any other encoded non-regular type, and admits either a
+missing type marker or a regular-file marker. Permission bits do not affect
+admission once that file-type rule passes. Extraction creates new owned files
+and performs no permission restoration.
+
+M111 therefore retains sample-member permission compatibility. It is one
+permission-bit compatibility decision, not a new classifier. It adds no exact
+external-attribute profile, host-system semantics expansion, permission
+allowlist, chmod operation, or payload-content read. It is not a general ZIP
+validity claim, not a general archive sandbox, and not a real public release
+observation. No workflow, verifier, producer, dependency, runtime API, or
+release-authority changes. RFC-0094 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

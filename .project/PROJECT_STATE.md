@@ -1,6 +1,87 @@
 # Project State
 
-## M110 retain sample-member timestamp compatibility - local qualification in progress
+## M111 retain sample-member permission compatibility - local qualification complete, commit pending
+
+- Base: fully locally validated M110 DCO commit
+  `e7730664c4486cdf1fa0f171bf057cb146db7aa3`, tree
+  `d88e6ca2c85012b8fdb785ea7547224c46af87a5`, with sole parent exact M109.
+  It remains unpushed and has no hosted qualification claim.
+- M110 verification and cleanup: the commit has exact maintainer author/
+  committer identity, one DCO trailer, 15 intended paths, and `0 11` divergence
+  from current `origin/main`. The first cleanup guard failed safely before
+  deletion because `DirectoryInfo.DirectoryName` did not represent the parent.
+  The corrected absolute-parent/no-reparse guard removed exactly eight audited
+  ignored `.tmp/m110*` targets; zero remain and the worktree became clean.
+- Direction evidence: PKWARE defines external attributes relative to the
+  encoded creating host. Python exposes public `ZipInfo.external_attr`; the
+  accepted response is to retain M65's file-type boundary and permission-bit
+  compatibility, not add exact producer metadata admission. No CI expansion is
+  justified.
+- Runtime/producer evidence: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  expose and read regular-file permission variants `0100400`, `0100600`,
+  `0100644`, `0100755`, and `0100777`, plus missing-type mode `0600`. All 50
+  producer members expose create system `3`, external attribute `2175008768`,
+  and mode `0100644`.
+- Corrected red contract: the first contract passed 15 assertions but failed an
+  invalid all-zero preservation control plus the intended docs assertion because
+  CPython normalizes zero external attributes to `0600`. After removing that
+  case, exact CPython 3.12.13 passes 15 behavior, file-type, inventory, producer,
+  source, and protected-surface assertions and fails only documentation in 0.51
+  seconds.
+- Implementation scope: RFC-0094 and aligned records protect the existing M65
+  file-type classifier without changing runtime. It adds no exact external-
+  attribute profile, host-semantics expansion, permission restoration, payload-
+  content read, workflow, dependency, producer, runtime API, version, release
+  authority, tag, release, or publication.
+- Corrected proof: all 16 focused compatibility assertions pass on exact
+  CPython 3.12.13, 3.13.13, and 3.14.5 in 0.48, 0.82, and 0.82 seconds. The
+  unchanged lock resolves; all 354 files are format clean; Ruff and strict
+  Pyright pass; all 1,536 architecture assertions pass with one established
+  skip in 10.16 seconds; strict docs and whitespace pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,076
+  tests with 15 skips in 108.50 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,066 tests with 16 skips in 99.50 and 105.35 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.82 seconds;
+  two- and three-workload profiles validate; Clockwork Arena and Agent World
+  Builder reproduce their established state, capture, replay, render, query,
+  and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,330-byte
+  pure wheel at
+  `5f0d10775f4098394fe6dffce4a7c5a578dae2554f8c1df1ba0b1f2872514c0c`
+  and a 1,511,678-byte source archive at
+  `cb5e3411da250a4b63a6e6fdf8ffa9c1d45204f02f67bc44e1e3fc5c8975bcf9`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/588-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review covers exactly 15 intended record/documentation/test
+  paths and found no runtime, security, architecture, diagnostic-order,
+  ownership, documentation, or scope defect. Protected workflows, verifier,
+  stager, metadata, lock, runtime package/API, dependencies, producer, version,
+  and release authority have zero diff and retain their recorded hashes. Narrow
+  service-identity and high-confidence secret scans return zero matches.
+- Review-inclusive artifacts reproduce the unchanged 277,330-byte wheel at
+  `5f0d10775f4098394fe6dffce4a7c5a578dae2554f8c1df1ba0b1f2872514c0c`
+  and a 1,512,317-byte source archive at
+  `8d9e37f28502639868f257f76c5e372aa8a84dfa060b392b3decccbaaaca38ab`.
+  Reproducibility, isolated-wheel, ten-artifact release, complete release-smoke,
+  and 94/588-entry package-hygiene checks pass.
+- Precommit audit: fetch/prune leaves local/remote `main` at exact M99 and the
+  expected `0 11` divergence. Exactly 15 intended paths change; local branches
+  are only `main` plus the required M100-M111 unpublished stack; the remote has
+  only `main`. DCO identity is exact, protected surfaces have zero diff, secret
+  and metadata-hygiene checks pass, full Git checking finds no corruption, and
+  GitHub reports no open PR, M111 run, release, or tag.
+- Final post-audit strict docs, 21-assertion metadata/M111, secret, scope, and
+  whitespace separator passes. The qualified 15-path diff is ready for its
+  standalone DCO commit.
+
+## M110 retain sample-member timestamp compatibility - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `e7730664c4486cdf1fa0f171bf057cb146db7aa3`, tree
+  `d88e6ca2c85012b8fdb785ea7547224c46af87a5`, has sole parent exact M109,
+  exact maintainer author/committer identity, one sign-off, and 15 intended
+  paths. Eight audited `.tmp/m110*` targets were removed and zero remain.
 
 - Base: fully locally validated M109 DCO commit
   `42671751f5243e52ec3db7cb6737b2ada87d5e01`, tree

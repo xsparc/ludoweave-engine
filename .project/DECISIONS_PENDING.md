@@ -2,6 +2,21 @@
 
 No architecture decision is currently blocked.
 
+RFC-0094 resolves the M111 sample-member permission compatibility decision.
+PKWARE defines external file attributes relative to the creating host encoded
+by `version made by`. Python exposes public central `ZipInfo.external_attr`.
+Exact CPython 3.12.13, 3.13.13, and 3.14.5 each expose and read multiple UNIX
+regular-file permission variants plus missing-type mode `0600`, while the fixed
+50-member producer emits only create system `3` and mode `0100644`.
+
+M65's upper-half file-type policy remains authoritative: encoded symlinks and
+other encoded non-regular types fail, while missing type bits or a regular-file
+type remain admitted across permission variants. This is one permission-bit
+compatibility decision, not an exact external-attribute profile, host-system
+semantics expansion, permission allowlist, permission restoration, payload-
+content check, archive repair, general ZIP validity claim, or general sandbox.
+RFC-0094 records the accepted policy; no M111 design decision remains pending.
+
 RFC-0093 resolves the M110 sample-member timestamp compatibility decision.
 PKWARE defines member date and time as MS-DOS calendar fields relative to 1980
 with two-second resolution, not an absolute UTC instant. Python exposes public

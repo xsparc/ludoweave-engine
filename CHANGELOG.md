@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M111/RFC-0094 decision to retain sample-member permission
+  compatibility. M65's symlink/non-regular rejection remains the verifier
+  boundary, with no exact external-attribute profile, permission restoration,
+  payload-content read, workflow, dependency, producer, runtime API, or
+  release-authority change.
 - Record M110/RFC-0093 decision to retain sample-member timestamp compatibility.
   An exact fixed-producer tuple caused 22 established architecture regressions,
   so M98 local/central consistency remains the verifier boundary with no

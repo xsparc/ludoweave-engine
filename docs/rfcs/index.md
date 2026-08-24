@@ -98,3 +98,4 @@ was adopted.
 - [RFC-0091: require exact sample-member creation version](0091-require-exact-sample-member-creation-version.md)
 - [RFC-0092: require zero sample-member internal attributes](0092-require-zero-sample-member-internal-attributes.md)
 - [RFC-0093: retain sample-member timestamp compatibility](0093-retain-sample-member-timestamp-compatibility.md)
+- [RFC-0094: retain sample-member permission compatibility](0094-retain-sample-member-permission-compatibility.md)

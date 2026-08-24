@@ -1,27 +1,27 @@
 # Current task
 
-- **Task:** M110 - retain sample-member timestamp compatibility.
-- **Status:** Primary-source research, supported-runtime/producer probes, the
-  rejected exact-profile red and implementation checkpoint, complete-
-  architecture incompatibility proof, corrected decision contract, RFC-0093,
-  and aligned documentation are complete. Corrected focused, architecture,
-  complete supported-Python, graphics/profile/vertical, and initial artifact/
-  release validation, findings-first review, final separators, history/object/
-  hosted-state audit, and post-audit validation pass. Commit and cleanup remain.
-- **Base:** Fully locally validated M109 DCO commit
-  `42671751f5243e52ec3db7cb6737b2ada87d5e01`, tree
-  `9b799a8ef957efd93acbb8fc1cd8aad7c2cf6b68`, with sole parent exact M108.
+- **Task:** M111 - retain sample-member permission compatibility.
+- **Status:** M110 commit/cleanup verification, primary-source research,
+  supported-runtime/producer probing, corrected deliberate-red contract,
+  RFC-0094, aligned documentation, focused/architecture/static/complete
+  supported-Python, graphics/profile/vertical, and initial artifact/release
+  validation are complete. Findings-first review and review-inclusive artifact/
+  release validation, final source separators, and the precommit history/
+  hosted-state audit are also complete. The 15-path diff is qualified and ready
+  for standalone commit closeout.
+- **Base:** Fully locally validated M110 DCO commit
+  `e7730664c4486cdf1fa0f171bf057cb146db7aa3`, tree
+  `d88e6ca2c85012b8fdb785ea7547224c46af87a5`, with sole parent exact M109.
   The stack remains unpublished under the existing automated-review identity
   hold.
 
 ## Acceptance boundary
 
-- Retain alternate MS-DOS member timestamps when the established M98 local/
-  central consistency and all later structural, metadata, profile, inventory,
-  and content checks pass.
-- Keep the fixed producer's `(1980, 1, 1, 0, 0, 0)` reproducibility contract
-  without turning it into verifier admission policy.
-- Add RFC-0093, one focused architecture compatibility contract, and aligned
+- Retain missing-type and regular-file permission variants when M65's symlink/
+  non-regular file-type policy and all later checks pass.
+- Keep the fixed producer's UNIX regular-file mode `0100644` reproducibility
+  contract without turning it into verifier admission policy.
+- Add RFC-0094, one focused architecture compatibility contract, and aligned
   public, security, architecture, release, roadmap, maintainer, and factual
   project records.
 - Keep workflows, runner allocation, actions, permissions, credentials,
@@ -31,33 +31,36 @@
 
 ## Evidence so far
 
-- A nonzero-volume candidate was rejected because unchanged M109 already rejects
-  it through M82's split-volume gate; no duplicate policy remains.
-- Exact CPython 3.12.13, 3.13.13, and 3.14.5 expose alternate timestamp
-  `(2026, 8, 25, 12, 34, 56)` and read its payload, while the fixed producer's
-  50 members expose only `(1980, 1, 1, 0, 0, 0)`.
-- The initial exact-profile contract failed ten targeted assertions against
-  M109, then passed all 21 on exact 3.12.13/3.13.13/3.14.5 in 0.26/0.62/0.61
-  seconds after implementation; strict docs and static checks also passed.
-- The complete architecture gate then failed 22 established assertions with
-  1,507 passes and one skip in 10.12 seconds. Regressions covered valid bounded
-  extraction, portable paths, atomic staging, inventory, owned snapshots,
-  decompression, and diagnostic precedence. The exact classifier and its
-  contract were removed rather than rewriting historical compatibility.
-- `scripts/smoke_release.py` is byte-identical to M109. The corrected contract
-  requires alternate and mixed timestamp admission, preserves M98 consistency,
-  and protects the unchanged workflow, producer, dependency, and runtime
-  boundaries.
+- M110 is exact standalone DCO commit `e7730664c4486cdf1fa0f171bf057cb146db7aa3`
+  with tree `d88e6ca2c85012b8fdb785ea7547224c46af87a5`, sole parent M109,
+  exact maintainer identity, one sign-off, and 15 intended paths.
+- The first M110 cleanup guard rejected a directory-property mismatch before
+  deletion. The corrected absolute-parent/no-reparse guard removed exactly eight
+  audited ignored targets and left zero M110 scratch plus a clean worktree.
+- PKWARE defines external attributes relative to the encoded creating host.
+  Python exposes public `ZipInfo.external_attr`; M65 already uses only its upper
+  file-type bits to reject symlinks and encoded non-regular members.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 expose/read five UNIX regular-file
+  permission variants and missing-type mode `0600`. The fixed producer's 50
+  members expose only create system `3`, external attribute `2175008768`, and
+  mode `0100644`.
+- The first red contract correctly revealed that CPython normalizes an all-zero
+  external attribute to mode `0600`; that synthetic preservation case was
+  removed. The corrected exact 3.12.13 contract passes 15 existing behavior,
+  file-type, inventory, producer, source, and protected-surface assertions and
+  fails only the intended missing-documentation assertion in 0.51 seconds.
+- `scripts/smoke_release.py` remains byte-identical to M110/M109. The decision
+  adds no runtime classifier or permission restoration.
 
 ## Explicit non-scope
 
-- No timezone or UTC conversion, verifier wall-clock lookup, daylight-saving
-  inference, extended-timestamp parsing, normalization, raw ZIP parsing,
-  payload inspection, repair, or general archive-security claim.
+- No exact external-attribute profile, host-semantics expansion, permission
+  allowlist/normalization, chmod, umask/ACL/ownership/special-bit policy, raw ZIP
+  parsing, payload inspection, repair, or general archive-security claim.
 - No workflow, allocation, dependency, producer, runtime package/API, native/
   WASM, version, release authority, tag, release, publication, push, or PR.
 
 ## Remaining acceptance work
 
-- Create the standalone local DCO commit and perform bounded M110 scratch
-  cleanup. Publication remains held.
+- Create and verify the standalone DCO commit, then perform bounded scratch
+  cleanup.

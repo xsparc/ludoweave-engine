@@ -487,6 +487,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   compatibility decision, with no workflow, dependency, producer, runtime API,
   or release-authority change; it is not a general archive sandbox and is not a
   real public release observation.
+- M111 retains sample-member permission compatibility. M65 continues to reject
+  encoded symlinks and non-regular file types while admitting missing type bits
+  and regular-file permission variants. This is one permission-bit
+  compatibility decision with no exact external-attribute profile, no
+  permission restoration, and no payload-content read. It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
