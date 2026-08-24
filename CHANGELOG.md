@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M107/RFC-0090 exact sample-member extraction-version profile preflight.
+  Public central `ZipInfo.extract_version` must equal `20` after established
+  local-header, payload-layout, extra-field, member-metadata, M105 flag, and
+  M106 reserved-byte checks and before exact inventory, reads, or staging, with
+  no general extraction-version semantics parser, no payload-content read, and
+  no workflow, dependency, producer, runtime API, or release-authority change.
 - Add M106/RFC-0089 zero sample-member extraction-version reserved-byte
   profile preflight. Public central `ZipInfo.reserved` must equal zero after
   established local-header, payload-layout, extra-field, member-metadata, and

@@ -2576,6 +2576,31 @@ validity claim. It is not a general archive sandbox and is not a real public
 release observation. No workflow, producer, dependency, runtime API, or release
 authority changes. RFC-0089 defines the complete boundary.
 
+## M107 exact sample-member extraction-version profile preflight
+
+PKWARE assigns extraction version 2.0 to Deflate, Python exposes the public
+central value as `ZipInfo.extract_version`, and CPython's fixed writer default
+is `20`. Exact CPython 3.12.13, 3.13.13, and 3.14.5 nevertheless each expose a
+matching local/central value of `21` and read both fixture payloads. The fixed
+50-member LudoWeave producer emits only pair `(20, 0)`.
+
+After M97 has established local/central pair equality and after payload-layout,
+extra-field, member-metadata, M105 flag, and M106 reserved-byte checks, every
+parsed sample member must have public central `ZipInfo.extract_version == 20`.
+Any other value raises stable content-silent error `sample bundle has an
+unsupported extraction version` before exact inventory, staging, or reads.
+Established local mismatch, layout, extra-field, codec, path, flag, and
+reserved-byte errors retain precedence. Empty archives retain their later exact-
+inventory failure.
+
+This exact sample-member extraction-version profile preflight is one central-
+extraction-version exact-profile classifier. It adds no general extraction-
+version semantics parser, feature-capability evaluator, raw record parser,
+payload-content read, decompression, recompression, archive repair, or general
+ZIP validity claim. It is not a general archive sandbox and is not a real public
+release observation. No workflow, producer, dependency, runtime API, or release
+authority changes. RFC-0090 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -94,3 +94,4 @@ was adopted.
 - [RFC-0087: require empty sample-member extra fields](0087-require-empty-sample-member-extra-fields.md)
 - [RFC-0088: require zero sample-member general-purpose flags](0088-require-zero-sample-member-general-purpose-flags.md)
 - [RFC-0089: require zero sample-member extraction-version reserved bytes](0089-require-zero-sample-member-extraction-version-reserved-bytes.md)
+- [RFC-0090: require exact sample-member extraction version](0090-require-exact-sample-member-extraction-version.md)

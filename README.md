@@ -9,9 +9,9 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > M102 adds a local compressed-payload upper bound; M103 requires exact local
 > payload contiguity; M104 requires empty sample-member extra fields; M105
 > requires zero sample-member general-purpose flags; M106 requires zero
-> extraction-version reserved bytes.
+> extraction-version reserved bytes; M107 requires extraction version 2.0.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M106 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M107 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -671,6 +671,16 @@ content-silent mismatch prevents publication and cleans owned staging. RFC-0053
 adds no workflow, dependency, runtime API, sample-producer, or release-authority
 change; it provides no immutable-input guarantee, is not a general archive
 sandbox, and is not a real public release observation.
+
+M107 requires every parsed sample member's public central
+`ZipInfo.extract_version` to equal `20` after M106 and before exact inventory,
+staging, or reads. This exact sample-member extraction-version profile
+preflight emits stable content-silent error `sample bundle has an unsupported
+extraction version`. RFC-0090 defines one central-extraction-version exact-
+profile classifier with no general extraction-version semantics parser and no
+payload-content read. It adds no workflow, dependency, runtime API, or producer
+change, is not a general archive sandbox, and is not a real public release
+observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is

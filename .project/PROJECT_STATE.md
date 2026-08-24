@@ -1,6 +1,89 @@
 # Project State
 
-## M106 zero sample-member extraction-version reserved-byte profile preflight - implementation in progress
+## M107 exact sample-member extraction-version profile preflight - implementation in progress
+
+- Base: fully locally validated M106 DCO commit
+  `630f794cd1e3609f9e0b20d2f7f16e4d1fb27ef5`, tree
+  `708753da831b9a3942affa128f4ac9dc4fb6dbca`, with sole parent exact M105.
+  It remains unpushed and has no hosted qualification claim.
+- M106 cleanup: an exact read-only audit identified ten ignored, direct,
+  non-reparse `.tmp` children. The guarded removal deleted exactly ten; a
+  follow-up found zero remaining targets and a clean worktree.
+- Direction evidence: PKWARE assigns extraction version 2.0 to Deflate; Python
+  exposes public `ZipInfo.extract_version`; CPython uses default value `20` and
+  recognizes features through 6.3. The selected response is one fixed-producer
+  exact profile, not general extraction-version semantics or ZIP security. No
+  CI expansion is justified.
+- Runtime gap: the ignored probe first required a mechanical formatter reflow,
+  then passed Ruff. Exact CPython 3.12.13, 3.13.13, and 3.14.5 exposed matching
+  local/central `(21, 0)` pairs, read both payloads, and confirmed all 50 fixed-
+  producer pairs are `(20, 0)`.
+- Red contract: the exact CPython 3.12.13 suite passed 11 established behavior/
+  protected-surface assertions and failed nine targeted stable-error, cleanup,
+  exact-value, helper/order, and documentation assertions in 0.37 seconds
+  against unchanged M106. No complete pass is claimed.
+- Implementation scope: one aggregate public central
+  `info.extract_version != 20` classifier after M106 and before inventory, plus
+  RFC-0090 and aligned records. It adds no general semantics parser, payload-
+  content read, workflow, dependency, producer, runtime API, version, release
+  authority, tag, release, or publication.
+- First focused correction: 19 assertions passed but the docs contract failed
+  because line wrapping split the exact classifier phrase. RFC-0090 was
+  reflowed; all 20 assertions then pass on exact CPython 3.12.13 in 0.25 seconds,
+  strict docs build in 1.44 seconds, and whitespace passes.
+- Supported-Python proof: all 20 focused assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.25, 0.63, and 0.62 seconds. Complete suites
+  pass 3,009 tests with 15 skips on 3.12.13 in 106.98 seconds and 2,999 tests
+  with 16 skips on 3.13.13 and 3.14.5 in 102.12 and 108.06 seconds. The 3.12
+  environment retained graphics dependencies.
+- Local gate: the unchanged 46-package lock resolves in 0.78 milliseconds; the
+  exact CPython 3.12.13 locked graphics environment installs 45 packages; all
+  350 Python files are format clean; Ruff and strict Pyright pass; all 1,469
+  architecture assertions pass with one established Windows capability skip in
+  9.47 seconds; strict docs build in 1.58 seconds; all 25 metadata/M107
+  assertions pass in 0.82 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.66 seconds;
+  one-repeat base and graphics profiles validate with two and three workloads;
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two builds reproduce a 276,812-byte pure
+  wheel at `aa46f3ab81e92efc04e04655323eb97f553c077eb5ccb77472aee4cde9657a3c`
+  and a 1,488,822-byte source archive at
+  `0edc1ecc0980f506fd830d644aa8f228f43ad94f5575ac3f54ffe0f2c12ab6db`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. The 94-entry wheel and 580-entry source archive contain
+  no native, WASM, bytecode, or retired control-metadata paths. Factual record
+  updates alter the source archive afterward.
+- Findings-first review covers exactly 16 intended paths and found no runtime,
+  security, architecture, diagnostic-order, ownership, documentation, or scope
+  defect. Protected surfaces have no diff; narrow service-identity and high-
+  confidence secret scans return zero matches.
+- Review-inclusive artifacts: two builds reproduce the same 276,812-byte pure
+  wheel at `aa46f3ab81e92efc04e04655323eb97f553c077eb5ccb77472aee4cde9657a3c`
+  and a 1,489,494-byte source archive at
+  `c65fc7ec2130bed55168e9d4aaa3f8d12724c47881c63ae3f3f2ab3fff3e20b6`.
+  Isolated-wheel smoke, ten-artifact staging, complete release smoke, and
+  94/580-entry package hygiene pass. Final record changes alter the source
+  archive afterward.
+- Final source separator passes frozen lock, formatting, Ruff, strict Pyright,
+  1,469 architecture assertions with one established skip, strict docs, 25
+  metadata/M107 assertions, and whitespace. The first lock attempt was a
+  sandbox-only cache denial; its approved rerun resolved the unchanged lock.
+- Corrected precommit history establishes exact M100-M106 ancestry, local and
+  remote M99 main, exact M106 head/tree, and `0 7` divergence. Exactly 16 paths
+  change, exact DCO identity is configured, only the required local stack and
+  remote main exist, hosted PR/run/release/tag queries are empty, and Git fsck
+  reports 44 dangling-only objects with zero defect.
+- Post-audit strict docs, metadata/M107 assertions, protected-surface hashes,
+  exact 16-path scope, identity/credential hygiene, and whitespace all pass.
+  One unbounded secret pattern produced six established `task-directed` false
+  positives; the corrected boundary-aware scan reports zero.
+- Publication hold: M100-M107 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M106 zero sample-member extraction-version reserved-byte profile preflight - local qualification and commit complete
 
 - Base: fully locally validated M105 DCO commit
   `6155e125968c92dfbae44da6c6f13f9684f11fcd`, tree

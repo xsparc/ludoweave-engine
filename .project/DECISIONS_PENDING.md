@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+RFC-0090 resolves the M107 exact sample-member extraction-version profile
+preflight. PKWARE assigns version 2.0 to Deflate, Python exposes public central
+`ZipInfo.extract_version`, and CPython uses default value `20`. Exact CPython
+3.12.13, 3.13.13, and 3.14.5 each exposed matching local/central pairs
+`(21, 0)` and read both probe payloads, while the fixed 50-member producer emits
+sole pair `(20, 0)`. Private release smoke therefore requires every public
+central `ZipInfo.extract_version` value to equal `20` after established local
+consistency, payload-layout, extra-field, member-metadata, M105, and M106 checks
+and before exact inventory, staging, or reads. The stable error is `sample
+bundle has an unsupported extraction version`.
+
+This exact sample-member extraction-version profile preflight is one central-
+extraction-version exact-profile classifier, not a general extraction-version
+semantics parser, supported-version range, capability evaluator, raw record
+parser, payload-content check, archive repair, general ZIP validity claim, or
+general sandbox. It changes no workflow, dependency, producer, runtime API, or
+release authority. RFC-0090 records the accepted policy; no M107 design
+decision remains pending.
+
 RFC-0089 resolves the M106 zero sample-member extraction-version reserved-byte
 profile preflight. Python documents public central `ZipInfo.reserved` as zero,
 CPython initializes and serializes zero, and PKWARE defines the enclosing two-

@@ -456,6 +456,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   parser and no payload-content read. It changes no workflow, dependency,
   producer, runtime API, or release authority; it is not a general archive
   sandbox and is not a real public release observation.
+- M107 requires public central `ZipInfo.extract_version` to equal `20` after
+  M106 and before exact inventory, staging, or reads. Its content-silent error
+  is `sample bundle has an unsupported extraction version`. This exact sample-
+  member extraction-version profile preflight is one central-extraction-version
+  exact-profile classifier with no general extraction-version semantics parser
+  and no payload-content read. It changes no workflow, dependency, producer,
+  runtime API, or release authority; it is not a general archive sandbox and is
+  not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

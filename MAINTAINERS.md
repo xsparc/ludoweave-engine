@@ -521,6 +521,17 @@ release, or publication. It is not a general archive sandbox and is not a real
 public release observation. M106 is locally stacked on fully validated,
 unpushed M105; none of M100-M106 has hosted qualification.
 
+M107 requires public central `ZipInfo.extract_version` to equal `20` after M106
+and before exact inventory, staging, or reads. Its stable content-silent error
+is `sample bundle has an unsupported extraction version`. This exact sample-
+member extraction-version profile preflight is one central-extraction-version
+exact-profile classifier with no general extraction-version semantics parser
+and no payload-content read. It adds no workflow, allocation, dependency,
+version, producer, runtime source/API, release authority, tag, release, or
+publication. It is not a general archive sandbox and is not a real public
+release observation. M107 is locally stacked on fully validated, unpushed M106;
+none of M100-M107 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

@@ -650,6 +650,22 @@ allowlist, enhanced-deflate decoder, raw parser, repair, workflow, dependency,
 sample producer, runtime API, or release authority, is not a general archive
 sandbox, and is not a real public release observation.
 
+M107/RFC-0090 requires public central `ZipInfo.extract_version` to equal `20`
+after M106 and before exact inventory, staging, or member reads. This exact
+sample-member extraction-version profile preflight is one central-extraction-
+version exact-profile classifier. Failure emits stable content-silent error
+`sample bundle has an unsupported extraction version`; established local
+extraction-version mismatch, payload-layout, extra-field, codec, path, flag,
+and reserved-byte errors retain precedence and all owned resources close before
+control returns.
+
+The fixed producer's 50 members already have extraction-version pair `(20, 0)`.
+M107 adds no general extraction-version semantics parser, capability evaluator,
+raw record parser, payload-content read, decompression, recompression, or
+general ZIP validity claim. It adds no workflow, dependency, runtime API,
+release authority, or producer change, is not a general archive sandbox, and is
+not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable
