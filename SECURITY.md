@@ -480,6 +480,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   content read. It changes no workflow, dependency, producer, runtime API, or
   release authority; it is not a general archive sandbox and is not a real
   public release observation.
+- M110 retains sample-member timestamp compatibility after an exact fixed-
+  producer tuple caused 22 established architecture regressions. M98 continues
+  to require local/central consistency, while the verifier performs no timezone
+  or UTC conversion and no payload-content read. This is one central-timestamp
+  compatibility decision, with no workflow, dependency, producer, runtime API,
+  or release-authority change; it is not a general archive sandbox and is not a
+  real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

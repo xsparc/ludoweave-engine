@@ -697,6 +697,20 @@ claim. It adds no workflow, dependency, runtime API, release authority, or
 producer change, is not a general archive sandbox, and is not a real public
 release observation.
 
+M110/RFC-0093 retains sample-member timestamp compatibility after an exact
+fixed-producer verifier profile caused 22 established architecture regressions
+across supported extraction, atomicity, inventory, snapshot, and diagnostic
+fixtures. Those established contracts remain unchanged rather than being
+rewritten around producer-specific metadata.
+
+M98 still requires local/central timestamp consistency, and the fixed producer's
+50 members still use `(1980, 1, 1, 0, 0, 0)` for reproducibility. M110 is one
+central-timestamp compatibility decision. It performs no timezone or UTC
+conversion, wall-clock lookup, extra-field timestamp interpretation, raw record
+parsing, or payload-content read. It adds no workflow, verifier, dependency,
+runtime API, release authority, or producer change, is not a general archive
+sandbox, and is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

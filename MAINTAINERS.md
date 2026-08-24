@@ -554,6 +554,17 @@ a general archive sandbox and is not a real public release observation. M109 is
 locally stacked on fully validated, unpushed M108; none of M100-M109 has hosted
 qualification.
 
+M110 retains sample-member timestamp compatibility after an exact fixed-
+producer tuple caused 22 established architecture regressions in valid
+standard-library-written fixtures. M98 local/central consistency remains the
+verifier boundary, while the fixed producer remains reproducible. This is one
+central-timestamp compatibility decision with no timezone or UTC conversion
+and no payload-content read. It adds no workflow, allocation, dependency,
+version, verifier, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M110 is locally stacked on fully validated,
+unpushed M109; none of M100-M110 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

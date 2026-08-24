@@ -133,6 +133,7 @@ nav:
       - RFC-0090 - Require exact sample-member extraction version: rfcs/0090-require-exact-sample-member-extraction-version.md
       - RFC-0091 - Require exact sample-member creation version: rfcs/0091-require-exact-sample-member-creation-version.md
       - RFC-0092 - Require zero sample-member internal attributes: rfcs/0092-require-zero-sample-member-internal-attributes.md
+      - RFC-0093 - Retain sample-member timestamp compatibility: rfcs/0093-retain-sample-member-timestamp-compatibility.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

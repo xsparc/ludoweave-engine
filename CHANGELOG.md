@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M110/RFC-0093 decision to retain sample-member timestamp compatibility.
+  An exact fixed-producer tuple caused 22 established architecture regressions,
+  so M98 local/central consistency remains the verifier boundary with no
+  timezone or UTC conversion, payload-content read, workflow, dependency,
+  producer, runtime API, or release-authority change.
 - Add M109/RFC-0092 zero sample-member internal-attribute profile preflight.
   Public central `ZipInfo.internal_attr` must equal zero after established
   local-header, payload-layout, extra-field, member-metadata, and M105-M108

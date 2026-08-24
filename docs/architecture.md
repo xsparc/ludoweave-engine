@@ -2656,6 +2656,32 @@ It is not a general archive sandbox and is not a real public release
 observation. No workflow, producer, dependency, runtime API, or release
 authority changes. RFC-0092 defines the complete boundary.
 
+## M110 retain sample-member timestamp compatibility
+
+ZIP member timestamps are stored as MS-DOS calendar fields with two-second
+resolution rather than an absolute UTC instant. Python exposes the decoded
+public central value as the six-part `ZipInfo.date_time` tuple. Exact CPython
+3.12.13, 3.13.13, and 3.14.5 each expose alternate valid timestamps and read
+the otherwise valid fixture payload. The fixed 50-member producer emits only
+`(1980, 1, 1, 0, 0, 0)`.
+
+An exact verifier profile for the producer tuple passed its 21 focused
+assertions but caused 22 established architecture regressions across bounded
+extraction, portable paths, atomic staging, exact inventory, owned snapshots,
+and content-silent failure behavior. Those fixtures use supported standard-
+library writer behavior and remain valid. The exact profile was therefore
+removed rather than rewriting historical compatibility contracts.
+
+M98 local/central timestamp consistency remains the verifier boundary; M104's
+empty-extra-field profile remains unchanged; and the producer retains its fixed
+reproducible timestamp. M110 is one central-timestamp compatibility decision,
+not timestamp admission logic. It performs no timezone or UTC conversion,
+wall-clock lookup, extra-field timestamp interpretation, raw record parsing, or
+payload-content read. It is not a general ZIP validity claim, not a general
+archive sandbox, and not a real public release observation. No workflow,
+verifier, producer, dependency, runtime API, or release-authority changes.
+RFC-0093 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -97,3 +97,4 @@ was adopted.
 - [RFC-0090: require exact sample-member extraction version](0090-require-exact-sample-member-extraction-version.md)
 - [RFC-0091: require exact sample-member creation version](0091-require-exact-sample-member-creation-version.md)
 - [RFC-0092: require zero sample-member internal attributes](0092-require-zero-sample-member-internal-attributes.md)
+- [RFC-0093: retain sample-member timestamp compatibility](0093-retain-sample-member-timestamp-compatibility.md)

@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+RFC-0093 resolves the M110 sample-member timestamp compatibility decision.
+PKWARE defines member date and time as MS-DOS calendar fields relative to 1980
+with two-second resolution, not an absolute UTC instant. Python exposes public
+central `ZipInfo.date_time`; exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+admitted `(2026, 8, 25, 12, 34, 56)` and read the probe payload, while the
+fixed 50-member producer emits only `(1980, 1, 1, 0, 0, 0)`. An exact verifier
+profile passed its focused contract but caused 22 established architecture
+regressions across supported extraction, atomicity, inventory, snapshot,
+decompression, and diagnostic behavior. That classifier was removed.
+
+M98 local/central consistency remains the verifier policy; consistent alternate
+timestamps remain admitted; and the producer keeps its exact reproducible
+tuple. This is one central-timestamp compatibility decision, not timezone or
+UTC conversion, verifier wall-clock use, extra-field timestamp interpretation,
+a raw record parser, payload-content check, archive repair, general ZIP validity
+claim, or general sandbox. A nonzero-volume candidate was also rejected because
+established M82 already rejects split-volume members earlier. RFC-0093 records
+the accepted policy; no M110 design decision remains pending.
+
 RFC-0092 resolves the M109 zero sample-member internal-attribute profile
 preflight. PKWARE defines the central two-byte field as an advisory apparent-
 text bit plus a mainframe record-control bit, with other bits reserved or

@@ -11,9 +11,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > requires zero sample-member general-purpose flags; M106 requires zero
 > extraction-version reserved bytes; M107 requires extraction version 2.0;
 > M108 requires sample-member creation version 2.0; M109 requires zero
-> sample-member internal attributes.
+> sample-member internal attributes; M110 retains timestamp compatibility after
+> rejecting an exact verifier profile.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M109 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M110 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -701,6 +702,15 @@ attributes`. RFC-0092 defines one central-internal-attribute exact-profile
 classifier with no text/binary content interpretation and no payload-content
 read. It adds no workflow, dependency, runtime API, or producer change, is not
 a general archive sandbox, and is not a real public release observation.
+
+M110 retains sample-member timestamp compatibility after an exact fixed-
+producer tuple caused 22 established architecture regressions in valid
+standard-library-written fixtures. M98 still requires local/central timestamp
+consistency, and the fixed producer still emits `(1980, 1, 1, 0, 0, 0)` for
+reproducibility. RFC-0093 records one central-timestamp compatibility decision
+with no timezone or UTC conversion and no payload-content read. It adds no
+workflow, dependency, runtime API, verifier, or producer change, is not a
+general archive sandbox, and is not a real public release observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is
