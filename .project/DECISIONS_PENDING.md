@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+RFC-0087 resolves the M104 empty sample-member extra-field profile preflight.
+PKWARE defines local and central member extra fields as valid ZIP extensibility;
+Python exposes central bytes through public `ZipInfo.extra`; CPython interprets
+selected known fields and retains uninterpreted bytes. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 each retained equal local/central third-party field
+`feca02006f6b` and read both probe payloads, while the fixed 50-member producer
+emits empty fields.
+Private release smoke therefore requires empty public central `ZipInfo.extra`
+after established Unicode Path, ZIP64, M96 consistency, M102 bounds, and M103
+contiguity checks and before decoded names, metadata, inventory, staging, or
+reads. The stable error is `sample bundle contains an unsupported extra field`.
+
+This empty sample-member extra-field profile preflight is one central-extra
+emptiness classifier, not an extra-field semantics parser, field-ID registry,
+raw central-record parser, payload-content check, archive repair, general ZIP
+validity claim, or general sandbox. It changes no workflow, dependency,
+producer, runtime API, or release authority. RFC-0087 records the accepted
+policy; no M104 design decision remains pending.
+
 RFC-0081 resolves the M98 local-header timestamp consistency preflight. PKWARE
 duplicates a two-byte DOS modification time and two-byte DOS modification date
 in corresponding local and central member records. Exact CPython 3.12.13,

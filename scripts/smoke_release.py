@@ -578,6 +578,7 @@ def _extract_checksum_admitted_bundle(
             snapshot=snapshot_stream,
             infos=infos,
         )
+        _validate_sample_extra_field_profile(infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -1190,6 +1191,16 @@ def _validate_sample_payload_contiguity(
                 raise RuntimeError("sample bundle member payloads are not contiguous")
     finally:
         snapshot.seek(position)
+
+
+def _validate_sample_extra_field_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer sample profile to contain no extra fields."""
+
+    if any(info.extra for info in infos):
+        raise RuntimeError("sample bundle contains an unsupported extra field")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

@@ -429,6 +429,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   integrity certification. It changes no workflow, dependency, producer,
   runtime API, or release authority; it is not a general archive sandbox and is
   not a real public release observation.
+- M104 requires public central `ZipInfo.extra` to be empty after established
+  Unicode Path, ZIP64, local/central consistency, payload-bound, and contiguity
+  checks and before decoded names, metadata, inventory, staging, or reads. Its
+  content-silent error is `sample bundle contains an unsupported extra field`.
+  This empty sample-member extra-field profile preflight is one central-extra
+  emptiness classifier with no extra-field semantics parser and no payload-
+  content read. It changes no workflow, dependency, producer, runtime API, or
+  release authority; it is not a general archive sandbox and is not a real
+  public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

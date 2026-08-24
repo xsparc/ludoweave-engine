@@ -1,5 +1,109 @@
 # Project State
 
+## M104 empty sample-member extra-field profile preflight - implementation in progress
+
+- Base: fully locally validated M103 DCO commit
+  `19ccf5076d391924e969b57e76c25049068553a6`, tree
+  `95ae0ce0a58d6d0df6284f7689de01c794acb69d`, with sole parent exact M102.
+  It remains unpushed and has no hosted qualification claim.
+- M103 cleanup: nine generated targets were verified as direct, untracked,
+  non-reparse children of the exact workspace `.tmp` root, permanently removed
+  in one authorized pass, and confirmed absent. No tracked or recoverable file
+  was deleted.
+- Direction evidence: PKWARE defines local/central extra fields as valid ZIP
+  extensibility; Python exposes central bytes through public `ZipInfo.extra`;
+  CPython interprets selected known fields and retains uninterpreted bytes. The
+  policy is a fixed-producer profile, not a general ZIP validity or safety claim.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained equal
+  local/central third-party extra field `feca02006f6b` and read both probe
+  payloads. The fixed 50-member producer already emits empty extra fields.
+- Red contract: the 13-assertion M104 contract is format/Ruff clean and strict-
+  Pyright clean. Exact CPython 3.14.5 passed eight established behavior and
+  protected-surface controls while five intended stable-error, cleanup,
+  helper/order, and documentation assertions failed in 0.66 seconds against
+  unchanged M103. No complete pass is claimed.
+- Implementation scope: one post-M103 central-extra emptiness classifier plus
+  RFC-0087 and aligned records. Unicode Path, ZIP64, M96 consistency, M102
+  bounds, and M103 contiguity errors retain precedence. No extra-field semantics
+  parser, payload-content read, workflow, dependency, producer, runtime API,
+  version, release authority, tag, release, or publication is added.
+- Corrected implementation checkpoint: affected Ruff and strict Pyright pass,
+  and all 26 combined M103-M104 assertions pass in 0.75 seconds. The first
+  strict docs build correctly rejected the missing RFC-0087 navigation entry;
+  after adding it, strict docs build in 1.45 seconds with only the known
+  upstream Material notice, and whitespace passes.
+- Supported-Python proof: all 13 M104 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.22, 0.59, and 0.57 seconds. The three complete
+  suites each pass 2,946 tests with 16 established skips in 101.40, 97.80, and
+  103.88 seconds respectively.
+- Local gate: the unchanged 46-package lock resolves in 0.83 milliseconds and
+  the exact CPython 3.12.13 locked all-groups graphics environment installs 45
+  packages. All 347 Python files are format clean; Ruff and strict Pyright pass;
+  all 1,416 architecture assertions pass with one established Windows
+  capability skip in 9.44 seconds; strict docs build in 1.58 seconds; all 18
+  metadata/M104 assertions pass in 0.82 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.13
+  seconds; one-repeat base and graphics profiles validate with two and three
+  workloads. Clockwork Arena reproduces state
+  `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`,
+  capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`,
+  three draws, and 16 sprites. Agent World Builder reproduces state
+  `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`,
+  capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`,
+  replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`,
+  six query matches, five replay batches, and passing registered tests.
+- Initial reproducible artifacts: three intended output roots were confirmed
+  absent. Two fresh builds reproduce a 276,387-byte pure wheel at
+  `112c6f190792ce1ef10287e60da249bf941f975ea372112140b7aaaae3f8c150`
+  and a 1,472,219-byte source archive at
+  `9c7c6ccc888a3679d0556aef6fad07258f8f57931156346c051f7149215a446f`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 16 intended paths change. One overbroad use of
+  “unknown” for the `0xCAFE` fixture was corrected to “third-party field not
+  interpreted by CPython”; affected formatting, Ruff, strict Pyright, all 13
+  M104 assertions, strict docs, and whitespace then passed. The runtime is one
+  ordered call plus one public central-extra emptiness helper with established
+  specific and layout precedence. Workflow, release workflow, stager,
+  metadata, lock, runtime package/API, dependencies, producer, version, and
+  release authority have no diff. Credential, explicit service-identity,
+  backend/native, wall-clock, and retired-control scans are empty. The 94-entry
+  pure wheel and 574-entry source archive contain no native, WASM, bytecode, or
+  retired control-metadata entries. No actionable finding remains.
+- Review-inclusive artifacts: three fresh output roots were confirmed absent.
+  Two builds reproduce the 276,387-byte pure wheel at
+  `112c6f190792ce1ef10287e60da249bf941f975ea372112140b7aaaae3f8c150`
+  and a 1,473,352-byte source archive at
+  `23a4e2b70f9e026627575da17e23757dbdc8b7708dbd2365be99d94d85dae04a`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Final factual records alter the source archive; hosted
+  exact-head artifacts would remain authoritative after publication.
+- Final source separator: the unchanged 46-package lock resolves in 0.80
+  milliseconds. All 347 files remain format clean; Ruff and strict Pyright
+  pass; all 1,416 architecture assertions pass with one established skip in
+  9.12 seconds; strict docs build in 1.50 seconds; all 18 metadata/M104
+  assertions pass in 0.43 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: after fetch/prune, `HEAD` and M103 resolve to
+  exact `19ccf5076d391924e969b57e76c25049068553a6`, M100-M102 retain exact commits,
+  local/remote `main` retain exact M99, merge base is M99, and divergence is the
+  expected `0 4`. Exactly 16 intended paths change; only `main` and the required
+  M100-M104 local stack branches exist, while only `origin/main` exists
+  remotely. Authentication is valid; open PR, M104 run, release, and tag
+  queries are empty. Exact maintainer DCO identity is configured. Protected
+  workflow/release/stager/metadata/lock hashes remain exact; final credential,
+  identity, backend/native, wall-clock, and retired-control scans are empty;
+  full Git checking reports 44 historical dangling-object lines and zero
+  critical finding; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.44 seconds with only the
+  known upstream Material notice; all 18 metadata/M104 assertions pass in 0.40
+  seconds; credential, explicit service-identity, backend/native, wall-clock,
+  and retired-control scans return zero matches; exactly 16 intended paths
+  remain changed; and whitespace remains clean.
+- Publication hold: M100-M104 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
 ## M103 exact compressed-payload contiguity preflight - initial local qualification complete
 
 - Base: fully locally validated M102 DCO commit

@@ -127,6 +127,7 @@ nav:
       - RFC-0084 - Require consistent local-header uncompressed sizes: rfcs/0084-require-consistent-local-header-uncompressed-sizes.md
       - RFC-0085 - Bound sample-member compressed payloads: rfcs/0085-bound-sample-member-payloads.md
       - RFC-0086 - Require contiguous sample-member payloads: rfcs/0086-require-contiguous-sample-payloads.md
+      - RFC-0087 - Require empty sample-member extra fields: rfcs/0087-require-empty-sample-member-extra-fields.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

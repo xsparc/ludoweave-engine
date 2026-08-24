@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M104/RFC-0087 empty sample-member extra-field profile preflight. Public
+  central `ZipInfo.extra` must be empty after established extra-field,
+  local-header, payload-bound, and contiguity checks and before decoded-name
+  policy, metadata, inventory, reads, or staging, with no extra-field semantics
+  parser, no payload-content read, and no workflow, dependency, producer,
+  runtime API, or release-authority change.
 - Add M103/RFC-0086 exact compressed-payload contiguity preflight. Each
   calculated payload end must equal the next local header or conventional
   central directory before decoded-name policy, metadata, inventory, reads, or

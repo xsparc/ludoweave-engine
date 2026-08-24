@@ -2495,6 +2495,31 @@ bytes, is not a general archive sandbox, and is not a real public release
 observation. Workflows, producer, dependencies, runtime API, and release
 authority remain unchanged. RFC-0086 defines the complete boundary.
 
+## M104 empty sample-member extra-field profile preflight
+
+PKWARE defines member extra fields as an extensibility mechanism, and supported
+CPython exposes central bytes through public `ZipInfo.extra` while retaining
+uninterpreted field bytes. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+retain equal local/central `feca02006f6b` fields and read both fixture payloads.
+The fixed
+50-member LudoWeave producer emits no member extra fields.
+
+After established Unicode Path, ZIP64, local/central consistency, local-record
+bounds, payload bounds, and contiguity checks, every parsed sample member must
+have empty public central `ZipInfo.extra`. A non-empty value raises stable
+content-silent error `sample bundle contains an unsupported extra field` before
+decoded-name policy, metadata, exact inventory, staging, or reads. Existing
+specific errors and M96/M102/M103 layout policy retain precedence, while empty
+archives retain their later exact-inventory failure.
+
+This empty sample-member extra-field profile preflight is one central-extra
+emptiness classifier. It adds no extra-field semantics parser, field-ID
+registry, payload-content read, decompression, recompression, CRC validation,
+archive repair, or general ZIP validity claim. It is not a general archive
+sandbox and is not a real public release observation. Workflows, producer,
+dependencies, runtime API, and release authority remain unchanged. RFC-0087
+defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
