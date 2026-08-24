@@ -635,6 +635,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_extraction_version_reserved_byte_profile(infos=infos)
         _validate_sample_extraction_version_profile(infos=infos)
         _validate_sample_creation_version_profile(infos=infos)
+        _validate_sample_internal_attribute_profile(infos=infos)
         _validate_sample_inventory(observed_members)
 
         with tempfile.TemporaryDirectory(
@@ -1245,6 +1246,16 @@ def _validate_sample_creation_version_profile(
 
     if any(info.create_version != 20 for info in infos):
         raise RuntimeError("sample bundle has an unsupported creation version")
+
+
+def _validate_sample_internal_attribute_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer internal attributes to equal zero."""
+
+    if any(info.internal_attr != 0 for info in infos):
+        raise RuntimeError("sample bundle has unsupported internal attributes")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

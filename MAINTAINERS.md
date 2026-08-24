@@ -543,6 +543,17 @@ It is not a general archive sandbox and is not a real public release
 observation. M108 is locally stacked on fully validated, unpushed M107; none of
 M100-M108 has hosted qualification.
 
+M109 requires public central `ZipInfo.internal_attr` to equal zero after M108
+and before exact inventory, staging, or reads. Its stable content-silent error
+is `sample bundle has unsupported internal attributes`. This zero sample-member
+internal-attribute profile preflight is one central-internal-attribute exact-
+profile classifier with no text/binary content interpretation and no payload-
+content read. It adds no workflow, allocation, dependency, version, producer,
+runtime source/API, release authority, tag, release, or publication. It is not
+a general archive sandbox and is not a real public release observation. M109 is
+locally stacked on fully validated, unpushed M108; none of M100-M109 has hosted
+qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

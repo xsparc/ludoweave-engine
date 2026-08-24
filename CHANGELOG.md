@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M109/RFC-0092 zero sample-member internal-attribute profile preflight.
+  Public central `ZipInfo.internal_attr` must equal zero after established
+  local-header, payload-layout, extra-field, member-metadata, and M105-M108
+  profile checks and before exact inventory, reads, or staging, with no text/
+  binary content interpretation, payload-content read, workflow, dependency,
+  producer, runtime API, or release-authority change.
 - Add M108/RFC-0091 exact sample-member creation-version profile preflight.
   Public central `ZipInfo.create_version` must equal `20` after established
   local-header, payload-layout, extra-field, member-metadata, M105 flag, M106

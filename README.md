@@ -10,9 +10,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > payload contiguity; M104 requires empty sample-member extra fields; M105
 > requires zero sample-member general-purpose flags; M106 requires zero
 > extraction-version reserved bytes; M107 requires extraction version 2.0;
-> M108 requires sample-member creation version 2.0.
+> M108 requires sample-member creation version 2.0; M109 requires zero
+> sample-member internal attributes.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M108 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M109 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -691,6 +692,15 @@ version`. RFC-0091 defines one central-creation-version exact-profile classifier
 with no general creation-version semantics parser and no payload-content read.
 It adds no workflow, dependency, runtime API, or producer change, is not a
 general archive sandbox, and is not a real public release observation.
+
+M109 requires every parsed sample member's public central
+`ZipInfo.internal_attr` to equal zero after M108 and before exact inventory,
+staging, or reads. This zero sample-member internal-attribute profile preflight
+emits stable content-silent error `sample bundle has unsupported internal
+attributes`. RFC-0092 defines one central-internal-attribute exact-profile
+classifier with no text/binary content interpretation and no payload-content
+read. It adds no workflow, dependency, runtime API, or producer change, is not
+a general archive sandbox, and is not a real public release observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is

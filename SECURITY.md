@@ -472,6 +472,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   and no payload-content read. It changes no workflow, dependency, producer,
   runtime API, or release authority; it is not a general archive sandbox and is
   not a real public release observation.
+- M109 requires public central `ZipInfo.internal_attr` to equal zero after M108
+  and before exact inventory, staging, or reads. Its content-silent error is
+  `sample bundle has unsupported internal attributes`. This zero sample-member
+  internal-attribute profile preflight is one central-internal-attribute exact-
+  profile classifier with no text/binary content interpretation and no payload-
+  content read. It changes no workflow, dependency, producer, runtime API, or
+  release authority; it is not a general archive sandbox and is not a real
+  public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

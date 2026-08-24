@@ -681,6 +681,22 @@ decompression, recompression, or general ZIP validity claim. It adds no
 workflow, dependency, runtime API, release authority, or producer change, is
 not a general archive sandbox, and is not a real public release observation.
 
+M109/RFC-0092 requires public central `ZipInfo.internal_attr` to equal zero
+after M108 and before exact inventory, staging, or member reads. This zero
+sample-member internal-attribute profile preflight is one central-internal-
+attribute exact-profile classifier. Failure emits stable content-silent error
+`sample bundle has unsupported internal attributes`; established local-header,
+payload-layout, metadata, and M105-M108 errors retain precedence and all owned
+resources close before control returns.
+
+The fixed producer's 50 members already have zero internal attributes. M109
+adds no text/binary content interpretation, record-control semantics parser,
+supported-bit mask, external-attribute or host-system policy, raw record parser,
+payload-content read, decompression, recompression, or general ZIP validity
+claim. It adds no workflow, dependency, runtime API, release authority, or
+producer change, is not a general archive sandbox, and is not a real public
+release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

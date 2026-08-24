@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+RFC-0092 resolves the M109 zero sample-member internal-attribute profile
+preflight. PKWARE defines the central two-byte field as an advisory apparent-
+text bit plus a mainframe record-control bit, with other bits reserved or
+unused. Python exposes public `ZipInfo.internal_attr`; CPython initializes it to
+zero. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each admitted value `1` and
+read the probe payload, while the fixed 50-member producer emits only zero.
+Private release smoke therefore requires every public central internal-
+attribute value to equal zero after M108 and before exact inventory, staging,
+or reads. The stable error is `sample bundle has unsupported internal
+attributes`.
+
+This zero sample-member internal-attribute profile preflight is one central-
+internal-attribute exact-profile classifier, not text/binary content
+interpretation, a record-control semantics parser, supported-bit mask,
+external-attribute or host policy, raw record parser, payload-content check,
+archive repair, general ZIP validity claim, or general sandbox. RFC-0092 records
+the accepted policy; no M109 design decision remains pending.
+
 RFC-0091 resolves the corrected M108 exact sample-member creation-version
 profile preflight. PKWARE defines the lower `version made by` byte as the ZIP
 specification version supported by the encoder. Python exposes public central

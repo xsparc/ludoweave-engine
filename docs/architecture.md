@@ -2629,6 +2629,33 @@ is not a real public release observation. No workflow, producer, dependency,
 runtime API, or release authority changes. RFC-0091 defines the complete
 boundary.
 
+## M109 zero sample-member internal-attribute profile preflight
+
+PKWARE defines central internal file attributes as a two-byte advisory field:
+bit zero marks apparent text, bit one marks a mainframe variable-record control
+field, and other bits are reserved or unused. Python exposes the complete
+public central value as `ZipInfo.internal_attr`, and CPython initializes it to
+zero. Exact CPython 3.12.13, 3.13.13, and 3.14.5 nevertheless each expose value
+`1` and read an otherwise valid fixture payload. The fixed 50-member LudoWeave
+producer emits only zero.
+
+After established local-header, payload-layout, extra-field, member-metadata,
+and M105-M108 profile checks, every parsed sample member must have public
+central `ZipInfo.internal_attr == 0`. Any other value raises stable content-
+silent error `sample bundle has unsupported internal attributes` before exact
+inventory, staging, or reads. Established local-header, layout, metadata, flag,
+reserved-byte, extraction-version, and creation-version errors retain
+precedence. Empty archives retain their later exact-inventory failure.
+
+This zero sample-member internal-attribute profile preflight is one central-
+internal-attribute exact-profile classifier. It adds no text/binary content
+interpretation, record-control semantics parser, supported-bit mask, external-
+attribute or host policy, raw record parser, payload-content read,
+decompression, recompression, archive repair, or general ZIP validity claim.
+It is not a general archive sandbox and is not a real public release
+observation. No workflow, producer, dependency, runtime API, or release
+authority changes. RFC-0092 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

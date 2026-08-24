@@ -96,3 +96,4 @@ was adopted.
 - [RFC-0089: require zero sample-member extraction-version reserved bytes](0089-require-zero-sample-member-extraction-version-reserved-bytes.md)
 - [RFC-0090: require exact sample-member extraction version](0090-require-exact-sample-member-extraction-version.md)
 - [RFC-0091: require exact sample-member creation version](0091-require-exact-sample-member-creation-version.md)
+- [RFC-0092: require zero sample-member internal attributes](0092-require-zero-sample-member-internal-attributes.md)
