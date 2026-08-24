@@ -434,10 +434,20 @@ consistency classifier performs no CRC recomputation, compressed/uncompressed
 size comparison, payload or next-header bound, or inter-member layout
 validation. It adds no workflow, allocation, dependency, version, producer,
 runtime source/API, release authority, tag, release, or publication. It is not
-a general archive sandbox and is not a real public release observation. M0
-through M98 are complete, reviewed, hosted-validated, and integrated into
-`main`. M99 starts from exact verified M98 closeout
-`6d4529efb0476f3e3e45f78204d2b0aa192da018`.
+a general archive sandbox and is not a real public release observation.
+
+M100 reads the four-byte local compressed size after M99 and requires exact
+equality with public central `ZipInfo.compress_size` before decoded names,
+metadata, inventory, staging, or reads. Its stable content-silent error is
+`sample bundle local header compressed sizes are inconsistent`. This one four-
+byte local-compressed-size consistency classifier performs no decompression or
+recompression, no uncompressed-size comparison, no payload or next-header
+bound, and no inter-member layout validator. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M0 through M99 are complete, reviewed, hosted-
+validated, and integrated into `main`. M100 starts from exact verified M99
+closeout `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;

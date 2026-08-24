@@ -70,6 +70,8 @@ _SAMPLE_LOCAL_HEADER_TIMESTAMP_OFFSET = 10
 _SAMPLE_LOCAL_HEADER_TIMESTAMP_BYTES = 4
 _SAMPLE_LOCAL_HEADER_CRC_OFFSET = 14
 _SAMPLE_LOCAL_HEADER_CRC_BYTES = 4
+_SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_OFFSET = 18
+_SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_BYTES = 4
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES = 4
 _SAMPLE_UTF8_FILENAME_FLAG = 1 << 11
@@ -555,6 +557,10 @@ def _extract_checksum_admitted_bundle(
             infos=infos,
         )
         _validate_sample_local_header_crcs(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
+        _validate_sample_local_header_compressed_sizes(
             snapshot=snapshot_stream,
             infos=infos,
         )
@@ -1072,6 +1078,24 @@ def _validate_sample_local_header_crcs(
             expected = info.CRC.to_bytes(4, "little")
             if snapshot.read(_SAMPLE_LOCAL_HEADER_CRC_BYTES) != expected:
                 raise RuntimeError("sample bundle local header CRC-32 values are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_compressed_sizes(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local compressed sizes to match parser-exposed central values."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_OFFSET)
+            expected = info.compress_size.to_bytes(4, "little")
+            if snapshot.read(_SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_BYTES) != expected:
+                raise RuntimeError("sample bundle local header compressed sizes are inconsistent")
     finally:
         snapshot.seek(position)
 

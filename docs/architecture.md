@@ -2400,6 +2400,30 @@ not a general archive sandbox and is not a real public release observation.
 Workflows, producer, dependencies, runtime API, and release authority remain
 unchanged. RFC-0082 defines the complete boundary.
 
+## M100 local-header compressed-size consistency preflight
+
+M100 narrows the fixed sample profile after M99 by reading the four bytes at
+each already bounded `ZipInfo.header_offset + 18`. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 retain both central compressed sizes at `11` and read both
+payloads when only the second local compressed size changes from `11` to `12`.
+
+The local bytes must equal public central `ZipInfo.compress_size` encoded as an
+unsigned four-byte little-endian value. Mismatch raises stable content-silent
+error `sample bundle local header compressed sizes are inconsistent` before
+decoded names, metadata, exact inventory, staging, or reads. Empty archives
+retain their later inventory failure, and the helper restores the caller's
+snapshot position.
+
+This is one four-byte local-compressed-size consistency classifier. It performs
+no decompression or recompression, no uncompressed-size comparison, no
+compression-ratio or archive-bomb policy, no payload-integrity certification,
+no field-wide local/central comparison, no complete local-record bound, no
+payload or next-header bound, and no gap, adjacency, contiguity, physical non-
+overlap rule, or inter-member layout validator. It is not a general archive
+sandbox and is not a real public release observation. Workflows, producer,
+dependencies, runtime API, and release authority remain unchanged. RFC-0083
+defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

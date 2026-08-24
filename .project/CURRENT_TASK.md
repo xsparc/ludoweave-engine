@@ -1,88 +1,127 @@
 # Current task
 
-- **Task:** M99 - local-header CRC-32 consistency preflight
-- **Status:** Feature PR #249 is exact-head hosted-validated and
-  squash-integrated. Integration-record PR #250 is exact-head hosted-validated
-  and squash-integrated. The three-file no-workflow closeout record passes its
-  local metadata, whitespace, and precommit history/scope/integrity gates;
-  the final separator also passes. Commit and publication remain. No runtime
-  or policy change remains.
-- **Base:** Verified M99 integration-record squash
-  `d658bd7df926775ea77b36b34dec377a14a76bb6`, tree
-  `a602729574488b940a541e64cad805cc3b96ffa6`.
-- **Branch:** `release/m99-closeout`.
+- **Task:** M100 - local-header compressed-size consistency preflight
+- **Status:** The primary-source direction, deterministic supported-runtime
+  probe, deliberate red contract, runtime classifier, RFC-0083, aligned public
+  documentation, supported-Python suites, complete local/static/architecture
+  gate, real-wgpu and deterministic vertical slices, and initial reproducible
+  distribution/release gate, and findings-first review pass. Record-inclusive
+  artifacts, final source separator, and remote history/scope/integrity audit
+  pass. The final post-audit separator passes, and the fully validated tree is
+  contained in one standalone local DCO commit. Public push and ready-PR
+  publication are held
+  because an externally configured automated reviewer exposed its service
+  identity on the completed M99 closeout PR.
+- **Base:** Exact verified M99 closeout squash
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`.
+- **Branch:** `release/m100-local-compressed-size-consistency`.
 
-## Integrated scope
+## Approved scope
 
-- After M98 timestamp consistency, private release smoke reads exactly four
-  bytes at each public `ZipInfo.header_offset + 14`.
-- Those local bytes must equal public central `ZipInfo.CRC` encoded as an
-  unsigned four-byte little-endian value.
-- Mismatch raises stable content-silent `sample bundle local header CRC-32
-  values are inconsistent` before decoded-name policy, metadata, exact
+- After M99 CRC-32 consistency, private release smoke reads exactly four bytes
+  at each public `ZipInfo.header_offset + 18`.
+- Those local bytes must equal public central `ZipInfo.compress_size` encoded
+  as an unsigned four-byte little-endian value.
+- Mismatch raises stable content-silent `sample bundle local header compressed
+  sizes are inconsistent` before decoded-name policy, metadata, exact
   inventory, staging, or member reads.
-- Every established policy through M98, empty-archive inventory behavior,
+- Every established policy through M99, empty-archive inventory behavior,
   owned-resource cleanup, and caller snapshot position remain intact.
-- RFC-0082 and aligned public, security, architecture, release, roadmap,
+- RFC-0083 and aligned public, security, architecture, release, roadmap,
   maintainer, test, and factual project records define the boundary.
 - Workflow, runner allocations, actions, permissions, credentials,
   dependency/lock/version, sample producer, runtime package/API, release
   authority, tag, release, and publication remain unchanged.
 
-## Hosted feature evidence
+## Current evidence
 
-- Ready PR #249 exact DCO head
-  `b3e1bc994e57fac2277e86b552d760f9ae9c90a1`, tree
-  `77c40e7a27f70bc89e273225a8bb81966fc8dfa0`, passed run `32596930304`
-  in exactly three Linux-first allocations.
-- Linux job `97089296631` passed in 7m20s, macOS job `97090165770` in
-  2m00s, and Windows job `97090165820` in 4m10s.
-- Linux CPython 3.12 passed 2,877 tests. Linux 3.13/3.14 and macOS/Windows
-  3.14 each passed 2,877 with one established capability skip.
-- Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena,
-  and Agent World Builder. Linux also passed formatting, Ruff, strict Pyright,
-  strict docs, base profiling, installed-wheel smoke, ten-artifact staging,
-  and complete release smoke.
-- Two hosted builds reproduced a 277,158-byte pure wheel at
-  `232eaa8b23bbe6c5e0cf0fa5510521dadb175fae17baf893ff208695c061b76e`
-  and a 1,439,905-byte source archive at
-  `abaa619ce80968b3f49b3f0b25de6b9c075baf3d6de142e663e56f59c09701ae`.
-- Two separated readiness audits around 34 passing local assertions retained
-  exact head/tree/base, one DCO commit, 15 paths, three successful checks from
-  one exact-head run, `MERGEABLE/CLEAN`, and zero comments, reviews, or review
-  comments.
-- Guarded squash `909b7568fe98da9a77d226df57eb17a7571a68e5` has the exact
-  qualified tree, sole M98 closeout parent, standalone DCO trailer, and a valid
-  GitHub signature verified at `2026-08-22T20:44:55Z`. The feature branch is
-  deleted remotely and locally.
-
-## Hosted integration-record evidence
-
-- Ready PR #250 exact DCO head
-  `0cdfa5285db965f9238b6fe878912f20c7f0f4d8`, tree
-  `a602729574488b940a541e64cad805cc3b96ffa6`, passed exact-head run
-  `32597990726` in one 52-second Linux allocation; the desktop matrix
-  placeholder skipped without allocating a runner.
-- Strict docs built in 2.20 seconds; all 1,333 hosted architecture assertions,
-  reproducible distribution, isolated-wheel smoke, deterministic ten-artifact
-  staging, and complete release smoke passed.
-- Hosted repeat builds reproduced a 277,176-byte pure wheel at
-  `156b2f5fd64c6ec7ad99d4706279b79bdc7978da51eaf4c8ff08ade8f7e4fee2`
-  and a 1,441,004-byte source archive at
-  `43390607d097dbd6afbf3c203f949c3b7b579b715eb61811cfe6db2649ecf8a7`.
-- Two separated readiness audits around 34 passing local assertions retained
-  exact head/tree/base, one DCO commit, five paths, one exact-head successful
-  run, `MERGEABLE/CLEAN`, and zero comments, reviews, or review comments.
-- Guarded squash `d658bd7df926775ea77b36b34dec377a14a76bb6` has the exact
-  qualified tree, sole M99 feature-squash parent, standalone DCO trailer, and a
-  valid GitHub signature verified at `2026-08-24T13:01:51Z`. The integration
-  branch is deleted remotely and locally.
+- M99 closeout PR #251 merged as verified squash
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, with sole M99 integration
+  parent, reviewed tree, standalone DCO trailer, and valid GitHub signature.
+  Final history, branch, metadata, whitespace, and cleanup audits passed; only
+  `main` remained locally and remotely before the M100 branch was created.
+- PKWARE APPNOTE 6.3.10 defines the duplicated four-byte little-endian
+  compressed-size fields. Python documents public `ZipInfo.compress_size` and
+  `ZipInfo.header_offset`; CPython's writer uses the same central size while
+  handling established descriptor and ZIP64 exceptions outside this profile.
+- A deterministic two-member probe on exact CPython 3.12.13, 3.13.13, and
+  3.14.5 retained central/local sizes `[11, 11]`, changed only the second local
+  size to `12`, and still read both payloads.
+- The format/Ruff-clean, strict-Pyright-clean M100 red contract collected 30
+  assertions on exact CPython 3.14.5: 20 established behavior, precedence,
+  producer, empty-archive, and protected-surface controls passed; ten intended
+  policy/helper/ordering/documentation assertions failed against unchanged
+  M99. No complete pass was claimed.
+- The first implementation checkpoint passed Ruff, strict Pyright, all 59
+  combined M99-M100 assertions, strict docs, and whitespace, but format check
+  requested one mechanical reflow in `scripts/smoke_release.py`. After that
+  reflow, both affected Python files are format/Ruff clean, strict Pyright has
+  zero findings, all 59 assertions pass in 0.43 seconds, strict docs build in
+  1.44 seconds with only the known upstream Material notice, and whitespace is
+  clean.
+- An attempted parallel supported-runtime gate first encountered sandboxed uv
+  cache denial, then raced three exact-Python invocations against the shared
+  `.venv`; only 3.14 completed while 3.12/3.13 failed during environment
+  replacement. Sequential correction passes all 30 M100 assertions on exact
+  CPython 3.12.13, 3.13.13, and 3.14.5.
+- The initial CPython 3.12.13 full suite found six README regressions caused by
+  compacting the historical status paragraph: exact M28-M34 no-evidence
+  phrases were lost or split. Restoring them as readable bullets made the six
+  assertions pass, then complete suites passed 2,892 tests with 16 established
+  skips on 3.12.13, 3.13.13, and 3.14.5 in 109.88, 102.30, and 109.01 seconds.
+- The unchanged 46-package lock and exact CPython 3.12.13 45-package graphics
+  environment pass. All 343 Python files are format clean; Ruff and strict
+  Pyright pass; architecture passes 1,362 assertions with one established
+  Windows capability skip in 9.90 seconds; strict docs build in 1.55 seconds;
+  all 35 metadata/M100 assertions pass; and whitespace is clean.
+- All ten real-wgpu tests pass in 7.49 seconds. One-repeat base and graphics
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established state, capture, and replay identities.
+- Two fresh builds reproduce a 275,920-byte pure wheel at
+  `eccad7badcf0c629d04f23531a0402c24f718b442153907d678a898662452ccb`
+  and a 1,448,116-byte source archive at
+  `f24551359391ddd62b1f3a4a0692bff7c70a4681d5363d0eedf1e350f88bc78b`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording this evidence changes the source archive.
+- Findings-first review found no actionable issue across the 15 intended paths.
+  The runtime diff is exactly two constants, one ordered call, and one position-
+  restoring helper using public ZIP metadata; stable error, M99 precedence,
+  empty behavior, and owned cleanup are covered. Protected workflows, stager,
+  project metadata, lock, runtime package/API, dependency/version, and release
+  authority are unchanged. Credential and explicit service-identity scans are
+  empty; no retired control path is tracked. The 94-entry pure wheel and 566-
+  entry source archive contain no native, WASM, bytecode, or retired control-
+  metadata entry.
+- Review-inclusive repeat builds reproduce the same 275,920-byte wheel at
+  `eccad7badcf0c629d04f23531a0402c24f718b442153907d678a898662452ccb`
+  and a 1,450,072-byte source archive at
+  `bccf6d8f119d8f633a39a64094badf3ad8a6c1dfb40ffe4eca1396465619211a`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Hosted exact-head artifacts would remain authoritative
+  after factual record updates change the source archive.
+- Final source separator: the unchanged 46-package lock resolves in 0.78
+  milliseconds; all 343 Python files remain format clean; Ruff and strict
+  Pyright pass; all 1,362 architecture assertions pass with one established
+  Windows capability skip in 10.28 seconds; strict docs build in 1.61 seconds;
+  all 35 metadata/M100 assertions pass in 0.50 seconds; and whitespace is
+  clean.
+- Precommit audit: after fetch/prune, branch base, local `main`, `origin/main`,
+  and merge base remain exact M99 closeout with divergence `0 0`. Exactly 15
+  intended paths change; only `main` and the neutral M100 branch exist locally,
+  and only `origin/main` exists remotely. Open PR, M100 run, release, and tag
+  queries are empty. Protected workflow, metadata, lock, runtime package, and
+  sample producer surfaces have no diff; Git has zero critical integrity
+  findings; whitespace is clean; and exact DCO identity is configured.
+- Final post-audit separator: strict docs build in 1.47 seconds; all 35
+  metadata/M100 assertions pass in 0.47 seconds; credential, explicit service-
+  identity, and retired-control scans remain at zero; and whitespace is clean.
 
 ## Explicit non-scope
 
-- No CRC recomputation, payload read, payload-integrity certification,
-  polynomial selection, CRC repair, or alternate checksum.
-- No compressed/uncompressed size comparison or constraint.
+- No decompression or recompression and no uncompressed-size comparison.
+- No compression-ratio or archive-bomb policy and no payload-integrity
+  certification.
 - No field-wide local/central comparison, complete local-record bound, payload
   or next-header bound, gap, adjacency, contiguity, physical non-overlap rule,
   or inter-member layout validator.
@@ -92,7 +131,6 @@
 
 ## Remaining acceptance work
 
-- Validate, commit, publish, audit, and squash-integrate exactly the three
-  factual closeout records without allocating a workflow.
-- Delete verified M99 scratch targets and every branch except `main`, verify
-  the final feature/integration/closeout sole-parent chain, then select M100.
+- Publish and exact-head hosted-qualify the ready PR only after the automated-
+  review identity exposure is
+  resolved or the maintainer explicitly accepts that external disclosure risk.

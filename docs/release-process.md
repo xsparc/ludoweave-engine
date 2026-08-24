@@ -969,6 +969,21 @@ inter-member layout validator, workflow, dependency, runtime API, release
 authority, or producer change. This profile is not a general archive sandbox
 and is not a real public release observation.
 
+M100/RFC-0083 reads the bounded four-byte local compressed size after M99 and
+requires it to match public central `ZipInfo.compress_size` encoded little-
+endian. This one four-byte local-compressed-size consistency classifier runs
+before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle local header
+compressed sizes are inconsistent`; all owned resources close before control
+returns.
+
+The fixed producer's 50 local and central compressed sizes match. M100 performs
+no decompression or recompression, no uncompressed-size comparison, no
+compression-ratio policy, no field-wide consistency check, no payload or next-
+header bound, and no inter-member layout validator, workflow, dependency,
+runtime API, release authority, or producer change. This profile is not a
+general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

@@ -123,6 +123,7 @@ nav:
       - RFC-0080 - Require consistent local-header extraction versions: rfcs/0080-require-consistent-local-header-extraction-versions.md
       - RFC-0081 - Require consistent local-header timestamps: rfcs/0081-require-consistent-local-header-timestamps.md
       - RFC-0082 - Require consistent local-header CRC-32 values: rfcs/0082-require-consistent-local-header-crcs.md
+      - RFC-0083 - Require consistent local-header compressed sizes: rfcs/0083-require-consistent-local-header-compressed-sizes.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

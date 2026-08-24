@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M100/RFC-0083 local-header compressed-size consistency preflight. Each
+  bounded four-byte local compressed size must equal public central
+  `ZipInfo.compress_size` before decoded-name policy, metadata, inventory,
+  reads, or staging, with no decompression or recompression, no uncompressed-
+  size comparison, no payload or next-header bound, no inter-member layout
+  validator, and no workflow, dependency, producer, runtime API, or release-
+  authority change.
 - Add M99/RFC-0082 local-header CRC-32 consistency preflight. Each bounded
   four-byte local CRC must equal public central `ZipInfo.CRC` before decoded-
   name policy, metadata, inventory, reads, or staging, without CRC

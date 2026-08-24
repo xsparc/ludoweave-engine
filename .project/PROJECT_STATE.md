@@ -1,6 +1,117 @@
 # Project State
 
-## M99 local-header CRC-32 consistency preflight - integration record merged; closeout active
+## M100 local-header compressed-size consistency preflight - implementation checkpoint passes
+
+- Base: exact verified M99 closeout squash
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`.
+- Selected policy: after M99, read exactly four bytes at each public
+  `ZipInfo.header_offset + 18` and require equality with public central
+  `ZipInfo.compress_size` encoded unsigned little-endian before decoded names,
+  metadata, exact inventory, staging, or reads. The stable content-silent error
+  is `sample bundle local header compressed sizes are inconsistent`.
+- Primary-source basis: PKWARE APPNOTE 6.3.10 sections 4.3.3, 4.3.7, 4.3.9,
+  and 4.3.12 define little-endian ZIP fields, duplicated four-byte compressed
+  sizes, and descriptor/ZIP64 exceptions already excluded by earlier policy.
+  Python documents public `ZipInfo.compress_size` and `ZipInfo.header_offset`;
+  CPython's writer derives the corresponding local field from the same size.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained local
+  and central compressed sizes `[11, 11]` and read both payloads after only the
+  second local compressed size changed from `11` to `12`.
+- Red contract: the 30-assertion M100 contract is format/Ruff clean and strict
+  Pyright reports zero findings. Exact CPython 3.14.5 passed 20 established
+  runtime, precedence, producer, empty-archive, and protected-surface controls;
+  ten stable-error, helper, cleanup, ordering, and documentation assertions
+  failed because closed M99 had no M100 policy/helper/RFC. No complete pass was
+  claimed.
+- Implementation scope: one four-byte equality classifier after M99 plus
+  RFC-0083 and aligned records. No decompression or recompression,
+  uncompressed-size comparison, compression-ratio policy, payload or next-
+  header bound, inter-member layout policy, workflow, dependency, producer,
+  runtime API, version, release authority, tag, release, or publication is
+  added.
+- First checkpoint correction: Ruff and strict Pyright passed, all 59 combined
+  M99-M100 assertions passed in 0.48 seconds, strict docs built in 1.53 seconds,
+  and whitespace was clean, but format check requested one mechanical reflow in
+  the runtime helper. No clean format or complete checkpoint claim is made from
+  that invocation.
+- Corrected checkpoint: one runtime file was mechanically reformatted. Both
+  affected Python files are now format/Ruff clean; strict Pyright reports zero
+  findings; all 59 M99-M100 assertions pass in 0.43 seconds; strict docs build
+  in 1.44 seconds with only the known upstream Material notice; and whitespace
+  is clean.
+- Supported-runtime correction: the first sandboxed parallel invocation could
+  not access uv's shared cache. The escalated parallel retry then raced three
+  interpreter-specific invocations against one `.venv`; exact 3.14 passed 30
+  assertions while 3.12/3.13 failed during environment replacement. Sequential
+  correction passes all 30 M100 assertions on exact CPython 3.12.13, 3.13.13,
+  and 3.14.5 in 0.74, 1.39, and 1.45 seconds respectively.
+- Full-suite documentation correction: the initial exact 3.12.13 suite passed
+  2,886 tests with 16 established skips but failed six historical README
+  boundary assertions because compacting the status paragraph removed or split
+  exact M28-M34 no-evidence phrases. Restoring those facts as readable bullets
+  made the six assertions pass. Corrected exact 3.12.13, 3.13.13, and 3.14.5
+  suites each pass 2,892 tests with 16 skips in 109.88, 102.30, and 109.01
+  seconds.
+- Local gate: the unchanged 46-package lock resolves in one millisecond and the
+  exact CPython 3.12.13 locked 45-package graphics environment installs. All
+  343 Python files are format clean; Ruff and strict Pyright pass; all 1,362
+  architecture assertions pass with one established Windows capability skip
+  in 9.90 seconds; strict docs build in 1.55 seconds; all 35 metadata/M100
+  assertions pass; and whitespace is clean.
+- Graphics/release proof: all ten real-wgpu tests pass in 7.49 seconds; both
+  one-repeat profiles validate; Clockwork Arena and Agent World Builder retain
+  canonical state/capture/replay identities. Two fresh builds reproduce a
+  275,920-byte pure wheel at
+  `eccad7badcf0c629d04f23531a0402c24f718b442153907d678a898662452ccb`
+  and a 1,448,116-byte source archive at
+  `f24551359391ddd62b1f3a4a0692bff7c70a4681d5363d0eedf1e350f88bc78b`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 15 intended paths change. The runtime diff is
+  one two-constant/call/helper slice using public `ZipInfo.header_offset` and
+  `ZipInfo.compress_size`, with M99 precedence, stable content-silent error,
+  snapshot restoration, empty-inventory behavior, and owned cleanup preserved.
+  No workflow/release-workflow, lock, metadata, runtime package/API, sample
+  producer, dependency, version, release authority, credential, backend/
+  native/WASM, or explicit service-identity change was found. No retired
+  control path is tracked. The 94-entry wheel remains pure `py3-none-any`; it
+  and the 566-entry source archive contain no banned native/WASM/bytecode/
+  control-metadata entry. No remaining actionable review finding exists.
+- Review-inclusive artifacts: two fresh builds reproduce the 275,920-byte pure
+  wheel at
+  `eccad7badcf0c629d04f23531a0402c24f718b442153907d678a898662452ccb`
+  and a 1,450,072-byte source archive at
+  `bccf6d8f119d8f633a39a64094badf3ad8a6c1dfb40ffe4eca1396465619211a`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Hosted exact-head artifacts would remain authoritative
+  after final factual record updates change the source archive.
+- Final source separator: the unchanged 46-package lock resolves in 0.78
+  milliseconds; all 343 files remain format clean; Ruff and strict Pyright
+  pass; all 1,362 architecture assertions pass with one established skip in
+  10.28 seconds; strict docs build in 1.61 seconds; all 35 metadata/M100
+  assertions pass in 0.50 seconds; and whitespace remains clean.
+- Precommit audit: after fetch/prune, branch base, local `main`, `origin/main`,
+  and merge base remain exact M99 closeout with divergence `0 0`. Exactly 15
+  intended paths change; only `main` plus the neutral M100 feature branch exist
+  locally and only `origin/main` remotely. Authentication is valid; open PR,
+  current-branch workflow, release, and tag queries are empty. Protected
+  workflow, project metadata, lock, runtime package, and sample producer
+  surfaces have no diff; credential, explicit service-identity, and retired-
+  control-path scans are empty; full Git checking reports 43 expected dangling-
+  object lines and zero critical finding; exact DCO identity is configured;
+  and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.47 seconds with only the
+  known upstream Material notice; all 35 metadata/M100 assertions pass in 0.47
+  seconds; credential, explicit service-identity, and retired-control scans
+  remain at zero; and whitespace remains clean.
+- Publication hold: a no-finding automated review appeared on the completed
+  M99 closeout PR after merge and exposed the configured review service's
+  identity. Local M100 development and validation continue, but a ready public
+  PR will not be created until that exposure risk is resolved or explicitly
+  accepted by the maintainer.
+
+## M99 local-header CRC-32 consistency preflight - complete and closed
 
 - Base: exact verified M98 closeout squash
   `6d4529efb0476f3e3e45f78204d2b0aa192da018`, tree
@@ -185,6 +296,26 @@
 - Final closeout separator: all five metadata-hygiene assertions passed in
   0.32 seconds; whitespace and exact three-path scope remain clean; and the
   added-content explicit development-tool-identity scan returned no matches.
+- Closeout PR #251 exact DCO head
+  `98cea33e59d948ac346b3ea7d10b5c7199f58ed1`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, had no workflow by design and
+  passed two separated readiness audits before merge.
+- Guarded closeout squash `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`
+  has the exact reviewed tree, sole M99 integration-record parent, standalone
+  DCO trailer, and valid GitHub signature verified at `2026-08-24T13:06:35Z`.
+- Final M99 audit: local `main` and `origin/main` resolved to exact closeout
+  with divergence `0 0`; only `main` remained locally/remotely; open PR,
+  release, tag, and relevant run queries were empty; the three-squash chain
+  retained exact parents, reviewed trees, DCO trailers, and valid signatures;
+  all real M99 scratch targets were independently confirmed absent; metadata
+  and whitespace passed. The initial cleanup reporter accidentally treated its
+  own status text as synthetic targets and emitted non-terminating errors, but
+  independent literal-path verification confirmed all 12 actual targets were
+  absent and `.tmp` was empty.
+- After the final audit, a no-finding automated review was added to the merged
+  closeout PR by an external repository setting. It changes no source or M99
+  qualification result but creates a public service-identity disclosure risk
+  that holds later ready-PR publication pending maintainer direction.
 
 ## M98 local-header timestamp consistency preflight - complete and closed
 

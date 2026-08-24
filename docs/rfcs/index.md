@@ -87,3 +87,4 @@ was adopted.
 - [RFC-0080: require consistent local-header extraction versions](0080-require-consistent-local-header-extraction-versions.md)
 - [RFC-0081: require consistent local-header timestamps](0081-require-consistent-local-header-timestamps.md)
 - [RFC-0082: require consistent local-header CRC-32 values](0082-require-consistent-local-header-crcs.md)
+- [RFC-0083: require consistent local-header compressed sizes](0083-require-consistent-local-header-compressed-sizes.md)

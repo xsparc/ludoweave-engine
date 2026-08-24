@@ -393,6 +393,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   header bound, or inter-member layout validator, and changes no workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M100 reads each bounded four-byte local compressed size after M99 and
+  requires exact equality with public central `ZipInfo.compress_size` before
+  decoded names, metadata, inventory, staging, or reads. Its content-silent
+  error is `sample bundle local header compressed sizes are inconsistent`.
+  This one four-byte local-compressed-size consistency classifier performs no
+  decompression or recompression, no uncompressed-size comparison, no payload
+  or next-header bound, and no inter-member layout validator, and changes no
+  workflow, dependency, producer, runtime API, or release authority; it is not
+  a general archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
