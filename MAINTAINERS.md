@@ -610,6 +610,17 @@ general archive sandbox and is not a real public release observation. M114 is
 locally stacked on fully validated, unpushed M113; none of M100-M114 has hosted
 qualification.
 
+M115 scopes sample-bundle byte reproducibility to the release environment.
+Repeated staging inside one fixed resolved environment must remain
+byte-identical. Supported CPython 3.12-3.14 runtimes remain compatible
+consumers and local staging environments; they do not receive a cross-runtime
+byte-identity promise. This is one sample-bundle reproducibility-scope decision
+with no compressor-identity manifest field. It adds no workflow, allocation,
+dependency, version, verifier, producer, runtime source/API, release authority,
+tag, release, or publication. It is not a general reproducible-build claim and
+is not a real public release observation. M115 is locally stacked on fully
+validated, unpushed M114; none of M100-M115 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M115/RFC-0098 decision to scope sample-bundle byte reproducibility to
+  the release environment. Repeated fixed-environment production remains the
+  claim; supported runtimes receive no cross-runtime byte-identity promise and
+  manifests gain no compressor identity. There is no workflow, allocation,
+  dependency, producer, verifier, runtime API, or release-authority change.
 - Record M114/RFC-0097 decision to retain sample-member compression-level non-
   observability. The fixed producer remains explicit at level `9`, while the
   verifier adds no exact level-9 profile, inferred compressor level, payload-

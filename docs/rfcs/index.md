@@ -102,3 +102,4 @@ was adopted.
 - [RFC-0095: retain sample-member creating-system compatibility](0095-retain-sample-member-creating-system-compatibility.md)
 - [RFC-0096: retain sample-member compression-method compatibility](0096-retain-sample-member-compression-method-compatibility.md)
 - [RFC-0097: retain sample-member compression-level non-observability](0097-retain-sample-member-compression-level-non-observability.md)
+- [RFC-0098: scope sample-bundle byte reproducibility to the release environment](0098-scope-sample-bundle-byte-reproducibility.md)

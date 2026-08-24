@@ -17,9 +17,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > creating-system compatibility without adding a host allowlist; M113 retains
 > stored/deflated compression-method compatibility without an exact deflate-
 > only profile; M114 retains sample-member compression-level non-observability
-> without inferring an exact writer setting.
+> without inferring an exact writer setting; M115 scopes sample-bundle byte
+> reproducibility to the fixed release environment.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M114 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M115 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -756,6 +757,19 @@ compression-level non-observability decision with no exact level-9 verifier
 profile, no inferred compressor level, and no payload-content read. M114 adds
 no workflow, dependency, runtime API, verifier, or producer change, is not a
 general archive sandbox, and is not a real public release observation.
+
+M115 scopes sample-bundle byte reproducibility to the release environment.
+Repeated production in one fixed resolved environment remains byte-identical,
+while supported runtimes remain consumers and local staging environments rather
+than cross-runtime byte-identical producers. Exact Windows probes found the
+fixed bundle identical within each of CPython 3.12.13, 3.13.13, and 3.14.5;
+Python 3.14's default Windows zlib-ng producer emitted different compressed
+bytes from the earlier zlib producer. RFC-0098 records one sample-bundle
+reproducibility-scope decision with no cross-runtime byte-identity claim and no
+compressor-identity manifest field. M115 adds no workflow, allocation,
+dependency, producer, verifier, runtime API, or release-authority change, is
+not a general reproducible-build claim, and is not a real public release
+observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is

@@ -518,6 +518,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   compressor level, and no payload-content read. It changes no workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M115 scopes sample-bundle byte reproducibility to the release environment.
+  Repeated production within one fixed resolved environment remains the exact
+  byte-identity claim; supported runtimes receive no cross-runtime byte-
+  identity promise. This is one sample-bundle reproducibility-scope decision
+  with no compressor-identity manifest field. It changes no workflow,
+  allocation, dependency, producer, verifier, runtime API, or release
+  authority; it is not a general reproducible-build claim and is not a real
+  public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

@@ -765,6 +765,23 @@ order remain unchanged. M114 adds no payload-content read, workflow, verifier,
 dependency, runtime API, release authority, or producer change, is not a
 general archive sandbox, and is not a real public release observation.
 
+M115/RFC-0098 scopes sample-bundle byte reproducibility to the release
+environment. Repeated production in one fixed resolved environment must remain
+byte-identical. Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 probes each
+met that same-environment condition, while Python 3.14's default Windows
+zlib-ng implementation emitted different compressed bytes from the zlib
+implementation used by 3.12 and 3.13.
+
+The official producer remains the existing baseline CPython 3.12 release job.
+Supported CPython 3.12-3.14 runtimes remain compatible consumers and local
+staging environments, with no cross-runtime byte-identity claim. This is one
+sample-bundle reproducibility-scope decision with no compressor-identity
+manifest field, runtime rejection, or new verifier. The fixed producer's
+`compresslevel=9` and RFC-0021's separate same-source, same-job wheel/sdist
+boundary remain unchanged. M115 adds no workflow, allocation, dependency,
+producer, verifier, runtime API, or release-authority change, is not a general
+reproducible-build claim, and is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

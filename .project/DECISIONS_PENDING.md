@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M115 sample-bundle byte-reproducibility scope
+
+RFC-0098 resolves the M115 decision: sample-bundle byte reproducibility means
+repeated production inside one fixed resolved release environment. The current
+official producer remains the baseline CPython 3.12 tag job. Supported CPython
+3.12-3.14 runtimes remain compatible consumers, verifiers, and local staging
+environments without a cross-runtime byte-identity promise.
+
+No compressor allowlist or pin, compressor-identity manifest field, runtime
+rejection, recompression, new sample-byte verifier, workflow, runner allocation,
+dependency, producer, runtime API, or release-authority change is pending for
+M115. RFC-0021's separate wheel/sdist same-source, same-job boundary remains
+unchanged.
+
+Reopen this decision only if the official release producer environment changes
+or a concrete release requirement demands cross-runtime byte-identical sample
+archives. Such a proposal must identify the producer implementation, portable
+normalization strategy, compatibility cost, manifest consequences, and exact
+cross-platform evidence before changing the current boundary.
+
 RFC-0097 resolves the M114 sample-member compression-level non-observability
 decision. PKWARE's Deflate option bits encode broad categories rather than an
 exact numeric writer level. Python's `compresslevel` configures writing, while

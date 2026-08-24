@@ -2775,6 +2775,34 @@ a general archive sandbox, and not a real public release observation. No
 workflow, verifier, producer, dependency, runtime API, or release-authority
 changes. RFC-0097 defines the complete boundary.
 
+## M115 sample-bundle byte-reproducibility scope
+
+The fixed sample producer already normalizes inventory, member order,
+timestamps, host marker, permissions, method, and writer compression level.
+Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 probes each produced two
+byte-identical bundles within the same resolved environment. CPython 3.12 and
+3.13 used zlib 1.3.1 and emitted the same archive identity; CPython 3.14 used
+zlib-ng 2.2.4 through its zlib-compatible API and emitted a different archive
+identity. This is deterministic implementation variance, not within-
+environment nondeterminism.
+
+M115 therefore scopes sample-bundle byte reproducibility to the release
+environment. The official producer remains the existing baseline CPython 3.12
+release job, and the enforceable claim is repeated production within that one
+fixed resolved job environment. Supported CPython 3.12-3.14 runtimes remain
+compatible consumers and local staging environments; support does not imply
+cross-runtime producer-byte identity.
+
+This is one sample-bundle reproducibility-scope decision. It adds no cross-
+runtime byte-identity claim, compressor allowlist, runtime rejection,
+compressor-identity manifest field, recompression, or new reproducibility
+verifier. The fixed producer remains explicit at `compresslevel=9`; RFC-0021's
+wheel/sdist same-source, same-job boundary remains separate and unchanged.
+There is no workflow, allocation, producer, verifier, dependency, runtime API,
+or release-authority change. This is not a general reproducible-build claim and
+is not a real public release observation. RFC-0098 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

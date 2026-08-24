@@ -1,5 +1,94 @@
 # Project State
 
+## M115 scope sample-bundle byte reproducibility - implementation in progress
+
+- Base: fully locally validated M114 DCO commit
+  `0d365baf584fd4074e6b46128a6b4a1016ca296f`, tree
+  `2b3e8d8d173ed9a99978a92f072ff385422b9334`, sole parent exact M113.
+- Branch: `release/m115-scope-sample-bundle-reproducibility`; unpublished
+  under the existing public-review identity hold.
+- Direction: scope sample-bundle byte reproducibility to repeated production
+  within one fixed resolved release environment. Supported CPython 3.12-3.14
+  runtimes remain compatible consumers/verifiers/local staging environments,
+  not cross-runtime byte-identical producers.
+- Primary-source basis: Python 3.14.0 released on 2025-10-07; official Python
+  documentation records zlib-ng as the default Windows `zlib` implementation
+  and exposes build/runtime implementation constants.
+- Exact Windows producer probe: CPython 3.12.13 and 3.13.13 used zlib 1.3.1 and
+  each repeated a 111,168-byte archive at SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+  CPython 3.14.5 used zlib-ng 2.2.4 and repeated a different 111,413-byte
+  archive at SHA-256
+  `d592e99c8c3a65ae63f0cf89ed7eff6094365ca98ba58d08c2099fac4316834b`.
+  Every pair was byte-identical within its resolved environment.
+- Infrastructure fact: the first sandboxed exact-runtime launches exited 1
+  before project execution because uv's existing user cache was inaccessible;
+  approved cache-access reruns exited 0.
+- Deliberate red: exact CPython 3.12.13 passed six behavior and protected-
+  surface assertions and failed only the intended absent-documentation
+  assertion in 0.32 seconds.
+- Implementation scope: RFC-0098, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, producer, verifier,
+  reproducibility script, manifest, dependencies, lock, version, runtime
+  package/API, and release authority remain unchanged.
+- Focused proof: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass all
+  seven M115 assertions.
+- Static/source proof: the unchanged 46-package lock, 358-file format check,
+  Ruff, corrected strict Pyright with the locked graphics extra, 1,589
+  architecture assertions with one established capability skip, strict docs,
+  and whitespace pass. The first Pyright environment omitted the optional
+  graphics providers and its failure is retained factually.
+- Complete suites: exact 3.12.13 with graphics passes 3,129 tests with 15
+  skips; exact 3.13.13 and 3.14.5 base environments each pass 3,119 tests with
+  16 skips.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profile
+  smokes, Clockwork Arena, and Agent World Builder pass with unchanged
+  deterministic state/replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,133-byte pure wheel at
+  SHA-256
+  `1c60a9d05b6180649c7cb975c0394eda198df3061769de7956a5b3112a1b970a`
+  and a 1,536,034-byte source archive at SHA-256
+  `bb04237c4ac401e5c1044c4c36f1dc4c3e044b1aed3760c023a10eb6d8f96aa0`.
+  Wheel smoke passes. Two complete same-environment stages are byte-identical,
+  including the 111,168-byte sample archive at SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  complete release smoke and 94/596-entry package hygiene pass.
+- Findings-first review: exactly 15 intended paths, no actionable finding,
+  zero protected workflow/stager/verifier/reproducibility/runtime/metadata/lock
+  diff, zero public tool-identity or high-confidence secret match, and clean
+  whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,133-byte
+  wheel at SHA-256
+  `1c60a9d05b6180649c7cb975c0394eda198df3061769de7956a5b3112a1b970a`
+  and a 1,537,594-byte source archive at SHA-256
+  `93a6b2df81e8b229c4dc2e89453d4477426925b41a967eed893c6b3a994d6aca`.
+  Wheel smoke, twice-staged byte identity, complete release smoke, and 94/596-
+  entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Final source separator: lock, 358-file formatting, Ruff, strict Pyright,
+  strict docs, protected surfaces, and whitespace pass. An initial parallel
+  pair of pytest gates collided on the shared `.pytest-tmp` root; after exact
+  verified cleanup, the architecture suite passed sequentially with 1,589
+  assertions and one established skip, then all 12 focused metadata/M115
+  assertions passed. The first sequential launch was separately blocked before
+  project execution by sandboxed uv-cache access and the approved rerun passed.
+- History/hosted-state audit: refreshed local/remote `main` and merge base are
+  exact M99; M114 head/tree/sole-parent and the M100-M114 linear stack are
+  exact with `0 15` divergence. Exact maintainer identity and one M114 DCO
+  sign-off pass. Only required local stack branches and `origin/main` exist.
+  Git fsck reports 44 dangling-only lines and zero critical finding. M115 PR,
+  Actions-run, release, and remote-tag queries are empty, so local work consumed
+  no hosted runner allocation.
+- Post-audit separator: strict docs, all 12 focused metadata/M115 assertions,
+  protected surfaces, whitespace, exact 15-path scope, public tool-identity
+  scan, and high-confidence secret scan pass.
+- Final precommit metadata separator: all 12 focused metadata/M115 assertions
+  and whitespace pass after final task-state wording.
+- Qualification status: commit and cleanup remain.
+- Nonclaims: no cross-runtime byte identity, compressor identity/provenance,
+  general reproducible-build result, hosted M115 run, real public release,
+  tag, release, publication, push, or PR.
+
 ## M114 retain sample-member compression-level non-observability - implementation in progress
 
 - Base: fully locally validated M113 standalone DCO commit
