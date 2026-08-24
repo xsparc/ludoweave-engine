@@ -1,6 +1,95 @@
 # Project State
 
-## M112 retain sample-member creating-system compatibility - implementation in progress
+## M113 retain sample-member compression-method compatibility - implementation in progress
+
+- Base: fully locally validated M112 standalone DCO commit
+  `b3c9406c382dc91802a424e308801be2ef1b100e`, tree
+  `2cfd7f3bb027736cc6a0b755a182e8300bcfb68d`, with sole parent exact M111.
+  It remains unpushed and has no hosted qualification claim.
+- M112 closeout: exact maintainer author/committer identity, one DCO trailer,
+  15 intended paths, clean tracked state, and `0 13` divergence from current
+  `origin/main` were verified. Nine direct ignored, untracked, non-reparse
+  `.tmp/m112*` targets matched the exact expected set, were removed through an
+  absolute-parent guard, and were separately confirmed absent.
+- Direction evidence: PKWARE defines compression as optional, method `0` as
+  stored, and method `8` as deflated. Python exposes and reads both and defaults
+  new archives to stored. M64 already admits exactly those two methods and M95
+  independently requires local/central method agreement.
+- Exact runtime/producer probe: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  preserve/read stored and deflated members with version `20`, flags `0`, and
+  payload `payload`. All 50 fixed-producer members remain method `8`, versions
+  `20`, and flags `0`.
+- Deliberate-red contract: after one Ruff-only assertion-order correction, the
+  format/Ruff-clean exact CPython 3.12.13 run passes 13 behavior, complete and
+  mixed bundle, standard-writer, file-type, unsupported-method, inventory,
+  producer, source-shape, and protected-surface assertions and fails only the
+  intentionally missing documentation assertion in 0.76 seconds.
+- Implementation scope: RFC-0096 and aligned records retain M64's stored/
+  deflated allowlist and M95's local/central agreement without changing
+  runtime. The decision adds no exact deflate-only profile, new decompressor,
+  compression-level or ratio policy, recompression, payload-content read,
+  workflow, dependency, producer, runtime API, version, or release authority.
+- Implementation checkpoint: the focused contract remains format/Ruff clean;
+  all 14 assertions pass on exact CPython 3.12.13 in 0.37 seconds; strict docs
+  and whitespace pass.
+- Supported-Python focused proof: all 14 assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.35, 0.71, and 0.72 seconds.
+- Static/architecture proof: the unchanged lock resolves; all 356 files are
+  format clean; Ruff and strict Pyright pass; all 1,566 architecture assertions
+  pass with one established skip in 11.23 seconds; strict docs and whitespace
+  pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,106
+  tests with 15 skips in 109.96 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,096 tests with 16 skips in 101.88 and 105.82 seconds.
+- Graphics/profile/vertical proof: the first command was sandbox-denied before
+  pytest and left both profile targets absent. The approved rerun passes all
+  ten real-wgpu tests in 6.68 seconds; two- and three-workload profiles
+  validate; Clockwork Arena and Agent World Builder reproduce their established
+  state, capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,620-byte
+  pure wheel at
+  `f88ce3fcc215203e053e43b78586531259daea01aa59464691391706f0a1ee7b`
+  and a 1,523,453-byte source archive at
+  `393ce4098c849721da265794cef6f82132536c13a6c45b14b097f218ce99a90d`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/592-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review corrected the inventory-precedence fixture to create
+  and assert both stored and deflated members before the unchanged no-read/no-
+  staging failure. The corrected focused/metadata/docs/whitespace gate passes.
+  Exactly 15 intended record, documentation, and test paths change; protected
+  workflows, validator, stager, metadata, lock, runtime package/API,
+  dependencies, producer, version, and release authority have zero diff. No
+  actionable finding remains.
+- Review-inclusive artifacts: two fresh builds reproduce the unchanged
+  277,620-byte pure wheel at
+  `f88ce3fcc215203e053e43b78586531259daea01aa59464691391706f0a1ee7b`
+  and a 1,524,010-byte source archive at
+  `849f0b20c9f4db764b637d65786cdd1a86ab6dde2d8b749e7d98c1bcbea59c43`.
+  Reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  complete release smoke, and 94/592-entry package hygiene pass.
+- Final reviewed-tree separator: the unchanged lock, 356-file format check,
+  Ruff, strict Pyright, 1,566 architecture assertions with one established
+  Windows capability skip, strict docs, 19 focused metadata/compatibility
+  assertions, and whitespace all pass.
+- Precommit audit: fetch/prune retains exact M112 head/tree/parent and exact
+  M99 local-main/origin-main/merge-base identity with `0 13` divergence and a
+  linear M100-M112 range. Exactly 15 intended paths change. Only `main` plus
+  required M100-M113 local branches exist and only `origin/main` remotely.
+  Exact maintainer identity, protected surfaces, whitespace, object integrity,
+  secret scan, and public tool-identity scan pass. GitHub reports no M113 PR/
+  run, release, or tag.
+- Final post-audit separator: strict docs, all 19 focused assertions, protected
+  surfaces, whitespace, exact 15-path scope, high-confidence secret scan, and
+  public tool-identity scan pass.
+
+## M112 retain sample-member creating-system compatibility - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `b3c9406c382dc91802a424e308801be2ef1b100e`, tree
+  `2cfd7f3bb027736cc6a0b755a182e8300bcfb68d`, has sole parent exact M111,
+  exact maintainer author/committer identity, one sign-off, and 15 intended
+  paths. Nine audited `.tmp/m112*` targets were removed and zero remain.
 
 - Base: fully locally validated M111 standalone DCO commit
   `fb577c5d414653fe2a6f66841bda8d86c8f306f7`, tree

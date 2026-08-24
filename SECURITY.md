@@ -502,6 +502,13 @@ Maintainers will acknowledge the report through the same private channel, assess
   changes no workflow, dependency, producer, runtime API, or release authority;
   it is not a general archive sandbox and is not a real public release
   observation.
+- M113 retains sample-member compression-method compatibility. M64's exact
+  stored/deflated allowlist and M95's local/central method agreement remain in
+  force, while the fixed producer remains deflated. This is one compression-
+  method compatibility decision with no exact deflate-only profile, no new
+  decompressor, and no payload-content read. It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

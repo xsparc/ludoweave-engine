@@ -100,3 +100,4 @@ was adopted.
 - [RFC-0093: retain sample-member timestamp compatibility](0093-retain-sample-member-timestamp-compatibility.md)
 - [RFC-0094: retain sample-member permission compatibility](0094-retain-sample-member-permission-compatibility.md)
 - [RFC-0095: retain sample-member creating-system compatibility](0095-retain-sample-member-creating-system-compatibility.md)
+- [RFC-0096: retain sample-member compression-method compatibility](0096-retain-sample-member-compression-method-compatibility.md)

@@ -2727,6 +2727,29 @@ validity claim, not a general archive sandbox, and not a real public release
 observation. No workflow, verifier, producer, dependency, runtime API, or
 release-authority changes. RFC-0095 defines the complete boundary.
 
+## M113 retain sample-member compression-method compatibility
+
+PKWARE defines compression as optional, method `0` as stored, and method `8`
+as deflated. Python exposes both through public `ZipInfo.compress_type`, reads
+both on every supported runtime, and defaults new archives to stored. The fixed
+sample producer explicitly emits deflate for every member.
+
+M64 already admits exactly stored and deflated methods before size bounds and
+extraction. M95 independently requires each bounded local-header compression
+method to equal the parser-exposed central method. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 preserve and read both methods, while complete stored,
+deflated, and mixed-method bundles pass every established policy.
+
+M113 therefore retains sample-member compression-method compatibility. It is
+one compression-method compatibility decision, not a new classifier. It adds
+no exact deflate-only profile, no new decompressor, recompression, compression-
+ratio policy, or payload-content read. M64's allowlist and M95's consistency
+boundary remain unchanged, and the producer remains reproducible with deflate.
+This is not a general ZIP validity claim, not a general archive sandbox, and
+not a real public release observation. No workflow, verifier, producer,
+dependency, runtime API, or release-authority changes. RFC-0096 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

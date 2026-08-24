@@ -14,9 +14,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > sample-member internal attributes; M110 retains timestamp compatibility after
 > rejecting an exact verifier profile; M111 retains permission-bit
 > compatibility while preserving the M65 file-type boundary; M112 retains
-> creating-system compatibility without adding a host allowlist.
+> creating-system compatibility without adding a host allowlist; M113 retains
+> stored/deflated compression-method compatibility without an exact deflate-
+> only profile.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M112 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M113 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -731,6 +733,16 @@ interpretation, and no payload-content read. M65's file-type boundary remains
 unchanged. M112 adds no workflow, dependency, runtime API, verifier, or
 producer change, is not a general archive sandbox, and is not a real public
 release observation.
+
+M113 retains sample-member compression-method compatibility. PKWARE defines
+stored method `0` and deflated method `8`; Python exposes and reads both, and
+its writer default is stored. Complete release smoke retains M64's exact
+stored/deflated allowlist and M95's local/central method agreement while the
+fixed producer remains deflated. RFC-0096 records one compression-method
+compatibility decision with no exact deflate-only profile, no new decompressor,
+and no payload-content read. M113 adds no workflow, dependency, runtime API,
+verifier, or producer change, is not a general archive sandbox, and is not a
+real public release observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is

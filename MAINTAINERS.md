@@ -587,6 +587,17 @@ tag, release, or publication. It is not a general archive sandbox and is not a
 real public release observation. M112 is locally stacked on fully validated,
 unpushed M111; none of M100-M112 has hosted qualification.
 
+M113 retains sample-member compression-method compatibility. M64 continues to
+admit only stored method `0` and deflated method `8`, and M95 continues to
+require local/central method agreement. The deterministic producer remains
+deflated. This is one compression-method compatibility decision with no exact
+deflate-only profile, no new decompressor, and no payload-content read. It adds
+no workflow, allocation, dependency, version, verifier, producer, runtime
+source/API, release authority, tag, release, or publication. It is not a
+general archive sandbox and is not a real public release observation. M113 is
+locally stacked on fully validated, unpushed M112; none of M100-M113 has hosted
+qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

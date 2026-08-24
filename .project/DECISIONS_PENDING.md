@@ -2,6 +2,20 @@
 
 No architecture decision is currently blocked.
 
+RFC-0096 resolves the M113 sample-member compression-method compatibility
+decision. PKWARE defines compression as optional, method `0` as stored, and
+method `8` as deflated. Python exposes and reads both and defaults new archives
+to stored. M64 already admits exactly those two methods, while M95 requires
+their local and central values to agree.
+
+The accepted decision retains stored/deflated compatibility without an exact
+deflate-only profile. Other compression methods remain outside the private
+sample profile, and the fixed 50-member producer remains method `8`. This is
+one compression-method compatibility decision, not a new decompressor,
+compression-level or ratio policy, recompressor, payload-content check, archive
+repair, general ZIP validity claim, or general sandbox. RFC-0096 records the
+accepted policy; no M113 design decision remains pending.
+
 RFC-0095 resolves the M112 sample-member creating-system compatibility
 decision. PKWARE defines the upper `version made by` byte as the host system
 with which external attributes are compatible. CPython intentionally defaults

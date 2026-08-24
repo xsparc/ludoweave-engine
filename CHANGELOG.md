@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M113/RFC-0096 decision to retain sample-member compression-method
+  compatibility. M64's stored/deflated allowlist and M95's local/central
+  agreement remain unchanged while the producer stays deflated, with no exact
+  deflate-only profile, new decompressor, payload-content read, workflow,
+  dependency, producer, runtime API, or release-authority change.
 - Record M112/RFC-0095 decision to retain sample-member creating-system
   compatibility. Standard-library host markers remain admitted without a
   creating-system allowlist or host-specific external-attribute interpretation;

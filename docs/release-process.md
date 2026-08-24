@@ -738,6 +738,20 @@ attributes. M112 adds no workflow, verifier, dependency, runtime API, release
 authority, or producer change, is not a general archive sandbox, and is not a
 real public release observation.
 
+M113/RFC-0096 retains sample-member compression-method compatibility. PKWARE
+defines method `0` as stored and method `8` as deflated; Python exposes and
+reads both and defaults new archives to stored. Complete release smoke retains
+M64's exact stored/deflated allowlist and M95's local/central method agreement.
+The fixed 50-member producer remains deflated for reproducibility.
+
+M113 is one compression-method compatibility decision. Complete release smoke
+adds no exact deflate-only profile, no new decompressor, recompression,
+compression-ratio policy, or payload-content read. Other compression methods
+remain outside the sample profile and established diagnostics retain their
+order. M113 adds no workflow, verifier, dependency, runtime API, release
+authority, or producer change, is not a general archive sandbox, and is not a
+real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable
