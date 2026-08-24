@@ -576,6 +576,17 @@ a general archive sandbox and is not a real public release observation. M111 is
 locally stacked on fully validated, unpushed M110; none of M100-M111 has hosted
 qualification.
 
+M112 retains sample-member creating-system compatibility. Standard-library
+Windows and non-Windows host markers remain admitted when every established
+check passes; M65's file-type boundary remains unchanged and the deterministic
+producer remains fixed at host `3`. This is one host-marker compatibility
+decision with no creating-system allowlist, no host-specific external-attribute
+interpretation, and no payload-content read. It adds no workflow, allocation,
+dependency, version, verifier, producer, runtime source/API, release authority,
+tag, release, or publication. It is not a general archive sandbox and is not a
+real public release observation. M112 is locally stacked on fully validated,
+unpushed M111; none of M100-M112 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

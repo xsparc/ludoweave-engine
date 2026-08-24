@@ -724,6 +724,20 @@ no payload-content read for this decision. It adds no workflow, verifier,
 dependency, runtime API, release authority, or producer change, is not a
 general archive sandbox, and is not a real public release observation.
 
+M112/RFC-0095 retains sample-member creating-system compatibility. CPython
+initializes `ZipInfo.create_system` to host `0` on Windows and host `3`
+elsewhere. Those standard-library markers and other parser-exposed markers
+remain unclassified when every established check passes. The fixed producer's
+50 members remain explicit host `3` for reproducibility.
+
+M112 is one host-marker compatibility decision. Complete release smoke adds no
+creating-system allowlist, no exact creating-system profile, no host-specific
+external-attribute interpretation, and no payload-content read. M65's encoded
+file-type boundary remains unchanged and extraction applies no archived host
+attributes. M112 adds no workflow, verifier, dependency, runtime API, release
+authority, or producer change, is not a general archive sandbox, and is not a
+real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

@@ -1,6 +1,97 @@
 # Project State
 
-## M111 retain sample-member permission compatibility - local qualification complete, commit pending
+## M112 retain sample-member creating-system compatibility - implementation in progress
+
+- Base: fully locally validated M111 standalone DCO commit
+  `fb577c5d414653fe2a6f66841bda8d86c8f306f7`, tree
+  `833039101e454e72872d203605a266bce7c9d82c`, with sole parent exact M110.
+  It remains unpushed and has no hosted qualification claim.
+- M111 closeout: exact maintainer author/committer identity, one DCO trailer,
+  15 intended paths, and `0 12` divergence from current `origin/main` were
+  verified. Nine direct ignored non-reparse `.tmp/m111*` targets were audited,
+  removed through an exact-set guard, and separately confirmed absent. The
+  tracked worktree was clean before M112 began.
+- Direction evidence: PKWARE makes the upper `version made by` byte identify
+  the host system compatible with external attributes and defines hosts `0`
+  and `3` as DOS-family and UNIX. CPython initializes `ZipInfo.create_system`
+  to `0` on Windows and `3` elsewhere. M108 already rejected an exact host-`3`
+  rule after 54 established Windows-fixture regressions.
+- Exact runtime/producer probe: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  preserve creating-system markers `0`, `3`, `10`, `19`, and `255`, retain
+  creation version `20`, mode `0100644`, and readable payloads. All 50 fixed-
+  producer members remain creation version `20`, creating system `3`, and mode
+  `0100644`.
+- Deliberate-red contract: the format/Ruff-clean exact CPython 3.12.13 run
+  passes 15 behavior, representative-host, complete-bundle, standard-writer,
+  file-type, inventory, producer, source-shape, and protected-surface
+  assertions and fails only the intentionally missing documentation assertion
+  in 0.50 seconds.
+- Implementation scope: RFC-0095 and aligned records retain parser-exposed
+  creating-system compatibility without changing runtime. The decision adds no
+  creating-system allowlist, host-specific external-attribute interpretation,
+  permission restoration, payload-content read, workflow, dependency,
+  producer, runtime API, version, or release authority.
+- Corrected focused proof: all 16 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.44, 0.80, and 0.79 seconds. The test remains format/
+  Ruff clean; strict docs and whitespace pass.
+- Static/architecture proof: the unchanged lock resolves; all 355 files are
+  format clean; Ruff and strict Pyright pass; all 1,552 architecture assertions
+  pass with one established skip in 10.42 seconds; strict docs and whitespace
+  pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,092
+  tests with 15 skips in 108.98 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,082 tests with 16 skips in 99.76 and 105.83 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.62 seconds;
+  two- and three-workload profiles validate; Clockwork Arena and Agent World
+  Builder reproduce their established state, capture, replay, render, query,
+  and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,458-byte
+  pure wheel at
+  `d19962155511815c3b165236af6a99f354511cca497ee5145af0b96524dfd897`
+  and a 1,517,698-byte source archive at
+  `a685c1f1a226e9800c6376ca046e76afaafa6b26ae08431539908f3a56461c57`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/590-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review corrected two weak assertions to require exact mixed-
+  host extraction-root and standard-writer host identities. The corrected
+  focused/metadata/docs/whitespace gate passes. Exactly 15 intended record,
+  documentation, and test paths change; protected workflows, validator,
+  stager, metadata, lock, runtime package/API, dependencies, producer, version,
+  and release authority have zero diff. No actionable finding remains.
+- Review-inclusive artifacts: two fresh builds reproduce the unchanged
+  277,458-byte pure wheel at
+  `d19962155511815c3b165236af6a99f354511cca497ee5145af0b96524dfd897`
+  and a 1,518,358-byte source archive at
+  `be95c1d0b91ea8694bddd7071bb52ea36ac8cfc3b735722d778332a3595c1cd5`.
+  Reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  and complete release smoke pass. Both builds contain 94 wheel and 590 source
+  entries with no native, WASM, bytecode, or retired control-metadata paths.
+  The first archive-inspection wrapper failed before inspection on an
+  unsupported PowerShell option; the corrected explicit-cardinality audit
+  passed.
+- Final reviewed-tree separator: the unchanged lock, 355-file format check,
+  Ruff, strict Pyright, 1,552 architecture assertions with one established
+  Windows capability skip, strict docs, 21 focused metadata/compatibility
+  assertions, and whitespace all pass.
+- Precommit audit: fetch/prune retains exact M111 head/tree/parent and exact
+  M99 local-main/origin-main/merge-base identity with `0 12` divergence and a
+  linear M100-M111 range. The complete scope is exactly 15 paths: 13 tracked
+  edits and two new files. Only `main` plus required M100-M112 local branches
+  exist and only `origin/main` remotely. Exact maintainer identity, protected
+  surfaces, whitespace, object integrity, secret scan, and public tool-
+  identity scan pass. GitHub reports no M112 PR/run, release, or tag.
+- Final post-audit separator: strict docs, all 21 focused assertions, protected
+  surfaces, whitespace, exact 15-path scope, high-confidence secret scan, and
+  public tool-identity scan pass.
+
+## M111 retain sample-member permission compatibility - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `fb577c5d414653fe2a6f66841bda8d86c8f306f7`, tree
+  `833039101e454e72872d203605a266bce7c9d82c`, has sole parent exact M110,
+  exact maintainer author/committer identity, one sign-off, and 15 intended
+  paths. Nine audited `.tmp/m111*` targets were removed and zero remain.
 
 - Base: fully locally validated M110 DCO commit
   `e7730664c4486cdf1fa0f171bf057cb146db7aa3`, tree

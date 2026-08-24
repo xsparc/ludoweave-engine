@@ -13,9 +13,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > M108 requires sample-member creation version 2.0; M109 requires zero
 > sample-member internal attributes; M110 retains timestamp compatibility after
 > rejecting an exact verifier profile; M111 retains permission-bit
-> compatibility while preserving the M65 file-type boundary.
+> compatibility while preserving the M65 file-type boundary; M112 retains
+> creating-system compatibility without adding a host allowlist.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M111 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M112 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -721,6 +722,15 @@ permission-bit compatibility decision with no exact external-attribute profile
 and no payload-content read. It adds no workflow, dependency, runtime API,
 verifier, or producer change, is not a general archive sandbox, and is not a
 real public release observation.
+
+M112 retains sample-member creating-system compatibility. CPython uses host
+marker `0` on Windows and `3` elsewhere, while the fixed producer remains
+explicitly reproducible at `3`. RFC-0095 records one host-marker compatibility
+decision with no creating-system allowlist, no host-specific external-attribute
+interpretation, and no payload-content read. M65's file-type boundary remains
+unchanged. M112 adds no workflow, dependency, runtime API, verifier, or
+producer change, is not a general archive sandbox, and is not a real public
+release observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is

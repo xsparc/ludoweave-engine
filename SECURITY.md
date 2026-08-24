@@ -494,6 +494,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   permission restoration, and no payload-content read. It changes no workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M112 retains sample-member creating-system compatibility. Standard-library
+  host markers remain admitted while M65's existing encoded file-type boundary
+  remains in force and the producer stays fixed at host `3`. This is one host-
+  marker compatibility decision with no creating-system allowlist, no host-
+  specific external-attribute interpretation, and no payload-content read. It
+  changes no workflow, dependency, producer, runtime API, or release authority;
+  it is not a general archive sandbox and is not a real public release
+  observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

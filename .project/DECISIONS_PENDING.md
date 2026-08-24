@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+RFC-0095 resolves the M112 sample-member creating-system compatibility
+decision. PKWARE defines the upper `version made by` byte as the host system
+with which external attributes are compatible. CPython intentionally defaults
+`ZipInfo.create_system` to `0` on Windows and `3` elsewhere, and M108 already
+proved that an exact UNIX-only rule regresses 54 established Windows-created
+fixtures.
+
+The accepted decision retains parser-exposed creating-system compatibility
+without a creating-system allowlist. M65's existing encoded file-type boundary
+continues to reject symlinks and non-regular types, extraction continues to
+apply no archived host attributes, and the fixed producer remains explicit
+host `3`. This is one host-marker compatibility decision, not a host semantics
+engine. It adds no host-specific external-attribute interpretation, permission
+restoration, payload-content read, workflow, dependency, runtime, producer, or
+release-authority change.
+
+RFC-0095 records the accepted policy; no M112 design decision remains pending.
+
 RFC-0094 resolves the M111 sample-member permission compatibility decision.
 PKWARE defines external file attributes relative to the creating host encoded
 by `version made by`. Python exposes public central `ZipInfo.external_attr`.

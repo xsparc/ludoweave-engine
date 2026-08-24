@@ -2705,6 +2705,28 @@ validity claim, not a general archive sandbox, and not a real public release
 observation. No workflow, verifier, producer, dependency, runtime API, or
 release-authority changes. RFC-0094 defines the complete boundary.
 
+## M112 retain sample-member creating-system compatibility
+
+PKWARE defines the upper `version made by` byte as the host system with which
+external attributes are compatible. Python exposes it as
+`ZipInfo.create_system`; CPython initializes it to `0` on Windows and `3`
+elsewhere. The fixed producer explicitly emits host `3` for every member.
+
+M108 demonstrated that an exact UNIX-only verifier rule would break 54
+established Windows-created compatibility fixtures. M111 separately confirmed
+that M65's encoded file-type boundary remains sufficient for the current
+owned-file extraction design, which does not restore archive permissions or
+other host-specific attributes.
+
+M112 therefore retains sample-member creating-system compatibility. It is one
+host-marker compatibility decision, not a new classifier. It adds no creating-
+system allowlist, no host-specific external-attribute interpretation, and no
+payload-content read. M65's symlink/non-regular rejection remains unchanged,
+and the producer remains reproducible at host `3`. This is not a general ZIP
+validity claim, not a general archive sandbox, and not a real public release
+observation. No workflow, verifier, producer, dependency, runtime API, or
+release-authority changes. RFC-0095 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

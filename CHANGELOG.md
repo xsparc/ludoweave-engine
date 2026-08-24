@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M112/RFC-0095 decision to retain sample-member creating-system
+  compatibility. Standard-library host markers remain admitted without a
+  creating-system allowlist or host-specific external-attribute interpretation;
+  M65's file-type boundary and the producer's fixed host `3` remain unchanged,
+  with no payload-content read, workflow, dependency, producer, runtime API,
+  or release-authority change.
 - Record M111/RFC-0094 decision to retain sample-member permission
   compatibility. M65's symlink/non-regular rejection remains the verifier
   boundary, with no exact external-attribute profile, permission restoration,
