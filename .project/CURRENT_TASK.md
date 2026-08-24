@@ -2,15 +2,15 @@
 
 - **Task:** M99 - local-header CRC-32 consistency preflight
 - **Status:** Feature PR #249 is exact-head hosted-validated and
-  squash-integrated. The five-file factual integration record passes its
-  corrected complete local source, documentation, architecture, distribution,
-  and release proof plus final source separation and the precommit audit.
-  The final documentation separator passes. Publication and hosted
-  qualification remain; no runtime or policy change remains.
-- **Base:** Verified M99 feature squash
-  `909b7568fe98da9a77d226df57eb17a7571a68e5`, tree
-  `77c40e7a27f70bc89e273225a8bb81966fc8dfa0`.
-- **Branch:** `release/m99-integration-record`.
+  squash-integrated. Integration-record PR #250 is exact-head hosted-validated
+  and squash-integrated. The three-file no-workflow closeout record passes its
+  local metadata, whitespace, and precommit history/scope/integrity gates;
+  the final separator also passes. Commit and publication remain. No runtime
+  or policy change remains.
+- **Base:** Verified M99 integration-record squash
+  `d658bd7df926775ea77b36b34dec377a14a76bb6`, tree
+  `a602729574488b940a541e64cad805cc3b96ffa6`.
+- **Branch:** `release/m99-closeout`.
 
 ## Integrated scope
 
@@ -54,7 +54,29 @@
 - Guarded squash `909b7568fe98da9a77d226df57eb17a7571a68e5` has the exact
   qualified tree, sole M98 closeout parent, standalone DCO trailer, and a valid
   GitHub signature verified at `2026-08-22T20:44:55Z`. The feature branch is
-  deleted remotely; its verified local squash-era ref is pending deletion.
+  deleted remotely and locally.
+
+## Hosted integration-record evidence
+
+- Ready PR #250 exact DCO head
+  `0cdfa5285db965f9238b6fe878912f20c7f0f4d8`, tree
+  `a602729574488b940a541e64cad805cc3b96ffa6`, passed exact-head run
+  `32597990726` in one 52-second Linux allocation; the desktop matrix
+  placeholder skipped without allocating a runner.
+- Strict docs built in 2.20 seconds; all 1,333 hosted architecture assertions,
+  reproducible distribution, isolated-wheel smoke, deterministic ten-artifact
+  staging, and complete release smoke passed.
+- Hosted repeat builds reproduced a 277,176-byte pure wheel at
+  `156b2f5fd64c6ec7ad99d4706279b79bdc7978da51eaf4c8ff08ade8f7e4fee2`
+  and a 1,441,004-byte source archive at
+  `43390607d097dbd6afbf3c203f949c3b7b579b715eb61811cfe6db2649ecf8a7`.
+- Two separated readiness audits around 34 passing local assertions retained
+  exact head/tree/base, one DCO commit, five paths, one exact-head successful
+  run, `MERGEABLE/CLEAN`, and zero comments, reviews, or review comments.
+- Guarded squash `d658bd7df926775ea77b36b34dec377a14a76bb6` has the exact
+  qualified tree, sole M99 feature-squash parent, standalone DCO trailer, and a
+  valid GitHub signature verified at `2026-08-24T13:01:51Z`. The integration
+  branch is deleted remotely and locally.
 
 ## Explicit non-scope
 
@@ -70,7 +92,7 @@
 
 ## Remaining acceptance work
 
-- Qualify and squash-integrate this five-file factual record through the
-  bounded documentation path.
-- Create and integrate the no-workflow closeout record, delete verified M99
-  scratch targets and every branch except `main`, and only then select M100.
+- Validate, commit, publish, audit, and squash-integrate exactly the three
+  factual closeout records without allocating a workflow.
+- Delete verified M99 scratch targets and every branch except `main`, verify
+  the final feature/integration/closeout sole-parent chain, then select M100.
