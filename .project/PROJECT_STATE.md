@@ -1,6 +1,6 @@
 # Project State
 
-## M99 local-header CRC-32 consistency preflight - feature integrated; integration record active
+## M99 local-header CRC-32 consistency preflight - integration record merged; closeout active
 
 - Base: exact verified M98 closeout squash
   `6d4529efb0476f3e3e45f78204d2b0aa192da018`, tree
@@ -153,6 +153,38 @@
 - Final integration post-audit separator: strict docs built in 1.49 seconds;
   all five metadata assertions passed in 0.33 seconds; exactly five paths
   remain changed; and whitespace is clean.
+- Integration-record hosted proof: ready PR #250 exact DCO head
+  `0cdfa5285db965f9238b6fe878912f20c7f0f4d8`, tree
+  `a602729574488b940a541e64cad805cc3b96ffa6`, passed exact-head run
+  `32597990726` in one 52-second Linux allocation; the desktop placeholder
+  skipped without allocating a runner. Strict docs built in 2.20 seconds; all
+  1,333 architecture assertions, reproducible distribution, isolated-wheel
+  smoke, deterministic ten-artifact staging, and complete release smoke passed.
+- Hosted repeat builds reproduced a 277,176-byte pure wheel at
+  `156b2f5fd64c6ec7ad99d4706279b79bdc7978da51eaf4c8ff08ade8f7e4fee2`
+  and a 1,441,004-byte source archive at
+  `43390607d097dbd6afbf3c203f949c3b7b579b715eb61811cfe6db2649ecf8a7`.
+- Two separated integration-head audits around 34 passing assertions retained
+  exact head/tree/base, one DCO commit, five paths, one successful exact-head
+  run, `MERGEABLE/CLEAN`, and zero feedback.
+- Integration-record PR #250 merged at `2026-08-24T13:01:51Z` as verified
+  squash `d658bd7df926775ea77b36b34dec377a14a76bb6`. It has the exact
+  qualified tree, sole M99 feature-squash parent, standalone DCO trailer, and a
+  valid GitHub signature verified at the merge time. The integration branch is
+  deleted remotely and locally.
+- Closeout precommit proof: exactly three factual `.project` paths change; all
+  five metadata-hygiene assertions passed in 1.09 seconds and whitespace is
+  clean. Branch base, local `main`, `origin/main`, and merge base are exact
+  integration squash with divergence `0 0`. Open PR, closeout-branch run,
+  integration-squash run, release, and tag queries are empty. Protected source,
+  tests, scripts, docs, workflows, dependencies, README, and roadmap have no
+  diff; credential and explicit development-tool-identity scans are empty; no
+  retired control path is tracked; Git integrity passes with zero critical
+  findings; and the feature/integration squash chain retains exact parents,
+  trees, DCO trailers, and valid GitHub signatures.
+- Final closeout separator: all five metadata-hygiene assertions passed in
+  0.32 seconds; whitespace and exact three-path scope remain clean; and the
+  added-content explicit development-tool-identity scan returned no matches.
 
 ## M98 local-header timestamp consistency preflight - complete and closed
 
