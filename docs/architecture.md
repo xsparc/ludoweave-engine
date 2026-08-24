@@ -2551,6 +2551,31 @@ is not a general archive sandbox and is not a real public release observation.
 Workflows, producer, dependencies, runtime API, and release authority remain
 unchanged. RFC-0088 defines the complete boundary.
 
+## M106 zero sample-member extraction-version reserved-byte profile preflight
+
+Python documents public central `ZipInfo.reserved` as required to be zero, and
+CPython's fixed `ZipInfo` writer default is zero. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 nevertheless each expose a matching local/central value of
+one and read both fixture payloads. The fixed 50-member LudoWeave producer
+emits only value zero.
+
+After M97 has established local/central extraction-version-pair equality and
+after the M103 payload, M104 extra-field, member-metadata, and M105 flag-profile
+checks, every parsed sample member must have public central
+`ZipInfo.reserved == 0`. A nonzero value raises stable content-silent error
+`sample bundle has a nonzero extraction-version reserved byte` before exact
+inventory, staging, or reads. Established local mismatch, payload-layout,
+extra-field, unsupported-codec, nonportable-path, and flag-profile errors retain
+precedence. Empty archives retain their later exact-inventory failure.
+
+This zero sample-member extraction-version reserved-byte profile preflight is
+one central-reserved zero-profile classifier. It adds no extraction-version
+semantics parser, supported-version allowlist, raw record parser, payload-
+content read, decompression, recompression, archive repair, or general ZIP
+validity claim. It is not a general archive sandbox and is not a real public
+release observation. No workflow, producer, dependency, runtime API, or release
+authority changes. RFC-0089 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

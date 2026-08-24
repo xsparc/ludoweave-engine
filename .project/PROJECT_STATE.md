@@ -1,6 +1,107 @@
 # Project State
 
-## M105 zero sample-member general-purpose-flag profile preflight - implementation in progress
+## M106 zero sample-member extraction-version reserved-byte profile preflight - implementation in progress
+
+- Base: fully locally validated M105 DCO commit
+  `6155e125968c92dfbae44da6c6f13f9684f11fcd`, tree
+  `ae77b746a5ed9491da14aa2f6ad69f0663e92bfd`, with sole parent exact M104.
+  It remains unpushed and has no hosted qualification claim.
+- M105 cleanup: an exact read-only audit identified 17 ignored, direct,
+  non-reparse `.tmp` children. The guarded removal deleted exactly 17; a
+  follow-up found zero remaining targets and a clean worktree.
+- Direction evidence: Python documents public `ZipInfo.reserved` as zero;
+  CPython initializes and serializes it as zero; PKWARE defines the enclosing
+  two-byte version-needed-to-extract field. The selected response is one fixed-
+  producer profile, not general extraction-version semantics or ZIP security.
+  No CI expansion is justified.
+- Runtime gap: an initial sandboxed probe could not access uv's external cache
+  and exited 1 for all three invocations. The approved rerun on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 exposed matching local/central `(20, 1)` pairs,
+  read both payloads, and confirmed all 50 fixed-producer reserved values are
+  zero.
+- Red contract: the exact CPython 3.12.13 focused regression exited 1 with one
+  intended failure in 0.22 seconds because unchanged M105 reached exact
+  inventory rather than rejecting the matching nonzero byte. No pass is
+  claimed from that run.
+- Implementation scope: one aggregate public central `info.reserved != 0`
+  classifier after M105 and before inventory, plus RFC-0089 and aligned records.
+  It adds no extraction-version semantics parser, payload-content read,
+  workflow, dependency, producer, runtime API, version, release authority, tag,
+  release, or publication.
+- First focused checkpoint: all 15 M106 assertions pass on exact CPython
+  3.12.13 in 0.25 seconds; affected formatting and Ruff pass.
+- Supported-Python proof: all 15 focused assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.25, 0.65, and 0.62 seconds. Complete suites
+  pass 2,989 tests with 15 skips on 3.12.13 in 114.15 seconds, and 2,979 tests
+  with 16 skips on 3.13.13 and 3.14.5 in 101.92 and 107.77 seconds. The 3.12
+  environment retained graphics dependencies and therefore collected ten more
+  real-wgpu tests than the later base environments.
+- Static correction: the first grouped repository checkpoint followed a 3.14
+  base-environment replacement. Formatting, Ruff, strict docs, and whitespace
+  passed, but Pyright reported 17 missing/unknown optional-wgpu diagnostics.
+  Restoring the exact locked 45-package CPython 3.12.13 graphics environment
+  made strict Pyright report zero findings; no source correction was needed.
+- Local gate: the unchanged 46-package lock resolves in 0.79 milliseconds; all
+  349 Python files are format clean; Ruff and strict Pyright pass; all 1,449
+  architecture assertions pass with one established Windows capability skip
+  in 10.17 seconds; strict docs build in 1.53 seconds; all 20 metadata/M106
+  assertions pass in 0.78 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 5.87 seconds;
+  one-repeat base and graphics profiles validate with two and three workloads;
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two builds reproduce a 276,680-byte pure
+  wheel at `613d1d72ea8583f03dfc7ecb941d40df23522a19b877ee1fcbf5ab908db9216e`
+  and a 1,483,265-byte source archive at
+  `596219c8ed041afd918a488a6a574379da23b7ce6ee5b4d2f0715a4110a7eca2`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. The 94-entry wheel and 578-entry source archive contain
+  no native, WASM, bytecode, or retired control-metadata paths. Factual record
+  updates alter the source archive afterward.
+- Findings-first review: exactly 16 intended paths change. No runtime,
+  security, architecture, diagnostic-order, resource-ownership, or scope defect
+  was found. The documentation contract now requires every listed document and
+  covers the changed roadmap. Affected Ruff and strict Pyright pass, all 20
+  metadata/M106 assertions pass in 0.43 seconds, strict docs build in 1.50
+  seconds, and whitespace passes. The runtime diff remains one ordered call
+  plus one aggregate public central-reserved classifier. Protected workflows,
+  release stager, metadata, lock, runtime package/API, dependencies, producer,
+  version, and release authority have no diff. Explicit service-identity and
+  high-confidence secret scans return zero matches.
+- Review-inclusive artifacts: two builds reproduce the same 276,680-byte pure
+  wheel at `613d1d72ea8583f03dfc7ecb941d40df23522a19b877ee1fcbf5ab908db9216e`
+  and a 1,485,135-byte source archive at
+  `ba60a0813bfc32a75184a43275ea84d8f89d3be98d7839014ee567f0a2c8e786`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/578-entry package inventories pass with no banned or retired
+  paths. Final factual records alter the source archive afterward.
+- Final source separator: the unchanged 46-package lock resolves in 0.86
+  milliseconds; all 349 files remain format clean; Ruff and strict Pyright
+  pass; all 1,449 architecture assertions pass with one established skip in
+  8.75 seconds; strict docs build in 1.48 seconds; all 20 metadata/M106
+  assertions pass in 0.81 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: the first branch-ref command mistyped M104
+  and M102 branch names, and those two fields are discarded. A fully corrected
+  audit establishes exact M100-M105 commits, local/remote M99 `main`, the M99
+  merge base, and expected `0 6` divergence. Exactly 16 intended paths change;
+  only `main` and the required M100-M106 local stack branches exist, while only
+  `origin/main` exists remotely. Authentication is valid; open PR, M106 run,
+  release, and tag queries are empty. Exact maintainer DCO identity is
+  configured. Protected workflow/release/stager/metadata/lock surfaces have no
+  diff; Git checking reports 287 dangling-only lines and zero critical finding;
+  runtime backend/native/wall-clock, explicit service-identity, and high-
+  confidence secret scans return zero matches; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.49 seconds with only the
+  known upstream Material notice; all 20 metadata/M106 assertions pass in 0.40
+  seconds; explicit service-identity and high-confidence secret scans return
+  zero matches; exactly 16 intended paths remain changed; and whitespace is
+  clean.
+- Publication hold: M100-M106 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M105 zero sample-member general-purpose-flag profile preflight - local qualification and commit complete
 
 - Base: fully locally validated M104 DCO commit
   `3c734d627c90cd9071350d5b4863711a6ba3113e`, tree

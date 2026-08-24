@@ -129,6 +129,7 @@ nav:
       - RFC-0086 - Require contiguous sample-member payloads: rfcs/0086-require-contiguous-sample-payloads.md
       - RFC-0087 - Require empty sample-member extra fields: rfcs/0087-require-empty-sample-member-extra-fields.md
       - RFC-0088 - Require zero sample-member general-purpose flags: rfcs/0088-require-zero-sample-member-general-purpose-flags.md
+      - RFC-0089 - Require zero sample-member extraction-version reserved bytes: rfcs/0089-require-zero-sample-member-extraction-version-reserved-bytes.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -510,6 +510,17 @@ release, or publication. It is not a general archive sandbox and is not a real
 public release observation. M105 is locally stacked on fully validated,
 unpushed M104; none of M100-M105 has hosted qualification.
 
+M106 requires public central `ZipInfo.reserved` to equal zero after M105 and
+before exact inventory, staging, or reads. Its stable content-silent error is
+`sample bundle has a nonzero extraction-version reserved byte`. This zero
+sample-member extraction-version reserved-byte profile preflight is one
+central-reserved zero-profile classifier with no extraction-version semantics
+parser and no payload-content read. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M106 is locally stacked on fully validated,
+unpushed M105; none of M100-M106 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+RFC-0089 resolves the M106 zero sample-member extraction-version reserved-byte
+profile preflight. Python documents public central `ZipInfo.reserved` as zero,
+CPython initializes and serializes zero, and PKWARE defines the enclosing two-
+byte version-needed-to-extract field. Exact CPython 3.12.13, 3.13.13, and
+3.14.5 each exposed matching local/central pairs `(20, 1)` and read both probe
+payloads, while the fixed 50-member producer emits sole reserved value zero.
+Private release smoke therefore requires every public central
+`ZipInfo.reserved` value to equal zero after established local consistency,
+payload-layout, extra-field, member-metadata, and M105 checks and before exact
+inventory, staging, or reads. The stable error is `sample bundle has a nonzero
+extraction-version reserved byte`.
+
+This zero sample-member extraction-version reserved-byte profile preflight is
+one central-reserved zero-profile classifier, not an extraction-version
+semantics parser, supported-version allowlist, capability rule, raw record
+parser, payload-content check, archive repair, general ZIP validity claim, or
+general sandbox. It changes no workflow, dependency, producer, runtime API, or
+release authority. RFC-0089 records the accepted policy; no M106 design
+decision remains pending.
+
 RFC-0088 resolves the M105 zero sample-member general-purpose-flag profile
 preflight. PKWARE defines legitimate nonzero flag semantics and currently
 unused bits; CPython exposes the central value through public

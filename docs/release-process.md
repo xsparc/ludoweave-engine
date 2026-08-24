@@ -1057,6 +1057,22 @@ decompression, recompression, or general ZIP validity claim. It adds no
 workflow, dependency, runtime API, release authority, or producer change, is
 not a general archive sandbox, and is not a real public release observation.
 
+M106/RFC-0089 requires public central `ZipInfo.reserved` to equal zero after
+M105 and before exact inventory, staging, or member reads. This zero sample-
+member extraction-version reserved-byte profile preflight is one central-
+reserved zero-profile classifier. Failure emits stable content-silent error
+`sample bundle has a nonzero extraction-version reserved byte`; established
+local extraction-version mismatch, payload-layout, extra-field, codec, path,
+and flag-profile errors retain precedence and all owned resources close before
+control returns.
+
+The fixed producer's 50 members already have zero extraction-version reserved
+bytes. M106 adds no extraction-version semantics parser, supported-version
+allowlist, raw record parser, payload-content read, decompression,
+recompression, or general ZIP validity claim. It adds no workflow, dependency,
+runtime API, release authority, or producer change, is not a general archive
+sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

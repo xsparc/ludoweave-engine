@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M106/RFC-0089 zero sample-member extraction-version reserved-byte
+  profile preflight. Public central `ZipInfo.reserved` must equal zero after
+  established local-header, payload-layout, extra-field, member-metadata, and
+  M105 flag-profile checks and before exact inventory, reads, or staging, with
+  no extraction-version semantics parser, no payload-content read, and no
+  workflow, dependency, producer, runtime API, or release-authority change.
 - Add M105/RFC-0088 zero sample-member general-purpose-flag profile preflight.
   Public central `ZipInfo.flag_bits` must equal zero after established specific-
   flag, local-header, payload-layout, and extra-field checks, then after decoded-

@@ -632,6 +632,7 @@ def _extract_checksum_admitted_bundle(
         ):
             raise RuntimeError("sample bundle member paths collide")
         _validate_sample_general_purpose_flag_profile(infos=infos)
+        _validate_sample_extraction_version_reserved_byte_profile(infos=infos)
         _validate_sample_inventory(observed_members)
 
         with tempfile.TemporaryDirectory(
@@ -1212,6 +1213,16 @@ def _validate_sample_general_purpose_flag_profile(
 
     if any(info.flag_bits != 0 for info in infos):
         raise RuntimeError("sample bundle contains unsupported general-purpose flags")
+
+
+def _validate_sample_extraction_version_reserved_byte_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer extraction-version reserved byte to be zero."""
+
+    if any(info.reserved != 0 for info in infos):
+        raise RuntimeError("sample bundle has a nonzero extraction-version reserved byte")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

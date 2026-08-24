@@ -8,9 +8,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > M101 add locally validated stacked size-field consistency from that base;
 > M102 adds a local compressed-payload upper bound; M103 requires exact local
 > payload contiguity; M104 requires empty sample-member extra fields; M105
-> requires zero sample-member general-purpose flags.
+> requires zero sample-member general-purpose flags; M106 requires zero
+> extraction-version reserved bytes.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M105 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M106 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -999,6 +1000,15 @@ producer change, is not a general archive sandbox, and is not a real public
 release observation.
 M76 remains method-specific; M105 also rejects residual nonzero flags such as
 bit 4 on a stored member after established member-metadata diagnostics.
+
+M106 requires every parsed sample member's public central `ZipInfo.reserved` to
+equal zero after M105 and before exact inventory, staging, or reads. This zero
+sample-member extraction-version reserved-byte profile preflight emits stable
+content-silent error `sample bundle has a nonzero extraction-version reserved
+byte`. RFC-0089 defines one central-reserved zero-profile classifier with no
+extraction-version semantics parser and no payload-content read. It adds no
+workflow, dependency, runtime API, or producer change, is not a general archive
+sandbox, and is not a real public release observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:
