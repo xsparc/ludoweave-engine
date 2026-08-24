@@ -4,10 +4,10 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-> Current validation: M0 through M99 are hosted-validated and closed; M100 adds
-> local-header compressed-size consistency on the exact M99 closeout base.
+> Current validation: M0 through M99 are hosted-validated and closed; M100 and
+> M101 add locally validated stacked size-field consistency from that base.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 is active from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 and M101 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -942,6 +942,17 @@ comparison, no payload or next-header bound, and no inter-member layout
 validator, and changes no workflow, dependency, runtime API, or producer. This
 fixed-producer profile is not a general archive sandbox and is not a real
 public release observation.
+
+M101 requires each four-byte local-header uncompressed size to exactly equal
+public central `ZipInfo.file_size` encoded little-endian. Its one four-byte
+local-uncompressed-size consistency classifier runs after M100 and before
+decoded-name policy, metadata, inventory, staging, or reads. The stable
+content-silent error is `sample bundle local header uncompressed sizes are
+inconsistent`. RFC-0084 performs no decompression or recompression, no
+compression-ratio policy, no payload or next-header bound, and no inter-member
+layout validator, and changes no workflow, dependency, runtime API, or
+producer. This fixed-producer profile is not a general archive sandbox and is
+not a real public release observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

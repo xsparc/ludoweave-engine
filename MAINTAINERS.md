@@ -449,6 +449,18 @@ public release observation. M0 through M99 are complete, reviewed, hosted-
 validated, and integrated into `main`. M100 starts from exact verified M99
 closeout `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`.
 
+M101 reads the four-byte local uncompressed size after M100 and requires exact
+equality with public central `ZipInfo.file_size` before decoded names, metadata,
+inventory, staging, or reads. Its stable content-silent error is `sample bundle
+local header uncompressed sizes are inconsistent`. This one four-byte local-
+uncompressed-size consistency classifier performs no decompression or
+recompression, no compression-ratio policy, no payload or next-header bound,
+and no inter-member layout validator. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M101 is locally stacked on the fully validated,
+unpushed M100 DCO commit; neither milestone has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

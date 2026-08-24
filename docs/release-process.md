@@ -984,6 +984,21 @@ header bound, and no inter-member layout validator, workflow, dependency,
 runtime API, release authority, or producer change. This profile is not a
 general archive sandbox and is not a real public release observation.
 
+M101/RFC-0084 reads the bounded four-byte local uncompressed size after M100
+and requires it to match public central `ZipInfo.file_size` encoded little-
+endian. This one four-byte local-uncompressed-size consistency classifier runs
+before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle local header
+uncompressed sizes are inconsistent`; all owned resources close before control
+returns.
+
+The fixed producer's 50 local and central uncompressed sizes match. M101
+performs no decompression or recompression, no payload-content read during
+preflight, no compression-ratio policy, no field-wide consistency check, no
+payload or next-header bound, and no inter-member layout validator, workflow,
+dependency, runtime API, release authority, or producer change. This profile is
+not a general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

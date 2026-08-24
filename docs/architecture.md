@@ -2424,6 +2424,30 @@ sandbox and is not a real public release observation. Workflows, producer,
 dependencies, runtime API, and release authority remain unchanged. RFC-0083
 defines the complete boundary.
 
+## M101 local-header uncompressed-size consistency preflight
+
+M101 narrows the fixed sample profile after M100 by reading the four bytes at
+each already bounded `ZipInfo.header_offset + 22`. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 retain both central uncompressed sizes at `9` and read both
+payloads when only the second local uncompressed size changes from `9` to `10`.
+
+The local bytes must equal public central `ZipInfo.file_size` encoded as an
+unsigned four-byte little-endian value. Mismatch raises stable content-silent
+error `sample bundle local header uncompressed sizes are inconsistent` before
+decoded names, metadata, exact inventory, staging, or reads. Empty archives
+retain their later inventory failure, and the helper restores the caller's
+snapshot position.
+
+This is one four-byte local-uncompressed-size consistency classifier. It
+performs no decompression or recompression, no payload-content read during
+preflight, no compression-ratio policy, no archive-bomb classification, no
+payload-integrity certification, no field-wide local/central comparison, no
+complete local-record bound, no payload or next-header bound, and no gap,
+adjacency, contiguity, physical non-overlap rule, or inter-member layout
+validator. It is not a general archive sandbox and is not a real public release
+observation. Workflows, producer, dependencies, runtime API, and release
+authority remain unchanged. RFC-0084 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

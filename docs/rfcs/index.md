@@ -88,3 +88,4 @@ was adopted.
 - [RFC-0081: require consistent local-header timestamps](0081-require-consistent-local-header-timestamps.md)
 - [RFC-0082: require consistent local-header CRC-32 values](0082-require-consistent-local-header-crcs.md)
 - [RFC-0083: require consistent local-header compressed sizes](0083-require-consistent-local-header-compressed-sizes.md)
+- [RFC-0084: require consistent local-header uncompressed sizes](0084-require-consistent-local-header-uncompressed-sizes.md)
