@@ -1,18 +1,18 @@
 # Current task
 
 - **Task:** M99 - local-header CRC-32 consistency preflight
-- **Status:** The bounded four-byte implementation, aligned documentation,
-  exact supported-runtime suites, complete local gates, and findings-first
-  review pass after a corrected first checkpoint. Review-inclusive packaging
-  and release smoke, final source separator, and precommit remote/history/
-  integrity audit plus final documentation separator pass. DCO commit,
-  publication, and hosted gates remain; no hosted M99 pass is claimed yet.
-- **Base:** Exact verified M98 closeout squash
-  `6d4529efb0476f3e3e45f78204d2b0aa192da018`, tree
-  `7e3ffae0423fd2b4da1725db48864b9c04f8ad35`.
-- **Branch:** `release/m99-local-crc-consistency`.
+- **Status:** Feature PR #249 is exact-head hosted-validated and
+  squash-integrated. The five-file factual integration record passes its
+  corrected complete local source, documentation, architecture, distribution,
+  and release proof plus final source separation and the precommit audit.
+  The final documentation separator passes. Publication and hosted
+  qualification remain; no runtime or policy change remains.
+- **Base:** Verified M99 feature squash
+  `909b7568fe98da9a77d226df57eb17a7571a68e5`, tree
+  `77c40e7a27f70bc89e273225a8bb81966fc8dfa0`.
+- **Branch:** `release/m99-integration-record`.
 
-## Approved scope
+## Integrated scope
 
 - After M98 timestamp consistency, private release smoke reads exactly four
   bytes at each public `ZipInfo.header_offset + 14`.
@@ -29,43 +29,32 @@
   dependency/lock/version, sample producer, runtime package/API, release
   authority, tag, release, and publication remain unchanged.
 
-## Current evidence
+## Hosted feature evidence
 
-- Closed M98 main, local and remote branch state, and merge base are exact at
-  `6d4529efb0476f3e3e45f78204d2b0aa192da018` with divergence `0 0`.
-  Only `main` exists locally/remotely; no PR, release, tag, or unexpected
-  workflow remains. Its feature/integration/closeout squash chain retains exact
-  sole parents, reviewed trees, DCO trailers, and valid GitHub signatures.
-- M98 closeout PR #248 used exact DCO head
-  `7e06f6897a5c58431b278a9ed7f9a1ac6e1b1960`, tree
-  `7e3ffae0423fd2b4da1725db48864b9c04f8ad35`, allocated no workflow, passed
-  two separated readiness audits without feedback, and squash-merged at
-  `2026-08-22T19:59:48Z`. All 22 verified M98 scratch targets are absent and
-  the five metadata-hygiene assertions pass.
-- PKWARE APPNOTE 6.3.10 defines the corresponding four-byte local and central
-  CRC-32 fields. Python documents public central `ZipInfo.CRC` and public local
-  `ZipInfo.header_offset`; CPython reads validate against the central value.
-- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained central CRCs
-  `[3724039362, 2868864084]` and read both payloads after only the second local
-  CRC changed from `2868864084` to `2868864085`.
-- The 29-assertion M99 contract is format/Ruff clean and strict Pyright reports
-  zero findings. Against unchanged M98 on exact CPython 3.14.5, 19 inherited,
-  runtime, producer, and protected-surface assertions passed; ten stable-error,
-  helper, cleanup, ordering, and documentation assertions failed as intended.
-- After one mechanical format/navigation/literal-wording correction, all 57
-  combined M98-M99 assertions and strict docs pass. All 29 focused assertions
-  pass on exact CPython 3.12.13, 3.13.13, and 3.14.5; each complete suite
-  passes 2,862 tests with 16 established skips.
-- The unchanged lock/graphics environment, all repository-wide static,
-  architecture, docs, metadata, whitespace, real-wgpu, profile, vertical-slice,
-  repeat-build, isolated-wheel, staging, and complete release gates pass. A
-  findings-first diff/package/security review remains.
-- Findings-first review found no remaining actionable defect across the exact
-  15-path scope, one-field order/error/cleanup boundary, public-field use,
-  documentation, package contents, protected surfaces, or credential/identity
-  scans.
-- Review-inclusive repeat builds reproduce the pure wheel and source archive;
-  isolated-wheel smoke, ten-artifact staging, and complete release smoke pass.
+- Ready PR #249 exact DCO head
+  `b3e1bc994e57fac2277e86b552d760f9ae9c90a1`, tree
+  `77c40e7a27f70bc89e273225a8bb81966fc8dfa0`, passed run `32596930304`
+  in exactly three Linux-first allocations.
+- Linux job `97089296631` passed in 7m20s, macOS job `97090165770` in
+  2m00s, and Windows job `97090165820` in 4m10s.
+- Linux CPython 3.12 passed 2,877 tests. Linux 3.13/3.14 and macOS/Windows
+  3.14 each passed 2,877 with one established capability skip.
+- Every OS passed ten real-wgpu tests, graphics profiling, Clockwork Arena,
+  and Agent World Builder. Linux also passed formatting, Ruff, strict Pyright,
+  strict docs, base profiling, installed-wheel smoke, ten-artifact staging,
+  and complete release smoke.
+- Two hosted builds reproduced a 277,158-byte pure wheel at
+  `232eaa8b23bbe6c5e0cf0fa5510521dadb175fae17baf893ff208695c061b76e`
+  and a 1,439,905-byte source archive at
+  `abaa619ce80968b3f49b3f0b25de6b9c075baf3d6de142e663e56f59c09701ae`.
+- Two separated readiness audits around 34 passing local assertions retained
+  exact head/tree/base, one DCO commit, 15 paths, three successful checks from
+  one exact-head run, `MERGEABLE/CLEAN`, and zero comments, reviews, or review
+  comments.
+- Guarded squash `909b7568fe98da9a77d226df57eb17a7571a68e5` has the exact
+  qualified tree, sole M98 closeout parent, standalone DCO trailer, and a valid
+  GitHub signature verified at `2026-08-22T20:44:55Z`. The feature branch is
+  deleted remotely; its verified local squash-era ref is pending deletion.
 
 ## Explicit non-scope
 
@@ -81,6 +70,7 @@
 
 ## Remaining acceptance work
 
-- DCO-commit, publish, exact-head qualify, audit, and squash-integrate.
-- Audit, DCO-commit, publish, exact-head qualify through the unchanged
-  quota-conscious workflow, squash-integrate, record, close, and clean M99.
+- Qualify and squash-integrate this five-file factual record through the
+  bounded documentation path.
+- Create and integrate the no-workflow closeout record, delete verified M99
+  scratch targets and every branch except `main`, and only then select M100.

@@ -1,6 +1,6 @@
 # Project State
 
-## M99 local-header CRC-32 consistency preflight - implementation active
+## M99 local-header CRC-32 consistency preflight - feature integrated; integration record active
 
 - Base: exact verified M98 closeout squash
   `6d4529efb0476f3e3e45f78204d2b0aa192da018`, tree
@@ -92,6 +92,67 @@
   runtime package, and producer surfaces have no diff; credential and explicit
   development-tool-identity scans are empty; Git has no corruption; and the
   M98 three-squash chain retains exact parents, trees, and valid signatures.
+- Hosted feature proof: ready PR #249 exact DCO head
+  `b3e1bc994e57fac2277e86b552d760f9ae9c90a1`, tree
+  `77c40e7a27f70bc89e273225a8bb81966fc8dfa0`, passed run `32596930304`
+  in exactly three allocations: Linux job `97089296631` in 7m20s, macOS job
+  `97090165770` in 2m00s, and Windows job `97090165820` in 4m10s. Linux
+  CPython 3.12 passed 2,877 tests; Linux 3.13/3.14 and macOS/Windows 3.14 each
+  passed 2,877 with one established capability skip. All hosted graphics,
+  profiles, vertical slices, and Linux static/build/release gates passed.
+- Hosted repeat builds reproduced a 277,158-byte pure wheel at
+  `232eaa8b23bbe6c5e0cf0fa5510521dadb175fae17baf893ff208695c061b76e`
+  and a 1,439,905-byte source archive at
+  `abaa619ce80968b3f49b3f0b25de6b9c075baf3d6de142e663e56f59c09701ae`.
+  Installed-wheel smoke, ten-artifact staging, and complete release smoke
+  passed.
+- Two separated readiness audits around 34 passing local assertions retained
+  exact head/tree/base, one DCO commit, 15 paths, three successful checks from
+  one exact-head run, `MERGEABLE/CLEAN`, and zero feedback. Guarded squash
+  `909b7568fe98da9a77d226df57eb17a7571a68e5` has the exact qualified tree,
+  sole parent M98 closeout, standalone DCO, and a valid GitHub signature
+  verified at `2026-08-22T20:44:55Z`. The feature branch is deleted remotely.
+- The integration record changes exactly five factual project/roadmap files;
+  no runtime, public API, test, workflow, build, dependency, version,
+  release-authority, tag, release, or publication surface changes.
+- Integration-record environment correction: the first full gate used
+  `uv sync --all-groups` without the optional graphics extra, which removed six
+  locked graphics packages and caused 17 expected unresolved-import/type
+  findings. Architecture still passed 1,332 assertions with one established
+  skip; docs, metadata, and whitespace passed. No clean complete-gate claim is
+  made from that invocation and no source correction was required.
+- Corrected integration-record proof: restoring the unchanged locked graphics
+  extra installed the six packages. All 342 Python files remained format
+  clean; Ruff passed; strict Pyright reported zero findings; all 1,332
+  architecture assertions passed with one established skip in 9.92 seconds;
+  strict docs built in 1.47 seconds; all five metadata assertions passed in
+  0.33 seconds; and whitespace passed.
+- Two fresh integration-record builds reproduce a 277,190-byte pure wheel at
+  `868c9abf5e7137142fe4d9072d0c6639481025bfd8fc55a38800fb11662a914f`
+  and a 1,440,146-byte source archive at
+  `d7a8e21cd7ad116eb109dc69da7425de16d0bb291ba6a5b03d17078961c1669e`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording this evidence changes the source archive;
+  hosted integration-head identities will remain authoritative.
+- Final integration-record source separator: all 342 Python files remained
+  format clean; Ruff passed; strict Pyright reported zero findings; all 1,332
+  architecture assertions passed with one established skip in 9.79 seconds;
+  strict docs built in 1.45 seconds; all five metadata assertions passed in
+  0.34 seconds; and whitespace passed.
+- Integration-record precommit audit: branch base, local and remote `main`, and
+  merge base are exact feature squash
+  `909b7568fe98da9a77d226df57eb17a7571a68e5` with divergence `0 0`.
+  Exactly five factual paths change; only `main` and the neutral integration
+  branch exist locally and only `origin/main` remotely. Open PR, branch-run,
+  feature-squash postmerge-run, release, and tag queries are empty. Protected
+  code/workflow/dependency surfaces have no diff; credential and explicit
+  development-tool-identity scans are empty; no retired control path is
+  tracked; Git has no corruption and only expected historical dangling
+  objects; the feature squash retains exact tree, parent, DCO, and valid
+  signature; and whitespace is clean.
+- Final integration post-audit separator: strict docs built in 1.49 seconds;
+  all five metadata assertions passed in 0.33 seconds; exactly five paths
+  remain changed; and whitespace is clean.
 
 ## M98 local-header timestamp consistency preflight - complete and closed
 
