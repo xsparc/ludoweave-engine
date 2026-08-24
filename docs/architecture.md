@@ -2750,6 +2750,31 @@ not a real public release observation. No workflow, verifier, producer,
 dependency, runtime API, or release-authority changes. RFC-0096 defines the
 complete boundary.
 
+## M114 retain sample-member compression-level non-observability
+
+PKWARE's DEFLATE option bits distinguish broad normal, maximum, fast, and
+super-fast categories; they do not encode Python's exact numeric writer
+setting. Python's `compresslevel` controls writing. CPython 3.13 added public
+`ZipInfo.compress_level` for writer configuration, while reopened members on
+exact CPython 3.12.13, 3.13.13, and 3.14.5 expose no recovered exact level.
+
+Supported-runtime probes requested levels `0`, `1`, `6`, and `9`. Every
+reopened member retained method `8`, extraction version `20`, zero flags, and
+readable payload bytes while its compression level remained unknown. In the
+controlled probe, levels `6` and `9` also produced identical archive bytes.
+The fixed producer continues to request level `9`, but its 50 reopened members
+likewise provide no exact level metadata.
+
+M114 therefore retains sample-member compression-level non-observability. It
+is one compression-level non-observability decision, not a new classifier. The
+verifier adds no exact level-9 verifier profile and no inferred compressor level
+from attributes, compressed bytes, or sizes. M105's zero-flag profile, M113's
+method policy, and the producer's explicit writer setting remain unchanged.
+There is no payload-content read. This is not a general ZIP validity claim, not
+a general archive sandbox, and not a real public release observation. No
+workflow, verifier, producer, dependency, runtime API, or release-authority
+changes. RFC-0097 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

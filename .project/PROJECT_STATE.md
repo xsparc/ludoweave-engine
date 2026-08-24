@@ -1,5 +1,98 @@
 # Project State
 
+## M114 retain sample-member compression-level non-observability - implementation in progress
+
+- Base: fully locally validated M113 standalone DCO commit
+  `0c1d81bea0079e2946b2ec2919c1e7fc6cfbf9b3`, tree
+  `14c2b29bcc787c3c784168b5efbc726ed25a2d72`, with sole parent exact M112.
+  It remains unpushed and has no hosted qualification claim.
+- M113 closeout: exact maintainer author/committer identity, one DCO trailer,
+  15 intended paths, clean tracked state, and `0 14` divergence from current
+  `origin/main` were verified. Nine audited M113 scratch targets were removed
+  and separately confirmed absent.
+- Direction evidence: PKWARE's Deflate option bits identify broad normal,
+  maximum, fast, and super-fast categories rather than an exact numeric level.
+  Python's `compresslevel` configures writing; CPython 3.13 added public
+  `ZipInfo.compress_level`, while parsed members initialize it as unknown.
+- Exact runtime/producer probe: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  requested levels `0`, `1`, `6`, and `9`, then reopened every member with
+  method `8`, extraction version `20`, zero flags, readable bytes, and no
+  recovered exact level. Controlled levels `6` and `9` produced identical
+  archive bytes on all three runtimes. The fixed producer remains explicit at
+  level `9`; all 50 reopened members likewise expose no exact level.
+- Probe correction: its first format/lint checks requested one formatting pass
+  and one import sort. Ruff applied those mechanical corrections, after which
+  both checks passed. All three exact runtime executions had already exited
+  zero; no clean static claim relies on the initial checks.
+- Deliberate-red contract: the format/Ruff-clean exact CPython 3.12.13 run
+  passes 15 behavior, complete/mixed level, standard-writer, inventory,
+  producer, source-shape, and protected-surface assertions and fails only the
+  intentionally missing documentation assertion in 0.45 seconds.
+- Implementation scope: RFC-0097 and aligned records retain compression-level
+  non-observability without changing runtime. The decision adds no exact level-
+  9 verifier profile, inferred compressor level, compression-ratio policy,
+  recompression, raw Deflate parser, payload-content read, workflow, dependency,
+  producer, runtime API, version, or release authority.
+- Implementation checkpoint: the focused contract remains format/Ruff clean;
+  all 16 assertions pass on exact CPython 3.12.13 in 0.41 seconds; strict docs
+  and whitespace pass.
+- Supported-Python focused proof: all 16 assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.41, 0.78, and 0.76 seconds.
+- Static/architecture proof: the unchanged 46-package lock resolves; the exact
+  45-package graphics environment is restored; all 357 Python files are format
+  clean; Ruff and strict Pyright pass; all 1,582 architecture assertions pass
+  with one established skip in 10.83 seconds; strict docs and whitespace pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,122
+  tests with 15 skips in 108.75 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,112 tests with 16 skips in 100.51 and 106.05 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.53 seconds;
+  fresh one-repeat base and graphics profiles validate with two and three
+  workloads. Clockwork Arena and Agent World Builder reproduce their
+  established state, capture, replay, render, query, and registered-test
+  identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,859-byte
+  pure wheel at
+  `da01350575fe086ab26f361b6d7cd7517b1559bba857453fbe9683de645cc4db`
+  and a 1,528,920-byte source archive at
+  `61ed0826b9d17ff152c1fcfae70218fd162524b189b8fe64adb812d1580c3b0d`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/594-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review: exactly 15 intended record, documentation, and test
+  paths change. Protected workflows, verifier, stager, metadata, lock, runtime
+  package/API, dependencies, producer, version, and release authority have zero
+  diff. The contract covers all four requested levels, reopened metadata,
+  byte-level ambiguity, complete and mixed bundles, the standard-writer
+  default, inventory precedence, fixed-producer configuration, source shape,
+  and protected surfaces. Public tool-identity, high-confidence secret,
+  whitespace, and stale-current-status scans are clean. No actionable finding
+  remains.
+- Review-inclusive artifacts: two fresh builds reproduce the unchanged
+  277,859-byte pure wheel at
+  `da01350575fe086ab26f361b6d7cd7517b1559bba857453fbe9683de645cc4db`
+  and a 1,530,147-byte source archive at
+  `c0970acd55a1ab4c2af5e718c265b634bdea9064ac2c9b8bfaa1ce869fb35e4f`.
+  Reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  complete release smoke, and 94/594-entry package hygiene pass.
+- Final reviewed-tree separator: the unchanged 46-package lock, 357-file format
+  check, Ruff, strict Pyright, all 1,582 architecture assertions with one
+  established Windows capability skip, strict docs, all 21 M59 metadata-
+  hygiene plus M114 compatibility assertions, and whitespace pass.
+- Precommit audit: fetch/prune retains exact M113 head/tree/parent and exact M99
+  local-main/origin-main/merge-base identity with `0 14` divergence and a
+  linear M100-M113 range. Exactly 15 intended paths change. Only `main` plus
+  required M100-M114 local branches exist and only `origin/main` remotely.
+  Exact maintainer identity, protected surfaces, whitespace, object integrity,
+  high-confidence secret scan, and public tool-identity scan pass. GitHub
+  reports no M114 PR/run, release, or tag. The first release-list query used an
+  unsupported `url` field and exited before returning data; the corrected
+  supported-field query returned empty.
+- Final post-audit separator: strict docs, all 21 M59 metadata-hygiene plus M114
+  compatibility assertions, protected surfaces, whitespace, exact 15-path
+  scope, high-confidence secret scan, and public tool-identity scan pass.
+- Final precommit metadata separator: all 21 M59 metadata-hygiene plus M114
+  compatibility assertions and whitespace pass after the task-state closeout.
+
 ## M113 retain sample-member compression-method compatibility - implementation in progress
 
 - Base: fully locally validated M112 standalone DCO commit

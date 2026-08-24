@@ -2,6 +2,20 @@
 
 No architecture decision is currently blocked.
 
+RFC-0097 resolves the M114 sample-member compression-level non-observability
+decision. PKWARE's Deflate option bits encode broad categories rather than an
+exact numeric writer level. Python's `compresslevel` configures writing, while
+reopened members on exact CPython 3.12.13, 3.13.13, and 3.14.5 do not recover
+requested levels `0`, `1`, `6`, or `9`.
+
+The accepted decision keeps the producer explicit at level `9` without an
+exact level-9 verifier profile or inferred compressor level. M105's zero flags
+and M113's method compatibility remain unchanged. This is one compression-
+level non-observability decision, not a compression-ratio policy, recompressor,
+raw Deflate parser, payload-content check, archive repair, general ZIP validity
+claim, or general sandbox. RFC-0097 records the accepted policy; no M114 design
+decision remains pending.
+
 RFC-0096 resolves the M113 sample-member compression-method compatibility
 decision. PKWARE defines compression as optional, method `0` as stored, and
 method `8` as deflated. Python exposes and reads both and defaults new archives

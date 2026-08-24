@@ -598,6 +598,18 @@ general archive sandbox and is not a real public release observation. M113 is
 locally stacked on fully validated, unpushed M112; none of M100-M113 has hosted
 qualification.
 
+M114 retains sample-member compression-level non-observability. The fixed
+producer continues to request level `9`, but complete release smoke must not
+infer that setting from reopened attributes, compressed bytes, or sizes. M105's
+zero flag profile and M113's compression-method compatibility remain unchanged.
+This is one compression-level non-observability decision with no exact level-9
+verifier profile, no inferred compressor level, and no payload-content read. It
+adds no workflow, allocation, dependency, version, verifier, producer, runtime
+source/API, release authority, tag, release, or publication. It is not a
+general archive sandbox and is not a real public release observation. M114 is
+locally stacked on fully validated, unpushed M113; none of M100-M114 has hosted
+qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

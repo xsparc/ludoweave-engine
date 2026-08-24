@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M114/RFC-0097 decision to retain sample-member compression-level non-
+  observability. The fixed producer remains explicit at level `9`, while the
+  verifier adds no exact level-9 profile, inferred compressor level, payload-
+  content read, workflow, dependency, producer, runtime API, or release-
+  authority change.
 - Record M113/RFC-0096 decision to retain sample-member compression-method
   compatibility. M64's stored/deflated allowlist and M95's local/central
   agreement remain unchanged while the producer stays deflated, with no exact

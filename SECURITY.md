@@ -509,6 +509,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   decompressor, and no payload-content read. It changes no workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M114 retains sample-member compression-level non-observability. Reopened
+  member metadata does not establish the exact writer configuration, so the
+  verifier does not infer a compressor level from attributes, compressed bytes,
+  or sizes. The fixed producer remains explicit at level `9`, while M105's zero
+  flags and M113's method policy remain in force. This is one compression-level
+  non-observability decision with no exact level-9 verifier profile, no inferred
+  compressor level, and no payload-content read. It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

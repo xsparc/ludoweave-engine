@@ -752,6 +752,19 @@ order. M113 adds no workflow, verifier, dependency, runtime API, release
 authority, or producer change, is not a general archive sandbox, and is not a
 real public release observation.
 
+M114/RFC-0097 retains sample-member compression-level non-observability.
+Python's `compresslevel` controls writing, but exact CPython 3.12.13, 3.13.13,
+and 3.14.5 do not recover requested levels `0`, `1`, `6`, or `9` from reopened
+member metadata. The fixed 50-member producer remains explicit at level `9`.
+
+M114 is one compression-level non-observability decision. Complete release
+smoke adds no exact level-9 verifier profile and no inferred compressor level
+from public or protected attributes, compressed bytes, or sizes. M105's zero-
+flag profile, M113's stored/deflated compatibility, and established diagnostic
+order remain unchanged. M114 adds no payload-content read, workflow, verifier,
+dependency, runtime API, release authority, or producer change, is not a
+general archive sandbox, and is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

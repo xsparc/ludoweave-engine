@@ -16,9 +16,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > compatibility while preserving the M65 file-type boundary; M112 retains
 > creating-system compatibility without adding a host allowlist; M113 retains
 > stored/deflated compression-method compatibility without an exact deflate-
-> only profile.
+> only profile; M114 retains sample-member compression-level non-observability
+> without inferring an exact writer setting.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M113 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M114 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -743,6 +744,18 @@ compatibility decision with no exact deflate-only profile, no new decompressor,
 and no payload-content read. M113 adds no workflow, dependency, runtime API,
 verifier, or producer change, is not a general archive sandbox, and is not a
 real public release observation.
+
+M114 retains sample-member compression-level non-observability. Python's
+`compresslevel` controls writing, but reopened sample-member metadata does not
+recover that exact setting on supported runtimes. Complete release smoke
+therefore does not inspect a public or protected compression-level attribute,
+compressed bytes, or compressed size to infer producer configuration. The
+fixed producer remains explicit at level `9`; M105's zero general-purpose flags
+and M113's stored/deflated allowlist remain unchanged. RFC-0097 records one
+compression-level non-observability decision with no exact level-9 verifier
+profile, no inferred compressor level, and no payload-content read. M114 adds
+no workflow, dependency, runtime API, verifier, or producer change, is not a
+general archive sandbox, and is not a real public release observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is
