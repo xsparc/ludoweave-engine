@@ -438,6 +438,16 @@ Maintainers will acknowledge the report through the same private channel, assess
   content read. It changes no workflow, dependency, producer, runtime API, or
   release authority; it is not a general archive sandbox and is not a real
   public release observation.
+- M105 requires public central `ZipInfo.flag_bits` to equal zero after
+  established specific-flag, local/central consistency, payload-layout, and
+  M104 extra-field checks, then after decoded names and member metadata but
+  before exact inventory, staging, or reads. Its content-silent error is
+  `sample bundle contains unsupported general-purpose flags`. This zero sample-
+  member general-purpose-flag profile preflight is one central-flag zero-
+  profile classifier with no flag-semantics parser and no payload-content read.
+  It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

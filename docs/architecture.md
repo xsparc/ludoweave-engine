@@ -2520,6 +2520,37 @@ sandbox and is not a real public release observation. Workflows, producer,
 dependencies, runtime API, and release authority remain unchanged. RFC-0087
 defines the complete boundary.
 
+## M105 zero sample-member general-purpose-flag profile preflight
+
+PKWARE assigns semantic meaning to selected general-purpose flag bits and
+reserves or leaves others unused. Supported CPython exposes the central value
+through public `ZipInfo.flag_bits` and admits an otherwise valid deflated member
+whose matching local and central headers carry currently unused bit 7. Exact
+CPython 3.12.13, 3.13.13, and 3.14.5 each retain value `128` and read both
+fixture payloads. The fixed 50-member LudoWeave producer emits only value zero.
+
+After established specific-flag, local/central consistency, local-record bounds,
+payload-layout, and M104 extra-field checks, every parsed sample member must
+have public central `ZipInfo.flag_bits == 0`. A nonzero value raises stable
+content-silent error `sample bundle contains unsupported general-purpose flags`
+after decoded-name/member-metadata policy and before exact inventory, staging,
+or reads. Unsupported-codec and nonportable-path diagnostics therefore retain
+their established precedence. Encryption, data-descriptor, enhanced-deflate,
+compressed-patch, local-flag
+consistency, payload-layout, and M104 errors retain precedence, while empty
+archives retain their later exact-inventory failure.
+M76 remains method-scoped to enhanced deflate; M105 then rejects any residual
+nonzero fixed-producer flag, including bit 4 on a stored member.
+
+This zero sample-member general-purpose-flag profile preflight is one central-
+flag zero-profile classifier. It adds no flag-semantics parser, bit registry,
+raw record parser, payload-content read, decompression, recompression, CRC
+validation, archive repair, or general ZIP validity claim. It does not assert
+that every nonzero flag is malformed or unsafe outside this fixed producer. It
+is not a general archive sandbox and is not a real public release observation.
+Workflows, producer, dependencies, runtime API, and release authority remain
+unchanged. RFC-0088 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

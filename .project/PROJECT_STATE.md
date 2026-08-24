@@ -1,6 +1,123 @@
 # Project State
 
-## M104 empty sample-member extra-field profile preflight - implementation in progress
+## M105 zero sample-member general-purpose-flag profile preflight - implementation in progress
+
+- Base: fully locally validated M104 DCO commit
+  `3c734d627c90cd9071350d5b4863711a6ba3113e`, tree
+  `2b99704ee9639854af0fe6f2ee4875db527246ad`, with sole parent exact M103.
+  It remains unpushed and has no hosted qualification claim.
+- M104 cleanup: an immediately preceding read-only audit showed all 28 targets
+  were ignored direct `.tmp` children with no reparse points. The removal
+  command emitted non-terminating `DirectoryName` validation errors for
+  directory entries, so its internal parent guard is not claimed as successful.
+  It reported `removed=28; remaining=0`, and an independent follow-up confirmed
+  zero targets and a clean tracked worktree.
+- Direction evidence: PKWARE defines meaningful, reserved, and currently unused
+  general-purpose bits; CPython exposes public central `ZipInfo.flag_bits` and
+  selectively interprets known bits. The policy is a fixed-producer zero
+  profile, not a general ZIP validity or safety claim. No CI expansion is
+  justified.
+- Runtime gap: the corrected format/Ruff-clean probe on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 retained matching unused bit 7 as value `128`, read both
+  payloads, and confirmed the fixed producer's 50 members have sole flag value
+  zero. Initial Ruff found one surplus blank line; it was removed before the
+  recorded clean static result.
+- Red contract: the first run used a missing nested pytest base parent and is
+  unusable as contract evidence. The corrected 16-assertion run passed 11
+  established behavior/protected-surface controls while five intended stable-
+  error, cleanup, helper/order, and documentation assertions failed in 0.30
+  seconds against exact M104. No complete pass is claimed.
+- Implementation scope: one post-M104 aggregate central-flag zero classifier
+  plus RFC-0088 and aligned records. Established specific-flag, M94 consistency,
+  M102/M103 layout, and M104 extra-field errors retain precedence. No flag-
+  semantics parser, payload-content read, workflow, dependency, producer,
+  runtime API, version, release authority, tag, release, or publication is
+  added.
+- Focused checkpoint: affected formatting and Ruff pass; strict Pyright reports
+  zero findings; all 16 M105 assertions pass in 0.23 seconds; strict docs build
+  in 1.47 seconds with only the known upstream Material notice; and whitespace
+  passes.
+- Diagnostic-order correction: the first exact 3.12.13 complete suite exited 1
+  with three failures, 2,959 passes, and 16 skips in 102.51 seconds because the
+  initial aggregate check displaced established LZMA, UTF-8 path, and M76
+  stored-bit behavior. The classifier now runs after decoded-name/member-
+  metadata checks; M64/M65 diagnostics retain precedence and M76 explicitly
+  records M105's stored-bit supersession. All 64 relevant assertions and the
+  affected static/docs gate pass.
+- Supported-Python proof: all 18 final focused assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.60, 0.59, and 0.58 seconds. Corrected
+  complete suites each pass 2,964 tests with 16 established skips in 100.89,
+  98.09, and 103.75 seconds.
+- Local gate: the unchanged 46-package lock resolves in 0.80 milliseconds and
+  the exact CPython 3.12.13 locked graphics environment installs 45 packages.
+  All 348 Python files are format clean; Ruff and strict Pyright pass; all 1,434
+  architecture assertions pass with one established Windows capability skip in
+  9.32 seconds; strict docs build in 1.47 seconds; all 23 metadata/M105
+  assertions pass in 0.44 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.06
+  seconds; one-repeat base and graphics profiles validate with two and three
+  workloads; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 276,588-byte
+  pure wheel at `07fb9037775621176dfd1736ba5bdb8b3c2ff063a1a10d714d40cc5d0147324e`
+  and a 1,478,156-byte source archive at
+  `54467dd8c6ea402ea134355350532235762091440541fc9d6cdcf50007caadc8`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. The 94-entry wheel and 576-entry source archive contain
+  no native, WASM, bytecode, or retired control-metadata paths. Factual record
+  updates alter the source archive afterward.
+- Findings-first review: exactly 17 intended paths change. The review retained
+  the diagnostic-order correction, clarified RFC/public placement and M76
+  supersession, and found no remaining actionable issue. The runtime diff is
+  one ordered call plus one aggregate public central-flag classifier; the
+  existing M76 regression is the only earlier test changed. Workflows, release
+  workflow, stager, metadata, lock, runtime package/API, dependencies, producer,
+  version, and release authority have no diff. Credential, explicit service-
+  identity, backend/native, wall-clock, and retired-control scans are empty.
+- Review-inclusive artifacts: two fresh builds reproduce the 276,588-byte pure
+  wheel at `dd2fae65bab55e8ed87beb89028b37150b90e617099ce4ab2240c667b348a474`
+  and a 1,479,641-byte source archive at
+  `0596b0f5b55a4fadc3bd116f33485f87a6c6db98c92ae08ceed085b2a82cead6`;
+  isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/576-entry package inventories pass with no banned or retired
+  paths. Final factual records alter the source archive afterward.
+- Final source separator: the unchanged 46-package lock resolves in 0.82
+  milliseconds; all 348 files remain format clean; Ruff and strict Pyright
+  pass; all 1,434 architecture assertions pass with one established skip in
+  8.64 seconds; strict docs build in 1.42 seconds; all 23 metadata/M105
+  assertions pass in 0.42 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: one initial multi-ref command mistyped the
+  M102 branch and its ref result is discarded. The corrected labeled audit
+  establishes exact M100-M104 commits, local/remote M99 `main`, the M99 merge
+  base, and expected `0 5` divergence. Exactly 17 intended paths change; only
+  `main` and the required M100-M105 local stack branches exist, while only
+  `origin/main` exists remotely. Authentication is valid; open PR, M105 run,
+  release, and tag queries are empty. Exact maintainer DCO identity is
+  configured. Protected workflow/release/stager/metadata/lock hashes remain
+  exact; Git checking reports 287 dangling-only lines and zero critical
+  finding; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.44 seconds with only the
+  known upstream Material notice; all 23 metadata/M105 assertions pass in 0.42
+  seconds; credential, explicit service-identity, runtime leakage, and retired-
+  control scans return zero matches; exactly 17 intended paths remain changed;
+  and whitespace remains clean.
+- Publication hold: M100-M105 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M104 empty sample-member extra-field profile preflight - local qualification and commit complete
+
+- Standalone commit: M104 is exact DCO commit
+  `3c734d627c90cd9071350d5b4863711a6ba3113e`, tree
+  `2b99704ee9639854af0fe6f2ee4875db527246ad`, with sole parent exact M103
+  `19ccf5076d391924e969b57e76c25049068553a6` and 16 intended paths.
+- Postcommit cleanup: an immediately preceding read-only audit established 28
+  exact ignored direct `.tmp` children with no reparse points. The removal
+  command's in-command `DirectoryName` validation emitted non-terminating
+  errors for directory targets and is therefore not claimed as successful; the
+  same command reported `removed=28; remaining=0`, and a separate follow-up
+  confirmed zero remaining targets and a clean tracked worktree.
 
 - Base: fully locally validated M103 DCO commit
   `19ccf5076d391924e969b57e76c25049068553a6`, tree

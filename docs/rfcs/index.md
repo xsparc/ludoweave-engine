@@ -92,3 +92,4 @@ was adopted.
 - [RFC-0085: bound sample-member compressed payloads](0085-bound-sample-member-payloads.md)
 - [RFC-0086: require contiguous sample-member payloads](0086-require-contiguous-sample-payloads.md)
 - [RFC-0087: require empty sample-member extra fields](0087-require-empty-sample-member-extra-fields.md)
+- [RFC-0088: require zero sample-member general-purpose flags](0088-require-zero-sample-member-general-purpose-flags.md)

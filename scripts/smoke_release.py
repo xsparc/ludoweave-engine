@@ -631,6 +631,7 @@ def _extract_checksum_admitted_bundle(
             for depth in range(1, len(member_key))
         ):
             raise RuntimeError("sample bundle member paths collide")
+        _validate_sample_general_purpose_flag_profile(infos=infos)
         _validate_sample_inventory(observed_members)
 
         with tempfile.TemporaryDirectory(
@@ -1201,6 +1202,16 @@ def _validate_sample_extra_field_profile(
 
     if any(info.extra for info in infos):
         raise RuntimeError("sample bundle contains an unsupported extra field")
+
+
+def _validate_sample_general_purpose_flag_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer sample profile to contain zero flag bits."""
+
+    if any(info.flag_bits != 0 for info in infos):
+        raise RuntimeError("sample bundle contains unsupported general-purpose flags")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

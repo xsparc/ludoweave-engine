@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M105/RFC-0088 zero sample-member general-purpose-flag profile preflight.
+  Public central `ZipInfo.flag_bits` must equal zero after established specific-
+  flag, local-header, payload-layout, and extra-field checks, then after decoded-
+  name/member-metadata policy and before exact inventory, reads, or staging,
+  with no flag-semantics parser, no payload-content read, and no workflow,
+  dependency, producer, runtime API, or release-authority change.
 - Add M104/RFC-0087 empty sample-member extra-field profile preflight. Public
   central `ZipInfo.extra` must be empty after established extra-field,
   local-header, payload-bound, and contiguity checks and before decoded-name

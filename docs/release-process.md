@@ -1042,6 +1042,21 @@ decompression, recompression, or general ZIP validity claim. It adds no
 workflow, dependency, runtime API, release authority, or producer change, is
 not a general archive sandbox, and is not a real public release observation.
 
+M105/RFC-0088 requires public central `ZipInfo.flag_bits` to equal zero after
+established specific-flag, local/central consistency, payload-layout, and M104
+extra-field checks. This zero sample-member general-purpose-flag profile
+preflight is one central-flag zero-profile classifier after decoded-name and
+member-metadata policy but before exact inventory, staging, or member reads.
+Failure emits stable content-silent error `sample bundle contains unsupported
+general-purpose flags`; established specific, codec, path, and layout errors
+retain precedence and all owned resources close before control returns.
+
+The fixed producer's 50 members already have zero general-purpose flags. M105
+adds no flag-semantics parser, bit registry, payload-content read,
+decompression, recompression, or general ZIP validity claim. It adds no
+workflow, dependency, runtime API, release authority, or producer change, is
+not a general archive sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

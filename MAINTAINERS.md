@@ -497,6 +497,19 @@ a general archive sandbox and is not a real public release observation. M104 is
 locally stacked on fully validated, unpushed M103; none of M100-M104 has hosted
 qualification.
 
+M105 requires public central `ZipInfo.flag_bits` to equal zero after
+established specific-flag, local/central consistency, payload-layout, and M104
+extra-field checks, then after decoded names and member metadata but before
+exact inventory, staging, or reads. Its stable content-silent error is `sample
+bundle contains unsupported general-purpose flags`. This zero sample-member
+general-purpose-flag profile preflight is one central-flag zero-profile
+classifier with no flag-semantics parser and no payload-content read. It adds
+no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M105 is locally stacked on fully validated,
+unpushed M104; none of M100-M105 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
