@@ -125,6 +125,7 @@ nav:
       - RFC-0082 - Require consistent local-header CRC-32 values: rfcs/0082-require-consistent-local-header-crcs.md
       - RFC-0083 - Require consistent local-header compressed sizes: rfcs/0083-require-consistent-local-header-compressed-sizes.md
       - RFC-0084 - Require consistent local-header uncompressed sizes: rfcs/0084-require-consistent-local-header-uncompressed-sizes.md
+      - RFC-0085 - Bound sample-member compressed payloads: rfcs/0085-bound-sample-member-payloads.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -2448,6 +2448,31 @@ validator. It is not a general archive sandbox and is not a real public release
 observation. Workflows, producer, dependencies, runtime API, and release
 authority remain unchanged. RFC-0084 defines the complete boundary.
 
+## M102 compressed-payload upper-bound preflight
+
+M102 combines established ordered offsets, the conventional directory boundary,
+bounded local envelopes, and matching compressed sizes. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 admit matching local/central sizes `[12, 11]` when the
+first calculated payload end is byte `54` and the next local header begins at
+`53`; only the first later member read raises `BadZipFile`, while the second
+payload remains readable.
+
+Each nonfinal compressed payload end must be no greater than the next local-
+header offset; the final end must be no greater than the conventional central-
+directory offset. Overlap raises stable content-silent error `sample bundle
+member payloads are out of bounds` before decoded names, metadata, exact
+inventory, staging, or reads. Empty archives retain their later inventory
+failure, and the helper restores the caller's snapshot position.
+
+This is one compressed-payload upper-bound classifier. It performs no
+decompression or recompression, no payload-content read, adds no exact-
+contiguity requirement, no gap or adjacency ban, no compression-ratio or
+archive-bomb policy, and no payload-integrity certification. It is not a
+complete inter-member layout validator, not a general archive sandbox, and not
+a real public release observation. Workflows, producer, dependencies, runtime
+API, and release authority remain unchanged. RFC-0085 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -461,6 +461,18 @@ release, or publication. It is not a general archive sandbox and is not a real
 public release observation. M101 is locally stacked on the fully validated,
 unpushed M100 DCO commit; neither milestone has hosted qualification.
 
+M102 calculates each compressed payload end after M101 and requires it not to
+exceed the next ordered local header or conventional central directory before
+decoded names, metadata, inventory, staging, or reads. Its stable content-
+silent error is `sample bundle member payloads are out of bounds`. This one
+compressed-payload upper-bound classifier performs no decompression or
+recompression, adds no exact-contiguity requirement, no gap or adjacency ban,
+and no payload-integrity certification. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M102 is locally stacked on fully validated,
+unpushed M101; none of M100-M102 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

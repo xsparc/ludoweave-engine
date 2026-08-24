@@ -411,6 +411,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   next-header bound, and no inter-member layout validator, and changes no
   workflow, dependency, producer, runtime API, or release authority; it is not
   a general archive sandbox and is not a real public release observation.
+- M102 calculates each compressed payload end after M101 and requires it not to
+  exceed the next ordered local header or conventional central directory before
+  decoded names, metadata, inventory, staging, or reads. Its content-silent
+  error is `sample bundle member payloads are out of bounds`. This one
+  compressed-payload upper-bound classifier performs no decompression or
+  recompression, adds no exact-contiguity requirement, no gap or adjacency ban,
+  and no payload-integrity certification, and changes no workflow, dependency,
+  producer, runtime API, or release authority; it is not a general archive
+  sandbox and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

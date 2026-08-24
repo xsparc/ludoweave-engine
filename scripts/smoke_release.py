@@ -570,6 +570,10 @@ def _extract_checksum_admitted_bundle(
             snapshot=snapshot_stream,
             infos=infos,
         )
+        _validate_sample_payload_bounds(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -1120,6 +1124,36 @@ def _validate_sample_local_header_uncompressed_sizes(
             expected = info.file_size.to_bytes(4, "little")
             if snapshot.read(_SAMPLE_LOCAL_HEADER_UNCOMPRESSED_SIZE_BYTES) != expected:
                 raise RuntimeError("sample bundle local header uncompressed sizes are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_payload_bounds(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require compressed member payloads not to overlap later ZIP records."""
+
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    limits = (*(info.header_offset for info in infos[1:]), directory_offset) if infos else ()
+    position = snapshot.tell()
+    try:
+        for info, limit in zip(infos, limits, strict=True):
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET)
+            lengths = snapshot.read(_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES)
+            name_length = int.from_bytes(lengths[:2], "little")
+            extra_length = int.from_bytes(lengths[2:], "little")
+            payload_end = (
+                info.header_offset
+                + _SAMPLE_FIXED_LOCAL_HEADER_BYTES
+                + name_length
+                + extra_length
+                + info.compress_size
+            )
+            if payload_end > limit:
+                raise RuntimeError("sample bundle member payloads are out of bounds")
     finally:
         snapshot.seek(position)
 

@@ -999,6 +999,20 @@ payload or next-header bound, and no inter-member layout validator, workflow,
 dependency, runtime API, release authority, or producer change. This profile is
 not a general archive sandbox and is not a real public release observation.
 
+M102/RFC-0085 calculates each compressed payload end after M101 and requires it
+not to exceed the next ordered local header or conventional central directory.
+This one compressed-payload upper-bound classifier runs before decoded-name
+policy, metadata, exact inventory, staging, or member reads. Failure emits
+stable content-silent error `sample bundle member payloads are out of bounds`;
+all owned resources close before control returns.
+
+The fixed producer's 50 payloads end exactly at their next header or directory
+limit. M102 performs no decompression or recompression, reads no payload
+content, adds no exact-contiguity requirement, no gap or adjacency ban, no
+compression-ratio policy, no payload-integrity certification, workflow,
+dependency, runtime API, release authority, or producer change. This profile is
+not a general archive sandbox and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
