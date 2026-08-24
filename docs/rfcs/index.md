@@ -90,3 +90,4 @@ was adopted.
 - [RFC-0083: require consistent local-header compressed sizes](0083-require-consistent-local-header-compressed-sizes.md)
 - [RFC-0084: require consistent local-header uncompressed sizes](0084-require-consistent-local-header-uncompressed-sizes.md)
 - [RFC-0085: bound sample-member compressed payloads](0085-bound-sample-member-payloads.md)
+- [RFC-0086: require contiguous sample-member payloads](0086-require-contiguous-sample-payloads.md)

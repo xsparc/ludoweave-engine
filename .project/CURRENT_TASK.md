@@ -1,37 +1,33 @@
 # Current task
 
-- **Task:** M102 - compressed-payload upper-bound preflight
-- **Status:** M100 and M101 are fully locally validated in separate stacked DCO
-  commits and remain unpushed because of the external reviewer-identity hold.
-  M102 primary-source direction, deterministic supported-runtime probe,
-  corrected deliberate red contract, runtime implementation, RFC-0085,
-  aligned documentation, and the corrected implementation checkpoint are
-  complete on a third local stacked branch. Supported-Python focused and full
+- **Task:** M103 - exact compressed-payload contiguity preflight
+- **Status:** M100 through M102 are fully locally validated in separate stacked
+  DCO commits and remain unpushed because of the external reviewer-identity
+  hold. M103 primary-source direction, deterministic supported-runtime probe,
+  corrected deliberate red contract, runtime implementation, RFC-0086, aligned
+  documentation, implementation checkpoint, and supported-Python focused/full
   suites, repository-wide quality gate, graphics/profile/vertical slices, and
-  initial reproducible distribution/release gate, and findings-first review
+  initial reproducible distribution/release gate, and findings-first review are
   record-inclusive artifact/release gate, final source separator, and stacked
-  remote-history/scope/integrity audit, and final post-audit separator pass. The
-  local DCO commit remains.
-- **Base:** Fully locally validated M101 DCO commit
-  `7b73861adc268182b6322e79c5a8651ca9c4db3d`, tree
-  `b2c2348df504217315dd008d3eba083be8175c38`, with sole parent exact M100
-  commit `103f84bf57f0b4ae0ca07548b453c199eec88f49`.
-- **Branch:** `release/m102-compressed-payload-upper-bound`.
+  remote-history/scope/integrity audit are complete on a fourth local stacked
+  branch. The final post-audit separator passes; the local DCO commit remains.
+- **Base:** Fully locally validated M102 DCO commit
+  `d9e2f5cd6d72bf03008b6d2478818631ec0b92ce`, tree
+  `669a254d2a3b567938f49df23656d24862124b7a`, with sole parent exact M101
+  commit `7b73861adc268182b6322e79c5a8651ca9c4db3d`.
+- **Branch:** `release/m103-exact-payload-contiguity`.
 
 ## Approved scope
 
-- After M101 size-field consistency, private release smoke calculates each
-  compressed payload end from the already bounded local-header envelope plus
-  public central `ZipInfo.compress_size`.
-- Each nonfinal payload end must be no greater than the next strictly ordered
-  local-header offset; the final payload end must be no greater than the
-  conventional central-directory offset.
-- Overlap raises stable content-silent `sample bundle member payloads are out
-  of bounds` before decoded-name policy, metadata, exact inventory, staging, or
-  member reads.
-- Every established policy through M101, empty-archive inventory behavior,
-  owned-resource cleanup, and caller snapshot position remain intact.
-- RFC-0085 and aligned public, security, architecture, release, roadmap,
+- After M102's upper-bound classifier, private release smoke requires every
+  compressed payload end to equal the next ordered local-header offset or, for
+  the final member, the conventional central-directory offset.
+- A shorter extent raises stable content-silent `sample bundle member payloads
+  are not contiguous` before decoded-name policy, metadata, exact inventory,
+  staging, or member reads. M102 retains precedence for overlap.
+- Empty archives retain their later inventory failure; current exact producer
+  output and caller snapshot position remain intact.
+- RFC-0086 and aligned public, security, architecture, release, roadmap,
   maintainer, test, and factual project records will define the boundary.
 - Workflow, runner allocations, actions, permissions, credentials,
   dependency/lock/version, sample producer, runtime package/API, release
@@ -39,88 +35,80 @@
 
 ## Current evidence
 
-- M101 commit `7b73861adc268182b6322e79c5a8651ca9c4db3d` is one commit
-  ahead of M100 and two ahead of exact `origin/main`; it has the validated
-  15-path tree, sole M100 parent, exact maintainer author/committer identity,
-  and standalone DCO trailer. It is unpushed and has no hosted qualification
-  claim.
-- All 26 generated M101 scratch targets were verified under the exact workspace
-  `.tmp` root, permanently removed in one approved pass, and confirmed absent.
-  No tracked or recoverable file was removed.
-- PKWARE APPNOTE defines local data immediately after each variable local-header
-  envelope and the central directory after local records. Earlier milestones
-  already provide bounded envelopes, ordered offsets, the conventional
-  directory boundary, and matching compressed sizes.
-- The first exact 3.12.13 runtime probe demonstrated payload byte 54 crossing
-  the next header at byte 53, delayed first-member `BadZipFile`, and a readable
-  second payload, while format passed; Ruff found one unused `noqa`. After that
-  static-only correction, exact CPython 3.12.13, 3.13.13, and 3.14.5 reproduced
-  central/local compressed sizes `[12, 11]`, the 54/53 overlap, delayed
-  `BadZipFile`, and readable `payload-1`; the probe is format/Ruff clean.
-- Initial M102 contract static checks passed strict Pyright but format requested
-  one reflow and Ruff found one tuple-concatenation presentation issue. The
-  13-assertion red run still passed five supported-runtime, M101-precedence,
-  empty-archive, producer, and protected-surface controls and failed eight
-  intended policy/helper/cleanup/ordering/documentation assertions. After the
-  mechanical tuple and formatter corrections, the contract is format/Ruff
-  clean, strict Pyright reports zero findings, and exact CPython 3.14.5 repeats
-  the authoritative five-pass/eight-fail red result in 0.70 seconds. No
-  complete pass is claimed.
-- The first implementation checkpoint stopped when Ruff requested one
-  mechanical runtime reflow. After formatting, affected-file format, Ruff, and
-  strict Pyright checks passed, but the first focused command used a nonexistent
-  abbreviated M101 path and collected no tests. The corrected exact path passed
-  all 28 combined M101-M102 assertions in 0.36 seconds; strict docs built in
-  1.45 seconds with only the known Material notice, and whitespace is clean.
-- The first exact 3.12 focused invocation was blocked before pytest by sandbox
-  denial of uv's user cache. With the existing cache authorized, all 13 M102
-  assertions passed on exact CPython 3.12.13, 3.13.13, and 3.14.5 in 0.27,
-  0.63, and 0.60 seconds. Each complete suite then passed 2,920 tests with 16
-  established skips in 111.93, 102.87, and 107.01 seconds respectively.
-- The unchanged lock resolves 46 packages and the exact CPython 3.12.13
-  45-package graphics environment is restored. All 345 Python files are format
-  clean; Ruff and strict Pyright pass; architecture passes 1,390 assertions
-  with one established Windows capability skip; strict docs, 18 metadata/M102
-  assertions, and whitespace pass.
+- M102 commit `d9e2f5cd6d72bf03008b6d2478818631ec0b92ce` has tree
+  `669a254d2a3b567938f49df23656d24862124b7a`, sole M101 parent, exact
+  maintainer author/committer identity, standalone DCO trailer, and 15 intended
+  paths. The worktree was clean and the local stack was exactly three commits
+  ahead of `origin/main` after commit.
+- Twelve M102-named generated targets were verified as direct, untracked,
+  non-reparse children of the exact workspace `.tmp` root, permanently removed
+  in one authorized pass, and confirmed absent. No tracked or recoverable file
+  was deleted.
+- PKWARE APPNOTE places compressed data immediately after each variable local
+  header and before following local or central records. M102 intentionally
+  admits shorter extents; the fixed producer's 50 payloads are already exact.
+- A format/Ruff-clean deterministic probe on exact CPython 3.12.13, 3.13.13,
+  and 3.14.5 inserted one byte before the second local header while updating
+  conventional offsets. Each runtime reported gap widths `[1, 0]`, offsets
+  `[0, 59]`, payload ends `[58, 117]`, and readable `payload-0`/`payload-1`.
+- The initial 13-assertion M103 red run was format/Ruff clean with zero strict
+  Pyright findings but passed only four controls and failed nine assertions;
+  its runtime control incorrectly hard-coded the short probe's second offset
+  for a longer fixture prefix. After comparing against the fixture's own
+  original offset, static checks remained clean and exact CPython 3.14.5 passed
+  five supported-runtime, M102-precedence, empty-archive, producer, and
+  protected-surface controls while eight intended stable-error, helper,
+  cleanup, ordering, and documentation assertions failed in 0.71 seconds
+  against unchanged M102. No complete pass is claimed.
+- The first implementation checkpoint passed affected-file formatting, Ruff,
+  and strict Pyright; all 26 combined M102-M103 assertions passed in 0.37
+  seconds; strict docs built in 1.52 seconds with only the known Material
+  notice; and whitespace passed.
+- All 13 M103 assertions passed on exact CPython 3.12.13, 3.13.13, and 3.14.5
+  in 0.26, 0.67, and 0.59 seconds. Each complete suite then passed 2,933 tests
+  with 16 established skips in 102.16, 99.75, and 105.09 seconds respectively.
+- The unchanged 46-package lock resolves in 0.79 milliseconds and the exact
+  CPython 3.12.13 45-package graphics environment installs. All 346 Python
+  files are format clean; Ruff and strict Pyright pass; architecture passes
+  1,403 assertions with one established Windows capability skip; strict docs,
+  18 metadata/M103 assertions, and whitespace pass.
 - Ten real-wgpu tests, both one-repeat profiles, Clockwork Arena, and Agent
   World Builder pass with established deterministic identities. Two fresh
-  builds reproduce a 276,141-byte wheel at
-  `d44412d063b0cb85be358fad3849b29400fd75e08a3a4895c453840019749ae9`
-  and a 1,460,394-byte source archive at
-  `226fb991c517778c07f29a3d50fe35718303e820964a65bb010d9674683b113a`;
-  isolated-wheel smoke, ten-artifact staging, and release smoke pass. Recording
-  these facts changes the source archive afterward.
+  builds reproduce a 276,244-byte wheel at
+  `08ffddb77c7b37cd5e9c905167d98962901fd97727af4bdd0f77dc4ff514ba1e`
+  and a 1,466,013-byte source archive at
+  `f4c199cf32fec52421c4d4f13c802402b43edb9fca452db53c36ef0a38310560`;
+  isolated-wheel smoke, ten-artifact staging, and complete release smoke pass.
+  Recording these facts changes the source archive afterward.
 - Findings-first review found no actionable issue across exactly 15 intended
   paths. The runtime delta is one ordered call plus one position-restoring
-  helper; M101 precedence, stable error, empty behavior, cleanup, exact/gap
-  admission, and both overlap limits are covered. Protected workflows,
-  producer, dependencies, package/API, metadata, and lock have no diff. The
-  first credential scan command misparsed its leading-dash pattern; the
-  corrected credential scan and identity/control-path scans found zero matches.
-  The 94-entry pure wheel and 570-entry source archive contain zero native,
-  WASM, bytecode, or retired control-metadata entries.
-- Review-inclusive repeat builds reproduce the 276,141-byte pure wheel at
-  `d44412d063b0cb85be358fad3849b29400fd75e08a3a4895c453840019749ae9`
-  and a 1,462,149-byte source archive at
-  `a53fb59806725ea2c1f9bd7c2b91ac89239bb11eeb362a4333e2c0a0447a435d`;
+  equality helper; M102 overlap precedence, stable error, empty behavior,
+  cleanup, exact acceptance, and nonfinal/final gaps are covered. Keeping the
+  M102 and M103 calculations separate preserves independently testable policy
+  contracts. Protected workflows, producer, dependencies, package/API,
+  metadata, and lock have no diff. Credential/identity/control-path scans found
+  zero matches. The 94-entry pure wheel and 572-entry source archive contain no
+  native, WASM, bytecode, or retired control-metadata entries.
+- Review-inclusive repeat builds reproduce the 276,244-byte pure wheel at
+  `08ffddb77c7b37cd5e9c905167d98962901fd97727af4bdd0f77dc4ff514ba1e`
+  and a 1,467,000-byte source archive at
+  `0e60cc6e01267878bc0a393512fb732f8ee54efaa046e26dd5e8bbd6a8989011`;
   isolated-wheel smoke, ten-artifact staging, and complete release smoke pass.
   Final factual record changes will alter only the source archive.
-- The final separator's first sandboxed lock check was blocked before project
-  evaluation by uv user-cache denial. The authorized lock check then resolved
-  46 packages in 0.81 milliseconds; all 345 files remained format clean; Ruff
-  and strict Pyright passed; architecture passed 1,390 assertions with one
-  established skip; strict docs, all 18 metadata/M102 assertions, and
-  whitespace passed.
-- After fetch/prune, `HEAD` and the M101 branch are exact M101, M100 retains its
-  exact commit, and local/remote `main` retain exact M99. Merge base is M99 and
-  precommit divergence is the expected two local commits. Exactly 15 intended
-  paths change; only the four necessary local stack branches and remote `main`
-  exist. Authentication is valid; open PR, M102 workflow, release, and tag
-  queries are empty. Exact DCO identity is configured, protected surfaces are
-  unchanged, final scans are empty, Git reports 286 historical dangling-object
-  lines and zero critical finding, and whitespace is clean.
-- Final post-audit separator: strict docs built in 1.53 seconds; all 18
-  metadata/M102 assertions passed in 0.43 seconds; credential, explicit
+- Final source separator: the unchanged lock resolved 46 packages in 0.78
+  milliseconds; all 346 files remained format clean; Ruff and strict Pyright
+  passed; architecture passed 1,403 assertions with one established skip;
+  strict docs, all 18 metadata/M103 assertions, and whitespace passed.
+- After fetch/prune, `HEAD` and the M102 branch are exact M102; M100/M101 retain
+  their exact commits; local/remote `main` retain exact M99; merge base is M99;
+  and precommit divergence is the expected `0 3`. Exactly 15 intended paths
+  change; only the five necessary local stack branches and remote `main` exist.
+  Authentication is valid; open PR, M103 workflow, release, and tag queries are
+  empty. Exact DCO identity is configured, protected surfaces are unchanged,
+  final scans are empty, Git reports 286 historical dangling-object lines and
+  zero critical finding, and whitespace is clean.
+- Final post-audit separator: strict docs built in 1.45 seconds; all 18
+  metadata/M103 assertions passed in 0.42 seconds; credential, explicit
   service-identity, and retired-control scans remained empty; exactly 15 paths
   remained changed; and whitespace remained clean.
 
@@ -128,16 +116,15 @@
 
 - No decompression or recompression and no payload-content read during
   preflight.
-- No exact-contiguity requirement, no gap or adjacency ban, and no physical
-  payload-byte inspection.
-- No compression-ratio or archive-bomb policy and no payload-integrity
-  certification.
-- No generic field-wide comparison, archive repair, general archive sandbox,
-  public release observation, workflow change, dependency, runtime feature,
-  native/WASM work, tag, release, or publication.
+- No CRC recomputation, compressed-stream interpretation, compression-ratio or
+  archive-bomb policy, or payload-integrity certification.
+- No central-record parser, payload-byte validation, archive repair, general
+  archive sandbox, or real public release observation.
+- No workflow, dependency, producer, runtime package/API, native/WASM, version,
+  release authority, tag, release, or publication change.
 
 ## Remaining acceptance work
 
-- Create one standalone local DCO commit stacked on M101.
-- Publish M100-M102 ready PRs only after the automated-review identity exposure
+- Create one standalone local DCO commit stacked on M102.
+- Publish M100-M103 ready PRs only after the automated-review identity exposure
   is resolved or the maintainer explicitly accepts that disclosure risk.

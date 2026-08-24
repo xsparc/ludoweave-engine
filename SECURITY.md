@@ -420,6 +420,15 @@ Maintainers will acknowledge the report through the same private channel, assess
   and no payload-integrity certification, and changes no workflow, dependency,
   producer, runtime API, or release authority; it is not a general archive
   sandbox and is not a real public release observation.
+- M103 requires each compressed payload end to equal the next ordered local
+  header or conventional central directory after M102 and before decoded names,
+  metadata, inventory, staging, or reads. Its content-silent error is `sample
+  bundle member payloads are not contiguous`. This exact compressed-payload
+  contiguity preflight is one compressed-payload equality classifier with no
+  decompression or recompression, no payload-content read, and no payload-
+  integrity certification. It changes no workflow, dependency, producer,
+  runtime API, or release authority; it is not a general archive sandbox and is
+  not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

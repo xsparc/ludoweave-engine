@@ -6,9 +6,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 
 > Current validation: M0 through M99 are hosted-validated and closed; M100 and
 > M101 add locally validated stacked size-field consistency from that base;
-> M102 adds a local compressed-payload upper bound.
+> M102 adds a local compressed-payload upper bound; M103 requires exact local
+> payload contiguity.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M102 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M103 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -964,6 +965,16 @@ no decompression or recompression, adds no exact-contiguity requirement, no gap
 or adjacency ban, and no payload-integrity certification, and changes no
 workflow, dependency, runtime API, or producer. This fixed-producer profile is
 not a general archive sandbox and is not a real public release observation.
+
+M103 requires every calculated compressed payload end to equal the next
+ordered local header or conventional central directory. Its exact compressed-
+payload contiguity preflight runs after M102 and before decoded-name policy,
+metadata, inventory, staging, or reads. The stable content-silent error is
+`sample bundle member payloads are not contiguous`. RFC-0086 defines one
+compressed-payload equality classifier with no decompression or recompression,
+no payload-content read, and no payload-integrity certification. It changes no
+workflow, dependency, runtime API, or producer, is not a general archive
+sandbox, and is not a real public release observation.
 
 The M9 Box2D probe is also evaluation tooling, not a normal quality command or
 dependency. Run it only in an isolated environment with an explicit candidate:

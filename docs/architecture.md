@@ -2473,6 +2473,28 @@ a real public release observation. Workflows, producer, dependencies, runtime
 API, and release authority remain unchanged. RFC-0085 defines the complete
 boundary.
 
+## M103 exact compressed-payload contiguity preflight
+
+M103 builds on M102's proven upper bound. Exact CPython 3.12.13, 3.13.13, and
+3.14.5 admit a one-byte inter-member gap when conventional offsets are updated:
+gap widths remain `[1, 0]`, local offsets are `[0, 59]`, payload ends are
+`[58, 117]`, and both payloads remain readable.
+
+Each compressed payload end must equal the next local-header offset or, for the
+final member, the conventional central-directory offset. A shorter extent
+raises stable content-silent error `sample bundle member payloads are not
+contiguous` before decoded names, metadata, exact inventory, staging, or reads.
+M102 retains precedence for overlap, empty archives retain their later inventory
+failure, and the helper restores the caller's snapshot position.
+
+This exact compressed-payload contiguity preflight is one compressed-payload
+equality classifier. It performs no decompression or recompression, no payload-
+content read, no CRC recomputation, no compressed-stream interpretation, and no
+payload-integrity certification. It does not parse central records or payload
+bytes, is not a general archive sandbox, and is not a real public release
+observation. Workflows, producer, dependencies, runtime API, and release
+authority remain unchanged. RFC-0086 defines the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

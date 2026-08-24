@@ -1013,6 +1013,20 @@ compression-ratio policy, no payload-integrity certification, workflow,
 dependency, runtime API, release authority, or producer change. This profile is
 not a general archive sandbox and is not a real public release observation.
 
+M103/RFC-0086 requires each compressed payload end to equal the next ordered
+local header or conventional central directory. This exact compressed-payload
+contiguity preflight is one compressed-payload equality classifier after M102
+and before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle member payloads
+are not contiguous`; M102 retains overlap precedence and all owned resources
+close before control returns.
+
+The fixed producer's 50 payloads already end exactly at their next limit. M103
+performs no decompression or recompression, reads no payload content, and makes
+no payload-integrity certification. It adds no workflow, dependency, runtime
+API, release authority, or producer change, is not a general archive sandbox,
+and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See

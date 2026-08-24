@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M103/RFC-0086 exact compressed-payload contiguity preflight. Each
+  calculated payload end must equal the next local header or conventional
+  central directory before decoded-name policy, metadata, inventory, reads, or
+  staging, with M102 overlap precedence, no decompression or recompression, no
+  payload-content read, no payload-integrity certification, and no workflow,
+  dependency, producer, runtime API, or release-authority change.
 - Add M102/RFC-0085 compressed-payload upper-bound preflight. Each calculated
   compressed payload end must not exceed the next local header or conventional
   central directory before decoded-name policy, metadata, inventory, reads, or

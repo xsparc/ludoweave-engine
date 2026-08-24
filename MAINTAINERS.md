@@ -473,6 +473,18 @@ release, or publication. It is not a general archive sandbox and is not a real
 public release observation. M102 is locally stacked on fully validated,
 unpushed M101; none of M100-M102 has hosted qualification.
 
+M103 requires each compressed payload end to equal the next ordered local
+header or conventional central directory after M102 and before decoded names,
+metadata, inventory, staging, or reads. Its stable content-silent error is
+`sample bundle member payloads are not contiguous`. This exact compressed-
+payload contiguity preflight is one compressed-payload equality classifier. It
+performs no decompression or recompression, reads no payload content, and makes
+no payload-integrity certification. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M103 is locally stacked on fully validated,
+unpushed M102; none of M100-M103 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
