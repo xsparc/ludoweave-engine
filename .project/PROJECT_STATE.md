@@ -1,6 +1,100 @@
 # Project State
 
-## M107 exact sample-member extraction-version profile preflight - implementation in progress
+## M108 exact sample-member creation-version profile preflight - local qualification complete; commit pending
+
+- Base: fully locally validated M107 DCO commit
+  `3817d10e362f76f80a0d78c349a541df0ba5b928`, tree
+  `0cc44c16f7f3452a007a1b01dc15fb19bee55422`, with sole parent exact M106.
+  It remains unpushed and has no hosted qualification claim.
+- M107 cleanup: an exact read-only audit identified ten ignored, direct,
+  non-reparse `.tmp` children. The guarded removal deleted exactly ten; a
+  follow-up found zero remaining targets and a clean worktree.
+- Rejected host direction: exact UNIX host `3` passed 17 focused assertions and
+  strict docs but failed 54 established architecture assertions in Windows-
+  created compatibility fixtures. No complete gate pass is claimed. That
+  implementation, contract, and documentation were replaced; host-specific
+  attribute semantics remain deferred.
+- Corrected direction evidence: PKWARE defines the lower `version made by` byte
+  as the encoder's supported ZIP specification version. Python exposes public
+  `ZipInfo.create_version`; CPython defaults to `20`. The selected response is
+  one fixed-producer exact profile after M107, not general encoder capability
+  or ZIP security. No CI expansion is justified.
+- Corrected runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each admitted
+  public central creation version `21`, exposed host `3` and extraction version
+  `20`, read the payload, and confirmed all 50 producer members use creation
+  version `20` and host `3`.
+- Corrected red contract: exact CPython 3.12.13 passed nine established
+  precedence/behavior/protected-surface assertions and failed 11 targeted
+  stable-error, cleanup, exact-value, helper/order, and documentation assertions
+  in 0.74 seconds against unchanged M107. One invalid flag case was removed
+  because the standard writer cleared its synthetic flag input.
+- Implementation scope: one aggregate public central
+  `info.create_version != 20` classifier after M107 and before inventory, plus
+  RFC-0091 and aligned records. It adds no general creation-version semantics
+  parser, attribute-host policy, payload-content read, workflow, dependency,
+  producer, runtime API, version, release authority, tag, release, or
+  publication.
+- Corrected focused proof: all 19 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.26, 1.04, and 0.62 seconds. The complete architecture
+  suite passes 1,488 assertions with one established skip, first in 8.93 and
+  finally in 10.52 seconds.
+- Complete supported-Python proof: exact CPython 3.12.13 passes 3,028 tests with
+  15 skips in 108.28 seconds; exact 3.13.13 and 3.14.5 each pass 3,018 tests
+  with 16 skips in 98.97 and 104.54 seconds. The 3.12 environment retained
+  graphics dependencies.
+- Corrected local gate: the unchanged 46-package lock resolves in 0.81
+  milliseconds; exact graphics sync installs 45 packages; all 351 files are
+  format clean; Ruff and strict Pyright pass; strict docs build in 1.64 seconds;
+  all 24 metadata/M108 assertions pass in 0.80 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 5.90 seconds;
+  one-repeat base and graphics profiles validate with two and three workloads;
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two builds reproduce a 276,893-byte pure
+  wheel at `43857f8a089eb88a396dcad319c4e0452ca20791633317f98f9a83194b28881b`
+  and a 1,496,675-byte source archive at
+  `85f7a823ab86f4780edb8b3ccb36a40aa09c676093d5bba8277377e9115fe59b`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/582-entry package hygiene pass. Factual record updates alter the
+  source archive afterward.
+- Findings-first review covers exactly 16 intended paths and found no runtime,
+  security, architecture, diagnostic-order, ownership, documentation, or scope
+  defect. Protected workflows, stager, metadata, lock, runtime package/API,
+  dependencies, producer, version, and release authority have no diff and
+  retain their exact recorded hashes. Narrow service-identity and high-
+  confidence secret scans return zero matches.
+- Review-inclusive builds reproduce the same 276,893-byte pure wheel at
+  `43857f8a089eb88a396dcad319c4e0452ca20791633317f98f9a83194b28881b`
+  and a 1,497,481-byte source archive at
+  `f54aa1adc8a62003f29036aeef906755e2804e78f183ebb77ab891a01d97f41b`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/582-entry package hygiene pass. Final factual records alter the
+  source archive afterward.
+- Final source separator: after discarding a sandbox-only cache-denied composite
+  attempt, the approved rerun resolves the unchanged 46-package lock in 0.89
+  milliseconds; all 351 files remain format clean; Ruff and strict Pyright
+  pass; all 1,488 architecture assertions pass with one established skip in
+  8.94 seconds; strict docs build in 1.50 seconds; all 24 metadata/M108
+  assertions pass in 0.82 seconds; and whitespace passes.
+- Corrected precommit audit establishes exact M100-M107 ancestry, M107 head and
+  tree, local/remote M99 main and merge base, and expected `0 8` divergence.
+  Exactly 16 intended paths change; only main and required M100-M108 local
+  branches exist, while only `origin/main` plus its symbolic HEAD exists
+  remotely. Exact DCO identity is configured. Authentication is valid; the
+  approved corrected read-only rerun reports no open PR, M108 run, release, or
+  tag. Git checking reports 287 dangling-only objects and zero defect. The
+  initial sandbox-blocked GitHub result and unsupported release JSON field are
+  discarded.
+- Post-audit separator: strict docs build in 1.53 seconds; all 24 metadata/M108
+  assertions pass in 0.43 seconds; exactly 16 paths remain; protected surfaces
+  have zero diff; narrow service-identity and high-confidence secret scans
+  return zero matches; and whitespace passes.
+- Publication hold: M100-M108 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M107 exact sample-member extraction-version profile preflight - local qualification and commit complete
 
 - Base: fully locally validated M106 DCO commit
   `630f794cd1e3609f9e0b20d2f7f16e4d1fb27ef5`, tree

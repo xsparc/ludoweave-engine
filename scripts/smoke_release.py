@@ -634,6 +634,7 @@ def _extract_checksum_admitted_bundle(
         _validate_sample_general_purpose_flag_profile(infos=infos)
         _validate_sample_extraction_version_reserved_byte_profile(infos=infos)
         _validate_sample_extraction_version_profile(infos=infos)
+        _validate_sample_creation_version_profile(infos=infos)
         _validate_sample_inventory(observed_members)
 
         with tempfile.TemporaryDirectory(
@@ -1234,6 +1235,16 @@ def _validate_sample_extraction_version_profile(
 
     if any(info.extract_version != 20 for info in infos):
         raise RuntimeError("sample bundle has an unsupported extraction version")
+
+
+def _validate_sample_creation_version_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer creation version to equal 2.0."""
+
+    if any(info.create_version != 20 for info in infos):
+        raise RuntimeError("sample bundle has an unsupported creation version")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+RFC-0091 resolves the corrected M108 exact sample-member creation-version
+profile preflight. PKWARE defines the lower `version made by` byte as the ZIP
+specification version supported by the encoder. Python exposes public central
+`ZipInfo.create_version`; CPython defaults to `20`. Exact CPython 3.12.13,
+3.13.13, and 3.14.5 each admitted public central creation version `21` and read
+the probe payload, while the fixed 50-member producer emits sole version-made-
+by pair `(20, 3)`. Private release smoke therefore requires every public
+central `create_version` value to equal `20` after M107 and before exact
+inventory, staging, or reads. The stable error is `sample bundle has an
+unsupported creation version`.
+
+This exact sample-member creation-version profile preflight is one central-
+creation-version exact-profile classifier, not a general creation-version
+semantics parser, supported-version range, producer-capability evaluator,
+attribute-host policy, payload-content check, archive repair, general ZIP
+validity claim, or general sandbox. The initially considered exact host policy
+was rejected after 54 established architecture regressions. RFC-0091 records
+the corrected accepted policy; no M108 design decision remains pending.
+
 RFC-0090 resolves the M107 exact sample-member extraction-version profile
 preflight. PKWARE assigns version 2.0 to Deflate, Python exposes public central
 `ZipInfo.extract_version`, and CPython uses default value `20`. Exact CPython

@@ -2601,6 +2601,34 @@ ZIP validity claim. It is not a general archive sandbox and is not a real public
 release observation. No workflow, producer, dependency, runtime API, or release
 authority changes. RFC-0090 defines the complete boundary.
 
+## M108 exact sample-member creation-version profile preflight
+
+PKWARE defines the lower byte of `version made by` as the ZIP specification
+version supported by the encoding software. Python exposes the public central
+value as `ZipInfo.create_version`, and CPython's fixed writer default is `20`.
+Exact CPython 3.12.13, 3.13.13, and 3.14.5 nevertheless each expose central
+value `21` and read an otherwise valid fixture payload. The fixed 50-member
+LudoWeave producer emits only pair `(create_version, create_system) == (20,
+3)`.
+
+After established local-header, payload-layout, extra-field, member-metadata,
+M105 flag, M106 reserved-byte, and M107 extraction-version checks, every parsed
+sample member must have public central `ZipInfo.create_version == 20`. Any other
+value raises stable content-silent error `sample bundle has an unsupported
+creation version` before exact inventory, staging, or reads. Established
+local-header, layout, metadata, flag, reserved-byte, and extraction-version
+errors retain precedence. Empty archives retain their later exact-inventory
+failure.
+
+This exact sample-member creation-version profile preflight is one central-
+creation-version exact-profile classifier. It adds no general creation-version
+semantics parser, producer-capability evaluator, attribute-host policy, raw
+record parser, payload-content read, decompression, recompression, archive
+repair, or general ZIP validity claim. It is not a general archive sandbox and
+is not a real public release observation. No workflow, producer, dependency,
+runtime API, or release authority changes. RFC-0091 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

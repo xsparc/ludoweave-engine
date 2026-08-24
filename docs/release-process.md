@@ -666,6 +666,21 @@ general ZIP validity claim. It adds no workflow, dependency, runtime API,
 release authority, or producer change, is not a general archive sandbox, and is
 not a real public release observation.
 
+M108/RFC-0091 requires public central `ZipInfo.create_version` to equal `20`
+after M107 and before exact inventory, staging, or member reads. This exact
+sample-member creation-version profile preflight is one central-creation-
+version exact-profile classifier. Failure emits stable content-silent error
+`sample bundle has an unsupported creation version`; established local-header,
+payload-layout, metadata, M105, M106, and M107 errors retain precedence and all
+owned resources close before control returns.
+
+The fixed producer's 50 members already have version-made-by pair `(20, 3)`.
+M108 adds no general creation-version semantics parser, producer-capability
+evaluator, attribute-host policy, raw record parser, payload-content read,
+decompression, recompression, or general ZIP validity claim. It adds no
+workflow, dependency, runtime API, release authority, or producer change, is
+not a general archive sandbox, and is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable
