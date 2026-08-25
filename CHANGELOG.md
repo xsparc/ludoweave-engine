@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M128/RFC-0111 canonical `ludoweave.asset-source-lock/1` values plus
+  read-only `ludoweave source asset-lock` generation and `asset-verify`.
+  Selected sources are hashed through project-confined bounded descriptors;
+  there is no asset decode, asset build, import, cache write, world mutation,
+  or workflow allocation.
 - Add M127/RFC-0110 deterministic source-to-asset dependency checking through
   `ludoweave source assets`. The read-only report preserves direct declarations
   separately from their resolved asset-graph closure, reads no asset source,

@@ -212,3 +212,30 @@ not fail. There is no asset source read, payload decode, build, import, cache,
 compile, world/session, mutation, receipt, write, discovery, watcher, live
 update, or workflow allocation. Sequential reads require stable inputs and are
 not an atomic filesystem snapshot.
+
+## Asset-source lock generation and verification
+
+M128 records the raw input identity of only the M127-selected asset closure:
+
+```console
+ludoweave source asset-lock PROJECT --manifest config/sources.json --assets config/assets.json > config/assets.lock.json
+ludoweave source asset-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json
+```
+
+The first command writes canonical `ludoweave.asset-source-lock/1` to stdout;
+the CLI does not choose or write the redirected file. The document binds the
+canonical source lock and asset manifest, unique direct roots, and URI-sorted
+resolved entries with kind, byte count, and SHA-256. An empty selected closure
+produces empty roots and entries.
+
+The second command loads one project-confined expected lock, recomputes the
+same current identities, and emits `ludoweave.cli.asset-source-lock-verify/1`
+only after an exact match. Mismatch output contains only the first stable field
+and optional logical URI, never expected/actual hashes, sizes, or source paths.
+
+Each source is a confined regular file streamed through an owned descriptor in
+64 KiB blocks, limited to 256 MiB with 1 GiB accepted aggregate. There is no
+asset decode, no asset build, no import, no cache write, no artifact creation,
+no world mutation, and no workflow allocation. Sequential reads are not an
+atomic filesystem snapshot; locks are input identity, not provenance,
+authenticity, freshness, imported artifacts, or build reproducibility.

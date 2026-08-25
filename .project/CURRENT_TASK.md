@@ -1,119 +1,112 @@
 # Current task
 
-- **Task:** M127 - add bounded source-to-asset dependency checking.
-- **Status:** Direction research, exact-base governance proof, deliberate red,
-  implementation, RFC/public documentation, installed-wheel proof, complete
-  source/architecture/docs/governance gates, all three supported runtimes,
-  real-wgpu integration, profiles, and both vertical slices are complete.
-  Findings review, record-inclusive source separators, initial/final
-  reproducible artifacts, all installed-wheel and release smokes, and hygiene
-  are complete. Final metadata and exact local/hosted history separators pass.
-  Guarded cleanup and the final clean-scratch separator are complete. The local
-  DCO commit remains.
-- **Base:** Fully locally validated M126 DCO commit
-  `9b373698c206982bcb6e86127ac8dffb2385a261`, tree
-  `9f2b0b7fceb1241c14a659e26c1f5c95fe775c2e`, with sole parent exact M125.
+- **Task:** M128 - add bounded asset-source lock generation and verification.
+- **Status:** Direction/baseline proof, deliberate red, bounded lock values,
+  project-confined streaming hashing, generation/verification CLI modes,
+  RFC/public documentation, and documentation-inclusive focused proof are
+  complete. Strengthened closure/descriptor and isolated installed-wheel proof
+  pass. Findings-first review passes after one test-evidence correction. All
+  complete validation, artifact, release, history, hygiene, cleanup, and final
+  metadata gates pass. Exact staging, local DCO commit, and postcommit proof
+  remain.
+- **Base:** Fully locally validated M127 DCO commit
+  `276d869b829735dcca7256cb73f190e15e84d9c0`, tree
+  `6eb4384906e37bf708a90a542a8293b15b855d7e`, with sole parent exact M126.
   The stack remains unpublished under the existing public-review identity hold.
-- **Branch:** `release/m127-source-asset-dependency-checking`.
+- **Branch:** `release/m128-asset-source-lock-verification`.
 
 ## Acceptance boundary
 
-- Add strict `AssetManifest.dependency_closure()` for an exact tuple of
-  distinct direct `AssetUri` roots; return the roots and every reachable graph
-  dependency exactly once in URI order.
-- Add read-only `ludoweave source assets PROJECT --manifest FILE --assets FILE`.
-- Reuse the unchanged explicit source inspection and project-confined asset-
-  manifest loader; require every source-declared direct URI to exist.
-- Emit canonical `ludoweave.cli.source-asset-check/1` only after complete
-  success, with normalized source/asset manifest identities, ordered per-entry
-  direct/resolved lists, and unique aggregate counts.
-- Return a structured first-entry/first-URI missing-root failure with no success
-  bytes, path disclosure, asset-source access, or project mutation.
-- Prove the command from an isolated no-dependency wheel.
-- Document direct versus resolved ownership, inability to infer application
-  component references, admitted unused asset entries, sequential-read limits,
-  deterministic ordering, and complete non-scope.
-- Keep existing scene/prefab/source-manifest/source-lock and M126 formats,
-  workflows/allocations, permissions, credentials, dependencies, lock,
-  metadata, version, engine root, world, release authority, and remote state
-  unchanged.
+- Add strict immutable `ludoweave.asset-source-lock/1` values in the focused
+  assets package, with tightening-only decode limits and canonical bytes.
+- Bind the canonical M125 source-lock identity, canonical M126 asset-manifest
+  identity, unique URI-sorted M127 direct roots, and the exact resolved asset
+  set as URI/kind/source-byte-count/source-SHA-256 entries.
+- Permit an empty roots/entries lock for valid source documents with no asset
+  declarations; require every root to appear in the locked entries.
+- Add read-only `ludoweave source asset-lock PROJECT --manifest FILE --assets
+  FILE` generation and `source asset-verify ... --lock FILE` verification.
+- Reuse unchanged project-confined source/asset readers and M127 closure. Read
+  each selected asset source sequentially through the existing descriptor-
+  bounded project reader; never disclose an asset source path.
+- Limit one source to 256 MiB and accepted aggregate source bytes to 1 GiB.
+  Produce no success bytes until all selected sources are hashed.
+- Mismatch diagnostics disclose only the first stable field and optional
+  logical asset URI, never expected/actual hashes, sizes, or paths.
+- Prove generation and verification from an isolated no-dependency wheel.
+- Document that a lock is repeatable input identity, not atomic filesystem
+  snapshot, provenance, authenticity, decoding, build, import, or cache proof.
+- Keep workflows, allocations, permissions, credentials, dependencies, lock,
+  metadata, version, root API, scene/source formats, M127 report, world/runtime,
+  release authority, and remote state unchanged.
 
-## Evidence so far
+## Direction and baseline evidence
 
-- Primary sources accessed 2026-08-26: current Unity dependency and direct-
-  reference documentation, current Bazel dependency concepts, stable Godot
-  `ResourceLoader`, JSON Schema Draft 2020-12 validation, and Python graph
-  documentation. They distinguish direct edges from recursive closure and
-  semantic validation from loading/building. Confidence is high for the
-  declared-graph checker only.
-- Exact M126 commit/tree/sole-parent, clean branch, and `0 27` divergence pass.
-  Seventy-four asset/source/project/CLI baseline tests pass with one established
-  Windows symlink-capability skip in 4.38 seconds; both governance modes return
-  zero findings.
-- The first deliberate-red attempt was blocked before project execution by uv-
-  cache access and makes no contract claim. Its approved rerun produced all
-  eight intended absent method/CLI failures. The M127 architecture module
-  produced four intended absent implementation/evidence/docs failures and one
-  protected-surface pass.
-- The first implementation checkpoint passed formatting and Ruff; strict
-  Pyright found four test/smoke JSON-container inference gaps and stopped before
-  behavior. Explicit annotations changed no runtime behavior.
-- Corrected statics pass and 31 new/retained closure, CLI, asset-manifest,
-  source-manifest, and source-lock cases pass in 3.61 seconds.
-- The first combined M126/M127 boundary run found only the intentionally absent
-  M127 docs and an M126 historical guard that froze the entire CLI. M126 now
-  protects its actual retained source contracts while M127 owns the new CLI.
-- The first combined public-doc patch was rejected atomically on one wrapped
-  CLI-guide paragraph; no file changed. Smaller patches added RFC-0110 and the
-  public architecture, API, roadmap, command, workflow, changelog, README, and
-  navigation updates.
-- The documentation-inclusive gate passes seven-file formatting, Ruff, strict
-  Pyright, 41 focused behavior/boundary assertions, strict docs, dated
-  governance, and whitespace.
-- Findings-first review replaced the pre-existing recursive cycle validator
-  with iterative DFS and added a 1,100-node graph regression. Direct roots now
-  share the 4,096-node bound; empty source and asset graphs remain compatible.
-- The first isolated verifier used an obsolete project-protocol fixture and
-  failed before M127. A fixture-only correction produced the expected
-  no-dependency installed report and proved no asset source directory exists.
-  Final statics, whitespace, and 40 focused assertions pass.
-- Complete validation passes all 400-file statics, 1,647 architecture tests
-  with one established skip, strict docs, both governance modes, and exact
-  supported-runtime suites: 3,339/16 on CPython 3.12.13 graphics and
-  3,329/17 on exact CPython 3.13.13 and 3.14.5 base.
-- Ten real-wgpu tests, fresh one-repeat base/graphics profiles, the exact
-  workflow-equivalent Clockwork Arena scenario, and Agent World Builder all
-  pass and reproduce their established deterministic identities.
-- Findings-first review has no remaining actionable issue. Two independent
-  packages and two release stages reproduce byte-for-byte; all ten wheel
-  smokes and both release smokes pass. Archive, scope, protected-surface,
-  public-identity, credential, and whitespace inspections pass.
-- Final record-inclusive package and release pairs reproduce. The source
-  archive correctly changes from the initial pair because it contains the
-  updated neutral engineering ledger; each same-tree final pair is identical.
-- Fetch/prune and read-only hosted queries prove the exact linear local stack,
-  required neutral branches, only remote main, exact identity/sign-offs, zero
-  critical object findings, and no hosted M127 branch, PR, run, tag, or release.
+- Primary sources accessed 2026-08-26: Unity 6.2 Asset Database and dependency-
+  hash documentation, stable Godot import-process documentation, current Bazel
+  remote-cache documentation, and Python 3.14 `hashlib` documentation. They
+  distinguish source/input identity from imported or cached outputs and support
+  explicit content hashing with caller-owned handle closure. They do not
+  justify asset decode/build, automatic import/reimport, cache use/write,
+  discovery, watchers, remote cache, or provenance claims.
+- Exact M127 commit/tree/sole-parent, clean new branch, and `0 28` divergence
+  pass. The focused M124-M127 asset/source/project/CLI baseline passes 119 tests
+  with one established Windows symlink-capability skip in 4.24 seconds. Static
+  and dated strict governance both report zero findings.
+- Deliberate red stops behavior collection only on the absent focused exports;
+  the M128 boundary produces three intended absent implementation/CLI/docs
+  failures and two protected/evidence passes. No implementation pass is
+  claimed.
+- After import-order and test-fixture typing corrections, formatting, Ruff,
+  strict Pyright, and 48 focused behavior assertions pass. Review replaced
+  whole-file allocation with owned 64 KiB streaming hashing. The combined
+  implementation/import/API boundary passes 115 assertions; only the
+  intentionally absent M128 documentation assertion remains.
+- RFC-0111 and public docs now define the exact lock, limits, ownership,
+  failure, determinism, compatibility, and non-scope. The documentation-
+  inclusive gate passes 164 assertions, statics, strict docs, dated governance,
+  and whitespace.
+- Generation succeeds with an absent declared-but-unselected source, selected
+  source descriptors support a Windows rename round-trip after the command,
+  and the isolated no-dependency wheel passes exact generation/verification.
+- Findings-first review found and corrected that single closure-evidence
+  weakness, then found no remaining actionable implementation issue.
+- The complete source separator passes formatting for 405 Python files, Ruff,
+  strict Pyright, 1,652 architecture assertions with one established skip,
+  strict docs, both governance modes, and whitespace.
+- Exact supported-runtime suites pass: 3.12.13 graphics has 3,362 passes and
+  16 skips; 3.13.13 and 3.14.5 base each have 3,352 passes and 17 skips.
+- Real-wgpu, fresh base/graphics profiles, Clockwork Arena, and Agent World
+  Builder all pass and reproduce their established deterministic identities.
+- Two initial builds reproduce; all eleven isolated wheel smokes and two byte-
+  identical complete ten-artifact release rehearsals pass; archive inventory
+  contains no native, WASM, bytecode, or retired control metadata.
+- Exact 23-path scope, protected surfaces, backend/native/nondeterministic
+  leakage, public tool identity, credentials, and whitespace all pass.
+- The review-record-inclusive source, architecture, docs, governance, and
+  whitespace separator passes. Final reproducible packages, all eleven wheel
+  consumers, and both release rehearsals pass. History, refs, objects, and exact
+  hosted non-publication state pass. Guarded cleanup removed all generated
+  scratch. The final metadata/boundary separator passes and its explicit pytest
+  root is absent.
 
 ## Explicit non-scope
 
-- No inference of asset references from application component values and no
-  claim that declared direct dependencies match all actual use.
-- No requirement to repeat indirect dependencies and no unused-asset rejection,
-  build-inclusion policy, default asset manifest, or directory discovery.
-- No asset source read, payload decode, build, import, cache use/write,
-  reimport, watcher, live update, source write-back, or remote access.
-- No component-registry resolution, scene/prefab compile, world/session,
-  command, transaction, world mutation, receipt, or project write.
-- No dependency, lock, metadata, package version, engine-root export, workflow
-  job/allocation, permission, credential, release authority, tag, release,
+- No asset payload decode, validation by kind, build, import, cache lookup,
+  cache write, artifact creation, automatic reimport, watcher, or live update.
+- No directory discovery, glob, default manifest, unused-asset rejection,
+  build-inclusion policy, component-reference inference, or indirect
+  redeclaration requirement.
+- No atomic multi-file snapshot, signature, provenance, authenticity,
+  authorization, freshness, or remote content identity claim.
+- No source write, project write, world/session creation, command, transaction,
+  world mutation, receipt, component registry, scene/prefab compilation, or
+  runtime pipeline activation.
+- No dependency, package metadata, version, engine-root export, workflow job or
+  allocation, permission, credential, release authority, tag, release,
   publication, push, PR, or remote change.
 
 ## Remaining acceptance work
 
-- Run complete source/architecture/governance and supported-runtime suites,
-  real-wgpu, profiles, vertical samples, reproducible distributions, all
-  installed-wheel paths, deterministic release rehearsal, and hygiene.
-- Finish findings-first review, factual records, history/hosted audit, bounded
-  scratch cleanup, final separators, exact staging, local DCO commit, and post-
-  commit verification.
+- Verify exact staging, create the single local maintainer-identity DCO commit,
+  and run postcommit tree/parent/scope/divergence/worktree/object proof.

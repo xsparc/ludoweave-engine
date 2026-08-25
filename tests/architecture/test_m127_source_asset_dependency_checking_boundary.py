@@ -17,7 +17,6 @@ _PROTECTED = {
     "src/ludoweave/scene/prefab.py": "19fff5db607e808be41d5453668c8976fb79de0a7ca0614f901f440bb7e294a3",
     "src/ludoweave/scene/sources.py": "1a5075fc0711330d7407537ba5f85ca15d2fc5d6e9bab733f954416420b30303",
     "src/ludoweave/scene/locks.py": "ff003999ab34bdc06721b5784df9046cda6b54db4b0e28776ccdf2e6d86e0799",
-    "src/ludoweave/tools/headless_project.py": "f6285dc28308489012450a165a278727566ebbee651745c6a2e149d5afa59264",
     "scripts/smoke_source_lock_wheel.py": "3e249de70132f143c3b3ac0b2c655cde820541d162095411fc72a39b1eb8c611",
     "scripts/smoke_asset_manifest_file_wheel.py": "de603c5aa4c4b37b549ec0015f06ff3f641401741989c033c5d852e6120614f5",
 }

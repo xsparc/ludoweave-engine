@@ -13,7 +13,15 @@ from typing import cast
 
 from ludoweave import __version__
 from ludoweave.agent import AGENT_TOOL_NAMES
-from ludoweave.assets import AssetError, AssetUri
+from ludoweave.assets import (
+    ASSET_SOURCE_MAX_BYTES,
+    ASSET_SOURCE_TOTAL_MAX_BYTES,
+    AssetError,
+    AssetManifest,
+    AssetSourceLock,
+    AssetSourceLockEntry,
+    AssetUri,
+)
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
     PluginDeterminism,
@@ -122,6 +130,19 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     source_assets_parser.add_argument(
         "--assets", required=True, help="project-relative asset manifest"
+    )
+    source_asset_lock_parser = source_subparsers.add_parser(
+        "asset-lock",
+        help="emit a canonical lock for source-selected asset input bytes",
+    )
+    _add_asset_source_arguments(source_asset_lock_parser)
+    source_asset_verify_parser = source_subparsers.add_parser(
+        "asset-verify",
+        help="verify selected asset input bytes against one confined lock",
+    )
+    _add_asset_source_arguments(source_asset_verify_parser)
+    source_asset_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
     )
 
     apply_parser = subparsers.add_parser(
@@ -253,6 +274,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_source_verify(args)
             if source_command == "assets":
                 return _run_source_assets(args)
+            if source_command == "asset-lock":
+                return _run_asset_source_lock(args)
+            if source_command == "asset-verify":
+                return _run_asset_source_verify(args)
             raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
@@ -445,6 +470,125 @@ def _run_source_assets(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def _add_asset_source_arguments(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("project", type=Path, help="project directory")
+    parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    parser.add_argument("--assets", required=True, help="project-relative asset manifest")
+
+
+def _run_asset_source_lock(args: argparse.Namespace) -> int:
+    _write_stdout(_current_asset_source_lock(args).canonical_bytes())
+    return 0
+
+
+def _run_asset_source_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current = _current_asset_source_lock(args, project=project)
+    expected.verify(current)
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.asset-source-lock-verify/1",
+                "status": "valid",
+                "lock_protocol": current.protocol,
+                "root_count": len(current.roots),
+                "entry_count": len(current.entries),
+            }
+        )
+    )
+    return 0
+
+
+def _current_asset_source_lock(
+    args: argparse.Namespace,
+    *,
+    project: HeadlessProject | None = None,
+) -> AssetSourceLock:
+    selected_project = (
+        HeadlessProject.load(_path_argument(args, "project")) if project is None else project
+    )
+    inspection = _inspect_source_manifest(
+        selected_project,
+        _text_argument(args, "manifest"),
+    )
+    manifest = selected_project.load_asset_manifest(_text_argument(args, "assets"))
+    roots = _source_asset_roots(inspection, manifest)
+    resolved = manifest.dependency_closure(roots)
+    locked: list[AssetSourceLockEntry] = []
+    total_bytes = 0
+    for uri in resolved:
+        entry = manifest.entry(uri)
+        try:
+            source_hash, source_bytes = selected_project.hash_relative(
+                entry.source,
+                max_bytes=ASSET_SOURCE_MAX_BYTES,
+                role="asset_source",
+            )
+        except LudoWeaveError as error:
+            code = (
+                "tools.asset_source_oversized"
+                if error.code == "tools.input_oversized"
+                else "tools.asset_source_unavailable"
+            )
+            raise LudoWeaveError(
+                "selected asset source could not be read within its bounds",
+                code=code,
+                subsystem="tools",
+                phase="lock_asset_sources",
+                details={"uri": uri.value, "cause_code": error.code},
+            ) from error
+        total_bytes += source_bytes
+        if total_bytes > ASSET_SOURCE_TOTAL_MAX_BYTES:
+            raise LudoWeaveError(
+                "selected asset sources exceed the aggregate byte bound",
+                code="tools.asset_sources_oversized",
+                subsystem="tools",
+                phase="lock_asset_sources",
+                details={"uri": uri.value, "limit": ASSET_SOURCE_TOTAL_MAX_BYTES},
+            )
+        locked.append(
+            AssetSourceLockEntry(
+                uri=uri,
+                kind=entry.kind,
+                source_sha256=source_hash,
+                source_bytes=source_bytes,
+            )
+        )
+    return AssetSourceLock(
+        source_lock_sha256=(f"sha256:{sha256(inspection.lock.canonical_bytes()).hexdigest()}"),
+        asset_manifest_sha256=(f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"),
+        roots=roots,
+        entries=tuple(locked),
+    )
+
+
+def _source_asset_roots(
+    inspection: _SourceManifestInspection,
+    manifest: AssetManifest,
+) -> tuple[AssetUri, ...]:
+    roots: set[AssetUri] = set()
+    for declaration in inspection.asset_dependencies:
+        for dependency in declaration.dependencies:
+            try:
+                manifest.entry(dependency)
+            except AssetError as error:
+                raise LudoWeaveError(
+                    "source declares an asset absent from the explicit asset manifest",
+                    code="tools.missing_asset_dependency",
+                    subsystem="tools",
+                    phase="check_source_assets",
+                    details={
+                        "entry_id": declaration.entry_id,
+                        "dependency": dependency.value,
+                    },
+                ) from error
+            roots.add(dependency)
+    return tuple(sorted(roots))
 
 
 def _inspect_source_manifest(

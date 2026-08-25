@@ -342,6 +342,32 @@ receipt, file write, discovery, watcher, live update, dependency, root export,
 workflow job, or workflow allocation. Separate file reads are not an atomic
 snapshot.
 
+## M128 asset-source lock verification
+
+`AssetSourceLock` is a frozen, slotted, bounded
+`ludoweave.asset-source-lock/1` value. It binds canonical source-lock and asset-
+manifest hashes, unique sorted direct roots, and exact URI-sorted resolved
+entries containing logical URI, kind, source-byte count, and source SHA-256.
+Tightening-only decode limits cap the JSON at 1 MiB and roots/entries at 4,096.
+
+`ludoweave source asset-lock PROJECT --manifest FILE --assets FILE` reuses the
+unchanged M124-M127 readers and closure, hashes only selected source files, and
+writes the lock to stdout after complete success. Each source is streamed in
+64 KiB blocks through one owned confined regular-file descriptor, with a
+256 MiB per-source and 1 GiB accepted aggregate bound.
+
+`ludoweave source asset-verify PROJECT --manifest FILE --assets FILE --lock
+FILE` loads a confined expected lock and emits canonical
+`ludoweave.cli.asset-source-lock-verify/1` only after exact comparison. A
+mismatch returns exit 2 and only the first field plus optional logical URI; no
+expected/current hash, byte count, or path is disclosed.
+
+This is repeatable input identity, not an atomic snapshot, signature,
+provenance, authenticity, imported artifact, build result, or cache key. There
+is no asset decode, no asset build, no import, no cache write, no discovery,
+watcher, live update, world mutation, receipt, dependency, root export,
+workflow job, or workflow allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

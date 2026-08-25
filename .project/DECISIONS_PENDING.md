@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M128 asset-source lock verification
+
+Primary-source review resolves the adopted M128 direction: preserve M127's
+explicit source-owned direct roots and asset-manifest-owned transitive graph,
+then hash only the resolved project-confined asset source files into one
+bounded immutable `ludoweave.asset-source-lock/1`. The lock binds the canonical
+M125 source lock, canonical M126 asset manifest, unique direct roots, and exact
+resolved URI/kind/source-byte-count/source-SHA-256 entries. Empty closures are
+valid.
+
+Generation and verification are separate read-only CLI operations. Verification
+fails on the first stable field or logical URI without disclosing expected or
+actual hashes, sizes, or paths. Sequential source reads are bounded to 256 MiB
+each and 1 GiB accepted aggregate, but are not an atomic filesystem snapshot.
+
+The lock is repeatable input identity only. It is not provenance, authenticity,
+authorization, freshness, an imported-artifact identity, or a cache key. No
+asset decode/build/import, cache use/write, discovery, watcher, automatic
+reimport, live update, unused-asset policy, build-inclusion policy, dependency,
+metadata, version, root API, workflow/allocation, permission, credential,
+release authority, or remote change is authorized for M128.
+
 ## M127 source-to-asset dependency checking
 
 RFC-0110 resolves the adopted M127 direction: source scene/prefab documents own

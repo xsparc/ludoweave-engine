@@ -3122,6 +3122,43 @@ metadata, version, engine-root exports, workflows, permissions, credentials,
 release authority, jobs, and allocations remain unchanged. RFC-0110 records
 the direct/resolved distinction and complete non-scope.
 
+## M128 asset-source lock boundary
+
+M128 adds immutable `ludoweave.asset-source-lock/1` input identities without
+entering the M4 asset build pipeline. The lock binds the SHA-256 of the current
+canonical M125 source lock, the SHA-256 of the current canonical M126 asset
+manifest, the unique URI-sorted M127 direct roots, and every resolved asset as
+URI, kind, raw source-byte count, and raw source SHA-256. Empty roots and
+entries are valid together. Roots must appear in the exact unique entries.
+
+`AssetSourceLockLimits` can tighten the 1 MiB document, 4,096-root, and 4,096-
+entry hard limits. Exact fields, duplicate-key rejection, canonical lowercase
+SHA-256 text, frozen/slotted ownership, URI normalization, canonical encoding,
+and content-silent verification precedence are enforced in the focused assets
+package. The engine root remains unchanged.
+
+`HeadlessProject.hash_relative()` applies the established portable project-
+relative resolution, opens one regular file read-only with available no-follow
+semantics, checks its size, streams SHA-256 in 64 KiB blocks, checks the limit
+again as bytes arrive, and closes the descriptor. Asset-lock generation walks
+the URI-sorted resolved closure sequentially with a 256 MiB source limit and
+1 GiB accepted aggregate. It retains no payload bytes and emits no success
+document before all sources succeed.
+
+Verification compares source-lock identity, asset-manifest identity, roots,
+entry URI set, then kind/hash/byte count. Failure includes only the first stable
+field and optional logical URI. Paths, expected/actual hashes, and compared
+sizes are absent. Stable inputs produce deterministic bytes, but separate
+reads are not an atomic filesystem snapshot.
+
+M128 is input identity only. There is no asset decode, no asset build, no
+import, no cache read, no cache write, no artifact creation, no automatic
+reimport, no watcher, no live update, no discovery, no unused-asset rejection,
+no build-inclusion policy, no world/session, no mutation, and no receipt.
+Dependencies, metadata, version, engine-root exports, workflows, permissions,
+credentials, release authority, jobs, and allocations remain unchanged. There
+is no workflow allocation. RFC-0111 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

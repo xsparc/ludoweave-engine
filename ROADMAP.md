@@ -1223,6 +1223,32 @@ update. It adds no dependency, engine-root API, version, workflow job, hosted
 allocation, or release-authority change. Sequential reads are not an atomic
 filesystem snapshot.
 
+## M128 asset-source lock verification
+
+M128 starts from fully locally validated M127 commit
+`276d869b829735dcca7256cb73f190e15e84d9c0`. It adds bounded immutable
+`ludoweave.asset-source-lock/1` values and two read-only commands:
+
+```console
+ludoweave source asset-lock PROJECT --manifest config/sources.json --assets config/assets.json
+ludoweave source asset-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json
+```
+
+The lock binds the canonical M125 source lock, canonical M126 asset manifest,
+M127 direct roots, and the exact resolved URI/kind/source-byte-count/source-
+SHA-256 entries. Empty closures remain valid. Selected sources are streamed in
+URI order through project-confined owned descriptors, at most 256 MiB each and
+1 GiB accepted aggregate. Mismatch errors expose only the first stable field
+and optional logical URI, never compared hashes, sizes, or paths.
+
+M128 is repeatable input identity, not an atomic filesystem snapshot,
+signature, provenance, authenticity, imported artifact, build result, or cache
+key. There is no asset decode, no asset build, no import, no cache read, no
+cache write, no artifact creation, no reimport, no watcher, no discovery, no
+world/session, mutation, receipt, or project write. It adds no dependency,
+engine-root API, version, workflow job, workflow allocation, hosted allocation,
+permission, credential, release authority, or remote change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

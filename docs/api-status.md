@@ -47,6 +47,11 @@ loading and canonical methods on the existing `AssetManifest`; the engine root
 remains unchanged. M127 adds experimental `dependency_closure()` behavior to
 that existing class plus a versioned read-only CLI result. It adds no Python
 export and the engine root remains unchanged.
+M128 adds experimental `ASSET_SOURCE_LOCK_PROTOCOL`,
+`ASSET_SOURCE_MAX_BYTES`, `ASSET_SOURCE_TOTAL_MAX_BYTES`,
+`AssetSourceLockLimits`, `AssetSourceLockEntry`, and `AssetSourceLock` through
+the focused `ludoweave.assets` package plus a versioned verification result.
+The engine root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

@@ -33,9 +33,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > verification without an import pipeline or cache; M126 adds bounded project-
 > confined loading for the existing asset manifest without reading or building
 > an asset source; M127 adds read-only checking from explicit scene/prefab
-> asset declarations through the validated direct and transitive asset graph.
+> asset declarations through the validated direct and transitive asset graph;
+> M128 adds bounded, path-silent asset-source lock generation and verification
+> without decoding, building, importing, or caching an asset.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M126 are locally validated stacked milestones from the exact M99 closeout, and M127 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M127 are locally validated stacked milestones from the exact M99 closeout, and M128 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -91,6 +93,10 @@ convention remains enforced.
 - Read-only `ludoweave source assets` validation that keeps source-declared
   direct asset URIs distinct from their deterministic resolved graph closure,
   with no asset source read, unused-asset rejection, build, cache, or mutation.
+- Canonical `ludoweave.asset-source-lock/1` input identities plus read-only
+  generation and content-silent verification for the selected asset closure,
+  using bounded streaming hashes with no asset decode, build, import, cache
+  write, discovery, or mutation.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
@@ -278,9 +284,9 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only
-project manifest, full command workflow, and M123-M127 read-only source
-preflight, integrity verification, and source-to-asset dependency checking.
-The [persistent command guide](docs/commands.md) documents M119-M127 scene
+project manifest, full command workflow, and M123-M128 read-only source
+preflight, integrity verification, dependency checking, and asset-source locks.
+The [persistent command guide](docs/commands.md) documents M119-M128 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
 mapping, prefab overrides, bounded project-confined file loading, and explicit
 source manifests, locks, and asset dependency checking.

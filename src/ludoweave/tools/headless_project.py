@@ -12,6 +12,11 @@ from hashlib import sha256
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import cast
 
+from ludoweave.assets.locks import (
+    DEFAULT_ASSET_SOURCE_LOCK_LIMITS,
+    AssetSourceLock,
+    AssetSourceLockLimits,
+)
 from ludoweave.assets.pipeline import (
     DEFAULT_ASSET_MANIFEST_LIMITS,
     AssetManifest,
@@ -237,6 +242,12 @@ class HeadlessProject:
         path = _resolve_relative(self.root, relative, must_exist=True, role=role)
         return _read_bounded(path, max_bytes=max_bytes, role=role)
 
+    def hash_relative(self, relative: str, *, max_bytes: int, role: str) -> tuple[str, int]:
+        """Hash one confined regular file without retaining its source bytes."""
+
+        path = _resolve_relative(self.root, relative, must_exist=True, role=role)
+        return _hash_bounded(path, max_bytes=max_bytes, role=role)
+
     def load_asset_manifest(
         self,
         relative: str,
@@ -258,6 +269,28 @@ class HeadlessProject:
             role="asset_manifest",
         )
         return AssetManifest.from_json(document, project_root=self.root, limits=limits)
+
+    def load_asset_source_lock(
+        self,
+        relative: str,
+        *,
+        limits: AssetSourceLockLimits = DEFAULT_ASSET_SOURCE_LOCK_LIMITS,
+    ) -> AssetSourceLock:
+        """Load one bounded asset-source lock through project confinement."""
+
+        if type(limits) is not AssetSourceLockLimits:
+            raise _tool_error(
+                "asset-source lock limits must be an exact AssetSourceLockLimits value",
+                code="tools.invalid_asset_source_lock_limits",
+                phase="load_asset_source_lock",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="asset_source_lock",
+        )
+        return AssetSourceLock.from_json(document, limits=limits)
 
     def load_scene(
         self,
@@ -480,6 +513,56 @@ def _read_bounded(path: Path, *, max_bytes: int, role: str) -> bytes:
             details={"role": role, "limit": max_bytes},
         )
     return document
+
+
+def _hash_bounded(path: Path, *, max_bytes: int, role: str) -> tuple[str, int]:
+    descriptor: int | None = None
+    try:
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(path, flags)
+        status = os.fstat(descriptor)
+        if not stat.S_ISREG(status.st_mode):
+            raise _tool_error(
+                "input must be a regular file",
+                code="tools.input_unavailable",
+                phase="read",
+                details={"role": role},
+            )
+        if status.st_size > max_bytes:
+            raise _tool_error(
+                "input exceeds its byte limit",
+                code="tools.input_oversized",
+                phase="read",
+                details={"role": role, "limit": max_bytes},
+            )
+        digest = sha256()
+        total = 0
+        with os.fdopen(descriptor, "rb") as handle:
+            descriptor = None
+            while block := handle.read(65_536):
+                total += len(block)
+                if total > max_bytes:
+                    raise _tool_error(
+                        "input exceeds its byte limit",
+                        code="tools.input_oversized",
+                        phase="read",
+                        details={"role": role, "limit": max_bytes},
+                    )
+                digest.update(block)
+    except LudoWeaveError:
+        raise
+    except OSError as error:
+        raise _tool_error(
+            "input could not be read",
+            code="tools.input_unavailable",
+            phase="read",
+            details={"role": role},
+        ) from error
+    finally:
+        if descriptor is not None:
+            with suppress(OSError):
+                os.close(descriptor)
+    return f"sha256:{digest.hexdigest()}", total
 
 
 def _text(value: object, *, field: str) -> str:

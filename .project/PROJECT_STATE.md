@@ -1,6 +1,97 @@
 # Project State
 
-## M127 source-to-asset dependency checking - implementation in progress
+## M128 asset-source lock verification - direction selected
+
+- Base: fully locally validated M127 DCO commit
+  `276d869b829735dcca7256cb73f190e15e84d9c0`, tree
+  `6eb4384906e37bf708a90a542a8293b15b855d7e`, sole parent exact M126.
+- Branch: `release/m128-asset-source-lock-verification`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Unity, Godot, Bazel, and Python primary sources support
+  explicit source/input content identity separately from imported/cache
+  outputs. M128 will lock only the M127-selected asset source inputs.
+- Contract: a bounded immutable asset-source lock binds the canonical M125
+  source lock, canonical M126 asset manifest, direct roots, and exact resolved
+  URI/kind/byte-count/SHA-256 entries. Empty closures remain valid.
+- CLI: separate read-only generation and verification reuse the unchanged
+  project readers and M127 closure. Source paths, expected/actual hashes, and
+  byte counts remain absent from mismatch diagnostics.
+- Bounds: sources are read sequentially, at most 256 MiB each and 1 GiB
+  accepted aggregate. No success bytes precede complete hashing.
+- Baseline: exact M127 commit/tree/parent, clean status, and `0 28` divergence
+  pass. The focused M124-M127 asset/source/project/CLI suite passes 119 tests
+  with one established skip in 4.24 seconds; both governance modes return zero
+  findings.
+- Deliberate red: behavior collection stops only on the absent lock exports.
+  The M128 boundary has three intended absent implementation/CLI/docs failures
+  and two protected/evidence passes. Two test files require mechanical format;
+  no implementation or formatting pass is claimed.
+- Implementation: focused immutable lock values, assets exports, confined lock
+  loading, generation/verification CLI modes, source/asset identity binding,
+  and path/hash-silent errors are implemented. Source files are streamed in
+  64 KiB blocks through owned bounded descriptors; payload bytes are not kept.
+- Focused proof: the first static checkpoint stopped on two import-order issues,
+  then one test-only strict-typing inference gap. After non-runtime correction,
+  all statics and 48 focused behavior assertions pass in 2.97 seconds.
+- Historical-boundary correction: the first combined run exposed M127's whole-
+  loader freeze plus the intentionally absent M128 docs. M127 now guards its
+  owned contracts; 115 combined implementation/import/API assertions pass and
+  only M128 documentation remains absent.
+- Documentation: RFC-0111 and public guides define exact lock ownership, 256
+  MiB/1 GiB bounds, streaming reads, mismatch silence, sequential-read limits,
+  compatibility, and complete no-build/no-cache non-scope. All 164 focused
+  behavior/boundary assertions, statics, strict docs, dated governance, and
+  whitespace pass.
+- Installed proof: generation succeeds when a declared unselected source is
+  absent, selected descriptors support an immediate Windows rename round-trip,
+  and the isolated no-dependency wheel passes exact lock generation and
+  verification with two selected entries.
+- Review: the absent-unselected-source correction closes the sole evidence
+  weakness. No remaining actionable issue was found in confinement, streaming,
+  closure selection, descriptor ownership, identity binding, output timing, or
+  mismatch disclosure.
+- Complete source gate: all 405 Python files, Ruff, strict Pyright, 1,652
+  architecture assertions with one established capability skip, strict docs,
+  both governance modes, and whitespace pass on exact CPython 3.12.13.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,362 tests
+  with 16 skips; exact CPython 3.13.13 and 3.14.5 base each pass 3,352 tests
+  with 17 skips.
+- Graphics/profiles/verticals: all ten real-wgpu tests pass; both fresh M7
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic state, capture, and replay identities.
+- Initial packages/releases: two builds reproduce the pure wheel and source
+  archive; all eleven isolated wheel consumers pass; two byte-identical ten-
+  artifact release rehearsals and both complete release smokes pass. Package
+  inventories contain no native, WASM, bytecode, or retired control metadata.
+- Scope/hygiene: exactly 23 intended paths change; all protected surfaces are
+  unchanged; new runtime code has no backend/native or nondeterministic source;
+  public tool-identity, credential, and whitespace scans pass.
+- Review-record separator: lock, all statics, 1,652 architecture assertions,
+  strict docs, both governance modes, and whitespace pass on the factual
+  evidence tree.
+- Final packages/releases: a fresh pair reproduces the pure wheel and source
+  archive; all eleven final installed consumers pass; both final ten-artifact
+  release stages are byte-identical and complete release smoke passes.
+- History/hosted state: remote main remains exact M99; M100-M127 are 28 linear
+  exact-identity singly DCO-signed commits; M127 is the exact base with `0 28`
+  divergence. The 30 expected local branches and only remote main exist; object
+  integrity is healthy; no M128 hosted branch, PR, run, tag, or release exists.
+- Scratch: all 20 exact ignored M128 build/test targets were removed after an
+  ordinary sandbox denial and guarded elevated retry; zero generated target
+  remains.
+- Final metadata separator: selected formatting, repository-wide Ruff and
+  strict Pyright, 15 metadata/boundary assertions, dated governance, and
+  whitespace pass; its sole explicit pytest root was removed ordinarily.
+- Scope: no decode, build, import, cache, discovery, watcher, reimport, live
+  update, write, world/runtime activation, dependency, metadata, version,
+  workflow/allocation, release-authority, or remote change.
+
+## M127 source-to-asset dependency checking - locally validated and committed
+
+- Commit: `276d869b829735dcca7256cb73f190e15e84d9c0`, tree
+  `6eb4384906e37bf708a90a542a8293b15b855d7e`, sole parent exact M126; exact
+  maintainer identity, one DCO sign-off, 21 paths, `0 28` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M126 DCO commit
   `9b373698c206982bcb6e86127ac8dffb2385a261`, tree

@@ -1,5 +1,13 @@
 """Validated logical asset identities and content-addressed build artifacts."""
 
+from ludoweave.assets.locks import (
+    ASSET_SOURCE_LOCK_PROTOCOL,
+    ASSET_SOURCE_MAX_BYTES,
+    ASSET_SOURCE_TOTAL_MAX_BYTES,
+    AssetSourceLock,
+    AssetSourceLockEntry,
+    AssetSourceLockLimits,
+)
 from ludoweave.assets.pipeline import (
     ASSET_MANIFEST_PROTOCOL,
     AssetArtifact,
@@ -18,6 +26,9 @@ from ludoweave.assets.pipeline import (
 
 __all__ = [
     "ASSET_MANIFEST_PROTOCOL",
+    "ASSET_SOURCE_LOCK_PROTOCOL",
+    "ASSET_SOURCE_MAX_BYTES",
+    "ASSET_SOURCE_TOTAL_MAX_BYTES",
     "AssetArtifact",
     "AssetEntry",
     "AssetError",
@@ -25,6 +36,9 @@ __all__ = [
     "AssetManifest",
     "AssetManifestLimits",
     "AssetPipeline",
+    "AssetSourceLock",
+    "AssetSourceLockEntry",
+    "AssetSourceLockLimits",
     "AssetUri",
     "PngTexture",
     "TextureAsset",
