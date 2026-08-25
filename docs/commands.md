@@ -368,6 +368,31 @@ is no asset decode, no asset build, no import, no cache write, no discovery,
 watcher, live update, world mutation, receipt, dependency, root export,
 workflow job, or workflow allocation.
 
+## M129 deterministic verified asset build planning
+
+`AssetBuildPlan` is a frozen, slotted, bounded
+`ludoweave.asset-build-plan/1` value. It binds the canonical M128 lock and M126
+manifest identities, unique sorted roots, the exact rooted closure, and
+prospective actions in dependency-first order. URI order breaks ties between
+ready actions. Tightening-only decoding caps the document at 8 MiB and roots or
+entries at 4,096.
+
+Every `AssetBuildPlanEntry` contains URI, kind, normalized settings, source
+SHA-256/byte count, sorted direct dependency URIs, and cache key. Construction
+and decoding require dependencies to precede their consumers, entries to equal
+the rooted closure, and cache keys to match the exact existing M4 identity.
+`ASSET_LOADER_PROTOCOL` names that unchanged identity; M4 artifact/cache bytes
+do not change.
+
+`ludoweave source asset-plan PROJECT --manifest FILE --assets FILE --lock FILE`
+recomputes and verifies current M128 inputs before emitting canonical plan bytes
+after complete success. Lock mismatch remains hash-, size-, and path-silent.
+
+A plan is prospective work identity only. There is no asset decode, no asset
+build, no cache read, no cache write, no artifact, import, scheduler, worker,
+discovery, watcher, live update, world mutation, receipt, dependency, root
+export, workflow job, or workflow allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

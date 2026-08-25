@@ -116,3 +116,4 @@ was adopted.
 - [RFC-0109: add project-confined asset-manifest loading](0109-add-project-confined-asset-manifest-loading.md)
 - [RFC-0110: add source-to-asset dependency checking](0110-add-source-to-asset-dependency-checking.md)
 - [RFC-0111: add asset-source lock verification](0111-add-asset-source-lock-verification.md)
+- [RFC-0112: add deterministic asset build planning](0112-add-deterministic-asset-build-planning.md)

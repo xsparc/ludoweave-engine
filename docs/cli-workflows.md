@@ -239,3 +239,24 @@ asset decode, no asset build, no import, no cache write, no artifact creation,
 no world mutation, and no workflow allocation. Sequential reads are not an
 atomic filesystem snapshot; locks are input identity, not provenance,
 authenticity, freshness, imported artifacts, or build reproducibility.
+
+## Verified asset build-plan generation
+
+M129 turns the verified M128 inputs into prospective dependency-first work:
+
+```console
+ludoweave source asset-plan PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json
+```
+
+The command reloads the expected project-confined lock, recomputes current
+source and asset identities through M124-M128, and requires an exact match
+before planning. Canonical `ludoweave.asset-build-plan/1` output binds the lock
+and manifest hashes, sorted direct roots, and every selected asset once after
+its dependencies. Logical URI breaks ready-set ties.
+
+Each entry records kind, settings, source identity/size, direct dependency
+URIs, and the exact prospective M4 cache key. Output is emitted only after the
+complete plan validates. This is not asset decode, asset build, cache read,
+cache write, artifact creation, scheduler execution, provenance, or build-
+success proof. The project remains unchanged and there is no workflow
+allocation.

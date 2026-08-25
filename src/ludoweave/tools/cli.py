@@ -16,6 +16,7 @@ from ludoweave.agent import AGENT_TOOL_NAMES
 from ludoweave.assets import (
     ASSET_SOURCE_MAX_BYTES,
     ASSET_SOURCE_TOTAL_MAX_BYTES,
+    AssetBuildPlan,
     AssetError,
     AssetManifest,
     AssetSourceLock,
@@ -142,6 +143,14 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     _add_asset_source_arguments(source_asset_verify_parser)
     source_asset_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_plan_parser = source_subparsers.add_parser(
+        "asset-plan",
+        help="emit a dependency-first plan for verified selected asset inputs",
+    )
+    _add_asset_source_arguments(source_asset_plan_parser)
+    source_asset_plan_parser.add_argument(
         "--lock", required=True, help="project-relative asset-source lock"
     )
 
@@ -278,6 +287,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_source_lock(args)
             if source_command == "asset-verify":
                 return _run_asset_source_verify(args)
+            if source_command == "asset-plan":
+                return _run_asset_build_plan(args)
             raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
@@ -501,6 +512,17 @@ def _run_asset_source_verify(args: argparse.Namespace) -> int:
             }
         )
     )
+    return 0
+
+
+def _run_asset_build_plan(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current = _current_asset_source_lock(args, project=project)
+    expected.verify(current)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    plan = AssetBuildPlan.from_inputs(manifest, current)
+    _write_stdout(plan.canonical_bytes())
     return 0
 
 

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M129/RFC-0112 canonical `ludoweave.asset-build-plan/1` values plus
+  read-only `ludoweave source asset-plan`. Plans verify current M128 inputs,
+  order the exact selected closure dependency-first with URI tie-breaking, and
+  precompute unchanged M4 cache keys without asset decode/build, cache read or
+  write, artifact creation, scheduler execution, or workflow allocation.
 - Add M128/RFC-0111 canonical `ludoweave.asset-source-lock/1` values plus
   read-only `ludoweave source asset-lock` generation and `asset-verify`.
   Selected sources are hashed through project-confined bounded descriptors;

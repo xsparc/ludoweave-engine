@@ -12,7 +12,6 @@ _PROTECTED = {
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/__init__.py": "dc8ac74a439a1e190a976a6a87713612fa27ce3b8218f1c11695f2c52c65970e",
-    "src/ludoweave/assets/pipeline.py": "5a09749d251f3af991d37eb3b600304cfeb4554976b4c92af8d877f1dba3c80c",
     "src/ludoweave/scene/locks.py": "ff003999ab34bdc06721b5784df9046cda6b54db4b0e28776ccdf2e6d86e0799",
     "src/ludoweave/scene/sources.py": "1a5075fc0711330d7407537ba5f85ca15d2fc5d6e9bab733f954416420b30303",
     "scripts/release_artifacts.py": "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca",

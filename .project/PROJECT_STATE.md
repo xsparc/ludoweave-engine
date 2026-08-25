@@ -1,5 +1,88 @@
 # Project State
 
+## M129 deterministic verified asset build planning - direction selected
+
+- Base: fully locally validated M128 DCO commit
+  `ad6b43a9d480cd3bd94298799125ee736d15124e`, tree
+  `f293f187a5c4f38bc3850c8ba0ffdc679582b472`, sole parent exact M127.
+- Branch: `release/m129-deterministic-asset-build-plan`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Python, Unity, and Godot primary references support
+  separating explicit dependency/action planning from cache and execution.
+- Contract: one immutable dependency-first plan will bind the canonical M128
+  lock and M126 manifest, preserve the exact M127 selected closure, break ready-
+  set ties by URI, and precompute unchanged M4 cache keys.
+- CLI: one read-only `source asset-plan` mode will recompute and verify M128
+  inputs before emitting canonical plan bytes after complete success.
+- Baseline: exact M128 commit/tree/parent, clean status, and `0 29` divergence
+  pass. The focused M124-M128 asset/source/CLI suite passes 125 tests in 6.29
+  seconds; both governance modes return zero findings.
+- Deliberate red: behavior collection stops only on absent plan exports. The
+  M129 boundary has three intended absent implementation/CLI/docs failures and
+  two protected/evidence passes. Three files need mechanical formatting; no
+  implementation or formatting pass is claimed.
+- Implementation: immutable plan values, dependency-first URI-tied ordering,
+  exact existing cache-key reuse, strict decoding, package exports, verified
+  CLI composition, installed evidence, and a 1,100-node iterative regression
+  are implemented. No decoder, build, or cache effect is invoked by planning.
+- Focused proof: the first static checkpoint stopped on import/helper findings;
+  after correction, all statics and 36 focused behavior assertions pass in
+  3.82 seconds. Nine combined boundaries pass; only M129 docs remain absent.
+- Documentation: RFC-0112 and public guides define exact plan identity,
+  dependency ordering, loader/cache-key compatibility, ownership, failure,
+  determinism, and complete no-execution/no-cache non-scope. After correcting
+  one nonexistent test filename, all statics, 147 focused assertions, strict
+  docs, dated governance, and whitespace pass.
+- Review correction: a focused red proved decoded same-level entries could be
+  swapped despite the URI tie-break contract. Validation now recomputes and
+  requires the exact ready-set heap order; all 147 focused assertions and
+  statics pass after correction.
+- Installed proof: the corrected isolated no-dependency wheel emits the exact
+  loader/plan protocols, two dependency-first entries with cache keys, no cache
+  directory, and pass status.
+- Complete source gate: all 410 Python files, Ruff, strict Pyright, 1,657
+  architecture assertions with one established capability skip, strict docs,
+  both governance modes, and whitespace pass on exact CPython 3.12.13.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,377 tests
+  with 16 skips; exact CPython 3.13.13 and 3.14.5 base each pass 3,367 tests
+  with 17 skips.
+- Graphics/profiles/verticals: all ten real-wgpu tests pass; both fresh M7
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic state, capture, and replay identities.
+- Initial packages/releases: two builds reproduce a 316,332-byte pure wheel
+  and 1,711,983-byte source archive; all 12 isolated consumers pass on a
+  compact recorded rerun; two byte-identical ten-artifact release rehearsals
+  and both complete release smokes pass.
+- Review/hygiene: the same-ready URI-order defect found during review is fixed
+  and regression-covered. Exactly 23 intended paths change; protected
+  surfaces retain zero diff; the 103-entry wheel and 662-entry source archive
+  contain no forbidden binary or retired control metadata; public tool-
+  identity and high-confidence credential scans return zero files.
+- Review-record separator: after two factually retained sandbox cache denials,
+  approved lock/governance reruns pass. All 410 Python files, Ruff, strict
+  Pyright, 1,657 architecture assertions with one established skip, strict
+  docs, both governance modes, and whitespace pass on the factual record.
+- Final packages/releases: after one retained pre-execution cache denial, two
+  approved final builds reproduce the unchanged wheel and a record-inclusive
+  source archive. All 12 final installed consumers pass; two complete final
+  release stages are byte-identical and both release smokes pass.
+- History/hosted state: remote main remains exact M99; M100-M128 are 29 linear
+  exact-identity singly DCO-signed commits; M128 is the exact base with `0 29`
+  divergence. The 31 expected local branches and only remote main exist;
+  object integrity has zero critical finding. The GitHub CLI credential is
+  expired, but approved anonymous public REST checks return no M129 branch,
+  PR, run, tag, or release. No remote mutation occurred.
+- Scratch: all 14 exact ignored M129 build/test targets were removed after an
+  ordinary Windows denial on only `.pytest-tmp` and a guarded elevated retry;
+  zero audited generated target remains.
+- Final metadata separator: all formatting, Ruff, strict Pyright, 15 selected
+  metadata/boundary assertions, approved dated governance, protected-surface,
+  identity/credential, scratch-absence, exact 23-path, and whitespace checks
+  pass. M129 is ready for its local DCO commit.
+- Scope: no decode, build, import, cache use/write, artifact, scheduler,
+  discovery, watcher, write, dependency, metadata, version, workflow,
+  allocation, release-authority, or remote change.
+
 ## M128 asset-source lock verification - direction selected
 
 - Base: fully locally validated M127 DCO commit

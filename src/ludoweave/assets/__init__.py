@@ -9,6 +9,7 @@ from ludoweave.assets.locks import (
     AssetSourceLockLimits,
 )
 from ludoweave.assets.pipeline import (
+    ASSET_LOADER_PROTOCOL,
     ASSET_MANIFEST_PROTOCOL,
     AssetArtifact,
     AssetEntry,
@@ -23,13 +24,24 @@ from ludoweave.assets.pipeline import (
     TextureSlot,
     decode_png,
 )
+from ludoweave.assets.plans import (
+    ASSET_BUILD_PLAN_PROTOCOL,
+    AssetBuildPlan,
+    AssetBuildPlanEntry,
+    AssetBuildPlanLimits,
+)
 
 __all__ = [
+    "ASSET_BUILD_PLAN_PROTOCOL",
+    "ASSET_LOADER_PROTOCOL",
     "ASSET_MANIFEST_PROTOCOL",
     "ASSET_SOURCE_LOCK_PROTOCOL",
     "ASSET_SOURCE_MAX_BYTES",
     "ASSET_SOURCE_TOTAL_MAX_BYTES",
     "AssetArtifact",
+    "AssetBuildPlan",
+    "AssetBuildPlanEntry",
+    "AssetBuildPlanLimits",
     "AssetEntry",
     "AssetError",
     "AssetKind",

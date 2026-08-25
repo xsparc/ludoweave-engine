@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M129 deterministic verified asset build planning
+
+Primary-source review resolves the adopted M129 direction: plan only the exact
+M127-selected closure after M128 input verification. Entries are dependency-
+first with logical-URI tie-breaking, and each prospective cache key must match
+the existing M4 identity over URI, kind, settings, source SHA-256, loader
+protocol, and ordered direct dependency keys.
+
+The plan binds the canonical M128 lock and M126 manifest. It is prospective
+work identity only, not decoder output, build success, cache presence, artifact
+integrity, execution, provenance, or authenticity. No payload decode/build,
+cache lookup/write, artifact creation, import/reimport, scheduler, discovery,
+watcher, source/project write, dependency, metadata, version, root API,
+workflow/allocation, permission, credential, release authority, or remote
+change is authorized for M129.
+
 ## M128 asset-source lock verification
 
 Primary-source review resolves the adopted M128 direction: preserve M127's

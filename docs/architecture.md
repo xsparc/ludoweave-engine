@@ -3159,6 +3159,37 @@ Dependencies, metadata, version, engine-root exports, workflows, permissions,
 credentials, release authority, jobs, and allocations remain unchanged. There
 is no workflow allocation. RFC-0111 records the full boundary.
 
+## M129 deterministic asset build-plan boundary
+
+M129 adds immutable `ludoweave.asset-build-plan/1` prospective work records.
+Planning accepts only an exact M126 manifest and M128 lock whose canonical
+manifest identity, roots, exact selected closure, and per-entry kinds agree.
+The CLI first recomputes and verifies current M128 inputs, so an expected lock
+mismatch prevents plan output.
+
+The plan graph is the explicit M127 closure only. A deterministic iterative
+topological pass emits each asset once after all of its direct dependencies;
+the ready set is ordered by logical URI, avoiding insertion-order dependence.
+Empty closures remain valid. A plan entry contains URI, kind, detached sorted
+settings, source SHA-256 and byte count, sorted direct dependencies, and the
+prospective cache key.
+
+`ASSET_LOADER_PROTOCOL` gives a public focused-package name to the unchanged M4
+loader identity. Both `AssetPipeline` and the pure planner use one internal
+cache-key function over URI, kind, settings, source hash, loader protocol, and
+ordered direct dependency keys. Existing cache-key bytes and artifact behavior
+are unchanged. Strict plan decoding revalidates dependency order, rooted
+closure, and every cache key.
+
+M129 is plan identity only. There is no asset decode, no asset build, no cache
+read, no cache write, no artifact creation, no import, no scheduler, no worker,
+no discovery, no watcher, no live update, no source/project write, no world
+mutation, and no receipt. Sequential M128 verification is not an atomic
+filesystem snapshot. Dependencies, metadata, version, engine-root exports,
+workflows, permissions, credentials, release authority, jobs, and allocations
+remain unchanged. There is no workflow allocation. RFC-0112 records the full
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

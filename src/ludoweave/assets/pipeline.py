@@ -29,7 +29,7 @@ _MAX_MANIFEST_ASSETS = 4_096
 _MAX_MANIFEST_DEPENDENCIES = 256
 _MAX_MANIFEST_SETTINGS = 128
 ASSET_MANIFEST_PROTOCOL = "ludoweave.assets/1"
-_LOADER_VERSION = ASSET_MANIFEST_PROTOCOL
+ASSET_LOADER_PROTOCOL = "ludoweave.assets/1"
 type SettingValue = str | int | float | bool
 
 
@@ -523,20 +523,13 @@ class AssetPipeline:
             )
         source_hash = f"sha256:{sha256(source).hexdigest()}"
         dependency_keys = tuple(item.cache_key for item in dependencies)
-        identity = json.dumps(
-            {
-                "dependencies": dependency_keys,
-                "kind": entry.kind.value,
-                "loader": _LOADER_VERSION,
-                "settings": entry.settings,
-                "source_hash": source_hash,
-                "uri": uri.value,
-            },
-            sort_keys=True,
-            separators=(",", ":"),
-            ensure_ascii=True,
-        ).encode("ascii")
-        cache_key = f"sha256:{sha256(identity).hexdigest()}"
+        cache_key = asset_cache_key(
+            uri=uri,
+            kind=entry.kind,
+            settings=entry.settings,
+            source_hash=source_hash,
+            dependency_keys=dependency_keys,
+        )
         payload = self._load(entry.kind, source)
         artifact = AssetArtifact(
             uri,
@@ -590,7 +583,7 @@ class AssetPipeline:
                 "cache_key": artifact.cache_key,
                 "dependencies": artifact.dependency_keys,
                 "kind": artifact.kind.value,
-                "protocol": _LOADER_VERSION,
+                "protocol": ASSET_LOADER_PROTOCOL,
                 "source_hash": artifact.source_hash,
                 "uri": artifact.uri.value,
             },
@@ -607,6 +600,30 @@ class AssetPipeline:
                 details={"cause_type": type(error).__name__},
                 code="asset.cache_failed",
             ) from error
+
+
+def asset_cache_key(
+    *,
+    uri: AssetUri,
+    kind: AssetKind,
+    settings: tuple[tuple[str, SettingValue], ...],
+    source_hash: str,
+    dependency_keys: tuple[str, ...],
+) -> str:
+    identity = json.dumps(
+        {
+            "dependencies": dependency_keys,
+            "kind": kind.value,
+            "loader": ASSET_LOADER_PROTOCOL,
+            "settings": settings,
+            "source_hash": source_hash,
+            "uri": uri.value,
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+    ).encode("ascii")
+    return f"sha256:{sha256(identity).hexdigest()}"
 
 
 @dataclass(frozen=True, slots=True)

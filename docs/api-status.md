@@ -52,6 +52,11 @@ M128 adds experimental `ASSET_SOURCE_LOCK_PROTOCOL`,
 `AssetSourceLockLimits`, `AssetSourceLockEntry`, and `AssetSourceLock` through
 the focused `ludoweave.assets` package plus a versioned verification result.
 The engine root remains unchanged.
+M129 adds experimental `ASSET_BUILD_PLAN_PROTOCOL`, `ASSET_LOADER_PROTOCOL`,
+`AssetBuildPlanLimits`, `AssetBuildPlanEntry`, and `AssetBuildPlan` through the
+focused `ludoweave.assets` package. The new loader constant names the exact
+existing M4 cache-key identity and does not change its bytes. Planning adds a
+versioned CLI document; the engine root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

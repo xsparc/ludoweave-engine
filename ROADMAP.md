@@ -1249,6 +1249,31 @@ world/session, mutation, receipt, or project write. It adds no dependency,
 engine-root API, version, workflow job, workflow allocation, hosted allocation,
 permission, credential, release authority, or remote change.
 
+## M129 deterministic verified asset build planning
+
+M129 starts from fully locally validated M128 commit
+`ad6b43a9d480cd3bd94298799125ee736d15124e`. It adds bounded immutable
+`ludoweave.asset-build-plan/1` values and one read-only command:
+
+```console
+ludoweave source asset-plan PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json
+```
+
+The command recomputes and verifies the current M128 input lock, then plans
+exactly the M127-selected closure. Each asset appears once after all direct
+dependencies; simultaneously ready assets use logical URI order. Entries bind
+kind, settings, source SHA-256/byte count, direct dependency URIs, and the exact
+existing M4 cache key. The plan also binds the canonical source-lock and asset-
+manifest identities. Empty selected closures remain valid.
+
+M129 is prospective deterministic work identity, not decoded output, build
+success, cache presence, artifact integrity, provenance, or execution. It
+performs no asset payload decode, asset build, import, cache read, cache write,
+artifact creation, scheduler/worker execution, discovery, watcher, reimport,
+world/session, mutation, receipt, or project write. It adds no dependency,
+engine-root API, version, workflow job, workflow allocation, hosted allocation,
+permission, credential, release authority, or remote change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
