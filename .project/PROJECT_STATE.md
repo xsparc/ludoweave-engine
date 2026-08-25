@@ -1,5 +1,88 @@
 # Project State
 
+## M122 project-confined prefab file loading - locally validated, commit pending
+
+- Base: fully locally validated M121 DCO commit
+  `18d1571badc416801151b6f5df67e3cfcef78ba1`, tree
+  `2a2cfae57f9d6546ad74657f8a82b26ca5ac6085`, sole parent exact M120.
+- Branch: `release/m122-project-confined-prefab-file-loading`; unpublished
+  under the existing public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-25 were current Godot
+  `ResourceLoader`, current Unity prefab documentation, RFC 8089, and JSON
+  Schema Core 2020-12. General handler discovery, nondeterministic directory
+  listing, cache/dependency policy, and nested/variant relationships justify
+  keeping M122 at two explicit file reads. Recommendation confidence is high
+  for this bounded local composition slice; discovery, live-update conflict
+  policy, and nested composition remain explicit evidence gaps.
+- Runtime: `HeadlessProject.load_prefab()` and `load_prefab_instance()` accept
+  exact project-relative paths and `PrefabLimits`, reuse existing bounded path
+  policy, and return detached immutable M120 records. The caller chooses both;
+  existing `compile_prefab()` validates exact source identity.
+- Ownership/security: each synchronous call owns one descriptor, closes it,
+  and retains no persistent handle, cache, watcher, world, provider, renderer,
+  or thread. Existing traversal/root-escape/non-regular/size policies and
+  sanitized errors apply. The boundary is not a race-free hostile-filesystem
+  sandbox.
+- Deliberate red: exact CPython 3.12.13 produced 15 expected missing-method,
+  verifier, or docs failures and one protected-boundary pass.
+- Test correction: after implementation, one Hypothesis value equaled the
+  108-byte instance fixture and correctly loaded. Restricting generated limits
+  below both fixture sizes removed that test-only error; all 12 unit assertions
+  pass in 0.58 seconds.
+- Focused proof: format, Ruff, and strict Pyright pass; 16 M122 assertions pass
+  in 0.60 seconds; strict docs build in 1.58 seconds with only the known
+  Material notice. The inherited focused set passes 92 tests with two
+  established capability skips in 1.19 seconds.
+- Installed proof: the first package build and isolated no-dependency wheel
+  verifier passed, loading two explicit files and committing one ordinary
+  command/entity with the expected alias and source/instance identities.
+- Complete validation: 380 Python files are format-clean; Ruff, strict Pyright,
+  strict docs, both governance modes, and whitespace pass. Architecture passes
+  1,619 assertions with one established skip. Exact 3.12.13 passes 3,234 tests
+  with 16 skips; exact 3.13.13 and 3.14.5 each pass 3,224 with 17 skips.
+- Graphics/vertical proof: ten real-wgpu tests pass; two- and three-workload
+  profiles validate; Clockwork Arena and Agent World Builder retain established
+  deterministic identities and passing acceptance fields.
+- Distribution: two initial builds reproduce a 292,732-byte pure wheel at
+  `5d7ffe5332e8ccbb542cb3ed58f2579a3d0ae555b91edd148d09e327a710ba9c`
+  and 1,612,909-byte sdist at
+  `c1d11e4d99770cef2d17b21d5fce0c8ad737bde90f0df19896dd3fe1880ce9a7`.
+  All five installed-wheel smokes pass; two identical ten-artifact release
+  stages and both release smokes pass.
+- Hygiene/review: 99 wheel and 625 sdist entries contain zero forbidden native,
+  WASM, bytecode, or retired control metadata. Corrected public-identity and
+  high-confidence secret scans have zero matches. Findings-first review of 17
+  intended paths found no actionable issue and protected surfaces retain zero
+  diff.
+- Review-inclusive artifact proof: the pure wheel remains 292,732 bytes at
+  `5d7ffe5332e8ccbb542cb3ed58f2579a3d0ae555b91edd148d09e327a710ba9c`;
+  the record-inclusive sdist is 1,614,073 bytes at
+  `b365c6dff16fa0bca8767b413efa96ff207f5a08a7846deb1a6d1f54c2dbc6c5`.
+  All five wheel smokes, two byte-identical ten-artifact release stages, both
+  release smokes, and package hygiene pass. The sample archive retains 111,168
+  bytes and SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- History/hosted audit: local/remote main and merge base remain exact M99;
+  M100-M121 are 22 linear single-parent commits with exact maintainer identity,
+  one DCO sign-off each, and no merge. Git integrity has 287 dangling-only
+  records and no critical finding. Only required local milestone branches and
+  remote main exist; M122 has no PR, run, release, or remote tag, so no hosted
+  allocation was triggered.
+- Cleanup: all exact M122 build, release, profile, docs, distribution, and pytest
+  scratch targets are absent. The first cleanup needed a corrected elevated
+  retry for the exact verified workspace-local pytest directory; no broader
+  path was removed.
+- Final source separator: the unchanged lock, all 380 Python files, Ruff, strict
+  Pyright, 1,619 architecture assertions with one established skip, strict
+  docs, both governance modes, and whitespace pass on the factual record tree.
+- Final metadata separator: all nine M59/M122 assertions and dated strict
+  governance pass; exactly 17 intended paths remain, protected diff is zero,
+  and all 14 audited scratch targets are absent.
+- Scope: no implicit pairing, directory discovery, extension routing, manifest
+  lookup, cache, dependency traversal, live update, nesting, asset loading,
+  mutation-on-load, operation, dependency, root API, workflow, or hosted
+  allocation change.
+
 ## M121 project-confined scene file loading - implementation in progress
 
 - Base: fully locally validated M120 DCO commit

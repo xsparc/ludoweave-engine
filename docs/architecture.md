@@ -2954,6 +2954,30 @@ reimport, write-back, remote access, operation, dependency, root API, workflow,
 or hosted allocation. RFC-0104 records the external standards basis and exact
 boundary.
 
+## M122 project-confined prefab file loading boundary
+
+M122 extends only the existing `ludoweave.tools` composition root.
+`HeadlessProject.load_prefab()` and `load_prefab_instance()` each take one
+project-relative string and exact immutable `PrefabLimits`. They reuse M121
+path confinement, regular-file validation, sanitized failure context, metadata
+size checks, and bounded descriptor reads before passing detached bytes to the
+unchanged prefab decoders. The scene/prefab package remains filesystem- and
+transport-agnostic.
+
+Callers select two explicit files: one `ludoweave.prefab/1` source and one
+`ludoweave.prefab-instance/1` instance. There is no implicit pairing.
+`compile_prefab()` remains responsible for exact source identity matching,
+schema-aware overrides, and deterministic transaction planning. Loading owns
+no persistent handle, cache, watcher, world, renderer, or background resource,
+and performs no world mutation. Only explicit transaction application produces
+a receipt and changes canonical world state.
+
+M122 adds no directory discovery, extension-driven routing, manifest lookup,
+asset resolution, cache, live update, nested prefab inheritance, source
+write-back, operation, dependency, root API, workflow, or hosted allocation.
+The same cooperative-filesystem and concurrent hostile-mutation limitation as
+M121 applies. RFC-0105 records the external comparison and exact boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

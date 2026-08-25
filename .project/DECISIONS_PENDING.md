@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M122 project-confined prefab file loading
+
+RFC-0105 resolves the adopted M122 direction: add two typed methods to the
+existing `HeadlessProject` composition root for explicit
+`ludoweave.prefab/1` source and `ludoweave.prefab-instance/1` instance files.
+Both reuse M121 project confinement and bounded reads. The caller supplies two
+explicit files; there is no implicit pairing. Existing `compile_prefab()`
+retains exact source matching and planning authority.
+
+Loading performs no world mutation and produces no receipt. Existing explicit
+transaction application remains the instantiation and receipt boundary. The
+returned records are detached immutable data, and source changes never silently
+alter runtime state.
+
+No directory discovery, extension routing, manifest lookup, dependency
+traversal, asset loading, cache, watcher, live update/reimport, write-back,
+nested prefab inheritance, remote/file URI, new operation, dependency, root API,
+schema/planner, workflow, allocation, or release-authority change is pending for
+M122.
+
+Reopen only for a separately assigned discovery, nesting, or live-update slice
+with explicit source/version identity, conflict precedence, bounds, receipts,
+rollback/failure atomicity, ownership, compatibility, platform security, and
+installed-artifact evidence.
+
 ## M121 project-confined scene file loading
 
 RFC-0104 resolves the adopted M121 direction: add one typed

@@ -25,9 +25,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > M119 adds bounded versioned data-only scene transaction planning; M120 adds
 > one-level data-only prefab fragments and schema-aware instance overrides;
 > M121 adds bounded project-confined scene file loading through the existing
-> headless composition root.
+> headless composition root; M122 adds two explicit project-confined prefab
+> file loads with no implicit pairing or discovery.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M121 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M122 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -259,9 +260,10 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only project manifest and full CLI example.
-The [persistent command guide](docs/commands.md) documents M119-M121 scene
+The [persistent command guide](docs/commands.md) documents M119-M122 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
-mapping, prefab overrides, and bounded project-confined scene file loading.
+mapping, prefab overrides, and bounded project-confined scene and prefab file
+loading.
 The [agent control interface](docs/agent-control.md) documents M5 tools, capabilities, limits, Python/CLI/MCP composition, and the Agent World Builder loop.
 The [live semantic inspector guide](docs/inspector.md) documents M10 local child
 ownership, observation events, explicit write receipts, bounds, and failures.

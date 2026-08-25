@@ -21,6 +21,12 @@ from ludoweave.ecs import (
     WorldStore,
 )
 from ludoweave.scene.document import DEFAULT_SCENE_LIMITS, SceneDocument, SceneLimits
+from ludoweave.scene.prefab import (
+    DEFAULT_PREFAB_LIMITS,
+    PrefabDocument,
+    PrefabInstance,
+    PrefabLimits,
+)
 from ludoweave.world import (
     AuthorityResourceRegistry,
     RandomStreams,
@@ -237,6 +243,50 @@ class HeadlessProject:
             )
         document = self.read_relative(relative, max_bytes=limits.max_bytes, role="scene")
         return SceneDocument.from_json(document, limits=limits)
+
+    def load_prefab(
+        self,
+        relative: str,
+        *,
+        limits: PrefabLimits = DEFAULT_PREFAB_LIMITS,
+    ) -> PrefabDocument:
+        """Load one detached prefab source from a project-confined file."""
+
+        if type(limits) is not PrefabLimits:
+            raise _tool_error(
+                "prefab limits must be an exact PrefabLimits value",
+                code="tools.invalid_prefab_limits",
+                phase="load_prefab",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.scene.max_bytes,
+            role="prefab",
+        )
+        return PrefabDocument.from_json(document, limits=limits)
+
+    def load_prefab_instance(
+        self,
+        relative: str,
+        *,
+        limits: PrefabLimits = DEFAULT_PREFAB_LIMITS,
+    ) -> PrefabInstance:
+        """Load one detached prefab instance from a project-confined file."""
+
+        if type(limits) is not PrefabLimits:
+            raise _tool_error(
+                "prefab limits must be an exact PrefabLimits value",
+                code="tools.invalid_prefab_limits",
+                phase="load_prefab_instance",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.scene.max_bytes,
+            role="prefab_instance",
+        )
+        return PrefabInstance.from_json(document, limits=limits)
 
     def write_relative(self, relative: str, document: bytes, *, role: str) -> None:
         path = _resolve_relative(self.root, relative, must_exist=False, role=role)

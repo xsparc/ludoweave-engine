@@ -1080,6 +1080,28 @@ live update, reimport, write-back, remote access, new persistent operation,
 dependency, root API, workflow, or hosted runner change. Project confinement is
 not a race-free filesystem sandbox against concurrent hostile mutation.
 
+## M122 project-confined prefab file loading
+
+M122 starts from fully locally validated M121 commit
+`18d1571badc416801151b6f5df67e3cfcef78ba1`. The existing `HeadlessProject`
+composition root gains `load_prefab()` and `load_prefab_instance()`. Each
+accepts one bounded project-relative path plus exact `PrefabLimits`, reuses the
+M121 confinement and bounded read, and delegates detached bytes to the existing
+`ludoweave.prefab/1` or `ludoweave.prefab-instance/1` decoder.
+
+The caller supplies two explicit files. There is no implicit pairing:
+`compile_prefab()` still validates the exact `prefab_id` relationship after
+both detached records have loaded. A load performs no world mutation and owns
+no persistent file handle. Existing explicit compilation and transaction
+application remain the only instantiation path and receipt boundary.
+
+The slice has no directory discovery, extension routing, manifest lookup,
+include/import graph, asset loading, cache, watcher, live update, reimport,
+source write-back, nested prefab composition, remote access, new persistent
+operation, dependency, root API, workflow, or hosted runner change. Project
+confinement remains a cooperative local-project boundary, not a race-free
+filesystem sandbox.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
@@ -1098,8 +1120,8 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 ## Proposal backlog
 
 These areas remain uncommitted proposals and require milestone assignment plus the
-design process in `GOVERNANCE.md`: scene file loading, nested prefab
-composition and live updates, production audio,
+design process in `GOVERNANCE.md`: nested prefab composition and live updates,
+production audio,
 rigid-body physics, network transports, international text shaping, automatic GPU
 recovery. Constrained and general 3D are deferred under
 [ADR-0028](docs/adr/0028-retain-layered-2d-and-defer-constrained-3d.md).

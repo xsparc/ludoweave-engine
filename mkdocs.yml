@@ -145,6 +145,7 @@ nav:
       - RFC-0102 - Add data-only scene transaction planning: rfcs/0102-add-data-only-scene-transaction-planning.md
       - RFC-0103 - Add one-level prefab fragment planning: rfcs/0103-add-one-level-prefab-fragment-planning.md
       - RFC-0104 - Add project-confined scene file loading: rfcs/0104-add-project-confined-scene-file-loading.md
+      - RFC-0105 - Add project-confined prefab file loading: rfcs/0105-add-project-confined-prefab-file-loading.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

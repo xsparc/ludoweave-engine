@@ -219,6 +219,35 @@ remote access, arbitrary Python import/evaluation, new persistent operation,
 dependency, root-package export, workflow, or hosted runner change. Root
 containment is not a race-free filesystem sandbox.
 
+## M122 project-confined prefab file loading
+
+The existing headless composition root loads prefab source and instance files
+explicitly:
+
+```python
+from pathlib import Path
+
+from ludoweave.tools.headless_project import HeadlessProject
+
+project = HeadlessProject.load(Path("my-game"))
+prefab = project.load_prefab("prefabs/scout.prefab.json")
+instance = project.load_prefab_instance("prefabs/scout.instance.json")
+assert prefab.protocol == "ludoweave.prefab/1"
+assert instance.protocol == "ludoweave.prefab-instance/1"
+```
+
+These are two explicit files with no implicit pairing. Each synchronous call
+uses the established project-confined bounded reader and returns detached
+immutable data after closing its descriptor. `compile_prefab()` subsequently
+checks that both records name the same prefab source. Loading performs no world
+mutation; applying the compiled ordinary transaction remains the receipt
+boundary.
+
+M122 has no directory discovery, extension routing, manifest lookup, asset
+loading, cache, watcher, live update, reimport, nested composition, write-back,
+remote access, new persistent operation, dependency, root export, workflow, or
+hosted runner change.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

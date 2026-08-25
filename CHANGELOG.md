@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M122/RFC-0105 project-confined prefab file loading through two explicit
+  `HeadlessProject` methods. Callers select separate `ludoweave.prefab/1` and
+  `ludoweave.prefab-instance/1` files; there is no implicit pairing, directory
+  discovery, cache, live update, world mutation, workflow, dependency, or
+  root-API change.
 - Add M121/RFC-0104 project-confined scene file loading to the existing
   headless composition root. Reads are relative, bounded, synchronous, and
   detached before the unchanged `ludoweave.scene/1` decoder; there is no world

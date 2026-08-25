@@ -98,3 +98,15 @@ immutable `ludoweave.scene/1` document. It performs no world mutation; explicit
 planning and transaction application remain separate. There is no directory
 discovery, prefab file loader, file URI, watcher, live update, write-back, or
 remote path support.
+
+M122 applies the same policy to two explicit prefab files:
+
+```python
+prefab = project.load_prefab("prefabs/scout.prefab.json")
+instance = project.load_prefab_instance("prefabs/scout.instance.json")
+```
+
+There is no implicit pairing or directory discovery. Both loads are detached
+and perform no world mutation; callers separately compile the pair and apply
+the ordinary transaction. There is no cache, live update, or CLI workflow
+change.
