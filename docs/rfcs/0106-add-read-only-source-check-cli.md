@@ -63,11 +63,12 @@ changes remain outside simulation determinism. Each loader owns and closes its
 descriptor before the report is emitted; the command owns no persistent source
 handle or background resource.
 
-The command performs no compile, creates no component registry, world, or
-session, calls no planner or transaction service, causes no world mutation, and
-produces no receipt. Structural validity does not prove that component names or
-values are compatible with an application-supplied registry. A caller must
-still explicitly compile and apply a transaction to mutate canonical state.
+The command performs no compile, registers or resolves no application component
+schema, creates no world or session, calls no planner or transaction service,
+causes no world mutation, and produces no receipt. Structural validity does not
+prove that component names or values are compatible with an application-
+supplied registry. A caller must still explicitly compile and apply a
+transaction to mutate canonical state.
 
 ## Boundary
 

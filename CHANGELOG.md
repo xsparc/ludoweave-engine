@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M124/RFC-0107 bounded `ludoweave.source-manifest/1` values and
+  `ludoweave source check PROJECT --manifest FILE`. The aggregate canonical
+  report validates only explicit project-confined scene or prefab/instance
+  entries; there is no discovery, compile, application-schema resolution,
+  world mutation, receipt, write, dependency, root-API, or workflow allocation
+  change.
 - Add M123/RFC-0106 `ludoweave source check` for read-only, project-confined
   scene or explicit prefab-pair preflight. Success emits canonical
   `ludoweave.cli.source-check/1` JSON; there is no compile, world mutation,

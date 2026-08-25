@@ -12,7 +12,6 @@ _PROTECTED = {
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/__init__.py": "dc8ac74a439a1e190a976a6a87713612fa27ce3b8218f1c11695f2c52c65970e",
-    "src/ludoweave/tools/headless_project.py": "f26bfdad1a1c0be7ca00bfc656bad240badb1a9ec5e061283219541a5961c491",
     "src/ludoweave/scene/document.py": "28ff581ab61eb84116675526bd8f2dfedbcc990dec0d09de4b03774d1c9a8b81",
     "src/ludoweave/scene/planning.py": "a47fbbd14f7583bf3bdb9284c3dc902d46e541fb8640dd569b60ff6e526b0716",
     "src/ludoweave/scene/prefab.py": "19fff5db607e808be41d5453668c8976fb79de0a7ca0614f901f440bb7e294a3",

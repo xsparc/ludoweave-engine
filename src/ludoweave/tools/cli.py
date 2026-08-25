@@ -65,6 +65,7 @@ def _build_parser() -> argparse.ArgumentParser:
     source_mode = source_check_parser.add_mutually_exclusive_group(required=True)
     source_mode.add_argument("--scene", help="project-relative scene JSON")
     source_mode.add_argument("--prefab", help="project-relative prefab source JSON")
+    source_mode.add_argument("--manifest", help="project-relative explicit source manifest")
     source_check_parser.add_argument(
         "--instance",
         help="project-relative prefab instance JSON; required with --prefab",
@@ -220,6 +221,7 @@ def _run_source_check(args: argparse.Namespace) -> int:
     project = HeadlessProject.load(_path_argument(args, "project"))
     scene_name = _optional_text_argument(args, "scene")
     prefab_name = _optional_text_argument(args, "prefab")
+    manifest_name = _optional_text_argument(args, "manifest")
     instance_name = _optional_text_argument(args, "instance")
     if scene_name is not None:
         if instance_name is not None:
@@ -240,18 +242,79 @@ def _run_source_check(args: argparse.Namespace) -> int:
             )
         )
         return 0
+    if manifest_name is not None:
+        if instance_name is not None:
+            raise _argument_error("source_mode")
+        manifest = project.load_source_manifest(manifest_name)
+        entries: list[JsonValue] = []
+        scenes = 0
+        prefabs = 0
+        entities = 0
+        dependencies = 0
+        overrides = 0
+        for entry in manifest.entries:
+            if entry.kind == "scene":
+                scene = project.load_scene(entry.source)
+                result: dict[str, JsonValue] = {
+                    "entry_id": entry.entry_id,
+                    "kind": "scene",
+                    "source_protocol": scene.protocol,
+                    "source_id": scene.scene_id,
+                    "source_sha256": (f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}"),
+                    "entities": len(scene.entities),
+                    "dependencies": len(scene.dependencies),
+                }
+                scenes += 1
+                entities += len(scene.entities)
+                dependencies += len(scene.dependencies)
+            else:
+                if entry.instance is None:
+                    raise _argument_error("source_manifest")
+                prefab = project.load_prefab(entry.source)
+                instance = project.load_prefab_instance(entry.instance)
+                _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
+                result = {
+                    "entry_id": entry.entry_id,
+                    "kind": "prefab",
+                    "source_protocol": prefab.protocol,
+                    "instance_protocol": instance.protocol,
+                    "source_id": prefab.prefab_id,
+                    "instance_id": instance.instance_id,
+                    "source_sha256": (f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}"),
+                    "instance_sha256": (f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}"),
+                    "entities": len(prefab.entities),
+                    "overrides": len(instance.overrides),
+                    "dependencies": len(prefab.dependencies),
+                }
+                prefabs += 1
+                entities += len(prefab.entities)
+                overrides += len(instance.overrides)
+                dependencies += len(prefab.dependencies)
+            entries.append(result)
+        _write_stdout(
+            canonical_dumps(
+                {
+                    "protocol": "ludoweave.cli.source-manifest-check/1",
+                    "status": "valid",
+                    "manifest_protocol": manifest.protocol,
+                    "manifest_id": manifest.manifest_id,
+                    "manifest_sha256": (f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"),
+                    "entries": entries,
+                    "entry_count": len(entries),
+                    "scenes": scenes,
+                    "prefabs": prefabs,
+                    "entities": entities,
+                    "overrides": overrides,
+                    "dependencies": dependencies,
+                }
+            )
+        )
+        return 0
     if prefab_name is None or instance_name is None:
         raise _argument_error("source_mode")
     prefab = project.load_prefab(prefab_name)
     instance = project.load_prefab_instance(instance_name)
-    if prefab.prefab_id != instance.prefab_id:
-        raise LudoWeaveError(
-            "prefab instance does not identify the supplied source",
-            code="tools.prefab_source_mismatch",
-            subsystem="tools",
-            phase="check_source",
-            details={"field": "prefab_id"},
-        )
+    _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
     _write_stdout(
         canonical_dumps(
             {
@@ -271,6 +334,17 @@ def _run_source_check(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def _require_prefab_pair(source_id: str, instance_source_id: str) -> None:
+    if source_id != instance_source_id:
+        raise LudoWeaveError(
+            "prefab instance does not identify the supplied source",
+            code="tools.prefab_source_mismatch",
+            subsystem="tools",
+            phase="check_source",
+            details={"field": "prefab_id"},
+        )
 
 
 def _run_apply(args: argparse.Namespace) -> int:

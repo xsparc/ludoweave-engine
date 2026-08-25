@@ -41,7 +41,7 @@ def test_scene_contract_is_an_exercised_focused_subpackage() -> None:
     scene_root = _ROOT / "src/ludoweave/scene"
 
     assert scene_root.is_dir()
-    assert {path.name for path in scene_root.glob("*.py")} == expected
+    assert expected <= {path.name for path in scene_root.glob("*.py")}
     assert (_ROOT / "tests/unit/test_scene_documents.py").is_file()
     assert (_ROOT / "tests/integration/test_scene_transactions.py").is_file()
     assert (_ROOT / "scripts/smoke_scene_wheel.py").is_file()

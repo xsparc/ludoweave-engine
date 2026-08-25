@@ -2988,17 +2988,51 @@ loads two explicit files through the M122 readers and checks their exact
 `ludoweave.cli.source-check/1` summaries containing protocol/source identities,
 canonical content hashes, and bounded counts. Host paths are never emitted.
 
-This is source-structure preflight, not compilation. The command creates no
-world/session or component registry, calls no planner or transaction service,
-performs no world mutation, and produces no receipt. Consequently it makes no
-claim that project-specific component names or values can compile against a
-later registry. Asset dependencies remain unresolved logical identities.
+This is source-structure preflight, not compilation. The command registers or
+resolves no application component schema, creates no world/session, calls no
+planner or transaction service, performs no world mutation, and produces no
+receipt. Consequently it makes no claim that project-specific component names
+or values can compile against a later registry. Asset dependencies remain
+unresolved logical identities.
 
 M123 adds no directory discovery, suffix routing, implicit pairing, manifest
 lookup, cache, watcher, live update, write-back, arbitrary execution, remote
 access, dependency, root export, provider, renderer, or workflow allocation.
 The workflow and release jobs remain byte-unchanged. RFC-0106 records the
 primary-source comparison and complete boundary.
+
+## M124 explicit source-manifest boundary
+
+M124 adds one focused contract inside `ludoweave.scene`:
+`ludoweave.source-manifest/1`. A manifest has one stable ID and a bounded
+nonempty list of immutable entries. An entry has a stable unique ID and names
+either one normalized portable project-relative scene path or one explicit
+prefab source/instance pair. Exact repeated references are rejected. Entries
+normalize by ID, and canonical bytes supply the manifest identity used in
+reports. The existing engine root remains unchanged.
+
+`HeadlessProject.load_source_manifest()` uses the existing confined regular-
+file reader and returns a detached value after closing the handle. The CLI's
+`--manifest FILE` mode then invokes only the existing M121/M122 source readers
+in manifest order. It emits canonical
+`ludoweave.cli.source-manifest-check/1` JSON with no host path. Each source
+result carries normalized content identity and bounded counts; totals are a
+pure aggregation of those results.
+
+The manifest is an explicit input list, not directory discovery, suffix
+routing, an asset database, or a component registry. Checking creates no world
+or session, calls no planner or transaction service, performs no compile or
+world mutation, writes no project file, and produces no receipt. A later entry
+failure emits no success document. Individual reads close deterministically,
+but the filesystem is not snapshotted atomically; concurrent external changes
+remain outside deterministic execution guarantees.
+
+M124 adds no glob, recursion, implicit prefab pairing, dependency traversal,
+asset loading, cache, watcher, live update, write-back, arbitrary execution,
+remote access, persistent operation, dependency, lock, root export, version,
+provider, renderer, workflow job, or workflow allocation. The existing CI and
+release workflows remain byte-unchanged. RFC-0107 records the external
+comparison, ownership, failure, and compatibility boundary.
 
 ## Deferred architecture
 

@@ -27,6 +27,11 @@ from ludoweave.scene.prefab import (
     PrefabInstance,
     PrefabLimits,
 )
+from ludoweave.scene.sources import (
+    DEFAULT_SOURCE_MANIFEST_LIMITS,
+    SourceManifest,
+    SourceManifestLimits,
+)
 from ludoweave.world import (
     AuthorityResourceRegistry,
     RandomStreams,
@@ -287,6 +292,28 @@ class HeadlessProject:
             role="prefab_instance",
         )
         return PrefabInstance.from_json(document, limits=limits)
+
+    def load_source_manifest(
+        self,
+        relative: str,
+        *,
+        limits: SourceManifestLimits = DEFAULT_SOURCE_MANIFEST_LIMITS,
+    ) -> SourceManifest:
+        """Load one detached explicit source manifest from a confined file."""
+
+        if type(limits) is not SourceManifestLimits:
+            raise _tool_error(
+                "source manifest limits must be an exact SourceManifestLimits value",
+                code="tools.invalid_source_manifest_limits",
+                phase="load_source_manifest",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="source_manifest",
+        )
+        return SourceManifest.from_json(document, limits=limits)
 
     def write_relative(self, relative: str, document: bytes, *, role: str) -> None:
         path = _resolve_relative(self.root, relative, must_exist=False, role=role)

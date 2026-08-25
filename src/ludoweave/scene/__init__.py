@@ -13,11 +13,18 @@ from ludoweave.scene.prefab import (
     PrefabNode,
     compile_prefab,
 )
+from ludoweave.scene.sources import (
+    SOURCE_MANIFEST_PROTOCOL,
+    SourceManifest,
+    SourceManifestEntry,
+    SourceManifestLimits,
+)
 
 __all__ = [
     "PREFAB_INSTANCE_PROTOCOL",
     "PREFAB_PROTOCOL",
     "SCENE_PROTOCOL",
+    "SOURCE_MANIFEST_PROTOCOL",
     "PrefabDocument",
     "PrefabError",
     "PrefabInstance",
@@ -29,6 +36,9 @@ __all__ = [
     "SceneInstantiationPlan",
     "SceneLimits",
     "SceneNode",
+    "SourceManifest",
+    "SourceManifestEntry",
+    "SourceManifestLimits",
     "compile_prefab",
     "compile_scene",
 ]

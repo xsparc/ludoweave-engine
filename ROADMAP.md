@@ -1113,8 +1113,8 @@ with protocol identities, stable source IDs, canonical SHA-256 identities, and
 bounded entity/dependency/override counts.
 
 The command performs structural protocol preflight only. It creates no world or
-session, resolves no component registry or asset, invokes no planner, performs
-no compile and no world mutation, and therefore produces no receipt. Prefab
+session, resolves no application component schema or asset, invokes no planner,
+performs no compile and no world mutation, and therefore produces no receipt. Prefab
 mode does enforce exact source/instance `prefab_id` agreement. Failures retain
 the established exit-2 and sanitized structured CLI error behavior.
 
@@ -1123,6 +1123,31 @@ lookup, source cache, watcher, live update, write-back, remote access, arbitrary
 script execution, component semantic validation, dependency, root API, version,
 or workflow allocation change. The existing consolidated CI topology is
 unchanged.
+
+## M124 explicit source-manifest checking
+
+M124 starts from fully locally validated M123 commit
+`1b092a85487b355fac688e15daeaed0ebcfa665a`. It adds bounded
+`ludoweave.source-manifest/1` values with one stable manifest ID and a nonempty,
+canonically ordered list of explicit entries. Each entry names either one
+normalized project-relative scene file or one exact prefab source/instance
+pair. Entry IDs and exact source references are unique, and callers may tighten
+the hard byte, entry-count, and path limits.
+
+`ludoweave source check PROJECT --manifest FILE` loads the confined manifest,
+then checks every listed file through the unchanged M121/M122 readers. Success
+emits one path-silent canonical `ludoweave.cli.source-manifest-check/1` report
+with manifest/source identities, normalized SHA-256 values, per-entry results,
+and bounded aggregate counts. Any entry failure emits no success report and
+leaves the project tree unchanged.
+
+The explicit manifest is not directory discovery, a registry, or an import
+database. M124 performs no compile, component semantic validation, asset load,
+world/session creation, command, transaction, world mutation, or receipt. It
+adds no glob/recursion, implicit pairing, cache, watcher, live update,
+write-back, remote access, dependency, root-package API, version, workflow job,
+or hosted allocation. Multiple filesystem reads are not an atomic snapshot;
+deterministic output assumes stable inputs for the duration of the check.
 
 ## Good-first contribution queue
 

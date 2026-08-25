@@ -263,6 +263,31 @@ directory discovery, cache, live update, write-back, asset loading, remote
 access, new persistent operation, dependency, root export, or workflow
 allocation.
 
+## M124 explicit source manifests
+
+`ludoweave.source-manifest/1` is a bounded data-only list for source preflight.
+Its exact root fields are `$schema`, `manifest_id`, and `entries`. Each nonempty
+manifest has at most 256 entries. Entries contain an `entry_id`, `kind`, and
+normalized portable project-relative `source`; prefab entries additionally
+require one explicit `instance`. Entry IDs and exact references are unique, and
+the normalized value orders entries by ID. `SourceManifestLimits` may tighten
+the 64 KiB document, 256-entry, and 1,024-byte path bounds but cannot enlarge
+them.
+
+The focused types are experimental exports from `ludoweave.scene`.
+`HeadlessProject.load_source_manifest()` is an internal composition method that
+uses the same bounded project confinement as M121-M122. The manifest owns no
+file handle, world, registry, renderer, or background resource after loading.
+
+CLI `--manifest FILE` mode checks every explicit entry with the unchanged
+scene/prefab readers and emits
+`ludoweave.cli.source-manifest-check/1`. It reports normalized manifest and
+source hashes plus per-entry and aggregate counts without paths. It performs no
+compile or component semantic validation, causes no world mutation, writes no
+project file, and produces no receipt. There is no directory discovery, glob,
+implicit pairing, asset loading, cache, watcher, live update, remote access,
+dependency, root export, persistent operation, or workflow allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

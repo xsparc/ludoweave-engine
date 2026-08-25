@@ -2,6 +2,33 @@
 
 No architecture decision is currently blocked.
 
+## M124 explicit source-manifest checking
+
+RFC-0107 resolves the adopted M124 direction: add bounded immutable
+`ludoweave.source-manifest/1` values and one explicit
+`ludoweave source check PROJECT --manifest FILE` mode. A manifest names only
+caller-selected project-relative scenes or prefab source/instance pairs,
+normalizes by stable entry ID, rejects duplicates, and emits one path-silent
+canonical aggregate report.
+
+The manifest is an explicit input list, not directory discovery, a component
+registry, asset database, or import graph. Checking performs no compile,
+application-specific component validation, world/session creation, command,
+transaction, mutation, write, or receipt. Sequential filesystem reads are not
+an atomic snapshot; deterministic output assumes stable input files.
+
+No recursion/glob, suffix routing, implicit pairing, project-manifest source
+registry, asset loading, cache, watcher, live update/reimport, write-back,
+arbitrary execution, remote/file URI, dependency, lock, metadata, version,
+engine-root API, workflow job/allocation, or release-authority change is pending
+for M124.
+
+Reopen only for separately assigned discovery, registry-aware compilation,
+dependency traversal, persistent reports, or live-update work with explicit
+ordering, exclusion/conflict rules, bounds, source identities, failure
+atomicity, receipts, ownership, compatibility, security, and installed-artifact
+evidence.
+
 ## M123 read-only source-check CLI
 
 RFC-0106 resolves the adopted M123 direction: add one nested
@@ -10,10 +37,11 @@ explicit prefab source/instance files. Success emits canonical
 `ludoweave.cli.source-check/1` JSON with protocol/source identities, canonical
 hashes, and bounded counts. Prefab mode enforces exact source identity.
 
-The command performs structural preflight only. It creates no registry, world,
-or session, calls no planner or transaction service, performs no compile or
-world mutation, writes no project file, and produces no receipt. It does not
-claim application-specific component semantic validity.
+The command performs structural preflight only. It registers or resolves no
+application component schema, creates no world or session, calls no planner or
+transaction service, performs no compile or world mutation, writes no project
+file, and produces no receipt. It does not claim application-specific
+component semantic validity.
 
 No directory discovery, recursive/glob input, implicit pairing, suffix routing,
 manifest registration, dependency traversal, asset loading, cache, watcher,

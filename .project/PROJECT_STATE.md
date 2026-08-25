@@ -1,6 +1,161 @@
 # Project State
 
-## M123 read-only source-check CLI - implementation in progress
+## M124 explicit source-manifest checking - implementation in progress
+
+- Base: fully locally validated M123 DCO commit
+  `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree
+  `7f71d824ee30fd7cbc7b996aa6913f0b0a1a2074`, sole parent exact M122.
+- Branch: `release/m124-explicit-source-manifest-check`; unpublished under the
+  existing public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-26 were current Godot and
+  Unity command-line documentation, JSON Schema Draft 2020-12 and validation
+  vocabulary, and Python `argparse`, `hashlib`, and `json` documentation. They
+  support explicit project/profile boundaries, bounded structural lists,
+  canonical output, and SHA-256 identities. Discovery, arbitrary execution,
+  compile/import, registry, cache, and live-update semantics remain evidence
+  gaps and non-scope. Confidence is high for the bounded explicit manifest.
+- Contract: `ludoweave.source-manifest/1` has one stable ID and 1-256 immutable
+  explicit entries. Each entry has a stable unique ID and one normalized scene
+  path or one prefab source/instance pair. Exact repeated references fail;
+  normalized values order entries by ID. Limits may tighten the 64 KiB
+  document, 256-entry, and 1,024-byte path maxima.
+- Runtime: `HeadlessProject.load_source_manifest()` reuses existing confinement
+  and bounded reads. `ludoweave source check PROJECT --manifest FILE` checks
+  every entry through M121/M122 and emits canonical
+  `ludoweave.cli.source-manifest-check/1` with no host path.
+- Ownership/mutation: all values detach before use and each descriptor closes
+  before return. The CLI registers or resolves no application component schema,
+  creates no world/session, calls no planner or transaction service, writes no
+  project file, performs no compile or world mutation, and produces no receipt.
+  Multiple reads are not an atomic filesystem snapshot; stable inputs are
+  required for deterministic output.
+- Exact baseline: M123 commit/tree/sole-parent, one DCO sign-off, 18 paths,
+  clean status, zero scratch, and `0 24` divergence pass. Static and dated
+  strict governance each return zero findings.
+- Deliberate red: exact CPython 3.12.13 produced five intended absent contract,
+  loader, CLI, evidence, or docs failures and one protected-surface pass in
+  0.21 seconds.
+- Corrections: the first implementation checkpoint passed Ruff while strict
+  Pyright found one redundant literal cast and three test-only immutable-detail
+  or negative-typing issues. Removing the cast and making those test intentions
+  explicit corrected all four without changing runtime behavior. The first
+  combined docs patch was rejected atomically on a stale context; split patches
+  applied cleanly and preserved existing prose. A subsequent factual review
+  narrowed inherited “creates no registry” wording to the actual no application
+  schema registration/resolution boundary and aligned manifest path validation
+  with existing cross-platform device-name, colon, and trailing-character
+  rejection.
+- Focused proof: Ruff and strict Pyright pass; all 22 unit/integration cases pass
+  in 1.26 seconds. Five implementation/protection boundary assertions then
+  passed with only the intended missing-doc assertion failing. After RFC-0107
+  and public docs, all 28 focused assertions pass in 1.29 seconds; strict docs
+  build in 1.61 seconds with only the known Material notice; whitespace passes.
+- Corrected portability/accuracy proof: Ruff and strict Pyright pass; all 31
+  focused assertions pass in 1.29 seconds; strict docs build in 1.66 seconds
+  with only the known Material notice; whitespace passes.
+- Historical guards: M123 no longer freezes the whole internal headless-project
+  file, while retaining its workflow, metadata, root, scene/prefab, CLI, and
+  no-mutation checks. M119/M120 now protect their required scene-package
+  subsets; M124 owns the exact current six-file inventory including the
+  exercised `sources.py` module.
+- Complete source proof: after two accurately recorded interrupted attempts,
+  the unchanged 46-package lock, all 388 Python files, Ruff, strict Pyright, all
+  1,631 architecture assertions with one established skip, strict docs, both
+  governance modes, and whitespace pass.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,277 tests
+  with 16 skips in 115.97 seconds. Exact 3.13.13 and 3.14.5 base environments
+  each pass 3,267 with 17 skips in 107.30 and 112.55 seconds. Each environment
+  was recreated sequentially from the frozen lock.
+- Graphics/vertical proof: the restored exact 45-package CPython 3.12.13
+  graphics environment passes ten real-wgpu tests in 6.97 seconds; fresh base
+  and graphics profiles validate with two and three workloads. Clockwork Arena
+  and Agent World Builder retain their established state, capture, and replay
+  identities and passing acceptance fields.
+- Distribution: two independent builds reproduce a 297,737-byte pure wheel at
+  `12bca6db106aac02fd62e784658e309af99121bf9d00c5253b8cd3fd36cdb03a`
+  and a 1,636,936-byte source archive at
+  `f78627a5f2aa9fc907eb2b78b2d3e799a2a248c6f7191047a0d198ca3a814a34`.
+  All seven general, scene, prefab, file-loading, source-check, and manifest-
+  check isolated no-dependency wheel smokes pass.
+- Release rehearsal: two complete ten-artifact stages are byte-identical and
+  both release smokes pass. The 111,168-byte sample archive retains SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Hygiene: the 100-entry wheel and 635-entry sdist contain zero native, WASM,
+  bytecode, or retired control metadata. Repository-wide public tool-identity
+  and high-confidence credential scans return zero files.
+- Findings-first review: exactly 26 intended project records, public docs/RFC,
+  contract/loader/CLI, tests, historical guards, and verifier paths change.
+  Manifest bounds, normalized paths, ordering, duplicate rules, read-only
+  aggregation, failure silence, and public stability metadata align. Protected
+  workflows, dependencies, lock, root/module entry, scene/prefab schemas and
+  planners, prior smokes, release producer, and release authority retain zero
+  diff. No actionable finding remains.
+- Installed-API correction: the manifest wheel verifier now directly checks all
+  four new focused experimental exports in addition to the CLI. Ruff and strict
+  Pyright pass; the corrected verifier and all 32 focused assertions pass;
+  whitespace remains clean.
+- Review-record source separator: the unchanged lock, all 388 Python files,
+  Ruff, strict Pyright, all 1,631 architecture assertions with one established
+  skip, strict docs, both governance modes, and whitespace pass.
+- Review-inclusive artifact proof: the pure wheel remains 297,737 bytes at
+  `12bca6db106aac02fd62e784658e309af99121bf9d00c5253b8cd3fd36cdb03a`;
+  the record-inclusive sdist is 1,638,466 bytes at
+  `e8de5c33e5ca6fd081e6a60dddf18454bb50947963d78d28af3233fed4d51d99`.
+  All seven wheel smokes, two byte-identical ten-artifact release stages, both
+  release smokes, and package hygiene pass. The sample archive retains its
+  established identity.
+- Final factual source separator: the unchanged 46-package lock resolved in
+  0.86 milliseconds. All 388 Python files were format-clean; Ruff and strict
+  Pyright passed; all 1,631 architecture assertions passed with one established
+  Windows capability skip in 12.12 seconds; strict docs built in 1.66 seconds
+  with only the known Material notice; static and dated strict governance
+  returned zero findings; and whitespace passed.
+- Precommit history/hosted audit: local/remote main and merge base remain exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M123 remains exact head
+  `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree
+  `7f71d824ee30fd7cbc7b996aa6913f0b0a1a2074`, and sole parent M122
+  `176c21d12adc00c71cab63a777d0cd0eb6d66215`. Divergence is `0 24`; all
+  24 M100-M123 commits are linear, single-parent, exact maintainer identity,
+  and singly DCO-signed. Main plus the 25 required milestone branches exist
+  locally; only remote main exists. Full Git checking reports 287 dangling-only
+  records and zero critical finding. Authentication is valid; M124 PR/run,
+  remote-branch, release, and tag queries are empty, so no hosted allocation
+  was triggered.
+- Scratch cleanup: all 13 exact M124 build, release, profile, docs, and pytest
+  targets resolved inside the workspace and were confirmed untracked and
+  non-reparse. Ordinary access removed 12 and denied only `.pytest-tmp`; no
+  complete claim relies on that exit. A separately verified elevated retry
+  removed only the exact workspace-local `.pytest-tmp` and confirmed zero
+  remaining targets.
+- Cleanup-record-inclusive source separator: the unchanged 46-package lock
+  resolved in 0.87 milliseconds. All 388 Python files were format-clean; Ruff
+  and strict Pyright passed; all 1,631 architecture assertions passed with one
+  established Windows capability skip in 11.23 seconds; strict docs built in
+  1.59 seconds with only the known Material notice; both governance modes
+  returned zero findings; and whitespace passed.
+- Final metadata/scope separator: all 25 M59 and M119/M120/M123/M124 boundary
+  assertions pass in 0.46 seconds. Dated strict governance returns zero
+  findings; the worktree exactly matches the 26 intended paths; protected
+  workflows, metadata, lock, root/module entry, retained scene/prefab
+  contracts, examples, prior smokes, and release surfaces retain zero diff;
+  public tool-identity and high-confidence credential scans return zero files;
+  and whitespace passes. The regenerated `site` and `.pytest-tmp` targets were
+  verified workspace-confined, untracked, and non-reparse, then exactly removed
+  with zero remaining.
+- Installed proof: the first package build succeeds and the isolated
+  no-dependency wheel verifier checks one scene plus one prefab pair from an
+  explicit manifest with the expected protocol, ID, kind, and entry counts.
+- Scope: no discovery, glob, implicit pairing, compile, registry semantics,
+  world/session, mutation, receipt, persistent report, cache, watcher, live
+  update, remote access, dependency, engine-root API, workflow, allocation, or
+  release-authority change.
+
+## M123 read-only source-check CLI - locally validated and committed
+
+- Commit: `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree
+  `7f71d824ee30fd7cbc7b996aa6913f0b0a1a2074`, sole parent exact M122; exact
+  maintainer identity, one DCO sign-off, 18 paths, clean worktree, zero scratch,
+  and `0 24` divergence verified after commit.
 
 - Base: fully locally validated M122 DCO commit
   `176c21d12adc00c71cab63a777d0cd0eb6d66215`, tree
@@ -19,8 +174,9 @@
   source identity, and emits canonical `ludoweave.cli.source-check/1` protocol,
   source IDs/hashes, and bounded counts without disclosing paths.
 - Ownership/mutation: each synchronous read closes before output. The command
-  creates no world/session/registry, calls no planner or transaction service,
-  writes no project file, performs no world mutation, and produces no receipt.
+  registers or resolves no application component schema, creates no
+  world/session, calls no planner or transaction service, writes no project
+  file, performs no world mutation, and produces no receipt.
 - Deliberate red: exact CPython 3.12.13 produced nine intended absent-command,
   verifier, or docs failures and one protected-surface pass in 1.50 seconds.
 - Corrections: the first implementation behavior run passed all six cases while
@@ -81,9 +237,10 @@
   intended paths, protected workflows/metadata/lock/root/headless/prior-smoke
   surfaces retain zero diff, and the two regenerated docs/pytest targets were
   removed after being proved workspace-confined, untracked, and non-reparse.
-- Scope: no compile, component registry, asset loading, directory discovery,
-  implicit pairing, cache, watcher, live update, write-back, arbitrary script,
-  remote access, dependency, root API, workflow job, or hosted allocation.
+- Scope: no compile, application component registration/resolution, asset
+  loading, directory discovery, implicit pairing, cache, watcher, live update,
+  write-back, arbitrary script, remote access, dependency, root API, workflow
+  job, or hosted allocation.
 
 ## M122 project-confined prefab file loading - locally validated, commit pending
 

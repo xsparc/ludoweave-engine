@@ -132,3 +132,29 @@ world mutation, or receipt. It writes no project file and adds no directory
 discovery, implicit pairing, cache, watcher, live update, arbitrary script, or
 workflow allocation. It is suitable for local hooks and existing CI commands
 without adding a hosted job. There is no workflow allocation.
+
+M124 adds an explicit batch-shaped input without adding discovery:
+
+```console
+ludoweave source check PROJECT --manifest config/sources.json
+```
+
+The bounded `ludoweave.source-manifest/1` file contains one stable manifest ID
+and a nonempty list of entries. Each entry has a stable ID and names either one
+normalized project-relative scene or one explicit prefab source/instance pair.
+Entries normalize by ID; duplicate IDs and exact duplicate references fail.
+Manifest, scene, and prefab paths are never emitted.
+
+Success writes canonical `ludoweave.cli.source-manifest-check/1` JSON with the
+manifest protocol/ID/hash, ordered per-entry source results, and aggregate
+entry, kind, entity, override, and dependency counts. Any invalid or missing
+entry returns exit 2 with the existing structured error and no success report.
+Every opened file is closed before return, and the project tree is unchanged.
+
+This explicit manifest is not a directory scan, glob, implicit pairing,
+compile/import, component-registry check, or asset load. It creates no world or
+session, applies no command or transaction, performs no world mutation, writes
+no report file, and produces no receipt. Multiple reads are not an atomic
+filesystem snapshot, so deterministic output requires stable inputs during the
+check. There is no cache, watcher, live update, dependency, new hosted job, or
+workflow allocation.
