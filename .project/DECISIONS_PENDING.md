@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M120 one-level prefab fragment planning
+
+RFC-0103 resolves the adopted M120 direction: add exact bounded
+`ludoweave.prefab/1` fragments and `ludoweave.prefab-instance/1` detached
+instance overrides, then compile through M119 into ordinary atomic spawn
+commands. Canonical runtime state remains solely in the world store and receipt
+aliases supply the local/runtime mapping.
+
+No general JSON Patch/Pointer language, nested prefab inheritance, variant
+chain, parameter expression, structural override, source write-back, file I/O,
+asset loading, live update/reimport, silent propagation, runtime link graph,
+new persistent operation, global discovery, dependency, workflow, allocation,
+root API, or release-authority change is pending for M120.
+
+Reopen only for a separately assigned nested-composition, file-loading, or live-
+update slice with explicit conflict precedence, source/version identity,
+resource bounds, receipts, rollback/failure atomicity, ownership, security,
+compatibility, and installed-artifact evidence. Source changes must never
+silently mutate existing runtime entities.
+
 ## M119 data-only scene transaction planning
 
 RFC-0102 resolves the adopted M119 direction: introduce one exact bounded

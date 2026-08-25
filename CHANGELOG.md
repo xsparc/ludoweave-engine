@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M120/RFC-0103 one-level `ludoweave.prefab/1` fragments and
+  `ludoweave.prefab-instance/1` schema-aware field replacements. Planning adds
+  canonical prefab provenance and compiles to ordinary `entity.spawn` commands
+  with receipt aliases, with no nested prefab inheritance, live update, file
+  I/O, new persistent operation, dependency, workflow, or root-API change.
 - Add M119/RFC-0102 versioned data-only scene documents and deterministic
   compilation to ordinary `entity.spawn` commands. Receipt aliases expose the
   local-ID-to-runtime-entity mapping while canonical runtime state remains in

@@ -148,9 +148,43 @@ values, a missing `SceneNode` registration, or an invalid plan raise structured
 M119 has no file I/O, no prefab inheritance, no live update/reimport semantics,
 no implicit parent-to-runtime-handle relation, no arbitrary Python graph or
 import, no new command operation, no root-package export, no dependency, and no
-workflow or hosted runner change. Prefab fragments, explicit prefab
-instantiation commands, and a runtime `EntityRef` facade require separate
-assigned slices.
+workflow or hosted runner change. M120 provides the separately assigned prefab
+fragment planning slice; a runtime `EntityRef` facade remains deferred.
+
+## M120 one-level prefab fragment planning
+
+`ludoweave.prefab/1` is a versioned data-only scene fragment. Its exact root
+fields are `$schema`, `prefab_id`, `entities`, and `dependencies`; entity,
+hierarchy, component, asset, canonical ordering, ownership, and hard-limit
+semantics are the M119 scene invariants.
+
+`ludoweave.prefab-instance/1` names the exact `prefab_id`, one stable
+`instance_id`, and a bounded override array. Each override contains exactly
+`local_id`, `component`, `version`, and non-empty `changes`. The local entity
+and named component must already exist in the fragment. `version` must equal
+the registered current component schema, and every changed field/value passes
+that schema. Overrides cannot add or remove entities, components, or parent
+relationships.
+
+`compile_prefab()` receives both detached immutable documents plus an explicit
+`ComponentRegistry` and existing transaction identities. It migrates base
+values, applies all schema-aware replacements before mutation, adds the
+compiler-owned `PrefabNode`, and delegates to M119 planning. The returned plan
+contains ordinary `entity.spawn` commands in one atomic `CommandTransaction`.
+Receipt aliases provide the local-ID-to-runtime-entity mapping. Canonical
+runtime state remains in the world store.
+
+The source fragment and instance request remain caller-owned and unchanged.
+Planning owns no resources and failures are structured `PrefabError` values.
+A transaction stale-hash or later command rejection remains all-or-nothing.
+Changing a source fragment has no effect on an existing runtime instance; a
+caller must explicitly compile and apply another transaction.
+
+M120 is one-level only: no nested prefab inheritance, variant chain, parameter
+expression, file I/O, asset loading, live update, reimport, silent propagation,
+source write-back, runtime link graph, or arbitrary Python import/evaluation.
+There is no new persistent operation, root-package export, dependency,
+workflow, or hosted runner change.
 
 ## Canonical snapshots and random state
 

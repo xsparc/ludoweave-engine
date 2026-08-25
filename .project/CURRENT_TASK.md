@@ -1,80 +1,76 @@
 # Current task
 
-- **Task:** M119 - add bounded data-only scene transaction planning.
-- **Status:** Direction research, deliberate-red proof, implementation, focused
-  behavior/type/architecture validation, documentation, and a standalone local
-  installed-wheel verifier are complete. Complete supported-runtime, initial
-  distribution, review correction, focused post-review validation,
-  review-inclusive artifacts, final precommit validation, and bounded scratch
-  cleanup pass. The reviewed 22-path slice is ready for its standalone DCO
-  commit and postcommit verification.
-- **Base:** Fully locally validated M118 DCO commit
-  `7b68f3d02987ee9824785c1699592c4670dbe267`, tree
-  `a60c9e3668a0ed1f5462015210a8b8e9ee593a3f`, with sole parent exact M117.
+- **Task:** M120 - add bounded one-level prefab fragment planning.
+- **Status:** Direction research, deliberate-red proof, implementation,
+  schema/ownership review, documentation, RFC-0103, focused and complete
+  source validation, supported-runtime suites, graphics slices, reproducible
+  distribution, release rehearsal, package hygiene, and final scope review are
+  complete. Governance/history closeout and bounded cleanup are complete. The
+  final metadata separator is complete; the local DCO commit remains.
+- **Base:** Fully locally validated M119 DCO commit
+  `b30ca99c3ae639653394a378465c0088ee5c2995`, tree
+  `8d51081377cdef16fda69c17ebbec9008b44deef`, with sole parent exact M118.
   The stack remains unpublished under the existing public-review identity hold.
 
 ## Acceptance boundary
 
-- Add exact `ludoweave.scene/1` data-only documents with bounded canonical JSON,
-  stable local IDs, unique names, validated parent DAGs, versioned component
-  values, canonical asset dependencies, and detached immutable ownership.
-- Compile through an explicit `ComponentRegistry` into ordinary
-  `entity.spawn` commands in one existing atomic `CommandTransaction`.
-- Store compiler-owned scene provenance as ordinary canonical `SceneNode` ECS
-  data and expose local-ID-to-runtime-entity mapping through receipt aliases.
-- Preserve the world store as sole canonical runtime authority and retain
-  existing owner-thread, staging, receipt, and failure semantics.
-- Add structured scene failures, focused unit/integration/property/architecture
-  coverage, RFC-0102, aligned public docs, and a standalone installed-wheel
-  verifier without changing the existing hosted smoke allocation.
-- Keep workflows, runner allocation, actions, permissions, credentials,
-  dependencies, lock, metadata, version, root API, command operations,
-  providers, release authority, tags, releases, publication, and public remote
+- Add exact `ludoweave.prefab/1` scene fragments with stable local IDs and all
+  bounded M119 entity/component/asset/hierarchy invariants.
+- Add exact `ludoweave.prefab-instance/1` instance intent with one matching
+  source ID, stable instance ID, and canonical unique override targets.
+- Restrict overrides to non-empty current-schema field replacements against an
+  existing local entity/component pair; migrate base values before merging.
+- Add compiler-owned canonical `PrefabNode` provenance and compile through
+  M119 into ordinary `entity.spawn` commands in one existing atomic
+  transaction; retain receipt aliases for local/runtime mapping.
+- Preserve immutable source ownership, canonical world-store authority,
+  structured pre-mutation failures, owner-thread rules, and transaction
+  rejection atomicity.
+- Add focused unit/integration/property/architecture coverage, RFC-0103,
+  aligned public docs, and a standalone installed-wheel verifier.
+- Keep command/operation registry, transaction service, workflows, allocations,
+  actions, permissions, credentials, dependencies, lock, metadata, version,
+  root API, release authority, tags, releases, publication, and public remote
   state unchanged.
 
 ## Evidence so far
 
-- Primary-source direction review used RFC 8259, JSON Schema Core draft
-  2020-12, and RFC 3986. The selected contract reuses canonical JSON,
-  `asset://`, component-schema migration, and ordinary world transactions
-  without adding a runtime schema dependency.
-- Exact CPython 3.12.13 behavioral deliberate red failed collection only because
-  `ludoweave.scene` was absent. The first architecture red passed protected
-  surfaces and failed only absent package/dependency-rule/docs boundaries.
-- The first implementation launch exposed postponed component annotations in
-  the new component definitions; removing postponement only where schemas are
-  declared preserved the existing authoring contract.
-- The next run passed 17 assertions and exposed two test/ordering defects: the
-  session hash is a property, and reserved `SceneNode` detection must precede
-  component-value compilation. Both were corrected.
-- The following run passed 18 assertions and exposed only the test's use of a
-  nonexistent `WorldStore.entity_count`; the test now uses the storage-neutral
-  `entities()` contract. Strict type checking then identified only new-test
-  typing gaps, which were repaired without product relaxation.
-- Focused behavior first passed 19 assertions with zero strict type findings.
-  Architecture then passed 102 assertions and failed only absent M119 docs.
-  Strict docs built in 1.75 seconds; the first documented boundary failed one
-  plain-phrase assertion because Markdown code formatting interrupted the
-  phrase. The corrected architecture boundary passed all 103 assertions.
-- After direct-construction/plan-identity hardening, Hypothesis coverage, and a
-  standalone wheel verifier, Ruff, strict Pyright, and all 124 focused
-  behavior/architecture assertions pass in 1.39 seconds.
-- RFC-0102 and public docs explicitly define dependency direction, ownership,
-  deterministic ordering, structured pre-mutation failures, receipt alias
-  mapping, canonical world authority, and the no-file-I/O/no-prefab boundary.
+- A focused primary-source scan reviewed RFC 6902, RFC 6901, JSON Schema,
+  stable Godot PackedScene behavior, and official Unity prefab/override
+  behavior. It supports exact field maps and a one-level detached instantiation
+  boundary rather than general JSON Patch or live nested source links.
+- Static and dated strict governance checks both began with zero findings.
+- Corrected exact CPython 3.12.13 deliberate red fails collection only because
+  the new prefab exports are absent. The architecture red passes the protected
+  command/workflow/metadata assertion and fails only the absent module,
+  standalone verifier, and docs/RFC boundaries.
+- Implementation feedback remains factual: the first focused launch found
+  test import-order/strict-typing issues and tuple-detail access while 22
+  behavior assertions passed; the next launch found only two incorrect expected
+  component cause codes. Corrected focused behavior then passed all 24 tests
+  with zero Ruff/Pyright findings.
+- Public docs and RFC-0103 define exact schemas, canonical ordering, schema-aware
+  replacements, ordinary commands, receipt aliases, world authority,
+  ownership, failure behavior, and the no-nesting/no-live-update boundary.
+- The first documented focused gate passed 133 assertions and strict docs.
+  Findings-first review added base migration/default-instance, explicit
+  provenance registry, hard-maximum, and direct-construction phase coverage.
+  The tightened gate passes all 136 assertions in 1.58 seconds, strict docs in
+  1.69 seconds, strict Pyright, Ruff, formatting, and whitespace.
 
 ## Explicit non-scope
 
-- No scene file loading, directory discovery, prefab inheritance/overrides,
-  prefab instantiation operation, live update/reimport, silent propagation,
-  runtime `EntityRef` facade, asset loading, or parent-to-runtime-handle store.
-- No arbitrary Python graph, evaluation or import; no scene-specific persistent
-  operation; no second authority; no renderer, provider, tool, application,
-  networking, editor, native, compiler, or global registry surface.
+- No nested prefab inheritance, variant chain, parameter expression,
+  component/entity add or remove override, hierarchy override, file I/O,
+  directory discovery, asset loading, live update, reimport, silent
+  propagation, source write-back, or runtime source-instance link graph.
+- No `EntityRef` facade, arbitrary Python graph/import/evaluation, global
+  registry, scene/prefab persistent operation, renderer, provider, tool,
+  application, networking, editor, native, compiler, or second authority.
 - No workflow, hosted allocation, dependency, lock, metadata, version, root API,
   release authority, tag, release, publication, push, or PR.
 
 ## Remaining acceptance work
 
-- Commit the reviewed slice with exact DCO identity and verify the resulting
-  standalone history/tree/scope.
+- Create the standalone DCO commit and verify its exact tree, parent, identity,
+  scope, and clean worktree. Publication remains held.

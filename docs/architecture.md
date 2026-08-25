@@ -2891,6 +2891,37 @@ runtime `EntityRef` facade, no asset loading, no arbitrary Python graph or
 import, no renderer leakage, no dependency, and no workflow or hosted runner
 change. RFC-0102 defines the data/schema rationale and complete non-scope.
 
+## M120 prefab fragment planning boundary
+
+M120 remains inside the existing `ludoweave.scene` downward dependency rule.
+The prefab module depends only on the established asset identity, core error,
+ECS schema, scene document/planner, canonical JSON, and world command
+contracts. It does not import application composition, rendering, tools,
+providers, samples, file/path loaders, or external dependencies.
+
+`ludoweave.prefab/1` reuses an exact M119 scene fragment below a distinct
+prefab identity. `ludoweave.prefab-instance/1` is a detached instance intent:
+one exact source ID, one instance ID, and canonical schema-aware overrides
+against stable local entity/component pairs. Override decoding is bounded and
+duplicate-free. Planning accepts only the registered current version for each
+non-empty field replacement, migrates base values first, and validates the
+complete merged component before producing a transaction.
+
+The compiler adds ordinary canonical `PrefabNode` provenance, then delegates
+to M119. It creates no privileged mutation path and no new persistent
+operation: the plan contains ordinary `entity.spawn` commands, and receipt
+aliases return the local-ID-to-runtime-entity mapping. Canonical runtime state
+remains in the world store. Source fragments, overrides, and plans are
+immutable caller-owned data; no runtime source-instance graph exists and
+source changes never silently mutate existing entities.
+
+Composition is deliberately one-level. M120 has no nested prefab inheritance,
+variant chain, parameter expression, structural override, file I/O, asset
+loading, live update, reimport, write-back, runtime `EntityRef`, global
+registry, arbitrary import/evaluation, dependency, root export, workflow, or
+hosted allocation. RFC-0103 records the standards comparison and complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -2942,7 +2973,7 @@ treated as an independent human contribution.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
-Scene file loading, prefab composition/live updates, production audio,
+Scene file loading, nested prefab composition/live updates, production audio,
 rigid-body physics, network
 transports, visual editor tooling, international text shaping, automatic
 device recovery, and constrained/general 3D remain deferred to future

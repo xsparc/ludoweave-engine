@@ -36,6 +36,7 @@ def test_scene_contract_is_an_exercised_focused_subpackage() -> None:
         "document.py",
         "errors.py",
         "planning.py",
+        "prefab.py",
     }
     scene_root = _ROOT / "src/ludoweave/scene"
 

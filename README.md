@@ -22,9 +22,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > portability from byte identity; M117 retains the standard CPython support
 > baseline after one free-threaded serial probe; M118 retains Python 3.15
 > outside the supported range after one prerelease compatibility observation;
-> M119 adds bounded versioned data-only scene transaction planning.
+> M119 adds bounded versioned data-only scene transaction planning; M120 adds
+> one-level data-only prefab fragments and schema-aware instance overrides.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M119 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M120 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -66,6 +67,9 @@ convention remains enforced.
 - A bounded versioned data-only scene document that compiles through an
   explicit component registry into ordinary `entity.spawn` commands; receipt
   aliases return the deterministic local-ID-to-runtime-entity mapping.
+- One-level versioned data-only prefab fragments with detached current-schema
+  overrides that compile to the same ordinary commands and receipt aliases;
+  source changes never silently mutate runtime instances.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.

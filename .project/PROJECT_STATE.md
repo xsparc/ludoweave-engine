@@ -1,5 +1,80 @@
 # Project State
 
+## M120 one-level prefab fragment planning - final closeout in progress
+
+- Base: fully locally validated M119 DCO commit
+  `b30ca99c3ae639653394a378465c0088ee5c2995`, tree
+  `8d51081377cdef16fda69c17ebbec9008b44deef`, sole parent exact M118.
+- Branch: `release/m120-prefab-fragment-planning`; unpublished under the
+  existing public-review identity hold.
+- Direction: exact field replacements reuse the current component schema;
+  RFC 6902/6901 inform fail-closed behavior but their general patch/pointer
+  languages are not adopted. Official engine docs reinforce keeping nested
+  apply-target and live-link policy outside the first contract.
+- Runtime: `ludoweave.prefab/1` wraps one exact M119 scene fragment;
+  `ludoweave.prefab-instance/1` names one source/instance and canonical unique
+  current-schema overrides. Planning migrates base values, validates merges,
+  adds canonical `PrefabNode`, and delegates to ordinary spawn transactions.
+- Authority/ownership: documents and plans are immutable caller-owned values.
+  The world store is the sole runtime authority; no source-instance link,
+  loader, provider, file, thread, renderer, or closeable resource is owned.
+- Failure: malformed/bounded input, source mismatch, unknown local targets,
+  missing components, incompatible versions/values, reserved provenance, and
+  missing explicit registries fail with structured `PrefabError` before a
+  transaction exists. Existing stale-hash and staged rejection semantics apply.
+- Scope: one-level only; no nested inheritance/variants, parameters, structural
+  overrides, file I/O, asset loading, live update/reimport, source write-back,
+  persistent operation, dependency, root export, or workflow/allocation change.
+- Deliberate red: corrected behavior collection fails only absent new prefab
+  exports. Architecture passes the protected-surface assertion and fails only
+  absent module/verifier/docs boundaries.
+- Focused proof: after factual fixture/static corrections and findings-first
+  hardening, Ruff and strict Pyright pass; all 136 focused behavior,
+  architecture, stability, and import assertions pass in 1.58 seconds; strict
+  docs build in 1.69 seconds; whitespace passes.
+- Complete source proof: all 374 Python files are format-clean; Ruff and strict
+  Pyright report zero findings; strict docs build; all 1,611 architecture
+  assertions pass with one established Windows capability skip; all nine
+  focused M59/M120 assertions pass; protected surfaces and whitespace pass.
+- Complete suites: exact CPython 3.12.13 with graphics passes 3,200 tests with
+  15 skips; exact CPython 3.13.13 and 3.14.5 base environments each pass 3,190
+  tests with 16 skips.
+- Graphics proof: all ten real-wgpu tests, fresh base/graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Packaging: two builds reproduce a 292,311-byte pure wheel at SHA-256
+  `a9d4da28a35e77f26492ba459077c309656d7fa84e54bb00e9a14841e020b76f`
+  and a 1,594,507-byte source archive at SHA-256
+  `01fa2791ea4be00ae2638312ed05a075e67e759641cfada3792b33e7aa483693`.
+  The inherited, scene, and prefab installed-wheel verifiers pass. Two complete
+  ten-artifact release stages are byte-identical and complete release smoke
+  passes; package hygiene reports 99 wheel/617 source entries with zero
+  forbidden native, WASM, bytecode, or retired control-metadata path.
+- Review: exactly 14 modified plus six new intended paths remain. Protected
+  workflows, metadata, lock, root API, world command/operation/transaction
+  surfaces, and inherited scene smoke have zero diff. Public identity,
+  high-confidence secret, backend/native/evaluation, TODO, and placeholder
+  scans return zero finding. No actionable source finding remains.
+- Final separator: the unchanged lock, 374-file formatting, Ruff, strict
+  Pyright, strict docs, all 1,611 architecture assertions with one established
+  Windows skip, all nine focused M59/M120 assertions, both governance modes,
+  and whitespace pass. The first attempt exposed and then corrected one
+  project-record metadata-hygiene phrase; no product code changed.
+- History/hosted audit: after fetch/prune, local/remote `main` and merge base
+  remain exact M99; M119 remains exact head/tree with sole parent M118;
+  divergence is `0 20`. All 20 M100-M119 commits are linear, single-parent,
+  exact maintainer identity, and singly DCO-signed. Git integrity reports 287
+  dangling-only records and zero critical finding. Remote state has only main
+  and no M120 PR, run, release, or tag, so no hosted allocation was triggered.
+- Cleanup: the exact generated docs, two profiles, two build roots, two release
+  roots, and pytest root were verified inside the workspace as untracked,
+  non-reparse targets and removed. Windows denied the pytest root on the first
+  attempt; an exact-root retry removed it. All eight targets are absent.
+- Final metadata separator: strict governance returns zero findings; all nine
+  M59/M120 assertions and whitespace pass; exactly 14 modified plus six new
+  intended paths remain; all eight audited scratch targets are absent.
+- Remaining: the local DCO commit. Publication remains held.
+
 ## M119 data-only scene transaction planning - ready for local commit
 
 - Base: fully locally validated M118 DCO commit

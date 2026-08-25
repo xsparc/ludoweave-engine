@@ -1032,8 +1032,31 @@ authority.
 The slice has no file I/O, no prefab inheritance, no live scene update or
 reimport behavior, no `EntityRef` facade, no arbitrary Python graph or import,
 no renderer or tool dependency, no runtime dependency, and no workflow or
-hosted runner change. One-level prefab fragments and explicit instantiation
-commands remain future assigned work under a separate acceptance boundary.
+hosted runner change. M120 supplies the separately bounded one-level prefab
+fragment planning contract.
+
+## M120 one-level prefab fragment planning
+
+M120 starts from fully locally validated M119 commit
+`b30ca99c3ae639653394a378465c0088ee5c2995`. It adds exact
+`ludoweave.prefab/1` scene fragments and `ludoweave.prefab-instance/1`
+instance requests. Stable local IDs, names, parent DAGs, component values, and
+`asset://` dependencies reuse the M119 document invariants. Instance overrides
+are canonically ordered non-empty current-schema field replacements against an
+existing local entity/component pair.
+
+The planner validates the fragment and all schema-aware overrides before it
+adds compiler-owned `PrefabNode` provenance and delegates to M119. The result
+is ordinary `entity.spawn` commands in one existing atomic transaction;
+receipt aliases return the local-ID-to-runtime-entity mapping. Canonical
+runtime state remains in the world store, and source changes never silently
+propagate into an already instantiated world.
+
+The slice is deliberately one-level. It has no nested prefab inheritance or
+variant chain, parameter expression, component/entity add or remove override,
+file I/O, asset loading, live update, reimport, source write-back, runtime link
+graph, new persistent operation, dependency, root API, workflow, or hosted
+runner change.
 
 ## Good-first contribution queue
 
@@ -1053,8 +1076,8 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 ## Proposal backlog
 
 These areas remain uncommitted proposals and require milestone assignment plus the
-design process in `GOVERNANCE.md`: scene file loading, prefab composition and
-live updates, production audio,
+design process in `GOVERNANCE.md`: scene file loading, nested prefab
+composition and live updates, production audio,
 rigid-body physics, network transports, international text shaping, automatic GPU
 recovery. Constrained and general 3D are deferred under
 [ADR-0028](docs/adr/0028-retain-layered-2d-and-defer-constrained-3d.md).
