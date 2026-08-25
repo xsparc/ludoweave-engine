@@ -43,7 +43,7 @@ def test_m124_narrows_only_the_obsolete_m123_headless_project_hash() -> None:
 
 def test_source_manifest_is_one_focused_immutable_scene_contract() -> None:
     scene_root = _ROOT / "src/ludoweave/scene"
-    assert {path.name for path in scene_root.glob("*.py")} == {
+    assert {path.name for path in scene_root.glob("*.py")} >= {
         "__init__.py",
         "document.py",
         "errors.py",

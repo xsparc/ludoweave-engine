@@ -28,9 +28,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > headless composition root; M122 adds two explicit project-confined prefab
 > file loads with no implicit pairing or discovery; M123 adds a read-only,
 > structured scene/prefab source-check CLI; M124 adds bounded explicit source
-> manifests and aggregate read-only checking without directory discovery.
+> manifests and aggregate read-only checking without directory discovery;
+> M125 adds path-independent content-identity locks and exact read-only source
+> verification without an import pipeline or cache.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M124 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M125 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -77,6 +79,9 @@ convention remains enforced.
   source changes never silently mutate runtime instances.
 - Bounded `ludoweave.source-manifest/1` files that list explicit scene or
   prefab/instance inputs and produce a path-silent aggregate CLI preflight.
+- Canonical `ludoweave.source-lock/1` content identities plus read-only
+  generation and exact verification for explicit source manifests, without
+  import, discovery, cache, or world mutation.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
@@ -264,12 +269,12 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only
-project manifest, full command workflow, and M123-M124 read-only source
-preflight.
-The [persistent command guide](docs/commands.md) documents M119-M124 scene
+project manifest, full command workflow, and M123-M125 read-only source
+preflight and integrity verification.
+The [persistent command guide](docs/commands.md) documents M119-M125 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
 mapping, prefab overrides, bounded project-confined file loading, and explicit
-source manifests.
+source manifests and locks.
 The [agent control interface](docs/agent-control.md) documents M5 tools, capabilities, limits, Python/CLI/MCP composition, and the Agent World Builder loop.
 The [live semantic inspector guide](docs/inspector.md) documents M10 local child
 ownership, observation events, explicit write receipts, bounds, and failures.

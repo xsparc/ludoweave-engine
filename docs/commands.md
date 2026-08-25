@@ -288,6 +288,37 @@ project file, and produces no receipt. There is no directory discovery, glob,
 implicit pairing, asset loading, cache, watcher, live update, remote access,
 dependency, root export, persistent operation, or workflow allocation.
 
+## M125 source-integrity locks
+
+`ludoweave.source-lock/1` is a bounded path-independent record of one normalized
+M124 manifest and the content identity observed for every explicit entry. Its
+exact root fields are `$schema`, `manifest_id`, `manifest_sha256`, and
+`entries`. Each entry repeats the stable manifest entry ID and kind, then binds
+the accepted source protocol, stable source ID, and lowercase `sha256:`
+identity. Prefab entries additionally bind the instance protocol, ID, and hash.
+Entries normalize by ID and must be unique.
+
+`SourceLockLimits` may tighten but not enlarge the 64 KiB and 256-entry hard
+bounds. `SourceLock.verify()` compares manifest identity, the exact entry-ID
+set, and each entry field in deterministic order. Mismatch errors contain only
+the first differing field and optional entry ID; expected and actual hashes are
+not disclosed. The focused lock values are experimental `ludoweave.scene`
+exports. `HeadlessProject.load_source_lock()` remains an internal confined,
+bounded, detached reader.
+
+`ludoweave source lock PROJECT --manifest FILE` emits canonical lock bytes to
+stdout without writing the project. `ludoweave source verify PROJECT --manifest
+FILE --lock FILE` loads the confined expected lock, recomputes current
+identities, and emits `ludoweave.cli.source-lock-verify/1` only after an exact
+match. Existing `source check` output remains unchanged.
+
+This is content integrity for explicit accepted JSON, not an atomic filesystem
+snapshot, signature, provenance or authenticity proof, asset import, dependency
+resolution, compile, registry lookup, or cache. It performs no world mutation,
+writes no project file, and produces no receipt. There is no discovery,
+watcher, live update, remote access, dependency, root export, workflow job, or
+workflow allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

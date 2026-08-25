@@ -1,6 +1,160 @@
 # Project State
 
-## M124 explicit source-manifest checking - implementation in progress
+## M125 source-integrity lock verification - implementation in progress
+
+- Base: fully locally validated M124 DCO commit
+  `c73242b29325977484df271a107287d688fbdb54`, tree
+  `f703877a9516af679c338dfcd002619bb18b668e`, sole parent exact M123.
+- Branch: `release/m125-source-lock-verification`; unpublished under the
+  existing public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-26 were current Godot
+  ResourceUID/import-process docs, Unity asset-metadata docs, the current PyPA
+  `pylock.toml` specification, and JSON Schema Draft 2020-12 validation. They
+  support stable resource identity, checksum change detection, explicit format
+  versions, deterministic lock ordering, and pre-use hash validation. They do
+  not justify discovery, import, caching, automatic reimport, live update,
+  signing, or trust semantics. Confidence is high for a bounded identity lock.
+- Contract: `ludoweave.source-lock/1` binds one normalized M124 manifest ID/hash
+  and 1-256 immutable entry-ID-ordered source protocol/ID/hash records. Prefabs
+  also bind the explicit instance protocol/ID/hash; scenes forbid those fields.
+  `SourceLockLimits` may tighten but not enlarge 64 KiB and 256-entry maxima.
+- Runtime: `HeadlessProject.load_source_lock()` reuses established confinement
+  and bounded reads. `ludoweave source lock` emits canonical lock bytes only to
+  stdout. `ludoweave source verify` loads an expected lock, recomputes current
+  identities through unchanged M121-M124 readers, and emits
+  `ludoweave.cli.source-lock-verify/1` only after exact success.
+- Failure/ownership: mismatch reports only the first differing field and
+  optional entry ID, never hash/path values. Every descriptor closes before a
+  detached value is used; both commands own no persistent resource and leave
+  the project unchanged. Sequential reads are not an atomic filesystem
+  snapshot. SHA-256 is content identity, not signature, provenance,
+  authenticity, authorization, freshness, or artifact-security evidence.
+- Exact baseline: M124 commit/tree/sole-parent, clean status, and `0 25`
+  divergence pass. Static and dated strict governance each return zero
+  findings.
+- Deliberate red: exact CPython 3.12.13 produced five intended absent contract,
+  loader, CLI, installed-verifier, or docs failures and one protected-surface
+  pass in 0.21 seconds.
+- Corrections: the first implementation checkpoint stopped at one mechanically
+  unsorted export list. The next reached strict typing and found one redundant
+  literal cast plus two test-only decoded-list type gaps. After those type-only
+  corrections, statics passed and one of 24 behavior cases failed because its
+  expected manifest hash used raw entry order instead of M124 normalized
+  canonical bytes. Correcting only that expectation aligned the test with the
+  established identity rule.
+- Focused proof: formatting, Ruff, and strict Pyright pass; all 24 M125 plus
+  retained M124 behavior cases pass in 2.68 seconds. Twelve M124/M125
+  implementation/protection assertions pass with only the deliberately absent
+  documentation assertion failing before docs.
+- Installed proof: the first package build succeeds. An isolated no-dependency
+  wheel verifies the four new focused experimental exports, emits a two-entry
+  `ludoweave.source-lock/1`, and verifies it under
+  `ludoweave.cli.source-lock-verify/1` with the expected manifest identity.
+- Documentation: RFC-0108 and public docs define exact fields/limits, canonical
+  ordering, stdout-only generation, confined verification, mismatch silence,
+  ownership, sequential-read determinism, compatibility, integrity-only hash
+  semantics, and complete non-scope.
+- Documentation-inclusive proof: all ten selected Python files are
+  format-clean; Ruff and strict Pyright pass; all 37 M125 behavior plus
+  M124/M125 boundary assertions pass in 2.72 seconds; strict docs build in 1.62
+  seconds with only the known Material notice; dated strict governance returns
+  zero findings; and whitespace passes.
+- Review evidence correction: findings-first inspection found behavior already
+  compared manifest ID/hash before entry IDs/fields, but tests covered only an
+  entry hash drift. Unit evidence now fixes manifest-ID, manifest-hash,
+  entry-set, and exact-type behavior; integration evidence proves manifest
+  identity drift fails before entries without hash/path disclosure or mutation.
+  Formatting, Ruff, strict Pyright, all 42 corrected focused assertions in
+  3.15 seconds, and whitespace pass with no runtime change.
+- Complete source proof: the unchanged 46-package lock resolves in 0.75
+  milliseconds; all 393 Python files are format-clean; Ruff and strict Pyright
+  pass; all 1,637 architecture assertions pass with one established Windows
+  capability skip in 11.23 seconds; strict docs build in 1.69 seconds with only
+  the known Material notice; both governance modes return zero findings; and
+  whitespace passes.
+- Supported runtimes: exact CPython 3.12.13 with the graphics extra passes
+  3,307 tests with 16 skips in 117.82 seconds. Exact CPython 3.13.13 and 3.14.5
+  base environments pass 3,297 tests with 17 skips in 108.51 and 114.22
+  seconds. Each environment was recreated sequentially from the frozen lock.
+  The first 3.13 attempt correctly created a 3.13 environment, but its next
+  `uv run` omitted `--python`, followed `.python-version`, recreated 3.12.13,
+  and was interrupted at 52 percent. No 3.13 claim relies on that run; the
+  corrected commands selected exact 3.13.13 on every invocation and printed
+  the exact runtime before testing.
+- Graphics/vertical proof: the restored exact 45-package CPython 3.12.13
+  graphics environment passes ten real-wgpu tests in 7.00 seconds. Fresh
+  one-repeat base and graphics profiles validate with two and three workloads.
+  Clockwork Arena retains state
+  `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`,
+  capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`,
+  three draws, and 16 sprites. Agent World Builder retains state
+  `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`,
+  capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`,
+  replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`,
+  six query matches, five replay batches, and passing registered tests.
+- Artifact proof: two independent builds reproduce a 302,340-byte pure wheel
+  at SHA-256
+  `4b5b5c405fd299740a838ce3ff19b2edb9588af278b0c5cc67cc43201732f3d2`
+  and a 1,653,268-byte source archive at SHA-256
+  `bea630a61a0fe44e79af723300afa8a6e951e760add525b6c1cd0928a7a236f1`.
+  All eight isolated no-dependency wheel smokes pass. Two complete ten-artifact
+  release stages are byte-identical and both release smokes pass; the sample
+  remains 111,168 bytes at SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Hygiene/review: 101 wheel and 641 source-archive entries contain zero
+  forbidden native, WASM, bytecode, or retired control metadata; public
+  development-tool identity and high-confidence credential scans have zero
+  matches. Findings-first review covers exactly 23 intended paths, confirms
+  deterministic mismatch precedence and content-silent failures, and finds no
+  remaining actionable runtime, API, ownership, documentation, or scope
+  defect. Protected workflows, dependencies, lock, metadata, engine root,
+  existing scene/prefab/manifest contracts and planners, prior installed
+  verifier, and release scripts retain zero diff.
+- Review-record separator: the unchanged lock, all 393-file formatting, Ruff,
+  strict Pyright, 1,637 architecture assertions with one established skip,
+  strict docs, corrected static and dated strict governance, and whitespace
+  pass. The first governance invocation used the project rather than checker
+  registry root and failed only with `registry.unreadable`; the corrected
+  invocations return zero findings.
+- Final artifact proof: two review-record-inclusive fresh builds reproduce the
+  unchanged 302,340-byte wheel at SHA-256
+  `4b5b5c405fd299740a838ce3ff19b2edb9588af278b0c5cc67cc43201732f3d2`
+  and a 1,654,264-byte source archive at SHA-256
+  `5807e9419945ebf506672c93f8e31e62c69772be1d95edb3c3c7fb0f36955e69`.
+  All eight isolated wheel smokes pass; two ten-artifact release stages are
+  byte-identical and both complete smokes pass. Final 101/641-entry package
+  hygiene and repository identity/credential scans again return zero match.
+- History/hosted audit: fetch/prune leaves local main, remote main, and merge
+  base at exact M99. M124 retains its exact commit/tree/sole parent; divergence
+  is `0 25`; all 25 stacked commits are linear, exact-identity, and singly
+  DCO-signed. The 27 local branches are main plus required M100-M125 branches;
+  only remote main exists. Full Git checking reports 44 dangling-only records
+  and zero critical finding. Authenticated read-only queries return no M125
+  remote branch, PR, run, tag, or release. An initial counter included the
+  symbolic `origin` ref and an obsolete dangling expectation; the corrected
+  audit excludes symbolic refs and passes.
+- Final factual separator: the unchanged lock, all 393-file formatting, Ruff,
+  strict Pyright, 1,637 architecture assertions with one established skip,
+  strict docs, both governance modes, and whitespace pass.
+- Cleanup: all 13 exact M125 build, release, profile, docs, distribution, and
+  pytest targets are absent. The guarded ordinary pass removed 12; after
+  Windows denied only `.pytest-tmp`, an elevated exact-path revalidation and
+  removal completed cleanup.
+- Final metadata/scope proof: selected formatting, Ruff, strict Pyright, all 11
+  M59/M125 assertions, dated strict governance, protected-surface comparison,
+  whitespace, exact 23-path scope, zero-scratch proof, and repository
+  identity/credential scans pass.
+- Scope: no discovery, import, compile, application schema semantics, asset or
+  dependency load, cache, watcher, live update, write-back, world/session,
+  mutation, receipt, signature/trust claim, dependency, engine-root API,
+  workflow/allocation, or release-authority change.
+
+## M124 explicit source-manifest checking - locally validated and committed
+
+- Commit: `c73242b29325977484df271a107287d688fbdb54`, tree
+  `f703877a9516af679c338dfcd002619bb18b668e`, sole parent exact M123; exact
+  maintainer identity, one DCO sign-off, 26 paths, clean worktree, zero scratch,
+  and `0 25` divergence verified after commit.
 
 - Base: fully locally validated M123 DCO commit
   `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree

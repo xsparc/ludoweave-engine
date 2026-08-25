@@ -3034,6 +3034,39 @@ provider, renderer, workflow job, or workflow allocation. The existing CI and
 release workflows remain byte-unchanged. RFC-0107 records the external
 comparison, ownership, failure, and compatibility boundary.
 
+## M125 source-integrity lock boundary
+
+M125 adds one focused experimental contract inside `ludoweave.scene`:
+`ludoweave.source-lock/1`. A lock binds one normalized M124 manifest ID and
+canonical SHA-256 identity to a nonempty, entry-ID-ordered list. Each entry
+contains its kind, accepted source protocol, stable source ID, and canonical
+content identity. Prefab entries also contain the explicit instance protocol,
+ID, and identity. The document contains no project root, manifest path, or
+source path. The engine root remains unchanged.
+
+`HeadlessProject.load_source_lock()` reuses the confined bounded regular-file
+reader and returns a detached immutable value. `ludoweave source lock` computes
+the current document through the unchanged M121-M124 readers and emits it only
+to stdout. `ludoweave source verify` reads an expected lock, computes the
+current document, and compares manifest identity, entry IDs, and fields in a
+fixed order. Success emits `ludoweave.cli.source-lock-verify/1`; mismatch emits
+no success document and reports only the first field plus optional entry ID.
+
+The lock establishes repeatable content identity for accepted canonical JSON.
+It is not an atomic filesystem snapshot: manifest, lock, scene, prefab, and
+instance descriptors are separate sequential reads, so concurrent external
+changes remain outside deterministic execution. SHA-256 here is an integrity
+identity, not a signature, provenance, authenticity, authorization, or artifact
+security proof.
+
+M125 performs no import, compile, application schema registration/resolution,
+asset or dependency load, cache, discovery, directory traversal, watcher,
+reimport, live update, source write-back, world/session creation, command,
+transaction, world mutation, or receipt. Dependencies, metadata, version,
+engine-root exports, workflows, permissions, credentials, release authority,
+jobs, and allocations remain unchanged. RFC-0108 records the external
+comparison, ownership, failure, and compatibility boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -19,7 +19,7 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
 | `ludoweave.platform` | Provider-neutral events and gamepad-provider protocol | Experimental |
 | `ludoweave.assets` | Project-confined asset contracts | Experimental |
-| `ludoweave.scene` | Versioned data-only scene/prefab/source-manifest documents and world-transaction planning | Experimental |
+| `ludoweave.scene` | Versioned data-only scene/prefab/source-manifest/source-lock documents and world-transaction planning | Experimental |
 | `ludoweave.audio` | Audio protocol, mix graph, and Null adapter | Experimental |
 | `ludoweave.collision` | Deterministic bounded collision | Experimental |
 | `ludoweave.presentation` | Tick animation, bitmap text, tilemap, particle, and extraction contracts | Experimental |
@@ -38,7 +38,9 @@ unchanged. M123 adds a versioned CLI output protocol and no Python export.
 M124 adds experimental `SourceManifest`, `SourceManifestEntry`,
 `SourceManifestLimits`, and `SOURCE_MANIFEST_PROTOCOL` exports through the
 focused `ludoweave.scene` package plus a versioned CLI result; the engine root
-remains unchanged.
+remains unchanged. M125 adds experimental `SourceLock`, `SourceLockEntry`,
+`SourceLockLimits`, and `SOURCE_LOCK_PROTOCOL` through the same focused package
+plus a versioned verification result; the engine root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

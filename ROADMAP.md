@@ -1149,6 +1149,30 @@ write-back, remote access, dependency, root-package API, version, workflow job,
 or hosted allocation. Multiple filesystem reads are not an atomic snapshot;
 deterministic output assumes stable inputs for the duration of the check.
 
+## M125 source-integrity lock verification
+
+M125 starts from fully locally validated M124 commit
+`c73242b29325977484df271a107287d688fbdb54`. It adds bounded immutable
+`ludoweave.source-lock/1` values. One lock binds the normalized manifest ID and
+canonical SHA-256 identity plus an entry-ID-ordered list of accepted source
+protocols, stable IDs, and canonical content identities. Prefab entries also
+bind their explicit instance protocol, ID, and identity. Locks contain no
+project root or source path.
+
+`ludoweave source lock PROJECT --manifest FILE` emits canonical lock bytes to
+stdout without writing the project. `ludoweave source verify PROJECT --manifest
+FILE --lock FILE` loads one confined bounded expected lock, recomputes current
+identities through the unchanged M121-M124 readers, and requires an exact
+match. Success emits canonical `ludoweave.cli.source-lock-verify/1`; mismatch
+returns exit 2 with only the first differing field and optional entry ID.
+
+The lock records content identity and is not an atomic filesystem snapshot,
+signature, provenance, authenticity, import result, or cache. M125 adds no
+discovery, import, compile, registry semantics, asset/dependency loading,
+watcher, live update, write-back, world/session, command, transaction, world
+mutation, receipt, dependency, root-package API, version, workflow job, hosted
+allocation, or release-authority change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

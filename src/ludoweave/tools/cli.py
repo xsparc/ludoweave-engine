@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 from collections.abc import Sequence
+from dataclasses import dataclass
 from hashlib import sha256
 from pathlib import Path
 from typing import cast
@@ -21,6 +22,7 @@ from ludoweave.plugins import (
     current_plugin_context,
 )
 from ludoweave.samples import create_agent_world_builder
+from ludoweave.scene import SourceLock, SourceLockEntry
 from ludoweave.tools.agent_service import headless_agent_service
 from ludoweave.tools.doctor import run_doctor
 from ludoweave.tools.headless_project import HeadlessProject
@@ -46,6 +48,18 @@ _MAX_PLUGIN_MANIFEST_BYTES = 65_536
 _MAX_PLUGIN_MANIFESTS = 64
 
 
+@dataclass(frozen=True, slots=True)
+class _SourceManifestInspection:
+    lock: SourceLock
+    manifest_protocol: str
+    check_entries: tuple[JsonValue, ...]
+    scenes: int
+    prefabs: int
+    entities: int
+    overrides: int
+    dependencies: int
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ludoweave",
@@ -69,6 +83,25 @@ def _build_parser() -> argparse.ArgumentParser:
     source_check_parser.add_argument(
         "--instance",
         help="project-relative prefab instance JSON; required with --prefab",
+    )
+    source_lock_parser = source_subparsers.add_parser(
+        "lock",
+        help="emit a canonical path-independent lock for one explicit source manifest",
+    )
+    source_lock_parser.add_argument("project", type=Path, help="project directory")
+    source_lock_parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    source_verify_parser = source_subparsers.add_parser(
+        "verify",
+        help="verify current explicit sources against one confined source lock",
+    )
+    source_verify_parser.add_argument("project", type=Path, help="project directory")
+    source_verify_parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    source_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative source-integrity lock"
     )
 
     apply_parser = subparsers.add_parser(
@@ -191,7 +224,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         return exit_code
     try:
         if command == "source":
-            return _run_source_check(args)
+            source_command: object = getattr(args, "source_command", None)
+            if source_command == "check":
+                return _run_source_check(args)
+            if source_command == "lock":
+                return _run_source_lock(args)
+            if source_command == "verify":
+                return _run_source_verify(args)
+            raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
         if command == "snapshot":
@@ -245,67 +285,22 @@ def _run_source_check(args: argparse.Namespace) -> int:
     if manifest_name is not None:
         if instance_name is not None:
             raise _argument_error("source_mode")
-        manifest = project.load_source_manifest(manifest_name)
-        entries: list[JsonValue] = []
-        scenes = 0
-        prefabs = 0
-        entities = 0
-        dependencies = 0
-        overrides = 0
-        for entry in manifest.entries:
-            if entry.kind == "scene":
-                scene = project.load_scene(entry.source)
-                result: dict[str, JsonValue] = {
-                    "entry_id": entry.entry_id,
-                    "kind": "scene",
-                    "source_protocol": scene.protocol,
-                    "source_id": scene.scene_id,
-                    "source_sha256": (f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}"),
-                    "entities": len(scene.entities),
-                    "dependencies": len(scene.dependencies),
-                }
-                scenes += 1
-                entities += len(scene.entities)
-                dependencies += len(scene.dependencies)
-            else:
-                if entry.instance is None:
-                    raise _argument_error("source_manifest")
-                prefab = project.load_prefab(entry.source)
-                instance = project.load_prefab_instance(entry.instance)
-                _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
-                result = {
-                    "entry_id": entry.entry_id,
-                    "kind": "prefab",
-                    "source_protocol": prefab.protocol,
-                    "instance_protocol": instance.protocol,
-                    "source_id": prefab.prefab_id,
-                    "instance_id": instance.instance_id,
-                    "source_sha256": (f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}"),
-                    "instance_sha256": (f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}"),
-                    "entities": len(prefab.entities),
-                    "overrides": len(instance.overrides),
-                    "dependencies": len(prefab.dependencies),
-                }
-                prefabs += 1
-                entities += len(prefab.entities)
-                overrides += len(instance.overrides)
-                dependencies += len(prefab.dependencies)
-            entries.append(result)
+        inspection = _inspect_source_manifest(project, manifest_name)
         _write_stdout(
             canonical_dumps(
                 {
                     "protocol": "ludoweave.cli.source-manifest-check/1",
                     "status": "valid",
-                    "manifest_protocol": manifest.protocol,
-                    "manifest_id": manifest.manifest_id,
-                    "manifest_sha256": (f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"),
-                    "entries": entries,
-                    "entry_count": len(entries),
-                    "scenes": scenes,
-                    "prefabs": prefabs,
-                    "entities": entities,
-                    "overrides": overrides,
-                    "dependencies": dependencies,
+                    "manifest_protocol": inspection.manifest_protocol,
+                    "manifest_id": inspection.lock.manifest_id,
+                    "manifest_sha256": inspection.lock.manifest_sha256,
+                    "entries": list(inspection.check_entries),
+                    "entry_count": len(inspection.check_entries),
+                    "scenes": inspection.scenes,
+                    "prefabs": inspection.prefabs,
+                    "entities": inspection.entities,
+                    "overrides": inspection.overrides,
+                    "dependencies": inspection.dependencies,
                 }
             )
         )
@@ -345,6 +340,122 @@ def _require_prefab_pair(source_id: str, instance_source_id: str) -> None:
             phase="check_source",
             details={"field": "prefab_id"},
         )
+
+
+def _run_source_lock(args: argparse.Namespace) -> int:
+    inspection = _inspect_source_manifest(
+        HeadlessProject.load(_path_argument(args, "project")),
+        _text_argument(args, "manifest"),
+    )
+    _write_stdout(inspection.lock.canonical_bytes())
+    return 0
+
+
+def _run_source_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected = project.load_source_lock(_text_argument(args, "lock"))
+    inspection = _inspect_source_manifest(project, _text_argument(args, "manifest"))
+    expected.verify(inspection.lock)
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.source-lock-verify/1",
+                "status": "verified",
+                "manifest_id": inspection.lock.manifest_id,
+                "manifest_sha256": inspection.lock.manifest_sha256,
+                "entry_count": len(inspection.lock.entries),
+            }
+        )
+    )
+    return 0
+
+
+def _inspect_source_manifest(
+    project: HeadlessProject,
+    manifest_name: str,
+) -> _SourceManifestInspection:
+    manifest = project.load_source_manifest(manifest_name)
+    lock_entries: list[SourceLockEntry] = []
+    check_entries: list[JsonValue] = []
+    scenes = 0
+    prefabs = 0
+    entities = 0
+    dependencies = 0
+    overrides = 0
+    for entry in manifest.entries:
+        if entry.kind == "scene":
+            scene = project.load_scene(entry.source)
+            source_sha256 = f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}"
+            lock_entries.append(
+                SourceLockEntry(
+                    entry.entry_id,
+                    "scene",
+                    scene.protocol,
+                    scene.scene_id,
+                    source_sha256,
+                )
+            )
+            result: dict[str, JsonValue] = {
+                "entry_id": entry.entry_id,
+                "kind": "scene",
+                "source_protocol": scene.protocol,
+                "source_id": scene.scene_id,
+                "source_sha256": source_sha256,
+                "entities": len(scene.entities),
+                "dependencies": len(scene.dependencies),
+            }
+            scenes += 1
+            entities += len(scene.entities)
+            dependencies += len(scene.dependencies)
+        else:
+            if entry.instance is None:
+                raise _argument_error("source_manifest")
+            prefab = project.load_prefab(entry.source)
+            instance = project.load_prefab_instance(entry.instance)
+            _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
+            source_sha256 = f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}"
+            instance_sha256 = f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}"
+            lock_entries.append(
+                SourceLockEntry(
+                    entry.entry_id,
+                    "prefab",
+                    prefab.protocol,
+                    prefab.prefab_id,
+                    source_sha256,
+                    instance_protocol=instance.protocol,
+                    instance_id=instance.instance_id,
+                    instance_sha256=instance_sha256,
+                )
+            )
+            result = {
+                "entry_id": entry.entry_id,
+                "kind": "prefab",
+                "source_protocol": prefab.protocol,
+                "instance_protocol": instance.protocol,
+                "source_id": prefab.prefab_id,
+                "instance_id": instance.instance_id,
+                "source_sha256": source_sha256,
+                "instance_sha256": instance_sha256,
+                "entities": len(prefab.entities),
+                "overrides": len(instance.overrides),
+                "dependencies": len(prefab.dependencies),
+            }
+            prefabs += 1
+            entities += len(prefab.entities)
+            overrides += len(instance.overrides)
+            dependencies += len(prefab.dependencies)
+        check_entries.append(result)
+    manifest_sha256 = f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"
+    return _SourceManifestInspection(
+        lock=SourceLock(manifest.manifest_id, manifest_sha256, tuple(lock_entries)),
+        manifest_protocol=manifest.protocol,
+        check_entries=tuple(check_entries),
+        scenes=scenes,
+        prefabs=prefabs,
+        entities=entities,
+        overrides=overrides,
+        dependencies=dependencies,
+    )
 
 
 def _run_apply(args: argparse.Namespace) -> int:

@@ -21,6 +21,7 @@ from ludoweave.ecs import (
     WorldStore,
 )
 from ludoweave.scene.document import DEFAULT_SCENE_LIMITS, SceneDocument, SceneLimits
+from ludoweave.scene.locks import DEFAULT_SOURCE_LOCK_LIMITS, SourceLock, SourceLockLimits
 from ludoweave.scene.prefab import (
     DEFAULT_PREFAB_LIMITS,
     PrefabDocument,
@@ -314,6 +315,28 @@ class HeadlessProject:
             role="source_manifest",
         )
         return SourceManifest.from_json(document, limits=limits)
+
+    def load_source_lock(
+        self,
+        relative: str,
+        *,
+        limits: SourceLockLimits = DEFAULT_SOURCE_LOCK_LIMITS,
+    ) -> SourceLock:
+        """Load one detached source-integrity lock from a confined file."""
+
+        if type(limits) is not SourceLockLimits:
+            raise _tool_error(
+                "source lock limits must be an exact SourceLockLimits value",
+                code="tools.invalid_source_lock_limits",
+                phase="load_source_lock",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="source_lock",
+        )
+        return SourceLock.from_json(document, limits=limits)
 
     def write_relative(self, relative: str, document: bytes, *, role: str) -> None:
         path = _resolve_relative(self.root, relative, must_exist=False, role=role)

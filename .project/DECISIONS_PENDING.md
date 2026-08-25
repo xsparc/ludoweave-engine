@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M125 source-integrity lock verification
+
+RFC-0108 resolves the adopted M125 direction: add bounded immutable
+`ludoweave.source-lock/1` values plus read-only stdout generation and exact
+project-confined verification. The lock contains one normalized M124 manifest
+ID/hash and 1-256 entry-ID-ordered accepted source protocol/ID/hash records;
+prefabs additionally bind the explicit instance protocol/ID/hash.
+
+`ludoweave source lock` invokes unchanged M121-M124 readers and emits only the
+canonical lock. `ludoweave source verify` loads one confined expected lock,
+recomputes current identities, and emits
+`ludoweave.cli.source-lock-verify/1` only after exact success. Mismatch returns
+exit 2, no success document, and only the first field plus optional entry ID;
+hash/path values remain silent. Existing source-check output is unchanged.
+
+The lock is content identity, not an atomic filesystem snapshot, signature,
+provenance, authenticity, authorization, freshness, or artifact-security
+proof. No discovery, import, compile, application schema semantics, asset or
+dependency load, cache, watcher, reimport, live update, write-back,
+world/session, command, transaction, mutation, receipt, dependency, root API,
+workflow/allocation, or release-authority change is authorized for M125.
+
 ## M124 explicit source-manifest checking
 
 RFC-0107 resolves the adopted M124 direction: add bounded immutable

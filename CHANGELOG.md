@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M125/RFC-0108 canonical `ludoweave.source-lock/1` values plus read-only
+  `ludoweave source lock` generation and `ludoweave source verify`. Locks bind
+  the normalized manifest and every explicit scene/prefab content identity;
+  they are not atomic filesystem snapshots, signatures, imports, caches, world
+  mutations, receipts, or new workflow allocations.
 - Add M124/RFC-0107 bounded `ludoweave.source-manifest/1` values and
   `ludoweave source check PROJECT --manifest FILE`. The aggregate canonical
   report validates only explicit project-confined scene or prefab/instance

@@ -112,3 +112,4 @@ was adopted.
 - [RFC-0105: add project-confined prefab file loading](0105-add-project-confined-prefab-file-loading.md)
 - [RFC-0106: add read-only source-check CLI](0106-add-read-only-source-check-cli.md)
 - [RFC-0107: add explicit source-manifest checking](0107-add-explicit-source-manifest-checking.md)
+- [RFC-0108: add source-integrity lock verification](0108-add-source-integrity-lock-verification.md)

@@ -148,6 +148,7 @@ nav:
       - RFC-0105 - Add project-confined prefab file loading: rfcs/0105-add-project-confined-prefab-file-loading.md
       - RFC-0106 - Add read-only source-check CLI: rfcs/0106-add-read-only-source-check-cli.md
       - RFC-0107 - Add explicit source-manifest checking: rfcs/0107-add-explicit-source-manifest-checking.md
+      - RFC-0108 - Add source-integrity lock verification: rfcs/0108-add-source-integrity-lock-verification.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

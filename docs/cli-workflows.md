@@ -158,3 +158,32 @@ no report file, and produces no receipt. Multiple reads are not an atomic
 filesystem snapshot, so deterministic output requires stable inputs during the
 check. There is no cache, watcher, live update, dependency, new hosted job, or
 workflow allocation.
+
+## Source-integrity lock and verification
+
+M125 turns the normalized M124 content identity into an explicit reusable
+document without adding file discovery or an import database:
+
+```console
+ludoweave source lock PROJECT --manifest config/sources.json
+ludoweave source verify PROJECT --manifest config/sources.json --lock config/sources.lock.json
+```
+
+`source lock` checks every explicit source exactly as M124 does and writes one
+canonical `ludoweave.source-lock/1` document to standard output. The document
+contains the manifest ID/hash and entry-ID-ordered source protocol, stable ID,
+and SHA-256 identity fields. Prefab entries also bind the explicit instance
+protocol, ID, and hash. It contains no project root or source path. The CLI does
+not write the lock file; callers choose whether and where to persist stdout.
+
+`source verify` loads one project-confined bounded lock, computes the current
+lock through the same readers, and requires an exact field match. Success emits
+canonical `ludoweave.cli.source-lock-verify/1` JSON. A mismatch returns exit 2,
+emits no success document, and identifies only the entry and field, never an
+expected/current hash or path.
+
+The lock records content identity; it is not an atomic filesystem snapshot,
+signature, authenticity proof, dependency resolver, or asset import result.
+Sequential reads require stable inputs. Both commands close every descriptor,
+perform no import or compile, use no cache, create no world/session, perform no
+world mutation, produce no receipt, and add no workflow allocation.
