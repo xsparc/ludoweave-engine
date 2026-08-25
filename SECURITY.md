@@ -526,6 +526,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   allocation, dependency, producer, verifier, runtime API, or release
   authority; it is not a general reproducible-build claim and is not a real
   public release observation.
+- M116 separates sample-bundle semantic portability from byte identity. The
+  exact supported-runtime Windows producer-consumer matrix extracted the same
+  fixed 50-file tree from both observed archive identities. This is one sample-
+  bundle semantic-portability decision recording cross-runtime producer-
+  consumer compatibility with no alternate compression method or cross-runtime
+  byte-identity claim. It changes no workflow, allocation, dependency,
+  producer, verifier, runtime API, or release authority; it is not a general
+  ZIP interoperability claim and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

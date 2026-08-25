@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M116/RFC-0099 decision to separate sample-bundle semantic portability
+  from byte identity. The exact supported-runtime Windows producer-consumer
+  matrix extracts the same 50-file source tree despite different valid Deflate
+  bytes, with no alternate compression method, workflow, dependency, producer,
+  verifier, runtime API, or release-authority change.
 - Record M115/RFC-0098 decision to scope sample-bundle byte reproducibility to
   the release environment. Repeated fixed-environment production remains the
   claim; supported runtimes receive no cross-runtime byte-identity promise and

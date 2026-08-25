@@ -18,9 +18,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > stored/deflated compression-method compatibility without an exact deflate-
 > only profile; M114 retains sample-member compression-level non-observability
 > without inferring an exact writer setting; M115 scopes sample-bundle byte
-> reproducibility to the fixed release environment.
+> reproducibility to the fixed release environment; M116 separates semantic
+> portability from byte identity.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M115 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M116 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -769,6 +770,18 @@ reproducibility-scope decision with no cross-runtime byte-identity claim and no
 compressor-identity manifest field. M115 adds no workflow, allocation,
 dependency, producer, verifier, runtime API, or release-authority change, is
 not a general reproducible-build claim, and is not a real public release
+observation.
+
+M116 separates sample-bundle semantic portability from byte identity. An exact
+Windows 3x3 matrix showed every supported CPython 3.12.13, 3.13.13, and 3.14.5
+consumer accepting and extracting all 50 fixed-producer files from every one of
+those runtime producers. The zlib-ng-produced archive kept its different M115
+digest while yielding the same extracted source tree. RFC-0099 records one
+sample-bundle semantic-portability decision and the exact cross-runtime
+producer-consumer compatibility evidence. M116 adds no alternate compression
+method, cross-runtime byte-identity claim, workflow, allocation, dependency,
+producer, verifier, runtime API, or release-authority change. It is not a
+general ZIP interoperability claim and is not a real public release
 observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.

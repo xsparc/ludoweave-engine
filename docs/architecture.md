@@ -2803,6 +2803,36 @@ or release-authority change. This is not a general reproducible-build claim and
 is not a real public release observation. RFC-0098 defines the complete
 boundary.
 
+## M116 sample-bundle semantic-portability boundary
+
+M115 distinguishes repeatable bytes inside one fixed producer environment from
+cross-runtime byte identity. M116 separately asks whether the supported runtime
+implementations preserve the fixed sample bundle's semantic source tree.
+PKWARE assigns method `8` to Deflate, and Python's `ZIP_DEFLATED` reader uses
+the available zlib-compatible implementation.
+
+Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 produced the fixed bundle.
+Every runtime then consumed all three outputs through the complete sample
+extraction boundary. All nine producer-consumer combinations passed every
+established metadata, layout, inventory, ownership, and bounded-read check and
+extracted the same 50 files. The 3.12/3.13 zlib archive and the different 3.14
+zlib-ng archive therefore share the proven semantic result without sharing a
+digest.
+
+M116 separates sample-bundle semantic portability from byte identity. This is
+one sample-bundle semantic-portability decision recording exact Windows cross-
+runtime producer-consumer compatibility. It adds no alternate compression
+method, new decoder, recompression, payload transformation, runtime branch,
+digest allowlist, cross-runtime byte-identity claim, or cross-platform proof.
+M64's stored/deflated policy, M95's local/central agreement, M113's method
+compatibility, M114's level non-observability, M115's byte-reproducibility
+scope, and every complete-release diagnostic remain unchanged.
+
+There is no workflow, allocation, producer, verifier, dependency, runtime API,
+or release-authority change. This is not a general ZIP interoperability claim
+and is not a real public release observation. RFC-0099 defines the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

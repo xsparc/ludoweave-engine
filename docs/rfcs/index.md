@@ -103,3 +103,4 @@ was adopted.
 - [RFC-0096: retain sample-member compression-method compatibility](0096-retain-sample-member-compression-method-compatibility.md)
 - [RFC-0097: retain sample-member compression-level non-observability](0097-retain-sample-member-compression-level-non-observability.md)
 - [RFC-0098: scope sample-bundle byte reproducibility to the release environment](0098-scope-sample-bundle-byte-reproducibility.md)
+- [RFC-0099: separate sample-bundle semantic portability from byte identity](0099-separate-sample-semantic-portability.md)

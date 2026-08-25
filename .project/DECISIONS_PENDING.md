@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M116 sample-bundle semantic portability
+
+RFC-0099 resolves the M116 decision: separate sample-bundle semantic
+portability from byte identity. Supported runtime producers may emit different
+valid Deflate bytes under RFC-0098 while supported consumers retain the same
+source-defined extraction result. The exact Windows CPython 3.12.13, 3.13.13,
+and 3.14.5 3x3 matrix passed all nine combinations with 50 extracted files.
+Every extraction produced canonical tree SHA-256
+`eb4089dc35539baa9af95c757da9172506d61b6d45ab19d5ad5d8740b77a9ed0`.
+
+No alternate compression method, decoder, compressor pin, recompression,
+runtime branch, digest allowlist, workflow, runner allocation, dependency,
+producer, verifier, runtime API, or release-authority change is pending for
+M116. Each staged release remains bound to its own exact manifest/checksum.
+
+Reopen this decision only if a supported runtime cannot consume another
+supported runtime's fixed-producer archive or a concrete release requirement
+demands cross-platform producer-consumer evidence. Such a proposal must retain
+artifact integrity, bounded extraction, diagnostic order, and exact ownership
+evidence rather than inferring a general ZIP interoperability guarantee.
+
 ## M115 sample-bundle byte-reproducibility scope
 
 RFC-0098 resolves the M115 decision: sample-bundle byte reproducibility means

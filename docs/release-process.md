@@ -782,6 +782,23 @@ boundary remain unchanged. M115 adds no workflow, allocation, dependency,
 producer, verifier, runtime API, or release-authority change, is not a general
 reproducible-build claim, and is not a real public release observation.
 
+M116/RFC-0099 separates sample-bundle semantic portability from byte identity.
+Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 each produced the fixed
+sample bundle, then each runtime consumed all three archives through the
+complete extraction boundary. All nine cross-runtime producer-consumer
+compatibility combinations extracted the same 50-file source tree even though
+the 3.14 zlib-ng archive retained its different M115 digest.
+
+This is one sample-bundle semantic-portability decision. M64's exact stored/
+deflated allowlist, M95's local/central method agreement, M113's method
+compatibility, M114's level non-observability, M115's fixed-environment byte
+scope, integrity checksums, and complete-release error order remain unchanged.
+M116 adds no alternate compression method, new decoder, recompression, digest
+allowlist, cross-runtime byte-identity claim, cross-platform proof, workflow,
+allocation, dependency, producer, verifier, runtime API, or release-authority
+change. It is not a general ZIP interoperability claim and is not a real public
+release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

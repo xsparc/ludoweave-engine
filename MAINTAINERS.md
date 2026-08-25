@@ -621,6 +621,17 @@ tag, release, or publication. It is not a general reproducible-build claim and
 is not a real public release observation. M115 is locally stacked on fully
 validated, unpushed M114; none of M100-M115 has hosted qualification.
 
+M116 separates sample-bundle semantic portability from byte identity. Exact
+Windows CPython 3.12.13, 3.13.13, and 3.14.5 producers and consumers completed
+the full 3x3 matrix, and every combination extracted the same fixed 50-file
+source tree. This is one sample-bundle semantic-portability decision recording
+cross-runtime producer-consumer compatibility without a cross-runtime byte-
+identity claim. It adds no alternate compression method, workflow, allocation,
+dependency, version, verifier, producer, runtime source/API, release authority,
+tag, release, or publication. It is not a general ZIP interoperability claim
+and is not a real public release observation. M116 is locally stacked on fully
+validated, unpushed M115; none of M100-M116 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.
