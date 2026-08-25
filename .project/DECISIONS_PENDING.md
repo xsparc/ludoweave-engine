@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M121 project-confined scene file loading
+
+RFC-0104 resolves the adopted M121 direction: add one typed
+`HeadlessProject.load_scene()` method that reuses established project-relative
+path confinement and bounded descriptor reads before delegating detached bytes
+to the unchanged `ludoweave.scene/1` decoder.
+
+Loading performs no world mutation and produces no receipt. Explicit M119
+planning and existing transaction application remain the instantiation and
+receipt boundary. Asset dependencies remain logical identities. The returned
+document is detached immutable data, and source changes never silently mutate
+runtime state.
+
+No directory discovery, prefab file loader, file URI, include/import graph,
+remote path, asset loading, source cache, watcher, live update/reimport,
+write-back, race-free hostile-filesystem claim, arbitrary Python evaluation,
+new operation, dependency, root API, scene/prefab schema/planner, workflow,
+allocation, or release-authority change is pending for M121.
+
+Reopen only for a separately assigned prefab-file, discovery, live-update, or
+adversarial filesystem slice with explicit source identity, conflict policy,
+bounds, receipts, rollback/failure atomicity, ownership, compatibility,
+platform security, and installed-artifact evidence.
+
 ## M120 one-level prefab fragment planning
 
 RFC-0103 resolves the adopted M120 direction: add exact bounded

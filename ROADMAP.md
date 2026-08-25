@@ -1058,6 +1058,28 @@ file I/O, asset loading, live update, reimport, source write-back, runtime link
 graph, new persistent operation, dependency, root API, workflow, or hosted
 runner change.
 
+## M121 project-confined scene file loading
+
+M121 starts from fully locally validated M120 commit
+`dbe8108abc29c93aed4317456ee67efb8b99e1ea`. The existing
+`HeadlessProject` composition root gains one typed `load_scene()` method. It
+accepts one bounded project-relative path and exact `SceneLimits`, reuses the
+established path confinement and bounded handle read, and delegates the
+detached bytes to the unchanged `ludoweave.scene/1` decoder.
+
+Loading is synchronous and returns a detached immutable scene document. It
+owns no persistent handle, cache, watcher, world, renderer, or background
+resource. The load performs no world mutation; later explicit scene planning
+and existing transaction application remain the only instantiation path and
+produce the receipt. Asset dependencies remain logical `asset://` identities
+and are not loaded.
+
+The slice has no directory discovery, prefab file loader, file URI handling,
+include/import graph, arbitrary Python import/evaluation, source cache, watch,
+live update, reimport, write-back, remote access, new persistent operation,
+dependency, root API, workflow, or hosted runner change. Project confinement is
+not a race-free filesystem sandbox against concurrent hostile mutation.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

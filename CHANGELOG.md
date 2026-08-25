@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M121/RFC-0104 project-confined scene file loading to the existing
+  headless composition root. Reads are relative, bounded, synchronous, and
+  detached before the unchanged `ludoweave.scene/1` decoder; there is no world
+  mutation, directory discovery, prefab file loading, file URI handling, live
+  update, dependency, workflow, or root-API change.
 - Add M120/RFC-0103 one-level `ludoweave.prefab/1` fragments and
   `ludoweave.prefab-instance/1` schema-aware field replacements. Planning adds
   canonical prefab provenance and compiles to ordinary `entity.spawn` commands

@@ -2922,6 +2922,38 @@ registry, arbitrary import/evaluation, dependency, root export, workflow, or
 hosted allocation. RFC-0103 records the standards comparison and complete
 boundary.
 
+## M121 project-confined scene file loading boundary
+
+M121 keeps filesystem authority in the existing `ludoweave.tools` composition
+root. `HeadlessProject.load_scene()` accepts one project-relative string and an
+exact immutable `SceneLimits`. It delegates path parsing, strict resolution,
+root containment, regular-file checking, descriptor opening, and both metadata
+and handle byte caps to the established M2 reader. Only after the handle is
+closed are the detached bytes passed downward to `SceneDocument.from_json()`.
+The scene package remains path- and transport-agnostic; its M119/M120 sources
+are unchanged.
+
+The result is a detached immutable `ludoweave.scene/1` document. Loading owns no
+persistent file handle, source cache, watcher, world, renderer, thread, or
+closeable resource. It performs no world mutation. A later caller must
+explicitly compile the document and apply the existing transaction, which is
+where normal atomic receipt behavior begins. Asset dependencies remain logical
+identities and are not resolved by this loader. Changing or deleting the source
+file cannot mutate the already returned document or any runtime entity.
+
+Unsafe paths fail with sanitized existing tools errors; unavailable,
+non-regular, or oversized input fails before scene decoding. Malformed or
+incompatible content retains the structured M119 `SceneError`. The method is a
+synchronous caller-thread operation. Root confinement rejects resolved escapes,
+but it is not a descriptor-confined, race-free sandbox against concurrent
+hostile filesystem mutation.
+
+M121 adds no directory discovery, prefab file loader, file URI, include/import
+graph, arbitrary Python import or evaluation, source cache, live update,
+reimport, write-back, remote access, operation, dependency, root API, workflow,
+or hosted allocation. RFC-0104 records the external standards basis and exact
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

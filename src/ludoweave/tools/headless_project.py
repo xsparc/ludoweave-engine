@@ -20,6 +20,7 @@ from ludoweave.ecs import (
     World,
     WorldStore,
 )
+from ludoweave.scene.document import DEFAULT_SCENE_LIMITS, SceneDocument, SceneLimits
 from ludoweave.world import (
     AuthorityResourceRegistry,
     RandomStreams,
@@ -218,6 +219,24 @@ class HeadlessProject:
     def read_relative(self, relative: str, *, max_bytes: int, role: str) -> bytes:
         path = _resolve_relative(self.root, relative, must_exist=True, role=role)
         return _read_bounded(path, max_bytes=max_bytes, role=role)
+
+    def load_scene(
+        self,
+        relative: str,
+        *,
+        limits: SceneLimits = DEFAULT_SCENE_LIMITS,
+    ) -> SceneDocument:
+        """Load one detached scene document from a project-confined file."""
+
+        if type(limits) is not SceneLimits:
+            raise _tool_error(
+                "scene limits must be an exact SceneLimits value",
+                code="tools.invalid_scene_limits",
+                phase="load_scene",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(relative, max_bytes=limits.max_bytes, role="scene")
+        return SceneDocument.from_json(document, limits=limits)
 
     def write_relative(self, relative: str, document: bytes, *, role: str) -> None:
         path = _resolve_relative(self.root, relative, must_exist=False, role=role)

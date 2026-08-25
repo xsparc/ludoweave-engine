@@ -186,6 +186,39 @@ source write-back, runtime link graph, or arbitrary Python import/evaluation.
 There is no new persistent operation, root-package export, dependency,
 workflow, or hosted runner change.
 
+## M121 project-confined scene file loading
+
+The existing headless composition root can load one scene explicitly:
+
+```python
+from pathlib import Path
+
+from ludoweave.tools.headless_project import HeadlessProject
+
+project = HeadlessProject.load(Path("my-game"))
+scene = project.load_scene("scenes/main.json")
+assert scene.protocol == "ludoweave.scene/1"
+```
+
+`load_scene()` requires one project-relative path and accepts an exact
+`SceneLimits` when callers need tighter bounds. It reuses M2 path confinement,
+regular-file validation, sanitized errors, and a handle read capped at one byte
+beyond the limit. The handle closes inside the call. The resulting detached
+immutable document uses the unchanged M119 decoder and canonical ordering.
+
+The load performs no world mutation. Callers separately invoke
+`compile_scene()` and apply the returned ordinary transaction to obtain a
+receipt. Filesystem time and concurrent external edits are outside simulation
+determinism; load source data before deterministic execution. Changing or
+removing the source file cannot alter the returned document or existing world
+state.
+
+M121 has no directory discovery, prefab file loader, file URI, include/import
+graph, asset loading, cache, watcher, live update/reimport, source write-back,
+remote access, arbitrary Python import/evaluation, new persistent operation,
+dependency, root-package export, workflow, or hosted runner change. Root
+containment is not a race-free filesystem sandbox.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

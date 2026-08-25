@@ -1,6 +1,84 @@
 # Project State
 
-## M120 one-level prefab fragment planning - final closeout in progress
+## M121 project-confined scene file loading - implementation in progress
+
+- Base: fully locally validated M120 DCO commit
+  `dbe8108abc29c93aed4317456ee67efb8b99e1ea`, tree
+  `aa2e642ce931775f06f9bb36b34c6ee3ba8d5a22`, sole parent exact M119.
+- Branch: `release/m121-project-confined-scene-file-loading`; unpublished under
+  the existing public-review identity hold.
+- Direction: keep filesystem policy in the existing tools composition root.
+  Reuse exact project-relative path confinement and bounded one-handle reads,
+  then delegate detached bytes to the unchanged scene decoder.
+- Runtime: `HeadlessProject.load_scene()` accepts an exact relative path and
+  `SceneLimits`, returning one detached immutable `ludoweave.scene/1` document.
+  Asset identities remain unresolved and world mutation remains a later
+  explicit compile/apply transaction with a receipt.
+- Ownership/security: the synchronous call owns and closes one descriptor. It
+  adds no persistent handle, cache, watcher, world, provider, renderer, or
+  thread. Existing traversal/root-escape/non-regular/size policies and
+  sanitized errors apply. The claim is not a race-free hostile-filesystem
+  sandbox.
+- Scope: no directory discovery, prefab file loader, file URI, include/import,
+  remote path, asset loading, live update, write-back, new operation,
+  dependency, root API, scene/prefab schema/planner, or workflow change.
+- Deliberate red: after one test-only Hypothesis fixture correction, exact
+  CPython 3.12.13 retained 17 intended absent-capability/docs failures, one
+  protected-surface pass, and one symlink-capability skip.
+- Focused proof: the first implementation launch passed all 14 executable
+  behavior assertions with one platform skip and found only test formatting and
+  typing issues. Corrected Ruff and strict Pyright pass; all 14 assertions pass
+  in 0.54 seconds with the one capability skip.
+- Documented focus: after correcting one project-record metadata phrase, all
+  132 focused loader, inherited scene/prefab, stability, import, and metadata
+  assertions pass in 1.83 seconds with one capability skip; strict docs build in
+  1.61 seconds; focused formatting, Ruff, strict Pyright, and whitespace pass.
+- Review: the exact limits check precedes path access; established confinement,
+  regular-file, sanitized-error, and bounded descriptor behavior is reused;
+  the descriptor closes before scene decode; and the result cannot mutate a
+  world. No actionable finding or guarantee beyond the existing reader remains.
+- Complete source proof: the unchanged 46-package lock and exact 45-package
+  CPython 3.12.13 graphics environment pass; all 377 files are format-clean;
+  Ruff and strict Pyright report zero findings; strict docs build; all 1,615
+  architecture assertions pass with one established Windows capability skip;
+  both governance modes and all nine focused protection assertions pass.
+- Complete suites: exact CPython 3.12.13 with graphics passes 3,218 tests with
+  16 skips; exact CPython 3.13.13 and 3.14.5 base environments each pass 3,208
+  tests with 17 skips. One first 3.13 orchestration accidentally recreated 3.12
+  and was interrupted; all authoritative runs pin the interpreter explicitly.
+- Graphics proof: all ten real-wgpu tests, fresh base/graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with established deterministic
+  state, capture, replay, draw, query, and batch identities.
+- Packaging: two builds reproduce a 292,537-byte pure wheel at SHA-256
+  `df63a499dadb8fd378a19d8b38cdc9b97704338878f1b0ae9d7c05c29fd6568f`
+  and a 1,604,588-byte source archive at SHA-256
+  `81a4a277bc11457f66789d0a753886805aed8af9237bd22d9465addb4a2cf145`.
+  All four installed-wheel verifiers pass; two ten-artifact release stages are
+  byte-identical and both complete release smokes pass. Archive hygiene reports
+  99 wheel/621 source entries with zero forbidden path.
+- Scope/security: exactly 13 modified plus four new intended paths remain.
+  Protected workflow, metadata, lock, root, scene/prefab/world, and inherited
+  verifier surfaces have zero diff. Public identity, secret-assignment, and new-
+  method ambient/mutating-capability scans return zero finding.
+- Final separator: the unchanged lock, 377-file formatting, Ruff, strict
+  Pyright, strict docs, all 1,615 architecture assertions with one established
+  Windows skip, all nine focused M59/M121 assertions, both governance modes,
+  and whitespace pass.
+- History/hosted audit: after fetch/prune, local/remote `main` and merge base
+  remain exact M99; M120 remains exact head/tree with sole parent M119;
+  divergence is `0 21`. All 21 M100-M120 commits are linear, single-parent,
+  exact maintainer identity, and singly DCO-signed. Git integrity reports 287
+  dangling-only records and zero critical finding. Remote state has only main
+  and no M121 PR, run, release, or tag, so no hosted allocation was triggered.
+- Cleanup: generated docs, two profiles, two build roots, two release roots,
+  and the pytest root were each verified inside the workspace as untracked,
+  non-reparse targets and removed in one guarded pass. All eight are absent.
+- Final metadata separator: strict governance returns zero findings; all nine
+  M59/M121 assertions and whitespace pass; exactly 13 modified plus four new
+  intended paths remain; all eight audited scratch targets are absent.
+- Remaining: local DCO commit. Publication remains held.
+
+## M120 one-level prefab fragment planning - locally committed
 
 - Base: fully locally validated M119 DCO commit
   `b30ca99c3ae639653394a378465c0088ee5c2995`, tree
@@ -73,7 +151,10 @@
 - Final metadata separator: strict governance returns zero findings; all nine
   M59/M120 assertions and whitespace pass; exactly 14 modified plus six new
   intended paths remain; all eight audited scratch targets are absent.
-- Remaining: the local DCO commit. Publication remains held.
+- Local commit: `dbe8108abc29c93aed4317456ee67efb8b99e1ea`, tree
+  `aa2e642ce931775f06f9bb36b34c6ee3ba8d5a22`, sole parent exact M119, exact
+  maintainer identity, one DCO sign-off, 20 paths, and `0 21` divergence.
+  Publication remains held.
 
 ## M119 data-only scene transaction planning - ready for local commit
 
