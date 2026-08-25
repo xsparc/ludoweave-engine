@@ -1,116 +1,80 @@
 # Current task
 
-- **Task:** M118 - retain Python 3.15 prerelease outside support after one
-  installed-wheel compatibility observation.
-- **Status:** M117 commit/cleanup verification, current primary-source research,
-  exact Windows CPython 3.15 prerelease inventory, installed-wheel probe,
-  implementation, complete local validation, findings-first review,
-  history/hosted-state audit, and all precommit separators are complete.
-- **Base:** Fully locally validated M117 DCO commit
-  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
-  `a031129b5a46003dbc5b588cab94c3adba704301`, with sole parent exact M116.
+- **Task:** M119 - add bounded data-only scene transaction planning.
+- **Status:** Direction research, deliberate-red proof, implementation, focused
+  behavior/type/architecture validation, documentation, and a standalone local
+  installed-wheel verifier are complete. Complete supported-runtime, initial
+  distribution, review correction, focused post-review validation,
+  review-inclusive artifacts, final precommit validation, and bounded scratch
+  cleanup pass. The reviewed 22-path slice is ready for its standalone DCO
+  commit and postcommit verification.
+- **Base:** Fully locally validated M118 DCO commit
+  `7b68f3d02987ee9824785c1699592c4670dbe267`, tree
+  `a60c9e3668a0ed1f5462015210a8b8e9ee593a3f`, with sole parent exact M117.
   The stack remains unpublished under the existing public-review identity hold.
 
 ## Acceptance boundary
 
-- Retain `requires-python = ">=3.12,<3.15"`, standard CPython 3.12-3.14 as the
-  supported baseline, and exact doctor rejection for Python 3.15.
-- Record one exact Windows CPython 3.15.0b1 pure-wheel observation: explicit
-  metadata override, version, doctor rejection, deterministic serial headless
-  execution, orderly close, and exact wrong-thread rejection.
-- Add RFC-0101, one focused architecture contract, and aligned public,
-  security, architecture, runtime, release, roadmap, maintainer, and factual
-  project records.
+- Add exact `ludoweave.scene/1` data-only documents with bounded canonical JSON,
+  stable local IDs, unique names, validated parent DAGs, versioned component
+  values, canonical asset dependencies, and detached immutable ownership.
+- Compile through an explicit `ComponentRegistry` into ordinary
+  `entity.spawn` commands in one existing atomic `CommandTransaction`.
+- Store compiler-owned scene provenance as ordinary canonical `SceneNode` ECS
+  data and expose local-ID-to-runtime-entity mapping through receipt aliases.
+- Preserve the world store as sole canonical runtime authority and retain
+  existing owner-thread, staging, receipt, and failure semantics.
+- Add structured scene failures, focused unit/integration/property/architecture
+  coverage, RFC-0102, aligned public docs, and a standalone installed-wheel
+  verifier without changing the existing hosted smoke allocation.
 - Keep workflows, runner allocation, actions, permissions, credentials,
-  dependencies, lock, version, metadata, installed-wheel smoke, runtime package/
-  API, providers, release authority, tags, releases, publication, and public
-  branch state unchanged.
+  dependencies, lock, metadata, version, root API, command operations,
+  providers, release authority, tags, releases, publication, and public remote
+  state unchanged.
 
 ## Evidence so far
 
-- M117 is exact standalone DCO commit
-  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
-  `a031129b5a46003dbc5b588cab94c3adba704301`, sole parent M116, exact
-  maintainer identity, one sign-off, 16 intended paths, and `0 18` divergence.
-  Fourteen audited M117/test scratch targets were removed and zero remain.
-- PEP 790 records Python 3.15.0 candidate 1 on 2026-08-04 and schedules final
-  for 2026-10-01. uv classifies Python 3.15 prereleases as Tier 2.
-- No exact uv-managed Windows CPython 3.15 runtime was initially installed. An
-  exact RC1 install request found no managed download; the current inventory
-  exposed only CPython 3.15.0b1, which was then installed.
-- A pure `0.1.0a1` wheel built and an isolated exact 3.15.0b1 environment was
-  created. uv warned that the interpreter is incompatible with the declared
-  `>=3.12,<3.15` range. Installation succeeded only with the explicit metadata
-  override and no dependencies.
-- The first install/probe orchestration used an invalid PowerShell selection
-  parameter, then pip received no requirement; no product result relies on it.
-  The corrected run installed the wheel and passed version before `doctor`
-  correctly exited 1 for unsupported Python, stopping that sequence.
-- The explicit expected-boundary rerun confirmed doctor exit 1, then completed
-  120 virtual ticks and frames in exactly 2,000,000,000 nanoseconds, closed,
-  and observed `engine.wrong_thread`. The installed-wheel headless example
-  reproduced the deterministic summary.
-- The ignored probe and new focused contract are format- and Ruff-clean. Exact
-  CPython 3.12.13 passes three metadata, doctor, and protected-surface assertions
-  and fails only the intended absent-RFC/docs assertion in 0.28 seconds.
-- The first implementation run passed three assertions but found that Markdown
-  code formatting interrupted one required prose phrase. The corrected RFC
-  states the phrase plainly; all four assertions pass in 0.19 seconds. Strict
-  docs built in 1.73 seconds, whitespace passes, and exactly 16 intended paths
-  change.
-- The unchanged 46-package lock, exact 45-package CPython 3.12.13 graphics
-  environment, 361-file format check, Ruff, strict Pyright, strict docs,
-  protected surfaces, whitespace, and all 1,603 architecture assertions with
-  one established Windows capability skip pass. Exact standard CPython
-  3.12.13, 3.13.13, and 3.14.5 each pass all four focused assertions.
-- Complete suites pass 3,143 tests with 15 skips on exact CPython 3.12.13 with
-  graphics and 3,133 tests with 16 skips on exact CPython 3.13.13 and 3.14.5.
-  All ten real-wgpu tests, fresh base/graphics profiles, Clockwork Arena, and
-  Agent World Builder pass with established deterministic identities.
-- Two initial builds reproduce a 278,778-byte pure wheel at SHA-256
-  `254c3da96cc0b7161425ea09a9883279ba91f030a7790d5c1ac89149acbcd9ba`
-  and a 1,557,512-byte source archive at SHA-256
-  `27adfcbf099b8092bcaead44e07a5afd0e8b1b51ff91000fa8e2320441ddba40`.
-  Wheel smoke, twice-staged ten-artifact byte identity, complete release smoke,
-  and 94/602-entry package hygiene pass.
-- Findings-first review covers exactly 16 intended paths. Protected workflows,
-  doctor/CLI, installed-wheel smoke, metadata, lock, runtime package/API,
-  dependencies, version, providers, and release authority have zero diff.
-  Public identity, high-confidence secret, package-hygiene, and whitespace scans
-  are clean; no actionable finding remains.
-- Review-inclusive builds reproduce the unchanged 278,778-byte pure wheel at
-  SHA-256
-  `254c3da96cc0b7161425ea09a9883279ba91f030a7790d5c1ac89149acbcd9ba`
-  and a 1,558,615-byte source archive at SHA-256
-  `ec194e05707eb847e2ca7f9d6671d04dd04c87c7f68693f0c488762ec7087051`.
-  Reproducibility, isolated-wheel smoke, twice-staged ten-artifact byte
-  identity, complete release smoke, and 94/602-entry package hygiene pass.
-- The final source separator passes the unchanged 46-package lock, 361-file
-  formatting, Ruff, strict Pyright, strict docs, protected surfaces,
-  whitespace, all 1,603 architecture assertions with one established Windows
-  capability skip, and all nine focused M59/M118 assertions.
-- The precommit audit confirms a linear 18-commit M100-M117 unpublished stack
-  with exact maintainer identity, one DCO sign-off per commit, no merges, and
-  zero critical Git object-database finding. Local and remote `main` remain
-  exact M99; only remote `main` exists. GitHub authentication is valid and
-  M118 PR/run, releases, and remote tags are empty, so no hosted Actions
-  allocation was triggered.
-- The post-audit separator builds strict docs in 1.64 seconds, passes all nine
-  focused assertions in 0.38 seconds, and confirms protected surfaces, exact
-  16-path scope, whitespace, public identity hygiene, and high-confidence
-  secret scans remain clean.
-- The final precommit metadata separator passes all nine focused assertions in
-  0.37 seconds and reports no whitespace error.
+- Primary-source direction review used RFC 8259, JSON Schema Core draft
+  2020-12, and RFC 3986. The selected contract reuses canonical JSON,
+  `asset://`, component-schema migration, and ordinary world transactions
+  without adding a runtime schema dependency.
+- Exact CPython 3.12.13 behavioral deliberate red failed collection only because
+  `ludoweave.scene` was absent. The first architecture red passed protected
+  surfaces and failed only absent package/dependency-rule/docs boundaries.
+- The first implementation launch exposed postponed component annotations in
+  the new component definitions; removing postponement only where schemas are
+  declared preserved the existing authoring contract.
+- The next run passed 17 assertions and exposed two test/ordering defects: the
+  session hash is a property, and reserved `SceneNode` detection must precede
+  component-value compilation. Both were corrected.
+- The following run passed 18 assertions and exposed only the test's use of a
+  nonexistent `WorldStore.entity_count`; the test now uses the storage-neutral
+  `entities()` contract. Strict type checking then identified only new-test
+  typing gaps, which were repaired without product relaxation.
+- Focused behavior first passed 19 assertions with zero strict type findings.
+  Architecture then passed 102 assertions and failed only absent M119 docs.
+  Strict docs built in 1.75 seconds; the first documented boundary failed one
+  plain-phrase assertion because Markdown code formatting interrupted the
+  phrase. The corrected architecture boundary passed all 103 assertions.
+- After direct-construction/plan-identity hardening, Hypothesis coverage, and a
+  standalone wheel verifier, Ruff, strict Pyright, and all 124 focused
+  behavior/architecture assertions pass in 1.39 seconds.
+- RFC-0102 and public docs explicitly define dependency direction, ownership,
+  deterministic ordering, structured pre-mutation failures, receipt alias
+  mapping, canonical world authority, and the no-file-I/O/no-prefab boundary.
 
 ## Explicit non-scope
 
-- No Python 3.15 support, final-release, later-prerelease, cross-platform,
-  graphics, free-threaded, full-suite, performance, extension, or provider
-  compatibility claim.
-- No runtime shim, metadata relaxation, doctor relaxation, workflow, allocation,
-  dependency, lock, version, runtime package/API, release authority, tag,
-  release, publication, push, or PR.
+- No scene file loading, directory discovery, prefab inheritance/overrides,
+  prefab instantiation operation, live update/reimport, silent propagation,
+  runtime `EntityRef` facade, asset loading, or parent-to-runtime-handle store.
+- No arbitrary Python graph, evaluation or import; no scene-specific persistent
+  operation; no second authority; no renderer, provider, tool, application,
+  networking, editor, native, compiler, or global registry surface.
+- No workflow, hosted allocation, dependency, lock, metadata, version, root API,
+  release authority, tag, release, publication, push, or PR.
 
 ## Remaining acceptance work
 
-- Commit the exact reviewed slice and perform bounded scratch cleanup.
+- Commit the reviewed slice with exact DCO identity and verify the resulting
+  standalone history/tree/scope.

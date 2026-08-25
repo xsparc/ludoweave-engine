@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M119 data-only scene transaction planning
+
+RFC-0102 resolves the adopted M119 direction: introduce one exact bounded
+`ludoweave.scene/1` document and compile it through an explicitly supplied
+component registry into ordinary atomic spawn commands. The world store remains
+the sole runtime authority and receipt aliases supply local/runtime mapping.
+
+No scene loader, file I/O, prefab inheritance/override/composition, live
+update/reimport, silent propagation, `EntityRef` facade, asset loading,
+scene-specific command operation, renderer/tool/provider surface, arbitrary
+Python import/evaluation, second authority, global registry, dependency,
+workflow, runner allocation, root API, or release-authority change is pending
+for M119.
+
+Reopen this decision only for a separately assigned prefab or file-loading
+slice with explicit format/version identity, bounded resource/conflict policy,
+instantiation/update receipts, ownership, failure atomicity, asset resolution,
+security, compatibility, and installed-artifact evidence. Existing runtime
+entities must never change silently when source data changes.
+
 ## M118 Python 3.15 prerelease compatibility
 
 RFC-0101 resolves the adopted M118 direction: retain Python 3.15 outside the

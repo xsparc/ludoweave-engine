@@ -21,9 +21,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > reproducibility to the fixed release environment; M116 separates semantic
 > portability from byte identity; M117 retains the standard CPython support
 > baseline after one free-threaded serial probe; M118 retains Python 3.15
-> outside the supported range after one prerelease compatibility observation.
+> outside the supported range after one prerelease compatibility observation;
+> M119 adds bounded versioned data-only scene transaction planning.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M118 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M119 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -62,6 +63,9 @@ convention remains enforced.
 - An additive fixed-step application runner with immutable virtual/recorded input and declared-access system contexts.
 - An independent dictionary reference world exercised by state-machine property tests.
 - Versioned canonical world commands with atomic transactions, optimistic hashes, dry-run, semantic diffs, and structured receipts.
+- A bounded versioned data-only scene document that compiles through an
+  explicit component registry into ordinary `entity.spawn` commands; receipt
+  aliases return the deterministic local-ID-to-runtime-entity mapping.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
@@ -142,7 +146,8 @@ convention remains enforced.
 - A bounded isolated Box2D-candidate probe plus ADR-0024; no physics binding,
   adapter, native object, or runtime dependency is shipped.
 
-General scene importers, production audio, international text shaping,
+Scene file loading, prefab inheritance or live scene updates, production audio,
+international text shaping,
 rigid-body physics, networking or remote agent transport, visual editor
 tooling, executable Python/WASM mods, constrained or general 3D, and automatic
 GPU recovery are not implemented.
@@ -248,6 +253,9 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only project manifest and full CLI example.
+The [persistent command guide](docs/commands.md) documents M119 scene
+normalization, explicit schema resolution, transaction planning, receipt alias
+mapping, and the no-file-I/O/no-prefab-inheritance boundary.
 The [agent control interface](docs/agent-control.md) documents M5 tools, capabilities, limits, Python/CLI/MCP composition, and the Agent World Builder loop.
 The [live semantic inspector guide](docs/inspector.md) documents M10 local child
 ownership, observation events, explicit write receipts, bounds, and failures.
@@ -357,6 +365,7 @@ uv build --out-dir .tmp/dist-first
 uv build --out-dir .tmp/dist-second
 uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/dist-first .tmp/dist-second
 uv run --frozen python scripts/smoke_wheel.py .tmp/dist-first
+uv run --frozen python scripts/smoke_scene_wheel.py .tmp/dist-first
 uv run --frozen python scripts/release_artifacts.py .tmp/dist-first .tmp/release-candidate
 uv run --frozen python scripts/smoke_release.py .tmp/release-candidate
 uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m1-benchmark.json

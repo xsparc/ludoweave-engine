@@ -2862,6 +2862,35 @@ allocation, dependency, version, runtime package/API, or release-authority
 change. It is not a real public release observation. RFC-0100 defines the
 complete boundary.
 
+## M119 scene transaction-planning boundary
+
+M119 introduces a narrow downward dependency from `ludoweave.scene` to the
+existing asset identity, core error, ECS schema, and world command contracts.
+Scene code may depend on `assets`, `core`, `ecs`, `world`, and itself. It may
+not depend on application composition, rendering, tools, providers, or samples.
+The architecture checker enforces that direction and keeps backend objects out
+of the scene surface.
+
+The `ludoweave.scene/1` versioned data-only scene document is normalized and
+bounded before planning. The planner resolves component names only through its
+injected `ComponentRegistry`, validates or migrates values with existing schema
+code, and emits ordinary `entity.spawn` commands in canonical local-ID order.
+There is no scene-specific world mutation path. Receipt aliases return the
+local-ID-to-runtime-entity mapping, and the compiler-owned `SceneNode`
+component records local provenance in ECS authority. Canonical runtime state
+remains in the world store.
+
+Documents and plans are immutable caller-owned values. Compilation is pure
+planning with no file I/O and no owned resource to close. Transaction service
+ownership, owner-thread rules, staging, rejection, and commit remain unchanged.
+Unknown schemas, incompatible component data, reserved provenance injection,
+or missing `SceneNode` registration fail before authority mutation.
+
+This slice has no prefab inheritance, no live update or reimport behavior, no
+runtime `EntityRef` facade, no asset loading, no arbitrary Python graph or
+import, no renderer leakage, no dependency, and no workflow or hosted runner
+change. RFC-0102 defines the data/schema rationale and complete non-scope.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
@@ -2913,7 +2942,8 @@ treated as an independent human contribution.
 M6
 does not add a plugin loader or dynamic
 data-selected code: adapter discovery remains explicit trusted composition.
-General scene importers, production audio, rigid-body physics, network
+Scene file loading, prefab composition/live updates, production audio,
+rigid-body physics, network
 transports, visual editor tooling, international text shaping, automatic
 device recovery, and constrained/general 3D remain deferred to future
 assigned, exercised slices. Native acceleration is

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M119/RFC-0102 versioned data-only scene documents and deterministic
+  compilation to ordinary `entity.spawn` commands. Receipt aliases expose the
+  local-ID-to-runtime-entity mapping while canonical runtime state remains in
+  the world store; there is no file I/O, prefab inheritance, live update,
+  dependency, workflow, or root-API change.
 - Record M118/RFC-0101 decision to retain Python 3.15 outside the supported
   range after one exact Windows CPython 3.15.0b1 installed-wheel observation,
   with no metadata, doctor, runtime, dependency, workflow, or support change.

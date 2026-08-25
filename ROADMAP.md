@@ -1013,6 +1013,28 @@ collision before network or validator work, while retaining exclusive creation
 and no clobber publication. No workflow, dependency, version, runtime API,
 release authority, tag, release, or publication changes.
 
+## M119 data-only scene transaction planning
+
+M119 starts from fully locally validated M118 commit
+`7b68f3d02987ee9824785c1699592c4670dbe267`. It adds the first deliberately
+bounded scene-authoring contract: a versioned data-only scene document with
+stable local IDs, unique names, optional local parent references, versioned
+component records, and canonical `asset://` dependencies.
+
+The compiler resolves component names only through an explicit immutable
+`ComponentRegistry`, validates or migrates all values before mutation, adds one
+compiler-owned `SceneNode` provenance component, and emits ordinary
+`entity.spawn` commands in one atomic transaction. Receipt aliases provide the
+local-ID-to-runtime-entity mapping after application. Canonical runtime state
+remains in the world store; the scene document is input data, never a parallel
+authority.
+
+The slice has no file I/O, no prefab inheritance, no live scene update or
+reimport behavior, no `EntityRef` facade, no arbitrary Python graph or import,
+no renderer or tool dependency, no runtime dependency, and no workflow or
+hosted runner change. One-level prefab fragments and explicit instantiation
+commands remain future assigned work under a separate acceptance boundary.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
@@ -1031,7 +1053,8 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 ## Proposal backlog
 
 These areas remain uncommitted proposals and require milestone assignment plus the
-design process in `GOVERNANCE.md`: general scene importers, production audio,
+design process in `GOVERNANCE.md`: scene file loading, prefab composition and
+live updates, production audio,
 rigid-body physics, network transports, international text shaping, automatic GPU
 recovery. Constrained and general 3D are deferred under
 [ADR-0028](docs/adr/0028-retain-layered-2d-and-defer-constrained-3d.md).

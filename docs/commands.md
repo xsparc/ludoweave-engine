@@ -71,8 +71,8 @@ The current built-in argument shapes are:
 
 Component records use UUID, schema version, and field values. Spawn aliases are
 transaction-local protocol data and are unrelated to M1 `DeferredEntity`
-tokens. Scene operations remain explicitly unsupported because no scene schema
-exists yet.
+tokens. M119 scene planning uses this existing operation rather than adding a
+scene operation to the persistent command registry.
 
 Every session resource must have exactly one explicit role. Only `STATE`
 resource schemas participate in authority hashes and patches. Input and
@@ -109,6 +109,48 @@ Receipt and diff limits are checked before adoption. Receipts do not embed
 component or resource values, reducing accidental disclosure; authoritative
 hashes prove the exact state and query/snapshot services provide deliberate
 state observation paths.
+
+## M119 scene transaction planning
+
+`ludoweave.scene/1` is a versioned data-only scene document. Its exact root
+fields are `$schema`, `scene_id`, `entities`, and `dependencies`. Each entity
+declares a stable transaction-alias-compatible local ID, a unique bounded name,
+an optional parent local ID, and component records keyed by registered
+module-qualified name. Component records contain an exact positive schema
+version and canonical JSON object values. Dependencies are distinct canonical
+`asset://` identities; planning reports them but does not load them.
+
+`SceneDocument` applies the shared bounded canonical JSON profile, rejects
+duplicate members and unknown fields, detaches nested caller input, sorts
+entities/components/dependencies, and rejects repeated IDs/names, missing or
+self parents, and parent cycles. Custom limits may tighten but never enlarge
+the documented hard maxima. This produces a deterministic authoring input, not
+a second world-state representation.
+
+`compile_scene()` receives an explicit immutable `ComponentRegistry`. It
+resolves every named schema, performs existing version migration and current-
+value validation, and adds the compiler-owned `SceneNode` provenance component
+before it constructs any world mutation. The complete result is one ordinary
+transaction of ordinary `entity.spawn` commands. Applying it through
+`TransactionService` preserves the established all-or-nothing staging rules;
+receipt aliases provide the deterministic local-ID-to-runtime-entity mapping.
+The stored `SceneNode` keeps `scene_id`, `instance_id`, local ID, name, and
+parent local ID in canonical ECS state. Canonical runtime state remains in the
+world store.
+
+Compilation owns no world, renderer, asset loader, file handle, or background
+resource and therefore has no close method. The caller owns the immutable
+document and plan; `WorldSession` and `TransactionService` retain their existing
+single-owner and atomic failure semantics. Unknown components, incompatible
+values, a missing `SceneNode` registration, or an invalid plan raise structured
+`SceneError` before a transaction can mutate authority.
+
+M119 has no file I/O, no prefab inheritance, no live update/reimport semantics,
+no implicit parent-to-runtime-handle relation, no arbitrary Python graph or
+import, no new command operation, no root-package export, no dependency, and no
+workflow or hosted runner change. Prefab fragments, explicit prefab
+instantiation commands, and a runtime `EntityRef` facade require separate
+assigned slices.
 
 ## Canonical snapshots and random state
 

@@ -1,5 +1,76 @@
 # Project State
 
+## M119 data-only scene transaction planning - ready for local commit
+
+- Base: fully locally validated M118 DCO commit
+  `7b68f3d02987ee9824785c1699592c4670dbe267`, tree
+  `a60c9e3668a0ed1f5462015210a8b8e9ee593a3f`, sole parent exact M117.
+- Branch: `release/m119-scene-transaction-planning`; unpublished under the
+  existing public-review identity hold.
+- Direction: add a bounded versioned data-only scene document and deterministic
+  compiler to existing world transactions. RFC 8259, JSON Schema Core draft
+  2020-12, and RFC 3986 inform exact members, bounded decoding, and asset URI
+  identity; no runtime dependency is added.
+- Runtime: `ludoweave.scene/1` normalizes stable local entities, unique names,
+  parent DAGs, versioned named component values, and `asset://` dependencies.
+  Planning resolves an explicit `ComponentRegistry`, validates/migrates before
+  mutation, injects canonical `SceneNode` provenance, and emits ordinary
+  `entity.spawn` commands. Receipt aliases return the local/runtime mapping.
+- Authority: canonical runtime state remains solely in the world store. Scene
+  documents/plans are immutable caller-owned data and the planner owns no
+  closeable resources, file handles, loaders, providers, or threads.
+- Failure: duplicate/unknown fields, duplicate JSON members, invalid parent
+  graphs/assets/limits, unknown or incompatible components, reserved
+  provenance, missing `SceneNode`, and invalid plan identities fail with
+  structured scene errors before world mutation.
+- Scope: no file I/O, prefab inheritance/overrides, live updates, `EntityRef`
+  facade, asset loading, scene operation, arbitrary Python graph/import, second
+  authority, dependency, root export, or workflow/allocation change.
+- Deliberate red: exact CPython 3.12.13 behavior failed only absent scene
+  package; focused architecture passed protected surfaces and failed absent
+  package/rule/docs as intended.
+- Focused proof: after recorded test/schema/ordering/type corrections and
+  findings-first limit hardening, Ruff and strict Pyright pass and all 127
+  focused behavior/architecture assertions pass. Exact CPython 3.12.13,
+  3.13.13, and 3.14.5 each pass all 26 M119 contract assertions.
+- Complete source proof: 369 files are format-clean; Ruff and strict Pyright
+  report zero findings; strict docs build; all 1,607 architecture assertions
+  pass with one established Windows capability skip; protected workflows,
+  metadata, lock, root API, and inherited wheel smoke remain exact.
+- Complete suites: exact 3.12.13 with graphics passes 3,168 tests with 15
+  skips; exact 3.13.13 and 3.14.5 base each pass 3,158 with 16 skips.
+- Graphics proof: all ten real-wgpu tests, fresh base/graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with established deterministic
+  identities.
+- Packaging: two initial builds are reproducible; the inherited wheel smoke and
+  standalone installed-scene verifier pass; two ten-artifact stages are
+  byte-identical; complete release smoke and 98/611-entry package hygiene pass.
+  Review-inclusive builds reproduce a 286,784-byte pure wheel at SHA-256
+  `8449c96e6eac4f33f0ed08ce24177ecdc908f77c91314fca8252389dbe91d042`
+  and a 1,577,942-byte source archive; both wheel verifiers, twice-staged
+  ten-artifact identity, complete release smoke, and package hygiene pass.
+- Review: exactly 22 intended files, no remaining actionable finding, no
+  backend/dependency/root/workflow leakage, and zero added-line development-tool
+  identity or high-confidence secret match. Strict governance has zero finding.
+- Final separator: unchanged lock, 369-file formatting, Ruff, strict Pyright,
+  strict docs, 1,607 architecture assertions with one established Windows skip,
+  focused M59/M119, strict governance, and whitespace all pass.
+- History/hosted audit: remote/local `main` remain exact M99; the 19-commit
+  M100-M118 stack is linear with exact identity and DCO; Git integrity has 287
+  dangling-only records and zero critical finding; remote state has no M119 PR,
+  run, release, or tag and incurred no hosted allocation.
+- Cleanup: twelve exact non-reparse M119 build/profile/docs/pytest scratch
+  targets were removed; one Windows-denied pytest root required an exact-root
+  approved retry. A later documentation invocation recreated only the generated
+  `site` directory; its resolved path was reverified inside the workspace as a
+  non-reparse target and removed. Zero target remains and no tracked path was
+  removed.
+- Final metadata separator: all nine focused M59/M119 assertions pass in 0.42
+  seconds, whitespace passes, exactly 13 modified plus nine new intended paths
+  remain, and all audited scratch targets are absent.
+- Remaining: create the standalone DCO commit and verify its history, tree,
+  identity, scope, and clean worktree. Publication remains held.
+
 ## M118 Python 3.15 prerelease compatibility - implementation in progress
 
 - Base: fully locally validated M117 DCO commit
