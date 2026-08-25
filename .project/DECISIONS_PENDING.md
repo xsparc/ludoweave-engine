@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M123 read-only source-check CLI
+
+RFC-0106 resolves the adopted M123 direction: add one nested
+`ludoweave source check` adapter for either one project-confined scene or two
+explicit prefab source/instance files. Success emits canonical
+`ludoweave.cli.source-check/1` JSON with protocol/source identities, canonical
+hashes, and bounded counts. Prefab mode enforces exact source identity.
+
+The command performs structural preflight only. It creates no registry, world,
+or session, calls no planner or transaction service, performs no compile or
+world mutation, writes no project file, and produces no receipt. It does not
+claim application-specific component semantic validity.
+
+No directory discovery, recursive/glob input, implicit pairing, suffix routing,
+manifest registration, dependency traversal, asset loading, cache, watcher,
+live update, write-back, arbitrary script execution, remote/file URI, new
+operation, dependency, root API, version, workflow job/allocation, or release-
+authority change is pending for M123.
+
+Reopen only for separately assigned compile/import, recursive validation,
+registry-aware semantics, or generated-report persistence with explicit bounds,
+ownership, atomicity, source identity, diagnostics, compatibility, and
+installed-artifact evidence.
+
 ## M122 project-confined prefab file loading
 
 RFC-0105 resolves the adopted M122 direction: add two typed methods to the

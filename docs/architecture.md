@@ -2978,6 +2978,28 @@ write-back, operation, dependency, root API, workflow, or hosted allocation.
 The same cooperative-filesystem and concurrent hostile-mutation limitation as
 M121 applies. RFC-0105 records the external comparison and exact boundary.
 
+## M123 read-only source-check CLI boundary
+
+M123 extends only `ludoweave.tools.cli`, the existing composition adapter.
+`ludoweave source check PROJECT --scene FILE` loads one M119 document through
+the M121 reader. `ludoweave source check PROJECT --prefab FILE --instance FILE`
+loads two explicit files through the M122 readers and checks their exact
+`prefab_id` relationship. Both modes emit canonical
+`ludoweave.cli.source-check/1` summaries containing protocol/source identities,
+canonical content hashes, and bounded counts. Host paths are never emitted.
+
+This is source-structure preflight, not compilation. The command creates no
+world/session or component registry, calls no planner or transaction service,
+performs no world mutation, and produces no receipt. Consequently it makes no
+claim that project-specific component names or values can compile against a
+later registry. Asset dependencies remain unresolved logical identities.
+
+M123 adds no directory discovery, suffix routing, implicit pairing, manifest
+lookup, cache, watcher, live update, write-back, arbitrary execution, remote
+access, dependency, root export, provider, renderer, or workflow allocation.
+The workflow and release jobs remain byte-unchanged. RFC-0106 records the
+primary-source comparison and complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

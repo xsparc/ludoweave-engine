@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 from collections.abc import Sequence
+from hashlib import sha256
 from pathlib import Path
 from typing import cast
 
@@ -53,6 +54,21 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--version", action="version", version=f"ludoweave {__version__}")
     subparsers = parser.add_subparsers(dest="command")
     subparsers.add_parser("doctor", help="run structured local environment diagnostics")
+
+    source_parser = subparsers.add_parser("source", help="validate project-confined sources")
+    source_subparsers = source_parser.add_subparsers(dest="source_command", required=True)
+    source_check_parser = source_subparsers.add_parser(
+        "check",
+        help="check one scene or one explicit prefab source/instance pair",
+    )
+    source_check_parser.add_argument("project", type=Path, help="project directory")
+    source_mode = source_check_parser.add_mutually_exclusive_group(required=True)
+    source_mode.add_argument("--scene", help="project-relative scene JSON")
+    source_mode.add_argument("--prefab", help="project-relative prefab source JSON")
+    source_check_parser.add_argument(
+        "--instance",
+        help="project-relative prefab instance JSON; required with --prefab",
+    )
 
     apply_parser = subparsers.add_parser(
         "apply",
@@ -173,6 +189,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         _print_json(report)
         return exit_code
     try:
+        if command == "source":
+            return _run_source_check(args)
         if command == "apply":
             return _run_apply(args)
         if command == "snapshot":
@@ -193,6 +211,65 @@ def main(argv: Sequence[str] | None = None) -> int:
         _print_error(error)
         return 2
     parser.print_help()
+    return 0
+
+
+def _run_source_check(args: argparse.Namespace) -> int:
+    if _text_argument(args, "source_command") != "check":
+        raise _argument_error("source_command")
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    scene_name = _optional_text_argument(args, "scene")
+    prefab_name = _optional_text_argument(args, "prefab")
+    instance_name = _optional_text_argument(args, "instance")
+    if scene_name is not None:
+        if instance_name is not None:
+            raise _argument_error("source_mode")
+        scene = project.load_scene(scene_name)
+        _write_stdout(
+            canonical_dumps(
+                {
+                    "protocol": "ludoweave.cli.source-check/1",
+                    "status": "valid",
+                    "kind": "scene",
+                    "source_protocol": scene.protocol,
+                    "source_id": scene.scene_id,
+                    "source_sha256": f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}",
+                    "entities": len(scene.entities),
+                    "dependencies": len(scene.dependencies),
+                }
+            )
+        )
+        return 0
+    if prefab_name is None or instance_name is None:
+        raise _argument_error("source_mode")
+    prefab = project.load_prefab(prefab_name)
+    instance = project.load_prefab_instance(instance_name)
+    if prefab.prefab_id != instance.prefab_id:
+        raise LudoWeaveError(
+            "prefab instance does not identify the supplied source",
+            code="tools.prefab_source_mismatch",
+            subsystem="tools",
+            phase="check_source",
+            details={"field": "prefab_id"},
+        )
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.source-check/1",
+                "status": "valid",
+                "kind": "prefab",
+                "source_protocol": prefab.protocol,
+                "instance_protocol": instance.protocol,
+                "source_id": prefab.prefab_id,
+                "instance_id": instance.instance_id,
+                "source_sha256": f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}",
+                "instance_sha256": f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}",
+                "entities": len(prefab.entities),
+                "overrides": len(instance.overrides),
+                "dependencies": len(prefab.dependencies),
+            }
+        )
+    )
     return 0
 
 

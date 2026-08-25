@@ -12,14 +12,12 @@ _RELEASE = _ROOT / ".github/workflows/release.yml"
 _PYPROJECT = _ROOT / "pyproject.toml"
 _LOCK = _ROOT / "uv.lock"
 _DOCTOR = _ROOT / "src/ludoweave/tools/doctor.py"
-_CLI = _ROOT / "src/ludoweave/tools/cli.py"
 _WHEEL_SMOKE = _ROOT / "scripts/smoke_wheel.py"
 _CI_SHA256 = "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
 _RELEASE_SHA256 = "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
 _PYPROJECT_SHA256 = "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1"
 _LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed"
 _DOCTOR_SHA256 = "9a27c9e2d1fd26f65f0b3c5fbca5869dcf76fa9652c48a4a8808d427b1b6f7e6"
-_CLI_SHA256 = "dae6839dcd1553d8f904a634c800190d68abc4ebdc06959f35541262c9ee60f4"
 _WHEEL_SMOKE_SHA256 = "2727640d8696c9ff67c3f2a7a23af06b89a98d9edc40400696e4a9ed34ce464c"
 
 
@@ -46,13 +44,12 @@ def test_doctor_retains_the_exact_supported_cpython_boundary() -> None:
     assert 'status="ok" if python_supported else "error"' in source
 
 
-def test_m118_changes_no_workflow_runtime_metadata_or_wheel_smoke_boundary() -> None:
+def test_m118_retains_metadata_doctor_and_wheel_smoke_boundary() -> None:
     assert _sha256(_CI) == _CI_SHA256
     assert _sha256(_RELEASE) == _RELEASE_SHA256
     assert _sha256(_PYPROJECT) == _PYPROJECT_SHA256
     assert _sha256(_LOCK) == _LOCK_SHA256
     assert _sha256(_DOCTOR) == _DOCTOR_SHA256
-    assert _sha256(_CLI) == _CLI_SHA256
     assert _sha256(_WHEEL_SMOKE) == _WHEEL_SMOKE_SHA256
     assert not any(
         "m118" in path.read_text(encoding="utf-8").casefold()

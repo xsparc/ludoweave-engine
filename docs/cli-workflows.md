@@ -110,3 +110,25 @@ There is no implicit pairing or directory discovery. Both loads are detached
 and perform no world mutation; callers separately compile the pair and apply
 the ordinary transaction. There is no cache, live update, or CLI workflow
 change.
+
+## Read-only source preflight
+
+M123 exposes the bounded readers as a structured CLI check:
+
+```console
+ludoweave source check PROJECT --scene scenes/main.json
+ludoweave source check PROJECT --prefab prefabs/scout.json --instance prefabs/scout-one.json
+```
+
+Scene mode checks one `ludoweave.scene/1` document. Prefab mode takes two
+explicit files, checks both M120 protocols, and rejects a mismatched
+`prefab_id`. Success writes one canonical `ludoweave.cli.source-check/1` JSON
+document to standard output with stable source identities, canonical SHA-256
+identities, and bounded counts. Structured project/path/protocol failures use
+the normal exit code 2 and JSON error document on standard error.
+
+The preflight has no compile, component-registry resolution, asset loading,
+world mutation, or receipt. It writes no project file and adds no directory
+discovery, implicit pairing, cache, watcher, live update, arbitrary script, or
+workflow allocation. It is suitable for local hooks and existing CI commands
+without adding a hosted job. There is no workflow allocation.

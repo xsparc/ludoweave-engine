@@ -34,7 +34,7 @@ wire-format revision. M121 extends the internal `HeadlessProject` composition
 with project-confined scene file loading without exporting a new public symbol.
 M122 similarly adds explicit project-confined prefab source and instance file
 loading only to that internal composition root; the public exports are
-unchanged.
+unchanged. M123 adds a versioned CLI output protocol and no Python export.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

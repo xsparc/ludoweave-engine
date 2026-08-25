@@ -1,5 +1,90 @@
 # Project State
 
+## M123 read-only source-check CLI - implementation in progress
+
+- Base: fully locally validated M122 DCO commit
+  `176c21d12adc00c71cab63a777d0cd0eb6d66215`, tree
+  `5d130ba83014145ccc398d119de71618bd2a943d`, sole parent exact M121.
+- Branch: `release/m123-read-only-source-check`; unpublished under the existing
+  public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-26 were current Godot
+  command-line documentation, Unity 6 command-line build documentation, JSON
+  Schema Draft 2020-12, and Python `argparse`. Explicit project/headless
+  operation and separated validation support a structured read-only preflight;
+  arbitrary script execution, import/build, recursive discovery, component
+  registry semantics, and cache policy remain evidence gaps and non-scope.
+  Recommendation confidence is high for the bounded adapter.
+- Runtime: `ludoweave source check PROJECT` accepts either `--scene FILE` or
+  `--prefab FILE --instance FILE`. It reuses M121/M122 loaders, checks prefab
+  source identity, and emits canonical `ludoweave.cli.source-check/1` protocol,
+  source IDs/hashes, and bounded counts without disclosing paths.
+- Ownership/mutation: each synchronous read closes before output. The command
+  creates no world/session/registry, calls no planner or transaction service,
+  writes no project file, performs no world mutation, and produces no receipt.
+- Deliberate red: exact CPython 3.12.13 produced nine intended absent-command,
+  verifier, or docs failures and one protected-surface pass in 1.50 seconds.
+- Corrections: the first implementation behavior run passed all six cases while
+  strict Pyright found two nested empty-map fixture inference gaps. Explicit
+  fixture annotations corrected typing. The first docs-inclusive boundary run
+  then found only two test/prose literal mismatches; formatting-insensitive
+  matching and one explicit sentence corrected them without runtime change.
+- Focused proof: Ruff and strict Pyright pass; all ten behavior/architecture
+  assertions pass in 1.46 seconds; strict docs build in 1.66 seconds with only
+  the known Material notice; whitespace passes.
+- Installed proof: the first package build and isolated no-dependency wheel
+  verifier pass for both scene and two-file prefab modes with expected stable
+  identities.
+- Architecture correction: the first full gate showed that M118 froze the
+  entire CLI despite guarding Python 3.15 support. M123 narrows only that stale
+  coupling; metadata, doctor, workflows, lock, and wheel smoke remain pinned.
+  All 1,624 architecture assertions then pass with one established skip.
+- Complete validation: all 383 Python files, Ruff, strict Pyright, strict docs,
+  both governance modes, and whitespace pass. Exact 3.12.13 passes 3,245 tests
+  with 16 skips; exact 3.13.13 and 3.14.5 each pass 3,235 with 17 skips.
+- Graphics/vertical proof: ten real-wgpu tests pass; two- and three-workload
+  profiles validate; Clockwork Arena and Agent World Builder retain established
+  deterministic identities and passing acceptance fields.
+- Distribution: two initial builds reproduce a 293,358-byte pure wheel at
+  `90d9adf3dddacf152f84cf42b7b334ef14fb760834465c85f02206b4ea77e92f`
+  and 1,621,988-byte sdist at
+  `6c9843dc0f479a80b78b70a264cd66b1dc2b4d672118871140c410090cba5899`.
+  All six installed-wheel smokes pass; two identical ten-artifact release
+  stages and both release smokes pass.
+- Hygiene/review: 99 wheel and 629 sdist entries contain zero forbidden files;
+  public identity and high-confidence secret scans have zero matches. Review of
+  18 intended paths found no actionable issue and protected surfaces retain
+  zero diff.
+- Review-inclusive artifact proof: the pure wheel remains 293,358 bytes at
+  `90d9adf3dddacf152f84cf42b7b334ef14fb760834465c85f02206b4ea77e92f`;
+  the record-inclusive sdist is 1,623,354 bytes at
+  `fbca3ab9ab75e25e1d047c446e18bc43edf5bc4665450c8f55bba815dcd6bc9f`.
+  All six wheel smokes, two byte-identical ten-artifact release stages, both
+  release smokes, and package hygiene pass. The sample archive retains its
+  established identity.
+- History/hosted audit: local/remote main and merge base remain exact M99;
+  M100-M122 are 23 linear single-parent commits with exact maintainer identity,
+  one DCO sign-off each, and no merge. Git integrity has 287 dangling-only
+  records and no critical finding. Only required local milestone branches and
+  remote main exist; M123 has no PR, run, release, or remote tag, so no hosted
+  allocation was triggered.
+- Scratch cleanup: all 13 exact M123 build, release, profile, docs, and pytest
+  targets resolved inside the workspace, were untracked and non-reparse, and
+  were removed in one guarded pass. A separate remaining count was zero.
+- Final source separator: the unchanged 46-package lock, all 383 Python files,
+  Ruff, strict Pyright, all 1,624 architecture assertions with one established
+  skip, strict docs, corrected static and dated strict governance, and
+  whitespace pass. The first governance command targeted the project instead
+  of the prescribed registry root and reported only that absent registry; the
+  corrected commands returned zero findings.
+- Final metadata/scope separator: all 14 M59/M118/M123 assertions pass; dated
+  strict governance and whitespace pass. The worktree contains exactly the 18
+  intended paths, protected workflows/metadata/lock/root/headless/prior-smoke
+  surfaces retain zero diff, and the two regenerated docs/pytest targets were
+  removed after being proved workspace-confined, untracked, and non-reparse.
+- Scope: no compile, component registry, asset loading, directory discovery,
+  implicit pairing, cache, watcher, live update, write-back, arbitrary script,
+  remote access, dependency, root API, workflow job, or hosted allocation.
+
 ## M122 project-confined prefab file loading - locally validated, commit pending
 
 - Base: fully locally validated M121 DCO commit

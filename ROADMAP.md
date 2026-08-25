@@ -1102,6 +1102,28 @@ operation, dependency, root API, workflow, or hosted runner change. Project
 confinement remains a cooperative local-project boundary, not a race-free
 filesystem sandbox.
 
+## M123 read-only source-check CLI
+
+M123 starts from fully locally validated M122 commit
+`176c21d12adc00c71cab63a777d0cd0eb6d66215`. The existing standard-library CLI
+gains one nested `ludoweave source check` workflow. Callers select either one
+project-confined scene file or two explicit files for a prefab source and
+instance. Successful checks emit canonical `ludoweave.cli.source-check/1` JSON
+with protocol identities, stable source IDs, canonical SHA-256 identities, and
+bounded entity/dependency/override counts.
+
+The command performs structural protocol preflight only. It creates no world or
+session, resolves no component registry or asset, invokes no planner, performs
+no compile and no world mutation, and therefore produces no receipt. Prefab
+mode does enforce exact source/instance `prefab_id` agreement. Failures retain
+the established exit-2 and sanitized structured CLI error behavior.
+
+M123 has no directory discovery, implicit pairing, extension routing, manifest
+lookup, source cache, watcher, live update, write-back, remote access, arbitrary
+script execution, component semantic validation, dependency, root API, version,
+or workflow allocation change. The existing consolidated CI topology is
+unchanged.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

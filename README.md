@@ -26,9 +26,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > one-level data-only prefab fragments and schema-aware instance overrides;
 > M121 adds bounded project-confined scene file loading through the existing
 > headless composition root; M122 adds two explicit project-confined prefab
-> file loads with no implicit pairing or discovery.
+> file loads with no implicit pairing or discovery; M123 adds a read-only,
+> structured scene/prefab source-check CLI.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M122 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M123 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -259,7 +260,8 @@ assert result.resolve(pending) in world.entities()
 ```
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
-The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only project manifest and full CLI example.
+The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only
+project manifest, full command workflow, and M123 read-only source preflight.
 The [persistent command guide](docs/commands.md) documents M119-M122 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
 mapping, prefab overrides, and bounded project-confined scene and prefab file

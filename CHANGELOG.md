@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M123/RFC-0106 `ludoweave source check` for read-only, project-confined
+  scene or explicit prefab-pair preflight. Success emits canonical
+  `ludoweave.cli.source-check/1` JSON; there is no compile, world mutation,
+  receipt, directory discovery, cache, dependency, root-API, or workflow
+  allocation change.
 - Add M122/RFC-0105 project-confined prefab file loading through two explicit
   `HeadlessProject` methods. Callers select separate `ludoweave.prefab/1` and
   `ludoweave.prefab-instance/1` files; there is no implicit pairing, directory

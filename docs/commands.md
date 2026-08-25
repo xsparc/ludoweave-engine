@@ -248,6 +248,21 @@ loading, cache, watcher, live update, reimport, nested composition, write-back,
 remote access, new persistent operation, dependency, root export, workflow, or
 hosted runner change.
 
+## M123 read-only source preflight
+
+`ludoweave source check` provides a structured project-confined check before a
+caller chooses to compile or instantiate source data. Scene mode accepts one
+file; prefab mode accepts two explicit files and verifies exact source/instance
+identity. A valid result uses `ludoweave.cli.source-check/1` and includes
+canonical source hashes and bounded counts.
+
+The check performs no compile, creates no session or world, applies no command,
+and causes no world mutation, so there is no receipt. It does not prove that
+component payloads match a later application-supplied registry. There is no
+directory discovery, cache, live update, write-back, asset loading, remote
+access, new persistent operation, dependency, root export, or workflow
+allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one
