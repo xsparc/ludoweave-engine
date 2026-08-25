@@ -3190,6 +3190,34 @@ workflows, permissions, credentials, release authority, jobs, and allocations
 remain unchanged. There is no workflow allocation. RFC-0112 records the full
 boundary.
 
+## M130 confined asset build-plan verification boundary
+
+M130 adds no new plan schema. `HeadlessProject.load_asset_build_plan()` reads
+one explicit project-relative M129 document through the established confined,
+regular-file, no-follow, bounded descriptor path and delegates detached bytes
+to strict `AssetBuildPlan.from_json()`. The loader owns closure and retains no
+descriptor or path in the returned immutable value.
+
+`AssetBuildPlan.verify()` accepts only an exact plan value. Construction has
+already enforced protocol, loader, closure, order, and cache-key invariants;
+verification then compares source-lock identity, manifest identity, roots,
+entry URI sequence, and each entry field in deterministic order. Failures use
+stable `asset_build_plan.mismatch` with only the first field and optional
+logical URI. Compared hashes, sizes, settings, keys, and paths remain absent.
+
+The `source asset-plan-verify` composition loads the saved plan, recomputes and
+verifies current M128 inputs, regenerates the M129 plan, and compares before
+one bounded success document. Separate source reads are still not an atomic
+filesystem snapshot. No success bytes precede complete success and the project
+is unchanged.
+
+M130 performs no plan execution, asset decode, asset build, cache read, cache
+write, artifact creation, import, scheduler, worker, discovery, watcher, live
+update, source/project write, world mutation, or receipt. Dependencies,
+metadata, version, engine-root exports, workflows, permissions, credentials,
+release authority, jobs, and allocations remain unchanged. There is no
+workflow allocation. RFC-0113 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

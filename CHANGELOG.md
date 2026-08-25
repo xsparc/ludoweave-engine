@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M130/RFC-0113 confined saved-plan loading plus read-only `ludoweave
+  source asset-plan-verify`. Verification recomputes current M128 inputs and
+  the M129 plan, reports mismatches without compared content, and performs no
+  asset decode/build, cache read/write, artifact creation, or workflow
+  allocation.
 - Add M129/RFC-0112 canonical `ludoweave.asset-build-plan/1` values plus
   read-only `ludoweave source asset-plan`. Plans verify current M128 inputs,
   order the exact selected closure dependency-first with URI tie-breaking, and

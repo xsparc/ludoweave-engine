@@ -57,6 +57,9 @@ M129 adds experimental `ASSET_BUILD_PLAN_PROTOCOL`, `ASSET_LOADER_PROTOCOL`,
 focused `ludoweave.assets` package. The new loader constant names the exact
 existing M4 cache-key identity and does not change its bytes. Planning adds a
 versioned CLI document; the engine root remains unchanged.
+M130 adds experimental exact verification behavior to `AssetBuildPlan`, an
+internal project-confined plan loader, and a versioned CLI verification result.
+It adds no Python export and the engine root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

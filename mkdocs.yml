@@ -153,6 +153,7 @@ nav:
       - RFC-0110 - Add source-to-asset dependency checking: rfcs/0110-add-source-to-asset-dependency-checking.md
       - RFC-0111 - Add asset-source lock verification: rfcs/0111-add-asset-source-lock-verification.md
       - RFC-0112 - Add deterministic asset build planning: rfcs/0112-add-deterministic-asset-build-planning.md
+      - RFC-0113 - Add confined asset build-plan verification: rfcs/0113-add-confined-asset-build-plan-verification.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

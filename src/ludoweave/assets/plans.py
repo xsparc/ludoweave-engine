@@ -424,6 +424,39 @@ class AssetBuildPlan:
             raise _limit_error(field="document", actual=len(encoded), limit=_MAX_PLAN_BYTES)
         return encoded
 
+    def verify(self, actual: AssetBuildPlan) -> None:
+        """Require an exact current plan without disclosing compared values."""
+
+        if type(actual) is not AssetBuildPlan:
+            raise _plan_error(
+                "asset build plan verification requires an exact plan value",
+                code="asset_build_plan.invalid_verify",
+                phase="verify",
+                details={"actual_type": type(actual).__name__},
+            )
+        for field in (
+            "asset_source_lock_sha256",
+            "asset_manifest_sha256",
+            "roots",
+        ):
+            if getattr(self, field) != getattr(actual, field):
+                raise _mismatch(field=field)
+        expected_uris = tuple(entry.uri for entry in self.entries)
+        actual_uris = tuple(entry.uri for entry in actual.entries)
+        if expected_uris != actual_uris:
+            raise _mismatch(field="entries")
+        for expected, observed in zip(self.entries, actual.entries, strict=True):
+            for field in (
+                "kind",
+                "settings",
+                "source_sha256",
+                "source_bytes",
+                "dependencies",
+                "cache_key",
+            ):
+                if getattr(expected, field) != getattr(observed, field):
+                    raise _mismatch(field=field, uri=expected.uri)
+
 
 def _dependency_order(
     manifest: AssetManifest,
@@ -674,6 +707,18 @@ def _input_mismatch(*, field: str, uri: AssetUri | None = None) -> AssetError:
         "asset manifest and verified source lock do not agree",
         code="asset_build_plan.input_mismatch",
         phase="plan",
+        details=details,
+    )
+
+
+def _mismatch(*, field: str, uri: AssetUri | None = None) -> AssetError:
+    details: dict[str, str | int | float | bool | None] = {"field": field}
+    if uri is not None:
+        details["uri"] = uri.value
+    return _plan_error(
+        "saved asset build plan does not match the current verified plan",
+        code="asset_build_plan.mismatch",
+        phase="verify",
         details=details,
     )
 

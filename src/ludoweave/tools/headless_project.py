@@ -22,6 +22,11 @@ from ludoweave.assets.pipeline import (
     AssetManifest,
     AssetManifestLimits,
 )
+from ludoweave.assets.plans import (
+    DEFAULT_ASSET_BUILD_PLAN_LIMITS,
+    AssetBuildPlan,
+    AssetBuildPlanLimits,
+)
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.ecs import (
     ComponentRegistry,
@@ -291,6 +296,28 @@ class HeadlessProject:
             role="asset_source_lock",
         )
         return AssetSourceLock.from_json(document, limits=limits)
+
+    def load_asset_build_plan(
+        self,
+        relative: str,
+        *,
+        limits: AssetBuildPlanLimits = DEFAULT_ASSET_BUILD_PLAN_LIMITS,
+    ) -> AssetBuildPlan:
+        """Load one bounded asset build plan through project confinement."""
+
+        if type(limits) is not AssetBuildPlanLimits:
+            raise _tool_error(
+                "asset build plan limits must be an exact AssetBuildPlanLimits value",
+                code="tools.invalid_asset_build_plan_limits",
+                phase="load_asset_build_plan",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="asset_build_plan",
+        )
+        return AssetBuildPlan.from_json(document, limits=limits)
 
     def load_scene(
         self,

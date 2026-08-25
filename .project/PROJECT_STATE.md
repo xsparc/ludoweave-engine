@@ -1,6 +1,84 @@
 # Project State
 
-## M129 deterministic verified asset build planning - direction selected
+## M130 confined asset build-plan verification - direction selected
+
+- Base: fully locally validated M129 DCO commit
+  `ae1b2bf01a001ea157e170626544a2d487055d09`, tree
+  `ea7b58efafa29cb5af4ee40617636dce34176e5c`, sole parent exact M128.
+- Branch: `release/m130-asset-build-plan-verification`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle, Godot, and Python primary references support
+  revalidating recorded input fingerprints before cache/use/execution while
+  retaining a separate generated-output/cache boundary.
+- Contract: one saved M129 plan will load through project confinement and
+  compare content-silently with a plan recomputed only after current M128 lock
+  verification. Success exposes only protocol/status and aggregate counts.
+- Baseline: exact M129 commit/tree/parent, clean status, and `0 30` divergence
+  pass. After correcting one nonexistent test filename, 168 focused assertions
+  pass with one established skip in 5.00 seconds. Static governance passes;
+  the dated call passes on an approved rerun after a pre-execution cache denial.
+- Deliberate red: all three evidence files were formatted. Four behavior cases
+  failed only on absent verification/loader/CLI behavior; four intended M130
+  boundary assertions failed and the protected-surface assertion passed.
+- Implementation: exact content-silent plan comparison, confined plan loading,
+  current-input CLI verification, behavior evidence, installed verifier, RFC,
+  and public documentation are implemented. No plan/build/cache effect occurs.
+- Focused proof: the first checkpoint stopped on one test-only strict-typing
+  inference gap. After correction, all statics and 14 behavior assertions pass
+  in 3.32 seconds; three boundaries pass while installed/docs were still absent.
+- Documentation/installed proof: after one mechanical smoke-script reflow and
+  one retained governance cache denial, all statics, 177 focused assertions
+  with one established skip, strict docs, approved dated governance, and
+  whitespace pass. Strengthened load-order/limits evidence raises the focused
+  result to 178 passes with one skip; the isolated no-dependency wheel verifies
+  the saved plan and creates no cache.
+- Complete source gate: after one retained pre-execution cache denial, all 414
+  Python files, Ruff, strict Pyright, 1,662 architecture assertions with one
+  established skip, strict docs, both governance modes, and whitespace pass.
+- Supported runtimes: after one factually retained lost-session attempt, a
+  directly tracked exact 3.12.13 graphics rerun passes 3,387 tests with 16
+  skips; exact 3.13.13 and 3.14.5 base each pass 3,377 with 17 skips.
+- Graphics/profiles/verticals: all ten real-wgpu tests pass; both fresh M7
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic state, capture, and replay identities.
+- Initial packages/releases: two builds reproduce the pure wheel/source
+  archives; all 13 isolated consumers pass; two byte-identical ten-artifact
+  release rehearsals and both complete release smokes pass. The 103-entry wheel
+  and 667-entry source archive contain no forbidden binary/control metadata.
+- Review/hygiene: no actionable finding remains. Exactly 21 intended paths
+  change; protected surfaces retain zero diff; public tool-identity and high-
+  confidence credential scans return zero files; new runtime additions have no
+  build/cache/write/backend/native/time/entropy effect; whitespace passes.
+- Review-record separator: lock, all 414 Python files, Ruff, strict Pyright,
+  1,662 architecture assertions with one established skip, strict docs, dated
+  governance, and whitespace pass on the factual evidence tree.
+- Final packages/releases: two final builds reproduce the unchanged wheel and
+  a record-inclusive source archive; all 13 final installed consumers pass;
+  both final ten-artifact stages are byte-identical and complete release smoke
+  passes.
+- History/hosted state: remote main remains exact M99; M100-M129 are 30 linear
+  exact-identity singly DCO-signed commits; M129 is the exact base with `0 30`
+  divergence. The 32 expected local branches and only remote main exist;
+  object integrity has zero critical finding. Aggregate anonymous public REST
+  checks return no M130 branch, PR, run, tag, or release. No remote mutation
+  occurred.
+- Scratch: all 13 exact M130 generated build/test targets were removed after an
+  ordinary Windows denial on only `.pytest-tmp` and a guarded elevated retry;
+  zero audited generated target remains.
+- Final metadata separator: all formatting, Ruff, strict Pyright, 15 selected
+  metadata/boundary assertions, both governance modes, protected-surface,
+  identity/credential, scratch-absence, exact 21-path, and whitespace checks
+  pass. M130 is ready for its local DCO commit.
+- Scope: no plan execution, decoder execution, build, import, cache use/write,
+  artifact, scheduler, discovery, watcher, write, dependency, metadata,
+  version, workflow/allocation, release-authority, or remote change.
+
+## M129 deterministic verified asset build planning - locally validated and committed
+
+- Commit: `ae1b2bf01a001ea157e170626544a2d487055d09`, tree
+  `ea7b58efafa29cb5af4ee40617636dce34176e5c`, sole parent exact M128; exact
+  maintainer identity, one DCO sign-off, 23 paths, `0 30` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M128 DCO commit
   `ad6b43a9d480cd3bd94298799125ee736d15124e`, tree

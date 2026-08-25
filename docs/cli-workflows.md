@@ -260,3 +260,23 @@ complete plan validates. This is not asset decode, asset build, cache read,
 cache write, artifact creation, scheduler execution, provenance, or build-
 success proof. The project remains unchanged and there is no workflow
 allocation.
+
+## Saved asset build-plan verification
+
+M130 verifies an explicit saved M129 plan against freshly recomputed inputs:
+
+```console
+ludoweave source asset-plan-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json
+```
+
+The plan loads through project confinement and strict bounded decoding. The CLI
+then recomputes M128 source identities, requires the supplied lock to match,
+regenerates the M129 plan, and performs an exact content-silent comparison.
+Success is canonical `ludoweave.cli.asset-build-plan-verify/1` with only
+protocol/status and aggregate counts. Failure emits no success bytes and no
+compared hash, size, key, settings value, or path.
+
+The CLI does not execute the plan, decode or build an asset, consult or write a
+cache, create an artifact, import/reimport, schedule work, discover files, or
+mutate the project. Sequential source verification remains non-atomic and
+there is no workflow allocation.

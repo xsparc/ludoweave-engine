@@ -2,6 +2,23 @@
 
 No architecture decision is currently blocked.
 
+## M130 confined asset build-plan verification
+
+Primary-source review resolves the adopted M130 direction: load one explicit
+saved M129 plan through the existing project-confined regular-file boundary,
+recompute and verify current M128 source identities, regenerate the M129 plan,
+then compare the two plans exactly before emitting a bounded success summary.
+
+Verification reports only the first stable mismatching field and optional
+logical URI. Compared lock/manifest hashes, source sizes/hashes, cache keys,
+settings, and paths remain absent. The saved plan is detached immutable input;
+the project owns no retained descriptor and receives no write.
+
+M130 adds no plan execution, payload decoder, asset build, cache lookup/write,
+artifact creation, import/reimport, scheduler/worker, discovery, watcher,
+source/project write, dependency, metadata, version, root API, workflow/job/
+allocation, permission, credential, release authority, or remote change.
+
 ## M129 deterministic verified asset build planning
 
 Primary-source review resolves the adopted M129 direction: plan only the exact

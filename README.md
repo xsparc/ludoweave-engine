@@ -37,9 +37,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > M128 adds bounded, path-silent asset-source lock generation and verification
 > without decoding, building, importing, or caching an asset; M129 adds pure
 > dependency-first planning with exact existing cache-key compatibility after
-> verified inputs, without executing a build or reading or writing a cache.
+> verified inputs, without executing a build or reading or writing a cache;
+> M130 adds confined saved-plan loading and content-silent verification against
+> freshly recomputed inputs, still without build or cache effects.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M128 are locally validated stacked milestones from the exact M99 closeout, and M129 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M129 are locally validated stacked milestones from the exact M99 closeout, and M130 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -289,9 +291,9 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only
-project manifest, full command workflow, and M123-M129 read-only source
+project manifest, full command workflow, and M123-M130 read-only source
 preflight, integrity verification, dependency checking, locks, and build plans.
-The [persistent command guide](docs/commands.md) documents M119-M129 scene
+The [persistent command guide](docs/commands.md) documents M119-M130 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
 mapping, prefab overrides, bounded project-confined file loading, and explicit
 source manifests, locks, and asset dependency checking.

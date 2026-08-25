@@ -393,6 +393,30 @@ build, no cache read, no cache write, no artifact, import, scheduler, worker,
 discovery, watcher, live update, world mutation, receipt, dependency, root
 export, workflow job, or workflow allocation.
 
+## M130 confined asset build-plan verification
+
+`HeadlessProject.load_asset_build_plan()` reads one explicit project-relative
+plan through the existing confined regular-file boundary and the plan's 8 MiB
+decode limit. The returned value is detached and immutable; the loader retains
+no descriptor.
+
+`AssetBuildPlan.verify()` compares one saved plan with an exact current plan.
+After exact type/protocol construction it checks source-lock identity, asset-
+manifest identity, roots, entry URI sequence, then kind, settings, source hash/
+size, dependencies, and cache key in stable order. A mismatch contains only the
+first field and optional logical URI; compared content and paths are absent.
+
+`ludoweave source asset-plan-verify PROJECT --manifest FILE --assets FILE
+--lock FILE --plan FILE` loads the saved plan, recomputes and verifies current
+M128 inputs, regenerates the M129 plan, and compares before emitting canonical
+`ludoweave.cli.asset-build-plan-verify/1`. Success contains only protocol,
+status, loader/plan protocols, and aggregate root/entry counts.
+
+This is verification only. There is no asset decode, no asset build, no cache
+read, no cache write, no artifact, import, execution, scheduler, worker,
+discovery, watcher, live update, world mutation, receipt, dependency, root
+export, workflow job, or workflow allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

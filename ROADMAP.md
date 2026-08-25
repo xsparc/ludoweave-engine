@@ -1274,6 +1274,30 @@ world/session, mutation, receipt, or project write. It adds no dependency,
 engine-root API, version, workflow job, workflow allocation, hosted allocation,
 permission, credential, release authority, or remote change.
 
+## M130 confined asset build-plan verification
+
+M130 starts from fully locally validated M129 commit
+`ae1b2bf01a001ea157e170626544a2d487055d09`. It adds exact content-silent
+verification for `AssetBuildPlan`, project-confined loading for one explicit
+saved plan, and one read-only command:
+
+```console
+ludoweave source asset-plan-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json
+```
+
+The command strictly loads the saved M129 plan, recomputes and verifies current
+M128 inputs, regenerates the current plan, and compares every stable field
+before emitting bounded `ludoweave.cli.asset-build-plan-verify/1` success.
+Mismatch diagnostics contain only the first field and optional logical URI,
+never compared content or paths.
+
+M130 is verification only. It performs no plan execution, payload decode,
+asset build, import, cache read, cache write, artifact creation, scheduler/
+worker execution, discovery, watcher, reimport, world/session, mutation,
+receipt, or project write. It adds no dependency, engine-root API, version,
+workflow job, workflow allocation, hosted allocation, permission, credential,
+release authority, or remote change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
