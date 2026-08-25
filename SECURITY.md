@@ -534,6 +534,14 @@ Maintainers will acknowledge the report through the same private channel, assess
   byte-identity claim. It changes no workflow, allocation, dependency,
   producer, verifier, runtime API, or release authority; it is not a general
   ZIP interoperability claim and is not a real public release observation.
+- M117 retains standard GIL CPython as the supported baseline after one exact
+  Windows CPython 3.14.5t installed-wheel serial compatibility observation.
+  The GIL-disabled probe preserved deterministic headless execution, explicit
+  owner-thread rejection, and orderly close. It is one free-threaded serial-
+  compatibility decision, not a support promise, and makes no concurrent-
+  safety claim. It adds no graphics, performance, cross-platform, extension,
+  workflow, allocation, dependency, runtime API, or release-authority change
+  and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.

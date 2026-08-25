@@ -1,5 +1,97 @@
 # Project State
 
+## M117 free-threaded serial compatibility - implementation in progress
+
+- Base: fully locally validated M116 DCO commit
+  `34bad8a0fa304a2e0a96f5cc177483d09abd7acd`, tree
+  `26be29b19d1b91e3e3b889d6a3337541290739b9`, sole parent exact M115.
+- Branch: `release/m117-free-threaded-serial-compatibility`; unpublished under
+  the existing public-review identity hold.
+- Direction: retain standard GIL CPython 3.12-3.14 as the supported baseline;
+  record exact free-threaded serial compatibility as an optional observation,
+  not a support or concurrency promise.
+- Current-source basis: PEP 779 moved free-threaded CPython to supported-but-
+  optional Phase II for Python 3.14; Python documents remaining object-level
+  thread-safety limits; uv supports explicit `3.14t` selection.
+- Exact Windows probe: uv installed CPython 3.14.5 free-threaded. A pure local
+  wheel installed without dependencies into an isolated environment. Version
+  and doctor passed. With the build free-threaded and its GIL disabled, 120
+  virtual ticks/frames completed in 2,000,000,000 nanoseconds, lifecycle closed,
+  and a worker-thread call failed with `engine.wrong_thread`. The installed-
+  wheel headless example matched the deterministic summary.
+- Deliberate red: after one mechanical Ruff reformat, the exact CPython 3.12.13
+  contract passed three protected baseline/ownership/scope assertions and
+  failed only the intended absent-RFC/docs assertion in 0.23 seconds.
+- Implementation correction: the first post-implementation run failed only
+  because one required prose phrase was checked case-sensitively at sentence
+  start. The corrected case-normalized contract remains format/Ruff-clean and
+  all four assertions pass in 0.20 seconds. Strict docs build in 1.64 seconds;
+  whitespace passes; exactly 16 intended paths change.
+- Focused proof: the first exact-runtime launches were sandbox-blocked before
+  pytest. Approved reruns pass all four assertions on exact standard-GIL
+  CPython 3.12.13, 3.13.13, and 3.14.5 in 0.21, 0.68, and 0.58 seconds.
+- Static/source proof: the unchanged 46-package lock, 360-file format check,
+  Ruff, strict Pyright, 1,599 architecture assertions with one established
+  Windows capability skip, strict docs, protected surfaces, and whitespace
+  pass.
+- Complete suites: exact 3.12.13 with graphics passes 3,139 tests with 15
+  skips; exact standard-GIL 3.13.13 and 3.14.5 base environments each pass
+  3,129 tests with 16 skips.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,576-byte pure wheel at
+  SHA-256
+  `5161d89bb35aaf7b8a5af78912cbd5858c0ec67364002b44ed4f92c05021095d`
+  and a 1,551,612-byte source archive at SHA-256
+  `286306db276e076688abc92bfb8c16c374a60b64579ea6789fb6d8116233fb12`.
+  Wheel smoke passes. Two complete same-environment ten-artifact stages are
+  byte-identical; complete release smoke and 94/600-entry package hygiene pass.
+- Findings-first review: exactly 16 intended paths, no actionable finding,
+  zero protected workflow/lifecycle/wheel-smoke/runtime/metadata/lock diff, zero
+  public tool-identity or high-confidence secret match, clean package hygiene,
+  and clean whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,576-byte
+  wheel at SHA-256
+  `5161d89bb35aaf7b8a5af78912cbd5858c0ec67364002b44ed4f92c05021095d`
+  and a 1,551,972-byte source archive at SHA-256
+  `9ea05239d408bbead73a774790da1fe273b8cf2252b1fd4cdbae462e817333d6`.
+  Wheel smoke, twice-staged ten-artifact byte identity, complete release smoke,
+  and 94/600-entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Final source separator: the unchanged 46-package lock, 360-file formatting,
+  Ruff, strict Pyright, strict docs, protected surfaces, and whitespace pass.
+  All 1,599 architecture assertions pass with one established Windows
+  capability skip; all nine focused M59/M117 assertions pass.
+- Precommit history/hosted-state audit: after fetch/prune, local and remote
+  `main` and the merge base remain exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M116 remains exact head
+  `34bad8a0fa304a2e0a96f5cc177483d09abd7acd`, tree
+  `26be29b19d1b91e3e3b889d6a3337541290739b9`, with sole parent M115.
+  Divergence is `0 17`; all 17 commits are linear with exact maintainer
+  identity and one DCO sign-off each. Only `main` plus required M100-M117
+  local branches and only remote `main` exist. Full Git checking reports 44
+  dangling-only lines and zero critical finding. GitHub authentication is
+  valid; M117 PR/run, releases, and remote tags are empty; no hosted Actions
+  allocation was triggered.
+- Post-audit separator: the first strict-docs and focused-test launches were
+  blocked before project execution by sandbox denial of the existing uv cache.
+  The approved rerun built strict docs in 1.70 seconds with only the known
+  Material notice and passed all nine M59/M117 assertions in 0.39 seconds.
+  Protected surfaces, exact 16-path scope, whitespace, public identity hygiene,
+  and high-confidence secret scans pass.
+- Final precommit metadata separator: all nine focused M59/M117 assertions pass
+  in 0.38 seconds after the post-audit task-state update, and whitespace passes.
+- Implementation scope: RFC-0100, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, metadata, lock,
+  dependencies, version, runtime package/API, graphics, and release authority
+  remain unchanged.
+- Qualification status: all local M117 gates pass; commit and scratch cleanup
+  remain.
+- Nonclaims: no concurrent safety, performance, graphics/wgpu, cross-platform
+  free-threaded support, extension compatibility, hosted M117 run, real public
+  release, tag, release, publication, push, or PR.
+
 ## M116 sample-bundle semantic portability - implementation in progress
 
 - Base: fully locally validated M115 DCO commit

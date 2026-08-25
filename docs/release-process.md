@@ -799,6 +799,16 @@ allocation, dependency, producer, verifier, runtime API, or release-authority
 change. It is not a general ZIP interoperability claim and is not a real public
 release observation.
 
+M117/RFC-0100 retains standard GIL CPython as the supported baseline after an
+exact Windows CPython 3.14.5t installed-wheel serial compatibility probe. The
+pure wheel installed without dependencies; version, doctor, deterministic
+headless execution, explicit owner-thread rejection, and orderly close passed
+with the GIL disabled. This is one free-threaded serial-compatibility decision,
+not a support promise or release qualification. It makes no concurrent-safety
+claim and adds no graphics, performance, cross-platform, extension, workflow,
+allocation, dependency, metadata, runtime API, or release-authority change. It
+is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable

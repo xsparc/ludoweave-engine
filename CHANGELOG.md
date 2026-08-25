@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M117/RFC-0100 decision to retain standard GIL CPython as the supported
+  baseline after an exact CPython 3.14.5t installed-wheel serial-compatibility
+  observation, with no concurrent-safety, graphics, performance, workflow,
+  dependency, runtime API, or support-promotion claim.
 - Record M116/RFC-0099 decision to separate sample-bundle semantic portability
   from byte identity. The exact supported-runtime Windows producer-consumer
   matrix extracts the same 50-file source tree despite different valid Deflate

@@ -2833,6 +2833,35 @@ or release-authority change. This is not a general ZIP interoperability claim
 and is not a real public release observation. RFC-0099 defines the complete
 boundary.
 
+## M117 free-threaded serial-compatibility boundary
+
+PEP 779 moved free-threaded CPython to officially supported but still optional
+Phase II in Python 3.14. That interpreter-level status does not make application
+objects concurrently safe. Python's free-threading guide continues to require
+explicit object/thread discipline, and uv requires or permits a free-threaded
+variant selection such as `3.14t`.
+
+LudoWeave retains standard GIL CPython as the supported baseline for CPython
+3.12-3.14. Engine, world, render, platform, audio, and agent lifecycles remain
+single-owner contracts. The GIL is not an ownership mechanism: the engine stores
+its creating thread identity and rejects lifecycle calls from another thread
+before changing state.
+
+An exact Windows CPython 3.14.5t installed-wheel serial compatibility probe ran
+with `Py_GIL_DISABLED == 1` and the GIL disabled at runtime. Version and doctor
+passed; 120 virtual ticks and frames completed in 2,000,000,000 nanoseconds;
+close completed; and a worker-thread lifecycle call retained stable
+`engine.wrong_thread`. The installed-wheel headless example reproduced the same
+deterministic summary.
+
+M117 records one free-threaded serial-compatibility decision. It is not a
+support promise and makes no concurrent-safety claim. It adds no graphics/wgpu
+evidence, performance result, parallel execution, cross-platform free-threaded
+evidence, extension compatibility, new lock, runtime build branch, workflow,
+allocation, dependency, version, runtime package/API, or release-authority
+change. It is not a real public release observation. RFC-0100 defines the
+complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

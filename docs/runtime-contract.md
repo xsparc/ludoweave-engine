@@ -16,7 +16,15 @@ CREATED -> INITIALIZING -> READY -> RUNNING -> STOPPED -> CLOSED
 - Context entry initializes. If entry fails, partial backend state is closed before the initialization error is re-raised.
 - Context exit always calls `close()` and does not suppress an exception from the context body.
 
-The engine records its creating thread. Lifecycle methods from another thread fail rather than racing. M0 does not promise thread safety or free-threaded CPython support.
+The engine records its creating thread. Lifecycle methods from another thread
+fail rather than racing. The GIL is not an ownership mechanism.
+
+M117 retains standard GIL CPython as the supported baseline for CPython
+3.12-3.14. One exact Windows CPython 3.14.5t installed-wheel serial compatibility
+probe ran with the GIL disabled and preserved deterministic headless execution,
+orderly close, and `engine.wrong_thread`. This is not a support promise and makes
+no concurrent-safety claim. There is no graphics, performance, cross-platform,
+extension, runtime-build-branch, dependency, or workflow expansion.
 
 ## Time
 

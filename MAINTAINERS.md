@@ -632,6 +632,17 @@ tag, release, or publication. It is not a general ZIP interoperability claim
 and is not a real public release observation. M116 is locally stacked on fully
 validated, unpushed M115; none of M100-M116 has hosted qualification.
 
+M117 retains standard GIL CPython as the supported baseline after an exact
+Windows CPython 3.14.5t installed-wheel serial compatibility observation. The
+free-threaded build ran with its GIL disabled, completed the deterministic
+headless example, preserved explicit owner-thread rejection, and closed
+normally. This is one free-threaded serial-compatibility decision and not a
+support promise. It makes no concurrent-safety claim and adds no graphics,
+performance, cross-platform, extension, workflow, allocation, dependency,
+version, runtime API, release-authority, tag, release, or publication change.
+It is not a real public release observation. M117 is locally stacked on fully
+validated, unpushed M116; none of M100-M117 has hosted qualification.
+
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
 its centralized guard and product-terminology boundary remain in force.

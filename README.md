@@ -19,9 +19,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > only profile; M114 retains sample-member compression-level non-observability
 > without inferring an exact writer setting; M115 scopes sample-bundle byte
 > reproducibility to the fixed release environment; M116 separates semantic
-> portability from byte identity.
+> portability from byte identity; M117 retains the standard CPython support
+> baseline after one free-threaded serial probe.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M116 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M117 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -783,6 +784,15 @@ method, cross-runtime byte-identity claim, workflow, allocation, dependency,
 producer, verifier, runtime API, or release-authority change. It is not a
 general ZIP interoperability claim and is not a real public release
 observation.
+
+M117 retains standard GIL CPython as the supported baseline. An exact Windows
+CPython 3.14.5 free-threaded installed-wheel serial compatibility probe ran with
+the GIL disabled, passed version and doctor, completed 120 deterministic
+headless ticks, closed normally, and preserved `engine.wrong_thread`. RFC-0100
+records one free-threaded serial-compatibility decision. This observation is
+not a support promise, makes no concurrent-safety claim, and adds no graphics,
+performance, cross-platform, extension, workflow, dependency, runtime API, or
+release-authority change. It is not a real public release observation.
 
 M71 copies the bounded sample source into one owned checksum-admitted snapshot.
 The binary spooled temporary file receives at most 16 MiB while SHA-256 is

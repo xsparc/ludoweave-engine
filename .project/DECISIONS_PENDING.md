@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M117 free-threaded serial compatibility
+
+RFC-0100 resolves the adopted M117 direction: retain standard GIL CPython as
+the supported baseline while recording one exact Windows CPython 3.14.5t
+installed-wheel serial-compatibility observation. The GIL-disabled probe
+preserved deterministic headless execution, explicit owner-thread rejection,
+and orderly close without a runtime or workflow change.
+
+No concurrent-safety claim, parallel-performance target, graphics/wgpu claim,
+cross-platform free-threaded evidence, extension compatibility, runtime build
+branch, lock, dependency, workflow, runner allocation, version, support
+promotion, or release-authority change is pending for M117.
+
+Reopen this decision only when a concrete supported-build proposal supplies
+cross-platform lifecycle, world, agent, provider, extension, performance,
+failure, and maintenance evidence. Official CPython support for the interpreter
+variant does not establish concurrent safety or support for this engine.
+
 ## M116 sample-bundle semantic portability
 
 RFC-0099 resolves the M116 decision: separate sample-bundle semantic
