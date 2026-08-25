@@ -1173,6 +1173,29 @@ watcher, live update, write-back, world/session, command, transaction, world
 mutation, receipt, dependency, root-package API, version, workflow job, hosted
 allocation, or release-authority change.
 
+## M126 project-confined asset-manifest loading
+
+M126 starts from fully locally validated M125 commit
+`cc440c84dbc53a07b5640ca46410e461fe686cb0`. It retains the exact existing
+`ludoweave.assets/1` document while adding focused protocol/limit exports,
+bounded UTF-8 decoding, deterministic canonical bytes, and one internal
+`HeadlessProject.load_asset_manifest()` method.
+
+The existing path-based `AssetManifest.load()` delegates to the same bounded
+decoder. The project loader reuses the established portable project-relative
+path policy and capped open-handle read before it returns the manifest with its
+existing project-root composition context. Entries normalize by logical URI;
+settings and dependencies retain deterministic order. Empty manifests remain
+compatible.
+
+M126 performs no asset source read, asset build, cache use or creation,
+directory discovery, source-manifest integration, source-to-asset resolution,
+import, compile, watcher, live update, write-back, world/session creation,
+command, transaction, world mutation, or receipt. It adds no dependency,
+engine-root API, version, CLI, workflow job, hosted allocation, or release-
+authority change. A later milestone must separately decide dependency-check
+semantics.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M126 project-confined asset-manifest loading
+
+RFC-0109 resolves the adopted M126 direction: retain exact
+`ludoweave.assets/1`, add tightening-only manifest limits and deterministic
+detached decoding/canonical bytes, make the existing path loader bounded, and
+add one project-confined `HeadlessProject.load_asset_manifest()` composition
+method.
+
+This is a loader foundation only. It reads no asset source, builds no asset,
+uses or writes no cache, and does not connect M119-M125 source dependencies to
+the asset manifest. Direct/transitive dependency checking, unused declaration
+policy, and report/failure-disclosure shape require a later decision.
+
+No discovery, import, payload decode, build, cache, watcher, reimport, live
+update, write-back, world/session, command, transaction, mutation, receipt,
+CLI, dependency, root API, version, workflow/allocation, or release-authority
+change is authorized for M126.
+
 ## M125 source-integrity lock verification
 
 RFC-0108 resolves the adopted M125 direction: add bounded immutable

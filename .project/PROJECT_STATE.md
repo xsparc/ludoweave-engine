@@ -1,6 +1,124 @@
 # Project State
 
-## M125 source-integrity lock verification - implementation in progress
+## M126 project-confined asset-manifest loading - locally validated, commit pending
+
+- Base: fully locally validated M125 DCO commit
+  `cc440c84dbc53a07b5640ca46410e461fe686cb0`, tree
+  `9b9daea68cc32d13a1ba03575ca58db0d511698a`, sole parent exact M124.
+- Branch: `release/m126-project-confined-asset-manifest-loading`; unpublished
+  under the existing public-review identity hold.
+- Direction: current stable Godot `ResourceLoader`, Unity dependency-query,
+  current PyPA lockfile, and JSON Schema validation sources support an explicit
+  bounded dependency-document loader but not discovery, source-to-asset
+  resolution, import, build, cache, reimport, or live update.
+- Contract: retain exact `ludoweave.assets/1`; add focused experimental
+  `ASSET_MANIFEST_PROTOCOL` and immutable slotted `AssetManifestLimits` with
+  tightening-only 4 MiB, 4,096-asset, 256-dependency, and 128-setting maxima.
+- Runtime: `AssetManifest.from_json()` enforces unique UTF-8 finite JSON and
+  existing exact field/URI/source/dependency/cycle rules. `as_dict()` and
+  `canonical_bytes()` normalize content. Existing `load()` caps and closes one
+  handle before delegation. `HeadlessProject.load_asset_manifest()` reuses the
+  established confined bounded reader.
+- Ownership: no asset source is read; no asset is decoded or built; no cache is
+  used or written; no handle, watcher, world, renderer, or background task is
+  retained. The manifest keeps its existing resolved project-root context for
+  later caller-owned `source_path()`/pipeline use.
+- Baseline: exact M125 commit/tree/parent, clean status, and `0 26` divergence
+  pass. Thirty-one focused baseline assertions pass with one established skip;
+  both governance modes return zero findings.
+- Deliberate red: the unit module failed only on absent exports; four absent
+  implementation/evidence/docs assertions failed and one protected assertion
+  passed.
+- Development correction: one combined patch was rejected atomically because
+  it targeted the same file twice. No file changed; split patches applied the
+  intended design. The first implementation checkpoint then passed formatting
+  and Ruff but strict Pyright found six annotation-only container gaps and
+  stopped before behavior.
+- Focused proof: after explicit annotations, six files are format-clean; Ruff
+  and strict Pyright pass; 32 asset/project assertions pass with one established
+  skip in 0.39 seconds. Ten M125/M126 implementation/protection assertions pass
+  with only deliberately absent docs failing before documentation.
+- Installed proof: the first pure build succeeds. An isolated no-dependency
+  wheel checks both focused experimental exports, the project loader, two
+  URI-sorted entries, canonical identity
+  `sha256:c8d712bf64a1efb9860674e4b00e5200cd00852dd02276d351ef808df4ff01dd`,
+  and absence of the named asset sources.
+- Documentation: RFC-0109 and public docs define limits, ownership,
+  deterministic ordering, retained compatibility, cooperative confinement,
+  and complete loader-only non-scope.
+- Documentation-inclusive proof: the first attempt stopped only on one
+  formatter wrap before later commands. After that mechanical correction, all
+  396 files are format-clean; Ruff and strict Pyright pass; 46 focused
+  assertions pass with one established skip in 0.43 seconds; strict docs,
+  dated governance, and whitespace pass.
+- Review hardening: findings-first review added parse-time exponent-overflow
+  rejection, actual/maximum diagnostics for overlarge limits, and regressions
+  for frozen/slotted limits, dependency and setting caps, and closed-descriptor
+  rename behavior. A second adversarial read then rejected surrogate-bearing
+  source/setting text and NUL source paths before canonical encoding or path
+  use. Formatting, Ruff, strict Pyright, whitespace, and 48 corrected focused
+  assertions with one established skip pass; no actionable finding remains.
+- Complete source proof: the unchanged 46-package lock resolves in 0.88
+  milliseconds; all 396 Python files are format-clean; Ruff and strict Pyright
+  pass; all 1,642 architecture assertions pass with one established skip in
+  11.25 seconds; strict docs, both governance modes, and whitespace pass.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,323 tests
+  with 16 skips in 118.02 seconds. Exact CPython 3.13.13 and 3.14.5 base
+  environments each pass 3,313 tests with 17 skips in 109.22 and 114.05
+  seconds. Every sync and execution command explicitly selected and printed
+  its runtime.
+- Graphics/vertical proof: the restored exact 45-package CPython 3.12.13
+  graphics environment passes ten real-wgpu tests in 6.78 seconds. Fresh
+  one-repeat base and graphics profiles validate with two and three workloads.
+  Clockwork Arena and Agent World Builder retain their established state,
+  capture, replay, draw, sprite, query, and registered-test identities.
+- Initial artifacts: two builds reproduce a 304,126-byte pure wheel and
+  1,665,856-byte source archive. All nine isolated no-dependency wheel smokes
+  pass. Two complete ten-artifact release stages are byte-identical and both
+  complete release smokes pass; wheel/source hygiene and repository identity,
+  credential, protected-surface, and exact 18-path scope scans pass.
+- Review-inclusive source proof: after cache-access-only sandbox corrections,
+  the unchanged lock, 396-file formatting, Ruff, strict Pyright, all 1,642
+  architecture assertions with one established skip, strict docs, both
+  governance modes, and whitespace pass. Exact CPython 3.12.13 with graphics
+  then passes 3,324 tests with 16 established skips in 117.94 seconds on the
+  hardened recorded tree.
+- Final artifacts: two fresh builds reproduce a 304,190-byte pure wheel and
+  1,667,252-byte source archive. All nine isolated no-dependency wheel smokes
+  pass. Two complete ten-artifact release stages are byte-identical and both
+  release smokes pass; final 101-wheel/645-source package hygiene, exact
+  18-path scope, protected surfaces, identity, credential, and whitespace
+  scans pass. The factual record changes the source archive afterward.
+- Precommit history: fetch/prune confirms exact M99 local/remote main and merge
+  base, exact M125 head/tree/parent, `0 26` divergence, 26 linear single-parent
+  exact-identity singly signed stack commits, 28 required local branches, only
+  remote main, 18 worktree paths, and zero critical Git finding. Read-only
+  hosted queries return no M126 branch, PR, run, tag, or release.
+- Cleanup: all 13 exact M126 build, release, profile, docs, distribution, and
+  pytest targets were validated as workspace-confined, untracked, and non-
+  reparse. The guarded ordinary pass removed 12; an elevated exact-target retry
+  removed only Windows-denied `.pytest-tmp`. All 13 are absent.
+- Final factual source separator: the unchanged lock, 396-file formatting,
+  Ruff, strict Pyright, all 1,642 architecture assertions with one established
+  skip, strict docs, both governance modes, and whitespace pass.
+- Final post-record separator: six selected Python files are format-clean;
+  Ruff and strict Pyright pass; all ten M59/M126 metadata and boundary
+  assertions pass in 0.36 seconds; dated governance, protected surfaces,
+  whitespace, exact 18-path scope, identity/credential scans, and zero scratch
+  pass. One earlier cleanup tail was noisy because the tests created no temp;
+  the absence-aware rerun is clean.
+- Scope: no discovery, source-manifest integration, dependency resolution,
+  source read, payload decode, build, cache, import, compile, watcher, live
+  update, write-back, world/session, command, mutation, receipt, CLI,
+  dependency, engine-root API, version, workflow/allocation, or release-
+  authority change.
+
+## M125 source-integrity lock verification - locally validated and committed
+
+- Commit: `cc440c84dbc53a07b5640ca46410e461fe686cb0`, tree
+  `9b9daea68cc32d13a1ba03575ca58db0d511698a`, sole parent exact M124; exact
+  maintainer identity, one DCO sign-off, 23 paths, `0 26` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M124 DCO commit
   `c73242b29325977484df271a107287d688fbdb54`, tree

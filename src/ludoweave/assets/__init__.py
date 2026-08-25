@@ -1,11 +1,13 @@
 """Validated logical asset identities and content-addressed build artifacts."""
 
 from ludoweave.assets.pipeline import (
+    ASSET_MANIFEST_PROTOCOL,
     AssetArtifact,
     AssetEntry,
     AssetError,
     AssetKind,
     AssetManifest,
+    AssetManifestLimits,
     AssetPipeline,
     AssetUri,
     PngTexture,
@@ -15,11 +17,13 @@ from ludoweave.assets.pipeline import (
 )
 
 __all__ = [
+    "ASSET_MANIFEST_PROTOCOL",
     "AssetArtifact",
     "AssetEntry",
     "AssetError",
     "AssetKind",
     "AssetManifest",
+    "AssetManifestLimits",
     "AssetPipeline",
     "AssetUri",
     "PngTexture",

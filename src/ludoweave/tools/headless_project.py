@@ -12,6 +12,11 @@ from hashlib import sha256
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import cast
 
+from ludoweave.assets.pipeline import (
+    DEFAULT_ASSET_MANIFEST_LIMITS,
+    AssetManifest,
+    AssetManifestLimits,
+)
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.ecs import (
     ComponentRegistry,
@@ -231,6 +236,28 @@ class HeadlessProject:
     def read_relative(self, relative: str, *, max_bytes: int, role: str) -> bytes:
         path = _resolve_relative(self.root, relative, must_exist=True, role=role)
         return _read_bounded(path, max_bytes=max_bytes, role=role)
+
+    def load_asset_manifest(
+        self,
+        relative: str,
+        *,
+        limits: AssetManifestLimits = DEFAULT_ASSET_MANIFEST_LIMITS,
+    ) -> AssetManifest:
+        """Load one bounded asset manifest through project confinement."""
+
+        if type(limits) is not AssetManifestLimits:
+            raise _tool_error(
+                "asset manifest limits must be an exact AssetManifestLimits value",
+                code="tools.invalid_asset_manifest_limits",
+                phase="load_asset_manifest",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="asset_manifest",
+        )
+        return AssetManifest.from_json(document, project_root=self.root, limits=limits)
 
     def load_scene(
         self,

@@ -3067,6 +3067,33 @@ engine-root exports, workflows, permissions, credentials, release authority,
 jobs, and allocations remain unchanged. RFC-0108 records the external
 comparison, ownership, failure, and compatibility boundary.
 
+## M126 project-confined asset-manifest loading boundary
+
+M126 retains the exact existing `ludoweave.assets/1` shape and asset pipeline.
+The focused package adds `ASSET_MANIFEST_PROTOCOL` and tightening-only
+`AssetManifestLimits`: 4 MiB of UTF-8 JSON, 4,096 asset entries, 256
+dependencies per entry, and 128 scalar settings per entry. Exact fields,
+unique logical URIs, declared dependencies, the acyclic graph, and existing
+portable source validation remain required.
+
+`AssetManifest.from_json()` decodes caller-owned bytes or text without file
+I/O. `AssetManifest.load()` retains its path API, caps one opened handle, closes
+it, and delegates to that decoder. Canonical bytes order entries by URI,
+settings by key, and dependencies by URI. `HeadlessProject.load_asset_manifest()`
+first applies the established confined regular-file reader and returns the
+manifest with its pre-existing resolved project-root composition context. No
+open descriptor is retained.
+
+This is a loader-only boundary: there is no asset source read, no asset build,
+no cache use or creation, no directory discovery, no source-manifest
+integration, and no direct or transitive source-to-asset dependency check.
+M126 also performs no import, decode of asset payloads, compile, watcher,
+reimport, live update, write-back, world/session creation, command,
+transaction, world mutation, or receipt. Dependencies, metadata, version,
+engine-root exports, CLI, workflows, permissions, credentials, release
+authority, jobs, and allocations remain unchanged. RFC-0109 records ownership,
+failure, compatibility, and the deferred semantic-resolution boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

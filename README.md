@@ -30,9 +30,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > structured scene/prefab source-check CLI; M124 adds bounded explicit source
 > manifests and aggregate read-only checking without directory discovery;
 > M125 adds path-independent content-identity locks and exact read-only source
-> verification without an import pipeline or cache.
+> verification without an import pipeline or cache; M126 adds bounded project-
+> confined loading for the existing asset manifest without reading or building
+> an asset source.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M125 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M125 are locally validated stacked milestones from the exact M99 closeout, and M126 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -82,6 +84,9 @@ convention remains enforced.
 - Canonical `ludoweave.source-lock/1` content identities plus read-only
   generation and exact verification for explicit source manifests, without
   import, discovery, cache, or world mutation.
+- Bounded project-confined loading and canonical normalization for the existing
+  `ludoweave.assets/1` manifest, with no asset source read, asset build, cache,
+  discovery, or world mutation.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
