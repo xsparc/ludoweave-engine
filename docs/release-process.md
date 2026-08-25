@@ -1325,6 +1325,20 @@ transport/protocol, and local-output failures distinctly. Fixture and
 pull-request evidence do not substitute for an authorized tag run or the
 independent consumer check in gate 23.
 
+## M118 prerelease interpreter observation
+
+M118 retains Python 3.15 outside the supported range. The exact Windows CPython
+3.15.0b1 pure-wheel installation required an explicit metadata override;
+ordinary installers must continue to enforce `>=3.12,<3.15`. Version and serial
+headless execution worked, while `doctor` correctly rejected the interpreter.
+
+This unsupported prerelease compatibility observation is no support promise,
+release qualification, or instruction to override package metadata. It adds no
+workflow, allocation, dependency, lock, version, runtime API, provider, tag,
+release, publication, or release-authority change. It is not a real public
+release observation. Reconsider only after final Python 3.15 and the complete
+supported release matrix are available.
+
 M49 makes every fixed API and redirected asset request prove its actual
 port-443 TLS peer is globally reachable unicast before HTTP transmission. It
 does not add a hostname/IP allowlist, separate DNS pass, network sandbox, real

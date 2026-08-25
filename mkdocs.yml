@@ -141,6 +141,7 @@ nav:
       - RFC-0098 - Scope sample-bundle byte reproducibility to the release environment: rfcs/0098-scope-sample-bundle-byte-reproducibility.md
       - RFC-0099 - Separate sample-bundle semantic portability from byte identity: rfcs/0099-separate-sample-semantic-portability.md
       - RFC-0100 - Retain the standard CPython baseline after a free-threaded serial probe: rfcs/0100-retain-standard-cpython-baseline.md
+      - RFC-0101 - Retain Python 3.15 prerelease outside support: rfcs/0101-retain-python315-prerelease-outside-support.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

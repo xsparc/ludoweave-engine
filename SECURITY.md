@@ -651,3 +651,13 @@ records the prospective assets, actors, entry points, trust boundaries,
 blocking findings, verification requirements, and residual risk. Its findings
 are feature-admission blockers, not claims of a current executable-mod
 vulnerability.
+
+## Unsupported interpreter observations
+
+M118 retains Python 3.15 outside the supported range. One exact Windows CPython
+3.15.0b1 pure-wheel probe used an explicit metadata override, and `doctor`
+correctly rejected that interpreter even though deterministic serial headless
+execution completed. This unsupported prerelease compatibility observation is
+no support promise and authorizes no workflow, dependency, metadata, runtime,
+provider, release-authority, or security-support change. It is not a real
+public release observation.

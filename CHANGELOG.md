@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M118/RFC-0101 decision to retain Python 3.15 outside the supported
+  range after one exact Windows CPython 3.15.0b1 installed-wheel observation,
+  with no metadata, doctor, runtime, dependency, workflow, or support change.
 - Record M117/RFC-0100 decision to retain standard GIL CPython as the supported
   baseline after an exact CPython 3.14.5t installed-wheel serial-compatibility
   observation, with no concurrent-safety, graphics, performance, workflow,

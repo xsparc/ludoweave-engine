@@ -26,6 +26,15 @@ orderly close, and `engine.wrong_thread`. This is not a support promise and make
 no concurrent-safety claim. There is no graphics, performance, cross-platform,
 extension, runtime-build-branch, dependency, or workflow expansion.
 
+M118 retains Python 3.15 outside the supported range. One exact Windows CPython
+3.15.0b1 installed-wheel probe required an explicit metadata override. The
+serial lifecycle completed 120 deterministic virtual ticks and frames, closed,
+and preserved `engine.wrong_thread`; `doctor` correctly rejected the
+unsupported interpreter. This unsupported prerelease compatibility observation
+is no support promise and changes no runtime branch, metadata, dependency,
+workflow, allocation, or ownership rule. It is not a real public release
+observation.
+
 ## Time
 
 The `Clock` protocol exposes `now_ns()` and `wait_until_ns(deadline_ns)` using monotonic nanoseconds.

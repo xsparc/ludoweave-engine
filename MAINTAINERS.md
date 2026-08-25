@@ -1066,3 +1066,15 @@ final evidence head `4e378756b2a1733de28e7160ac2d6d72921f3e4a` into `main` as
 GitHub-verified commit `6bfb56555cafc93a7312f64465ea15cd7c450e79`;
 both trees are `ea3f410fac31d7a32faee4e697c4fb0941b657df`. No hosted pass or
 integration widens the M21 boundary or establishes cross-version compatibility.
+
+## M118 Python 3.15 prerelease boundary
+
+Retain Python 3.15 outside the supported range. The exact Windows CPython
+3.15.0b1 result required an explicit metadata override and is an unsupported
+prerelease compatibility observation only. `doctor` correctly rejected the
+interpreter; successful version, deterministic serial headless execution,
+orderly close, and owner-thread rejection do not create a support promise.
+M118 adds no workflow, allocation, metadata, dependency, lock, version, runtime
+API, provider, release authority, tag, release, or publication, and is not a
+real public release observation. Reconsider after the final release and full
+supported-platform, toolchain, dependency, provider, and installed-wheel gates.

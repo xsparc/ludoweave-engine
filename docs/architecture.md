@@ -2919,3 +2919,17 @@ device recovery, and constrained/general 3D remain deferred to future
 assigned, exercised slices. Native acceleration is
 specifically deferred under RFC-0001's measurable revisit gate rather than
 generally authorized by the recorded target misses.
+
+## Python 3.15 prerelease boundary
+
+M118 retains Python 3.15 outside the supported range. One exact Windows CPython
+3.15.0b1 pure-wheel probe used an explicit metadata override and preserved only
+serial headless behavior: version discovery, 120 virtual ticks and frames in
+2,000,000,000 nanoseconds, orderly close, and `engine.wrong_thread`.
+`doctor` correctly rejected the unsupported interpreter.
+
+This is an unsupported prerelease compatibility observation, no support
+promise. It changes no dependency direction, ownership rule, runtime branch,
+public API, package metadata, workflow, allocation, provider boundary, or
+release authority and is not a real public release observation. The supported
+architecture baseline remains standard CPython 3.12-3.14.

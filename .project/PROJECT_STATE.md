@@ -1,6 +1,103 @@
 # Project State
 
-## M117 free-threaded serial compatibility - implementation in progress
+## M118 Python 3.15 prerelease compatibility - implementation in progress
+
+- Base: fully locally validated M117 DCO commit
+  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
+  `a031129b5a46003dbc5b588cab94c3adba704301`, sole parent exact M116.
+- Branch: `release/m118-python315-prerelease-compatibility`; unpublished under
+  the existing public-review identity hold.
+- Direction: retain Python 3.15 outside the supported range after one exact
+  installed-wheel prerelease compatibility observation. No metadata, doctor,
+  runtime, dependency, workflow, or CI change is justified.
+- Current-source basis: PEP 790 records candidate 1 on 2026-08-04 and schedules
+  3.15.0 final for 2026-10-01; uv classifies 3.15 prereleases as Tier 2.
+- Exact inventory: no 3.15 runtime was initially installed. The exact RC1 uv
+  request had no managed Windows x86-64 download. The available-version query
+  exposed only 3.15.0b1, which installed successfully.
+- Exact installed-wheel observation: a pure local wheel and isolated CPython
+  3.15.0b1 environment were created. uv warned that the runtime is incompatible
+  with `>=3.12,<3.15`; pip installed the wheel without dependencies only under
+  an explicit metadata override.
+- Expected boundary: module version passed. Doctor ran its checks but correctly
+  returned overall error and exit 1 for unsupported Python. A separate probe
+  completed 120 virtual ticks/frames in 2,000,000,000 nanoseconds, closed, and
+  rejected a worker-thread initialize call with `engine.wrong_thread`. The
+  installed headless example matched the deterministic summary.
+- Development correction: the first install/probe orchestration used an invalid
+  PowerShell selection parameter and then supplied no pip requirement. The
+  corrected install sequence stopped at expected doctor exit 1; the following
+  expected-boundary run explicitly required doctor 1 and both serial probes 0.
+- Deliberate red: the ignored probe and focused contract are format/Ruff-clean.
+  Exact CPython 3.12.13 passes three metadata, doctor, and protected-surface
+  assertions and fails only the intended absent-RFC/docs assertion in 0.28
+  seconds.
+- Implementation correction: the first focused run passed three assertions but
+  one required phrase was interrupted by Markdown code formatting. The RFC now
+  states it plainly; all four assertions pass in 0.19 seconds. Strict docs built
+  in 1.73 seconds; whitespace passes; exactly 16 intended paths change.
+- Static/source proof: the unchanged 46-package lock, exact 45-package CPython
+  3.12.13 graphics environment, 361-file formatting, Ruff, strict Pyright,
+  strict docs, protected surfaces, and whitespace pass. All 1,603 architecture
+  assertions pass with one established Windows capability skip. Exact standard
+  CPython 3.12.13, 3.13.13, and 3.14.5 each pass all four focused assertions.
+- Complete suites: exact 3.12.13 with graphics passes 3,143 tests with 15 skips;
+  exact standard 3.13.13 and 3.14.5 base environments each pass 3,133 tests
+  with 16 skips.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,778-byte pure wheel at
+  SHA-256
+  `254c3da96cc0b7161425ea09a9883279ba91f030a7790d5c1ac89149acbcd9ba`
+  and a 1,557,512-byte source archive at SHA-256
+  `27adfcbf099b8092bcaead44e07a5afd0e8b1b51ff91000fa8e2320441ddba40`.
+  Wheel smoke passes. Two complete same-environment ten-artifact stages are
+  byte-identical; complete release smoke and 94/602-entry package hygiene pass.
+- Findings-first review: exactly 16 intended paths, no actionable finding,
+  zero protected workflow/doctor/CLI/wheel-smoke/runtime/metadata/lock diff,
+  zero public identity or high-confidence secret match, clean package hygiene,
+  and clean whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,778-byte
+  wheel at SHA-256
+  `254c3da96cc0b7161425ea09a9883279ba91f030a7790d5c1ac89149acbcd9ba`
+  and a 1,558,615-byte source archive at SHA-256
+  `ec194e05707eb847e2ca7f9d6671d04dd04c87c7f68693f0c488762ec7087051`.
+  Wheel smoke, twice-staged ten-artifact byte identity, complete release smoke,
+  and 94/602-entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Final source separator: the unchanged 46-package lock, 361-file formatting,
+  Ruff, strict Pyright, strict docs, protected surfaces, and whitespace pass.
+  All 1,603 architecture assertions pass with one established Windows
+  capability skip; all nine focused M59/M118 assertions pass.
+- Precommit history/hosted-state audit: after fetch/prune, local and remote
+  `main` and the merge base remain exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M117 remains exact head
+  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
+  `a031129b5a46003dbc5b588cab94c3adba704301`, with sole parent M116.
+  Divergence is `0 18`; all 18 commits are linear with exact maintainer
+  identity and one DCO sign-off each. Only `main` plus required M100-M118
+  local branches and only remote `main` exist. Full Git checking reports 44
+  dangling-only lines and zero critical finding. GitHub authentication is
+  valid; M118 PR/run, releases, and remote tags are empty; no hosted Actions
+  allocation was triggered.
+- Post-audit separator: strict docs build in 1.64 seconds with only the known
+  Material notice and all nine M59/M118 assertions pass in 0.38 seconds.
+  Protected surfaces, exact 16-path scope, whitespace, public identity hygiene,
+  and high-confidence secret scans pass.
+- Final precommit metadata separator: all nine focused M59/M118 assertions pass
+  in 0.37 seconds after the post-audit task-state update, and whitespace passes.
+- Implementation scope: RFC-0101, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, metadata, doctor,
+  lock, dependencies, version, runtime package/API, providers, and release
+  authority remain unchanged.
+- Qualification status: all local M118 gates pass; commit and scratch cleanup
+  remain.
+- Nonclaims: no Python 3.15 support, final/later-prerelease, cross-platform,
+  graphics, free-threaded, full-suite, extension/provider, hosted M118 run,
+  real public release, tag, release, publication, push, or PR.
+
+## M117 free-threaded serial compatibility - local qualification complete
 
 - Base: fully locally validated M116 DCO commit
   `34bad8a0fa304a2e0a96f5cc177483d09abd7acd`, tree
@@ -86,8 +183,12 @@
   aligned public/project records. Workflows, allocation, metadata, lock,
   dependencies, version, runtime package/API, graphics, and release authority
   remain unchanged.
-- Qualification status: all local M117 gates pass; commit and scratch cleanup
-  remain.
+- Qualification status: exact DCO commit
+  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
+  `a031129b5a46003dbc5b588cab94c3adba704301`, sole parent M116, 16 intended
+  paths, exact maintainer identity, one sign-off, and `0 18` divergence.
+  Fourteen audited ignored/untracked/non-reparse M117/test scratch targets were
+  removed and zero remain; the tracked worktree was clean before M118.
 - Nonclaims: no concurrent safety, performance, graphics/wgpu, cross-platform
   free-threaded support, extension compatibility, hosted M117 run, real public
   release, tag, release, publication, push, or PR.

@@ -20,9 +20,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > without inferring an exact writer setting; M115 scopes sample-bundle byte
 > reproducibility to the fixed release environment; M116 separates semantic
 > portability from byte identity; M117 retains the standard CPython support
-> baseline after one free-threaded serial probe.
+> baseline after one free-threaded serial probe; M118 retains Python 3.15
+> outside the supported range after one prerelease compatibility observation.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M117 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M118 are local stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -1148,6 +1149,14 @@ directories. The tag workflow is
 defined for a future maintainer-created signed annotated `vVERSION` tag at an
 exact `origin/main` commit. This repository task does not create a tag, publish
 a GitHub release, configure a signing-key allowlist, or upload to PyPI.
+
+M118 records one unsupported prerelease compatibility observation. One exact
+Windows CPython 3.15.0b1 environment installed the pure wheel only through an
+explicit metadata override. Version, deterministic headless execution, orderly
+close, and owner-thread rejection worked; `doctor` correctly rejected the
+unsupported interpreter. This is no support promise, changes no workflow,
+metadata, dependency, runtime API, or CI allocation, and is not a real public
+release observation. See [RFC-0101](docs/rfcs/0101-retain-python315-prerelease-outside-support.md).
 
 ## Contributing and project policy
 

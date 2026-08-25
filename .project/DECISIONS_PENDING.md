@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M118 Python 3.15 prerelease compatibility
+
+RFC-0101 resolves the adopted M118 direction: retain Python 3.15 outside the
+supported range after one exact Windows CPython 3.15.0b1 installed-wheel
+observation. The pure wheel required an explicit metadata override; version and
+serial headless execution worked, while doctor correctly retained the
+unsupported-version rejection.
+
+No Python 3.15 support, metadata relaxation, doctor relaxation, runtime shim,
+final/later-prerelease result, cross-platform, graphics, free-threaded,
+full-suite, extension, provider, workflow, runner allocation, dependency, lock,
+version, runtime API, or release-authority change is pending for M118.
+
+Reopen this decision after Python 3.15 final when a concrete support proposal
+supplies complete supported-platform, tooling, dependency, provider, lifecycle,
+world, agent, graphics, installed-artifact, failure, and maintenance evidence.
+Prerelease serial compatibility alone is not a support gate.
+
 ## M117 free-threaded serial compatibility
 
 RFC-0100 resolves the adopted M117 direction: retain standard GIL CPython as

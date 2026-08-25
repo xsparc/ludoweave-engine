@@ -105,3 +105,4 @@ was adopted.
 - [RFC-0098: scope sample-bundle byte reproducibility to the release environment](0098-scope-sample-bundle-byte-reproducibility.md)
 - [RFC-0099: separate sample-bundle semantic portability from byte identity](0099-separate-sample-semantic-portability.md)
 - [RFC-0100: retain the standard CPython baseline after a free-threaded serial probe](0100-retain-standard-cpython-baseline.md)
+- [RFC-0101: retain Python 3.15 prerelease outside support](0101-retain-python315-prerelease-outside-support.md)
