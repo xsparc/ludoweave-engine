@@ -187,3 +187,28 @@ signature, authenticity proof, dependency resolver, or asset import result.
 Sequential reads require stable inputs. Both commands close every descriptor,
 perform no import or compile, use no cache, create no world/session, perform no
 world mutation, produce no receipt, and add no workflow allocation.
+
+## Source-to-asset dependency checking
+
+M127 connects the explicit source list to one explicit asset manifest without
+loading an asset source:
+
+```console
+ludoweave source assets PROJECT --manifest config/sources.json --assets config/assets.json
+```
+
+The command checks every M124 source entry through the unchanged readers, then
+loads the bounded M126 `ludoweave.assets/1` document. Every source-declared
+direct `asset://` URI must exist. Canonical
+`ludoweave.cli.source-asset-check/1` output lists each source entry's direct
+declarations and a separate `resolved` list containing those roots plus all
+reachable asset-to-asset dependencies. Entry IDs and URI lists are stable and
+sorted; aggregate direct and resolved counts are unique across entries.
+
+This is declared-graph checking, not asset-use inference. Application-defined
+component values are not inspected for hidden references, indirect assets need
+not be repeated in the scene or prefab, and unused asset-manifest entries do
+not fail. There is no asset source read, payload decode, build, import, cache,
+compile, world/session, mutation, receipt, write, discovery, watcher, live
+update, or workflow allocation. Sequential reads require stable inputs and are
+not an atomic filesystem snapshot.

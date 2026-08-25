@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M127/RFC-0110 deterministic source-to-asset dependency checking through
+  `ludoweave source assets`. The read-only report preserves direct declarations
+  separately from their resolved asset-graph closure, reads no asset source,
+  rejects no unused asset, builds no asset, mutates no world, and adds no
+  workflow allocation.
 - Add M126/RFC-0109 bounded project-confined loading, deterministic decoding,
   and canonical normalization for the existing `ludoweave.assets/1` manifest.
   The loader reads no asset source, builds no asset, creates no cache, performs

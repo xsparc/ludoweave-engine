@@ -319,6 +319,29 @@ writes no project file, and produces no receipt. There is no discovery,
 watcher, live update, remote access, dependency, root export, workflow job, or
 workflow allocation.
 
+## M127 source-to-asset dependency checking
+
+`AssetManifest.dependency_closure()` accepts an exact tuple of distinct direct
+`AssetUri` roots and returns those roots plus all reachable dependencies as a
+unique sorted tuple. Unknown roots and invalid root containers fail with typed
+`AssetError` values. The existing manifest constructor has already required
+every asset-to-asset edge to resolve and the graph to be acyclic.
+
+`ludoweave source assets PROJECT --manifest FILE --assets FILE` uses the
+unchanged M124 source inspection and M126 asset-manifest loader. Canonical
+`ludoweave.cli.source-asset-check/1` output binds both normalized manifest
+identities, preserves each source entry's direct declarations, and reports a
+separate resolved closure. A missing direct URI returns exit 2 with the source
+entry and logical dependency identity, writes no success document, and leaves
+the project unchanged.
+
+The checker does not infer application component references or reject unused
+asset entries. It performs no asset source read, payload decode, asset build,
+import, cache use or creation, compile, registry resolution, world mutation,
+receipt, file write, discovery, watcher, live update, dependency, root export,
+workflow job, or workflow allocation. Separate file reads are not an atomic
+snapshot.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

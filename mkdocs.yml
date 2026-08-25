@@ -150,6 +150,7 @@ nav:
       - RFC-0107 - Add explicit source-manifest checking: rfcs/0107-add-explicit-source-manifest-checking.md
       - RFC-0108 - Add source-integrity lock verification: rfcs/0108-add-source-integrity-lock-verification.md
       - RFC-0109 - Add project-confined asset-manifest loading: rfcs/0109-add-project-confined-asset-manifest-loading.md
+      - RFC-0110 - Add source-to-asset dependency checking: rfcs/0110-add-source-to-asset-dependency-checking.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

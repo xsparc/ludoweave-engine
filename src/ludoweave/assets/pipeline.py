@@ -374,6 +374,39 @@ class AssetManifest:
             )
         return encoded
 
+    def dependency_closure(self, roots: tuple[AssetUri, ...]) -> tuple[AssetUri, ...]:
+        """Resolve exact direct roots through the validated acyclic asset graph."""
+
+        if (
+            type(roots) is not tuple
+            or len(roots) > _MAX_MANIFEST_ASSETS
+            or any(type(root) is not AssetUri for root in roots)
+            or len(set(roots)) != len(roots)
+        ):
+            raise _asset_error(
+                "asset dependency roots must be a tuple of distinct exact URIs",
+                phase="resolve_dependencies",
+                details={"field": "roots"},
+                code="asset.invalid_dependency_roots",
+            )
+        missing = tuple(sorted(root for root in roots if root not in self._entries))
+        if missing:
+            raise _asset_error(
+                "asset dependency root is not declared in the manifest",
+                phase="resolve_dependencies",
+                details={"uri": missing[0].value},
+                code="asset.unknown_uri",
+            )
+        resolved: set[AssetUri] = set()
+        pending = list(reversed(sorted(roots)))
+        while pending:
+            uri = pending.pop()
+            if uri in resolved:
+                continue
+            resolved.add(uri)
+            pending.extend(reversed(self._entries[uri].dependencies))
+        return tuple(sorted(resolved))
+
     def entry(self, uri: AssetUri) -> AssetEntry:
         if type(uri) is not AssetUri:
             raise _asset_error(
@@ -915,26 +948,31 @@ def _manifest_limit_error(*, field: str, actual: int, limit: int) -> AssetError:
 
 
 def _require_acyclic(entries: Mapping[AssetUri, AssetEntry]) -> None:
-    visited: set[AssetUri] = set()
-    active: set[AssetUri] = set()
-
-    def visit(uri: AssetUri) -> None:
-        if uri in active:
-            raise _asset_error(
-                "asset dependencies contain a cycle",
-                phase="manifest",
-                details={"uri": uri.value},
-            )
-        if uri in visited:
-            return
-        active.add(uri)
-        for dependency in entries[uri].dependencies:
-            visit(dependency)
-        active.remove(uri)
-        visited.add(uri)
-
-    for uri in sorted(entries):
-        visit(uri)
+    state: dict[AssetUri, int] = {}
+    for root in sorted(entries):
+        if state.get(root) == 2:
+            continue
+        state[root] = 1
+        stack: list[tuple[AssetUri, int]] = [(root, 0)]
+        while stack:
+            uri, index = stack[-1]
+            dependencies = entries[uri].dependencies
+            if index == len(dependencies):
+                state[uri] = 2
+                stack.pop()
+                continue
+            dependency = dependencies[index]
+            stack[-1] = (uri, index + 1)
+            dependency_state = state.get(dependency, 0)
+            if dependency_state == 1:
+                raise _asset_error(
+                    "asset dependencies contain a cycle",
+                    phase="manifest",
+                    details={"uri": dependency.value},
+                )
+            if dependency_state == 0:
+                state[dependency] = 1
+                stack.append((dependency, 0))
 
 
 def _root(value: Path) -> Path:

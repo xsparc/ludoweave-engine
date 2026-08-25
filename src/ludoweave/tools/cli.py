@@ -13,6 +13,7 @@ from typing import cast
 
 from ludoweave import __version__
 from ludoweave.agent import AGENT_TOOL_NAMES
+from ludoweave.assets import AssetError, AssetUri
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
     PluginDeterminism,
@@ -49,10 +50,18 @@ _MAX_PLUGIN_MANIFESTS = 64
 
 
 @dataclass(frozen=True, slots=True)
+class _SourceAssetDeclaration:
+    entry_id: str
+    kind: str
+    dependencies: tuple[AssetUri, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class _SourceManifestInspection:
     lock: SourceLock
     manifest_protocol: str
     check_entries: tuple[JsonValue, ...]
+    asset_dependencies: tuple[_SourceAssetDeclaration, ...]
     scenes: int
     prefabs: int
     entities: int
@@ -102,6 +111,17 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     source_verify_parser.add_argument(
         "--lock", required=True, help="project-relative source-integrity lock"
+    )
+    source_assets_parser = source_subparsers.add_parser(
+        "assets",
+        help="check declared source assets and resolve their asset-graph dependencies",
+    )
+    source_assets_parser.add_argument("project", type=Path, help="project directory")
+    source_assets_parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    source_assets_parser.add_argument(
+        "--assets", required=True, help="project-relative asset manifest"
     )
 
     apply_parser = subparsers.add_parser(
@@ -231,6 +251,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_source_lock(args)
             if source_command == "verify":
                 return _run_source_verify(args)
+            if source_command == "assets":
+                return _run_source_assets(args)
             raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
@@ -370,6 +392,61 @@ def _run_source_verify(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_source_assets(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    inspection = _inspect_source_manifest(project, _text_argument(args, "manifest"))
+    asset_manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    entries: list[JsonValue] = []
+    all_direct: set[AssetUri] = set()
+    all_resolved: set[AssetUri] = set()
+    for declaration in inspection.asset_dependencies:
+        for dependency in declaration.dependencies:
+            try:
+                asset_manifest.entry(dependency)
+            except AssetError as error:
+                raise LudoWeaveError(
+                    "source declares an asset absent from the explicit asset manifest",
+                    code="tools.missing_asset_dependency",
+                    subsystem="tools",
+                    phase="check_source_assets",
+                    details={
+                        "entry_id": declaration.entry_id,
+                        "dependency": dependency.value,
+                    },
+                ) from error
+        resolved = asset_manifest.dependency_closure(declaration.dependencies)
+        all_direct.update(declaration.dependencies)
+        all_resolved.update(resolved)
+        entries.append(
+            {
+                "entry_id": declaration.entry_id,
+                "kind": declaration.kind,
+                "direct": [dependency.value for dependency in declaration.dependencies],
+                "resolved": [dependency.value for dependency in resolved],
+            }
+        )
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.source-asset-check/1",
+                "status": "valid",
+                "source_manifest_protocol": inspection.manifest_protocol,
+                "source_manifest_id": inspection.lock.manifest_id,
+                "source_manifest_sha256": inspection.lock.manifest_sha256,
+                "asset_manifest_protocol": asset_manifest.protocol,
+                "asset_manifest_sha256": (
+                    f"sha256:{sha256(asset_manifest.canonical_bytes()).hexdigest()}"
+                ),
+                "entries": entries,
+                "entry_count": len(entries),
+                "direct_asset_count": len(all_direct),
+                "resolved_asset_count": len(all_resolved),
+            }
+        )
+    )
+    return 0
+
+
 def _inspect_source_manifest(
     project: HeadlessProject,
     manifest_name: str,
@@ -377,6 +454,7 @@ def _inspect_source_manifest(
     manifest = project.load_source_manifest(manifest_name)
     lock_entries: list[SourceLockEntry] = []
     check_entries: list[JsonValue] = []
+    asset_dependencies: list[_SourceAssetDeclaration] = []
     scenes = 0
     prefabs = 0
     entities = 0
@@ -385,6 +463,7 @@ def _inspect_source_manifest(
     for entry in manifest.entries:
         if entry.kind == "scene":
             scene = project.load_scene(entry.source)
+            dependencies_for_entry = scene.dependencies
             source_sha256 = f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}"
             lock_entries.append(
                 SourceLockEntry(
@@ -413,6 +492,7 @@ def _inspect_source_manifest(
             prefab = project.load_prefab(entry.source)
             instance = project.load_prefab_instance(entry.instance)
             _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
+            dependencies_for_entry = prefab.dependencies
             source_sha256 = f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}"
             instance_sha256 = f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}"
             lock_entries.append(
@@ -444,12 +524,20 @@ def _inspect_source_manifest(
             entities += len(prefab.entities)
             overrides += len(instance.overrides)
             dependencies += len(prefab.dependencies)
+        asset_dependencies.append(
+            _SourceAssetDeclaration(
+                entry_id=entry.entry_id,
+                kind=entry.kind,
+                dependencies=dependencies_for_entry,
+            )
+        )
         check_entries.append(result)
     manifest_sha256 = f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"
     return _SourceManifestInspection(
         lock=SourceLock(manifest.manifest_id, manifest_sha256, tuple(lock_entries)),
         manifest_protocol=manifest.protocol,
         check_entries=tuple(check_entries),
+        asset_dependencies=tuple(asset_dependencies),
         scenes=scenes,
         prefabs=prefabs,
         entities=entities,

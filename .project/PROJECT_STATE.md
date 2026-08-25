@@ -1,6 +1,107 @@
 # Project State
 
-## M126 project-confined asset-manifest loading - locally validated, commit pending
+## M127 source-to-asset dependency checking - implementation in progress
+
+- Base: fully locally validated M126 DCO commit
+  `9b373698c206982bcb6e86127ac8dffb2385a261`, tree
+  `9f2b0b7fceb1241c14a659e26c1f5c95fe775c2e`, sole parent exact M125.
+- Branch: `release/m127-source-asset-dependency-checking`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Unity, Bazel, Godot, JSON Schema, and Python graph sources
+  support explicit direct roots plus deterministic transitive closure, while
+  keeping semantic graph checking separate from import, loading, and caching.
+- Contract: strict `AssetManifest.dependency_closure()` accepts exact distinct
+  direct roots and returns roots plus all reachable graph dependencies exactly
+  once in URI order. Empty roots produce an empty closure.
+- CLI: `ludoweave source assets PROJECT --manifest FILE --assets FILE` reuses
+  unchanged source inspection and project-confined asset-manifest loading.
+  Canonical `ludoweave.cli.source-asset-check/1` retains direct declarations
+  separately from resolved closures and emits only after complete success.
+- Failure: a missing direct root returns structured
+  `tools.missing_asset_dependency` with the first normalized entry ID and
+  logical URI, emits no success bytes, discloses no path, and leaves the project
+  unchanged.
+- Baseline: exact M126 commit/tree/parent, clean status, and `0 27` divergence
+  pass. Seventy-four focused asset/source/project/CLI assertions pass with one
+  established skip in 4.38 seconds; both governance modes return zero findings.
+- Deliberate red: the first attempt was cache-blocked before project execution
+  and makes no claim. Its approved rerun produced eight intended absent method
+  and CLI failures. Four intended M127 implementation/evidence/docs assertions
+  failed and one protected assertion passed.
+- Implementation: `AssetManifest` owns the graph traversal; the CLI records
+  source dependencies while using the existing M124 inspection path and M126
+  loader. It reads no asset source and builds no asset. One installed-wheel
+  verifier exercises the exact CLI from a no-dependency wheel.
+- Focused proof: the first checkpoint passed formatting and Ruff but strict
+  Pyright found four test/smoke JSON container annotations and stopped before
+  behavior. After annotation-only correction, Ruff and strict Pyright pass and
+  31 closure/CLI/asset/source/lock assertions pass in 3.61 seconds.
+- Historical-boundary correction: the first combined M126/M127 architecture
+  run found one intentionally absent docs failure and that M126 froze the whole
+  CLI despite owning no CLI change. Its guard now retains M126's actual source
+  contracts; M127 owns the new CLI boundary.
+- Documentation: RFC-0110 and public docs define direct versus resolved
+  ownership, missing-root order, admitted unused entries, inability to infer
+  component references, sequential-read limits, determinism, and non-scope.
+  The first combined patch was rejected atomically on one wrapped paragraph;
+  smaller context-verified patches applied the same decision.
+- Documentation-inclusive proof: seven selected files are format-clean; Ruff
+  and strict Pyright pass; all 41 focused behavior/boundary assertions pass in
+  3.64 seconds; strict docs, dated governance, and whitespace pass.
+- Review hardening: the pre-existing recursive asset cycle validator is now
+  deterministic iterative DFS so valid graphs within the 4,096-node limit do
+  not hit Python's recursion ceiling. Direct roots share that hard bound; a
+  1,100-node chain and empty source/asset graph compatibility are covered.
+- Installed proof: the first isolated verifier used an obsolete project-
+  protocol literal and correctly failed before M127. After a fixture-only
+  correction, the no-dependency wheel emitted the expected one-direct/two-
+  resolved canonical report with both manifest identities and no asset source
+  directory. Final statics, whitespace, and 40 focused assertions pass.
+- Complete validation: all 400 Python files are format-clean; Ruff and strict
+  Pyright pass; all 1,647 architecture assertions pass with one established
+  skip; strict docs, both governance modes, and whitespace pass. Exact CPython
+  3.12.13 graphics passes 3,339 tests with 16 skips, while exact 3.13.13 and
+  3.14.5 each pass 3,329 with 17 skips.
+- Graphics and vertical slices: all ten real-wgpu tests pass. Fresh base and
+  graphics profiles validate. The workflow-equivalent Clockwork Arena and
+  Agent World Builder reproduce their established state/capture identities,
+  with three/16 draw-instance counts and six-query/five-replay evidence.
+- Review and artifacts: no actionable finding remains. Two independent package
+  builds and two ten-artifact release stages are byte-identical; all ten
+  isolated no-dependency wheel smokes and both release smokes pass. Archives
+  contain 101 wheel and 650 source entries with zero native, bytecode, WASM, or
+  retired control metadata. Exactly 21 intended paths differ and protected,
+  public-identity, credential, and whitespace checks pass.
+- Final artifacts: record-inclusive final builds reproduce a 305,246-byte pure
+  wheel and 1,679,345-byte source archive byte-for-byte across two builds. The
+  wheel identity is unchanged from the reviewed build; the source archive
+  correctly incorporates later neutral engineering records. All ten wheel
+  smokes and two identical release rehearsals pass again.
+- Precommit history: fetch/prune confirms exact remote main/M99, exact M126
+  head/tree/M125 parent, `0 27` divergence, a linear 27-commit exact-identity/
+  single-signoff stack, 29 required local branches, only remote main, and zero
+  critical object finding. Hosted M127 branch/PR/run/tag/release queries are
+  empty, as required by the public-review identity hold.
+- Cleanup: all 13 exact workspace-confined, untracked, non-reparse M127 build,
+  release, profile, docs, and pytest scratch targets are absent. Windows denied
+  only the pytest directory during ordinary cleanup; a revalidated elevated
+  retry removed that sole remaining target.
+- Commit readiness: final clean-scratch statics, 15 metadata/boundary tests,
+  dated governance, exact 21-path scope, protected surfaces, public-identity,
+  credential, whitespace, and zero-scratch checks pass. M127 is ready for its
+  local DCO commit; public operations remain held.
+- Scope: no actual-reference inference, indirect redeclaration rule, unused-
+  asset rejection, asset source read, decode, build, import, cache, compile,
+  registry lookup, discovery, watcher, live update, write, world/session,
+  command, mutation, receipt, dependency, root API, version, workflow/
+  allocation, or release-authority change.
+
+## M126 project-confined asset-manifest loading - locally validated and committed
+
+- Commit: `9b373698c206982bcb6e86127ac8dffb2385a261`, tree
+  `9f2b0b7fceb1241c14a659e26c1f5c95fe775c2e`, sole parent exact M125; exact
+  maintainer identity, one DCO sign-off, 18 paths, `0 27` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M125 DCO commit
   `cc440c84dbc53a07b5640ca46410e461fe686cb0`, tree

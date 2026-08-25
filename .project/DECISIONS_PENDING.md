@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M127 source-to-asset dependency checking
+
+RFC-0110 resolves the adopted M127 direction: source scene/prefab documents own
+direct logical asset declarations; the explicit asset manifest owns asset-to-
+asset edges. `AssetManifest.dependency_closure()` requires exact distinct roots
+and returns roots plus every reachable dependency once in URI order. Read-only
+`ludoweave source assets` preserves each direct list separately from its
+resolved closure and emits canonical `ludoweave.cli.source-asset-check/1` only
+after every explicit source succeeds.
+
+Actual asset reference inference inside application component values remains
+unresolved because no universal component-reference schema exists. Unused-
+asset rejection and build-inclusion policy remain deferred because shared
+catalogs, entry points, packaging, and dead-asset ownership are undefined. No
+source repeats indirect dependencies; the asset graph owns those edges.
+
+No asset source read, payload decode, asset build, import, cache, discovery,
+watcher, live update, compile, registry resolution, world/session, command,
+mutation, receipt, project write, dependency, metadata, version, engine-root
+export, workflow/allocation, permission, credential, or release-authority
+change is authorized for M127.
+
 ## M126 project-confined asset-manifest loading
 
 RFC-0109 resolves the adopted M126 direction: retain exact

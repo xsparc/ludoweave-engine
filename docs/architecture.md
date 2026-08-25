@@ -3094,6 +3094,34 @@ engine-root exports, CLI, workflows, permissions, credentials, release
 authority, jobs, and allocations remain unchanged. RFC-0109 records ownership,
 failure, compatibility, and the deferred semantic-resolution boundary.
 
+## M127 source-to-asset dependency-checking boundary
+
+M127 connects only already-declared source dependencies to the already-
+validated asset graph. `AssetManifest.dependency_closure()` accepts an exact
+tuple of distinct `AssetUri` roots, requires every root to exist, follows the
+bounded acyclic manifest graph, and returns one unique URI-sorted tuple that
+includes the roots and every reachable dependency.
+
+`ludoweave source assets PROJECT --manifest FILE --assets FILE` first checks
+the explicit M124 source manifest and each project-confined scene or prefab,
+then loads one explicit M126 asset manifest. Canonical
+`ludoweave.cli.source-asset-check/1` output retains each entry's direct source
+declarations separately from its resolved closure and reports only deterministic
+manifest identities and aggregate counts. Missing roots fail in source-entry
+order and URI order before any success output. All descriptors close inside
+the existing synchronous readers; the project is unchanged.
+
+The checker cannot infer actual asset use inside application-defined component
+values. It does not require a source to redeclare indirect graph edges and has
+no unused-asset rejection. It performs no asset source read, payload decode,
+asset build, import, cache use or creation, component-registry resolution,
+scene/prefab compile, world/session creation, command, transaction, world
+mutation, receipt, write, discovery, watcher, reimport, or live update.
+Separate sequential reads are not an atomic filesystem snapshot. Dependencies,
+metadata, version, engine-root exports, workflows, permissions, credentials,
+release authority, jobs, and allocations remain unchanged. RFC-0110 records
+the direct/resolved distinction and complete non-scope.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

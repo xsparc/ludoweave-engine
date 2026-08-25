@@ -1,4 +1,4 @@
-"""Protect bounded M126 project-confined asset-manifest loading."""
+"""Protect bounded M127 source-to-asset dependency checking."""
 
 from __future__ import annotations
 
@@ -17,7 +17,9 @@ _PROTECTED = {
     "src/ludoweave/scene/prefab.py": "19fff5db607e808be41d5453668c8976fb79de0a7ca0614f901f440bb7e294a3",
     "src/ludoweave/scene/sources.py": "1a5075fc0711330d7407537ba5f85ca15d2fc5d6e9bab733f954416420b30303",
     "src/ludoweave/scene/locks.py": "ff003999ab34bdc06721b5784df9046cda6b54db4b0e28776ccdf2e6d86e0799",
+    "src/ludoweave/tools/headless_project.py": "f6285dc28308489012450a165a278727566ebbee651745c6a2e149d5afa59264",
     "scripts/smoke_source_lock_wheel.py": "3e249de70132f143c3b3ac0b2c655cde820541d162095411fc72a39b1eb8c611",
+    "scripts/smoke_asset_manifest_file_wheel.py": "de603c5aa4c4b37b549ec0015f06ff3f641401741989c033c5d852e6120614f5",
 }
 
 
@@ -25,51 +27,47 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def test_m126_retains_workflows_metadata_root_and_m125_source_contract() -> None:
+def test_m127_retains_workflows_metadata_root_scene_and_m126_boundaries() -> None:
     assert {path: _sha256(_ROOT / path) for path in _PROTECTED} == _PROTECTED
 
 
-def test_asset_manifest_contract_is_bounded_and_focused() -> None:
+def test_asset_manifest_exposes_strict_dependency_closure() -> None:
     source = (_ROOT / "src/ludoweave/assets/pipeline.py").read_text(encoding="utf-8")
-    exports = (_ROOT / "src/ludoweave/assets/__init__.py").read_text(encoding="utf-8")
-    assert 'ASSET_MANIFEST_PROTOCOL = "ludoweave.assets/1"' in source
-    assert "class AssetManifestLimits:" in source
-    assert "def from_json(" in source
-    assert "def canonical_bytes(" in source
-    assert '"ASSET_MANIFEST_PROTOCOL"' in exports
-    assert '"AssetManifestLimits"' in exports
+    assert "def dependency_closure(" in source
+    assert 'code="asset.invalid_dependency_roots"' in source
 
 
-def test_headless_project_loads_one_confined_bounded_asset_manifest() -> None:
-    source = (_ROOT / "src/ludoweave/tools/headless_project.py").read_text(encoding="utf-8")
-    assert "def load_asset_manifest(" in source
-    assert 'role="asset_manifest"' in source
-    assert "AssetManifest.from_json(" in source
+def test_cli_checks_explicit_source_and_asset_manifests_read_only() -> None:
+    source = (_ROOT / "src/ludoweave/tools/cli.py").read_text(encoding="utf-8")
+    assert 'source_command == "assets"' in source
+    assert "def _run_source_assets(" in source
+    assert '"ludoweave.cli.source-asset-check/1"' in source
+    assert "dependency_closure(" in source
 
 
-def test_asset_manifest_file_loader_has_installed_evidence() -> None:
-    assert (_ROOT / "tests/unit/test_asset_manifest_file_loading.py").is_file()
-    assert (_ROOT / "scripts/smoke_asset_manifest_file_wheel.py").is_file()
+def test_source_asset_check_has_behavior_and_installed_evidence() -> None:
+    assert (_ROOT / "tests/unit/test_asset_dependency_closure.py").is_file()
+    assert (_ROOT / "tests/integration/test_source_asset_dependency_cli.py").is_file()
+    assert (_ROOT / "scripts/smoke_source_asset_dependency_wheel.py").is_file()
 
 
-def test_m126_docs_define_loader_only_boundary() -> None:
+def test_m127_docs_define_dependency_checking_only_boundary() -> None:
     paths = (
         _ROOT / "README.md",
         _ROOT / "CHANGELOG.md",
         _ROOT / "ROADMAP.md",
         _ROOT / "docs/architecture.md",
         _ROOT / "docs/api-status.md",
-        _ROOT / "docs/rfcs/0109-add-project-confined-asset-manifest-loading.md",
+        _ROOT / "docs/rfcs/0110-add-source-to-asset-dependency-checking.md",
     )
     assert all(path.is_file() for path in paths)
     combined = "\n".join(path.read_text(encoding="utf-8") for path in paths)
     folded = combined.casefold()
-    assert "M126" in combined
-    assert "ludoweave.assets/1" in combined
-    assert "project-confined asset manifest" in folded
+    assert "M127" in combined
+    assert "ludoweave.cli.source-asset-check/1" in combined
+    assert "direct" in folded
+    assert "resolved" in folded
     assert "no asset source read" in folded
+    assert "no unused-asset rejection" in folded
     assert "no asset build" in folded
-    assert "no cache" in folded
-    assert "no directory discovery" in folded
-    assert "no world mutation" in folded
     assert "no workflow allocation" in folded

@@ -1196,6 +1196,33 @@ engine-root API, version, CLI, workflow job, hosted allocation, or release-
 authority change. A later milestone must separately decide dependency-check
 semantics.
 
+## M127 source-to-asset dependency checking
+
+M127 starts from fully locally validated M126 commit
+`9b373698c206982bcb6e86127ac8dffb2385a261`. It adds strict
+`AssetManifest.dependency_closure()` over exact distinct direct roots and the
+read-only command:
+
+```console
+ludoweave source assets PROJECT --manifest config/sources.json --assets config/assets.json
+```
+
+The command checks every explicit M124 scene or prefab through the unchanged
+readers, loads one explicit M126 asset manifest, requires every source-declared
+direct asset URI to exist, and reports each entry's direct declarations
+separately from the unique URI-sorted closure resolved through the validated
+acyclic asset graph. Success emits canonical
+`ludoweave.cli.source-asset-check/1` only after every entry succeeds.
+
+M127 does not infer asset references from component values, require sources to
+repeat indirect dependencies, or reject unused asset-manifest entries. It
+performs no asset source read, payload decode, asset build, import, cache use
+or creation, compile, registry resolution, world/session creation, command,
+transaction, world mutation, receipt, write, discovery, watcher, or live
+update. It adds no dependency, engine-root API, version, workflow job, hosted
+allocation, or release-authority change. Sequential reads are not an atomic
+filesystem snapshot.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

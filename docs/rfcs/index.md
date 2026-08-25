@@ -114,3 +114,4 @@ was adopted.
 - [RFC-0107: add explicit source-manifest checking](0107-add-explicit-source-manifest-checking.md)
 - [RFC-0108: add source-integrity lock verification](0108-add-source-integrity-lock-verification.md)
 - [RFC-0109: add project-confined asset-manifest loading](0109-add-project-confined-asset-manifest-loading.md)
+- [RFC-0110: add source-to-asset dependency checking](0110-add-source-to-asset-dependency-checking.md)
