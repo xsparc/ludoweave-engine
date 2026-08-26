@@ -258,6 +258,30 @@ def _compare_fingerprint_records(
     )
 
 
+def _verify_fingerprint_comparison(
+    project: Path,
+    *,
+    expected: str = "expected-fingerprint.json",
+    current: str = "current-fingerprint.json",
+    comparison: str = "comparison.json",
+) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-fingerprint-comparison-verify",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--expected-fingerprint",
+        expected,
+        "--current-fingerprint",
+        current,
+        "--comparison",
+        comparison,
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -1053,6 +1077,149 @@ def test_asset_cache_fingerprint_record_compare_checks_inputs_before_records(
         project,
         expected="missing-expected.json",
         current="missing-current.json",
+    )
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] != "tools.input_unavailable"
+    assert str(project) not in result.stderr
+
+
+def test_asset_cache_fingerprint_comparison_verify_accepts_equal_report_offline(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    canonical = fingerprint.stdout.rstrip("\n").encode("utf-8")
+    (project / "expected-fingerprint.json").write_bytes(canonical)
+    (project / "current-fingerprint.json").write_bytes(canonical)
+    comparison = _compare_fingerprint_records(project)
+    assert comparison.returncode == 0
+    comparison_bytes = comparison.stdout.rstrip("\n").encode("utf-8")
+    (project / "comparison.json").write_bytes(comparison_bytes)
+    shutil.rmtree(cache)
+    before = _files(project)
+
+    result = _verify_fingerprint_comparison(project)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report == {
+        "$schema": "ludoweave.asset-cache-fingerprint-comparison-verification/1",
+        "status": "valid",
+        "fingerprint_protocol": "ludoweave.asset-cache-fingerprint/1",
+        "comparison_protocol": "ludoweave.asset-cache-fingerprint-comparison/1",
+        "plan_sha256": cast(dict[str, object], json.loads(comparison.stdout))["plan_sha256"],
+        "comparison_status": "equal",
+        "comparison_sha256": f"sha256:{sha256(comparison_bytes).hexdigest()}",
+    }
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_fingerprint_comparison_verify_accepts_different_report_offline(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    expected = _fingerprint(project, cache)
+    assert expected.returncode == 0
+    (project / "expected-fingerprint.json").write_bytes(
+        expected.stdout.rstrip("\n").encode("utf-8")
+    )
+    orphan = b"comparison verification orphan"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    current = _fingerprint(project, cache)
+    assert current.returncode == 0
+    current_document = cast(dict[str, object], json.loads(current.stdout))
+    (project / "current-fingerprint.json").write_bytes(current.stdout.rstrip("\n").encode("utf-8"))
+    comparison = _compare_fingerprint_records(project)
+    assert comparison.returncode == 1
+    comparison_bytes = comparison.stdout.rstrip("\n").encode("utf-8")
+    (project / "comparison.json").write_bytes(comparison_bytes)
+    shutil.rmtree(cache)
+    before = _files(project)
+
+    result = _verify_fingerprint_comparison(project)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["status"] == "valid"
+    assert report["comparison_status"] == "different"
+    assert report["comparison_sha256"] == f"sha256:{sha256(comparison_bytes).hexdigest()}"
+    assert digest not in result.stdout
+    assert str(current_document["observation_sha256"]) not in result.stdout
+    assert str(project) not in result.stdout
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_fingerprint_comparison_verify_rejects_tampered_report(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    canonical = fingerprint.stdout.rstrip("\n").encode("utf-8")
+    (project / "expected-fingerprint.json").write_bytes(canonical)
+    (project / "current-fingerprint.json").write_bytes(canonical)
+    comparison = _compare_fingerprint_records(project)
+    assert comparison.returncode == 0
+    document = cast(dict[str, object], json.loads(comparison.stdout))
+    deltas = cast(dict[str, object], document["deltas"])
+    deltas["cas_blobs"] = 1
+    document["status"] = "different"
+    (project / "comparison.json").write_bytes(canonical_dumps(document))
+    shutil.rmtree(cache)
+    before = _files(project)
+
+    result = _verify_fingerprint_comparison(project)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.fingerprint_comparison_mismatch"
+    assert error["details"] == {"field": "deltas"}
+    assert str(project) not in result.stderr
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_fingerprint_comparison_verify_checks_inputs_before_records(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _verify_fingerprint_comparison(
+        project,
+        expected="missing-expected.json",
+        current="missing-current.json",
+        comparison="missing-comparison.json",
     )
 
     assert result.returncode == 2

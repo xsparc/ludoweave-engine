@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M142/RFC-0125 strict saved cache-fingerprint comparison verification.
+  One bounded canonical report is recomputed from the exact current plan and
+  two admitted fingerprints entirely offline; success binds the path-free
+  report digest without claiming authenticity, reading a cache, adding a
+  dependency, changing a workflow, or expanding CI.
 - Add M141/RFC-0124 offline comparison of two canonical saved cache
   fingerprints. Both records bind to one exact current plan and reuse M140's
   fixed path-free aggregate report with no cache access, fresh observation,

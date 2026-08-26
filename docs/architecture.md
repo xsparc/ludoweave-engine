@@ -3566,6 +3566,41 @@ repair, or cleanup authority. M141 adds no dependency, remote cache,
 backend/native surface, version, workflow, permission, release authority, or CI
 change. RFC-0124 records the complete boundary.
 
+## M142 saved cache-fingerprint comparison verification boundary
+
+`decode_asset_cache_fingerprint_comparison()` admits one exact canonical M140
+report under a tightening-only 4,096-byte hard limit. JSON admission rejects
+invalid UTF-8, duplicate names, non-finite values, overlong integer tokens,
+missing/extra fields, wrong protocols or primitive types, inconsistent status,
+and signed deltas outside the unchanged M137 aggregate bounds. Reconstructed
+M140 canonical bytes must equal the supplied bytes.
+
+`verify_asset_cache_fingerprint_comparison()` accepts only exact plan, two M138
+fingerprint, and M140 comparison values. It invokes M141's pure comparison,
+thereby binding both nested fingerprint plan digests, and requires every field
+of the saved comparison to match the recomputed frozen value. The verifier has
+no cache/filesystem/source/environment/clock/process/thread/network access and
+does not mutate its inputs.
+
+Frozen path-free
+`ludoweave.asset-cache-fingerprint-comparison-verification/1` evidence contains
+valid status, fingerprint and comparison protocols, plan digest, comparison
+status, and SHA-256 of the exact canonical comparison report. A correctly
+derived `different` comparison verifies successfully; verifier success is not
+fingerprint equality.
+
+The CLI verifies current inputs before two independently bounded fingerprint
+reads and one independently bounded comparison read. It has no cache argument
+or access. Neither success nor failure publishes a record filename, cache key,
+URI, action/blob/artifact identity, payload, or saved observation digest.
+
+Offline recomputation supplies local integrity evidence, not authenticity or
+provenance. It adds no signature, key/root of trust, attestation, trusted
+timestamp, atomic snapshot, record store/retention, cache mutation/cleanup,
+remote cache, dependency, backend/native surface, version, workflow,
+permission, release authority, or CI change. RFC-0125 records the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

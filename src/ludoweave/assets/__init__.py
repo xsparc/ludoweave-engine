@@ -29,6 +29,15 @@ from ludoweave.assets.fingerprint_comparison import (
     compare_asset_cache_fingerprint,
     compare_asset_cache_fingerprint_records,
 )
+from ludoweave.assets.fingerprint_comparison_verification import (
+    ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES,
+    ASSET_CACHE_FINGERPRINT_COMPARISON_VERIFICATION_PROTOCOL,
+    DEFAULT_ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_LIMITS,
+    AssetCacheFingerprintComparisonRecordLimits,
+    AssetCacheFingerprintComparisonVerification,
+    decode_asset_cache_fingerprint_comparison,
+    verify_asset_cache_fingerprint_comparison,
+)
 from ludoweave.assets.fingerprint_verification import (
     ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
     ASSET_CACHE_FINGERPRINT_VERIFICATION_PROTOCOL,
@@ -110,6 +119,8 @@ __all__ = [
     "ASSET_BUILD_RESULT_PROTOCOL",
     "ASSET_CACHE_ENTRY_PROTOCOL",
     "ASSET_CACHE_FINGERPRINT_COMPARISON_PROTOCOL",
+    "ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES",
+    "ASSET_CACHE_FINGERPRINT_COMPARISON_VERIFICATION_PROTOCOL",
     "ASSET_CACHE_FINGERPRINT_PROTOCOL",
     "ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES",
     "ASSET_CACHE_FINGERPRINT_VERIFICATION_PROTOCOL",
@@ -128,6 +139,7 @@ __all__ = [
     "ASSET_SOURCE_LOCK_PROTOCOL",
     "ASSET_SOURCE_MAX_BYTES",
     "ASSET_SOURCE_TOTAL_MAX_BYTES",
+    "DEFAULT_ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_LIMITS",
     "DEFAULT_ASSET_CACHE_FINGERPRINT_RECORD_LIMITS",
     "DEFAULT_ASSET_CACHE_INVENTORY_LIMITS",
     "AssetArtifact",
@@ -145,6 +157,8 @@ __all__ = [
     "AssetCacheError",
     "AssetCacheFingerprint",
     "AssetCacheFingerprintComparison",
+    "AssetCacheFingerprintComparisonRecordLimits",
+    "AssetCacheFingerprintComparisonVerification",
     "AssetCacheFingerprintRecordLimits",
     "AssetCacheFingerprintVerification",
     "AssetCacheInventory",
@@ -177,6 +191,7 @@ __all__ = [
     "compare_asset_cache_fingerprint",
     "compare_asset_cache_fingerprint_records",
     "decode_asset_cache_fingerprint",
+    "decode_asset_cache_fingerprint_comparison",
     "decode_png",
     "execute_asset_build_plan",
     "fingerprint_asset_cache_observation",
@@ -185,6 +200,7 @@ __all__ = [
     "populate_asset_build_cache",
     "realize_asset_build_plan",
     "verify_asset_cache_fingerprint",
+    "verify_asset_cache_fingerprint_comparison",
     "verify_asset_cache_population",
 ]
 __stability__ = {name: "experimental" for name in __all__}

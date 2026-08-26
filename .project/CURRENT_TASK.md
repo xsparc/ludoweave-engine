@@ -1,62 +1,68 @@
 # Current task
 
-- **Task:** M141 - compare two canonical saved cache fingerprints offline
-  through the fixed M140 path-free report.
+- **Task:** M142 - strictly admit and verify one saved M140 cache-fingerprint
+  comparison against an exact plan and two admitted fingerprints offline.
 - **Status:** Runtime, CLI, tests, architecture, documentation, complete local
-  validation, reproducible distribution, installed-consumer proof, release
-  rehearsal, evidence normalization, and generated-output cleanup pass. The
-  authorized local DCO commit remains. No CI change is needed.
-- **Base:** Fully locally validated M140 DCO commit
-  `81d55ac7b531d5782aec8723a8df9b0be18b49ca`, tree
-  `710867b3c6229c4c3bb86f0e1b80b1c1ce9cc2b3`, with sole parent exact M139.
+  validation, reproducible distribution, all installed consumers, release
+  rehearsal, findings-first review, final scope/history/hosted-state audits,
+  and the authorized local DCO commit are complete. No CI change was needed.
+- **Base:** Fully locally validated M141 DCO commit
+  `bff0e111b40a6e4b342fe4e5b93307d770b7be95`, tree
+  `bc5476e90d05ae4f2c27a2d2eebecc0821331a41`, with sole parent exact M140.
   The stack remains unpublished under the existing public-review identity hold.
-- **Branch:** `release/m141-offline-cache-fingerprint-comparison`.
+- **Branch:** `release/m142-saved-cache-fingerprint-comparison-verification`.
 
 ## Acceptance boundary
 
-- Add a pure function that requires one exact plan and two exact admitted M138
-  fingerprint values, binds both nested plan digests, and performs no cache or
-  filesystem access.
-- Reuse frozen canonical
-  `ludoweave.asset-cache-fingerprint-comparison/1` unchanged, with twelve
-  signed `current - expected` M137 aggregate deltas and one exact-observation
-  equality flag.
-- Preserve identity-only change detection with all-zero aggregate deltas and
-  publish neither saved observation digest nor any cache/object identity.
-- Add `source asset-cache-fingerprint-record-compare`: verify current inputs,
-  read/decode exactly two bounded project-confined canonical records, then exit
-  0 for equal, 1 for diagnostic different, or 2 for invalid processing.
-- Prove the CLI works after the originating cache is absent. Add isolated-wheel
-  proof, RFC-0124, public docs, and architecture enforcement while preserving
-  cache layout, M137-M140 protocols/bytes, workflows, dependencies, version,
-  engine root, release authority, and prior evidence.
-- State explicitly that comparison of two unsigned records is local integrity
+- Add tightening-only 4,096-byte admission for exact canonical M140 comparison
+  records; reject duplicate names, non-finite values, overlong integers,
+  unknown/missing fields, invalid primitives/protocols/status, out-of-range
+  signed deltas, and noncanonical bytes.
+- Add a pure verifier that reruns M141 from one exact plan and two exact admitted
+  fingerprints, requires exact frozen comparison equality, and performs no
+  filesystem, cache, environment, clock, process, thread, or network access.
+- Emit frozen path-free
+  `ludoweave.asset-cache-fingerprint-comparison-verification/1` with plan,
+  protocols, comparison status, and digest of the already-public canonical
+  comparison report. Publish neither fingerprint observation digest nor any
+  cache/object identity.
+- Add `source asset-cache-fingerprint-comparison-verify`: preflight current
+  inputs, independently read/decode two bounded fingerprints and one bounded
+  comparison, then exit 0 for correctly derived equal or different evidence and
+  2 for invalid/mismatched processing.
+- Prove operation after originating caches are absent. Add isolated-wheel proof,
+  RFC-0125, public docs, and architecture enforcement while preserving cache
+  layout, M137-M141 protocols/bytes, workflows, dependencies, version, engine
+  root, release authority, and prior evidence.
+- State explicitly that verification of unsigned records is local integrity
   evidence, not chronology, authenticity, provenance, an atomic snapshot, or
   retention/deletion/cleanup authority.
 
 ## Direction and evidence so far
 
-- Primary sources accessed 2026-08-27: NIST FIPS 180-4, OpenTelemetry
-  sensitive-data guidance, SLSA 1.2 artifact verification, and GitHub workflow/
-  attestation guidance. They support aggregate change detection while requiring
-  separate trust roots/signatures/expectations for authenticity and avoiding
-  hosted signing of frequent test builds.
-- Exact M140 commit/tree/parent and clean worktree were established before the
-  neutral M141 branch was created; the redundant contained M140 branch was
+- Primary sources accessed 2026-08-27: RFC 8785, Python 3.12 JSON, NIST FIPS
+  180-4, OpenTelemetry sensitive-data, SLSA 1.2 verification, GitHub workflow/
+  billing, and repository-agent customization guidance. They support bounded
+  canonical local recomputation, disclosure minimization, separate trust roots
+  for authenticity, and no workflow expansion for this slice.
+- Exact M141 commit/tree/parent and clean worktree were established before the
+  neutral M142 branch was created; the redundant contained M141 branch was
   pruned.
-- The pure record comparison, export, CLI, unit/integration tests, installed
-  smoke, RFC-0124, public docs, and architecture boundary are additive.
-- All 456 Python files are format-clean; Ruff and strict Pyright pass; 1,717
+- The strict decoder, pure verifier, focused exports, CLI, unit/integration
+  tests, installed smoke, RFC-0125, public docs, and architecture boundary are
+  additive. Findings-first review also closed structured UTF-8 encoding failure
+  translation for unpaired-surrogate `str` input.
+- All 460 Python files are format-clean; Ruff and strict Pyright pass; 1,722
   architecture assertions pass with one established skip; strict docs and both
   governance modes pass; exact CPython 3.12-3.14, real-wgpu, profiles, and both
   deterministic vertical slices pass.
-- The final pure wheel and source archive reproduce byte-for-byte; all 24
-  isolated installed-wheel consumers pass; two byte-identical ten-artifact
-  release rehearsals pass; archive, protected-surface, disclosure, identity,
-  credential, history, and object-integrity audits are clean.
+- Two final distributions reproduce byte-for-byte; all 25 isolated installed
+  consumers pass; two byte-identical ten-artifact release rehearsals pass; and
+  archive, protected-surface, disclosure, identity, credential, history, and
+  object-integrity audits are clean.
 - Fresh fetch and hosted queries still expose only exact M99 `main`, no open PR,
-  no post-M99 run, and no release. M141 therefore remains local rather than
-  publishing a 42-milestone stack onto a stale public base.
+  no post-M99 run, and no release. M142 therefore remains local rather than
+  publishing a 43-milestone stack onto a stale public base.
 
 ## Explicit non-scope
 
@@ -78,5 +84,6 @@
 
 ## Remaining acceptance work
 
-- Create the authorized local DCO commit and prove it postcommit. Do not push or
-  create a PR while the public-review identity hold remains.
+- No local M142 acceptance work remains. Keep the commit unpublished while the
+  public-review identity hold remains, then start the next approved,
+  research-gated milestone from the exact committed M142 tip.

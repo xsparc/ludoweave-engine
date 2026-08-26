@@ -557,3 +557,33 @@ publishes no record path, cache key, URI, object/artifact digest, payload, or
 expected/current observation digest. Results are local comparison evidence,
 not chronology, authenticity, provenance, atomic-snapshot proof, retention
 policy, or cleanup authority.
+
+## Offline saved cache-fingerprint comparison verification
+
+M142 strictly admits one saved M140 report and proves it was derived from the
+supplied plan and two admitted fingerprints without cache access:
+
+```console
+ludoweave source asset-cache-fingerprint-comparison-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --expected-fingerprint config/cache-before.json --current-fingerprint config/cache-after.json --comparison config/cache-comparison.json
+```
+
+Current source identities, the saved lock, and exact regenerated plan verify
+before any record is read. Each fingerprint retains M139's 65,536-byte bound
+and canonical decoder. The comparison is independently limited to 4,096 bytes
+and must have the exact M140 schema, primitive types, supported protocols,
+status semantics, twelve signed bounded deltas, and canonical bytes. Duplicate
+names, non-finite values, overlong integers, unknown/missing fields, or
+noncanonical encoding fail closed.
+
+The pure verifier reruns M141 comparison and requires exact frozen-value
+equality. Success emits path-free
+`ludoweave.asset-cache-fingerprint-comparison-verification/1` with valid status,
+plan digest, comparison/fingerprint protocols, comparison status, and SHA-256
+of the already-public canonical comparison report. It exits 0 even when the
+verified comparison status is `different`; exit 0 means correctly derived.
+Invalid or mismatched evidence emits structured standard error and exits 2.
+
+There is no `--cache` argument or cache access. Output includes neither saved
+observation digest nor cache/object identity. Local recomputation is integrity
+evidence, not authenticity or provenance, an atomic snapshot, record retention,
+or cleanup authority.

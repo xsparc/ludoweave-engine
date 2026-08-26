@@ -14,6 +14,7 @@ from typing import cast
 from ludoweave import __version__
 from ludoweave.agent import AGENT_TOOL_NAMES
 from ludoweave.assets import (
+    ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES,
     ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
     ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
     ASSET_SOURCE_MAX_BYTES,
@@ -30,6 +31,7 @@ from ludoweave.assets import (
     compare_asset_cache_fingerprint,
     compare_asset_cache_fingerprint_records,
     decode_asset_cache_fingerprint,
+    decode_asset_cache_fingerprint_comparison,
     execute_asset_build_plan,
     fingerprint_asset_cache_observation,
     inspect_asset_cache_inventory,
@@ -37,6 +39,7 @@ from ludoweave.assets import (
     populate_asset_build_cache,
     realize_asset_build_plan,
     verify_asset_cache_fingerprint,
+    verify_asset_cache_fingerprint_comparison,
     verify_asset_cache_population,
 )
 from ludoweave.core.errors import LudoWeaveError
@@ -302,6 +305,32 @@ def _build_parser() -> argparse.ArgumentParser:
         required=True,
         help="project-relative current cache fingerprint",
     )
+    source_asset_cache_fingerprint_comparison_verify_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-comparison-verify",
+        help="verify a saved comparison against two saved cache fingerprints",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_comparison_verify_parser)
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--expected-fingerprint",
+        required=True,
+        help="project-relative expected cache fingerprint",
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--current-fingerprint",
+        required=True,
+        help="project-relative current cache fingerprint",
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--comparison",
+        required=True,
+        help="project-relative saved cache-fingerprint comparison",
+    )
     source_asset_cache_populate_parser = source_subparsers.add_parser(
         "asset-cache-populate",
         help="realize one exact plan before explicitly populating a local cache",
@@ -499,6 +528,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_cache_fingerprint_compare(args)
             if source_command == "asset-cache-fingerprint-record-compare":
                 return _run_asset_cache_fingerprint_record_compare(args)
+            if source_command == "asset-cache-fingerprint-comparison-verify":
+                return _run_asset_cache_fingerprint_comparison_verify(args)
             if source_command == "asset-cache-fingerprint-verify":
                 return _run_asset_cache_fingerprint_verify(args)
             if source_command == "asset-cache-populate":
@@ -929,6 +960,46 @@ def _run_asset_cache_fingerprint_record_compare(args: argparse.Namespace) -> int
     comparison = compare_asset_cache_fingerprint_records(current_plan, expected, current)
     _write_stdout(comparison.canonical_bytes())
     return 0 if comparison.equal else 1
+
+
+def _run_asset_cache_fingerprint_comparison_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    expected = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "expected_fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="expected_asset_cache_fingerprint",
+        )
+    )
+    current = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "current_fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="current_asset_cache_fingerprint",
+        )
+    )
+    comparison = decode_asset_cache_fingerprint_comparison(
+        project.read_relative(
+            _text_argument(args, "comparison"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES,
+            role="asset_cache_fingerprint_comparison",
+        )
+    )
+    verification = verify_asset_cache_fingerprint_comparison(
+        current_plan,
+        expected,
+        current,
+        comparison,
+    )
+    _write_stdout(verification.canonical_bytes())
+    return 0
 
 
 def _run_asset_realize(args: argparse.Namespace) -> int:

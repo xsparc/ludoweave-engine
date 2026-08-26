@@ -1,11 +1,52 @@
 # Project State
 
-## M141 offline cache-fingerprint comparison - locally validated, pending commit
+## M142 saved cache-fingerprint comparison verification - locally validated and committed
+
+- Base: fully locally validated M141 DCO commit
+  `bff0e111b40a6e4b342fe4e5b93307d770b7be95`, tree
+  `bc5476e90d05ae4f2c27a2d2eebecc0821331a41`, sole parent exact M140.
+- Branch: `release/m142-saved-cache-fingerprint-comparison-verification`;
+  unpublished under the existing public-review identity hold. The redundant
+  contained M141 branch was pruned after exact ancestry proof.
+- Direction: RFC 8785 and Python 3.12 support bounded canonical admission;
+  NIST supports change-detection digests; OpenTelemetry supports minimized
+  aggregate disclosure; SLSA requires separate trusted signatures/subjects/
+  expectations for authenticity. GitHub workflow/billing guidance justifies no
+  CI expansion.
+- Contract: one 4,096-byte exact-schema saved M140 report is reconstructed and
+  compared with pure M141 recomputation from one exact plan and two admitted
+  fingerprints, without cache/filesystem/environment/clock/network effects.
+- CLI: `source asset-cache-fingerprint-comparison-verify` preflights current
+  inputs before three independently bounded project-confined reads and emits
+  path-free valid evidence for a correctly derived equal or different report.
+- Complete proof: all 460 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,722 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 pass
+  3,619/3,609/3,609 tests; and real-wgpu, retained profiles, and both
+  deterministic vertical slices pass with unchanged identities.
+- Distribution proof: two current-tree builds reproduce byte-for-byte; all 25
+  isolated no-dependency installed consumers pass; two identical ten-artifact
+  release rehearsals pass; and the wheel/source archives contain no native,
+  WASM, bytecode, or retired hidden control-directory entries.
+- Audit: exactly 19 intended paths remain; protected workflows/dependencies/
+  release surfaces are unchanged; public development-tool identity, credential,
+  and focused backend/native scans are empty. Exact M141 history and all 42
+  prior stack commits pass linearity, identity, DCO, and object-integrity checks.
+  A fresh fetch still shows only exact M99 remote main, no open PR, no post-M99
+  run, and no release, so the public-review hold remains.
+- Scope: no cache access, detailed diff/identity/path/observation disclosure,
+  chronology/trust/authenticity, atomic snapshot, record storage/retention,
+  mutation/cleanup, remote cache/network, dependency, version, workflow/
+  allocation, release authority, or remote change.
+
+## M141 offline cache-fingerprint comparison - locally validated and committed
 
 - Base: fully locally validated M140 DCO commit
   `81d55ac7b531d5782aec8723a8df9b0be18b49ca`, tree
   `710867b3c6229c4c3bb86f0e1b80b1c1ce9cc2b3`, sole parent exact M139.
-- Branch: `release/m141-offline-cache-fingerprint-comparison`; unpublished
+- Exact DCO commit `bff0e111b40a6e4b342fe4e5b93307d770b7be95`, tree
+  `bc5476e90d05ae4f2c27a2d2eebecc0821331a41`, is the M142 base. Its redundant
+  local branch was pruned after exact ancestry proof; it remains unpublished
   under the existing public-review identity hold.
 - Direction: NIST/OpenTelemetry guidance supports aggregate change detection
   and disclosure minimization; SLSA/GitHub guidance requires separate trusted
@@ -24,8 +65,8 @@
 - Complete proof: two final distributions reproduce byte-for-byte; all 24
   installed-wheel consumers pass; two identical ten-artifact release rehearsals
   pass; archives and scope/disclosure/identity/credential boundaries are clean.
-- Audit: exact M140 history and all 41 prior stack commits pass linearity,
-  identity, DCO, object-integrity, and local-branch checks. A fresh fetch still
+- Audit: postcommit exact tree/parent/identity/DCO, all 42 M100-M141 stack
+  commits, linearity, object-integrity, and local-branch checks pass. A fresh fetch still
   shows only exact M99 remote main, no open PR, no post-M99 run, and no release,
   so the public-review hold remains and no remote action occurred.
 - Scope: no cache access, detailed diff/identity/path/digest disclosure,

@@ -129,3 +129,4 @@ was adopted.
 - [RFC-0122: add saved cache-fingerprint verification](0122-add-saved-cache-fingerprint-verification.md)
 - [RFC-0123: add path-free cache-fingerprint comparison](0123-add-path-free-cache-fingerprint-comparison.md)
 - [RFC-0124: add offline cache-fingerprint comparison](0124-add-offline-cache-fingerprint-comparison.md)
+- [RFC-0125: verify saved cache-fingerprint comparison evidence](0125-verify-saved-cache-fingerprint-comparison.md)

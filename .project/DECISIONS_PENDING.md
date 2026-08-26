@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M142 saved cache-fingerprint comparison verification
+
+RFC-0125 resolves the adopted M142 direction: strictly decode one bounded
+canonical M140 report, rerun M141 from one exact plan and two admitted
+fingerprints, then require complete frozen-value equality entirely offline.
+
+Frozen `ludoweave.asset-cache-fingerprint-comparison-verification/1` success
+binds the plan, existing fingerprint/comparison protocols, comparison status,
+and digest of the already-public comparison report. Correctly derived
+`different` evidence verifies with exit 0; invalid or mismatched processing
+uses structured stderr exit 2. The CLI has no cache argument or access.
+
+Record storage/naming/retention, chronology, detailed object diffs, signature/
+attestation, authenticity/provenance, atomic snapshots, hostile concurrent
+writers, retention roots, leases/pins/generations, cleanup/mutation/repair/
+deletion/eviction, remote cache/network, dependencies, version, CI/workflows,
+release authority, and remote change remain unauthorized for M142.
+
 ## M141 offline cache-fingerprint comparison
 
 RFC-0124 resolves the adopted M141 direction: bind two exact admitted M138

@@ -1580,6 +1580,37 @@ detailed diff, retention/deletion/cleanup authority, remote cache, dependency,
 version, workflow job/allocation, permission, credential, release authority,
 or CI change.
 
+## M142 saved cache-fingerprint comparison verification
+
+M142 starts from fully locally validated M141 commit
+`bff0e111b40a6e4b342fe4e5b93307d770b7be95`. It adds strict bounded admission
+of the M140 comparison record and one pure offline verifier plus CLI composition:
+
+```console
+ludoweave source asset-cache-fingerprint-comparison-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --expected-fingerprint config/cache-before.json --current-fingerprint config/cache-after.json --comparison config/cache-comparison.json
+```
+
+The command verifies current sources, saved lock, and exact regenerated plan
+before reading two independently bounded canonical fingerprints and one
+independently 4,096-byte bounded canonical comparison. Duplicate names,
+non-finite values, overlong integers, unknown/missing fields, wrong types or
+protocols, inconsistent status, out-of-range signed deltas, and noncanonical
+bytes fail closed.
+
+The pure operation reruns M141 comparison and requires exact equality with the
+saved frozen value. Successful path-free
+`ludoweave.asset-cache-fingerprint-comparison-verification/1` evidence binds the
+plan, fingerprint/comparison protocols, comparison status, and SHA-256 of the
+canonical aggregate report. A valid `different` report exits 0 because verifier
+success means correct derivation, not equal observations. Invalid processing
+or mismatch exits 2.
+
+There is no cache argument or access after record admission. M142 is local
+integrity evidence, not authenticity or provenance. It adds no detailed object
+disclosure, signature/trust system, atomic snapshot, record store/retention,
+cache cleanup/mutation, remote cache, dependency, version, workflow job or
+allocation, permission, credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
