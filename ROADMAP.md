@@ -1424,6 +1424,29 @@ or valid unreferenced CAS blobs. M135 adds no rollback, implicit publication to
 project write, dependency, version, workflow job/allocation, permission,
 credential, release authority, or CI change.
 
+## M136 saved asset-cache population verification
+
+M136 starts from fully locally validated M135 commit
+`59796814ee340254c11ccfde9330184ba7ef148d`. It adds bounded strict decoding of
+saved `ludoweave.asset-cache-population/1` evidence and one command:
+
+```console
+ludoweave source asset-cache-population-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --population config/population.json --cache ../ludoweave-cache
+```
+
+The command completes current lock and exact saved-plan verification, reads the
+project-confined report under hard byte/entry bounds, rejects ambiguous or
+inconsistent JSON, and preflights the complete report/plan identity before
+opening the cache read-only. Every current action and CAS payload must verify
+and match the saved output identity. Success is path-free
+`ludoweave.asset-cache-population-verification/1` evidence.
+
+M136 invokes no decoder and performs no cache/project write, repair, deletion,
+or fallback. The unsigned report is local integrity evidence, not provenance,
+authenticity, builder identity, or a trusted timestamp. It adds no remote cache,
+signature/attestation system, dependency, version, workflow job/allocation,
+permission, credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

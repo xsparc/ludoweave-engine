@@ -1,5 +1,45 @@
 # Project State
 
+## M136 saved asset-cache population verification - locally validated
+
+- Base: fully locally validated M135 DCO commit
+  `59796814ee340254c11ccfde9330184ba7ef148d`, tree
+  `e0cf313f78c830c2a93c07e29bacb130b7effa18`, sole parent exact M134.
+- Branch: `release/m136-saved-cache-population-verification`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Bazel, Python JSON, and SLSA 1.2 primary references support
+  separate action/CAS verification, duplicate-rejecting parsing, and explicit
+  subject/expectation/trust-root requirements before authenticity claims.
+- Contract: bounded strict reconstruction of saved M135 evidence completely
+  preflights exact current plan identity before a read-only cache store verifies
+  every current action, CAS payload, and complete saved result identity.
+- CLI: `source asset-cache-population-verify` completes current lock/plan
+  verification, reads the project-confined report under 8 MiB/4,096-entry hard
+  bounds, and emits path-free canonical success without decoder or mutation.
+- Evidence so far: 438 Python files are format-clean; Ruff and strict Pyright
+  pass; 1,688 architecture assertions pass with one established skip; strict
+  docs, whitespace, both governance modes, full CPython 3.12-3.14 suites, real
+  wgpu, profiles, deterministic vertical slices, and all 19 installed-wheel
+  consumers pass.
+- Review: no remaining actionable implementation defect. Complete preflight,
+  duplicate/schema/type/count/aggregate checks, read-only action/CAS behavior,
+  missing/corrupt/mismatch failures, project/cache immutability, path/content
+  silence, and non-provenance language are covered.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  all 19 installed consumers pass against their exact wheel; two byte-identical
+  complete release rehearsals pass; archive, protected-surface, public identity,
+  credential, backend/network/write, and CI-scope scans are clean.
+- Cleanup and audit: 36 exact scratch targets were safely removed; `.tmp` is
+  empty and `.venv` retained. Exact M135 history, all 36 prior stack commits,
+  DCO/identity, object integrity, local branches, and hosted absence pass. The
+  stack remains unpublished and no hosted allocation occurred.
+- Final metadata separation is clean. Exactly 19 intended paths are ready for
+  the authorized local DCO commit; publication remains held.
+- Scope: no cache write/repair/delete/fallback, decoder, remote cache, network,
+  signature/attestation, provenance/authenticity claim, hostile-concurrency
+  claim, dependency, version, workflow/allocation, release authority, or remote
+  change.
+
 ## M135 explicit post-realization asset-cache population - locally validated
 
 - Base: fully locally validated M134 DCO commit

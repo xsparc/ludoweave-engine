@@ -3394,6 +3394,38 @@ remote cache, network, plugin, scheduler, renderer upload, world mutation,
 dependency, version, workflow, permission, release authority, or CI change.
 RFC-0118 records the full boundary.
 
+## M136 saved asset-cache population verification boundary
+
+`AssetCachePopulationRecord.from_json()` reconstructs the path-free M135
+document without reconstructing or retaining payloads. An exact tightening-
+only envelope caps UTF-8 input at 8 MiB and entries at 4,096. Decoding rejects
+duplicate JSON names, non-finite constants, field-set or exact-type drift,
+unsupported protocols/statuses, invalid logical/output identities, duplicate
+URIs, aggregate byte mismatches, and status-count mismatches. Canonical output
+uses the unchanged `ludoweave.asset-cache-population/1` shape.
+
+`verify_asset_cache_population()` first compares the complete record with the
+exact current plan hash and plan-ordered URI, kind, cache-key, and source-byte
+identity. Failure occurs before cache construction or action reads. Only after
+preflight does it create `AssetCacheStore(..., writable=False)` and require
+every action to exist, pass M133 metadata/CAS checks, and equal the saved full
+result identity. Payloads are observed one at a time and discarded. Frozen
+`ludoweave.asset-cache-population-verification/1` success retains only status,
+protocol, plan hash, and entry count.
+
+CLI composition recomputes and verifies current sources, lock, manifest, and
+plan before reading the project-confined saved report and invoking read-only
+cache verification. It neither reacquires sources for decoding nor invokes a
+decoder. Missing/corrupt/mismatched actions have no fallback, repair, or write;
+an absent cache remains absent.
+
+The report has no signature, authenticated builder, root of trust, trusted
+timestamp, or attestation envelope. Agreement with a locally observed cache is
+not provenance or authenticity and cannot prove historical status events. M136
+adds no cache mutation, remote transport, discovery, worker, plugin, renderer
+upload, world mutation, dependency, version, workflow, permission, release
+authority, or CI change. RFC-0119 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

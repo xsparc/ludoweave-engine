@@ -123,3 +123,4 @@ was adopted.
 - [RFC-0116: add verified read-only asset cache lookup](0116-add-verified-read-only-asset-cache-lookup.md)
 - [RFC-0117: add read-only cache-assisted asset realization](0117-add-read-only-cache-assisted-asset-realization.md)
 - [RFC-0118: add explicit post-realization cache population](0118-add-post-realization-cache-population.md)
+- [RFC-0119: add saved cache-population verification](0119-add-saved-cache-population-verification.md)

@@ -58,6 +58,15 @@ from ludoweave.assets.population import (
     AssetCachePopulationEntry,
     populate_asset_build_cache,
 )
+from ludoweave.assets.population_verification import (
+    ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
+    ASSET_CACHE_POPULATION_VERIFICATION_PROTOCOL,
+    AssetCachePopulationRecord,
+    AssetCachePopulationRecordEntry,
+    AssetCachePopulationRecordLimits,
+    AssetCachePopulationVerification,
+    verify_asset_cache_population,
+)
 from ludoweave.assets.realization import (
     ASSET_BUILD_REALIZATION_PROTOCOL,
     AssetBuildRealization,
@@ -72,6 +81,8 @@ __all__ = [
     "ASSET_CACHE_ENTRY_PROTOCOL",
     "ASSET_CACHE_LOOKUP_PROTOCOL",
     "ASSET_CACHE_POPULATION_PROTOCOL",
+    "ASSET_CACHE_POPULATION_RECORD_MAX_BYTES",
+    "ASSET_CACHE_POPULATION_VERIFICATION_PROTOCOL",
     "ASSET_CACHE_PUBLISH_PROTOCOL",
     "ASSET_LOADER_PROTOCOL",
     "ASSET_MANIFEST_PROTOCOL",
@@ -95,6 +106,10 @@ __all__ = [
     "AssetCacheLookupSummary",
     "AssetCachePopulation",
     "AssetCachePopulationEntry",
+    "AssetCachePopulationRecord",
+    "AssetCachePopulationRecordEntry",
+    "AssetCachePopulationRecordLimits",
+    "AssetCachePopulationVerification",
     "AssetCachePublishEntry",
     "AssetCachePublishSummary",
     "AssetCacheStore",
@@ -116,5 +131,6 @@ __all__ = [
     "materialize_asset_build_plan",
     "populate_asset_build_cache",
     "realize_asset_build_plan",
+    "verify_asset_cache_population",
 ]
 __stability__ = {name: "experimental" for name in __all__}

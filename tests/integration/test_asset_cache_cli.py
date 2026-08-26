@@ -145,6 +145,27 @@ def _populate(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
     )
 
 
+def _verify_population(
+    project: Path,
+    cache: Path,
+    *,
+    population: str = "population.json",
+) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-population-verify",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--population",
+        population,
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -383,6 +404,86 @@ def test_asset_cache_populate_rejects_corruption_without_success_or_repair(
     assert result.stdout == ""
     error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
     assert error["code"] == "asset_cache.corrupt_entry"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_population_verify_reads_saved_report_and_current_cache(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    population = _populate(project, cache)
+    assert population.returncode == 0
+    (project / "population.json").write_text(population.stdout, encoding="utf-8")
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _verify_population(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["$schema"] == "ludoweave.asset-cache-population-verification/1"
+    assert report["population_protocol"] == "ludoweave.asset-cache-population/1"
+    assert report["status"] == "valid"
+    assert report["entry_count"] == 1
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_population_verify_reports_missing_action_without_creation(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    populated = tmp_path / "populated"
+    absent = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    population = _populate(project, populated)
+    assert population.returncode == 0
+    (project / "population.json").write_text(population.stdout, encoding="utf-8")
+
+    result = _verify_population(project, absent)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.population_miss"
+    assert str(project) not in result.stderr
+    assert str(absent) not in result.stderr
+    assert not absent.exists()
+
+
+def test_asset_cache_population_verify_rejects_saved_artifact_mismatch_read_only(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    population = _populate(project, cache)
+    assert population.returncode == 0
+    document = cast(dict[str, object], json.loads(population.stdout))
+    entries = cast(list[dict[str, object]], document["entries"])
+    entries[0]["artifact_sha256"] = f"sha256:{'0' * 64}"
+    (project / "population.json").write_bytes(canonical_dumps(document))
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _verify_population(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.population_mismatch"
     assert str(project) not in result.stderr
     assert str(cache) not in result.stderr
     assert _files(project) == before_project

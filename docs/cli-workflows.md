@@ -395,3 +395,32 @@ whole plan: if a later filesystem publication fails, earlier valid entries or
 valid unreferenced CAS blobs may remain and no M135 success report is emitted.
 There is no rollback, repair, deletion, eviction, remote cache, worker, plugin,
 world mutation, receipt, or CI change.
+
+## Saved cache-population verification
+
+M136 verifies saved M135 evidence against exact current source, plan, and cache
+state without changing any of them:
+
+```console
+ludoweave source asset-cache-population-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --population config/population.json --cache ../ludoweave-cache
+```
+
+The project-confined population file is limited to 8 MiB and 4,096 entries.
+Its JSON decoder rejects duplicate, unknown, missing, wrongly typed, or
+inconsistent fields and normalizes valid input back to the canonical
+`ludoweave.asset-cache-population/1` shape. Current source-lock and saved-plan
+verification completes first. The verifier then checks the report's complete
+plan/order/input identity before opening the explicit cache read-only.
+
+Every action must exist and pass canonical metadata, current-plan field,
+ordinary-file, bounded byte-count, and CAS SHA-256 validation. Its complete
+result identity must equal the saved entry. Success is path-free canonical
+`ludoweave.asset-cache-population-verification/1`; missing, corrupt, or
+mismatched entries emit no success document and trigger no decoder, fallback,
+repair, or write. A missing cache remains absent.
+
+The saved report is unsigned local integrity evidence. Verification does not
+prove that its historical statuses occurred and is not provenance,
+authenticity, a builder identity, or a trusted timestamp. There is no remote
+cache, signature/attestation policy, worker, world mutation, receipt, or CI
+change.

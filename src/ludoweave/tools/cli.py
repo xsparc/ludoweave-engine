@@ -14,10 +14,12 @@ from typing import cast
 from ludoweave import __version__
 from ludoweave.agent import AGENT_TOOL_NAMES
 from ludoweave.assets import (
+    ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
     ASSET_SOURCE_MAX_BYTES,
     ASSET_SOURCE_TOTAL_MAX_BYTES,
     AssetBuildInput,
     AssetBuildPlan,
+    AssetCachePopulationRecord,
     AssetCacheStore,
     AssetError,
     AssetManifest,
@@ -28,6 +30,7 @@ from ludoweave.assets import (
     materialize_asset_build_plan,
     populate_asset_build_cache,
     realize_asset_build_plan,
+    verify_asset_cache_population,
 )
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
@@ -223,6 +226,23 @@ def _build_parser() -> argparse.ArgumentParser:
     source_asset_cache_populate_parser.add_argument(
         "--cache", required=True, type=Path, help="local cache directory outside the project"
     )
+    source_asset_cache_population_verify_parser = source_subparsers.add_parser(
+        "asset-cache-population-verify",
+        help="verify saved population evidence against an exact current plan and cache",
+    )
+    _add_asset_source_arguments(source_asset_cache_population_verify_parser)
+    source_asset_cache_population_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_population_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_population_verify_parser.add_argument(
+        "--population", required=True, help="project-relative saved population report"
+    )
+    source_asset_cache_population_verify_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
     source_asset_realize_parser = source_subparsers.add_parser(
         "asset-realize",
         help="realize one verified asset plan from read-only cache hits and decoded misses",
@@ -383,6 +403,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_cache_check(args)
             if source_command == "asset-cache-populate":
                 return _run_asset_cache_populate(args)
+            if source_command == "asset-cache-population-verify":
+                return _run_asset_cache_population_verify(args)
             if source_command == "asset-realize":
                 return _run_asset_realize(args)
             raise _argument_error("source_command")
@@ -734,6 +756,31 @@ def _run_asset_cache_populate(args: argparse.Namespace) -> int:
         project_root=project.root,
     )
     _write_stdout(population.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_population_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    population_document = project.read_relative(
+        _text_argument(args, "population"),
+        max_bytes=ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
+        role="asset_cache_population",
+    )
+    population = AssetCachePopulationRecord.from_json(population_document)
+    verification = verify_asset_cache_population(
+        current_plan,
+        population,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(verification.canonical_bytes())
     return 0
 
 

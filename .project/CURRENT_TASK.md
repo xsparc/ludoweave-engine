@@ -1,71 +1,71 @@
 # Current task
 
-- **Task:** M135 - add explicit post-realization asset-cache population.
-- **Status:** Implementation, documentation, findings-first review, complete
-  validation, record-inclusive reproducibility, release rehearsal, and scope
-  review are complete. Cleanup and history/hosted audit are complete. Final
-  metadata separation is complete. M135 is ready for the authorized local DCO
-  commit.
-- **Base:** Fully locally validated M134 DCO commit
-  `a6263a2e7d0df18ff1a34d32f02f88be29ee006c`, tree
-  `de0284fc44a825ead61440ad231b2fb6de559950`, with sole parent exact M133.
+- **Task:** M136 - verify saved asset-cache population evidence against the
+  exact current plan and local cache.
+- **Status:** Implementation, documentation, focused/complete behavior,
+  supported-Python, static, architecture, governance, real-wgpu, retained
+  profile, vertical-slice, findings-first, and all installed-wheel consumer
+  gates pass. Record-inclusive reproducibility, release rehearsal, and final
+  scope/security review, cleanup, history/hosted audit, and final metadata
+  separation pass. M136 is ready for the authorized local DCO commit.
+- **Base:** Fully locally validated M135 DCO commit
+  `59796814ee340254c11ccfde9330184ba7ef148d`, tree
+  `e0cf313f78c830c2a93c07e29bacb130b7effa18`, with sole parent exact M134.
   The stack remains unpublished under the existing public-review identity
   hold.
-- **Branch:** `release/m135-post-realization-cache-population`.
+- **Branch:** `release/m136-saved-cache-population-verification`.
 
 ## Acceptance boundary
 
-- Accept one exact current build plan, detached input tuple, explicit local
-  cache path, optional project root, and existing tightening-only limits.
-- Open the cache without write authority, complete all M134 source/cache/
-  decoder/limit work, and only then acquire write authority for the same
-  resolved root.
-- Reuse the unchanged M132 publisher and retain atomic per-entry visibility,
-  content verification, structured failures, and the documented possibility
-  of an earlier valid entry or valid orphan CAS blob after later failure.
-- Add immutable path-free `ludoweave.asset-cache-population/1` evidence that
-  combines plan-ordered `hit`/`decoded` with `published`/`reused` status.
-- Add `ludoweave source asset-cache-populate PROJECT --manifest FILE --assets
-  FILE --lock FILE --plan FILE --cache DIRECTORY` only after current lock/plan
-  verification and complete project-confined source acquisition.
-- Prove cold, warm, mixed, stale-source, corrupt-cache, decoder-failure,
-  limit-failure, publication-failure, CLI, and isolated-wheel behavior.
-- Document read/write authority, determinism, trust, non-transactional failure,
-  compatibility, and explicit remote/shared-writer/repair non-scope.
+- Strictly reconstruct saved `ludoweave.asset-cache-population/1` bytes under
+  hard 8 MiB and 4,096-entry bounds, rejecting duplicates, non-finite values,
+  exact-schema/type drift, invalid identities/statuses, and inconsistent
+  counts or aggregate bytes.
+- Completely preflight the report against the exact current plan before cache
+  construction, then open only `AssetCacheStore(..., writable=False)`.
+- Require every referenced action and CAS payload to pass unchanged M133
+  verification and match the complete saved result identity, with no decoder,
+  fallback, cache/project mutation, repair, or creation.
+- Add immutable path-free
+  `ludoweave.asset-cache-population-verification/1` evidence and the additive
+  `source asset-cache-population-verify` CLI composition.
+- Prove bounded decoding, current-cache success, plan mismatch before reads,
+  missing action, corruption, result mismatch, CLI, and isolated-wheel
+  behavior.
+- Document that unsigned local digest agreement is integrity evidence only,
+  not provenance, authenticity, builder identity, or a trusted timestamp.
 - Keep workflows, CI allocations, permissions, credentials, dependencies,
-  lock, metadata, version, engine root, M131-M134 implementations, release
+  lock, metadata, version, engine root, M131-M135 implementations, release
   authority, and remote state unchanged.
 
 ## Direction and evidence so far
 
-- Primary sources accessed 2026-08-27: current Bazel remote-cache and Gradle
-  build-cache documentation. They support declared input/output identity,
-  cache lookup, execution of misses, later upload/store, and separately
-  controlled read/write authority. They do not establish an all-plan
-  transaction, rollback, hostile-concurrency safety, remote trust, repair,
-  eviction, or new CI work.
-- Exact M134 commit/tree/parent and clean baseline passed before branch
-  creation. The additive source, CLI, unit/integration/architecture evidence,
-  installed smoke, RFC-0118, and public docs are present while protected
-  M131-M134 modules, dependencies, metadata, and workflows remain exact.
-- Focused gates passed 39, 61, and 26 assertions. All 434 Python files are
+- Primary sources accessed 2026-08-27: current Bazel remote-cache, Python 3.12
+  JSON, and SLSA 1.2 artifact-verification documentation. They support separate
+  action/CAS verification, strict duplicate rejection, and explicit trust-root
+  requirements for authenticity claims.
+- Exact M135 commit/tree/parent and clean baseline passed before branch
+  creation. The additive reader, verifier, CLI, tests, installed smoke,
+  RFC-0119, and public docs are present while protected prior surfaces,
+  dependencies, metadata, and workflows remain exact.
+- Focused gates pass 21, 38, and 47 assertions. All 438 Python files are
   format-clean; Ruff and strict Pyright pass; strict docs and whitespace pass;
-  1,683 architecture assertions pass with one established Windows capability
-  skip; both governance modes return zero findings.
-- Accepted suites pass 3,482 tests with 16 skips on exact CPython 3.12.13 and
-  3,472 tests with 17 skips on exact CPython 3.13.13 and 3.14.5.
-- All ten real-wgpu tests, both M7 profile contracts, Clockwork Arena, Agent
-  World Builder, the primary wheel smoke, and all 17 focused isolated wheel
-  consumers pass. The new cold/warm installed population report is exact.
+  1,688 architecture assertions pass with one established Windows capability
+  skip; both correctly targeted governance modes return zero findings.
+- Accepted suites pass 3,503 tests with 16 skips on exact CPython 3.12.13 and
+  3,493 tests with 17 skips on exact CPython 3.13.13 and 3.14.5.
+- All ten real-wgpu tests, eight M7 profile assertions, Clockwork Arena, Agent
+  World Builder, the primary wheel smoke, and all 18 focused isolated wheel
+  consumers pass. The new installed verification report is exact and the
+  project/cache snapshots remain unchanged.
 
 ## Explicit non-scope
 
-- No implicit publication in `asset-realize`, all-plan transaction, rollback,
-  repair, deletion, eviction, garbage collection, quota, migration, or legacy-
-  cache trust.
-- No remote cache, network, authentication, authorization, shared-writer or
-  hostile-concurrency claim, upload/download protocol, retry transport, or
-  external provider.
+- No cache publication, creation, write, repair, deletion, eviction, garbage
+  collection, quota, migration, decoder, fallback, or historical-event proof.
+- No remote cache, network, authentication, authorization, signature,
+  attestation, trust root, provenance/authenticity claim, shared-writer or
+  hostile-concurrency claim, or external provider.
 - No discovery/enumeration, watcher, reimport, scheduler, worker, process,
   thread, parallelism, callback, plugin, decoder registration, dynamic import,
   or arbitrary evaluation.

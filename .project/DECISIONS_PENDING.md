@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M136 saved asset-cache population verification
+
+RFC-0119 resolves the adopted M136 direction: strictly decode one saved M135
+population report under hard byte/entry bounds, completely bind it to the exact
+current plan before cache construction, then verify every referenced action and
+CAS payload through the unchanged read-only M133 boundary.
+
+Frozen `ludoweave.asset-cache-population-verification/1` evidence reports only
+the exact plan, entry count, population protocol, and valid status. It invokes
+no decoder or fallback and cannot create, publish, repair, delete, or otherwise
+change the cache or project. Historical population statuses are validated as
+data but are not independently proven events.
+
+Signatures, attestations, provenance/authenticity, builder identity, roots of
+trust, remote cache, authenticated transport, snapshot-consistent hostile
+concurrency, repair/deletion/eviction, dependencies, version, CI/workflows,
+release authority, and remote change remain unauthorized for M136.
+
 ## M135 explicit post-realization asset-cache population
 
 RFC-0118 resolves the adopted M135 direction: keep M134 realization read-only

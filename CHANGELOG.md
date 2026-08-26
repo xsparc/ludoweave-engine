@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M136/RFC-0119 bounded saved asset-cache population verification. Strict
+  duplicate-rejecting decoding reconstructs `ludoweave.asset-cache-population/1`
+  under hard byte/entry bounds; the new `source
+  asset-cache-population-verify` command preflights the complete exact current
+  plan before read-only verification of every referenced action and CAS
+  payload. It adds no decoder fallback, cache/project write, signature,
+  authenticity/provenance claim, dependency, workflow, or CI change.
 - Add M135/RFC-0118 explicit post-realization cache population. The new
   `ludoweave.asset-cache-population/1` operation and `source
   asset-cache-populate` command verify current inputs and every cache candidate,
