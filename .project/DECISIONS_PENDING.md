@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M141 offline cache-fingerprint comparison
+
+RFC-0124 resolves the adopted M141 direction: bind two exact admitted M138
+fingerprints to one exact current plan and reuse M140's fixed path-free
+comparison entirely in memory. Deltas remain `current - expected`; exact
+observation equality preserves identity-only change detection.
+
+The CLI verifies current inputs before independently reading and decoding two
+bounded project-confined canonical records. It has no cache argument or access.
+Equal/different retain stdout exit 0/1; invalid processing remains structured
+stderr exit 2. No new report protocol is introduced.
+
+Record storage, chronology, detailed object diffs, signature/attestation,
+authenticity/provenance, atomic snapshots, hostile concurrent writers,
+retention roots, leases/pins/generations, cleanup/mutation/repair/deletion/
+eviction, remote cache/network, dependencies, version, CI/workflows, release
+authority, and remote change remain unauthorized for M141.
+
 ## M140 path-free cache-fingerprint comparison
 
 RFC-0123 resolves the adopted M140 direction: preflight exact saved plan

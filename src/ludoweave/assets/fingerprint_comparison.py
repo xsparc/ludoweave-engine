@@ -207,28 +207,58 @@ def compare_asset_cache_fingerprint(
         project_root=project_root,
         limits=limits,
     )
+    return _compare_records(fingerprint, current)
+
+
+def compare_asset_cache_fingerprint_records(
+    plan: AssetBuildPlan,
+    expected: AssetCacheFingerprint,
+    current: AssetCacheFingerprint,
+) -> AssetCacheFingerprintComparison:
+    """Compare two canonical saved observations without cache access."""
+
+    _preflight(plan, expected, record_role="expected")
+    _preflight(plan, current, record_role="current")
+    return _compare_records(expected, current)
+
+
+def _compare_records(
+    expected: AssetCacheFingerprint,
+    current: AssetCacheFingerprint,
+) -> AssetCacheFingerprintComparison:
     return AssetCacheFingerprintComparison(
-        plan_sha256=fingerprint.inventory.plan_sha256,
-        observation_equal=current.observation_sha256 == fingerprint.observation_sha256,
-        deltas=AssetCacheInventoryDelta.between(fingerprint.inventory, current.inventory),
+        plan_sha256=expected.inventory.plan_sha256,
+        observation_equal=current.observation_sha256 == expected.observation_sha256,
+        deltas=AssetCacheInventoryDelta.between(expected.inventory, current.inventory),
     )
 
 
-def _preflight(plan: AssetBuildPlan, fingerprint: AssetCacheFingerprint) -> None:
+def _preflight(
+    plan: AssetBuildPlan,
+    fingerprint: AssetCacheFingerprint,
+    *,
+    record_role: str | None = None,
+) -> None:
+    details = {"field": "plan_or_fingerprint"}
+    if record_role is not None:
+        details["record"] = record_role
     if type(plan) is not AssetBuildPlan or type(fingerprint) is not AssetCacheFingerprint:
         raise _comparison_error(
             "asset cache fingerprint comparison requires exact values",
             code="asset_cache.invalid_fingerprint_comparison",
             phase="configure",
-            details={"field": "plan_or_fingerprint"},
+            details=details,
         )
     plan_sha256 = f"sha256:{sha256(plan.canonical_bytes()).hexdigest()}"
     if fingerprint.inventory.plan_sha256 != plan_sha256:
+        details = {"field": "plan_sha256"}
+        if record_role is not None:
+            details["record"] = record_role
         raise _comparison_error(
             "saved asset cache fingerprint does not match the comparison plan",
             code="asset_cache.fingerprint_mismatch",
             phase="compare",
-            details={"field": "plan_sha256"},
+            details=details,
         )
 
 

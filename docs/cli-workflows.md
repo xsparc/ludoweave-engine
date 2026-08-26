@@ -531,3 +531,29 @@ The report contains no cache key, URI, object/artifact digest, filename, path,
 payload, or differing observation digest. It is not authenticity or
 provenance, a generic diff, an atomic snapshot, or authority to write, repair,
 clean, retain, evict, or delete cache state.
+
+## Offline saved cache-fingerprint comparison
+
+M141 compares two already-admitted canonical fingerprints without cache access:
+
+```console
+ludoweave source asset-cache-fingerprint-record-compare PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --expected-fingerprint config/cache-before.json --current-fingerprint config/cache-after.json
+```
+
+Current source identities, the saved lock, and exact regenerated plan verify
+before either record is read. Both project-confined files retain the unchanged
+65,536-byte limit and strict M139 canonical decoder. Each nested plan digest
+must match the exact current plan.
+
+The command then reuses M140's canonical
+`ludoweave.asset-cache-fingerprint-comparison/1` report. Its twelve signed
+deltas are `current - expected`; `observation_equal` detects exact identity
+change even when every aggregate delta is zero. Equal exits 0, different exits
+1 with the report on standard output, and invalid processing exits 2 with a
+structured error on standard error.
+
+The command takes no `--cache` argument and constructs or reads no cache. It
+publishes no record path, cache key, URI, object/artifact digest, payload, or
+expected/current observation digest. Results are local comparison evidence,
+not chronology, authenticity, provenance, atomic-snapshot proof, retention
+policy, or cleanup authority.

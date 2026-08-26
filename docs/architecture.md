@@ -3539,6 +3539,33 @@ authority. M140 adds no dependency, remote cache, backend/native surface,
 version, workflow, permission, release authority, or CI change. RFC-0123
 records the complete boundary.
 
+## M141 offline cache-fingerprint comparison boundary
+
+`compare_asset_cache_fingerprint_records()` accepts only one exact plan and two
+exact admitted fingerprint values. Both nested plan digests preflight against
+the supplied plan before a shared pure helper produces the unchanged M140
+comparison value. Signed deltas remain `current - expected`; identity-only
+change still produces `different` when all aggregate deltas are zero.
+
+The pure operation has no cache-root parameter and performs no filesystem,
+cache, source, environment, clock, or network access. It does not invoke M138's
+observation function or M139's decoder. The CLI remains the composition root:
+it verifies current inputs first, reads exactly two project-confined records
+under the unchanged M139 bound, decodes both canonically, and passes the frozen
+values to the pure comparison.
+
+M141 reuses `ludoweave.asset-cache-fingerprint-comparison/1`; it adds no report
+protocol. The output remains path-free and contains no cache key, URI,
+action/blob/artifact identity, filename, record path, payload, or either
+observation digest. Equal/different status does not infer chronology or trust.
+
+Offline digest comparison is local integrity/change evidence, not authenticity
+or provenance. It does not turn either original sequential observation into an
+atomic snapshot and grants no ownership, retention, eviction, deletion, write,
+repair, or cleanup authority. M141 adds no dependency, remote cache,
+backend/native surface, version, workflow, permission, release authority, or CI
+change. RFC-0124 records the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

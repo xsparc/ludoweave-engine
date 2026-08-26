@@ -128,3 +128,4 @@ was adopted.
 - [RFC-0121: add deterministic cache-observation fingerprint](0121-add-deterministic-cache-observation-fingerprint.md)
 - [RFC-0122: add saved cache-fingerprint verification](0122-add-saved-cache-fingerprint-verification.md)
 - [RFC-0123: add path-free cache-fingerprint comparison](0123-add-path-free-cache-fingerprint-comparison.md)
+- [RFC-0124: add offline cache-fingerprint comparison](0124-add-offline-cache-fingerprint-comparison.md)

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M141/RFC-0124 offline comparison of two canonical saved cache
+  fingerprints. Both records bind to one exact current plan and reuse M140's
+  fixed path-free aggregate report with no cache access, fresh observation,
+  new protocol, authenticity claim, dependency, workflow, or CI change.
 - Add M140/RFC-0123 path-free saved cache-fingerprint comparison. One exact
   plan preflight and one unchanged bounded observation produce fixed signed
   deltas for the twelve existing M137 aggregate fields plus an identity-equality

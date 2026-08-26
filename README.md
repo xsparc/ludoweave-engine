@@ -60,8 +60,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > M139 adds strict saved-fingerprint integrity verification; M140 adds a fixed,
 > path-free aggregate comparison that diagnoses count/byte changes while
 > retaining exact identity-only change detection.
+> M141 adds offline comparison of two canonical saved fingerprints through the
+> same fixed report, with no cache access after record admission.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M139 are locally validated stacked milestones from the exact M99 closeout, and M140 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M140 are locally validated stacked milestones from the exact M99 closeout, and M141 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -160,6 +162,9 @@ convention remains enforced.
   that reports signed deltas for the twelve existing aggregate inventory
   fields plus one exact-observation equality flag. It exposes no object
   identity, differing digest, path, payload, or cleanup authority.
+- Pure offline comparison of two admitted canonical cache fingerprints under
+  one exact plan, reusing the same fixed report without cache construction,
+  cache access, fresh observation, or new protocol.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.

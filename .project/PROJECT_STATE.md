@@ -1,12 +1,46 @@
 # Project State
 
-## M140 path-free cache-fingerprint comparison - in progress
+## M141 offline cache-fingerprint comparison - locally validated, pending commit
+
+- Base: fully locally validated M140 DCO commit
+  `81d55ac7b531d5782aec8723a8df9b0be18b49ca`, tree
+  `710867b3c6229c4c3bb86f0e1b80b1c1ce9cc2b3`, sole parent exact M139.
+- Branch: `release/m141-offline-cache-fingerprint-comparison`; unpublished
+  under the existing public-review identity hold.
+- Direction: NIST/OpenTelemetry guidance supports aggregate change detection
+  and disclosure minimization; SLSA/GitHub guidance requires separate trusted
+  signed provenance and advises against attestations for frequent test builds.
+- Contract: one exact plan binds two admitted canonical fingerprint values;
+  pure in-memory comparison reuses M140's fixed report without cache access,
+  fresh observation, filesystem, environment, clock, or network effects.
+- CLI: `source asset-cache-fingerprint-record-compare` verifies current inputs,
+  independently admits two bounded project-confined records, and returns
+  canonical stdout with 0/1 equal/different semantics or structured exit 2.
+- Core evidence: all 456 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,717 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 passes
+  3,597/3,587/3,587 tests; real-wgpu, profiles, and both deterministic vertical
+  slices pass.
+- Complete proof: two final distributions reproduce byte-for-byte; all 24
+  installed-wheel consumers pass; two identical ten-artifact release rehearsals
+  pass; archives and scope/disclosure/identity/credential boundaries are clean.
+- Audit: exact M140 history and all 41 prior stack commits pass linearity,
+  identity, DCO, object-integrity, and local-branch checks. A fresh fetch still
+  shows only exact M99 remote main, no open PR, no post-M99 run, and no release,
+  so the public-review hold remains and no remote action occurred.
+- Scope: no cache access, detailed diff/identity/path/digest disclosure,
+  chronology/trust/authenticity, atomic snapshot, retention/deletion authority,
+  mutation/cleanup, remote cache/network, dependency, version, workflow/
+  allocation, release authority, or remote change.
+
+## M140 path-free cache-fingerprint comparison - locally validated
 
 - Base: fully locally validated M139 DCO commit
   `e7c01044da87004cea065fd07f379ea7ba09128f`, tree
   `c52f9af36d464d539df1bb2164a3e7b56e2741be`, sole parent exact M138.
-- Branch: `release/m140-path-free-cache-fingerprint-comparison`; unpublished
-  under the existing public-review identity hold.
+- The redundant local milestone branch was pruned after exact ancestry proof;
+  the commit remains the M141 base and is unpublished under the existing
+  public-review identity hold.
 - Direction: current NIST Privacy Framework and OpenTelemetry guidance support
   minimization/aggregation; RFC 6902 confirms that generic JSON Patch would
   require paths and can carry values, widening the existing disclosure surface.

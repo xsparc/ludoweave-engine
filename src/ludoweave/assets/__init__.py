@@ -27,6 +27,7 @@ from ludoweave.assets.fingerprint_comparison import (
     AssetCacheFingerprintComparison,
     AssetCacheInventoryDelta,
     compare_asset_cache_fingerprint,
+    compare_asset_cache_fingerprint_records,
 )
 from ludoweave.assets.fingerprint_verification import (
     ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
@@ -174,6 +175,7 @@ __all__ = [
     "TextureAsset",
     "TextureSlot",
     "compare_asset_cache_fingerprint",
+    "compare_asset_cache_fingerprint_records",
     "decode_asset_cache_fingerprint",
     "decode_png",
     "execute_asset_build_plan",

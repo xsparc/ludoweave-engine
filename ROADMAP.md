@@ -1548,6 +1548,38 @@ retention, eviction, or deletion authority. M140 adds no generic diff/patch,
 remote cache, atomic snapshot, dependency, version, workflow job/allocation,
 permission, credential, release authority, or CI change.
 
+## M141 offline saved cache-fingerprint comparison
+
+M141 starts from fully locally validated M140 commit
+`81d55ac7b531d5782aec8723a8df9b0be18b49ca`. It adds one pure comparison and
+one CLI composition:
+
+```console
+ludoweave source asset-cache-fingerprint-record-compare PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --expected-fingerprint config/cache-before.json --current-fingerprint config/cache-after.json
+```
+
+Current source identities, lock, and exact regenerated plan verify before two
+project-confined fingerprint reads. Each record retains M139's independent
+65,536-byte bound and strict canonical decoder. Both saved nested plan digests
+must match the exact current plan before the pure function compares them.
+
+The operation reuses `ludoweave.asset-cache-fingerprint-comparison/1` unchanged:
+twelve signed `current - expected` aggregate deltas and one exact-observation
+equality flag. Equal emits canonical stdout with exit 0; different emits the
+same fixed report with exit 1; invalid processing remains structured exit 2.
+Same-size identity substitution remains detectable with all-zero deltas.
+
+There is no cache argument, cache construction, or cache access. Both records
+can be compared after their originating cache is absent. The report remains
+path-free and publishes neither record's observation digest or object
+identities.
+
+This is comparison of two unsigned admitted values, not authenticity or
+provenance. M141 adds no record store, trust/signature system, atomic snapshot,
+detailed diff, retention/deletion/cleanup authority, remote cache, dependency,
+version, workflow job/allocation, permission, credential, release authority,
+or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
