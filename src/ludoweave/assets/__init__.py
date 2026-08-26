@@ -22,6 +22,15 @@ from ludoweave.assets.execution import (
     execute_asset_build_plan,
     materialize_asset_build_plan,
 )
+from ludoweave.assets.fingerprint_verification import (
+    ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+    ASSET_CACHE_FINGERPRINT_VERIFICATION_PROTOCOL,
+    DEFAULT_ASSET_CACHE_FINGERPRINT_RECORD_LIMITS,
+    AssetCacheFingerprintRecordLimits,
+    AssetCacheFingerprintVerification,
+    decode_asset_cache_fingerprint,
+    verify_asset_cache_fingerprint,
+)
 from ludoweave.assets.inventory import (
     ASSET_CACHE_FINGERPRINT_PROTOCOL,
     ASSET_CACHE_INVENTORY_MAX_ACTIONS,
@@ -94,6 +103,8 @@ __all__ = [
     "ASSET_BUILD_RESULT_PROTOCOL",
     "ASSET_CACHE_ENTRY_PROTOCOL",
     "ASSET_CACHE_FINGERPRINT_PROTOCOL",
+    "ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES",
+    "ASSET_CACHE_FINGERPRINT_VERIFICATION_PROTOCOL",
     "ASSET_CACHE_INVENTORY_MAX_ACTIONS",
     "ASSET_CACHE_INVENTORY_MAX_CAS_BLOBS",
     "ASSET_CACHE_INVENTORY_MAX_CAS_BYTES",
@@ -109,6 +120,7 @@ __all__ = [
     "ASSET_SOURCE_LOCK_PROTOCOL",
     "ASSET_SOURCE_MAX_BYTES",
     "ASSET_SOURCE_TOTAL_MAX_BYTES",
+    "DEFAULT_ASSET_CACHE_FINGERPRINT_RECORD_LIMITS",
     "DEFAULT_ASSET_CACHE_INVENTORY_LIMITS",
     "AssetArtifact",
     "AssetBuildArtifact",
@@ -124,6 +136,8 @@ __all__ = [
     "AssetBuildResultEntry",
     "AssetCacheError",
     "AssetCacheFingerprint",
+    "AssetCacheFingerprintRecordLimits",
+    "AssetCacheFingerprintVerification",
     "AssetCacheInventory",
     "AssetCacheInventoryLimits",
     "AssetCacheLookupEntry",
@@ -150,6 +164,7 @@ __all__ = [
     "PngTexture",
     "TextureAsset",
     "TextureSlot",
+    "decode_asset_cache_fingerprint",
     "decode_png",
     "execute_asset_build_plan",
     "fingerprint_asset_cache_observation",
@@ -157,6 +172,7 @@ __all__ = [
     "materialize_asset_build_plan",
     "populate_asset_build_cache",
     "realize_asset_build_plan",
+    "verify_asset_cache_fingerprint",
     "verify_asset_cache_population",
 ]
 __stability__ = {name: "experimental" for name in __all__}

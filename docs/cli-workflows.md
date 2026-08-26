@@ -475,3 +475,33 @@ contains no cache key, URI, artifact digest, path, payload, timestamp, or age.
 Equality does not establish ownership, provenance, last use, retention roots,
 or deletion eligibility. The command has no cleanup, write, repair, eviction,
 decoder, fallback, remote cache, or CI effect.
+
+## Saved local-cache fingerprint verification
+
+M139 compares one project-confined canonical saved fingerprint with one fresh
+bounded observation:
+
+```console
+ludoweave source asset-cache-fingerprint-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json --cache ../ludoweave-cache
+```
+
+Current source identities, the saved lock, and the exact regenerated plan are
+verified before the fingerprint file is read. The saved document is limited to
+65,536 bytes and must be the exact canonical
+`ludoweave.asset-cache-fingerprint/1` JSON record, without pretty-printing or
+terminal line framing. Duplicate names, non-finite numbers, extra/missing
+fields, non-exact types, invalid protocols/digests, inconsistent aggregates,
+and alternate encodings fail before cache observation.
+
+The saved nested plan digest is preflighted before the external cache is
+constructed. One M138 read-only pass then recomputes both inventory and
+observation digest. Exact equality emits path-free
+`ludoweave.asset-cache-fingerprint-verification/1`; mismatch, corruption, or
+active-limit failure emits no success document and performs no write, repair,
+fallback, or cleanup.
+
+Success establishes local integrity equality with the supplied saved record.
+It is not authenticity: no signature, key identity, root of trust, trusted
+timestamp, attestation, or authenticated channel exists. It also grants no
+ownership, retention, eviction, or deletion authority and does not turn the
+sequential scan into an atomic snapshot.

@@ -149,6 +149,10 @@ convention remains enforced.
   reuses one bounded inventory pass and binds exact sorted canonical action and
   CAS membership. It is a sequential observation, not an atomic snapshot,
   retention root, or cleanup authorization.
+- Strict bounded saved-fingerprint decoding and read-only
+  `ludoweave.asset-cache-fingerprint-verification/1` evidence that compares one
+  exact record with one fresh observation. Digest agreement is local integrity
+  equality, not authenticity, provenance, or mutation authority.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.

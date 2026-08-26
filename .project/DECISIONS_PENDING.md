@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M139 saved cache-fingerprint verification
+
+RFC-0122 resolves the adopted M139 direction: admit only one bounded canonical
+exact-schema saved M138 fingerprint, bind its nested plan digest before cache
+construction, then compare its complete inventory and observation digest with
+exactly one fresh M138 read-only observation.
+
+Frozen `ludoweave.asset-cache-fingerprint-verification/1` success exposes only
+valid status, fingerprint protocol, plan digest, and observation digest. Local
+digest agreement is integrity equality, not authenticity or provenance: M139
+adds no signature, key/root of trust, attestation, authenticated channel,
+trusted timestamp, or transparency log.
+
+Per-object diff/listing, atomic snapshots, hostile concurrent writers,
+retention roots, leases/pins/generations, cleanup policy, mutation/repair/
+deletion/eviction, remote cache/network, dependencies, version, CI/workflows,
+release authority, and remote change remain unauthorized for M139.
+
 ## M138 deterministic cache-observation fingerprint
 
 RFC-0121 resolves the adopted M138 direction: one M137 bounded read-only

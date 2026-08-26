@@ -1,5 +1,46 @@
 # Project State
 
+## M139 saved cache-fingerprint verification - in progress
+
+- Base: fully locally validated M138 DCO commit
+  `aeca2b3ea1c1e6122df4080641f707e36a9a43d7`, tree
+  `28c6e0a5b423eb7e340d5ffa010d9997c1d408af`, sole parent exact M137.
+- Branch: `release/m139-saved-cache-fingerprint-verification`; unpublished
+  under the existing public-review identity hold.
+- Direction: Python 3.12 JSON guidance requires explicit input limits and
+  supports duplicate/non-finite rejection hooks; NIST describes digests as
+  changed-message detection; SLSA requires separate roots of trust, signatures,
+  subject binding, and expectations for authenticity.
+- Contract: one bounded canonical exact-schema saved M138 record is completely
+  bound to the exact current plan before one unchanged fresh M138 read-only
+  observation compares both inventory and observation digest.
+- CLI: `source asset-cache-fingerprint-verify` verifies current inputs/lock/plan,
+  reads the project-confined saved record under 65,536 bytes, preflights it, and
+  emits path-free valid evidence without decoder, source acquisition, cache
+  mutation, or identity disclosure.
+- Evidence so far: all 449 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,706 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 passes
+  3,562/3,552/3,552 tests; real-wgpu, profiles, both vertical slices, and the
+  primary plus all 21 focused installed consumers pass. Decoder review added
+  independent hard caps for every detached aggregate and left 20 focused
+  assertions green.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  two identical ten-artifact release rehearsals pass; archives, protected
+  surfaces, public identity, added-line credentials, capability, and CI-scope
+  scans are clean.
+- Audit: exact M138 history, all 39 prior stack commits, DCO/identity, commit-
+  graph/object integrity, local branches, and hosted absence pass. A fresh
+  fetch still shows only exact M99 remote main, so the reported squash merge is
+  not visible and the public-review hold remains.
+- Cleanup and handoff: 42 exact generated targets are removed, `.tmp` is empty,
+  `.venv` is retained, and exactly 18 intended paths are ready for the
+  authorized local DCO commit. Publication remains held.
+- Scope: no trust/authenticity mechanism, cache/object diff, snapshot claim,
+  retention/deletion authority, mutation/cleanup, remote cache/network,
+  dependency, version, workflow/allocation, release authority, or remote
+  change.
+
 ## M138 deterministic cache-observation fingerprint - locally validated
 
 - Base: fully locally validated M137 DCO commit

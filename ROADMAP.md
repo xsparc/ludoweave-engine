@@ -1495,6 +1495,29 @@ write, cleanup, deletion, repair, eviction, garbage collector, timestamp/age
 policy, remote cache, dependency, version, workflow job/allocation, permission,
 credential, release authority, or CI change.
 
+## M139 saved cache-fingerprint verification
+
+M139 starts from fully locally validated M138 commit
+`aeca2b3ea1c1e6122df4080641f707e36a9a43d7`. It adds strict bounded decoding
+of one canonical saved M138 fingerprint and one command:
+
+```console
+ludoweave source asset-cache-fingerprint-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json --cache ../ludoweave-cache
+```
+
+The command completes current lock and exact saved-plan verification, reads the
+project-confined record under a 65,536-byte bound, and rejects duplicate names,
+non-finite numbers, schema/type/protocol/digest/aggregate drift, or noncanonical
+encoding. Complete record/plan identity preflights before one fresh M138
+read-only observation. Exact inventory and observation-digest equality emits
+path-free `ludoweave.asset-cache-fingerprint-verification/1` evidence.
+
+Agreement is local integrity equality, not authenticity or provenance: M139
+adds no signature, key/root of trust, attestation, trusted timestamp, remote
+cache, atomic snapshot, diff, retention/deletion authority, cache/project
+mutation, dependency, version, workflow job/allocation, permission, credential,
+release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

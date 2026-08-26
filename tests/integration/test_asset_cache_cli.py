@@ -194,6 +194,27 @@ def _fingerprint(project: Path, cache: Path) -> subprocess.CompletedProcess[str]
     )
 
 
+def _verify_fingerprint(
+    project: Path,
+    cache: Path,
+    *,
+    fingerprint: str = "fingerprint.json",
+) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-fingerprint-verify",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--fingerprint",
+        fingerprint,
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -640,6 +661,89 @@ def test_asset_cache_fingerprint_is_stable_and_read_only(tmp_path: Path) -> None
     assert inventory["cas_blobs"] == 1
     assert _files(project) == before_project
     assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_verify_reads_exact_saved_record_and_current_cache(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _verify_fingerprint(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["$schema"] == "ludoweave.asset-cache-fingerprint-verification/1"
+    assert report["fingerprint_protocol"] == "ludoweave.asset-cache-fingerprint/1"
+    assert report["status"] == "valid"
+    assert str(report["plan_sha256"]).startswith("sha256:")
+    assert str(report["observation_sha256"]).startswith("sha256:")
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_verify_rejects_changed_cache_content_silently(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    orphan = b"changed cache content"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _verify_fingerprint(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.fingerprint_mismatch"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert digest not in result.stderr
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_verify_checks_current_inputs_before_record_read(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _verify_fingerprint(project, cache, fingerprint="missing.json")
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] != "tools.input_unavailable"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert not cache.exists()
 
 
 def test_asset_cache_fingerprint_rejects_corrupt_orphan_content_silently(

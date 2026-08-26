@@ -3484,6 +3484,34 @@ eligibility. M138 adds no write, cleanup, repair, eviction, garbage collection,
 network, remote cache, dependency, version, workflow, permission, release
 authority, or CI change. RFC-0121 records the full boundary.
 
+## M139 saved cache-fingerprint verification boundary
+
+`decode_asset_cache_fingerprint()` admits one exact canonical saved M138 record
+under a tightening-only 65,536-byte limit. JSON decoding rejects duplicate
+names and non-finite constants; reconstruction requires exact top-level and
+nested fields, exact primitive types, supported protocol identifiers, valid
+SHA-256 text, and internally consistent bounded inventory aggregates. The
+admitted bytes must equal the reconstructed fingerprint's canonical bytes.
+
+`verify_asset_cache_fingerprint()` requires exact plan and fingerprint values,
+then hashes the current plan's canonical bytes and compares that identity with
+the saved nested inventory before cache construction. Only after preflight does
+it call the unchanged M138 fingerprint operation exactly once. The fresh
+inventory and observation digest must both equal the saved values.
+
+Frozen path-free `ludoweave.asset-cache-fingerprint-verification/1` success
+contains valid status, fingerprint protocol, plan digest, and observation
+digest. Failure context names only the rejected field; it publishes no cache
+key, URI, artifact digest, filename, path, payload, or differing digest.
+
+Digest agreement is local integrity equality, not authenticity. There is no
+signature, key identity, root of trust, authenticated builder/channel, trusted
+timestamp, attestation, or provenance envelope. Verification supplies no
+ownership, lease, retention root, last-use fact, deletion authority, or atomic
+snapshot claim. M139 adds no mutation, cleanup, remote cache, dependency,
+version, workflow, permission, release authority, or CI change. RFC-0122
+records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

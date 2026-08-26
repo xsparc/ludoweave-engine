@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M139/RFC-0122 strict saved cache-fingerprint verification. Bounded
+  duplicate/non-finite-rejecting canonical decoding binds the saved M138 record
+  to the exact current plan before one fresh read-only observation; success is
+  path-free `ludoweave.asset-cache-fingerprint-verification/1` integrity
+  equality, not authenticity, provenance, cleanup authority, dependency,
+  workflow, or CI change.
 - Add M138/RFC-0121 deterministic cache-observation fingerprinting. One M137
   bounded verification pass now emits path-free
   `ludoweave.asset-cache-fingerprint/1` evidence binding exact canonical action
