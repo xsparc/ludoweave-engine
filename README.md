@@ -47,9 +47,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > adds strict read-only current-plan cache hit/miss inspection without creating
 > or changing the cache or bypassing a decoder; M134 adds bounded read-only
 > cache-assisted realization that verifies every source and cache candidate
-> before decoding only exact misses, with no automatic cache publication.
+> before decoding only exact misses, with no automatic cache publication;
+> M135 adds an explicit post-realization population operation that acquires
+> cache-write authority only after complete realization succeeds and retains
+> M132's atomic per-entry publication boundary.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M134 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M135 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -124,6 +127,10 @@ convention remains enforced.
 - Read-only `ludoweave.asset-build-realization/1` materialization from verified
   current-plan cache hits and built-in decoding of exact misses, preserving
   plan order and resource bounds with no project or cache write.
+- Explicit `ludoweave.asset-cache-population/1` composition that completes
+  read-only realization before acquiring cache-write authority, then reports
+  plan-ordered hit/decoded and published/reused evidence without changing the
+  project or claiming an all-plan cache transaction.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.

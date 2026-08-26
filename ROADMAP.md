@@ -1401,6 +1401,29 @@ world/session, mutation, or receipt. It adds no dependency, native/backend
 surface, engine-root API, version, workflow job/allocation, hosted allocation,
 permission, credential, release authority, or CI change.
 
+## M135 explicit post-realization cache population
+
+M135 starts from fully locally validated M134 commit
+`a6263a2e7d0df18ff1a34d32f02f88be29ee006c`. It adds frozen
+`ludoweave.asset-cache-population/1` evidence and one explicit command:
+
+```console
+ludoweave source asset-cache-populate PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The operation opens the explicit cache read-only and completes all M134 source
+preflight, cache verification, miss decoding, and limit checks. Only complete
+realization permits a second store to acquire write authority and invoke the
+unchanged M132 publisher. The canonical report combines plan-ordered
+`hit`/`decoded` and `published`/`reused` statuses without payloads or paths.
+
+Publication remains atomic per entry, not across the whole plan. Later
+publication failure emits no success report but may leave earlier valid entries
+or valid unreferenced CAS blobs. M135 adds no rollback, implicit publication to
+`asset-realize`, repair/deletion/eviction, remote cache, shared-writer claim,
+project write, dependency, version, workflow job/allocation, permission,
+credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

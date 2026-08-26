@@ -355,3 +355,43 @@ does not rewrite, repair, delete, publish, or intentionally update cache data;
 the project also remains unchanged. This is verified lookup evidence only:
 there is no cache-assisted execution, decoder bypass, remote cache, discovery,
 worker, plugin, world mutation, receipt, or CI change.
+
+## Read-only cache-assisted asset realization
+
+M134 reuses verified hits and decodes exact misses without publishing them:
+
+```console
+ludoweave source asset-realize PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The complete current lock and plan are verified and all detached sources are
+acquired before the cache is opened read-only. Every source is preflighted
+before the first cache read; every current-plan cache candidate is verified
+before the first miss decoder. Success is path-free canonical
+`ludoweave.asset-build-realization/1` evidence with plan-ordered `hit` or
+`decoded` statuses. A missing cache remains absent and no cache or project
+write occurs.
+
+## Explicit post-realization cache population
+
+M135 makes the later cache effect a separate explicit command:
+
+```console
+ludoweave source asset-cache-populate PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The command completes the same current lock/plan verification and confined
+source acquisition, opens the explicit cache without write authority, and
+finishes M134 realization. Only then does it open the resolved cache root with
+write authority and invoke the unchanged M132 publisher. Cold runs report
+decoded/published entries; warm runs report verified hit/reused entries; mixed
+runs preserve exact plan order. Success is canonical
+`ludoweave.asset-cache-population/1` evidence and the project remains
+unchanged.
+
+A source, cache-integrity, decoder, or limit failure before publication leaves
+an absent cache absent. Publication remains atomic per entry, not across the
+whole plan: if a later filesystem publication fails, earlier valid entries or
+valid unreferenced CAS blobs may remain and no M135 success report is emitted.
+There is no rollback, repair, deletion, eviction, remote cache, worker, plugin,
+world mutation, receipt, or CI change.

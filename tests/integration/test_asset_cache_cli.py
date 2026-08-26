@@ -131,6 +131,20 @@ def _realize(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
     )
 
 
+def _populate(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-populate",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -296,6 +310,74 @@ def test_asset_realize_rejects_corrupt_hit_without_success_or_mutation(tmp_path:
     before_cache = _files(cache)
 
     result = _realize(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.corrupt_entry"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_populate_decodes_then_reuses_without_project_write(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    before_project = _files(project)
+
+    first = _populate(project, cache)
+    after_first = _files(cache)
+    second = _populate(project, cache)
+
+    assert first.returncode == second.returncode == 0
+    assert first.stderr == second.stderr == ""
+    first_report = cast(dict[str, object], json.loads(first.stdout))
+    second_report = cast(dict[str, object], json.loads(second.stdout))
+    assert first_report["$schema"] == "ludoweave.asset-cache-population/1"
+    assert (first_report["hits"], first_report["decoded"]) == (0, 1)
+    assert (first_report["published"], first_report["reused"]) == (1, 0)
+    assert (second_report["hits"], second_report["decoded"]) == (1, 0)
+    assert (second_report["published"], second_report["reused"]) == (0, 1)
+    assert _files(project) == before_project
+    assert _files(cache) == after_first
+
+
+def test_asset_cache_populate_rejects_stale_source_before_cache_creation(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _populate(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert not cache.exists()
+
+
+def test_asset_cache_populate_rejects_corruption_without_success_or_repair(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    metadata = next(cache.rglob("entry.json"))
+    metadata.write_bytes(b"{}")
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _populate(project, cache)
 
     assert result.returncode == 2
     assert result.stdout == ""

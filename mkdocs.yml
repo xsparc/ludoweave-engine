@@ -158,6 +158,7 @@ nav:
       - RFC-0115 - Add verified local asset cache publication: rfcs/0115-add-verified-local-asset-cache-publication.md
       - RFC-0116 - Add verified read-only asset cache lookup: rfcs/0116-add-verified-read-only-asset-cache-lookup.md
       - RFC-0117 - Add read-only cache-assisted asset realization: rfcs/0117-add-read-only-cache-assisted-asset-realization.md
+      - RFC-0118 - Add explicit post-realization cache population: rfcs/0118-add-post-realization-cache-population.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

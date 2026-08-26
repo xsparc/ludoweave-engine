@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M135/RFC-0118 explicit post-realization cache population. The new
+  `ludoweave.asset-cache-population/1` operation and `source
+  asset-cache-populate` command verify current inputs and every cache candidate,
+  decode only misses, and acquire write authority only after complete
+  realization. Publication retains M132's atomic per-entry behavior and
+  possible valid-prefix/orphan effects on later failure; it adds no rollback,
+  remote cache, dependency, engine-root API, version, workflow, or CI change.
 - Add M134/RFC-0117 read-only cache-assisted asset realization. Complete
   detached-source preflight and all cache verification precede decoding of
   exact misses; hit and decoded artifacts share the existing bounds and

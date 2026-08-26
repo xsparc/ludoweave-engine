@@ -3362,6 +3362,38 @@ remote cache, network, discovery, plugin, worker, renderer upload, world
 mutation, receipt, dependency, version, workflow, permission, credential,
 release authority, or CI change. RFC-0117 records the full boundary.
 
+## M135 explicit post-realization cache population boundary
+
+`populate_asset_build_cache()` composes the unchanged M134 realizer and M132
+publisher without weakening either contract. It accepts an exact plan,
+detached inputs, one explicit cache path, optional project root, and the
+existing tightening-only execution limits. It owns no descriptor, worker,
+thread, process, clock, random source, or background lifecycle.
+
+The operation first constructs `AssetCacheStore` with `writable=False` and
+completes all realization phases. Only after every exact source, cache action,
+decoder, and active limit succeeds does it construct a separate writable store
+for the same resolved root and publish the complete materialization. A missing
+cache is therefore not created on any pre-publication failure. CLI composition
+also completes current lock/plan verification and project-confined source
+acquisition before entering this boundary.
+
+Frozen `ludoweave.asset-cache-population/1` evidence pairs each M134
+realization entry with its M132 publication entry and requires exact URI,
+cache-key, artifact-hash, byte-count, plan-hash, and order agreement. Reports
+contain no payload or path. Cache state can change the status fields while the
+artifact identity remains deterministic for the exact plan and sources.
+
+Publication retains M132's atomic per-entry visibility. It is not an all-plan
+transaction: a later filesystem failure may leave an earlier valid action or
+valid unreferenced CAS blob and returns no M135 success report. The read/write
+transition does not pin a directory descriptor or create a filesystem snapshot;
+hostile concurrent replacement and shared writers remain unsupported. M135
+adds no implicit publication to M134, rollback, repair, deletion, eviction,
+remote cache, network, plugin, scheduler, renderer upload, world mutation,
+dependency, version, workflow, permission, release authority, or CI change.
+RFC-0118 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

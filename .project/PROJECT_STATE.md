@@ -1,5 +1,48 @@
 # Project State
 
+## M135 explicit post-realization asset-cache population - locally validated
+
+- Base: fully locally validated M134 DCO commit
+  `a6263a2e7d0df18ff1a34d32f02f88be29ee006c`, tree
+  `de0284fc44a825ead61440ad231b2fb6de559950`, sole parent exact M133.
+- Branch: `release/m135-post-realization-cache-population`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Bazel and Gradle primary references support distinct
+  lookup, miss execution, and later store/upload phases plus independently
+  controlled read/write authority. They do not establish all-plan atomicity,
+  rollback, hostile-concurrency safety, repair, eviction, or remote trust.
+- Contract: `populate_asset_build_cache()` opens the explicit cache read-only,
+  completes M134 realization, then and only then opens the same resolved root
+  writable and invokes the unchanged M132 publisher. The immutable path-free
+  `ludoweave.asset-cache-population/1` report combines exact plan-ordered
+  realization and publication statuses.
+- CLI: `source asset-cache-populate` completes current lock/plan verification
+  and confined source acquisition before entering population. Cold, warm, and
+  mixed paths report decoded/published or hit/reused evidence; project bytes
+  remain unchanged.
+- Failure boundary: source/cache/decoder/limit failure precedes write authority
+  and leaves an absent cache absent. Publication remains atomic per entry, not
+  across the plan; later failure can retain an earlier valid entry or valid
+  unreferenced CAS blob and emits no M135 success report.
+- Focused proof: all 434 Python files, Ruff, strict Pyright, 61 retained/new
+  behavior and boundary assertions, strict docs, whitespace, and the installed
+  cold/warm consumer pass.
+- Complete proof: 1,683 architecture assertions with one established skip,
+  both governance modes, the full Python 3.12-3.14 matrix, real wgpu, both
+  profiles, both deterministic vertical slices, the primary installed smoke,
+  all 17 focused wheel consumers, two byte-identical record-inclusive
+  distributions, and two byte-identical ten-artifact release rehearsals pass.
+- Review: no remaining actionable defect. Exact source/cache/decoder/write
+  ordering, status/identity coupling, project/cache/path behavior, protected
+  surfaces, public tool identity, credentials, backend/network leakage, and CI
+  scope have no remaining actionable finding. Exactly 19 intended paths
+  change.
+- Scope: no implicit M134 write, all-plan transaction, rollback, repair/
+  deletion/eviction, remote cache, shared-writer claim, discovery/watcher,
+  worker/process/thread, plugin, renderer upload, world/session mutation,
+  dependency, version, workflow/allocation, release authority, or remote
+  change.
+
 ## M134 read-only cache-assisted asset realization - locally validated
 
 - Base: fully locally validated M133 DCO commit

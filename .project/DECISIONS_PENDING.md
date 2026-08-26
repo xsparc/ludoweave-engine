@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M135 explicit post-realization asset-cache population
+
+RFC-0118 resolves the adopted M135 direction: keep M134 realization read-only
+and add one separate explicit operation that opens the cache without write
+authority, completes exact source/cache/decoder/limit work, and acquires write
+authority only after the complete materialization exists.
+
+The operation invokes unchanged M132 per-entry publication. Frozen
+`ludoweave.asset-cache-population/1` evidence pairs each exact `hit`/`decoded`
+realization result with `published`/`reused` publication status in plan order.
+It contains no payload or path. Failure before publication leaves an absent
+cache absent; later publication failure can retain an earlier valid entry or
+valid orphan blob and has no rollback or M135 success report.
+
+Implicit publication in `asset-realize`, all-plan transactions, remote cache,
+authentication, shared writers, hostile-concurrency claims, repair/deletion/
+eviction, discovery, watcher/reimport, parallel workers, plugins/decoder
+registration, renderer upload, project write, world mutation, dependencies,
+version, CI/workflows, release authority, and remote change remain
+unauthorized for M135.
+
 ## M134 read-only cache-assisted asset realization
 
 RFC-0117 resolves the adopted M134 direction: validate the complete exact
