@@ -37,6 +37,7 @@ from ludoweave.assets import (
     inspect_asset_cache_inventory,
     materialize_asset_build_plan,
     populate_asset_build_cache,
+    preview_asset_cache_unreferenced_blobs,
     realize_asset_build_plan,
     verify_asset_cache_fingerprint,
     verify_asset_cache_fingerprint_comparison,
@@ -248,6 +249,20 @@ def _build_parser() -> argparse.ArgumentParser:
         "--plan", required=True, help="project-relative asset build plan"
     )
     source_asset_cache_fingerprint_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_unreferenced_preview_parser = source_subparsers.add_parser(
+        "asset-cache-unreferenced-preview",
+        help="preview path-free unreferenced-blob aggregates without mutation",
+    )
+    _add_asset_source_arguments(source_asset_cache_unreferenced_preview_parser)
+    source_asset_cache_unreferenced_preview_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_unreferenced_preview_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_unreferenced_preview_parser.add_argument(
         "--cache", required=True, type=Path, help="local cache directory outside the project"
     )
     source_asset_cache_fingerprint_verify_parser = source_subparsers.add_parser(
@@ -524,6 +539,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_cache_inventory(args)
             if source_command == "asset-cache-fingerprint":
                 return _run_asset_cache_fingerprint(args)
+            if source_command == "asset-cache-unreferenced-preview":
+                return _run_asset_cache_unreferenced_preview(args)
             if source_command == "asset-cache-fingerprint-compare":
                 return _run_asset_cache_fingerprint_compare(args)
             if source_command == "asset-cache-fingerprint-record-compare":
@@ -883,6 +900,25 @@ def _run_asset_cache_fingerprint(args: argparse.Namespace) -> int:
         project_root=project.root,
     )
     _write_stdout(fingerprint.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_unreferenced_preview(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint = fingerprint_asset_cache_observation(
+        current_plan,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    preview = preview_asset_cache_unreferenced_blobs(current_plan, fingerprint)
+    _write_stdout(preview.canonical_bytes())
     return 0
 
 

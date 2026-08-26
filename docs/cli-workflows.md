@@ -587,3 +587,29 @@ There is no `--cache` argument or cache access. Output includes neither saved
 observation digest nor cache/object identity. Local recomputation is integrity
 evidence, not authenticity or provenance, an atomic snapshot, record retention,
 or cleanup authority.
+
+## Path-free unreferenced-blob preview
+
+M143 emits a minimized preview of the two unreferenced-blob aggregates already
+verified by M137 and binds them to one complete M138 observation:
+
+```console
+ludoweave source asset-cache-unreferenced-preview PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache CACHE
+```
+
+Current source identities, the saved lock, and the exact regenerated plan are
+verified before the cache is resolved. The command then performs exactly one
+unchanged bounded read-only fingerprint observation. An absent cache reports
+zero without creating it. Cache corruption, unknown layout, links/reparse
+points, invalid metadata, missing action blobs, or active limits fail closed.
+
+Canonical `ludoweave.asset-cache-unreferenced-preview/1` output contains
+`observed` status, inventory/fingerprint protocols, plan and complete-
+observation SHA-256 values, and only `unreferenced_blobs` plus
+`unreferenced_blob_bytes`. It contains no candidate identity, key, URI, path,
+filename, payload, timestamp, age, or policy.
+
+A nonzero result exits 0. “Unreferenced” means only that no admitted action
+metadata in this sequential observation named the blob; it does not mean safe
+to delete. M143 has no cleanup, prune, deletion, eviction, quota, retention,
+lock, quiescence, or mutation authority.

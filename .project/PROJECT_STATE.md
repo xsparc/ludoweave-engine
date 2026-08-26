@@ -1,13 +1,56 @@
 # Project State
 
+## M143 path-free unreferenced-blob preview - locally validated and committed
+
+- Base: fully locally validated M142 DCO commit
+  `9f4a84b0e1f251d400398da4ef27d5c37eee386b`, tree
+  `2e1d9c4c693658036500921cb45039366dda0765`, sole parent exact M141.
+- Branch: `release/m143-path-free-unreferenced-blob-preview`. Exact ancestry
+  proved the contained M142 branch redundant and it was pruned.
+- Direction: current CNCF Distribution, Git, Bazel, Gradle, BuildKit, Remote
+  Execution API, OpenTelemetry, NIST, and GitHub workflow guidance supports a
+  read-only, aggregate, path-free preview while reserving deletion for a later
+  design with roots, age/grace, quiescence, concurrency, and recovery safety.
+- Contract: one pure function recomputes exact plan identity, verifies the
+  nested M138 plan binding, and emits only fixed protocols/status/digests plus
+  the existing unreferenced-blob count and byte aggregate.
+- CLI: `source asset-cache-unreferenced-preview` preflights current project
+  inputs before exactly one unchanged bounded M138 observation. An absent cache
+  returns zero without creation; a nonzero diagnostic remains exit 0.
+- Complete proof: all 464 Python files are format-clean; Ruff and strict
+  Pyright pass; all 1,727 architecture assertions pass with one established
+  skip; strict docs and both governance modes pass; exact CPython 3.12-3.14
+  pass 3,647/3,637/3,637 tests; and real-wgpu, profiles, and both deterministic
+  vertical slices reproduce their established identities.
+- Distribution proof: two evidence-inclusive builds reproduce a 355,411-byte
+  pure wheel at SHA-256
+  `8e47ee0f28c1e396ecfa1e0614a20d637d172999b77341977f363c83a5b89eb4`;
+  all 26 isolated installed consumers pass; two identical ten-artifact release
+  rehearsals pass; and archives contain no native, WASM, bytecode, or retired
+  hidden control-directory entries.
+- Audit: exactly 19 intended paths remain; protected workflows/dependencies/
+  cache/release surfaces are unchanged; public development-tool identity,
+  credential, disclosure, backend/native, and mutation scans are empty. All 43
+  prior stack commits are linear, identity/DCO clean, and object-integrity
+  checking has zero critical finding. All audited generated scratch is absent
+  and `.venv` is retained.
+- Hosted state: a fresh fetch plus GitHub branch and merged-PR queries still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; the reported squash merge is not
+  visible, so publication remains held while local acceptance continues.
+- Scope: no candidate identities/paths/payloads/age, deletion eligibility,
+  retention/cleanup/mutation, atomic snapshot, remote cache/network,
+  dependencies, version, CI/workflows, release authority, or remote change.
+
 ## M142 saved cache-fingerprint comparison verification - locally validated and committed
 
 - Base: fully locally validated M141 DCO commit
   `bff0e111b40a6e4b342fe4e5b93307d770b7be95`, tree
   `bc5476e90d05ae4f2c27a2d2eebecc0821331a41`, sole parent exact M140.
-- Branch: `release/m142-saved-cache-fingerprint-comparison-verification`;
-  unpublished under the existing public-review identity hold. The redundant
-  contained M141 branch was pruned after exact ancestry proof.
+- Exact DCO commit `9f4a84b0e1f251d400398da4ef27d5c37eee386b`, tree
+  `2e1d9c4c693658036500921cb45039366dda0765`, is the M143 base. Its redundant
+  local branch was pruned after exact ancestry proof; it remains unpublished
+  because the hosted base is still exact M99.
 - Direction: RFC 8785 and Python 3.12 support bounded canonical admission;
   NIST supports change-detection digests; OpenTelemetry supports minimized
   aggregate disclosure; SLSA requires separate trusted signatures/subjects/

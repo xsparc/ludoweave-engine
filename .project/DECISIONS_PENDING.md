@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+## M143 path-free unreferenced-blob preview
+
+RFC-0126 resolves the adopted M143 direction: bind one exact current plan to
+one unchanged bounded M138 read-only observation, then expose only the existing
+unreferenced-blob count and byte aggregate through a frozen path-free preview.
+
+Frozen `ludoweave.asset-cache-unreferenced-preview/1` evidence also carries
+only fixed status/protocol fields, the exact plan SHA-256, and the complete
+already-public M138 observation SHA-256. The CLI preflights current inputs before
+resolving the cache and performs exactly one observation. An absent cache
+reports zero without creation; a nonzero diagnostic remains successful exit 0.
+
+Candidate identities and paths, deletion eligibility, age/last-use facts,
+retention roots, grace policy, leases/pins/generations, quiescence/concurrency,
+atomic snapshots, cleanup/prune/repair/deletion/eviction/garbage collection,
+saved-preview persistence, remote cache/network, dependencies, version,
+CI/workflows, release authority, and remote change remain unauthorized for
+M143.
+
 ## M142 saved cache-fingerprint comparison verification
 
 RFC-0125 resolves the adopted M142 direction: strictly decode one bounded

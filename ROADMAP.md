@@ -1611,6 +1611,32 @@ disclosure, signature/trust system, atomic snapshot, record store/retention,
 cache cleanup/mutation, remote cache, dependency, version, workflow job or
 allocation, permission, credential, release authority, or CI change.
 
+## M143 path-free unreferenced-blob preview
+
+M143 starts from fully locally validated M142 commit
+`9f4a84b0e1f251d400398da4ef27d5c37eee386b`. It adds one pure preview value and
+one read-only CLI composition:
+
+```console
+ludoweave source asset-cache-unreferenced-preview PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache CACHE
+```
+
+The command verifies current sources, the saved lock, and the exact regenerated
+plan before resolving the cache. It performs exactly one unchanged bounded M138
+fingerprint observation. An absent cache reports zero without creation.
+
+Frozen path-free `ludoweave.asset-cache-unreferenced-preview/1` output contains
+`observed` status, inventory/fingerprint protocols, plan and full-observation
+SHA-256 values, and the existing unreferenced blob count/bytes. It lists no
+candidate identity, key, URI, path, payload, timestamp, age, or policy. A
+nonzero preview exits 0.
+
+M143 deliberately does not equate unreferenced with deletable. It adds no
+retained roots, last-use data, grace/age or quota policy, lock/quiescence,
+atomic snapshot, cleanup, garbage collection, prune, repair, deletion,
+eviction, remote cache, dependency, version, workflow job/allocation,
+permission, credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

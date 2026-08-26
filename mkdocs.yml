@@ -166,6 +166,7 @@ nav:
       - RFC-0123 - Add path-free cache-fingerprint comparison: rfcs/0123-add-path-free-cache-fingerprint-comparison.md
       - RFC-0124 - Add offline cache-fingerprint comparison: rfcs/0124-add-offline-cache-fingerprint-comparison.md
       - RFC-0125 - Verify saved cache-fingerprint comparison evidence: rfcs/0125-verify-saved-cache-fingerprint-comparison.md
+      - RFC-0126 - Add a path-free unreferenced-blob preview: rfcs/0126-add-path-free-unreferenced-blob-preview.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

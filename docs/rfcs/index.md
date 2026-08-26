@@ -130,3 +130,4 @@ was adopted.
 - [RFC-0123: add path-free cache-fingerprint comparison](0123-add-path-free-cache-fingerprint-comparison.md)
 - [RFC-0124: add offline cache-fingerprint comparison](0124-add-offline-cache-fingerprint-comparison.md)
 - [RFC-0125: verify saved cache-fingerprint comparison evidence](0125-verify-saved-cache-fingerprint-comparison.md)
+- [RFC-0126: add a path-free unreferenced-blob preview](0126-add-path-free-unreferenced-blob-preview.md)

@@ -195,6 +195,20 @@ def _fingerprint(project: Path, cache: Path) -> subprocess.CompletedProcess[str]
     )
 
 
+def _preview_unreferenced(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-unreferenced-preview",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--cache",
+        str(cache),
+    )
+
+
 def _verify_fingerprint(
     project: Path,
     cache: Path,
@@ -728,6 +742,105 @@ def test_asset_cache_fingerprint_is_stable_and_read_only(tmp_path: Path) -> None
     assert inventory["cas_blobs"] == 1
     assert _files(project) == before_project
     assert _files(cache) == before_cache
+
+
+def test_asset_cache_unreferenced_preview_reports_absent_cache_without_creation(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    before_project = _files(project)
+
+    result = _preview_unreferenced(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["$schema"] == "ludoweave.asset-cache-unreferenced-preview/1"
+    assert report["status"] == "observed"
+    assert report["fingerprint_protocol"] == "ludoweave.asset-cache-fingerprint/1"
+    assert report["inventory_protocol"] == "ludoweave.asset-cache-inventory/1"
+    assert report["unreferenced_blobs"] == 0
+    assert report["unreferenced_blob_bytes"] == 0
+    assert not cache.exists()
+    assert _files(project) == before_project
+
+
+def test_asset_cache_unreferenced_preview_is_stable_path_free_and_read_only(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    orphan = b"preview-only unreferenced blob"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    first = _preview_unreferenced(project, cache)
+    second = _preview_unreferenced(project, cache)
+
+    assert first.returncode == second.returncode == 0
+    assert first.stderr == second.stderr == ""
+    assert first.stdout == second.stdout
+    report = cast(dict[str, object], json.loads(first.stdout))
+    assert report["unreferenced_blobs"] == 1
+    assert report["unreferenced_blob_bytes"] == len(orphan)
+    assert str(report["plan_sha256"]).startswith("sha256:")
+    assert str(report["observation_sha256"]).startswith("sha256:")
+    assert digest not in first.stdout
+    assert str(project) not in first.stdout
+    assert str(cache) not in first.stdout
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_unreferenced_preview_does_not_mark_referenced_blob(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+
+    result = _preview_unreferenced(project, cache)
+
+    assert result.returncode == 0
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["unreferenced_blobs"] == 0
+    assert report["unreferenced_blob_bytes"] == 0
+
+
+def test_asset_cache_unreferenced_preview_checks_inputs_before_cache_observation(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _preview_unreferenced(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] != "asset_cache.invalid_root"
+    assert not cache.exists()
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
 
 
 def test_asset_cache_fingerprint_verify_reads_exact_saved_record_and_current_cache(

@@ -112,6 +112,11 @@ from ludoweave.assets.realization import (
     AssetBuildRealizationEntry,
     realize_asset_build_plan,
 )
+from ludoweave.assets.unreferenced_preview import (
+    ASSET_CACHE_UNREFERENCED_PREVIEW_PROTOCOL,
+    AssetCacheUnreferencedPreview,
+    preview_asset_cache_unreferenced_blobs,
+)
 
 __all__ = [
     "ASSET_BUILD_PLAN_PROTOCOL",
@@ -134,6 +139,7 @@ __all__ = [
     "ASSET_CACHE_POPULATION_RECORD_MAX_BYTES",
     "ASSET_CACHE_POPULATION_VERIFICATION_PROTOCOL",
     "ASSET_CACHE_PUBLISH_PROTOCOL",
+    "ASSET_CACHE_UNREFERENCED_PREVIEW_PROTOCOL",
     "ASSET_LOADER_PROTOCOL",
     "ASSET_MANIFEST_PROTOCOL",
     "ASSET_SOURCE_LOCK_PROTOCOL",
@@ -175,6 +181,7 @@ __all__ = [
     "AssetCachePublishEntry",
     "AssetCachePublishSummary",
     "AssetCacheStore",
+    "AssetCacheUnreferencedPreview",
     "AssetEntry",
     "AssetError",
     "AssetKind",
@@ -198,6 +205,7 @@ __all__ = [
     "inspect_asset_cache_inventory",
     "materialize_asset_build_plan",
     "populate_asset_build_cache",
+    "preview_asset_cache_unreferenced_blobs",
     "realize_asset_build_plan",
     "verify_asset_cache_fingerprint",
     "verify_asset_cache_fingerprint_comparison",

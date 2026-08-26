@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M143/RFC-0126 path-free unreferenced-blob preview evidence. The new
+  command reuses one verified read-only fingerprint observation and reports
+  only existing aggregate count/bytes plus plan/observation identity; it grants
+  no deletion eligibility, mutation, policy, dependency, workflow, or CI.
 - Add M142/RFC-0125 strict saved cache-fingerprint comparison verification.
   One bounded canonical report is recomputed from the exact current plan and
   two admitted fingerprints entirely offline; success binds the path-free

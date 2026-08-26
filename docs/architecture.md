@@ -3601,6 +3601,35 @@ remote cache, dependency, backend/native surface, version, workflow,
 permission, release authority, or CI change. RFC-0125 records the complete
 boundary.
 
+## M143 path-free unreferenced-blob preview boundary
+
+`preview_asset_cache_unreferenced_blobs()` accepts only exact plan and M138
+fingerprint values. It recomputes the plan SHA-256, requires the fingerprint's
+nested inventory to bind that plan, and copies the existing unreferenced-blob
+count/bytes plus complete observation identity into one frozen value. The pure
+function has no filesystem, cache, source, environment, clock, process, thread,
+or network capability and mutates no input.
+
+The CLI verifies current sources, lock, and exact regenerated plan before
+resolving the cache. It invokes the unchanged M138 bounded read-only observation
+exactly once. An absent cache remains absent. Output exposes no candidate
+identity, cache/action key, URI, artifact/blob digest, filename, path, payload,
+timestamp, age, or policy.
+
+Frozen `ludoweave.asset-cache-unreferenced-preview/1` contains `observed`
+status, M137/M138 protocols, plan and full-observation SHA-256 values, and the
+two existing unreferenced aggregates. A nonzero count is neither a failure nor
+deletion eligibility. A concurrently publishing writer could have created a
+blob before its action reference; other projects or future plans may also need
+it.
+
+M143 therefore adds no retained roots, last-use tracking, grace/age or quota
+policy, lease, pin, generation, lock, quiescence, atomic snapshot, candidate
+list, cleanup, garbage collection, prune, repair, deletion, eviction,
+compaction, rollback, remote cache, dependency, backend/native surface,
+version, workflow, permission, release authority, or CI change. RFC-0126
+records the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
