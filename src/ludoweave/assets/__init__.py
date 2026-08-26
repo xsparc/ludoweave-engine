@@ -23,14 +23,17 @@ from ludoweave.assets.execution import (
     materialize_asset_build_plan,
 )
 from ludoweave.assets.inventory import (
+    ASSET_CACHE_FINGERPRINT_PROTOCOL,
     ASSET_CACHE_INVENTORY_MAX_ACTIONS,
     ASSET_CACHE_INVENTORY_MAX_CAS_BLOBS,
     ASSET_CACHE_INVENTORY_MAX_CAS_BYTES,
     ASSET_CACHE_INVENTORY_MAX_METADATA_BYTES,
     ASSET_CACHE_INVENTORY_PROTOCOL,
     DEFAULT_ASSET_CACHE_INVENTORY_LIMITS,
+    AssetCacheFingerprint,
     AssetCacheInventory,
     AssetCacheInventoryLimits,
+    fingerprint_asset_cache_observation,
     inspect_asset_cache_inventory,
 )
 from ludoweave.assets.locks import (
@@ -90,6 +93,7 @@ __all__ = [
     "ASSET_BUILD_REALIZATION_PROTOCOL",
     "ASSET_BUILD_RESULT_PROTOCOL",
     "ASSET_CACHE_ENTRY_PROTOCOL",
+    "ASSET_CACHE_FINGERPRINT_PROTOCOL",
     "ASSET_CACHE_INVENTORY_MAX_ACTIONS",
     "ASSET_CACHE_INVENTORY_MAX_CAS_BLOBS",
     "ASSET_CACHE_INVENTORY_MAX_CAS_BYTES",
@@ -119,6 +123,7 @@ __all__ = [
     "AssetBuildResult",
     "AssetBuildResultEntry",
     "AssetCacheError",
+    "AssetCacheFingerprint",
     "AssetCacheInventory",
     "AssetCacheInventoryLimits",
     "AssetCacheLookupEntry",
@@ -147,6 +152,7 @@ __all__ = [
     "TextureSlot",
     "decode_png",
     "execute_asset_build_plan",
+    "fingerprint_asset_cache_observation",
     "inspect_asset_cache_inventory",
     "materialize_asset_build_plan",
     "populate_asset_build_cache",

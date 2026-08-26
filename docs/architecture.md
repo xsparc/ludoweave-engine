@@ -3456,6 +3456,34 @@ garbage collection, age/access-time policy, lease, generation, remote cache,
 network, dependency, version, workflow, permission, release authority, or CI
 change. RFC-0120 records the full boundary.
 
+## M138 deterministic cache-observation fingerprint boundary
+
+`fingerprint_asset_cache_observation()` performs the same exact plan preflight
+and one `_observe_storage()` call as M137. That single bounded pass retains
+M137's no-follow layout admission, canonical action reconstruction, streamed
+CAS digest verification, action/blob closure, active limits, and read-only
+authority. The aggregate inventory and fingerprint are derived from the same
+verified in-memory identities; storage is not enumerated twice.
+
+The SHA-256 stream begins with the ASCII
+`ludoweave.asset-cache-fingerprint/1` domain and NUL separator. Actions follow
+in cache-key order as tag `A`, unsigned eight-byte big-endian payload length,
+and exact canonical action metadata. CAS records follow in artifact-digest
+order as tag `C`, the same length framing, 32 raw digest bytes, and unsigned
+eight-byte content length.
+
+Frozen path-free `ludoweave.asset-cache-fingerprint/1` evidence nests the M137
+inventory and adds only `observation_sha256`. The digest is independent of the
+current plan; the nested inventory remains plan-relative. The public report
+contains no URI, cache key, artifact digest, filename, path, payload, timestamp,
+age, or environment value.
+
+This is exact identity for one sequential observation, not an atomic snapshot,
+diff, lease, last-use fact, retention root, provenance statement, or deletion
+eligibility. M138 adds no write, cleanup, repair, eviction, garbage collection,
+network, remote cache, dependency, version, workflow, permission, release
+authority, or CI change. RFC-0121 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

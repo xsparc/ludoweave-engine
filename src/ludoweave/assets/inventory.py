@@ -25,6 +25,7 @@ from ludoweave.assets.pipeline import ASSET_LOADER_PROTOCOL, AssetError, AssetKi
 from ludoweave.assets.plans import AssetBuildPlan
 
 ASSET_CACHE_INVENTORY_PROTOCOL = "ludoweave.asset-cache-inventory/1"
+ASSET_CACHE_FINGERPRINT_PROTOCOL = "ludoweave.asset-cache-fingerprint/1"
 ASSET_CACHE_INVENTORY_MAX_ACTIONS = 16_384
 ASSET_CACHE_INVENTORY_MAX_CAS_BLOBS = 16_384
 ASSET_CACHE_INVENTORY_MAX_METADATA_BYTES = 64 * 1024 * 1024
@@ -160,6 +161,46 @@ class AssetCacheInventory:
 
 
 @dataclass(frozen=True, slots=True)
+class AssetCacheFingerprint:
+    """Path-free digest of one verified sequential cache observation."""
+
+    inventory: AssetCacheInventory
+    observation_sha256: str
+    protocol: str = ASSET_CACHE_FINGERPRINT_PROTOCOL
+
+    def __post_init__(self) -> None:
+        if (
+            type(self.protocol) is not str
+            or self.protocol != ASSET_CACHE_FINGERPRINT_PROTOCOL
+            or type(self.inventory) is not AssetCacheInventory
+            or type(self.observation_sha256) is not str
+            or _SHA256.fullmatch(self.observation_sha256) is None
+        ):
+            raise _inventory_error(
+                "asset cache fingerprint report is invalid",
+                code="asset_cache.invalid_fingerprint",
+                phase="report",
+                details={"field": "fingerprint"},
+            )
+
+    def as_dict(self) -> dict[str, object]:
+        return {
+            "$schema": self.protocol,
+            "observation_sha256": self.observation_sha256,
+            "inventory": self.inventory.as_dict(),
+        }
+
+    def canonical_bytes(self) -> bytes:
+        return json.dumps(
+            self.as_dict(),
+            ensure_ascii=False,
+            allow_nan=False,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+
+
+@dataclass(frozen=True, slots=True)
 class _StoredAction:
     result: AssetBuildResultEntry
     metadata_bytes: int
@@ -173,6 +214,59 @@ def inspect_asset_cache_inventory(
     limits: AssetCacheInventoryLimits = DEFAULT_ASSET_CACHE_INVENTORY_LIMITS,
 ) -> AssetCacheInventory:
     """Verify and classify one complete engine-owned local cache read-only."""
+
+    current_keys, checked_limits, store, plan_sha256 = _prepare_observation(
+        plan,
+        cache_root,
+        project_root=project_root,
+        limits=limits,
+    )
+    actions, blobs = _observe_storage(store, limits=checked_limits)
+    return _inventory_from_storage(
+        plan,
+        plan_sha256=plan_sha256,
+        current_keys=current_keys,
+        actions=actions,
+        blobs=blobs,
+    )
+
+
+def fingerprint_asset_cache_observation(
+    plan: AssetBuildPlan,
+    cache_root: Path,
+    *,
+    project_root: Path | None = None,
+    limits: AssetCacheInventoryLimits = DEFAULT_ASSET_CACHE_INVENTORY_LIMITS,
+) -> AssetCacheFingerprint:
+    """Digest one verified sequential cache observation without mutation."""
+
+    current_keys, checked_limits, store, plan_sha256 = _prepare_observation(
+        plan,
+        cache_root,
+        project_root=project_root,
+        limits=limits,
+    )
+    actions, blobs = _observe_storage(store, limits=checked_limits)
+    inventory = _inventory_from_storage(
+        plan,
+        plan_sha256=plan_sha256,
+        current_keys=current_keys,
+        actions=actions,
+        blobs=blobs,
+    )
+    return AssetCacheFingerprint(
+        inventory,
+        observation_sha256=_observation_sha256(actions, blobs),
+    )
+
+
+def _prepare_observation(
+    plan: AssetBuildPlan,
+    cache_root: Path,
+    *,
+    project_root: Path | None,
+    limits: AssetCacheInventoryLimits,
+) -> tuple[set[str], AssetCacheInventoryLimits, AssetCacheStore, str]:
 
     if type(plan) is not AssetBuildPlan:
         raise _inventory_error(
@@ -191,28 +285,37 @@ def inspect_asset_cache_inventory(
         )
     checked_limits = _require_limits(limits)
     store = AssetCacheStore(cache_root, project_root=project_root, writable=False)
-    plan_sha256 = f"sha256:{sha256(plan.canonical_bytes()).hexdigest()}"
+    return (
+        current_keys,
+        checked_limits,
+        store,
+        f"sha256:{sha256(plan.canonical_bytes()).hexdigest()}",
+    )
+
+
+def _observe_storage(
+    store: AssetCacheStore,
+    *,
+    limits: AssetCacheInventoryLimits,
+) -> tuple[dict[str, _StoredAction], dict[str, int]]:
     if not store.root.exists():
-        return AssetCacheInventory(
-            plan_sha256,
-            current_actions=0,
-            missing_actions=len(plan.entries),
-            other_actions=0,
-            current_action_metadata_bytes=0,
-            other_action_metadata_bytes=0,
-            cas_blobs=0,
-            current_blobs=0,
-            other_blobs=0,
-            current_blob_bytes=0,
-            other_blob_bytes=0,
-            unreferenced_blobs=0,
-            unreferenced_blob_bytes=0,
-        )
+        return {}, {}
 
     _require_root_layout(store.root)
-    actions = _scan_actions(store.root / "actions", limits=checked_limits)
-    blobs = _scan_cas(store.root / "cas", limits=checked_limits)
+    actions = _scan_actions(store.root / "actions", limits=limits)
+    blobs = _scan_cas(store.root / "cas", limits=limits)
     _require_action_blobs(actions, blobs)
+    return actions, blobs
+
+
+def _inventory_from_storage(
+    plan: AssetBuildPlan,
+    *,
+    plan_sha256: str,
+    current_keys: set[str],
+    actions: Mapping[str, _StoredAction],
+    blobs: Mapping[str, int],
+) -> AssetCacheInventory:
 
     current_actions = current_keys.intersection(actions)
     for entry in plan.entries:
@@ -247,6 +350,28 @@ def inspect_asset_cache_inventory(
         unreferenced_blobs=len(unreferenced_digests),
         unreferenced_blob_bytes=sum(blobs[digest] for digest in unreferenced_digests),
     )
+
+
+def _observation_sha256(
+    actions: Mapping[str, _StoredAction],
+    blobs: Mapping[str, int],
+) -> str:
+    observed = sha256()
+    observed.update(ASSET_CACHE_FINGERPRINT_PROTOCOL.encode("ascii"))
+    observed.update(b"\0")
+    for cache_key in sorted(actions):
+        payload = _metadata_bytes(actions[cache_key].result)
+        observed.update(b"A")
+        observed.update(len(payload).to_bytes(8, "big"))
+        observed.update(payload)
+    for artifact_sha256 in sorted(blobs):
+        payload = bytes.fromhex(artifact_sha256.removeprefix("sha256:")) + blobs[
+            artifact_sha256
+        ].to_bytes(8, "big")
+        observed.update(b"C")
+        observed.update(len(payload).to_bytes(8, "big"))
+        observed.update(payload)
+    return f"sha256:{observed.hexdigest()}"
 
 
 def _require_root_layout(root: Path) -> None:

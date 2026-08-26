@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+## M138 deterministic cache-observation fingerprint
+
+RFC-0121 resolves the adopted M138 direction: one M137 bounded read-only
+storage observation supplies both the unchanged aggregate inventory and a
+plan-independent digest over all exact observed action metadata and CAS
+identity/size membership. The fingerprint stream has an explicit protocol
+domain, sorted record order, typed tags, unsigned eight-byte length framing,
+canonical metadata, raw SHA-256 bytes, and exact content lengths.
+
+Frozen `ludoweave.asset-cache-fingerprint/1` evidence exposes only the nested
+path-free inventory and `observation_sha256`. It is equality evidence for one
+sequential observation, not an atomic snapshot, diff, last-use fact, retention
+root, provenance statement, deletion eligibility, or mutation authority.
+
+Saved-fingerprint decoding/verification, public object lists, timestamps,
+leases/pins/generations, cleanup policy, repair/deletion/eviction, remote cache,
+authentication, signatures, dependencies, version, CI/workflows, release
+authority, and remote change remain unauthorized for M138.
+
 ## M137 bounded asset-cache inventory
 
 RFC-0120 resolves the adopted M137 direction: inspect only the engine-owned

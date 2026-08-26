@@ -1471,6 +1471,30 @@ M137 adds no write, deletion, repair, eviction, garbage collector, remote
 cache, dependency, version, workflow job/allocation, permission, credential,
 release authority, or CI change.
 
+## M138 deterministic cache-observation fingerprint
+
+M138 starts from fully locally validated M137 commit
+`b5b904b22303991474ed99a8ed4473738070dd45`. It adds one path-free exact
+identity over the M137 sequential verified storage observation and one command:
+
+```console
+ludoweave source asset-cache-fingerprint PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+After current lock and exact saved-plan verification, one M137 bounded read-only
+pass supplies both the nested aggregate inventory and a plan-independent
+`observation_sha256`. Sorted action frames bind exact canonical metadata;
+sorted CAS frames bind raw content digest and byte count. Both use explicit
+record tags and unsigned eight-byte length framing under the
+`ludoweave.asset-cache-fingerprint/1` domain.
+
+The fingerprint is exact equality evidence for one sequential observation. It
+is not an atomic snapshot, saved-state verifier, diff, lease, last-use record,
+retention root, provenance statement, or deletion eligibility. M138 adds no
+write, cleanup, deletion, repair, eviction, garbage collector, timestamp/age
+policy, remote cache, dependency, version, workflow job/allocation, permission,
+credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

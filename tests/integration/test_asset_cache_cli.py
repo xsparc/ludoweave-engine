@@ -180,6 +180,20 @@ def _inventory(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
     )
 
 
+def _fingerprint(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-fingerprint",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -568,6 +582,83 @@ def test_asset_cache_inventory_rejects_corrupt_orphan_content_silently(tmp_path:
     before_cache = _files(cache)
 
     result = _inventory(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.corrupt_inventory"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert claimed not in result.stderr
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_reports_absent_cache_without_creation(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    before_project = _files(project)
+
+    result = _fingerprint(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    inventory = cast(dict[str, object], report["inventory"])
+    assert report["$schema"] == "ludoweave.asset-cache-fingerprint/1"
+    assert str(report["observation_sha256"]).startswith("sha256:")
+    assert inventory["$schema"] == "ludoweave.asset-cache-inventory/1"
+    assert inventory["current_actions"] == 0
+    assert inventory["missing_actions"] == 1
+    assert not cache.exists()
+    assert _files(project) == before_project
+
+
+def test_asset_cache_fingerprint_is_stable_and_read_only(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    first = _fingerprint(project, cache)
+    second = _fingerprint(project, cache)
+
+    assert first.returncode == second.returncode == 0
+    assert first.stderr == second.stderr == ""
+    assert first.stdout == second.stdout
+    report = cast(dict[str, object], json.loads(first.stdout))
+    inventory = cast(dict[str, object], report["inventory"])
+    assert inventory["current_actions"] == 1
+    assert inventory["missing_actions"] == 0
+    assert inventory["cas_blobs"] == 1
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_rejects_corrupt_orphan_content_silently(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    claimed = sha256(b"claimed").hexdigest()
+    orphan = cache / "cas" / claimed[:2] / claimed
+    orphan.parent.mkdir(exist_ok=True)
+    orphan.write_bytes(b"different")
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _fingerprint(project, cache)
 
     assert result.returncode == 2
     assert result.stdout == ""

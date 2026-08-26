@@ -452,3 +452,26 @@ referenced those blobs. It is not deletion eligibility: there is no atomic
 snapshot, lease, retention policy, last-use evidence, or concurrent-writer
 guarantee. The command has no cleanup, write, repair, eviction, decoder,
 fallback, remote cache, or CI effect.
+
+## Deterministic local-cache observation fingerprint
+
+M138 binds the exact verified action/CAS observation without exposing its
+identities:
+
+```console
+ludoweave source asset-cache-fingerprint PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+Current lock and exact saved-plan verification completes before one M137
+bounded read-only pass. Success emits
+`ludoweave.asset-cache-fingerprint/1` with the nested aggregate inventory and a
+plan-independent `observation_sha256`. Canonical action metadata and CAS
+digest/size records are sorted and domain-separated with typed length framing
+before hashing. Stable storage produces the same digest independent of cache
+root, filesystem enumeration order, or current-plan classification.
+
+The digest describes one sequential observation, not an atomic snapshot. It
+contains no cache key, URI, artifact digest, path, payload, timestamp, or age.
+Equality does not establish ownership, provenance, last use, retention roots,
+or deletion eligibility. The command has no cleanup, write, repair, eviction,
+decoder, fallback, remote cache, or CI effect.

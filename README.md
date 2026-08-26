@@ -54,9 +54,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > verification of a saved population report against the exact current plan and
 > every referenced cache action, without treating local integrity as
 > provenance; M137 adds bounded read-only whole-cache action/CAS integrity and
-> aggregate storage inventory without cleanup authority.
+> aggregate storage inventory without cleanup authority; M138 adds a
+> deterministic path-free fingerprint over one exact sequential verified
+> storage observation without timestamps or deletion eligibility.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M137 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M138 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -143,6 +145,10 @@ convention remains enforced.
   reconstructs every engine-owned action, streams and hashes every admitted CAS
   blob, and reports current-plan/other/no-observed-reference aggregates. A blob
   with no observed action reference is not deletion eligibility.
+- Deterministic path-free `ludoweave.asset-cache-fingerprint/1` evidence that
+  reuses one bounded inventory pass and binds exact sorted canonical action and
+  CAS membership. It is a sequential observation, not an atomic snapshot,
+  retention root, or cleanup authorization.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.

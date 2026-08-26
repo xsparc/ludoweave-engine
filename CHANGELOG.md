@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M138/RFC-0121 deterministic cache-observation fingerprinting. One M137
+  bounded verification pass now emits path-free
+  `ludoweave.asset-cache-fingerprint/1` evidence binding exact canonical action
+  metadata and CAS digest/size membership under sorted length-framed SHA-256.
+  It adds no timestamp, atomic-snapshot claim, deletion eligibility, cleanup
+  authority, dependency, workflow, or CI change.
 - Add M137/RFC-0120 bounded read-only whole-cache inventory. The additive
   `ludoweave.asset-cache-inventory/1` contract strictly verifies engine-owned
   action metadata and streams every CAS blob under tightening-only entry and

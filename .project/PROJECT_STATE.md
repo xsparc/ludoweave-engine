@@ -1,5 +1,45 @@
 # Project State
 
+## M138 deterministic cache-observation fingerprint - locally validated
+
+- Base: fully locally validated M137 DCO commit
+  `b5b904b22303991474ed99a8ed4473738070dd45`, tree
+  `5fe36bb63ec751406e690d279776a0bf5d97ebff`, sole parent exact M136.
+- Branch: `release/m138-deterministic-cache-observation-fingerprint`;
+  unpublished under the existing public-review identity hold.
+- Direction: current Bazel, Gradle 9.7.1, and Git primary references require
+  materially more than unreferenced observation for cleanup: explicit age/
+  size and idle/managed policy or reachability/grace, with concurrency caveats.
+- Contract: one M137 bounded verified storage pass supplies unchanged aggregate
+  inventory plus a plan-independent SHA-256 over domain-separated sorted typed
+  length-framed canonical action and CAS identity/size records.
+- CLI: `source asset-cache-fingerprint` completes current lock and exact saved-
+  plan verification before one read-only observation, without source payload
+  acquisition, decoder use, second enumeration, cache creation, or mutation.
+- Evidence so far: 445 Python files are format-clean; Ruff and strict Pyright
+  pass; 1,700 architecture assertions pass with one established skip; strict
+  docs, whitespace, both governance modes, full CPython 3.12-3.14 suites, real
+  wgpu, profiles, deterministic vertical slices, 53 focused assertions, and the
+  new isolated no-dependency wheel consumer pass.
+- Review: plan-relative inventory and plan-independent storage identity remain
+  distinct. Exact metadata, action/CAS membership, digest, and byte count are
+  bound without publishing the identities or building an aggregate object list.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  the primary and all 20 focused installed consumers pass against the exact
+  wheel; two byte-identical complete release rehearsals pass; archive,
+  protected-surface, public identity, changed-path credential, capability, and
+  CI-scope scans are clean.
+- Cleanup and audit: 38 exact scratch targets are removed, `.tmp` is empty, and
+  `.venv` retained. Exact M137 history, all 38 prior stack commits, DCO/
+  identity, commit-graph/object integrity, local branches, and hosted absence
+  pass. The stack remains unpublished and no hosted allocation occurred.
+- Final post-record metadata separation is clean. Exactly 19 intended paths are
+  ready for the authorized local DCO commit; publication remains held.
+- Scope: no atomic snapshot/diff, saved verifier, retention root, timestamp/age
+  policy, cleanup/mutation, remote cache/network, trust/provenance claim,
+  decoder/source acquisition, dependency, version, workflow/allocation,
+  release authority, or remote change.
+
 ## M137 bounded asset-cache inventory - locally validated
 
 - Base: fully locally validated M136 DCO commit

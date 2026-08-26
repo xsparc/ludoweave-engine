@@ -125,3 +125,4 @@ was adopted.
 - [RFC-0118: add explicit post-realization cache population](0118-add-post-realization-cache-population.md)
 - [RFC-0119: add saved cache-population verification](0119-add-saved-cache-population-verification.md)
 - [RFC-0120: add bounded read-only asset-cache inventory](0120-add-bounded-asset-cache-inventory.md)
+- [RFC-0121: add deterministic cache-observation fingerprint](0121-add-deterministic-cache-observation-fingerprint.md)

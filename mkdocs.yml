@@ -161,6 +161,7 @@ nav:
       - RFC-0118 - Add explicit post-realization cache population: rfcs/0118-add-post-realization-cache-population.md
       - RFC-0119 - Add saved cache-population verification: rfcs/0119-add-saved-cache-population-verification.md
       - RFC-0120 - Add bounded read-only asset-cache inventory: rfcs/0120-add-bounded-asset-cache-inventory.md
+      - RFC-0121 - Add deterministic cache-observation fingerprint: rfcs/0121-add-deterministic-cache-observation-fingerprint.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
