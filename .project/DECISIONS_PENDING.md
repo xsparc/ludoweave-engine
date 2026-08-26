@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M132 verified local asset cache publication
+
+RFC-0115 resolves the adopted M132 direction: retain complete decoded payloads
+only through a separate bounded materialization value, then publish them to one
+caller-authorized local cache after the unchanged M130/M131 verification chain.
+
+Payloads use an artifact-SHA-256 `cas/` namespace. Canonical action metadata
+uses the existing cache-key `actions/` namespace and becomes visible only after
+its payload. Every hit or collision verifies exact metadata, ordinary-file
+layout, byte count, and payload SHA-256. Corruption fails closed without repair,
+overwrite, or deletion. Same-filesystem staging and replacement provide atomic
+per-entry visibility; valid orphan blobs and earlier complete entries may remain
+after a later storage failure.
+
+Remote cache transport, authentication, shared writers, eviction, garbage
+collection, quotas, repair/deletion APIs, all-plan transactions, parallel
+workers, discovery, watcher/reimport, renderer upload, project write, world
+mutation, dependencies, version, CI/workflows, release authority, and remote
+change remain unauthorized for M132.
+
 ## M131 bounded in-memory asset plan execution
 
 Primary-source review resolves the adopted M131 direction: execute only the

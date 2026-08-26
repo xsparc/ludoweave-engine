@@ -1,12 +1,23 @@
 """Validated logical asset identities and content-addressed build artifacts."""
 
+from ludoweave.assets.cache import (
+    ASSET_CACHE_ENTRY_PROTOCOL,
+    ASSET_CACHE_PUBLISH_PROTOCOL,
+    AssetCacheError,
+    AssetCachePublishEntry,
+    AssetCachePublishSummary,
+    AssetCacheStore,
+)
 from ludoweave.assets.execution import (
     ASSET_BUILD_RESULT_PROTOCOL,
+    AssetBuildArtifact,
     AssetBuildExecutionLimits,
     AssetBuildInput,
+    AssetBuildMaterialization,
     AssetBuildResult,
     AssetBuildResultEntry,
     execute_asset_build_plan,
+    materialize_asset_build_plan,
 )
 from ludoweave.assets.locks import (
     ASSET_SOURCE_LOCK_PROTOCOL,
@@ -42,19 +53,27 @@ from ludoweave.assets.plans import (
 __all__ = [
     "ASSET_BUILD_PLAN_PROTOCOL",
     "ASSET_BUILD_RESULT_PROTOCOL",
+    "ASSET_CACHE_ENTRY_PROTOCOL",
+    "ASSET_CACHE_PUBLISH_PROTOCOL",
     "ASSET_LOADER_PROTOCOL",
     "ASSET_MANIFEST_PROTOCOL",
     "ASSET_SOURCE_LOCK_PROTOCOL",
     "ASSET_SOURCE_MAX_BYTES",
     "ASSET_SOURCE_TOTAL_MAX_BYTES",
     "AssetArtifact",
+    "AssetBuildArtifact",
     "AssetBuildExecutionLimits",
     "AssetBuildInput",
+    "AssetBuildMaterialization",
     "AssetBuildPlan",
     "AssetBuildPlanEntry",
     "AssetBuildPlanLimits",
     "AssetBuildResult",
     "AssetBuildResultEntry",
+    "AssetCacheError",
+    "AssetCachePublishEntry",
+    "AssetCachePublishSummary",
+    "AssetCacheStore",
     "AssetEntry",
     "AssetError",
     "AssetKind",
@@ -70,5 +89,6 @@ __all__ = [
     "TextureSlot",
     "decode_png",
     "execute_asset_build_plan",
+    "materialize_asset_build_plan",
 ]
 __stability__ = {name: "experimental" for name in __all__}

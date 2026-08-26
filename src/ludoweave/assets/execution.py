@@ -124,6 +124,33 @@ class AssetBuildResultEntry:
 
 
 @dataclass(frozen=True, slots=True)
+class AssetBuildArtifact:
+    """One immutable decoded payload paired with its validated result entry."""
+
+    entry: AssetBuildResultEntry
+    payload: bytes
+
+    def __post_init__(self) -> None:
+        if type(self.entry) is not AssetBuildResultEntry or type(self.payload) is not bytes:
+            raise _execution_error(
+                "materialized asset artifact requires exact immutable values",
+                code="asset_cache.invalid_artifact",
+                phase="materialize",
+                details={"field": "artifact"},
+            )
+        if (
+            len(self.payload) != self.entry.artifact_bytes
+            or f"sha256:{sha256(self.payload).hexdigest()}" != self.entry.artifact_sha256
+        ):
+            raise _execution_error(
+                "materialized asset payload does not match its result identity",
+                code="asset_cache.invalid_artifact",
+                phase="materialize",
+                details={"field": "payload"},
+            )
+
+
+@dataclass(frozen=True, slots=True)
 class AssetBuildResult:
     """Deterministic identities for one complete in-memory plan execution."""
 
@@ -191,6 +218,28 @@ class AssetBuildResult:
         return encoded
 
 
+@dataclass(frozen=True, slots=True)
+class AssetBuildMaterialization:
+    """Complete validated result plus exact immutable payloads in plan order."""
+
+    result: AssetBuildResult
+    artifacts: tuple[AssetBuildArtifact, ...]
+
+    def __post_init__(self) -> None:
+        if (
+            type(self.result) is not AssetBuildResult
+            or type(self.artifacts) is not tuple
+            or any(type(artifact) is not AssetBuildArtifact for artifact in self.artifacts)
+            or tuple(artifact.entry for artifact in self.artifacts) != self.result.entries
+        ):
+            raise _execution_error(
+                "asset build materialization does not match its result",
+                code="asset_cache.invalid_materialization",
+                phase="materialize",
+                details={"field": "artifacts"},
+            )
+
+
 def execute_asset_build_plan(
     plan: AssetBuildPlan,
     inputs: tuple[AssetBuildInput, ...],
@@ -198,6 +247,35 @@ def execute_asset_build_plan(
     limits: AssetBuildExecutionLimits = DEFAULT_ASSET_BUILD_EXECUTION_LIMITS,
 ) -> AssetBuildResult:
     """Execute built-in decoders over exact detached plan inputs without I/O."""
+
+    result, _ = _run_asset_build_plan(plan, inputs, limits=limits, retain_payloads=False)
+    return result
+
+
+def materialize_asset_build_plan(
+    plan: AssetBuildPlan,
+    inputs: tuple[AssetBuildInput, ...],
+    *,
+    limits: AssetBuildExecutionLimits = DEFAULT_ASSET_BUILD_EXECUTION_LIMITS,
+) -> AssetBuildMaterialization:
+    """Decode and retain one complete bounded payload set for explicit consumers."""
+
+    result, artifacts = _run_asset_build_plan(
+        plan,
+        inputs,
+        limits=limits,
+        retain_payloads=True,
+    )
+    return AssetBuildMaterialization(result, artifacts)
+
+
+def _run_asset_build_plan(
+    plan: AssetBuildPlan,
+    inputs: tuple[AssetBuildInput, ...],
+    *,
+    limits: AssetBuildExecutionLimits,
+    retain_payloads: bool,
+) -> tuple[AssetBuildResult, tuple[AssetBuildArtifact, ...]]:
 
     if type(plan) is not AssetBuildPlan or type(inputs) is not tuple:
         raise _invalid_inputs()
@@ -251,6 +329,7 @@ def execute_asset_build_plan(
 
     total_artifact_bytes = 0
     results: list[AssetBuildResultEntry] = []
+    artifacts: list[AssetBuildArtifact] = []
     for entry, item in zip(plan.entries, inputs, strict=True):
         try:
             artifact = _decode_payload(entry.kind, item.source)
@@ -275,22 +354,26 @@ def execute_asset_build_plan(
                 limit=limits.max_total_artifact_bytes,
                 uri=entry.uri,
             )
-        results.append(
-            AssetBuildResultEntry(
-                uri=entry.uri,
-                kind=entry.kind,
-                cache_key=entry.cache_key,
-                source_bytes=len(item.source),
-                artifact_sha256=f"sha256:{sha256(artifact).hexdigest()}",
-                artifact_bytes=artifact_bytes,
-            )
+        result_entry = AssetBuildResultEntry(
+            uri=entry.uri,
+            kind=entry.kind,
+            cache_key=entry.cache_key,
+            source_bytes=len(item.source),
+            artifact_sha256=f"sha256:{sha256(artifact).hexdigest()}",
+            artifact_bytes=artifact_bytes,
         )
+        results.append(result_entry)
+        if retain_payloads:
+            artifacts.append(AssetBuildArtifact(result_entry, artifact))
 
-    return AssetBuildResult(
-        plan_sha256=f"sha256:{sha256(plan.canonical_bytes()).hexdigest()}",
-        source_bytes=total_source_bytes,
-        artifact_bytes=total_artifact_bytes,
-        entries=tuple(results),
+    return (
+        AssetBuildResult(
+            plan_sha256=f"sha256:{sha256(plan.canonical_bytes()).hexdigest()}",
+            source_bytes=total_source_bytes,
+            artifact_bytes=total_artifact_bytes,
+            entries=tuple(results),
+        ),
+        tuple(artifacts),
     )
 
 

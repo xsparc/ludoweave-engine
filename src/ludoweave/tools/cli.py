@@ -18,12 +18,14 @@ from ludoweave.assets import (
     ASSET_SOURCE_TOTAL_MAX_BYTES,
     AssetBuildInput,
     AssetBuildPlan,
+    AssetCacheStore,
     AssetError,
     AssetManifest,
     AssetSourceLock,
     AssetSourceLockEntry,
     AssetUri,
     execute_asset_build_plan,
+    materialize_asset_build_plan,
 )
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
@@ -177,6 +179,20 @@ def _build_parser() -> argparse.ArgumentParser:
     source_asset_build_parser.add_argument(
         "--plan", required=True, help="project-relative asset build plan"
     )
+    source_asset_cache_parser = source_subparsers.add_parser(
+        "asset-cache",
+        help="publish verified built-in decoder outputs to one explicit local cache",
+    )
+    _add_asset_source_arguments(source_asset_cache_parser)
+    source_asset_cache_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
 
     apply_parser = subparsers.add_parser(
         "apply",
@@ -317,6 +333,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_build_plan_verify(args)
             if source_command == "asset-build":
                 return _run_asset_build_plan_execute(args)
+            if source_command == "asset-cache":
+                return _run_asset_cache_publish(args)
             raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
@@ -587,9 +605,37 @@ def _run_asset_build_plan_execute(args: argparse.Namespace) -> int:
     manifest = project.load_asset_manifest(_text_argument(args, "assets"))
     current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
     expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    result = execute_asset_build_plan(current_plan, inputs)
+    _write_stdout(result.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_publish(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    materialized = materialize_asset_build_plan(current_plan, inputs)
+    store = AssetCacheStore(_path_argument(args, "cache"), project_root=project.root)
+    summary = store.publish(materialized)
+    _write_stdout(summary.canonical_bytes())
+    return 0
+
+
+def _acquire_asset_build_inputs(
+    project: HeadlessProject,
+    manifest: AssetManifest,
+    plan: AssetBuildPlan,
+) -> tuple[AssetBuildInput, ...]:
     inputs: list[AssetBuildInput] = []
     total_bytes = 0
-    for entry in current_plan.entries:
+    for entry in plan.entries:
         source = manifest.entry(entry.uri).source
         try:
             payload = project.read_relative(
@@ -615,9 +661,7 @@ def _run_asset_build_plan_execute(args: argparse.Namespace) -> int:
                 details={"uri": entry.uri.value, "limit": ASSET_SOURCE_TOTAL_MAX_BYTES},
             )
         inputs.append(AssetBuildInput(entry.uri, payload))
-    result = execute_asset_build_plan(current_plan, tuple(inputs))
-    _write_stdout(result.canonical_bytes())
-    return 0
+    return tuple(inputs)
 
 
 def _current_asset_source_lock(

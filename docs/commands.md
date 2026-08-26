@@ -443,6 +443,32 @@ decoder registration, discovery, watcher, reimport, renderer upload, world
 mutation, receipt, dependency, root export, workflow job, or workflow
 allocation.
 
+## M132 verified local asset cache publication
+
+`AssetBuildArtifact` pairs exact decoded bytes with one M131 result entry.
+`AssetBuildMaterialization` requires its plan-ordered artifact entries to equal
+the complete result entries. `materialize_asset_build_plan()` uses the same
+complete preflight, built-in decoder behavior, and resource limits as M131;
+payload retention is explicit and separate from the unchanged identity-only
+execution function.
+
+`AssetCacheStore` owns only an explicit local root. `publish()` first verifies
+or atomically stores each artifact by its SHA-256 in `cas/`, then atomically
+publishes canonical `ludoweave.asset-cache-entry/1` metadata under the existing
+action cache key in `actions/`. `load()` requires an exact expected result entry
+and returns bytes only after metadata, byte-count, and SHA-256 verification.
+
+`ludoweave source asset-cache PROJECT --manifest FILE --assets FILE --lock FILE
+--plan FILE --cache DIRECTORY` performs the full verification and
+materialization chain before any cache write. Its path-free
+`ludoweave.asset-cache-publish/1` summary reports `published` and `reused`
+entries only after complete verification.
+
+M132 performs atomic per-entry publication, not an atomic all-plan transaction.
+It has no remote cache, cache deletion/repair/eviction, network, scheduler,
+worker, plugin, discovery, watcher, reimport, renderer upload, world mutation,
+receipt, project write, dependency, root export, workflow job, or CI change.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

@@ -13,8 +13,10 @@ import pytest
 import ludoweave.assets.execution as asset_execution
 from ludoweave.assets import (
     ASSET_BUILD_RESULT_PROTOCOL,
+    AssetBuildArtifact,
     AssetBuildExecutionLimits,
     AssetBuildInput,
+    AssetBuildMaterialization,
     AssetBuildPlan,
     AssetBuildResult,
     AssetEntry,
@@ -26,6 +28,7 @@ from ludoweave.assets import (
     AssetSourceLockEntry,
     AssetUri,
     execute_asset_build_plan,
+    materialize_asset_build_plan,
 )
 
 
@@ -123,6 +126,24 @@ def test_execute_plan_decodes_builtins_in_order_and_reports_stable_outputs(
     document = json.loads(first.canonical_bytes())
     assert document["$schema"] == ASSET_BUILD_RESULT_PROTOCOL
     assert "payload" not in first.canonical_bytes().decode("utf-8")
+
+
+def test_materialize_plan_retains_exact_validated_payloads_separately(
+    tmp_path: Path,
+) -> None:
+    _, plan, inputs, _ = _fixture(tmp_path)
+
+    materialized = materialize_asset_build_plan(plan, inputs)
+
+    assert isinstance(materialized, AssetBuildMaterialization)
+    assert materialized.result == execute_asset_build_plan(plan, inputs)
+    assert tuple(artifact.entry for artifact in materialized.artifacts) == (
+        materialized.result.entries
+    )
+    assert all(isinstance(artifact, AssetBuildArtifact) for artifact in materialized.artifacts)
+    assert [artifact.entry.artifact_sha256 for artifact in materialized.artifacts] == [
+        _hash(artifact.payload) for artifact in materialized.artifacts
+    ]
 
 
 def test_execute_plan_supports_an_empty_verified_plan(tmp_path: Path) -> None:

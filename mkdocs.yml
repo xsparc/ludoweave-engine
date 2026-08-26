@@ -155,6 +155,7 @@ nav:
       - RFC-0112 - Add deterministic asset build planning: rfcs/0112-add-deterministic-asset-build-planning.md
       - RFC-0113 - Add confined asset build-plan verification: rfcs/0113-add-confined-asset-build-plan-verification.md
       - RFC-0114 - Add bounded in-memory asset plan execution: rfcs/0114-add-bounded-in-memory-asset-plan-execution.md
+      - RFC-0115 - Add verified local asset cache publication: rfcs/0115-add-verified-local-asset-cache-publication.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

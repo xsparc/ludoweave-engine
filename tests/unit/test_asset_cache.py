@@ -1,0 +1,278 @@
+"""Verified atomic local cache publication for materialized asset artifacts."""
+
+from __future__ import annotations
+
+import json
+from hashlib import sha256
+from pathlib import Path
+
+import pytest
+
+import ludoweave.assets.cache as asset_cache
+from ludoweave.assets import (
+    ASSET_CACHE_ENTRY_PROTOCOL,
+    ASSET_CACHE_PUBLISH_PROTOCOL,
+    AssetBuildArtifact,
+    AssetBuildMaterialization,
+    AssetBuildResult,
+    AssetBuildResultEntry,
+    AssetCacheError,
+    AssetCacheStore,
+    AssetError,
+    AssetKind,
+    AssetUri,
+)
+
+
+def _hash(value: bytes) -> str:
+    return f"sha256:{sha256(value).hexdigest()}"
+
+
+def _materialization(payload: bytes = b'{"value":1}') -> AssetBuildMaterialization:
+    entry = AssetBuildResultEntry(
+        uri=AssetUri("asset://data/item.json"),
+        kind=AssetKind.JSON,
+        cache_key=_hash(b"cache-key"),
+        source_bytes=13,
+        artifact_sha256=_hash(payload),
+        artifact_bytes=len(payload),
+    )
+    result = AssetBuildResult(
+        plan_sha256=_hash(b"plan"),
+        source_bytes=13,
+        artifact_bytes=len(payload),
+        entries=(entry,),
+    )
+    return AssetBuildMaterialization(result, (AssetBuildArtifact(entry, payload),))
+
+
+def _entry_root(root: Path, materialized: AssetBuildMaterialization) -> Path:
+    digest = materialized.result.entries[0].cache_key.removeprefix("sha256:")
+    return root / "actions" / digest[:2] / digest
+
+
+def _blob_path(root: Path, materialized: AssetBuildMaterialization) -> Path:
+    digest = materialized.result.entries[0].artifact_sha256.removeprefix("sha256:")
+    return root / "cas" / digest[:2] / digest
+
+
+def test_cache_publishes_one_complete_entry_and_verifies_reads(tmp_path: Path) -> None:
+    root = tmp_path / "cache"
+    materialized = _materialization()
+    store = AssetCacheStore(root)
+
+    summary = store.publish(materialized)
+
+    entry = materialized.result.entries[0]
+    assert summary.protocol == ASSET_CACHE_PUBLISH_PROTOCOL
+    assert summary.plan_sha256 == materialized.result.plan_sha256
+    assert summary.published == 1
+    assert summary.reused == 0
+    assert store.load(entry) == materialized.artifacts[0].payload
+    entry_root = _entry_root(root, materialized)
+    assert sorted(path.name for path in entry_root.iterdir()) == ["entry.json"]
+    assert _blob_path(root, materialized).read_bytes() == materialized.artifacts[0].payload
+    metadata = json.loads((entry_root / "entry.json").read_bytes())
+    assert metadata["$schema"] == ASSET_CACHE_ENTRY_PROTOCOL
+    assert metadata["cache_key"] == entry.cache_key
+    assert metadata["artifact_sha256"] == entry.artifact_sha256
+    report = json.loads(summary.canonical_bytes())
+    assert report["$schema"] == ASSET_CACHE_PUBLISH_PROTOCOL
+    assert "path" not in summary.canonical_bytes().decode("utf-8")
+
+
+def test_cache_reuses_verified_entry_without_rewriting(tmp_path: Path) -> None:
+    root = tmp_path / "cache"
+    materialized = _materialization()
+    store = AssetCacheStore(root)
+    first = store.publish(materialized)
+    before = {
+        path.name: (path.read_bytes(), path.stat().st_mtime_ns)
+        for path in _entry_root(root, materialized).iterdir()
+    }
+
+    second = store.publish(materialized)
+
+    after = {
+        path.name: (path.read_bytes(), path.stat().st_mtime_ns)
+        for path in _entry_root(root, materialized).iterdir()
+    }
+    assert first.published == 1
+    assert second.published == 0
+    assert second.reused == 1
+    assert after == before
+
+
+@pytest.mark.parametrize("target", ["blob", "metadata"])
+def test_cache_rejects_corrupt_existing_entry_without_overwrite(
+    tmp_path: Path,
+    target: str,
+) -> None:
+    root = tmp_path / "cache"
+    materialized = _materialization()
+    store = AssetCacheStore(root)
+    store.publish(materialized)
+    path = (
+        _blob_path(root, materialized)
+        if target == "blob"
+        else _entry_root(root, materialized) / "entry.json"
+    )
+    path.write_bytes(b"corrupt")
+    before = path.read_bytes()
+
+    with pytest.raises(AssetCacheError) as caught:
+        store.publish(materialized)
+
+    assert caught.value.code == "asset_cache.corrupt_entry"
+    assert path.read_bytes() == before
+    assert not list(root.rglob(".staging-*"))
+
+
+def test_cache_miss_has_no_filesystem_side_effect(tmp_path: Path) -> None:
+    root = tmp_path / "cache"
+    store = AssetCacheStore(root)
+    entry = _materialization().result.entries[0]
+    before = sorted(path.relative_to(root) for path in root.rglob("*"))
+
+    assert store.load(entry) is None
+
+    assert sorted(path.relative_to(root) for path in root.rglob("*")) == before
+
+
+def test_cache_publish_failure_cleans_staging_and_normalizes_error(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    root = tmp_path / "cache"
+    store = AssetCacheStore(root)
+    materialized = _materialization()
+
+    def fail_replace(source: Path, target: Path) -> None:
+        del source, target
+        raise OSError("synthetic")
+
+    monkeypatch.setattr(asset_cache.os, "replace", fail_replace)
+
+    with pytest.raises(AssetCacheError) as caught:
+        store.publish(materialized)
+
+    assert caught.value.code == "asset_cache.publish_failed"
+    assert dict(caught.value.details) == {"cause_type": "OSError", "field": "entry"}
+    assert not _entry_root(root, materialized).exists()
+    assert not list(root.rglob(".staging-*"))
+
+
+def test_action_publish_failure_leaves_only_verified_reusable_blob(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    root = tmp_path / "cache"
+    store = AssetCacheStore(root)
+    materialized = _materialization()
+    original_replace = asset_cache.os.replace
+    replacements = 0
+
+    def fail_second_replace(source: Path, target: Path) -> None:
+        nonlocal replacements
+        replacements += 1
+        if replacements == 2:
+            raise OSError("synthetic action failure")
+        original_replace(source, target)
+
+    monkeypatch.setattr(asset_cache.os, "replace", fail_second_replace)
+
+    with pytest.raises(AssetCacheError) as caught:
+        store.publish(materialized)
+
+    assert caught.value.code == "asset_cache.publish_failed"
+    assert _blob_path(root, materialized).read_bytes() == materialized.artifacts[0].payload
+    assert not _entry_root(root, materialized).exists()
+    assert store.load(materialized.result.entries[0]) is None
+    assert not list(root.rglob(".staging-*"))
+
+    monkeypatch.setattr(asset_cache.os, "replace", original_replace)
+    summary = store.publish(materialized)
+    assert summary.published == 1
+    assert store.load(materialized.result.entries[0]) == materialized.artifacts[0].payload
+    assert len([path for path in (root / "cas").rglob("*") if path.is_file()]) == 1
+
+
+def test_distinct_action_keys_deduplicate_one_artifact_blob(tmp_path: Path) -> None:
+    payload = b'{"shared":true}'
+    first = _materialization(payload).result.entries[0]
+    second = AssetBuildResultEntry(
+        uri=AssetUri("asset://data/second.json"),
+        kind=AssetKind.JSON,
+        cache_key=_hash(b"second-cache-key"),
+        source_bytes=17,
+        artifact_sha256=first.artifact_sha256,
+        artifact_bytes=first.artifact_bytes,
+    )
+    result = AssetBuildResult(
+        plan_sha256=_hash(b"deduplicated-plan"),
+        source_bytes=first.source_bytes + second.source_bytes,
+        artifact_bytes=first.artifact_bytes + second.artifact_bytes,
+        entries=(first, second),
+    )
+    materialized = AssetBuildMaterialization(
+        result,
+        (AssetBuildArtifact(first, payload), AssetBuildArtifact(second, payload)),
+    )
+    root = tmp_path / "cache"
+
+    summary = AssetCacheStore(root).publish(materialized)
+
+    assert summary.published == 2
+    assert len([path for path in (root / "cas").rglob("*") if path.is_file()]) == 1
+    assert len([path for path in (root / "actions").rglob("entry.json")]) == 2
+
+
+@pytest.mark.parametrize("relation", ["same", "inside", "ancestor"])
+def test_cache_root_must_not_overlap_project(tmp_path: Path, relation: str) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    if relation == "same":
+        cache = project
+    elif relation == "inside":
+        cache = project / "cache"
+    else:
+        cache = tmp_path
+
+    with pytest.raises(AssetCacheError) as caught:
+        AssetCacheStore(cache, project_root=project)
+
+    assert caught.value.code == "asset_cache.invalid_root"
+    assert dict(caught.value.details) == {"field": "cache_root"}
+
+
+def test_cache_values_require_exact_payload_identity(tmp_path: Path) -> None:
+    materialized = _materialization()
+    entry = materialized.result.entries[0]
+
+    with pytest.raises(AssetError) as artifact_error:
+        AssetBuildArtifact(entry, b"changed")
+    assert artifact_error.value.code == "asset_cache.invalid_artifact"
+
+    store = AssetCacheStore(tmp_path / "cache")
+    with pytest.raises(AssetCacheError) as input_error:
+        store.publish(object())  # type: ignore[arg-type]
+    assert input_error.value.code == "asset_cache.invalid_materialization"
+
+
+def test_empty_materialization_has_deterministic_empty_summary(tmp_path: Path) -> None:
+    result = AssetBuildResult(
+        plan_sha256=_hash(b"empty-plan"),
+        source_bytes=0,
+        artifact_bytes=0,
+        entries=(),
+    )
+    materialized = AssetBuildMaterialization(result, ())
+
+    summary = AssetCacheStore(tmp_path / "cache").publish(materialized)
+
+    assert summary.published == summary.reused == 0
+    assert summary.entries == ()
+    assert (
+        summary.canonical_bytes()
+        == AssetCacheStore(tmp_path / "other").publish(materialized).canonical_bytes()
+    )

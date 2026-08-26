@@ -65,6 +65,12 @@ M131 adds experimental `ASSET_BUILD_RESULT_PROTOCOL`,
 `AssetBuildResult`, and `execute_asset_build_plan` through the focused
 `ludoweave.assets` package. The versioned result retains output identities but
 not payloads; the engine root remains unchanged.
+M132 adds experimental `AssetBuildArtifact`, `AssetBuildMaterialization`,
+`materialize_asset_build_plan()`, `ASSET_CACHE_ENTRY_PROTOCOL`,
+`ASSET_CACHE_PUBLISH_PROTOCOL`, `AssetCacheError`, `AssetCachePublishEntry`,
+`AssetCachePublishSummary`, and `AssetCacheStore` through
+`ludoweave.assets`. Cache protocols and storage remain local-only; the engine
+root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

@@ -1,6 +1,51 @@
 # Project State
 
-## M131 bounded in-memory asset plan execution - direction selected
+## M132 verified local asset cache publication - locally validated
+
+- Base: fully locally validated M131 DCO commit
+  `ea472476ee5cfca05afeda90fa888bf5557a3128`, tree
+  `7de987430ac34cf22071cfcb58644b65b32f8d21`, sole parent exact M130.
+- Branch: `release/m132-verified-local-asset-cache`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel cache/CAS and Remote Execution API documentation,
+  Gradle 9.7 build-cache concepts, and Python 3.14 `os.replace()` documentation
+  support separate action and payload identities, verified reads,
+  payload-before-action publication, and destination-filesystem staging.
+- Contract: exact M131 materialization retains immutable bounded payloads only
+  for an explicit consumer. `AssetCacheStore` publishes payloads by artifact
+  SHA-256 under `cas/` and canonical action metadata by the existing cache key
+  under `actions/`; every hit and collision is reverified.
+- Failure boundary: complete M130/M131 verification, source acquisition, and
+  materialization precede cache-root construction in CLI composition. Corrupt
+  content fails closed without repair or overwrite. Staging is removed; a
+  valid orphan CAS blob may remain after later action publication fails.
+- Evidence: 424 Python files are format-clean; Ruff and strict Pyright pass;
+  1,671 architecture assertions pass with one established Windows capability
+  skip; strict docs, whitespace, and both governance modes pass. Exact CPython
+  3.12.13 passes 3,434 tests with 16 skips; exact 3.13.13 and 3.14.5 each pass
+  3,424 with 17 skips.
+- Graphics and artifacts: all ten real-wgpu tests, both M7 profile contracts,
+  and both deterministic vertical slices pass. Two distributions reproduce a
+  325,332-byte pure wheel and 1,749,163-byte source archive. All 15 isolated
+  wheel consumers pass. Two complete ten-artifact release stages are
+  byte-identical and both release smokes pass.
+- Review: separate action/CAS layout, action-failure orphan reuse, payload
+  deduplication, project immutability, path-silent errors/reports, archive
+  hygiene, protected surfaces, public tool-identity, credentials, backend
+  leakage, and CI scope have no remaining actionable finding. Exactly 23
+  intended paths change; workflows, dependencies, lock, version, legacy asset
+  contracts, release scripts, and prior installed evidence retain zero diff.
+- Scope: no remote cache, transport, authentication, shared service, eviction,
+  deletion/repair, quota, worker/process/thread, discovery/watcher/reimport,
+  renderer upload, project write, world/session mutation, dependency, version,
+  workflow/allocation, release authority, or remote change.
+
+## M131 bounded in-memory asset plan execution - locally validated and committed
+
+- Commit: `ea472476ee5cfca05afeda90fa888bf5557a3128`, tree
+  `7de987430ac34cf22071cfcb58644b65b32f8d21`, sole parent exact M130; exact
+  maintainer identity, one DCO sign-off, 21 paths, `0 32` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M130 DCO commit
   `1b69a30820d94c23272d7e1982ec80f978da8194`, tree

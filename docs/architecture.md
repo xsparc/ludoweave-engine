@@ -3253,6 +3253,47 @@ engine-root exports, workflows, permissions, credentials, release authority,
 jobs, and allocations remain unchanged. There is no workflow allocation.
 RFC-0114 records the full boundary.
 
+## M132 verified local asset cache boundary
+
+M132 makes payload retention and storage explicit. `materialize_asset_build_plan()`
+uses the complete M131 preflight and decoder kernel but returns a frozen
+`AssetBuildMaterialization` whose payload tuple exactly matches the result
+entries. The unchanged `execute_asset_build_plan()` path still discards each
+payload after hashing.
+
+`AssetCacheStore` receives one caller-selected local root. Project composition
+rejects equal, nested, or ancestor cache/project roots, so generated artifacts
+cannot mutate or contain project state. The store retains only a resolved path;
+it owns no persistent descriptor, thread, worker, or background lifecycle.
+
+The layout separates content from action identity. `cas/HH/HASH` names payload
+bytes by artifact SHA-256. `actions/HH/CACHE_KEY/entry.json` binds the existing
+M4/M129 action key to exact canonical `ludoweave.asset-cache-entry/1` metadata.
+Reads require an expected M131 result entry and recheck exact metadata, payload
+size, and payload digest. A missing action is a miss; any observed partial,
+aliased, malformed, or mismatched entry is corruption and is not repaired.
+
+Publication flushes a destination-sibling staged CAS blob before replacement,
+then stages canonical action metadata in a sibling directory. Atomic per-entry
+action-directory replacement is the visibility point, so an action never
+becomes visible before its blob. Equivalent existing content is verified and
+reused without rewrite. Still-owned staging paths are cleaned on failure. A
+late filesystem failure may retain only valid earlier entries or an inert
+unreferenced CAS blob; M132 is not an atomic all-plan transaction.
+
+The `source asset-cache` composition completes exact lock/plan verification,
+detached source acquisition, and complete bounded materialization before cache
+construction. Its `ludoweave.asset-cache-publish/1` result contains only plan,
+logical artifact, and publication-status values; filesystem paths, staging
+names, timestamps, and environment values are absent.
+
+M132 has no remote cache, network, authentication, eviction, deletion, repair,
+quota, discovery, watcher, reimport, scheduler, worker, process, thread, plugin,
+decoder registration, renderer upload, world mutation, or receipt. There is no
+project write, dependency, native/backend surface, engine-root export, version,
+workflow, permission, credential, release authority, or CI change. RFC-0115
+records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

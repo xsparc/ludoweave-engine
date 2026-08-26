@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M132/RFC-0115 explicit local asset-cache publication. Materialized M131
+  payloads are stored in a verified SHA-256 CAS before atomically visible
+  action metadata; corrupt collisions fail closed and no project, remote cache,
+  dependency, workflow, or CI surface changes.
 - Add M131/RFC-0114 bounded built-in decoder execution through `ludoweave
   source asset-build`. Exact detached inputs are revalidated before decoding;
   canonical `ludoweave.asset-build-result/1` records output identities with no

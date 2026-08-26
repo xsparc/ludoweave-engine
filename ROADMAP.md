@@ -1325,6 +1325,32 @@ renderer upload, world/session, mutation, or receipt. It adds no dependency,
 engine-root API, version, workflow job, workflow allocation, hosted allocation,
 permission, credential, release authority, or remote change.
 
+## M132 verified local asset cache publication
+
+M132 starts from fully locally validated M131 commit
+`ea472476ee5cfca05afeda90fa888bf5557a3128`. It adds explicit bounded artifact
+materialization, a verified local payload CAS plus action index, deterministic
+`ludoweave.asset-cache-entry/1` metadata, path-free
+`ludoweave.asset-cache-publish/1` reports, and one command:
+
+```console
+ludoweave source asset-cache PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The CLI completes M130 verification and all M131 materialization before it
+creates the explicit cache root outside the project. Payloads publish by
+artifact SHA-256 before atomic per-entry action metadata becomes visible under
+the existing cache key. Every hit rechecks canonical metadata, byte count, and
+payload SHA-256. Equivalent entries are reused without rewrite; corrupt
+collisions fail closed; all still-owned staging paths are cleaned.
+
+M132 has no remote cache, network, authentication, eviction, deletion, repair,
+quota, discovery, watcher, reimport, scheduler/worker/process/thread, plugin,
+decoder registration, renderer upload, world/session, mutation, or receipt. It
+adds no project write, dependency, engine-root API, version, workflow job,
+workflow allocation, hosted allocation, permission, credential, release
+authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

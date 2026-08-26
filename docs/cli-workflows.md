@@ -305,3 +305,32 @@ There is no cache read, no cache write, no persisted artifact, no project
 write, no atomic publication, no worker, plugin, discovery, watcher, reimport,
 renderer upload, world mutation, receipt, or workflow allocation. Sequential
 source acquisition is not an atomic filesystem snapshot.
+
+## Verified local asset cache publication
+
+M132 adds an explicit local cache effect after complete M131 materialization:
+
+```console
+ludoweave source asset-cache PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+`--cache` is caller authority and must identify a root outside and not above the
+project. No cache location is read from project data. The command loads the
+saved plan, recomputes and verifies current inputs, verifies the regenerated
+plan, acquires detached sources, and completes every bounded decoder before it
+creates the cache store.
+
+Payloads are stored once by artifact SHA-256 in the local CAS. Canonical
+`ludoweave.asset-cache-entry/1` action metadata becomes visible afterward by
+atomic per-entry directory replacement under the existing cache key. Existing
+entries count as `reused` only after exact metadata, size, and payload-digest
+verification. New entries count as `published`. Success is one path-free
+canonical `ludoweave.asset-cache-publish/1` document.
+
+Corrupt, incomplete, or aliased content fails closed without overwrite or
+repair. Still-owned staging paths are removed. A valid unreferenced CAS blob or
+an earlier valid entry can remain after a later filesystem failure, but neither
+constitutes a partial cache hit. The project remains byte-for-byte unchanged.
+
+There is no remote cache, network, authentication, eviction, deletion, quota,
+watcher, reimport, worker, plugin, world mutation, receipt, or CI change.
