@@ -1,12 +1,51 @@
 # Project State
 
-## M139 saved cache-fingerprint verification - in progress
+## M140 path-free cache-fingerprint comparison - in progress
+
+- Base: fully locally validated M139 DCO commit
+  `e7c01044da87004cea065fd07f379ea7ba09128f`, tree
+  `c52f9af36d464d539df1bb2164a3e7b56e2741be`, sole parent exact M138.
+- Branch: `release/m140-path-free-cache-fingerprint-comparison`; unpublished
+  under the existing public-review identity hold.
+- Direction: current NIST Privacy Framework and OpenTelemetry guidance support
+  minimization/aggregation; RFC 6902 confirms that generic JSON Patch would
+  require paths and can carry values, widening the existing disclosure surface.
+- Contract: exact-plan preflight precedes one unchanged M138 observation; a
+  frozen report contains only the plan/fingerprint protocol, equality status,
+  one identity-equality flag, and signed deltas for twelve existing aggregates.
+- CLI: `source asset-cache-fingerprint-compare` returns canonical stdout and 0
+  for equal, canonical stdout and 1 for different, or structured stderr and 2
+  for invalid/failed processing.
+- Evidence so far: all 453 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,712 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 passes
+  3,581/3,571/3,571 tests; real-wgpu, profiles, both vertical slices, and all 23
+  isolated installed-wheel consumers pass. Cross-plan aggregate construction
+  is independently rejected after findings-first review.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  two identical ten-artifact release rehearsals pass; archives, protected
+  surfaces, disclosure/identity, changed-path credentials, capability, and CI-
+  scope scans are clean.
+- Audit: exact M139 history, all 40 prior stack commits, DCO/identity, commit-
+  graph/object integrity, and hosted absence pass. A fresh fetch still shows
+  only exact M99 remote main, so the reported squash merge is not visible and
+  the public-review hold remains.
+- Cleanup and handoff: 25 exact generated targets are removed, `.tmp` is
+  absent, `.venv` is retained, and only local `main` plus active M140 remain.
+  Exactly 19 intended paths await the authorized local DCO commit.
+- Scope: no detailed diff/identity/path/digest disclosure, trust/authenticity,
+  atomic snapshot, retention/deletion authority, mutation/cleanup, remote
+  cache/network, dependency, version, workflow/allocation, release authority,
+  or remote change.
+
+## M139 saved cache-fingerprint verification - locally validated
 
 - Base: fully locally validated M138 DCO commit
   `aeca2b3ea1c1e6122df4080641f707e36a9a43d7`, tree
   `28c6e0a5b423eb7e340d5ffa010d9997c1d408af`, sole parent exact M137.
-- Branch: `release/m139-saved-cache-fingerprint-verification`; unpublished
-  under the existing public-review identity hold.
+- The redundant local milestone branch was pruned after exact ancestry proof;
+  the commit remains the M140 base and is unpublished under the existing
+  public-review identity hold.
 - Direction: Python 3.12 JSON guidance requires explicit input limits and
   supports duplicate/non-finite rejection hooks; NIST describes digests as
   changed-message detection; SLSA requires separate roots of trust, signatures,

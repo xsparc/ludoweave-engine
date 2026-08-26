@@ -163,6 +163,7 @@ nav:
       - RFC-0120 - Add bounded read-only asset-cache inventory: rfcs/0120-add-bounded-asset-cache-inventory.md
       - RFC-0121 - Add deterministic cache-observation fingerprint: rfcs/0121-add-deterministic-cache-observation-fingerprint.md
       - RFC-0122 - Add saved cache-fingerprint verification: rfcs/0122-add-saved-cache-fingerprint-verification.md
+      - RFC-0123 - Add path-free cache-fingerprint comparison: rfcs/0123-add-path-free-cache-fingerprint-comparison.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

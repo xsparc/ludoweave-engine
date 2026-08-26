@@ -126,3 +126,5 @@ was adopted.
 - [RFC-0119: add saved cache-population verification](0119-add-saved-cache-population-verification.md)
 - [RFC-0120: add bounded read-only asset-cache inventory](0120-add-bounded-asset-cache-inventory.md)
 - [RFC-0121: add deterministic cache-observation fingerprint](0121-add-deterministic-cache-observation-fingerprint.md)
+- [RFC-0122: add saved cache-fingerprint verification](0122-add-saved-cache-fingerprint-verification.md)
+- [RFC-0123: add path-free cache-fingerprint comparison](0123-add-path-free-cache-fingerprint-comparison.md)

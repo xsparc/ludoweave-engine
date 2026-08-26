@@ -215,6 +215,27 @@ def _verify_fingerprint(
     )
 
 
+def _compare_fingerprint(
+    project: Path,
+    cache: Path,
+    *,
+    fingerprint: str = "fingerprint.json",
+) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-fingerprint-compare",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--fingerprint",
+        fingerprint,
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -736,6 +757,136 @@ def test_asset_cache_fingerprint_verify_checks_current_inputs_before_record_read
     (project / "assets/item.json").write_bytes(b'{"value":2}')
 
     result = _verify_fingerprint(project, cache, fingerprint="missing.json")
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] != "tools.input_unavailable"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert not cache.exists()
+
+
+def test_asset_cache_fingerprint_compare_reports_equal_read_only(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _compare_fingerprint(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    deltas = cast(dict[str, object], report["deltas"])
+    assert report["$schema"] == "ludoweave.asset-cache-fingerprint-comparison/1"
+    assert report["fingerprint_protocol"] == "ludoweave.asset-cache-fingerprint/1"
+    assert report["status"] == "equal"
+    assert report["observation_equal"] is True
+    assert len(deltas) == 12
+    assert set(deltas.values()) == {0}
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_compare_reports_aggregate_difference(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    saved = cast(dict[str, object], json.loads(fingerprint.stdout))
+    saved_observation = str(saved["observation_sha256"])
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    orphan = b"diagnostic orphan"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _compare_fingerprint(project, cache)
+
+    assert result.returncode == 1
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    deltas = cast(dict[str, object], report["deltas"])
+    assert report["status"] == "different"
+    assert report["observation_equal"] is False
+    assert deltas["cas_blobs"] == 1
+    assert deltas["other_blobs"] == 1
+    assert deltas["unreferenced_blobs"] == 1
+    assert deltas["unreferenced_blob_bytes"] == len(orphan)
+    assert digest not in result.stdout
+    assert saved_observation not in result.stdout
+    assert str(project) not in result.stdout
+    assert str(cache) not in result.stdout
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_fingerprint_compare_detects_same_size_content_substitution(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    first = b"first orphan"
+    first_digest = sha256(first).hexdigest()
+    first_path = cache / "cas" / first_digest[:2] / first_digest
+    first_path.parent.mkdir(exist_ok=True)
+    first_path.write_bytes(first)
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    first_path.unlink()
+    second = b"other orphan"
+    assert len(first) == len(second)
+    second_digest = sha256(second).hexdigest()
+    second_path = cache / "cas" / second_digest[:2] / second_digest
+    second_path.parent.mkdir(exist_ok=True)
+    second_path.write_bytes(second)
+
+    result = _compare_fingerprint(project, cache)
+
+    assert result.returncode == 1
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    deltas = cast(dict[str, object], report["deltas"])
+    assert report["status"] == "different"
+    assert report["observation_equal"] is False
+    assert set(deltas.values()) == {0}
+    assert first_digest not in result.stdout
+    assert second_digest not in result.stdout
+
+
+def test_asset_cache_fingerprint_compare_checks_current_inputs_before_record_read(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _compare_fingerprint(project, cache, fingerprint="missing.json")
 
     assert result.returncode == 2
     assert result.stdout == ""

@@ -1518,6 +1518,36 @@ cache, atomic snapshot, diff, retention/deletion authority, cache/project
 mutation, dependency, version, workflow job/allocation, permission, credential,
 release authority, or CI change.
 
+## M140 path-free cache-fingerprint comparison
+
+M140 starts from fully locally validated M139 commit
+`e7c01044da87004cea065fd07f379ea7ba09128f`. It adds one diagnostic command:
+
+```console
+ludoweave source asset-cache-fingerprint-compare PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json --cache ../ludoweave-cache
+```
+
+Current source identities, lock, and exact regenerated plan are verified before
+the bounded canonical saved record is read. Saved plan identity then preflights
+before exactly one unchanged M138 read-only observation. Success or diagnostic
+difference emits canonical path-free
+`ludoweave.asset-cache-fingerprint-comparison/1` evidence: status, fingerprint
+protocol, plan digest, one exact-observation equality flag, and signed deltas
+for exactly the twelve existing M137 aggregate inventory fields.
+
+Exit 0 means the exact observation and every aggregate are equal. Exit 1 is a
+normal diagnostic difference on standard output. Invalid records, stale plans,
+corrupt caches, or active-limit failures remain structured errors with exit 2.
+Same-size object substitution is detectable through the equality flag even
+when every aggregate delta is zero.
+
+The fixed report is path-free and exposes no cache key, URI, artifact digest,
+object identity, differing observation digest, filename, path, or payload. It
+is not authenticity or provenance and grants no write, repair, cleanup,
+retention, eviction, or deletion authority. M140 adds no generic diff/patch,
+remote cache, atomic snapshot, dependency, version, workflow job/allocation,
+permission, credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

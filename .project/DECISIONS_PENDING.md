@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+## M140 path-free cache-fingerprint comparison
+
+RFC-0123 resolves the adopted M140 direction: preflight exact saved plan
+identity, reuse exactly one unchanged bounded M138 observation, and diagnose
+change only through the twelve existing signed M137 aggregate deltas plus one
+exact-observation equality flag.
+
+Frozen `ludoweave.asset-cache-fingerprint-comparison/1` evidence exposes no
+cache key, URI, object/artifact digest, action/blob identity, filename, path,
+payload, or expected/current observation digest. Equal exits 0; diagnostic
+different exits 1 with the report on standard output; invalid processing stays
+structured exit 2.
+
+Detailed object diffs, JSON Patch, telemetry export, authenticity/provenance,
+atomic snapshots, hostile concurrent writers, retention roots, leases/pins/
+generations, cleanup/mutation/repair/deletion/eviction, remote cache/network,
+dependencies, version, CI/workflows, release authority, and remote change
+remain unauthorized for M140.
+
 ## M139 saved cache-fingerprint verification
 
 RFC-0122 resolves the adopted M139 direction: admit only one bounded canonical

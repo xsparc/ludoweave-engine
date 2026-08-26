@@ -22,6 +22,12 @@ from ludoweave.assets.execution import (
     execute_asset_build_plan,
     materialize_asset_build_plan,
 )
+from ludoweave.assets.fingerprint_comparison import (
+    ASSET_CACHE_FINGERPRINT_COMPARISON_PROTOCOL,
+    AssetCacheFingerprintComparison,
+    AssetCacheInventoryDelta,
+    compare_asset_cache_fingerprint,
+)
 from ludoweave.assets.fingerprint_verification import (
     ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
     ASSET_CACHE_FINGERPRINT_VERIFICATION_PROTOCOL,
@@ -102,6 +108,7 @@ __all__ = [
     "ASSET_BUILD_REALIZATION_PROTOCOL",
     "ASSET_BUILD_RESULT_PROTOCOL",
     "ASSET_CACHE_ENTRY_PROTOCOL",
+    "ASSET_CACHE_FINGERPRINT_COMPARISON_PROTOCOL",
     "ASSET_CACHE_FINGERPRINT_PROTOCOL",
     "ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES",
     "ASSET_CACHE_FINGERPRINT_VERIFICATION_PROTOCOL",
@@ -136,9 +143,11 @@ __all__ = [
     "AssetBuildResultEntry",
     "AssetCacheError",
     "AssetCacheFingerprint",
+    "AssetCacheFingerprintComparison",
     "AssetCacheFingerprintRecordLimits",
     "AssetCacheFingerprintVerification",
     "AssetCacheInventory",
+    "AssetCacheInventoryDelta",
     "AssetCacheInventoryLimits",
     "AssetCacheLookupEntry",
     "AssetCacheLookupSummary",
@@ -164,6 +173,7 @@ __all__ = [
     "PngTexture",
     "TextureAsset",
     "TextureSlot",
+    "compare_asset_cache_fingerprint",
     "decode_asset_cache_fingerprint",
     "decode_png",
     "execute_asset_build_plan",

@@ -27,6 +27,7 @@ from ludoweave.assets import (
     AssetSourceLock,
     AssetSourceLockEntry,
     AssetUri,
+    compare_asset_cache_fingerprint,
     decode_asset_cache_fingerprint,
     execute_asset_build_plan,
     fingerprint_asset_cache_observation,
@@ -262,6 +263,23 @@ def _build_parser() -> argparse.ArgumentParser:
     source_asset_cache_fingerprint_verify_parser.add_argument(
         "--cache", required=True, type=Path, help="local cache directory outside the project"
     )
+    source_asset_cache_fingerprint_compare_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-compare",
+        help="diagnose path-free aggregate changes from one saved cache fingerprint",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_compare_parser)
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
     source_asset_cache_populate_parser = source_subparsers.add_parser(
         "asset-cache-populate",
         help="realize one exact plan before explicitly populating a local cache",
@@ -455,6 +473,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_cache_inventory(args)
             if source_command == "asset-cache-fingerprint":
                 return _run_asset_cache_fingerprint(args)
+            if source_command == "asset-cache-fingerprint-compare":
+                return _run_asset_cache_fingerprint_compare(args)
             if source_command == "asset-cache-fingerprint-verify":
                 return _run_asset_cache_fingerprint_verify(args)
             if source_command == "asset-cache-populate":
@@ -834,6 +854,31 @@ def _run_asset_cache_fingerprint_verify(args: argparse.Namespace) -> int:
     )
     _write_stdout(verification.canonical_bytes())
     return 0
+
+
+def _run_asset_cache_fingerprint_compare(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint_document = project.read_relative(
+        _text_argument(args, "fingerprint"),
+        max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+        role="asset_cache_fingerprint",
+    )
+    fingerprint = decode_asset_cache_fingerprint(fingerprint_document)
+    comparison = compare_asset_cache_fingerprint(
+        current_plan,
+        fingerprint,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(comparison.canonical_bytes())
+    return 0 if comparison.equal else 1
 
 
 def _run_asset_realize(args: argparse.Namespace) -> int:

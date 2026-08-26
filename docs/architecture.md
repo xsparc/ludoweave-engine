@@ -3512,6 +3512,33 @@ snapshot claim. M139 adds no mutation, cleanup, remote cache, dependency,
 version, workflow, permission, release authority, or CI change. RFC-0122
 records the full boundary.
 
+## M140 path-free cache-fingerprint comparison boundary
+
+`compare_asset_cache_fingerprint()` requires exact plan and saved-fingerprint
+values and binds the nested saved plan digest before the external cache is
+constructed. It then invokes the unchanged bounded M138 observation exactly
+once and subtracts each saved M137 aggregate from its current counterpart.
+
+Frozen `ludoweave.asset-cache-fingerprint-comparison/1` evidence has a fixed
+shape: equal/different status, fingerprint protocol, plan digest, one
+`observation_equal` boolean, and signed integer deltas for exactly the twelve
+existing inventory fields. Equality requires both the identity digest match and
+all-zero deltas. Valid same-size object substitution therefore remains
+detectable without publishing either observation digest.
+
+The report is path-free and contains no cache key, URI, artifact digest, action
+or blob identity, filename, path, payload, expected/current observation digest,
+timestamp, or age. It is not a JSON Patch or extensible per-object diff.
+Corruption and active-limit failure still fail closed rather than producing a
+partial diagnostic.
+
+The comparison remains one sequential read-only observation, not an atomic
+snapshot. It is local change evidence, not authenticity or provenance, and
+grants no ownership, retention, eviction, deletion, write, repair, or cleanup
+authority. M140 adds no dependency, remote cache, backend/native surface,
+version, workflow, permission, release authority, or CI change. RFC-0123
+records the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

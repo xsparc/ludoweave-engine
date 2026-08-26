@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M140/RFC-0123 path-free saved cache-fingerprint comparison. One exact
+  plan preflight and one unchanged bounded observation produce fixed signed
+  deltas for the twelve existing M137 aggregate fields plus an identity-equality
+  boolean. It adds no per-object diff, identity/path disclosure, authenticity,
+  cleanup authority, dependency, workflow, or CI change.
 - Add M139/RFC-0122 strict saved cache-fingerprint verification. Bounded
   duplicate/non-finite-rejecting canonical decoding binds the saved M138 record
   to the exact current plan before one fresh read-only observation; success is

@@ -505,3 +505,29 @@ It is not authenticity: no signature, key identity, root of trust, trusted
 timestamp, attestation, or authenticated channel exists. It also grants no
 ownership, retention, eviction, or deletion authority and does not turn the
 sequential scan into an atomic snapshot.
+
+## Path-free local-cache fingerprint comparison
+
+M140 diagnoses fixed aggregate change without disclosing cache object
+identities:
+
+```console
+ludoweave source asset-cache-fingerprint-compare PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json --cache ../ludoweave-cache
+```
+
+The current sources, saved lock, and exact regenerated plan are checked before
+the bounded canonical fingerprint is read. Saved plan identity then preflights
+before one M138 read-only observation. The canonical
+`ludoweave.asset-cache-fingerprint-comparison/1` report contains signed deltas
+for exactly the twelve existing inventory metrics and one
+`observation_equal` boolean.
+
+Exit 0 emits an equal report. Exit 1 emits a normal different report on standard
+output; it is not a processing error. Malformed or stale input, corruption, and
+active-limit failure emit a structured error on standard error with exit 2.
+Identity-only change can produce exit 1 with all twelve deltas zero.
+
+The report contains no cache key, URI, object/artifact digest, filename, path,
+payload, or differing observation digest. It is not authenticity or
+provenance, a generic diff, an atomic snapshot, or authority to write, repair,
+clean, retain, evict, or delete cache state.
