@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M131/RFC-0114 bounded built-in decoder execution through `ludoweave
+  source asset-build`. Exact detached inputs are revalidated before decoding;
+  canonical `ludoweave.asset-build-result/1` records output identities with no
+  retained payload, cache read/write, project write, worker, plugin, or
+  workflow allocation.
 - Add M130/RFC-0113 confined saved-plan loading plus read-only `ludoweave
   source asset-plan-verify`. Verification recomputes current M128 inputs and
   the M129 plan, reports mismatches without compared content, and performs no

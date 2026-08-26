@@ -60,6 +60,11 @@ versioned CLI document; the engine root remains unchanged.
 M130 adds experimental exact verification behavior to `AssetBuildPlan`, an
 internal project-confined plan loader, and a versioned CLI verification result.
 It adds no Python export and the engine root remains unchanged.
+M131 adds experimental `ASSET_BUILD_RESULT_PROTOCOL`,
+`AssetBuildExecutionLimits`, `AssetBuildInput`, `AssetBuildResultEntry`,
+`AssetBuildResult`, and `execute_asset_build_plan` through the focused
+`ludoweave.assets` package. The versioned result retains output identities but
+not payloads; the engine root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

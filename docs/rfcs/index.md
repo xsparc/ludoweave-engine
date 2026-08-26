@@ -118,3 +118,4 @@ was adopted.
 - [RFC-0111: add asset-source lock verification](0111-add-asset-source-lock-verification.md)
 - [RFC-0112: add deterministic asset build planning](0112-add-deterministic-asset-build-planning.md)
 - [RFC-0113: add confined asset build-plan verification](0113-add-confined-asset-build-plan-verification.md)
+- [RFC-0114: add bounded in-memory asset plan execution](0114-add-bounded-in-memory-asset-plan-execution.md)

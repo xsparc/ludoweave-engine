@@ -3218,6 +3218,41 @@ metadata, version, engine-root exports, workflows, permissions, credentials,
 release authority, jobs, and allocations remain unchanged. There is no
 workflow allocation. RFC-0113 records the full boundary.
 
+## M131 bounded in-memory asset plan execution boundary
+
+M131 separates decoder execution from persistence. The focused asset package
+accepts only an exact M129 plan and a tuple of frozen `AssetBuildInput` values
+whose logical URI order exactly matches the plan. It preflights all source byte
+counts, SHA-256 identities, per-source limits, and aggregate source limits
+before invoking a decoder.
+
+Decoder authority is closed to the existing built-in `AssetKind` values. PNG
+reuses the bounded RGBA8 decoder; JSON uses the existing compact sorted
+encoding; WGSL validates UTF-8; audio retains exact bytes. Settings remain
+cache-key inputs and do not become a plugin or callback surface. Per-artifact
+and aggregate decoded work are bounded. Payloads are local temporaries and are
+not retained in the result.
+
+The immutable `ludoweave.asset-build-result/1` document binds the canonical
+plan hash, unchanged loader protocol, aggregate accepted/decoded byte counts,
+and plan-ordered URI, kind, cache key, source byte count, artifact SHA-256, and
+artifact byte count. No path or payload enters the result. Stable detached
+inputs produce byte-identical result bytes.
+
+The `source asset-build` composition performs M130 verification before it
+acquires sources through the existing project-confined owned reader. The pure
+executor owns no descriptor or filesystem object. No success bytes are emitted
+before the complete result exists, and failures leave no partial external
+state.
+
+M131 performs no cache read, cache write, persisted artifact creation, project
+write, atomic publication, scheduler, worker, process, thread, plugin or
+decoder registration, discovery, watcher, import/reimport, live update,
+renderer upload, world mutation, or receipt. Dependencies, metadata, version,
+engine-root exports, workflows, permissions, credentials, release authority,
+jobs, and allocations remain unchanged. There is no workflow allocation.
+RFC-0114 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

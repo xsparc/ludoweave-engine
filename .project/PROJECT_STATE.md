@@ -1,6 +1,51 @@
 # Project State
 
-## M130 confined asset build-plan verification - direction selected
+## M131 bounded in-memory asset plan execution - direction selected
+
+- Base: fully locally validated M130 DCO commit
+  `1b69a30820d94c23272d7e1982ec80f978da8194`, tree
+  `8270d4de2a49808d5a7bb7c348a4bc8152e721a2`, sole parent exact M129.
+- Branch: `release/m131-bounded-asset-plan-execution`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle, and Godot primary references support
+  separating verified action execution and output identity from later cache
+  lookup/publication and generated-import ownership.
+- Contract: exact plan-ordered immutable source inputs are completely
+  preflighted before existing built-in PNG/JSON/WGSL/audio decoding. The
+  versioned result retains only plan/output identities and byte counts.
+- Baseline: exact M130 commit/tree/parent, clean status, and `0 31` divergence
+  pass. The focused asset/source/CLI suite passes 88 tests in 6.73 seconds;
+  static and dated governance pass. One initial lock call was cache-denied
+  before execution; its approved rerun resolved the unchanged lock.
+- Deliberate red: after two mechanical reflows and correction of two guessed
+  protected hashes, the protected-surface assertion passes, behavior stops
+  only on absent exports, and four intended implementation/CLI/installed/docs
+  assertions fail.
+- Implementation: frozen execution limits, detached inputs, immutable result
+  values, built-in cache-free execution, CLI composition, behavior tests, and
+  installed verifier are implemented. RFC/public documentation is drafted.
+- Focused proof: the first checkpoint found one export-order lint issue and
+  test-only typing/immutable-detail assumptions. After test-only corrections,
+  formatting, Ruff, strict Pyright, and all 16 execution/CLI assertions pass in
+  2.61 seconds. Three boundaries pass; installed/docs were then absent.
+- Complete proof: strict source/docs/governance gates, all 1,667 architecture
+  assertions, the complete 3.12-3.14 matrix, real wgpu, retained profiles and
+  vertical slices, reproducible distributions, all 14 installed-wheel
+  consumers, and two release rehearsals pass. Findings-first review added
+  complete-preflight and CLI failure-atomicity regressions; the review-hardened
+  suites pass 3,412 tests on 3.12 and 3,402 tests on both 3.13 and 3.14.
+- Scope: no cache read/write, persisted artifact, project write, atomic
+  publication, scheduler/worker/process/thread, plugin/decoder registration,
+  discovery, watcher, reimport, renderer upload, world mutation, receipt,
+  dependency, metadata, version, workflow/allocation, release authority, or
+  remote change.
+
+## M130 confined asset build-plan verification - locally validated and committed
+
+- Commit: `1b69a30820d94c23272d7e1982ec80f978da8194`, tree
+  `8270d4de2a49808d5a7bb7c348a4bc8152e721a2`, sole parent exact M129; exact
+  maintainer identity, one DCO sign-off, 21 paths, `0 31` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M129 DCO commit
   `ae1b2bf01a001ea157e170626544a2d487055d09`, tree

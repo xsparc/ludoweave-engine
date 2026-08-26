@@ -417,6 +417,32 @@ read, no cache write, no artifact, import, execution, scheduler, worker,
 discovery, watcher, live update, world mutation, receipt, dependency, root
 export, workflow job, or workflow allocation.
 
+## M131 bounded in-memory asset plan execution
+
+`AssetBuildInput` is a frozen, slotted logical URI plus exact immutable source
+bytes. `execute_asset_build_plan()` accepts an exact M129 plan and exact input
+tuple in plan order. It validates the entire source set—URI sequence, sizes,
+hashes, per-file limits, and aggregate limit—before decoding anything.
+
+Only the existing built-in PNG, JSON, WGSL, and audio behavior executes. Each
+payload is bounded, hashed, counted, and released after its result entry is
+created. `AssetBuildResult` emits canonical
+`ludoweave.asset-build-result/1` with the plan hash, loader protocol, aggregate
+counts, and plan-ordered output identities. It never contains a decoded
+payload or filesystem path.
+
+`ludoweave source asset-build PROJECT --manifest FILE --assets FILE --lock FILE
+--plan FILE` repeats the M130 saved/current verification chain, acquires exact
+detached sources through project confinement, executes, and writes one result
+only after complete success. Source drift, limits, and decoder failures are
+structured and content-silent.
+
+M131 has no cache read, no cache write, no persisted artifact, no project
+write, no atomic publication, no scheduler, worker, process, thread, plugin,
+decoder registration, discovery, watcher, reimport, renderer upload, world
+mutation, receipt, dependency, root export, workflow job, or workflow
+allocation.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

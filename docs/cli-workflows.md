@@ -280,3 +280,28 @@ The CLI does not execute the plan, decode or build an asset, consult or write a
 cache, create an artifact, import/reimport, schedule work, discover files, or
 mutate the project. Sequential source verification remains non-atomic and
 there is no workflow allocation.
+
+## Bounded in-memory asset plan execution
+
+M131 executes only the built-in decoders after the M130 verification chain:
+
+```console
+ludoweave source asset-build PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json
+```
+
+The saved plan loads first. Current sources are then hashed for M128 lock
+verification, the M129 plan is regenerated and compared, and every selected
+source is acquired again through the confined bounded reader into immutable
+bytes. The executor verifies exact URI order, source counts, hashes, and
+aggregate bounds before any built-in decoder runs. A change between hashing
+and acquisition therefore fails without success output.
+
+Success is canonical `ludoweave.asset-build-result/1`. It binds the plan hash,
+loader protocol, aggregate byte counts, and each plan-ordered URI/kind/cache
+key plus decoded artifact SHA-256 and byte count. Payload bytes are not
+retained or printed. Repeated stable inputs produce byte-identical output.
+
+There is no cache read, no cache write, no persisted artifact, no project
+write, no atomic publication, no worker, plugin, discovery, watcher, reimport,
+renderer upload, world mutation, receipt, or workflow allocation. Sequential
+source acquisition is not an atomic filesystem snapshot.

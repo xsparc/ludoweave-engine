@@ -16,12 +16,14 @@ from ludoweave.agent import AGENT_TOOL_NAMES
 from ludoweave.assets import (
     ASSET_SOURCE_MAX_BYTES,
     ASSET_SOURCE_TOTAL_MAX_BYTES,
+    AssetBuildInput,
     AssetBuildPlan,
     AssetError,
     AssetManifest,
     AssetSourceLock,
     AssetSourceLockEntry,
     AssetUri,
+    execute_asset_build_plan,
 )
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
@@ -164,6 +166,17 @@ def _build_parser() -> argparse.ArgumentParser:
     source_asset_plan_verify_parser.add_argument(
         "--plan", required=True, help="project-relative asset build plan"
     )
+    source_asset_build_parser = source_subparsers.add_parser(
+        "asset-build",
+        help="execute built-in decoders for one verified asset build plan",
+    )
+    _add_asset_source_arguments(source_asset_build_parser)
+    source_asset_build_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_build_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
 
     apply_parser = subparsers.add_parser(
         "apply",
@@ -302,6 +315,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_build_plan(args)
             if source_command == "asset-plan-verify":
                 return _run_asset_build_plan_verify(args)
+            if source_command == "asset-build":
+                return _run_asset_build_plan_execute(args)
             raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
@@ -560,6 +575,48 @@ def _run_asset_build_plan_verify(args: argparse.Namespace) -> int:
             }
         )
     )
+    return 0
+
+
+def _run_asset_build_plan_execute(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs: list[AssetBuildInput] = []
+    total_bytes = 0
+    for entry in current_plan.entries:
+        source = manifest.entry(entry.uri).source
+        try:
+            payload = project.read_relative(
+                source,
+                max_bytes=ASSET_SOURCE_MAX_BYTES,
+                role="asset_build_source",
+            )
+        except LudoWeaveError as error:
+            raise LudoWeaveError(
+                "verified asset source could not be acquired for execution",
+                code="tools.asset_build_source_unavailable",
+                subsystem="tools",
+                phase="execute_asset_plan",
+                details={"uri": entry.uri.value, "cause_code": error.code},
+            ) from error
+        total_bytes += len(payload)
+        if total_bytes > ASSET_SOURCE_TOTAL_MAX_BYTES:
+            raise LudoWeaveError(
+                "asset build sources exceed the aggregate execution bound",
+                code="tools.asset_build_sources_oversized",
+                subsystem="tools",
+                phase="execute_asset_plan",
+                details={"uri": entry.uri.value, "limit": ASSET_SOURCE_TOTAL_MAX_BYTES},
+            )
+        inputs.append(AssetBuildInput(entry.uri, payload))
+    result = execute_asset_build_plan(current_plan, tuple(inputs))
+    _write_stdout(result.canonical_bytes())
     return 0
 
 

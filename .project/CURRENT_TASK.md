@@ -1,103 +1,85 @@
 # Current task
 
-- **Task:** M130 - add confined asset build-plan verification.
-- **Status:** Primary-source direction, exact M129 base, corrected focused
-  baseline, both governance baselines, deliberate-red contract, implementation,
-  installed verifier, RFC, public documentation, corrected focused proof, and
-  documentation-inclusive validation, complete source/runtime/graphics gates,
-  profiles, deterministic vertical slices, initial package/release gates,
-  final review, hygiene, record-inclusive package/release gates are complete.
-  History/hosted-state, bounded cleanup, and final clean-scratch metadata gates
-  are complete. The local DCO commit and postcommit proof remain.
-- **Base:** Fully locally validated M129 DCO commit
-  `ae1b2bf01a001ea157e170626544a2d487055d09`, tree
-  `ea7b58efafa29cb5af4ee40617636dce34176e5c`, with sole parent exact M128.
+- **Task:** M131 - add bounded in-memory asset plan execution.
+- **Status:** Implementation, review hardening, full supported-runtime,
+  architecture, graphics, installed-wheel, documentation, governance,
+  reproducibility, and local release-rehearsal validation are complete. Final
+  record separator, scratch cleanup, local DCO commit, and postcommit proof
+  remain.
+- **Base:** Fully locally validated M130 DCO commit
+  `1b69a30820d94c23272d7e1982ec80f978da8194`, tree
+  `8270d4de2a49808d5a7bb7c348a4bc8152e721a2`, with sole parent exact M129.
   The stack remains unpublished under the existing public-review identity
   hold.
-- **Branch:** `release/m130-asset-build-plan-verification`.
+- **Branch:** `release/m131-bounded-asset-plan-execution`.
 
 ## Acceptance boundary
 
-- Add exact, content-silent verification between one saved M129 plan and a
-  freshly recomputed current plan.
-- Compare plan protocol/loader invariants through construction, then source-
-  lock identity, asset-manifest identity, roots, exact entry URI sequence, and
-  each entry field in stable order.
-- Add `HeadlessProject.load_asset_build_plan()` through the established
-  project-confined regular-file reader and the plan's 8 MiB decode bound.
-- Add read-only `ludoweave source asset-plan-verify PROJECT --manifest FILE
-  --assets FILE --lock FILE --plan FILE`.
-- Load and structurally validate the saved plan, recompute and verify current
-  M128 inputs, regenerate the M129 plan, and compare before emitting success.
-- Success reports only versioned protocol/status and aggregate root/entry
-  counts; mismatch errors expose only the first stable field and optional
-  logical URI, never compared hashes, sizes, keys, paths, or settings.
-- Prove confinement, descriptor closure, stale-plan rejection, no success
-  output on failure, read-only project behavior, and installed-wheel use.
+- Add frozen slotted exact `AssetBuildInput` values containing one logical URI
+  and immutable source bytes in exact M129 plan order.
+- Add tightening-only per-source, aggregate-source, per-artifact, and
+  aggregate-artifact execution limits under fixed hard maxima.
+- Preflight the complete input URI sequence, sizes, hashes, and source bounds
+  before invoking any decoder.
+- Execute only existing built-in PNG, JSON, WGSL, and audio transformations;
+  settings remain cache-key inputs and do not become extension hooks.
+- Add immutable `ludoweave.asset-build-result/1` output identities containing
+  the plan hash, unchanged loader protocol, aggregate byte counts, and each
+  plan-ordered URI/kind/cache-key/source-size/artifact-hash/artifact-size.
+- Retain no decoded payload in the result and emit no success bytes until the
+  entire execution and result construction succeed.
+- Add `ludoweave source asset-build PROJECT --manifest FILE --assets FILE
+  --lock FILE --plan FILE` after the exact M130 verification chain.
+- Acquire exact detached source bytes through the existing project-confined
+  bounded reader; executor revalidation must detect drift after lock hashing.
+- Add unit, CLI, architecture, and isolated no-dependency wheel evidence.
+- Document ownership, failure atomicity, determinism, limits, compatibility,
+  and explicit cache/publication/plugin/worker non-scope.
 - Keep workflows, allocations, permissions, credentials, dependencies, lock,
   metadata, version, engine root API, existing protocols/reports, release
   authority, and remote state unchanged.
 
 ## Direction and baseline evidence
 
-- Primary sources accessed 2026-08-26: current Bazel remote-caching, Gradle
-  build/configuration-cache, stable Godot import-process, and Python 3.14 path
-  documentation. Bazel declares action inputs before cache lookup/execution;
-  Gradle revalidates recorded fingerprints and separates configuration from
-  output caches; Godot separates committed import configuration from generated
-  imports; Python distinguishes pure path manipulation from filesystem I/O.
-- These sources support exact saved-plan/current-input verification as a
-  prerequisite boundary. They do not justify decoder execution, build, cache
-  lookup/write, artifact creation, automatic import/reimport, scheduler,
-  discovery, watcher, or remote cache behavior.
-- Exact M129 commit/tree/sole-parent, clean branch, and `0 30` divergence pass.
-  M129 postcommit proof records exact identity, one DCO sign-off, 23 paths,
-  clean worktree, zero scratch, and zero critical Git finding.
-- The first focused baseline named a nonexistent generic asset-manifest test
-  and stopped before collection. The corrected exact filename passes 168 tests
-  with one established Windows capability skip in 5.00 seconds.
-- Static governance passes. Dated governance was cache-denied before execution;
-  its approved offline rerun returns zero findings.
-- Deliberate red produced four expected behavior failures and four expected
-  boundary failures with the protected-surface assertion passing.
-- After one test-only Pyright annotation, all statics and 14 focused behavior
-  assertions pass in 3.32 seconds. Three M130 boundaries pass; only the then-
-  absent installed verifier and documentation assertions fail.
-- After one mechanical verifier reflow and one retained governance cache
-  denial, all statics, 177 focused assertions with one established skip,
-  strict docs, approved dated governance, and whitespace pass. Strengthened
-  limit/load-order cases bring the focused result to 178 passes with one skip.
-- The isolated no-dependency wheel generates and verifies one saved plan under
-  the exact protocols and creates no cache.
-- The complete source separator passes all 414 formatted files, Ruff, strict
-  Pyright, 1,662 architecture assertions with one established skip, strict
-  docs, both governance modes, and whitespace after one retained cache denial.
-- Supported suites pass on direct tracked runs: 3.12.13 graphics has 3,387
-  passes/16 skips; 3.13.13 and 3.14.5 base each have 3,377 passes/17 skips.
-  One earlier 3.12 session-loss attempt is retained as incomplete.
-- Real-wgpu, fresh base/graphics profiles, Clockwork Arena, and Agent World
-  Builder all pass and reproduce their established deterministic identities.
-- Two reproducible builds, all 13 isolated consumers, two byte-identical
-  release stages, both release smokes, and archive hygiene pass.
-- Findings-first review has no remaining actionable issue. Exactly 21 intended
-  paths and all protected/identity/credential/runtime-scope checks pass.
+- Primary sources accessed 2026-08-26: current Bazel remote-caching, Gradle 9.7
+  build-cache/build-cache-concepts, and stable Godot import-process
+  documentation. They separate declared actions, execution, cache reuse/write,
+  and generated imported artifacts.
+- Those sources support bounded built-in decoder execution with detached
+  output identities. They do not justify cache lookup/write, persistent
+  publication, worker scheduling, plugin loading, discovery, or reimport.
+- Exact M130 commit/tree/parent, clean branch, and `0 31` divergence pass. The
+  focused M4/M126-M130 asset/source/CLI baseline passes 88 tests in 6.73
+  seconds. Static and dated governance pass; the lock check passed on an
+  approved rerun after one pre-execution cache denial.
+- The first deliberate-red format check requested two mechanical reflows, and
+  the first architecture red exposed two guessed protected hashes. After exact
+  hash correction and formatting, the protected surface passes, behavior
+  stops only on absent exports, and four intended M131 boundaries fail.
+- The first implementation checkpoint found one export-order lint issue, five
+  test-only typing issues, and four immutable-detail assertion errors. After
+  test-only corrections, formatting, Ruff, strict Pyright, and all 16 new
+  execution/CLI assertions pass in 2.61 seconds.
 
 ## Explicit non-scope
 
-- No asset payload read beyond M128 verification, decoder execution, build,
-  import, cache lookup, cache write, artifact creation, activation, reimport,
-  watcher, or live update.
-- No plan execution, scheduler, worker, thread, process, partial execution,
-  resume, rollback, atomic filesystem snapshot, provenance, authenticity, or
-  signature.
-- No directory discovery, glob, default plan/manifest, component-reference
-  inference, unused-asset rejection, or build-inclusion policy beyond the exact
-  explicit M127 closure.
-- No source/project write, world/session, command, transaction, world mutation,
-  receipt, dependency, native/backend surface, metadata, version, workflow,
-  allocation, permission, credential, release, publication, push, PR, or remote
-  change.
+- No cache lookup, cache read, cache write, persisted artifact, cache schema,
+  atomic publication, collision/corruption handling, partial execution,
+  resume, rollback, or artifact reader.
+- No scheduler, worker, subprocess, thread, parallel execution, callback,
+  plugin, decoder registration, dynamic import, arbitrary evaluation, or
+  remote execution.
+- No directory discovery, glob, watcher, live update, import/reimport,
+  renderer upload, source/project write-back, world/session, command,
+  transaction, world mutation, or receipt.
+- No dependency, native/backend surface, metadata, version, workflow/job/
+  allocation, permission, credential, release, publication, push, PR, or
+  remote change.
 
 ## Remaining acceptance work
 
-- Create the local DCO commit and prove it postcommit.
+- Run complete source, supported-runtime, graphics, profile, vertical-slice,
+  package, release, review, hygiene, history, hosted-state, cleanup, and final
+  record separators.
+- Create the authorized local DCO commit and prove it postcommit. Do not push or
+  create a PR while the public-review identity hold remains.

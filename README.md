@@ -39,9 +39,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > dependency-first planning with exact existing cache-key compatibility after
 > verified inputs, without executing a build or reading or writing a cache;
 > M130 adds confined saved-plan loading and content-silent verification against
-> freshly recomputed inputs, still without build or cache effects.
+> freshly recomputed inputs, still without build or cache effects; M131 adds
+> bounded built-in decoder execution over exact detached inputs and reports
+> deterministic output identities without retaining payloads or reading or
+> writing a cache.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M129 are locally validated stacked milestones from the exact M99 closeout, and M130 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M130 are locally validated stacked milestones from the exact M99 closeout, and M131 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -104,6 +107,9 @@ convention remains enforced.
 - Canonical `ludoweave.asset-build-plan/1` prospective actions in deterministic
   dependency-first order, with exact M4 cache-key compatibility after current
   input verification and no asset build, cache read, or cache write.
+- Bounded `ludoweave.asset-build-result/1` identities from dependency-first
+  built-in PNG/JSON/WGSL/audio decoder execution over exact detached sources,
+  with no retained payload, cache read/write, or project write.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
@@ -291,9 +297,10 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only
-project manifest, full command workflow, and M123-M130 read-only source
-preflight, integrity verification, dependency checking, locks, and build plans.
-The [persistent command guide](docs/commands.md) documents M119-M130 scene
+project manifest, full command workflow, and M123-M131 source preflight,
+integrity verification, dependency checking, locks, plans, and bounded
+in-memory execution.
+The [persistent command guide](docs/commands.md) documents M119-M131 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
 mapping, prefab overrides, bounded project-confined file loading, and explicit
 source manifests, locks, and asset dependency checking.

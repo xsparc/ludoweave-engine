@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+## M131 bounded in-memory asset plan execution
+
+Primary-source review resolves the adopted M131 direction: execute only the
+existing built-in PNG/JSON/WGSL/audio transformations over an exact plan-
+ordered tuple of detached immutable source bytes after complete source
+identity and resource-bound preflight.
+
+The canonical `ludoweave.asset-build-result/1` retains the plan identity,
+loader identity, per-entry cache/output identities, and aggregate byte counts,
+but no decoded payload or path. Decoder failure is chained and normalized; no
+success bytes precede complete success.
+
+Cache lookup/write, persisted artifacts, atomic publication, cache corruption
+handling, workers, parallel scheduling, plugins, decoder registration,
+discovery, watcher, automatic reimport, project write, renderer upload,
+world/session mutation, receipts, dependencies, metadata, version, root API,
+workflow/allocation, permission, credential, release authority, and remote
+change remain unauthorized for M131.
+
 ## M130 confined asset build-plan verification
 
 Primary-source review resolves the adopted M130 direction: load one explicit

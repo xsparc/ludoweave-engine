@@ -1298,6 +1298,33 @@ receipt, or project write. It adds no dependency, engine-root API, version,
 workflow job, workflow allocation, hosted allocation, permission, credential,
 release authority, or remote change.
 
+## M131 bounded in-memory asset plan execution
+
+M131 starts from fully locally validated M130 commit
+`1b69a30820d94c23272d7e1982ec80f978da8194`. It adds exact detached source
+inputs, tightening-only execution limits, deterministic built-in decoder
+execution, immutable `ludoweave.asset-build-result/1` identities, and one
+command:
+
+```console
+ludoweave source asset-build PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json
+```
+
+The command loads the saved plan, recomputes and verifies current M128 inputs,
+regenerates and verifies the M129 plan, then reads each selected source through
+the existing project-confined bounded reader. Before decoding, the executor
+requires exact plan order, byte counts, hashes, per-source bounds, and aggregate
+source bounds. PNG, JSON, WGSL, and audio use only the existing built-in M4
+behavior. Result entries bind URI, kind, cache key, source byte count, and
+decoded artifact SHA-256/byte count; decoded payloads are not retained.
+
+M131 performs no cache read, cache write, persisted artifact creation, project
+write, atomic publication, scheduler/worker/process/thread execution, plugin or
+decoder registration, discovery, watcher, import/reimport, live update,
+renderer upload, world/session, mutation, or receipt. It adds no dependency,
+engine-root API, version, workflow job, workflow allocation, hosted allocation,
+permission, credential, release authority, or remote change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
