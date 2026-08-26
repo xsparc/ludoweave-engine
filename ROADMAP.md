@@ -1376,6 +1376,31 @@ project write, world/session, mutation, or receipt. It adds no dependency,
 engine-root API, version, workflow job/allocation, hosted allocation,
 permission, credential, release authority, or CI change.
 
+## M134 read-only cache-assisted asset realization
+
+M134 starts from fully locally validated M133 commit
+`e3f79339bc5765ec8f11a0dee6b6e8cb3e687845`. It adds frozen
+`ludoweave.asset-build-realization/1` evidence and one command:
+
+```console
+ludoweave source asset-realize PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The CLI completes current lock and plan verification, acquires the exact
+project-confined detached source tuple, and opens the explicit cache read-only.
+The realization boundary preflights every source before any cache action read,
+then resolves and verifies every plan action before running a decoder. Verified
+hits and decoded misses are merged in canonical plan order and obey the same
+tightening-only per-entry and aggregate source/artifact limits. A missing cache
+remains absent. Present corruption fails closed before any miss decoder runs.
+
+M134 performs no automatic cache publication, cache creation/write/repair/
+deletion/eviction, project write, remote cache, network, authentication,
+discovery, watcher, reimport, worker/process/thread, plugin, renderer upload,
+world/session, mutation, or receipt. It adds no dependency, native/backend
+surface, engine-root API, version, workflow job/allocation, hosted allocation,
+permission, credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

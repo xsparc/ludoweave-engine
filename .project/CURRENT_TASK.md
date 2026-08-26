@@ -1,81 +1,72 @@
 # Current task
 
-- **Task:** M133 - add verified read-only asset cache lookup.
-- **Status:** Implementation, documentation, complete reviewed validation,
-  records, scratch cleanup, history/hosted audit, and final metadata separation
-  are complete. M133 is ready for the authorized local DCO commit.
-- **Base:** Fully locally validated M132 DCO commit
-  `da62eda909cbf47abfd7ef1e8c83a52466d8210a`, tree
-  `ad2d0e147147a430ca2738fb27448750462e2a09`, with sole parent exact M131.
+- **Task:** M134 - add read-only cache-assisted asset realization.
+- **Status:** Implementation, documentation, findings-first review, complete
+  validation, record-inclusive packaging, and final artifact rehearsal are
+  complete. Scratch cleanup, history/hosted audit, and final metadata
+  separation are complete. M134 is ready for the authorized local DCO commit.
+- **Base:** Fully locally validated M133 DCO commit
+  `e3f79339bc5765ec8f11a0dee6b6e8cb3e687845`, tree
+  `9c38e2115e04443dd8c2a61a5acea1b0cfd03d02`, with sole parent exact M132.
   The stack remains unpublished under the existing public-review identity
   hold.
-- **Branch:** `release/m133-verified-asset-cache-lookup`.
+- **Branch:** `release/m134-cache-assisted-asset-realization`.
 
 ## Acceptance boundary
 
-- Preserve M132 creating/publishing behavior by default while adding exact
-  `writable=False` authority that creates nothing and rejects publication.
-- Inspect only action keys from an exact current `AssetBuildPlan`; never
-  enumerate unrelated cache history.
-- Treat an absent action as an exact miss, including when an orphan CAS blob
-  exists. Treat every present malformed, incomplete, unreadable, aliased, or
-  mismatched entry as fail-closed corruption rather than a miss.
-- Bound metadata before parsing; require strict UTF-8, unique object names,
-  finite standard JSON, the exact field set, and exact canonical bytes.
-- Reconstruct a validated result entry and match URI, kind, cache key, and
-  source byte count to the current plan entry before accepting the action.
-- Verify the referenced ordinary CAS payload's bounded byte count and SHA-256
-  on every hit.
-- Add immutable path-free plan-ordered
-  `ludoweave.asset-cache-lookup/1` hit/miss evidence and focused experimental
-  exports only.
-- Add `ludoweave source asset-cache-check PROJECT --manifest FILE --assets FILE
-  --lock FILE --plan FILE --cache DIRECTORY` after complete current lock/plan
-  verification. It must not acquire decoder inputs, materialize, publish,
-  repair, delete, or mutate project/cache data.
+- Preflight every exact detached source for order, byte count, SHA-256, and
+  existing tightening-only limits before the first cache action read.
+- Resolve and verify every exact M133 cache candidate before any miss decoder
+  runs. Present corruption and cached-hit limit failures remain fail-closed.
+- Decode only exact misses with the unchanged M131 built-in decoder kernel;
+  merge hits and decoded artifacts in canonical plan order.
+- Apply the existing per-entry and aggregate artifact limits while retaining
+  plan-order failure identity parity with uncached materialization.
+- Add immutable path-free `ludoweave.asset-build-realization/1` evidence with
+  exact `hit` or `decoded` status and no payload in its report.
+- Add `ludoweave source asset-realize PROJECT --manifest FILE --assets FILE
+  --lock FILE --plan FILE --cache DIRECTORY` after current lock/plan
+  verification and complete project-confined source acquisition.
+- Keep the operation read-only: a missing cache remains absent and neither
+  project nor cache is changed on hit, miss, corruption, limit, or decode paths.
 - Add unit, CLI, architecture, and isolated no-dependency wheel evidence.
-- Document integrity versus authenticity, ownership, read/write authority,
-  determinism, missing/corrupt behavior, compatibility, and explicit
-  cache-assisted-execution/remote/mutation non-scope.
+- Document ownership, determinism, verification/decode ordering, failure
+  behavior, compatibility, and explicit automatic-publication/remote non-scope.
 - Keep workflows, CI allocations, permissions, credentials, dependencies,
-  lock, metadata, version, engine root, execution/pipeline/lock/plan contracts,
-  M132 publication behavior/evidence, release authority, and remote state
-  unchanged.
+  lock, metadata, version, engine root, execution/cache/pipeline/lock/plan
+  contracts, M133 lookup evidence, release authority, and remote state unchanged.
 
 ## Direction and baseline evidence
 
-- Primary sources accessed 2026-08-26: current Bazel remote-cache
-  documentation, Gradle 9.7 build-cache documentation, and Python JSON decoder
-  documentation. They support stable action-key lookup, separate CAS payloads,
-  independent read/write authority, exact misses, size-bounded parsing, and
-  explicit duplicate-name rejection.
-- They do not justify cache authenticity, decode bypass, mixed-hit execution,
-  enumeration, remote transport, shared writers, repair, eviction, workers, or
-  CI changes.
-- Exact M132 commit/tree/parent, clean status, and `0 33` divergence pass. The
-  unchanged lock resolves and 38 focused M132 assertions pass in 4.40 seconds.
-- The deliberate-red unit contract stopped on absent lookup exports. After
-  implementation, one fixture-root omission and seven strict typing issues
-  were corrected; all 26 unit/retained-boundary assertions then passed.
-- CLI, installed source, strict parsing, and M133 boundaries were added. Ruff
-  and strict Pyright pass; all 37 pre-documentation assertions pass except the
-  intentionally absent RFC/public-doc boundary.
-- Documentation-inclusive validation passes all 426 Python files, Ruff,
-  strict Pyright, 55 focused assertions in 8.64 seconds, strict docs in 1.72
-  seconds, and whitespace. The isolated no-dependency wheel lookup smoke
-  passes.
-- Complete validation passes 1,675 architecture assertions, the full supported
-  interpreter matrix, real wgpu, both profiles and vertical slices,
-  reproducible distributions, all 16 isolated wheel consumers, two identical
-  release rehearsals, archive hygiene, and protected/identity/credential
-  scans. Review-hardened final suite counts are 3,453/16 on Python 3.12 and
-  3,443/17 on both 3.13 and 3.14.
+- Primary sources accessed 2026-08-26: current Bazel remote-cache and Gradle
+  build-cache documentation. They support declared actions, complete stable
+  inputs, verified cache reuse, decode/execute misses, and independently
+  disabled writes. They do not justify automatic publication, remote
+  transport, shared writers, repair, eviction, discovery, plugins, or CI work.
+- Exact M133 commit/tree/parent, clean status, and `0 34` divergence pass.
+  The unchanged lock resolves; 49 focused M133 behavior tests and 112 retained
+  architecture assertions pass. The deliberate-red contract stopped only on
+  absent realization exports.
+- Additive implementation, CLI, installed source, RFC, and architecture guard
+  pass formatting, Ruff, strict Pyright, 75 focused assertions, strict docs,
+  and whitespace while the M131 execution and M133 cache files remain exact.
+- Complete static validation passes all 430 Python files and 1,679 architecture
+  assertions with one established Windows capability skip. Both governance
+  modes return zero findings.
+- Findings-first review corrected mixed-hit aggregate-limit attribution by
+  separating cache-phase safety accounting from canonical plan-order
+  accounting. The strengthened focused gate passes 39 assertions.
+- Accepted post-review suites pass 3,467 tests with 16 skips on CPython 3.12.13
+  and 3,457 tests with 17 skips on exact 3.13.13 and 3.14.5.
+- All ten real-wgpu tests, both M7 profile contracts, both deterministic
+  vertical slices, two initial byte-identical distributions, all 17 isolated
+  wheel consumers, and two byte-identical ten-artifact release stages pass.
+  Record-inclusive packaging remains to run after this evidence update.
 
 ## Explicit non-scope
 
-- No cache-assisted execution, decoder bypass, mixed hit/miss materialization,
-  automatic publication, repair, deletion, eviction, garbage collection,
-  quota, migration, or legacy-cache trust.
+- No automatic cache publication, repair, deletion, eviction, garbage
+  collection, quota, migration, or legacy-cache trust.
 - No remote cache, network, authentication, authorization, shared service,
   upload/download protocol, retry transport, or external provider.
 - No discovery/enumeration, glob, watcher, reimport, scheduler, worker,
@@ -88,6 +79,5 @@
 
 ## Remaining acceptance work
 
-- Run the final metadata and M133 boundary separator after this factual record.
 - Create the authorized local DCO commit and prove it postcommit. Do not push or
   create a PR while the public-review identity hold remains.

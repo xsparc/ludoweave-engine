@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M134 read-only cache-assisted asset realization
+
+RFC-0117 resolves the adopted M134 direction: validate the complete exact
+detached input tuple, verify every current-plan cache candidate, then decode
+only exact misses with the unchanged built-in decoder kernel. Verified hits and
+decoded misses merge in canonical plan order and obey the same tightening-only
+source/artifact limits.
+
+The public operation and `source asset-realize` command never publish. A
+missing cache remains absent; a present corrupt action fails before every miss
+decoder; project and cache data remain unchanged. Frozen
+`ludoweave.asset-build-realization/1` reports logical identities and exact
+`hit`/`decoded` statuses without payloads or paths.
+
+Automatic publication, remote transport, authentication, shared writers,
+repair/deletion/eviction, discovery, watcher/reimport, parallel workers,
+plugins/decoder registration, renderer upload, project write, world mutation,
+dependencies, version, CI/workflows, release authority, and remote change
+remain unauthorized for M134.
+
 ## M133 verified read-only asset cache lookup
 
 RFC-0116 resolves the adopted M133 direction: open one explicit local cache

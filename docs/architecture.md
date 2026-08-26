@@ -3331,6 +3331,37 @@ plugin, renderer upload, world mutation, receipt, dependency, version,
 workflow, permission, credential, release authority, or CI change. RFC-0116
 records the full boundary.
 
+## M134 read-only cache-assisted asset realization boundary
+
+`realize_asset_build_plan()` composes the unchanged M131 built-in decoder and
+M133 exact-action lookup into one bounded in-memory result. It accepts only an
+exact `AssetBuildPlan`, detached input tuple, `AssetCacheStore`, and tightening-
+only execution limits. It owns no filesystem descriptor, worker, thread, or
+background lifecycle.
+
+The complete detached source tuple is validated for exact plan order, byte
+count, SHA-256, and source limits before the first cache action read. The
+realizer then resolves every plan action through M133 and verifies per-entry
+and aggregate artifact limits for every hit before invoking any decoder. A
+present corrupt later action therefore cannot cause an earlier miss to decode.
+
+Only after that complete cache phase are exact misses decoded in canonical plan
+order. Hit and decoded artifacts are merged into one immutable
+`AssetBuildMaterialization`; its result remains byte-identical to uncached M131
+materialization for the same verified inputs. Frozen
+`ludoweave.asset-build-realization/1` evidence adds only `hit` or `decoded`
+status and aggregate counts. It contains no payload, path, environment value,
+or cache history.
+
+The `source asset-realize` composition completes current lock and saved-plan
+verification and project-confined source acquisition before opening the cache
+read-only. A missing cache remains absent. Success writes only the canonical
+report to stdout. A failure discards in-memory candidates and emits no success
+bytes. There is no automatic cache publication, cache or project mutation,
+remote cache, network, discovery, plugin, worker, renderer upload, world
+mutation, receipt, dependency, version, workflow, permission, credential,
+release authority, or CI change. RFC-0117 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

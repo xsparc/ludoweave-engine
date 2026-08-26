@@ -157,6 +157,7 @@ nav:
       - RFC-0114 - Add bounded in-memory asset plan execution: rfcs/0114-add-bounded-in-memory-asset-plan-execution.md
       - RFC-0115 - Add verified local asset cache publication: rfcs/0115-add-verified-local-asset-cache-publication.md
       - RFC-0116 - Add verified read-only asset cache lookup: rfcs/0116-add-verified-read-only-asset-cache-lookup.md
+      - RFC-0117 - Add read-only cache-assisted asset realization: rfcs/0117-add-read-only-cache-assisted-asset-realization.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -121,3 +121,4 @@ was adopted.
 - [RFC-0114: add bounded in-memory asset plan execution](0114-add-bounded-in-memory-asset-plan-execution.md)
 - [RFC-0115: add verified local asset cache publication](0115-add-verified-local-asset-cache-publication.md)
 - [RFC-0116: add verified read-only asset cache lookup](0116-add-verified-read-only-asset-cache-lookup.md)
+- [RFC-0117: add read-only cache-assisted asset realization](0117-add-read-only-cache-assisted-asset-realization.md)

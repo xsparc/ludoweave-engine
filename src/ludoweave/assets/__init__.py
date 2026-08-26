@@ -52,9 +52,16 @@ from ludoweave.assets.plans import (
     AssetBuildPlanEntry,
     AssetBuildPlanLimits,
 )
+from ludoweave.assets.realization import (
+    ASSET_BUILD_REALIZATION_PROTOCOL,
+    AssetBuildRealization,
+    AssetBuildRealizationEntry,
+    realize_asset_build_plan,
+)
 
 __all__ = [
     "ASSET_BUILD_PLAN_PROTOCOL",
+    "ASSET_BUILD_REALIZATION_PROTOCOL",
     "ASSET_BUILD_RESULT_PROTOCOL",
     "ASSET_CACHE_ENTRY_PROTOCOL",
     "ASSET_CACHE_LOOKUP_PROTOCOL",
@@ -72,6 +79,8 @@ __all__ = [
     "AssetBuildPlan",
     "AssetBuildPlanEntry",
     "AssetBuildPlanLimits",
+    "AssetBuildRealization",
+    "AssetBuildRealizationEntry",
     "AssetBuildResult",
     "AssetBuildResultEntry",
     "AssetCacheError",
@@ -96,5 +105,6 @@ __all__ = [
     "decode_png",
     "execute_asset_build_plan",
     "materialize_asset_build_plan",
+    "realize_asset_build_plan",
 ]
 __stability__ = {name: "experimental" for name in __all__}

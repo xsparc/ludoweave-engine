@@ -1,5 +1,40 @@
 # Project State
 
+## M134 read-only cache-assisted asset realization - locally validated
+
+- Base: fully locally validated M133 DCO commit
+  `e3f79339bc5765ec8f11a0dee6b6e8cb3e687845`, tree
+  `9c38e2115e04443dd8c2a61a5acea1b0cfd03d02`, sole parent exact M132.
+- Branch: `release/m134-cache-assisted-asset-realization`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Bazel and Gradle primary references support complete
+  stable inputs, action-keyed verified reuse, local execution of misses, and
+  cache reads with writes independently disabled.
+- Contract: exact detached source preflight precedes every M133 action lookup;
+  every cache candidate is verified before any miss decoder. Hits and decoded
+  misses retain exact plan order, immutable payloads, and M131 limits under
+  `ludoweave.asset-build-realization/1` path-free evidence.
+- CLI: `source asset-realize` completes current lock/plan verification and
+  project-confined source acquisition, then uses the explicit cache read-only.
+  Missing cache roots remain absent; project and cache bytes remain unchanged.
+- Focused proof: all 430 Python files, Ruff, strict Pyright, 75 retained/new
+  behavior and boundary assertions, strict docs, whitespace, and the installed
+  miss/hit consumer pass.
+- Complete proof: 1,679 architecture assertions with one established
+  skip, both governance modes, the full post-review Python 3.12-3.14 matrix,
+  real wgpu, both profiles and deterministic vertical slices, two initial
+  and two final record-inclusive distributions, all 17 installed consumers,
+  and two byte-identical ten-artifact release rehearsals pass.
+- Review: one mixed-hit aggregate-limit diagnostic-order defect was found and
+  corrected. A regression now binds cached failure code/details to uncached
+  plan order. Protected surfaces, public tool identity, credentials, backend/
+  network/write leakage, and CI scope have no remaining actionable finding.
+- Scope: no automatic publication, cache/project mutation, remote cache,
+  network, authentication, repair/deletion/eviction, discovery/watcher,
+  worker/process/thread, plugin, renderer upload, world/session mutation,
+  dependency, version, workflow/allocation, release authority, or remote
+  change.
+
 ## M133 verified read-only asset cache lookup - direction selected
 
 - Base: fully locally validated M132 DCO commit

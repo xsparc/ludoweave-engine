@@ -45,9 +45,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > writing a cache; M132 adds explicit verified local cache publication with a
 > payload CAS and atomically visible action metadata outside the project; M133
 > adds strict read-only current-plan cache hit/miss inspection without creating
-> or changing the cache or bypassing a decoder.
+> or changing the cache or bypassing a decoder; M134 adds bounded read-only
+> cache-assisted realization that verifies every source and cache candidate
+> before decoding only exact misses, with no automatic cache publication.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M132 are locally validated stacked milestones from the exact M99 closeout, and M133 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M134 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -119,6 +121,9 @@ convention remains enforced.
 - Read-only `ludoweave.asset-cache-lookup/1` inspection of exact current-plan
   action keys with strict canonical metadata and CAS verification, explicit
   misses, and no cache creation, mutation, decoder bypass, or project write.
+- Read-only `ludoweave.asset-build-realization/1` materialization from verified
+  current-plan cache hits and built-in decoding of exact misses, preserving
+  plan order and resource bounds with no project or cache write.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.

@@ -492,6 +492,27 @@ deletion/eviction, remote cache, network, discovery, worker, plugin, project
 write, world mutation, receipt, dependency, root export, workflow job, or CI
 change.
 
+## M134 read-only cache-assisted asset realization
+
+`realize_asset_build_plan()` requires an exact current plan, its complete
+detached input tuple, and an explicit `AssetCacheStore`. It preflights every
+source before reading any action, verifies every cache candidate before a miss
+decoder runs, and combines verified hits with decoded misses in plan order.
+Both sources and artifacts retain the M131 tightening-only per-entry and
+aggregate limits.
+
+`ludoweave source asset-realize PROJECT --manifest FILE --assets FILE --lock
+FILE --plan FILE --cache DIRECTORY` repeats current lock and plan verification,
+acquires the project-confined inputs, then opens the cache with read-only
+authority. It emits canonical `ludoweave.asset-build-realization/1` JSON with
+logical identities, artifact hashes and sizes, `hit` or `decoded` statuses,
+and aggregate counts. A missing cache remains absent; a present corrupt entry
+fails before any miss decoder and produces no success document.
+
+M134 has no automatic cache publication, cache/project write, cache repair,
+remote cache, network, discovery, worker, plugin, renderer upload, world
+mutation, receipt, dependency, root export, workflow job, or CI change.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

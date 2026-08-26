@@ -26,6 +26,7 @@ from ludoweave.assets import (
     AssetUri,
     execute_asset_build_plan,
     materialize_asset_build_plan,
+    realize_asset_build_plan,
 )
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
@@ -207,6 +208,20 @@ def _build_parser() -> argparse.ArgumentParser:
     source_asset_cache_check_parser.add_argument(
         "--cache", required=True, type=Path, help="local cache directory outside the project"
     )
+    source_asset_realize_parser = source_subparsers.add_parser(
+        "asset-realize",
+        help="realize one verified asset plan from read-only cache hits and decoded misses",
+    )
+    _add_asset_source_arguments(source_asset_realize_parser)
+    source_asset_realize_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_realize_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_realize_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
 
     apply_parser = subparsers.add_parser(
         "apply",
@@ -351,6 +366,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_cache_publish(args)
             if source_command == "asset-cache-check":
                 return _run_asset_cache_check(args)
+            if source_command == "asset-realize":
+                return _run_asset_realize(args)
             raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
@@ -660,6 +677,26 @@ def _run_asset_cache_check(args: argparse.Namespace) -> int:
     )
     summary = store.inspect(current_plan)
     _write_stdout(summary.canonical_bytes())
+    return 0
+
+
+def _run_asset_realize(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    store = AssetCacheStore(
+        _path_argument(args, "cache"),
+        project_root=project.root,
+        writable=False,
+    )
+    realization = realize_asset_build_plan(current_plan, inputs, store)
+    _write_stdout(realization.canonical_bytes())
     return 0
 
 

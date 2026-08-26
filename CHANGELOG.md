@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M134/RFC-0117 read-only cache-assisted asset realization. Complete
+  detached-source preflight and all cache verification precede decoding of
+  exact misses; hit and decoded artifacts share the existing bounds and
+  canonical plan order, with no automatic cache publication or CI change.
 - Add M133/RFC-0116 verified read-only asset-cache lookup. Exact current plan
   actions now produce path-free hit/miss evidence only after duplicate-free
   canonical metadata and referenced CAS payload verification, without creating
