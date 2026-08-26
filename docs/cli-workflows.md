@@ -424,3 +424,31 @@ prove that its historical statuses occurred and is not provenance,
 authenticity, a builder identity, or a trusted timestamp. There is no remote
 cache, signature/attestation policy, worker, world mutation, receipt, or CI
 change.
+
+## Bounded local-cache inventory
+
+M137 verifies and classifies the complete engine-owned local cache without
+changing it:
+
+```console
+ludoweave source asset-cache-inventory PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+Current source-lock and exact saved-plan verification completes before the
+external cache is opened read-only. The scan admits at most 16,384 actions,
+16,384 CAS blobs, 64 MiB of canonical metadata, and 1,073,741,832 CAS bytes—the
+existing maximum valid single artifact. It rejects unknown layout, symlinks/
+junctions/reparse objects, ambiguous or noncanonical action JSON, location/key
+drift, CAS name/content mismatch, missing action blobs, current-plan identity
+drift, and active-limit excess.
+
+Success emits aggregate path-free
+`ludoweave.asset-cache-inventory/1` current/missing/other action and CAS storage
+evidence. Every admitted CAS blob is streamed and hashed once. An absent cache
+is a valid empty observation and remains absent.
+
+`unreferenced_blobs` means no action record observed in this sequential scan
+referenced those blobs. It is not deletion eligibility: there is no atomic
+snapshot, lease, retention policy, last-use evidence, or concurrent-writer
+guarantee. The command has no cleanup, write, repair, eviction, decoder,
+fallback, remote cache, or CI effect.

@@ -166,6 +166,20 @@ def _verify_population(
     )
 
 
+def _inventory(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-inventory",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -486,6 +500,82 @@ def test_asset_cache_population_verify_rejects_saved_artifact_mismatch_read_only
     assert error["code"] == "asset_cache.population_mismatch"
     assert str(project) not in result.stderr
     assert str(cache) not in result.stderr
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_inventory_reports_absent_cache_without_creation(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent"
+    _write_project(project)
+    _prepare(project)
+    before_project = _files(project)
+
+    result = _inventory(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["$schema"] == "ludoweave.asset-cache-inventory/1"
+    assert report["current_actions"] == 0
+    assert report["missing_actions"] == 1
+    assert report["other_actions"] == 0
+    assert report["cas_blobs"] == 0
+    assert not cache.exists()
+    assert _files(project) == before_project
+
+
+def test_asset_cache_inventory_verifies_populated_cache_read_only(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    populated = _populate(project, cache)
+    assert populated.returncode == 0
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _inventory(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["current_actions"] == 1
+    assert report["missing_actions"] == 0
+    assert report["other_actions"] == 0
+    assert report["cas_blobs"] == 1
+    assert report["current_blobs"] == 1
+    assert report["unreferenced_blobs"] == 0
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_inventory_rejects_corrupt_orphan_content_silently(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    populated = _populate(project, cache)
+    assert populated.returncode == 0
+    claimed = sha256(b"claimed").hexdigest()
+    orphan = cache / "cas" / claimed[:2] / claimed
+    orphan.parent.mkdir(exist_ok=True)
+    orphan.write_bytes(b"different")
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _inventory(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.corrupt_inventory"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert claimed not in result.stderr
     assert _files(project) == before_project
     assert _files(cache) == before_cache
 

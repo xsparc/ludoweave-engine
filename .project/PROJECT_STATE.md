@@ -1,5 +1,52 @@
 # Project State
 
+## M137 bounded asset-cache inventory - locally validated
+
+- Base: fully locally validated M136 DCO commit
+  `d090131871594c8d49410c8d66e101376c010acc`, tree
+  `c4b2e3fb3c85330fb45730649410a1b83b3d0433`, sole parent exact M135.
+- Branch: `release/m137-bounded-asset-cache-inventory`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle 9.7.1, and Python 3.12 primary references
+  support distinct action/CAS inspection, separately governed cleanup policy,
+  and explicit no-follow entry classification.
+- Contract: bounded sorted inspection of the fixed engine-owned cache layout
+  strictly verifies canonical action metadata, location/key binding, every CAS
+  payload, and action/blob closure before comparing storage to the exact
+  current saved plan.
+- CLI: `source asset-cache-inventory` first verifies the current lock and exact
+  plan, then opens only a read-only project-confined cache and emits path-free
+  `ludoweave.asset-cache-inventory/1` counts without source acquisition,
+  decoder use, cache creation, or mutation.
+- Evidence so far: 442 Python files are format-clean; Ruff and strict Pyright
+  pass; 1,694 architecture assertions pass with one established skip; strict
+  docs, whitespace, both governance modes, full CPython 3.12-3.14 suites, real
+  wgpu, profiles, deterministic vertical slices, and the initial installed
+  inventory consumer pass.
+- Review hardening: admitted entries are collected under incremental hard
+  bounds and processed in sorted order; current-plan cache keys must be unique;
+  aggregate budgets are enforced from metadata before opening content and
+  again during bounded reads; the CAS budget admits the exact maximum valid
+  artifact size.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  the primary and all 19 focused installed consumers pass against the exact
+  wheel; two byte-identical complete release rehearsals pass; archive,
+  protected-surface, public identity, changed-path credential, capability, and
+  CI-scope scans are clean.
+- Cleanup and audit: all exact M137 scratch targets are removed, `.tmp` is
+  empty, and `.venv` retained. A stale unreachable commit-graph record was
+  isolated from the healthy object graph and corrected by regenerating derived
+  metadata; commit-graph and full object verification now pass. Exact M136
+  history, all 37 prior stack commits, DCO/identity, local branches, and hosted
+  absence pass. The stack remains unpublished and no hosted allocation
+  occurred.
+- Final post-record metadata separation is clean. Exactly 19 intended paths are
+  ready for the authorized local DCO commit; publication remains held.
+- Scope: no mutation, repair, deletion/eviction/garbage collection, cleanup or
+  retention decision, hostile-concurrency snapshot claim, remote cache,
+  network, trust/provenance claim, decoder/source acquisition, dependency,
+  version, workflow/allocation, release authority, or remote change.
+
 ## M136 saved asset-cache population verification - locally validated
 
 - Base: fully locally validated M135 DCO commit

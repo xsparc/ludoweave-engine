@@ -124,3 +124,4 @@ was adopted.
 - [RFC-0117: add read-only cache-assisted asset realization](0117-add-read-only-cache-assisted-asset-realization.md)
 - [RFC-0118: add explicit post-realization cache population](0118-add-post-realization-cache-population.md)
 - [RFC-0119: add saved cache-population verification](0119-add-saved-cache-population-verification.md)
+- [RFC-0120: add bounded read-only asset-cache inventory](0120-add-bounded-asset-cache-inventory.md)

@@ -3426,6 +3426,36 @@ adds no cache mutation, remote transport, discovery, worker, plugin, renderer
 upload, world mutation, dependency, version, workflow, permission, release
 authority, or CI change. RFC-0119 records the full boundary.
 
+## M137 bounded asset-cache inventory boundary
+
+`inspect_asset_cache_inventory()` opens one explicit `AssetCacheStore` with
+`writable=False`, then admits only ordinary non-reparse objects under the exact
+engine-owned `actions/` and `cas/` namespaces. Incremental `os.scandir()` loops
+enforce hard counts before retaining another action/blob. Aggregate metadata
+and CAS-byte budgets are checked from no-follow metadata before file open and
+again while reading.
+
+Every action directory has one strict duplicate-free canonical `entry.json`.
+Its decoded result cache key must match its sharded location. Every CAS filename
+must match the SHA-256 streamed from its bytes, and every action artifact
+reference must resolve to a same-sized blob. The exact current plan then
+classifies matching current actions and their unique blobs; URI, kind, and
+source byte count must agree.
+
+Frozen path-free `ludoweave.asset-cache-inventory/1` evidence contains only the
+plan hash plus current/missing/other action and metadata-byte totals, total/
+current/other CAS counts and bytes, and no-observed-action-reference blob counts
+and bytes. Stable bytes produce the same report independent of enumeration
+order.
+
+The operation is sequential, not an atomic filesystem snapshot. Detected size
+drift fails, but hostile replacement remains outside the supported local
+single-caller model. A blob with no action reference observed by the scan is
+not deletion eligibility. M137 has no write, repair, deletion, eviction,
+garbage collection, age/access-time policy, lease, generation, remote cache,
+network, dependency, version, workflow, permission, release authority, or CI
+change. RFC-0120 records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

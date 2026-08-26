@@ -1447,6 +1447,30 @@ authenticity, builder identity, or a trusted timestamp. It adds no remote cache,
 signature/attestation system, dependency, version, workflow job/allocation,
 permission, credential, release authority, or CI change.
 
+## M137 bounded read-only asset-cache inventory
+
+M137 starts from fully locally validated M136 commit
+`d090131871594c8d49410c8d66e101376c010acc`. It adds one bounded complete local
+cache integrity operation and command:
+
+```console
+ludoweave source asset-cache-inventory PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+After current lock and exact saved-plan verification, the operation opens the
+explicit cache read-only. It incrementally admits only exact engine-owned
+`actions/` and `cas/` layout under hard action/blob/metadata/CAS-byte limits,
+strictly reconstructs canonical action metadata, streams and hashes every CAS
+blob, requires every action reference to resolve, and classifies current-plan
+versus other storage in path-free `ludoweave.asset-cache-inventory/1` evidence.
+
+The report can count CAS blobs with no action reference observed during the
+scan. That is not deletion eligibility: the sequential scan has no atomic
+snapshot, lease, generation, retention, last-use, or concurrent-writer proof.
+M137 adds no write, deletion, repair, eviction, garbage collector, remote
+cache, dependency, version, workflow job/allocation, permission, credential,
+release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

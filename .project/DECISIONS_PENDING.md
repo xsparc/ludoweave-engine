@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M137 bounded asset-cache inventory
+
+RFC-0120 resolves the adopted M137 direction: inspect only the engine-owned
+`actions/` and `cas/` layout through a bounded deterministic read-only pass.
+The pass rejects unknown layout, links/reparse points, noncanonical or
+location-inconsistent action metadata, corrupt CAS content, missing references,
+and aggregate or per-collection bound violations. Every admitted name is
+processed in sorted order and every CAS blob is streamed and verified.
+
+Frozen `ludoweave.asset-cache-inventory/1` evidence compares exact current-plan
+cache keys with all verified storage and reports path-free counts for current,
+missing, other-action, and no-action-reference entries. A blob with no action
+reference is an observation only; it is not proof that the blob is safe to
+delete or eligible for eviction, retention change, or garbage collection.
+
+Mutation, repair, deletion, cleanup policy, quota enforcement, hostile-
+concurrency snapshot claims, remote cache, authentication, signatures,
+provenance, decoder invocation, source acquisition, dependencies, version,
+CI/workflows, release authority, and remote change remain unauthorized for
+M137.
+
 ## M136 saved asset-cache population verification
 
 RFC-0119 resolves the adopted M136 direction: strictly decode one saved M135
