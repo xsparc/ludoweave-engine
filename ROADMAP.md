@@ -1351,6 +1351,31 @@ adds no project write, dependency, engine-root API, version, workflow job,
 workflow allocation, hosted allocation, permission, credential, release
 authority, or CI change.
 
+## M133 verified read-only asset cache lookup
+
+M133 starts from fully locally validated M132 commit
+`da62eda909cbf47abfd7ef1e8c83a52466d8210a`. It adds explicit read-versus-write
+cache authority, strict action metadata decoding, plan-ordered
+`ludoweave.asset-cache-lookup/1` evidence, and one command:
+
+```console
+ludoweave source asset-cache-check PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The CLI completes exact current source-lock and build-plan verification before
+opening the caller-selected cache read-only. It inspects only action keys from
+that current plan. Missing actions are explicit misses, including when an
+orphan CAS blob exists. Present entries must have duplicate-free exact canonical
+metadata matching all plan-known fields and an ordinary payload matching its
+bounded byte count and SHA-256. Corruption fails closed without mutation.
+
+M133 has no cache-assisted execution, decoder bypass, cache write, repair,
+deletion, eviction, remote cache, network, authentication, discovery,
+enumeration, watcher, reimport, worker/process/thread, plugin, renderer upload,
+project write, world/session, mutation, or receipt. It adds no dependency,
+engine-root API, version, workflow job/allocation, hosted allocation,
+permission, credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

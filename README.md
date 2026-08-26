@@ -43,9 +43,11 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > bounded built-in decoder execution over exact detached inputs and reports
 > deterministic output identities without retaining payloads or reading or
 > writing a cache; M132 adds explicit verified local cache publication with a
-> payload CAS and atomically visible action metadata outside the project.
+> payload CAS and atomically visible action metadata outside the project; M133
+> adds strict read-only current-plan cache hit/miss inspection without creating
+> or changing the cache or bypassing a decoder.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M131 are locally validated stacked milestones from the exact M99 closeout, and M132 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M132 are locally validated stacked milestones from the exact M99 closeout, and M133 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
@@ -114,6 +116,9 @@ convention remains enforced.
 - Explicit local `ludoweave.asset-cache-entry/1` publication with verified
   SHA-256 payload CAS blobs, atomic per-entry action metadata, content-silent
   corruption failure, and no project or remote-cache effect.
+- Read-only `ludoweave.asset-cache-lookup/1` inspection of exact current-plan
+  action keys with strict canonical metadata and CAS verification, explicit
+  misses, and no cache creation, mutation, decoder bypass, or project write.
 - Complete authority snapshots, SHA-256 state hashes, explicit persistent-resource migrations, and deterministic named random streams.
 - Self-contained verified replay/checkpoint files and immutable parent-referenced timeline branches.
 - Project-confined `apply`, `snapshot`, `replay`, and `diff` CLI workflows for a deliberately data-only empty project composition.
@@ -301,10 +306,10 @@ assert result.resolve(pending) in world.entities()
 
 See the [architecture overview](docs/architecture.md), [runtime contract](docs/runtime-contract.md), [entity identity contract](docs/ecs.md), [2D rendering contract](docs/rendering.md), and [M4 gameplay guide](docs/gameplay.md) before depending on these experimental APIs.
 The [headless command workflow](docs/cli-workflows.md) documents the M2 data-only
-project manifest, full command workflow, and M123-M132 source preflight,
+project manifest, full command workflow, and M123-M133 source preflight,
 integrity verification, dependency checking, locks, plans, and bounded
 in-memory execution.
-The [persistent command guide](docs/commands.md) documents M119-M132 scene
+The [persistent command guide](docs/commands.md) documents M119-M133 scene
 normalization, explicit schema resolution, transaction planning, receipt alias
 mapping, prefab overrides, bounded project-confined file loading, and explicit
 source manifests, locks, and asset dependency checking.

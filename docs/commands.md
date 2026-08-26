@@ -469,6 +469,29 @@ It has no remote cache, cache deletion/repair/eviction, network, scheduler,
 worker, plugin, discovery, watcher, reimport, renderer upload, world mutation,
 receipt, project write, dependency, root export, workflow job, or CI change.
 
+## M133 verified read-only asset cache lookup
+
+`AssetCacheStore(..., writable=False)` opens one caller-selected local root
+without creating it and makes `publish()` unavailable. `load_action()` accepts
+only an exact current `AssetBuildPlanEntry`; an absent action is a miss, while a
+present action must pass strict duplicate-free canonical metadata, plan-field,
+ordinary-file, byte-count, and payload-SHA-256 verification.
+
+`AssetCacheStore.inspect()` returns plan-ordered
+`ludoweave.asset-cache-lookup/1` entries with logical identity, `hit` or `miss`,
+and artifact identity only for verified hits. It never enumerates unrelated
+cache history.
+
+`ludoweave source asset-cache-check PROJECT --manifest FILE --assets FILE
+--lock FILE --plan FILE --cache DIRECTORY` completes current lock and plan
+verification before read-only inspection. A missing cache remains absent;
+success and structured failures omit filesystem paths.
+
+M133 has no cache-assisted execution, decoder bypass, cache write/repair/
+deletion/eviction, remote cache, network, discovery, worker, plugin, project
+write, world mutation, receipt, dependency, root export, workflow job, or CI
+change.
+
 ## Canonical snapshots and random state
 
 `SnapshotCodec` emits bounded canonical `ludoweave.snapshot/1` bytes for one

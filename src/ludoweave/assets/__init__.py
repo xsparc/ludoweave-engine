@@ -2,8 +2,11 @@
 
 from ludoweave.assets.cache import (
     ASSET_CACHE_ENTRY_PROTOCOL,
+    ASSET_CACHE_LOOKUP_PROTOCOL,
     ASSET_CACHE_PUBLISH_PROTOCOL,
     AssetCacheError,
+    AssetCacheLookupEntry,
+    AssetCacheLookupSummary,
     AssetCachePublishEntry,
     AssetCachePublishSummary,
     AssetCacheStore,
@@ -54,6 +57,7 @@ __all__ = [
     "ASSET_BUILD_PLAN_PROTOCOL",
     "ASSET_BUILD_RESULT_PROTOCOL",
     "ASSET_CACHE_ENTRY_PROTOCOL",
+    "ASSET_CACHE_LOOKUP_PROTOCOL",
     "ASSET_CACHE_PUBLISH_PROTOCOL",
     "ASSET_LOADER_PROTOCOL",
     "ASSET_MANIFEST_PROTOCOL",
@@ -71,6 +75,8 @@ __all__ = [
     "AssetBuildResult",
     "AssetBuildResultEntry",
     "AssetCacheError",
+    "AssetCacheLookupEntry",
+    "AssetCacheLookupSummary",
     "AssetCachePublishEntry",
     "AssetCachePublishSummary",
     "AssetCacheStore",

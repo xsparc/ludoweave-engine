@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Iterator
 from hashlib import sha256
 from pathlib import Path
 
@@ -11,16 +12,24 @@ import pytest
 import ludoweave.assets.cache as asset_cache
 from ludoweave.assets import (
     ASSET_CACHE_ENTRY_PROTOCOL,
+    ASSET_CACHE_LOOKUP_PROTOCOL,
     ASSET_CACHE_PUBLISH_PROTOCOL,
     AssetBuildArtifact,
+    AssetBuildInput,
     AssetBuildMaterialization,
+    AssetBuildPlan,
     AssetBuildResult,
     AssetBuildResultEntry,
     AssetCacheError,
     AssetCacheStore,
+    AssetEntry,
     AssetError,
     AssetKind,
+    AssetManifest,
+    AssetSourceLock,
+    AssetSourceLockEntry,
     AssetUri,
+    materialize_asset_build_plan,
 )
 
 
@@ -54,6 +63,38 @@ def _entry_root(root: Path, materialized: AssetBuildMaterialization) -> Path:
 def _blob_path(root: Path, materialized: AssetBuildMaterialization) -> Path:
     digest = materialized.result.entries[0].artifact_sha256.removeprefix("sha256:")
     return root / "cas" / digest[:2] / digest
+
+
+def _planned_materialization(
+    root: Path,
+    *,
+    count: int = 1,
+) -> tuple[AssetBuildPlan, AssetBuildMaterialization]:
+    root.mkdir(parents=True)
+    uris = tuple(AssetUri(f"asset://data/item-{index}.json") for index in range(count))
+    sources = tuple(f'{{"value":{index}}}'.encode() for index in range(count))
+    manifest = AssetManifest(
+        root,
+        tuple(
+            AssetEntry(uri, AssetKind.JSON, f"assets/item-{index}.json")
+            for index, uri in enumerate(uris)
+        ),
+    )
+    lock = AssetSourceLock(
+        source_lock_sha256=_hash(b"source-lock"),
+        asset_manifest_sha256=_hash(manifest.canonical_bytes()),
+        roots=uris,
+        entries=tuple(
+            AssetSourceLockEntry(uri, AssetKind.JSON, _hash(source), len(source))
+            for uri, source in zip(uris, sources, strict=True)
+        ),
+    )
+    plan = AssetBuildPlan.from_inputs(manifest, lock)
+    materialized = materialize_asset_build_plan(
+        plan,
+        tuple(AssetBuildInput(entry.uri, sources[uris.index(entry.uri)]) for entry in plan.entries),
+    )
+    return plan, materialized
 
 
 def test_cache_publishes_one_complete_entry_and_verifies_reads(tmp_path: Path) -> None:
@@ -276,3 +317,150 @@ def test_empty_materialization_has_deterministic_empty_summary(tmp_path: Path) -
         summary.canonical_bytes()
         == AssetCacheStore(tmp_path / "other").publish(materialized).canonical_bytes()
     )
+
+
+def test_read_only_lookup_reports_miss_without_creating_cache_root(tmp_path: Path) -> None:
+    plan, _ = _planned_materialization(tmp_path / "project")
+    root = tmp_path / "absent-cache"
+    store = AssetCacheStore(root, writable=False)
+
+    summary = store.inspect(plan)
+
+    assert summary.protocol == ASSET_CACHE_LOOKUP_PROTOCOL
+    assert summary.hits == 0
+    assert summary.misses == 1
+    assert summary.entries[0].status == "miss"
+    assert summary.entries[0].artifact_sha256 is None
+    assert summary.entries[0].artifact_bytes is None
+    assert not root.exists()
+    with pytest.raises(AssetCacheError) as caught:
+        store.publish(_planned_materialization(tmp_path / "other")[1])
+    assert caught.value.code == "asset_cache.read_only"
+    assert not root.exists()
+
+
+def test_lookup_verifies_action_metadata_and_cas_payload(tmp_path: Path) -> None:
+    plan, materialized = _planned_materialization(tmp_path / "project")
+    root = tmp_path / "cache"
+    AssetCacheStore(root).publish(materialized)
+    before = {path: path.stat().st_mtime_ns for path in root.rglob("*")}
+    store = AssetCacheStore(root, writable=False)
+
+    artifact = store.load_action(plan.entries[0])
+    summary = store.inspect(plan)
+
+    assert artifact is not None
+    assert artifact == materialized.artifacts[0]
+    assert summary.hits == 1
+    assert summary.misses == 0
+    assert summary.entries[0].artifact_sha256 == artifact.entry.artifact_sha256
+    assert summary.entries[0].artifact_bytes == artifact.entry.artifact_bytes
+    assert {path: path.stat().st_mtime_ns for path in root.rglob("*")} == before
+
+
+def test_lookup_reports_plan_ordered_mixed_hits_and_misses(tmp_path: Path) -> None:
+    plan, materialized = _planned_materialization(tmp_path / "project", count=2)
+    first = materialized.artifacts[0]
+    partial = AssetBuildMaterialization(
+        AssetBuildResult(
+            plan_sha256=materialized.result.plan_sha256,
+            source_bytes=first.entry.source_bytes,
+            artifact_bytes=first.entry.artifact_bytes,
+            entries=(first.entry,),
+        ),
+        (first,),
+    )
+    root = tmp_path / "cache"
+    AssetCacheStore(root).publish(partial)
+
+    summary = AssetCacheStore(root, writable=False).inspect(plan)
+
+    assert summary.hits == summary.misses == 1
+    assert [entry.status for entry in summary.entries] == ["hit", "miss"]
+    assert [entry.uri for entry in summary.entries] == [entry.uri for entry in plan.entries]
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    ["duplicate", "unknown", "whitespace", "source_bytes", "oversized"],
+)
+def test_lookup_rejects_noncanonical_or_mismatched_action_metadata(
+    tmp_path: Path,
+    mutation: str,
+) -> None:
+    plan, materialized = _planned_materialization(tmp_path / "project")
+    root = tmp_path / "cache"
+    AssetCacheStore(root).publish(materialized)
+    metadata = _entry_root(root, materialized) / "entry.json"
+    document = json.loads(metadata.read_bytes())
+    if mutation == "duplicate":
+        original = metadata.read_text(encoding="utf-8")
+        metadata.write_text(original[:-1] + f',"uri":"{plan.entries[0].uri.value}"}}')
+    elif mutation == "unknown":
+        document["unknown"] = True
+        metadata.write_text(json.dumps(document, sort_keys=True), encoding="utf-8")
+    elif mutation == "whitespace":
+        metadata.write_text(json.dumps(document, indent=2, sort_keys=True), encoding="utf-8")
+    elif mutation == "source_bytes":
+        document["source_bytes"] += 1
+        metadata.write_text(
+            json.dumps(document, separators=(",", ":"), sort_keys=True),
+            encoding="utf-8",
+        )
+    else:
+        metadata.write_bytes(b" " * 65_537)
+    before = metadata.read_bytes()
+
+    with pytest.raises(AssetCacheError) as caught:
+        AssetCacheStore(root, writable=False).load_action(plan.entries[0])
+
+    assert caught.value.code == "asset_cache.corrupt_entry"
+    assert metadata.read_bytes() == before
+
+
+def test_lookup_normalizes_action_directory_enumeration_failure(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    plan, materialized = _planned_materialization(tmp_path / "project")
+    root = tmp_path / "cache"
+    AssetCacheStore(root).publish(materialized)
+    action = _entry_root(root, materialized)
+    original_iterdir = Path.iterdir
+
+    def fail_action_iterdir(path: Path) -> Iterator[Path]:
+        if path == action:
+            raise OSError("synthetic enumeration failure")
+        return original_iterdir(path)
+
+    monkeypatch.setattr(Path, "iterdir", fail_action_iterdir)
+
+    with pytest.raises(AssetCacheError) as caught:
+        AssetCacheStore(root, writable=False).load_action(plan.entries[0])
+
+    assert caught.value.code == "asset_cache.corrupt_entry"
+    assert isinstance(caught.value.__cause__, OSError)
+
+
+def test_lookup_treats_unreferenced_cas_blob_as_miss(tmp_path: Path) -> None:
+    plan, materialized = _planned_materialization(tmp_path / "project")
+    root = tmp_path / "cache"
+    AssetCacheStore(root).publish(materialized)
+    entry_root = _entry_root(root, materialized)
+    for path in entry_root.iterdir():
+        path.unlink()
+    entry_root.rmdir()
+
+    store = AssetCacheStore(root, writable=False)
+
+    assert store.load_action(plan.entries[0]) is None
+    assert store.inspect(plan).misses == 1
+    assert _blob_path(root, materialized).is_file()
+
+
+def test_cache_authority_requires_exact_boolean(tmp_path: Path) -> None:
+    with pytest.raises(AssetCacheError) as caught:
+        AssetCacheStore(tmp_path / "cache", writable=1)  # type: ignore[arg-type]
+
+    assert caught.value.code == "asset_cache.invalid_authority"
+    assert not (tmp_path / "cache").exists()

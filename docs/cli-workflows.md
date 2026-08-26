@@ -334,3 +334,24 @@ constitutes a partial cache hit. The project remains byte-for-byte unchanged.
 
 There is no remote cache, network, authentication, eviction, deletion, quota,
 watcher, reimport, worker, plugin, world mutation, receipt, or CI change.
+
+## Verified read-only asset cache lookup
+
+M133 inspects only cache actions from one exact current verified plan:
+
+```console
+ludoweave source asset-cache-check PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --cache ../ludoweave-cache
+```
+
+The command revalidates current sources, lock, manifest, and plan before it
+opens `--cache` with no write authority. An absent cache root or action produces
+a plan-ordered miss without creating a directory. A present action is a hit
+only after duplicate-free exact canonical metadata matches the current plan
+entry and its ordinary CAS payload matches the declared bounded byte count and
+SHA-256. The path-free result uses `ludoweave.asset-cache-lookup/1`.
+
+Present corruption fails closed and produces no success document. The command
+does not rewrite, repair, delete, publish, or intentionally update cache data;
+the project also remains unchanged. This is verified lookup evidence only:
+there is no cache-assisted execution, decoder bypass, remote cache, discovery,
+worker, plugin, world mutation, receipt, or CI change.

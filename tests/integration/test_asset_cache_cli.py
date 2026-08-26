@@ -103,6 +103,20 @@ def _publish(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
     )
 
 
+def _check(project: Path, cache: Path) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-check",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--cache",
+        str(cache),
+    )
+
+
 def _files(root: Path) -> dict[str, bytes]:
     return {
         path.relative_to(root).as_posix(): path.read_bytes()
@@ -190,3 +204,85 @@ def test_asset_cache_rejects_stale_source_before_creating_cache(tmp_path: Path) 
     assert result.returncode == 2
     assert result.stdout == ""
     assert not cache.exists()
+
+
+def test_asset_cache_check_reports_miss_without_creating_cache(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "absent-cache"
+    _write_project(project)
+    _prepare(project)
+    before = _files(project)
+
+    result = _check(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["$schema"] == "ludoweave.asset-cache-lookup/1"
+    assert report["hits"] == 0
+    assert report["misses"] == 1
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_check_verifies_hit_without_writing(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _publish(project, cache).returncode == 0
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _check(project, cache)
+
+    assert result.returncode == 0
+    assert result.stderr == ""
+    report = cast(dict[str, object], json.loads(result.stdout))
+    assert report["hits"] == 1
+    assert report["misses"] == 0
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_check_rejects_corruption_without_mutation(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _publish(project, cache).returncode == 0
+    metadata = next(cache.rglob("entry.json"))
+    metadata.write_bytes(b'{"duplicate":1,"duplicate":1}')
+    before_project = _files(project)
+    before_cache = _files(cache)
+
+    result = _check(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.corrupt_entry"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert _files(project) == before_project
+    assert _files(cache) == before_cache
+
+
+def test_asset_cache_check_revalidates_sources_before_cache_access(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _publish(project, cache).returncode == 0
+    before_cache = _files(cache)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _check(project, cache)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert _files(cache) == before_cache

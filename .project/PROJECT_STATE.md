@@ -1,6 +1,49 @@
 # Project State
 
-## M132 verified local asset cache publication - locally validated
+## M133 verified read-only asset cache lookup - direction selected
+
+- Base: fully locally validated M132 DCO commit
+  `da62eda909cbf47abfd7ef1e8c83a52466d8210a`, tree
+  `ad2d0e147147a430ca2738fb27448750462e2a09`, sole parent exact M131.
+- Branch: `release/m133-verified-asset-cache-lookup`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle, and Python JSON primary references support
+  current-action-key lookup, separate CAS verification, independent read/write
+  authority, bounded untrusted parsing, and explicit duplicate-name rejection.
+- Contract: `writable=False` creates nothing and cannot publish. Lookup inspects
+  only exact current plan action keys, treats absence as a miss, strictly
+  reconstructs canonical M132 metadata, matches plan-known fields, and verifies
+  bounded ordinary CAS bytes by SHA-256. Present corruption fails closed.
+- CLI: `source asset-cache-check` completes current lock and plan verification,
+  then emits path-free plan-ordered `ludoweave.asset-cache-lookup/1` evidence
+  without acquiring decoder inputs or changing cache/project state.
+- Focused proof: all 426 Python files, Ruff, strict Pyright, 55 unit/CLI/M132/
+  M133 assertions, strict docs, whitespace, and one isolated no-dependency
+  wheel miss-then-hit lookup smoke pass.
+- Complete proof: 1,675 architecture assertions, strict docs and governance,
+  the full Python 3.12-3.14 matrix, real wgpu, both profiles and deterministic
+  vertical slices, reproducible distributions, all 16 installed consumers,
+  and two byte-identical complete release rehearsals pass. Findings-first
+  review tightened exact status types, bounded oversized metadata, and raw
+  enumeration-failure normalization; reviewed counts are 3,453 passes with 16
+  skips on 3.12 and 3,443 with 17 skips on both 3.13 and 3.14.
+- Review: exact current-plan binding, duplicate/noncanonical/unbounded metadata,
+  missing versus corrupt behavior, CAS verification, read-only root authority,
+  project/cache immutability, path-silent reports/errors, protected surfaces,
+  archive contents, public tool identity, credentials, and CI scope have no
+  remaining actionable finding. Exactly 21 intended paths change.
+- Scope: no cache-assisted execution, decoder bypass, cache write/repair/
+  deletion/eviction, remote cache, network, discovery/enumeration, watcher,
+  worker/process/thread, plugin, renderer upload, project write, world/session
+  mutation, dependency, version, workflow/allocation, release authority, or
+  remote change.
+
+## M132 verified local asset cache publication - locally validated and committed
+
+- Commit: `da62eda909cbf47abfd7ef1e8c83a52466d8210a`, tree
+  `ad2d0e147147a430ca2738fb27448750462e2a09`, sole parent exact M131; exact
+  maintainer identity, one DCO sign-off, 23 paths, `0 33` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
 
 - Base: fully locally validated M131 DCO commit
   `ea472476ee5cfca05afeda90fa888bf5557a3128`, tree

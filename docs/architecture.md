@@ -3294,6 +3294,43 @@ project write, dependency, native/backend surface, engine-root export, version,
 workflow, permission, credential, release authority, or CI change. RFC-0115
 records the full boundary.
 
+## M133 verified read-only asset cache lookup boundary
+
+M133 separates cache read authority from M132 publication authority.
+`AssetCacheStore(..., writable=False)` retains an explicit resolved root but
+does not create it and rejects publication. A missing root is therefore an
+empty read view rather than a filesystem effect. Project overlap rejection is
+unchanged.
+
+`load_action()` accepts one exact current `AssetBuildPlanEntry` and derives
+only its action path from the already validated M4/M129 cache key. It never
+discovers or enumerates unrelated actions. Missing action metadata is an exact
+miss even when an unreferenced blob exists.
+
+A present entry is untrusted bounded input. Its directory must contain exactly
+one ordinary metadata file. Parsing uses strict UTF-8, rejects duplicate object
+names and non-finite constants, requires the exact M132 field set and canonical
+bytes, reconstructs the validated result entry, and matches URI, kind, cache
+key, and source byte count to the current plan. The referenced ordinary CAS
+file must match its declared byte count and SHA-256. Any present unreadable,
+aliased, malformed, mismatched, or incomplete entry fails closed as corruption;
+it is neither a miss nor a repair trigger.
+
+`inspect()` applies that operation in canonical plan order and returns
+`ludoweave.asset-cache-lookup/1` hit/miss evidence. Artifact identity appears
+only for a verified hit. Cache paths, timestamps, staging names, and environment
+values remain absent. Digest verification proves internal content integrity,
+not provenance or authenticity of a malicious self-consistent local mapping.
+
+The `source asset-cache-check` composition completes current lock and saved-
+plan verification before opening the caller-selected cache read-only. It does
+not acquire decoder inputs, materialize outputs, publish, delete, or modify the
+project or cache. M133 has no cache-assisted execution, decoder bypass, remote
+cache, network, authentication, eviction, repair, discovery, watcher, worker,
+plugin, renderer upload, world mutation, receipt, dependency, version,
+workflow, permission, credential, release authority, or CI change. RFC-0116
+records the full boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

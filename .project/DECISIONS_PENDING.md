@@ -2,6 +2,23 @@
 
 No architecture decision is currently blocked.
 
+## M133 verified read-only asset cache lookup
+
+RFC-0116 resolves the adopted M133 direction: open one explicit local cache
+without write authority, inspect only exact action keys from a freshly verified
+current plan, and report deterministic path-free hits and misses.
+
+An absent action is a miss. Present metadata is bounded, strict UTF-8,
+duplicate-free, exact-field, and byte-for-byte canonical. It must reconstruct a
+valid result entry, match current plan-known identity, and reference an ordinary
+CAS payload with the declared bounded length and SHA-256. Present corruption
+fails closed without repair, deletion, publication, or re-execution.
+
+Cache-assisted execution, decoder bypass, mixed-hit realization, remote cache,
+enumeration, shared writers, repair, eviction, workers, dependencies, version,
+CI/workflows, release authority, and remote change remain unauthorized for
+M133.
+
 ## M132 verified local asset cache publication
 
 RFC-0115 resolves the adopted M132 direction: retain complete decoded payloads

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M133/RFC-0116 verified read-only asset-cache lookup. Exact current plan
+  actions now produce path-free hit/miss evidence only after duplicate-free
+  canonical metadata and referenced CAS payload verification, without creating
+  or changing the cache, decoding an asset, or changing CI.
 - Add M132/RFC-0115 explicit local asset-cache publication. Materialized M131
   payloads are stored in a verified SHA-256 CAS before atomically visible
   action metadata; corrupt collisions fail closed and no project, remote cache,

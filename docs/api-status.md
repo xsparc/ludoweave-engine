@@ -71,6 +71,12 @@ M132 adds experimental `AssetBuildArtifact`, `AssetBuildMaterialization`,
 `AssetCachePublishSummary`, and `AssetCacheStore` through
 `ludoweave.assets`. Cache protocols and storage remain local-only; the engine
 root remains unchanged.
+M133 adds experimental `ASSET_CACHE_LOOKUP_PROTOCOL`,
+`AssetCacheLookupEntry`, `AssetCacheLookupSummary`, read-only
+`AssetCacheStore.load_action()`, `AssetCacheStore.inspect()`, and explicit
+`writable` authority through `ludoweave.assets`. This verifies current-plan
+cache evidence but does not authorize cache-assisted execution; the engine
+root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:
