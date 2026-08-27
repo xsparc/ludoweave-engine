@@ -1,5 +1,29 @@
 # Project State
 
+## M147 asset-cache cleanup threat model - locally validated and committed
+
+- Base: fully locally validated M146 DCO commit
+  `15a1294e02c0efc77fdb668430d89413af424c9d`, tree
+  `950357cf643ddc9472f1ba6cda47ccb14b798f18`, sole parent exact M145.
+- Branch: `release/m147-cache-cleanup-threat-model`; exact containment allowed
+  the redundant M146 branch to be pruned.
+- Direction: RFC-0130 adopts a dedicated cleanup threat model covering
+  filesystem namespace races, concurrency, evidence/time trust, recovery,
+  privacy, misuse cases, security invariants, and cross-platform verification.
+- Scope: documentation and architecture protection only; no runtime, cache,
+  CLI, dependency, workflow/CI, version, release, or mutation change.
+- Acceptance: complete through supported-Python behavior, real wgpu, profiles,
+  vertical slices, reproducible distributions, all 28 installed consumers, two
+  identical release rehearsals, archive inspection, and findings-first review.
+  Final evidence-inclusive builds reproduce exactly, and the final source
+  separator, bounded cleanup, initial DCO commit, and local object audit are
+  complete. This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and GitHub API query still expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main`
+  exists, open PRs are empty, PR #251 remains newest, no workflow run exists
+  after 2026-08-22, and releases are empty. No M147 remote action occurred
+  because publishing would expose the absent M100-M147 stack.
+
 ## M146 cache-cleanup readiness decision - locally validated and committed
 
 - Base: fully locally validated M145 DCO commit

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Adopt M147/RFC-0130's [asset-cache cleanup threat
+  model](docs/security/cache-cleanup-threat-model.md). It defines the assets,
+  trust boundaries, filesystem/concurrency/recovery threats, invariants, and
+  cross-platform verification gate while adding no cleanup authority, runtime,
+  dependency, workflow, or CI change.
 - Record M146/RFC-0129 cache-cleanup readiness deferral. Existing aggregate
   evidence does not identify deletion candidates or prove current-state safety;
   cleanup remains deferred with explicit identity, roots, quiescence, policy,

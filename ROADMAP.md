@@ -1704,6 +1704,29 @@ retention policy, cleanup/prune/garbage-collection/deletion/eviction authority,
 cache read or write, dependency, version, workflow job/allocation, permission,
 credential, release authority, or CI change.
 
+## M147 asset-cache cleanup threat model
+
+M147 starts from fully locally validated M146 commit
+`15a1294e02c0efc77fdb668430d89413af424c9d`. It accepts a dedicated
+[asset-cache cleanup threat model](docs/security/cache-cleanup-threat-model.md)
+before any mutation design. The model covers assets, actors, trust boundaries,
+TOCTOU and link/reparse substitution, hard-link aliases, concurrent readers and
+writers, incomplete or stale evidence, trusted-time rollback, crash recovery,
+idempotence, quarantine, rollback tampering, privacy, and safe refusal.
+
+A future implementation must separately type dry-run and mutation authority,
+bind identity-bearing candidates to an exact cache root and generation, hold
+cross-process quiescence through use, revalidate with proven handle-relative
+no-follow semantics, stage same-filesystem quarantine, and emit durable typed
+receipts. The design must fail closed where a platform cannot prove those
+semantics and must pass adversarial Windows, macOS, and Linux tests.
+
+M147 adds no runtime API, protocol, decoder, CLI command, cache access,
+candidate disclosure, retention implementation, trusted time, lock,
+quarantine, repair, cleanup authority, mutation, remote cache, dependency,
+version, workflow job/allocation, permission, credential, release authority,
+or CI change. RFC-0130 records the accepted threat boundary.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

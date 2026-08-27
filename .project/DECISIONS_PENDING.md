@@ -2,6 +2,18 @@
 
 No architecture decision is currently blocked.
 
+## M147 asset-cache cleanup threat model
+
+RFC-0130 adopts the asset-cache cleanup threat model as a blocking future
+design contract. Any implementation must map every listed threat and invariant
+to a control and adversarial test, with explicit cross-platform safe-refusal
+semantics.
+
+Cleanup implementation, candidate disclosure, retained-root machinery,
+locking, trusted time, quarantine, mutation receipts, repair, remote cache,
+dependencies, version, workflow/CI, release authority, and remote change remain
+unauthorized.
+
 ## M146 cache-cleanup readiness decision
 
 RFC-0129 resolves the adopted M146 direction: do not add cleanup from existing

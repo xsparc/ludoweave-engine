@@ -652,6 +652,20 @@ blocking findings, verification requirements, and residual risk. Its findings
 are feature-admission blockers, not claims of a current executable-mod
 vulnerability.
 
+## Asset-cache cleanup boundary
+
+LudoWeave has no asset-cache cleanup command or background collector. Existing
+inventory, fingerprint, comparison, and unreferenced-preview records are
+read-only aggregate integrity evidence and grant no deletion authority.
+
+The accepted [asset-cache cleanup threat
+model](docs/security/cache-cleanup-threat-model.md) covers TOCTOU races,
+symlink/junction/reparse and hard-link substitution, concurrent readers and
+writers, malformed or stale evidence, trusted-time rollback, crash recovery,
+quarantine, replay, rollback tampering, and path privacy. A future implementation
+must fail closed unless it proves handle-relative no-follow safety and complete
+retained-root/quiescence semantics on the target platform.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

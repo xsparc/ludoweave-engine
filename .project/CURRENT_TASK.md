@@ -1,26 +1,29 @@
 # Current task
 
-- **Task:** M146 - record why existing aggregate evidence cannot authorize
-  asset-cache cleanup and define the complete reconsideration gate.
-- **Status:** Direction research, RFC, public architecture/roadmap contract,
-  complete local acceptance, installed-wheel proof, reproducibility, release
-  rehearsal, findings-first review, and final evidence closure are complete.
-  Bounded cleanup, the initial DCO commit, and fresh publication audit are
-  complete. Publication is held because authoritative hosted `main` remains
-  exact M99.
-- **Base:** Fully locally validated M145 DCO commit
-  `2a08a5cde25cab2b6a9950c0013c69286da873bb`, tree
-  `a53ff7c7427695689337d8e120579abd74fbc883`, sole parent exact M144.
-- **Branch:** `release/m146-cache-cleanup-readiness-decision`.
+- **Task:** M147 - adopt a dedicated asset-cache cleanup threat model before
+  any mutation design.
+- **Status:** Direction research, RFC, public threat model,
+  architecture/roadmap contract, automated no-runtime-change guard, complete
+  static/architecture/docs/governance checks, supported-Python suites, real
+  wgpu checks, profiles, vertical slices, reproducible distributions, all 28
+  installed consumers, two release rehearsals, archive inspection, and
+  findings-first review are complete. Final evidence-inclusive reproducibility
+  and the final source separator are closed. Bounded cleanup, the initial DCO
+  commit, exact local audit, and fresh publication audit are complete.
+  Publication is held because authoritative hosted `main` remains exact M99.
+- **Base:** Fully locally validated M146 DCO commit
+  `15a1294e02c0efc77fdb668430d89413af424c9d`, tree
+  `950357cf643ddc9472f1ba6cda47ccb14b798f18`, sole parent exact M145.
+- **Branch:** `release/m147-cache-cleanup-threat-model`.
 
 ## Acceptance boundary
 
-- Accept RFC-0129 and document that M137-M145 aggregate evidence cannot prove
-  blob identity, current reachability, or deletion safety.
-- Require identity-bearing candidates, retained roots/leases/pins, atomic or
-  generation-bound quiescence, explicit grace/quota and trusted time, bounded
-  dry-run plus typed mutation receipts, concurrent-writer and crash recovery,
-  link/reparse safety, and restore/rollback before reconsideration.
+- Accept RFC-0130 and a dedicated threat model covering protected assets,
+  actors, trust boundaries, misuse cases, twelve threats, eight invariants,
+  verification, and residual risk.
+- Require identity-bound candidates, complete retained roots, quiescence held
+  through use, handle-relative no-follow safety, explicit policy/trusted time,
+  same-filesystem quarantine, receipts, idempotence, and recovery.
 - Protect exact runtime, cache, CLI, dependency, workflow, and release surfaces
   with automated architecture tests.
 - Add no runtime API, protocol, decoder, command, cache access, candidate
@@ -29,16 +32,16 @@
 
 ## Direction evidence
 
-- Bazel's current disk-cache documentation describes policy/idle-driven garbage
-  collection rather than treating aggregate observation as deletion authority.
-- RFC 8785 supports stable canonical evidence identity but not reachability or
-  concurrency claims. SLSA verification requires subject digests, expectations,
-  and trust roots before authenticity claims.
-- M140 already exposes the relevant aggregate deltas; another aggregate
-  comparison would duplicate API without establishing candidate identity.
-- Exact M145 history, clean worktree, DCO, and object integrity were established
-  before this branch. Its contained local branch was pruned after exact ancestry
-  proof; only local `main` and active M146 remain.
+- MITRE CWE-367 records integrity risks when a resource changes between check
+  and use. Python documents `rmtree` symlink-attack resistance as conditional
+  on fd-based platform support, while Windows reparse points require distinct
+  namespace handling.
+- Bazel's current cache guidance uses explicit policy/idle-driven garbage
+  collection and separately warns that changing inputs can produce invalid
+  cached results; neither observation grants LudoWeave mutation authority.
+- Exact M146 history, clean worktree, DCO, and object integrity were established
+  before this branch. Exact ancestry allowed the contained M146 branch to be
+  pruned; only local `main` and active M147 remain.
 
 ## Explicit non-scope
 
@@ -50,6 +53,6 @@
 
 ## Remaining acceptance work
 
-- No local M146 acceptance work remains. Keep the milestone unpublished until
+- No local M147 acceptance work remains. Keep the milestone unpublished until
   a fresh hosted audit proves the required preceding stack is present; continue
-  the next approved research-gated milestone from the exact committed M146 tip.
+  the next approved research-gated milestone from the exact committed M147 tip.

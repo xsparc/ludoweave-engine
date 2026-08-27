@@ -3703,6 +3703,36 @@ candidate disclosure, cleanup authority, mutation, dependency, backend/native
 surface, version, workflow, permission, release authority, or CI change.
 RFC-0129 records the complete decision.
 
+## M147 asset-cache cleanup threat boundary
+
+M147 formalizes the security boundary that any later cache mutation must
+satisfy. The [asset-cache cleanup threat
+model](security/cache-cleanup-threat-model.md) treats the exact cache root,
+content-addressed blobs, action metadata, retained roots, future candidates,
+quarantine, receipts, and path privacy as protected assets. It treats existing
+cache files and saved evidence as inputs rather than authority, and it includes
+same-user concurrent processes and mutable filesystem namespaces in the trust
+boundary.
+
+The blocking design invariants require separate dry-run and mutation types,
+identity-bearing candidates bound to an exact root/generation/policy, complete
+retained roots, cross-process quiescence held through use, handle-relative
+no-follow revalidation, bounded work, same-filesystem quarantine, durable typed
+receipts, idempotent recovery, deterministic ordering, and safe refusal on an
+unsupported platform. Adversarial Windows, macOS, and Linux evidence is
+required for TOCTOU, symlink/junction/reparse and hard-link substitution,
+concurrent readers/writers, stale records, trusted-time rollback, crash,
+disk-full, replay, restore, and finalize phases.
+
+M147 adds no runtime API, value, protocol, decoder, CLI composition, cache
+access, candidate disclosure, cleanup authority, retention implementation,
+locking, trusted time, quarantine, repair, mutation, remote cache, dependency,
+backend/native surface, version, workflow, permission, release authority, or
+CI change. RFC-0130 records the accepted threat model.
+
+There is no candidate disclosure, no cleanup authority, no remote cache, no
+dependency, no workflow, and no CI change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

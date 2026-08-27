@@ -35,6 +35,7 @@ nav:
   - Constrained 3D scope decision: constrained-3d-decision.md
   - Visual-editor admission decision: visual-editor-decision.md
   - WASM-mod security decision: wasm-mod-security-decision.md
+  - Asset-cache cleanup threat model: security/cache-cleanup-threat-model.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -170,6 +171,7 @@ nav:
       - RFC-0127 - Add an offline unreferenced-blob preview: rfcs/0127-add-offline-unreferenced-blob-preview.md
       - RFC-0128 - Verify a saved unreferenced-blob preview: rfcs/0128-verify-saved-unreferenced-blob-preview.md
       - RFC-0129 - Defer asset-cache cleanup: rfcs/0129-defer-asset-cache-cleanup.md
+      - RFC-0130 - Adopt the asset-cache cleanup threat model: rfcs/0130-asset-cache-cleanup-threat-model.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

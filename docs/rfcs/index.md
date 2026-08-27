@@ -134,3 +134,4 @@ was adopted.
 - [RFC-0127: add an offline unreferenced-blob preview](0127-add-offline-unreferenced-blob-preview.md)
 - [RFC-0128: verify a saved unreferenced-blob preview](0128-verify-saved-unreferenced-blob-preview.md)
 - [RFC-0129: defer asset-cache cleanup](0129-defer-asset-cache-cleanup.md)
+- [RFC-0130: adopt the asset-cache cleanup threat model](0130-asset-cache-cleanup-threat-model.md)

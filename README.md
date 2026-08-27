@@ -72,8 +72,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > plan and admitted fingerprint offline, without cache access or trust claims.
 > M146 records why those aggregate records cannot authorize cache cleanup and
 > defers mutation until identity, retention, quiescence, and policy gates exist.
+> M147 adopts a dedicated [cleanup threat
+> model](docs/security/cache-cleanup-threat-model.md) covering filesystem races,
+> cross-platform link safety, concurrency, recovery, and safe refusal without
+> adding a cleanup implementation.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M145 are locally validated stacked milestones from the exact M99 closeout, and M146 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M146 are locally validated stacked milestones from the exact M99 closeout, and M147 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
