@@ -1684,6 +1684,26 @@ identity, retention/deletion eligibility, mutation, remote cache, dependency,
 version, workflow job/allocation, permission, credential, release authority,
 or CI change.
 
+## M146 cache-cleanup readiness decision
+
+M146 starts from fully locally validated M145 commit
+`2a08a5cde25cab2b6a9950c0013c69286da873bb`. It deliberately adds no cache
+cleanup API. M137-M145 provide bounded integrity observations and path-free
+aggregate evidence, but they neither disclose candidate identity nor prove that
+an apparently unreferenced blob remains unreferenced at deletion time.
+
+Cleanup remains deferred until one approved design jointly specifies exact
+identity-bearing candidate evidence, retained roots, leases/pins, an atomic or
+generation-bound quiescent observation, explicit grace/quota policy and trusted
+time semantics, bounded dry-run and mutation receipts, concurrent-writer and
+crash recovery, link/reparse safety, and restore/rollback behavior. Aggregate
+equality or age alone is insufficient.
+
+M146 adds no runtime value, protocol, decoder, CLI command, candidate listing,
+retention policy, cleanup/prune/garbage-collection/deletion/eviction authority,
+cache read or write, dependency, version, workflow job/allocation, permission,
+credential, release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

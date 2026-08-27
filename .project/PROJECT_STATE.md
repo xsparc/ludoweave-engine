@@ -1,5 +1,31 @@
 # Project State
 
+## M146 cache-cleanup readiness decision - locally validated and committed
+
+- Base: fully locally validated M145 DCO commit
+  `2a08a5cde25cab2b6a9950c0013c69286da873bb`, tree
+  `a53ff7c7427695689337d8e120579abd74fbc883`, sole parent exact M144.
+- Branch: `release/m146-cache-cleanup-readiness-decision`; exact containment
+  allowed the redundant M145 branch to be pruned.
+- Direction: RFC-0129 defers cleanup because aggregate evidence cannot prove
+  identity or current reachability and records the full reconsideration gate.
+- Scope: documentation and architecture protection only; no runtime, cache,
+  CLI, dependency, workflow/CI, version, release, or mutation change.
+- Acceptance: complete static/architecture/docs/governance, supported Python,
+  real-wgpu, profiles, vertical slices, reproducible distributions, all 28
+  installed consumers, identical release rehearsals, archive inspection, and
+  findings-first review pass.
+- Initial DCO commit: `6e2b69f7c7ac7204fc3fc0142be48c684e9eeea5`, tree
+  `8fe2f8da34405d0a595f3c1bf03147c893906bcc`, sole parent exact M145. It has
+  exact maintainer identity, one DCO sign-off, 12 paths, `0 47` divergence from
+  local M99 main, clean whitespace, and zero critical object-integrity finding.
+  This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and GitHub API query still expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main`
+  exists, open PRs are empty, PR #251 remains newest, no workflow run exists
+  after 2026-08-22, and releases are empty. No M146 remote action occurred
+  because publishing would expose the absent M100-M146 stack.
+
 ## M145 saved unreferenced-preview verification - locally validated and committed
 
 - Base: fully locally validated M144 DCO commit

@@ -2,6 +2,18 @@
 
 No architecture decision is currently blocked.
 
+## M146 cache-cleanup readiness decision
+
+RFC-0129 resolves the adopted M146 direction: do not add cleanup from existing
+aggregate evidence. Reconsideration requires identity-bearing candidates,
+complete retained roots, generation-bound quiescence, explicit policy/trusted
+time, bounded dry-run and mutation receipts, concurrency/crash recovery,
+cross-platform link safety, and restore/rollback behavior in one accepted
+design.
+
+Runtime cleanup, candidate disclosure, mutation, dependency, version,
+workflow/CI, release authority, and remote change remain unauthorized.
+
 ## M145 saved unreferenced-preview verification
 
 RFC-0128 resolves the adopted M145 direction: strictly admit one bounded

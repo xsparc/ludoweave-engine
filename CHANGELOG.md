@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Record M146/RFC-0129 cache-cleanup readiness deferral. Existing aggregate
+  evidence does not identify deletion candidates or prove current-state safety;
+  cleanup remains deferred with explicit identity, roots, quiescence, policy,
+  recovery, and authorization gates and no runtime, dependency, workflow, or CI
+  change.
 - Add M145/RFC-0128 strict saved unreferenced-preview verification. One bounded
   canonical preview is recomputed against the exact plan and admitted saved
   fingerprint entirely offline; success binds the preview digest without cache

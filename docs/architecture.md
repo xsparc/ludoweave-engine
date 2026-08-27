@@ -3682,6 +3682,27 @@ mutation, remote cache, dependency, backend/native surface, version, workflow,
 permission, release authority, or CI change. RFC-0128 records the complete
 boundary.
 
+## M146 cache-cleanup readiness boundary
+
+M137-M145 establish verified cache structure, complete sequential aggregate
+observations, path-free fingerprints/previews, and strict offline evidence
+admission. Those records intentionally omit blob identities. Equal aggregate
+counts and bytes across observations therefore cannot establish that the same
+objects persisted, and an offline record cannot establish current reachability
+at mutation time.
+
+Cache cleanup remains deferred. Reconsideration requires one coherent design
+covering identity-bearing candidates, all retained roots and leases/pins,
+atomic or generation-bound quiescence, explicit grace/quota policy and trusted
+time, bounded dry-run plus mutation receipts, concurrent-writer exclusion,
+crash recovery, no-follow/reparse safety, and restore/rollback behavior. The
+design must preserve project/cache separation and fail closed before deletion.
+
+M146 adds no runtime value, protocol, decoder, CLI composition, cache access,
+candidate disclosure, cleanup authority, mutation, dependency, backend/native
+surface, version, workflow, permission, release authority, or CI change.
+RFC-0129 records the complete decision.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

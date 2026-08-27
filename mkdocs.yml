@@ -169,6 +169,7 @@ nav:
       - RFC-0126 - Add a path-free unreferenced-blob preview: rfcs/0126-add-path-free-unreferenced-blob-preview.md
       - RFC-0127 - Add an offline unreferenced-blob preview: rfcs/0127-add-offline-unreferenced-blob-preview.md
       - RFC-0128 - Verify a saved unreferenced-blob preview: rfcs/0128-verify-saved-unreferenced-blob-preview.md
+      - RFC-0129 - Defer asset-cache cleanup: rfcs/0129-defer-asset-cache-cleanup.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -70,8 +70,10 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > preview offline, after the originating cache is absent.
 > M145 strictly admits that saved preview and verifies it against the exact
 > plan and admitted fingerprint offline, without cache access or trust claims.
+> M146 records why those aggregate records cannot authorize cache cleanup and
+> defers mutation until identity, retention, quiescence, and policy gates exist.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M144 are locally validated stacked milestones from the exact M99 closeout, and M145 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M145 are locally validated stacked milestones from the exact M99 closeout, and M146 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
