@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M152/RFC-0135's test-only [Windows cross-process substitution
+  probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md).
+  It executes one fixed child-process namespace change without adding runtime,
+  dependency, workflow, or CI allocation.
 - Add M151/RFC-0134's test-only [Windows retained-parent substitution
   probe](docs/security/cache-cleanup-windows-retained-parent-substitution-probe.md).
   It executes one deterministic namespace substitution without adding runtime,

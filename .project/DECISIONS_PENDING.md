@@ -2,6 +2,20 @@
 
 No architecture decision is currently blocked.
 
+## M152 Windows cross-process namespace substitution
+
+RFC-0135 accepts one NTFS, Windows-only, test-only child-process namespace-
+substitution fixture as current-host feasibility evidence. Windows remains
+unadmitted. Controlled concurrent interleavings, explicit synchronization,
+oplocks/share stress, exclusion/quiescence, handle duplication/inheritance,
+other tags/filesystems, recovery, policy, receipts, and independent hosts
+remain required.
+
+RFC-0135 does not authorize runtime subprocess or `ctypes`, a platform adapter,
+public probe, cleanup authority, cache access, dependencies, version,
+workflow/CI, or release authority. Repository publication is governed
+separately by maintainer direction and the hosted-stack safety gate.
+
 ## M151 Windows retained-parent namespace substitution
 
 RFC-0134 accepts one NTFS, Windows-only, test-only retained-parent substitution

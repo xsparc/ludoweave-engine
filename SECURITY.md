@@ -694,6 +694,14 @@ bound to the original file identity. This same-process fixture is not
 concurrency, locking, recovery, or mutation authority; Windows remains
 unadmitted.
 
+M152's test-only [Windows cross-process substitution
+probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md)
+gives the fixed rename-plus-junction operation to a non-inheriting child process
+while the parent retains the original directory handle. It proves one
+cross-process namespace change, fresh-name refusal, and original-object identity
+on the current host. It does not prove concurrency, exclusion, quiescence,
+recovery, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

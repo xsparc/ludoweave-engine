@@ -3838,6 +3838,34 @@ disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0134 records the accepted test-only boundary.
 
+## M152 Windows cross-process substitution boundary
+
+M152 adds one Windows-only, test-only [cross-process substitution
+probe](security/cache-cleanup-windows-cross-process-substitution-probe.md).
+The parent process retains an ordinary directory handle. One child `cmd.exe`
+receives no native handle and executes the fixed relative command
+`ren live displaced && mklink /j live target` from a trusted pytest root.
+
+After successful child exit, a fresh root-relative open observes and refuses
+the junction. The retained parent remains bound to the renamed original
+directory. Volume/file identity proves its candidate equals a fresh open through
+`displaced` and differs from the same-named target candidate. All handles close
+before pytest removes ordinary directories, and explicit junction-entry removal
+preserves both file contents.
+
+This is deterministic current-host cross-process namespace-change evidence,
+not a controlled concurrency or platform-admission result. It does not cover a
+race at a selected native call, cross-process exclusion, oplocks/share stress,
+quiescence, inherited or duplicated handles, pre-acquisition substitution,
+other reparse tags/filesystems, identity reuse, crash recovery, policy, trusted
+time, receipts, or independent hosts.
+
+M152 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes` or subprocess invocation, adapter, cache access,
+candidate disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0135 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

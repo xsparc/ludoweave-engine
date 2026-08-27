@@ -1830,6 +1830,33 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M152 Windows cross-process namespace-substitution probe
+
+M152 starts from fully locally validated M151 commit
+`3df94f419f14e230275d4dd38ee9f0bcb53b49f6`. It adds one Windows-only,
+test-only [cross-process substitution
+probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md)
+under RFC-0135.
+
+The current NTFS host retains an opened `live` directory in the parent process.
+A fixed non-inheriting child `cmd.exe` invocation renames it to `displaced` and
+creates a junction at the former name. After child exit, a fresh root-relative
+`live` open refuses the junction, while the retained parent identifies the
+original file under `displaced` rather than the same-named file under `target`.
+Explicit link-only cleanup preserves both contents.
+
+Windows remains unadmitted. This deterministic child-process fixture is not a
+concurrent race, cross-process exclusion, controlled native-call interleaving,
+oplock/share stress, quiescence, handle-inheritance, other-filesystem, recovery,
+policy, receipt, or independent-host proof.
+
+M152 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

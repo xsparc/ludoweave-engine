@@ -40,6 +40,7 @@ nav:
   - Windows cache-cleanup capability probe: security/cache-cleanup-windows-capability-probe.md
   - Windows directory-junction refusal probe: security/cache-cleanup-windows-junction-probe.md
   - Windows retained-parent substitution probe: security/cache-cleanup-windows-retained-parent-substitution-probe.md
+  - Windows cross-process substitution probe: security/cache-cleanup-windows-cross-process-substitution-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -180,6 +181,7 @@ nav:
       - RFC-0132 - Probe Windows cache-cleanup capability: rfcs/0132-probe-windows-cache-cleanup-capability.md
       - RFC-0133 - Probe Windows directory-junction refusal: rfcs/0133-probe-windows-junction-refusal.md
       - RFC-0134 - Probe Windows retained-parent substitution safety: rfcs/0134-probe-windows-retained-parent-substitution.md
+      - RFC-0135 - Probe Windows cross-process retained-parent substitution: rfcs/0135-probe-windows-cross-process-substitution.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

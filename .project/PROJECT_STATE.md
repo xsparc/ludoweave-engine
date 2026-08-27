@@ -1,5 +1,25 @@
 # Project State
 
+## M152 Windows cross-process namespace substitution - locally validated
+
+- Base: fully locally validated M151 DCO commit
+  `3df94f419f14e230275d4dd38ee9f0bcb53b49f6`, tree
+  `f1035e580e2f827390c99ef9b15690c003229bde`, sole parent exact M150.
+- Branch: `release/m152-windows-cross-process-substitution`; exact containment
+  allowed the redundant M151 branch to be pruned.
+- Direction: RFC-0135 accepts one test-only NTFS child-process substitution
+  fixture to execute a process-boundary namespace change without timing.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Hosted state: publication remains gated on a fresh postcommit audit proving
+  that the unpublished preceding local stack is present on hosted `main`.
+
 ## M151 Windows retained-parent namespace substitution - locally validated
 
 - Base: fully locally validated M150 DCO commit
