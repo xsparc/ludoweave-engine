@@ -2001,6 +2001,37 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The existing Windows suite is the
 only future hosted execution path.
 
+## M158 Windows blocker invalid-control-token probe
+
+M158 starts from fully locally validated M157 commit
+`7c28ad99d2d13c64a7d45cdbd9d6f2181eb24c99`. It adds one Windows-only,
+test-only [blocker invalid-control-token
+probe](docs/security/cache-cleanup-windows-invalid-control-token-probe.md)
+under RFC-0141.
+
+The parent reuses M155's fixed blocker and bounded `ready` handshake. M154's
+unchanged native rename child returns false/error 32 while the blocker remains
+alive. The parent writes exactly one repository-fixed `?` byte, requires the
+buffered write to accept it, flushes and closes `Popen.stdin`, and waits with
+M155's fixed timeout. The helper closes its native handle in `finally`, emits
+no `closed`, and returns its existing invalid-control code 4. The identical
+rename then returns true/code zero and preserves the candidate under
+`displaced`.
+
+Windows remains unadmitted. This single current-host fixed invalid-token path
+is not arbitrary malformed input, partial or multiple writes, broken-pipe
+behavior, readiness or termination timeout, native close failure,
+cancellation, crash or restart recovery, controlled concurrent interleaving,
+general exclusion, duplicated-handle or oplock behavior, policy, receipt, or
+independent-host proof.
+
+M158 adds no runtime API, protocol, decoder, CLI command, public probe, helper,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The existing Windows suite is the
+only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

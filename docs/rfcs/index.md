@@ -145,3 +145,4 @@ was adopted.
 - [RFC-0138: probe a child-owned Windows share-delete handshake](0138-probe-windows-child-owned-share-delete-handshake.md)
 - [RFC-0139: probe abrupt termination of a Windows blocker owner](0139-probe-windows-abrupt-blocker-termination.md)
 - [RFC-0140: probe Windows blocker control-pipe EOF closure](0140-probe-windows-control-pipe-eof.md)
+- [RFC-0141: probe a Windows blocker invalid control token](0141-probe-windows-invalid-control-token.md)

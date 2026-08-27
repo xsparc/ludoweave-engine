@@ -742,6 +742,15 @@ status, and emits no close acknowledgement before one identical rename retry.
 This is not arbitrary pipe failure, recovery, general exclusion, or mutation
 authority; Windows remains unadmitted.
 
+M158's test-only [Windows blocker invalid-control-token
+probe](docs/security/cache-cleanup-windows-invalid-control-token-probe.md)
+writes and flushes exactly one fixed non-release byte after readiness. The
+unchanged helper closes its native handle in `finally`, exits with its fixed
+invalid-control status, and emits no close acknowledgement before one
+identical rename retry. This is not arbitrary malformed input, partial or
+multiple write behavior, broken-pipe recovery, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -1,5 +1,34 @@
 # Project State
 
+## M158 Windows blocker invalid control token - locally validated
+
+- Base: fully locally validated M157 DCO commit
+  `7c28ad99d2d13c64a7d45cdbd9d6f2181eb24c99`, tree
+  `985c7a4a50dadb49805dd67a060641eee0dd8c1b`, sole parent exact M156.
+- Branch: `release/m158-invalid-control-token`; exact containment allowed the
+  redundant M157 branch to be pruned.
+- Direction: RFC-0141 accepts one fixed invalid-byte observation that
+  exercises M155's existing invalid-control `finally` close before M154's
+  unchanged native rename retries once.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review. Branch commits remain subject to DCO sign-off.
+- Initial DCO commit: `9f8cbe9febbfc24ac7ebcd83989c427bec601688`, tree
+  `e3fcf03e5e974a227b455aa6c2055a1ac22a3f6c`, sole parent exact M157. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 59` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit GitHub PR/branch audits
+  still expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
 ## M157 Windows blocker control-pipe EOF - locally validated
 
 - Base: fully locally validated M156 DCO commit

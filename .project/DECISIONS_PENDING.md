@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M158 Windows blocker invalid-control-token probe
+
+RFC-0141 accepts one NTFS, Windows-only, test-only observation in which the
+parent writes exactly one fixed `?` byte to M155's control-pipe writer after
+readiness and false/32 denial, flushes and closes it, and performs one bounded
+wait. The unchanged helper closes its native handle in `finally`, returns its
+existing invalid-control code 4 without `closed`, and M154's identical native
+rename then returns true/0.
+
+This resolves only one fixed invalid-token observation. Arbitrary malformed
+input, partial or multiple writes, broken-pipe writes, readiness/termination
+timeout, native close failure, cancellation, restart recovery, duplicated
+handles, oplocks, controlled interleavings, general exclusion, filesystem/
+driver variation, and independent-host proof remain pending. Windows is not
+admitted.
+
+RFC-0141 does not authorize runtime subprocess or `ctypes`, a helper change,
+production adapter, public capability, cleanup authority, recovery policy,
+dependency, workflow, CI allocation, tag, release, or publication.
+
 ## M157 Windows blocker control-pipe EOF probe
 
 RFC-0140 accepts one NTFS, Windows-only, test-only observation in which the
