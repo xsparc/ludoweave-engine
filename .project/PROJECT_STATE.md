@@ -1,5 +1,25 @@
 # Project State
 
+## M151 Windows retained-parent namespace substitution - locally validated
+
+- Base: fully locally validated M150 DCO commit
+  `42cac8b6ade92af3bb29bbd2e9781cb0799ddc58`, tree
+  `08156f9bc9e8d86175c77c2ae15b4929e8096956`, sole parent exact M149.
+- Branch: `release/m151-windows-retained-parent-substitution`; exact
+  containment allowed the redundant M150 branch to be pruned.
+- Direction: RFC-0134 accepts one test-only NTFS retained-parent substitution
+  fixture to execute a deterministic namespace change without timing.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Hosted state: publication remains gated on a fresh postcommit audit proving
+  that the unpublished preceding local stack is present on hosted `main`.
+
 ## M150 Windows directory-junction refusal probe - locally validated
 
 - Base: fully locally validated M149 DCO commit

@@ -3811,6 +3811,33 @@ disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0133 records the accepted test-only boundary.
 
+## M151 Windows retained-parent substitution boundary
+
+M151 adds one Windows-only, test-only [retained-parent substitution
+probe](security/cache-cleanup-windows-retained-parent-substitution-probe.md).
+It retains an ordinary directory handle, renames that directory, and then uses
+a fixed `mklink /j` invocation to bind the former name to a distinct target.
+No engine input or absolute fixture path enters command parsing.
+
+A fresh root-relative open of the rebound name observes and refuses the
+junction. An open relative to the retained parent remains bound to the renamed
+original directory. Volume/file identity proves that result equals a fresh
+open through the `displaced` name and differs from the same-named target file.
+All handles close before pytest removes the ordinary directories, and explicit
+junction-entry removal preserves both file contents.
+
+This is deterministic same-process current-host evidence, not concurrent race
+or platform-admission evidence. It does not cover cross-process exclusion,
+oplocks/share stress, pre-acquisition substitution, mounted folders, arbitrary
+reparse tags, other filesystems, identity reuse, crash recovery, policy,
+trusted time, receipts, or independent hosts.
+
+M151 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes` or shelling, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0134 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

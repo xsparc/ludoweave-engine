@@ -138,3 +138,4 @@ was adopted.
 - [RFC-0131: defer portable cache-cleanup capability](0131-defer-portable-cache-cleanup-capability.md)
 - [RFC-0132: probe Windows cache-cleanup capability](0132-probe-windows-cache-cleanup-capability.md)
 - [RFC-0133: probe Windows directory-junction refusal](0133-probe-windows-junction-refusal.md)
+- [RFC-0134: probe Windows retained-parent substitution safety](0134-probe-windows-retained-parent-substitution.md)

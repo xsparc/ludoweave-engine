@@ -686,6 +686,14 @@ junction before traversal and explicit junction removal preserves the target.
 This does not resolve symbolic links, other tags/filesystems, namespace races,
 recovery, or mutation authority; Windows remains unadmitted.
 
+M151's test-only [Windows retained-parent substitution
+probe](docs/security/cache-cleanup-windows-retained-parent-substitution-probe.md)
+renames an opened directory, rebinds its former name to a junction, and proves
+that fresh traversal refuses the junction while the retained parent remains
+bound to the original file identity. This same-process fixture is not
+concurrency, locking, recovery, or mutation authority; Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

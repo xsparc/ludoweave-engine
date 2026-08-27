@@ -1803,6 +1803,33 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M151 Windows retained-parent namespace-substitution probe
+
+M151 starts from fully locally validated M150 commit
+`42cac8b6ade92af3bb29bbd2e9781cb0799ddc58`. It adds one Windows-only,
+test-only [retained-parent substitution
+probe](docs/security/cache-cleanup-windows-retained-parent-substitution-probe.md)
+under RFC-0134.
+
+The current NTFS host retains an opened `live` directory, renames it to
+`displaced`, and replaces the former name with a fixed directory junction to a
+distinct `target`. A fresh root-relative `live` open refuses the junction. An
+open relative to the retained parent identifies the file under `displaced` and
+differs from the same-named file under `target`; explicit link-only cleanup
+preserves both contents.
+
+Windows remains unadmitted. This deterministic same-process fixture is not a
+concurrent race, cross-process exclusion, oplock/share stress, ancestor-
+acquisition, other-reparse-tag, other-filesystem, recovery, policy, receipt, or
+independent-host proof.
+
+M151 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or shell invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -2,6 +2,19 @@
 
 No architecture decision is currently blocked.
 
+## M151 Windows retained-parent namespace substitution
+
+RFC-0134 accepts one NTFS, Windows-only, test-only retained-parent substitution
+fixture as current-host feasibility evidence. Windows remains unadmitted.
+Concurrent/cross-process interleavings, oplocks/share stress, pre-acquisition
+substitution, other tags/filesystems, recovery, policy, receipts, and
+independent hosts remain required.
+
+RFC-0134 does not authorize runtime shelling or `ctypes`, a platform adapter,
+public probe, cleanup authority, cache access, dependencies, version,
+workflow/CI, or release authority. Repository publication is governed
+separately by maintainer direction and the hosted-stack safety gate.
+
 ## M150 Windows directory-junction refusal probe
 
 RFC-0133 accepts one NTFS, Windows-only, test-only directory-junction fixture

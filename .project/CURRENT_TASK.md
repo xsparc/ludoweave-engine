@@ -1,48 +1,49 @@
 # Current task
 
-- **Task:** M150 - execute a test-only Windows directory-junction refusal
+- **Task:** M151 - execute a test-only retained-parent namespace substitution
   without admitting a runtime adapter.
-- **Status:** Local M150 acceptance is complete through primary-source
+- **Status:** Local M151 acceptance is complete through primary-source
   direction, implementation, architecture protection, supported-Python
   behavior, full regression, packaging, release rehearsal, and findings-first
   review. Publication remains conditioned on a fresh audit of the final
   DCO-signed branch commit and the preceding local stack on hosted `main`.
-- **Base:** Fully locally validated M149 DCO commit
-  `b9c3a3b38b3cf22cf5351e13b362602d0c46d9eb`, tree
-  `5ed1460fd133e81c3738a451f58437c88d9b63f8`, sole parent exact M148.
-- **Branch:** `release/m150-windows-junction-refusal-probe`.
+- **Base:** Fully locally validated M150 DCO commit
+  `42cac8b6ade92af3bb29bbd2e9781cb0799ddc58`, tree
+  `08156f9bc9e8d86175c77c2ae15b4929e8096956`, sole parent exact M149.
+- **Branch:** `release/m151-windows-retained-parent-substitution`.
 
 ## Acceptance boundary
 
-- Accept RFC-0133 and retain one Windows-only, test-only NTFS directory-
-  junction fixture confined to pytest temporary storage.
-- Bind filesystem/reparse capability to the opened root handle, execute M149's
-  reparse refusal, close the rejected handle, and prove link-only cleanup leaves
-  the target unchanged.
-- Protect exact runtime, scripts, dependencies, workflows, and M149's boundary
+- Accept RFC-0134 and retain one Windows-only, test-only NTFS namespace-
+  substitution fixture confined to pytest temporary storage.
+- Retain an opened parent across rename, rebind its former name to a junction,
+  refuse fresh traversal, and prove relative opens remain bound to the renamed
+  original identity rather than the substitution target.
+- Protect exact runtime, scripts, dependencies, workflows, and M150's boundary
   with automated architecture tests.
-- Add no runtime shelling or `ctypes`, public probe, production adapter, cache
-  access, cleanup authority, dependency, workflow, or CI allocation.
+- Add no runtime shelling or `ctypes`, concurrent timing, public probe,
+  production adapter, cache access, cleanup authority, dependency, workflow,
+  or CI allocation.
 
 ## Direction evidence
 
-- Microsoft documents directory junctions as reparse points, `mklink /j` as the
-  junction creator, and `GetVolumeInformationByHandleW` for handle-bound
-  filesystem information.
-- The corrected current-host test observes NTFS/reparse support, creates one
-  junction without elevation, refuses it through M149's retained-handle open,
-  closes the rejected handle, and preserves the target marker.
-- Exact M149 history and clean worktree were established before this branch.
-  Exact ancestry allowed the contained M149 branch to be pruned; only local
-  `main` and active M150 remain.
+- Microsoft documents persistent opened file objects, handle-relative names,
+  delete sharing for rename access, and volume/file identity comparison.
+- The first corrected current-host test retains `live`, renames it to
+  `displaced`, creates a junction at the former name, refuses that fresh name,
+  and distinguishes the original and target file identities.
+- Exact M150 history and clean worktree were established before this branch.
+  Exact ancestry allowed the contained M150 branch to be pruned; only local
+  `main` and active M151 remain.
 
 ## Explicit non-scope
 
 - No runtime cleanup, adapter, public capability probe, source-tree `ctypes` or
   shelling, retained-root implementation, candidate list, cache read/write,
   remote cache, network, or trusted-time implementation.
-- No dependency, version, workflow/CI, permission, credential, release, tag,
-  or repository-publication implementation is added by this slice.
+- No concurrent/cross-process race, oplock protocol, dependency, version,
+  workflow/CI, permission, credential, release, tag, or repository-publication
+  implementation is added by this slice.
 
 ## Publication condition
 

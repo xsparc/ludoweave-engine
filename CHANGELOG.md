@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M151/RFC-0134's test-only [Windows retained-parent substitution
+  probe](docs/security/cache-cleanup-windows-retained-parent-substitution-probe.md).
+  It executes one deterministic namespace substitution without adding runtime,
+  dependency, workflow, or CI allocation.
 - Add M150/RFC-0133's test-only [Windows directory-junction refusal
   probe](docs/security/cache-cleanup-windows-junction-probe.md). It executes an
   NTFS reparse case without elevation and adds no runtime, dependency,
