@@ -1,51 +1,54 @@
 # Current task
 
-- **Task:** M152 - execute a test-only cross-process retained-parent namespace
-  substitution without admitting a runtime adapter.
-- **Status:** Local M152 acceptance is complete through primary-source
+- **Task:** M153 - execute a test-only cross-process share-delete exclusion and
+  release probe without admitting a runtime adapter.
+- **Status:** Local M153 acceptance is complete through primary-source
   direction, implementation, architecture protection, supported-Python
   behavior, full regression, packaging, release rehearsal, and findings-first
   review. Publication remains conditioned on a fresh audit of the final
   DCO-signed branch commit and the preceding local stack on hosted `main`.
-- **Base:** Fully locally validated M151 DCO commit
-  `3df94f419f14e230275d4dd38ee9f0bcb53b49f6`, tree
-  `f1035e580e2f827390c99ef9b15690c003229bde`, sole parent exact M150.
-- **Branch:** `release/m152-windows-cross-process-substitution`.
+- **Base:** Fully locally validated M152 DCO commit
+  `44953ff23ed84a50cdeed47c4564ebbc45c8447a`, tree
+  `163d5b6568e2f117dbe98c859e5ae93c1d1f6f6b`, sole parent exact M151.
+- **Branch:** `release/m153-windows-share-delete-exclusion`.
 
 ## Acceptance boundary
 
-- Accept RFC-0135 and retain one Windows-only, test-only NTFS child-process
-  substitution fixture confined to pytest temporary storage.
-- Keep the retained directory handle private to the parent; use one fixed,
-  direct, non-inheriting child command to rename and install the junction.
-- Refuse fresh traversal and prove the retained parent remains bound to the
-  renamed original identity rather than the substitution target.
-- Protect exact runtime, scripts, dependencies, workflows, and M151's boundary
-  with automated architecture tests.
+- Accept RFC-0136 and retain one Windows-only, test-only NTFS share-delete
+  fixture confined to pytest temporary storage.
+- Open one ordinary directory with read/write sharing but without delete
+  sharing; keep that native handle private to the parent process.
+- Require one fixed, direct, non-inheriting child rename to fail while that
+  handle is open and leave namespace/content unchanged.
+- Close the blocking handle deterministically and require the identical child
+  command to succeed, with the unchanged candidate under the renamed parent.
+- Protect exact runtime, examples, scripts, dependencies, workflows, and
+  M152's boundary with automated architecture tests.
 - Add no runtime subprocess or `ctypes`, concurrent timing, public probe,
   production adapter, cache access, cleanup authority, dependency, workflow,
   or CI allocation.
 
 ## Direction evidence
 
-- Microsoft documents delete sharing across process contexts, handle
-  inheritance controls, direct process creation, `cmd /d /c`, success-gated
-  `&&`, directory `ren`, and junction `mklink /j`.
-- The corrected current-host test uses `shell=False`, `close_fds=True`, a fixed
-  command string, a trusted working directory, and a bounded timeout.
-- The parent retains `live`; the child renames it to `displaced` and creates the
-  junction; fresh traversal refuses it; retained/original and target file
-  identities remain distinct.
-- Exact M151 history and clean worktree were established before this branch.
-  Exact ancestry allowed the contained M151 branch to be pruned; only local
-  `main` and active M152 remain.
+- Microsoft documents that sharing options remain effective until handle close
+  regardless of process context; omitting `FILE_SHARE_DELETE` prevents later
+  delete-access opens, and delete access includes rename.
+- Microsoft documents fixed directory `ren` behavior and `cmd /d /c`; Python
+  documents `close_fds=True` as preventing retained handle inheritance.
+- The current focused test reports NTFS, observes nonzero child exit with the
+  blocker open, closes that handle, and observes zero exit from the identical
+  child command with unchanged candidate bytes.
+- Exact M152 history and a clean worktree were established before this branch.
+  Exact ancestry allowed the contained M152 branch to be pruned; only local
+  `main` and active M153 remain.
 
 ## Explicit non-scope
 
 - No runtime cleanup, adapter, public capability probe, source-tree `ctypes` or
   subprocess invocation, retained-root implementation, candidate list, cache
   read/write, remote cache, network, or trusted-time implementation.
-- No controlled concurrent race, cross-process exclusion, oplock protocol,
+- No general cross-process exclusion, controlled concurrent race, selected
+  native-call interleaving, direct child native-error capture, oplock protocol,
   quiescence, dependency, version, workflow/CI, permission, credential,
   release, tag, or repository-publication implementation is added by this
   slice.

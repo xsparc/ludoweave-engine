@@ -702,6 +702,14 @@ cross-process namespace change, fresh-name refusal, and original-object identity
 on the current host. It does not prove concurrency, exclusion, quiescence,
 recovery, or mutation authority; Windows remains unadmitted.
 
+M153's test-only [Windows share-delete exclusion
+probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md)
+omits delete sharing from one retained directory handle. One fixed child rename
+fails without changing the namespace, and the identical rename succeeds after
+the parent closes the blocking handle. This does not establish general
+cross-process exclusion, controlled interleavings, oplock behavior, quiescence,
+recovery, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

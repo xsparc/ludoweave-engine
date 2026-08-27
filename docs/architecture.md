@@ -3866,6 +3866,34 @@ candidate disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0135 records the accepted test-only boundary.
 
+## M153 Windows share-delete exclusion boundary
+
+M153 adds one Windows-only, test-only [share-delete exclusion
+probe](security/cache-cleanup-windows-share-delete-exclusion-probe.md). The
+parent opens one ordinary NTFS directory with read and write sharing while
+omitting delete sharing. A non-inheriting child `cmd.exe` executes only the
+fixed relative command `ren live displaced` from the trusted pytest root.
+
+While the blocking handle remains open, the child returns nonzero and both the
+original name and candidate bytes remain unchanged. The parent explicitly
+closes that handle, retains only the opened root, and runs the identical child
+command. It then succeeds, the original name is absent, and the candidate is
+unchanged under `displaced`. The root closes deterministically to zero owned
+handles.
+
+This is one current-host share-mode denial and release observation. It is not
+general cross-process exclusion, quiescence, a controlled race, a selected
+native-call interleaving, direct native-error evidence, an oplock protocol,
+descendant-activity safety, or platform admission. Competing actors, duplicated
+handles, other filesystems, recovery, policy, receipts, and independent hosts
+remain outside the result.
+
+M153 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes` or subprocess invocation, adapter, cache access,
+candidate disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0136 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

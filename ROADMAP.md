@@ -1857,6 +1857,34 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M153 Windows cross-process share-delete exclusion probe
+
+M153 starts from fully locally validated M152 commit
+`44953ff23ed84a50cdeed47c4564ebbc45c8447a`. It adds one Windows-only,
+test-only [share-delete exclusion
+probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md)
+under RFC-0136.
+
+The current NTFS host retains an opened `live` directory with read and write
+sharing but without delete sharing. A fixed non-inheriting child `cmd.exe`
+invocation cannot rename it to `displaced`; the namespace and candidate bytes
+remain unchanged. After deterministic close of that blocking handle, the
+identical child command succeeds and the unchanged candidate is available
+under the new name. The root handle then closes to zero owned handles.
+
+Windows remains unadmitted. This paired current-host observation is not
+general cross-process exclusion, a controlled race, an interleaving at a
+selected native call, an oplock protocol, quiescence, descendant-activity
+proof, other-filesystem evidence, recovery, policy, receipt, or independent-
+host proof.
+
+M153 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

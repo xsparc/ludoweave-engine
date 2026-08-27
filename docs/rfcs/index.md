@@ -140,3 +140,4 @@ was adopted.
 - [RFC-0133: probe Windows directory-junction refusal](0133-probe-windows-junction-refusal.md)
 - [RFC-0134: probe Windows retained-parent substitution safety](0134-probe-windows-retained-parent-substitution.md)
 - [RFC-0135: probe Windows cross-process retained-parent substitution](0135-probe-windows-cross-process-substitution.md)
+- [RFC-0136: probe Windows cross-process share-delete exclusion](0136-probe-windows-share-delete-exclusion.md)

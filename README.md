@@ -97,8 +97,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md).
 > A fixed child command renames and rebinds the directory while the parent
 > retains the original handle; this is not a concurrency or admission claim.
+> M153 adds one test-only [Windows share-delete exclusion
+> probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md).
+> A fixed child rename is blocked while delete sharing is omitted and succeeds
+> after deterministic handle close; Windows remains unadmitted.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M152 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M153 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

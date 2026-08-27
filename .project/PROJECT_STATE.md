@@ -1,5 +1,33 @@
 # Project State
 
+## M153 Windows cross-process share-delete exclusion - locally validated
+
+- Base: fully locally validated M152 DCO commit
+  `44953ff23ed84a50cdeed47c4564ebbc45c8447a`, tree
+  `163d5b6568e2f117dbe98c859e5ae93c1d1f6f6b`, sole parent exact M151.
+- Branch: `release/m153-windows-share-delete-exclusion`; exact containment
+  allowed the redundant M152 branch to be pruned.
+- Direction: RFC-0136 accepts one test-only NTFS paired share-mode fixture to
+  observe cross-process rename denial before close and success after close.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Initial DCO commit: `097752e59a7be2d76688bd8335dcd1ad106c9ac8`, tree
+  `1ed516da32132ff97123bee4d5c15b4834e4b266`, sole parent exact M152. It
+  has exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 54` divergence from local M99 main. This factual
+  closeout is folded into the same commit by one final amendment.
+- Hosted state: a fresh postcommit fetch and GitHub PR/branch audit still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; open PRs are empty, PR #251
+  remains the newest merge, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
 ## M152 Windows cross-process namespace substitution - locally validated
 
 - Base: fully locally validated M151 DCO commit

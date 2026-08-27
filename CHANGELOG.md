@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M153/RFC-0136's test-only [Windows share-delete exclusion
+  probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md).
+  It pairs one blocked child rename with the identical post-close success
+  without adding runtime, dependency, workflow, or CI allocation.
 - Add M152/RFC-0135's test-only [Windows cross-process substitution
   probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md).
   It executes one fixed child-process namespace change without adding runtime,
