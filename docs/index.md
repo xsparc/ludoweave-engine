@@ -88,6 +88,10 @@ attestation, with the same allocation topology.
   handshake](security/cache-cleanup-windows-child-owned-share-delete-handshake.md)
   that orders a distinct blocker process's acquisition and close without
   adding runtime behavior, another CI allocation, or platform admission.
+- A test-only [Windows abrupt blocker-owner termination
+  probe](security/cache-cleanup-windows-abrupt-blocker-termination-probe.md)
+  that bypasses graceful close and bounds one forced owner-termination
+  transition without adding runtime behavior, recovery, or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

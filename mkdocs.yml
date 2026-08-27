@@ -44,6 +44,7 @@ nav:
   - Windows share-delete exclusion probe: security/cache-cleanup-windows-share-delete-exclusion-probe.md
   - Windows native sharing-violation probe: security/cache-cleanup-windows-native-sharing-violation-probe.md
   - Windows child-owned share-delete handshake: security/cache-cleanup-windows-child-owned-share-delete-handshake.md
+  - Windows abrupt blocker-owner termination probe: security/cache-cleanup-windows-abrupt-blocker-termination-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -188,6 +189,7 @@ nav:
       - RFC-0136 - Probe Windows cross-process share-delete exclusion: rfcs/0136-probe-windows-share-delete-exclusion.md
       - RFC-0137 - Probe the Windows native sharing-violation result: rfcs/0137-probe-windows-native-sharing-violation.md
       - RFC-0138 - Probe a child-owned Windows share-delete handshake: rfcs/0138-probe-windows-child-owned-share-delete-handshake.md
+      - RFC-0139 - Probe abrupt termination of a Windows blocker owner: rfcs/0139-probe-windows-abrupt-blocker-termination.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

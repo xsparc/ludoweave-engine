@@ -1,5 +1,34 @@
 # Project State
 
+## M156 Windows abrupt blocker-owner termination - locally validated
+
+- Base: fully locally validated M155 DCO commit
+  `40aee9c75a8d10bc9876869788b9e39db73c1151`, tree
+  `1383b854ba3bc10c79dec0b01894500b459368c4`, sole parent exact M154.
+- Branch: `release/m156-abrupt-blocker-termination`; exact containment allowed
+  the redundant M155 branch to be pruned.
+- Direction: RFC-0139 accepts one bounded forced-termination observation that
+  bypasses M155's graceful release token and retries M154's unchanged native
+  rename once after the child has terminated.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review. Branch commits remain subject to DCO sign-off.
+- Initial DCO commit: `e1829ee5c8017fea8d25227d5a00875be9ef98b8`, tree
+  `a8e4f05840dee31cdf7512f8d06341dd01536d0c`, sole parent exact M155. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 57` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit GitHub PR/branch audits
+  still expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
 ## M155 Windows child-owned share-delete handshake - locally validated
 
 - Base: fully locally validated M154 DCO commit

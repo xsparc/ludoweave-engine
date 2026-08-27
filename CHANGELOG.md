@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M156/RFC-0139's test-only [Windows abrupt blocker-owner termination
+  probe](docs/security/cache-cleanup-windows-abrupt-blocker-termination-probe.md).
+  It bypasses the graceful release handshake and verifies one bounded
+  forced-termination transition without adding runtime or CI allocation.
 - Add M155/RFC-0138's test-only [Windows child-owned share-delete
   handshake](docs/security/cache-cleanup-windows-child-owned-share-delete-handshake.md).
   It orders a distinct blocker process's acquisition and close around the

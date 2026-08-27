@@ -3950,6 +3950,27 @@ candidate disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0138 records the accepted test-only boundary.
 
+## M156 Windows abrupt blocker-owner termination boundary
+
+M156 adds one Windows-only, test-only [abrupt blocker-owner termination
+probe](security/cache-cleanup-windows-abrupt-blocker-termination-probe.md).
+It reuses M155's fixed child-owned blocker and readiness boundary unchanged,
+proves M154's false/error 32 denial while that owner remains alive, then sends
+no release token. The parent forces termination and performs a bounded wait
+before the identical rename returns true/code zero with content preserved.
+
+The process exit must be nonzero but is not promoted as a stable numeric
+contract. No `closed` acknowledgement is accepted on the forced path. The
+explicit process wait, rather than a sleep or retry loop, is the only ordering
+boundary between termination and the post-termination rename.
+
+This is one current-host ownership-termination observation, not crash or
+restart recovery, a close-failure protocol, concurrent mutation safety,
+general exclusion, duplicated-handle or oplock behavior, or Windows admission.
+M156 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, helper, dependency, workflow, permission, release authority, or CI
+change. RFC-0139 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

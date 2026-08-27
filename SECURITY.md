@@ -726,6 +726,14 @@ alive and true/code zero only after acknowledged close. This is one ordered
 current-host transition, not a concurrent race, general exclusion, recovery,
 or mutation authority; Windows remains unadmitted.
 
+M156's test-only [Windows abrupt blocker-owner termination
+probe](docs/security/cache-cleanup-windows-abrupt-blocker-termination-probe.md)
+reuses that distinct owner but sends no graceful release token. The parent
+forces termination, waits with a fixed bound, observes no close
+acknowledgement, and retries the unchanged native rename once. This is one
+current-host process-termination observation, not crash or restart recovery,
+general exclusion, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

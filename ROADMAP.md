@@ -1943,6 +1943,35 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M156 Windows abrupt blocker-owner termination probe
+
+M156 starts from fully locally validated M155 commit
+`40aee9c75a8d10bc9876869788b9e39db73c1151`. It adds one Windows-only,
+test-only [abrupt blocker-owner termination
+probe](docs/security/cache-cleanup-windows-abrupt-blocker-termination-probe.md)
+under RFC-0139.
+
+The parent reuses M155's fixed blocker and bounded `ready` handshake but sends
+no release token. M154's unchanged native rename child returns false/error 32
+while the blocker remains alive. The parent then forces termination, waits
+with M155's fixed timeout, requires a nonzero but not numerically standardized
+exit and no `closed` acknowledgement, and invokes the identical rename once.
+That retry returns true/code zero and preserves the candidate under
+`displaced`.
+
+Windows remains unadmitted. This single current-host forced-termination
+transition is not crash or restart recovery, a close-failure protocol,
+controlled concurrent interleaving, general exclusion, duplicated-handle or
+oplock behavior, other-filesystem/driver evidence, policy, receipt, or
+independent-host proof.
+
+M156 adds no runtime API, protocol, decoder, CLI command, public probe, helper,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

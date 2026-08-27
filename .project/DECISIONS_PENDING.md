@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M156 Windows abrupt blocker-owner termination probe
+
+RFC-0139 accepts one NTFS, Windows-only, test-only observation in which the
+parent kills M155's unchanged blocker child without sending the graceful
+release token, performs a bounded process wait, receives no `closed`
+acknowledgement, and retries M154's identical native rename once. The current
+host reports false/32 before termination and true/0 after the bounded wait.
+
+This resolves only one abrupt blocker-owner termination observation. Pipe
+failure, readiness/termination timeout, close failure, restart recovery,
+duplicated handles, oplocks, controlled interleavings, general exclusion,
+filesystem/driver variation, and independent-host proof remain pending.
+Windows is not admitted.
+
+RFC-0139 does not authorize runtime subprocess or `ctypes`, a production
+adapter, public capability, cleanup authority, recovery policy, dependency,
+workflow, CI allocation, tag, release, or publication.
+
 ## M155 Windows child-owned share-delete handshake
 
 RFC-0138 accepts one NTFS, Windows-only, test-only child-owned blocker with a
