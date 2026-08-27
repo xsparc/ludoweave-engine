@@ -132,3 +132,4 @@ was adopted.
 - [RFC-0125: verify saved cache-fingerprint comparison evidence](0125-verify-saved-cache-fingerprint-comparison.md)
 - [RFC-0126: add a path-free unreferenced-blob preview](0126-add-path-free-unreferenced-blob-preview.md)
 - [RFC-0127: add an offline unreferenced-blob preview](0127-add-offline-unreferenced-blob-preview.md)
+- [RFC-0128: verify a saved unreferenced-blob preview](0128-verify-saved-unreferenced-blob-preview.md)

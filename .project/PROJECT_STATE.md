@@ -1,5 +1,46 @@
 # Project State
 
+## M145 saved unreferenced-preview verification - locally validated and committed
+
+- Base: fully locally validated M144 DCO commit
+  `d6bbf33e35b5e21fa48d6553e1b3b73d104b0cd6`, tree
+  `197792e9cc5226084a1d947916349b5e9cc0f1af`, sole parent exact M143.
+- Branch: `release/m145-saved-unreferenced-preview-verification`. Exact ancestry
+  proved the contained M144 branch redundant and it was pruned; only local
+  `main` and active M145 remain.
+- Direction: accepted RFC-0128 adds bounded canonical admission and pure offline
+  verification of one saved aggregate preview against its exact plan and
+  admitted fingerprint. The fixed report binds exact preview bytes without
+  reading a cache or adding trust claims.
+- Implemented: a 2,048-byte tightening-only limit, strict exact-schema decoder,
+  immutable verification value, pure exact-value verifier, CLI composition,
+  focused unit/integration coverage, installed-wheel smoke, architecture guard,
+  and public documentation.
+- Focused evidence: all 17 unit cases pass after correcting field-specific
+  digest diagnostics; all three selected CLI cases pass after correcting one
+  test-only helper typo; the initial isolated no-dependency wheel consumer
+  passes after deleting the originating cache.
+- Acceptance: all complete static/architecture/docs/governance gates, all three
+  supported Python suites, real-wgpu, profiles, both vertical slices, two
+  reproducible distributions, all 28 installed consumers, two identical
+  release rehearsals, archive inspection, and findings-first scope/security
+  review pass.
+- Initial DCO commit: `de16694f03eb1174de090ae5ae1016c35f662c4e`, tree
+  `17a8363e66a83916b5a86c1d081f8fda3e0e8126`, sole parent exact M144. It has
+  exact maintainer author/committer identity, one DCO sign-off, 19 paths, clean
+  whitespace, `0 46` divergence from local M99 main, and zero critical
+  object-integrity finding. This closeout is folded into the same commit by one
+  final amendment.
+- Hosted state: a postcommit fetch and independent GitHub API query still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main` exists, open
+  PRs are empty, PR #251 remains newest, no workflow run exists after
+  2026-08-22, and releases are empty. No M145 remote action occurred because
+  publishing would expose the absent M100-M145 stack.
+- Scope: no cache access, current-state/chronology/authenticity claim,
+  candidate/path disclosure, deletion authority, mutation, dependency, version,
+  workflow/CI, release, backend/native, or root-API change.
+
 ## M144 offline unreferenced-blob preview - locally validated and committed
 
 - Base: fully locally validated M143 DCO commit

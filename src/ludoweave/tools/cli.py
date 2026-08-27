@@ -17,6 +17,7 @@ from ludoweave.assets import (
     ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES,
     ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
     ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
+    ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_MAX_BYTES,
     ASSET_SOURCE_MAX_BYTES,
     ASSET_SOURCE_TOTAL_MAX_BYTES,
     AssetBuildInput,
@@ -32,6 +33,7 @@ from ludoweave.assets import (
     compare_asset_cache_fingerprint_records,
     decode_asset_cache_fingerprint,
     decode_asset_cache_fingerprint_comparison,
+    decode_asset_cache_unreferenced_preview,
     execute_asset_build_plan,
     fingerprint_asset_cache_observation,
     inspect_asset_cache_inventory,
@@ -42,6 +44,7 @@ from ludoweave.assets import (
     verify_asset_cache_fingerprint,
     verify_asset_cache_fingerprint_comparison,
     verify_asset_cache_population,
+    verify_asset_cache_unreferenced_preview,
 )
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
@@ -278,6 +281,23 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     source_asset_cache_fingerprint_record_preview_parser.add_argument(
         "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser = source_subparsers.add_parser(
+        "asset-cache-unreferenced-preview-verify",
+        help="verify one saved unreferenced preview against saved fingerprint evidence",
+    )
+    _add_asset_source_arguments(source_asset_cache_unreferenced_preview_verify_parser)
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--preview", required=True, help="project-relative saved unreferenced preview"
     )
     source_asset_cache_fingerprint_verify_parser = source_subparsers.add_parser(
         "asset-cache-fingerprint-verify",
@@ -557,6 +577,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return _run_asset_cache_unreferenced_preview(args)
             if source_command == "asset-cache-fingerprint-record-preview":
                 return _run_asset_cache_fingerprint_record_preview(args)
+            if source_command == "asset-cache-unreferenced-preview-verify":
+                return _run_asset_cache_unreferenced_preview_verify(args)
             if source_command == "asset-cache-fingerprint-compare":
                 return _run_asset_cache_fingerprint_compare(args)
             if source_command == "asset-cache-fingerprint-record-compare":
@@ -956,6 +978,34 @@ def _run_asset_cache_fingerprint_record_preview(args: argparse.Namespace) -> int
     )
     preview = preview_asset_cache_unreferenced_blobs(current_plan, fingerprint)
     _write_stdout(preview.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_unreferenced_preview_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="asset_cache_fingerprint",
+        )
+    )
+    preview = decode_asset_cache_unreferenced_preview(
+        project.read_relative(
+            _text_argument(args, "preview"),
+            max_bytes=ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_MAX_BYTES,
+            role="asset_cache_unreferenced_preview",
+        )
+    )
+    verification = verify_asset_cache_unreferenced_preview(current_plan, fingerprint, preview)
+    _write_stdout(verification.canonical_bytes())
     return 0
 
 

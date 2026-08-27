@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M145/RFC-0128 strict saved unreferenced-preview verification. One bounded
+  canonical preview is recomputed against the exact plan and admitted saved
+  fingerprint entirely offline; success binds the preview digest without cache
+  access, authenticity claims, mutation, dependency, workflow, or CI changes.
 - Add M144/RFC-0127 offline unreferenced-blob preview composition. The new
   command strictly admits one bounded saved fingerprint after current-input
   preflight and emits the unchanged M143 aggregate preview without cache access,

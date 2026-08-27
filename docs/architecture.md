@@ -3654,6 +3654,34 @@ collection, prune, repair, deletion, eviction, mutation, remote cache, network,
 dependency, backend/native surface, version, workflow, permission, release
 authority, or CI change. RFC-0127 records the complete boundary.
 
+## M145 saved unreferenced-preview verification boundary
+
+`source asset-cache-unreferenced-preview-verify` is a composition root only.
+It preflights current project sources, the saved source lock, and the exact
+regenerated asset-build plan before resolving either saved record. It reuses
+M139's project-confined, no-follow, 65,536-byte fingerprint admission and adds
+one tightening-only 2,048-byte strict decoder for the exact canonical M143
+preview schema. Duplicate keys, non-finite numbers, non-UTF-8 input, extra or
+missing fields, invalid protocols or aggregates, oversized input, and
+noncanonical bytes fail closed.
+
+The pure verifier accepts exact `AssetBuildPlan`, `AssetCacheFingerprint`, and
+`AssetCacheUnreferencedPreview` values. It invokes unchanged M143 derivation
+once and requires exact frozen-value equality. Success emits the fixed,
+path-free
+`ludoweave.asset-cache-unreferenced-preview-verification/1` record with plan,
+observation, fingerprint-protocol, preview-protocol, and exact canonical-preview
+SHA-256 bindings. It has no filesystem, cache, clock, thread, process, network,
+or mutation capability.
+
+This is integrity evidence over supplied bytes, not authenticity, provenance,
+writer identity, chronology, freshness, a trusted timestamp, an atomic current
+cache snapshot, or deletion eligibility. M145 adds no cache argument or access,
+candidate identity, path/payload/age disclosure, retention policy, cleanup,
+mutation, remote cache, dependency, backend/native surface, version, workflow,
+permission, release authority, or CI change. RFC-0128 records the complete
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

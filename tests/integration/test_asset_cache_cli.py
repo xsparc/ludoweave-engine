@@ -227,6 +227,27 @@ def _preview_unreferenced_record(
     )
 
 
+def _verify_unreferenced_preview(
+    project: Path,
+    *,
+    fingerprint: str = "fingerprint.json",
+    preview: str = "preview.json",
+) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-unreferenced-preview-verify",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--fingerprint",
+        fingerprint,
+        "--preview",
+        preview,
+    )
+
+
 def _verify_fingerprint(
     project: Path,
     cache: Path,
@@ -936,6 +957,116 @@ def test_asset_cache_fingerprint_record_preview_preflights_before_record_read(
     (project / "assets/item.json").write_bytes(b'{"value":2}')
 
     result = _preview_unreferenced_record(project, fingerprint="missing.json")
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] != "tools.input_unavailable"
+    assert str(project) not in result.stderr
+
+
+def test_asset_cache_unreferenced_preview_verify_accepts_saved_evidence_offline(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    orphan = b"offline saved preview verification orphan"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    shutil.rmtree(cache)
+    preview = _preview_unreferenced_record(project)
+    assert preview.returncode == 0
+    preview_bytes = preview.stdout.rstrip("\n").encode("utf-8")
+    (project / "preview.json").write_bytes(preview_bytes)
+    before = _files(project)
+
+    first = _verify_unreferenced_preview(project)
+    second = _verify_unreferenced_preview(project)
+
+    assert first.returncode == second.returncode == 0
+    assert first.stderr == second.stderr == ""
+    assert first.stdout == second.stdout
+    report = cast(dict[str, object], json.loads(first.stdout))
+    preview_report = cast(dict[str, object], json.loads(preview.stdout))
+    assert report == {
+        "$schema": "ludoweave.asset-cache-unreferenced-preview-verification/1",
+        "status": "valid",
+        "fingerprint_protocol": "ludoweave.asset-cache-fingerprint/1",
+        "preview_protocol": "ludoweave.asset-cache-unreferenced-preview/1",
+        "plan_sha256": preview_report["plan_sha256"],
+        "observation_sha256": preview_report["observation_sha256"],
+        "preview_sha256": f"sha256:{sha256(preview_bytes).hexdigest()}",
+    }
+    assert digest not in first.stdout
+    assert str(project) not in first.stdout
+    assert str(cache) not in first.stdout
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_unreferenced_preview_verify_rejects_tampered_saved_preview(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    orphan = b"tampered saved preview verification orphan"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    shutil.rmtree(cache)
+    preview = _preview_unreferenced_record(project)
+    assert preview.returncode == 0
+    tampered = cast(dict[str, object], json.loads(preview.stdout))
+    original_bytes = cast(int, tampered["unreferenced_blob_bytes"])
+    tampered["unreferenced_blob_bytes"] = original_bytes + 1
+    (project / "preview.json").write_bytes(canonical_dumps(tampered))
+    before = _files(project)
+
+    result = _verify_unreferenced_preview(project)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.unreferenced_preview_verification_mismatch"
+    assert error["details"] == {"field": "unreferenced_blob_bytes"}
+    assert digest not in result.stderr
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_unreferenced_preview_verify_preflights_before_saved_records(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _verify_unreferenced_preview(
+        project,
+        fingerprint="missing-fingerprint.json",
+        preview="missing-preview.json",
+    )
 
     assert result.returncode == 2
     assert result.stdout == ""

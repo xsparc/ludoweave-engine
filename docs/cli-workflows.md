@@ -635,3 +635,29 @@ no project write. The unsigned record proves neither current cache state nor
 chronology, freshness, authenticity, provenance, writer identity, or deletion
 eligibility. M144 adds no new runtime protocol, mutation, dependency, or CI
 change.
+
+## Verify a saved unreferenced-blob preview offline
+
+M145 strictly admits and verifies a saved M143/M144 preview against its exact
+plan and saved fingerprint after the originating cache is absent:
+
+```console
+ludoweave source asset-cache-unreferenced-preview-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json --preview config/cache.unreferenced-preview.json
+```
+
+Current source identities, the saved lock, and the exact regenerated plan are
+verified before either saved-record path is resolved or read. The fingerprint
+retains its 65,536-byte strict canonical admission. The preview is
+project-confined, no-follow, at most 2,048 bytes, duplicate-free exact-schema
+canonical JSON, and bounded to the existing aggregate maxima. Invalid,
+noncanonical, oversized, mismatched, or inaccessible evidence fails with
+structured exit 2.
+
+There is no `--cache` argument and no cache access. Success emits fixed
+`ludoweave.asset-cache-unreferenced-preview-verification/1` JSON with exit 0,
+including the exact preview-byte SHA-256 but no candidate or path identity. It
+performs no project write. Verification proves internal consistency of the
+supplied records; it does not prove current cache state, chronology, freshness,
+authenticity, provenance, writer identity, trusted time, or deletion
+eligibility. M145 adds no dependency, mutation, workflow, or CI change; in
+particular, there is no CI change.

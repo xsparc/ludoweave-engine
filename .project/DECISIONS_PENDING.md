@@ -2,6 +2,21 @@
 
 No architecture decision is currently blocked.
 
+## M145 saved unreferenced-preview verification
+
+RFC-0128 resolves the adopted M145 direction: strictly admit one bounded
+canonical M143/M144 preview and verify it offline against the exact current plan
+and one already-admitted saved M138 fingerprint. The CLI preflights current
+source/lock/plan state before either project-confined record read and has no
+cache argument.
+
+The success report binds exact preview bytes and supplied plan/observation
+identity. It is integrity evidence only. Authenticity, provenance, writer
+identity, trusted time, chronology/freshness, current cache state, candidate
+disclosure, retention/deletion authority, cleanup/mutation, remote cache,
+network, dependencies, version, workflows/CI, release authority, and remote
+change remain unauthorized for M145.
+
 ## M144 offline unreferenced-blob preview
 
 RFC-0127 resolves the adopted M144 direction: after current source/lock/plan

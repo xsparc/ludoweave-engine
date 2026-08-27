@@ -117,6 +117,15 @@ from ludoweave.assets.unreferenced_preview import (
     AssetCacheUnreferencedPreview,
     preview_asset_cache_unreferenced_blobs,
 )
+from ludoweave.assets.unreferenced_preview_verification import (
+    ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_MAX_BYTES,
+    ASSET_CACHE_UNREFERENCED_PREVIEW_VERIFICATION_PROTOCOL,
+    DEFAULT_ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_LIMITS,
+    AssetCacheUnreferencedPreviewRecordLimits,
+    AssetCacheUnreferencedPreviewVerification,
+    decode_asset_cache_unreferenced_preview,
+    verify_asset_cache_unreferenced_preview,
+)
 
 __all__ = [
     "ASSET_BUILD_PLAN_PROTOCOL",
@@ -140,6 +149,8 @@ __all__ = [
     "ASSET_CACHE_POPULATION_VERIFICATION_PROTOCOL",
     "ASSET_CACHE_PUBLISH_PROTOCOL",
     "ASSET_CACHE_UNREFERENCED_PREVIEW_PROTOCOL",
+    "ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_MAX_BYTES",
+    "ASSET_CACHE_UNREFERENCED_PREVIEW_VERIFICATION_PROTOCOL",
     "ASSET_LOADER_PROTOCOL",
     "ASSET_MANIFEST_PROTOCOL",
     "ASSET_SOURCE_LOCK_PROTOCOL",
@@ -148,6 +159,7 @@ __all__ = [
     "DEFAULT_ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_LIMITS",
     "DEFAULT_ASSET_CACHE_FINGERPRINT_RECORD_LIMITS",
     "DEFAULT_ASSET_CACHE_INVENTORY_LIMITS",
+    "DEFAULT_ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_LIMITS",
     "AssetArtifact",
     "AssetBuildArtifact",
     "AssetBuildExecutionLimits",
@@ -182,6 +194,8 @@ __all__ = [
     "AssetCachePublishSummary",
     "AssetCacheStore",
     "AssetCacheUnreferencedPreview",
+    "AssetCacheUnreferencedPreviewRecordLimits",
+    "AssetCacheUnreferencedPreviewVerification",
     "AssetEntry",
     "AssetError",
     "AssetKind",
@@ -199,6 +213,7 @@ __all__ = [
     "compare_asset_cache_fingerprint_records",
     "decode_asset_cache_fingerprint",
     "decode_asset_cache_fingerprint_comparison",
+    "decode_asset_cache_unreferenced_preview",
     "decode_png",
     "execute_asset_build_plan",
     "fingerprint_asset_cache_observation",
@@ -210,5 +225,6 @@ __all__ = [
     "verify_asset_cache_fingerprint",
     "verify_asset_cache_fingerprint_comparison",
     "verify_asset_cache_population",
+    "verify_asset_cache_unreferenced_preview",
 ]
 __stability__ = {name: "experimental" for name in __all__}

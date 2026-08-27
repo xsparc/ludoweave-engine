@@ -1,99 +1,71 @@
 # Current task
 
-- **Task:** M144 - derive the unchanged path-free unreferenced-blob preview
-  offline from one strictly admitted saved cache fingerprint.
-- **Status:** M144 implementation, complete local acceptance, installed-wheel
-  proof, reproducibility, release rehearsal, findings-first review, bounded
-  cleanup, DCO commit, and fresh publication-eligibility audit are complete.
+- **Task:** M145 - strictly admit and verify one saved unreferenced-blob
+  preview against its exact plan and admitted saved fingerprint offline.
+- **Status:** Implementation, complete local acceptance, supported-Python
+  validation, installed-wheel proof, reproducibility, release rehearsal,
+  findings-first review, final evidence closure, and bounded cleanup are
+  complete. The initial DCO commit and fresh publication audit are complete.
   Publication is held because authoritative hosted `main` remains exact M99.
-- **Base:** Fully locally validated M143 DCO commit
-  `1e9eedd5307d3c1249fe1dcd2b22acf4a01ccfc2`, tree
-  `a2320515ef4e97b5d4be3a9091dd6f90a11ad86b`, with sole parent exact M142.
-- **Branch:** `release/m144-offline-unreferenced-blob-preview`.
+- **Base:** Fully locally validated M144 DCO commit
+  `d6bbf33e35b5e21fa48d6553e1b3b73d104b0cd6`, tree
+  `197792e9cc5226084a1d947916349b5e9cc0f1af`, with sole parent exact M143.
+- **Branch:** `release/m145-saved-unreferenced-preview-verification`.
 
 ## Acceptance boundary
 
-- Add `source asset-cache-fingerprint-record-preview` as a composition root
-  only. Preflight current sources, the saved lock, and exact regenerated plan
-  before resolving or reading one project-relative fingerprint record.
-- Reuse M139's exact 65,536-byte hard maximum, project-confinement/no-follow
-  reader, strict canonical decoder, exact schema, and aggregate bounds.
-- Pass the exact plan and admitted fingerprint to the unchanged pure M143
-  function and emit the unchanged
-  `ludoweave.asset-cache-unreferenced-preview/1` bytes with exit 0.
-- Prove stable read-only operation after the originating cache is absent,
-  wrong-plan rejection, current-input preflight before record access,
-  path/object-identity silence, isolated installed-wheel behavior, strict docs,
-  and architecture protection.
-- Preserve M137-M143 protocols/bytes, cache layout, fingerprint admission,
-  workflows, dependencies, version, engine-root API, and release authority.
-- State explicitly that an unsigned offline record supplies neither current
-  cache state nor chronology, freshness, authenticity, provenance, trusted
-  timestamp, or deletion eligibility.
+- Add a tightening-only 2,048-byte preview-record limit and strict canonical
+  exact-schema decoder for `ludoweave.asset-cache-unreferenced-preview/1`.
+- Add a pure verifier over exact `AssetBuildPlan`, admitted
+  `AssetCacheFingerprint`, and admitted `AssetCacheUnreferencedPreview` values.
+  Recompute unchanged M143 once, require exact equality, and emit fixed
+  `ludoweave.asset-cache-unreferenced-preview-verification/1` evidence binding
+  the exact canonical preview bytes by SHA-256.
+- Add `source asset-cache-unreferenced-preview-verify`. Preflight current
+  sources, saved lock, and exact regenerated plan before resolving either saved
+  record; reuse M139 fingerprint admission and read the preview under its new
+  bound. Expose no cache argument and perform no mutation.
+- Prove bounded/canonical admission, tamper rejection, stable path-free output,
+  cache-absent use, current-input preflight ordering, installed-wheel behavior,
+  architecture isolation, supported-Python behavior, strict docs, reproducible
+  artifacts, and unchanged release surfaces.
+- Preserve M137-M144 bytes/protocols, cache layout and behavior, root API,
+  package version, dependencies/lock, workflows/allocations/permissions,
+  release behavior, and backend/native boundaries.
 
-## Direction and evidence so far
+## Direction evidence
 
-- Primary sources accessed 2026-08-27: RFC 8785, Python 3.12 JSON decoder,
-  SLSA 1.2 artifact verification, and GitHub workflow-trigger guidance. They
-  support reuse of one strict canonical admission path, require separate trust
-  policy for authenticity, and provide no reason to change quota-conscious CI.
-- Exact M143 commit/tree/parent, clean worktree, maintainer identity, DCO, and
-  object integrity were established before the neutral M144 branch was created.
-  Exact ancestry proved the redundant M143 branch was contained and it was
-  pruned; only local `main` and active M144 remain.
-- The CLI parser/dispatch/composition and three offline integration cases are
-  format/Ruff/strict-Pyright clean. The first pytest attempt stopped before
-  product setup because the cleaned `.tmp` parent was absent; after recreating
-  that ignored parent, all three cases passed with 42 deselected in 6.88
-  seconds.
-- The initial wheel built, but its smoke fixture retained the CLI presentation
-  newline and was correctly rejected as noncanonical. Persisting exact
-  canonical record bytes fixed the fixture. The corrected script is format/
-  Ruff/strict-Pyright clean and its isolated no-dependency consumer passes.
-- The corrected initial pure wheel is 355,497 bytes at SHA-256
-  `436e5542bc0bc3a3fb57cf5fcacab19204fd38a3285d8b08e4ac2374d7643f7c`;
-  its pre-record source archive is 1,867,734 bytes at SHA-256
-  `bdacb4814433a3ddf733b02c6d674b0a23a92623a20efa97179ec885e49ed8a7`.
-- Complete static, architecture, docs, and governance gates pass: 466 Python
-  files are format-clean, Ruff and strict Pyright are clean, all 1,731
-  architecture assertions pass with one established skip, and both governance
-  modes report zero findings.
-- Exact CPython 3.12.13 passes 3,654 tests with 16 established skips; fresh
-  exact CPython 3.13.13 and 3.14.5 each pass 3,644 with 17 skips. All ten
-  real-wgpu tests, both profiles, and both deterministic vertical slices pass
-  with their established identities.
-- Two record-inclusive builds reproduce a 355,539-byte pure wheel at SHA-256
-  `51d5ce7187cff20429f40374b8cfaa923a24e3b8686006da837961ccfbb6fc47`;
-  all 27 installed consumers pass, and two byte-identical ten-artifact release
-  rehearsals pass.
-- Findings-first review leaves exactly 16 intended paths. Workflows,
-  dependencies, lock, protected runtime/release surfaces, public identity,
-  credentials, backend/native imports, disclosure, and mutation boundaries are
-  clean.
-- The authoritative hosted `main` remains exact M99
-  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, with no open PR and PR #251 as
-  the newest merge. M144 remains local pending full acceptance and a hosted
-  base that actually contains the preceding stack.
+- RFC 8785 and Python 3.12 JSON guidance support duplicate-free canonical
+  admission with explicit non-finite rejection; SLSA verification guidance
+  keeps integrity separate from authenticity and trust roots; GitHub workflow
+  guidance supplies no reason to expand quota-conscious CI.
+- Exact M144 history, tree, parent, DCO, identity, clean worktree, and object
+  integrity were established before this neutral branch was created. Exact
+  ancestry proved the contained M144 branch redundant and it was pruned; only
+  local `main` and active M145 remain.
+- The first unit gate exposed generic digest-field diagnostics; the decoder now
+  reports the exact invalid digest field and all 17 unit cases pass.
+- The first CLI gate exposed one test-fixture name typo while the product
+  implementation compiled; after correction, formatting, Ruff, strict Pyright,
+  and all three selected integration cases pass.
+- An initial pure wheel and source archive were built, and the isolated
+  no-dependency M145 consumer passed twice after deleting the originating cache.
 
 ## Explicit non-scope
 
-- No new runtime value/protocol/decoder, saved-preview format, preview
-  verification, cache argument/access, fresh observation, candidate list,
-  detailed diff, cache/object/action/artifact identity, filename/path/payload,
-  timestamp, age, last-use fact, policy threshold, or new disclosure.
-- No chronology/freshness/authenticity/provenance claim, signature, key/trust
-  root, attestation, transparency log, trusted timestamp, remote cache,
-  authentication, network, or telemetry export.
-- No retention root, lease, pin, generation, grace/quota policy, quiescence,
-  lock, atomic snapshot, cleanup, garbage collection, prune, repair, deletion,
-  eviction, mutation, migration, rollback, watcher, scheduler, worker, process,
-  thread, parallelism, plugin, dynamic evaluation, renderer upload,
-  project/world mutation, receipt, dependency, native/backend surface,
-  metadata, version, engine-root API, workflow/allocation, permission,
-  credential, release, publication, push, PR, or remote change in this slice.
+- No cache observation or access, candidate identity, path/payload/age
+  disclosure, current-state or chronology/freshness guarantee, authenticity,
+  provenance, writer identity, trusted timestamp, atomic snapshot, retention or
+  deletion eligibility, cleanup, prune, garbage collection, repair, eviction,
+  or mutation.
+- No remote cache, network, ECS/world, command/receipt, renderer, physics,
+  audio, editor, 3D, native/Rust/PyO3, dependency, version, workflow, runner,
+  permission, credential, release, tag, or public-package change.
+- No push or PR until complete local acceptance and a fresh hosted audit proves
+  the required preceding stack is already present on the intended base.
 
 ## Remaining acceptance work
 
-- No local M144 acceptance work remains. Keep the milestone unpublished until
+- No local M145 acceptance work remains. Keep the milestone unpublished until
   a fresh hosted audit proves the required preceding stack is present; continue
-  the next approved research-gated milestone from the exact committed M144 tip.
+  the next approved research-gated milestone from the exact committed M145 tip.

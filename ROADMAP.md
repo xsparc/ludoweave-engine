@@ -1660,6 +1660,30 @@ retention/deletion eligibility, atomic snapshot, cleanup/mutation, remote
 cache, dependency, version, workflow job/allocation, permission, credential,
 release authority, or CI change.
 
+## M145 saved unreferenced-preview verification
+
+M145 starts from fully locally validated M144 commit
+`d6bbf33e35b5e21fa48d6553e1b3b73d104b0cd6`. It adds strict admission and
+offline verification for the saved M143/M144 aggregate preview:
+
+```console
+ludoweave source asset-cache-unreferenced-preview-verify PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json --preview config/cache.unreferenced-preview.json
+```
+
+The command preflights current sources, the saved lock, and the exact
+regenerated plan before resolving either saved record. It then admits one M138
+fingerprint under the existing 65,536-byte limit and one exact-schema canonical
+preview under a new tightening-only 2,048-byte limit. A pure verifier
+recomputes M143 from those values and requires exact frozen-value equality.
+Success emits a fixed path-free verification record binding the exact preview
+bytes by SHA-256. There is no cache argument or cache access.
+
+M145 adds no current-cache observation, chronology/freshness guarantee,
+authenticity/provenance or writer-identity claim, trusted timestamp, candidate
+identity, retention/deletion eligibility, mutation, remote cache, dependency,
+version, workflow job/allocation, permission, credential, release authority,
+or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
