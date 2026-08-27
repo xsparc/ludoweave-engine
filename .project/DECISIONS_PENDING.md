@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+## M148 cache-cleanup platform capability
+
+RFC-0131 adopts the M148 direction: current portable CPython is insufficient
+for M147's complete safe mutation chain. No platform is admitted. A future
+proposal must provide a private engine-owned adapter, real-host adversarial
+evidence, native-object isolation, and safe refusal.
+
+Cleanup, a public probe, adapter implementation, `ctypes`, native code,
+mutation, remote cache, dependencies, version, workflow/CI, release authority,
+and remote change remain unauthorized.
+
 ## M147 asset-cache cleanup threat model
 
 RFC-0130 adopts the asset-cache cleanup threat model as a blocking future

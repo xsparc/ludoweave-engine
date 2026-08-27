@@ -666,6 +666,12 @@ quarantine, replay, rollback tampering, and path privacy. A future implementatio
 must fail closed unless it proves handle-relative no-follow safety and complete
 retained-root/quiescence semantics on the target platform.
 
+The accepted [platform-capability
+decision](docs/security/cache-cleanup-platform-capability-decision.md) records
+that current portable CPython does not supply that complete mutation chain.
+No platform is admitted for cleanup, and individual flags or a successful path-
+based deletion must not be treated as capability evidence.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

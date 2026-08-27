@@ -3733,6 +3733,31 @@ CI change. RFC-0130 records the accepted threat model.
 There is no candidate disclosure, no cleanup authority, no remote cache, no
 dependency, no workflow, and no CI change.
 
+## M148 cache-cleanup platform-capability boundary
+
+M148 evaluates the platform primitive needed by M147 without implementing it.
+The [platform-capability
+decision](security/cache-cleanup-platform-capability-decision.md) requires one
+engine-owned adapter lifecycle covering root acquisition, all-component
+no-follow resolution, identity-at-use inspection, same-filesystem quarantine,
+relative unlink/removal, deterministic close, backend-neutral outcomes, and
+safe refusal. Native descriptors and handles remain private.
+
+Current portable CPython does not satisfy that chain across supported
+platforms. Exact Windows 3.12-3.14 evidence lacks directory-descriptor mutation
+and symlink-attack-resistant `rmtree`. POSIX directory-relative APIs, Linux
+`openat2`, macOS `O_NOFOLLOW_ANY`, and Win32 handle operations are promising
+platform-specific primitives, not an admitted engine capability. Flags or
+documentation alone cannot substitute for real-host adversarial proof.
+
+M148 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, cache access, candidate disclosure, cleanup authority, platform adapter,
+native code, `ctypes`, mutation, remote cache, dependency, backend/native
+surface, version, workflow, permission, release authority, or CI change.
+RFC-0131 records the accepted decision. There is no public probe, no cleanup
+authority, no native code, no dependency, no workflow, no remote cache, and no
+CI change.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

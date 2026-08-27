@@ -1,5 +1,35 @@
 # Project State
 
+## M148 cache-cleanup platform-capability decision - locally validated and committed
+
+- Base: fully locally validated M147 DCO commit
+  `752334dd981799c95d24308087222be487c0587e`, tree
+  `273f80c3740d5ad21d27afbc872f6457f204a566`, sole parent exact M146.
+- Branch: `release/m148-cache-cleanup-capability-decision`; exact containment
+  allowed the redundant M147 branch to be pruned.
+- Direction: RFC-0131 rejects a standard-library-only portable cleanup path and
+  requires per-platform engine-owned adapters plus real-host adversarial proof
+  before any platform is admitted.
+- Scope: documentation and architecture protection only; no runtime, probe,
+  adapter, native code, cache, CLI, dependency, workflow/CI, version, release,
+  or mutation change.
+- Acceptance: complete through static/architecture/docs/governance checks,
+  supported-Python behavior, real wgpu, profiles, vertical slices,
+  reproducible distributions, all 28 installed consumers, two identical
+  release rehearsals, archive inspection, and findings-first review. Final
+  evidence-inclusive builds reproduce exactly, the source separator passes,
+  and bounded cleanup is complete.
+- Initial DCO commit: `9a6229f5c40712ce287f96618c78c60943f54fe0`, tree
+  `dd2cc8462140108aaca11f574debfacfe2ad5576`, sole parent exact M147. It has
+  exact maintainer identity, one DCO sign-off, 15 paths, `0 49` divergence from
+  local M99 main, clean whitespace, and zero critical object-integrity finding.
+  This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and GitHub API query still expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main`
+  exists, open PRs are empty, PR #251 remains newest, no workflow run exists
+  after 2026-08-22, and releases are empty. No M148 remote action occurred
+  because publishing would expose the absent M100-M148 stack.
+
 ## M147 asset-cache cleanup threat model - locally validated and committed
 
 - Base: fully locally validated M146 DCO commit

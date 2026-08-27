@@ -76,8 +76,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > model](docs/security/cache-cleanup-threat-model.md) covering filesystem races,
 > cross-platform link safety, concurrency, recovery, and safe refusal without
 > adding a cleanup implementation.
+> M148 rejects a portable standard-library cleanup path after a focused
+> [platform-capability
+> decision](docs/security/cache-cleanup-platform-capability-decision.md) and
+> requires real-host adapter evidence before any platform is admitted.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M146 are locally validated stacked milestones from the exact M99 closeout, and M147 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M147 are locally validated stacked milestones from the exact M99 closeout, and M148 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

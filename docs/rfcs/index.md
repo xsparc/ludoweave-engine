@@ -135,3 +135,4 @@ was adopted.
 - [RFC-0128: verify a saved unreferenced-blob preview](0128-verify-saved-unreferenced-blob-preview.md)
 - [RFC-0129: defer asset-cache cleanup](0129-defer-asset-cache-cleanup.md)
 - [RFC-0130: adopt the asset-cache cleanup threat model](0130-asset-cache-cleanup-threat-model.md)
+- [RFC-0131: defer portable cache-cleanup capability](0131-defer-portable-cache-cleanup-capability.md)

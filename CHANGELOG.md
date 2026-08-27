@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M148/RFC-0131's [cache-cleanup platform-capability
+  decision](docs/security/cache-cleanup-platform-capability-decision.md).
+  Current portable CPython is insufficient for the complete M147 safe-mutation
+  chain; no platform, cleanup API, dependency, workflow, or CI change is added.
 - Adopt M147/RFC-0130's [asset-cache cleanup threat
   model](docs/security/cache-cleanup-threat-model.md). It defines the assets,
   trust boundaries, filesystem/concurrency/recovery threats, invariants, and

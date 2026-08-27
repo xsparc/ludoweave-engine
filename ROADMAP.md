@@ -1727,6 +1727,28 @@ quarantine, repair, cleanup authority, mutation, remote cache, dependency,
 version, workflow job/allocation, permission, credential, release authority,
 or CI change. RFC-0130 records the accepted threat boundary.
 
+## M148 cache-cleanup platform-capability decision
+
+M148 starts from fully locally validated M147 commit
+`752334dd981799c95d24308087222be487c0587e`. It accepts a focused
+[platform-capability
+decision](docs/security/cache-cleanup-platform-capability-decision.md): current
+portable CPython does not expose the complete handle-relative, no-follow,
+identity-at-use mutation chain required by M147.
+
+Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 probes expose no `dir_fd`
+support for open/unlink/rmdir/rename/replace and report
+`shutil.rmtree.avoids_symlink_attacks == False`. POSIX, Linux, macOS, and Win32
+provide lower-level partial primitives, but no platform is admitted without a
+private engine-owned adapter, complete adversarial real-host evidence, and safe
+refusal. A public boolean probe would be insufficient and is not added.
+
+M148 adds no runtime API, protocol, decoder, CLI command, public probe, cache
+access, candidate disclosure, cleanup authority, platform adapter, native code,
+`ctypes`, mutation, remote cache, dependency, version, workflow job/allocation,
+permission, credential, release authority, or CI change. RFC-0131 records the
+accepted decision.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
