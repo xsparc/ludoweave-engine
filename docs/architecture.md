@@ -3971,6 +3971,27 @@ M156 adds no runtime API, value, protocol, decoder, CLI composition, public
 probe, helper, dependency, workflow, permission, release authority, or CI
 change. RFC-0139 records the accepted test-only boundary.
 
+## M157 Windows blocker control-pipe EOF boundary
+
+M157 adds one Windows-only, test-only [blocker control-pipe EOF
+probe](security/cache-cleanup-windows-control-pipe-eof-probe.md). It reuses
+M155's fixed child-owned blocker and M154's native rename unchanged. After
+bounded readiness and false/error 32 denial, the parent writes no control byte
+and closes only its `Popen.stdin` writer.
+
+The helper's existing invalid-control path closes the native handle in
+`finally`, emits no `closed` acknowledgement, and returns fixture-specific exit
+4. A bounded process wait, rather than a sleep or retry loop, is the only
+ordering boundary before the identical rename returns true/code zero with
+content preserved.
+
+This is one current-host EOF-triggered cleanup observation, not arbitrary pipe
+failure, cancellation, native close failure, crash/restart recovery, concurrent
+mutation safety, general exclusion, duplicated-handle or oplock behavior, or
+Windows admission. M157 adds no runtime API, value, protocol, decoder, CLI
+composition, public probe, helper, dependency, workflow, permission, release
+authority, or CI change. RFC-0140 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

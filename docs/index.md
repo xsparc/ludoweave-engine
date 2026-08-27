@@ -92,6 +92,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-abrupt-blocker-termination-probe.md)
   that bypasses graceful close and bounds one forced owner-termination
   transition without adding runtime behavior, recovery, or CI allocation.
+- A test-only [Windows blocker control-pipe EOF
+  probe](security/cache-cleanup-windows-control-pipe-eof-probe.md) that closes
+  the parent control writer after readiness without adding runtime behavior,
+  arbitrary pipe recovery, or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

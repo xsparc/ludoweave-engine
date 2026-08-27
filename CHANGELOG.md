@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M157/RFC-0140's test-only [Windows blocker control-pipe EOF
+  probe](docs/security/cache-cleanup-windows-control-pipe-eof-probe.md). It
+  exercises the existing helper's invalid-control cleanup without adding
+  runtime or CI allocation.
 - Add M156/RFC-0139's test-only [Windows abrupt blocker-owner termination
   probe](docs/security/cache-cleanup-windows-abrupt-blocker-termination-probe.md).
   It bypasses the graceful release handshake and verifies one bounded

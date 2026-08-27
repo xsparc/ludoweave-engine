@@ -734,6 +734,14 @@ acknowledgement, and retries the unchanged native rename once. This is one
 current-host process-termination observation, not crash or restart recovery,
 general exclusion, or mutation authority; Windows remains unadmitted.
 
+M157's test-only [Windows blocker control-pipe EOF
+probe](docs/security/cache-cleanup-windows-control-pipe-eof-probe.md) instead
+closes only the parent control writer after readiness. The unchanged helper
+closes its native handle in `finally`, exits with its fixed invalid-control
+status, and emits no close acknowledgement before one identical rename retry.
+This is not arbitrary pipe failure, recovery, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

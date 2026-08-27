@@ -1972,6 +1972,35 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M157 Windows blocker control-pipe EOF probe
+
+M157 starts from fully locally validated M156 commit
+`b0076e48e6538744a8ffc1909c725d1293d56eba`. It adds one Windows-only,
+test-only [blocker control-pipe EOF
+probe](docs/security/cache-cleanup-windows-control-pipe-eof-probe.md) under
+RFC-0140.
+
+The parent reuses M155's fixed blocker and bounded `ready` handshake. M154's
+unchanged native rename child returns false/error 32 while the blocker remains
+alive. The parent writes no control byte, closes only `Popen.stdin`, and waits
+with M155's fixed timeout. The helper closes its native handle in `finally`,
+emits no `closed`, and returns its existing invalid-control code 4. The
+identical rename then returns true/code zero and preserves the candidate under
+`displaced`.
+
+Windows remains unadmitted. This single current-host EOF-triggered helper path
+is not arbitrary pipe failure, broken-pipe write behavior, readiness or
+termination timeout, native close failure, cancellation, crash or restart
+recovery, controlled concurrent interleaving, general exclusion, duplicated-
+handle or oplock behavior, policy, receipt, or independent-host proof.
+
+M157 adds no runtime API, protocol, decoder, CLI command, public probe, helper,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The existing Windows suite is the
+only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
