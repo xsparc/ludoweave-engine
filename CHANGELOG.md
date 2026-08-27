@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M144/RFC-0127 offline unreferenced-blob preview composition. The new
+  command strictly admits one bounded saved fingerprint after current-input
+  preflight and emits the unchanged M143 aggregate preview without cache access,
+  a new protocol, trust claim, mutation, dependency, workflow, or CI change.
 - Add M143/RFC-0126 path-free unreferenced-blob preview evidence. The new
   command reuses one verified read-only fingerprint observation and reports
   only existing aggregate count/bytes plus plan/observation identity; it grants

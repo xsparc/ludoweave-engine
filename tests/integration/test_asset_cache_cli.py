@@ -209,6 +209,24 @@ def _preview_unreferenced(project: Path, cache: Path) -> subprocess.CompletedPro
     )
 
 
+def _preview_unreferenced_record(
+    project: Path,
+    *,
+    fingerprint: str = "fingerprint.json",
+) -> subprocess.CompletedProcess[str]:
+    return _run(
+        "source",
+        "asset-cache-fingerprint-record-preview",
+        *_common(project),
+        "--lock",
+        "assets.lock.json",
+        "--plan",
+        "assets.plan.json",
+        "--fingerprint",
+        fingerprint,
+    )
+
+
 def _verify_fingerprint(
     project: Path,
     cache: Path,
@@ -841,6 +859,89 @@ def test_asset_cache_unreferenced_preview_checks_inputs_before_cache_observation
     assert not cache.exists()
     assert str(project) not in result.stderr
     assert str(cache) not in result.stderr
+
+
+def test_asset_cache_fingerprint_record_preview_is_stable_offline_and_read_only(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    assert _populate(project, cache).returncode == 0
+    orphan = b"offline unreferenced preview orphan"
+    digest = sha256(orphan).hexdigest()
+    path = cache / "cas" / digest[:2] / digest
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(orphan)
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    shutil.rmtree(cache)
+    before = _files(project)
+
+    first = _preview_unreferenced_record(project)
+    second = _preview_unreferenced_record(project)
+
+    assert first.returncode == second.returncode == 0
+    assert first.stderr == second.stderr == ""
+    assert first.stdout == second.stdout
+    report = cast(dict[str, object], json.loads(first.stdout))
+    assert report["$schema"] == "ludoweave.asset-cache-unreferenced-preview/1"
+    assert report["status"] == "observed"
+    assert report["unreferenced_blobs"] == 1
+    assert report["unreferenced_blob_bytes"] == len(orphan)
+    assert digest not in first.stdout
+    assert str(project) not in first.stdout
+    assert str(cache) not in first.stdout
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_fingerprint_record_preview_rejects_another_plan(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    cache = tmp_path / "cache"
+    _write_project(project)
+    _prepare(project)
+    fingerprint = _fingerprint(project, cache)
+    assert fingerprint.returncode == 0
+    (project / "fingerprint.json").write_bytes(fingerprint.stdout.rstrip("\n").encode("utf-8"))
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+    _prepare(project)
+    before = _files(project)
+
+    result = _preview_unreferenced_record(project)
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] == "asset_cache.unreferenced_preview_mismatch"
+    assert str(project) not in result.stderr
+    assert str(cache) not in result.stderr
+    assert _files(project) == before
+    assert not cache.exists()
+
+
+def test_asset_cache_fingerprint_record_preview_preflights_before_record_read(
+    tmp_path: Path,
+) -> None:
+    project = tmp_path / "project"
+    project.mkdir()
+    _write_project(project)
+    _prepare(project)
+    (project / "assets/item.json").write_bytes(b'{"value":2}')
+
+    result = _preview_unreferenced_record(project, fingerprint="missing.json")
+
+    assert result.returncode == 2
+    assert result.stdout == ""
+    error = cast(dict[str, object], cast(dict[str, object], json.loads(result.stderr))["error"])
+    assert error["code"] != "tools.input_unavailable"
+    assert str(project) not in result.stderr
 
 
 def test_asset_cache_fingerprint_verify_reads_exact_saved_record_and_current_cache(

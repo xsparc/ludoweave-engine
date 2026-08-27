@@ -1,10 +1,47 @@
 # Project State
 
+## M144 offline unreferenced-blob preview - locally validated and committed
+
+- Base: fully locally validated M143 DCO commit
+  `1e9eedd5307d3c1249fe1dcd2b22acf4a01ccfc2`, tree
+  `a2320515ef4e97b5d4be3a9091dd6f90a11ad86b`, sole parent exact M142.
+- Branch: `release/m144-offline-unreferenced-blob-preview`. Exact ancestry
+  proved the contained M143 branch redundant and it was pruned.
+- Direction: current RFC 8785 and Python JSON guidance supports reuse of M139's
+  strict canonical decoder; SLSA preserves a separate authenticity boundary;
+  GitHub workflow guidance supports no CI expansion.
+- Contract: preflight current inputs, read one bounded project-confined saved
+  fingerprint, strictly admit it through M139, then reuse pure M143 and its
+  unchanged output protocol without cache access.
+- Complete proof: 466 Python files are format-clean; Ruff and strict Pyright
+  pass; all 1,731 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 pass
+  3,654/3,644/3,644 tests; and real-wgpu, profiles, and both deterministic
+  vertical slices reproduce their established identities.
+- Distribution proof: two record-inclusive builds reproduce a 355,539-byte
+  pure wheel at SHA-256
+  `51d5ce7187cff20429f40374b8cfaa923a24e3b8686006da837961ccfbb6fc47`;
+  all 27 isolated installed consumers pass; and two byte-identical ten-artifact
+  release rehearsals pass.
+- Review: exactly 16 intended paths remain. Workflows, dependencies, lock,
+  protected runtime/release surfaces, public identity, credentials,
+  backend/native imports, disclosure, and mutation boundaries are clean.
+- Hosted state: a postcommit fetch and independent API query still expose exact
+  M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; there is no open PR, PR #251
+  remains the newest merge, and no M144 remote action occurred. Publication is
+  held because the required M100-M143 base is not present remotely.
+- Scope: no new runtime value/protocol/decoder, cache access/observation,
+  trust/chronology, candidate/path disclosure, retention/deletion authority,
+  mutation, dependency, version, CI/workflow, release, or remote change.
+
 ## M143 path-free unreferenced-blob preview - locally validated and committed
 
 - Base: fully locally validated M142 DCO commit
   `9f4a84b0e1f251d400398da4ef27d5c37eee386b`, tree
   `2e1d9c4c693658036500921cb45039366dda0765`, sole parent exact M141.
+- Exact DCO commit `1e9eedd5307d3c1249fe1dcd2b22acf4a01ccfc2`, tree
+  `a2320515ef4e97b5d4be3a9091dd6f90a11ad86b`, is the M144 base. Its redundant
+  local branch was pruned after exact ancestry proof.
 - Branch: `release/m143-path-free-unreferenced-blob-preview`. Exact ancestry
   proved the contained M142 branch redundant and it was pruned.
 - Direction: current CNCF Distribution, Git, Bazel, Gradle, BuildKit, Remote

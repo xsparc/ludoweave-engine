@@ -1637,6 +1637,29 @@ atomic snapshot, cleanup, garbage collection, prune, repair, deletion,
 eviction, remote cache, dependency, version, workflow job/allocation,
 permission, credential, release authority, or CI change.
 
+## M144 offline unreferenced-blob preview
+
+M144 starts from fully locally validated M143 commit
+`1e9eedd5307d3c1249fe1dcd2b22acf4a01ccfc2`. It adds one cache-free CLI
+composition over the existing strict M139 saved-fingerprint decoder and pure
+M143 preview:
+
+```console
+ludoweave source asset-cache-fingerprint-record-preview PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json
+```
+
+The command preflights current sources, lock, and exact regenerated plan before
+one bounded project-confined record read. It admits only exact canonical M138
+fingerprint bytes, requires the nested plan binding, and emits the unchanged
+M143 preview. There is no cache argument or cache access, so the originating
+cache may be absent.
+
+M144 adds no new runtime value/protocol/decoder, fresh observation, candidate
+identity, path/payload/age disclosure, chronology or authenticity claim,
+retention/deletion eligibility, atomic snapshot, cleanup/mutation, remote
+cache, dependency, version, workflow job/allocation, permission, credential,
+release authority, or CI change.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

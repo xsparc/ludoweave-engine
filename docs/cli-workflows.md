@@ -613,3 +613,25 @@ A nonzero result exits 0. “Unreferenced” means only that no admitted action
 metadata in this sequential observation named the blob; it does not mean safe
 to delete. M143 has no cleanup, prune, deletion, eviction, quota, retention,
 lock, quiescence, or mutation authority.
+
+## Offline unreferenced-blob preview
+
+M144 derives the unchanged M143 preview from one strictly admitted saved M138
+fingerprint after its originating cache is absent:
+
+```console
+ludoweave source asset-cache-fingerprint-record-preview PROJECT --manifest config/sources.json --assets config/assets.json --lock config/assets.lock.json --plan config/assets.plan.json --fingerprint config/cache.fingerprint.json
+```
+
+Current source identities, the saved lock, and exact regenerated plan are
+verified before the fingerprint path is resolved or read. The record must be
+project-confined, no-follow, at most 65,536 bytes, exact-schema canonical JSON,
+and bound to that plan. Invalid, duplicate-name, non-finite, noncanonical,
+oversized, wrong-plan, or inaccessible input fails with structured exit 2.
+
+There is no cache argument or cache access. Success emits the unchanged
+`ludoweave.asset-cache-unreferenced-preview/1` protocol with exit 0 and performs
+no project write. The unsigned record proves neither current cache state nor
+chronology, freshness, authenticity, provenance, writer identity, or deletion
+eligibility. M144 adds no new runtime protocol, mutation, dependency, or CI
+change.

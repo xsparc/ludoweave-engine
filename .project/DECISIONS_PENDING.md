@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M144 offline unreferenced-blob preview
+
+RFC-0127 resolves the adopted M144 direction: after current source/lock/plan
+preflight, read one project-confined saved M138 fingerprint under M139's
+existing hard bound and strict canonical decoder, then invoke pure M143.
+
+The CLI emits the unchanged
+`ludoweave.asset-cache-unreferenced-preview/1` bytes. It has no cache argument
+or access and introduces no new runtime value, protocol, decoder, or root API.
+The originating cache may be absent.
+
+Saved-preview persistence/verification, current-state/chronology/freshness,
+authenticity/provenance, candidate disclosure, retention/deletion authority,
+cleanup/mutation, remote cache/network, dependencies, version, CI/workflows,
+release authority, and remote change remain unauthorized for M144.
+
 ## M143 path-free unreferenced-blob preview
 
 RFC-0126 resolves the adopted M143 direction: bind one exact current plan to

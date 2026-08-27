@@ -3630,6 +3630,30 @@ compaction, rollback, remote cache, dependency, backend/native surface,
 version, workflow, permission, release authority, or CI change. RFC-0126
 records the complete boundary.
 
+## M144 offline unreferenced-blob preview boundary
+
+`source asset-cache-fingerprint-record-preview` is a composition root only. It
+preflights current project sources, the saved source lock, and exact regenerated
+asset-build plan before resolving one project-relative fingerprint record. The
+read reuses M139's 65,536-byte hard limit, project-confinement/no-follow rules,
+strict exact-schema decoder, aggregate bounds, and canonical-byte equality.
+
+The command then calls the unchanged pure M143 function and emits the unchanged
+`ludoweave.asset-cache-unreferenced-preview/1` bytes. There is no cache argument,
+cache construction/access, or fresh observation; the originating cache may be
+absent. No new runtime value, protocol, decoder, or engine-root API exists.
+
+The saved fingerprint is unsigned local integrity evidence. Offline derivation
+does not establish freshness, chronology, authenticity, provenance, writer
+identity, or a trusted timestamp. Its fixed aggregate preview remains neither
+a candidate list nor deletion eligibility.
+
+M144 adds no path/payload/age disclosure, retention root, grace/quota policy,
+lease, pin, generation, lock, quiescence, atomic snapshot, cleanup, garbage
+collection, prune, repair, deletion, eviction, mutation, remote cache, network,
+dependency, backend/native surface, version, workflow, permission, release
+authority, or CI change. RFC-0127 records the complete boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
