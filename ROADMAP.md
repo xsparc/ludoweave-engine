@@ -1914,6 +1914,35 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M155 Windows child-owned share-delete handshake
+
+M155 starts from fully locally validated M154 commit
+`e831a1cc098ea22d94cd87c7f7d9cf785012d97e`. It adds one Windows-only,
+test-only [child-owned share-delete
+handshake](docs/security/cache-cleanup-windows-child-owned-share-delete-handshake.md)
+under RFC-0138.
+
+A fixed isolated child opens ordinary `live` with M153's exact directory access
+mask and read/write sharing without delete sharing. It emits bounded `ready`,
+then waits for one fixed release byte. A separate unchanged M154 rename child
+returns false/error 32 while the blocker remains alive. After the owner closes
+and emits bounded `closed`, the identical rename child returns true/code zero
+and the candidate remains unchanged under `displaced`.
+
+Windows remains unadmitted. This ordered current-host ownership transition is
+not a concurrent race, selected native-call interleaving, general exclusion,
+quiescence, oplock protocol, duplicated-handle result, other-filesystem/driver
+evidence, recovery, policy, receipt, or independent-host proof. A metadata-only
+prototype did not block the rename, so the accepted fixture preserves M153's
+exact nonzero access mask rather than inferring exclusion from share flags.
+
+M155 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

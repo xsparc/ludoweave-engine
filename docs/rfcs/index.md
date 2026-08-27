@@ -142,3 +142,4 @@ was adopted.
 - [RFC-0135: probe Windows cross-process retained-parent substitution](0135-probe-windows-cross-process-substitution.md)
 - [RFC-0136: probe Windows cross-process share-delete exclusion](0136-probe-windows-share-delete-exclusion.md)
 - [RFC-0137: probe the Windows native sharing-violation result](0137-probe-windows-native-sharing-violation.md)
+- [RFC-0138: probe a child-owned Windows share-delete handshake](0138-probe-windows-child-owned-share-delete-handshake.md)

@@ -3923,6 +3923,33 @@ candidate disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0137 records the accepted test-only boundary.
 
+## M155 Windows child-owned share-delete handshake boundary
+
+M155 adds one Windows-only, test-only [child-owned share-delete
+handshake](security/cache-cleanup-windows-child-owned-share-delete-handshake.md).
+A fixed isolated child opens only ordinary `live` with M153's exact directory
+access mask and read/write sharing without delete sharing. Its native handle is
+non-inheritable. It emits one bounded exact-schema `ready` document and waits
+for one fixed release byte.
+
+While that distinct process remains alive, the unchanged M154 native rename
+child returns false/32 and namespace/content remain unchanged. The parent then
+sends the fixed byte. The owner closes in `finally`, emits bounded `closed`, and
+exits zero. Only after that acknowledgement does the identical native rename
+child return true/0 and place the unchanged candidate under `displaced`.
+
+This is one explicit current-host acquisition/close ordering across process
+ownership. It is not a concurrent race, an interleaving inside a native call,
+general exclusion, quiescence, an oplock protocol, duplicated-handle behavior,
+or platform admission. A metadata-only prototype did not block the rename, so
+the accepted fixture retains M153's exact nonzero desired-access mask.
+
+M155 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes` or subprocess invocation, adapter, cache access,
+candidate disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0138 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

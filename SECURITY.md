@@ -718,6 +718,14 @@ true/code zero afterward. Microsoft warns that exact native errors can vary by
 system or driver, so this does not establish a universal error contract,
 general exclusion, recovery, or mutation authority; Windows remains unadmitted.
 
+M155's test-only [Windows child-owned share-delete
+handshake](docs/security/cache-cleanup-windows-child-owned-share-delete-handshake.md)
+makes a distinct process own and acknowledge the blocking handle lifecycle. A
+separate native rename child observes false/error 32 while that owner remains
+alive and true/code zero only after acknowledged close. This is one ordered
+current-host transition, not a concurrent race, general exclusion, recovery,
+or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

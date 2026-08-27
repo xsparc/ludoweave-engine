@@ -105,8 +105,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-native-sharing-violation-probe.md).
 > A fixed isolated child directly observes native error 32 before close and
 > success afterward; the result remains current-host evidence only.
+> M155 adds one test-only [Windows child-owned share-delete
+> handshake](docs/security/cache-cleanup-windows-child-owned-share-delete-handshake.md).
+> A fixed child owns and acknowledges the blocking handle lifecycle while a
+> separate native rename child proves denial before close and success afterward.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M154 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M155 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

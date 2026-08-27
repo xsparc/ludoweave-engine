@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M155 Windows child-owned share-delete handshake
+
+RFC-0138 accepts one NTFS, Windows-only, test-only child-owned blocker with a
+fixed bounded pipe handshake as current-host feasibility evidence. Windows
+remains unadmitted. Controlled interleavings inside native calls, duplicated or
+inherited handles, abrupt owner termination, pipe failure, oplocks/share stress,
+general exclusion/quiescence, competing descendant activity, other
+filesystems/drivers, recovery, policy, receipts, and independent hosts remain
+required.
+
+RFC-0138 does not authorize runtime subprocess or `ctypes`, a general process
+coordination primitive, a platform adapter, public probe, cleanup authority,
+cache access, dependencies, version, workflow/CI, or release authority.
+Repository publication is governed separately by maintainer direction and the
+hosted-stack safety gate.
+
 ## M154 Windows native sharing-violation result
 
 RFC-0137 accepts one NTFS, Windows-only, test-only direct child native-result
