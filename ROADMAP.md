@@ -1885,6 +1885,35 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite is the only future hosted
 execution path.
 
+## M154 Windows native sharing-violation probe
+
+M154 starts from fully locally validated M153 commit
+`f34bf8032c523a60e80711745c2776b5ca6d99ab`. It adds one Windows-only,
+test-only [native sharing-violation
+probe](docs/security/cache-cleanup-windows-native-sharing-violation-probe.md)
+under RFC-0137.
+
+The current NTFS host retains M153's no-delete-share `live` handle. A fixed
+repository-owned helper runs in an isolated non-inheriting child and calls
+`MoveFileExW` directly with only `live` and `displaced`. While the blocker is
+open, the native result is false with `ERROR_SHARING_VIOLATION` (32), and the
+namespace/content remain unchanged. After deterministic close, the identical
+child returns true with normalized code zero and the candidate is unchanged
+under `displaced`.
+
+Windows remains unadmitted. This is one direct current-host native error
+observation, not a universal error-code contract, general cross-process
+exclusion, controlled race, selected interleaving, oplock protocol,
+quiescence, other-filesystem/driver evidence, recovery, policy, receipt, or
+independent-host proof.
+
+M154 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

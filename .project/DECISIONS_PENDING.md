@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M154 Windows native sharing-violation result
+
+RFC-0137 accepts one NTFS, Windows-only, test-only direct child native-result
+fixture as current-host feasibility evidence. Windows remains unadmitted.
+Cross-version/filesystem/driver error variation, alternate rename APIs,
+controlled concurrent interleavings, explicit synchronization, oplocks/share
+stress, general exclusion/quiescence, competing descendant activity, handle
+duplication/inheritance, recovery, policy, receipts, and independent hosts
+remain required.
+
+RFC-0137 does not authorize runtime subprocess or `ctypes`, inline evaluation,
+a platform adapter, public probe, cleanup authority, cache access,
+dependencies, version, workflow/CI, or release authority. Repository
+publication is governed separately by maintainer direction and the hosted-
+stack safety gate.
+
 ## M153 Windows cross-process share-delete exclusion
 
 RFC-0136 accepts one NTFS, Windows-only, test-only paired share-mode fixture as

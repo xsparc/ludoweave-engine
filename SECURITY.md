@@ -710,6 +710,14 @@ the parent closes the blocking handle. This does not establish general
 cross-process exclusion, controlled interleavings, oplock behavior, quiescence,
 recovery, or mutation authority; Windows remains unadmitted.
 
+M154's test-only [Windows native sharing-violation
+probe](docs/security/cache-cleanup-windows-native-sharing-violation-probe.md)
+replaces localized command diagnostics with one fixed isolated child's direct
+`MoveFileExW` result. It observes false/error 32 before blocker close and
+true/code zero afterward. Microsoft warns that exact native errors can vary by
+system or driver, so this does not establish a universal error contract,
+general exclusion, recovery, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -3894,6 +3894,35 @@ candidate disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0136 records the accepted test-only boundary.
 
+## M154 Windows native sharing-violation boundary
+
+M154 adds one Windows-only, test-only [native sharing-violation
+probe](security/cache-cleanup-windows-native-sharing-violation-probe.md). The
+parent retains M153's ordinary NTFS directory handle without delete sharing.
+It launches the exact current interpreter with `-I -B` and a fixed trusted test
+helper; no `-c`, argument-selected component, stdin command, environment-
+selected behavior, or inherited native handle enters the child.
+
+The helper calls `MoveFileExW` with fixed relative names and captures
+`GetLastError` immediately only after failure. Its only output is a bounded
+exact-schema JSON success/code pair. While the blocker is open, the child
+returns false/32 and namespace/content remain unchanged. After explicit close,
+the identical child returns true/0 and the candidate is unchanged under the
+renamed directory. The root then closes to zero owned handles.
+
+This is one direct current-host native error observation. It is not a universal
+Windows/filesystem/driver error contract, general cross-process exclusion,
+quiescence, a controlled race, a selected interleaving, an oplock protocol, or
+platform admission. Competing actors, duplicated handles, other native APIs,
+other filesystems, recovery, policy, receipts, and independent hosts remain
+outside the result.
+
+M154 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes` or subprocess invocation, adapter, cache access,
+candidate disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0137 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -42,6 +42,7 @@ nav:
   - Windows retained-parent substitution probe: security/cache-cleanup-windows-retained-parent-substitution-probe.md
   - Windows cross-process substitution probe: security/cache-cleanup-windows-cross-process-substitution-probe.md
   - Windows share-delete exclusion probe: security/cache-cleanup-windows-share-delete-exclusion-probe.md
+  - Windows native sharing-violation probe: security/cache-cleanup-windows-native-sharing-violation-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -184,6 +185,7 @@ nav:
       - RFC-0134 - Probe Windows retained-parent substitution safety: rfcs/0134-probe-windows-retained-parent-substitution.md
       - RFC-0135 - Probe Windows cross-process retained-parent substitution: rfcs/0135-probe-windows-cross-process-substitution.md
       - RFC-0136 - Probe Windows cross-process share-delete exclusion: rfcs/0136-probe-windows-share-delete-exclusion.md
+      - RFC-0137 - Probe the Windows native sharing-violation result: rfcs/0137-probe-windows-native-sharing-violation.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

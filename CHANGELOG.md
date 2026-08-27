@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M154/RFC-0137's test-only [Windows native sharing-violation
+  probe](docs/security/cache-cleanup-windows-native-sharing-violation-probe.md).
+  It captures one direct child `MoveFileExW` denial/release result without
+  adding runtime, dependency, workflow, or CI allocation.
 - Add M153/RFC-0136's test-only [Windows share-delete exclusion
   probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md).
   It pairs one blocked child rename with the identical post-close success
