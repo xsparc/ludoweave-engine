@@ -1,5 +1,32 @@
 # Project State
 
+## M149 Windows cache-cleanup capability probe - locally validated and committed
+
+- Base: fully locally validated M148 DCO commit
+  `4f6b59ef37877ba3575ca19e0f15cfdadcc6a253`, tree
+  `6eacc1a7d0a85d66916c011e544a991fd8e7afae`, sole parent exact M147.
+- Branch: `release/m149-windows-cleanup-capability-probe`; exact containment
+  allowed the redundant M148 branch to be pruned.
+- Direction: RFC-0132 accepts one test-only Windows native-capability probe but
+  preserves M148's no-platform-admission decision.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, architecture,
+  real wgpu, profiles, vertical slices, all 28 installed-package consumers,
+  byte-identical distributions and release rehearsals, archive inspection,
+  findings-first review, final source separation, and bounded cleanup.
+- Initial DCO commit: `8adc3bf1bef8ba28bab12a5e175fb99381215894`, tree
+  `376ac9103846e35f9982de3bd0e943ba04b2b996`, sole parent exact M148. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, `0 50`
+  divergence from local M99 main, and zero critical object-integrity finding.
+  This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and anonymous GitHub API audit still expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`;
+  only remote `main` exists, open PRs are empty, no workflow run exists after
+  2026-08-22, and releases/tags are empty. No M149 remote action occurred
+  because publishing would expose the absent M100-M149 stack.
+
 ## M148 cache-cleanup platform-capability decision - locally validated and committed
 
 - Base: fully locally validated M147 DCO commit

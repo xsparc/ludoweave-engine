@@ -672,6 +672,13 @@ that current portable CPython does not supply that complete mutation chain.
 No platform is admitted for cleanup, and individual flags or a successful path-
 based deletion must not be treated as capability evidence.
 
+M149's test-only [Windows capability
+probe](docs/security/cache-cleanup-windows-capability-probe.md) exercises one
+owned handle chain beneath pytest temporary storage. It is feasibility evidence
+only. The privilege-gated reparse case, filesystem coverage, concurrent
+namespace attacks, cross-process exclusion, recovery, and durable receipts
+remain unresolved, so Windows is still not admitted for cache mutation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

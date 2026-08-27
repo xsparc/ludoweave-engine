@@ -2,6 +2,17 @@
 
 No architecture decision is currently blocked.
 
+## M149 Windows cache-cleanup capability probe
+
+RFC-0132 accepts a Windows-only, test-only native handle probe as feasibility
+evidence. Windows remains unadmitted. The privilege-dependent reparse case,
+filesystem coverage, concurrency, recovery, retained roots, policy, durable
+receipts, and independent-host execution remain required.
+
+Runtime `ctypes`, a platform adapter, public probe, cleanup authority, cache
+access, dependencies, version, workflow/CI, release authority, and remote
+change remain unauthorized.
+
 ## M148 cache-cleanup platform capability
 
 RFC-0131 adopts the M148 direction: current portable CPython is insufficient

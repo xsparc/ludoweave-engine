@@ -3758,6 +3758,33 @@ RFC-0131 records the accepted decision. There is no public probe, no cleanup
 authority, no native code, no dependency, no workflow, no remote cache, and no
 CI change.
 
+## M149 Windows cache-cleanup probe boundary
+
+M149 adds a test-only [Windows capability
+probe](security/cache-cleanup-windows-capability-probe.md) to reduce one part
+of M148's platform uncertainty. The module lives under `tests/integration`, is
+excluded from the wheel, imports no engine code, and owns every native handle
+until reverse-order close.
+
+The probe admits only single relative components and uses retained directory
+handles for native opens and quarantine. It refuses reparse attributes, binds
+open-object identity to volume serial plus 128-bit file ID, observes hard-link
+count, never replaces an occupied quarantine name, proves identity after
+rename/reopen, and marks only the quarantined handle for deletion. All mutation
+is confined to pytest-owned temporary storage.
+
+This is not an adapter layer and does not establish Windows support. The
+current host cannot execute the symbolic-link case without additional
+privilege, and the probe does not cover filesystem variation, namespace races,
+cross-process exclusion, oplocks, crash recovery, retained roots, policy,
+trusted time, durable receipts, or independent installed hosts.
+
+M149 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes`, platform adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0132 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

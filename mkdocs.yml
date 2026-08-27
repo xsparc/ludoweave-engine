@@ -37,6 +37,7 @@ nav:
   - WASM-mod security decision: wasm-mod-security-decision.md
   - Asset-cache cleanup threat model: security/cache-cleanup-threat-model.md
   - Cache-cleanup platform-capability decision: security/cache-cleanup-platform-capability-decision.md
+  - Windows cache-cleanup capability probe: security/cache-cleanup-windows-capability-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -174,6 +175,7 @@ nav:
       - RFC-0129 - Defer asset-cache cleanup: rfcs/0129-defer-asset-cache-cleanup.md
       - RFC-0130 - Adopt the asset-cache cleanup threat model: rfcs/0130-asset-cache-cleanup-threat-model.md
       - RFC-0131 - Defer portable cache-cleanup capability: rfcs/0131-defer-portable-cache-cleanup-capability.md
+      - RFC-0132 - Probe Windows cache-cleanup capability: rfcs/0132-probe-windows-cache-cleanup-capability.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

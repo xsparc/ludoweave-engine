@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M149/RFC-0132's test-only [Windows cache-cleanup capability
+  probe](docs/security/cache-cleanup-windows-capability-probe.md). It exercises
+  private owned handles only under pytest temporary storage; Windows remains
+  unadmitted and no runtime, dependency, workflow, or CI allocation is added.
 - Accept M148/RFC-0131's [cache-cleanup platform-capability
   decision](docs/security/cache-cleanup-platform-capability-decision.md).
   Current portable CPython is insufficient for the complete M147 safe-mutation

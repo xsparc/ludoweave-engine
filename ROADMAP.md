@@ -1749,6 +1749,35 @@ access, candidate disclosure, cleanup authority, platform adapter, native code,
 permission, credential, release authority, or CI change. RFC-0131 records the
 accepted decision.
 
+## M149 Windows cache-cleanup capability probe
+
+M149 starts from fully locally validated M148 commit
+`4f6b59ef37877ba3575ca19e0f15cfdadcc6a253`. It adds one test-only
+[Windows capability
+probe](docs/security/cache-cleanup-windows-capability-probe.md) under
+RFC-0132. The probe uses documented user-mode native file operations only
+inside pytest-owned temporary directories.
+
+The current host demonstrates directory-handle-relative opens of ordinary
+components while requesting the documented final-component reparse-suppression
+option; volume/file identity and hard-link-count observation; non-replacing
+handle-relative quarantine; identity-preserving reopen; deletion disposition;
+and deterministic close. Exact CPython 3.12.13, 3.13.13, and 3.14.5 expose the
+required system symbols. Symbolic-link creation is not granted on the current
+non-administrator host, so the reparse-refusal case remains an explicit skip
+and missing admission evidence.
+
+Windows remains unadmitted. The probe does not establish filesystem coverage,
+all-component reparse/junction safety, race or cross-process exclusion,
+recovery, retained roots, policy, trusted time, durable receipts, or independent
+installed-host behavior.
+
+M149 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes`, adapter, cache access, candidate disclosure, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing test suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
