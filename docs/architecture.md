@@ -3785,6 +3785,32 @@ disclosure, cleanup authority, dependency, native extension, compiler
 requirement, version, workflow, permission, release authority, or CI change.
 RFC-0132 records the accepted test-only boundary.
 
+## M150 Windows directory-junction probe boundary
+
+M150 adds one Windows-only, test-only [directory-junction refusal
+probe](security/cache-cleanup-windows-junction-probe.md). A fixed `mklink /j`
+invocation runs from the trusted pytest fixture directory with fixed literal
+component arguments; no absolute fixture path or input from an engine API,
+command, project file, or external caller enters command parsing.
+
+The test binds its observation to the already-open root handle through
+`GetVolumeInformationByHandleW`, requiring NTFS and reparse-point support. It
+then reuses M149's retained-handle relative open and attribute classification.
+The junction handle is rejected and closed before it can become a traversal
+root. Explicit junction-entry removal is followed by target-marker proof.
+
+This is current-host feasibility evidence, not a platform adapter or admission.
+The fixture does not represent symbolic links, mounted folders, arbitrary
+reparse tags, other filesystems, ancestor substitution, concurrent mutation,
+cross-process exclusion, crash recovery, policy, trusted time, receipts, or
+independent hosts.
+
+M150 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production `ctypes` or shelling, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow, permission, release authority, or CI change.
+RFC-0133 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

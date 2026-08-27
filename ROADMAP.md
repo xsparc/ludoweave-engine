@@ -1778,6 +1778,31 @@ authority, dependency, native extension, compiler requirement, version,
 workflow job/allocation, permission, credential, release authority, or CI
 change. The existing test suite is the only future hosted execution path.
 
+## M150 Windows directory-junction refusal probe
+
+M150 starts from fully locally validated M149 commit
+`b9c3a3b38b3cf22cf5351e13b362602d0c46d9eb`. It adds one Windows-only,
+test-only [directory-junction refusal
+probe](docs/security/cache-cleanup-windows-junction-probe.md) under RFC-0133.
+
+The current host's opened pytest root reports NTFS and reparse-point support.
+A fixed `mklink /j` fixture creates one directory junction without elevation;
+M149's retained-handle relative open observes the junction object, refuses its
+reparse attribute, closes the rejected handle, and leaves the target marker
+unchanged after explicit link-only removal.
+
+Windows remains unadmitted. The earlier symbolic-link case remains privilege-
+skipped, and M150 does not establish mounted-folder, unknown-tag, other-
+filesystem, all-component substitution, concurrency, recovery, policy,
+receipt, or independent-host safety.
+
+M150 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or shell invocation, adapter, cache access, candidate
+disclosure, cleanup authority, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

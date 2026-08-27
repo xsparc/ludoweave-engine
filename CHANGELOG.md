@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M150/RFC-0133's test-only [Windows directory-junction refusal
+  probe](docs/security/cache-cleanup-windows-junction-probe.md). It executes an
+  NTFS reparse case without elevation and adds no runtime, dependency,
+  workflow, or CI allocation.
 - Add M149/RFC-0132's test-only [Windows cache-cleanup capability
   probe](docs/security/cache-cleanup-windows-capability-probe.md). It exercises
   private owned handles only under pytest temporary storage; Windows remains

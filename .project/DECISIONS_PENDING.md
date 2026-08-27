@@ -2,6 +2,18 @@
 
 No architecture decision is currently blocked.
 
+## M150 Windows directory-junction refusal probe
+
+RFC-0133 accepts one NTFS, Windows-only, test-only directory-junction fixture
+as current-host feasibility evidence. Windows remains unadmitted. Symbolic
+links, mounted folders, other tags/filesystems, all-component substitution,
+concurrency, recovery, policy, receipts, and independent hosts remain required.
+
+RFC-0133 does not authorize runtime shelling or `ctypes`, a platform adapter,
+public probe, cleanup authority, cache access, dependencies, version,
+workflow/CI, or release authority. Repository publication is governed
+separately by maintainer direction and the hosted-stack safety gate.
+
 ## M149 Windows cache-cleanup capability probe
 
 RFC-0132 accepts a Windows-only, test-only native handle probe as feasibility

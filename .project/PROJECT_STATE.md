@@ -1,5 +1,25 @@
 # Project State
 
+## M150 Windows directory-junction refusal probe - locally validated
+
+- Base: fully locally validated M149 DCO commit
+  `b9c3a3b38b3cf22cf5351e13b362602d0c46d9eb`, tree
+  `5ed1460fd133e81c3738a451f58437c88d9b63f8`, sole parent exact M148.
+- Branch: `release/m150-windows-junction-refusal-probe`; exact containment
+  allowed the redundant M149 branch to be pruned.
+- Direction: RFC-0133 accepts one test-only NTFS directory-junction fixture to
+  execute M149's reparse refusal without symbolic-link privilege.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Hosted state: publication remains gated on a fresh postcommit audit proving
+  that the unpublished preceding local stack is present on hosted `main`.
+
 ## M149 Windows cache-cleanup capability probe - locally validated and committed
 
 - Base: fully locally validated M148 DCO commit

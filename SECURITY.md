@@ -679,6 +679,13 @@ only. The privilege-gated reparse case, filesystem coverage, concurrent
 namespace attacks, cross-process exclusion, recovery, and durable receipts
 remain unresolved, so Windows is still not admitted for cache mutation.
 
+M150's test-only [Windows directory-junction
+probe](docs/security/cache-cleanup-windows-junction-probe.md) executes one NTFS
+reparse refusal without elevation. The retained-handle open refuses the
+junction before traversal and explicit junction removal preserves the target.
+This does not resolve symbolic links, other tags/filesystems, namespace races,
+recovery, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

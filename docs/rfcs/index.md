@@ -137,3 +137,4 @@ was adopted.
 - [RFC-0130: adopt the asset-cache cleanup threat model](0130-asset-cache-cleanup-threat-model.md)
 - [RFC-0131: defer portable cache-cleanup capability](0131-defer-portable-cache-cleanup-capability.md)
 - [RFC-0132: probe Windows cache-cleanup capability](0132-probe-windows-cache-cleanup-capability.md)
+- [RFC-0133: probe Windows directory-junction refusal](0133-probe-windows-junction-refusal.md)

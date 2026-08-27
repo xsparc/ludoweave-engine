@@ -84,8 +84,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-capability-probe.md). It exercises
 > an owned handle-relative quarantine chain on the current host while leaving
 > Windows and runtime cleanup unadmitted.
+> M150 adds one test-only [Windows directory-junction
+> probe](docs/security/cache-cleanup-windows-junction-probe.md). It executes a
+> real NTFS reparse refusal without elevation while preserving the same no-
+> admission boundary.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M149 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M149 are locally validated stacked milestones from the exact M99 closeout, and M150 is in local development. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
