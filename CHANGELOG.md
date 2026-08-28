@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M170/RFC-0153's test-only [Windows concurrent explicit-list abrupt-
+  termination probe](docs/security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md).
+  It proves one forcibly terminated child releases only its inherited blocker
+  while a concurrent survivor remains live and isolated, without adding
+  runtime coordination or CI allocation.
 - Add M169/RFC-0152's test-only [Windows concurrent explicit-list restoration-
   failure probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md).
   It proves one injected restore failure reaps only its created child while a

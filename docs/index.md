@@ -152,6 +152,11 @@ attestation, with the same allocation topology.
   that proves one injected restoration error reaps only its child while the
   concurrent survivor retains only its distinct blocker, without runtime or
   CI expansion.
+- A test-only [Windows concurrent explicit-list abrupt-termination
+  probe](security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md)
+  that proves one forcibly terminated child releases only its inherited
+  blocker while the concurrent survivor remains live, without runtime or CI
+  expansion.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

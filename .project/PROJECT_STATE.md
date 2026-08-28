@@ -1,5 +1,67 @@
 # Project State
 
+## M170 Windows concurrent explicit-list abrupt termination - locally validated
+
+- Base: fully locally validated M169 DCO commit
+  `3707e1bfe38b3fa21f66183dbe827888bb6e24ea`, tree
+  `0eaaa689072049f80bafc65d289e2d1eede80339`, sole parent exact M168.
+- Branch hygiene: neutral `release/m170-concurrent-abrupt-child-isolation`
+  starts at exact M169. Exact containment allowed redundant M169 to be pruned;
+  only local `main` and active M170 remain.
+- Direction: RFC-0153 accepts one controlled two-created-child, one-forced-
+  termination explicit-list interleaving. It rejects crash recovery, general
+  concurrency safety, a runtime coordinator, Windows admission, and CI growth.
+- Scope: one integration probe, one architecture boundary, two decision and
+  security documents, eight public navigation/status documents, and four
+  project records only. Runtime, examples, scripts, helpers, fixtures,
+  dependencies, workflows, metadata, and lock remain protected.
+- Behavior: both distinct parent blockers remain inheritable through both real
+  child creations and both restoration entries. After both flags restore and
+  both parent handles close, both roots remain denied. A real `kill()` plus
+  bounded nonzero wait releases only the abrupt child's root without a graceful
+  acknowledgement; the survivor remains live and denied until acknowledged
+  zero-exit close. Both A/B assignments and payloads survive.
+- Focused proof: seven architecture guards plus two live A/B cases pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M170 boundary passes 147
+  assertions with one established capability skip.
+- Static and Python matrix: all 522 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,840 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,830 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,806-byte pure wheel at
+  SHA-256 `882adb7a7f000ac1c59a4a18c3fbf21852fcdbb0f16b5b8e0683b03c9537caa1`
+  and a 2,068,678-byte source archive at SHA-256
+  `d74a8c6eaf0258fe30cc0143ad7b564eaa5416521362e0cd6612f4a53b43c2f2`.
+  All 28 installed consumers pass. Two byte-identical ten-artifact release
+  stages pass complete smoke; archive inventory is 114 wheel and 839 source
+  entries with all four M170 sources source-only.
+- Governance/review: static and dated strict governance return zero findings
+  across three objectives, seven requirements, and four work items. Protected
+  surfaces have zero diff; disclosure, credential, forbidden-process, and
+  hidden-root scans are clean. No actionable finding is known.
+- Evidence-inclusive distribution: two final builds reproduce the same pure
+  wheel and a 2,070,226-byte source archive at SHA-256
+  `12aa01bbd9a6cecdbe528daf44f303c55a2fb36e79b6077d590f4751bfec4314`.
+  Primary wheel smoke passes. Two final ten-artifact stages are byte-identical
+  and pass complete release smoke; inventory remains 114 wheel and 839 source
+  entries, with no forbidden packaged binary/control entry and all four M170
+  sources source-only.
+- Final separator: both focused Python files, all nine M170 assertions, strict
+  docs, both governance modes, whitespace, exact 16-path scope, protected
+  surfaces, and disclosure/credential scans pass.
+- Closeout: initial DCO commit
+  `11f917a1f16c26c3573621154b1efadf4d82216a` has tree
+  `d973e83d88d1c224a0c4c12b6afd0d59ec50b765`, sole parent exact M169,
+  exact maintainer identity, one sign-off, 16 intended paths, no merge, clean
+  objects, and a clean worktree. Final artifact and generated roots are absent;
+  only local `main` and active M170 remain.
+- Publication gate: fresh fetch and authenticated GitHub queries find hosted
+  `main` still exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`,
+  no open PR, and PR #251 as the newest merge. M170 is 71 commits ahead and
+  would expose absent M100-M170, so no push, PR, workflow allocation, tag, or
+  release occurred.
+
 ## M169 Windows concurrent explicit-list restoration failure - locally validated
 
 - Base: fully locally validated M168 DCO commit

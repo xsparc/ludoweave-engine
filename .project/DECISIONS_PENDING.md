@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M170 Windows concurrent explicit-list abrupt-termination probe
+
+RFC-0153 accepts one Windows-only, test-only controlled observation in which
+two copies of M163's fixed child start simultaneously with distinct explicit
+handle lists. After both parent flags restore and both parent handles close,
+one assigned child is forcibly terminated and reaped. Only its root renames;
+the survivor remains live and blocks only its own root until acknowledged
+zero-exit close. Both A/B role assignments pass and every owner settles.
+
+This resolves only the exact current-host two-successful-child, one-forced-
+termination interleaving after parent release. Crash recovery, cancellation
+semantics, arbitrary termination timing, native close failures, a concurrency-
+safe process-creation contract, general leak-freedom, recovery, and
+independent-host proof remain pending. Windows is not admitted.
+
+RFC-0153 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted helper or fixture, a process-global coordinator, production adapter,
+public capability, cleanup authority, recovery policy, dependency, workflow,
+CI allocation, tag, release, or publication. No hosted check is added.
+
 ## M169 Windows concurrent explicit-list restoration-failure probe
 
 RFC-0152 accepts one Windows-only, test-only controlled observation in which

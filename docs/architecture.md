@@ -4305,6 +4305,34 @@ decoder, CLI composition, public probe, production dependency, workflow,
 permission, release authority, or CI change. No hosted check is added.
 RFC-0152 records the accepted test-only boundary.
 
+## M170 Windows concurrent explicit-list abrupt-termination boundary
+
+M170 adds one Windows-only, test-only [concurrent explicit-list abrupt-
+termination probe](security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md).
+It preserves M156's forced-termination boundary, M163's helper and fixture,
+M167's pairwise isolation boundary, and M169's complete boundary byte-for-byte.
+
+Two threads start real fixed children with distinct handles and roots. Module-
+local proxies require both handles inheritable, capture both processes, and
+hold both restoration entries while both flags remain true. Both exact native
+resets complete, both children emit `ready`, and both parent handles close.
+Both roots remain false/error 32.
+
+The assigned abrupt child receives `kill()` and a bounded wait. Its nonzero
+status, EOF after the consumed `ready` document, and empty stderr prove no
+graceful `closed` phase. Only that root then returns true/code zero while the
+survivor remains live and its root remains denied. The survivor's existing
+acknowledged close and zero exit then permit its root's true/code-zero rename.
+Both payloads survive.
+
+This is not crash recovery, cancellation semantics, arbitrary termination-
+timing or native-close-failure coverage, a concurrency-safe process-creation
+contract, general leak-freedom, a runtime coordinator, recovery, exclusion, or
+Windows admission. M170 adds no runtime API, value, protocol, decoder, CLI
+composition, public probe, production dependency, workflow, permission,
+release authority, or CI change. No hosted check is added. RFC-0153 records the
+accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

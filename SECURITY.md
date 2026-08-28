@@ -848,6 +848,15 @@ root. This is not a real native restoration failure, not a concurrency-safe
 process-creation contract, recovery, general exclusion, or mutation authority;
 Windows remains unadmitted.
 
+M170's test-only [Windows concurrent explicit-list abrupt-termination
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md)
+starts two real fixed children with distinct handles and closes both parent
+copies. One child is forcibly terminated and waited for; only its root releases
+while the survivor remains live and blocks its own root until graceful close.
+This is not crash recovery, not a concurrency-safe process-creation contract,
+recovery, general exclusion, or mutation authority; Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

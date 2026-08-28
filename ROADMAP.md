@@ -2392,6 +2392,40 @@ credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path; no hosted
 check is added.
 
+## M170 Windows concurrent explicit-list abrupt-termination probe
+
+M170 starts from fully locally validated M169 commit
+`3707e1bfe38b3fa21f66183dbe827888bb6e24ea`. It adds one Windows-only,
+test-only [concurrent explicit-list abrupt-termination
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md)
+under RFC-0153.
+
+The test preserves M156's forced-termination boundary, M163's successful
+helper and fixture, M167's pairwise isolation boundary, and M169's complete
+boundary byte-for-byte. Two real children start with distinct blocker handles
+and roots while bounded module-local proxies hold both inheritability and
+restoration windows.
+
+After both flags restore and both parent handles close, both roots remain
+false/error 32. One assigned child is killed and waited for with a fixed bound;
+its nonzero exit and pipe EOF occur without a graceful `closed` phase. Only
+that root may then rename. The survivor remains live and denied until its
+existing acknowledged zero-exit close. Both A/B orientations preserve their
+distinct payloads and settle every owner.
+
+This is not crash recovery, cancellation semantics, arbitrary termination-
+timing or native-close-failure coverage, a concurrency-safe process-creation
+contract, general leak-freedom, a runtime coordinator, recovery, exclusion,
+policy, receipt, Windows admission, or independent-host proof.
+
+M170 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
