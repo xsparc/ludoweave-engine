@@ -182,6 +182,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md)
   that proves one abruptly terminated owner settles while a survivor retains
   both protections, before final settlement releases both ownership types.
+- A test-only [Windows protected guardian-handoff
+  probe](security/cache-cleanup-windows-protected-guardian-handoff-probe.md)
+  that bridges a participant-free interval without treating identity
+  protection as cooperative range ownership or runtime authority.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

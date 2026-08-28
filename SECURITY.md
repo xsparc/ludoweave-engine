@@ -910,6 +910,16 @@ on the observed host. Operating-system release can be delayed elsewhere, and
 the zero-participant identity gap, durable recovery, policy, and receipts
 remain open. This is not cleanup authority; Windows remains unadmitted.
 
+M177's test-only [Windows protected guardian-handoff
+probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md)
+proves that a non-range-locking no-delete-share guardian can preserve one
+coordination identity through a participant-free interval and then release
+while a later protected participant retains substitution exclusion. Exclusive
+range ownership remains available when only the guardian exists, so namespace
+continuity is not treated as quiescence. This is not generation authority,
+trusted placement, crash recovery, admission, or cleanup authority; Windows
+remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -164,3 +164,4 @@ was adopted.
 - [RFC-0157: probe Windows cooperative-lock pathname substitution](0157-probe-windows-cooperative-lock-substitution.md)
 - [RFC-0158: probe Windows live coordination-substitution exclusion](0158-probe-windows-live-coordination-substitution-exclusion.md)
 - [RFC-0159: probe Windows cooperative-lock abrupt settlement](0159-probe-windows-cooperative-lock-abrupt-settlement.md)
+- [RFC-0160: probe Windows protected guardian handoff](0160-probe-windows-protected-guardian-handoff.md)

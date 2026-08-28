@@ -1,5 +1,104 @@
 # Current task
 
+- **Task:** M177 - prove one protected guardian can bridge a participant-free
+  coordination interval and hand namespace protection to a later participant.
+- **Status:** Locally complete. Direction, implementation, supported-Python regression,
+  rendering, findings-first review, evidence-inclusive source closure,
+  documentation, governance, reproducible packaging, installed-wheel, and
+  release-rehearsal gates pass. Record-only separation and guarded cleanup
+  pass. The DCO commit gate passes; publication is withheld because hosted
+  `main` lacks the M100-M176 prerequisite stack.
+- **Base:** Fully locally validated M176 DCO commit
+  `16c6c730c4b7756dc38b5b8de8eef479efa32c12`, tree
+  `67bda7d793bf9c22f6d9107d339d609fee0a2ab2`, sole parent exact M175.
+- **Branch:** `release/m177-windows-protected-guardian-handoff`; exact
+  containment allowed the redundant local M176 branch to be pruned.
+
+## M177 acceptance boundary
+
+- Accept RFC-0160 and retain one Windows-only, test-only, current-host NTFS
+  observation over M173's exact coordination file and M175's fixed participant.
+- Require a noninheritable guardian handle which omits delete sharing, rejects
+  reparse identity, and owns no byte-range lock.
+- With only the guardian live, require M174 substitution error 32 and exact
+  M173 exclusive range acquire/release success.
+- Close one protected participant while the guardian remains, then prove the
+  participant-free interval retains substitution refusal and range availability.
+- Admit a later protected participant on the retained identity, release the
+  guardian while that participant remains live, and require substitution error
+  32 plus exclusive-range error 33 to persist.
+- After final participant close, require exact exclusive acquire/release and
+  M174 substitution success with retained original identity, distinct
+  replacement identity, exact bytes, and complete cleanup.
+- Interpret this only as one current-host continuous protection chain. It is
+  not generation authority, trusted placement, admission, crash recovery,
+  Windows admission, or cleanup authority.
+- Add no fixture, runtime adapter, guardian/lock API, dependency, workflow,
+  job/allocation, permission, release authority, or CI change.
+
+## M177 direction evidence
+
+- Microsoft documents that `CreateFileW` sharing options remain effective
+  until handle close and that omitting delete sharing excludes later rename/
+  delete access.
+- Microsoft documents `LockFileEx` range ownership independently, requiring
+  the guardian-only interval to retain exact exclusive range availability.
+- GitHub documents that every matrix combination creates a job. M177 uses only
+  the existing Windows suite and creates no hosted allocation.
+- NIST SSDF 1.2 remains draft material. M177 retains existing governance and
+  makes no new standard-conformance claim.
+
+## M177 development evidence so far
+
+- Exact M176 is clean with expected `0 77` divergence from local M99 main.
+  Its seven focused assertions pass in 0.59 seconds.
+- Static strict governance passes with zero findings. The first prescribed
+  dated invocation was denied access to uv's existing cache before checking;
+  its approved exact rerun passes with zero findings across three objectives,
+  seven requirements, and four work items.
+- Neutral M177 starts from exact M176. Exact containment made local M176
+  redundant, so only local `main` and active M177 remain.
+- Ruff mechanically reformatted one new architecture file. Both M177 Python
+  files are now format-clean, Ruff-clean, and strict-Pyright clean. Findings-
+  first review removed a redundant assertion-failure release that could close
+  the context-owned guardian twice and added an architecture regression guard.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass the complete suite with
+  3,896 tests and 17 skips. The first 3.12 invocation was interrupted without
+  a result and is not used as evidence.
+- The complete M149-M177 boundary passes 203 tests with one established skip;
+  twenty independent live probes pass. Real-wgpu, profiles, Clockwork Arena,
+  and Agent World Builder pass with established deterministic identities.
+- All 541 Python files pass format, Ruff, and strict Pyright. The corrected
+  focused boundary passes on every supported interpreter; strict docs,
+  whitespace, static governance, and dated governance pass. Exactly 16 paths
+  remain in scope and all protected surfaces retain zero diff.
+- Final builds reproduce the unchanged 361,308-byte pure wheel and a
+  2,135,232-byte source archive. Primary installed-wheel smoke, two byte-
+  identical ten-artifact release stages, both complete release smokes, and
+  final inventory pass. All 28 installed-wheel consumers passed before the
+  narrow test-only review correction.
+
+## M177 publication boundary
+
+- A fresh prune fetch and authenticated PR audit found hosted `main` still at
+  exact M99, with no M176 ancestry, no open PR, PR #251 as the latest merge,
+  and no remote milestone branch. No push, PR, hosted workflow allocation,
+  tag, or release was performed because M100-M176 remain unpublished.
+- Publication must not create a new workflow, job, matrix allocation, or
+  redundant predecessor branch.
+
+## M177 explicit non-scope
+
+- A runtime guardian, lock or generation API, trusted root placement, startup
+  recovery, guardian/process crash recovery, complete participant admission,
+  hostile preexisting handles, mapped views, filesystem variation, policy,
+  receipts, cleanup authority, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,
+  native-extension, compiler, workflow, permission, CI-allocation, tag,
+  release, publication, or version changes.
+
+## Prior task
+
 - **Task:** M176 - prove bounded abrupt settlement of M175 protected
   coordination participants while preserving survivor ownership.
 - **Status:** Direction, implementation, supported-Python regression,

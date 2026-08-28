@@ -4513,6 +4513,38 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0159 records the accepted test-only boundary.
 
+## M177 Windows protected guardian-handoff boundary
+
+M177 adds one Windows-only, test-only [protected guardian-handoff
+probe](security/cache-cleanup-windows-protected-guardian-handoff-probe.md). It
+preserves M176, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+One private noninheritable guardian opens M173's coordination file for generic
+read with read/write sharing while omitting delete sharing. With only the
+guardian live, M174 substitution fails with error 32 while M173 exclusive
+range acquire/release succeeds. The guardian therefore protects namespace
+identity without owning the cooperative byte range.
+
+M175's unchanged participant joins and closes while the guardian remains.
+During the resulting participant-free interval, substitution still fails while
+exclusive range ownership succeeds. A second unchanged participant joins the
+same observed identity. Closing the guardian while that participant remains
+live preserves substitution error 32 and exclusive-range error 33. Only the
+participant's final close permits exact exclusive acquire/release and M174
+substitution with the retained original and distinct replacement identities.
+
+The result is one current-host continuous protection chain, not generation
+authority, trusted-root placement, complete admission, startup/crash recovery,
+or cleanup authority. Guardian failure, hostile prior handles, mapped views,
+filesystem variation, durable generation issuance, revalidation, policy,
+receipts, and independent hosts remain unresolved.
+
+M177 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0160 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -1,5 +1,59 @@
 # Project State
 
+## M177 protected guardian handoff - locally complete, publication withheld
+
+- Base: fully locally validated M176 DCO commit
+  `16c6c730c4b7756dc38b5b8de8eef479efa32c12`, tree
+  `67bda7d793bf9c22f6d9107d339d609fee0a2ab2`, sole parent exact M175.
+- Branch hygiene: neutral `release/m177-windows-protected-guardian-handoff`
+  starts at exact M176. Exact containment allowed redundant M176 to be pruned;
+  only local `main` and active M177 remain.
+- Direction: RFC-0160 accepts one current-host, test-only guardian-handoff
+  observation. It separates namespace identity continuity from cooperative
+  range ownership and rejects runtime promotion, generation authority, trusted
+  placement, recovery, Windows admission, cleanup authority, and CI growth.
+- Baseline: exact M176 is clean at expected `0 77` divergence and its seven
+  focused assertions pass in 0.59 seconds. Static and dated strict governance
+  return zero findings; the dated command required an approved exact rerun
+  after sandbox cache denial before project checking.
+- Intended behavior: a non-range-locking, no-delete-share guardian blocks
+  substitution while exclusive range ownership remains available; it spans a
+  participant-free interval, admits a later protected participant on the same
+  identity, and closes while that participant preserves both protections.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions on all three supported interpreters. Both M177 Python files are format-clean,
+  Ruff-clean, and strict-Pyright clean after one mechanical architecture
+  formatting correction. Findings-first review removed a redundant guardian
+  release that could double-close after an assertion failure and added an
+  architecture guard against recurrence.
+- Supported Python: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass the
+  complete suite with 3,896 tests and 17 skips. The first 3.12 invocation was
+  interrupted without a result; the verified rerun is the only pass claim.
+- Integrated behavior: the complete 58-module M149-M177 boundary passes 203
+  tests with one established capability skip. Twenty independent corrected
+  live probes pass. Eleven real-wgpu tests, both profile schemas, Clockwork
+  Arena, and Agent World Builder pass with established identities.
+- Current-source closure: all 541 Python files pass format, Ruff, and strict
+  Pyright; strict docs, whitespace, static governance, and dated governance
+  pass. Exact scope is 16 paths and all protected surfaces retain zero diff.
+- Protected scope: M176, runtime, examples, scripts, dependencies, workflows,
+  metadata, and lock remain unchanged. No fixture, workflow, matrix, job,
+  permission, dependency, or hosted allocation is added.
+- Final builds reproduce a 361,308-byte pure wheel and 2,135,232-byte source
+  archive. Primary installed-wheel smoke, both byte-identical ten-artifact
+  release stages, both complete release smokes, and package inventory pass.
+  All 28 installed-wheel consumers also passed before the test-only review
+  correction. The record-only separator passes and all exact generated M177/
+  site scratch is removed after guarded, identity-aware cleanup.
+- Commit gate: the initial DCO commit has sole parent exact M176, exactly 16
+  paths, one sign-off, truthful maintainer identity, no merge, a clean tree,
+  and successful object checking. This factual closeout record is incorporated
+  by the final single amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M176. GitHub has no open PR, PR #251 remains the latest merge, and `main` is
+  the only remote branch. M177 is therefore not pushed and no PR or workflow
+  allocation is created while M100-M176 remain absent.
+
 ## M176 protected-lock abrupt settlement - locally complete, publication withheld
 
 - Base: fully locally validated M175 DCO commit

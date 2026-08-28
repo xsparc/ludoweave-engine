@@ -2,6 +2,34 @@
 
 No architecture decision is currently blocked.
 
+## M177 protected coordination guardian-handoff probe
+
+RFC-0160 accepts one Windows-only, test-only observation that a private
+noninheritable no-delete-share guardian can preserve one coordination identity
+through a participant-free range-lock interval. With only the guardian live,
+M174 pathname substitution must fail with error 32 while M173 exclusive range
+acquire/release succeeds. A later M175 participant must join the same identity
+and retain substitution and exclusive-range refusal after guardian release.
+
+This resolves only one exact current-host continuous ownership chain. The
+guardian does not own the byte range and is not generation authority. Trusted
+root placement, guardian startup/crash recovery, complete admission, hostile
+preexisting handles, mapped views, arbitrary termination, filesystem
+variation, durable generation issuance/retention, use-time revalidation,
+policy, receipts, independent-host proof, and Windows admission remain pending.
+
+RFC-0160 does not authorize a runtime adapter, guardian or lock API,
+participant registry, cache access, retained-root integration, candidate
+disclosure, cleanup or mutation authority, dependency, workflow, CI
+allocation, tag, release, or publication. No hosted check is added.
+
+The supported-Python, integrated Windows, repeated live, real-wgpu, profile,
+vertical-slice, documentation, governance, installed-wheel, release-smoke, and
+findings-first gates support only this bounded test observation. Review removed
+one redundant assertion-failure guardian release; context ownership and an
+architecture guard now prevent that double-close path. The evidence does not
+resolve any of the pending production authorities above.
+
 ## M176 protected coordination-lock abrupt-settlement probe
 
 RFC-0159 accepts one Windows-only, test-only observation that killing and

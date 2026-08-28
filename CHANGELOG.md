@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M177/RFC-0160's test-only [Windows protected guardian-handoff
+  probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md).
+  It preserves one coordination identity through a participant-free interval
+  while keeping namespace protection distinct from cooperative range ownership.
 - Add M176/RFC-0159's test-only [Windows cooperative-lock abrupt-settlement
   probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md).
   It proves abrupt owner settlement preserves a surviving protected

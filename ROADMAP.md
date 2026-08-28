@@ -2632,6 +2632,41 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M177 Windows protected guardian-handoff probe
+
+M177 starts from fully locally validated M176 commit
+`16c6c730c4b7756dc38b5b8de8eef479efa32c12`. It adds one Windows-only,
+test-only [protected guardian-handoff
+probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md)
+under RFC-0160.
+
+One private noninheritable guardian opens M173's coordination file for generic
+read with read/write sharing while omitting delete sharing. With no range-lock
+participant present, M174 substitution returns error 32 while M173 exclusive
+range acquire/release succeeds. This proves namespace continuity without
+misclassifying the guardian as a quiescence participant.
+
+M175's unchanged participant joins, holds the shared range, and later closes
+while the guardian remains. The participant-free interval retains substitution
+error 32 and restores exclusive range availability. A second unchanged
+participant joins the same observed `FILE_ID_INFO`; the guardian closes while
+that participant remains live, and both substitution error 32 and exclusive-
+range error 33 persist. Only final participant close permits exact exclusive
+acquire/release and M174 substitution with the retained identity split.
+
+This is one current-host continuous ownership chain, not generation authority,
+trusted placement, complete admission, startup or crash recovery, or cleanup
+authority. Guardian/process failure, hostile preexisting handles, mapped views,
+filesystem variation, durable generation issuance, revalidation through use,
+policy, receipts, Windows admission, and independent-host proof remain open.
+
+M177 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
