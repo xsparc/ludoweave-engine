@@ -1,5 +1,35 @@
 # Project State
 
+## M160 Windows live-blocker wait timeout - locally validated
+
+- Base: fully locally validated M159 DCO commit
+  `78837a61695a38207f06ca474f50f58d9bb9c62e`, tree
+  `0fcd74bfa70210e2944e7a43da45bddf136f7082`, sole parent exact M158.
+- Branch: `release/m160-live-wait-timeout`; exact containment allowed the
+  redundant M159 branch to be pruned.
+- Direction: RFC-0143 accepts one test-only zero-duration `Popen.wait`
+  observation while M155's blocker and M154's false/32 native rename denial
+  remain live, before the unchanged graceful release orders true/0.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, timeout recovery, adapter, cache, CLI, dependency,
+  workflow/CI, version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions,
+  findings-first review, DCO commit, and exact object audit.
+- Initial DCO commit: `9faec84ee019ae392bb7bc4ae1947f839e59bec6`,
+  tree `af7fd2f280fd22defc4948a58707e4f2e8bf6c88`, sole parent exact M159.
+  It has exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 61` divergence from local M99 main. Full object
+  checking reports only dangling objects and no integrity error. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the
+  newest merge, open PRs are empty, and the only remote branch is `main`.
+  Publishing M160 would expose the absent M100-M160 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.
+
 ## M159 Windows blocker broken control pipe - locally validated
 
 - Base: fully locally validated M158 DCO commit

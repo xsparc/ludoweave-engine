@@ -2065,6 +2065,35 @@ credential, release authority, or CI change. Test-only native calls remain
 outside the package and the existing Windows suite is the only future hosted
 execution path.
 
+## M160 Windows live-blocker wait-timeout probe
+
+M160 starts from fully locally validated M159 commit
+`78837a61695a38207f06ca474f50f58d9bb9c62e`. It adds one Windows-only,
+test-only [live-blocker wait-timeout
+probe](docs/security/cache-cleanup-windows-live-wait-timeout-probe.md) under
+RFC-0143.
+
+The parent reuses M155's fixed blocker and bounded `ready` handshake. M154's
+unchanged native rename child returns false/error 32 while the blocker remains
+alive. One `Popen.wait(timeout=0.0)` raises exact `TimeoutExpired`; the child
+return code remains unset, the blocker remains alive, and the identical rename
+returns false/error 32 again with namespace/content unchanged. M155's existing
+graceful release then returns exact `closed` and child exit zero before the
+identical rename returns true/code zero with content preserved.
+
+Windows remains unadmitted. This is not a timeout recovery contract, nonzero
+timeout guarantee, readiness or graceful-close timeout, cancellation, kill
+policy, native close failure, crash or restart recovery, controlled concurrent
+interleaving, general exclusion, duplicated-handle or oplock behavior, policy,
+receipt, or independent-host proof.
+
+M160 adds no runtime API, protocol, decoder, CLI command, public probe, helper,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The existing Windows suite is the
+only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

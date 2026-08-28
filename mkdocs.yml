@@ -48,6 +48,7 @@ nav:
   - Windows blocker control-pipe EOF probe: security/cache-cleanup-windows-control-pipe-eof-probe.md
   - Windows blocker invalid-control-token probe: security/cache-cleanup-windows-invalid-control-token-probe.md
   - Windows blocker broken-control-pipe probe: security/cache-cleanup-windows-broken-control-pipe-probe.md
+  - Windows live-blocker wait-timeout probe: security/cache-cleanup-windows-live-wait-timeout-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -196,6 +197,7 @@ nav:
       - RFC-0140 - Probe Windows blocker control-pipe EOF closure: rfcs/0140-probe-windows-control-pipe-eof.md
       - RFC-0141 - Probe a Windows blocker invalid control token: rfcs/0141-probe-windows-invalid-control-token.md
       - RFC-0142 - Probe a broken Windows blocker control pipe: rfcs/0142-probe-windows-broken-control-pipe.md
+      - RFC-0143 - Probe an immediate Windows blocker wait timeout: rfcs/0143-probe-windows-live-wait-timeout.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M160/RFC-0143's test-only [Windows live-blocker wait-timeout
+  probe](docs/security/cache-cleanup-windows-live-wait-timeout-probe.md).
+  It captures one immediate live-child wait timeout without adding runtime
+  behavior or CI allocation.
 - Add M159/RFC-0142's test-only [Windows blocker broken-control-pipe
   probe](docs/security/cache-cleanup-windows-broken-control-pipe-probe.md).
   It captures one exact post-termination native pipe-write failure without

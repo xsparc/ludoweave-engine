@@ -2,6 +2,25 @@
 
 No architecture decision is currently blocked.
 
+## M160 Windows live-blocker immediate-wait timeout
+
+RFC-0143 accepts one NTFS, Windows-only, test-only observation in which M155's
+unchanged blocker remains ready and alive while M154's unchanged native rename
+returns false/32. One `Popen.wait(timeout=0.0)` raises exact `TimeoutExpired`,
+leaves the return code unset, and does not change the identical second
+false/32 result. M155's existing graceful release then returns exact `closed`
+and child exit zero before the identical third rename returns true/0.
+
+This resolves only one zero-duration process-wait observation. Nonzero wait,
+readiness or graceful-close timeout, native close failure, cancellation, kill
+policy, retry or recovery, crash/restart behavior, duplicated handles, oplocks,
+controlled interleavings, general exclusion, filesystem/driver variation, and
+independent-host proof remain pending. Windows is not admitted.
+
+RFC-0143 does not authorize runtime subprocess or `ctypes`, a helper change,
+production adapter, public capability, cleanup authority, recovery policy,
+dependency, workflow, CI allocation, tag, release, or publication.
+
 ## M159 Windows blocker broken-control-pipe probe
 
 RFC-0142 accepts one NTFS, Windows-only, test-only observation in which the

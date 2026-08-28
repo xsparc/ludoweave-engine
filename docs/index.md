@@ -105,6 +105,10 @@ attestation, with the same allocation topology.
   captures one direct late native write result after bounded owner termination
   without adding runtime recovery, a universal error contract, or CI
   allocation.
+- A test-only [Windows live-blocker wait-timeout
+  probe](security/cache-cleanup-windows-live-wait-timeout-probe.md) that
+  captures one immediate wait timeout while ownership and denial remain live,
+  without adding runtime recovery, timeout policy, or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

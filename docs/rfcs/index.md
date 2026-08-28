@@ -147,3 +147,4 @@ was adopted.
 - [RFC-0140: probe Windows blocker control-pipe EOF closure](0140-probe-windows-control-pipe-eof.md)
 - [RFC-0141: probe a Windows blocker invalid control token](0141-probe-windows-invalid-control-token.md)
 - [RFC-0142: probe a broken Windows blocker control pipe](0142-probe-windows-broken-control-pipe.md)
+- [RFC-0143: probe an immediate Windows blocker wait timeout](0143-probe-windows-live-wait-timeout.md)

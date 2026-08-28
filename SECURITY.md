@@ -759,6 +759,14 @@ closes explicitly, and one identical rename succeeds. This is not a universal
 Windows error result, Python exception mapping, retry or recovery contract,
 general exclusion, or mutation authority; Windows remains unadmitted.
 
+M160's test-only [Windows live-blocker wait-timeout
+probe](docs/security/cache-cleanup-windows-live-wait-timeout-probe.md) performs
+one zero-duration wait after the unchanged blocker is ready. The wait raises
+`TimeoutExpired`; the child and false/error 32 denial remain live until the
+existing graceful close orders one successful rename. This is not a timeout
+recovery contract, cancellation policy, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

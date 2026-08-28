@@ -4038,6 +4038,29 @@ Windows admission. M159 adds no runtime API, value, protocol, decoder, CLI
 composition, public probe, helper, dependency, workflow, permission, release
 authority, or CI change. RFC-0142 records the accepted test-only boundary.
 
+## M160 Windows live-blocker wait-timeout boundary
+
+M160 adds one Windows-only, test-only [live-blocker wait-timeout
+probe](security/cache-cleanup-windows-live-wait-timeout-probe.md). It reuses
+M155's fixed child-owned blocker, readiness, graceful release, and cleanup plus
+M154's native rename unchanged. After bounded readiness and false/error 32
+denial, the parent calls `Popen.wait(timeout=0.0)` exactly once.
+
+The immediate wait raises `TimeoutExpired` with the fixed child arguments and
+timeout value. The return code remains unset, the child remains alive, and the
+identical rename still returns false/error 32 with namespace/content
+unchanged. M155's existing release/acknowledgement path then returns exact
+`closed` and child exit zero before one final identical rename returns
+true/code zero with content preserved.
+
+This is one current-host immediate-wait observation, not timeout recovery,
+nonzero timeout behavior, readiness or close-timeout behavior, cancellation,
+kill policy, native close failure, crash/restart recovery, concurrent mutation
+safety, general exclusion, duplicated-handle or oplock behavior, or Windows
+admission. M160 adds no runtime API, value, protocol, decoder, CLI composition,
+public probe, helper, dependency, workflow, permission, release authority, or
+CI change. RFC-0143 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
