@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M164 Windows inherited-handle launch-failure probe
+
+RFC-0147 accepts one NTFS, Windows-only, test-only serial observation in which
+the parent temporarily marks one no-delete-share directory handle inheritable,
+lists only that handle for a fixed absent executable, and observes exact
+current-host `FileNotFoundError`/`ENOENT`/Windows error 2. `finally` restores
+noninheritability with no process owner returned. The parent retains owned
+count one and M154's false/error 32 denial until exact parent close, after
+which the identical second rename returns true/code zero.
+
+This resolves only one real missing-executable rollback observation.
+Restoration-failure injection, arbitrary process-creation failures,
+concurrency-safe inheritance, leak-freedom under concurrent launches, invalid
+handle values, child crash, cross-process duplication/transfer, native close
+failure, oplocks, controlled interleavings, general exclusion,
+filesystem/driver variation, recovery, and independent-host proof remain
+pending. Windows is not admitted.
+
+RFC-0147 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted fixture, a production adapter, public capability, cleanup authority,
+recovery policy, dependency, workflow, CI allocation, tag, release, or
+publication.
+
 ## M163 Windows inherited-handle retention probe
 
 RFC-0146 accepts one NTFS, Windows-only, test-only serial observation in which

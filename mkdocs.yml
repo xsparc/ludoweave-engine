@@ -52,6 +52,7 @@ nav:
   - Windows acknowledged-release timeout probe: security/cache-cleanup-windows-acknowledged-release-timeout-probe.md
   - Windows duplicated-handle retention probe: security/cache-cleanup-windows-duplicated-handle-probe.md
   - Windows inherited-handle retention probe: security/cache-cleanup-windows-inherited-handle-probe.md
+  - Windows inherited-launch failure probe: security/cache-cleanup-windows-inherited-launch-failure-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -204,6 +205,7 @@ nav:
       - RFC-0144 - Probe an acknowledged Windows blocker release timeout: rfcs/0144-probe-windows-acknowledged-release-timeout.md
       - RFC-0145 - Probe a duplicated Windows blocker handle: rfcs/0145-probe-windows-duplicated-blocker-handle.md
       - RFC-0146 - Probe an inherited Windows blocker handle: rfcs/0146-probe-windows-inherited-blocker-handle.md
+      - RFC-0147 - Probe Windows inherited-handle launch failure: rfcs/0147-probe-windows-inherited-launch-failure.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -151,3 +151,4 @@ was adopted.
 - [RFC-0144: probe an acknowledged Windows blocker release timeout](0144-probe-windows-acknowledged-release-timeout.md)
 - [RFC-0145: probe a duplicated Windows blocker handle](0145-probe-windows-duplicated-blocker-handle.md)
 - [RFC-0146: probe an inherited Windows blocker handle](0146-probe-windows-inherited-blocker-handle.md)
+- [RFC-0147: probe Windows inherited-handle launch failure](0147-probe-windows-inherited-launch-failure.md)

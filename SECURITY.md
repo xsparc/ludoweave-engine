@@ -792,6 +792,15 @@ child closes its inherited handle. This is not a concurrency-safe inheritance
 contract, broad inheritance, leak-freedom under concurrent launches, general
 exclusion, or mutation authority; Windows remains unadmitted.
 
+M164's test-only [Windows inherited-launch failure
+probe](docs/security/cache-cleanup-windows-inherited-launch-failure-probe.md)
+uses one fixed missing executable to produce a real process-creation failure
+after temporary explicit handle allowlisting. The parent restores
+noninheritability and retains false/error 32 until explicit close. This is not
+restoration-failure injection, arbitrary launch-failure coverage, concurrent-
+launch safety, recovery, general exclusion, or mutation authority; Windows
+remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

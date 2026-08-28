@@ -123,6 +123,11 @@ attestation, with the same allocation topology.
   one explicitly allowlisted child handle retains the observed denial after
   the parent closes its handle, without adding concurrency-safe inheritance,
   runtime behavior, or CI allocation.
+- A test-only [Windows inherited-launch failure
+  probe](security/cache-cleanup-windows-inherited-launch-failure-probe.md) that
+  proves one real missing-executable failure restores noninheritability while
+  preserving parent ownership, without adding arbitrary rollback, runtime
+  behavior, or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -2185,6 +2185,39 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The fixed child is test-only and
 the existing Windows suite is the only future hosted execution path.
 
+## M164 Windows inherited-handle launch-failure probe
+
+M164 starts from fully locally validated M163 commit
+`86ba05218f8bae79153677e8c6fae200a61f019f`. It adds one Windows-only,
+test-only [inherited-launch failure
+probe](docs/security/cache-cleanup-windows-inherited-launch-failure-probe.md)
+under RFC-0147.
+
+The parent opens ordinary `live` without delete sharing, places only that
+handle in a `STARTUPINFO` explicit handle list, and temporarily marks it
+inheritable around a fixed missing-executable launch. The real process-
+creation failure returns exact current-host `FileNotFoundError`, errno
+`ENOENT`, and Windows error 2; `finally` restores the handle to
+noninheritable without returning a process owner.
+
+The parent retains owned count one and M154's identical native rename remains
+false/error 32 with namespace/content unchanged. Closing that parent handle
+exactly once reduces owned count to zero and orders the identical second
+rename's true/code-zero result with content preserved.
+
+Windows remains unadmitted. This is not restoration-failure injection,
+arbitrary process-creation failure coverage, leak-freedom under concurrent
+launches, a concurrency-safe inheritance contract, invalid-handle evidence,
+child-crash behavior, recovery, general exclusion, policy, receipt, or
+independent-host proof.
+
+M164 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

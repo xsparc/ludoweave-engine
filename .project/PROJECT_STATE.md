@@ -1,5 +1,64 @@
 # Project State
 
+## M164 Windows inherited-handle launch failure - locally validated and committed
+
+- Base: fully locally validated M163 DCO commit
+  `86ba05218f8bae79153677e8c6fae200a61f019f`, tree
+  `c945019b831f2e13e1afb8046ab5f6664ee1cbfd`, sole parent exact M162.
+- Branch: `release/m164-inherited-launch-failure`; exact containment allowed
+  the redundant M163 branch to be pruned.
+- Direction: RFC-0147 accepts one test-only real missing-executable process-
+  creation failure. Only one blocker handle is allowlisted, temporary
+  inheritability is restored in `finally`, parent ownership/false-32 denial
+  remains, and only parent close orders true/0.
+- Scope: one integration probe, one architecture boundary, and documentation;
+  no child fixture, runtime, accepted-fixture mutation, public probe, recovery,
+  adapter, cache, CLI, dependency, workflow/CI, version, release, or product
+  mutation change.
+- Development acceptance: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  3,782 non-wgpu tests with 17 expected skips. All ten real-wgpu tests,
+  profiles, both vertical slices, all 28 installed-wheel consumers, two
+  reproducible builds, two byte-identical ten-artifact release stages, strict
+  docs/static/governance, and 40 explicit repeated live executions pass.
+- Review: the fixed missing path, explicit executable, one-handle list,
+  noninheritability rollback, no-process result, parent ownership, two native
+  rename results, unexpected-process reaping, and namespace/content invariants
+  were reviewed. No remaining actionable finding is known.
+- Final closure: all 510 Python files, Ruff, strict Pyright, the 99-assertion
+  M149-M164 boundary group, strict docs, static/dated governance, scope, and
+  whitespace pass. Final evidence-inclusive builds reproduce a 360,308-byte
+  pure wheel at SHA-256
+  `901554f82bff648b87d34d3469b04081dbe7068b12d68144810e020aec42a31a`
+  and a 2,015,852-byte source archive at SHA-256
+  `40acdf97a564425c148e96fa266aadcc5bfe64df02271685be27517dac3e9181`.
+  The primary wheel smoke and both byte-identical ten-artifact final release
+  stages pass; archive inventory remains 114 wheel and 815 source entries.
+- Initial DCO commit `a7bdea7cf7a988678b7fe21d21ce0b189213f504`
+  has tree `e59fcfb77afd1cc10fe005a275afab70f76f4170`, sole parent exact M163,
+  exact configured maintainer identity, one DCO sign-off, exactly 16 intended
+  paths, no merge commit, a clean worktree, expected `0 65` divergence from
+  local M99 main, and only local `main` plus M164. Full object checking exits
+  zero with historical dangling objects only. This factual closeout is folded
+  into the same local commit before publication.
+- Pre-record amended commit
+  `0381c5b59d1b1b92eba6dff28b4149783626d622` has tree
+  `a563a087e1f95f234b9c5c7e4927d7e648389b8d`, sole parent exact M163,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 65` divergence, and only local
+  `main` plus M164. Whitespace passes. This factual closeout is folded into the
+  same local commit before publication.
+- Post-record checkpoint `d89c77deb474a86907e5858ad36f8ed0828c5013`
+  has tree `97b11680ef9b14339801a2d60eb21f466542e636`, sole parent exact M163,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 65` divergence, and only local
+  `main` plus M164. All ten exact M164 scratch targets were verified beneath
+  repository `.tmp`, removed, and confirmed absent.
+- Hosted state: fresh preimplementation and final postcommit audits expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`;
+  PR #251 remains the newest merge, open PRs are empty, and the only remote
+  branch is `main`. Publishing M164 would expose the absent M100-M164 stack,
+  so no push, PR, workflow allocation, tag, or release occurred.
+
 ## M163 Windows inherited-handle retention - locally validated
 
 - Base: fully locally validated M162 DCO commit

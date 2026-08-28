@@ -4135,6 +4135,30 @@ value, protocol, decoder, CLI composition, public probe, production dependency,
 workflow, permission, release authority, or CI change. RFC-0146 records the
 accepted test-only boundary.
 
+## M164 Windows inherited-handle launch-failure boundary
+
+M164 adds one Windows-only, test-only [inherited-launch failure
+probe](security/cache-cleanup-windows-inherited-launch-failure-probe.md). The
+parent opens one no-delete-share directory handle, puts only that handle in a
+`STARTUPINFO` explicit handle list, and temporarily marks it inheritable around
+one fixed missing-executable `Popen` call with `close_fds=True`, `shell=False`,
+explicit executable selection, and `DEVNULL` standard streams.
+
+The real process-creation failure returns exact current-host
+`FileNotFoundError`/`ENOENT`/Windows error 2 without a process owner. A
+`finally` boundary restores noninheritability. Parent owned count remains one
+and M154's identical native rename remains false/error 32 until the parent
+closes its handle exactly once; only then does the identical second rename
+return true/code zero with content preserved.
+
+This is one serial current-host missing-executable rollback observation, not
+restoration-failure injection, arbitrary process-creation failure coverage,
+concurrent-launch leak-freedom, a concurrency-safe inheritance contract,
+invalid-handle behavior, child-crash recovery, general exclusion, or Windows
+admission. M164 adds no runtime API, value, protocol, decoder, CLI composition,
+public probe, production dependency, workflow, permission, release authority,
+or CI change. RFC-0147 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
