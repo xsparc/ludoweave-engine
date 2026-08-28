@@ -4333,6 +4333,33 @@ composition, public probe, production dependency, workflow, permission,
 release authority, or CI change. No hosted check is added. RFC-0153 records the
 accepted test-only boundary.
 
+## M171 Windows exclusive-root acquisition boundary
+
+M171 adds one Windows-only, test-only [exclusive-root acquisition
+probe](security/cache-cleanup-windows-exclusive-root-acquisition-probe.md).
+It preserves M149's capability chain, M153's share-delete boundary, M155's
+fixed child/handshake, and M170's complete boundary byte-for-byte.
+
+The private parent opens an ordinary NTFS directory with list/read-attribute/
+synchronize access, sharing mode zero, backup semantics, open-reparse-point
+behavior, and null security attributes. It rejects reparse identity, owns the
+handle, and proves it noninheritable. One fixed isolated child all-sharing open
+returns exact false/error 32 while that owner remains live and exact true/error
+zero after deterministic close.
+
+For the reverse direction, M155's unchanged child emits exact `ready` while it
+owns `live`. The parent zero-sharing acquisition returns the existing native
+error with exact code 32, adopts no handle, leaves the child live, and preserves
+content. After exact `closed` and zero exit, the same acquisition succeeds,
+remains noninheritable, and closes once.
+
+This is not a complete quiescence protocol, lock API, general exclusion,
+attribute-only/open-mode coverage, oplock or lease contract, recovery, or
+Windows admission. M171 adds no runtime API, value, protocol, decoder, CLI
+composition, public probe, production dependency, workflow, permission,
+release authority, or CI change. No hosted check is added. RFC-0154 records the
+accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M171 Windows exclusive-root acquisition probe
+
+RFC-0154 accepts one Windows-only, test-only two-way observation around one
+ordinary directory representing a selected cache root. A private parent owner
+uses sharing mode zero and refuses a fixed late child until deterministic
+close. In the reverse direction, M155's fixed child remains live while the
+parent's identical acquisition fails with native error 32 and adopts no owner;
+only the child's acknowledged close and zero exit permit acquisition. Every
+successful parent handle is noninheritable.
+
+This resolves only the exact current-host ordinary-directory sharing-mode
+transition. Attribute-only access, mapped files, oplocks, leases, descendants,
+access/share permutations, multiple participants, cancellation, native close
+failure, filesystem variation, recovery, complete quiescence, and independent-
+host proof remain pending. Windows is not admitted.
+
+RFC-0154 does not authorize a runtime lock, public probe, production subprocess
+or native call, cache access, cleanup authority, retained-root integration,
+candidate policy, recovery, dependency, workflow, CI allocation, tag, release,
+or publication. No hosted check is added.
+
 ## M170 Windows concurrent explicit-list abrupt-termination probe
 
 RFC-0153 accepts one Windows-only, test-only controlled observation in which

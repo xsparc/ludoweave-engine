@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M171/RFC-0154's test-only [Windows exclusive-root acquisition
+  probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md).
+  It proves two-way fail-closed sharing violations around one no-sharing
+  directory owner and deterministic release, without adding cleanup authority,
+  runtime coordination, or CI allocation.
 - Add M170/RFC-0153's test-only [Windows concurrent explicit-list abrupt-
   termination probe](docs/security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md).
   It proves one forcibly terminated child releases only its inherited blocker

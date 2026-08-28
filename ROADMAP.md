@@ -2426,6 +2426,40 @@ credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path; no hosted
 check is added.
 
+## M171 Windows exclusive-root acquisition probe
+
+M171 starts from fully locally validated M170 commit
+`0c658d43886c986b129aa76dcc0ab413fd5cf618`. It adds one Windows-only,
+test-only [exclusive-root acquisition
+probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md)
+under RFC-0154.
+
+The test preserves M149's native capability, M153's share-delete boundary,
+M155's fixed child and handshake, and M170's complete boundary byte-for-byte.
+One private owner opens an ordinary `live` directory with sharing mode zero,
+rejects reparse identity, and proves its handle noninheritable. A fixed child
+all-sharing open must return false/error 32 until that owner closes, then true/
+error zero.
+
+The reverse direction starts M155's fixed child and waits for exact `ready`.
+The parent's zero-sharing acquisition must return the existing native error
+with code 32, adopt no handle, leave the child live, and preserve content. Only
+the child's acknowledged close and zero exit permit the same parent acquisition
+to succeed. That owner is also noninheritable and closes deterministically.
+
+Windows remains unadmitted. This is one current-host two-way share-mode
+observation, not a complete quiescence protocol, lock API, general exclusion,
+oplock/lease contract, coverage of attribute-only or every access/share mode,
+recovery, policy, receipt, cleanup authority, or independent-host proof.
+
+M171 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

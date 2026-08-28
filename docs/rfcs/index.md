@@ -158,3 +158,4 @@ was adopted.
 - [RFC-0151: probe Windows concurrent explicit-list launch failure](0151-probe-windows-concurrent-explicit-launch-failure.md)
 - [RFC-0152: probe Windows concurrent explicit-list restoration failure](0152-probe-windows-concurrent-explicit-restore-failure.md)
 - [RFC-0153: probe Windows concurrent explicit-list abrupt termination](0153-probe-windows-concurrent-explicit-abrupt-termination.md)
+- [RFC-0154: probe Windows exclusive-root acquisition](0154-probe-windows-exclusive-root-acquisition.md)

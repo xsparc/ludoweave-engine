@@ -1,5 +1,64 @@
 # Project State
 
+## M171 Windows exclusive-root acquisition - locally validated
+
+- Base: fully locally validated M170 DCO commit
+  `0c658d43886c986b129aa76dcc0ab413fd5cf618`, tree
+  `24b543ba5c230e2d7907d03187c803db1290a731`, sole parent exact M169.
+- Branch hygiene: neutral `release/m171-windows-exclusive-root-acquisition`
+  starts at exact M170. Exact containment allowed redundant M170 to be pruned;
+  only local `main` and active M171 remain.
+- Direction: RFC-0154 accepts one current-host, test-only two-way sharing-mode-
+  zero acquisition observation. It rejects a runtime lock, complete quiescence,
+  recovery, cleanup authority, Windows admission, and CI growth.
+- Scope: one fixed child fixture, one live integration probe, one architecture
+  boundary, two decision/security documents, eight public navigation/status
+  documents, and four neutral project records only. Runtime, examples, scripts,
+  prior fixtures/probes, dependencies, workflows, metadata, and lock remain
+  protected.
+- Behavior: one private noninheritable zero-sharing owner denies a fixed late
+  all-sharing child with error 32 until exact close. M155's existing fixed child
+  causes the same parent acquisition to fail with error 32 and adopt no owner;
+  after acknowledged close and zero exit, acquisition succeeds and closes.
+  Both candidate payloads remain unchanged.
+- Focused proof: seven architecture guards plus two live tests pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M171 boundary passes 156
+  assertions with one established capability skip.
+- Static and Python matrix: all 525 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,839 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,839 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,880-byte pure wheel at
+  SHA-256 `539aebac6aabe325fef9e6a6e6e6b66d38cf550f85a3473117501f15c62d25b5`
+  and a 2,078,343-byte source archive at SHA-256
+  `f6af972bbc63942e792f59dd534597ad7a3fe6e391705ae695e0eca05d941a45`.
+  All 28 isolated installed-wheel consumers pass.
+- Release rehearsal: two ten-artifact stages are byte-identical and pass full
+  release smoke. Archive inventory is 114 wheel and 844 source entries with no
+  native/WASM/bytecode or hidden-control entry, no M171 wheel entry, and all
+  five exact M171 sources source-only.
+- Final evidence-inclusive reproduction retains the 360,880-byte wheel and
+  SHA-256 `539aebac6aabe325fef9e6a6e6b66d38cf550f85a3473117501f15c62d25b5`;
+  the 2,080,783-byte source archive has SHA-256
+  `ea46ccd72c52be88635a73be5d7f629b779a118bce71cda87470ee6c0586db79`.
+  Primary installed-wheel smoke and both final release stages pass.
+- Governance/review: static and dated strict governance return zero findings.
+  Complete review corrected one documentation wording issue; protected surfaces
+  retain zero diff, identity/credential/local-path scans find zero match, and no
+  remaining actionable finding is known.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation changes. Hosted publication remains subject to the preceding-stack
+  containment gate.
+- Hosted publication: fresh fetch and authenticated queries find hosted/local
+  `main` at exact M99, no open PR, and PR #251 as the latest merge. Hosted
+  `main` does not contain exact M170; M171 is 72 commits ahead and zero behind.
+  Push and PR are therefore withheld, with no workflow allocation.
+- Initial DCO commit `6677516b73121c0959d4ad2ea1164fccc4546a56` has the
+  exact M170 parent, truthful maintainer identity, one sign-off, 17 intended
+  paths, no merge, a clean tree, and zero critical object finding. Its factual
+  audit is being folded into the same commit before the hosted-state decision.
+
 ## M170 Windows concurrent explicit-list abrupt termination - locally validated
 
 - Base: fully locally validated M169 DCO commit

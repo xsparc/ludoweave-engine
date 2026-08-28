@@ -157,6 +157,11 @@ attestation, with the same allocation topology.
   that proves one forcibly terminated child releases only its inherited
   blocker while the concurrent survivor remains live, without runtime or CI
   expansion.
+- A test-only [Windows exclusive-root acquisition
+  probe](security/cache-cleanup-windows-exclusive-root-acquisition-probe.md)
+  that proves two-way fail-closed no-sharing acquisition and deterministic
+  release without introducing a runtime lock, cleanup authority, or CI
+  expansion.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

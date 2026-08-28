@@ -857,6 +857,14 @@ This is not crash recovery, not a concurrency-safe process-creation contract,
 recovery, general exclusion, or mutation authority; Windows remains
 unadmitted.
 
+M171's test-only [Windows exclusive-root acquisition
+probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md)
+proves two fail-closed sharing-mode transitions: one no-sharing directory owner
+denies a fixed late child open, and one existing fixed child makes the same
+parent acquisition fail with error 32 until acknowledged close. This is not a
+complete quiescence protocol, lock API, recovery, general exclusion, cleanup
+authority, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
