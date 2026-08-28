@@ -1,5 +1,41 @@
 # Project State
 
+## M162 Windows duplicated-handle retention - locally validated
+
+- Base: fully locally validated M161 DCO commit
+  `d0cac5376e4c67c2e1609b1e2119df28a8e057e3`, tree
+  `8a79445ed45c39b6c1bcbc3a4bbef31f6886a850`, sole parent exact M160.
+- Branch: `release/m162-duplicated-handle-retention`; exact containment allowed
+  the redundant M161 branch to be pruned.
+- Direction: RFC-0145 accepts one test-only same-process duplicate created with
+  unchanged access and inheritance disabled. The original closes before a
+  second false/32 denial; only final duplicate close orders true/0.
+- Scope: one fixed fixture, integration/architecture tests, and documentation;
+  no runtime, accepted-fixture mutation, public probe, recovery, adapter,
+  cache, CLI, dependency, workflow/CI, version, release, or product mutation
+  change.
+- Acceptance: complete through exact supported-Python behavior,
+  full regression, architecture/static/docs gates, real wgpu, profiles,
+  vertical slices, all installed-wheel consumers, reproducible distributions,
+  release rehearsal, archive inspection, 40 repeated live-host executions,
+  findings-first review, and final evidence-inclusive source/package closure.
+  Initial DCO commit `907a53b377706f62501eb42082254fb06220bb85`
+  has tree `733d4187213a18e7a326c2986929ffc8b972493e`, sole parent exact M161,
+  exact maintainer identity, one sign-off, 17 intended paths, a clean
+  worktree, and expected `0 63` divergence from local M99 main. Full object
+  verification reports historical dangling objects only and exits zero. This
+  factual closeout is folded into the same local commit before publication.
+- Amended local commit `eabd2d5f0a42b3ffaabd327f5f6e255890513dfa`
+  has tree `7e0e97b32407dfb2a114d9ec1b328d2a09b8e8ec`, sole parent exact M161,
+  exact maintainer identity, one sign-off, the same 17 intended paths, no
+  merge commit, clean worktree, and expected `0 63` divergence. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publishing
+  M162 would expose the absent M100-M162 stack, so no push, PR, workflow
+  allocation, tag, or release occurred.
+
 ## M161 Windows acknowledged-release timeout - locally validated
 
 - Base: fully locally validated M160 DCO commit

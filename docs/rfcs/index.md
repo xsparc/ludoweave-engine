@@ -149,3 +149,4 @@ was adopted.
 - [RFC-0142: probe a broken Windows blocker control pipe](0142-probe-windows-broken-control-pipe.md)
 - [RFC-0143: probe an immediate Windows blocker wait timeout](0143-probe-windows-live-wait-timeout.md)
 - [RFC-0144: probe an acknowledged Windows blocker release timeout](0144-probe-windows-acknowledged-release-timeout.md)
+- [RFC-0145: probe a duplicated Windows blocker handle](0145-probe-windows-duplicated-blocker-handle.md)

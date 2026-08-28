@@ -4086,6 +4086,30 @@ decoder, CLI composition, public probe, production dependency, workflow,
 permission, release authority, or CI change. RFC-0144 records the accepted
 test-only boundary.
 
+## M162 Windows duplicated-handle retention boundary
+
+M162 adds one Windows-only, test-only [duplicated-handle retention
+probe](security/cache-cleanup-windows-duplicated-handle-probe.md). Its fixed
+child opens one no-delete-share directory handle and creates one
+noninheritable same-process duplicate with the same access before exact
+`ready`.
+
+Fixed byte `1` closes the original handle exactly once and orders exact
+`original-closed`. The child remains live and M154's identical native rename
+remains false/error 32 with namespace and content unchanged because the
+duplicate remains owned. Fixed byte `2` closes that duplicate exactly once and
+orders exact `closed`, child exit zero, output EOF, and one final identical
+rename returning true/code zero with content preserved.
+
+This is one current-host same-process duplicate observation, not
+inherited-handle behavior, cross-process duplication or transfer, general
+handle-count verification, native close-failure behavior, oplock or lease
+behavior, crash/restart recovery, concurrent mutation safety, general
+exclusion, or Windows admission. M162 adds no runtime API, value, protocol,
+decoder, CLI composition, public probe, production dependency, workflow,
+permission, release authority, or CI change. RFC-0145 records the accepted
+test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

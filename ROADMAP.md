@@ -2123,6 +2123,35 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The fixed child is test-only and
 the existing Windows suite is the only future hosted execution path.
 
+## M162 Windows duplicated-handle retention probe
+
+M162 starts from fully locally validated M161 commit
+`d0cac5376e4c67c2e1609b1e2119df28a8e057e3`. It adds one Windows-only,
+test-only [duplicated-handle retention
+probe](docs/security/cache-cleanup-windows-duplicated-handle-probe.md) under
+RFC-0145.
+
+A fixed standalone child opens ordinary `live` without delete sharing and
+creates one noninheritable same-process duplicate with
+`DUPLICATE_SAME_ACCESS` before exact `ready`. Fixed byte `1` closes only the
+original and emits exact `original-closed`; M154's identical rename remains
+false/error 32 with namespace and content unchanged. Fixed byte `2` closes the
+duplicate and orders exact `closed`, child exit zero, and the identical
+rename's true/code-zero result with content preserved.
+
+Windows remains unadmitted. This is not inherited-handle evidence,
+cross-process duplication or transfer, general handle-count verification,
+native close-failure behavior, crash or restart recovery, controlled
+concurrent interleaving, general exclusion, oplock behavior, policy, receipt,
+or independent-host proof.
+
+M162 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The fixed child is test-only and
+the existing Windows suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M162 Windows duplicated-handle retention probe
+
+RFC-0145 accepts one NTFS, Windows-only, test-only observation in which a new
+fixed child creates a noninheritable same-process duplicate of its
+no-delete-share directory handle before exact `ready`. Fixed byte `1` closes
+only the original and emits exact `original-closed`; M154's identical native
+rename remains false/error 32. Fixed byte `2` closes the duplicate and orders
+exact `closed`, child exit zero, and the identical third rename's true/code-
+zero result.
+
+This resolves only one same-process duplicate-retention observation. Inherited
+handles, cross-process duplication/transfer, duplicate-creation and native
+close failures, oplocks, controlled interleavings, general exclusion,
+filesystem/driver variation, recovery, and independent-host proof remain
+pending. Windows is not admitted.
+
+RFC-0145 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted fixture, a production adapter, public capability, cleanup authority,
+recovery policy, dependency, workflow, CI allocation, tag, release, or
+publication.
+
 ## M161 Windows acknowledged-release timeout probe
 
 RFC-0144 accepts one NTFS, Windows-only, test-only observation in which a new

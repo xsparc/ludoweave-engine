@@ -113,6 +113,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-acknowledged-release-timeout-probe.md)
   that separates accepted release intent from native handle close without
   adding runtime recovery, graceful-close policy, or CI allocation.
+- A test-only [Windows duplicated-handle retention
+  probe](security/cache-cleanup-windows-duplicated-handle-probe.md) that proves
+  one same-process duplicate retains the observed denial after the original
+  closes, without adding inherited-handle claims, runtime behavior, or CI
+  allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

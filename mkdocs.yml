@@ -50,6 +50,7 @@ nav:
   - Windows blocker broken-control-pipe probe: security/cache-cleanup-windows-broken-control-pipe-probe.md
   - Windows live-blocker wait-timeout probe: security/cache-cleanup-windows-live-wait-timeout-probe.md
   - Windows acknowledged-release timeout probe: security/cache-cleanup-windows-acknowledged-release-timeout-probe.md
+  - Windows duplicated-handle retention probe: security/cache-cleanup-windows-duplicated-handle-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -200,6 +201,7 @@ nav:
       - RFC-0142 - Probe a broken Windows blocker control pipe: rfcs/0142-probe-windows-broken-control-pipe.md
       - RFC-0143 - Probe an immediate Windows blocker wait timeout: rfcs/0143-probe-windows-live-wait-timeout.md
       - RFC-0144 - Probe an acknowledged Windows blocker release timeout: rfcs/0144-probe-windows-acknowledged-release-timeout.md
+      - RFC-0145 - Probe a duplicated Windows blocker handle: rfcs/0145-probe-windows-duplicated-blocker-handle.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

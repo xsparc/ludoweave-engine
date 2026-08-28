@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M162/RFC-0145's test-only [Windows duplicated-handle retention
+  probe](docs/security/cache-cleanup-windows-duplicated-handle-probe.md). It
+  proves one same-process duplicate retains the native rename denial after the
+  original closes, without adding runtime behavior or CI allocation.
 - Add M161/RFC-0144's test-only [Windows acknowledged-release timeout
   probe](docs/security/cache-cleanup-windows-acknowledged-release-timeout-probe.md).
   It separates accepted release intent from native handle close without adding

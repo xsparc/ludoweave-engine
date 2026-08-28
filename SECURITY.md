@@ -775,6 +775,14 @@ times out before the close token orders exact `closed`, exit zero, and one
 successful rename. This is not a graceful-close timeout contract, recovery
 policy, general exclusion, or mutation authority; Windows remains unadmitted.
 
+M162's test-only [Windows duplicated-handle retention
+probe](docs/security/cache-cleanup-windows-duplicated-handle-probe.md) creates
+one noninheritable same-process duplicate of the no-delete-share directory
+handle. Closing only the original leaves false/error 32 denial in force;
+closing the final duplicate permits one successful rename. This is not
+inherited-handle or cross-process duplication evidence, general exclusion, or
+mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
