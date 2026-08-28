@@ -810,6 +810,16 @@ parent handle and retains false/error 32 until close. This is not a real native
 restoration failure, concurrent-launch safety, recovery, general exclusion, or
 mutation authority; Windows remains unadmitted.
 
+M166's test-only [Windows concurrent broad-inheritance leak
+probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md)
+uses bounded events to pause M163's explicit-list launch while its exact parent
+handle is temporarily inheritable, then starts the same fixed child with broad
+inheritance. Native rename remains false/error 32 after the parent and intended
+child close and becomes true/code zero only after the broad child closes. This
+is one controlled real leak observation, not a concurrency-safe spawning
+contract, general leak-freedom, recovery, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

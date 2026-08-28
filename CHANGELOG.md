@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M166/RFC-0149's test-only [Windows concurrent broad-inheritance leak
+  probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md).
+  It proves one controlled broad launch retains the temporarily inheritable
+  blocker after parent and intended-child close, without adding runtime
+  coordination or CI allocation.
 - Add M165/RFC-0148's test-only [Windows inherited-handle restoration-failure
   probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md).
   It proves an already-created child is reaped before one injected restoration

@@ -4187,6 +4187,36 @@ adds no runtime API, value, protocol, decoder, CLI composition, public probe,
 production dependency, workflow, permission, release authority, or CI change.
 RFC-0148 records the accepted test-only boundary.
 
+## M166 Windows concurrent broad-inheritance leak boundary
+
+M166 adds one Windows-only, test-only [concurrent broad-inheritance leak
+probe](security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md).
+It preserves M163's helper and fixture byte-for-byte while a module-local
+subprocess proxy pauses the exact explicit-list `Popen` call after the parent
+blocker becomes inheritable and before its intended child is created.
+
+During that bounded event-controlled window, the caller uses the captured real
+`Popen` class to start the same fixed child with `close_fds=False`, fixed
+executable/path arguments, `shell=False`, trusted pytest cwd, and owned pipes.
+After the broad child emits exact `ready`, the intended launch proceeds and
+M163's unchanged `finally` restores parent noninheritability.
+
+M154's unchanged native rename remains false/error 32 while the parent and
+both children are live, after the parent closes, and after the intended child
+acknowledges close and exits zero while the broad child remains live. Only the
+broad child's acknowledged close and zero exit allow the identical fourth
+rename to return true/code zero with content preserved. The third denial is
+the distinguishing proof that the concurrently created broad child acquired
+the temporarily inheritable blocker.
+
+This is one controlled current-host hazard observation, not a concurrency-safe
+inheritance contract, a general leak census, a runtime launch coordinator,
+arbitrary process-creator or failure coverage, recovery, general exclusion, or
+Windows admission. M166 adds no runtime API, value, protocol, decoder, CLI
+composition, public probe, production dependency, workflow, permission,
+release authority, or CI change. RFC-0149 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

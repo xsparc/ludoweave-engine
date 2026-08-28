@@ -153,3 +153,4 @@ was adopted.
 - [RFC-0146: probe an inherited Windows blocker handle](0146-probe-windows-inherited-blocker-handle.md)
 - [RFC-0147: probe Windows inherited-handle launch failure](0147-probe-windows-inherited-launch-failure.md)
 - [RFC-0148: probe Windows inherited-handle restoration failure](0148-probe-windows-inherited-restore-failure.md)
+- [RFC-0149: probe Windows concurrent broad-inheritance leakage](0149-probe-windows-concurrent-inheritance-leak.md)

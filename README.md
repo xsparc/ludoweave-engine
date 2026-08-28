@@ -154,8 +154,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > One fixed injected restore error proves the already-created child is reaped
 > before propagation and leaves parent repair duty explicit, without claiming
 > a real native restore failure or admitting recovery policy.
+> M166 adds one test-only [Windows concurrent broad-inheritance leak
+> probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md).
+> One event-controlled interleaving proves a broad-inheritance child can retain
+> the temporarily inheritable blocker after parent and intended-child close,
+> without claiming concurrency safety or adding runtime coordination.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M165 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M166 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

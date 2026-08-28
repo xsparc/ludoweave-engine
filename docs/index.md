@@ -133,6 +133,11 @@ attestation, with the same allocation topology.
   proves one already-created child is reaped before an injected restore error
   escapes while keeping parent repair duty explicit, without adding runtime
   behavior or CI allocation.
+- A test-only [Windows concurrent broad-inheritance leak
+  probe](security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md)
+  that proves one controlled broad launch retains the temporarily inheritable
+  blocker after parent and intended-child close, without adding runtime
+  coordination or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

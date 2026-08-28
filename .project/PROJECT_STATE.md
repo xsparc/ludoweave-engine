@@ -1,5 +1,63 @@
 # Project State
 
+## M166 Windows concurrent broad-inheritance leak - locally validated
+
+- Base: fully locally validated M165 DCO commit
+  `5ec5e79330c5798e13424dfea5a11522b6c93f7a`, tree
+  `4e10da2a5f9dcc012cd175362b716c1863902e8c`, sole parent exact M164.
+- Branch: `release/m166-concurrent-inheritance-leak`; exact containment allowed
+  the redundant M165 branch to be pruned.
+- Direction: RFC-0149 accepts one test-only event-controlled observation of a
+  broad launch acquiring M163's temporarily inheritable blocker. It records a
+  real current-host hazard, not a concurrency-safe spawning contract.
+- Scope: one integration probe, one architecture boundary, and documentation;
+  no accepted helper/fixture mutation, runtime, public probe, coordination,
+  recovery, adapter, cache, CLI, dependency, workflow/CI, version, release, or
+  product mutation change.
+- Baseline: the M149-M165 probe/boundary group passes 106 assertions with one
+  established skip in 4.08 seconds. Static governance returns zero findings.
+  Fresh hosted-state inspection exposes exact M99 main, no open PR, and no
+  hosted milestone branch.
+- Focused development: redundant casts, shared-module proxy leakage, and an
+  invalid post-release parent query were corrected before acceptance. Review
+  then required failure cleanup to reclaim an intended child still queued by
+  the worker. The final seven-assertion gate and 20 consecutive live
+  interleavings pass; no accepted helper or fixture changed.
+- Complete acceptance: CPython 3.12.13 passes 3,806 tests with 17 skips;
+  3.13.13 and 3.14.5 each pass 3,796 tests with 18 skips. All 514 Python files,
+  Ruff, strict Pyright, strict docs, both governance modes, real wgpu, both
+  profiles, both deterministic vertical slices, the primary and all 27
+  additional wheel consumers, two reproducible builds, and two byte-identical
+  complete release rehearsals pass.
+- Development packages: the 360,501-byte pure wheel has SHA-256
+  `029cfc8ab30d0f4831d2fc637aa4edb76ae16392bd65c22b848a52e748ba9044`;
+  the 2,034,147-byte source archive has SHA-256
+  `955dbac003c2b2dfe049f711b416d2bc7e98e482bf6492fedebbc837607cfe0c`.
+  Archive inventory is 114 wheel and 823 source entries, with zero native,
+  WASM, or bytecode and exactly the four M166 sources absent from the wheel and
+  present in the source archive.
+- Final package closure: two evidence-inclusive builds retain the same wheel
+  and reproduce a 2,035,732-byte source archive at SHA-256
+  `2df192cb25f7438ab86720d34e7ebbd9f7df0750fb79bf710dec9a061998a263`.
+  Primary wheel smoke and both byte-identical ten-artifact release stages pass;
+  archive inventory and native/M166 confinement remain exact. The factual
+  package row necessarily changes only the source archive afterward.
+- Scratch closure: all ten exact M166 profile, distribution, and release
+  targets were verified beneath repository `.tmp`, removed, and confirmed
+  absent. Final whitespace, 16-path scope, protected surfaces, public identity,
+  credential, and two-branch checks pass.
+- Initial DCO commit `95a560d9b8a7ff89d724394ca1cd30fbd3578c07`
+  has tree `7f1793047b73ac5a7ca83524cf6b19e1c87f7d04`, sole parent exact M165,
+  exact maintainer identity, one DCO sign-off, exactly 16 intended paths, no
+  merge commit, clean worktree, expected `0 67` divergence, and only local
+  `main` plus M166. Full object checking exits zero without an integrity error.
+  This factual checkpoint is folded into the same commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the
+  newest merge, open PRs are empty, and the only remote branch is `main`.
+  Publishing M166 would expose the absent M100-M166 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.
+
 ## M165 Windows inherited-handle restoration failure - locally validated and committed
 
 - Base: fully locally validated M164 DCO commit

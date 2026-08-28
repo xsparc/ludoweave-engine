@@ -2253,6 +2253,41 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path.
 
+## M166 Windows concurrent broad-inheritance leak probe
+
+M166 starts from fully locally validated M165 commit
+`5ec5e79330c5798e13424dfea5a11522b6c93f7a`. It adds one Windows-only,
+test-only [concurrent broad-inheritance leak
+probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md)
+under RFC-0149.
+
+The test preserves M163's helper and fixed child fixture byte-for-byte. A
+module-local subprocess proxy and two bounded events pause the exact explicit-
+list `Popen` call after M163 makes the blocker handle inheritable. During that
+controlled window, the caller uses the captured real `Popen` class to start the
+same fixed child with `close_fds=False`, fixed executable/path arguments,
+`shell=False`, trusted pytest cwd, and owned pipes.
+
+Both children must emit exact `ready`, and M163's unchanged `finally` restores
+the parent flag to noninheritable. M154's identical native rename remains
+false/error 32 before parent close, after parent close, and after the intended
+explicit-list child closes and exits zero while the broad child remains live.
+Only the broad child's acknowledged close and zero exit permit the identical
+fourth rename's true/code-zero result with content preserved.
+
+Windows remains unadmitted. This is one deliberately controlled real leak
+observation, not a concurrency-safe inheritance contract, general leak-
+freedom, a runtime spawn coordinator, arbitrary process-creator or failure
+coverage, recovery, general exclusion, policy, receipt, or independent-host
+proof.
+
+M166 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

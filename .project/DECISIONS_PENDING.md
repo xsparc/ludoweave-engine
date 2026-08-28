@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M166 Windows concurrent broad-inheritance leak probe
+
+RFC-0149 accepts one NTFS, Windows-only, test-only controlled observation in
+which M163's exact explicit-list launch is event-paused after its no-delete-
+share blocker becomes inheritable. A second fixed child starts concurrently
+through the captured real `Popen` class with `close_fds=False`. M163 restores
+the parent flag after its intended child starts, but the broad child retains
+the blocker after parent and intended-child close. M154's identical native
+rename remains false/error 32 through those three ownership states and returns
+true/code zero only after the broad child acknowledges close and exits zero.
+
+This resolves only whether one documented broad-inheritance interleaving leaks
+the exact blocker on the current host. A concurrency-safe inheritance contract,
+general leak-freedom, coordination across every process creator, simultaneous
+explicit-list launches, cancellation/failure interleavings, real native
+restoration failure, invalid inherited values, child crash, cross-process
+duplication or transfer, native close failure, oplocks, general exclusion,
+filesystem/driver variation, recovery, and independent-host proof remain
+pending. Windows is not admitted.
+
+RFC-0149 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted helper or fixture, a process-global lock, production adapter, public
+capability, cleanup authority, recovery policy, dependency, workflow, CI
+allocation, tag, release, or publication.
+
 ## M165 Windows inherited-handle restoration-failure probe
 
 RFC-0148 accepts one NTFS, Windows-only, test-only serial observation in which

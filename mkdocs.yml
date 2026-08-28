@@ -54,6 +54,7 @@ nav:
   - Windows inherited-handle retention probe: security/cache-cleanup-windows-inherited-handle-probe.md
   - Windows inherited-launch failure probe: security/cache-cleanup-windows-inherited-launch-failure-probe.md
   - Windows inherited-handle restoration-failure probe: security/cache-cleanup-windows-inherited-restore-failure-probe.md
+  - Windows concurrent broad-inheritance leak probe: security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -208,6 +209,7 @@ nav:
       - RFC-0146 - Probe an inherited Windows blocker handle: rfcs/0146-probe-windows-inherited-blocker-handle.md
       - RFC-0147 - Probe Windows inherited-handle launch failure: rfcs/0147-probe-windows-inherited-launch-failure.md
       - RFC-0148 - Probe Windows inherited-handle restoration failure: rfcs/0148-probe-windows-inherited-restore-failure.md
+      - RFC-0149 - Probe Windows concurrent broad-inheritance leakage: rfcs/0149-probe-windows-concurrent-inheritance-leak.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
