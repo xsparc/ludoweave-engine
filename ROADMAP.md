@@ -2565,6 +2565,39 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M175 Windows live substitution-exclusion probe
+
+M175 starts from fully locally validated M174 commit
+`f4aa920fa3b6cbcb8a9711111aaeb102f60902d4`. It adds one Windows-only,
+test-only [live substitution-exclusion
+probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md)
+under RFC-0158.
+
+Two fixed participants hold M173's shared range while opening the coordination
+file with read/write sharing and no delete sharing. M174's unchanged native
+substitution child returns error 32 while both participants remain live and
+again after one closes. M173's exclusive range owner returns error 33 through
+the same final-live-participant boundary.
+
+After the final protected participant closes, exact exclusive acquire/release
+succeeds and the unchanged substitution child renames and replaces the file.
+The displaced original retains its captured identity while the replacement
+differs, and both contents remain exact.
+
+The result is positive evidence only for continuous live ownership. It does not
+bind a later participant across the zero-participant window. Trusted root and
+coordination identity, generation issuance and retention, complete participant
+admission, mapped views, abrupt-exit settlement, recovery, policy, receipts,
+cleanup authority, and independent-host proof remain open. Windows remains
+unadmitted.
+
+M175 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

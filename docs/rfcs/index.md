@@ -162,3 +162,4 @@ was adopted.
 - [RFC-0155: probe Windows descendant non-exclusion](0155-probe-windows-descendant-non-exclusion.md)
 - [RFC-0156: probe Windows cooperative coordination locking](0156-probe-windows-cooperative-lock.md)
 - [RFC-0157: probe Windows cooperative-lock pathname substitution](0157-probe-windows-cooperative-lock-substitution.md)
+- [RFC-0158: probe Windows live coordination-substitution exclusion](0158-probe-windows-live-coordination-substitution-exclusion.md)

@@ -1,5 +1,110 @@
 # Current task
 
+- **Task:** M175 - prove whether cooperative participants that deny delete
+  sharing exclude M174 pathname substitution throughout the live-ownership
+  interval.
+- **Status:** Direction, implementation, findings-first correction,
+  supported-Python regression, rendering, distribution, release rehearsal,
+  documentation, governance, evidence-inclusive closure, record-only
+  separator, exact scratch cleanup, local DCO commit, and publication-safety
+  gates pass. Publication is correctly withheld because hosted `main` still
+  lacks M100-M174; the final amended-object audit follows this factual record.
+- **Base:** Fully locally validated M174 DCO commit
+  `f4aa920fa3b6cbcb8a9711111aaeb102f60902d4`, tree
+  `3fe906267b6c89708d8f2a6fa5926a4e4184404a`, sole parent exact M173.
+- **Branch:** `release/m175-windows-live-substitution-exclusion`; exact
+  containment allowed the redundant local M174 branch to be pruned.
+
+## Acceptance boundary
+
+- Accept RFC-0158 and retain one Windows-only, test-only, current-host NTFS
+  observation over two simultaneous shared-range participants that omit
+  `FILE_SHARE_DELETE` on one fixed coordination file.
+- Require pathname substitution to fail with native sharing error 32 and an
+  exclusive range owner to fail with native lock error 33 while two, then one,
+  cooperative participant remains live.
+- After the final participant closes, require exact exclusive acquire/release,
+  then successful M174 substitution with the displaced identity equal to the
+  original and different from the replacement.
+- Preserve exact file bytes, noninheritable handles, bounded canonical child
+  output, deterministic settlement, and all M174/runtime/package/CI surfaces.
+- Interpret this only as a continuous cooperative live-ownership boundary. It
+  does not cover the zero-participant gap, uncooperative actors, admission, or
+  cleanup authority.
+- Add no runtime adapter, lock API, cleanup authority, dependency, workflow,
+  job/allocation, permission, release authority, or CI change.
+
+## Direction evidence
+
+- Microsoft documents that `CreateFileW` share modes remain effective until
+  handle close, and that omitting delete sharing prevents later delete-access
+  opens, including rename access.
+- Microsoft documents `LockFileEx` as a cooperative handle/range primitive,
+  `MoveFileExW` as a native move operation, and `FILE_ID_INFO` as stable volume
+  and file identity for same-computer comparisons.
+- GitHub documents that each matrix combination creates another job. M175 uses
+  only the existing Windows suite and creates no hosted allocation.
+- NIST SSDF 1.2 remains a draft. The bounded observation is adopted without
+  claiming a newer final standard or promoting runtime authority.
+
+## Development evidence so far
+
+- Exact M174 was clean, its seven focused assertions passed in 0.50 seconds,
+  and both static and dated strict governance returned zero findings.
+- The fixed protected participant, live integration test, and six architecture
+  guards pass strict Pyright and Ruff. Ruff requested only mechanical format
+  corrections. The corrected focused set passes seven assertions in 0.57
+  seconds; strict docs build in 2.67 seconds with only the known Material
+  notice; whitespace passes.
+- Findings-first review identified and corrected one participant-startup
+  cleanup gap. The reviewed tree passes all 537-file static checks, exact
+  CPython 3.12.13 with 3,882 tests/17 skips, and exact 3.13.13 and 3.14.5 with
+  3,872 tests/18 skips each.
+- The reviewed M149-M175 boundary passes 189 tests with one established skip;
+  twenty consecutive corrected live probes pass. Ten real-wgpu tests, both
+  profiles, Clockwork Arena, and Agent World Builder pass.
+- Two pre-review development builds and two ten-artifact release stages are
+  byte-identical; all 28 installed-wheel consumers and both release smokes
+  pass. Static and dated strict governance each return zero findings.
+- Evidence-inclusive builds reproduce the unchanged wheel and identical
+  2,116,472-byte source archives; installed-wheel smoke and two identical
+  ten-artifact release stages pass. The final source, governance, scope, and
+  public-hygiene separator passes.
+- The record-only separator keeps all three M175 files format-clean,
+  Ruff-clean, and strict-Pyright clean; seven assertions, strict docs,
+  whitespace, and both strict governance modes pass.
+- Exact guarded cleanup removed 68 M175 scratch targets and the generated
+  pytest root; all are confirmed absent.
+- Initial DCO commit `81a97157914d7f6be236c8f5a7e4bfda03fd362d`
+  has tree `7effa8279d5a641d8f5cc602f888c354d531efe5`, sole parent exact
+  M174, exactly 17 paths, truthful configured identity, one sign-off, expected
+  `0 76` divergence, a clean worktree, and successful full object check.
+
+## Publication boundary
+
+- Fresh hosted `main` is exact M99, no PR is open, and PR #251 is the latest
+  merge. M175 is 76 commits ahead and contains the unpublished M100-M174
+  prerequisite stack. No branch was pushed, no PR was opened, and no hosted
+  workflow allocation was started.
+- Publication must not create a new workflow, job, matrix allocation, or
+  redundant predecessor branch.
+
+## Explicit non-scope
+
+- A production identity/generation protocol, trusted-root placement,
+  uncooperative actors, complete participant admission, zero-participant
+  substitution exclusion, mapped views, multiple ranges, wait/fairness policy,
+  cancellation, abrupt exit, delayed operating-system unlock, native close or
+  unlock failure, filesystem variation, recovery, policy, receipts, or
+  independent-host proof.
+- Cache-root integration, candidate policy, cleanup authority, Windows
+  admission, or a private production adapter.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,
+  native-extension, compiler, workflow, permission, CI-allocation, tag,
+  release, publication, or version changes.
+
+## Prior task
+
 - **Task:** M174 - prove whether pathname substitution splits M173's
   cooperative Windows coordination barrier across file identities.
 - **Status:** Direction, implementation, supported-Python regression,

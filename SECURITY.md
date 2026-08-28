@@ -892,6 +892,15 @@ generation binding, revalidation, recovery, policy, and receipts remain open.
 It is negative capability evidence, not cleanup authority; Windows remains
 unadmitted.
 
+M175's test-only [Windows live substitution-exclusion
+probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md)
+proves that participants which omit delete sharing prevent M174's rename and
+replacement through the final live protected owner while preserving M173's
+shared/exclusive range refusal. Substitution succeeds after the final close,
+so trusted root/file identity, generation continuity, recovery, policy, and
+receipts remain open. This is not cleanup authority; Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

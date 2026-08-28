@@ -1,5 +1,91 @@
 # Project State
 
+## M175 live cooperative substitution exclusion - finalization in progress
+
+- Base: fully locally validated M174 DCO commit
+  `f4aa920fa3b6cbcb8a9711111aaeb102f60902d4`, tree
+  `3fe906267b6c89708d8f2a6fa5926a4e4184404a`, sole parent exact M173.
+- Branch hygiene: neutral
+  `release/m175-windows-live-substitution-exclusion` starts at exact M174.
+  Exact containment allowed redundant M174 to be pruned; only local `main` and
+  active M175 remain.
+- Direction: RFC-0158 accepts one current-host, test-only positive observation
+  for continuous cooperative live ownership. It rejects zero-participant-gap
+  coverage, runtime promotion, Windows admission, cleanup authority, and CI
+  growth.
+- Behavior: two shared range-lock participants deny delete sharing. Native
+  pathname substitution returns error 32 and exclusive range acquisition
+  returns error 33 through the final live participant. After exact settlement,
+  exclusive acquire/release and then M174 substitution succeed, with the
+  displaced identity retained and the replacement identity distinct.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions. All three M175 Python files are format-clean, Ruff-clean, and
+  strict-Pyright clean after mechanical formatting. Strict docs and whitespace
+  pass.
+- Findings-first correction: the initial two launches preceded cleanup-block
+  entry, so a second-launch failure could strand the first child. Both process
+  variables now start empty, both launches occur inside the guarded block, and
+  cleanup is conditional. Focused and full static gates pass afterward.
+- Reviewed Python matrix: exact CPython 3.12.13 passes 3,882 tests with 17
+  skips; exact CPython 3.13.13 and 3.14.5 each pass 3,872 tests with 18 skips.
+  The complete M149-M175 boundary passes 189 tests with one established skip,
+  and twenty consecutive corrected live probes pass.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Pre-review development distribution: two builds reproduce a 361,149-byte
+  pure wheel at SHA-256
+  `2a0d00e5b72b30f0a49d57e5e4702562b4e4d9cc63dd56f8596d4f462e91b964`
+  and a 2,115,125-byte source archive at SHA-256
+  `a14c94f85969ffcd27e154ed9516089979c914825fb642f7d3259ced6189b943`.
+  All 28 installed-wheel consumers pass. Two ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Archive boundary: the wheel has 114 entries and the pre-review source
+  archive 864. All five M175 files are source-only and no native, WASM, or
+  bytecode entry exists.
+- Governance: static and 2026-08-29 dated strict checks return zero findings
+  across three objectives, seven requirements, and four work items.
+- Evidence-inclusive source closure: the unchanged 46-package lock resolves;
+  all 537 Python files, Ruff, and strict Pyright pass; seven focused assertions
+  and the 189/1 cumulative boundary pass; strict docs, whitespace, both
+  governance audits, exact 17-path scope, protected surfaces, and disclosure,
+  credential, and local-path scans pass.
+- Final reproduction: two builds retain the 361,149-byte pure wheel at SHA-256
+  `2a0d00e5b72b30f0a49d57e5e4702562b4e4d9cc63dd56f8596d4f462e91b964`;
+  both 2,116,472-byte source archives have SHA-256
+  `57f5c8dec507a34d4c5862b74d60fc7af97b3bbc4c3f4ec300cd54d87b87283d`.
+  Installed-wheel smoke, two identical ten-artifact release stages, and both
+  release smokes pass. Archive boundaries remain 114/864 entries, all five
+  M175 files source-only, and no native/WASM/bytecode entry.
+- Record-only separator: all three M175 Python files remain format-clean,
+  Ruff-clean, and strict-Pyright clean. Seven focused assertions pass in 0.61
+  seconds; strict docs build in 2.53 seconds; whitespace and both strict
+  governance modes pass.
+- Cleanup: 68 exact repository-confined, untracked, non-reparse M175 scratch
+  targets were selected. Ordinary removal was denied on the first Windows
+  pytest root before any target was removed; an approved retry repeated every
+  guard, removed all 68, and confirmed none remain. The separately verified
+  generated pytest root required the same guarded approved removal and is also
+  absent.
+- Pre-commit review: exactly 17 intended paths remain; protected surfaces,
+  whitespace, public-identity, credential-assignment, and local-path scans
+  pass; scratch is absent; and only local `main` plus neutral M175 remain.
+- Initial DCO commit `81a97157914d7f6be236c8f5a7e4bfda03fd362d`
+  has tree `7effa8279d5a641d8f5cc602f888c354d531efe5`, sole parent exact
+  M174, exactly 17 paths, truthful configured author/committer identity, one
+  sign-off, no merge parent, expected `0 76` divergence, a clean worktree, and
+  successful full object check.
+- Hosted gate: a fresh pruned fetch retains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` at `origin/main`, 76 commits
+  behind M175, with exact M174 absent from hosted ancestry. No PR is open and
+  PR #251 remains the latest merge. Publication is withheld because hosted
+  M100-M174 prerequisites are absent; no push, PR, or hosted run occurred.
+- Final amended-object audit follows this record.
+- Protected scope: runtime, examples, scripts, dependencies, workflows,
+  metadata, lock, and the exact M174 boundary are unchanged. No workflow,
+  matrix, job, permission, dependency, or hosted allocation is added.
+- No local validation or publication gate remains pending; final immutable
+  object verification follows the one factual-record amendment.
+
 ## M174 Windows coordination-lock substitution - locally validated
 
 - Base: fully locally validated M173 DCO commit

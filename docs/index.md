@@ -174,6 +174,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-cooperative-lock-substitution-probe.md)
   that proves pathname replacement splits live participants across independent
   file identities and lock generations, without runtime or CI expansion.
+- A test-only [Windows live substitution-exclusion
+  probe](security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md)
+  that blocks rename/replacement through the final protected participant while
+  preserving the zero-participant identity gap and no-authority boundary.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

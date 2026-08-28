@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M175/RFC-0158's test-only [Windows live substitution-exclusion
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md).
+  It proves protected participants preserve rename and exclusive-lock refusal
+  through the final live owner while retaining the zero-participant identity
+  gap, without runtime or CI expansion.
 - Add M174/RFC-0157's test-only [Windows cooperative-lock substitution
   probe](docs/security/cache-cleanup-windows-cooperative-lock-substitution-probe.md).
   It proves that renaming and replacing the coordination pathname creates

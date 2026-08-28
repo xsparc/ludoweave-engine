@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M175 live cooperative substitution-exclusion probe
+
+RFC-0158 accepts one Windows-only, test-only observation that two shared
+`LockFileEx` participants which omit `FILE_SHARE_DELETE` continuously refuse
+M174's pathname substitution with native sharing error 32. The same live
+participants continue to refuse an exclusive range owner with native lock
+error 33 through the final participant's exact release.
+
+After the final participant closes, exclusive acquire/release succeeds and the
+unchanged M174 substitution succeeds. `FILE_ID_INFO` proves the displaced file
+retains the original identity while its replacement differs. This resolves the
+exact cooperative live-ownership question only. A zero-participant interval,
+uncooperative actors, trusted root and coordination identity, generation
+issuance and revalidation, complete admission, mapped views, abrupt-exit
+settlement, filesystem variation, recovery, policy, receipts, and independent-
+host proof remain pending. Windows is not admitted.
+
+RFC-0158 does not authorize a runtime adapter or lock API, participant
+registry, cache access, retained-root integration, candidate disclosure,
+cleanup or mutation authority, dependency, workflow, CI allocation, tag,
+release, or publication. No hosted check is added.
+
 ## M174 Windows cooperative-lock substitution probe
 
 RFC-0157 accepts one Windows-only, test-only observation that an M173 shared

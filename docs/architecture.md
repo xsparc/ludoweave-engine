@@ -4454,6 +4454,36 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0157 records the accepted test-only boundary.
 
+## M175 Windows live substitution-exclusion boundary
+
+M175 adds one Windows-only, test-only [live substitution-exclusion
+probe](security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md).
+It preserves M174, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+Two fixed isolated participants open `live/coordination.lock` for generic read
+with read/write sharing but deliberately omit delete sharing. They retain
+M173's shared fail-immediate lock over byte zero/length one. M174's unchanged
+native substitution child returns sharing violation 32 while both participants
+remain live and again after one closes. M173's unchanged exclusive range owner
+returns lock violation 33 in both states.
+
+After the final protected participant closes, exact exclusive acquire/release
+succeeds. The unchanged substitution child then renames and replaces the file.
+Retained `FILE_ID_INFO` evidence proves the displaced original keeps the old
+identity and the replacement has another.
+
+The result protects identity only across one continuous live-ownership
+interval. It does not bind processes that start after a quiescent gap to the
+same generation. Trusted placement, root/file identity, generation issuance,
+participant admission, revalidation, recovery, policy, and receipts remain
+unresolved.
+
+M175 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0158 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
