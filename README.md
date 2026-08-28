@@ -169,8 +169,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > A successful fixed child and a real missing-executable launch overlap; after
 > parent close, the failed-launch root releases while the successful child
 > retains only its own blocker.
+> M169 adds one test-only [Windows concurrent explicit-list restoration-failure
+> probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md).
+> Two real children launch in one shared inheritability window; one injected
+> restore failure reaps only its child while the surviving child retains only
+> its own blocker.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M168 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M169 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

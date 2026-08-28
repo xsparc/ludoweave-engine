@@ -1,5 +1,64 @@
 # Project State
 
+## M169 Windows concurrent explicit-list restoration failure - locally validated
+
+- Base: fully locally validated M168 DCO commit
+  `54a123e59e8d5905750c2946786dedd534181884`, tree
+  `d874891d313de33d0924717d0d88cef7e027f985`, sole parent exact M167.
+- Branch hygiene: neutral
+  `release/m169-concurrent-restore-failure-isolation` starts at exact M168.
+  Exact containment allowed redundant M168 to be pruned; only local `main` and
+  active M169 remain.
+- Direction: RFC-0152 accepts one controlled two-created-child, one-injected-
+  restore-failure explicit-list interleaving. It rejects a real native failure,
+  general concurrency safety, a runtime coordinator, Windows admission, and CI
+  growth.
+- Scope: one integration probe, one architecture boundary, two decision and
+  security documents, eight public navigation/status documents, and four
+  project records only. Runtime, examples, scripts, helpers, fixture,
+  dependencies, workflows, metadata, and lock remain protected.
+- Behavior: both distinct parent blockers remain inheritable through both real
+  child creations and both restoration entries. M163 reaps only the failed
+  side's child before returning the exact injected object; the survivor remains
+  ready and live. After explicit repair and parent close, only the failed-
+  restoration root renames; the survivor root remains denied until its child
+  closes. Both payloads survive.
+- Focused proof: seven architecture guards plus two live A/B cases pass. Twenty
+  confirmed invocations pass 40 live cases. The M149-M169 boundary passes 138
+  assertions with one established capability skip.
+- Static and Python matrix: all 520 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,831 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,821 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,741-byte pure wheel at
+  SHA-256 `9ff47422741836517d580f90316e48adca7f14091da9beb315f05ea2bc6db346`
+  and a 2,061,195-byte source archive at SHA-256
+  `7100a495e860f2a48b1fd1f6efa3c3fddc24d15860382f40168452f1f6090ed0`.
+  All 28 installed consumers pass. Two byte-identical ten-artifact release
+  stages pass complete smoke; archive inventory is 114 wheel and 835 source
+  entries with no native/WASM/bytecode and all four M169 sources source-only.
+- Governance/review: static and dated strict governance return zero findings
+  across three objectives, seven requirements, and four work items. Protected
+  surfaces have zero diff; disclosure, credential, forbidden-process, and
+  hidden-root scans are clean. No actionable finding is known.
+- Evidence-inclusive distribution: two final builds reproduce the same pure
+  wheel and a 2,063,065-byte source archive at SHA-256
+  `ae5bc9ae1d8a9f6ce5dde66714a7bd07d975d465af5bd3616a6c661cf696d022`.
+  Primary wheel smoke passes. Two final ten-artifact stages are byte-identical
+  and pass complete release smoke; inventory remains 114 wheel and 835 source
+  entries, with all four M169 sources source-only.
+- Closeout: initial DCO commit `23f662ef13dbeea17d32dfe8cacdf48d6764fed8`
+  has tree `b286cf70274b2d62b83332febe790defe413188d`, sole parent exact
+  M168, exact configured author/committer identity, one sign-off, 16 intended
+  paths, no merge, clean objects, and a clean worktree. Final artifact and
+  generated roots are absent; only local `main` and active M169 remain.
+- Publication gate: fresh fetch and authenticated GitHub queries find hosted
+  `main` still exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`,
+  no open PR, and PR #251 as the newest merge. M169 is 70 commits ahead and
+  would expose absent M100-M169, so no push, PR, workflow allocation, tag, or
+  release occurred.
+
 ## M168 Windows concurrent explicit-list launch failure - locally validated
 
 - Base: fully locally validated M167 DCO commit

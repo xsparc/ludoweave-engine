@@ -2358,6 +2358,40 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path.
 
+## M169 Windows concurrent explicit-list restoration-failure probe
+
+M169 starts from fully locally validated M168 commit
+`54a123e59e8d5905750c2946786dedd534181884`. It adds one Windows-only,
+test-only [concurrent explicit-list restoration-failure
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md)
+under RFC-0152.
+
+The test preserves M163's successful helper, M165's restoration-failure type
+and boundary, M168's complete boundary, and the fixed child fixture byte-for-
+byte. Separate threads launch two real children with distinct blocker handles
+and roots. Bounded module-local proxies require both handles true, then hold
+both launch outcomes and both restoration entries before injecting one exact
+failure.
+
+The helper must close and reap only the failed-restoration child before the
+same error escapes. The survivor remains ready and live. After explicit repair
+and both parent closes, the failed-restoration root must rename while the
+survivor root remains false/error 32 until its child closes. Both A/B role
+orientations preserve their distinct payloads and settle every owner.
+
+This is not a real native restoration failure, not a concurrency-safe process-
+creation contract, arbitrary failure coverage, cancellation, reentrancy,
+general leak-freedom, a runtime coordinator, recovery, exclusion, policy,
+receipt, Windows admission, or independent-host proof.
+
+M169 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -57,6 +57,7 @@ nav:
   - Windows concurrent broad-inheritance leak probe: security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md
   - Windows concurrent explicit-list isolation probe: security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md
   - Windows concurrent explicit-list launch-failure probe: security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md
+  - Windows concurrent explicit-list restoration-failure probe: security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -214,6 +215,7 @@ nav:
       - RFC-0149 - Probe Windows concurrent broad-inheritance leakage: rfcs/0149-probe-windows-concurrent-inheritance-leak.md
       - RFC-0150 - Probe Windows concurrent explicit-list isolation: rfcs/0150-probe-windows-concurrent-explicit-inheritance.md
       - RFC-0151 - Probe Windows concurrent explicit-list launch failure: rfcs/0151-probe-windows-concurrent-explicit-launch-failure.md
+      - RFC-0152 - Probe Windows concurrent explicit-list restoration failure: rfcs/0152-probe-windows-concurrent-explicit-restore-failure.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

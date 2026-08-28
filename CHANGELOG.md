@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M169/RFC-0152's test-only [Windows concurrent explicit-list restoration-
+  failure probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md).
+  It proves one injected restore failure reaps only its created child while a
+  concurrent explicit-list child keeps only its distinct blocker, without
+  adding runtime coordination or CI allocation.
 - Add M168/RFC-0151's test-only [Windows concurrent explicit-list launch-
   failure probe](docs/security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md).
   It proves a successful child retains only its blocker while a concurrent

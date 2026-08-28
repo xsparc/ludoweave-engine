@@ -4275,6 +4275,36 @@ admission. M168 adds no runtime API, value, protocol, decoder, CLI composition,
 public probe, production dependency, workflow, permission, release authority,
 or CI change. RFC-0151 records the accepted test-only boundary.
 
+## M169 Windows concurrent explicit-list restoration-failure boundary
+
+M169 adds one Windows-only, test-only [concurrent explicit-list restoration-
+failure probe](security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md).
+It preserves M163's successful helper, M165's failure type and boundary, M168's
+complete boundary, and the fixed child fixture byte-for-byte.
+
+Two threads assign survivor and injected-failure roles to distinct handles and
+roots in both orientations. Module-local proxies require both handles
+inheritable, release two real exact-list `Popen` calls, capture both returned
+processes, and hold both outcomes and both restoration entries while both
+flags remain true. One exact setter raises the injected M165 error while the
+other performs its native reset.
+
+M163 closes and reaps only the failed side's child before propagating the same
+error. The survivor emits exact `ready` and remains live. After explicit repair
+of the failed parent flag, both roots remain false/error 32 until both parents
+close. The failed-restoration root then returns true/code zero while the
+survivor root stays denied and its child remains live. Only the survivor's
+acknowledged close and zero exit permit that root's true/code-zero rename. Both
+payloads survive.
+
+This is not a real native restoration failure, not a concurrency-safe process-
+creation contract, arbitrary launch/restoration failure, cancellation, or
+reentrancy coverage, general leak-freedom, a runtime coordinator, recovery,
+exclusion, or Windows admission. M169 adds no runtime API, value, protocol,
+decoder, CLI composition, public probe, production dependency, workflow,
+permission, release authority, or CI change. No hosted check is added.
+RFC-0152 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

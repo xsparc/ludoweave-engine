@@ -838,6 +838,16 @@ only its own root. This is not arbitrary failure coverage, a concurrency-safe
 process-creation contract, recovery, general exclusion, or mutation authority;
 Windows remains unadmitted.
 
+M169's test-only [Windows concurrent explicit-list restoration-failure
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md)
+starts two real fixed children with distinct handles, then injects one restore
+failure while both helpers are at restoration. The failed child is reaped
+before the error escapes; after explicit parent repair and close, the failed-
+restoration root releases while the survivor child still blocks only its own
+root. This is not a real native restoration failure, not a concurrency-safe
+process-creation contract, recovery, general exclusion, or mutation authority;
+Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

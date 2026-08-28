@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M169 Windows concurrent explicit-list restoration-failure probe
+
+RFC-0152 accepts one Windows-only, test-only controlled observation in which
+two copies of M163's fixed child start with distinct explicit handle lists and
+one M165-style restoration error is injected after both real children exist.
+The helper reaps only the failed side's child before the same error escapes.
+After explicit flag repair and both parent closes, the failed-restoration root
+renames while the survivor still blocks only its own root; that root renames
+only after the survivor closes. Both A/B role assignments pass and every owner
+settles.
+
+This resolves only the exact current-host successful/synthetic-restoration-
+failure interleaving. A real native restoration failure, a concurrency-safe
+process-creation contract, arbitrary launch or restoration failures,
+cancellation, reentrancy, every broad and explicit creator, invalid handles,
+child crashes, cross-process transfer, native close failure, general leak-
+freedom, recovery, and independent-host proof remain pending. Windows is not
+admitted.
+
+RFC-0152 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted helper or fixture, a process-global coordinator, production adapter,
+public capability, cleanup authority, recovery policy, dependency, workflow,
+CI allocation, tag, release, or publication. No hosted check is added.
+
 ## M168 Windows concurrent explicit-list launch-failure probe
 
 RFC-0151 accepts one Windows-only, test-only controlled observation in which

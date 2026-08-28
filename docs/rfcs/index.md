@@ -156,3 +156,4 @@ was adopted.
 - [RFC-0149: probe Windows concurrent broad-inheritance leakage](0149-probe-windows-concurrent-inheritance-leak.md)
 - [RFC-0150: probe Windows concurrent explicit-list isolation](0150-probe-windows-concurrent-explicit-inheritance.md)
 - [RFC-0151: probe Windows concurrent explicit-list launch failure](0151-probe-windows-concurrent-explicit-launch-failure.md)
+- [RFC-0152: probe Windows concurrent explicit-list restoration failure](0152-probe-windows-concurrent-explicit-restore-failure.md)
