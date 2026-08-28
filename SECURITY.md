@@ -882,6 +882,16 @@ primitive: uncooperative actors, identity/generation binding, complete retained
 roots, mapped views, substitution, recovery, policy, and receipts remain open.
 It is not cleanup authority; Windows remains unadmitted.
 
+M174's test-only [Windows cooperative-lock substitution
+probe](docs/security/cache-cleanup-windows-cooperative-lock-substitution-probe.md)
+proves that renaming and replacing the coordination pathname while an M173
+participant remains live creates a distinct replacement identity and lock
+generation. Old and new participants can remain live independently, so a
+reusable pathname is not stable coordination authority. Root/file identity,
+generation binding, revalidation, recovery, policy, and receipts remain open.
+It is negative capability evidence, not cleanup authority; Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

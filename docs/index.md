@@ -170,6 +170,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-cooperative-lock-probe.md) that proves
   multiple shared owners collectively refuse one exclusive coordination-range
   owner through the last release, without granting cleanup authority.
+- A test-only [Windows cooperative-lock substitution
+  probe](security/cache-cleanup-windows-cooperative-lock-substitution-probe.md)
+  that proves pathname replacement splits live participants across independent
+  file identities and lock generations, without runtime or CI expansion.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

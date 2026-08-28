@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M174 Windows cooperative-lock substitution probe
+
+RFC-0157 accepts one Windows-only, test-only observation that an M173 shared
+participant remains bound to the original coordination file after its pathname
+is renamed and replaced. `FILE_ID_INFO` proves the displaced original retains
+the old identity while the replacement has another. An unchanged fresh
+participant locks the replacement concurrently, and both lock generations
+settle independently.
+
+This resolves the exact current-host pathname-substitution question as negative
+capability evidence. A reusable pathname is insufficient stable authority.
+Trusted root identity, coordination identity, generation issuance and
+revalidation, uncooperative actors, participant completeness, mapped views,
+abrupt-exit settlement, filesystem variation, recovery, policy, receipts, and
+independent-host proof remain pending. Windows is not admitted.
+
+RFC-0157 does not authorize a runtime adapter or identity registry, lock API,
+cache access, retained-root integration, candidate disclosure, cleanup or
+mutation authority, dependency, workflow, CI allocation, tag, release, or
+publication. No hosted check is added.
+
 ## M173 Windows cooperative-lock probe
 
 RFC-0156 accepts one Windows-only, test-only observation over one fixed

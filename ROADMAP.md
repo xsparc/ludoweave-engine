@@ -2530,6 +2530,41 @@ credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path; no hosted
 check is added.
 
+## M174 Windows cooperative-lock substitution probe
+
+M174 starts from fully locally validated M173 commit
+`767337f7ea8138bdc14455296c54d0261cd20e9e`. It adds one Windows-only,
+test-only [cooperative-lock substitution
+probe](docs/security/cache-cleanup-windows-cooperative-lock-substitution-probe.md)
+under RFC-0157.
+
+One unchanged M173 shared participant remains live while a fixed isolated child
+renames `live/coordination.lock` to `live/coordination.displaced` and creates a
+new ordinary file with identical bytes at the original pathname. Retained
+`FILE_ID_INFO` observations prove the original and displaced handles share one
+identity and that the replacement has another.
+
+A fresh unchanged M173 participant locks the replacement concurrently. Each
+generation independently refuses exclusive ownership. After the replacement
+participant closes, the replacement accepts an exclusive owner while the old
+participant remains live and still blocks only the displaced original. Closing
+the old participant permits exact exclusive ownership there. Both files retain
+the expected bytes and every owner settles.
+
+The result is negative capability evidence. A reusable pathname can split a
+cooperative protocol across independently quiescent identities, so a later
+design must bind and revalidate trusted root identity, coordination identity,
+and generation. Participant completeness, substitution resistance, mapped
+views, abrupt-exit settlement, recovery, policy, receipts, cleanup authority,
+and independent-host proof remain open. Windows remains unadmitted.
+
+M174 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

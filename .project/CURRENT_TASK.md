@@ -1,93 +1,108 @@
 # Current task
 
-- **Task:** M173 - prove a cooperative Windows shared/exclusive coordination
-  barrier over one fixed file identity and byte range.
-- **Status:** Implementation, supported-Python regression, rendering, package,
-  release rehearsal, documentation, governance, findings-first, evidence-
-  inclusive source, artifact, record-only, cleanup, scope, and hygiene gates
-  pass. The initial DCO object audit and hosted publication-safety gate pass.
-  Publication is correctly withheld because hosted `main` lacks M100-M172;
-  the final amended-object audit follows this factual record.
-- **Base:** Fully locally validated M172 DCO commit
-  `00eceb56246307f6fa57172fe674488189bfff4e`, tree
-  `edd0f778ab9ced8f09145a4728b2e40a41651ef2`, sole parent exact M171.
-- **Branch:** `release/m173-windows-cooperative-lock`; exact containment
-  allowed the redundant local M172 branch to be pruned.
+- **Task:** M174 - prove whether pathname substitution splits M173's
+  cooperative Windows coordination barrier across file identities.
+- **Status:** Direction, implementation, supported-Python regression,
+  rendering, distribution, release rehearsal, documentation, and governance
+  gates pass. Evidence-inclusive closure and findings-first review pass; final
+  record separator and exact scratch cleanup pass. Commit and publication-
+  safety gates pass. The exact 17-path pre-commit scope and hygiene gate passes.
+  Publication is correctly withheld because hosted `main` still lacks
+  M100-M173; the final amended-object audit follows this factual record.
+- **Base:** Fully locally validated M173 DCO commit
+  `767337f7ea8138bdc14455296c54d0261cd20e9e`, tree
+  `114a874eb76a920b334fbf26190efc4cf63a0f97`, sole parent exact M172.
+- **Branch:** `release/m174-windows-lock-substitution`; exact containment
+  allowed the redundant local M173 branch to be pruned.
 
 ## Acceptance boundary
 
-- Accept RFC-0156 and retain one Windows-only, test-only, current-host NTFS
-  shared/exclusive `LockFileEx` observation over byte zero/length one of fixed
-  ordinary `live/coordination.lock`.
-- Preserve M172, runtime, examples, scripts, dependencies, workflows,
+- Accept RFC-0157 and retain one Windows-only, test-only, current-host NTFS
+  observation that renaming and replacing `live/coordination.lock` splits old
+  and new M173 participants across independent file identities and lock
+  generations.
+- Preserve M173, runtime, examples, scripts, dependencies, workflows,
   metadata, and lock byte-for-byte.
-- Use two fixed isolated shared participant children with generic-read/all-
-  sharing opens, null security attributes, noninheritable handles, exact
-  bounded `ready`/`closed` phases, explicit unlock, and deterministic close.
-- Require an exclusive fail-immediate parent request to return native error 33
-  while two shared owners remain, again after one closes, and to acquire only
-  after the last owner closes.
-- Reverse the order: require the exclusive owner to make a late shared child
-  emit exact `refused`/33, then admit a fresh shared child after exact release.
-- Record the exact positive boundary as cooperative only. It is not general
-  exclusion, participant completeness, Windows admission, or cleanup authority.
+- Use one fixed isolated namespace child with no argument or environment
+  behavior. Require exact `MoveFileExW` rename, ordinary replacement creation,
+  exact bytes, a noninheritable handle, bounded canonical output, and
+  deterministic close.
+- Prove retained-original identity equals displaced identity and differs from
+  replacement identity using `FILE_ID_INFO`.
+- Keep unchanged M173 participants live on both identities. Require independent
+  exclusive refusal, then prove replacement exclusive ownership succeeds while
+  the original participant remains live and the displaced original still
+  refuses ownership.
+- Record the result as negative capability evidence. It is not participant
+  completeness, substitution resistance, Windows admission, or cleanup
+  authority.
 - Add no runtime adapter, lock API, cleanup authority, dependency, workflow,
   job/allocation, permission, release authority, or CI change.
 
 ## Direction evidence
 
-- Microsoft documents overlapping shared `LockFileEx` ranges, incompatible
-  exclusive locks, fail-immediate requests, explicit unlock, termination-
-  release caveats, and mapped-view noncoverage.
-- Python exposes a narrower Windows `msvcrt.locking` surface, which is not
-  treated as proof of the complete required shared/exclusive lifecycle.
-- GitHub documents that each matrix combination creates another job. M173 uses
-  the existing Windows suite and creates no hosted allocation.
-- NIST SSDF remains risk- and outcome-driven. The smallest material next step
-  is a bounded cooperative primitive, not runtime promotion.
+- Microsoft documents `LockFileEx` as a handle/file-range primitive and
+  `FILE_ID_INFO` as the volume/file identity for same-computer comparisons.
+- Microsoft documents that `FILE_SHARE_DELETE` permits later rename/delete
+  access and `MoveFileExW` moves an existing object to another name.
+- GitHub documents that each matrix combination creates another job. M174 uses
+  only the existing Windows suite and creates no hosted allocation.
+- NIST SSDF remains outcome- and risk-oriented; version 1.2 is still a draft.
+  The bounded substitution observation is adopted without claiming a newer
+  final standard or promoting runtime authority.
 
 ## Development evidence so far
 
-- Exact M172 was clean. The M149-M172 baseline passed 165 assertions with one
-  established skip in 8.00 seconds; static and dated strict governance returned
-  zero findings. Local `origin/main` remained exact M99.
-- Eight architecture guards plus two live tests pass. The complete M149-M173
-  boundary passes 175 assertions with one established capability skip. Twenty
-  consecutive focused invocations pass all 40 live cases.
-- The unchanged 46-package lock and exact 45-package graphics environment pass.
-  All 531 Python files pass Ruff formatting, Ruff, and strict Pyright.
-- Exact CPython 3.12.13 passes 3,858 tests with 17 skips; exact CPython 3.13.13
-  and 3.14.5 each pass 3,858 tests with 18 skips.
-- Ten real-wgpu tests, both one-repeat profile schemas, Clockwork Arena, and
-  Agent World Builder pass with their established deterministic identities.
-- Two development builds are byte-identical: a 361,025-byte pure wheel at
-  SHA-256 `56614442ebfbaea633edfbf0860da022707e177d91aa6bfb83d492187ce1321f`
-  and a 2,096,856-byte source archive at SHA-256
-  `42251b3a98f94ef0e229ee7ee9a90e570723ec681dccc24b57990253d27ca1a4`.
-  The primary smoke and all 27 additional isolated installed-wheel consumers
-  pass.
-- Two ten-artifact release stages are byte-identical and pass complete release
-  smoke. Inventory is 114 wheel and 854 source entries, with zero native,
-  WASM, bytecode, or hidden-control entry, zero M173 wheel entry, and all five
-  exact M173 sources in the source archive.
-- Static and dated strict governance return zero findings. Protected surfaces
-  have zero diff and no remaining actionable review finding is known.
+- Exact M173 was clean with expected `0 74` divergence from hosted/local M99
+  main. Its ten focused architecture/live assertions pass in 0.45 seconds.
+  Static and dated strict governance each return zero findings.
+- The fixed namespace child and parent integration probe pass strict Pyright.
+  The first Ruff run identified only mechanical import ordering; the exact
+  correction passes Ruff. The first live observation passes in 0.37 seconds.
+- Six new architecture guards plus the live observation pass seven assertions
+  in 0.49 seconds. Strict documentation builds in 2.70 seconds with only the
+  known Material notice. Ruff formatting requested one mechanical architecture
+  wrap; the corrected focused gate passes seven assertions in 0.46 seconds and
+  strict docs in 2.47 seconds.
+- All 534 Python files pass Ruff formatting, Ruff, and strict Pyright. Exact
+  CPython 3.12.13 passes 3,875 tests with 17 skips; exact CPython 3.13.13 and
+  3.14.5 each pass 3,865 tests with 18 skips.
+- The complete M149-M174 Windows boundary passes 182 tests with one established
+  skip. Twenty consecutive live substitutions pass. Ten real-wgpu tests, both
+  one-repeat profiles, Clockwork Arena, and Agent World Builder pass.
+- Two development builds are byte-identical: a 361,088-byte pure wheel at
+  SHA-256 `b6a6f5e75861d3b483533b0abbb110aa058b7b1d9c880948cbdd4f6e96d47acc`
+  and a 2,105,817-byte source archive at SHA-256
+  `b7d6ea6be098cd0ce3257c99c732a42f6f455232bdb08c218abe5a37c54dc777`.
+  Installed-wheel smoke passes; two ten-artifact release stages are identical
+  and both complete release smokes pass.
+- Final static and dated strict governance checks return zero findings. The
+  evidence-inclusive reproduction retains the exact wheel and produces two
+  identical 2,107,218-byte source archives at SHA-256
+  `8e68012e170376d26657e5d0b0f47568b094bf24fa920123da7041ccf6ca89a9`.
+  Installed-wheel smoke, two identical ten-artifact release stages, and both
+  release smokes pass.
+- Findings-first review found no remaining actionable defect. Public identity,
+  added credential/local-path, protected-surface, package-boundary, and scope
+  scans pass after replacing two unnecessarily explicit control-pattern names
+  with neutral wording.
 
 ## Publication boundary
 
 - Fresh hosted `main` is exact M99, no PR is open, and PR #251 is the latest
-  merge. M173 is 74 commits ahead and includes the unpublished prerequisite
-  stack. No push, PR, or hosted workflow is authorized until that stack is
-  intentionally published or hosted `main` otherwise contains it.
-- Audit the final amended object after this record; do not amend afterward.
+  merge. M174 is 75 commits ahead and contains the unpublished M100-M173
+  prerequisite stack. No branch was pushed, no PR was opened, and no hosted
+  workflow allocation was started.
+- Publication must not create a new workflow, job, matrix allocation, or
+  redundant predecessor branch.
 
 ## Explicit non-scope
 
-- Uncooperative actors, coordination-file substitution or replacement,
-  generation binding, complete retained roots, mapped views, multiple ranges,
-  wait/fairness policy, cancellation, abrupt exit, delayed operating-system
-  unlock, native close/unlock failure, filesystem variation, recovery, policy,
-  receipts, or independent-host proof.
+- A production identity/generation protocol, trusted-root placement,
+  uncooperative actors, complete participant admission, mapped views,
+  multiple ranges, wait/fairness policy, cancellation, abrupt exit, delayed
+  operating-system unlock, native close/unlock failure, filesystem variation,
+  recovery, policy, receipts, or independent-host proof.
 - Cache-root integration, candidate policy, cleanup authority, Windows
   admission, or a private production adapter.
 - Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,

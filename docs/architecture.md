@@ -4422,6 +4422,38 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0156 records the accepted test-only
 boundary.
 
+## M174 Windows cooperative-lock substitution boundary
+
+M174 adds one Windows-only, test-only [cooperative-lock substitution
+probe](security/cache-cleanup-windows-cooperative-lock-substitution-probe.md).
+It preserves M173, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+One unchanged M173 child holds a shared lock on
+`live/coordination.lock`. A fixed isolated namespace child renames that object
+to `live/coordination.displaced` and creates a new ordinary file with the exact
+original bytes at the old pathname. Parent-held `FILE_ID_INFO` observations
+prove the retained original and displaced handles share one identity while the
+replacement has a different identity.
+
+A second unchanged M173 child can hold a shared lock on the replacement while
+the original child remains live. Each independently refuses exclusive
+ownership of its own object. Closing the replacement child permits exclusive
+ownership of the replacement while the original child still blocks the
+displaced original; only closing the original permits exclusive ownership
+there.
+
+The result is negative capability evidence: path equality and content equality
+do not bind participants to the same coordination generation. A future design
+must bind a trusted root identity, coordination identity, and generation and
+revalidate those relationships around namespace mutation. M174 does not define
+that protocol or establish cleanup authority.
+
+M174 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0157 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M174/RFC-0157's test-only [Windows cooperative-lock substitution
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-substitution-probe.md).
+  It proves that renaming and replacing the coordination pathname creates
+  independently lockable old and new file generations, without runtime or CI
+  expansion.
 - Add M173/RFC-0156's test-only [Windows cooperative-lock
   probe](docs/security/cache-cleanup-windows-cooperative-lock-probe.md). Two
   shared participants collectively refuse a fail-immediate exclusive owner
