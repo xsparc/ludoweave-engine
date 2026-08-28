@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M173/RFC-0156's test-only [Windows cooperative-lock
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-probe.md). Two
+  shared participants collectively refuse a fail-immediate exclusive owner
+  until the last exact release, and the exclusive owner refuses a late shared
+  participant, without runtime or CI expansion.
 - Add M172/RFC-0155's test-only [Windows descendant non-exclusion
   probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md).
   It proves that a zero-sharing directory owner and a separate descendant file

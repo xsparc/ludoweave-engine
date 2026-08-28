@@ -166,6 +166,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-descendant-non-exclusion-probe.md) that
   proves a zero-sharing directory owner does not recursively exclude a separate
   descendant file owner, without runtime or CI expansion.
+- A test-only [Windows cooperative-lock
+  probe](security/cache-cleanup-windows-cooperative-lock-probe.md) that proves
+  multiple shared owners collectively refuse one exclusive coordination-range
+  owner through the last release, without granting cleanup authority.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

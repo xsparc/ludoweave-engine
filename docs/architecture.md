@@ -4390,6 +4390,38 @@ oplocks, leases, recovery, policy, receipts, Windows admission, and independent-
 host proof remain open. No hosted check is added. RFC-0155 records the accepted
 test-only boundary.
 
+## M173 Windows cooperative-lock boundary
+
+M173 adds one Windows-only, test-only [cooperative-lock
+probe](security/cache-cleanup-windows-cooperative-lock-probe.md). It preserves
+M172, runtime, examples, scripts, dependencies, and workflows byte-for-byte.
+
+One fixed ordinary `live/coordination.lock` and byte range zero/length one act
+as a cooperative participation object. Two isolated children open only that
+file with generic read and all sharing, prove their handles noninheritable, and
+hold overlapping shared fail-immediate `LockFileEx` locks. A private parent
+uses the same access/share/range with the exclusive and fail-immediate flags.
+
+The current NTFS host permits both shared owners concurrently. Parent-exclusive
+acquisition fails with native error 33 while both are live and again after the
+first closes; it succeeds only after the last exact child unlock/close. In the
+reverse order, the exclusive owner makes a late shared child report error 33;
+after exact release, a fresh shared child acquires and closes normally. All
+bytes and ownership counts remain exact.
+
+This is positive evidence for one cooperative same-object barrier, not general
+filesystem exclusion or cleanup authority. An actor can ignore the
+coordination object, and M173 does not bind its identity to a retained root or
+generation. Complete participant admission, retained roots, mapped views,
+substitution resistance, cancellation, abrupt-exit settlement, native failure,
+filesystem variation, recovery, policy, receipts, Windows admission, and
+independent-host proof remain open.
+
+M173 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0156 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M173 Windows cooperative-lock probe
+
+RFC-0156 accepts one Windows-only, test-only observation over one fixed
+coordination file and byte range. Two distinct shared `LockFileEx` participants
+coexist and collectively refuse a fail-immediate exclusive owner through the
+last exact release. In reverse order, the exclusive owner refuses a late
+shared participant until exact unlock/close. Every handle is noninheritable,
+every successful lock is explicitly unlocked, and bytes remain unchanged.
+
+This resolves only the exact current-host NTFS cooperative same-object/range
+transition. Uncooperative actors, coordination identity and substitution,
+generation binding, complete retained roots, mapped views, cancellation,
+abrupt process death, delayed operating-system unlock, native unlock/close
+failure, filesystem variation, recovery, policy, receipts, and independent-
+host proof remain pending. Windows is not admitted.
+
+RFC-0156 does not authorize a runtime adapter or lock API, participant
+registry, cache access, retained-root integration, candidate disclosure,
+cleanup or mutation authority, dependency, workflow, CI allocation, tag,
+release, or publication. No hosted check is added.
+
 ## M172 Windows descendant non-exclusion probe
 
 RFC-0155 accepts one Windows-only, test-only observation that M171's

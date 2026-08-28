@@ -2494,6 +2494,42 @@ credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path; no hosted
 check is added.
 
+## M173 Windows cooperative-lock probe
+
+M173 starts from fully locally validated M172 commit
+`00eceb56246307f6fa57172fe674488189bfff4e`. It adds one Windows-only,
+test-only [cooperative-lock
+probe](docs/security/cache-cleanup-windows-cooperative-lock-probe.md) under
+RFC-0156.
+
+One fixed ordinary `live/coordination.lock` and one byte range provide a
+shared/exclusive participant boundary. Two isolated children each hold a
+shared fail-immediate `LockFileEx` lock. The parent requests an exclusive
+fail-immediate lock over the identical range. All opens use generic read,
+read/write/delete sharing, null security attributes, and noninheritable
+handles; every successful owner explicitly unlocks and closes.
+
+Both directions succeed on the current NTFS host. Two shared participants
+coexist and collectively refuse the exclusive request with native error 33.
+Closing one leaves the refusal intact; closing the last permits exact exclusive
+acquisition and release. With the exclusive owner held first, a late shared
+child reports refusal/error 33; after release, a fresh shared child completes
+normally. Coordination bytes remain exact and every owner settles.
+
+The result is positive but cooperative capability evidence. It cannot exclude
+an uncooperative process and does not establish stable coordination identity,
+generation binding, complete retained roots, mapped-view coverage,
+substitution resistance, abrupt-exit settlement, recovery, policy, receipts,
+cleanup authority, or independent-host proof. Windows remains unadmitted.
+
+M173 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

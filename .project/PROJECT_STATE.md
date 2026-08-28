@@ -1,5 +1,71 @@
 # Project State
 
+## M173 Windows cooperative locking - locally validated
+
+- Base: fully locally validated M172 DCO commit
+  `00eceb56246307f6fa57172fe674488189bfff4e`, tree
+  `edd0f778ab9ced8f09145a4728b2e40a41651ef2`, sole parent exact M171.
+- Branch hygiene: neutral `release/m173-windows-cooperative-lock` starts at
+  exact M172. Exact containment allowed redundant M172 to be pruned; only local
+  `main` and active M173 remain.
+- Direction: RFC-0156 accepts one current-host, test-only positive cooperative
+  shared/exclusive range-lock observation. It rejects general exclusion,
+  runtime promotion, Windows admission, and CI growth.
+- Scope: one fixed child fixture, one live integration probe, one architecture
+  boundary, two decision/security documents, eight public navigation/status
+  documents, and four neutral project records only. Runtime, examples, scripts,
+  dependencies, workflows, metadata, lock, and prior probes remain protected.
+- Behavior: two distinct shared owners coexist on byte zero/length one of
+  `live/coordination.lock`. Exclusive acquisition returns native error 33 until
+  the last shared owner unlocks/closes. An exclusive owner makes a late shared
+  child report error 33; a fresh child succeeds after exact release. All bytes
+  and ownership counts remain exact.
+- Focused proof: eight architecture guards plus two live tests pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M173 boundary passes 175
+  assertions with one established capability skip.
+- Static and Python matrix: all 531 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,858 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,858 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 361,025-byte pure wheel at
+  SHA-256 `56614442ebfbaea633edfbf0860da022707e177d91aa6bfb83d492187ce1321f`
+  and a 2,096,856-byte source archive at SHA-256
+  `42251b3a98f94ef0e229ee7ee9a90e570723ec681dccc24b57990253d27ca1a4`.
+  All 28 isolated installed-wheel consumers pass.
+- Release rehearsal: two ten-artifact stages are byte-identical and pass full
+  release smoke. Archive inventory is 114 wheel and 854 source entries with no
+  native/WASM/bytecode or hidden-control entry, no M173 wheel entry, and all
+  five exact M173 sources source-only.
+- Final evidence-inclusive reproduction retains the 361,025-byte wheel and
+  SHA-256 `56614442ebfbaea633edfbf0860da022707e177d91aa6bfb83d492187ce1321f`;
+  the 2,098,453-byte source archive has SHA-256
+  `95a5cbe2592d66a72316c518edfff44dd8983a4d73b0524dc937819adf1edfdb`.
+  Primary installed-wheel smoke and both final release stages pass; all ten
+  release artifacts reproduce byte-for-byte and archive boundaries remain
+  unchanged.
+- Governance/review: static and dated strict governance return zero findings.
+  Protected surfaces retain zero diff and no actionable finding is known.
+- Final separator: all three M173 Python files remain format-clean, Ruff-clean,
+  and strict-Pyright clean. All ten focused assertions pass in 0.44 seconds;
+  strict docs build in 2.42 seconds; static and dated strict governance return
+  zero findings. All exact final artifact/test/docs roots are absent after one
+  corrected, revalidated Windows removal retry.
+- Pre-commit review: exactly 17 intended paths remain; protected surfaces,
+  whitespace, public-identity, credential-assignment, and local-path checks
+  pass; scratch is absent; and only local `main` plus neutral M173 remain.
+- Initial DCO commit `e13ab4547d51c2dbd23a0d593f00fe7529ea8804`
+  has tree `315a83a395e60cabfc78e332da3c8dd3f80abb17`, sole parent exact
+  M172, exactly 17 paths, truthful configured identity, one sign-off, expected
+  `0 74` divergence, a clean worktree, and successful full object check.
+- Hosted gate: a fresh pruned fetch retains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` at `origin/main`, 74 commits
+  behind M173. No PR is open and PR #251 remains the latest merge. Publication
+  is withheld because hosted M100-M172 prerequisites are absent; no push, PR,
+  or hosted run occurred.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation changes. Final amended-object audit follows this record.
+
 ## M172 Windows descendant non-exclusion - locally validated
 
 - Base: fully locally validated M171 DCO commit

@@ -873,6 +873,15 @@ recursive subtree quiescence and cannot alone authorize cleanup. No runtime
 lock, participant registry, cleanup authority, or mutation is added; Windows
 remains unadmitted.
 
+M173's test-only [Windows cooperative-lock
+probe](docs/security/cache-cleanup-windows-cooperative-lock-probe.md) proves
+that two shared owners of one fixed coordination range coexist and preserve
+exclusive refusal through the last exact release, while an exclusive owner
+refuses a late shared participant. This is only an opt-in participant
+primitive: uncooperative actors, identity/generation binding, complete retained
+roots, mapped views, substitution, recovery, policy, and receipts remain open.
+It is not cleanup authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

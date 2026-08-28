@@ -160,3 +160,4 @@ was adopted.
 - [RFC-0153: probe Windows concurrent explicit-list abrupt termination](0153-probe-windows-concurrent-explicit-abrupt-termination.md)
 - [RFC-0154: probe Windows exclusive-root acquisition](0154-probe-windows-exclusive-root-acquisition.md)
 - [RFC-0155: probe Windows descendant non-exclusion](0155-probe-windows-descendant-non-exclusion.md)
+- [RFC-0156: probe Windows cooperative coordination locking](0156-probe-windows-cooperative-lock.md)
