@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M161/RFC-0144's test-only [Windows acknowledged-release timeout
+  probe](docs/security/cache-cleanup-windows-acknowledged-release-timeout-probe.md).
+  It separates accepted release intent from native handle close without adding
+  runtime behavior or CI allocation.
 - Add M160/RFC-0143's test-only [Windows live-blocker wait-timeout
   probe](docs/security/cache-cleanup-windows-live-wait-timeout-probe.md).
   It captures one immediate live-child wait timeout without adding runtime

@@ -4061,6 +4061,31 @@ admission. M160 adds no runtime API, value, protocol, decoder, CLI composition,
 public probe, helper, dependency, workflow, permission, release authority, or
 CI change. RFC-0143 records the accepted test-only boundary.
 
+## M161 Windows acknowledged-release timeout boundary
+
+M161 adds one Windows-only, test-only [acknowledged-release timeout
+probe](security/cache-cleanup-windows-acknowledged-release-timeout-probe.md).
+Its fixed child retains M155's no-delete-share native behavior but defines a
+new two-token protocol: `!` acknowledges release intent as exact
+`release-held`, while a distinct `.` orders actual handle close.
+
+After bounded `ready` and M154's false/error 32 denial, the parent sends and
+flushes only release intent and requires bounded `release-held`. One
+zero-duration process wait raises exact `TimeoutExpired`, leaves the child
+live, and leaves the identical native rename false/error 32 with namespace and
+content unchanged. Only the close byte may order native handle close, exact
+`closed`, child exit zero, output EOF, and one final identical rename returning
+true/code zero with content preserved.
+
+This is one current-host acknowledged-intent observation, not an actual
+graceful-close timeout contract, timeout recovery, nonzero timeout behavior,
+cancellation, kill policy, native close failure, crash/restart recovery,
+concurrent mutation safety, general exclusion, duplicated-handle or oplock
+behavior, or Windows admission. M161 adds no runtime API, value, protocol,
+decoder, CLI composition, public probe, production dependency, workflow,
+permission, release authority, or CI change. RFC-0144 records the accepted
+test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

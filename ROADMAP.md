@@ -2094,6 +2094,35 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The existing Windows suite is the
 only future hosted execution path.
 
+## M161 Windows acknowledged-release timeout probe
+
+M161 starts from fully locally validated M160 commit
+`2ef87449a23b05e637b876cdee238cc58b10bd10`. It adds one Windows-only,
+test-only [acknowledged-release timeout
+probe](docs/security/cache-cleanup-windows-acknowledged-release-timeout-probe.md)
+under RFC-0144.
+
+A fixed standalone child opens ordinary `live` without delete sharing, emits
+exact `ready`, accepts M155's `!` release-intent byte, and emits exact
+`release-held` while deliberately retaining its native handle. One
+`Popen.wait(timeout=0.0)` raises exact `TimeoutExpired`; the child remains live
+and M154's identical rename remains false/error 32. A distinct fixed `.` close
+byte then orders native handle close, exact `closed`, child exit zero, and the
+identical rename's true/code-zero result with content preserved.
+
+Windows remains unadmitted. This is not a graceful-close timeout contract,
+timeout recovery, nonzero timeout guarantee, cancellation, kill policy,
+native close-failure result, crash or restart recovery, controlled concurrent
+interleaving, general exclusion, duplicated-handle or oplock behavior, policy,
+receipt, or independent-host proof.
+
+M161 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The fixed child is test-only and
+the existing Windows suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

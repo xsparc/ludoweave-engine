@@ -767,6 +767,14 @@ existing graceful close orders one successful rename. This is not a timeout
 recovery contract, cancellation policy, general exclusion, or mutation
 authority; Windows remains unadmitted.
 
+M161's test-only [Windows acknowledged-release timeout
+probe](docs/security/cache-cleanup-windows-acknowledged-release-timeout-probe.md)
+uses separate fixed release-intent and close tokens. Exact `release-held`
+acknowledges intent while retaining false/error 32 denial; one immediate wait
+times out before the close token orders exact `closed`, exit zero, and one
+successful rename. This is not a graceful-close timeout contract, recovery
+policy, general exclusion, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

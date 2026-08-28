@@ -1,5 +1,37 @@
 # Project State
 
+## M161 Windows acknowledged-release timeout - locally validated
+
+- Base: fully locally validated M160 DCO commit
+  `2ef87449a23b05e637b876cdee238cc58b10bd10`, tree
+  `88ebbabe1115d78c72791a1a81c08b4356d5f957`, sole parent exact M159.
+- Branch: `release/m161-acknowledged-release-timeout`; exact containment
+  allowed the redundant M160 branch to be pruned.
+- Direction: RFC-0144 accepts one test-only two-token child protocol that
+  acknowledges release intent while retaining false/32, then orders native
+  close and true/0 only from a separate close token.
+- Scope: one fixed fixture, integration/architecture tests, and documentation;
+  no runtime, accepted-fixture mutation, public probe, timeout recovery,
+  adapter, cache, CLI, dependency, workflow/CI, version, release, or product
+  mutation change.
+- Acceptance: complete through exact supported-Python behavior, full regression,
+  architecture/static/docs gates, real wgpu, profiles, vertical slices, all
+  installed-wheel consumers, reproducible distributions, release rehearsal,
+  archive inspection, 40 total repeated live-host executions across initial
+  and hardened source, findings-first review, DCO commit, and exact object
+  audit.
+- Initial DCO commit: `93d69f5e0b662b6db7a5647c57a4962fa81cc589`,
+  tree `67c6465dfaedb60be48b138268a29e5d2f8e4181`, sole parent exact M160.
+  It has exact maintainer identity, one DCO sign-off, 17 intended paths, a clean
+  worktree, and expected `0 62` divergence from local M99 main. Full object
+  checking reports only dangling objects and no integrity error. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the
+  newest merge, open PRs are empty, and the only remote branch is `main`.
+  Publishing M161 would expose the absent M100-M161 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.
+
 ## M160 Windows live-blocker wait timeout - locally validated
 
 - Base: fully locally validated M159 DCO commit

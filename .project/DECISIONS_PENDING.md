@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M161 Windows acknowledged-release timeout probe
+
+RFC-0144 accepts one NTFS, Windows-only, test-only observation in which a new
+fixed child acknowledges M155's `!` release-intent byte as exact
+`release-held` while retaining its no-delete-share native handle. One
+zero-duration `Popen.wait` raises exact `TimeoutExpired`, leaves the return code
+unset, and does not change M154's identical false/32 result. A distinct fixed
+`.` close byte then orders native close, exact `closed`, child exit zero, and
+the identical third rename's true/0 result.
+
+This resolves only one acknowledged-intent/retained-handle observation. Actual
+graceful-close and nonzero wait timeouts, native close failure, cancellation,
+kill policy, retry or recovery, crash/restart behavior, duplicated handles,
+oplocks, controlled interleavings, general exclusion, filesystem/driver
+variation, and independent-host proof remain pending. Windows is not admitted.
+
+RFC-0144 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted fixture, a production adapter, public capability, cleanup authority,
+recovery policy, dependency, workflow, CI allocation, tag, release, or
+publication.
+
 ## M160 Windows live-blocker immediate-wait timeout
 
 RFC-0143 accepts one NTFS, Windows-only, test-only observation in which M155's

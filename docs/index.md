@@ -109,6 +109,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-live-wait-timeout-probe.md) that
   captures one immediate wait timeout while ownership and denial remain live,
   without adding runtime recovery, timeout policy, or CI allocation.
+- A test-only [Windows acknowledged-release timeout
+  probe](security/cache-cleanup-windows-acknowledged-release-timeout-probe.md)
+  that separates accepted release intent from native handle close without
+  adding runtime recovery, graceful-close policy, or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly
