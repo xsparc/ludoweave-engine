@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M167 Windows concurrent explicit-list isolation probe
+
+RFC-0150 accepts one Windows-only, test-only controlled observation in which
+two distinct no-delete-share handles remain inheritable across two real
+simultaneous one-handle-list process creations. Both helpers reach restoration
+before either flag resets. After both parent handles close, child release
+orders A-to-B and B-to-A each allow only the released child's root to rename;
+the other remains false/error 32 until its own child closes. Both payloads are
+preserved and every thread, handle, child, and stream settles.
+
+This resolves only pairwise isolation for one successful current-host overlap.
+A concurrency-safe process-creation contract, coordination across every broad
+and explicit creator, cancellation/failure/reentrant interleavings, general
+leak-freedom, invalid handles, child crashes, cross-process transfer, native
+close failure, oplocks, general exclusion, filesystem/driver variation,
+recovery, and independent-host proof remain pending. Windows is not admitted.
+
+RFC-0150 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted helper or fixture, a process-global lock, production adapter, public
+capability, cleanup authority, recovery policy, dependency, workflow, CI
+allocation, tag, release, or publication.
+
 ## M166 Windows concurrent broad-inheritance leak probe
 
 RFC-0149 accepts one NTFS, Windows-only, test-only controlled observation in

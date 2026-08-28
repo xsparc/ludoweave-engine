@@ -4217,6 +4217,36 @@ composition, public probe, production dependency, workflow, permission,
 release authority, or CI change. RFC-0149 records the accepted test-only
 boundary.
 
+## M167 Windows concurrent explicit-list isolation boundary
+
+M167 adds one Windows-only, test-only [concurrent explicit-list isolation
+probe](security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md).
+It preserves M163's helper and fixture plus M166's complete boundary byte-for-
+byte. Two worker threads each target a distinct no-delete-share handle and
+pytest-owned root through M163's exact one-handle-list helper.
+
+A module-local inheritability proxy requires both parent handles true before
+either worker continues. A separate subprocess proxy validates each exact
+list, `close_fds=True`, `shell=False`, corresponding trusted root, and owned
+pipes, then delegates to the captured real `Popen`. Both real creations must
+complete while both flags remain true. Both helpers then reach restoration
+before either exact flag reset is released, after which both threads settle,
+both flags are false, and both fixed children are ready/live.
+
+M154's unchanged native rename remains false/error 32 for both roots before
+and after both parent handles close. Parameterized A-to-B and B-to-A child
+release orders require the released child's root to become renameable while
+the other remains denied, then require the second root to succeed after its
+child closes. This ordered result proves pairwise isolation for the controlled
+overlap.
+
+It is not a concurrency-safe process-creation contract, general leak-freedom,
+coverage of every creator, handle, failure, cancellation, or reentrant
+interleaving, a runtime coordinator, recovery, general exclusion, or Windows
+admission. M167 adds no runtime API, value, protocol, decoder, CLI composition,
+public probe, production dependency, workflow, permission, release authority,
+or CI change. RFC-0150 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

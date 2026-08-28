@@ -1,5 +1,78 @@
 # Project State
 
+## M167 Windows concurrent explicit-list isolation - locally validated
+
+- Base: fully locally validated M166 DCO commit
+  `86b0e49d0d91ab2e134a8d7b9cb247012883fe7e`, tree
+  `cb12cc6c6f196d1ee3c605ce94cbbe6b91572316`, sole parent exact M165.
+- Branch hygiene: neutral `release/m167-concurrent-explicit-isolation` starts
+  at exact M166. Exact containment allowed the redundant M166 branch to be
+  pruned; only local `main` and active M167 remain.
+- Direction: RFC-0150 accepts one controlled successful simultaneous
+  explicit-list pair because Python and Microsoft document explicit selection
+  as the narrow alternative to broad inheritance. It rejects general safety,
+  a runtime/global coordinator, Windows admission, and CI expansion.
+- Scope: two test modules, two decision/security documents, eight public
+  navigation/status documents, and four project records only. Runtime,
+  examples, scripts, fixture, dependencies, and both workflows are protected.
+- Behavior: both real one-handle-list `Popen` calls complete while both distinct
+  parent blockers remain inheritable. Both helpers wait at restoration while
+  both flags are true, then restore them. With both parents closed, A-to-B and
+  B-to-A releases each make only the corresponding root renameable.
+- Focused proof: six architecture guards plus two live cases pass. Twenty
+  explicit consecutive invocations pass 40 live cases. The M149-M167 group
+  passes 121 assertions with one established capability skip.
+- Complete proof: all 516 Python files pass Ruff formatting, Ruff, and strict
+  Pyright; strict docs pass with the known Material notice. Exact 3.12.13
+  passes 3,814 tests with 17 skips; exact 3.13.13 and 3.14.5 each pass 3,804
+  tests with 18 skips.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Distribution: two development builds reproduce a 360,595-byte pure wheel at
+  SHA-256 `474eccf6c1d8f6aeba7a1b43c5445b25fbd77980a000c4a715d1444ce6372508`
+  and a 2,044,435-byte sdist at SHA-256
+  `a5353c6380cc9fb22ae4e9990e829b1866fdfdcf1c0793a9fb49748c0a01987a`.
+  All 28 wheel consumers pass. Two byte-identical ten-artifact release stages
+  pass complete smoke. Inventory is 114 wheel and 827 source entries with no
+  native/WASM/bytecode, no M167 wheel entries, and all four M167 source-only
+  files.
+- Final closure: after recording the broad evidence, the unchanged lock,
+  complete static gates, 121/1 integrated boundary, strict docs, both
+  governance modes, and whitespace pass. Two final builds reproduce the same
+  wheel and a 2,046,312-byte source archive at SHA-256
+  `508a9fa7925fe9413e2a38aaafab33de4d06669fe99eb4319b1c3cf920e51196`.
+  Primary wheel smoke and two byte-identical final ten-artifact release stages
+  pass; inventory remains 114/827 with exact source-only confinement.
+- Corrections: a first baseline selector omitted one accepted module; the
+  corrected group passed 113/1. Initial formatter/lint/type findings were
+  corrected before acceptance. Unsupported `pytest --count` was rejected
+  before collection and replaced by an explicit loop. An Agent World Builder
+  help probe executed its fixed sample and was followed by the documented
+  explicit run. The first archive selector omitted the underscore-named
+  integration module; the corrected selector found all four sources.
+- Publication: fresh hosted state still reports `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, and PR #251 as the
+  newest merge. Final publication is gated against exposing the absent local
+  milestone stack.
+- Scope/cleanup: exactly 16 intended paths remain; protected surfaces have zero
+  change; whitespace, public identity, and credential scans pass. All twelve
+  exact M167 scratch targets resolved directly beneath repository `.tmp`, were
+  non-reparse, were removed, and are confirmed absent.
+- Record-only closeout: both M167 Python files remain format/Ruff/Pyright clean;
+  all eight focused assertions pass in 1.41 seconds; strict docs build in 2.38
+  seconds with only the known Material notice; static and dated governance each
+  return zero findings; and whitespace passes.
+- Initial commit audit: DCO commit
+  `4c1765fadeaa422e361727174ef330eac01d5cef` has tree
+  `7281d26fbc4949402c8d6027f8e329301faa4d2e`, sole parent exact M166, exact
+  maintainer identity, one sign-off, 16 intended paths, no merge, clean
+  worktree, `0 68` divergence, and only local `main` plus M167. Full object
+  verification exits zero with only historical dangling objects and no
+  corruption or missing object. This checkpoint is folded into the same commit.
+- Final hosted audit: fetch/prune leaves the sole hosted branch `main` at exact
+  M99. There is no open PR; PR #251 remains the newest merge at that commit.
+  Publishing would expose M100-M167, so no push or PR occurred.
+
 ## M166 Windows concurrent broad-inheritance leak - locally validated
 
 - Base: fully locally validated M165 DCO commit

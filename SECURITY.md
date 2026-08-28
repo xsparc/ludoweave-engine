@@ -820,6 +820,15 @@ is one controlled real leak observation, not a concurrency-safe spawning
 contract, general leak-freedom, recovery, general exclusion, or mutation
 authority; Windows remains unadmitted.
 
+M167's test-only [Windows concurrent explicit-list isolation
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md)
+holds two distinct blocker handles inheritable across two real one-handle-list
+process creations. After both parent handles close, releasing either child
+permits rename only for its root; both release orders prove the same pairwise
+isolation. This is not a concurrency-safe process-creation contract, general
+leak-freedom, recovery, general exclusion, or mutation authority; Windows
+remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M167/RFC-0150's test-only [Windows concurrent explicit-list isolation
+  probe](docs/security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md).
+  It proves pairwise isolation for two controlled overlapping one-handle lists
+  in both release orders, without adding runtime coordination or CI allocation.
 - Add M166/RFC-0149's test-only [Windows concurrent broad-inheritance leak
   probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md).
   It proves one controlled broad launch retains the temporarily inheritable

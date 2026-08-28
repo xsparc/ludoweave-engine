@@ -1,116 +1,127 @@
 # Current task
 
-- **Task:** M166 - prove one controlled concurrent broad-inheritance launch
-  acquires M163's temporarily inheritable blocker and retains native rename
-  denial after both parent and intended-child close.
-- **Status:** Local M166 acceptance and DCO closeout are complete. Exact M166
-  scratch artifacts are removed. The final hosted-state audit still exposes
-  only M99, so push and PR publication are safely withheld.
-- **Base:** Fully locally validated M165 DCO commit
-  `5ec5e79330c5798e13424dfea5a11522b6c93f7a`, tree
-  `4e10da2a5f9dcc012cd175362b716c1863902e8c`, sole parent exact M164.
-- **Branch:** `release/m166-concurrent-inheritance-leak`; exact containment
-  allowed the redundant M165 branch to be pruned.
+- **Task:** M167 - prove pairwise isolation for one controlled pair of
+  simultaneous Windows explicit-handle-list launches.
+- **Status:** Local M167 acceptance, DCO closeout, and hosted publication audit
+  are complete. Exact scratch artifacts are removed. Hosted `main` still lacks
+  M100-M167, so push and PR publication are safely withheld.
+- **Base:** Fully locally validated M166 DCO commit
+  `86b0e49d0d91ab2e134a8d7b9cb247012883fe7e`, tree
+  `cb12cc6c6f196d1ee3c605ce94cbbe6b91572316`, sole parent exact M165.
+- **Branch:** `release/m167-concurrent-explicit-isolation`; exact containment
+  allowed the redundant M166 branch to be pruned.
 
 ## Acceptance boundary
 
-- Accept RFC-0149 and retain one Windows-only, test-only, event-controlled
-  concurrent broad-inheritance hazard observation beneath pytest temporary
+- Accept RFC-0150 and retain one Windows-only, test-only, event-controlled
+  simultaneous explicit-list isolation observation beneath pytest temporary
   storage.
-- Preserve M163's explicit-list helper and fixed child fixture plus M165's
-  complete boundary byte-for-byte.
-- Pause only M163's exact explicit-list `Popen` call after its parent blocker
-  becomes inheritable and before the intended child is created, using a
-  module-local proxy and bounded `threading.Event` coordination.
-- During that window, use the captured real `Popen` class to start the same
-  fixed child with `close_fds=False`, fixed executable/path arguments,
-  `shell=False`, trusted pytest cwd, and owned standard pipes.
-- Require the broad child ready/live, release the intended launch, require its
-  child ready/live, and require M163's unchanged `finally` to restore the
-  parent flag to noninheritable.
-- Require M154's unchanged false/error 32 rename before parent close, after
-  parent close, and after the intended child acknowledges close and exits zero
-  while the broad child remains live.
-- Require only the broad child's acknowledged close and zero exit to permit the
-  identical fourth rename's true/code-zero result with content preserved.
-- In `finally`, release the event gate, join the launch thread, repair
-  noninheritability when the parent still owns the handle, and close/reap every
-  created child.
-- Protect exact runtime, examples, scripts, dependencies, workflows, accepted
-  helper/fixture, and M165 boundary through automated architecture tests.
-- Add no runtime subprocess or `ctypes`, public probe, global spawn lock,
-  recovery policy, production adapter, cache access, cleanup authority,
-  dependency, workflow, or CI allocation.
+- Preserve M163's helper and fixed child fixture plus M166's complete boundary
+  byte-for-byte.
+- Open two distinct noninheritable no-delete-share handles to ordinary
+  `a/live` and `b/live` directories beneath one handle-reported NTFS root.
+- Use a module-local `os` proxy to require both handles inheritable before
+  either worker continues, without changing process-wide `os` bindings.
+- Use a separate module-local subprocess proxy to validate a one-handle list,
+  `close_fds=True`, `shell=False`, corresponding trusted root, and owned pipes,
+  then allow both captured-real `Popen` calls to complete while both parent
+  flags remain true.
+- Require both helpers waiting at restoration while both flags are still true,
+  release both exact restore calls, join both threads, and require both flags
+  false plus both children ready/live.
+- Require M154's false/error 32 rename for both roots before and after both
+  parent handles close.
+- Exercise child release orders A-to-B and B-to-A; after the first child closes,
+  require only its root to rename successfully while the other remains denied,
+  then require the second root to succeed after its child closes.
+- Preserve both distinct payloads and settle every thread, parent handle,
+  child process, and pipe stream through bounded cleanup.
+- Add no runtime subprocess or `ctypes`, global launch lock, public probe,
+  dependency, workflow, job, permission, or CI allocation.
 
 ## Direction evidence
 
-- Python warns that temporarily inheritable Windows handles can leak when a
-  concurrent process-creation function inherits all handles.
-- Microsoft documents that `CreateProcess` with `bInheritHandles=TRUE`
-  transfers every inheritable handle and separately recommends explicit handle
-  lists for multithreaded callers.
-- A controlled real leak observation resolves whether that warning affects the
-  exact no-delete-share blocker, but cannot establish a safe concurrency
-  contract or select a production coordination design.
-- GitHub documents one job per matrix combination. M166 uses only the existing
+- Python documents that a non-empty Windows `handle_list` requires
+  `close_fds=True`, temporarily inheritable handles, and caution around
+  concurrent broad-inheritance creators.
+- Microsoft documents that broad `CreateProcessW` inheritance is problematic
+  for simultaneous creators that need different handles and recommends
+  `PROC_THREAD_ATTRIBUTE_HANDLE_LIST` for explicit selection.
+- M166 proves the adverse broad-inheritance case. One controlled simultaneous
+  explicit-list pair can now resolve pairwise isolation for the exact blocker,
+  but cannot establish a general concurrency-safe process-creation contract.
+- GitHub documents one job per matrix combination. M167 uses only the existing
   Windows suite and adds no hosted allocation.
-- NIST's SSDF guidance supports risk-driven scoped evidence rather than an
-  unrelated checklist or CI expansion.
-- Exact M165 history and a clean worktree were established before this branch.
-  Exact ancestry allowed the contained M165 branch to be pruned; only local
-  `main` and active M166 remain.
+- NIST SSDF guidance supports this risk-driven bounded evidence slice instead
+  of unrelated CI expansion.
 
 ## Development evidence so far
 
-- The baseline M149-M165 probe/boundary group passed 106 assertions with one
-  established capability skip in 4.08 seconds. Static governance returned zero
-  findings across three objectives, seven requirements, and four work items.
-- Fresh fetch/prune and authenticated GitHub queries found hosted `main` at
-  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, and PR #251
-  as the newest merge at the same commit.
-- The first focused implementation run passed formatting and Ruff but strict
-  Pyright rejected two unnecessary casts; the same casts caused a runtime
-  `TypeError` after a shared-module test double replaced `Popen`.
-- Removing the casts cleared strict typing. The next live run reached the
-  native observer but exposed that replacing `Popen` on the shared subprocess
-  module also affected `subprocess.run`. A module-local `SimpleNamespace`
-  proxy corrected that isolation defect.
-- The first behaviorally complete run then reached every ordered ownership
-  assertion but final cleanup queried the already-released parent handle and
-  received expected Windows error 6. Tracking exact parent release avoids
-  querying an invalid handle. The corrected live probe passes once in 0.66
-  seconds and strict Pyright reports zero findings.
-- Findings-first review then found that a body assertion could fail after the
-  explicit launch succeeded but before its queued process owner was consumed.
-  `finally` now drains that pending result and closes it. Post-probe assertions
-  require the thread settled, both children at exit zero, and all streams
-  closed. The final seven-assertion focused gate and 20 repeated live
-  executions pass.
-- All 514 Python files, Ruff, strict Pyright, strict docs, static and dated
-  governance, the 113-assertion M149-M166 group with one established skip, and
-  metadata/scope/public-hygiene checks pass.
-- Exact CPython 3.12.13 passes 3,806 tests with 17 skips; 3.13.13 and 3.14.5
-  each pass 3,796 tests with 18 skips. Real wgpu, both profiles, Clockwork
-  Arena, and Agent World Builder pass with established deterministic
-  identities.
-- Two development builds are byte-identical. The primary and all 27 additional
-  installed-wheel consumers pass. Two byte-identical ten-artifact release
-  stages pass complete release smoke. Development archive inventory is 114
-  wheel and 823 source entries, with zero native/WASM/bytecode and exactly the
-  four M166 sources present only in the source archive.
+- M166 was clean at exact DCO commit `86b0e49d0d91ab2e134a8d7b9cb247012883fe7e`.
+  A first baseline selector omitted the accepted child-owned blocker module and
+  passed 112 assertions with one skip; the corrected complete M149-M166 group
+  passed 113 assertions with one established skip. Both governance modes
+  returned zero findings.
+- A fresh fetch and authenticated query still found hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, and PR #251 as
+  the newest merge. Only local `main` and the active M167 branch remain.
+- Initial static validation requested formatting, reported one unused loop
+  label, and found two partially unknown handle-list values. An explicit typed
+  cast, exact one-key/list checks, and removal of the unused label corrected
+  those findings. The formatted live probe then passed both release orders.
+- The six architecture guards plus two live cases pass. Strict docs build with
+  only the known Material notice. The complete M149-M167 boundary passes 121
+  assertions with one established skip.
+- `pytest-repeat` is intentionally absent, so an exploratory `--count=20`
+  command was rejected before collection. Twenty explicit consecutive pytest
+  invocations then passed all 40 parametrized live cases.
+- The unchanged 46-package lock resolves; the 45-package graphics environment
+  checks; all 516 Python files pass Ruff formatting, Ruff, and strict Pyright.
+- Exact CPython 3.12.13 passes 3,814 tests with 17 skips. Exact CPython 3.13.13
+  and 3.14.5 each pass 3,804 tests with 18 skips from isolated 39-package
+  frozen environments.
+- Ten real-wgpu tests, both one-repeat profiles, Clockwork Arena, and Agent
+  World Builder pass with their established deterministic identities. An
+  exploratory Agent World Builder `--help` invocation ran the fixed sample
+  because it has no parser; the explicit invocation reproduced the same
+  result.
+- Two development builds are byte-identical: a 360,595-byte pure wheel at
+  SHA-256 `474eccf6c1d8f6aeba7a1b43c5445b25fbd77980a000c4a715d1444ce6372508`
+  and a 2,044,435-byte source archive at SHA-256
+  `a5353c6380cc9fb22ae4e9990e829b1866fdfdcf1c0793a9fb49748c0a01987a`.
+  All 28 installed-wheel consumers pass. Two ten-artifact release stages are
+  byte-identical and pass complete release smoke.
+- Archive inspection finds 114 wheel entries and 827 source entries, no
+  native/WASM/bytecode, no M167 wheel entry, and all four exact M167 sources in
+  the source archive. The first selector omitted the underscore-named
+  integration module; the corrected selector found all four.
+- After the evidence record, the frozen source closure passes again. Two final
+  evidence-inclusive builds reproduce the same 360,595-byte wheel and a
+  2,046,312-byte source archive at SHA-256
+  `508a9fa7925fe9413e2a38aaafab33de4d06669fe99eb4319b1c3cf920e51196`.
+  Primary isolated-wheel smoke passes; two final ten-artifact release stages
+  are byte-identical and both complete release smokes pass. Final inventory
+  remains 114/827 with exact M167 confinement.
+- Findings-first scope review finds exactly 16 intended paths, zero protected
+  runtime/helper/fixture/workflow/metadata changes, clean whitespace, and no
+  public development-tool identity or high-confidence credential match.
+  Twelve exact M167 scratch targets were verified directly beneath repository
+  `.tmp`, verified non-reparse, removed, and confirmed absent.
+- The final two-file format/Ruff/Pyright gate and all eight focused assertions
+  pass. Strict docs build with only the known Material notice, both governance
+  modes return zero findings, and whitespace passes on the factual record.
 
 ## Explicit non-scope
 
 - No runtime cleanup, adapter, public capability probe, package `ctypes` or
   subprocess invocation, retained-root implementation, candidate list, cache
   read/write, remote cache, network, or trusted-time implementation.
-- No concurrency-safe inheritance contract, general leak census or leak-
-  freedom claim, process-global lock, arbitrary process creator, simultaneous
-  explicit-list launch, cancellation/failure interleaving, real restoration
-  failure, invalid inherited value, child crash, cross-process duplication or
-  transfer, native close failure, recovery, retry, general exclusion, oplock
-  protocol, quiescence, dependency, version, workflow/CI, permission,
-  credential, release, tag, or repository-publication implementation.
+- No general concurrency-safe inheritance contract, global launch coordinator,
+  every-creator participation rule, general leak-freedom, cancellation,
+  reentrancy, launch/restore failure interleaving, invalid handle, child crash,
+  cross-process transfer, native close failure, recovery, retry, oplock, lease,
+  quiescence, dependency, version, workflow/CI, permission, credential,
+  release, tag, or platform-admission implementation.
 
 ## Publication condition
 
@@ -118,19 +129,20 @@
   hosted-state audit proves the preceding local milestone stack is already on
   hosted `main`; otherwise preserve the locally validated branch without
   exposing a partial stack.
-- The M166 preimplementation audit found hosted `main` at exact M99
-  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, PR #251 as the
-  newest merge, and no hosted milestone branch. The condition is not met at
-  implementation start.
-- Initial DCO commit `95a560d9b8a7ff89d724394ca1cd30fbd3578c07`
-  has tree `7f1793047b73ac5a7ca83524cf6b19e1c87f7d04`, sole parent exact M165,
-  exact configured maintainer identity, one DCO sign-off, exactly 16 intended
-  paths, no merge commit, clean worktree, expected `0 67` divergence from local
-  M99 main, and only local `main` plus M166. Full object checking exits zero
-  with no reported corruption or missing object. This factual checkpoint is
-  being folded into the same local commit before publication.
-- A final fetch/prune leaves hosted `main` at exact M99
-  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, the sole hosted branch.
-  Authenticated GitHub queries report no open PR and PR #251 as the newest
-  merge at that exact commit. Publishing M166 would expose the absent M100-
-  M166 stack, so no push, PR, workflow allocation, tag, or release occurred.
+- The M167 preimplementation audit found hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, and PR #251 as the
+  newest merge. The user-reported squash merge is not visible on this remote,
+  so the publication condition is not currently met.
+- Initial DCO commit `4c1765fadeaa422e361727174ef330eac01d5cef`
+  has tree `7281d26fbc4949402c8d6027f8e329301faa4d2e`, sole parent exact M166,
+  exact configured maintainer author/committer identity, one DCO sign-off,
+  exactly 16 intended paths, no merge commit, a clean worktree, expected
+  `0 68` divergence from local M99 main, and only local `main` plus M167.
+  Full object verification exits zero with no corruption or missing object;
+  it reports only historical dangling objects from prior amended milestones.
+  This factual checkpoint is folded into the same local commit before
+  publication.
+- Final fetch/prune leaves hosted `main` at exact M99, the sole hosted branch.
+  Authenticated queries report no open PR and PR #251 as the newest merge.
+  Publishing M167 would expose the absent M100-M167 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.

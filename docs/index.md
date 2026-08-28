@@ -138,6 +138,10 @@ attestation, with the same allocation topology.
   that proves one controlled broad launch retains the temporarily inheritable
   blocker after parent and intended-child close, without adding runtime
   coordination or CI allocation.
+- A test-only [Windows concurrent explicit-list isolation
+  probe](security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md)
+  that proves two overlapping one-handle lists isolate distinct blockers in
+  both release orders, without adding runtime coordination or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

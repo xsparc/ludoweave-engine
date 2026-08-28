@@ -154,3 +154,4 @@ was adopted.
 - [RFC-0147: probe Windows inherited-handle launch failure](0147-probe-windows-inherited-launch-failure.md)
 - [RFC-0148: probe Windows inherited-handle restoration failure](0148-probe-windows-inherited-restore-failure.md)
 - [RFC-0149: probe Windows concurrent broad-inheritance leakage](0149-probe-windows-concurrent-inheritance-leak.md)
+- [RFC-0150: probe Windows concurrent explicit-list isolation](0150-probe-windows-concurrent-explicit-inheritance.md)
