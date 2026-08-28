@@ -146,3 +146,4 @@ was adopted.
 - [RFC-0139: probe abrupt termination of a Windows blocker owner](0139-probe-windows-abrupt-blocker-termination.md)
 - [RFC-0140: probe Windows blocker control-pipe EOF closure](0140-probe-windows-control-pipe-eof.md)
 - [RFC-0141: probe a Windows blocker invalid control token](0141-probe-windows-invalid-control-token.md)
+- [RFC-0142: probe a broken Windows blocker control pipe](0142-probe-windows-broken-control-pipe.md)

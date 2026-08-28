@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M159 Windows blocker broken-control-pipe probe
+
+RFC-0142 accepts one NTFS, Windows-only, test-only observation in which the
+parent kills and boundedly reaps M155's unchanged blocker after readiness and
+false/32 denial, requires output EOF, and then attempts one direct native write
+through the existing parent stdin handle. The current host returns false,
+exact `ERROR_NO_DATA` 232, and zero bytes written. The parent closes its writer
+explicitly, and M154's identical native rename then returns true/0.
+
+This resolves only one direct late-write observation. Python exception
+mapping, universal Windows error codes, arbitrary pipe faults, partial or
+multiple writes, retry, readiness/termination timeout, native close failure,
+cancellation, restart recovery, duplicated handles, oplocks, controlled
+interleavings, general exclusion, filesystem/driver variation, and
+independent-host proof remain pending. Windows is not admitted.
+
+RFC-0142 does not authorize runtime subprocess or `ctypes`, a helper change,
+production adapter, public capability, cleanup authority, recovery policy,
+dependency, workflow, CI allocation, tag, release, or publication.
+
 ## M158 Windows blocker invalid-control-token probe
 
 RFC-0141 accepts one NTFS, Windows-only, test-only observation in which the

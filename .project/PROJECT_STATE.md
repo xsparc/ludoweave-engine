@@ -1,5 +1,36 @@
 # Project State
 
+## M159 Windows blocker broken control pipe - locally validated
+
+- Base: fully locally validated M158 DCO commit
+  `9061edfe4fd04685a57425bb049834a9fc1bffd5`, tree
+  `e182978ba1e735d014205b04b24853951bae950e`, sole parent exact M157.
+- Branch: `release/m159-broken-control-pipe-write`; exact containment allowed
+  the redundant M158 branch to be pruned.
+- Direction: RFC-0142 accepts one direct test-only native late write after
+  M155's blocker is killed, boundedly reaped, and observed at output EOF. The
+  current host returns false/error 232 with zero bytes before M154's unchanged
+  native rename succeeds.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review.
+- Initial DCO commit: `1f0534139f998e9c030e7ca79a4496b3ac968991`, tree
+  `bd433c41494fb322834e4ee12ffcfad4159880f4`, sole parent exact M158. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 60` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remained the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publishing
+  M159 would expose the absent M100-M159 stack, so no push, PR, workflow
+  allocation, tag, or release occurred.
+
 ## M158 Windows blocker invalid control token - locally validated
 
 - Base: fully locally validated M157 DCO commit

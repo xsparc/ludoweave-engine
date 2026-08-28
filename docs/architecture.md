@@ -4015,6 +4015,29 @@ Windows admission. M158 adds no runtime API, value, protocol, decoder, CLI
 composition, public probe, helper, dependency, workflow, permission, release
 authority, or CI change. RFC-0141 records the accepted test-only boundary.
 
+## M159 Windows blocker broken-control-pipe boundary
+
+M159 adds one Windows-only, test-only [blocker broken-control-pipe
+probe](security/cache-cleanup-windows-broken-control-pipe-probe.md). It reuses
+M155's fixed child-owned blocker and M154's native rename unchanged. After
+bounded readiness and false/error 32 denial, the parent kills and boundedly
+reaps the blocker, then confirms output EOF.
+
+One direct test-only `WriteFile` passes the existing release byte through the
+parent stream's Windows handle. It reports false, exact `ERROR_NO_DATA` 232,
+and zero written bytes. The parent writer then closes normally. A bounded
+process wait and output EOF, rather than a sleep or retry loop, are the only
+ordering boundaries before the identical rename returns true/code zero with
+content preserved.
+
+This is one current-host late-write observation, not Python exception-mapping
+or universal Windows error behavior, arbitrary pipe failure, retry or recovery,
+cancellation, native close failure, crash/restart recovery, concurrent
+mutation safety, general exclusion, duplicated-handle or oplock behavior, or
+Windows admission. M159 adds no runtime API, value, protocol, decoder, CLI
+composition, public probe, helper, dependency, workflow, permission, release
+authority, or CI change. RFC-0142 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

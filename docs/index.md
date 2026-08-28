@@ -100,6 +100,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-invalid-control-token-probe.md) that
   sends one fixed non-release byte after readiness without adding runtime
   behavior, arbitrary malformed-input handling, or CI allocation.
+- A test-only [Windows blocker broken-control-pipe
+  probe](security/cache-cleanup-windows-broken-control-pipe-probe.md) that
+  captures one direct late native write result after bounded owner termination
+  without adding runtime recovery, a universal error contract, or CI
+  allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

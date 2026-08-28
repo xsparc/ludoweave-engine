@@ -47,6 +47,7 @@ nav:
   - Windows abrupt blocker-owner termination probe: security/cache-cleanup-windows-abrupt-blocker-termination-probe.md
   - Windows blocker control-pipe EOF probe: security/cache-cleanup-windows-control-pipe-eof-probe.md
   - Windows blocker invalid-control-token probe: security/cache-cleanup-windows-invalid-control-token-probe.md
+  - Windows blocker broken-control-pipe probe: security/cache-cleanup-windows-broken-control-pipe-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -194,6 +195,7 @@ nav:
       - RFC-0139 - Probe abrupt termination of a Windows blocker owner: rfcs/0139-probe-windows-abrupt-blocker-termination.md
       - RFC-0140 - Probe Windows blocker control-pipe EOF closure: rfcs/0140-probe-windows-control-pipe-eof.md
       - RFC-0141 - Probe a Windows blocker invalid control token: rfcs/0141-probe-windows-invalid-control-token.md
+      - RFC-0142 - Probe a broken Windows blocker control pipe: rfcs/0142-probe-windows-broken-control-pipe.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

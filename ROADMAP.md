@@ -2032,6 +2032,39 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The existing Windows suite is the
 only future hosted execution path.
 
+## M159 Windows blocker broken-control-pipe probe
+
+M159 starts from fully locally validated M158 commit
+`9061edfe4fd04685a57425bb049834a9fc1bffd5`. It adds one Windows-only,
+test-only [blocker broken-control-pipe
+probe](docs/security/cache-cleanup-windows-broken-control-pipe-probe.md) under
+RFC-0142.
+
+The parent reuses M155's fixed blocker and bounded `ready` handshake. M154's
+unchanged native rename child returns false/error 32 while the blocker remains
+alive. The parent kills the blocker once, completes the bounded wait, requires
+output EOF, and then passes the existing release byte to one direct test-only
+`WriteFile`. The current host returns false/error 232 with zero bytes. The
+parent writer closes normally, the identical rename returns true/code zero,
+and the candidate remains preserved under `displaced`.
+
+The initial high-level probe instead exposed `OSError(errno.EINVAL)`, not
+Python's documented `BrokenPipeError`; M159 therefore records only the exact
+native current-host result. Windows remains unadmitted. This is not a Python
+exception-mapping or universal Windows error contract, arbitrary pipe failure,
+retry or recovery policy, timeout, native close failure, cancellation, crash or
+restart recovery, controlled concurrent interleaving, general exclusion,
+duplicated-handle or oplock behavior, policy, receipt, or independent-host
+proof.
+
+M159 adds no runtime API, protocol, decoder, CLI command, public probe, helper,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. Test-only native calls remain
+outside the package and the existing Windows suite is the only future hosted
+execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

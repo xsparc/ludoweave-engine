@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M159/RFC-0142's test-only [Windows blocker broken-control-pipe
+  probe](docs/security/cache-cleanup-windows-broken-control-pipe-probe.md).
+  It captures one exact post-termination native pipe-write failure without
+  adding runtime behavior or CI allocation.
 - Add M158/RFC-0141's test-only [Windows blocker invalid-control-token
   probe](docs/security/cache-cleanup-windows-invalid-control-token-probe.md).
   It distinguishes one fixed non-release byte from EOF without adding runtime

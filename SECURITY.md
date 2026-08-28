@@ -751,6 +751,14 @@ identical rename retry. This is not arbitrary malformed input, partial or
 multiple write behavior, broken-pipe recovery, general exclusion, or mutation
 authority; Windows remains unadmitted.
 
+M159's test-only [Windows blocker broken-control-pipe
+probe](docs/security/cache-cleanup-windows-broken-control-pipe-probe.md) kills
+and boundedly reaps the unchanged blocker before one direct late `WriteFile`.
+The current host reports false/error 232 with zero bytes, the parent writer
+closes explicitly, and one identical rename succeeds. This is not a universal
+Windows error result, Python exception mapping, retry or recovery contract,
+general exclusion, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
