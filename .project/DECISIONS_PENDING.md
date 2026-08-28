@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M172 Windows descendant non-exclusion probe
+
+RFC-0155 accepts one Windows-only, test-only observation that M171's
+zero-sharing directory owner and a separately opened descendant file owner can
+coexist in either acquisition order. Both remain live simultaneously, close
+independently, preserve exact content, and leak no parent ownership. This is
+negative capability evidence: the directory primitive is object-specific and
+is not a recursive subtree lock. Windows is not admitted.
+
+This resolves only the exact current-host NTFS generic-read/all-sharing
+descendant observation. Writes, deletes, mappings, descendant directories,
+multiple participants, oplocks, leases, cancellation, process death, native
+close failure, filesystem variation, recovery, policy, receipts, and
+independent-host proof remain pending.
+
+RFC-0155 does not authorize a runtime adapter or lock, participant registry,
+cache access, retained-root integration, candidate disclosure, cleanup or
+mutation authority, dependency, workflow, CI allocation, tag, release, or
+publication. No hosted check is added.
+
 ## M171 Windows exclusive-root acquisition probe
 
 RFC-0154 accepts one Windows-only, test-only two-way observation around one

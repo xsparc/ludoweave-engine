@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M172/RFC-0155's test-only [Windows descendant non-exclusion
+  probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md).
+  It proves that a zero-sharing directory owner and a separate descendant file
+  owner coexist in both acquisition orders, preventing the directory primitive
+  from being mistaken for recursive quiescence without adding CI allocation.
 - Add M171/RFC-0154's test-only [Windows exclusive-root acquisition
   probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md).
   It proves two-way fail-closed sharing violations around one no-sharing

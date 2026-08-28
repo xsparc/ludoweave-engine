@@ -865,6 +865,14 @@ parent acquisition fail with error 32 until acknowledged close. This is not a
 complete quiescence protocol, lock API, recovery, general exclusion, cleanup
 authority, or mutation authority; Windows remains unadmitted.
 
+M172's test-only [Windows descendant non-exclusion
+probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md)
+proves that M171's zero-sharing directory owner and a separate descendant file
+owner coexist in either acquisition order. The directory primitive is not
+recursive subtree quiescence and cannot alone authorize cleanup. No runtime
+lock, participant registry, cleanup authority, or mutation is added; Windows
+remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

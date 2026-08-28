@@ -1,5 +1,70 @@
 # Project State
 
+## M172 Windows descendant non-exclusion - locally validated
+
+- Base: fully locally validated M171 DCO commit
+  `960efe770c48ddbfb925fd2cd7f9d220bca2e3ed`, tree
+  `7ffa65efd2519c787a056e18d069bb561bb9764d`, sole parent exact M170.
+- Branch hygiene: neutral
+  `release/m172-windows-descendant-non-exclusion` starts at exact M171. Exact
+  containment allowed redundant M171 to be pruned; only local `main` and active
+  M172 remain.
+- Direction: RFC-0155 accepts one current-host, test-only negative observation
+  that a zero-sharing directory owner is not recursive descendant exclusion.
+  It rejects runtime promotion, Windows admission, and CI growth.
+- Scope: one fixed child fixture, one live integration probe, one architecture
+  boundary, two decision/security documents, eight public navigation/status
+  documents, and four neutral project records only. Runtime, examples, scripts,
+  dependencies, workflows, metadata, lock, and prior probes remain protected.
+- Behavior: one fixed noninheritable child holds only
+  `live/candidate.bin` for generic read with all sharing. The descendant and
+  M171's zero-sharing directory owner coexist in both acquisition orders,
+  remain simultaneously live, close independently, and preserve exact bytes.
+- Focused proof: seven architecture guards plus two live tests pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M172 boundary passes 165
+  assertions with one established capability skip.
+- Static and Python matrix: all 528 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,848 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,848 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,956-byte pure wheel at
+  SHA-256 `1fa1a84119c30634d5f7e48a8efe58dcc4168f6a8c9dd2f26b910af34b1453bd`
+  and a 2,087,257-byte source archive at SHA-256
+  `cc1583c6d03ef7e54b9667c7a845bec4fa8261900c4838b6f63e472dd66c61e2`.
+  All 28 isolated installed-wheel consumers pass.
+- Release rehearsal: two ten-artifact stages are byte-identical and pass full
+  release smoke. Archive inventory is 114 wheel and 849 source entries with no
+  native/WASM/bytecode or hidden-control entry, no M172 wheel entry, and all
+  five exact M172 sources source-only.
+- Final evidence-inclusive reproduction retains the 360,956-byte wheel and
+  SHA-256 `1fa1a84119c30634d5f7e48a8efe58dcc4168f6a8c9dd2f26b910af34b1453bd`;
+  the 2,088,833-byte source archive has SHA-256
+  `0bc09829f2ce71cef6b861fb91ed3b95cb7038f9cad3f4316d0b67fe4f3325d9`.
+  Primary installed-wheel smoke and both final release stages pass; all ten
+  release artifacts reproduce byte-for-byte and archive boundaries remain
+  unchanged.
+- Governance/review: static and dated strict governance return zero findings
+  after the incorrect first checker target and uv-cache sandbox denial were
+  corrected. Protected surfaces retain zero diff and no actionable finding is
+  known.
+- Final separator: all three M172 Python files remain format-clean, Ruff-clean,
+  and strict-Pyright clean. All nine focused assertions pass in 0.37 seconds;
+  strict docs build in 2.44 seconds; static and dated strict governance return
+  zero findings. All exact final artifact/test/docs roots are absent.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation changes. Hosted publication and final amended-object gates remain.
+- Initial DCO commit `9471b26ecfaca163e6521b2cbfa03ed30f05634f` has tree
+  `17d386d5fb6712465ef934f1fb1d8e5f01fd77c3`, sole parent exact M171,
+  exact configured maintainer author/committer identity, one sign-off, 17
+  intended paths, no merge, a clean worktree, and zero critical object finding.
+  Its factual audit was folded into the same commit before the hosted-state
+  decision.
+- Hosted publication: fresh fetch and authenticated queries find hosted/local
+  `main` at exact M99, no open PR, and PR #251 as the latest merge. Hosted
+  `main` does not contain exact M171; M172 is 73 commits ahead and zero behind.
+  Push and PR are therefore withheld, with no workflow allocation.
+
 ## M171 Windows exclusive-root acquisition - locally validated
 
 - Base: fully locally validated M170 DCO commit

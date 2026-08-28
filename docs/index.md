@@ -162,6 +162,10 @@ attestation, with the same allocation topology.
   that proves two-way fail-closed no-sharing acquisition and deterministic
   release without introducing a runtime lock, cleanup authority, or CI
   expansion.
+- A test-only [Windows descendant non-exclusion
+  probe](security/cache-cleanup-windows-descendant-non-exclusion-probe.md) that
+  proves a zero-sharing directory owner does not recursively exclude a separate
+  descendant file owner, without runtime or CI expansion.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

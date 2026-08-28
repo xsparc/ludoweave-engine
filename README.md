@@ -182,8 +182,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md).
 > A no-sharing directory owner refuses a late child, while an existing child
 > makes the same acquisition fail closed until its acknowledged close.
+> M172 adds one test-only [Windows descendant non-exclusion
+> probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md).
+> It proves the directory owner is not a recursive subtree lock: a separate
+> descendant file owner coexists in either acquisition order.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M171 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M172 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

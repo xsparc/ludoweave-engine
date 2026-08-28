@@ -60,6 +60,7 @@ nav:
   - Windows concurrent explicit-list restoration-failure probe: security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md
   - Windows concurrent explicit-list abrupt-termination probe: security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md
   - Windows exclusive-root acquisition probe: security/cache-cleanup-windows-exclusive-root-acquisition-probe.md
+  - Windows descendant non-exclusion probe: security/cache-cleanup-windows-descendant-non-exclusion-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -220,6 +221,7 @@ nav:
       - RFC-0152 - Probe Windows concurrent explicit-list restoration failure: rfcs/0152-probe-windows-concurrent-explicit-restore-failure.md
       - RFC-0153 - Probe Windows concurrent explicit-list abrupt termination: rfcs/0153-probe-windows-concurrent-explicit-abrupt-termination.md
       - RFC-0154 - Probe Windows exclusive-root acquisition: rfcs/0154-probe-windows-exclusive-root-acquisition.md
+      - RFC-0155 - Probe Windows descendant non-exclusion: rfcs/0155-probe-windows-descendant-non-exclusion.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

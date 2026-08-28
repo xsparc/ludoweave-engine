@@ -2460,6 +2460,40 @@ credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path; no hosted
 check is added.
 
+## M172 Windows descendant non-exclusion probe
+
+M172 starts from fully locally validated M171 commit
+`960efe770c48ddbfb925fd2cd7f9d220bca2e3ed`. It adds one Windows-only,
+test-only [descendant non-exclusion
+probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md)
+under RFC-0155.
+
+The test preserves M149's native capability, M155's bounded ownership
+handshake, and M171's complete boundary byte-for-byte. One fixed child opens
+only `live/candidate.bin` for generic read with read/write/delete sharing and a
+noninheritable handle. It emits exact `ready`, waits for one fixed release byte,
+closes, emits exact `closed`, and exits zero.
+
+Both acquisition orders succeed on the current NTFS host. A late descendant
+holder becomes ready while M171's zero-sharing directory owner remains live;
+an existing descendant holder remains live while that directory owner is
+acquired. Each owner closes independently, and candidate bytes remain exact.
+
+The result is negative capability evidence: a zero-sharing directory handle is
+not recursive subtree quiescence. It cannot be promoted alone into the private
+adapter required by M147. Complete participant/generation binding, retained
+roots, mappings, oplocks, leases, multiple actors, filesystem variation,
+recovery, policy, receipts, cleanup authority, and independent-host proof
+remain open. Windows remains unadmitted.
+
+M172 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

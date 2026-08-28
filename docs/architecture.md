@@ -4360,6 +4360,36 @@ composition, public probe, production dependency, workflow, permission,
 release authority, or CI change. No hosted check is added. RFC-0154 records the
 accepted test-only boundary.
 
+## M172 Windows descendant non-exclusion boundary
+
+M172 adds one Windows-only, test-only [descendant non-exclusion
+probe](security/cache-cleanup-windows-descendant-non-exclusion-probe.md). It
+preserves M149's capability chain, M155's bounded handshake, and M171's
+complete boundary byte-for-byte.
+
+One fixed isolated child opens only `live/candidate.bin` for generic read with
+read/write/delete sharing and null security attributes. The handle is
+noninheritable. Exact bounded `ready` and `closed` documents frame one fixed
+release byte, deterministic native close, and zero exit.
+
+The current NTFS host permits that child and M171's zero-sharing `live`
+directory owner to coexist in both acquisition orders. The late child becomes
+ready without releasing the earlier directory owner; the earlier child remains
+live while the directory owner is acquired. Either owner closes independently,
+and content remains exact.
+
+Share-mode exclusion is therefore object-specific in this observation, not a
+recursive subtree lock. A future quiescence boundary must bind every relevant
+participant or generation and revalidate complete retained roots through use;
+M171's primitive alone cannot become cleanup authority.
+
+M172 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Writes, deletes, mappings, descendants, multiple participants,
+oplocks, leases, recovery, policy, receipts, Windows admission, and independent-
+host proof remain open. No hosted check is added. RFC-0155 records the accepted
+test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
