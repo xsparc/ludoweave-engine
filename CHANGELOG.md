@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M165/RFC-0148's test-only [Windows inherited-handle restoration-failure
+  probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md).
+  It proves an already-created child is reaped before one injected restoration
+  error escapes and keeps parent repair duty explicit, without adding runtime
+  behavior or CI allocation.
 - Add M164/RFC-0147's test-only [Windows inherited-launch failure
   probe](docs/security/cache-cleanup-windows-inherited-launch-failure-probe.md).
   It proves one real missing-executable failure restores noninheritability

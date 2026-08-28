@@ -149,8 +149,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > A fixed missing executable produces a real process-creation failure while
 > the parent restores noninheritability and retains its denial, without
 > admitting arbitrary rollback or recovery policy.
+> M165 adds one test-only [Windows inherited-handle restoration-failure
+> probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md).
+> One fixed injected restore error proves the already-created child is reaped
+> before propagation and leaves parent repair duty explicit, without claiming
+> a real native restore failure or admitting recovery policy.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M164 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M165 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

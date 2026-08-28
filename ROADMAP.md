@@ -2218,6 +2218,41 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The probe is test-only and the
 existing Windows suite is the only future hosted execution path.
 
+## M165 Windows inherited-handle restoration-failure probe
+
+M165 starts from fully locally validated M164 commit
+`70ca584aeda0f0f718ef83438e67b3422acde184`. It adds one Windows-only,
+test-only [inherited-handle restoration-failure
+probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md)
+under RFC-0148.
+
+The test uses M163's unchanged successful-child launch helper. It delegates
+the initial inheritable transition to the real setter, permits the fixed child
+to start with one explicitly allowlisted blocker handle, and injects one fixed
+exception before the first native restore for that exact parent handle. The
+existing helper must close and reap the child before re-raising the identical
+error; no process owner is returned and all three child pipe streams are
+closed.
+
+Because the native restore was bypassed, the parent handle remains observably
+inheritable until the caller repairs it with the captured original setter in
+`finally`. After repair, parent owned count remains one and M154's identical
+native rename remains false/error 32. Exact parent close reduces owned count to
+zero and orders the identical second rename's true/code-zero result with
+content preserved.
+
+Windows remains unadmitted. This is not a real native restoration failure,
+arbitrary failure coverage, leak-freedom under concurrent launches, a
+concurrency-safe inheritance contract, native-close evidence, recovery,
+general exclusion, policy, receipt, or independent-host proof.
+
+M165 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The probe is test-only and the
+existing Windows suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -801,6 +801,15 @@ restoration-failure injection, arbitrary launch-failure coverage, concurrent-
 launch safety, recovery, general exclusion, or mutation authority; Windows
 remains unadmitted.
 
+M165's test-only [Windows inherited-handle restoration-failure
+probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md)
+injects one fixed error before the native restore call after successful child
+creation. The unchanged helper closes and reaps the child before propagating
+the exact error; the caller then explicitly repairs the still-inheritable
+parent handle and retains false/error 32 until close. This is not a real native
+restoration failure, concurrent-launch safety, recovery, general exclusion, or
+mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

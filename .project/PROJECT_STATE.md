@@ -1,5 +1,83 @@
 # Project State
 
+## M165 Windows inherited-handle restoration failure - locally validated and committed
+
+- Base: fully locally validated M164 DCO commit
+  `70ca584aeda0f0f718ef83438e67b3422acde184`, tree
+  `1e20cd0aaa929c2ce35b604834b24798e266e4b4`, sole parent exact M163.
+- Branch: `release/m165-inherited-restore-failure`; exact containment allowed
+  the redundant M164 branch to be pruned.
+- Direction: RFC-0148 accepts one test-only injected restoration failure after
+  a successful M163 child launch. Child reclamation must finish before exact
+  error propagation, while parent inheritability repair remains explicit.
+- Scope: one integration probe, one architecture boundary, and documentation;
+  no fixture mutation, runtime, public probe, recovery, adapter, cache, CLI,
+  dependency, workflow/CI, version, release, or product mutation change.
+- Baseline: the M149-M164 probe/boundary group passes 99 assertions with one
+  established skip in 3.89 seconds. Static governance returns zero findings.
+  The first sandboxed baseline test invocation was denied uv-cache access
+  before collection; its exact approved rerun passed.
+- Development acceptance: CPython 3.12.13 passes 3,799 tests with 17 skips;
+  CPython 3.13.13 and 3.14.5 each pass 3,789 tests with 18 skips. All ten real-
+  wgpu tests, both profiles, both vertical slices, the primary and all 27
+  additional installed-wheel consumers, two reproducible builds, two byte-
+  identical ten-artifact release stages, strict docs/static/governance, and 60
+  repeated live executions pass through the first review correction; 20 final
+  fail-once executions bring accepted repeated coverage to 80.
+- Review: the close observer was strengthened to require the already-created
+  child live immediately before delegated reclamation. A second pass then
+  constrained the injected predicate explicitly to attempt zero so its
+  implementation matches the documented one-failure boundary. Corrected
+  focused behavior passes on all supported interpreters and 40 post-review
+  repetitions; no remaining actionable finding is known.
+- Development packages: the 360,404-byte pure wheel has SHA-256
+  `339f535560ff111a4dc3a836872a5bfe685051b856771f15951299e57bbe65b5`;
+  the 2,023,354-byte source archive has SHA-256
+  `0c5867889669c526d3417c1c3065235c71ed312986d556cde1dbb65b70c5b83c`.
+  Archive inventory is 114 wheel and 819 source entries, with zero M165 wheel
+  entries and exactly four M165 source entries. Final record-inclusive builds
+  remain required.
+- Final source closure: the unchanged 46-package lock resolves in 0.96
+  milliseconds; all 512 Python files, Ruff, strict Pyright, the 106-assertion
+  M149-M165 boundary group with one established skip, strict docs, static and
+  dated governance, protected scope, and whitespace pass. Exactly 16 intended
+  paths remain.
+- Final package closure: two evidence-inclusive builds reproduce the same
+  360,404-byte pure wheel at SHA-256
+  `339f535560ff111a4dc3a836872a5bfe685051b856771f15951299e57bbe65b5`
+  and a 2,025,187-byte source archive at SHA-256
+  `96490f9e1e93637a5f41e84516eec20131344bd602afa9e96b9620be34f93f62`.
+  Primary wheel smoke and both byte-identical ten-artifact final release
+  stages pass. Archive inventory remains 114 wheel and 819 source entries,
+  zero native/WASM/bytecode, zero M165 wheel entries, and exactly four M165
+  source entries.
+- Initial DCO commit `b8892a75006c55f003faddd0a68ae50f79a75eb9`
+  has tree `9f2c7a7cfa19920a544c511eb5b994c748e6bcd6`, sole parent exact M164,
+  exact configured maintainer identity, one DCO sign-off, exactly 16 intended
+  paths, no merge commit, a clean worktree, expected `0 66` divergence from
+  local M99 main, and only local `main` plus M165. Full object checking exits
+  zero with historical dangling objects only and no corruption or missing
+  object. This factual closeout is folded into the same local commit before
+  publication.
+- Pre-record amended commit
+  `12977dacfa8744632312f1b679b95cb185b78a88` has tree
+  `83243e90f3eb00fac6db3475795b40bd6d555587`, sole parent exact M164,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 66` divergence, and only local
+  `main` plus M165. Whitespace passes. This factual closeout is folded into the
+  same local commit before publication.
+- Post-record checkpoint `dd99c222e064aacf53aa3d0c3d53ecf485c1445f`
+  has tree `b7c42dc9c1ce6e6b45dd7a4408340563ef28b3d6`, sole parent exact M164,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 66` divergence, and only local
+  `main` plus M165. All fourteen exact M165 scratch targets were verified
+  beneath repository `.tmp`, removed, and confirmed absent.
+- Hosted state: fresh preimplementation and final postcommit audits expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`;
+  PR #251 remains the newest merge, open PRs are empty, and the only remote
+  branch is `main`. Publishing M165 would expose the absent M100-M165 stack,
+  so no push, PR, workflow allocation, tag, or release occurred.
+
 ## M164 Windows inherited-handle launch failure - locally validated and committed
 
 - Base: fully locally validated M163 DCO commit

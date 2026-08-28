@@ -4159,6 +4159,34 @@ admission. M164 adds no runtime API, value, protocol, decoder, CLI composition,
 public probe, production dependency, workflow, permission, release authority,
 or CI change. RFC-0147 records the accepted test-only boundary.
 
+## M165 Windows inherited-handle restoration-failure boundary
+
+M165 adds one Windows-only, test-only [inherited-handle restoration-failure
+probe](security/cache-cleanup-windows-inherited-restore-failure-probe.md). It
+uses M163's unchanged successful-child launch helper and injects one fixed
+exception before the first native noninheritability restore for the exact
+parent blocker handle.
+
+The real fixed child is created with the one explicitly allowlisted handle.
+M163's existing failure branch delegates to the unchanged close-and-reap
+function before re-raising the identical injected exception. The test requires
+no returned process, one terminal captured child, closed child pipe streams,
+and the parent handle still inheritable. That last observation preserves the
+distinction between process reclamation and parent-flag repair.
+
+The caller uses the captured original setter in `finally` to restore the parent
+handle to noninheritable. Parent owned count remains one and M154's unchanged
+native rename remains false/error 32 until exact parent close, after which the
+identical second rename returns true/code zero with content preserved.
+
+This is one serial current-host injected restoration-failure ownership
+observation, not a real native restoration failure, arbitrary failure coverage,
+concurrent-launch leak-freedom, a concurrency-safe inheritance contract,
+native-close behavior, recovery, general exclusion, or Windows admission. M165
+adds no runtime API, value, protocol, decoder, CLI composition, public probe,
+production dependency, workflow, permission, release authority, or CI change.
+RFC-0148 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

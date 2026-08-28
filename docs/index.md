@@ -128,6 +128,11 @@ attestation, with the same allocation topology.
   proves one real missing-executable failure restores noninheritability while
   preserving parent ownership, without adding arbitrary rollback, runtime
   behavior, or CI allocation.
+- A test-only [Windows inherited-handle restoration-failure
+  probe](security/cache-cleanup-windows-inherited-restore-failure-probe.md) that
+  proves one already-created child is reaped before an injected restore error
+  escapes while keeping parent repair duty explicit, without adding runtime
+  behavior or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

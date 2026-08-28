@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M165 Windows inherited-handle restoration-failure probe
+
+RFC-0148 accepts one NTFS, Windows-only, test-only serial observation in which
+M163's unchanged helper creates its fixed child with one explicitly allowlisted
+blocker handle, then encounters one fixed injected error before its first
+native noninheritability restore. The unchanged close-and-reap branch must
+settle the child and close its pipe streams before the identical error escapes.
+The parent remains explicitly responsible for repairing its still-inheritable
+handle and retains owned count one plus M154's false/error 32 denial until
+exact parent close, after which the identical second rename returns true/code
+zero.
+
+This resolves only one injected restoration-failure ownership observation. A
+real native restoration failure, arbitrary restore or process-creation
+failures, concurrency-safe inheritance, leak-freedom under concurrent
+launches, invalid handle values, child crash, cross-process duplication or
+transfer, native close failure, oplocks, controlled interleavings, general
+exclusion, filesystem/driver variation, recovery, and independent-host proof
+remain pending. Windows is not admitted.
+
+RFC-0148 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted fixture, a production adapter, public capability, cleanup authority,
+recovery policy, dependency, workflow, CI allocation, tag, release, or
+publication.
+
 ## M164 Windows inherited-handle launch-failure probe
 
 RFC-0147 accepts one NTFS, Windows-only, test-only serial observation in which
