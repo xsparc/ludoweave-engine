@@ -2598,6 +2598,40 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M176 Windows cooperative-lock abrupt-settlement probe
+
+M176 starts from fully locally validated M175 commit
+`9e5d440b9c16687c7291c6abdf63b806b2cd33cf`. It adds one Windows-only,
+test-only [cooperative-lock abrupt-settlement
+probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md)
+under RFC-0159.
+
+Two unchanged M175 protected participants first preserve M174 substitution
+refusal/error 32 and M173 exclusive-range refusal/error 33. The first
+participant is killed and reaped with the fixed process bound. It exits
+nonzero with EOF after `ready` and no graceful `closed` record. The survivor
+remains live and preserves both refusals.
+
+The survivor is then killed and reaped through the same exact path. Exclusive
+acquire/release and M174 substitution succeed without retry or sleep. The
+displaced original retains its captured identity, the replacement differs,
+both contents remain exact, and every owner settles.
+
+The result is positive current-host evidence for one abrupt settlement order,
+not crash recovery or a portable immediate-release guarantee. Microsoft notes
+that operating-system lock release can be delayed by available resources. The
+zero-participant substitution window, trusted identity/generation authority,
+complete admission, arbitrary termination timing, process trees, mapped views,
+filesystem variation, recovery, policy, receipts, cleanup authority, and
+independent-host proof remain open. Windows remains unadmitted.
+
+M176 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

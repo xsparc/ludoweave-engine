@@ -901,6 +901,15 @@ so trusted root/file identity, generation continuity, recovery, policy, and
 receipts remain open. This is not cleanup authority; Windows remains
 unadmitted.
 
+M176's test-only [Windows cooperative-lock abrupt-settlement
+probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md)
+proves that killing and reaping one protected participant releases only that
+participant while a survivor preserves substitution and exclusive-range
+refusal. After the survivor is killed and reaped, both ownership types settle
+on the observed host. Operating-system release can be delayed elsewhere, and
+the zero-participant identity gap, durable recovery, policy, and receipts
+remain open. This is not cleanup authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -178,6 +178,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md)
   that blocks rename/replacement through the final protected participant while
   preserving the zero-participant identity gap and no-authority boundary.
+- A test-only [Windows cooperative-lock abrupt-settlement
+  probe](security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md)
+  that proves one abruptly terminated owner settles while a survivor retains
+  both protections, before final settlement releases both ownership types.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -1,5 +1,94 @@
 # Project State
 
+## M176 protected-lock abrupt settlement - locally complete, publication withheld
+
+- Base: fully locally validated M175 DCO commit
+  `9e5d440b9c16687c7291c6abdf63b806b2cd33cf`, tree
+  `630dfc51f599a5bf1298e6538441da589d77e9f0`, sole parent exact M174.
+- Branch hygiene: neutral
+  `release/m176-windows-protected-lock-abrupt-settlement` starts at exact M175.
+  Exact containment allowed redundant M175 to be pruned; only local `main` and
+  active M176 remain.
+- Direction: RFC-0159 accepts one current-host, test-only abrupt-settlement
+  observation ordered after bounded process wait. It rejects a portable
+  immediate-release promise, crash recovery, runtime promotion, Windows
+  admission, cleanup authority, and CI growth.
+- Behavior: two M175 protected participants first refuse substitution and
+  exclusive ownership. After one is killed and reaped, the survivor preserves
+  both refusals. After it is also killed and reaped, exact exclusive acquire/
+  release and M174 substitution succeed with retained/displaced identity,
+  distinct replacement identity, and exact bytes.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions. Both M176 Python files are format-clean, Ruff-clean, and strict-
+  Pyright clean after one mechanical architecture format correction. Strict
+  docs and whitespace pass after one split compound phrase was reflowed.
+- Static and Python matrix: all 539 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,889 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 each pass 3,879 tests with 18 skips.
+- Integrated behavior: the complete M149-M176 boundary passes 196 tests with
+  one established capability skip. Twenty consecutive live abrupt-settlement
+  observations pass.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Pre-review development distribution: two builds reproduce a 361,222-byte
+  pure wheel at SHA-256
+  `185ac4ef85d7b067e3799c651cb62c88b1846564300c118f3143dd3b0fb7ab37`
+  and a 2,124,277-byte source archive at SHA-256
+  `c550e371e166ee9a01f84c2c29dc5bfdfd694a36809f34b9bfce82868a5a1077`.
+  All 28 installed-wheel consumers pass. Two ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Archive boundary: the wheel has 114 entries and the pre-review source
+  archive 868. All four M176 files are source-only and no native, WASM, or
+  bytecode entry exists.
+- Governance: static and 2026-08-29 dated strict checks return zero findings
+  across three objectives, seven requirements, and four work items.
+- Findings-first review: no actionable code, architecture, security, or
+  compatibility defect is known. One RFC statement was narrowed from preserving
+  wheel contents to preserving the wheel package boundary because the README
+  legitimately changes packaged metadata. Exact 16-path scope, protected
+  surfaces, and disclosure/credential/local-path scans pass.
+- Evidence-inclusive source closure: the unchanged 46-package lock resolves;
+  all 539 Python files, Ruff, and strict Pyright pass; seven focused assertions
+  and the 196/1 cumulative boundary pass; strict docs, whitespace, both
+  governance audits, exact 16-path scope, protected surfaces, and disclosure,
+  credential, and local-path scans pass.
+- Final reproduction: two builds retain the 361,222-byte pure wheel at SHA-256
+  `185ac4ef85d7b067e3799c651cb62c88b1846564300c118f3143dd3b0fb7ab37`;
+  both 2,125,029-byte source archives have SHA-256
+  `4bba1f59b64496a9f6e7308908352930088da5399c0d5722e0be2a7402280cf0`.
+  Installed-wheel smoke, two identical ten-artifact release stages, and both
+  release smokes pass. Archive boundaries remain 114/868 entries, all four
+  M176 files source-only, and no native/WASM/bytecode entry.
+- Record-only separator: both M176 Python files remain format-clean,
+  Ruff-clean, and strict-Pyright clean; all seven focused assertions pass in
+  0.64 seconds; strict docs build in 2.61 seconds; whitespace passes; and both
+  static and 2026-08-29 dated strict governance return zero findings.
+- Scratch closure: all 46 exact M176/pytest targets were verified
+  repository-confined, untracked, and non-reparse. Ordinary removal deleted 14
+  and was denied on 32 test-owned directories; the approved retry repeated all
+  guards, removed exactly those 32, and confirmed zero target remains.
+- Pre-commit audit: exactly 16 intended paths remain with no missing or
+  unexpected path. M175/runtime/examples/scripts/workflows/metadata/lock have
+  zero diff; public development-tool identity, credential assignment, and
+  local-user path scans have zero match; whitespace and scratch are clean;
+  only local `main` plus active M176 remain; and configured maintainer identity
+  is present.
+- Initial commit: DCO commit
+  `cbe6ea913c1707262b195741b580b9123adf706c`, tree
+  `313400db57958c708b407efede620ba5578a755d`, has sole parent exact M175,
+  exactly 16 paths, one sign-off, truthful configured identity, no merge,
+  expected `0 77` divergence, clean worktree, and successful full object check.
+- Publication gate: after a fresh prune fetch, local/hosted `main` remain exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`. Hosted `main` lacks M175,
+  no PR is open, PR #251 remains the latest merge, and `main` is the only
+  remote branch. Push and PR are withheld rather than publishing M100-M175 as
+  an implicit prerequisite stack; no hosted workflow allocation was created.
+- Protected scope: M175, runtime, examples, scripts, dependencies, workflows,
+  metadata, and lock are unchanged. No fixture, workflow, matrix, job,
+  permission, dependency, or hosted allocation is added.
+- The final amendment incorporates these factual records; immutable commit
+  shape is verified afterward without further source edits.
+
 ## M175 live cooperative substitution exclusion - finalization in progress
 
 - Base: fully locally validated M174 DCO commit

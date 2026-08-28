@@ -198,8 +198,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md).
 > Omitting delete sharing blocks replacement through the final live protected
 > participant, but not across the zero-participant window.
+> M176 adds one test-only [Windows cooperative-lock abrupt-settlement
+> probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md).
+> Killing and reaping one protected participant preserves both refusals through
+> the survivor; killing and reaping the survivor releases both ownership types.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M175 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M176 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

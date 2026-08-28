@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M176/RFC-0159's test-only [Windows cooperative-lock abrupt-settlement
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md).
+  It proves abrupt owner settlement preserves a surviving protected
+  participant before final release, without runtime or CI expansion.
 - Add M175/RFC-0158's test-only [Windows live substitution-exclusion
   probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md).
   It proves protected participants preserve rename and exclusive-lock refusal

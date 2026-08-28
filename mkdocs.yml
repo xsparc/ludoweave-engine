@@ -64,6 +64,7 @@ nav:
   - Windows cooperative-lock probe: security/cache-cleanup-windows-cooperative-lock-probe.md
   - Windows cooperative-lock substitution probe: security/cache-cleanup-windows-cooperative-lock-substitution-probe.md
   - Windows live coordination-substitution exclusion probe: security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md
+  - Windows cooperative-lock abrupt-settlement probe: security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -228,6 +229,7 @@ nav:
       - RFC-0156 - Probe Windows cooperative coordination locking: rfcs/0156-probe-windows-cooperative-lock.md
       - RFC-0157 - Probe Windows cooperative-lock pathname substitution: rfcs/0157-probe-windows-cooperative-lock-substitution.md
       - RFC-0158 - Probe Windows live coordination-substitution exclusion: rfcs/0158-probe-windows-live-coordination-substitution-exclusion.md
+      - RFC-0159 - Probe Windows cooperative-lock abrupt settlement: rfcs/0159-probe-windows-cooperative-lock-abrupt-settlement.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

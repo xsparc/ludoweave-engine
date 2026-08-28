@@ -1,5 +1,110 @@
 # Current task
 
+- **Task:** M176 - prove bounded abrupt settlement of M175 protected
+  coordination participants while preserving survivor ownership.
+- **Status:** Direction, implementation, supported-Python regression,
+  rendering, distribution, release rehearsal, documentation, governance,
+  findings-first review, evidence-inclusive closure, record-only separator,
+  exact scratch cleanup, pre-commit audit, initial local DCO commit, and
+  publication-safety gates pass. Publication is correctly withheld because
+  hosted `main` lacks M100-M175; the final amended-object audit follows this
+  factual record.
+- **Base:** Fully locally validated M175 DCO commit
+  `9e5d440b9c16687c7291c6abdf63b806b2cd33cf`, tree
+  `630dfc51f599a5bf1298e6538441da589d77e9f0`, sole parent exact M174.
+- **Branch:** `release/m176-windows-protected-lock-abrupt-settlement`; exact
+  containment allowed the redundant local M175 branch to be pruned.
+
+## Acceptance boundary
+
+- Accept RFC-0159 and retain one Windows-only, test-only, current-host NTFS
+  observation over two M175 protected coordination participants.
+- Require both participants to refuse pathname substitution/error 32 and
+  exclusive range ownership/error 33 before termination.
+- Kill and boundedly wait for the first participant. Require nonzero status,
+  stdout EOF after `ready`, empty stderr, no graceful `closed`, and both
+  refusals to persist through the survivor.
+- Kill and boundedly wait for the survivor. Without retry or sleep, require
+  exact exclusive acquire/release and then M174 substitution success with
+  retained original identity, distinct replacement identity, and exact bytes.
+- Interpret this only as current-host abrupt settlement after completed process
+  wait. It is not a portable immediate-release guarantee, crash recovery,
+  generation authority, Windows admission, or cleanup authority.
+- Add no fixture, runtime adapter, lock API, cleanup authority, dependency,
+  workflow, job/allocation, permission, release authority, or CI change.
+
+## Direction evidence
+
+- Microsoft documents `TerminateProcess` as asynchronous and requires a wait
+  when completed termination matters. Python documents that Windows
+  `Popen.kill()` uses that termination path.
+- Microsoft documents that the operating system unlocks outstanding
+  `LockFileEx` ranges after process termination or file close, while warning
+  that settlement time depends on available system resources.
+- GitHub documents that each matrix combination creates another job. M176 uses
+  only the existing Windows suite and creates no hosted allocation.
+- NIST SSDF 1.2 remains a draft. The bounded observation is adopted without
+  claiming a newer final standard or promoting runtime authority.
+
+## Development evidence so far
+
+- Exact M175 was clean with expected `0 76` divergence from local M99 main.
+  Its seven focused assertions pass in 0.58 seconds. Static and dated strict
+  governance each return zero findings.
+- The first M176 live observation passes in 0.53 seconds with strict Pyright
+  and Ruff clean. The first complete gate found only one mechanical architecture
+  format request and one correctly detected split `zero-participant` phrase.
+  After both corrections, all seven architecture/live assertions pass in 0.61
+  seconds; strict docs build in 2.53 seconds; whitespace passes.
+- All 539 Python files pass static checks. Exact CPython 3.12.13 passes 3,889
+  tests/17 skips; exact 3.13.13 and 3.14.5 pass 3,879 tests/18 skips each.
+- The M149-M176 boundary passes 196 tests with one established skip; twenty
+  consecutive live probes pass. Ten real-wgpu tests, both profiles, Clockwork
+  Arena, and Agent World Builder pass.
+- Two pre-review development builds and two ten-artifact release stages are
+  byte-identical; all 28 installed-wheel consumers and both release smokes
+  pass. Static and dated strict governance each return zero findings.
+- Findings-first review found no code defect and corrected one overly broad
+  claim from wheel contents to the actual wheel package boundary. Scope,
+  protected-surface, public-identity, credential, and local-path scans pass.
+- Evidence-inclusive builds reproduce the unchanged wheel and identical
+  2,125,029-byte source archives; installed-wheel smoke and two identical
+  ten-artifact release stages pass. The record-only separator keeps both M176
+  Python files format-clean, Ruff-clean, and strict-Pyright clean; all seven
+  focused assertions, strict docs, whitespace, and both strict governance
+  modes pass. Guarded cleanup removed all 46 repository-confined, untracked,
+  non-reparse M176/pytest scratch targets. Commit and hosted publication-safety
+  evidence pass. The pre-commit audit confirms exact 16-path scope, zero
+  protected-surface or public-hygiene finding, zero scratch, only local `main`
+  plus active M176, and the configured maintainer identity.
+- Initial DCO commit `cbe6ea913c1707262b195741b580b9123adf706c`
+  has tree `313400db57958c708b407efede620ba5578a755d`, sole parent exact
+  M175, exactly 16 paths, truthful configured identity, one sign-off, expected
+  `0 77` divergence, a clean worktree, and successful full object check.
+
+## Publication boundary
+
+- Fresh hosted `main` is exact M99, no PR is open, PR #251 is the latest merge,
+  and no remote topic branch exists. M176 is 77 commits ahead and contains the
+  unpublished M100-M175 prerequisite stack. No branch was pushed, no PR was
+  opened, and no hosted workflow allocation was started.
+- Publication must not create a new workflow, job, matrix allocation, or
+  redundant predecessor branch.
+
+## Explicit non-scope
+
+- A portable operating-system unlock deadline, arbitrary termination timing,
+  process trees, startup/crash recovery, job objects, mapped views, filesystem
+  variation, trusted-root placement, complete participant admission,
+  generation issuance/retention, policy, receipts, or independent-host proof.
+- Zero-participant substitution exclusion, cache-root integration, candidate
+  policy, cleanup authority, Windows admission, or a production adapter.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,
+  native-extension, compiler, workflow, permission, CI-allocation, tag,
+  release, publication, or version changes.
+
+## Prior task
+
 - **Task:** M175 - prove whether cooperative participants that deny delete
   sharing exclude M174 pathname substitution throughout the live-ownership
   interval.

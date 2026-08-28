@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M176 protected coordination-lock abrupt-settlement probe
+
+RFC-0159 accepts one Windows-only, test-only observation that killing and
+boundedly waiting for one of two M175 protected participants releases only the
+terminated participant. The survivor remains live and continues to refuse
+M174 pathname substitution with error 32 and M173 exclusive range ownership
+with error 33. Killing and reaping the survivor then permits exact exclusive
+acquire/release and M174 substitution with the retained identity split.
+
+This resolves the exact current-host abrupt-settlement order only. Microsoft
+warns that operating-system range-lock release can be delayed by available
+resources, so no portable immediate-release deadline is inferred. Arbitrary
+termination timing, process trees, startup/crash recovery, job objects,
+trusted root and coordination identity, generation issuance/retention,
+complete admission, mapped views, filesystem variation, policy, receipts, and
+independent-host proof remain pending. The zero-participant substitution gap
+remains and Windows is not admitted.
+
+RFC-0159 does not authorize a runtime adapter or lock API, participant
+registry, cache access, retained-root integration, candidate disclosure,
+cleanup or mutation authority, dependency, workflow, CI allocation, tag,
+release, or publication. No hosted check is added.
+
 ## M175 live cooperative substitution-exclusion probe
 
 RFC-0158 accepts one Windows-only, test-only observation that two shared

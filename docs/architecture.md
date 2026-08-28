@@ -4484,6 +4484,35 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0158 records the accepted test-only boundary.
 
+## M176 Windows cooperative-lock abrupt-settlement boundary
+
+M176 adds one Windows-only, test-only [cooperative-lock abrupt-settlement
+probe](security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md).
+It preserves M175, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+Two unchanged protected participants first refuse M174 pathname substitution
+with error 32 and M173 exclusive range ownership with error 33. The first is
+killed and waited for through Python's bounded Windows process path. Its
+nonzero exit and stdout EOF after `ready` occur without a graceful `closed`
+record. The survivor remains live and preserves both refusals.
+
+After the survivor is killed and reaped identically, exact exclusive acquire/
+release and M174 substitution succeed without polling. Retained `FILE_ID_INFO`
+evidence proves the displaced original keeps the old identity and the
+replacement differs. All bytes and owners settle.
+
+The result is one current-host abrupt-settlement observation, not crash
+recovery or a portable release deadline. The operating system may delay range-
+lock release, and the zero-participant identity gap remains. Trusted placement,
+identity/generation binding, complete admission, recovery, policy, and receipts
+remain unresolved.
+
+M176 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0159 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
