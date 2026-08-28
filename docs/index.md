@@ -142,6 +142,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md)
   that proves two overlapping one-handle lists isolate distinct blockers in
   both release orders, without adding runtime coordination or CI allocation.
+- A test-only [Windows concurrent explicit-list launch-failure
+  probe](security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md)
+  that proves a concurrent missing-executable launch releases its distinct root
+  while the successful child retains only its own blocker, without runtime or
+  CI expansion.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

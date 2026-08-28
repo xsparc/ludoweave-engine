@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M168 Windows concurrent explicit-list launch-failure probe
+
+RFC-0151 accepts one Windows-only, test-only controlled observation in which
+M163's fixed child starts concurrently with M164's distinct real missing-
+executable failure. Both parent blockers remain inheritable through both real
+outcomes and both restoration entries. After both parent handles close, the
+failed-launch root immediately renames while the successful child still blocks
+only its own root; that root renames only after the child closes. Both A/B role
+assignments pass and every owner settles.
+
+This resolves only the exact current-host successful/missing-executable
+interleaving. A concurrency-safe process-creation contract, arbitrary launch
+or restoration failures, cancellation, reentrancy, every broad and explicit
+creator, invalid handles, child crashes, cross-process transfer, native close
+failure, general leak-freedom, recovery, and independent-host proof remain
+pending. Windows is not admitted.
+
+RFC-0151 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted helper or fixture, a process-global coordinator, production adapter,
+public capability, cleanup authority, recovery policy, dependency, workflow,
+CI allocation, tag, release, or publication.
+
 ## M167 Windows concurrent explicit-list isolation probe
 
 RFC-0150 accepts one Windows-only, test-only controlled observation in which

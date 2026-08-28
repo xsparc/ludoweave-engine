@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M168/RFC-0151's test-only [Windows concurrent explicit-list launch-
+  failure probe](docs/security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md).
+  It proves a successful child retains only its blocker while a concurrent
+  missing-executable launch restores and releases its distinct root, without
+  adding runtime coordination or CI allocation.
 - Add M167/RFC-0150's test-only [Windows concurrent explicit-list isolation
   probe](docs/security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md).
   It proves pairwise isolation for two controlled overlapping one-handle lists

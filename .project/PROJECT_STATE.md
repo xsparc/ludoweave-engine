@@ -1,5 +1,73 @@
 # Project State
 
+## M168 Windows concurrent explicit-list launch failure - locally validated
+
+- Base: fully locally validated M167 DCO commit
+  `dc3a1d154b4706518a0abb7e09f0531230e7de11`, tree
+  `d46020c720b5890d2959a7f0dab3a526c752d196`, sole parent exact M166.
+- Branch hygiene: neutral
+  `release/m168-concurrent-launch-failure-isolation` starts at exact M167.
+  Exact containment allowed redundant M167 to be pruned; only local `main` and
+  active M168 remain.
+- Direction: RFC-0151 accepts one controlled simultaneous successful/missing-
+  executable explicit-list pair because Python, current CPython, and Microsoft
+  define the relevant failure and ownership boundary. It rejects general
+  concurrency safety, a runtime coordinator, Windows admission, and CI growth.
+- Scope: one integration probe, one architecture boundary, two decision and
+  security documents, eight public navigation/status documents, and four
+  project records only. Runtime, examples, scripts, helpers, fixture,
+  dependencies, workflows, metadata, and lock remain protected.
+- Behavior: both distinct parent blockers remain inheritable through both real
+  outcomes and both restoration entries. The successful process is captured;
+  the failed call returns exact `FileNotFoundError`/`ENOENT`/Windows error 2.
+  After both parents close, only the failed-launch root renames; the successful
+  root remains denied until its live child closes. Both payloads survive.
+- Focused proof: six architecture guards plus two live A/B cases pass. Twenty
+  explicit consecutive invocations pass 40 live cases. The M149-M168 boundary
+  passes 129 assertions with one established capability skip.
+- Static and Python matrix: all 518 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,822 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,812 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,675-byte pure wheel at
+  SHA-256 `c25614dc8a6b46923b68acfdea738eee79ae496d293badefcdeda6c66eff4e48`
+  and a 2,054,633-byte source archive at SHA-256
+  `b4905073c762ea4875126c7ec6e3d2dc8b53cb5885e23c0524b611997e088aa5`.
+  All 28 installed-wheel consumers pass. Two byte-identical ten-artifact
+  release stages pass complete smoke. Inventory is 114 wheel and 831 source
+  entries with no native/WASM/bytecode, no M168 wheel entry, and all four M168
+  source-only files.
+- Corrections retained: initial formatting requested one layout change; a docs
+  guard rejected a split nonclaim and passed after unambiguous reflow. One
+  accidentally overlapping full-suite rerun contended for `.pytest-tmp` and
+  produced one setup error after 3,821 passing tests; exact scratch cleanup and
+  a serial rerun produced the accepted 3.12 result. Sandboxed 3.13/3.14 uv
+  launches were denied user-cache access and their approved exact reruns pass.
+- Final closure: the evidence-inclusive lock/environment, all static checks,
+  M149-M168 boundary, strict docs, corrected governance checks, and whitespace
+  pass. Two final builds reproduce the same wheel and a 2,055,450-byte source
+  archive at SHA-256
+  `70e845a26559399c8af16d30e8b732bd3b321bd57e8df19aecb1e7a15fb164af`.
+  Primary wheel smoke and two byte-identical final release stages pass.
+- Scope/cleanup: exactly 16 intended paths remain; protected surfaces have zero
+  change; public identity and credential-assignment scans have zero matches.
+  All twelve exact M168 `.tmp` targets plus generated `.pytest-tmp` and `site`
+  were non-reparse, removed, and confirmed absent.
+- Record-only closeout: both M168 Python files remain focused-static clean; all
+  eight assertions, strict docs, both governance modes, whitespace, exact
+  scope, and regenerated scratch cleanup pass.
+- Initial commit audit: DCO commit
+  `7d3e025f5c354b9cb64192834f4e6bc913dd3d01` has tree
+  `a0b5445f34bbcbb00fa09d8ab56e3fdaa7f4577e`, sole parent exact M167, exact
+  maintainer identity, one sign-off, 16 intended paths, no merge, clean
+  worktree, `0 69` divergence, and only local `main` plus M168. Full object
+  verification exits zero with only historical dangling objects and no
+  corruption or missing object. This checkpoint is folded into the same commit.
+- Final hosted audit: fetch/prune leaves the sole hosted branch `main` at exact
+  M99. There is no open PR; PR #251 remains the newest merge at that commit.
+  Publishing would expose M100-M168, so no push or PR occurred.
+
 ## M167 Windows concurrent explicit-list isolation - locally validated
 
 - Base: fully locally validated M166 DCO commit

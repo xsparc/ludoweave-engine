@@ -4247,6 +4247,34 @@ admission. M167 adds no runtime API, value, protocol, decoder, CLI composition,
 public probe, production dependency, workflow, permission, release authority,
 or CI change. RFC-0150 records the accepted test-only boundary.
 
+## M168 Windows concurrent explicit-list launch-failure boundary
+
+M168 adds one Windows-only, test-only [concurrent explicit-list launch-failure
+probe](security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md).
+It preserves M163's successful helper, M164's real missing-executable helper,
+M167's complete boundary, and the fixed child fixture byte-for-byte.
+
+Two threads assign success and failure roles to distinct handles and roots in
+both orientations. Module-local proxies require both handles inheritable and
+both launch boundaries ready before releasing the real `Popen` calls. The
+successful process owner and exact `FileNotFoundError` are captured before
+either wrapper returns. Both helpers then wait at restoration while both flags
+remain true, after which both resets and threads settle.
+
+Both roots return M154's false/error 32 result before parent close. After both
+parents close, the failed-launch root returns true/code zero while the
+successful root remains false/error 32 and its fixed child remains live. Only
+the child's acknowledged close and zero exit permit the successful root's
+true/code-zero rename. The mixed ownership result proves the successful child
+did not acquire the failed launch's distinct blocker.
+
+This is not a concurrency-safe process-creation contract, arbitrary launch-
+failure, cancellation, restoration-failure, or reentrancy coverage, general
+leak-freedom, a runtime coordinator, recovery, exclusion, or Windows
+admission. M168 adds no runtime API, value, protocol, decoder, CLI composition,
+public probe, production dependency, workflow, permission, release authority,
+or CI change. RFC-0151 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

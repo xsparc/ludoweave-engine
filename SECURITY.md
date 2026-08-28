@@ -829,6 +829,15 @@ isolation. This is not a concurrency-safe process-creation contract, general
 leak-freedom, recovery, general exclusion, or mutation authority; Windows
 remains unadmitted.
 
+M168's test-only [Windows concurrent explicit-list launch-failure
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md)
+holds a successful fixed-child launch and a real missing-executable launch in
+one shared temporary-inheritability window. After both parents close, the
+failed-launch root becomes renameable while the successful child still blocks
+only its own root. This is not arbitrary failure coverage, a concurrency-safe
+process-creation contract, recovery, general exclusion, or mutation authority;
+Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
