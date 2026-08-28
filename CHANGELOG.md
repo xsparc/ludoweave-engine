@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M163/RFC-0146's test-only [Windows inherited-handle retention
+  probe](docs/security/cache-cleanup-windows-inherited-handle-probe.md). It
+  proves one explicitly allowlisted inherited handle retains the native rename
+  denial after the parent closes its handle, without adding runtime behavior
+  or CI allocation.
 - Add M162/RFC-0145's test-only [Windows duplicated-handle retention
   probe](docs/security/cache-cleanup-windows-duplicated-handle-probe.md). It
   proves one same-process duplicate retains the native rename denial after the

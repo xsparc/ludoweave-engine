@@ -139,8 +139,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > fixed child closes an original no-delete-share handle while retaining its
 > same-process duplicate, without admitting inherited handles or cleanup
 > policy.
+> M163 adds one test-only [Windows inherited-handle retention
+> probe](docs/security/cache-cleanup-windows-inherited-handle-probe.md). A
+> parent passes exactly one no-delete-share handle through an explicit handle
+> list and closes its copy while the fixed child retains the denial, without
+> admitting concurrency-safe inheritance or cleanup policy.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M162 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M163 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

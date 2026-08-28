@@ -150,3 +150,4 @@ was adopted.
 - [RFC-0143: probe an immediate Windows blocker wait timeout](0143-probe-windows-live-wait-timeout.md)
 - [RFC-0144: probe an acknowledged Windows blocker release timeout](0144-probe-windows-acknowledged-release-timeout.md)
 - [RFC-0145: probe a duplicated Windows blocker handle](0145-probe-windows-duplicated-blocker-handle.md)
+- [RFC-0146: probe an inherited Windows blocker handle](0146-probe-windows-inherited-blocker-handle.md)

@@ -2152,6 +2152,39 @@ compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The fixed child is test-only and
 the existing Windows suite is the only future hosted execution path.
 
+## M163 Windows inherited-handle retention probe
+
+M163 starts from fully locally validated M162 commit
+`82f39fcccae309db6fde508ed04b468661fcaa6e`. It adds one Windows-only,
+test-only [inherited-handle retention
+probe](docs/security/cache-cleanup-windows-inherited-handle-probe.md) under
+RFC-0146.
+
+The parent opens ordinary `live` without delete sharing, places only that
+handle in `STARTUPINFO.lpAttributeList`'s explicit handle list, temporarily
+marks it inheritable around fixed child creation, and immediately restores it
+to noninheritable. The child accepts only the canonical positive decimal
+handle value and emits exact `ready` before awaiting fixed byte `!`.
+
+M154's identical native rename remains false/error 32 before and after the
+parent closes its handle while the inherited child handle remains live. The
+fixed token closes the child's handle exactly once and orders exact `closed`,
+child exit zero, output EOF, and the identical rename's true/code-zero result
+with content preserved.
+
+Windows remains unadmitted. This is not a concurrency-safe inheritance
+contract, broad inheritance, cross-process duplication or transfer, native
+close-failure behavior, crash or restart recovery, controlled concurrent
+interleaving, leak-freedom under concurrent launches, general exclusion,
+oplock behavior, policy, receipt, or independent-host proof.
+
+M163 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, candidate
+disclosure, cleanup authority, recovery, dependency, native extension,
+compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The fixed child is test-only and
+the existing Windows suite is the only future hosted execution path.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

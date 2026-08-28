@@ -4110,6 +4110,31 @@ decoder, CLI composition, public probe, production dependency, workflow,
 permission, release authority, or CI change. RFC-0145 records the accepted
 test-only boundary.
 
+## M163 Windows inherited-handle retention boundary
+
+M163 adds one Windows-only, test-only [inherited-handle retention
+probe](security/cache-cleanup-windows-inherited-handle-probe.md). The parent
+opens one no-delete-share directory handle and creates a fixed child with an
+explicit `STARTUPINFO` handle list containing only that handle,
+`close_fds=True`, fixed pipes, and isolated interpreter flags. The handle is
+temporarily inheritable only around process creation and restored to
+noninheritable in `finally` before readiness is consumed.
+
+Exact `ready` orders the first false/error 32 rename result. Closing the
+parent's handle exactly once leaves the identical second rename false/error 32
+while the child remains live. Fixed byte `!` closes the inherited child handle
+exactly once and orders exact `closed`, child exit zero, output EOF, and one
+final identical rename returning true/code zero with content preserved.
+
+This is one serial current-host explicit-handle-list observation, not a
+concurrency-safe inheritance contract, broad inheritance behavior,
+cross-process duplication or transfer, leak-freedom under concurrent launches,
+native close-failure behavior, crash/restart recovery, concurrent mutation
+safety, general exclusion, or Windows admission. M163 adds no runtime API,
+value, protocol, decoder, CLI composition, public probe, production dependency,
+workflow, permission, release authority, or CI change. RFC-0146 records the
+accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

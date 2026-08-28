@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M163 Windows inherited-handle retention probe
+
+RFC-0146 accepts one NTFS, Windows-only, test-only serial observation in which
+the parent places exactly one no-delete-share directory handle in a
+`STARTUPINFO` explicit handle list with `close_fds=True`. The handle is
+temporarily inheritable only around child creation and immediately restored to
+noninheritable. Closing the parent handle leaves M154's identical native rename
+false/error 32; fixed byte `!` closes the inherited child handle and orders
+exact `closed`, exit zero, and the identical third rename's true/code-zero
+result.
+
+This resolves only one explicit inherited-handle retention observation. A
+concurrency-safe inheritance contract, broad inheritance, leak-freedom under
+concurrent launches, process-creation and restore failures, invalid inherited
+values, child crash, cross-process duplication/transfer, native close failure,
+oplocks, controlled interleavings, general exclusion, filesystem/driver
+variation, recovery, and independent-host proof remain pending. Windows is not
+admitted.
+
+RFC-0146 does not authorize runtime subprocess or `ctypes`, modification of an
+accepted fixture, a production adapter, public capability, cleanup authority,
+recovery policy, dependency, workflow, CI allocation, tag, release, or
+publication.
+
 ## M162 Windows duplicated-handle retention probe
 
 RFC-0145 accepts one NTFS, Windows-only, test-only observation in which a new

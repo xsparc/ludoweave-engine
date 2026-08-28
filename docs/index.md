@@ -118,6 +118,11 @@ attestation, with the same allocation topology.
   one same-process duplicate retains the observed denial after the original
   closes, without adding inherited-handle claims, runtime behavior, or CI
   allocation.
+- A test-only [Windows inherited-handle retention
+  probe](security/cache-cleanup-windows-inherited-handle-probe.md) that proves
+  one explicitly allowlisted child handle retains the observed denial after
+  the parent closes its handle, without adding concurrency-safe inheritance,
+  runtime behavior, or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

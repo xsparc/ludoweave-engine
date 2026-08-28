@@ -783,6 +783,15 @@ closing the final duplicate permits one successful rename. This is not
 inherited-handle or cross-process duplication evidence, general exclusion, or
 mutation authority; Windows remains unadmitted.
 
+M163's test-only [Windows inherited-handle retention
+probe](docs/security/cache-cleanup-windows-inherited-handle-probe.md) passes
+only one no-delete-share directory handle through a `STARTUPINFO` explicit
+handle list, then immediately restores the parent's handle to noninheritable.
+Closing the parent copy leaves false/error 32 denial in force until the fixed
+child closes its inherited handle. This is not a concurrency-safe inheritance
+contract, broad inheritance, leak-freedom under concurrent launches, general
+exclusion, or mutation authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
