@@ -3028,6 +3028,38 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M189 Windows hard-link alias mutator control-pipe EOF after recreation probe
+
+M189 starts from fully locally validated M188 commit
+`137442543d50f6795308372230c6677f34eec087`. It adds one Windows-only,
+test-only [hard-link alias mutator control-pipe EOF after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md)
+under RFC-0172.
+
+The probe retains M186's fixed sibling mutator and M181's matching guardian.
+After exact child-owned alias deletion, the parent sends the recreate token and
+requires exact `recreated`, restored shared identity and bytes, link count two,
+and range availability through both names. Before any close token, it closes
+only the parent control writer and waits with the fixed bound for exact fixture
+exit 5, stdout EOF, and empty stderr. The alias remains present with the same
+two-link identity while the guardian remains live and protective.
+
+This records negative rollback evidence: control-pipe EOF after recreation
+does not automatically restore the preceding one-link state. It is not abrupt
+process termination, durable commit, recovery, crash consistency, or cleanup
+admission. The observation remains three processes under one principal and one
+parent-owned process tree. Cross-principal behavior, inherited/duplicated
+control writers, hostile simultaneous racing, durable intent, quarantine,
+reconciliation, typed recovery receipts, ReFS/SMB/other-host evidence, Windows
+admission, and cleanup authority remain unresolved.
+
+M189 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

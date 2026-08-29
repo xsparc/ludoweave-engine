@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M189/RFC-0172's test-only [Windows hard-link alias mutator control-pipe
+  EOF after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md).
+  It closes only the parent control writer after exact recreation and records
+  fixed exit 5 with the persistent two-link, alias-present state, without
+  expanding runtime or CI.
 - Add M188/RFC-0171's test-only [Windows hard-link alias mutator abrupt-loss-
   after-recreate
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md).

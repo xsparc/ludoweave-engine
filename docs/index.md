@@ -227,6 +227,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md)
   that records the alias-present, two-link state after the mutation child is
   terminated and reaped following exact recreation.
+- A test-only [Windows hard-link alias mutator control-pipe EOF after
+  recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md)
+  that records exact fixture exit 5 and the persistent alias-present, two-link
+  state after closing only the parent control writer following recreation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

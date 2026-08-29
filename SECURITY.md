@@ -1023,6 +1023,18 @@ automatic rollback to one link. It is not durable commit, crash consistency,
 or recovery evidence. Cleanup authority and Windows admission remain
 unresolved.
 
+M189's test-only [Windows hard-link alias mutator control-pipe EOF after
+recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md)
+sends the exact recreate token, requires exact `recreated`, and then closes
+only the parent control writer before any close token. The unchanged child
+settles with exact exit 5, stdout EOF, and empty stderr. The peer alias remains
+present and both names retain shared identity, bytes, and link count two while
+the matching guardian continues protecting the original name. This three-
+process, same-principal result is negative rollback evidence, not abrupt
+termination, durable commit, crash consistency, or recovery evidence. Cleanup
+authority and Windows admission remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

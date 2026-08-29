@@ -176,3 +176,4 @@ was adopted.
 - [RFC-0169: probe Windows independent hard-link alias mutator ABA](0169-probe-windows-independent-hard-link-alias-mutator-aba.md)
 - [RFC-0170: probe Windows hard-link alias mutator abrupt loss](0170-probe-windows-hard-link-alias-mutator-abrupt-loss.md)
 - [RFC-0171: probe Windows hard-link alias mutator abrupt loss after recreation](0171-probe-windows-hard-link-alias-mutator-abrupt-loss-after-recreate.md)
+- [RFC-0172: probe Windows alias-mutator control-pipe EOF after recreation](0172-probe-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate.md)

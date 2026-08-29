@@ -1,5 +1,81 @@
 # Project State
 
+## M189 post-recreate mutator control EOF - locally complete, publication withheld
+
+- Base: fully locally validated M188 DCO commit
+  `137442543d50f6795308372230c6677f34eec087`, exact tree
+  `a12e0c5139c9ce60cf85a62f5a087cce5ae5a032`, sole parent exact M187.
+- Branch hygiene: neutral
+  `release/m189-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-boundary`;
+  the redundant M188 branch name was removed by in-place rename.
+- Direction: RFC-0172 accepts one current-host Windows-only, test-only
+  negative rollback boundary using M186's unchanged mutator fixture.
+- Live result: after exact recreation, closing only the parent control writer
+  settles the child with exact exit 5, stdout EOF, and no close event. The peer
+  alias remains present with shared identity, bytes, and link count two while
+  the guardian remains live and protective.
+- Evidence limit: three processes under one principal and one parent-owned
+  tree. There is no automatic rollback to one link; this is not abrupt
+  termination, durable commit, recovery, Windows admission, or cleanup
+  authority.
+- Scope: one integration probe, one architecture guard, RFC-0172, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Regression: CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,999 tests with
+  17 skips. The 82-file Windows boundary passes 306 tests with one skip; 20
+  live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder pass.
+- Static/governance: 46 locked packages and the 45-package graphics
+  environment resolve; all 568 Python files are formatted; Ruff, strict
+  Pyright, strict docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,208-byte wheel at SHA-256
+  `0265b8f0b004d4a9f9db39cba7a149feddc6521417859944499bd7c09d2b37e5`
+  and a 2,241,034-byte sdist at SHA-256
+  `7b691bfb273df0ae6bac0ebd0d66acd768b35800f43b272cf143308b4e092cba`.
+  Primary plus 27 consumers pass; dual ten-artifact release stages are
+  identical and pass. Inventory is 114 wheel/923 sdist entries, with all four
+  M189 files source-only.
+- Record-inclusive closure: lock/environment, all 568 Python files, nine
+  focused checks, the 82-file Windows boundary, strict docs, both governance
+  modes, and whitespace pass.
+- Final distribution: two builds reproduce a 362,195-byte wheel at SHA-256
+  `5673fc31242a65ec10ceecc614806fd81357564fb3edcce8bbbab6f804d8173d`
+  and identical 2,243,024-byte source archives at SHA-256
+  `07e2c5c9108d9548e33d738aace9d410ec068ad5c2fddca6c8ddfbfd60a0aa05`.
+  Primary plus all 27 consumers pass against the final wheel; dual final
+  ten-artifact release stages are identical and pass.
+- Review: exactly 16 intended paths remain; runtime/package/fixture/CI/
+  dependency surfaces have zero diff. Added-line/new-file scans find no
+  development-tool identity, credential assignment, or local path. The
+  114-entry wheel contains no native or WASM payload. No actionable finding
+  remains.
+- Cleanup: all 45 exact M189 test, profile, docs, distribution, and release
+  targets were repository-confined. Two pre-delete property corrections were
+  required; a sandboxed attempt removed 13 accessible targets and was followed
+  by a terminating access-enabled audit/removal of the remaining 32. The final
+  audit found zero reparse points and zero remaining target.
+- Final separator: both M189 Python files remain format-, Ruff-, and strict-
+  Pyright clean; nine focused checks, strict docs, dated governance, and
+  whitespace pass. Both exact regenerated targets were revalidated, removed,
+  and confirmed absent.
+- Initial object: DCO commit
+  `ad4befd30c81a5dfcbd5cf8064719286c0f0ca81`, tree
+  `bb50c442152cb8d1ce63beedd0a528de1962d3e7`, has sole parent exact M188,
+  exactly 16 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 90` divergence, zero M189 scratch, and
+  clean connectivity apart from 325 ordinary dangling records. This record is
+  folded into the closeout object.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry test, remote-branch inventory, and authenticated PR history leave
+  hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M188 absent, report PR
+  #251 as the latest hosted PR, and show only remote `main`. No branch, PR,
+  hosted allocation, tag, release, or package is published.
+- Final record amendment and immutable amended-object audit remain before local
+  closeout.
+
 ## M188 post-recreate mutator abrupt loss - locally complete, publication withheld
 
 - Base: fully locally validated M187 DCO commit
@@ -58,13 +134,12 @@
   Pyright clean; nine focused checks, strict docs, dated governance, and
   whitespace pass. Both exact regenerated targets were revalidated, removed,
   and confirmed absent.
-- Initial object: DCO commit
-  `aa63936d586935274804c6b808a21f6118245371`, tree
-  `743ac557e61462c1d998f26a2e4d734efa04dcee`, has sole parent exact M187,
+- Final object: DCO commit
+  `137442543d50f6795308372230c6677f34eec087`, tree
+  `a12e0c5139c9ce60cf85a62f5a087cce5ae5a032`, has sole parent exact M187,
   exactly 16 paths, one matching sign-off, truthful author/committer identity,
   no merge, clean worktree, expected `0 89` divergence, zero M188 scratch, and
-  clean connectivity apart from 324 ordinary dangling records. This record is
-  folded into the closeout object.
+  clean connectivity apart from 325 ordinary dangling records.
 - Post-record separator: nine focused checks, strict docs, dated governance,
   and whitespace pass; both exact regenerated targets were revalidated,
   removed, and confirmed absent.
@@ -74,8 +149,7 @@
   `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M187 absent, report PR
   #251 as the latest merge, and show only remote `main`. No branch, PR, hosted
   allocation, tag, release, or package is published.
-- Final amendment and immutable amended-object audit remain before local
-  closeout.
+- Local closeout is complete; M189 retains this exact object as its base.
 
 ## M187 alias mutator abrupt loss - locally complete, publication withheld
 
