@@ -5024,6 +5024,35 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0176 records the accepted test-only
 boundary.
 
+## M194 Windows hard-link alias mutator late valid-close delivery failure after invalid settlement
+
+M194 adds one Windows-only, test-only [hard-link alias mutator late valid-close
+delivery-failure after invalid settlement
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md).
+It preserves M186-M193, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows.
+
+The probe reproduces exact `recreated`, writes and flushes `?!`, waits for
+bounded exit 5, and consumes terminal output while the writer remains open.
+Only then does it buffer one late `!`. The buffered write reports one byte, but
+the following flush fails with generic `OSError`; no subtype or numeric code is
+part of the contract. The writer is closed explicitly, and the alias retains
+shared identity, bytes, link count two, and range availability while the
+guardian protects the exact name through the established release/rename
+sequence.
+
+This is buffered acceptance-versus-delivery evidence for one late byte and
+fixture. It does not establish general framing, arbitrary buffered input,
+acknowledgement semantics, exception portability, authentication, durable
+commit, repair, or recovery. Cross-principal behavior, inherited/duplicated
+writers, hostile simultaneous racing, ReFS/SMB/other-host evidence, Windows
+admission, and cleanup authority remain unresolved.
+
+M194 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0177 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

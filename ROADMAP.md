@@ -3193,6 +3193,38 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite remains the only future hosted execution
 path; no hosted check is added.
 
+## M194 Windows hard-link alias mutator late valid-close delivery failure after invalid settlement probe
+
+M194 starts from fully locally validated M193 commit
+`71e5ae471fc6e63b26a8e31e40389e3342aa8491`. It adds one Windows-only,
+test-only [hard-link alias mutator late valid-close delivery-failure after
+invalid settlement
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md)
+under RFC-0177.
+
+The probe retains M186's unchanged sibling mutator and M181's matching
+guardian. It first reproduces M193's exact post-recreation `?!` rejection,
+bounded exit 5, and terminal output while the parent writer remains open. Only
+after child settlement, it writes one late valid `!` byte. The buffered call
+accepts one byte, but `flush()` fails with generic `OSError`; the probe freezes
+no Python subtype or numeric code. The alias retains shared identity, bytes,
+link count two, and range availability while the guardian remains live.
+
+This records buffered acceptance-versus-delivery evidence for one fixed late
+byte and fixture. It is not arbitrary buffered-input handling, acknowledgement
+semantics, exception-code portability, durable commit, recovery, cleanup
+admission, or a production protocol contract. Cross-principal behavior,
+inherited or duplicated writers, hostile simultaneous racing,
+ReFS/SMB/other-host evidence, Windows admission, and cleanup authority remain
+unresolved.
+
+M194 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite remains the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

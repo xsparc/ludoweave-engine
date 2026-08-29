@@ -82,6 +82,7 @@ nav:
   - Windows hard-link alias mutator valid close prefix with trailing byte after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md
   - Windows hard-link alias mutator invalid prefix with valid close suffix after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md
   - Windows hard-link alias mutator invalid-prefix open-writer settlement after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md
+  - Windows hard-link alias mutator late valid-close delivery failure after invalid settlement probe: security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -264,6 +265,7 @@ nav:
       - RFC-0174 - Probe Windows alias-mutator valid close prefix with trailing byte after recreation: rfcs/0174-probe-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate.md
       - RFC-0175 - Probe Windows alias-mutator invalid prefix with valid close suffix after recreation: rfcs/0175-probe-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate.md
       - RFC-0176 - Probe Windows alias-mutator invalid-prefix settlement with an open writer: rfcs/0176-probe-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate.md
+      - RFC-0177 - Probe Windows late valid-close delivery failure after invalid settlement: rfcs/0177-probe-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

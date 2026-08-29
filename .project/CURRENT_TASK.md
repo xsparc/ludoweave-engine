@@ -1,5 +1,129 @@
 # Current task
 
+## M194 Windows hard-link alias mutator late valid-close delivery-failure boundary
+
+- **Task:** Determine what the parent-side buffered writer reports when one
+  late valid `!` byte is attempted after M193's exact invalid settlement.
+- **Status:** Local implementation and validation complete. Direction, test-first
+  implementation, accepted RFC/security boundary, public registration,
+  supported-Python regression, repeated Windows behavior, graphics/examples,
+  reproducible distribution/release rehearsal, governance, and findings-first
+  review, record-inclusive rebuild, and source/governance separators pass.
+  Guarded scratch cleanup, the final pre-commit separator, exact scope/history
+  audit, and DCO object audit pass. Hosted publication is withheld because
+  remote `main` remains at M99 and does not contain M193.
+- **Base:** Fully locally validated M193 DCO commit
+  `71e5ae471fc6e63b26a8e31e40389e3342aa8491`, tree
+  `3aaef65cd46db0bf4ae16426da56d50cab9044e3`, sole parent exact M192.
+- **Branch:** `release/m194-windows-alias-mutator-late-close-delivery-failure-boundary`;
+  the redundant local M193 branch name was removed after exact M194 branch
+  creation retained its object.
+
+### M194 acceptance boundary
+
+- Accept RFC-0177 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, and M186's
+  unchanged bounded-output mutator child.
+- Require initial shared identity/link count two, guardian `ready`, exact-name
+  rename error 32, child-owned deletion/recreation, and exact `deleted` then
+  `recreated` events.
+- Reproduce M193's exact accepted/flushed `?!`, parent-writer openness, bounded
+  exit 5, no `closed` event, stdout EOF, and empty stderr. Only after the child
+  has settled, write one late valid `!` byte, require the buffer to accept one
+  byte, and require generic `OSError` on `flush()` without freezing a subtype
+  or numeric code. Close the writer best-effort and require it closed.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process/stream/native/range cleanup.
+- State the result narrowly as buffered acceptance-versus-delivery evidence for
+  one fixed late byte and fixture. Do not claim arbitrary buffering, portable
+  exception translation, acknowledgement, durable recovery, Windows admission,
+  or cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M194 development evidence so far
+
+- The exact M193 focused baseline passed nine tests. Static and dated strict
+  governance each returned zero findings across three objectives, seven
+  requirements, and four work items.
+- Current Microsoft pipe/`WriteFile` documentation, Python buffered-I/O,
+  subprocess and exception contracts, GitHub Actions billing guidance, NIST
+  SSDF, and SLSA 1.2 support the bounded observation and no hosted allocation.
+- A first disposable direct-write probe had an inline diagnostic syntax error
+  and produced no behavior evidence. Its corrected run observed an open writer
+  followed by generic `OSError` after peer exit. A separate buffered probe
+  observed one-byte local acceptance, generic flush and close errors, and final
+  stream closure. M194 deliberately asserts no exact subtype or code.
+- The live M194 probe passed first execution. The first architecture red found
+  the intended three absent decision/registration contracts plus one incorrect
+  writer-open count. After correcting only that guard, the red phase failed
+  only the three intended contracts. After RFC/security records, only public
+  registration remained red; after registration, all nine checks passed.
+- Ruff requested one mechanical architecture-test reformat. Both new Python
+  files then passed focused formatting, Ruff, and strict Pyright; all nine
+  focused checks pass in 0.44 seconds.
+- The unchanged 46-package lock and 45-package graphics environment pass.
+  Formatting covers 578 Python files; Ruff, strict Pyright, strict docs,
+  whitespace, and static plus dated strict governance pass. The first dated
+  governance closeout attempt was denied access to the managed uv cache before
+  checking; its access-enabled rerun returned zero findings.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 4,044 tests with 17
+  skips. The 92-file M149-M194 Windows boundary passes 351 tests with one
+  established skip, and 20 independent M194 live invocations pass.
+- Ten real-wgpu tests, fresh two-/three-workload M7 profiles, eight profile
+  schema tests, null/wgpu Clockwork Arena, and Agent World Builder pass with
+  their established deterministic hashes.
+- Two builds are byte-identical; installed-wheel smoke passes; two identical
+  ten-artifact release stages pass complete release smoke. Inventory retains a
+  114-entry pure wheel and a 943-entry source archive, with all four M194 files
+  source-only.
+- Findings-first review retains exactly 16 intended paths, zero protected-
+  surface diff, 14 passing hygiene/M194 checks, zero forbidden wheel payload,
+  and zero credential-assignment or machine-local-path match across 926 added
+  lines. No actionable correctness, security, architecture, documentation,
+  compatibility, package-boundary, allocation, or public-hygiene finding
+  remains.
+- The record-inclusive final pair preserves the exact wheel bytes/hash,
+  reproduces identical 2,282,185-byte source archives at SHA-256
+  `45d7cc9f29ecf144eb35841215daba45ba1e646781f0bee26dcf5b44c2d2cfec`,
+  passes installed-wheel smoke, and produces two identical ten-artifact stages
+  that both pass complete release smoke.
+- Guarded cleanup verified all 46 exact M194 test, profile, distribution,
+  release, and generated-docs targets as repository-confined, ignored,
+  untracked, and reparse-free before removing all 46; zero target remains.
+- After the cleanup record, both Python files remained format-, Ruff-, and
+  strict-Pyright clean; the 14-test hygiene/M194 group passed in 0.76 seconds;
+  strict docs, dated governance, and whitespace passed.
+- The pre-commit audit retains exactly 16 intended paths, only local `main` and
+  neutral M194, exact M193 base/tree, expected `0 94` divergence, zero
+  protected-surface diff, zero scratch, configured maintainer identity, clean
+  whitespace, and clean repository object connectivity.
+- Initial DCO commit `6c667470a8f1cf64c1f4acfc3d4d6eee5e2b407e`, tree
+  `fc777bc94403433a7b6baded8f6226d74a3c0e32`, has sole parent exact M193,
+  exactly 16 paths, one matching sign-off, consistent configured identity,
+  expected `0 95` divergence, a clean worktree, zero scratch, and clean object
+  connectivity. This closeout record is incorporated by amendment.
+- A fresh pruned fetch and direct hosted/PR inspection leave remote `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, with only remote `main`, M193
+  absent from its ancestry, and PR #251 still latest. Publishing M194 would
+  expose the absent M100-M193 stack, so no push, PR, or hosted allocation is
+  created.
+
+### M194 explicit non-scope
+
+- Pre-settlement or concurrent late commands; arbitrary buffered, partial,
+  repeated, or larger input; exact exception subtype/code; duplicated/inherited
+  writers; cross-principal or unrelated-process behavior; hostile simultaneous
+  racing; authenticated framing/acknowledgement; crash/power loss; durable
+  intent, rollback, reconciliation, typed recovery receipts; ReFS/SMB/other-
+  host evidence; Windows admission; and cleanup authority.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M193 Windows hard-link alias mutator open-writer invalid-prefix settlement boundary
 
 - **Task:** Determine whether M186's unchanged mutator child settles on fixed

@@ -1080,6 +1080,16 @@ fixed rejection from control-pipe EOF; it is not general framing, arbitrary
 malformed-input or unbounded-output handling, durable recovery, or cleanup
 authority. Windows remains unadmitted.
 
+M194's test-only [Windows hard-link alias mutator late valid-close delivery-
+failure after invalid settlement
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md)
+first reproduces M193's exit 5 while the parent writer remains open. A late
+valid byte is then accepted into the parent buffer, but delivery fails on
+`flush()` with generic `OSError`. This proves only that buffer acceptance is
+not peer receipt for one fixed sequence and fixture; it creates no exception-
+code portability, acknowledgement, durable recovery, or cleanup authority.
+Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

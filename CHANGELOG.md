@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M194/RFC-0177's test-only [Windows hard-link alias mutator late valid-
+  close delivery-failure after invalid settlement
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md).
+  It distinguishes local buffer acceptance from failed peer delivery after
+  child exit and adds no runtime or CI surface.
 - Add M193/RFC-0176's test-only [Windows hard-link alias mutator invalid-prefix
   open-writer settlement after recreation
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md).

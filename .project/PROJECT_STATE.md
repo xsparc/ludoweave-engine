@@ -1,5 +1,65 @@
 # Project State
 
+## M194 late valid-close delivery failure - locally complete, publication withheld
+
+- Base: fully locally validated M193 DCO commit
+  `71e5ae471fc6e63b26a8e31e40389e3342aa8491`, exact tree
+  `3aaef65cd46db0bf4ae16426da56d50cab9044e3`, sole parent exact M192.
+- Branch hygiene: neutral
+  `release/m194-windows-alias-mutator-late-close-delivery-failure-boundary`;
+  the redundant M193 branch name was removed after exact branch creation.
+- Direction: RFC-0177 accepts one current-host Windows-only, test-only buffered
+  acceptance-versus-delivery boundary over M186's unchanged fixture.
+- Live result: after exact M193 invalid settlement, one late valid `!` is
+  accepted into the parent buffer; delivery then fails with generic `OSError`
+  on flush. The child has already exited 5, emits no `closed`, and the peer
+  alias retains shared identity, bytes, and link count two under the guardian.
+- Evidence limit: one fixed late byte, one buffered writer, one fixture, three
+  processes, one principal, and one parent-owned tree. This is not general
+  buffering, portable exception translation, acknowledgement, durable
+  recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0177, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M193 baseline passed; the live observation passed
+  first run; intentional red phases and one corrected guard are retained;
+  both Python files are format-, Ruff-, and strict-Pyright clean; all nine M194
+  focused checks pass.
+- Complete regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  4,044 tests with 17 skips. The exact 92-file Windows boundary passes 351
+  tests with one established capability skip, and 20 independent M194 live
+  runs pass.
+- Product/distribution: ten real-wgpu tests, fresh base/graphics M7 profiles,
+  eight profile-schema tests, both Clockwork Arena renderers, Agent World
+  Builder, two byte-identical builds, installed-wheel smoke, and two identical
+  fully smoked ten-artifact release stages pass. The 114-entry pure wheel
+  excludes all M194 source-only evidence and forbidden payload; the source
+  archive has 943 entries.
+- Review: exactly 16 intended paths remain; protected runtime, fixtures,
+  examples, scripts, CI, dependencies, metadata, lock, and prior M193 surfaces
+  have zero diff. Fourteen exact hygiene/M194 checks pass and 926 added lines
+  contain no credential assignment or machine-local path. No actionable
+  finding remains.
+- Record-inclusive distribution/release: the pure wheel remains exactly
+  362,574 bytes at SHA-256
+  `f77493f515eeaa40a4e56b1db707094ea21d8fa2ae9afe40ec6d2624e232849f`;
+  two final 2,282,185-byte source archives reproduce at SHA-256
+  `45d7cc9f29ecf144eb35841215daba45ba1e646781f0bee26dcf5b44c2d2cfec`.
+  Installed-wheel smoke and both identical ten-artifact release stages pass.
+- Guarded cleanup verified and removed all 46 exact M194 generated targets;
+  zero remains. The post-cleanup 14-test, static, docs, dated-governance, and
+  whitespace separator passes. Exact 16-path scope, protected surfaces, base,
+  branch inventory, configured identity, and object connectivity pass their
+  pre-commit audit. The initial DCO object has the exact M193 sole parent, 16
+  intended paths, one matching sign-off, consistent identity, clean tree, and
+  clean connectivity; this record is folded into its closeout amendment.
+- Hosted publication: fresh fetch and authenticated inspection leave remote
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, only remote
+  `main`, and PR #251 latest. M193 is absent from hosted ancestry, so M194 push/
+  PR and the associated hosted allocation are withheld rather than exposing
+  the missing M100-M193 prerequisite stack.
+
 ## M193 open-writer invalid-prefix settlement - locally complete, publication withheld
 
 - Base: fully locally validated M192 DCO commit
