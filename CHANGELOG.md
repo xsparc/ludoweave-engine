@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M187/RFC-0170's test-only [Windows hard-link alias mutator abrupt-loss
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md).
+  It terminates and reaps the independent mutator after its exact delete event
+  and records the persistent one-link, alias-absent state as a recovery gap,
+  without expanding runtime or CI.
 - Add M186/RFC-0169's test-only [Windows independent hard-link alias mutator
   ABA
   probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md).

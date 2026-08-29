@@ -2965,6 +2965,37 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M187 Windows hard-link alias mutator abrupt-loss probe
+
+M187 starts from fully locally validated M186 commit
+`3357f1e38de6b25ecdf15502ae46124bebcb3597`. It adds one Windows-only,
+test-only [hard-link alias mutator abrupt-loss
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md)
+under RFC-0170.
+
+The probe retains M186's initial shared identity, matching guardian, and fixed
+sibling mutator child. After the mutator emits its exact `deleted` event, the
+parent sends no recreate token. It terminates and reaps the child, requires a
+nonzero exit and empty remaining output, and then verifies that the alias
+remains absent while the original retains its identity, bytes, one-link count,
+range availability, and guardian-enforced exact-name rename refusal. Exact
+guardian close then permits rename of the unchanged one-link identity.
+
+This records a missing recovery property: abrupt process loss after deletion
+does not automatically restore the alias. It is not rollback, repair, crash
+consistency, or cleanup admission. The observation remains three processes
+under one principal and one parent-owned process tree. Cross-principal and
+unrelated-process behavior, hostile simultaneous racing, durable intent,
+quarantine, idempotency, typed recovery receipts, ReFS/SMB/other-host evidence,
+Windows admission, and cleanup authority remain unresolved.
+
+M187 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

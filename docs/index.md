@@ -219,6 +219,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md)
   that reproduces the transition with a distinct sibling mutation process
   while preserving the same-principal evidence limit.
+- A test-only [Windows hard-link alias mutator abrupt-loss
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md)
+  that records the alias-absent, one-link state after the mutation child is
+  terminated and reaped before recreation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

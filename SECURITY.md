@@ -1003,6 +1003,15 @@ transition. This three-process result remains under one principal and one
 parent-owned process tree; it is not cross-principal or root-confined
 ownership evidence. Cleanup authority and Windows admission remain unresolved.
 
+M187's test-only [Windows hard-link alias mutator abrupt-loss
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md)
+terminates and reaps the independent mutator after its exact `deleted` event
+and before any recreate token. The peer alias remains absent and the original
+retains its identity, bytes, and one-link count while the matching guardian
+continues protecting the exact name. This three-process, same-principal result
+is negative recovery evidence: there is no automatic rollback or recovery.
+Cleanup authority and Windows admission remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

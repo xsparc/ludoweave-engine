@@ -242,8 +242,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md).
 > A distinct sibling child now owns the delete/recreate calls while the parent
 > only coordinates and observes; the result remains same-principal evidence.
+> M187 adds one test-only [Windows hard-link alias mutator abrupt-loss
+> probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md).
+> After the child-owned delete, abrupt mutator loss leaves the alias absent and
+> the original at one link; this is a recovery gap, not automatic rollback.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M186 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M187 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
