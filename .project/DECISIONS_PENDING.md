@@ -2,6 +2,34 @@
 
 No architecture decision is currently blocked.
 
+## M180 zero-owner guardian restart-boundary probe
+
+RFC-0163 accepts two Windows-only, test-only post-wait observations. Without
+intervening mutation, a later unchanged guardian opens and protects the same
+coordination identity. If M174 substitution occurs during the zero-owner
+interval, a later guardian instead protects the replacement identity and
+blocks a second rename only until its exact close.
+
+This resolves only the measured pathname-open behavior. It demonstrates that
+successful guardian restart is not continuity: a pathname-only guardian has no
+trusted record with which to identify or recover the displaced generation. It
+is not crash recovery, durable generation authority, election,
+authentication, trusted placement, or complete admission. Simultaneous loss,
+failed launch, hostile prior handles, arbitrary process trees, mapped views,
+filesystem/driver variation, generation issuance/retention, use-time
+revalidation, policy, receipts, independent-host proof, and Windows admission
+remain pending.
+
+RFC-0163 does not authorize a runtime adapter, guardian or lock API,
+participant registry, cache access, retained-root integration, candidate
+disclosure, cleanup or mutation authority, dependency, workflow, CI
+allocation, tag, release, or publication. No hosted check is added.
+
+The supported-Python, integrated and repeated Windows, real-wgpu, profile,
+vertical-slice, documentation, governance, installed-wheel, release-smoke,
+findings-first, and public-hygiene gates support only these bounded
+observations. They do not resolve any pending production authority above.
+
 ## M179 overlapping coordination-guardian rotation probe
 
 RFC-0162 accepts one Windows-only, test-only observation that two unchanged

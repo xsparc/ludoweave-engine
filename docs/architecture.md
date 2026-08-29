@@ -4610,6 +4610,39 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0162 records the accepted test-only boundary.
 
+## M180 Windows zero-owner guardian restart boundary
+
+M180 adds one Windows-only, test-only [zero-owner guardian restart-boundary
+probe](security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md).
+It preserves M179, runtime, examples, scripts, fixtures, dependencies, and
+workflows byte-for-byte.
+
+Both sequences abruptly terminate and boundedly reap M178's unchanged fixed
+guardian before starting a replacement. In the benign sequence, an explicit
+observation confirms that M173's pathname still names its original
+`FILE_ID_INFO`; a later guardian protects that identity. In the mutation
+sequence, M174 first displaces the original and creates a distinct replacement
+at the same pathname; the later guardian protects only that replacement.
+
+The later guardian continues to own no cooperative range. Exact exclusive
+range acquisition remains available while its no-delete-share handle blocks
+rename with sharing error 32. After exact guardian close, rename succeeds.
+Identity and byte checks preserve the displaced original and moved replacement
+as distinct objects.
+
+This separates successful pathname reacquisition from recovery. The guardian
+receives no trusted prior identity or generation record, so it cannot establish
+continuity across the zero-owner interval. Crash recovery, generation
+authority, election, trusted placement, startup authentication, simultaneous
+loss, failed launch, hostile handles, arbitrary process trees, mapped views,
+filesystem variation, revalidation, policy, receipts, admission, and
+independent hosts remain unresolved.
+
+M180 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0163 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

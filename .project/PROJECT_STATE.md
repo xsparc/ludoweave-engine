@@ -1,5 +1,77 @@
 # Project State
 
+## M180 zero-owner guardian restart boundary - locally complete, publication withheld
+
+- Base: fully locally validated M179 DCO commit
+  `2d6312fbc59358f8ef080f5b335a815c6ffe2d15`, tree
+  `9246c860dd6b18c4615c761fbeff0f5b619dd03c`, sole parent exact M178.
+- Branch hygiene: neutral
+  `release/m180-windows-zero-owner-guardian-restart-boundary` starts at exact
+  M179. Exact containment allowed redundant M179 to be pruned; only local
+  `main` and active M180 remain.
+- Direction: RFC-0163 accepts two current-host, test-only post-wait sequences:
+  a benign restart over the unchanged identity and a restart after substitution
+  that protects the replacement. It rejects recovery, generation authority,
+  admission, cleanup authority, and CI growth.
+- Behavior: both sequences abruptly reap the first unchanged guardian. The
+  benign sequence observes and reacquires the original identity; the mutation
+  sequence substitutes first and proves the later guardian blocks rename only
+  on the replacement identity. The guardian never owns the cooperative range.
+- Focused proof: seven architecture guards plus two live cases pass nine
+  assertions. Both Python files are format-, Ruff-, and strict-Pyright clean.
+  Review strengthened exact hashes for every reused helper.
+- Complete proof: all 548 Python files pass formatting, Ruff, and strict
+  Pyright. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,921 tests with
+  17 skips. The 64-module M149-M180 boundary passes 228 tests with one skip;
+  twenty independent invocations pass all 40 central cases.
+- Rendering and slices: ten real-wgpu tests, both fresh profile schemas, all
+  eight validator tests, Clockwork Arena, and Agent World Builder pass with
+  their established deterministic identities.
+- Final distribution: two record-inclusive builds reproduce a 361,539-byte pure wheel at
+  SHA-256 `e34d7611f26232764885316f2babed041e241222e1484a6d7236521b7a4a1230`
+  and a 2,161,961-byte source archive at SHA-256
+  `320c840ba7fdc1de476d571d472814c6463bf60f2ea4c20ce9073184a785c56b`.
+  Wheel smoke, two identical ten-artifact stages, and both release smokes pass.
+- Inventory: 114 wheel and 885 source entries, zero native/WASM/bytecode or
+  hidden development root, no M180 wheel source, and all four new M180 sources
+  in the source archive. One first inventory selector misspelled the
+  architecture filename; the corrected exact selector found it once.
+- Governance and review: strict docs, static and dated strict governance,
+  whitespace, protected surfaces, and bounded scope pass. No remaining
+  actionable code, architecture, security, documentation, compatibility,
+  allocation, or public-hygiene issue is known.
+- Record-inclusive closure: the 46-package lock, all 548 Python files, nine
+  focused assertions, the 228-pass/one-skip integrated boundary, strict docs,
+  whitespace, and both governance modes pass after recording broad evidence.
+- Scope and hygiene: exactly 16 intended paths remain. Corrected added/new
+  content scans find zero public development identity, local path, or
+  high-confidence credential assignment; the retired hidden roots and
+  `AGENTS.md` remain absent.
+- Final record-only separator: both M180 Python files are format-, lint-, and
+  type-clean; all nine focused assertions pass in 1.02 seconds; strict docs
+  build in 2.75 seconds; whitespace and both governance modes pass.
+- Cleanup: all 51 exact generated M180/pytest/docs targets were repository-
+  confined, untracked, ignored, recursively reparse-free, removed across the
+  two Windows execution identities, and confirmed absent.
+- Final factual separator: both Python files remain static-clean; nine focused
+  assertions, strict docs, dated governance, and whitespace pass. The two
+  regenerated outputs were guarded, removed, and confirmed absent.
+- Commit gate: initial DCO commit
+  `a9ff96c7265872b149cfb09cc89500b8ad8d52d7`, tree
+  `217559d9a39475210572c9aadcd4d862716eead6`, has sole parent exact M179,
+  exactly 16 intended paths, one sign-off, matching configured maintainer
+  identity, no merge, expected `0 81` divergence, and a clean worktree. This
+  factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M179. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M180 is not pushed and no PR or hosted allocation is
+  created while M100-M179 remain unpublished prerequisites.
+- Protected scope: M179, every reused fixture/helper, runtime, examples,
+  scripts, dependencies, workflows, metadata, and lock remain unchanged. No
+  fixture, workflow, matrix, job, permission, dependency, or allocation is
+  added.
+- Remaining gate: final amended-object audit.
+
 ## M179 overlapping guardian rotation - locally complete, publication withheld
 
 - Base: fully locally validated M178 DCO commit

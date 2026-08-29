@@ -2741,6 +2741,44 @@ version, workflow job/allocation, permission, credential, release authority,
 or CI change. The existing Windows suite is the only future hosted execution
 path; no hosted check is added.
 
+## M180 Windows zero-owner guardian restart-boundary probe
+
+M180 starts from fully locally validated M179 commit
+`2d6312fbc59358f8ef080f5b335a815c6ffe2d15`. It adds one Windows-only,
+test-only [zero-owner guardian restart-boundary
+probe](docs/security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md)
+under RFC-0163.
+
+Each of two sequences starts M178's unchanged fixed guardian over M173's exact
+coordination identity, requires exact readiness and namespace protection with
+the cooperative range available, then kills and boundedly waits for that
+guardian through M176's unchanged helper.
+
+In the benign sequence, the exposed pathname still names the original
+`FILE_ID_INFO`. A later guardian reacquires that identity, retains substitution
+error 32 without owning the range, and closes exactly before M174 substitution
+succeeds. In the mutation sequence, M174 substitution succeeds during the
+zero-owner interval. The later guardian attaches to the replacement identity,
+blocks a second rename with error 32 while leaving the range available, and
+after exact close permits that rename. Both sequences retain exact identities,
+bytes, bounded waits, and complete cleanup without retry or sleep.
+
+This is one current-host restart-boundary observation, not crash recovery,
+generation authority, election, trusted placement, startup authentication,
+continuity, complete admission, or cleanup authority. A pathname-only guardian
+cannot recover or distinguish the displaced generation. Simultaneous loss,
+failed restart launch, hostile prior handles, arbitrary process trees, mapped
+views, filesystem variation, durable generation issuance, use-time
+revalidation, policy, receipts, Windows admission, and independent-host proof
+remain open.
+
+M180 adds no fixture, runtime API, protocol, decoder, CLI command, public
+probe, production `ctypes` or subprocess invocation, adapter, cache access,
+cleanup authority, dependency, native extension, compiler requirement,
+version, workflow job/allocation, permission, credential, release authority,
+or CI change. The existing Windows suite is the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

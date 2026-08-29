@@ -194,6 +194,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md)
   that preserves namespace protection through one already-overlapped guardian
   loss and later participant close without claiming restart or recovery.
+- A test-only [Windows zero-owner guardian restart-boundary
+  probe](security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md)
+  that distinguishes benign identity reacquisition from pathname substitution
+  during an unprotected interval without claiming recovery or authority.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

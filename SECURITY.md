@@ -938,6 +938,15 @@ exclusive range ownership is available. This is overlapping rotation, not
 guardian restart, crash recovery, election, generation authority, complete
 admission, or cleanup authority; Windows remains unadmitted.
 
+M180's test-only [Windows zero-owner guardian restart-boundary
+probe](docs/security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md)
+proves that a later guardian attaches to the unchanged identity when no
+mutation occurs after the first guardian is abruptly reaped. If substitution
+occurs during that zero-owner interval, the later guardian instead protects
+the replacement identity and cannot recover the displaced original. This is
+not crash recovery, generation authority, continuity, complete admission, or
+cleanup authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

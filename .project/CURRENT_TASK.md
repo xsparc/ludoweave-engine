@@ -1,6 +1,129 @@
 # Current task
 
-## M179 Windows overlapping guardian rotation
+## M180 Windows zero-owner guardian restart boundary
+
+- **Task:** Distinguish benign guardian restart over an unchanged coordination
+  identity from restart after pathname substitution during a zero-owner
+  interval.
+- **Status:** Direction, implementation, supported-Python regression,
+  concentrated/repeated Windows behavior, rendering, profiles, vertical
+  slices, reproducible distribution/release rehearsal, governance,
+  findings-first review, record-inclusive source closure, and scope/hygiene
+  gates pass. Guarded cleanup, final factual separators, initial DCO commit,
+  and publication-safety gates pass. Publication is withheld because hosted
+  `main` lacks M100-M179; one factual amendment and object audit remain.
+- **Base:** Fully locally validated M179 DCO commit
+  `2d6312fbc59358f8ef080f5b335a815c6ffe2d15`, tree
+  `9246c860dd6b18c4615c761fbeff0f5b619dd03c`, sole parent exact M178.
+- **Branch:** `release/m180-windows-zero-owner-guardian-restart-boundary`;
+  exact containment allowed the redundant local M179 branch to be pruned.
+
+### M180 acceptance boundary
+
+- Accept RFC-0163 and retain two Windows-only, test-only current-host
+  observations after M178's unchanged guardian is abruptly killed and reaped.
+- In the mutation-free case, require the exposed pathname to retain the
+  original `FILE_ID_INFO`; require a later guardian to reacquire that identity,
+  refuse substitution, and leave the cooperative range available.
+- In the mutation case, require M174 substitution during the zero-owner
+  interval; require the later guardian to attach to the replacement identity,
+  refuse a second direct rename with error 32, and leave the range available.
+- After exact close, require rename/substitution success, original and
+  replacement identity separation, exact bytes, and complete process, stream,
+  handle, and range cleanup without retry or sleep.
+- Interpret the result only as a restart-boundary observation. It is not crash
+  recovery, generation authority, election, trusted placement, startup
+  authentication, continuity, Windows admission, or cleanup authority.
+- Add no fixture, runtime adapter, guardian/lock API, dependency, workflow,
+  job/allocation, permission, release authority, or CI change.
+
+### M180 direction evidence
+
+- Microsoft documents that `CreateFileW` share modes persist only while the
+  owning handle remains open and that `MoveFileExW` acts on pathnames.
+- Microsoft documents `TerminateProcess` as asynchronous, so each zero-owner
+  observation begins only after M176's bounded wait completes.
+- GitHub documents that each matrix combination creates a job. M180 uses only
+  the existing Windows suite and creates no hosted allocation.
+- NIST still lists SSDF 1.2 as draft material. M180 retains the existing
+  governance posture without a new conformance claim.
+
+### M180 local validation evidence so far
+
+- Exact M179 is clean. Its seven focused assertions pass in 1.00 seconds;
+  static and 2026-08-29 dated strict governance return zero findings.
+- Two new live cases and seven architecture guards pass nine assertions. The
+  first documentation registration gate correctly found the missing security
+  navigation entry; after adding it, the focused group passed in 1.03 seconds.
+- The unchanged 46-package lock and 45-package graphics environment validate.
+  All 548 Python files pass formatting, Ruff, and strict Pyright.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,921 tests with 17
+  skips. A first 3.13 run encountered only inherited shared scratch ACL errors
+  and was stopped; the accepted 3.13/3.14 runs use distinct confined roots.
+- The 64-module M149-M180 boundary passes 228 tests with one established skip.
+  Twenty independent two-case central probes pass 40 cases in 0.89 to 0.95
+  seconds per invocation.
+- Ten real-wgpu tests, fresh base/graphics profiles, eight profile-validator
+  tests, Clockwork Arena, and Agent World Builder pass with established
+  deterministic identities.
+- Two initial builds reproduce a 361,539-byte pure wheel and a 2,158,613-byte
+  source archive. Isolated wheel smoke, two byte-identical ten-artifact release
+  stages, and both release smokes pass. Inventory has 114 wheel and 885 source
+  entries, no native/WASM/bytecode or hidden development root, no M180 wheel
+  source, and all four new M180 sources in the archive.
+- Findings-first review found no runtime defect and strengthened the
+  architecture guard to hash every reused historical helper. The corrected
+  nine-case group passes in 0.98 seconds; strict docs build in 2.70 seconds.
+- Static and 2026-08-29 dated strict governance each return zero findings
+  across three objectives, seven requirements, and four work items.
+- The record-inclusive separator keeps the 46-package lock current, all 548
+  Python files static-clean, all nine focused assertions passing in 0.98
+  seconds, the M149-M180 boundary at 228 passes/one skip in 14.88 seconds,
+  strict docs and whitespace passing, and both governance modes at zero
+  findings.
+- Two final record-inclusive builds reproduce the unchanged 361,539-byte wheel
+  and an identical 2,161,961-byte source archive. Primary wheel smoke, two
+  byte-identical ten-artifact release stages, and both release smokes pass.
+- Exact scope is 16 intended paths. Protected runtime/package/CI/M179/helper
+  surfaces have zero diff; corrected added/new-content public-identity,
+  local-path, and credential-assignment scans return zero matches. The retired
+  hidden roots and `AGENTS.md` remain absent.
+- Fifty-one exact generated M180/pytest/docs targets were independently
+  confined and checked for tracked content, ignore status, and recursive
+  reparse points. Ordinary cleanup removed 37; an approved, fully revalidated
+  retry removed the 14 split-ACL targets. No exact target remains.
+- After recording cleanup, both Python files remain static-clean; nine focused
+  assertions pass in 1.03 seconds; strict docs build in 2.72 seconds; dated
+  governance and whitespace pass. The regenerated docs site and exact test
+  root were independently revalidated, removed, and confirmed absent.
+
+### M180 publication boundary
+
+- Initial DCO commit `a9ff96c7265872b149cfb09cc89500b8ad8d52d7`, tree
+  `217559d9a39475210572c9aadcd4d862716eead6`, has sole parent exact M179,
+  exactly 16 paths, one sign-off, matching configured maintainer identity, no
+  merge, expected `0 81` divergence, and a clean worktree. This factual record
+  is incorporated by one final amendment.
+- A fresh pruned fetch leaves hosted `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; it does not contain M179.
+  GitHub reports no open PR, PR #251 as the latest merge, and only remote
+  `main`. M180 is not pushed and no PR or hosted allocation is created while
+  M100-M179 remain unpublished prerequisites.
+- Publication must not create a workflow, job, matrix allocation, redundant
+  predecessor branch, tag, release, or package publication.
+
+### M180 explicit non-scope
+
+- Crash recovery, durable identity/generation state, guardian election or
+  authentication, failed restart launch, simultaneous loss, trusted root
+  placement, complete participant admission, hostile prior handles, arbitrary
+  process trees, mapped views, filesystem variation, use-time revalidation,
+  policy, receipts, cleanup authority, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
+## Earlier task: M179 Windows overlapping guardian rotation
 
 - **Task:** Prove one already-live second guardian retains namespace protection
   after the first overlapping guardian is abruptly reaped and the protected

@@ -167,3 +167,4 @@ was adopted.
 - [RFC-0160: probe Windows protected guardian handoff](0160-probe-windows-protected-guardian-handoff.md)
 - [RFC-0161: probe Windows guardian abrupt handoff](0161-probe-windows-guardian-abrupt-handoff.md)
 - [RFC-0162: probe Windows overlapping guardian rotation](0162-probe-windows-overlapping-guardian-rotation.md)
+- [RFC-0163: probe Windows zero-owner guardian restart boundary](0163-probe-windows-zero-owner-guardian-restart-boundary.md)
