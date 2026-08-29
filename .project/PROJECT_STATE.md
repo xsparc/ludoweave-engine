@@ -1,5 +1,88 @@
 # Project State
 
+## M195 buffered-close delivery failure - locally complete, publication withheld
+
+- Base: fully locally validated M194 DCO commit
+  `4b1314d58095a93963df2ded846b7b2bf77ed27e`, exact tree
+  `131de175d73ade7ac9fceb926984ccefe284d0d4`, sole parent exact M193.
+- Branch hygiene: neutral
+  `release/m195-windows-alias-mutator-buffered-close-delivery-failure-boundary`;
+  the redundant M194 branch name was removed after exact branch creation.
+- Direction: RFC-0178 accepts one current-host Windows-only, test-only direct-
+  close delivery boundary over M186's unchanged fixture.
+- Live result: after exact M194 invalid settlement and one-byte late buffer
+  acceptance, direct `close()` without a preceding failed late flush raises
+  generic `OSError` and still leaves the writer closed. The child has already
+  exited 5, emits no `closed`, and the peer alias retains shared identity,
+  bytes, and link count two under the guardian.
+- Evidence limit: one fixed late byte, one buffered writer, one fixture, three
+  processes, one principal, and one parent-owned tree. This is not general
+  buffering, portable exception translation, acknowledgement, durable
+  recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0178, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M194 baseline passed; the live observation passed
+  first run; intentional red phases found only missing decision/registration
+  contracts; both Python files are format-, Ruff-, and strict-Pyright clean;
+  all nine M195 focused checks pass.
+- Complete regression: after correcting one tool-neutral project-record phrase
+  found by the first 3.12 run, exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  pass 4,053 tests with 17 skips. The exact 94-file Windows boundary passes 360
+  tests with one established capability skip, and 20 independent M195 live
+  runs pass.
+- Product/distribution: ten real-wgpu tests, fresh base/graphics M7 profiles,
+  eight profile-schema tests, both Clockwork Arena renderers, Agent World
+  Builder, two byte-identical builds, installed-wheel smoke, and two identical
+  fully smoked ten-artifact release stages pass. The 114-entry pure wheel
+  excludes all M195 source-only evidence and forbidden payload; the source
+  archive has 947 entries.
+- Review: exactly 16 intended paths remain; protected runtime, fixtures,
+  examples, scripts, CI, dependencies, metadata, lock, and prior M194 surfaces
+  have zero diff. Fourteen exact hygiene/M195 checks pass and 931 added lines
+  contain no credential assignment or machine-local path. No actionable
+  finding remains.
+- Record-inclusive distribution/release: the pure wheel remains exactly
+  362,634 bytes at SHA-256
+  `572a29b6a9306556fcac51d663b322487e885da2957142ef83709f70a6358c47`;
+  two 2,288,447-byte source archives reproduce at SHA-256
+  `08224ecda9b1b11a6a8f094d6b8ab2b5d73fabcca86fb9bb74b30aa222a8d057`.
+  Installed-wheel smoke and both identical ten-artifact release stages pass.
+- Final record separator, guarded scratch cleanup, DCO object audit, and
+  hosted-publication reconciliation remain in progress. The separator passes
+  whole-tree static checks, 14 review checks, strict docs, dated governance,
+  and whitespace. Its final pair preserves the wheel and reproduces identical
+  2,288,781-byte source archives at SHA-256
+  `0819cfe055960862800ce7fbe2ec5ae5f5c2bbf991a10d45290f51f69c01d034`;
+  installed-wheel and both ten-artifact release smokes pass.
+- Guarded cleanup's first recursive audit was sandbox-denied before deletion.
+  Its access-enabled rerun proved all 59 exact M195 targets repository-confined,
+  ignored, untracked, and top-level plus recursively reparse-free, then removed
+  all 59 and confirmed zero remains. DCO object audit and hosted-publication
+  reconciliation remain in progress.
+- Post-cleanup separator: both Python files remain static-clean; 14 review
+  checks, strict docs, dated governance, and whitespace pass. The two exact
+  regenerated targets were revalidated and removed; zero M195 scratch remains.
+  DCO object audit and hosted-publication reconciliation are the only remaining
+  closeout steps.
+- Corrected pre-commit audit proves exact M194 HEAD/tree, 16 intended paths,
+  only local `main` and neutral M195, expected `0 95` divergence, zero
+  protected-surface diff, configured identity, zero M195 scratch, clean
+  whitespace, and clean object connectivity. The first tree query was
+  PowerShell-misparsed and made no accepted tree claim.
+- Initial signed DCO object `31563f13616403d75e621bf70da2d9b12e93416a`,
+  tree `987202c629abb8c7f1eba41b53876b223cc19a1a`, has sole parent exact
+  M194, exactly 16 intended paths, one matching sign-off, consistent identity,
+  clean tree, zero scratch, clean whitespace, and clean connectivity after one
+  corrected invalid revision query. This record is folded into its closeout
+  amendment.
+- Hosted publication: fresh fetch and authenticated inspection leave remote
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, only remote
+  `main`, and PR #251 latest. M194 is absent from hosted ancestry, so M195 push/
+  PR and the associated hosted allocation are withheld rather than exposing
+  the missing M100-M194 prerequisite stack.
+
 ## M194 late valid-close delivery failure - locally complete, publication withheld
 
 - Base: fully locally validated M193 DCO commit

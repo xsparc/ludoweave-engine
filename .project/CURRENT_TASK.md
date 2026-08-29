@@ -1,5 +1,134 @@
 # Current task
 
+## M195 Windows hard-link alias mutator buffered-close delivery-failure boundary
+
+- **Task:** Determine what the parent-side buffered writer reports when direct
+  `close()` is the first delivery attempt for M194's accepted late byte.
+- **Status:** Local implementation and validation complete through direction,
+  test-first behavior, supported-Python regression, repeated Windows behavior,
+  graphics/examples, reproducible distribution/release rehearsal, governance,
+  findings-first review, final separators, guarded cleanup, and DCO audit.
+  Hosted publication is withheld because remote `main` remains at M99 and does
+  not contain M194.
+- **Base:** Fully locally validated M194 DCO commit
+  `4b1314d58095a93963df2ded846b7b2bf77ed27e`, tree
+  `131de175d73ade7ac9fceb926984ccefe284d0d4`, sole parent exact M193.
+- **Branch:**
+  `release/m195-windows-alias-mutator-buffered-close-delivery-failure-boundary`;
+  the redundant local M194 branch name was removed after exact M195 branch
+  creation retained its object.
+
+### M195 acceptance boundary
+
+- Accept RFC-0178 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, and M186's
+  unchanged bounded-output mutator child.
+- Reproduce M194 through exact child exit 5, terminal output, and one-byte late
+  buffer acceptance. Perform no late `flush()`. Require direct `close()` to
+  raise generic `OSError` and require the stream closed afterward, without
+  freezing a subtype or numeric code.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process/stream/native/range cleanup.
+- State the result narrowly as close-triggered delivery evidence for one fixed
+  late byte and fixture. Do not claim arbitrary buffering, portable exception
+  translation, acknowledgement, durable recovery, Windows admission, or
+  cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M195 development evidence so far
+
+- Exact M194 focused baseline passed nine tests. Static and dated strict
+  governance each returned zero findings across three objectives, seven
+  requirements, and four work items.
+- Current Microsoft `WriteFile`, Python buffered-I/O, automation-safety, GitHub
+  least-privilege and billing, NIST SSDF, and SLSA 1.2 sources support the
+  bounded close observation and no hosted allocation.
+- The first live M195 probe passed. The initial contract-red run passed six
+  checks and failed only the absent RFC/security/public-registration
+  contracts. After RFC-0178 and the security record, only registration remained
+  red. After eight registrations, all nine architecture/live checks passed.
+- Ruff requested one mechanical architecture-test reformat. Both new Python
+  files are now format-, lint-, and strict-Pyright clean; all nine focused
+  checks pass in 0.48 seconds.
+- An initial 3.12 full run exposed one project-record reference that violated
+  the established tool-neutral metadata contract: 1 failed and 1,343 passed
+  before the stop. Neutral wording corrected only that record; the exact
+  five-test hygiene contract then passed.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 complete suites each pass 4,053
+  tests with 17 skips. The exact 94-file Windows boundary passes 360 tests with
+  one established skip, and 20 independent M195 live invocations pass.
+- Ten real-wgpu tests, fresh two-/three-workload M7 profiles, eight profile-
+  schema tests, null/wgpu Clockwork Arena, and Agent World Builder pass with
+  their established deterministic identities.
+- Two builds are byte-identical; installed-wheel smoke passes; two identical
+  ten-artifact release stages pass complete release smoke. Inventory retains a
+  114-entry pure wheel and a 947-entry source archive, with all four M195 files
+  source-only.
+- Findings-first review retains exactly 16 intended paths, zero protected-
+  surface diff, 14 passing hygiene/M195 checks, zero forbidden wheel payload,
+  and zero credential-assignment or machine-local-path match across 931 added
+  lines. No actionable correctness, security, architecture, documentation,
+  compatibility, package-boundary, allocation, or public-hygiene finding
+  remains.
+- The first record-inclusive review command counted only tracked diffs and
+  stopped at 12 before testing. Its corrected tracked-plus-untracked inventory
+  proved the exact 16-path scope. Whole-tree static checks, strict docs, both
+  governance modes, and whitespace then passed from the recorded state.
+- Two record-inclusive builds preserve the exact wheel bytes/hash and reproduce
+  identical 2,288,447-byte source archives at SHA-256
+  `08224ecda9b1b11a6a8f094d6b8ab2b5d73fabcca86fb9bb74b30aa222a8d057`.
+  Installed-wheel smoke and both identical ten-artifact release stages pass.
+- The final record-state separator keeps all 580 Python files static-clean;
+  the 14-test review group, strict docs, dated governance, and whitespace pass.
+  Two final 2,288,781-byte source archives reproduce at SHA-256
+  `0819cfe055960862800ce7fbe2ec5ae5f5c2bbf991a10d45290f51f69c01d034`;
+  the wheel is unchanged, installed-wheel smoke passes, and both identical
+  ten-artifact release stages pass. Recording cleanup/object facts later changes
+  only the source archive.
+- Guarded cleanup verified all 59 exact M195 test, environment, profile,
+  distribution, release, and generated-docs targets as repository-confined,
+  ignored, untracked, and top-level plus recursively reparse-free before
+  removing them. Zero M195 target remains; older milestone scratch and the
+  managed environment were not selected.
+- After recording cleanup, both Python files remained format-, Ruff-, and strict-
+  Pyright clean; the 14-test review group passed in 1.14 seconds; strict docs,
+  dated governance, and whitespace passed. The two regenerated test/docs targets
+  were revalidated and removed; zero M195 scratch remains.
+- The first pre-commit audit used PowerShell-sensitive `HEAD^{tree}` syntax and
+  stopped on the misparsed tree query. Its corrected `git show --format=%T`
+  rerun retains exactly 16 intended paths, only local `main` and neutral M195,
+  exact M194 base/tree, expected `0 95` divergence, zero protected-surface
+  diff, zero scratch, configured maintainer identity, clean whitespace, and
+  clean repository object connectivity.
+- Initial signed DCO commit `31563f13616403d75e621bf70da2d9b12e93416a`,
+  tree `987202c629abb8c7f1eba41b53876b223cc19a1a`, has sole parent exact
+  M194, exactly 16 paths, one matching sign-off, consistent configured
+  identity, expected `0 96` divergence, a clean worktree, zero scratch, clean
+  whitespace, and clean connectivity. The first object-audit whitespace query
+  contained an invalid Unicode revision separator and stopped; its corrected
+  rerun passed. This closeout record is incorporated by amendment.
+- A fresh pruned fetch and direct hosted/PR inspection leave remote `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, with only remote `main`, M194
+  absent from its ancestry, and PR #251 still latest. Publishing M195 would
+  expose the absent M100-M194 stack, so no push, PR, or hosted allocation is
+  created.
+
+### M195 explicit non-scope
+
+- Pre-settlement or concurrent late commands; arbitrary buffered, partial,
+  repeated, or larger input; exact exception subtype/code; duplicated/inherited
+  writers; cross-principal or unrelated-process behavior; hostile simultaneous
+  racing; authenticated framing/acknowledgement; crash/power loss; durable
+  intent, rollback, reconciliation, typed recovery receipts; ReFS/SMB/other-
+  host evidence; Windows admission; and cleanup authority.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M194 Windows hard-link alias mutator late valid-close delivery-failure boundary
 
 - **Task:** Determine what the parent-side buffered writer reports when one

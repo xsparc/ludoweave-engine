@@ -257,6 +257,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md)
   that records one local buffered-byte acceptance followed by failed flush
   delivery after the child has already exited.
+- A test-only [Windows hard-link alias mutator buffered-close delivery-failure
+  after invalid settlement
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md)
+  that records generic delivery failure from direct close and final stream
+  closure without a preceding failed late flush.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

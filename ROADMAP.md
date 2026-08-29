@@ -3225,6 +3225,37 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite remains the only future hosted execution
 path; no hosted check is added.
 
+## M195 Windows hard-link alias mutator buffered-close delivery failure after invalid settlement probe
+
+M195 starts from fully locally validated M194 commit
+`4b1314d58095a93963df2ded846b7b2bf77ed27e`. It adds one Windows-only,
+test-only [hard-link alias mutator buffered-close delivery-failure after
+invalid settlement
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md)
+under RFC-0178.
+
+The probe retains M186's unchanged sibling mutator and M181's matching
+guardian. It reproduces M194 through child settlement and one-byte late buffer
+acceptance, but performs no late `flush()`. Direct `close()` is the first late
+delivery attempt: it fails with generic `OSError` and still leaves the stream
+closed. The probe freezes no subtype or numeric code. The alias retains shared
+identity, bytes, link count two, and range availability while the guardian
+remains live.
+
+This is close-triggered delivery evidence for one fixed late byte and fixture.
+It is not arbitrary buffered-input handling, acknowledgement semantics,
+exception-code portability, durable commit, recovery, cleanup admission, or a
+production protocol contract. Cross-principal behavior, inherited or
+duplicated writers, hostile simultaneous racing, ReFS/SMB/other-host evidence,
+Windows admission, and cleanup authority remain unresolved.
+
+M195 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite remains the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

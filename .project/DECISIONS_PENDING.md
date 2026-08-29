@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M195 hard-link alias mutator buffered-close delivery-failure boundary
+
+RFC-0178 accepts one Windows-only, test-only NTFS observation. After M186's
+unchanged bounded-output mutator has rejected exact `?!`, emitted no `closed`,
+and settled with exit 5 while the parent writer remains open, the parent
+buffers one late valid `!` byte. Without a preceding failed late flush, direct
+`close()` raises generic `OSError` and still leaves the writer closed. No
+exception subtype or numeric code is part of the boundary.
+
+The peer alias retains shared identity, bytes, two-link count, and range
+availability while M181's matching guardian remains protective. This resolves
+only close-triggered delivery and local stream disposition for one late byte
+and fixture on the observed host. It is not general framing, acknowledgement,
+authenticated authority, durable recovery, or cleanup admission.
+
+Pre-settlement/concurrent late commands; arbitrary buffered, partial, repeated,
+or larger input; exact exception translation; duplicated/inherited writers;
+cross-principal and unrelated-process behavior; simultaneous racing; trusted-
+root placement; enumeration and use-time policy; durable intent, quarantine,
+idempotency, reconciliation, typed recovery receipts; independent-host proof;
+Windows admission; and cleanup authority remain pending. No runtime,
+dependency, fixture, workflow, permission, hosted allocation, release
+authority, or CI change is accepted.
+
 ## M194 hard-link alias mutator late valid-close delivery-failure boundary
 
 RFC-0177 accepts one Windows-only, test-only NTFS observation. After M186's

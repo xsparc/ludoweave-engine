@@ -1090,6 +1090,16 @@ not peer receipt for one fixed sequence and fixture; it creates no exception-
 code portability, acknowledgement, durable recovery, or cleanup authority.
 Windows remains unadmitted.
 
+M195's test-only [Windows hard-link alias mutator buffered-close delivery-
+failure after invalid settlement
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md)
+reproduces the one-byte late buffer acceptance but performs no late `flush()`.
+Direct `close()` reports generic `OSError` as the first delivery attempt and
+still leaves the stream closed. This is only close-triggered delivery evidence
+for one fixed sequence and fixture; it creates no exception-code portability,
+acknowledgement, durable recovery, or cleanup authority. Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

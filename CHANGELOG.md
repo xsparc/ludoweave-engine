@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M195/RFC-0178's test-only [Windows hard-link alias mutator buffered-close
+  delivery-failure after invalid settlement
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md).
+  It isolates direct stream close as the first late delivery attempt, requires
+  final stream closure after generic failure, and adds no runtime or CI surface.
 - Add M194/RFC-0177's test-only [Windows hard-link alias mutator late valid-
   close delivery-failure after invalid settlement
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md).
