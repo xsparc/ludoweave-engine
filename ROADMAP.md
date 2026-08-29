@@ -2936,6 +2936,35 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M186 Windows independent hard-link alias mutator ABA probe
+
+M186 starts from fully locally validated M185 commit
+`4dd880402a8e6f6f1e74bd69be1cd3ad0366b513`. It adds one Windows-only,
+test-only [independent hard-link alias mutator ABA
+probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md)
+under RFC-0169.
+
+The probe retains M185's initial shared identity and exact `2 -> 1 -> 2`
+transition but moves the alias delete/recreate calls into a distinct sibling
+child process. M181's guardian child remains live throughout the mutation and
+observation intervals. The parent only coordinates exact bounded handshakes
+and verifies identity, bytes, link counts, range availability, child liveness,
+exact-name rename refusal, exact close, and final cleanup.
+
+This supplies a three-process, same-principal observation: parent coordinator,
+guardian child, and independent mutation child. “Independent” means process
+and mutation ownership only. It is not cross-principal, unrelated-process-tree
+or unrelated-session evidence, controlled simultaneous racing, trusted-root
+ownership, hard-link enumeration, link-count policy, recovery, admission, or
+cleanup authority. Windows remains unadmitted.
+
+M186 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

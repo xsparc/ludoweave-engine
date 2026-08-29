@@ -1,5 +1,147 @@
 # Current task
 
+## M186 Windows independent hard-link alias mutator ABA boundary
+
+- **Task:** Determine whether M185's hard-link alias delete/recreate ABA remains
+  observable when a distinct child process, rather than the parent
+  coordinator, owns both namespace mutations.
+- **Status:** Locally complete. Direction, implementation, supported-Python
+  regression, concentrated/repeated Windows behavior, rendering/profiles,
+  record-inclusive distribution/release rehearsal, governance, review,
+  cleanup, DCO object audit, and publication-safety recheck pass. Publication
+  is withheld because hosted `main` lacks M100-M185.
+- **Base:** Fully locally validated M185 DCO commit
+  `4dd880402a8e6f6f1e74bd69be1cd3ad0366b513`, tree
+  `418e75176693f0ea30f43dac80bf0c8451f5a29e`, sole parent exact M184.
+- **Branch:**
+  `release/m186-windows-independent-hard-link-alias-mutator-aba-boundary`;
+  exact containment removed the redundant local M185 branch name.
+
+### M186 acceptance boundary
+
+- Accept RFC-0169 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's exact coordination file and M181's unchanged
+  expected-identity guardian child.
+- Begin with one peer alias and shared identity/link count two. Admit the
+  matching guardian, require exact `ready`, and preserve exact-name rename
+  error 32.
+- Launch a distinct sibling mutator child with a fixed fixture, no arguments,
+  `sys.executable -I -B`, `close_fds=True`, `shell=False`, and bounded pipes.
+- Require child-owned alias deletion, exact `deleted`, both children live,
+  alias absence, unchanged identity/bytes, link count one, and range
+  availability.
+- Send one exact recreate byte; require child-owned `os.link`, exact
+  `recreated`, both children live, identity/count/bytes restored through both
+  names, range availability, and persistent guardian rename refusal.
+- Close the mutator exactly before the guardian; require the guardian still
+  live and protective, then close it exactly and verify post-close rename,
+  identity, count, bytes, processes, pipes, native handles, and ranges.
+- State the evidence precisely: three processes under one principal and one
+  parent-owned process tree. Do not claim cross-principal, unrelated-session,
+  hostile-process, simultaneous-race, or cleanup-admission evidence.
+- Add no runtime API, dependency, workflow, job/allocation, permission,
+  release authority, or CI change.
+
+### M186 direction and development evidence so far
+
+- Current Microsoft documentation retains per-file sharing across process
+  contexts, multiple directory entries per hard-linked file, and deletion in
+  any creation order. Current Python documentation supports the fixed,
+  shell-free, close-fds child protocol used here.
+- GitHub still documents one job per matrix combination; no new hosted
+  allocation is justified. NIST still lists SSDF 1.2 as draft, so no
+  conformance target changes.
+- Exact M185 was clean. Its focused architecture/live pair passed eight tests
+  in 0.51 seconds. Static governance passed; the dated check passed after an
+  access-only rerun because the sandbox denied uv cache initialization before
+  the first attempt reached the checker.
+- The new live probe passed immediately in 0.38 seconds. The first architecture
+  run correctly exposed two assertion/documentation mismatches; after narrow
+  corrections, eight guards plus the live probe pass nine tests in 0.48
+  seconds. All three Python files are format-, Ruff-, and strict-Pyright clean;
+  strict docs pass with only the known Material notice.
+- Exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 complete frozen
+  graphics environments each pass 3,972 tests with 17 skips in 255.73, 234.74,
+  and 243.61 seconds.
+- The 76-file M149-M186 Windows boundary passes 279 tests with one established
+  skip. A first repetition-loop expression produced no test run; the corrected
+  explicit-root loop passes 20 independent M186 live invocations.
+- Ten real-wgpu tests pass. Fresh one-repeat base and graphics profiles emit
+  and validate two and three workloads; all eight profile-schema tests pass.
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, query, and batch identities.
+- The unchanged 46-package lock and exact 45-package graphics environment
+  resolve. All 562 Python files are format-clean; Ruff and strict Pyright
+  report zero findings; strict docs, both governance modes, and whitespace
+  pass.
+- Two initial builds reproduce a 361,987-byte pure wheel and 2,217,745-byte
+  source archive. Primary plus 27 additional installed-wheel consumers pass.
+  Two ten-artifact release stages are byte-identical and both complete smokes
+  pass. Inventory finds 114 wheel and 911 source entries, no test/native
+  payload in the wheel, and all five M186 source-only files once in the sdist.
+- The record-inclusive separator keeps the unchanged lock/environment, all 562
+  Python files, nine focused assertions, the 279-pass/one-skip Windows
+  boundary, strict docs, both governance modes, and whitespace clean.
+- Two final builds reproduce the unchanged 361,987-byte wheel at SHA-256
+  `45b977971af0e3340b8ca3fcd3be10b84d5b6359cb3ff4d7ba9b201d9f0a11df`
+  and identical 2,220,908-byte source archives at SHA-256
+  `77228bd4bbb19331ffd5c422db5413c49208377c402d396a225f5ab25f1e5f45`.
+  Primary wheel smoke passes; the 27 earlier consumers apply byte-for-byte.
+  Two final ten-artifact stages are identical and both release smokes pass.
+- Findings-first review confirms exactly 17 intended paths; unchanged runtime,
+  package code, examples, scripts, workflows, metadata, dependencies, lock,
+  and version; no public development-tool identity, credential assignment, or
+  local path; no actionable correctness, architecture, security,
+  documentation, compatibility, package, or CI-allocation finding remains.
+- Exact guarded cleanup revalidated and removed 41 repository-confined,
+  ignored, top-level and nested reparse-free M186 targets. Zero exact M186
+  scratch target remains; older scratch and the managed environment were not
+  selected.
+- The final pre-commit separator keeps all three Python files static-clean,
+  passes nine focused assertions, dated strict governance, and whitespace. Its
+  exact regenerated test root was revalidated, removed, and confirmed absent.
+- Initial DCO commit `279d135db74565dd10c4eb8e2a61727ebf16e893`, tree
+  `accededba4eb41d2394ef7d7cb2104c0c75ffc66`, has sole parent exact M185,
+  exactly 17 paths, one matching sign-off, truthful configured
+  author/committer identity, no merge, expected `0 87` divergence, a clean
+  worktree, zero exact M186 scratch, and clean connectivity apart from ordinary
+  dangling objects. This factual record will be folded into the closeout
+  object.
+- The post-record separator passes nine focused assertions, dated strict
+  governance, and whitespace; its exact test root was revalidated, removed,
+  and confirmed absent.
+- The pre-publication amended object `3aae3959e2dcf966cda26aa627fef65301c6470b`,
+  tree `cb8edf9f9aa3f40affb2fb9ca6f07266cf91e587`, retains sole parent exact M185,
+  exactly 17 paths, one matching DCO sign-off, truthful author/committer
+  identity, no merge, expected `0 87` divergence, clean worktree, zero exact
+  M186 scratch, and clean connectivity apart from 322 ordinary dangling
+  objects. The immutable final revision is reported at closeout rather than
+  embedded self-referentially here.
+
+### M186 publication boundary
+
+- A final fresh pruned fetch and direct hosted-ref query leave
+  `origin/main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` with tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; M185 is not its ancestor.
+- GitHub reports PR #251 as the latest merged pull request and no newer M186
+  prerequisite integration. Only remote `main` exists.
+- No push, PR, hosted workflow allocation, tag, release, or package
+  publication occurs. Publication may be reconsidered only after the missing
+  prerequisite stack is integrated or an explicit ancestry-safe integration
+  plan is supplied.
+
+### M186 explicit non-scope
+
+- Cross-principal behavior, unrelated process trees or sessions, hostile or
+  simultaneous racing, root authentication, link enumeration, POSIX-delete
+  flags, cross-volume behavior, ReFS/SMB/driver variation, file-ID reuse,
+  trusted generation provenance, failed launch, simultaneous loss, recovery,
+  link-count policy, typed receipts, Windows admission, cleanup authority, or
+  independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,
+  native-extension, compiler, workflow, permission, CI-allocation, tag,
+  release, publication, or version changes.
+
 ## M185 Windows hard-link alias delete/recreate ABA boundary
 
 - **Task:** Determine whether the same peer hard-link pathname can be deleted

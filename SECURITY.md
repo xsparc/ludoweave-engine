@@ -994,6 +994,15 @@ that an observed one-link state is transient, not root-confined ownership.
 Cross-principal behavior, an independent third mutation actor, cleanup
 authority, and Windows admission remain unresolved.
 
+M186's test-only [Windows independent hard-link alias mutator ABA
+probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md)
+moves the alias deletion and recreation into a distinct sibling child while
+the matching guardian child remains live. The parent only coordinates and
+observes the same identity, bytes, exact-name refusal, and `2 -> 1 -> 2`
+transition. This three-process result remains under one principal and one
+parent-owned process tree; it is not cross-principal or root-confined
+ownership evidence. Cleanup authority and Windows admission remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

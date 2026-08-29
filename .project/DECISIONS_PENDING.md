@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M186 independent hard-link alias mutation actor boundary
+
+RFC-0169 accepts one Windows-only, test-only NTFS observation. M181's matching
+guardian child protects the exact coordination name while a distinct sibling
+mutator child deletes and recreates the fixed peer alias through exact bounded
+handshakes. The parent only coordinates and observes. Identity, bytes, range
+availability, guardian liveness, and exact-name rename refusal remain stable as
+link count changes `2 -> 1 -> 2`.
+
+This resolves only whether the M185 result depends on the parent process owning
+the mutation calls: it does not on the observed host. The evidence contains
+three processes under one principal and one parent-owned process tree. It is
+not cross-principal, unrelated-session, hostile-process, simultaneous-race,
+trusted-root, enumeration, recovery, admission, or cleanup-authority evidence.
+Windows remains unadmitted.
+
+No runtime, dependency, workflow, permission, hosted allocation, release
+authority, or CI change is accepted. The existing Windows suite remains the
+only future hosted execution path.
+
 ## M185 hard-link alias delete/recreate ABA boundary
 
 RFC-0168 accepts one Windows-only, test-only NTFS observation. A coordination

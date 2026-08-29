@@ -215,6 +215,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md)
   that proves guardian admission does not freeze peer-path membership or make
   a one-link observation durable ownership.
+- A test-only [Windows independent hard-link alias mutator ABA
+  probe](security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md)
+  that reproduces the transition with a distinct sibling mutation process
+  while preserving the same-principal evidence limit.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

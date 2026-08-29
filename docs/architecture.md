@@ -4790,6 +4790,32 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0168 records the accepted test-only
 negative boundary.
 
+## M186 Windows independent hard-link alias mutator ABA
+
+M186 adds one Windows-only, test-only [independent hard-link alias mutator ABA
+probe](security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md).
+It preserves M185, runtime, examples, scripts, dependencies, and workflows.
+
+M181's matching guardian child first protects M173's ordinary coordination
+file. A distinct sibling mutator child then deletes the fixed peer alias,
+waits for an exact recreate token, recreates that alias, waits for an exact
+close token, and exits cleanly. The parent only coordinates and observes.
+Identity, bytes, range availability, guardian liveness, and exact-name rename
+refusal remain stable while link membership and count change `2 -> 1 -> 2`.
+
+This isolates the mutation calls in a third process without changing the
+negative result: guardian admission does not freeze alias membership or make a
+link-count sample durable ownership. All three processes run under one
+principal and one parent-owned process tree. Cross-principal behavior,
+unrelated process trees or sessions, root authentication, enumeration,
+recovery, admission, and cleanup authority remain unresolved. Windows remains
+unadmitted.
+
+M186 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0169 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

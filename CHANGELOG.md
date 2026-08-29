@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M186/RFC-0169's test-only [Windows independent hard-link alias mutator
+  ABA
+  probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md).
+  A distinct sibling child owns the alias deletion and recreation while the
+  guardian child remains live, preserving the three-process, same-principal
+  limit without expanding runtime or CI.
 - Add M185/RFC-0168's test-only [Windows hard-link alias delete/recreate ABA
   probe](docs/security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md).
   It shows one peer pathname and link count changing `2 -> 1 -> 2` while a
