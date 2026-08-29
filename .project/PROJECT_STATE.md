@@ -1,5 +1,101 @@
 # Project State
 
+## M185 alias delete/recreate ABA - locally complete, publication withheld
+
+- Base: fully locally validated M184 DCO commit
+  `5f4d1863984063fe3bc53951424a7b2b606f8f03`, exact tree
+  `59c2cc1580d227354cdc1c902ab5be1a8dfc6847`, sole parent exact M183.
+- Branch hygiene: neutral
+  `release/m185-windows-hard-link-alias-delete-recreate-aba-boundary`; exact
+  containment removed the redundant M184 branch name.
+- Direction: RFC-0168 accepts one current-host, Windows-only, test-only
+  negative boundary. The same peer pathname can be deleted and recreated while
+  M181's matching guardian child remains live.
+- Evidence correction: the mutation actor and guardian in M184 are separate
+  parent and child processes under one principal. M185 supersedes the prior
+  single-process wording without claiming cross-principal behavior or an
+  independent third actor.
+- Live result: one identity and exact bytes remain stable while peer-path
+  membership and link count change `2 -> 1 -> 2`; exact-name rename remains
+  refused until guardian close.
+- Scope so far: one integration probe, one architecture guard, RFC-0168, one
+  security decision, narrow M184 evidence corrections, eight public
+  registrations, and four project-record updates. Runtime, examples, scripts,
+  fixtures, workflows, metadata, dependencies, lock, version, and root exports
+  remain unchanged.
+- Focused proof: both Python files are format-, Ruff-, and strict-Pyright
+  clean. Seven architecture guards plus the live observation pass eight tests.
+  Strict docs build passes with only the known Material notice.
+- Regression: exact CPython 3.12.13 plus isolated complete frozen graphics
+  environments on 3.13.13 and 3.14.5 each pass 3,963 tests with 17 skips. The
+  74-file M149-M185 Windows boundary passes 270 tests with one skip; 20 live
+  repetitions pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass.
+- Initial package/release: two builds reproduce a 361,907-byte pure wheel and
+  2,206,707-byte source archive. Primary plus 27 additional installed-wheel
+  consumers pass. Two ten-artifact release stages are byte-identical and both
+  complete release smokes pass. Inventory contains 114 wheel and 906 source
+  entries; all four M185 source-only files occur once in the sdist and no M185,
+  test, native, or project-record payload enters the wheel.
+- Record-inclusive closure: the unchanged lock and graphics environment, all
+  559 Python files, eight focused assertions, the 74-file Windows boundary,
+  strict docs, both governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged 361,907-byte wheel at
+  SHA-256 `4b2060b9310d4ecdbab5faa136bcf34e8a34f1564b24fbdd284b151d3802d635`
+  and identical 2,209,784-byte source archives at SHA-256
+  `d6a56a08cac9ec524c4030e9a2de5c807fd25d177be65f461d321f2773fc6289`.
+  Primary wheel smoke passes; the earlier 27 consumers apply byte-for-byte.
+  Two final ten-artifact stages are identical and both release smokes pass.
+- Review: exactly 18 intended paths, zero runtime/package/CI/dependency drift,
+  zero added public development-tool identity, credential assignment, or local
+  path, and no actionable correctness, architecture, security, documentation,
+  compatibility, package-boundary, or CI-allocation finding remains.
+- Cleanup: 42 exact M185 distribution, release, profile, test, and generated-
+  docs targets were repository-confined, untracked/ignored, and top-level plus
+  nested reparse-free before deletion. All 42 were removed with sufficient
+  Windows ACL access; zero exact M185 target or generated docs site remains.
+- Final separator: both M185 Python files remain format-, Ruff-, and strict-
+  Pyright clean; eight focused assertions, dated strict governance, and
+  whitespace pass. The exact regenerated test root was revalidated, removed,
+  and confirmed absent.
+- Initial object: DCO commit `0a9c8e224f4a30c1bbe8070435fe707a0577d84d`,
+  tree `a72bd1e243921ada161322ab202ea588055349bb`, has sole parent exact M184,
+  18 intended paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 86` divergence, and clean connectivity
+  apart from ordinary dangling objects. This record is folded into the amended
+  closeout object.
+- Post-record separator: eight focused assertions, dated strict governance,
+  and whitespace pass; the exact regenerated test root was revalidated,
+  removed, and confirmed absent.
+- Static/governance: the unchanged 46-package lock and 45-package graphics
+  environment resolve, all 559 Python files are formatted, Ruff and strict
+  Pyright report zero findings, strict docs and whitespace pass, and static
+  plus dated strict governance return zero findings.
+- Publication: withheld. Fresh fetch, direct remote-ref, and GitHub
+  PR history still place hosted `main` at M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, so M184 is absent despite the
+  user's squash-merge notice.
+- Final object: the amended closeout commit retains sole parent exact M184,
+  exactly 18 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 86` divergence, zero exact M185
+  scratch, protected runtime/package/CI surfaces, and clean connectivity apart
+  from ordinary dangling objects. The immutable revision is reported at
+  closeout rather than embedded self-referentially here.
+- Final publication gate: a fresh fetch, direct hosted ref, merge-base check,
+  remote branch inventory, and authenticated PR history leave hosted `main` at
+  exact M99 and prove M184 absent. PR #251 remains the latest merge. No branch,
+  PR, hosted allocation, tag, release, or package was published.
+- Remaining: no M185 implementation work. Revisit publication only after an
+  ancestry-safe prerequisite integration; the next continuation must select a
+  new bounded direction slice.
+- Security interpretation: guardian admission does not freeze peer-path
+  membership, and a one-link observation is not durable root-confined
+  ownership. Root policy, enumeration, use-time validation, recovery, receipts,
+  cleanup authority, Windows admission, and independent-host proof remain open.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
 ## M184 alias deletion non-exclusion - locally complete, publication withheld
 
 - Base: fully locally validated M183 DCO commit

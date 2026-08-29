@@ -172,3 +172,4 @@ was adopted.
 - [RFC-0165: probe Windows hard-link alias non-exclusion](0165-probe-windows-hard-link-alias-non-exclusion.md)
 - [RFC-0166: probe Windows post-admission hard-link creation](0166-probe-windows-post-admission-hard-link-creation.md)
 - [RFC-0167: probe Windows hard-link alias deletion non-exclusion](0167-probe-windows-hard-link-alias-deletion-non-exclusion.md)
+- [RFC-0168: probe Windows hard-link alias delete/recreate ABA](0168-probe-windows-hard-link-alias-delete-recreate-aba.md)

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M185/RFC-0168's test-only [Windows hard-link alias delete/recreate ABA
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md).
+  It shows one peer pathname and link count changing `2 -> 1 -> 2` while a
+  matching guardian child remains live, and corrects the evidence boundary to
+  two processes under one principal.
 - Add M184/RFC-0167's test-only [Windows hard-link alias deletion
   non-exclusion
   probe](docs/security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md).

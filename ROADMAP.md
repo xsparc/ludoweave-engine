@@ -2891,12 +2891,45 @@ that name can be renamed with identity, count, and bytes retained.
 
 The initial hypothesis expected alias deletion to fail with sharing error 32;
 the first live run falsified it. M184 preserves the narrower deletion
-non-exclusion boundary. It is not trusted-root ownership, cross-process or
-cross-principal evidence, hard-link enumeration, link-count policy,
+non-exclusion boundary. The deletion actor and guardian are separate parent
+and child processes under one principal; M185 corrects the earlier process
+classification. This is not trusted-root ownership, cross-principal evidence,
+an independent third mutation actor, hard-link enumeration, link-count policy,
 POSIX-delete behavior, durable generation authority, recovery, complete
 admission, or cleanup authority. Windows remains unadmitted.
 
 M184 adds no runtime API, protocol, decoder, CLI command, public probe,
+production native or subprocess surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
+## M185 Windows hard-link alias delete/recreate ABA probe
+
+M185 starts from fully locally validated M184 commit
+`5f4d1863984063fe3bc53951424a7b2b606f8f03`. It adds one Windows-only,
+test-only [hard-link alias delete/recreate ABA
+probe](docs/security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md)
+under RFC-0168.
+
+The probe starts with M173's exact coordination file and a peer alias at link
+count two, then admits M181's matching guardian child. While the guardian
+remains live, the parent deletes the alias, observes link count one, recreates
+the same alias pathname, and observes link count two through both names. The
+file identity and bytes remain unchanged, byte-range ownership remains
+available, and the exact guarded pathname continues rejecting rename until
+guardian close.
+
+This records pathname-membership and link-count ABA (`2 -> 1 -> 2`) within one
+guardian lifetime. It also corrects the M184 process classification: the
+mutation actor and guardian are separate processes under one principal. It is
+not trusted-root ownership, cross-principal evidence, an independent third
+mutation actor, controlled concurrent racing, hard-link enumeration,
+link-count policy, durable generation authority, recovery, admission, or
+cleanup authority. Windows remains unadmitted.
+
+M185 adds no runtime API, protocol, decoder, CLI command, public probe,
 production native or subprocess surface, adapter, cache access, cleanup
 authority, dependency, native extension, compiler requirement, version,
 workflow job/allocation, permission, credential, release authority, or CI

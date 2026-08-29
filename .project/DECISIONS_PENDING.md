@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M185 hard-link alias delete/recreate ABA boundary
+
+RFC-0168 accepts one Windows-only, test-only NTFS observation. A coordination
+file and peer alias begin with the same `FILE_ID_INFO` and link count two.
+While M181's matching guardian child remains live, the parent deletes the
+alias, observes count one, recreates the same pathname, and observes count two
+through both names. Identity, bytes, range availability, guardian liveness,
+and exact-name rename refusal remain stable across the transition.
+
+This resolves only whether guardian admission freezes membership of one peer
+pathname: it does not on the observed host. It also corrects M184's process
+classification; the mutation actor and guardian are two processes under one
+principal. Trusted root placement, link enumeration, cross-principal behavior,
+an independent third actor, controlled concurrent racing, link-count policy,
+use-time revalidation, file-ID reuse, filesystem variation, durable generation,
+recovery, typed receipts, cleanup authority, independent-host proof, and
+Windows admission remain pending.
+
+RFC-0168 does not authorize runtime code, a public probe, native declarations,
+cache access, mutation, dependency, workflow, CI allocation, permission,
+release authority, or publication. No hosted check is added.
+
 ## M184 hard-link alias deletion non-exclusion boundary
 
 RFC-0167 accepts one Windows-only, test-only NTFS observation. A coordination
@@ -14,7 +36,8 @@ name.
 This resolves only the initial all-links deletion-exclusion hypothesis: it is
 false on the observed host. Exact-name protection and a surviving one-link
 sample are not root-confined ownership. Trusted root placement, link
-enumeration, cross-process/principal behavior, POSIX-delete flags, link-count
+enumeration, cross-principal behavior, an independent third mutation actor,
+POSIX-delete flags, link-count
 policy, use-time revalidation, file-ID reuse, filesystem variation, durable
 generation, recovery, typed receipts, cleanup authority, independent-host
 proof, and Windows admission remain pending.
@@ -34,7 +57,8 @@ protect the exact name it opened.
 This resolves only whether current guardian admission freezes the link set: it
 does not on the observed host. Expected identity and a prior count sample are
 not root-confined ownership. Trusted root placement, link enumeration,
-cross-process/principal behavior, alias deletion, link-count policy, use-time
+cross-principal behavior, an independent third mutation actor, alias deletion,
+link-count policy, use-time
 revalidation, file-ID reuse, filesystem variation, durable generation,
 recovery, typed receipts, cleanup authority, independent-host proof, and
 Windows admission remain pending.

@@ -72,10 +72,13 @@ admission and use. A count of one after alias deletion does not prove that an
 unknown alias cannot exist or that a new alias cannot immediately be created.
 M184 does not make that policy decision.
 
-This result does not prove behavior for another process or principal,
-enumerate links, authenticate either directory, cover POSIX-delete flags,
-cross a volume, or establish identical behavior on ReFS, SMB, other drivers,
-Windows versions, or independent hosts. It does not authorize mutation.
+The deletion actor and guardian are separate parent and child processes under
+one principal. This result does not prove cross-principal behavior, an
+independent third mutation actor, unrelated process trees, link enumeration,
+authenticated directories, POSIX-delete flags, cross-volume behavior, or
+identical behavior on ReFS, SMB, other drivers, Windows versions, or
+independent hosts. It does not authorize mutation. M185 records this corrected
+process classification and the combined delete/recreate boundary.
 
 Windows remains unadmitted. Trusted identity and generation provenance,
 durable state, root placement, link enumeration, link-count policy,

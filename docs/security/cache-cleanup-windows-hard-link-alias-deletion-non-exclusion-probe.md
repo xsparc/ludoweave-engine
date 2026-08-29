@@ -24,7 +24,7 @@ to fall from two to one, and the exact opened pathname to keep rejecting
 rename.
 
 Broad `DeleteFileW` and Python in-use deletion descriptions did not predict
-the observed alias-entry behavior for this particular same-process,
+the observed alias-entry behavior for this particular parent/child,
 same-principal NTFS setup. The result is deliberately not generalized beyond
 the observed host.
 
@@ -69,12 +69,15 @@ history is acceptable, when identity and link count are revalidated, how a
 change fails closed, and which typed receipt records that refusal. M184 does
 not define those policies or imply that enumeration itself would be race-free.
 
-This probe uses one process and one principal. It does not establish behavior
-for another process or principal, enumerate hard links, authenticate parent
-directories, test POSIX-delete flags, cross volumes, or cover ReFS, SMB, other
-drivers, or independent Windows hosts. File-ID reuse, durable generation
-provenance, failed launch, simultaneous owner loss, hostile handles, mapped
-views, recovery, and cleanup authority remain unresolved.
+The deletion actor and guardian are separate parent and child processes under
+one principal. This probe does not establish cross-principal behavior, an
+independent third mutation actor, unrelated process trees, hard-link
+enumeration, authenticated parent directories, POSIX-delete flags,
+cross-volume behavior, or coverage of ReFS, SMB, other drivers, or independent
+Windows hosts. File-ID reuse, durable generation provenance, failed launch,
+simultaneous owner loss, hostile handles, mapped views, recovery, and cleanup
+authority remain unresolved. M185 records this corrected process
+classification and the combined delete/recreate boundary.
 
 No runtime or package surface changes. No production subprocess, native API,
 cache mutation, dependency, workflow, permission, or hosted allocation is

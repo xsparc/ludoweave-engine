@@ -984,6 +984,16 @@ rejecting rename. Link removal is therefore not excluded, and the surviving
 identity/count sample is not root-confined ownership. Windows remains
 unadmitted.
 
+M185's test-only [Windows hard-link alias delete/recreate ABA
+probe](docs/security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md)
+combines deletion and recreation of the same peer pathname while the matching
+guardian child remains live. The parent process observes one identity and
+exact bytes while link count changes `2 -> 1 -> 2`; exact-name rename remains
+refused until guardian close. This two-process, same-principal result shows
+that an observed one-link state is transient, not root-confined ownership.
+Cross-principal behavior, an independent third mutation actor, cleanup
+authority, and Windows admission remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

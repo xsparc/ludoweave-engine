@@ -211,6 +211,10 @@ attestation, with the same allocation topology.
 - A test-only [Windows hard-link alias deletion non-exclusion
   probe](security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md)
   that proves exact-name protection does not exclude peer-link removal.
+- A test-only [Windows hard-link alias delete/recreate ABA
+  probe](security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md)
+  that proves guardian admission does not freeze peer-path membership or make
+  a one-link observation durable ownership.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -4764,6 +4764,32 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0167 records the accepted test-only
 negative boundary.
 
+## M185 Windows hard-link alias delete/recreate ABA
+
+M185 adds one Windows-only, test-only [hard-link alias delete/recreate ABA
+probe](security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md).
+It preserves M184, runtime, examples, scripts, dependencies, and workflows
+apart from a narrow correction to M184's process classification.
+
+The probe begins with two names for M173's ordinary coordination file and
+admits M181's matching guardian child. While that child remains live, the
+parent deletes the peer alias, observes link count one, recreates the same
+pathname, and observes link count two through both names. Identity, bytes,
+range availability, guardian liveness, and exact-name rename refusal remain
+stable across the `2 -> 1 -> 2` transition.
+
+This establishes that guardian admission does not freeze pathname membership
+or make one link-count observation durable ownership. It also makes the
+process boundary explicit: the mutation actor and guardian are separate
+processes under one principal. Cross-principal behavior, an independent third
+actor, root authentication, enumeration, recovery, admission, and cleanup
+authority remain unresolved. Windows remains unadmitted.
+
+M185 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0168 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
