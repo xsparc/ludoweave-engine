@@ -184,3 +184,4 @@ was adopted.
 - [RFC-0177: probe Windows late valid-close delivery failure after invalid settlement](0177-probe-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement.md)
 - [RFC-0178: probe Windows buffered-close delivery failure after invalid settlement](0178-probe-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement.md)
 - [RFC-0179: probe Windows repeated buffered close after delivery failure](0179-probe-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure.md)
+- [RFC-0180: probe Windows closed-stream flush after delivery failure](0180-probe-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure.md)

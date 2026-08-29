@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M197/RFC-0180's test-only [Windows hard-link alias mutator closed-stream
+  flush after delivery-failure
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md).
+  It requires one flush on M196's closed stream to raise generic `ValueError`
+  without widening runtime or CI surface.
 - Add M196/RFC-0179's test-only [Windows hard-link alias mutator repeated
   buffered-close after delivery-failure
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md).

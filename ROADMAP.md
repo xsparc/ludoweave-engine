@@ -3287,6 +3287,38 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite remains the only future hosted execution
 path; no hosted check is added.
 
+## M197 Windows hard-link alias mutator closed-stream flush after delivery failure probe
+
+M197 starts from fully locally validated M196 commit
+`b4a7623541767c191750cc404781e11f370be133`. It adds one Windows-only,
+test-only [hard-link alias mutator closed-stream flush after delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md)
+under RFC-0180.
+
+The probe retains M186's unchanged sibling mutator, M181's matching guardian,
+and M196's byte-for-byte repeated-close helper. After M195's first `close()`
+reports generic `OSError`, M196's second `close()` returns `None`, and the
+stream remains closed, the parent calls `flush()` exactly once. That call
+raises generic `ValueError` and leaves the concrete stream closed. No exact
+message or numeric detail is frozen. Alias identity, bytes, link count two,
+range availability, guardian protection, final rename, and complete cleanup
+remain unchanged.
+
+This records closed-stream flush disposition for one fixed stream and fixture.
+It does not establish a second native write, delivery retry, portable behavior
+for arbitrary streams, acknowledgement, durable commit, recovery, cleanup
+admission, or a production protocol contract. Cross-principal behavior,
+inherited or duplicated writers, hostile simultaneous racing,
+ReFS/SMB/other-host evidence, Windows admission, and cleanup authority remain
+unresolved.
+
+M197 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite remains the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -1,5 +1,129 @@
 # Current task
 
+## M197 Windows hard-link alias mutator closed-stream flush boundary
+
+- **Task:** Determine the concrete parent-stream result of one `flush()` after
+  M196's failed first close, repeated-close no-op, and retained closed state.
+- **Status:** Local implementation and validation complete through authority,
+  direction, exact M196 baseline, governance, branch containment, test-first
+  implementation, supported-Python regression, concentrated/repeated Windows
+  behavior, graphics/product checks, reproducible distribution/release,
+  findings-first review, final separators, guarded cleanup, and DCO audit.
+  Hosted publication is withheld because remote `main` remains at M99 and does
+  not contain M196.
+- **Base:** Fully locally validated M196 DCO commit
+  `b4a7623541767c191750cc404781e11f370be133`, tree
+  `49257842225afc0a7d304e011a9e601a918c19de`, sole parent exact M195.
+- **Branch:**
+  `release/m197-windows-alias-mutator-buffered-flush-after-close-delivery-failure-boundary`;
+  the redundant local M196 branch name was removed after exact M197 branch
+  creation retained its object.
+
+### M197 acceptance boundary
+
+- Accept RFC-0180 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, M186's unchanged
+  bounded-output mutator child, and M196's byte-for-byte repeated-close helper.
+- Require M195's first `close()` to raise generic `OSError`, M196's second
+  `close()` to return `None`, and the stream closed. Call `flush()` exactly
+  once, require generic `ValueError` without message or numeric assertion, and
+  require the stream still closed.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process/stream/native/range cleanup.
+- State the result narrowly as one concrete closed-stream flush disposition.
+  Do not claim a second native write, delivery retry, acknowledgement,
+  portability, durable recovery, Windows admission, or cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M197 development evidence so far
+
+- Exact M196 focused baseline passed nine tests in 2.35 seconds.
+- Static strict governance returned zero findings. The first dated invocation
+  was denied managed-cache access before checking; its exact access-enabled
+  `2026-08-30` rerun returned zero findings across three objectives, seven
+  requirements, and four work items.
+- Current Python buffered-I/O and CPython implementation, Microsoft
+  `WriteFile`, GitHub least-privilege/billing, NIST SSDF, and SLSA 1.2 sources
+  support one bounded closed-flush observation, its strict non-claims, and no
+  hosted allocation.
+- Neutral M197 was created from exact M196, and the redundant local M196 branch
+  name was removed without deleting its retained object.
+- The first live M197 probe passed one test in 0.48 seconds. The intentional
+  architecture-red phase passed six behavior/containment checks and failed
+  only the three absent RFC/security/public-registration contracts.
+- RFC-0180, the security record, and eight public registrations now describe
+  the selected boundary. Ruff requested only mechanical formatting; both new
+  Python files then became format-, lint-, and strict-Pyright clean, and all
+  nine focused checks passed.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 complete suites each pass 4,071
+  tests with 17 skips. The exact 98-file Windows boundary passes 378 tests with
+  one established skip, and 20 independent M197 live invocations pass.
+- Ten real-wgpu tests, fresh two-/three-workload M7 profiles, eight profile-
+  schema tests, null/wgpu Clockwork Arena, and Agent World Builder pass with
+  their established deterministic identities.
+- Two builds are byte-identical; installed-wheel and scene-wheel smoke pass;
+  two identical ten-artifact release stages pass complete release smoke. The
+  wheel has 114 pure entries, the source archive has 955 entries, and all four
+  M197 evidence files are source-only.
+- Findings-first review retains exactly 16 intended paths, zero protected-
+  surface diff, 14 passing hygiene/M197 checks, zero forbidden wheel payload,
+  and zero development-identity, credential-assignment, or machine-local-path
+  match across 874 added lines. No actionable finding remains.
+- The record-inclusive separator resolves the unchanged lock, keeps all 584
+  Python files static-clean, passes 14 review checks, strict docs, static and
+  current-date strict governance, and whitespace. Record-inclusive artifacts,
+  guarded cleanup, DCO, and hosted reconciliation remain.
+- Two record-state builds reproduce a 362,790-byte pure wheel at SHA-256
+  `63f4574a3ceda02023dc4580ab9da463ce457964296e59bcdd03a7ccca97a935`
+  and a 2,303,731-byte source archive at SHA-256
+  `e7c59a35a3dc05cd0434672ed5746782ab3061f8f6e0f2cc6a9e21adb1c453a5`.
+  Installed-wheel and scene-wheel smoke pass; two byte-identical ten-artifact
+  release stages pass complete release smoke. Inventory remains 114/955 with
+  exact source-only confinement and zero forbidden wheel entry.
+- The final pre-cleanup separator keeps all 584 Python files static-clean,
+  passes 14 review checks, strict docs, current-date strict governance, and
+  whitespace. Guarded cleanup, DCO, and hosted reconciliation remain.
+- Guarded cleanup proved all 49 exact `.tmp/m197*` targets repository-
+  confined, ignored, untracked, and top-level plus recursively reparse-free,
+  removed them exactly, and confirmed zero remains. Final post-cleanup
+  separator, DCO, and hosted reconciliation remain.
+- Final post-cleanup validation keeps both M197 Python files static-clean,
+  passes all 14 review checks, strict docs, current-date strict governance, and
+  whitespace. The two exact regenerated review/docs directories were
+  revalidated, removed, and zero M197 scratch remains. DCO and hosted-
+  publication reconciliation are the remaining closeout gates.
+- Pre-commit audit proves exact M196 HEAD/tree, exactly 16 intended paths,
+  zero protected-surface diff, only local `main` and neutral M197, expected
+  `0 97` divergence, configured maintainer identity, zero M197 scratch, clean
+  whitespace, and clean object connectivity.
+- Initial DCO commit `18615c8d17ad51452a6ca7d73c140fe2be2f7fc6`, tree
+  `610aa576ad204a3dc44264641b7c7281cc6f5a59`, has sole parent exact M196,
+  exactly 16 intended paths, one matching sign-off, consistent configured
+  author/committer identity, no merge, expected `0 98` divergence, a clean
+  worktree, zero M197 scratch, clean whitespace, and clean object connectivity.
+  This factual record is folded into one closeout amendment.
+- A fresh pruned fetch and authenticated hosted audit leave `origin/main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M196 absent and
+  not an ancestor, show only remote `main`, and report PR #251 as latest.
+  Publishing M197 would expose the absent M100-M196 stack, so no push, PR,
+  hosted allocation, tag, release, or package publication occurs.
+
+### M197 explicit non-scope
+
+- Any closed-stream operation other than one `flush()`; exact exception text;
+  native-call tracing; pre-settlement or concurrent late commands; arbitrary
+  buffered, partial, repeated, or larger input; duplicated/inherited writers;
+  cross-principal or unrelated-process behavior; hostile simultaneous racing;
+  authenticated framing/acknowledgement; crash/power loss; durable intent,
+  rollback, reconciliation, typed recovery receipts; ReFS/SMB/other-host
+  evidence; Windows admission; and cleanup authority.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M196 Windows hard-link alias mutator repeated buffered-close boundary
 
 - **Task:** Determine whether a second parent-side `close()` is a no-op after

@@ -1109,6 +1109,16 @@ repeated-close disposition evidence for one fixed sequence and fixture; it
 does not retry delivery and creates no acknowledgement, durable recovery, or
 cleanup authority. Windows remains unadmitted.
 
+M197's test-only [Windows hard-link alias mutator closed-stream flush after
+delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md)
+reuses M196's exact first-close failure, second-close no-op, and closed state.
+One later `flush()` raises generic `ValueError` and leaves the concrete stream
+closed. This is only local closed-stream flush disposition evidence for one
+fixed sequence and fixture; it does not establish a second native write,
+delivery retry, acknowledgement, durable recovery, or cleanup authority.
+Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

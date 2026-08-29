@@ -5113,6 +5113,39 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0179 records the accepted test-only
 boundary.
 
+## M197 Windows hard-link alias mutator closed-stream flush after delivery failure
+
+M197 adds one Windows-only, test-only [hard-link alias mutator closed-stream
+flush after delivery-failure
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md).
+It preserves M186-M196, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows byte-for-byte.
+
+The probe delegates M196's exact invalid settlement, late-byte buffer
+acceptance, first-close generic `OSError`, second-close `None`, and resulting
+closed state to the protected M196 helper. It then calls `flush()` exactly
+once. The call raises generic `ValueError` and leaves the concrete stream
+closed. It freezes no exact message or numeric detail and does not establish a
+second native write, retry, or child acknowledgement.
+
+The alias retains shared identity, bytes, link count two, and range
+availability while the guardian remains live and protective. Exact guardian
+release, final rename, and complete process, stream, native-handle, and range
+cleanup remain unchanged.
+
+This is closed-stream flush disposition evidence for one fixed stream and
+fixture. It is not arbitrary closed-stream-operation, portable stream or
+exception behavior, general framing, arbitrary buffered input,
+acknowledgement semantics, durable commit, repair, or recovery evidence.
+Cross-principal behavior, inherited/duplicated writers, hostile simultaneous
+racing, ReFS/SMB/other-host evidence, Windows admission, and cleanup authority
+remain unresolved.
+
+M197 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0180 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
