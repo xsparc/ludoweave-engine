@@ -237,6 +237,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md)
   that records exact fixture exit 5 and the persistent alias-present, two-link
   state after writing and flushing one fixed invalid byte following recreation.
+- A test-only [Windows hard-link alias mutator valid close prefix with trailing
+  byte after recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md)
+  that records exact `closed`, exit 0, and the persistent two-link state after
+  writing and flushing fixed `!?` once following recreation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -3094,6 +3094,40 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M191 Windows hard-link alias mutator valid close prefix with trailing byte after recreation probe
+
+M191 starts from fully locally validated M190 commit
+`3d84bda9e41caf82a683e359210b7b9e74e9f8cc`. It adds one Windows-only,
+test-only [hard-link alias mutator valid close prefix with trailing byte after
+recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md)
+under RFC-0174.
+
+The probe retains M186's unchanged sibling mutator and M181's matching
+guardian. After exact child-owned alias deletion and recreation, it writes the
+fixed two-byte sequence `!?` once, requires both bytes accepted and flushed,
+then requires exact `closed` while the parent writer remains open. The child
+settles with exit 0, stdout EOF, and empty stderr. The alias remains present
+with shared identity, bytes, and link count two while the guardian remains live
+and protective.
+
+This records bounded byte-prefix acceptance: the fixture reads the valid
+leading close byte and does not reject the one trailing invalid byte. It is not
+general message framing, arbitrary malformed-input handling, separate- or
+partial-write evidence, durable commit, recovery, cleanup admission, or a
+production protocol contract. The observation remains three processes under
+one principal and one parent-owned process tree. Authenticated authority,
+explicit framing, durable intent, reconciliation, cross-principal evidence,
+ReFS/SMB/other-host evidence, Windows admission, and cleanup authority remain
+unresolved.
+
+M191 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

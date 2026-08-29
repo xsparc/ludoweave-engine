@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M191 hard-link alias mutator valid-close-prefix trailing-byte boundary
+
+RFC-0174 accepts one Windows-only, test-only NTFS observation. After M186's
+unchanged mutator child emits exact `recreated`, the parent writes fixed `!?`
+once and flushes. The child consumes the valid leading byte, emits exact
+`closed` while the parent writer remains open, and settles with exit 0, stdout
+EOF, and empty stderr while M181's matching guardian remains live and
+protective.
+
+The peer alias remains present. Original and alias retain shared identity,
+bytes, two-link count, and range availability until exact guardian close
+permits rename. This resolves only one fixed byte-prefix case on the observed
+host. It is three-process, same-principal evidence under one parent-owned
+process tree, not general message framing, authenticated authority, durable
+commit, recovery, or cleanup admission.
+
+Arbitrary malformed, partial, separate, repeated, or longer input;
+duplicated/inherited writers; cross-principal and unrelated-process behavior;
+simultaneous racing; explicit framing; trusted-root placement; enumeration and
+use-time policy; durable intent, quarantine, idempotency, reconciliation, typed
+recovery receipts; independent-host proof; Windows admission; and cleanup
+authority remain pending. No runtime, dependency, fixture, workflow,
+permission, hosted allocation, release authority, or CI change is accepted.
+
 ## M190 hard-link alias mutator post-recreate invalid-control boundary
 
 RFC-0173 accepts one Windows-only, test-only NTFS observation. M186's unchanged

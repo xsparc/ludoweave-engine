@@ -79,6 +79,7 @@ nav:
   - Windows hard-link alias mutator abrupt-loss-after-recreate probe: security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md
   - Windows hard-link alias mutator control-pipe EOF after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md
   - Windows hard-link alias mutator invalid control token after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md
+  - Windows hard-link alias mutator valid close prefix with trailing byte after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -258,6 +259,7 @@ nav:
       - RFC-0171 - Probe Windows hard-link alias mutator abrupt loss after recreation: rfcs/0171-probe-windows-hard-link-alias-mutator-abrupt-loss-after-recreate.md
       - RFC-0172 - Probe Windows alias-mutator control-pipe EOF after recreation: rfcs/0172-probe-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate.md
       - RFC-0173 - Probe Windows alias-mutator invalid control token after recreation: rfcs/0173-probe-windows-hard-link-alias-mutator-invalid-control-token-after-recreate.md
+      - RFC-0174 - Probe Windows alias-mutator valid close prefix with trailing byte after recreation: rfcs/0174-probe-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

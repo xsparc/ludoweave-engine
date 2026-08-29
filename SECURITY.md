@@ -1048,6 +1048,17 @@ evidence, not control-pipe EOF, abrupt termination, arbitrary malformed-input,
 durable commit, crash consistency, or recovery evidence. Cleanup authority
 and Windows admission remain unresolved.
 
+M191's test-only [Windows hard-link alias mutator valid close prefix with one
+trailing byte after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md)
+writes and flushes fixed `!?` once after exact recreation. The unchanged child
+emits exact `closed` and exits 0 while the parent writer remains open, leaving
+the peer alias present with shared identity, bytes, and link count two while
+the guardian remains protective. This three-process, same-principal result is
+bounded byte-prefix acceptance evidence, not general message framing,
+arbitrary malformed-input handling, durable commit, recovery, or cleanup
+authority. Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

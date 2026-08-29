@@ -1,5 +1,93 @@
 # Project State
 
+## M191 post-recreate valid close prefix with trailing byte - locally complete, publication withheld
+
+- Base: fully locally validated M190 DCO commit
+  `3d84bda9e41caf82a683e359210b7b9e74e9f8cc`, exact tree
+  `6d49c1eeb2b383a6bf267fb05a44e8a4326e4bb8`, sole parent exact M189.
+- Branch hygiene: neutral
+  `release/m191-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-boundary`;
+  the redundant M190 branch name was removed after exact branch creation.
+- Direction: RFC-0174 accepts one current-host Windows-only, test-only
+  byte-prefix acceptance boundary using M186's unchanged mutator fixture.
+- Live result: after exact recreation, one flushed `!?` write produces exact
+  `closed` and exit 0 while the parent writer is still open. The peer alias
+  remains present with shared identity, bytes, and link count two while the
+  guardian remains live and protective.
+- Evidence limit: one fixed two-byte sequence, three processes, one principal,
+  and one parent-owned tree. This is not arbitrary malformed input, general
+  message framing, durable commit, recovery, Windows admission, or cleanup
+  authority.
+- Scope: one integration probe, one architecture guard, RFC-0174, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: the exact M190 baseline passed nine tests; the new live
+  observation passed first run; both Python files are format-, Ruff-, and
+  strict-Pyright clean; all nine M191 focused checks pass; strict docs and both
+  governance modes pass.
+- Regression: exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5
+  each pass 4,017 tests with 17 skips. The first 3.12 run correctly failed one
+  new non-neutral evidence phrase; the corrected hygiene guard and full suite
+  pass. The 86-file Windows boundary passes 324 tests with one skip; 20 live
+  repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder reproduce established
+  deterministic identities.
+- Static/governance: the 46-package lock and 45-package graphics environment
+  resolve; all 572 Python files are formatted; Ruff, strict Pyright, strict
+  docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,338-byte wheel at SHA-256
+  `301aee0997a554793462edcadd63081ee8b4ee85f75c51706466a6a408d57bc6`
+  and a 2,257,594-byte sdist at SHA-256
+  `55b2c01d16800c959207bb925a5b7cbf2ad9fbb6c7b610de3cea64b0002fa0e5`.
+  Installed-wheel smoke and two identical ten-artifact release-stage smokes
+  pass. Inventory is 114 wheel/931 sdist entries; all M191 evidence is
+  source-only and no forbidden wheel payload exists.
+- Review: exactly 16 intended paths remain. Runtime, package code, fixtures,
+  examples, scripts, workflows, metadata, dependencies, lock, version, and
+  root exports have zero diff. Tool-neutrality and architecture guards pass;
+  corrected added-content scans find no credential or local-path material. No
+  actionable finding remains.
+- Final distribution: two record-state builds reproduce the unchanged wheel
+  and identical 2,258,812-byte source archives at SHA-256
+  `4cc112204d1f18df5727ced8a84e6ec85e5e076c4ca3c78d059280419a510292`.
+  Installed-wheel smoke passes; two final ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Final separator: both Python files remain format-, Ruff-, and strict-Pyright
+  clean; 14 exact hygiene/architecture/live checks, strict docs, dated
+  governance, and whitespace pass.
+- Cleanup: all 49 exact M191 test, environment, profile, docs, distribution,
+  and release targets were repository-confined, ignored, and top-level plus
+  recursively reparse-free. Guarded removal completed and zero M191 target or
+  generated site remains.
+- Post-record separator: both Python files remain static-clean; 14 exact
+  hygiene/architecture/live checks, strict docs, dated governance, and
+  whitespace pass. Its two exact generated targets were revalidated, removed,
+  and confirmed absent.
+- Initial DCO commit `7313bae15ab1f830891c521dc6ec5ef9b69f990f`, tree
+  `1dd6beb3c0dd6205ca8f16c6dc9c8588fee22790`, has sole parent exact M190,
+  exactly 16 intended paths, one matching sign-off, truthful identity, no
+  merge, expected `0 92` divergence, clean worktree, zero M191 scratch, and
+  clean connectivity apart from ordinary dangling records. This record is
+  folded into the closeout amendment; the successor milestone records its
+  final hash without self-reference.
+- Pre-publication amended DCO object
+  `a4da22845a844d934ae5b5e3914ebbd989de0f00`, tree
+  `cd9da89a59bbcf4338c558ebdad88c4aa2c718d4`, has sole parent exact M190,
+  exactly 16 paths, one matching sign-off, truthful identity, no merge, clean
+  worktree, expected `0 92` divergence, zero scratch, and clean connectivity.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry tests, branch inventory, authenticated account check, and recent PR
+  history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, prove M190 absent, report PR
+  #251 as latest, and show no hosted milestone branch. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- This reconciliation record is folded into the final closeout amendment; the
+  successor milestone records its ultimate hash without self-reference. Local
+  closeout is complete.
+
 ## M190 post-recreate mutator invalid control - locally complete, publication withheld
 
 - Base: fully locally validated M189 DCO commit
@@ -51,20 +139,18 @@
 - The final post-record separator passes both Python files, all nine focused
   checks, strict docs, dated governance, and whitespace; its two exact
   generated targets were revalidated, removed, and confirmed absent.
-- Initial DCO commit `e30a6e8f9b3351a197f96e3ed05314355288b7af`,
-  tree `42881b058857857678abc2839f34d2144a594b99`, has sole parent exact
+- Final DCO commit `3d84bda9e41caf82a683e359210b7b9e74e9f8cc`,
+  tree `6d49c1eeb2b383a6bf267fb05a44e8a4326e4bb8`, has sole parent exact
   M189, exactly 16 paths, one matching sign-off, truthful author/committer
   identity, no merge, clean worktree, expected `0 91` divergence, zero M190
-  scratch, and clean connectivity apart from ordinary dangling records. This
-  record is folded into the closeout object.
+  scratch, and clean connectivity apart from ordinary dangling records.
 - Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
   ancestry tests, branch inventory, and authenticated PR history leave hosted
   `main` at exact M99
   `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M189 absent, report
   PR #251 as the latest merge, and show no hosted milestone branch. No branch,
   PR, hosted allocation, tag, release, or package is published.
-- Final record amendment and immutable amended-object audit remain before local
-  closeout.
+- Local closeout is complete; M191 retains this exact object as its base.
 
 ## M189 post-recreate mutator control EOF - locally complete, publication withheld
 
