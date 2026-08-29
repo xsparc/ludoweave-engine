@@ -2996,6 +2996,38 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M188 Windows hard-link alias mutator abrupt-loss-after-recreate probe
+
+M188 starts from fully locally validated M187 commit
+`2f0869c3aeb632daa68a2e460f2b2cb3d34a1e7e`. It adds one Windows-only,
+test-only [hard-link alias mutator abrupt-loss-after-recreate
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md)
+under RFC-0171.
+
+The probe retains M186's fixed sibling mutator and M181's matching guardian.
+After exact child-owned alias deletion, the parent sends the recreate token and
+requires exact `recreated`, restored shared identity and bytes, link count two,
+and range availability through both names. Before any close token, the parent
+terminates and reaps the mutator, requires a nonzero exit and empty remaining
+output, and verifies that the alias remains present with the same two-link
+identity while the guardian remains live and protective.
+
+This records negative rollback evidence: abrupt process loss after recreation
+does not automatically restore the preceding one-link state. It is not durable
+commit, recovery, crash consistency, or cleanup admission. The observation
+remains three processes under one principal and one parent-owned process tree.
+Cross-principal and unrelated-process behavior, hostile simultaneous racing,
+durable intent, quarantine, reconciliation, typed recovery receipts,
+ReFS/SMB/other-host evidence, Windows admission, and cleanup authority remain
+unresolved.
+
+M188 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

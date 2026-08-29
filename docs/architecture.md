@@ -4845,6 +4845,36 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0170 records the accepted test-only
 negative boundary.
 
+## M188 Windows hard-link alias mutator abrupt loss after recreation
+
+M188 adds one Windows-only, test-only [hard-link alias mutator abrupt-loss-
+after-recreate
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md).
+It preserves M186-M187, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows.
+
+M181's matching guardian child first protects M173's ordinary coordination
+file. M186's unchanged sibling mutator child deletes the peer alias, receives
+the exact recreate token, recreates the alias, and emits exact `recreated`.
+Before any close token, the parent terminates and reaps that mutator through the
+existing bounded helper. The guardian remains live, the alias remains present,
+and both names retain shared identity, bytes, two-link count, range
+availability, and exact-name rename refusal. After exact guardian close, the
+parent renames the original and verifies shared identity and complete process,
+stream, native-handle, and range cleanup.
+
+The persistent two-link state is negative rollback evidence, not durable
+commit, repair, or recovery. The observation remains three processes under one
+principal and one parent-owned process tree. Cross-principal behavior,
+unrelated processes, simultaneous racing, crash consistency, durable recovery,
+root authentication, hard-link policy, admission, and cleanup authority remain
+unresolved. Windows remains unadmitted.
+
+M188 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0171 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

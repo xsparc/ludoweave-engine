@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M188 hard-link alias mutator post-recreate abrupt-loss boundary
+
+RFC-0171 accepts one Windows-only, test-only NTFS observation. M186's unchanged
+mutator child deletes the fixed peer alias, receives the exact recreate token,
+recreates the alias, and emits exact `recreated`; before any close token, the
+parent terminates and reaps the child and requires a nonzero exit with no
+remaining output. M181's matching guardian remains live and continues
+protecting the exact original name.
+
+The peer alias remains present after the mutator is reaped. Original and alias
+retain shared identity, bytes, two-link count, and range availability until
+exact guardian close permits rename. This resolves only the residual state for
+this controlled failure phase on the observed host: there is no automatic
+rollback to one link. It remains three-process, same-principal evidence under
+one parent-owned process tree, not durable commit or recovery evidence.
+
+Cross-principal and unrelated-process behavior, simultaneous racing, crash and
+power-loss consistency, trusted-root placement, enumeration, use-time policy,
+durable intent, quarantine, idempotency, reconciliation, typed recovery
+receipts, independent-host proof, Windows admission, and cleanup authority
+remain pending. No runtime, dependency, fixture, workflow, permission, hosted
+allocation, release authority, or CI change is accepted.
+
 ## M187 hard-link alias mutator abrupt-loss boundary
 
 RFC-0170 accepts one Windows-only, test-only NTFS observation. M186's unchanged

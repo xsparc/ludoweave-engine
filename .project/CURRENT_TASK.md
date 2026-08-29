@@ -1,5 +1,134 @@
 # Current task
 
+## M188 Windows hard-link alias mutator abrupt-loss-after-recreate boundary
+
+- **Task:** Determine the residual namespace state when M186's independent
+  mutator child is terminated after exact `recreated` and before the close
+  token.
+- **Status:** Locally complete through direction, implementation,
+  supported-Python regression, concentrated/repeated Windows behavior,
+  rendering/profiles, record-inclusive distribution/release rehearsal,
+  governance, findings-first review, cleanup, and publication-safety recheck.
+  Final DCO object creation and audit are in progress; publication is withheld
+  because hosted `main` lacks M100-M187.
+- **Base:** Fully locally validated M187 DCO commit
+  `2f0869c3aeb632daa68a2e460f2b2cb3d34a1e7e`, tree
+  `9efa5bcdf44ca8cd47831f9eacabe207383587a1`, sole parent exact M186.
+- **Branch:**
+  `release/m188-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-boundary`;
+  exact containment removed the redundant local M187 branch name.
+
+### M188 acceptance boundary
+
+- Accept RFC-0171 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, and M186's
+  unchanged fixed mutator child.
+- Require initial shared identity/link count two, guardian `ready`, exact-name
+  rename error 32, child-owned alias deletion and recreation, and exact
+  `deleted` then `recreated` events.
+- Before any close token, terminate and reap the mutator through the existing
+  bounded helper; require a nonzero exit and empty remaining output.
+- While the guardian remains live, require alias presence, shared original and
+  alias identity/bytes, link count two, range availability through both names,
+  and continued exact-name rename refusal.
+- Close the guardian exactly, rename the original, and require displaced and
+  alias identities, two-link counts, bytes, processes, streams, native handles,
+  and ranges to settle completely.
+- State the evidence precisely: abrupt process loss after recreation leaves the
+  alias present and does not automatically roll back to one link. This is not
+  durable commit, recovery, crash consistency, Windows admission, or cleanup
+  authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M188 development evidence so far
+
+- Current Microsoft process and hard-link documentation plus Python's
+  subprocess contract support a bounded terminate/wait observation and reject
+  rollback or durability claims. GitHub matrix and NIST SSDF status justify no
+  CI or conformance change.
+- The exact M187 architecture/live baseline passes nine tests. Static and dated
+  strict governance pass; one dated invocation was sandbox-denied before the
+  checker and its exact access-enabled rerun passed.
+- The first combined implementation run passed the live observation and seven
+  guards; one public-registration guard failed as intended. After eight narrow
+  public registrations, both Python files pass format, Ruff, and strict
+  Pyright, eight guards plus the live probe pass nine tests, strict docs pass,
+  and whitespace is clean.
+- Exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 complete frozen
+  45-package graphics environments each pass 3,990 tests with 17 skips in
+  299.97, 286.40, and 303.36 seconds.
+- The exact 40 M149-M188 architecture modules plus 40 Windows cache-cleanup
+  integration modules pass 297 tests with one established skip. Twenty
+  independent live repetitions pass in 0.36-0.45 seconds.
+- Ten real-wgpu tests, two/three-workload profiles, eight profile-schema tests,
+  Clockwork Arena, and Agent World Builder reproduce their established
+  identities.
+- The unchanged 46-package lock and exact 45-package graphics environment
+  resolve. All 566 Python files are format-clean; Ruff and strict Pyright pass.
+- Two builds reproduce a 362,127-byte pure wheel at SHA-256
+  `228066129979b3eceb3c766e66d7ed2577172998e76e309635a324a24a4f1660`
+  and a 2,234,521-byte source archive at SHA-256
+  `40f19af2899390a323bdb6e4398b15c898498f281b17921178be71055b30d0e5`.
+  Primary plus 27 additional installed-wheel consumers pass. Two ten-artifact
+  release stages are byte-identical and both complete release smokes pass.
+  Inventory is 114 wheel/919 source entries; all four M188 files are
+  source-only.
+- The record-inclusive separator keeps the unchanged lock/environment, all 566
+  Python files, nine focused checks, the 297-pass/one-skip Windows boundary,
+  strict docs, both governance modes, and whitespace clean.
+- Two record-inclusive builds reproduce the unchanged 362,127-byte wheel and
+  identical 2,236,761-byte source archives at SHA-256
+  `5cd21d6a7a1bc6e0c670d96fc907facc6328a8852006eb519c219b184a00277c`.
+  Primary wheel smoke and both final ten-artifact release smokes pass; the 27
+  earlier consumer results apply byte-for-byte to the unchanged wheel.
+- Findings-first review confirms exactly 16 intended paths: four new
+  source-only evidence files, eight public registrations, and four project
+  records. Runtime/package code, fixtures, examples, scripts, workflows,
+  metadata, dependencies, lock, version, and root exports have zero diff. No
+  public development-tool identity, credential assignment, or local path was
+  added, and no actionable correctness, architecture, security, documentation,
+  compatibility, package, or CI-allocation finding remains.
+- Exact guarded cleanup revalidated and removed 42 repository-confined M188
+  test, profile, docs, distribution, and release targets. The selected trees
+  contained expected test hard links but no reparse points. Zero exact M188
+  scratch target remains.
+- The final pre-commit separator keeps both M188 Python files format-, Ruff-,
+  and strict-Pyright clean; nine focused checks, strict docs, dated governance,
+  and whitespace pass. Its two exact regenerated targets were revalidated,
+  removed, and confirmed absent.
+- Initial DCO commit `aa63936d586935274804c6b808a21f6118245371`, tree
+  `743ac557e61462c1d998f26a2e4d734efa04dcee`, has sole parent exact M187,
+  exactly 16 intended paths, one matching sign-off, truthful configured
+  author/committer identity, no merge, expected `0 89` divergence from
+  hosted/local M99 `main`, a clean worktree, zero exact M188 scratch, and clean
+  connectivity apart from 324 ordinary dangling records. This factual record
+  will be folded into the closeout object.
+- The post-record separator passes nine focused checks, strict docs, dated
+  governance, and whitespace. Its two exact regenerated targets were
+  revalidated, removed, and confirmed absent.
+
+### M188 publication boundary
+
+- A final fresh pruned fetch, direct hosted-ref/tree query, ancestry test,
+  remote-branch inventory, and authenticated recent PR history still leave
+  hosted `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M187's prerequisite stack is
+  absent, only remote `main` exists, and PR #251 is the latest merged PR.
+- Publication is withheld. No push, PR, hosted workflow allocation, tag,
+  release, or package publication occurs.
+
+### M188 explicit non-scope
+
+- Cross-principal or unrelated-process behavior, hostile simultaneous racing,
+  crash or power-loss consistency, trusted root ownership, link enumeration,
+  ReFS/SMB/driver variation, file-ID reuse, durable intent, quarantine,
+  rollback/reconciliation policy, typed recovery receipts, Windows admission,
+  cleanup authority, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M187 Windows hard-link alias mutator abrupt-loss boundary
 
 - **Task:** Determine the residual namespace state when M186's independent

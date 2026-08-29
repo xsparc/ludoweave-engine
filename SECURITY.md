@@ -1012,6 +1012,17 @@ continues protecting the exact name. This three-process, same-principal result
 is negative recovery evidence: there is no automatic rollback or recovery.
 Cleanup authority and Windows admission remain unresolved.
 
+M188's test-only [Windows hard-link alias mutator abrupt-loss-after-recreate
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md)
+sends the exact recreate token, requires exact `recreated`, and then terminates
+and reaps the independent mutator before any close token. The peer alias
+remains present and both names retain shared identity, bytes, and link count
+two while the matching guardian continues protecting the original name. This
+three-process, same-principal result is negative rollback evidence: there is no
+automatic rollback to one link. It is not durable commit, crash consistency,
+or recovery evidence. Cleanup authority and Windows admission remain
+unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

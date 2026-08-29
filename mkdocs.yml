@@ -76,6 +76,7 @@ nav:
   - Windows hard-link alias delete/recreate ABA probe: security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md
   - Windows independent hard-link alias mutator ABA probe: security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md
   - Windows hard-link alias mutator abrupt-loss probe: security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md
+  - Windows hard-link alias mutator abrupt-loss-after-recreate probe: security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -252,6 +253,7 @@ nav:
       - RFC-0168 - Probe Windows hard-link alias delete/recreate ABA: rfcs/0168-probe-windows-hard-link-alias-delete-recreate-aba.md
       - RFC-0169 - Probe Windows independent hard-link alias mutator ABA: rfcs/0169-probe-windows-independent-hard-link-alias-mutator-aba.md
       - RFC-0170 - Probe Windows hard-link alias mutator abrupt loss: rfcs/0170-probe-windows-hard-link-alias-mutator-abrupt-loss.md
+      - RFC-0171 - Probe Windows hard-link alias mutator abrupt loss after recreation: rfcs/0171-probe-windows-hard-link-alias-mutator-abrupt-loss-after-recreate.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -1,5 +1,82 @@
 # Project State
 
+## M188 post-recreate mutator abrupt loss - locally complete, publication withheld
+
+- Base: fully locally validated M187 DCO commit
+  `2f0869c3aeb632daa68a2e460f2b2cb3d34a1e7e`, exact tree
+  `9efa5bcdf44ca8cd47831f9eacabe207383587a1`, sole parent exact M186.
+- Branch hygiene: neutral
+  `release/m188-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-boundary`;
+  the redundant M187 branch name was removed by in-place rename.
+- Direction: RFC-0171 accepts one current-host Windows-only, test-only
+  negative rollback boundary using M186's unchanged mutator fixture.
+- Live result: after exact child-owned recreation, terminate/reap leaves the
+  alias present and both names retain shared identity, bytes, and link count
+  two while the matching guardian remains live and protects the exact name.
+- Evidence limit: three processes under one principal and one parent-owned
+  tree. There is no automatic rollback to one link; this is not durable commit,
+  crash consistency, recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0171, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused proof: both Python files are format-, Ruff-, and strict-Pyright clean;
+  eight architecture guards plus the live observation pass nine tests; strict
+  docs and whitespace pass.
+- Regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 complete graphics
+  environments each pass 3,990 tests with 17 skips. The 80-file Windows
+  boundary passes 297 tests with one skip; 20 live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder pass.
+- Static: the 46-package lock and 45-package graphics environment resolve; all
+  566 Python files are formatted; Ruff and strict Pyright report zero findings.
+- Initial distribution: two builds reproduce a 362,127-byte wheel at SHA-256
+  `228066129979b3eceb3c766e66d7ed2577172998e76e309635a324a24a4f1660`
+  and a 2,234,521-byte sdist at SHA-256
+  `40f19af2899390a323bdb6e4398b15c898498f281b17921178be71055b30d0e5`.
+  Primary plus 27 consumers pass; dual ten-artifact release stages are
+  identical and pass. Inventory is 114 wheel/919 sdist entries, with all four
+  M188 files source-only.
+- Record-inclusive closure: the unchanged lock/environment, all 566 Python
+  files, nine focused checks, the 80-file Windows boundary, strict docs, both
+  governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged wheel and identical
+  2,236,761-byte source archives at SHA-256
+  `5cd21d6a7a1bc6e0c670d96fc907facc6328a8852006eb519c219b184a00277c`.
+  Primary wheel smoke and both final ten-artifact release smokes pass; the
+  earlier 27 consumers apply byte-for-byte to the unchanged wheel.
+- Review: exactly 16 intended paths remain; runtime/package/fixture/CI/
+  dependency surfaces have zero diff. Added public/new-file scans find no
+  development-tool identity, credential assignment, or local path. No
+  actionable correctness, architecture, security, docs, compatibility,
+  package, or CI-allocation finding remains.
+- Cleanup: all 42 exact M188 test, profile, docs, distribution, and release
+  targets were repository-confined and top-level plus nested reparse-free.
+  Expected test hard links remained within disposable fixtures. All targets
+  were removed; zero exact M188 scratch remains.
+- Final separator: both M188 Python files remain format-, Ruff-, and strict-
+  Pyright clean; nine focused checks, strict docs, dated governance, and
+  whitespace pass. Both exact regenerated targets were revalidated, removed,
+  and confirmed absent.
+- Initial object: DCO commit
+  `aa63936d586935274804c6b808a21f6118245371`, tree
+  `743ac557e61462c1d998f26a2e4d734efa04dcee`, has sole parent exact M187,
+  exactly 16 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 89` divergence, zero M188 scratch, and
+  clean connectivity apart from 324 ordinary dangling records. This record is
+  folded into the closeout object.
+- Post-record separator: nine focused checks, strict docs, dated governance,
+  and whitespace pass; both exact regenerated targets were revalidated,
+  removed, and confirmed absent.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry test, remote-branch inventory, and authenticated PR history leave
+  hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M187 absent, report PR
+  #251 as the latest merge, and show only remote `main`. No branch, PR, hosted
+  allocation, tag, release, or package is published.
+- Final amendment and immutable amended-object audit remain before local
+  closeout.
+
 ## M187 alias mutator abrupt loss - locally complete, publication withheld
 
 - Base: fully locally validated M186 DCO commit
