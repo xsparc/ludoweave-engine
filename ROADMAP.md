@@ -3256,6 +3256,37 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite remains the only future hosted execution
 path; no hosted check is added.
 
+## M196 Windows hard-link alias mutator repeated buffered close after delivery failure probe
+
+M196 starts from fully locally validated M195 commit
+`496e47d534bea27f387be15702504a6bb75efdb9`. It adds one Windows-only,
+test-only [hard-link alias mutator repeated buffered-close after delivery-
+failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md)
+under RFC-0179.
+
+The probe retains M186's unchanged sibling mutator, M181's matching guardian,
+and M195's byte-for-byte first-close helper. After M195's direct close reports
+generic `OSError` and leaves the stream closed, the parent calls `close()`
+exactly once more. That second call returns `None`, raises no new error, and
+leaves the stream closed without retrying delivery. Alias identity, bytes,
+link count two, range availability, guardian protection, final rename, and
+complete cleanup remain unchanged.
+
+This records repeated-close disposition for one fixed stream and fixture. It
+is not arbitrary closed-stream-operation, portable exception behavior,
+acknowledgement, durable commit, recovery, cleanup admission, or a production
+protocol contract. Cross-principal behavior, inherited or duplicated writers,
+hostile simultaneous racing, ReFS/SMB/other-host evidence, Windows admission,
+and cleanup authority remain unresolved.
+
+M196 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite remains the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

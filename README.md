@@ -278,8 +278,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > delivery-failure probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md).
 > Direct `close()` reports generic delivery failure for the pending late byte
 > and still leaves the parent stream closed.
+> M196 adds one test-only [Windows hard-link alias mutator repeated buffered-
+> close after delivery-failure probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md).
+> A second `close()` returns `None` after M195's failed first close has already
+> left the parent stream closed; it does not retry delivery.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M195 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M196 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

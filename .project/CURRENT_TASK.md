@@ -1,5 +1,129 @@
 # Current task
 
+## M196 Windows hard-link alias mutator repeated buffered-close boundary
+
+- **Task:** Determine whether a second parent-side `close()` is a no-op after
+  M195's first buffered close reports delivery failure but leaves the stream
+  closed.
+- **Status:** Local implementation and validation complete through authority,
+  direction, exact M195 baseline, governance, branch containment, test-first
+  implementation, supported-Python regression, concentrated/repeated Windows
+  behavior, graphics/product checks, reproducible distribution/release,
+  findings-first review, final separators, guarded cleanup, and DCO audit.
+  Hosted publication is withheld because remote `main` remains at M99 and does
+  not contain M195.
+- **Base:** Fully locally validated M195 DCO commit
+  `496e47d534bea27f387be15702504a6bb75efdb9`, tree
+  `53c62d76e6f79a7fa30bfdb1ec03e05e3909f264`, sole parent exact M194.
+- **Branch:**
+  `release/m196-windows-alias-mutator-repeated-buffered-close-after-delivery-failure-boundary`;
+  the redundant local M195 branch name was removed after exact M196 branch
+  creation retained its object.
+
+### M196 acceptance boundary
+
+- Accept RFC-0179 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, M186's unchanged
+  bounded-output mutator child, and M195's byte-for-byte first-close helper.
+- Require M195's first `close()` to raise generic `OSError` and leave the
+  stream closed. Call `close()` exactly once more, require it to return `None`
+  without another exception, and require the stream still closed.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process/stream/native/range cleanup.
+- State the result narrowly as repeated-close disposition evidence for one
+  fixed stream and fixture. Do not claim delivery retry, acknowledgement,
+  portable exception behavior, durable recovery, Windows admission, or
+  cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M196 development evidence so far
+
+- Exact M195 focused baseline passed nine tests.
+- Static strict governance passed. The first dated strict governance launch
+  was denied managed-cache access before checking; its exact access-enabled
+  rerun returned zero findings across three objectives, seven requirements,
+  and four work items.
+- Current Python buffered-I/O, Microsoft `WriteFile`, GitHub least-privilege
+  and billing, NIST SSDF, and SLSA 1.2 sources support the bounded repeated-
+  close observation and no hosted allocation.
+- Neutral M196 was created from exact M195, and the redundant local M195 branch
+  name was removed without deleting its retained object.
+- The first live M196 probe passed. The intentional architecture red passed
+  five behavior/containment guards and failed only the three absent
+  RFC/security/public-registration contracts.
+- RFC-0179, the security record, and eight public registrations now describe
+  the selected boundary. Ruff requested only mechanical formatting; both new
+  Python files then became format-, lint-, and strict-Pyright clean, and all
+  nine focused checks passed.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 complete suites each pass 4,062
+  tests with 17 skips. The exact 96-file Windows boundary passes 369 tests with
+  one established skip, and 20 independent M196 live invocations pass.
+- Ten real-wgpu tests, fresh two-/three-workload M7 profiles, eight profile-
+  schema tests, null/wgpu Clockwork Arena, and Agent World Builder pass with
+  their established deterministic identities.
+- Two builds are byte-identical; installed-wheel and scene-wheel smoke pass;
+  two identical ten-artifact release stages pass complete release smoke. The
+  wheel retains 114 pure entries, the source archive has 951 entries, and all
+  four M196 evidence files are source-only.
+- The record-inclusive separator remains clean. Its two fresh builds reproduce
+  the unchanged 362,709-byte wheel at SHA-256
+  `fac8fd367e910ebe7b121ed8d74a2c43211396bda41285ded887e8f89211c737`
+  and a 2,296,404-byte source archive at SHA-256
+  `5d823da03301da046190dd9e1df940c12a01460510c9de81207ceebf61502ad6`.
+  Installed-wheel and scene-wheel smoke pass; the corrected exact comparator
+  proves two byte-identical ten-artifact release stages, and both complete
+  release smokes pass. Inventory remains 114/951 with exact source-only
+  confinement and zero forbidden wheel entry.
+- The final pre-cleanup separator passes whole-tree formatting, Ruff, strict
+  Pyright, 14 hygiene/M196 checks, strict docs, current-date strict governance,
+  and whitespace. A first governance invocation used the wrong evidence root
+  and a first dated invocation was cache-denied; corrected exact invocations
+  return zero findings.
+- Guarded scratch cleanup's first recursive audit was sandbox-denied before
+  deletion. Its access-enabled rerun proved all 48 exact `.tmp/m196*` targets
+  repository-confined, ignored, untracked, and top-level plus recursively
+  reparse-free, removed them exactly, and confirmed zero remains.
+- Final post-cleanup validation keeps both M196 Python files static-clean,
+  passes all 14 review checks, strict docs, current-date strict governance,
+  and whitespace. The two exact regenerated review/docs directories were
+  revalidated, removed, and zero M196 scratch remains. DCO and hosted-
+  publication reconciliation are the remaining closeout gates.
+- Pre-commit audit proves exact M195 HEAD/tree, exactly 16 intended paths,
+  zero protected-surface diff, only local `main` and neutral M196, expected
+  `0 96` divergence, configured maintainer identity, zero M196 scratch, clean
+  whitespace, and clean object connectivity.
+- Initial DCO commit `0b1a57729c3b8e038b4365cc6769381e310af551`, tree
+  `b7c2064ebde0e34c8a425228d6c40dba28c313c4`, has sole parent exact M195,
+  exactly 16 intended paths, one matching sign-off, consistent configured
+  author/committer identity, no merge, expected `0 97` divergence, a clean
+  worktree, zero M196 scratch, clean whitespace, and clean object connectivity.
+  This factual record is folded into one closeout amendment.
+- A fresh pruned fetch and authenticated hosted audit leave `origin/main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M195 absent and
+  not an ancestor, show only remote `main`, and report PR #251 as latest.
+  Publishing M196 would expose the absent M100-M195 stack, so no push, PR,
+  hosted allocation, tag, release, or package publication occurs.
+- Findings-first review retains exactly 16 intended paths, zero protected-
+  surface diff, 14 passing hygiene/M196 checks, zero forbidden wheel payload,
+  and zero development-identity, credential-assignment, or machine-local-path
+  match across 875 added lines. No actionable finding remains.
+
+### M196 explicit non-scope
+
+- Any closed-stream operation other than repeated `close()`; pre-settlement or
+  concurrent late commands; arbitrary buffered, partial, repeated, or larger
+  input; exact exception subtype/code; duplicated/inherited writers; cross-
+  principal or unrelated-process behavior; hostile simultaneous racing;
+  authenticated framing/acknowledgement; crash/power loss; durable intent,
+  rollback, reconciliation, typed recovery receipts; ReFS/SMB/other-host
+  evidence; Windows admission; and cleanup authority.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M195 Windows hard-link alias mutator buffered-close delivery-failure boundary
 
 - **Task:** Determine what the parent-side buffered writer reports when direct

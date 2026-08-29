@@ -183,3 +183,4 @@ was adopted.
 - [RFC-0176: probe Windows alias-mutator invalid-prefix settlement with an open writer](0176-probe-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate.md)
 - [RFC-0177: probe Windows late valid-close delivery failure after invalid settlement](0177-probe-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement.md)
 - [RFC-0178: probe Windows buffered-close delivery failure after invalid settlement](0178-probe-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement.md)
+- [RFC-0179: probe Windows repeated buffered close after delivery failure](0179-probe-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure.md)

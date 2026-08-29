@@ -2,6 +2,23 @@
 
 No architecture decision is currently blocked.
 
+## M196 hard-link alias mutator repeated buffered-close boundary
+
+RFC-0179 accepts one Windows-only, test-only NTFS observation. M195's protected
+helper performs the exact terminal invalid settlement, late one-byte buffer
+acceptance, and first `close()` that raises generic `OSError` while leaving the
+stream closed. M196 then calls `close()` exactly once more, requires `None`,
+and requires the stream still closed. The second call is local no-op
+disposition, not a delivery retry or acknowledgement.
+
+The result remains one current-host, three-process, same-principal observation.
+It adds no runtime, fixture, dependency, workflow, hosted allocation,
+permission, release authority, version, or Windows admission. Authenticated
+root/generation authority, explicit framing, acknowledgements, link policy,
+use-time revalidation, durable intent, idempotent recovery, reconciliation,
+typed receipts, cross-principal evidence, and independent-host proof remain
+future design work.
+
 ## M195 hard-link alias mutator buffered-close delivery-failure boundary
 
 RFC-0178 accepts one Windows-only, test-only NTFS observation. After M186's
