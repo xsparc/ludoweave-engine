@@ -5180,6 +5180,23 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0181 records the accepted test-only
 boundary.
 
+## M199 Windows cache-cleanup readiness refresh
+
+M199 accepts a [Windows cache-cleanup readiness
+refresh](security/cache-cleanup-windows-readiness-refresh.md) over the complete
+M149-M198 sequence. The 50 milestones remain current-host, test-only threat-
+model evidence. They do not supply authenticated trusted-root authority, a
+complete hard-link policy, use-time identity/link-count revalidation,
+acknowledged typed receipts, durable recovery, cross-principal resistance, or
+independent-host proof.
+
+Windows cleanup remains unimplemented and unauthorized. The standalone method-
+by-method closed-stream probe tail is closed after M198; every future Windows
+cleanup milestone must resolve a named admission criterion and retain safe
+refusal. M199 changes no runtime, public API, dependency, fixture, adapter,
+workflow, permission, or hosted allocation. This preserves ADR-0017 and
+RFC-0129 through RFC-0131 rather than creating a new architecture direction.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

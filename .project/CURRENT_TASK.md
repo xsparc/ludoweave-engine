@@ -1,5 +1,160 @@
 # Current task
 
+## M199 Windows cache-cleanup readiness refresh
+
+- **Task:** Consolidate M149-M198 as a complete Windows cleanup threat-model
+  evidence set, retain the cleanup deferral, close standalone method-level
+  closed-stream probing, and require future work to resolve a named admission
+  criterion.
+- **Status:** Direction research, exact M198 baseline, governance, neutral
+  branch containment, intentional architecture red, public decision
+  documentation, focused/static validation, supported-Python regression,
+  rendering, reproducible distribution/release rehearsal, and findings-first
+  review, record-inclusive validation, cleanup, initial local DCO object audit,
+  and hosted publication-safety gates pass. The closeout amendment remains;
+  publication is withheld because hosted `main` lacks M100-M198.
+- **Base:** Fully locally validated M198 DCO commit
+  `36f2778c1924409e9916611f49996c513d4c7185`, tree
+  `1a849f5ee00012f01ed0056520dfc8e06746637b`, sole parent exact M197.
+- **Branch:** `release/m199-windows-cache-cleanup-readiness-refresh`; the
+  redundant local M198 branch name was removed after exact M199 branch creation
+  retained its object.
+
+### M199 acceptance boundary
+
+- Accept RFC-0182 and one public Windows cache-cleanup readiness decision.
+- Treat M149-M198 as exactly 50 current-host, test-only milestones with 50
+  corresponding Windows integration probes and 50 pre-M199 security records.
+- Keep Windows cleanup unimplemented and unauthorized. Require authenticated
+  trusted-root authority, complete hard-link policy, use-time identity and
+  link-count revalidation, acknowledged typed receipts, durable intent and
+  idempotent recovery, cross-principal adversarial evidence, and independent-
+  host proof before admission.
+- Close standalone method-by-method closed-stream probing after M198. Require a
+  future Windows cleanup milestone to resolve a named admission criterion.
+- Preserve exact M198, runtime, examples, scripts, dependencies, metadata,
+  workflows, permissions, fixtures, and package surface.
+- Add no cleanup command, public probe, adapter, cache access, native code,
+  dependency, workflow, job/allocation, permission, version, release authority,
+  tag, or publication.
+
+### M199 development evidence so far
+
+- Exact M198 architecture/live baseline passed nine tests in 0.53 seconds.
+- Static strict governance returned zero findings. The first current-date
+  invocation was denied managed-cache access before checking; its exact access-
+  enabled rerun returned zero findings across three objectives, seven
+  requirements, and four work items.
+- Current Microsoft file identity, hard-link, and access-control documentation;
+  Python closed-stream semantics; GitHub Actions security/billing guidance;
+  NIST SSDF 1.2 draft; and SLSA 1.2 support a no-authority-increase readiness
+  refresh and reject more standalone closed-stream method probes as admission
+  evidence.
+- Neutral M199 starts from exact M198. Exact containment made the local M198
+  branch name redundant, so only local `main` and active M199 remain.
+- The intentional architecture-red phase passed three containment/inventory
+  checks and failed only four absent decision, RFC, and public-registration
+  boundaries.
+- RFC-0182, the readiness decision, and eight public registrations now state
+  the deferred outcome. The first public-integrated run passed six checks and
+  found one missing exact stopping-rule phrase; after adding it, all seven
+  checks pass.
+- Focused Ruff lint passed before formatting. Ruff requested one mechanical
+  reformat. One first Pyright command named a nonexistent duplicated-suffix
+  path and therefore performed no type validation. The corrected file is now
+  format- and lint-clean, strict Pyright returns zero findings, and all seven
+  focused checks pass in 0.27 seconds.
+- The unchanged lock and 45-package graphics environment pass. All 587 Python
+  files are format-clean; Ruff and strict Pyright return zero findings; strict
+  docs, static and current-date governance, and whitespace pass.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 complete suites each pass 4,087
+  tests with 17 skips in 267.45, 268.74, and 280.10 seconds. The isolated 3.13
+  and 3.14 environments each install the same 45-package graphics set.
+- Ten real-wgpu tests pass. Fresh base and graphics M7 profiles validate two
+  and three workloads; a first profile-test command named one nonexistent file
+  and is excluded, while the corrected eight-test module passes. Null and wgpu
+  Clockwork Arena plus Agent World Builder reproduce established identities.
+- Two distribution builds reproduce a 362,959-byte pure wheel at SHA-256
+  `115e1470a084d99230a1eba1406271a5ecb0fae215fd42bec114be698fa53fae`
+  and a 2,322,347-byte source archive at SHA-256
+  `3d63fad47c970ba3bc5d29ff52ce0cb605cb724ed82156c66a43a636fb63eb32`.
+  Installed-wheel and scene-wheel smoke pass; two identical ten-artifact
+  release stages pass complete release smoke.
+- Package inventory remains 114 pure wheel entries and advances to 962 source
+  entries. All three new M199 files are source-only and the wheel contains no
+  tests, project records, docs, native payload, or cache content.
+- Findings-first review retains exactly 15 intended paths, zero protected
+  runtime, fixture, dependency, workflow, and M198 diff, 12 passing hygiene and
+  M199 checks, and zero development-identity, credential-assignment, or
+  machine-local-path match across 598 added lines. No actionable finding
+  remains.
+- The public status now records M199 as locally validated. Record-inclusive
+  validation and rebuild/release rehearsal pass. At that status change, guarded
+  cleanup, DCO, and hosted reconciliation remained.
+- The record-inclusive separator resolves the unchanged lock, checks the exact
+  graphics environment, keeps all 587 Python files static-clean, passes the
+  12-test hygiene/M199 group, strict docs, both governance modes, and
+  whitespace.
+- Two record-state builds reproduce a 362,956-byte pure wheel at SHA-256
+  `ab8875fa0a8cdc4f07ce70217ef822d9156a3efc7ee5a24999cbf6aea032d9cb`
+  and a 2,323,423-byte source archive at SHA-256
+  `166cef1e1d40f2ab85e42b98219d2f48f772538c37b6fe52be2321d3ec2a75e1`.
+  Installed-wheel and scene-wheel smoke pass; two byte-identical ten-artifact
+  release stages pass complete release smoke. Inventory remains 114/962 with
+  exact source-only M199 confinement. At that rehearsal, final pre-cleanup
+  validation, guarded cleanup, DCO, and hosted reconciliation remained.
+- The final pre-cleanup separator keeps all 587 Python files static-clean,
+  passes 12 review checks, strict docs, static and current-date governance, and
+  whitespace.
+- Guarded cleanup found exactly 21 top-level `.tmp/m199*` test, JUnit, profile,
+  docs, distribution, and release targets. Each was proven repository-confined,
+  ignored, untracked, direct-child, and top-level plus recursively reparse-free;
+  each was revalidated immediately before exact removal. Zero M199 target
+  remains, and no ACL was changed. At that cleanup gate, final post-cleanup
+  validation, DCO, and hosted reconciliation remained.
+- The final post-cleanup separator keeps all 587 Python files static-clean,
+  passes 12 review checks in 0.75 seconds, builds strict docs in 3.19 seconds,
+  passes both governance modes and whitespace. Pytest created no persistent
+  target because these architecture tests need no temporary fixture. A first
+  cleanup guard expected two regenerated targets, found one, and stopped before
+  deletion; its corrected exact audit removed the sole docs target. Zero M199
+  scratch remains. At that separator, DCO and hosted reconciliation remained.
+- Read-only pre-commit readiness proves exact M198 HEAD/tree, exactly 15
+  intended paths, zero protected runtime, fixture, package, dependency,
+  workflow, and M198 diff, only local `main` and neutral M199, expected `0 99`
+  divergence, configured maintainer identity, zero M199 scratch, clean
+  whitespace, and clean object connectivity. A current 781-line added-content
+  scan finds zero development-identity, credential-assignment, or machine-
+  local-path match. That audit preceded the initial DCO object and final hosted
+  reconciliation recorded below.
+- Initial DCO commit `4f6b3d52ac2444ee72e97ae0a6597725f478b990`, tree
+  `578de20f3d9b8f0e0c53cc69d99b37ca16271289`, has sole parent exact M198,
+  exactly 15 intended paths, one matching `Signed-off-by` trailer, consistent
+  configured author and committer identity, no merge, expected `0 100`
+  divergence from local M99 `main`, a clean worktree, zero M199 scratch, clean
+  revision whitespace, and clean object connectivity. This factual record is
+  incorporated by one closeout amendment.
+- A final fresh pruned fetch leaves remote `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` and tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; only remote `main` exists,
+  divergence is `0 100`, and neither exact M198 nor the initial M199 object is
+  an ancestor. Publishing M199 would expose the absent M100-M198 prerequisite
+  stack, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
+### M199 explicit non-scope
+
+- Any cleanup implementation or authority; candidate enumeration; retention,
+  grace, quota, lease, pin, quarantine, rollback, or recovery implementation;
+  trusted-root construction; authentication; hard-link enumeration; ACL
+  mutation; cross-principal fixture; independent-host execution; or Windows
+  admission.
+- Any new closed-stream inquiry, argument, message assertion, native-call
+  trace, portability claim, subprocess fixture, runtime API, CLI command,
+  adapter, dependency, native extension, compiler requirement, workflow,
+  permission, hosted allocation, credential, version, release, tag, or package
+  publication.
+
 ## M198 Windows hard-link alias mutator closed-stream write boundary
 
 - **Task:** Determine the concrete parent-stream result of one `write(b"!")`

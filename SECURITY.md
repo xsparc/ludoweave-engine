@@ -1129,6 +1129,17 @@ disposition evidence for one fixed sequence, argument, and fixture; it does not
 establish native-call suppression, retry, acknowledgement, durable recovery,
 or cleanup authority. Windows remains unadmitted.
 
+M199's [Windows cache-cleanup readiness
+refresh](docs/security/cache-cleanup-windows-readiness-refresh.md) consolidates
+the complete M149-M198 current-host sequence. Windows remains unimplemented and
+unauthorized for cleanup: local same-principal identity, sharing, guardian,
+alias, control, and stream observations do not establish authenticated
+trusted-root authority, complete hard-link policy, use-time revalidation,
+durable recovery, cross-principal resistance, or independent-host support.
+Standalone closed-stream method probing ends after M198; future work must
+resolve a named admission criterion. No runtime, workflow, permission, or
+hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

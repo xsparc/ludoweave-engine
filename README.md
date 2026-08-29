@@ -290,8 +290,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > after delivery-failure probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md).
 > One later `write(b"!")` raises generic `ValueError` and leaves that concrete
 > stream closed; it does not establish native-call suppression or acknowledgement.
+> M199 accepts a [Windows cache-cleanup readiness
+> refresh](docs/security/cache-cleanup-windows-readiness-refresh.md) over the
+> complete M149-M198 probe sequence. Windows cleanup remains unimplemented and
+> unauthorized, the method-by-method closed-stream tail is closed, and future
+> work must resolve a named admission criterion without adding CI allocation.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M198 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M199 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

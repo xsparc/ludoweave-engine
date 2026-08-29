@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M199/RFC-0182's [Windows cache-cleanup readiness
+  refresh](docs/security/cache-cleanup-windows-readiness-refresh.md). It
+  consolidates the complete 50-milestone M149-M198 test-only sequence, keeps
+  Windows cleanup deferred, closes standalone closed-stream method probing,
+  and adds no runtime or CI surface.
 - Add M198/RFC-0181's test-only [Windows hard-link alias mutator closed-stream
   write after delivery-failure
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md).

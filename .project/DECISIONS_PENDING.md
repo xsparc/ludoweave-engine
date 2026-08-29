@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M199 Windows cache-cleanup readiness refresh
+
+RFC-0182 accepts one no-authority-increase readiness checkpoint. The complete
+M149-M198 sequence remains 50 current-host, Windows-only, test-only milestones;
+its identity, sharing, process, guardian, hard-link, control, and stream
+observations do not admit cleanup.
+
+Windows cleanup remains unimplemented and unauthorized. Admission still
+requires authenticated trusted-root and generation authority, a complete hard-
+link policy, use-time identity and link-count revalidation, acknowledged typed
+receipts, durable intent and idempotent recovery, cross-principal adversarial
+evidence, and independent-host proof. The standalone method-by-method closed-
+stream probe tail closes after M198; a future milestone must resolve one named
+criterion rather than add another local method disposition.
+
+M199 adds no runtime, fixture, dependency, workflow, hosted allocation,
+permission, version, release authority, cleanup effect, or Windows admission.
+
 ## M198 hard-link alias mutator closed-stream write boundary
 
 RFC-0181 accepts one Windows-only, test-only NTFS observation. M197's protected

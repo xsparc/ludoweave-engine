@@ -186,3 +186,4 @@ was adopted.
 - [RFC-0179: probe Windows repeated buffered close after delivery failure](0179-probe-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure.md)
 - [RFC-0180: probe Windows closed-stream flush after delivery failure](0180-probe-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure.md)
 - [RFC-0181: probe Windows closed-stream write after delivery failure](0181-probe-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure.md)
+- [RFC-0182: refresh Windows cache-cleanup readiness](0182-refresh-windows-cache-cleanup-readiness.md)

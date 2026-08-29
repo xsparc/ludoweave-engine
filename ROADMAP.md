@@ -3351,6 +3351,35 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite remains the only future hosted execution
 path; no hosted check is added.
 
+## M199 Windows cache-cleanup readiness refresh
+
+M199 starts from fully locally validated M198 commit
+`36f2778c1924409e9916611f49996c513d4c7185`. It accepts a [Windows
+cache-cleanup readiness
+refresh](docs/security/cache-cleanup-windows-readiness-refresh.md) under
+RFC-0182.
+
+The decision consolidates the complete 50-milestone M149-M198 current-host,
+test-only sequence without treating its size as admission evidence. Native
+identity/sharing, handle inheritance, cooperative guardians, hard-link alias
+mutation, control settlement, and concrete stream dispositions remain useful
+threat-model evidence. They do not establish authenticated trusted-root
+authority, a complete hard-link policy, use-time identity/link-count
+revalidation, acknowledged typed receipts, durable recovery, cross-principal
+adversarial behavior, or independent-host support.
+
+Windows cleanup remains unimplemented and unauthorized. The standalone method-
+by-method closed-stream probe tail ends after M198. Any future Windows cleanup
+milestone must resolve a named admission criterion and preserve safe refusal;
+another local method disposition is insufficient by itself.
+
+M199 adds one architecture guard and decision documentation. It adds no runtime
+API, protocol, decoder, CLI command, public probe, production subprocess or
+native surface, adapter, cache access, cleanup authority, dependency, native
+extension, compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The existing Windows suite remains
+the only future hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
