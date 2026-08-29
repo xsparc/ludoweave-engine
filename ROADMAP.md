@@ -2779,6 +2779,40 @@ version, workflow job/allocation, permission, credential, release authority,
 or CI change. The existing Windows suite is the only future hosted execution
 path; no hosted check is added.
 
+## M181 Windows expected-identity guardian admission probe
+
+M181 starts from fully locally validated M180 commit
+`d19e03ec9f83134d72086b93ebd988a5cade8f0d`. It adds one Windows-only,
+test-only [expected-identity guardian admission
+probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md)
+under RFC-0164.
+
+The child receives an expected `FILE_ID_INFO`, opens M173's fixed coordination
+pathname with no delete sharing, rejects inheritable or reparse handles, and
+queries the identity on that same already protecting handle. An exact match
+emits `ready`; a mismatch closes first and emits `identity_mismatch`.
+
+The matching case requires direct rename error 32 and exact exclusive range
+availability while the guardian is live, then exact close, successful rename,
+original identity, bytes, and complete cleanup. The mismatch case uses M174 to
+substitute a distinct replacement before launch. It requires exact mismatch
+and bounded settlement, then successful replacement rename, range availability,
+both retained identities, bytes, and complete cleanup without retry or sleep.
+
+This is same-handle expected-identity admission evidence, not trusted identity
+provenance, durable storage, generation authority, election, authentication,
+recovery, policy, receipts, complete admission, or cleanup authority. Failed
+launch, simultaneous loss, hostile handles, arbitrary process trees, mapped
+views, filesystem variation, use-time revalidation, Windows admission, and
+independent-host proof remain open.
+
+M181 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

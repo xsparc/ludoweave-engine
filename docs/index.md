@@ -198,6 +198,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md)
   that distinguishes benign identity reacquisition from pathname substitution
   during an unprotected interval without claiming recovery or authority.
+- A test-only [Windows expected-identity guardian admission
+  probe](security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md)
+  that compares the expected identity on the same protecting handle and
+  rejects a preexisting replacement without claiming identity authority.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

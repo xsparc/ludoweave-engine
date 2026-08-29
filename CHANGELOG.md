@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M181/RFC-0164's test-only [Windows expected-identity guardian admission
+  probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md).
+  It compares `FILE_ID_INFO` on the same no-delete-share handle that protects
+  an admitted match and closes before reporting a preexisting replacement.
 - Add M180/RFC-0163's test-only [Windows zero-owner guardian
   restart-boundary
   probe](docs/security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md).

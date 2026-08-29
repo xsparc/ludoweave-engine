@@ -1,6 +1,117 @@
 # Current task
 
-## M180 Windows zero-owner guardian restart boundary
+## M181 Windows expected-identity guardian admission
+
+- **Task:** Determine whether a Windows guardian can admit the intended
+  coordination object and reject a preexisting pathname replacement by
+  comparing a caller-supplied expected identity on the same protecting handle.
+- **Status:** Direction, implementation, supported-Python regression,
+  concentrated Windows behavior, rendering, profiles, vertical slices,
+  reproducible distribution/release rehearsal, governance, findings-first
+  review, record-inclusive separators, guarded cleanup, initial DCO commit,
+  and publication-safety gates pass. Publication is withheld because hosted
+  `main` lacks M100-M180; one factual amendment and final object audit remain.
+- **Base:** Fully locally validated M180 DCO commit
+  `d19e03ec9f83134d72086b93ebd988a5cade8f0d`, tree
+  `bffe676c2da214b77c757f914372ba351712da18`, sole parent exact M179.
+- **Branch:** `release/m181-windows-expected-identity-guardian-admission`;
+  exact containment allowed the redundant local M180 branch to be pruned.
+
+### M181 acceptance boundary
+
+- Accept RFC-0164 and retain one Windows-only, test-only child fixture plus two
+  current-host observations over M173's exact ordinary coordination file.
+- Open with no delete sharing, reject an inheritable or reparse handle, and
+  compare `FILE_ID_INFO` on that same already protecting handle before
+  emitting `ready`.
+- Admit an exact match, require direct rename error 32 and exact exclusive
+  range availability, then require exact close, successful rename, retained
+  identity and bytes, and complete cleanup.
+- After M174 pre-launch substitution, reject the replacement with exact
+  `identity_mismatch`, close before reporting it, settle boundedly, then
+  require rename and range availability plus both retained identities and
+  exact bytes.
+- Interpret the result only as same-handle expected-identity admission
+  evidence. It is not trusted identity provenance, durable storage,
+  generation authority, authenticated launch, recovery, Windows admission,
+  or cleanup authority.
+- Add no runtime API, dependency, workflow, job/allocation, permission,
+  release authority, or CI change.
+
+### M181 direction evidence
+
+- Microsoft documents `FILE_ID_INFO` as a volume serial plus 128-bit identifier
+  for identifying a file on one computer, and documents querying it through
+  `GetFileInformationByHandleEx`.
+- Microsoft documents that `CreateFileW` sharing modes remain in force until
+  the owning handle closes. Denying delete sharing before identity comparison
+  protects the same handle that may be admitted.
+- GitHub documents matrix expansion behavior. M181 uses only the existing
+  Windows suite and creates no hosted allocation.
+- NIST still lists SSDF 1.2 as draft material. M181 makes no new conformance
+  claim.
+
+### M181 local validation evidence so far
+
+- Exact M180 was clean. Its nine focused assertions passed in 0.99 seconds;
+  static and 2026-08-29 dated strict governance returned zero findings.
+- Eight architecture guards plus the two live cases pass ten assertions. An
+  initial unused import finding and one mechanical architecture format request
+  were corrected; all three new Python files then passed Ruff and strict
+  Pyright.
+- The unchanged 46-package lock and 45-package graphics environment validate.
+  All 551 Python files pass formatting, Ruff, and strict Pyright.
+- An initial full baseline run passed 3,930 tests with 17 skips and exposed one
+  inherited M180 metadata-neutrality failure. Three historical evidence
+  phrases were neutralized; the exact 15-case regression group then passed.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,931 tests with 17
+  skips. Twenty independent two-case M181 invocations pass all 40 cases in
+  0.45 to 0.49 seconds per invocation.
+- Ten real-wgpu tests, fresh base/graphics profiles, Clockwork Arena, and Agent
+  World Builder pass with their established deterministic outputs.
+- Two initial builds reproduce a 361,611-byte pure wheel at SHA-256
+  `e1ec8690060d7c3fc5711a42f7a72a31643b0900c76ee215790f8e1f78cfb0fd`
+  and a 2,169,797-byte source archive at SHA-256
+  `52a598705cd832db2aa76fa91eb12a21164588f76501430fe9417412a6e9f848`.
+  Wheel smoke, two byte-identical ten-artifact release stages, and both release
+  smokes pass. Inventory has 114 wheel and 890 source entries, no native,
+  WASM, or bytecode entry, no M181 test source in the wheel, and all five new
+  M181 sources exactly once in the source archive.
+- Strict docs built in 2.61 seconds with only the known Material notice.
+  Static and dated strict governance each return zero findings across three
+  objectives, seven requirements, and four work items.
+- Findings-first review found no remaining runtime, architecture, security,
+  documentation, compatibility, package-boundary, or allocation defect.
+  Runtime, examples, scripts, workflows, metadata, dependencies, lock, and
+  the exact M180 boundary remain protected.
+
+### M181 publication boundary
+
+- Initial DCO commit `70cd29751405b6cbc7b23b446216d258d043009d`, tree
+  `4069c350a3bd8dee1110ce12b191cf1f95aae91c`, has sole parent exact M180,
+  exactly 17 paths, one sign-off, matching configured maintainer identity, no
+  merge, expected `0 82` divergence, and a clean worktree. This factual record
+  is incorporated by one final amendment.
+- A fresh pruned fetch leaves hosted `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; it does not contain M180.
+  GitHub reports no open PR, PR #251 as the latest merge, and only remote
+  `main`. M181 is not pushed and no PR or hosted allocation is created while
+  M100-M180 remain unpublished prerequisites.
+- Publication must not create a workflow, job, matrix allocation, redundant
+  predecessor branch, tag, release, or package publication.
+
+### M181 explicit non-scope
+
+- Trusted expected-identity provenance or storage, durable generation state,
+  guardian discovery/election/authentication, failed launch, simultaneous
+  loss, hostile handles, arbitrary process trees, mapped views, filesystem
+  variation, use-time revalidation, policy, receipts, cleanup authority,
+  complete Windows admission, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,
+  native-extension, compiler, workflow, permission, CI-allocation, tag,
+  release, publication, or version changes.
+
+## Earlier task: M180 Windows zero-owner guardian restart boundary
 
 - **Task:** Distinguish benign guardian restart over an unchanged coordination
   identity from restart after pathname substitution during a zero-owner
@@ -87,7 +198,7 @@
 - Exact scope is 16 intended paths. Protected runtime/package/CI/M179/helper
   surfaces have zero diff; corrected added/new-content public-identity,
   local-path, and credential-assignment scans return zero matches. The retired
-  hidden roots and `AGENTS.md` remain absent.
+  retired hidden development roots and their root guidance file remain absent.
 - Fifty-one exact generated M180/pytest/docs targets were independently
   confined and checked for tracked content, ignore status, and recursive
   reparse points. Ordinary cleanup removed 37; an approved, fully revalidated

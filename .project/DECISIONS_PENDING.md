@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M181 expected-identity guardian admission probe
+
+RFC-0164 accepts one Windows-only, test-only guardian fixture and two
+current-host observations. The child denies delete sharing before comparing a
+caller-supplied expected `FILE_ID_INFO` on that same opened handle. It admits a
+match while retaining the handle and closes before reporting exact
+`identity_mismatch` for a preexisting replacement.
+
+This resolves only the measured same-handle admission ordering. It does not
+establish trusted identity provenance, authenticated or durable storage,
+generation issuance, guardian election, startup recovery, or policy. Failed
+launch, simultaneous owner loss, hostile prior handles, arbitrary process
+trees, mapped views, filesystem/driver variation, use-time revalidation,
+typed receipts, independent-host proof, and Windows admission remain pending.
+
+RFC-0164 does not authorize a runtime adapter, guardian or lock API,
+participant registry, cache access, retained-root integration, candidate
+disclosure, cleanup or mutation authority, dependency, workflow, CI
+allocation, tag, release, or publication. No hosted check is added.
+
+The supported-Python, repeated Windows, real-wgpu, profile, vertical-slice,
+documentation, governance, installed-wheel, release-smoke, findings-first,
+and public-hygiene gates support only this bounded observation. They do not
+resolve any pending production authority above.
+
 ## M180 zero-owner guardian restart-boundary probe
 
 RFC-0163 accepts two Windows-only, test-only post-wait observations. Without

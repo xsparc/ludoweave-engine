@@ -69,6 +69,7 @@ nav:
   - Windows guardian abrupt-handoff probe: security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md
   - Windows overlapping guardian-rotation probe: security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md
   - Windows zero-owner guardian restart-boundary probe: security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md
+  - Windows expected-identity guardian admission probe: security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -238,6 +239,7 @@ nav:
       - RFC-0161 - Probe Windows guardian abrupt handoff: rfcs/0161-probe-windows-guardian-abrupt-handoff.md
       - RFC-0162 - Probe Windows overlapping guardian rotation: rfcs/0162-probe-windows-overlapping-guardian-rotation.md
       - RFC-0163 - Probe Windows zero-owner guardian restart boundary: rfcs/0163-probe-windows-zero-owner-guardian-restart-boundary.md
+      - RFC-0164 - Probe Windows expected-identity guardian admission: rfcs/0164-probe-windows-expected-identity-guardian-admission.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -4643,6 +4643,39 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0163 records the accepted test-only boundary.
 
+## M181 Windows expected-identity guardian admission
+
+M181 adds one Windows-only, test-only [expected-identity guardian admission
+probe](security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md).
+It preserves M180, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+The new child accepts one canonical `FILE_ID_INFO` tuple from its parent. It
+opens the fixed coordination pathname with read/write sharing but no delete
+sharing, rejects an inheritable or reparse handle, then queries and compares
+the identity on that same already protecting handle. A match reaches `ready`.
+A mismatch closes the handle before reporting `identity_mismatch`.
+
+The matching probe observes rename error 32 and exact exclusive range
+availability until exact guardian close, after which rename succeeds and the
+original identity and bytes remain intact. The negative probe substitutes a
+distinct object before launch, supplies the original identity, requires exact
+mismatch and bounded process settlement, then observes successful replacement
+rename, range availability, both identities, bytes, and complete cleanup.
+
+This closes the comparison-to-protection window for that admitted handle. It
+does not establish who issued the expected identity or where it should be
+trusted, retained, rotated, or revalidated. Trusted identity provenance,
+durable generation authority, election, authenticated launch, recovery,
+policy, receipts, simultaneous-loss behavior, hostile handles, arbitrary
+process trees, mapped views, filesystem variation, admission, and independent
+hosts remain unresolved.
+
+M181 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0164 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

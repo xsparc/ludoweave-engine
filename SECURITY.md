@@ -947,6 +947,16 @@ the replacement identity and cannot recover the displaced original. This is
 not crash recovery, generation authority, continuity, complete admission, or
 cleanup authority; Windows remains unadmitted.
 
+M181's test-only [Windows expected-identity guardian admission
+probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md)
+passes a retained `FILE_ID_INFO` to a child that denies delete sharing before
+querying and comparing that identity on the same opened handle. A match is
+admitted while that handle remains live. A preexisting replacement is rejected
+with exact `identity_mismatch` only after the handle closes, leaving rename and
+range ownership available. This is not trusted identity provenance, durable
+storage, generation authority, authenticated launch, recovery, complete
+admission, or cleanup authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

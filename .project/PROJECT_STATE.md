@@ -1,5 +1,76 @@
 # Project State
 
+## M181 expected-identity guardian admission - locally complete, publication withheld
+
+- Base: fully locally validated M180 DCO commit
+  `d19e03ec9f83134d72086b93ebd988a5cade8f0d`, tree
+  `bffe676c2da214b77c757f914372ba351712da18`, sole parent exact M179.
+- Branch hygiene: neutral
+  `release/m181-windows-expected-identity-guardian-admission` starts at exact
+  M180. Exact containment allowed redundant M180 to be pruned; only local
+  `main` and active M181 remain.
+- Direction: RFC-0164 accepts one test-only expected-identity child and two
+  current-host cases. It rejects trusted provenance, durable storage,
+  generation authority, recovery, Windows admission, cleanup authority, and
+  CI growth.
+- Behavior: the child denies delete sharing before rejecting reparse points
+  and comparing `FILE_ID_INFO` on the same handle. A match reaches `ready` and
+  remains protected. A preexisting replacement closes before exact
+  `identity_mismatch` and leaves no namespace protection behind.
+- Focused proof: eight architecture guards plus two live cases pass ten
+  assertions. All three new Python files are format-, Ruff-, and strict-
+  Pyright clean after one unused import removal and one mechanical format.
+- Complete proof: all 551 Python files pass formatting, Ruff, and strict
+  Pyright. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,931 tests with
+  17 skips. Twenty independent invocations pass all 40 central cases.
+- Corrective proof: the first full baseline run exposed one inherited M180
+  metadata-neutrality defect after 3,930 tests passed. Three historical phrases
+  were neutralized; the exact 15-case regression and corrected full suite pass.
+- Rendering and slices: ten real-wgpu tests, both fresh profile schemas,
+  Clockwork Arena, and Agent World Builder pass with their established outputs.
+- Initial distribution: two builds reproduce a 361,611-byte pure wheel at
+  SHA-256 `e1ec8690060d7c3fc5711a42f7a72a31643b0900c76ee215790f8e1f78cfb0fd`
+  and a 2,169,797-byte source archive at SHA-256
+  `52a598705cd832db2aa76fa91eb12a21164588f76501430fe9417412a6e9f848`.
+  Wheel smoke, two identical ten-artifact release stages, and both release
+  smokes pass.
+- Inventory: 114 wheel and 890 source entries, no native/WASM/bytecode entry,
+  no M181 test-only source in the wheel, and all five new M181 sources exactly
+  once in the source archive.
+- Governance and review: strict docs, static and dated strict governance,
+  whitespace, protected surfaces, and bounded scope pass before final record
+  inclusion. No remaining actionable defect is known.
+- Protected scope: M180, every reused fixture/helper, runtime, examples,
+  scripts, dependencies, workflows, metadata, and lock remain unchanged. No
+  runtime API, workflow, matrix, job, permission, dependency, or allocation is
+  added.
+- Record-inclusive closure: the unchanged lock and graphics environment, all
+  551 Python files, 15 focused assertions, the 238-pass/one-skip M149-M181
+  boundary, strict docs, whitespace, both governance modes, exact 17-path
+  scope, and protected surfaces pass.
+- Final distribution: two builds reproduce the unchanged 361,611-byte wheel
+  and an identical 2,172,927-byte source archive at SHA-256
+  `fc3d4fdb365cccf6371123f43df660ad367a9833c5bc2dd2614768595aafeba5`.
+  Primary smoke, all 27 additional installed-wheel consumers, two identical
+  ten-artifact release stages, both release smokes, and final inventory pass.
+- Cleanup: 47 exact ignored M181 validation targets were confined, checked for
+  tracked content, ignore status, and reparse points, removed across the two
+  Windows access identities, and confirmed absent.
+- Final separator: the three M181 Python files remain static-clean; 15 focused
+  assertions, strict docs, whitespace, and both governance modes pass. The two
+  regenerated outputs were guarded, removed, and confirmed absent.
+- Commit gate: initial DCO commit
+  `70cd29751405b6cbc7b23b446216d258d043009d`, tree
+  `4069c350a3bd8dee1110ce12b191cf1f95aae91c`, has sole parent exact M180,
+  exactly 17 intended paths, one sign-off, matching configured maintainer
+  identity, no merge, expected `0 82` divergence, and a clean worktree. This
+  factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M180. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M181 is not pushed and no PR or hosted allocation is
+  created while M100-M180 remain unpublished prerequisites.
+- Remaining gate: final amended-object audit.
+
 ## M180 zero-owner guardian restart boundary - locally complete, publication withheld
 
 - Base: fully locally validated M179 DCO commit
@@ -46,7 +117,7 @@
 - Scope and hygiene: exactly 16 intended paths remain. Corrected added/new
   content scans find zero public development identity, local path, or
   high-confidence credential assignment; the retired hidden roots and
-  `AGENTS.md` remain absent.
+  their root guidance file remain absent.
 - Final record-only separator: both M180 Python files are format-, lint-, and
   type-clean; all nine focused assertions pass in 1.02 seconds; strict docs
   build in 2.75 seconds; whitespace and both governance modes pass.
