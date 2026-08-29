@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M179/RFC-0162's test-only [Windows overlapping guardian-rotation
+  probe](docs/security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md).
+  It proves a second already-live guardian retains namespace protection after
+  the first is abruptly reaped and the range participant later closes.
 - Add M178/RFC-0161's test-only [Windows guardian abrupt-handoff
   probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md).
   It proves an already-live protected participant retains namespace and range

@@ -2,6 +2,33 @@
 
 No architecture decision is currently blocked.
 
+## M179 overlapping coordination-guardian rotation probe
+
+RFC-0162 accepts one Windows-only, test-only observation that two unchanged
+M178 guardians may overlap with one M175 protected participant on the same
+coordination identity. After the first guardian is abruptly killed and reaped,
+the second guardian and participant retain protection. After participant
+close, the second guardian alone retains substitution error 32 while exact
+exclusive range ownership is available.
+
+This resolves only one exact current-host overlapping rotation. It is not
+guardian discovery, election, restart after failure, crash recovery,
+generation authority, trusted placement, or complete admission. A zero-owner
+interval, failed replacement start, simultaneous owner loss, hostile prior
+handles, arbitrary guardian counts and process trees, mapped views, filesystem
+variation, durable generation issuance/retention, use-time revalidation,
+policy, receipts, independent-host proof, and Windows admission remain pending.
+
+RFC-0162 does not authorize a runtime adapter, guardian or lock API,
+participant registry, cache access, retained-root integration, candidate
+disclosure, cleanup or mutation authority, dependency, workflow, CI
+allocation, tag, release, or publication. No hosted check is added.
+
+The supported-Python, integrated Windows, repeated live, real-wgpu, profile,
+vertical-slice, documentation, governance, installed-wheel, release-smoke,
+findings-first, and public-hygiene gates support only this bounded observation.
+They do not resolve any pending production authority above.
+
 ## M178 guardian abrupt-handoff probe
 
 RFC-0161 accepts one Windows-only, test-only observation that a fixed

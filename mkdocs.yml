@@ -67,6 +67,7 @@ nav:
   - Windows cooperative-lock abrupt-settlement probe: security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md
   - Windows protected guardian-handoff probe: security/cache-cleanup-windows-protected-guardian-handoff-probe.md
   - Windows guardian abrupt-handoff probe: security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md
+  - Windows overlapping guardian-rotation probe: security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -234,6 +235,7 @@ nav:
       - RFC-0159 - Probe Windows cooperative-lock abrupt settlement: rfcs/0159-probe-windows-cooperative-lock-abrupt-settlement.md
       - RFC-0160 - Probe Windows protected guardian handoff: rfcs/0160-probe-windows-protected-guardian-handoff.md
       - RFC-0161 - Probe Windows guardian abrupt handoff: rfcs/0161-probe-windows-guardian-abrupt-handoff.md
+      - RFC-0162 - Probe Windows overlapping guardian rotation: rfcs/0162-probe-windows-overlapping-guardian-rotation.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

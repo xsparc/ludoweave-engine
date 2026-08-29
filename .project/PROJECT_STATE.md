@@ -1,5 +1,74 @@
 # Project State
 
+## M179 overlapping guardian rotation - locally complete, publication withheld
+
+- Base: fully locally validated M178 DCO commit
+  `e77068a9a2150e6820c979a4b809e76f21d36bc0`, tree
+  `2a823e2c312a93e89cf18dcfd8e687001a03bed8`, sole parent exact M177.
+- Branch hygiene: neutral
+  `release/m179-windows-overlapping-guardian-rotation` starts at exact M178.
+  Exact containment allowed redundant M178 to be pruned; only local `main` and
+  active M179 remain.
+- Direction: RFC-0162 accepts one current-host, test-only observation in which
+  two compatible guardians overlap before the first is abruptly reaped. It
+  rejects restart, recovery, election, generation authority, Windows
+  admission, cleanup authority, and CI growth.
+- Baseline: exact M178 is clean and its nine focused assertions pass in 1.08
+  seconds. Static and dated strict governance return zero findings.
+- Behavior: the unchanged first guardian admits M175's participant and a
+  second unchanged guardian. After abrupt first-guardian wait, both survivors
+  retain protection. Participant close restores range availability while the
+  second guardian alone retains original identity and namespace protection.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions in 1.02 seconds. Both new Python files are format-, Ruff-, and
+  strict-Pyright clean after one mechanical architecture format. Strict docs
+  and whitespace pass.
+- Complete proof: all 546 Python files pass formatting, Ruff, and strict
+  Pyright. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,912 tests with
+  17 skips. The corrected 62-module M149-M179 boundary passes 219 tests with one
+  established skip, and twenty independent central observations pass.
+- Rendering and slices: ten real-wgpu tests, both fresh profile schemas, all
+  eight profile-validator tests, Clockwork Arena, and Agent World Builder pass
+  with their established deterministic identities.
+- Distribution and release: two final record-inclusive builds reproduce a
+  361,461-byte pure wheel and 2,152,246-byte source archive. Primary smoke, all
+  27 additional installed consumers, two byte-identical ten-artifact release
+  stages, and both release smokes pass. Inventory reports 114 wheel and 881
+  source entries, no native/WASM/bytecode or hidden development root, no M179
+  wheel entry, and all four exact M179 sources in the source archive.
+- Governance and review: strict docs, static and dated strict governance,
+  whitespace, exact 16-path scope, protected surfaces, and public-hygiene scans
+  pass. Findings-first review finds no remaining actionable issue.
+- Record-inclusive separator: the unchanged 46-package lock, all 546 Python
+  files, seven focused assertions, 219-pass/one-skip integrated boundary,
+  strict docs, whitespace, and both governance modes pass after recording the
+  broad evidence.
+- Final record-only separator: both M179 Python files remain format-, lint-,
+  and type-clean; seven focused assertions, strict docs, whitespace, static
+  governance, and dated strict governance pass.
+- Cleanup and pre-commit: all 46 exact ignored M179/test/docs targets were
+  independently confined, tracked-content/reparse checked, removed, and
+  confirmed absent. Exactly 16 intended paths remain; protected surfaces,
+  branch hygiene, configured maintainer identity, whitespace, and corrected
+  added/new-content hygiene pass.
+- Final factual separator: after the cleanup record, seven focused assertions
+  pass in 1.09 seconds, strict docs build in 3.11 seconds, dated strict
+  governance and whitespace pass, and the two regenerated ignored outputs are
+  revalidated, removed, and absent.
+- Protected scope: M178, its fixed guardian, runtime, examples, scripts,
+  dependencies, workflows, metadata, and lock remain unchanged. No fixture,
+  workflow, matrix, job, permission, dependency, or hosted allocation is added.
+- Commit gate: initial DCO commit
+  `186ae451dac6e0a07d2f2001b90ff7ae9a11ba77`, tree
+  `26a572cdaedf5da302d9dedfc212bc6a3d163add`, has sole parent exact M178,
+  exactly 16 paths, one sign-off, matching configured maintainer identity, no
+  merge, expected `0 80` divergence, a clean worktree, and successful full
+  object checking. This factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M178. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M179 is not pushed and no PR or hosted allocation is created
+  while M100-M178 remain unpublished prerequisites.
+
 ## M178 guardian abrupt handoff - locally complete, publication withheld
 
 - Base: fully locally validated M177 DCO commit

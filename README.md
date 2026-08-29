@@ -210,8 +210,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md).
 > After an overlapping participant joins, abrupt guardian termination and bounded
 > process wait leave that participant's independent protections intact.
+> M179 adds one test-only [Windows overlapping guardian-rotation
+> probe](docs/security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md).
+> Two fixed guardians overlap before the first is abruptly reaped; the second
+> retains namespace protection after the range participant later closes.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M178 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M179 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

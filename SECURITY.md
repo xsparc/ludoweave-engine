@@ -929,6 +929,15 @@ wait overlapping-ownership observation, not guardian restart, crash recovery,
 generation authority, complete admission, or cleanup authority; Windows
 remains unadmitted.
 
+M179's test-only [Windows overlapping guardian-rotation
+probe](docs/security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md)
+proves that two already-live compatible guardians can overlap on the retained
+identity. After the first is abruptly reaped and the protected participant
+later closes, the second guardian alone retains substitution refusal while
+exclusive range ownership is available. This is overlapping rotation, not
+guardian restart, crash recovery, election, generation authority, complete
+admission, or cleanup authority; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

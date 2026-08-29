@@ -190,6 +190,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md) that
   proves a joined participant retains independent protection after the
   overlapping guardian is abruptly terminated and reaped.
+- A test-only [Windows overlapping guardian-rotation
+  probe](security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md)
+  that preserves namespace protection through one already-overlapped guardian
+  loss and later participant close without claiming restart or recovery.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

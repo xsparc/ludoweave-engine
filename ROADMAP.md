@@ -2704,6 +2704,43 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M179 Windows overlapping guardian-rotation probe
+
+M179 starts from fully locally validated M178 commit
+`e77068a9a2150e6820c979a4b809e76f21d36bc0`. It adds one Windows-only,
+test-only [overlapping guardian-rotation
+probe](docs/security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md)
+under RFC-0162.
+
+M178's unchanged fixed guardian starts over M173's coordination identity, then
+M175's unchanged protected participant joins. A second unchanged guardian
+opens while all owners overlap. Exact `ready` events and fresh `FILE_ID_INFO`
+observations retain the original identity with substitution error 32 and
+exclusive-range error 33.
+
+The first guardian is killed and reaped through M176's bounded helper. The
+second guardian and participant remain live with both refusals intact. The
+participant then closes exactly. With only the second guardian live, the
+original identity and substitution error 32 persist while exact exclusive
+range acquire/release succeeds. Final guardian close permits M174 substitution
+with retained displaced identity, distinct replacement identity, and exact
+bytes.
+
+This is one current-host overlapping rotation, not guardian restart, crash
+recovery, election, generation authority, trusted placement, complete
+admission, startup recovery, or cleanup authority. Both guardians already
+exist before failure. A zero-owner interval, replacement after failure,
+simultaneous loss, hostile prior handles, mapped views, filesystem variation,
+durable generation issuance, use-time revalidation, policy, receipts, Windows
+admission, and independent-host proof remain open.
+
+M179 adds no fixture, runtime API, protocol, decoder, CLI command, public
+probe, production `ctypes` or subprocess invocation, adapter, cache access,
+cleanup authority, dependency, native extension, compiler requirement,
+version, workflow job/allocation, permission, credential, release authority,
+or CI change. The existing Windows suite is the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

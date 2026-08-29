@@ -1,5 +1,155 @@
 # Current task
 
+## M179 Windows overlapping guardian rotation
+
+- **Task:** Prove one already-live second guardian retains namespace protection
+  after the first overlapping guardian is abruptly reaped and the protected
+  range participant later closes.
+- **Status:** Fully locally validated at the initial DCO commit; publication is
+  withheld because hosted `main` lacks M100-M178. One factual amendment and
+  final object audit remain.
+- **Base:** Fully locally validated M178 DCO commit
+  `e77068a9a2150e6820c979a4b809e76f21d36bc0`, tree
+  `2a823e2c312a93e89cf18dcfd8e687001a03bed8`, sole parent exact M177.
+- **Branch:** `release/m179-windows-overlapping-guardian-rotation`; exact
+  containment allowed the redundant local M178 branch to be pruned.
+
+### M179 acceptance boundary
+
+- Accept RFC-0162 and retain one Windows-only, test-only, current-host NTFS
+  observation over M173's exact coordination file, two unchanged M178
+  guardians, and M175's unchanged protected participant.
+- Require the first guardian to retain original identity, substitution error
+  32, and exact exclusive range availability before the participant joins.
+- Start the participant and second guardian while the first remains live;
+  require original identity, substitution error 32, and exclusive-range error
+  33 throughout the three-owner overlap.
+- Kill and boundedly wait for the first guardian through M176's helper, then
+  require the second guardian and participant still live with both protections.
+- Close the participant exactly. With only the second guardian live, require
+  original identity and substitution error 32 while exact exclusive range
+  acquire/release succeeds.
+- Close the second guardian exactly, then require substitution success,
+  retained original/displaced identity, distinct replacement identity, exact
+  bytes, and complete cleanup without retry or sleep.
+- Interpret this only as overlapping rotation. It is not guardian restart,
+  crash recovery, election, generation authority, trusted placement, complete
+  admission, Windows admission, or cleanup authority.
+- Add no fixture, runtime adapter, guardian/lock API, dependency, workflow,
+  job/allocation, permission, release authority, or CI change.
+
+### M179 direction evidence
+
+- Microsoft documents that compatible `CreateFileW` requests may coexist and
+  that each handle's sharing options remain effective until that handle closes
+  regardless of process context.
+- Microsoft documents `TerminateProcess` as asynchronous, so survivor
+  assertions begin only after M176's bounded process wait completes.
+- GitHub documents that every matrix combination creates a job. M179 uses only
+  the existing Windows suite and creates no hosted allocation.
+- NIST still lists SSDF 1.2 as an Initial Public Draft. M179 retains existing
+  governance without a new standards-conformance claim.
+
+### M179 local validation evidence
+
+- Exact M178 is clean; its nine focused assertions pass in 1.08 seconds.
+  Static and 2026-08-29 dated strict governance each pass with zero findings
+  across three objectives, seven requirements, and four work items.
+- Neutral M179 starts from exact M178. Exact containment made local M178
+  redundant, so only local `main` and active M179 remain.
+- One new integration probe reuses the unchanged M178 guardian twice, the
+  unchanged M175 participant, and M176's bounded abrupt-wait helper. One new
+  architecture guard protects all prerequisite/runtime/package/CI boundaries.
+- Ruff requested one mechanical architecture wrap. After formatting, both new
+  Python files are format-clean, Ruff-clean, and strict-Pyright clean. Six
+  architecture guards plus the live observation pass seven assertions in 1.02
+  seconds; strict docs build in 2.59 seconds and whitespace passes.
+- Exactly 12 implementation/public paths currently differ from M178. Public
+  identity, high-confidence credential, and local-user-path scans return zero
+  findings. No hidden development root is present.
+- The unchanged lock resolves 46 packages and the baseline graphics environment
+  checks 45 packages. All 546 Python files pass Ruff formatting, Ruff lint, and
+  strict Pyright.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,912 tests with 17
+  established skips. An initial active-environment sync accidentally replaced
+  both intended compatibility environments with 3.12; no test used them. They
+  were rebuilt, installed from the frozen export, and their exact interpreter
+  versions were verified before the accepted runs.
+- The complete 62-module M149-M179 boundary passes 219 tests with one
+  established capability skip. Twenty independent central M179 probes pass in
+  1.210 to 1.283 seconds wall time. A first read-only PowerShell selection
+  wrapper had a parser error and produced no test result; the corrected exact
+  31-plus-31 selection is the accepted evidence.
+- Ten real-wgpu tests, fresh base and graphics profile schemas, all eight
+  profile-validator tests, Clockwork Arena, and Agent World Builder pass with
+  their established deterministic identities.
+- Strict docs build in 2.69 seconds with only the known Material notice. Static
+  and 2026-08-29 dated strict governance return zero findings across three
+  objectives, seven requirements, and four work items; whitespace passes.
+- Two final record-inclusive builds reproduce a 361,461-byte pure wheel at
+  SHA-256
+  `b84f692e595f53ce6d6651ecfc2240b5797dfd0b32bc760d9a36c73aca446b2d`
+  and a 2,152,246-byte source archive at SHA-256
+  `8528e9998243524515a47b3435f0b4a567fb2ed3d740ba2a5ebb05514588e13f`.
+  Primary smoke and all 27 additional installed-wheel consumers pass. Two
+  ten-artifact release stages are byte-identical and both release smokes pass;
+  inventory finds 114 wheel and 881 source entries, no native/WASM/bytecode or
+  hidden development root, no M179 wheel entry, and all four exact M179 sources
+  in the source archive. Recording this final row changes only the source
+  archive afterward.
+- Findings-first review has no remaining actionable code, architecture,
+  security, documentation, compatibility, scope, or public-hygiene finding.
+  Exactly 16 intended paths differ from M178; runtime, examples, scripts,
+  workflows, metadata, dependencies, lock, fixture, and M178 remain protected.
+- The evidence-inclusive source separator keeps the 46-package lock current,
+  all 546 Python files static-clean, all seven focused assertions passing in
+  0.99 seconds, the 62-module boundary at 219 passes and one skip, strict docs
+  and whitespace passing, and both governance modes at zero findings.
+- The final record-only separator keeps both M179 Python files format-, lint-,
+  and type-clean; all seven focused assertions pass in 1.06 seconds; strict
+  docs build in 2.76 seconds; whitespace and both governance modes pass.
+- Forty-six exact ignored M179/test/docs targets were repository-confined and
+  checked for tracked content and reparse points. The ordinary identity removed
+  39; a separately revalidated approved retry removed the seven ACL-protected
+  roots. No exact target remains.
+- The pre-commit gate confirms exactly 16 intended paths, unchanged protected
+  runtime/package/CI/M178 surfaces, only local `main` and neutral M179,
+  configured maintainer identity, whitespace, and zero added/new development-
+  identity, local-path, or high-confidence credential-assignment match.
+- After the cleanup record, seven focused assertions, strict docs, dated strict
+  governance, and whitespace pass once more. The two regenerated ignored
+  outputs were independently revalidated, removed, and confirmed absent.
+
+### M179 publication boundary
+
+- Initial DCO commit `186ae451dac6e0a07d2f2001b90ff7ae9a11ba77`, tree
+  `26a572cdaedf5da302d9dedfc212bc6a3d163add`, has sole parent exact M178,
+  exactly 16 intended paths, one sign-off, matching configured maintainer
+  identity, no merge, expected `0 80` divergence, a clean worktree, and
+  successful full object checking. This factual record is incorporated by one
+  final amendment.
+- A fresh pruned fetch leaves hosted `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, which does not contain M178.
+  GitHub reports no open PR, PR #251 as the latest merge, and only remote
+  `main`. M179 is not pushed and no PR or hosted workflow allocation is created
+  while M100-M178 remain unpublished prerequisites.
+- No push, PR, hosted workflow allocation, tag, release, or package publication
+  is claimed.
+- Publication must not create a new workflow, job, matrix allocation, or
+  redundant predecessor branch.
+
+### M179 explicit non-scope
+
+- Guardian discovery, election, restart after failure, zero-owner intervals,
+  simultaneous loss, trusted root placement, startup recovery, complete
+  admission, hostile prior handles, mapped views, filesystem variation,
+  generation, policy, receipts, cleanup authority, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, dependency,
+  native-extension, compiler, workflow, permission, CI-allocation, tag,
+  release, publication, or version changes.
+
+## Prior task: M178
+
 - **Task:** M178 - prove a protected participant retains its independent
   coordination protections after an overlapping guardian is abruptly
   terminated and reaped.
@@ -13,7 +163,7 @@
 - **Branch:** `release/m178-windows-guardian-abrupt-handoff`; exact containment
   allowed the redundant local M177 branch to be pruned.
 
-## M178 acceptance boundary
+### M178 acceptance boundary
 
 - Accept RFC-0161 and retain one Windows-only, test-only, current-host NTFS
   observation over M173's exact coordination file and M175's fixed participant.
@@ -36,7 +186,7 @@
 - Add no runtime adapter, guardian/lock API, dependency, workflow,
   job/allocation, permission, release authority, or CI change.
 
-## M178 direction evidence
+### M178 direction evidence
 
 - Microsoft documents that `CreateFileW` sharing options remain effective
   until each handle closes regardless of process context.
@@ -50,7 +200,7 @@
 - NIST still lists SSDF 1.2 as draft. M178 retains existing governance and
   makes no new standard-conformance claim.
 
-## M178 development evidence so far
+### M178 development evidence so far
 
 - Exact M177 is clean with expected `0 78` divergence from local M99 main. Its
   seven focused assertions pass in 0.83 seconds.
@@ -85,7 +235,7 @@
   diff, zero public identity/credential/local-path finding, zero scratch, only
   local `main` plus neutral M178, and configured maintainer identity.
 
-## M178 publication boundary
+### M178 publication boundary
 
 - Fresh hosted audit leaves `origin/main` at exact M99
   `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; it does not contain M177. No PR
@@ -94,7 +244,7 @@
 - Publication must not create a new workflow, job, matrix allocation, or
   redundant predecessor branch.
 
-## M178 explicit non-scope
+### M178 explicit non-scope
 
 - Guardian restart, a zero-owner interval, multiple guardians, trusted root
   placement, startup recovery, complete participant admission, hostile prior
@@ -104,7 +254,7 @@
   native-extension, compiler, workflow, permission, CI-allocation, tag,
   release, publication, or version changes.
 
-## Prior task: M177
+## Earlier task: M177
 
 - **Task:** Prove one protected guardian can bridge a participant-free
   coordination interval and hand namespace protection to a later participant.

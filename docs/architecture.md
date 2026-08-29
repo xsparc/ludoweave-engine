@@ -4578,6 +4578,38 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0161 records the accepted test-only boundary.
 
+## M179 Windows overlapping guardian-rotation boundary
+
+M179 adds one Windows-only, test-only [overlapping guardian-rotation
+probe](security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md).
+It preserves M178, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+Two invocations of M178's unchanged fixed guardian overlap on M173's original
+coordination identity around M175's unchanged protected participant. The first
+guardian is killed and reaped through M176's bounded helper. The second
+guardian and participant remain live on the original identity with
+substitution error 32 and exclusive-range error 33.
+
+After the participant closes, the second guardian remains live on the original
+identity. It continues to refuse substitution while exact exclusive range
+acquire/release succeeds, preserving the separation between namespace
+continuity and cooperative quiescence. Exact guardian close then permits M174
+substitution with retained original and distinct replacement identities.
+
+The result is one current-host overlapping rotation, not guardian restart,
+crash recovery, leader election, generation authority, trusted-root placement,
+complete admission, startup recovery, or cleanup authority. Both guardians
+exist before failure; zero-owner intervals, replacement after failure,
+simultaneous loss, hostile prior handles, mapped views, filesystem variation,
+durable generation issuance, use-time revalidation, policy, receipts, and
+independent hosts remain unresolved.
+
+M179 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0162 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
