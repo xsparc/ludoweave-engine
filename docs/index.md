@@ -272,6 +272,11 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md)
   that records one later flush raising generic `ValueError` while the concrete
   stream remains closed.
+- A test-only [Windows hard-link alias mutator closed-stream write after
+  delivery-failure
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md)
+  that records one later `write(b"!")` raising generic `ValueError` while the
+  concrete stream remains closed.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

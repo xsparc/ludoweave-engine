@@ -1119,6 +1119,16 @@ fixed sequence and fixture; it does not establish a second native write,
 delivery retry, acknowledgement, durable recovery, or cleanup authority.
 Windows remains unadmitted.
 
+M198's test-only [Windows hard-link alias mutator closed-stream write after
+delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md)
+reuses M197's exact close failure, repeated-close no-op, closed-stream flush
+failure, and closed state. One later `write(b"!")` raises generic `ValueError`
+and leaves the concrete stream closed. This is only local closed-stream write
+disposition evidence for one fixed sequence, argument, and fixture; it does not
+establish native-call suppression, retry, acknowledgement, durable recovery,
+or cleanup authority. Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

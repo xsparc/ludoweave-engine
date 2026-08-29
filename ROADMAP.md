@@ -3319,6 +3319,38 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite remains the only future hosted execution
 path; no hosted check is added.
 
+## M198 Windows hard-link alias mutator closed-stream write after delivery failure probe
+
+M198 starts from fully locally validated M197 commit
+`7a317300b01f6c02a959d1e3018f94aee178d603`. It adds one Windows-only,
+test-only [hard-link alias mutator closed-stream write after delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md)
+under RFC-0181.
+
+The probe retains M186's unchanged sibling mutator, M181's matching guardian,
+and M197's byte-for-byte closed-stream flush helper. After M195's first
+`close()` reports generic `OSError`, M196's second `close()` returns `None`,
+M197's `flush()` raises generic `ValueError`, and the stream remains closed,
+the parent calls `write(b"!")` exactly once. That call raises generic
+`ValueError` and leaves the concrete stream closed. No exact message or numeric
+detail is frozen. Alias identity, bytes, link count two, range availability,
+guardian protection, final rename, and complete cleanup remain unchanged.
+
+This records closed-stream write disposition for one fixed stream, argument,
+and fixture. It does not establish native-call suppression, a second native
+write, delivery retry, portable behavior for arbitrary streams,
+acknowledgement, durable commit, recovery, cleanup admission, or a production
+protocol contract. Cross-principal behavior, inherited or duplicated writers,
+hostile simultaneous racing, ReFS/SMB/other-host evidence, Windows admission,
+and cleanup authority remain unresolved.
+
+M198 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite remains the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

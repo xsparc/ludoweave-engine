@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M198 hard-link alias mutator closed-stream write boundary
+
+RFC-0181 accepts one Windows-only, test-only NTFS observation. M197's protected
+helper performs the exact terminal invalid settlement, late one-byte buffer
+acceptance, first `close()` generic `OSError`, second `close()` returning
+`None`, one `flush()` raising generic `ValueError`, and retained closed state.
+M198 then calls `write(b"!")` exactly once, requires generic `ValueError`, and
+requires the stream still closed. This is local concrete-stream disposition,
+not evidence of native-call suppression, delivery retry, or acknowledgement.
+
+The result remains one current-host, three-process, same-principal observation.
+It adds no runtime, fixture, dependency, workflow, hosted allocation,
+permission, release authority, version, or Windows admission. Authenticated
+root and generation authority, explicit framing, acknowledgements, native-call
+tracing, link policy, use-time revalidation, durable intent, idempotent
+recovery, reconciliation, typed receipts, cross-principal evidence, and
+independent-host proof remain future design work.
+
 ## M197 hard-link alias mutator closed-stream flush boundary
 
 RFC-0180 accepts one Windows-only, test-only NTFS observation. M196's protected

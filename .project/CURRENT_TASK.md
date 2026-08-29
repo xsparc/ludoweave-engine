@@ -1,5 +1,157 @@
 # Current task
 
+## M198 Windows hard-link alias mutator closed-stream write boundary
+
+- **Task:** Determine the concrete parent-stream result of one `write(b"!")`
+  after M197's protected failed-close, repeated-close, closed-flush, and retained
+  closed-state sequence.
+- **Status:** Local implementation, supported-Python regression, rendering,
+  distribution, release rehearsal, findings-first review, exact scratch
+  cleanup, final post-cleanup validation, initial local DCO object audit, and
+  hosted publication-safety gates pass. The closeout amendment remains;
+  publication is withheld because hosted `main` lacks M100-M197.
+- **Base:** Fully locally validated M197 DCO commit
+  `7a317300b01f6c02a959d1e3018f94aee178d603`, tree
+  `96bcfc262ec0f4c73b057b01234eb354d86b655b`, sole parent exact M196.
+- **Branch:**
+  `release/m198-windows-alias-mutator-closed-stream-write-after-delivery-failure-boundary`;
+  the redundant local M197 branch name was removed after exact M198 branch
+  creation retained its object.
+
+### M198 acceptance boundary
+
+- Accept RFC-0181 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, M186's unchanged
+  bounded-output mutator child, and M197's byte-for-byte closed-flush helper.
+- Require M195's first `close()` to raise generic `OSError`, M196's second
+  `close()` to return `None`, M197's `flush()` to raise generic `ValueError`,
+  and the stream closed. Call `write(b"!")` exactly once, require generic
+  `ValueError` without message or numeric assertion, and require the stream
+  still closed.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process, stream, native, and range cleanup.
+- State the result narrowly as one concrete closed-stream write disposition.
+  Do not claim native-call suppression, a second native write, delivery retry,
+  acknowledgement, portability, durable recovery, Windows admission, or
+  cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job or allocation,
+  permission, release authority, version, or CI change.
+
+### M198 development evidence so far
+
+- Exact M197 focused baseline passed nine tests in 0.58 seconds.
+- Static strict governance returned zero findings. The first dated invocation
+  was denied managed-cache access before checking; its exact access-enabled
+  `2026-08-30` rerun returned zero findings across three objectives, seven
+  requirements, and four work items.
+- Current Python buffered-I/O and CPython implementation, Microsoft
+  `WriteFile`, GitHub least-privilege/billing, NIST SSDF, and SLSA 1.2 sources
+  support one bounded closed-write observation, its strict non-claims, and no
+  hosted allocation.
+- Neutral M198 was created from exact M197, and the redundant local M197 branch
+  name was removed without deleting its retained object.
+- The first live M198 probe passed one test in 0.51 seconds. The intentional
+  architecture-red phase passed six behavior and containment checks and failed
+  only the three absent RFC, security, and public-registration contracts.
+- RFC-0181, the security record, and eight public registrations now describe
+  the selected boundary. Ruff requested only mechanical formatting; both new
+  Python files are now format-, lint-, and strict-Pyright clean, and all nine
+  focused checks pass.
+- Exact CPython 3.12.13, 3.13.13, and 3.14.5 complete suites each pass 4,080
+  tests with 17 skips. The exact 100-file Windows boundary passes 387 tests
+  with one established skip, and 20 independent M198 live invocations pass.
+- Ten real-wgpu tests, fresh two- and three-workload M7 profiles, eight profile-
+  schema tests, Null and wgpu Clockwork Arena, and Agent World Builder pass
+  with their established deterministic identities.
+- Two builds are byte-identical; installed-wheel and scene-wheel smoke pass;
+  two identical ten-artifact release stages pass complete release smoke. The
+  wheel has 114 pure entries, the source archive has 959 entries, and all four
+  M198 evidence files are source-only.
+- Findings-first review retains exactly 16 intended paths, zero protected-
+  surface diff, 14 passing hygiene and M198 checks, zero forbidden wheel
+  payload, and zero development-identity, credential-assignment, or machine-
+  local-path match across 892 added lines. No actionable finding remains.
+- The public status now records M198 as locally validated. Record-inclusive
+  static, documentation, governance, distribution, release, cleanup, and
+  hosted reconciliation gates pass. At that separator, final post-cleanup
+  validation and the DCO commit remained.
+- The record-inclusive separator resolves the unchanged lock, keeps all 586
+  Python files static-clean, passes 14 review checks, strict docs, static and
+  current-date strict governance, and whitespace.
+- Two record-state builds reproduce a 362,840-byte pure wheel at SHA-256
+  `811a9fb8b83e68fe8b5d974dcb7a1936a1f8f51e7969bff06fe822a44834b142`
+  and a 2,309,053-byte source archive at SHA-256
+  `19598ff4c00590f04316ede1e277e845a16e5d0be33b7bdc25a901a839456e73`.
+  Installed-wheel and scene-wheel smoke pass; two byte-identical ten-artifact
+  release stages pass complete release smoke. Inventory remains 114/959 with
+  exact source-only confinement and zero forbidden wheel entry. Final
+  pre-cleanup validation, guarded cleanup, and hosted reconciliation now pass;
+  at that rehearsal, final post-cleanup validation and the DCO commit remained.
+- The final pre-cleanup separator keeps all 586 Python files static-clean,
+  passes 14 review checks, strict docs, static and current-date strict
+  governance, and whitespace. Guarded cleanup and hosted reconciliation now
+  pass; at that separator, final post-cleanup validation and the DCO commit
+  remained.
+- Guarded cleanup found 52 exact top-level `.tmp/m198*` targets. All were
+  repository-confined, ignored, untracked, and top-level non-reparse. Forty-one
+  recursively auditable, reparse-free targets were removed first. An exact
+  complementary access-enabled read-only audit then proved the remaining 11
+  pytest roots recursively reparse-free; exact guarded removal revalidated and
+  removed them. Zero `.tmp/m198*` target remains, and no ACL was changed.
+- Read-only pre-commit readiness proves exact M197 HEAD and tree, exactly 16
+  intended paths, zero protected runtime, package, fixture, CI, and M197 diff,
+  only local `main` and neutral M198, expected `0 98` divergence, configured
+  maintainer identity, clean whitespace, and clean object connectivity. That
+  audit preceded the completed complementary cleanup, final post-cleanup gate,
+  and initial DCO object.
+- A fresh pruned fetch, local hosted-ref and ancestry inspection, authenticated
+  public-repository/default-branch query, and recent PR history leave remote
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`
+  with tree `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, prove M196 and
+  M197 absent, show only remote `main`, and report PR #251 as latest. Publishing
+  M198 would expose the absent M100-M197 stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- The post-hosted-readiness separator keeps all 586 Python files format-clean,
+  returns zero Ruff and strict-Pyright findings, builds strict docs, returns
+  zero static and dated governance findings, and passes whitespace. Its exact
+  generated docs target was recursively audited and removed. The subsequent
+  complementary audit and guarded delete completed the remaining scratch
+  cleanup without changing ACLs.
+- The final post-cleanup separator keeps all 586 Python files format-clean,
+  returns zero Ruff and strict-Pyright findings, passes the exact 14-test
+  hygiene/M198 group in 0.97 seconds, builds strict docs in 3.19 seconds,
+  returns zero static and corrected current-date strict governance findings,
+  and passes whitespace. Its exact test and docs targets were guarded, removed,
+  and leave zero `.tmp/m198*` target.
+- Initial DCO commit `f40e17844c861e408d7ef53314659f93b3f04bb1`, tree
+  `c034e90791840f2efc822ed947bcd0e5d7cf77be`, has sole parent exact M197,
+  exactly 16 intended paths, one matching `Signed-off-by` trailer, consistent
+  configured author and committer identity, no merge, expected `0 99`
+  divergence from local M99 `main`, a clean worktree, zero M198 scratch, clean
+  revision whitespace, and clean object connectivity. This factual record is
+  incorporated by one closeout amendment.
+- A final fresh pruned fetch leaves remote `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` and tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; only remote `main` exists,
+  divergence is `0 99`, and neither exact M197 nor the initial M198 object is
+  an ancestor. Publication remains withheld with zero hosted allocation.
+
+### M198 explicit non-scope
+
+- Any closed-stream operation other than one `write(b"!")`; other arguments;
+  exact exception text; native-call tracing; pre-settlement or concurrent late
+  commands; arbitrary buffered, partial, repeated, or larger input;
+  duplicated or inherited writers; cross-principal or unrelated-process
+  behavior; hostile simultaneous racing; authenticated framing or
+  acknowledgement; crash or power loss; durable intent, rollback,
+  reconciliation, typed recovery receipts; ReFS, SMB, or other-host evidence;
+  Windows admission; and cleanup authority.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M197 Windows hard-link alias mutator closed-stream flush boundary
 
 - **Task:** Determine the concrete parent-stream result of one `flush()` after

@@ -5146,6 +5146,40 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0180 records the accepted test-only
 boundary.
 
+## M198 Windows hard-link alias mutator closed-stream write after delivery failure
+
+M198 adds one Windows-only, test-only [hard-link alias mutator closed-stream
+write after delivery-failure
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md).
+It preserves M186-M197, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows byte-for-byte.
+
+The probe delegates M197's exact invalid settlement, late-byte buffer
+acceptance, first-close generic `OSError`, second-close `None`, closed-stream
+flush `ValueError`, and resulting closed state to the protected M197 helper. It
+then calls `write(b"!")` exactly once. The call raises generic `ValueError` and
+leaves the concrete stream closed. It freezes no exact message or numeric
+detail and does not establish native-call suppression, retry, or child
+acknowledgement.
+
+The alias retains shared identity, bytes, link count two, and range availability
+while the guardian remains live and protective. Exact guardian release, final
+rename, and complete process, stream, native-handle, and range cleanup remain
+unchanged.
+
+This is closed-stream write disposition evidence for one fixed stream,
+argument, and fixture. It is not arbitrary closed-stream-operation, portable
+stream or exception behavior, general framing, arbitrary buffered input,
+acknowledgement semantics, durable commit, repair, or recovery evidence.
+Cross-principal behavior, inherited or duplicated writers, hostile
+simultaneous racing, ReFS/SMB/other-host evidence, Windows admission, and
+cleanup authority remain unresolved.
+
+M198 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0181 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

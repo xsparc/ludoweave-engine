@@ -86,6 +86,7 @@ nav:
   - Windows hard-link alias mutator buffered-close delivery failure after invalid settlement probe: security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md
   - Windows hard-link alias mutator repeated buffered close after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md
   - Windows hard-link alias mutator closed-stream flush after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md
+  - Windows hard-link alias mutator closed-stream write after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -272,6 +273,7 @@ nav:
       - RFC-0178 - Probe Windows buffered-close delivery failure after invalid settlement: rfcs/0178-probe-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement.md
       - RFC-0179 - Probe Windows repeated buffered close after delivery failure: rfcs/0179-probe-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure.md
       - RFC-0180 - Probe Windows closed-stream flush after delivery failure: rfcs/0180-probe-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure.md
+      - RFC-0181 - Probe Windows closed-stream write after delivery failure: rfcs/0181-probe-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
