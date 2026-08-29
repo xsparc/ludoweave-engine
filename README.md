@@ -222,8 +222,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md).
 > The guardian compares the caller's expected identity on its already
 > protecting handle, admitting a match and closing before reporting a mismatch.
+> M182 adds one test-only [Windows hard-link alias non-exclusion
+> probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md).
+> It proves the opened name remains protected while a preexisting alias for the
+> same file can be renamed, so identity match is not root-confined ownership.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M181 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M182 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

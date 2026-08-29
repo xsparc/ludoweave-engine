@@ -1,5 +1,111 @@
 # Current task
 
+## M182 Windows hard-link alias non-exclusion boundary
+
+- **Task:** Determine whether M181's matching expected-identity guardian also
+  excludes namespace mutation through a preexisting hard-link alias.
+- **Status:** Direction, implementation, supported-Python regression,
+  concentrated Windows behavior, graphics/profiles/vertical slices,
+  reproducible distribution/release rehearsal, strict governance, and
+  findings-first review pass. The first live run falsified the proposed
+  all-names protection guarantee; the corrected negative boundary passes.
+  Record-inclusive separators, guarded cleanup, initial DCO commit, and the
+  publication-safety gate pass. Publication is withheld because hosted
+  `main` lacks M100-M181. Final amended-object shape and connectivity pass.
+- **Base:** Fully locally validated M181 DCO commit
+  `d808b94102acd576c7ac8e458fe119692d614c4e`, tree
+  `109ed76a0c95d80b3f0cf8c002ef543d077d4b3f`, sole parent exact M180.
+- **Branch:** `release/m182-windows-hard-link-alias-non-exclusion-boundary`;
+  renaming the active branch removed the inaccurate protection claim and left
+  no redundant local predecessor branch.
+
+### M182 acceptance boundary
+
+- Accept RFC-0165 and retain one Windows-only, test-only current-host NTFS
+  observation over M173's exact coordination file and M181's unchanged
+  expected-identity guardian.
+- Create one preexisting peer hard link; require equal `FILE_ID_INFO` and link
+  counts of at least two before guardian launch.
+- Require the exact opened coordination name to reject rename with sharing
+  error 32 while the preexisting alias rename succeeds and the guardian stays
+  live.
+- Require the moved alias to retain identity and link count, byte-range
+  ownership to remain available through both names, and a second exact-name
+  rename to remain refused.
+- After exact guardian close, require exact-name rename success, retained
+  identity/link count/bytes through both remaining names, and complete cleanup.
+- Interpret the result as hard-link alias non-exclusion, not root-confined
+  ownership, link policy, recovery, admission, or cleanup authority.
+- Add no runtime API, dependency, workflow, job/allocation, permission,
+  release authority, or CI change.
+
+### M182 direction and development evidence so far
+
+- Microsoft documents hard links as multiple same-volume directory entries
+  for one file, per-file CreateFile sharing, handle link counts, and pathname
+  rename/delete operations. GitHub matrix and NIST SSDF status were also
+  checked on 2026-08-29; neither supports a new CI allocation or conformance
+  claim.
+- Exact M181 was clean. Its ten focused assertions passed; static and dated
+  strict governance returned zero findings across three objectives, seven
+  requirements, and four work items.
+- The first live M182 run failed because the preexisting alias rename did not
+  raise the expected error. The correction preserved that result as the
+  boundary and renamed the branch, source, tests, and decision language.
+- The corrected live probe passes. Ruff and strict Pyright pass both new
+  Python files. Eight combined architecture/live assertions pass, and strict
+  documentation builds with only the known Material notice.
+- Exact CPython 3.12.13, fresh isolated 3.13.13, and fresh isolated 3.14.5
+  each pass 3,939 tests with 17 skips. A retained older 3.13 environment passed
+  its collected 3,929 tests with 18 skips but is diagnostic only; the fresh
+  frozen run is the accepted compatibility result.
+- The 34-file M149-M182 architecture selection plus 34 Windows cache-cleanup
+  integration modules passes 246 tests with one established skip. Twenty
+  independent M182 live invocations pass in 0.601 to 0.675 seconds.
+- Ten real-wgpu tests, fresh base/graphics profiles, all eight profile-schema
+  tests, Clockwork Arena, and Agent World Builder pass with established
+  deterministic identities.
+- Two builds reproduce a 361,686-byte pure wheel at SHA-256
+  `46418eb0a65e35b9fbcd3ce09207bc4985ecefa02bde7e9ab014f87367a09938`
+  and a 2,182,678-byte source archive at SHA-256
+  `7c166b609b2547106d835b6ef00fc98d93c0ea26850ddc53e1c9e69908839e16`.
+  Primary smoke, all 27 additional installed-wheel consumers, two
+  byte-identical ten-artifact release stages, and both release smokes pass.
+- The wheel has 114 entries and no native, WASM, bytecode, hidden project
+  record, or M182 test source. The 894-entry source archive contains all four
+  new M182 source records exactly once.
+- Static and dated strict governance pass with zero findings. The focused
+  metadata/security review passes 13 assertions and finds no public
+  development-tool identity, credential assignment, local path, protected
+  runtime/package/CI change, or remaining actionable finding.
+
+### M182 explicit non-scope
+
+- Root authentication, link enumeration, post-admission link creation, alias
+  deletion, cross-volume behavior, ReFS/SMB/driver variation, file-ID reuse,
+  trusted generation provenance, failed launch, simultaneous loss, recovery,
+  link-count policy, typed receipts, Windows admission, cleanup authority, or
+  independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
+### M182 publication boundary
+
+- Initial DCO commit `f70689b623a7ec432351864e06f2db468761c135`, tree
+  `c3c6080b732a33a8dc903e379839d4e19ad13a26`, has sole parent exact M181,
+  exactly 16 intended paths, one sign-off, matching configured maintainer
+  identity, no merge, expected `0 83` divergence from local M99 `main`, a
+  clean worktree, and clean object connectivity. This factual record is
+  incorporated by one final amendment.
+- A fresh pruned fetch leaves hosted `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; it does not contain M181.
+  GitHub reports no open PR, PR #251 as the latest merge, and only remote
+  `main`. M182 is not pushed and no PR or hosted allocation is created while
+  M100-M181 remain unpublished prerequisites.
+- Publication must not create a workflow, job, matrix allocation, redundant
+  predecessor branch, tag, release, or package publication.
+
 ## M181 Windows expected-identity guardian admission
 
 - **Task:** Determine whether a Windows guardian can admit the intended

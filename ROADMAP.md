@@ -2813,6 +2813,37 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M182 Windows hard-link alias non-exclusion probe
+
+M182 starts from fully locally validated M181 commit
+`d808b94102acd576c7ac8e458fe119692d614c4e`. It adds one Windows-only,
+test-only [hard-link alias non-exclusion
+probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md)
+under RFC-0165.
+
+The probe creates a peer hard-link alias for M173's exact coordination file,
+requires equal `FILE_ID_INFO` and link counts of at least two, then starts
+M181's matching guardian. The exact opened name rejects rename with sharing
+error 32, but the preexisting alias can be renamed while the guardian remains
+live. The moved alias retains identity and link count, byte-range ownership is
+available through both names, and a second exact-name rename remains refused.
+After exact guardian close, the coordination entry can be renamed and both
+remaining names retain identity, link count, and bytes.
+
+This is hard-link alias non-exclusion evidence, not root-confined ownership,
+hard-link enumeration, link-count policy, trusted root placement, durable
+generation authority, deletion behavior, recovery, complete admission, or
+cleanup authority. Windows remains unadmitted. The failed initial all-names
+protection hypothesis is retained factually rather than converted into a
+security claim.
+
+M182 adds no runtime API, protocol, decoder, CLI command, public probe,
+production native or subprocess surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

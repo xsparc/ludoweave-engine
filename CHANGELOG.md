@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M182/RFC-0165's test-only [Windows hard-link alias non-exclusion
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md).
+  It shows that M181's guardian continues protecting the exact name it opened
+  while a preexisting hard-link alias can be renamed, so identity alone is not
+  root-confined ownership.
 - Add M181/RFC-0164's test-only [Windows expected-identity guardian admission
   probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md).
   It compares `FILE_ID_INFO` on the same no-delete-share handle that protects

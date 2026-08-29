@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M182 hard-link alias non-exclusion boundary
+
+RFC-0165 accepts one Windows-only, test-only NTFS observation. A preexisting
+peer hard link has the same `FILE_ID_INFO` and a link count of at least two.
+While M181's matching guardian is live, rename of the exact opened
+coordination name fails with sharing error 32, but rename of the alias
+succeeds. The guardian remains live and continues protecting the exact name.
+
+This resolves only the original all-names protection hypothesis: it is false
+on the observed host. Expected identity is not sole-name authority and not
+root-confined ownership. Trusted root placement, link enumeration,
+post-admission link creation, alias deletion, link-count policy, use-time
+revalidation, file-ID reuse, filesystem variation, durable generation,
+recovery, typed receipts, cleanup authority, independent-host proof, and
+Windows admission remain pending.
+
+RFC-0165 does not authorize runtime code, a public probe, native declarations,
+cache access, mutation, dependency, workflow, CI allocation, permission,
+release authority, or publication. No hosted check is added.
+
 ## M181 expected-identity guardian admission probe
 
 RFC-0164 accepts one Windows-only, test-only guardian fixture and two

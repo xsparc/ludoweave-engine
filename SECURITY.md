@@ -957,6 +957,16 @@ range ownership available. This is not trusted identity provenance, durable
 storage, generation authority, authenticated launch, recovery, complete
 admission, or cleanup authority; Windows remains unadmitted.
 
+M182's test-only [Windows hard-link alias non-exclusion
+probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md)
+creates a peer hard link for that same coordination file before guardian
+launch. On the observed NTFS host, the matching guardian rejects rename of the
+exact name it opened but does not prevent rename of the preexisting alias. The
+guardian remains live and continues rejecting exact-name rename afterward.
+This is negative evidence: an identity match is not root-confined ownership
+and cannot replace trusted-root and link-count policy. Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -4676,6 +4676,37 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0164 records the accepted test-only boundary.
 
+## M182 Windows hard-link alias non-exclusion
+
+M182 adds one Windows-only, test-only [hard-link alias non-exclusion
+probe](security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md).
+It preserves M181, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+The probe creates a second directory entry for M173's ordinary coordination
+file and proves both entries initially have the same `FILE_ID_INFO` with a link
+count of at least two. M181's expected-identity guardian then opens the fixed
+coordination name. Rename of that exact name fails with sharing error 32, but
+rename of the other entry succeeds while the guardian remains live. The moved
+alias retains object identity, and the guardian continues rejecting rename of
+the fixed name.
+
+This separates object identity from namespace ownership. The same file can
+have multiple directory entries, and admission of one correctly identified
+handle does not prove every entry is known or confined to an authorized root.
+Future Windows cleanup architecture therefore requires explicit trusted-root,
+hard-link, link-count, and use-time revalidation policy before it can authorize
+mutation.
+
+M182 does not enumerate links, test post-admission link creation or alias
+deletion, establish filesystem-independent behavior, or define recovery,
+generation, admission, or cleanup authority. Windows remains unadmitted.
+
+M182 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0165 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

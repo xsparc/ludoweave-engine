@@ -1,5 +1,65 @@
 # Project State
 
+## M182 hard-link alias non-exclusion - locally complete, publication withheld
+
+- Base: fully locally validated M181 DCO commit
+  `d808b94102acd576c7ac8e458fe119692d614c4e`, exact tree
+  `109ed76a0c95d80b3f0cf8c002ef543d077d4b3f`, sole parent exact M180.
+- Branch hygiene: neutral
+  `release/m182-windows-hard-link-alias-non-exclusion-boundary`; the inaccurate
+  initial protection name was corrected in place and no redundant predecessor
+  branch remains.
+- Direction: RFC-0165 accepts one current-host, Windows-only, test-only
+  negative boundary. M181's guardian protects its exact opened name but does
+  not exclude rename through a preexisting hard-link alias for the same file.
+- Correction evidence: the first live run expected alias rename refusal and
+  failed because no `OSError` was raised. The corrected test preserves that
+  observation, proves guardian liveness and continued exact-name protection,
+  and passes.
+- Scope so far: one integration probe, one architecture guard, RFC-0165, one
+  security decision, eight public registrations, and four project-record
+  updates. Runtime, examples, scripts, fixtures, workflows, metadata,
+  dependencies, lock, version, and root exports remain unchanged.
+- Regression: exact CPython 3.12.13 and fresh isolated 3.13.13/3.14.5 each pass
+  3,939 tests with 17 skips. The 68-file M149-M182 Windows boundary passes 246
+  tests with one skip; 20 independent live observations pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass
+  with established identities.
+- Distribution: two builds are byte-identical, primary and 27 additional
+  installed-wheel smokes pass, two ten-artifact release stages are identical,
+  and both full release smokes pass. The wheel remains pure and excludes M182
+  test sources; all four new source records occur once in the source archive.
+- Governance and review: full static analysis, strict docs, whitespace, static
+  and dated strict governance, exact protected-surface comparison, focused
+  metadata/security assertions, and public identity/credential/local-path
+  scans pass. No actionable finding remains.
+- Record-inclusive separator: the unchanged lock, all 553 Python files, exact
+  focused metadata/M182 assertions, the 68-file Windows boundary, strict docs,
+  whitespace, and both governance modes pass.
+- Cleanup: 41 exact M182 scratch targets were checked across the complementary
+  Windows access identities for workspace confinement, tracked content,
+  ignore status, and recursive reparse points. Twenty-nine were removed under
+  the ordinary identity and 12 under the complementary identity; zero remain.
+- Initial commit: `f70689b623a7ec432351864e06f2db468761c135`, tree
+  `c3c6080b732a33a8dc903e379839d4e19ad13a26`, sole parent exact M181, 16
+  intended paths, one DCO sign-off, matching maintainer identity, no merge,
+  expected `0 83` divergence, clean worktree, and clean object connectivity.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M181. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M182 is not pushed and no PR or hosted allocation is
+  created while M100-M181 remain unpublished prerequisites.
+- Final object: amended DCO shape, exact M181 parentage, 16-path scope, one
+  sign-off, maintainer identity, clean worktree, expected divergence, and
+  object connectivity pass. The exact immutable revision is reported at
+  closeout rather than embedded self-referentially here.
+- Security interpretation: expected identity is not sole-name authority and
+  not root-confined ownership. Trusted-root placement, enumeration,
+  link-count/use-time policy, recovery, receipts, cleanup authority, Windows
+  admission, and independent-host proof remain unresolved.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
 ## M181 expected-identity guardian admission - locally complete, publication withheld
 
 - Base: fully locally validated M180 DCO commit

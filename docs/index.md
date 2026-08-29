@@ -202,6 +202,9 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md)
   that compares the expected identity on the same protecting handle and
   rejects a preexisting replacement without claiming identity authority.
+- A test-only [Windows hard-link alias non-exclusion
+  probe](security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md)
+  that distinguishes exact-name protection from root-confined ownership.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly
