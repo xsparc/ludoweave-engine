@@ -179,3 +179,4 @@ was adopted.
 - [RFC-0172: probe Windows alias-mutator control-pipe EOF after recreation](0172-probe-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate.md)
 - [RFC-0173: probe Windows alias-mutator invalid control token after recreation](0173-probe-windows-hard-link-alias-mutator-invalid-control-token-after-recreate.md)
 - [RFC-0174: probe Windows alias-mutator valid close prefix with trailing byte after recreation](0174-probe-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate.md)
+- [RFC-0175: probe Windows alias-mutator invalid prefix with valid close suffix after recreation](0175-probe-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate.md)

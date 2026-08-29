@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M192/RFC-0175's test-only [Windows hard-link alias mutator invalid prefix
+  with valid close suffix after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md).
+  It writes and flushes fixed `?!` once, records no close acknowledgement and
+  exit 5 with the persistent two-link state, and adds no runtime or CI surface.
 - Add M191/RFC-0174's test-only [Windows hard-link alias mutator valid close
   prefix with trailing byte after recreation
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md).

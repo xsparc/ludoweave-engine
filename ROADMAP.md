@@ -3128,6 +3128,39 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M192 Windows hard-link alias mutator invalid prefix with valid close suffix after recreation probe
+
+M192 starts from fully locally validated M191 commit
+`882d8827aee17cca4d4acf3fdc4da43d185a8856`. It adds one Windows-only,
+test-only [hard-link alias mutator invalid prefix with valid close suffix after
+recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md)
+under RFC-0175.
+
+The probe retains M186's unchanged sibling mutator and M181's matching
+guardian. After exact child-owned alias deletion and recreation, it writes the
+fixed two-byte sequence `?!` once and requires both bytes accepted and flushed.
+The child rejects the leading invalid byte, emits no `closed` event, and settles
+with exit 5, stdout EOF, and empty stderr. The alias remains present with shared
+identity, bytes, and link count two while the guardian remains live and
+protective.
+
+This records bounded leading-byte rejection for one fixture and fixed
+sequence. It is not general message framing, arbitrary malformed-input
+handling, separate- or partial-write evidence, durable commit, recovery,
+cleanup admission, or a production protocol contract. The observation remains
+three processes under one principal and one parent-owned process tree.
+Authenticated authority, explicit framing, durable intent, reconciliation,
+cross-principal evidence, ReFS/SMB/other-host evidence, Windows admission, and
+cleanup authority remain unresolved.
+
+M192 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -4967,6 +4967,34 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0174 records the accepted test-only
 boundary.
 
+## M192 Windows hard-link alias mutator invalid prefix with valid close suffix after recreation
+
+M192 adds one Windows-only, test-only [hard-link alias mutator invalid prefix
+with valid close suffix after recreation
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md).
+It preserves M186-M191, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows.
+
+After the unchanged mutator emits exact `recreated`, the parent writes fixed
+`?!` once, requires both bytes accepted, flushes, and closes its writer. The
+child rejects its invalid leading byte, emits no `closed` event, and settles
+with exit 5, stdout EOF, and empty stderr. The guardian remains live and
+protective; both names retain shared identity, bytes, link count two, and range
+availability until the exact guardian release and final rename/cleanup
+sequence.
+
+This is bounded leading-byte rejection evidence for one fixture and one fixed
+sequence. It is not general message framing, arbitrary malformed-input,
+separate- or partial-write, authentication, durable commit, repair, or recovery
+evidence. Cross-principal behavior, inherited/duplicated writers, hostile
+simultaneous racing, durable protocol state, ReFS/SMB/other-host evidence,
+Windows admission, and cleanup authority remain unresolved.
+
+M192 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0175 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

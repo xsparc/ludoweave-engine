@@ -1059,6 +1059,16 @@ bounded byte-prefix acceptance evidence, not general message framing,
 arbitrary malformed-input handling, durable commit, recovery, or cleanup
 authority. Windows remains unadmitted.
 
+M192's test-only [Windows hard-link alias mutator invalid prefix with one valid
+close suffix after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md)
+writes and flushes fixed `?!` once after exact recreation. The unchanged child
+emits no `closed` event and exits 5, leaving the peer alias present with shared
+identity, bytes, and link count two while the guardian remains protective. This
+three-process, same-principal result is bounded leading-byte rejection evidence,
+not general message framing, arbitrary malformed-input handling, durable
+commit, recovery, or cleanup authority. Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
