@@ -170,3 +170,4 @@ was adopted.
 - [RFC-0163: probe Windows zero-owner guardian restart boundary](0163-probe-windows-zero-owner-guardian-restart-boundary.md)
 - [RFC-0164: probe Windows expected-identity guardian admission](0164-probe-windows-expected-identity-guardian-admission.md)
 - [RFC-0165: probe Windows hard-link alias non-exclusion](0165-probe-windows-hard-link-alias-non-exclusion.md)
+- [RFC-0166: probe Windows post-admission hard-link creation](0166-probe-windows-post-admission-hard-link-creation.md)

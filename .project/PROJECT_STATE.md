@@ -1,5 +1,73 @@
 # Project State
 
+## M183 post-admission hard-link creation - locally complete, publication withheld
+
+- Base: fully locally validated M182 DCO commit
+  `b9d02dbdfbb13f290079970305e2e1c5c6cd783f`, exact tree
+  `e27c14aa60b7ac9fa63af769e51d5344e5cca72a`, sole parent exact M181.
+- Branch hygiene: neutral
+  `release/m183-windows-post-admission-hard-link-creation-boundary`; exact
+  containment allowed the redundant M182 branch name to be pruned.
+- Direction: RFC-0166 accepts one current-host, Windows-only, test-only
+  negative boundary. M181's matching guardian protects its exact opened name
+  but does not freeze the file's link set after admission.
+- Live result: the file begins at link count one; `os.link` creates a peer
+  alias while the guardian remains live; both handles retain identity and
+  report link count two; exact-name rename remains refused.
+- Scope so far: one integration probe, one architecture guard, RFC-0166, one
+  security decision, eight public registrations, and four project-record
+  updates. Runtime, examples, scripts, fixtures, workflows, metadata,
+  dependencies, lock, version, and root exports remain unchanged.
+- Regression: exact CPython 3.12.13 and fresh isolated 3.13.13/3.14.5 each pass
+  3,947 tests with 17 skips. The 70-file M149-M183 Windows boundary passes 254
+  tests with one skip; 20 repeated live observations pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass
+  with established identities.
+- Package/release: two builds reproduce a 361,753-byte pure wheel and a
+  2,191,922-byte source archive. Primary plus 27 additional installed-wheel
+  consumers pass. Two ten-artifact release stages are byte-identical and both
+  complete release smokes pass. Archive inventory is clean and keeps all four
+  M183 source-only files out of the wheel.
+- Review: 13 metadata/M183 assertions pass; no high-confidence credential
+  shape or protected-surface change is present. Findings-first review finds no
+  actionable code, architecture, security, documentation, compatibility,
+  package, allocation, or public-hygiene issue across exactly 16 paths.
+- Record-inclusive closure: the unchanged lock/environment, all static checks,
+  13 focused tests, 70-file Windows boundary, strict docs, both governance
+  modes, and whitespace pass. Two final builds reproduce the same fully
+  consumed wheel and a 2,192,904-byte source archive; two final ten-artifact
+  release stages are byte-identical and both complete smokes pass.
+- Cleanup: 43 exact generated M183/site targets were verified confined,
+  untracked, ignored, and reparse-free. Ordinary cleanup removed 32; elevated
+  revalidation removed the 11 pytest-owned roots at the complementary ACL
+  boundary. Zero exact target remains; older scratch and `.venv` are retained.
+- Final separator: both M183 Python files remain format-, Ruff-, and strict-
+  Pyright clean; 13 focused assertions, strict docs, dated strict governance,
+  and whitespace pass. The regenerated site and final pytest-owned root were
+  guarded and removed.
+- Initial object: DCO commit `271cb353d1497e81c069c594c807122ba5636e1c`,
+  tree `b4ece8c1f47cc6815bb3d9f43a190bca0b6f1f23`, has sole parent exact M182,
+  16 intended paths, one sign-off, matching identity, no merge, clean worktree,
+  and clean object connectivity. This record is folded into the closeout object.
+- Publication: withheld. Fresh `origin/main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` and does not contain M182. GitHub
+  reports no open PR, PR #251 as the latest merge, and only remote `main`.
+  Pushing M183 would expose the absent M100-M182 prerequisite stack, so no
+  branch, PR, hosted allocation, tag, release, or package publication is made.
+- Final object shape: sole parent exact M182, exactly 16 intended paths, one
+  sign-off, matching author/committer identity, no merge, expected `0 84`
+  divergence from local M99 `main`, clean worktree, zero M183/site scratch,
+  unchanged protected runtime/package/CI surfaces, and clean connectivity.
+- Next: choose one separately bounded M184 direction slice. Do not widen this
+  milestone into runtime cleanup or Windows admission.
+- Security interpretation: expected identity and a prior link-count sample are
+  not root-confined ownership. Trusted-root placement, enumeration,
+  link-count/use-time policy, recovery, receipts, cleanup authority, Windows
+  admission, and independent-host proof remain unresolved.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
 ## M182 hard-link alias non-exclusion - locally complete, publication withheld
 
 - Base: fully locally validated M181 DCO commit

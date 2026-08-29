@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M183 post-admission hard-link creation boundary
+
+RFC-0166 accepts one Windows-only, test-only NTFS observation. A coordination
+file begins with link count one and is admitted by M181's matching guardian.
+While that guardian remains live, `os.link` creates a peer alias; both handles
+retain one `FILE_ID_INFO` and report link count two. The guardian continues to
+protect the exact name it opened.
+
+This resolves only whether current guardian admission freezes the link set: it
+does not on the observed host. Expected identity and a prior count sample are
+not root-confined ownership. Trusted root placement, link enumeration,
+cross-process/principal behavior, alias deletion, link-count policy, use-time
+revalidation, file-ID reuse, filesystem variation, durable generation,
+recovery, typed receipts, cleanup authority, independent-host proof, and
+Windows admission remain pending.
+
+RFC-0166 does not authorize runtime code, a public probe, native declarations,
+cache access, mutation, dependency, workflow, CI allocation, permission,
+release authority, or publication. No hosted check is added.
+
 ## M182 hard-link alias non-exclusion boundary
 
 RFC-0165 accepts one Windows-only, test-only NTFS observation. A preexisting

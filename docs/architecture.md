@@ -4707,6 +4707,33 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0165 records the accepted test-only
 negative boundary.
 
+## M183 Windows post-admission hard-link creation
+
+M183 adds one Windows-only, test-only [post-admission hard-link creation
+probe](security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md).
+It preserves M182, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+The probe begins with one directory entry for M173's ordinary coordination
+file and admits M181's expected-identity guardian. While that guardian remains
+live and protects the exact coordination name, standard-library `os.link`
+creates a peer alias. Both open handles retain one `FILE_ID_INFO`, and their
+observed link counts change from one to two. Exact-name rename remains refused.
+
+This establishes that admission of a correctly identified protecting handle
+does not freeze namespace ownership. A future Windows cleanup capability must
+revalidate link count and trusted-root policy at use; it cannot rely on a
+pre-admission sample as durable authority.
+
+M183 does not define that policy, enumerate entries, authenticate roots, test
+another principal or filesystem, authorize deletion, or establish recovery,
+generation, admission, or cleanup authority. Windows remains unadmitted.
+
+M183 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0166 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -2844,6 +2844,35 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M183 Windows post-admission hard-link creation probe
+
+M183 starts from fully locally validated M182 commit
+`b9d02dbdfbb13f290079970305e2e1c5c6cd783f`. It adds one Windows-only,
+test-only [post-admission hard-link creation
+probe](docs/security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md)
+under RFC-0166.
+
+The probe starts with M173's exact coordination file at link count one and
+admits M181's matching guardian. The exact opened name rejects rename with
+sharing error 32, but standard-library `os.link` creates a peer alias while the
+guardian remains live. Both handles retain the original identity and report
+link count two, byte-range ownership remains available through both names, and
+the guardian continues protecting the exact name it opened. After exact close,
+that name can be renamed and both entries retain identity, count, and bytes.
+
+This proves that guardian admission does not freeze the link set. It is not
+trusted-root ownership, cross-process or cross-principal evidence, hard-link
+enumeration, link-count policy, deletion behavior, durable generation
+authority, recovery, complete admission, or cleanup authority. Windows
+remains unadmitted.
+
+M183 adds no runtime API, protocol, decoder, CLI command, public probe,
+production native or subprocess surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -967,6 +967,14 @@ This is negative evidence: an identity match is not root-confined ownership
 and cannot replace trusted-root and link-count policy. Windows remains
 unadmitted.
 
+M183's test-only [Windows post-admission hard-link creation
+probe](docs/security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md)
+starts with one link, admits the matching guardian, and then creates a peer
+alias while that guardian remains live. Both handles report the same identity
+and the link count changes to two; the exact opened name remains protected.
+Admission therefore does not freeze the link set, and a prior identity/count
+sample is not root-confined ownership. Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

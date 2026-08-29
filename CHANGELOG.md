@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M183/RFC-0166's test-only [Windows post-admission hard-link creation
+  probe](docs/security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md).
+  It shows that a one-link file can gain a peer alias after guardian admission,
+  so expected identity and an earlier link-count sample do not freeze ownership.
 - Add M182/RFC-0165's test-only [Windows hard-link alias non-exclusion
   probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md).
   It shows that M181's guardian continues protecting the exact name it opened
