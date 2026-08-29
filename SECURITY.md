@@ -1069,6 +1069,17 @@ three-process, same-principal result is bounded leading-byte rejection evidence,
 not general message framing, arbitrary malformed-input handling, durable
 commit, recovery, or cleanup authority. Windows remains unadmitted.
 
+M193's test-only [Windows hard-link alias mutator invalid-prefix open-writer
+settlement after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md)
+writes and flushes fixed `?!`, then waits while the parent writer remains open.
+The unchanged bounded-output child emits no `closed` event and exits 5 before
+the writer is closed, while the two-link alias state and guardian protection
+remain intact. This three-process, same-principal result distinguishes the
+fixed rejection from control-pipe EOF; it is not general framing, arbitrary
+malformed-input or unbounded-output handling, durable recovery, or cleanup
+authority. Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

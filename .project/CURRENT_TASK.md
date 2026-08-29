@@ -1,5 +1,137 @@
 # Current task
 
+## M193 Windows hard-link alias mutator open-writer invalid-prefix settlement boundary
+
+- **Task:** Determine whether M186's unchanged mutator child settles on fixed
+  `?!` after exact `recreated` while the parent control writer remains open.
+- **Status:** Locally complete through direction, test-first implementation,
+  accepted RFC/security boundary, public registration, supported-Python
+  regression, concentrated and repeated Windows behavior, graphics/product
+  checks, distribution/release rehearsal, governance, findings-first review,
+  separators, cleanup, DCO, and fresh hosted reconciliation. Publication is
+  withheld because hosted `main` lacks M100-M192.
+- **Base:** Fully locally validated M192 DCO commit
+  `3b9c7e43c3deac47b040c837844945e07514ba69`, tree
+  `7edd933e7bd4da487d9f2079a5e86b408b3fd161`, sole parent exact M191.
+- **Branch:**
+  `release/m193-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-boundary`;
+  the redundant local M192 branch name was removed after exact M193 branch
+  creation retained its object.
+
+### M193 acceptance boundary
+
+- Accept RFC-0176 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, and M186's
+  unchanged bounded-output mutator child.
+- Require initial shared identity/link count two, guardian `ready`, exact-name
+  rename error 32, child-owned deletion/recreation, and exact `deleted` then
+  `recreated` events.
+- Write fixed `?!` exactly once, require both bytes accepted and flushed, keep
+  the parent writer open across a bounded wait, and require exit 5 while the
+  writer is still open, no `closed` event, stdout EOF, and empty stderr. Close
+  the parent writer only after those observations.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process/stream/native/range cleanup.
+- State the result narrowly as open-writer settlement evidence for one fixed
+  sequence and bounded-output fixture. Do not claim arbitrary malformed-input
+  or unbounded-output handling, general framing, durable recovery, Windows
+  admission, or cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M193 development evidence so far
+
+- The exact M192 focused baseline passed nine tests. Static and dated strict
+  governance each returned zero findings across three objectives, seven
+  requirements, and four work items.
+- Current Microsoft pipe documentation, Python buffered-I/O and subprocess
+  contracts, GitHub Actions billing guidance, NIST SSDF, and SLSA 1.2 support
+  the bounded observation and no additional hosted allocation.
+- The live probe passed its first execution. The intended architecture red
+  passed behavior and non-documentation guards while identifying three absent
+  decision/registration records. After both decisions, only public
+  registration remained red; after registration, all nine checks passed.
+- Ruff requested one mechanical architecture-test reformat. Both new Python
+  files then passed focused Ruff and strict Pyright; all nine focused checks
+  pass in 0.45 seconds.
+- Exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 each pass 4,035
+  tests with 17 skips in 254.72, 257.68, and 265.02 seconds. The 45 M149-M193
+  architecture modules plus all 45 Windows cleanup integrations pass 342
+  tests with one established skip. Twenty live repetitions pass in 0.35-0.42
+  seconds each.
+- Ten real-wgpu tests pass. Fresh two- and three-workload profiles validate;
+  all eight profile-schema tests pass. Clockwork Arena and Agent World Builder
+  reproduce established state, capture, replay, draw, sprite, match, and batch
+  identities.
+- The unchanged 46-package lock and exact 45-package graphics environment
+  resolve. All 576 Python files are format-clean; Ruff, strict Pyright, strict
+  docs, static and dated governance, and whitespace pass.
+- Two builds reproduce a 362,492-byte pure wheel at SHA-256
+  `75b9bfc69b4d54ee00e48784ed96e9c9a03b456bf165a7fca8b57c107ea7bd48`
+  and a 2,271,984-byte source archive at SHA-256
+  `e461731453e04cf061e4c119d5ec8baf7f3d3a92b80b6ecb970f892c62ecd710`.
+  Installed-wheel smoke and two identical ten-artifact release smokes pass.
+  Inventory is 114 wheel/939 source entries; all M193 evidence is source-only.
+- Findings-first review confirms exactly 16 intended paths, zero protected-
+  surface diff, 14 passing hygiene/architecture/live checks, no forbidden
+  wheel payload, and zero retired-identity, credential-assignment, or local-
+  path match across 907 added lines. No actionable finding remains before the
+  record-state gates.
+- The first record-state review found one retired identity term in three
+  evidence summaries while all other checks passed. Neutral wording corrected
+  those summaries; all 576 Python files then remained static-clean, the exact
+  14-test review group passed, strict docs and whitespace passed, and dated
+  governance returned zero findings.
+- Two final builds reproduce the unchanged 362,492-byte wheel and identical
+  2,273,075-byte source archives at SHA-256
+  `4f21e5a177cd7447ba3c7a2252224e28819845027798a493890bb012d780a77b`.
+  Complete installed-wheel smoke passes; two final ten-artifact release stages
+  are byte-identical and both complete release smokes pass.
+- The post-record separator keeps both Python files static-clean; 14 exact
+  review tests, strict docs, dated governance, and whitespace pass.
+- The first scratch audit was denied access to pytest-owned directories before
+  deletion. Its exact access-enabled rerun verified 46 M193 targets as
+  repository-confined, ignored, and top-level plus recursively reparse-free;
+  guarded removal completed with zero M193 target remaining.
+- Initial DCO commit `2b3cf8273d2aa5bed0fa888ae7ea02e7419b9bac`, tree
+  `0b3ae83543db3bacbe55604d11ee0e96dce6847a`, has sole parent exact M192,
+  exactly 16 intended paths, one matching sign-off, truthful configured
+  author/committer identity, no merge, expected `0 94` divergence, a clean
+  worktree, and zero M193 scratch. This factual record is folded into the
+  closeout amendment; the successor milestone will record the amended hash
+  without self-reference.
+
+### M193 publication boundary
+
+- Pre-publication amended DCO object
+  `607bf9802cbf1abca6be90f892db536712b0ba57`, tree
+  `d25cdd2fc1343de8e7a16a30f17dfcca580c56fe`, has sole parent exact M192,
+  exactly 16 paths, one matching sign-off, truthful identity, no merge, clean
+  worktree, expected `0 94` divergence, and zero M193 scratch.
+- A fresh pruned fetch, direct hosted-ref query, local ancestry and branch
+  inventory, authenticated account check, and recent PR history leave hosted
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`,
+  tree `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`. M192 is absent and not an
+  ancestor, PR #251 remains latest, and no milestone branch is hosted.
+  Publication is withheld: no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+- This reconciliation record is folded into the final closeout amendment; the
+  successor milestone records the ultimate M193 hash without self-reference.
+
+### M193 explicit non-scope
+
+- Arbitrary malformed, partial, separate, repeated, or longer input; arbitrary
+  or unbounded child output; duplicated/inherited writers; cross-principal or
+  unrelated-process behavior; hostile simultaneous racing; authenticated
+  framing; crash/power loss; durable intent, rollback, reconciliation, typed
+  recovery receipts; ReFS/SMB/other-host evidence; Windows admission; and
+  cleanup authority.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M192 Windows hard-link alias mutator invalid-prefix valid-close-suffix boundary
 
 - **Task:** Determine how M186's unchanged mutator child settles when one

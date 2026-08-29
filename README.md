@@ -266,8 +266,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > valid close suffix after recreation probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md).
 > Writing and flushing fixed `?!` produces no close acknowledgement and exit 5
 > while leaving the alias present; this is bounded leading-byte rejection evidence.
+> M193 adds one test-only [Windows hard-link alias mutator invalid-prefix open-
+> writer settlement after recreation probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md).
+> The unchanged child exits 5 while the parent writer remains open, separating
+> fixed invalid-byte rejection from control-pipe EOF for the bounded fixture.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M192 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M193 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

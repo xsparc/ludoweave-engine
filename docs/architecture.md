@@ -4995,6 +4995,35 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0175 records the accepted test-only
 boundary.
 
+## M193 Windows hard-link alias mutator invalid-prefix open-writer settlement after recreation
+
+M193 adds one Windows-only, test-only [hard-link alias mutator invalid-prefix
+open-writer settlement after recreation
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md).
+It preserves M186-M192, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows.
+
+After exact `recreated`, the parent writes and flushes fixed `?!`, requires the
+writer open, and performs the bounded wait. The child exits 5 and emits no
+further output while the writer remains open; only then does the parent observe
+stdout EOF, empty stderr, and close its writer. The alias retains shared
+identity, bytes, link count two, and range availability while the guardian
+retains exact-name protection through the established release and rename
+sequence.
+
+This is open-writer settlement evidence for one fixed sequence and bounded-
+output fixture. It separates invalid-byte rejection from control-pipe EOF but
+does not establish general framing, arbitrary malformed input, arbitrary wait-
+before-drain safety, authentication, durable commit, repair, or recovery.
+Cross-principal behavior, inherited/duplicated writers, hostile simultaneous
+racing, ReFS/SMB/other-host evidence, Windows admission, and cleanup authority
+remain unresolved.
+
+M193 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0176 records the accepted test-only
+boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

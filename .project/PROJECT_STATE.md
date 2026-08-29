@@ -1,5 +1,89 @@
 # Project State
 
+## M193 open-writer invalid-prefix settlement - locally complete, publication withheld
+
+- Base: fully locally validated M192 DCO commit
+  `3b9c7e43c3deac47b040c837844945e07514ba69`, exact tree
+  `7edd933e7bd4da487d9f2079a5e86b408b3fd161`, sole parent exact M191.
+- Branch hygiene: neutral
+  `release/m193-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-boundary`;
+  the redundant M192 branch name was removed after exact branch creation.
+- Direction: RFC-0176 accepts one current-host Windows-only, test-only open-
+  writer settlement boundary using M186's unchanged bounded-output fixture.
+- Live result: after exact recreation, one flushed `?!` write produces exit 5
+  while the parent writer remains open. No `closed` event is emitted; stdout is
+  EOF and stderr empty before the parent closes its writer. The peer alias
+  retains shared identity, bytes, and link count two under the live guardian.
+- Evidence limit: one fixed sequence, one bounded-output fixture, three
+  processes, one principal, and one parent-owned tree. This is not general
+  framing, arbitrary malformed-input/output handling, durable recovery,
+  Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0176, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M192 baseline passed; the live observation passed
+  first run; intentional red phases identified only absent decisions and
+  registrations; both Python files are format-, Ruff-, and strict-Pyright
+  clean; all nine M193 focused checks pass.
+- Regression: exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 each
+  pass 4,035 tests with 17 skips. The 90-file Windows boundary passes 342 tests
+  with one skip; 20 independent live repetitions pass.
+- Graphics/product: ten real-wgpu tests, fresh two/three-workload profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass and
+  reproduce established deterministic identities.
+- Static/governance: the unchanged 46-package lock and 45-package environment
+  resolve; all 576 Python files are formatted; Ruff, strict Pyright, strict
+  docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,492-byte wheel at SHA-256
+  `75b9bfc69b4d54ee00e48784ed96e9c9a03b456bf165a7fca8b57c107ea7bd48`
+  and a 2,271,984-byte source archive at SHA-256
+  `e461731453e04cf061e4c119d5ec8baf7f3d3a92b80b6ecb970f892c62ecd710`.
+  Installed-wheel smoke and two identical ten-artifact release smokes pass.
+  Inventory is 114 wheel/939 source entries; all four M193 evidence files are
+  source-only.
+- Review: exactly 16 intended paths remain; protected runtime/package/
+  fixture/dependency/workflow surfaces have zero diff. Fourteen exact review
+  tests pass; 907 added lines have zero retired-identity, credential-
+  assignment, or local-path match; the wheel has no forbidden payload. No
+  actionable finding remains.
+- Record separator: the first exact review run found one retired identity term
+  in three evidence summaries. Corrected neutral wording leaves all 576 Python
+  files static-clean; 14 review checks, strict docs, dated governance, and
+  whitespace pass.
+- Final distribution: two record-state builds reproduce the unchanged wheel
+  and identical 2,273,075-byte source archives at SHA-256
+  `4f21e5a177cd7447ba3c7a2252224e28819845027798a493890bb012d780a77b`.
+  Installed-wheel smoke passes; two final ten-artifact release stages are byte-
+  identical and both complete release smokes pass.
+- Post-record separator: both Python files remain static-clean; 14 exact review
+  tests, strict docs, dated governance, and whitespace pass.
+- Cleanup: the first recursive audit was access-denied before deletion. Its
+  access-enabled rerun verified all 46 exact M193 scratch targets as repository-
+  confined, ignored, and top-level plus recursively reparse-free; guarded
+  removal completed with zero target remaining.
+- Initial DCO commit `2b3cf8273d2aa5bed0fa888ae7ea02e7419b9bac`, tree
+  `0b3ae83543db3bacbe55604d11ee0e96dce6847a`, has sole parent exact M192,
+  exactly 16 intended paths, one matching sign-off, truthful identity, no
+  merge, expected `0 94` divergence, clean worktree, and zero scratch. This
+  record is folded into the closeout amendment; the successor records its final
+  hash without self-reference.
+- Pre-publication amended DCO object
+  `607bf9802cbf1abca6be90f892db536712b0ba57`, tree
+  `d25cdd2fc1343de8e7a16a30f17dfcca580c56fe`, has sole parent exact M192,
+  exactly 16 paths, one matching sign-off, truthful identity, no merge, clean
+  worktree, expected `0 94` divergence, and zero scratch.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry tests, branch inventory, authenticated account check, and recent PR
+  history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, prove M192 absent, report PR
+  #251 as latest, and show no hosted milestone branch. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- This reconciliation record is folded into the final closeout amendment; the
+  successor records the ultimate M193 hash without self-reference. Local
+  closeout is complete.
+
 ## M192 post-recreate invalid prefix with valid close suffix - locally complete, publication withheld
 
 - Base: fully locally validated M191 DCO commit

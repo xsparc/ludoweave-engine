@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M193 hard-link alias mutator open-writer invalid-prefix settlement boundary
+
+RFC-0176 accepts one Windows-only, test-only NTFS observation. After M186's
+unchanged bounded-output mutator emits exact `recreated`, the parent writes
+fixed `?!` once, requires both bytes accepted, flushes, and keeps its control
+writer open across the bounded wait. The child rejects the invalid leading
+byte, emits no `closed` event, and exits 5 while the writer remains open.
+Stdout is EOF and stderr empty before the parent closes that writer.
+
+The peer alias retains shared identity, bytes, two-link count, and range
+availability while M181's matching guardian remains protective. This resolves
+only the distinction between invalid-byte settlement and control-pipe EOF for
+one fixed sequence and bounded-output fixture on the observed host. It is not
+general framing, authenticated authority, durable recovery, or cleanup
+admission.
+
+Arbitrary malformed, partial, separate, repeated, or longer input; arbitrary
+or unbounded output; duplicated/inherited writers; cross-principal and
+unrelated-process behavior; simultaneous racing; trusted-root placement;
+enumeration and use-time policy; durable intent, quarantine, idempotency,
+reconciliation, typed recovery receipts; independent-host proof; Windows
+admission; and cleanup authority remain pending. No runtime, dependency,
+fixture, workflow, permission, hosted allocation, release authority, or CI
+change is accepted.
+
 ## M192 hard-link alias mutator invalid-prefix valid-close-suffix boundary
 
 RFC-0175 accepts one Windows-only, test-only NTFS observation. After M186's

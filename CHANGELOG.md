@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M193/RFC-0176's test-only [Windows hard-link alias mutator invalid-prefix
+  open-writer settlement after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md).
+  It leaves the parent writer open across bounded exit 5, distinguishes the
+  fixed rejection from control-pipe EOF, and adds no runtime or CI surface.
 - Add M192/RFC-0175's test-only [Windows hard-link alias mutator invalid prefix
   with valid close suffix after recreation
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md).

@@ -3161,6 +3161,38 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M193 Windows hard-link alias mutator invalid-prefix open-writer settlement after recreation probe
+
+M193 starts from fully locally validated M192 commit
+`3b9c7e43c3deac47b040c837844945e07514ba69`. It adds one Windows-only,
+test-only [hard-link alias mutator invalid-prefix open-writer settlement after
+recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md)
+under RFC-0176.
+
+The probe retains M186's unchanged sibling mutator and M181's matching
+guardian. After exact child-owned deletion and recreation, it writes and
+flushes fixed `?!` once, requires the parent writer still open, and waits for
+bounded exit 5. The parent writer remains open after child settlement; stdout
+is EOF, stderr is empty, and no `closed` event is emitted. The writer is closed
+only after those observations. The alias remains present with shared identity,
+bytes, link count two, and range availability while the guardian remains live.
+
+This records open-writer settlement evidence for one bounded-output fixture and
+fixed sequence. It separates the observed invalid-byte branch from parent-
+writer EOF, but is not general message framing, arbitrary malformed-input or
+unbounded-output handling, durable commit, recovery, cleanup admission, or a
+production protocol contract. Cross-principal behavior, inherited or
+duplicated writers, hostile simultaneous racing, ReFS/SMB/other-host evidence,
+Windows admission, and cleanup authority remain unresolved.
+
+M193 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite remains the only future hosted execution
+path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
