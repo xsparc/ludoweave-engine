@@ -165,3 +165,4 @@ was adopted.
 - [RFC-0158: probe Windows live coordination-substitution exclusion](0158-probe-windows-live-coordination-substitution-exclusion.md)
 - [RFC-0159: probe Windows cooperative-lock abrupt settlement](0159-probe-windows-cooperative-lock-abrupt-settlement.md)
 - [RFC-0160: probe Windows protected guardian handoff](0160-probe-windows-protected-guardian-handoff.md)
+- [RFC-0161: probe Windows guardian abrupt handoff](0161-probe-windows-guardian-abrupt-handoff.md)

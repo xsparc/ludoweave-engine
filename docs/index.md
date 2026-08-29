@@ -186,6 +186,10 @@ attestation, with the same allocation topology.
   probe](security/cache-cleanup-windows-protected-guardian-handoff-probe.md)
   that bridges a participant-free interval without treating identity
   protection as cooperative range ownership or runtime authority.
+- A test-only [Windows guardian abrupt-handoff
+  probe](security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md) that
+  proves a joined participant retains independent protection after the
+  overlapping guardian is abruptly terminated and reaped.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M178/RFC-0161's test-only [Windows guardian abrupt-handoff
+  probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md).
+  It proves an already-live protected participant retains namespace and range
+  protection after the overlapping guardian is abruptly terminated and reaped.
 - Add M177/RFC-0160's test-only [Windows protected guardian-handoff
   probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md).
   It preserves one coordination identity through a participant-free interval

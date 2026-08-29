@@ -2667,6 +2667,43 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M178 Windows guardian abrupt-handoff probe
+
+M178 starts from fully locally validated M177 commit
+`afa5aed0862c4a560a262a61a395b228d56afc3e`. It adds one Windows-only,
+test-only [guardian abrupt-handoff
+probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md)
+under RFC-0161.
+
+One fixed isolated non-range-locking guardian child opens M173's coordination
+identity for generic read with read/write sharing while omitting delete
+sharing. It accepts no caller-selected path, argument, or environment value,
+opens the final component without following a reparse point, rejects reparse
+identity, and proves its handle noninheritable. Guardian-only substitution
+returns error 32 while exact exclusive range acquire/release succeeds.
+
+M175's unchanged protected participant joins the original `FILE_ID_INFO` and
+adds shared range ownership. The guardian is then killed and reaped through
+M176's bounded helper. Only after wait completes, the still-live participant
+must retain original identity, substitution error 32, and exclusive-range
+error 33. Its exact close then permits exclusive acquire/release and M174
+substitution with retained displaced identity, distinct replacement identity,
+and exact bytes.
+
+This is one current-host overlapping ownership chain, not crash recovery,
+generation authority, trusted placement, complete admission, startup recovery,
+or cleanup authority. A crash without a compatible survivor, a zero-owner
+interval, multiple guardians, hostile prior handles, mapped views, filesystem
+variation, durable generation issuance, use-time revalidation, policy,
+receipts, Windows admission, and independent-host proof remain open.
+
+M178 adds no runtime API, protocol, decoder, CLI command, public probe,
+production `ctypes` or subprocess invocation, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -4545,6 +4545,39 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. Windows remains unadmitted and no hosted check is added.
 RFC-0160 records the accepted test-only boundary.
 
+## M178 Windows guardian abrupt-handoff boundary
+
+M178 adds one Windows-only, test-only [guardian abrupt-handoff
+probe](security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md). It
+preserves M177, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+One fixed isolated guardian child opens M173's coordination identity for
+generic read with read/write sharing while omitting delete sharing. It has no
+caller-selected input, opens the final component without following a reparse
+point, rejects reparse identity, proves its handle noninheritable, and takes no
+byte-range lock. Guardian-only substitution fails with error 32 while exact
+exclusive range acquire/release succeeds.
+
+M175's unchanged participant then joins the original identity and holds the
+shared range. The guardian is killed and reaped through M176's bounded helper.
+After wait, the participant remains live on the original identity and retains
+substitution error 32 plus exclusive-range error 33. Its exact close permits
+exclusive acquire/release and M174 substitution with retained original and
+distinct replacement identities.
+
+The result is one current-host overlapping protection chain, not crash
+recovery, generation authority, trusted-root placement, complete admission,
+startup recovery, or cleanup authority. A crash without a compatible survivor,
+a zero-owner interval, multiple guardians, hostile prior handles, mapped views,
+filesystem variation, durable generation issuance, use-time revalidation,
+policy, receipts, and independent hosts remain unresolved.
+
+M178 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. Windows remains unadmitted and no hosted check is added.
+RFC-0161 records the accepted test-only boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

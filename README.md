@@ -206,8 +206,12 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md).
 > A non-range-locking guardian preserves one identity through a participant-free
 > interval and hands protection to a later participant without runtime promotion.
+> M178 adds one test-only [Windows guardian abrupt-handoff
+> probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md).
+> After an overlapping participant joins, abrupt guardian termination and bounded
+> process wait leave that participant's independent protections intact.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M177 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M178 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

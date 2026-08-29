@@ -1,5 +1,68 @@
 # Project State
 
+## M178 guardian abrupt handoff - locally complete, publication withheld
+
+- Base: fully locally validated M177 DCO commit
+  `afa5aed0862c4a560a262a61a395b228d56afc3e`, tree
+  `cb96284e742a966e6724ae569463171df2d22f25`, sole parent exact M176.
+- Branch hygiene: neutral `release/m178-windows-guardian-abrupt-handoff`
+  starts at exact M177. Exact containment allowed redundant M177 to be pruned;
+  only local `main` and active M178 remain.
+- Direction: RFC-0161 accepts one current-host, test-only post-wait observation
+  in which an already-live protected participant retains protection after
+  abrupt guardian loss. It rejects runtime promotion, recovery, generation
+  authority, Windows admission, cleanup authority, and CI growth.
+- Baseline: exact M177 is clean at expected `0 78` divergence and its seven
+  focused assertions pass in 0.83 seconds. Static and dated strict governance
+  return zero findings.
+- Intended behavior: a fixed isolated non-range-locking guardian first protects
+  the original identity; M175's participant joins; M176's bounded kill/wait
+  reaps the guardian; and the survivor retains substitution and exclusive-
+  range refusals until its own exact close.
+- Findings-first correction: review added the guardian's acknowledged-close
+  observation, made the architecture guard require exact null-security and
+  no-follow flag composition, explicitly forbade delete sharing, and narrowed
+  the RFC's dynamic-validation wording. The corrected nine-case group passes
+  on exact CPython 3.12.13, 3.13.13, and 3.14.5.
+- Supported Python: before the test-only correction, exact CPython 3.12.13,
+  3.13.13, and 3.14.5 each passed the complete suite with 3,904 tests and 17
+  skips. The exact corrected 60-module M149-M178 boundary passes 212 tests with
+  one established skip. Twenty independent central live observations pass.
+- Current-source closure: all 544 Python files pass format, Ruff, and strict
+  Pyright. Strict docs, static and dated strict governance, whitespace, exact
+  17-path scope, protected surfaces, and public-hygiene scans pass.
+- Rendering and consumers: ten real-wgpu tests, both profile schemas,
+  Clockwork Arena, Agent World Builder, primary smoke, all 27 additional wheel
+  consumers, and two byte-identical ten-artifact release stages pass.
+- Evidence-inclusive distribution: two builds reproduce the unchanged
+  361,396-byte pure wheel and identical 2,143,429-byte source archives. Primary
+  installed-wheel smoke passes. Two fresh ten-artifact release stages are
+  byte-identical and both release smokes pass; inventory finds 114 wheel and
+  877 source entries, no native/WASM/bytecode or hidden development root, no
+  M178 wheel entry, and all five exact M178 sources in the source archive.
+- Record-only and cleanup: the three M178 Python files remain format-, lint-,
+  and type-clean; nine focused assertions, strict docs, whitespace, static
+  governance, and dated governance pass. All 47 exact repository-confined,
+  untracked M178/pytest/docs outputs were recursively checked for reparse
+  points, removed, and confirmed absent.
+- Pre-commit scope: exactly 17 intended paths differ from M177. Runtime,
+  examples, scripts, workflows, metadata, and lock remain unchanged. Public
+  hygiene and whitespace scans pass, scratch is absent, only local `main` and
+  neutral M178 remain, and configured maintainer identity is present.
+- Protected scope: M177, runtime, examples, scripts, dependencies, workflows,
+  metadata, and lock remain unchanged. No workflow, matrix, job, permission,
+  dependency, or hosted allocation is added.
+- Commit gate: initial DCO commit
+  `c52b38cd4b9923bfe5c750cecb0ddf7c579e2a69`, tree
+  `c41c4850e16befa24d7f0984b115cb6f288778fd`, has sole parent exact M177,
+  exactly 17 paths, one sign-off, matching configured maintainer identity, no
+  merge, expected `0 79` divergence, a clean tree, and successful object
+  checking. This factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M177. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M178 is not pushed and no PR or hosted allocation is
+  created while M100-M177 remain unpublished prerequisites.
+
 ## M177 protected guardian handoff - locally complete, publication withheld
 
 - Base: fully locally validated M176 DCO commit

@@ -66,6 +66,7 @@ nav:
   - Windows live coordination-substitution exclusion probe: security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md
   - Windows cooperative-lock abrupt-settlement probe: security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md
   - Windows protected guardian-handoff probe: security/cache-cleanup-windows-protected-guardian-handoff-probe.md
+  - Windows guardian abrupt-handoff probe: security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -232,6 +233,7 @@ nav:
       - RFC-0158 - Probe Windows live coordination-substitution exclusion: rfcs/0158-probe-windows-live-coordination-substitution-exclusion.md
       - RFC-0159 - Probe Windows cooperative-lock abrupt settlement: rfcs/0159-probe-windows-cooperative-lock-abrupt-settlement.md
       - RFC-0160 - Probe Windows protected guardian handoff: rfcs/0160-probe-windows-protected-guardian-handoff.md
+      - RFC-0161 - Probe Windows guardian abrupt handoff: rfcs/0161-probe-windows-guardian-abrupt-handoff.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

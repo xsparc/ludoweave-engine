@@ -2,6 +2,32 @@
 
 No architecture decision is currently blocked.
 
+## M178 guardian abrupt-handoff probe
+
+RFC-0161 accepts one Windows-only, test-only observation that a fixed
+noninheritable no-delete-share guardian may be abruptly terminated and reaped
+after an M175 protected participant has joined the same coordination identity.
+The still-live participant must retain substitution error 32 and exclusive-
+range error 33 until its own exact close.
+
+This resolves only one exact post-wait overlapping ownership chain. It is not
+guardian restart, crash recovery, generation authority, trusted placement, or
+complete admission. A zero-owner interval, multiple guardians, hostile prior
+handles, arbitrary process trees, mapped views, filesystem variation, durable
+generation issuance/retention, use-time revalidation, policy, receipts,
+independent-host proof, and Windows admission remain pending.
+
+RFC-0161 does not authorize a runtime adapter, guardian or lock API,
+participant registry, cache access, retained-root integration, candidate
+disclosure, cleanup or mutation authority, dependency, workflow, CI
+allocation, tag, release, or publication. No hosted check is added.
+
+The supported-Python, corrected cross-version focused, integrated Windows,
+repeated live, real-wgpu, profile, vertical-slice, documentation, governance,
+installed-wheel, release-smoke, findings-first, and public-hygiene gates
+support only this bounded observation. They do not resolve any pending
+production authority above.
+
 ## M177 protected coordination guardian-handoff probe
 
 RFC-0160 accepts one Windows-only, test-only observation that a private

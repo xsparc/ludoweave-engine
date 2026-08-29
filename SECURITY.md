@@ -920,6 +920,15 @@ continuity is not treated as quiescence. This is not generation authority,
 trusted placement, crash recovery, admission, or cleanup authority; Windows
 remains unadmitted.
 
+M178's test-only [Windows guardian abrupt-handoff
+probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md)
+proves that, after an M175 protected participant joins the retained identity,
+killing and boundedly waiting for the non-range-locking guardian leaves the
+survivor's substitution and exclusive-range refusals intact. This is a post-
+wait overlapping-ownership observation, not guardian restart, crash recovery,
+generation authority, complete admission, or cleanup authority; Windows
+remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
