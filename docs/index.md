@@ -208,6 +208,9 @@ attestation, with the same allocation topology.
 - A test-only [Windows post-admission hard-link creation
   probe](security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md)
   that proves matching guardian admission does not freeze the link set.
+- A test-only [Windows hard-link alias deletion non-exclusion
+  probe](security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md)
+  that proves exact-name protection does not exclude peer-link removal.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

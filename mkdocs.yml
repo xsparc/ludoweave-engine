@@ -72,6 +72,7 @@ nav:
   - Windows expected-identity guardian admission probe: security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md
   - Windows hard-link alias non-exclusion probe: security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md
   - Windows post-admission hard-link creation probe: security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md
+  - Windows hard-link alias deletion non-exclusion probe: security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -244,6 +245,7 @@ nav:
       - RFC-0164 - Probe Windows expected-identity guardian admission: rfcs/0164-probe-windows-expected-identity-guardian-admission.md
       - RFC-0165 - Probe Windows hard-link alias non-exclusion: rfcs/0165-probe-windows-hard-link-alias-non-exclusion.md
       - RFC-0166 - Probe Windows post-admission hard-link creation: rfcs/0166-probe-windows-post-admission-hard-link-creation.md
+      - RFC-0167 - Probe Windows hard-link alias deletion non-exclusion: rfcs/0167-probe-windows-hard-link-alias-deletion-non-exclusion.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

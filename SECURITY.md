@@ -975,6 +975,15 @@ and the link count changes to two; the exact opened name remains protected.
 Admission therefore does not freeze the link set, and a prior identity/count
 sample is not root-confined ownership. Windows remains unadmitted.
 
+M184's test-only [Windows hard-link alias deletion non-exclusion
+probe](docs/security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md)
+starts with two links and admits the matching guardian. On the observed NTFS
+host, deletion of the peer alias succeeds while the guardian remains live;
+the original handle reports link count one and the exact opened name continues
+rejecting rename. Link removal is therefore not excluded, and the surviving
+identity/count sample is not root-confined ownership. Windows remains
+unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

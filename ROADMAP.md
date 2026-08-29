@@ -2873,6 +2873,36 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M184 Windows hard-link alias deletion non-exclusion probe
+
+M184 starts from fully locally validated M183 commit
+`e44ce6a12d61a5c1b857b88e81c45015a986df77`. It adds one Windows-only,
+test-only [hard-link alias deletion non-exclusion
+probe](docs/security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md)
+under RFC-0167.
+
+The probe starts with M173's exact coordination file and a peer alias at link
+count two, then admits M181's matching guardian. The exact opened name rejects
+rename with sharing error 32, but standard-library `Path.unlink` removes the
+peer alias while the guardian remains live. The retained original handle then
+reports link count one, byte-range ownership remains available, and the
+guardian continues protecting the exact name it opened. After exact close,
+that name can be renamed with identity, count, and bytes retained.
+
+The initial hypothesis expected alias deletion to fail with sharing error 32;
+the first live run falsified it. M184 preserves the narrower deletion
+non-exclusion boundary. It is not trusted-root ownership, cross-process or
+cross-principal evidence, hard-link enumeration, link-count policy,
+POSIX-delete behavior, durable generation authority, recovery, complete
+admission, or cleanup authority. Windows remains unadmitted.
+
+M184 adds no runtime API, protocol, decoder, CLI command, public probe,
+production native or subprocess surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

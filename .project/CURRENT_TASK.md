@@ -1,5 +1,117 @@
 # Current task
 
+## M184 Windows hard-link alias deletion non-exclusion boundary
+
+- **Task:** Determine whether M181's matching expected-identity guardian
+  excludes deletion of a preexisting peer hard-link entry.
+- **Status:** Direction, corrected implementation, supported-Python regression,
+  concentrated and repeated Windows behavior, rendering/profiles/product
+  slices, reproducible distribution/release rehearsal, governance, and
+  findings-first review pass. Record-inclusive closure, guarded cleanup, and
+  final post-record separators pass. The DCO object and fresh publication-
+  safety gate pass. Publication is withheld because hosted `main` lacks
+  M100-M183; one final amended-object audit remains.
+- **Base:** Fully locally validated M183 DCO commit
+  `e44ce6a12d61a5c1b857b88e81c45015a986df77`, tree
+  `6c2a7a69ec36328182fda066b946272c4eb0a227`, sole parent exact M182.
+- **Branch:**
+  `release/m184-windows-hard-link-alias-deletion-boundary`; exact containment
+  allowed the redundant local M183 branch name to be pruned.
+
+### M184 acceptance boundary
+
+- Accept RFC-0167 and retain one Windows-only, test-only current-host NTFS
+  observation over M173's exact coordination file and M181's unchanged
+  expected-identity guardian.
+- Create one peer hard-link alias before launch; require shared identity and
+  link count two before starting the matching guardian.
+- Require exact-name rename error 32, then delete the peer alias with
+  `Path.unlink` while the guardian remains live.
+- Require alias absence, exact link-count reduction to one, retained identity
+  and bytes, range availability, and persistent exact-name rename refusal.
+- After exact guardian close, require exact-name rename success, retained
+  identity/link count/bytes, and complete cleanup.
+- Preserve the first failed all-links deletion-exclusion hypothesis as factual
+  negative evidence, not root-confined ownership, link policy, recovery,
+  admission, or cleanup authority.
+- Add no runtime API, dependency, workflow, job/allocation, permission,
+  release authority, or CI change.
+
+### M184 direction and development evidence so far
+
+- Microsoft documents `DeleteFileW` sharing restrictions, independent
+  hard-link names, and deletion through any hard-link order. Python documents
+  Windows in-use removal behavior. The broad language did not determine this
+  alias-entry case, so the current-host observation remains narrow.
+- GitHub still documents one job per matrix combination; M184 adds no hosted
+  allocation. NIST still lists SSDF 1.2 as draft material, so no conformance
+  claim changes.
+- Exact M183 was clean. Its eight focused assertions passed in 0.37 seconds;
+  static and 2026-08-29 dated strict governance returned zero findings.
+- The first live implementation expected alias `unlink` to raise sharing
+  error 32 and failed because deletion succeeded. The corrected probe retains
+  that observation and passes.
+- Both Python files pass Ruff format/lint and strict Pyright. Seven
+  architecture guards plus the corrected live observation pass eight tests;
+  strict docs build with only the known Material notice.
+- Exact CPython 3.12.13 plus fresh isolated 3.13.13 and 3.14.5 each pass 3,955
+  tests with 17 skips. The 72-file M149-M184 Windows boundary passes 262 tests
+  with one skip; 20 corrected live repetitions pass.
+- Ten real-wgpu tests, fresh base/graphics profiles, eight profile-schema
+  tests, Clockwork Arena, and Agent World Builder pass with established
+  deterministic identities.
+- Two builds reproduce a 361,819-byte pure wheel and 2,200,431-byte source
+  archive. Primary plus 27 additional installed-wheel consumers pass. Two
+  ten-artifact release stages are byte-identical and both complete smokes pass.
+- Findings-first review finds no actionable defect, credential-shaped content,
+  public development-tool identity, protected-surface drift, allocation
+  expansion, or package-boundary issue across exactly 16 intended paths.
+- The record-inclusive separator passes the unchanged lock/environment, all
+  static checks, 13 focused assertions, the 262-pass/one-skip Windows boundary,
+  strict docs, both governance modes, and whitespace.
+- Two final builds reproduce the same fully consumed wheel and a 2,201,207-byte
+  source archive. Primary wheel smoke passes; the earlier 27 consumer results
+  apply byte-for-byte. Two final ten-artifact stages are identical and both
+  complete release smokes pass.
+- Exact guarded cleanup removed 35 generated targets under the ordinary
+  identity and revalidated/removed the 13 complementary-ACL targets under the
+  elevated identity. Zero exact M184 target remains.
+- The final separator keeps both Python files static-clean, passes 13 focused
+  assertions, strict docs, dated strict governance, and whitespace. Its exact
+  two outputs were revalidated and removed at the complementary ACL boundary.
+- The final post-record metadata separator passes 13 assertions, dated strict
+  governance, and whitespace; its exact test root was guarded and removed.
+- Final pre-commit audit confirms exactly 16 intended paths, unchanged
+  protected M183/runtime/package/CI surfaces, zero public-identity/path/
+  credential match, zero exact scratch, neutral branch hygiene, truthful Git
+  identity, exact M183 ancestry, and clean object connectivity.
+- Initial DCO commit `426ccd31707461a1c4cf8ccfeb29780ac56a3dd0`,
+  tree `6666e414a80aa863705e6c9612153f416329fa16`, has sole parent exact M183,
+  exactly 16 paths, one sign-off, matching configured author/committer
+  identity, no merge, expected `0 85` divergence, clean worktree, and clean
+  object connectivity. This factual record is folded into the closeout object.
+
+### M184 publication boundary
+
+- A fresh pruned fetch leaves hosted `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; it does not contain M183.
+- GitHub reports no open PR, PR #251 as the latest merge, and only remote
+  `main`. Publishing M184 would expose the absent M100-M183 prerequisite stack.
+- No push, PR, hosted workflow allocation, tag, release, or package publication
+  occurs. Publication may be reconsidered after the missing prerequisite stack
+  is integrated or an explicit ancestry-safe integration plan is supplied.
+
+### M184 explicit non-scope
+
+- Another process or principal, root authentication, link enumeration,
+  POSIX-delete flags, cross-volume behavior, ReFS/SMB/driver variation,
+  file-ID reuse, trusted generation provenance, failed launch, simultaneous
+  loss, recovery, link-count policy, typed receipts, Windows admission,
+  cleanup authority, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M183 Windows post-admission hard-link creation boundary
 
 - **Task:** Determine whether M181's matching expected-identity guardian

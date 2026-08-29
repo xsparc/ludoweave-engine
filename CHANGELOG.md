@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M184/RFC-0167's test-only [Windows hard-link alias deletion
+  non-exclusion
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md).
+  It preserves the corrected live result that a peer alias can be deleted
+  while the guardian continues protecting the exact name it opened.
 - Add M183/RFC-0166's test-only [Windows post-admission hard-link creation
   probe](docs/security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md).
   It shows that a one-link file can gain a peer alias after guardian admission,

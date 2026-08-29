@@ -4734,6 +4734,36 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0166 records the accepted test-only
 negative boundary.
 
+## M184 Windows hard-link alias deletion non-exclusion
+
+M184 adds one Windows-only, test-only [hard-link alias deletion non-exclusion
+probe](security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md).
+It preserves M183, runtime, examples, scripts, dependencies, and workflows
+byte-for-byte.
+
+The probe begins with two entries for M173's ordinary coordination file and
+admits M181's expected-identity guardian. While that guardian remains live and
+protects the exact coordination name, standard-library `Path.unlink` removes
+the peer alias. The retained original handle keeps the same `FILE_ID_INFO`,
+its observed link count falls from two to one, and exact-name rename remains
+refused.
+
+This establishes that protection of one correctly identified name does not
+exclude link removal elsewhere. The initial sharing-error hypothesis was
+falsified by the live run. A future Windows cleanup capability must revalidate
+identity, link count, and trusted-root policy at use; it cannot treat an
+observed one-link state after deletion as durable ownership.
+
+M184 does not define that policy, enumerate entries, authenticate roots, test
+another principal, POSIX-delete flags, or filesystem, authorize deletion, or
+establish recovery, generation, admission, or cleanup authority. Windows
+remains unadmitted.
+
+M184 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0167 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

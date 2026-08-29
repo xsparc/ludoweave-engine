@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M184 hard-link alias deletion non-exclusion boundary
+
+RFC-0167 accepts one Windows-only, test-only NTFS observation. A coordination
+file and peer alias begin with the same `FILE_ID_INFO` and link count two.
+While M181's matching guardian is live, rename of the exact opened name fails
+with sharing error 32, but deletion of the peer alias succeeds. The original
+handle reports link count one and the guardian continues protecting its exact
+name.
+
+This resolves only the initial all-links deletion-exclusion hypothesis: it is
+false on the observed host. Exact-name protection and a surviving one-link
+sample are not root-confined ownership. Trusted root placement, link
+enumeration, cross-process/principal behavior, POSIX-delete flags, link-count
+policy, use-time revalidation, file-ID reuse, filesystem variation, durable
+generation, recovery, typed receipts, cleanup authority, independent-host
+proof, and Windows admission remain pending.
+
+RFC-0167 does not authorize runtime code, a public probe, native declarations,
+cache access, mutation, dependency, workflow, CI allocation, permission,
+release authority, or publication. No hosted check is added.
+
 ## M183 post-admission hard-link creation boundary
 
 RFC-0166 accepts one Windows-only, test-only NTFS observation. A coordination
