@@ -4907,6 +4907,39 @@ probe, production dependency, adapter, workflow, permission, release authority,
 or CI change. No hosted check is added. RFC-0172 records the accepted test-only
 negative boundary.
 
+## M190 Windows hard-link alias mutator invalid control token after recreation
+
+M190 adds one Windows-only, test-only [hard-link alias mutator invalid control
+token after recreation
+probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md).
+It preserves M186-M189, the fixed mutator fixture, runtime, examples, scripts,
+dependencies, and workflows.
+
+M181's matching guardian child first protects M173's ordinary coordination
+file. M186's unchanged sibling mutator child deletes the peer alias, receives
+the exact recreate token, recreates the alias, and emits exact `recreated`.
+Before any close token, the parent writes exactly one fixed invalid `?` byte,
+requires the buffered write to accept it, flushes and closes its writer, and
+waits with M186's fixed bound. The child settles through exact exit 5 with no
+`closed` event, stdout EOF, and empty stderr. The guardian remains live, the
+alias remains present, and both names retain shared identity, bytes, two-link
+count, range availability, and exact-name rename refusal. After exact guardian
+close, the parent renames the original and verifies shared identity and
+complete process, stream, native-handle, and range cleanup.
+
+The persistent two-link state is negative rollback evidence, not control-pipe
+EOF, abrupt process termination, arbitrary malformed-input handling, durable
+commit, repair, or recovery. The observation remains three processes under one
+principal and one parent-owned process tree. Cross-principal behavior,
+duplicated/inherited control writers, unrelated processes, simultaneous racing,
+crash consistency, durable recovery, root authentication, hard-link policy,
+admission, and cleanup authority remain unresolved. Windows remains unadmitted.
+
+M190 adds no runtime API, value, protocol, decoder, CLI composition, public
+probe, production dependency, adapter, workflow, permission, release authority,
+or CI change. No hosted check is added. RFC-0173 records the accepted test-only
+negative boundary.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

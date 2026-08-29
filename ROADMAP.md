@@ -3060,6 +3060,40 @@ workflow job/allocation, permission, credential, release authority, or CI
 change. The existing Windows suite is the only future hosted execution path;
 no hosted check is added.
 
+## M190 Windows hard-link alias mutator invalid control token after recreation probe
+
+M190 starts from fully locally validated M189 commit
+`2f7c61379ccd608a869c866e4937e7937906a64c`. It adds one Windows-only,
+test-only [hard-link alias mutator invalid control token after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md)
+under RFC-0173.
+
+The probe retains M186's fixed sibling mutator and M181's matching guardian.
+After exact child-owned alias deletion, the parent sends the recreate token and
+requires exact `recreated`, restored shared identity and bytes, link count two,
+and range availability through both names. Before any close token, it writes
+exactly one fixed invalid `?` byte, requires the buffered write to accept one
+byte, flushes and closes the parent writer, and waits with the fixed bound for
+exact fixture exit 5, stdout EOF, and empty stderr. The alias remains present
+with the same two-link identity while the guardian remains live and protective.
+
+This records negative rollback evidence: a fixed invalid control token after
+recreation does not automatically restore the preceding one-link state. It is
+not control-pipe EOF, abrupt process termination, arbitrary malformed-input
+handling, durable commit, recovery, crash consistency, or cleanup admission.
+The observation remains three processes under one principal and one parent-
+owned process tree. Cross-principal behavior, inherited/duplicated control
+writers, hostile simultaneous racing, durable intent, quarantine,
+reconciliation, typed recovery receipts, ReFS/SMB/other-host evidence, Windows
+admission, and cleanup authority remain unresolved.
+
+M190 adds no runtime API, protocol, decoder, CLI command, public probe,
+production subprocess or native surface, adapter, cache access, cleanup
+authority, dependency, native extension, compiler requirement, version,
+workflow job/allocation, permission, credential, release authority, or CI
+change. The existing Windows suite is the only future hosted execution path;
+no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

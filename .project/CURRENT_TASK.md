@@ -1,23 +1,136 @@
 # Current task
 
+## M190 Windows hard-link alias mutator invalid-control after recreation boundary
+
+- **Task:** Determine the residual namespace state when M186's independent
+  mutator child receives one fixed invalid control byte after exact
+  `recreated` and before the close token.
+- **Status:** Direction, implementation, complete regression, concentrated and
+  repeated Windows behavior, rendering/profiles, record-inclusive
+  distribution/release rehearsal, documentation, governance, findings-first
+  review, final separator, guarded cleanup, initial DCO object audit, and
+  hosted reconciliation pass locally. Publication is withheld because hosted
+  `main` lacks M100-M189; the final record amendment/object audit is in
+  progress.
+- **Base:** Fully locally validated M189 DCO commit
+  `2f7c61379ccd608a869c866e4937e7937906a64c`, tree
+  `641b6e8fae20947e92fd5b87f58ca07d958757ee`, sole parent exact M188.
+- **Branch:**
+  `release/m190-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-boundary`;
+  the redundant local M189 branch name was removed after exact M190 branch
+  creation retained its object.
+
+### M190 acceptance boundary
+
+- Accept RFC-0173 and retain one current-host Windows-only, test-only NTFS
+  observation over M173's coordination file, M181's guardian, and M186's
+  unchanged fixed mutator child.
+- Require initial shared identity/link count two, guardian `ready`, exact-name
+  rename error 32, child-owned alias deletion/recreation, and exact `deleted`
+  then `recreated` events.
+- Write exactly one repository-fixed invalid `?` byte, require an exact
+  one-byte buffered write, flush and close the parent writer, and wait with
+  M186's fixed bound. Require exact exit 5, no `closed` event, stdout EOF, and
+  empty stderr.
+- While the guardian remains live, require alias presence, shared identity and
+  bytes, link count two, range availability through both names, and continued
+  exact-name rename refusal. Close the guardian exactly, rename, and require
+  complete process/stream/native/range cleanup.
+- State the result narrowly: the fixed invalid token after recreation leaves
+  the peer alias present and does not automatically roll back to one link.
+  This is distinct from control-pipe EOF and abrupt termination and is not
+  durable commit, recovery, Windows admission, or cleanup authority.
+- Add no runtime API, fixture, dependency, workflow, job/allocation,
+  permission, release authority, version, or CI change.
+
+### M190 development evidence so far
+
+- Current Microsoft pipe and hard-link documentation, Python stream and
+  subprocess contracts, GitHub matrix semantics, and NIST SSDF guidance
+  support one bounded invalid-byte observation and no hosted allocation.
+- The exact M189 architecture/live baseline passed nine tests. Static and
+  dated strict governance returned zero findings; the first dated invocation
+  was cache-denied before checking and its exact access-enabled rerun passed.
+- The live probe passed first execution. The first combined architecture/live
+  run passed behavior and seven guards but exposed one formatter-sensitive
+  guard. After narrow correction and mechanical formatting, eight guards plus
+  the live behavior pass nine tests; targeted Ruff and strict Pyright pass;
+  strict docs pass.
+- Exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 complete
+  45-package graphics environments each pass 4,008 tests with 17 skips in
+  301.23, 266.76, and 277.50 seconds.
+- The 42 M149-M190 architecture modules plus 42 Windows cache-cleanup
+  integration modules pass 315 tests with one established skip. The first
+  repetition wrapper supplied an empty base-temp and pytest rejected it before
+  collection; the corrected wrapper passes 20 independent live observations
+  in 0.36-0.43 seconds each.
+- Ten real-wgpu tests pass. Fresh two- and three-workload profiles validate;
+  all eight profile-schema tests pass. Clockwork Arena and Agent World Builder
+  reproduce their established state, capture, replay, draw, sprite, match, and
+  batch identities.
+- The unchanged 46-package lock and exact 45-package graphics environment
+  resolve. All 570 Python files are format-clean; Ruff, strict Pyright, strict
+  docs, and whitespace pass. The first sandboxed lock/sync calls were denied
+  external uv-cache access; their exact access-enabled rerun passed.
+- Two builds reproduce a 362,252-byte pure wheel at SHA-256
+  `275738ae405af226003a2884951afa3ad379e32e397d5cdc2f966750ced5d43f`
+  and a 2,247,477-byte source archive at SHA-256
+  `d35b7b4f4f15265f4a48fa43ecaf84dca19c1b9f0affca744c7731af7470c3ac`.
+  The complete installed-wheel smoke passes. Two ten-artifact release stages
+  are byte-identical and both complete release smokes pass. Inventory is 114
+  wheel/927 source entries; all four M190 files are source-only and the wheel
+  contains no test, project-record, native, WASM, or bytecode payload.
+- Record-inclusive source, Windows, docs, governance, scope, security, and
+  package-boundary gates pass. Final record-state builds reproduce the
+  unchanged wheel and a 2,250,591-byte source archive at SHA-256
+  `4ecc42087b2a458e7b8c0c1da96f5a51907dcad264edf78d19065e901274dcf3`;
+  installed-wheel and dual release smokes pass.
+- The final source separator corrected one documentation/guard wording
+  mismatch; both Python files, all nine focused checks, strict docs, dated
+  governance, and whitespace pass after correction.
+- Guarded cleanup verified and removed all 56 exact repository-confined,
+  untracked, reparse-free M190 scratch targets; zero M190 target remains.
+- The final post-record separator passes both Python files, all nine focused
+  checks, strict docs, dated governance, and whitespace; its two exact
+  generated targets were revalidated, removed, and confirmed absent.
+- Initial DCO commit `e30a6e8f9b3351a197f96e3ed05314355288b7af`,
+  tree `42881b058857857678abc2839f34d2144a594b99`, has sole parent exact
+  M189, exactly 16 intended paths, one matching sign-off, truthful configured
+  author/committer identity, no merge, expected `0 91` divergence, a clean
+  worktree, zero M190 scratch, and clean connectivity apart from ordinary
+  dangling records. This factual record is folded into the closeout object.
+
+### M190 publication boundary and explicit non-scope
+
+- A final fresh pruned fetch, direct hosted-ref query, local hosted tree and
+  ancestry checks, authenticated recent PR history, and branch inventory leave
+  hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, without M189; PR #251 is
+  latest and no milestone branch is hosted. Publication is withheld: no push,
+  PR, hosted allocation, tag, release, or package publication occurs.
+- Cross-principal or unrelated-process behavior, duplicated/inherited control
+  writers, arbitrary malformed or partial/multiple input, hostile simultaneous
+  racing, crash or power-loss consistency, trusted root ownership, link
+  enumeration, ReFS/SMB/driver variation, durable intent, rollback/
+  reconciliation policy, typed recovery receipts, Windows admission, cleanup
+  authority, or independent-host proof.
+- Runtime, CLI, world, command, receipt, ECS, renderer, asset, fixture,
+  dependency, native-extension, compiler, workflow, permission, CI-allocation,
+  tag, release, publication, or version changes.
+
 ## M189 Windows hard-link alias mutator control-pipe EOF after recreation boundary
 
 - **Task:** Determine the residual namespace state when M186's independent
   mutator child receives control-pipe EOF after exact `recreated` and before the
   close token.
-- **Status:** Locally complete through direction, implementation,
-  supported-Python regression, concentrated/repeated Windows behavior,
-  rendering/profiles, record-inclusive distribution/release rehearsal,
-  governance, findings-first review, cleanup, and initial DCO object audit. A
-  final hosted reconciliation still withholds publication because hosted
-  `main` lacks M100-M188. The final record amendment/object audit is in
-  progress.
+- **Status:** Locally complete at final DCO commit
+  `2f7c61379ccd608a869c866e4937e7937906a64c`; publication is withheld because
+  hosted `main` lacks M100-M188.
 - **Base:** Fully locally validated M188 DCO commit
   `137442543d50f6795308372230c6677f34eec087`, tree
   `a12e0c5139c9ce60cf85a62f5a087cce5ae5a032`, sole parent exact M187.
-- **Branch:**
-  `release/m189-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-boundary`;
-  the redundant local M188 branch name was removed by in-place rename.
+- **Branch:** The M189 branch name was retired after exact M190 branch creation;
+  its exact final object remains M190's base.
 
 ### M189 acceptance boundary
 
@@ -103,13 +216,12 @@
   and strict-Pyright clean; nine focused checks, strict docs, dated governance,
   and whitespace pass. Its two exact regenerated targets were revalidated,
   removed, and confirmed absent.
-- Initial DCO commit `ad4befd30c81a5dfcbd5cf8064719286c0f0ca81`, tree
-  `bb50c442152cb8d1ce63beedd0a528de1962d3e7`, has sole parent exact M188,
+- Final DCO commit `2f7c61379ccd608a869c866e4937e7937906a64c`, tree
+  `641b6e8fae20947e92fd5b87f58ca07d958757ee`, has sole parent exact M188,
   exactly 16 intended paths, one matching sign-off, truthful configured
   author/committer identity, no merge, expected `0 90` divergence from
   hosted/local M99 `main`, a clean worktree, zero exact M189 scratch, and clean
-  connectivity apart from 325 ordinary dangling records. This factual record
-  will be folded into the closeout object.
+  connectivity apart from ordinary dangling records.
 
 ### M189 publication boundary and explicit non-scope
 

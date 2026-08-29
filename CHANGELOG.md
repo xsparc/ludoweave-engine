@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M190/RFC-0173's test-only [Windows hard-link alias mutator invalid
+  control token after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md).
+  It writes and flushes one fixed invalid byte after exact recreation and
+  records fixture exit 5 with the persistent two-link, alias-present state,
+  without expanding runtime or CI.
 - Add M189/RFC-0172's test-only [Windows hard-link alias mutator control-pipe
   EOF after recreation
   probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md).
