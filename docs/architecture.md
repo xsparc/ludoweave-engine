@@ -5197,6 +5197,27 @@ refusal. M199 changes no runtime, public API, dependency, fixture, adapter,
 workflow, permission, or hosted allocation. This preserves ADR-0017 and
 RFC-0129 through RFC-0131 rather than creating a new architecture direction.
 
+## M200 Windows singleton-link refusal policy
+
+M200 accepts the [Windows singleton-link refusal
+policy](security/windows-cache-cleanup-singleton-link-refusal-policy.md). A
+future private engine-owned adapter may treat a cache candidate as link-
+eligible only while the same retained opened object reports a handle-derived
+link count of exactly one both at admission and immediately before mutation.
+Every zero, multiple, changed, unavailable, invalid, or unsupported result
+fails closed before mutation.
+
+Hard-link name enumeration is not authority. It observes a pathname-based,
+changing namespace and cannot replace the retained handle or its use-time
+check. Stable singleton status is necessary but not sufficient: M200 resolves
+only M199 criterion 2 as policy. Criterion 1 and criteria 3 through 7 remain
+unresolved, production enforcement remains absent, Windows stays unadmitted,
+and cleanup remains unimplemented and unauthorized.
+
+M200 changes no runtime, public API, integration fixture, dependency, adapter,
+workflow, permission, or hosted allocation. It preserves ADR-0017 and RFC-0129
+through RFC-0131 as a direction-preserving policy refinement.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

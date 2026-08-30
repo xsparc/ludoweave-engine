@@ -1140,6 +1140,17 @@ Standalone closed-stream method probing ends after M198; future work must
 resolve a named admission criterion. No runtime, workflow, permission, or
 hosted check is added.
 
+M200's [Windows singleton-link refusal
+policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md)
+resolves only M199 hard-link criterion 2 as policy. A future engine-owned
+adapter must retain the exact opened object and observe a handle-derived link
+count of exactly one at admission and immediately before mutation. Zero,
+multiple, changed, unavailable, invalid, or unsupported counts refuse before
+mutation. Hard-link name enumeration is pathname-based observation, not
+authority. Windows remains unadmitted; production use-time enforcement and
+criteria 1 and 3 through 7 remain unresolved. No runtime, workflow, permission,
+or hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

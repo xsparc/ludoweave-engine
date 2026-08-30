@@ -3380,6 +3380,35 @@ extension, compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The existing Windows suite remains
 the only future hosted execution path; no hosted check is added.
 
+## M200 Windows singleton-link refusal policy
+
+M200 starts from fully locally validated M199 commit
+`31d786f203de0e51b08f13f72a0340ff8c44e27a`. It accepts a [Windows
+singleton-link refusal
+policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md)
+under RFC-0183.
+
+The policy resolves M199 admission criterion 2 without admitting cleanup. A
+future private engine-owned adapter may consider a candidate only while the
+same retained opened object reports a handle-derived link count of exactly one
+at admission and immediately before mutation. Zero, multiple, changed,
+unavailable, invalid, or unsupported counts refuse before mutation. Saved
+counts, reopened names, pathname metadata, and hard-link name enumeration do
+not supply authority.
+
+A stable singleton count is necessary but not sufficient. Criterion 1 and
+criteria 3 through 7 remain unresolved, including production use-time
+enforcement, authenticated trusted-root/generation authority, typed protocol
+and receipts, durable recovery, cross-principal evidence, and independent-host
+support. Windows cleanup remains unimplemented and unauthorized.
+
+M200 adds one architecture guard and decision documentation. It adds no runtime
+API, protocol, decoder, CLI command, public probe, production adapter,
+integration fixture, cache access, quarantine, mutation, dependency, native
+extension, compiler requirement, version, workflow job/allocation, permission,
+credential, release authority, or CI change. The existing Windows suite remains
+the only future hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

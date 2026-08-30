@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M200 Windows singleton-link refusal policy
+
+RFC-0183 accepts one direction-preserving, no-authority-increase policy. A
+future Windows cleanup candidate is link-eligible only while the same retained
+opened object reports a handle-derived link count of exactly one at admission
+and immediately before mutation. Zero, multiple, changed, unavailable,
+invalid, or unsupported counts refuse before mutation.
+
+Hard-link name enumeration is not admission authority. `FindFirstFileNameW`
+and similar results are pathname-based, changing observations; no enumeration,
+saved-count, or pathname fallback may turn a candidate eligible. A stable
+singleton count remains necessary but not sufficient.
+
+M200 resolves M199 criterion 2 as policy only. Criterion 1 and criteria 3
+through 7 remain pending, including production use-time enforcement,
+authenticated trusted-root/generation authority, typed protocol and receipts,
+durable intent and recovery, cross-principal evidence, and independent-host
+proof. Windows cleanup remains unimplemented and unauthorized. No runtime,
+fixture, dependency, workflow, hosted allocation, permission, version, release
+authority, or cleanup effect is accepted.
+
 ## M199 Windows cache-cleanup readiness refresh
 
 RFC-0182 accepts one no-authority-increase readiness checkpoint. The complete

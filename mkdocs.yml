@@ -88,6 +88,7 @@ nav:
   - Windows hard-link alias mutator closed-stream flush after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md
   - Windows hard-link alias mutator closed-stream write after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md
   - Windows cache-cleanup readiness refresh: security/cache-cleanup-windows-readiness-refresh.md
+  - Windows singleton-link refusal policy: security/windows-cache-cleanup-singleton-link-refusal-policy.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -276,6 +277,7 @@ nav:
       - RFC-0180 - Probe Windows closed-stream flush after delivery failure: rfcs/0180-probe-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure.md
       - RFC-0181 - Probe Windows closed-stream write after delivery failure: rfcs/0181-probe-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure.md
       - RFC-0182 - Refresh Windows cache-cleanup readiness: rfcs/0182-refresh-windows-cache-cleanup-readiness.md
+      - RFC-0183 - Adopt Windows singleton-link refusal policy: rfcs/0183-adopt-windows-singleton-link-refusal-policy.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

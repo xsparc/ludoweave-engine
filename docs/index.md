@@ -281,6 +281,11 @@ attestation, with the same allocation topology.
   refresh](security/cache-cleanup-windows-readiness-refresh.md) that consolidates
   M149-M198, keeps cleanup deferred, and requires future work to resolve a
   named admission criterion rather than extend standalone stream probing.
+- A [Windows singleton-link refusal
+  policy](security/windows-cache-cleanup-singleton-link-refusal-policy.md) that
+  requires exactly one handle-derived link at admission and immediately before
+  mutation, refuses every other or uncertain count, and rejects name
+  enumeration as authority without admitting cleanup.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

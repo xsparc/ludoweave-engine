@@ -295,8 +295,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > complete M149-M198 probe sequence. Windows cleanup remains unimplemented and
 > unauthorized, the method-by-method closed-stream tail is closed, and future
 > work must resolve a named admission criterion without adding CI allocation.
+> M200 adopts a [Windows singleton-link refusal
+> policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md).
+> A future adapter must observe exactly one link on the retained opened object
+> at admission and immediately before mutation; every other or uncertain count
+> refuses, and pathname enumeration is never cleanup authority.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M199 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M200 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

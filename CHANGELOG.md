@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M200/RFC-0183's [Windows singleton-link refusal
+  policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md).
+  Future candidates require a handle-derived count of exactly one at admission
+  and immediately before mutation; all other or uncertain counts refuse, name
+  enumeration supplies no authority, and no runtime or CI surface is added.
 - Accept M199/RFC-0182's [Windows cache-cleanup readiness
   refresh](docs/security/cache-cleanup-windows-readiness-refresh.md). It
   consolidates the complete 50-milestone M149-M198 test-only sequence, keeps

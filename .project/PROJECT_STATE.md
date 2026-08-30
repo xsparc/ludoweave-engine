@@ -1,5 +1,83 @@
 # Project State
 
+## M200 Windows singleton-link refusal policy - locally complete, publication withheld
+
+- Base: fully locally validated M199 DCO commit
+  `31d786f203de0e51b08f13f72a0340ff8c44e27a`, tree
+  `d1a62006d7c116b2859bca50687be022d40b665c`, sole parent exact M198.
+- Branch hygiene: neutral
+  `release/m200-windows-singleton-link-refusal-policy` starts from exact M199;
+  the redundant M199 branch name is removed.
+- Direction: RFC-0183 resolves only M199 hard-link criterion 2 as a strict
+  singleton-link refusal policy without admitting cleanup.
+- Policy: the same retained opened object must report exactly one handle-
+  derived link at admission and immediately before mutation. Every other,
+  changed, uncertain, invalid, or unsupported observation refuses before
+  mutation. Name enumeration supplies no authority.
+- Remaining gates: criterion 1 and criteria 3 through 7 remain unresolved,
+  including production use-time enforcement. Windows cleanup remains
+  unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0183, one security decision, eight public
+  registrations, and four project records. Runtime, fixtures, examples,
+  scripts, workflows, dependencies, lock, metadata, version, root exports, and
+  package code remain unchanged.
+- Development evidence: exact M199 baseline and static governance pass;
+  intentional red failed only five absent public contracts; after the RFC,
+  decision, and registrations all eight focused architecture assertions pass.
+  The first complete run exposed a decision-filename collision with M199's
+  protected evidence glob; the corrected source-only filename preserves exact
+  M199 and the combined guard passes 15 assertions.
+- Complete regression: CPython 3.12.13 and 3.13.13 each pass 4,095 tests with
+  17 skips. CPython 3.14.5 has complete disjoint-shard coverage at the same
+  count after two monolithic attempts each encountered a different unchanged
+  15-second subprocess timeout with 4,094 other passes. Whole-tree format,
+  Ruff, strict Pyright, docs, governance, lock/environment, and whitespace
+  gates pass.
+- Product/package: ten real-wgpu tests, both fresh profiles and validators,
+  Null/wgpu Clockwork Arena, and Agent World Builder reproduce established
+  identities. Two distributions and two ten-artifact release stages are byte-
+  identical; installed and complete release smokes pass. Inventory remains 114
+  pure wheel entries and advances to 965 source entries with all three M200
+  files source-only.
+- Review: exactly 15 intended paths, zero protected runtime, fixture,
+  dependency, workflow, and M199 diff; 20 hygiene/M199/M200 assertions pass;
+  654 added lines contain no development-identity, credential-assignment, or
+  machine-local-path match. No actionable M200 finding remains.
+- Record-inclusive closeout: the unchanged lock/environment, all 588 Python
+  files, 20 review tests, strict docs, both governance modes, and whitespace
+  pass. Two builds reproduce a 363,080-byte wheel at
+  `f24ef5b59f18b4fceb4e7ee431398dbf227a547656e7b82b45e49cea826681c6`
+  and a 2,335,224-byte source archive at
+  `fa66361b2b41611bbf1ab915c61d43a45433fb01eb63cded52fdad7cf0181883`;
+  installed and both identical ten-artifact release rehearsals pass. Final pre-
+  cleanup validation also passes.
+- Cleanup: exactly 36 `.tmp/m200*` test, JUnit, profile, docs, distribution, and
+  release targets were proven repository-confined, ignored, untracked, direct-
+  child, and top-level plus recursively reparse-free. A long deletion detached
+  from its wrapper after removing 29; an intermediate check found seven, and a
+  later exact check proved the continuing bounded operation removed all 36.
+  Final post-cleanup static, review, docs, governance, and whitespace checks
+  pass. The sole regenerated docs target was then separately audited and
+  removed. Zero M200 scratch remains; no ACL changed.
+- Pre-commit readiness: exact M199 HEAD/tree and sole parent, exactly 15 paths,
+  zero protected-surface diff, only local `main` and neutral M200, expected
+  `0 100` divergence, configured identity, zero scratch, clean whitespace and
+  object connectivity, 20 passing review checks, strict governance, and zero
+  public-hygiene match across 732 added lines.
+- Initial object: DCO commit
+  `2d0fd45633f69aa29ba74d60305976bd033bd8cf`, tree
+  `f25ce04801feaaa4a79c27b88e1a5baeafe6e976`, has sole parent exact M199,
+  exactly 15 paths, one matching DCO trailer, consistent configured identity,
+  no merge, expected `0 101` divergence, clean revision whitespace and object
+  connectivity, a clean worktree, and zero scratch. This record is folded into
+  one closeout amendment.
+- Final hosted safety: a fresh pruned fetch leaves only remote `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` with tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; divergence is `0 101`, and
+  M198 plus M199 are absent as ancestors. PR #251 remains the latest merge. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+- No hosted check, PR, release, tag, or package publication is claimed.
+
 ## M199 Windows cleanup readiness refresh - locally complete, publication withheld
 
 - Base: fully locally validated M198 DCO commit
