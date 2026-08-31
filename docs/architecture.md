@@ -5245,6 +5245,34 @@ M201 changes no runtime, public API, integration fixture, dependency, adapter,
 workflow, permission, or hosted allocation. It preserves ADR-0017, ADR-0019,
 and RFC-0129 through RFC-0131 as a direction-preserving policy refinement.
 
+## M202 Windows use-time revalidation policy
+
+M202 accepts the [Windows use-time revalidation
+policy](security/windows-cache-cleanup-use-time-revalidation-policy.md). A
+future private adapter must freshly revalidate the complete admitted effective-
+token, trusted-root, durable-generation, acquisition-lineage, and candidate
+tuple through the same retained objects immediately before every mutation
+boundary. Exact token revision and least-privilege security, handle-derived
+identity/type/link/delete/reparse state, root relationship, and the complete
+canonical generation record must still equal admission.
+
+The same owner retains the non-reentrant gate and object references through the
+same-handle mutation call without an application-introduced callback, yield,
+wait, queue, path lookup, close/reopen, or ownership gap. A failed first gate
+leaves the candidate untouched. A failed gate after a completed namespace
+transition stops before deletion and enters recovery-required disposition;
+durable intent/recovery and typed receipts remain criteria 5 and 4.
+
+M202 resolves only M199 criterion 3 as policy. Criteria 1 and 2 remain resolved
+as policy, while criteria 4 through 7 remain unresolved. Separate Windows
+security queries are not atomic, hostile cross-principal evidence and
+independent-host classification remain absent, Windows stays unadmitted, and
+cleanup remains unimplemented and unauthorized.
+
+M202 changes no runtime, public API, integration fixture, dependency, adapter,
+workflow, permission, or hosted allocation. It preserves ADR-0017, ADR-0019,
+and RFC-0129 through RFC-0131 as a direction-preserving policy refinement.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -291,6 +291,11 @@ attestation, with the same allocation topology.
   requires exact effective-token, retained trusted-root, and separate durable-
   generation bindings before any future private authority can be issued,
   without adding runtime cleanup or CI allocation.
+- A [Windows use-time revalidation
+  policy](security/windows-cache-cleanup-use-time-revalidation-policy.md) that
+  requires the complete admitted token, root, generation, lineage, and
+  candidate state to be freshly equal immediately before every future mutation
+  boundary.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

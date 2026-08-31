@@ -1,5 +1,47 @@
 # Project State
 
+## M202 Windows use-time revalidation policy - locally complete, publication withheld
+
+- Base: fully locally validated M201 DCO commit
+  `df54db0fa4b188048cfcb1075a9f5dc7934e6749`, tree
+  `dd9c65821a294ddbbb8dced43a4867d0a976e1d1`, sole parent exact M200.
+- Branch hygiene: neutral `release/m202-windows-use-time-revalidation-policy`
+  starts from exact M201; the redundant M201 branch name is removed.
+- Direction: RFC-0185 resolves only M199 criterion 3 as a strict use-time
+  revalidation policy without creating production cleanup.
+- Retained-object policy: revalidation uses the same effective-token, trusted-
+  root, durable-generation, acquisition-lineage, and candidate objects and
+  requires complete equality with admission.
+- Mutation-boundary policy: token/security and handle-derived identity, type,
+  link, root, and generation facts are freshly checked immediately before every
+  mutation boundary under an uninterrupted private single-owner gate.
+- Failure policy: pre-first-mutation failure leaves the candidate untouched;
+  post-transition failure stops before deletion and enters recovery-required
+  disposition without guessing rollback.
+- Remaining gates: criteria 1 through 3 are resolved as policy; criteria 4
+  through 7 remain unresolved. Windows cleanup remains unimplemented and
+  unauthorized.
+- Scope: one architecture guard, RFC-0185, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, and
+  package code remain unchanged.
+- Validation: exact baseline, governance, current source research, intentional
+  red, focused and whole-tree policy/static/docs/governance gates, complete
+  supported-Python suites, rendering/profile/example checks, reproducible
+  package/release rehearsal, package inventory, and findings-first review are
+  complete. The record-inclusive separator and final record-state reproducible
+  distribution/release rehearsal also pass. Exact guarded cleanup removed all
+  18 validated generated targets; post-cleanup validation passes and its sole
+  regenerated docs target is removed. Pre-commit scope/history/identity/hygiene
+  review passes. The exact 15-path DCO object and factual closeout are verified.
+- Publication: a fresh pruned fetch and direct hosted query leave public
+  `origin/main` at exact M99. M201 is absent from hosted ancestry, only remote
+  `main` exists, and PR #251 remains latest. Publishing M202 would expose the
+  absent M100-M201 stack, so no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+- Hosted status: no hosted M202 result is claimed and no additional CI
+  allocation is introduced.
+
 ## M201 Windows cleanup-authority admission policy - locally complete, publication withheld
 
 - Base: fully locally validated M200 DCO commit

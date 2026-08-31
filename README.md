@@ -306,8 +306,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > retained identity/security-bound root, and a separate durable generation.
 > World-write capability, request data, paths, and saved evidence cannot mint
 > it; Windows cleanup remains unimplemented and unauthorized.
+> M202 adopts a [Windows use-time revalidation
+> policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md).
+> A future private adapter must freshly compare the complete token, root,
+> generation, lineage, and candidate state with admission immediately before
+> every mutation boundary. A failed first gate leaves the candidate untouched;
+> a failed later gate requires recovery without guessing rollback or deletion.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M201 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M202 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

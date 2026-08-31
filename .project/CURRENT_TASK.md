@@ -1,5 +1,104 @@
 # Current task
 
+## M202 Windows use-time revalidation policy
+
+- **Task:** Resolve M199 Windows cleanup admission criterion 3 as an exact,
+  fail-closed use-time revalidation policy without admitting cleanup or adding
+  runtime or CI surface.
+- **Status:** Locally complete; publication withheld.
+  Explicit approval, current primary-source direction research, exact M201
+  baseline, neutral branch containment, intentional architecture red, accepted
+  RFC/security decision, public registration, focused and whole-tree gates,
+  supported-Python coverage, graphics/profile/examples, reproducible package
+  and release rehearsal, inventory, findings-first review, and record-inclusive
+  separator, final record-state distribution, guarded cleanup, and post-cleanup
+  validation, pre-commit audit, local DCO object verification, factual closeout,
+  and final publication-safety reconciliation are complete. Publication is
+  withheld because hosted `main` remains at M99 and lacks the M100-M201
+  prerequisite chain.
+- **Base:** Fully locally validated M201 DCO commit
+  `df54db0fa4b188048cfcb1075a9f5dc7934e6749`, tree
+  `dd9c65821a294ddbbb8dced43a4867d0a976e1d1`, sole parent exact M200.
+- **Branch:** `release/m202-windows-use-time-revalidation-policy`; the redundant
+  local M201 branch name was removed after exact M202 branch creation retained
+  its object.
+
+### M202 acceptance boundary
+
+- Retain the exact admitted effective-token, trusted-root, durable-generation,
+  acquisition-lineage, and candidate objects through use-time revalidation.
+- Freshly compare the complete token/root/generation/lineage/candidate tuple
+  with admission immediately before every mutation boundary.
+- Refresh exact least-privilege token and root-security decisions plus handle-
+  derived identity/type/link/delete/reparse/root/generation facts.
+- Hold the non-reentrant single-owner gate and retained references without an
+  application-introduced gap into the same-handle mutation.
+- Leave the candidate untouched on failure before the first mutation; after a
+  completed transition, stop before deletion and require deferred recovery.
+- Resolve criterion 3 as policy, retain criteria 1 and 2 as policy, and leave
+  criteria 4 through 7 unresolved. Windows remains unadmitted and cleanup
+  remains unimplemented and unauthorized.
+- Preserve exact M201, runtime, fixtures, examples, scripts, dependencies,
+  metadata, workflows, permissions, version, and package surface. Add no
+  adapter, command, protocol, receipt, mutation/recovery code, or hosted check.
+
+### M202 development evidence so far
+
+- Exact M201 history/tree/parent, maintainer identity, hosted-main divergence,
+  and branch inventory were rechecked before work. The M201 architecture guard
+  passed all nine tests in 0.26 seconds.
+- Static and current-date strict external governance gates each returned pass
+  with zero findings across three objectives, seven requirements, and four
+  work items.
+- Current Microsoft primary sources support exact handle-derived identity,
+  type/link state, effective-token/security queries, least-privilege access
+  checking, and same-handle mutation. They also explicitly preserve the
+  non-atomic race boundary, so M202 adds policy only and no hosted allocation.
+- Neutral M202 starts from exact M201. Exact containment made the local M201
+  branch name redundant, so only local `main` and active M202 remain.
+- The intentional architecture-red run passed two protected containment/no-
+  implementation checks and failed only eight absent RFC, decision, and public-
+  registration contracts in 0.51 seconds.
+- RFC-0185, the security decision, and eight public registrations define the
+  complete no-authority-increase policy. The first focused run passed nine
+  checks and exposed one markdown-format mismatch in the guarded Microsoft
+  race-limit phrase; the factual text was normalized, and all ten checks then
+  passed in 0.25 seconds. Focused format, Ruff, and strict Pyright are clean.
+- Whole-tree static/docs/governance gates and the 39-check architecture review
+  group are clean. Complete CPython 3.12, 3.13, and 3.14 suites each pass 4,114
+  tests with 17 skips.
+- Real-wgpu, fresh profile contracts, and both deterministic vertical slices
+  reproduce established results. Two distribution builds and two complete
+  release stages are byte-identical; installed wheel/scene/release smokes and
+  the 114-wheel/971-source package boundary pass.
+- Findings-first review confirms exactly 15 intended paths, zero protected-
+  surface diff, zero new hosted allocation, and no actionable finding.
+- The record-inclusive separator remains clean across all 590 Python files,
+  the 39-check architecture group, strict docs, static/current-date governance,
+  and whitespace.
+- Two exact record-state builds reproduce a 363,290-byte pure wheel and
+  2,361,437-byte source archive. Installed-wheel/scene and both complete
+  release-stage smokes pass; the stages are byte-identical and the 114/971
+  package boundary remains exact.
+- A terminating audit proved all 18 exact generated targets confined, ignored,
+  untracked, and recursively reparse-free. Revalidating removal deleted all 18
+  and proved the zero-target postcondition without a tracked-path or ACL change.
+- The final post-cleanup separator passes all static, 39 architecture, strict-
+  docs, governance, and whitespace gates. Its sole regenerated ignored docs
+  target was revalidated, removed, and proved absent.
+- Pre-commit audit confirms exact M201 ancestry, exactly 15 intended paths,
+  only local `main` plus neutral M202, correct maintainer identity, zero
+  protected-surface diff, clean static/architecture/whitespace gates, zero
+  scratch, and clean Git connectivity apart from historical dangling objects.
+- Initial local commit `2cbde10cf04701dedaa128d78c2f48f39d4a54b2` has
+  the exact 15-path tree, sole parent M201, consistent maintainer identity, one
+  matching DCO trailer, clean worktree, and expected `0 103` divergence. This
+  factual object record is folded into one closeout amendment.
+- A fresh pruned fetch and direct hosted-head query leave public default
+  `origin/main` at exact M99 with PR #251 latest, only remote `main`, and M201
+  absent from hosted ancestry. Publishing would expose M100-M201, so no push,
+  PR, hosted allocation, tag, release, or package publication occurs.
+
 ## M201 Windows cleanup-authority admission policy
 
 - **Task:** Resolve M199 Windows cleanup admission criterion 1 as an exact,

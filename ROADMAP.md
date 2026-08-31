@@ -3442,6 +3442,38 @@ job/allocation, permission, credential, release authority, or CI change. The
 existing Windows suite remains the only future hosted execution path; no hosted
 check is added.
 
+## M202 Windows use-time revalidation policy
+
+M202 starts from fully locally validated M201 commit
+`df54db0fa4b188048cfcb1075a9f5dc7934e6749`. It accepts a [Windows use-time
+revalidation
+policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md)
+under RFC-0185.
+
+The policy resolves M199 admission criterion 3 without admitting cleanup. A
+future private adapter must use the same retained effective-token, trusted-
+root, durable-generation, acquisition-lineage, and candidate objects to
+freshly compare the complete use-time tuple with admission immediately before
+every mutation boundary. It must refresh exact least-privilege token and root-
+security decisions, handle-derived identity/type/link/delete/reparse state,
+root relationship, and canonical generation-record identity and digest.
+
+The single owner must hold the non-reentrant gate and all retained references
+without an application-introduced gap into the same-handle mutation. Failure
+before the first quarantine or rename leaves the candidate untouched. Failure
+after a completed transition stops before deletion and requires the still-
+deferred durable recovery design. Criteria 1 through 3 are resolved as policy;
+criteria 4 through 7 remain unresolved. Windows cleanup remains unimplemented
+and unauthorized.
+
+M202 adds one architecture guard and decision documentation. It adds no runtime
+API, protocol, decoder, CLI command, public revalidation surface, production
+adapter, generation record, integration fixture, cache access, quarantine,
+mutation, recovery path, dependency, native extension, compiler requirement,
+version, workflow job/allocation, permission, credential, release authority,
+or CI change. The existing Windows suite remains the only future hosted
+execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

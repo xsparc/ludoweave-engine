@@ -1162,6 +1162,17 @@ remains resolved as policy; criteria 3 through 7 remain unresolved. Windows
 remains unadmitted, and no runtime, workflow, permission, or hosted check is
 added.
 
+M202's [Windows use-time revalidation
+policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md)
+resolves only M199 criterion 3 as policy. A future private adapter must freshly
+compare the complete token, root, generation, lineage, and candidate state
+with admission immediately before every mutation boundary while retaining the
+same owned objects and uninterrupted single-owner gate. A failed initial gate
+leaves the candidate untouched; a later failure enters recovery-required state
+and must not guess rollback or proceed to deletion. Criteria 1 through 3 are
+resolved as policy; criteria 4 through 7 remain unresolved. Windows remains
+unadmitted, and no runtime, workflow, permission, or hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

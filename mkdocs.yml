@@ -90,6 +90,7 @@ nav:
   - Windows cache-cleanup readiness refresh: security/cache-cleanup-windows-readiness-refresh.md
   - Windows singleton-link refusal policy: security/windows-cache-cleanup-singleton-link-refusal-policy.md
   - Windows cleanup-authority admission policy: security/windows-cache-cleanup-authority-admission-policy.md
+  - Windows use-time revalidation policy: security/windows-cache-cleanup-use-time-revalidation-policy.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -280,6 +281,7 @@ nav:
       - RFC-0182 - Refresh Windows cache-cleanup readiness: rfcs/0182-refresh-windows-cache-cleanup-readiness.md
       - RFC-0183 - Adopt Windows singleton-link refusal policy: rfcs/0183-adopt-windows-singleton-link-refusal-policy.md
       - RFC-0184 - Adopt Windows cleanup-authority admission policy: rfcs/0184-adopt-windows-cleanup-authority-admission-policy.md
+      - RFC-0185 - Adopt Windows use-time revalidation policy: rfcs/0185-adopt-windows-use-time-revalidation-policy.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

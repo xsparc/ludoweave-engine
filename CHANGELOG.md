@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M202/RFC-0185's [Windows use-time revalidation
+  policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md).
+  A future private adapter must freshly revalidate the complete admitted
+  token, root, generation, lineage, and candidate state immediately before
+  every mutation boundary; failures refuse or enter recovery-required state,
+  and no runtime or CI surface is added.
 - Accept M201/RFC-0184's [Windows cleanup-authority admission
   policy](docs/security/windows-cache-cleanup-authority-admission-policy.md).
   A future private authority must bind the exact effective token, one retained

@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M202 Windows use-time revalidation policy
+
+RFC-0185 accepts one direction-preserving, no-authority-increase policy. A
+future private Windows cleanup adapter must use the same retained effective-
+token, trusted-root, durable-generation, acquisition-lineage, and candidate
+objects to freshly compare the complete tuple with admission immediately before
+every mutation boundary.
+
+Fresh evaluation includes exact effective-token identity/revision, trusted-root
+owner/DACL/security digest and least-privilege access, handle-derived
+identity/type/link/delete/reparse state, root relationship, and complete
+canonical generation-record identity and digest. The same owner retains its
+non-reentrant gate and object references into the same-handle mutation without
+an application-introduced callback, yield, wait, queue, path lookup, reopen, or
+ownership gap.
+
+Failure before the first mutation leaves the candidate untouched. Failure after
+a completed transition stops before deletion and enters recovery-required
+disposition without guessing rollback. M202 resolves criterion 3 as policy;
+criteria 1 and 2 remain resolved as policy, and criteria 4 through 7 remain
+unresolved. Windows stays unadmitted, and cleanup stays unimplemented and
+unauthorized. No runtime, adapter, command, protocol, receipt, recovery,
+dependency, workflow, permission, version, release authority, or CI change is
+accepted.
+
 ## M201 Windows cleanup-authority admission policy
 
 RFC-0184 accepts one direction-preserving, no-authority-increase policy. A
