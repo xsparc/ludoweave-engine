@@ -337,8 +337,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > It strictly checks bounded canonical evidence and ships a reviewed all-
 > `not_run` fixture, but performs no qualifying run, grants no cleanup
 > authority, and adds no hosted allocation.
+> M207 adopts a [Windows independent-host validation
+> contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md).
+> It requires independently provisioned hosts, observed storage capabilities,
+> explicit filesystem refusal lanes, and separated interruption classes before
+> criterion 7 can pass. M207 supplies policy only, so Windows remains
+> unadmitted and no hosted check is added.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M206 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M207 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

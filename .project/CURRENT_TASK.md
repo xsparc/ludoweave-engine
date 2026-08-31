@@ -1,5 +1,136 @@
 # Current task
 
+## M207 Windows independent-host validation contract
+
+- **Task:** Define the exact independent-host, capability-profile,
+  safe-refusal, interruption, recovery, and sanitized-evidence contract
+  required by M199 Windows cleanup admission criterion 7.
+- **Status:** Locally complete; publication withheld by hosted ancestry.
+- **Base:** fully locally validated M206 DCO commit
+  `5ae957ffcfb1523e980ce6ff95841f685e05ea27`, tree
+  `52b47c015b184390618b7ea387b430135894b326`, sole parent exact M205.
+- **Branch:** `release/m207-windows-independent-host-validation-contract`;
+  exact containment made the local M206 branch name redundant, so only local
+  `main` and active M207 remain.
+
+### M207 acceptance boundary
+
+- Require at least two independently provisioned Windows hosts for every
+  admitted profile, with distinct operating-system, boot, and storage
+  instances; processes, sessions, containers, reboots, and same-snapshot
+  clones are not substitutes.
+- Observe filesystem family/version, local/remote state, exact volume
+  capabilities, same-volume relationships, file-ID scope, and persistence
+  class rather than inferring them from paths or platform labels.
+- Require the complete local-NTFS positive lane and observed fail-closed lanes
+  for ReFS, SMB, CsvFS, cross-volume, unknown/missing capabilities, and file-ID
+  reuse/ABA pressure.
+- Separate forced-process termination, VM power cut, and physical-host power
+  loss; require restart reconciliation and forbid stronger durability claims
+  from graceful close, VM-only interruption, or one successful flush call.
+- Reserve one bounded canonical sanitized evidence envelope without adding a
+  harness or validator. Unsupported, not-run, failed, incomplete, or shared-
+  ancestry evidence keeps criterion 7 unresolved.
+- Keep collection offline on operator-controlled disposable fixtures. Add no
+  public self-hosted runner, credential, account lifecycle, network access,
+  hosted allocation, or workflow change.
+- Preserve exact M206, runtime, examples, scripts, dependencies, metadata,
+  version, package, and vital-CI boundaries. Windows remains unadmitted and
+  cleanup remains unimplemented and unauthorized.
+
+### Development evidence so far
+
+- Exact M206 commit/tree/parent, clean worktree, two-branch inventory, and
+  retained maintainer identity were audited before work.
+- Static and current-date strict external governance checks pass with zero
+  findings. A corrected `python -m pytest` focused baseline passes all 59
+  M205/M206/evidence tests; the direct pytest entry point first exposed a local
+  namespace-path ambiguity without repository change.
+- Current Microsoft filesystem capability, file-identity, cross-volume move,
+  flush, NTFS/ReFS, and GitHub runner guidance was reviewed before branching.
+  It supports observed capability profiles, explicit copy/delete refusal,
+  separated durability claims, and offline operator-controlled collection.
+- Neutral M207 starts from exact M206. The redundant local M206 branch name was
+  removed while its commit remains the exact parent.
+- The intentional architecture-red run passed both preservation/no-runtime
+  checks and failed only nine absent decision/RFC/registration checks.
+- RFC-0190, the security contract, one architecture guard, and eight public
+  registrations are implemented. One Markdown code-span mismatch was
+  normalized; the focused M205-M207/evidence group passes all 70 tests.
+- The unchanged lock resolves 46 packages. All 597 Python files are format-
+  clean; Ruff passes; strict Pyright passes after restoring the existing
+  graphics extra removed by the base all-groups sync; the exact repository-
+  hygiene/M199-M207 group passes 108 tests; strict docs, governance, and
+  whitespace pass.
+- Complete isolated suites pass 4,211 tests with 17 skips on CPython 3.12.13
+  plus graphics and 4,201 tests with 18 skips on CPython 3.13.13 and 3.14.5.
+- Ten real-wgpu tests, fresh one-repeat base/graphics profiles, all eight
+  profile-schema tests, Clockwork Arena, and Agent World Builder reproduce
+  their established identities.
+- Two pre-review distributions are byte-identical; installed wheel and scene
+  smokes pass; two byte-identical ten-artifact release stages pass complete
+  smoke. Inventory is 114 wheel and 989 source entries with all three M207
+  implementation artifacts source-only and zero forbidden wheel entry.
+- Findings-first review found no authority, runtime, package, CI, secret,
+  local-path, or repository-identity leak. It tightened the ABA lane so
+  allocation pressure without actual file-ID reuse remains unsupported, and
+  normalized one test name. The corrected focused group passes 70 tests.
+- The record-inclusive 45-package graphics environment, all 597-file static
+  gates, 108 architecture tests, strict docs, both governance modes, and
+  whitespace pass.
+- Two record-state builds reproduce a 363,886-byte pure wheel and a
+  2,436,889-byte source archive. Installed wheel/scene and two complete
+  ten-artifact release smokes pass; both stages are byte-identical. Inventory
+  remains 114 wheel/989 source entries with all three M207 implementation
+  artifacts source-only.
+- A read-only audit proved all 23 M207 test, environment, profile,
+  documentation, distribution, and release targets repository-confined,
+  ignored, untracked, and recursively reparse-free. Exact guarded removal
+  revalidated the unchanged set and removed all 23; zero remains.
+- The final post-cleanup separator keeps all 597 Python files format-clean;
+  Ruff and strict Pyright pass; 108 architecture tests, strict docs, both
+  governance modes, and whitespace pass. Its sole regenerated documentation
+  directory was independently audited and removed; zero M207 scratch remains.
+- The pre-commit audit confirms exact M206 HEAD/tree/parent, exactly 15
+  intended paths, zero protected diff, only local `main` plus neutral M207,
+  configured maintainer identity, expected `0 107` local-main divergence,
+  absent retired root metadata, zero hygiene findings, zero scratch, clean
+  whitespace/static/architecture gates, and clean Git connectivity.
+
+### Commit and publication result
+
+- Initial DCO commit `e4b09b803ee4d64b46460f27ab62f18020da4abd`,
+  tree `a697c0132d826da5caf4c476307ce37ecdc7ecea`, has exact M206 as its
+  sole parent, exactly 15 intended paths, one matching sign-off, consistent
+  maintainer identity, clean revision whitespace, expected `0 108`
+  local-main divergence, a clean worktree, zero scratch, and clean Git
+  connectivity. This hosted-safety record is incorporated by one closeout
+  amendment.
+- A fresh pruned fetch and direct hosted-head query leave public `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, with only remote
+  `main`. M206 is absent, M99 is present, and hosted divergence is `0 108`.
+- GitHub authentication is valid. A public read-only API check confirms the
+  repository is public, unarchived, defaults to `main`, and PR #251 remains
+  the latest closed merged PR.
+- Publishing M207 would expose the absent M100-M206 prerequisite stack. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+
+### Publication boundary
+
+- Publication remains authorized only after hosted `main` gains the complete
+  prerequisite ancestry. The current safety gate withholds it.
+- Publication remains authorized only after complete validation and a fresh
+  hosted-ancestry safety gate. No push, PR, tag, release, package publication,
+  or hosted allocation has occurred for M207.
+
+### Explicit non-scope
+
+- No independent-host run, physical power-loss run, criterion 6 or 7
+  resolution, Windows cleanup admission, privileged harness, offline
+  validator, process launcher, filesystem adapter, native call, runtime
+  cleanup, account or credential management, dependency, version, workflow,
+  permission, or hosted allocation.
+
 ## M206 Windows cross-principal evidence validator
 
 - **Task:** Add one offline, read-only validator and reviewed incomplete fixture

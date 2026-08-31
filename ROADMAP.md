@@ -3585,6 +3585,30 @@ It adds no runtime API, command, launcher, account or credential lifecycle,
 filesystem mutation, native call, dependency, version, workflow, permission,
 or hosted execution path; no hosted check is added.
 
+## M207 Windows independent-host validation contract
+
+M207 starts from fully locally validated M206 commit
+`5ae957ffcfb1523e980ce6ff95841f685e05ea27`. It accepts the
+[Windows independent-host validation
+contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md)
+under RFC-0190.
+
+The contract defines host independence, observed Windows/filesystem/storage
+capability profiles, a local-fixed-NTFS positive lane, explicit refusal lanes
+for ReFS, SMB, CsvFS, cross-volume, unknown, and missing capabilities, file-ID
+reuse pressure, and separate forced-process, VM-power-cut, and physical-host
+power-loss classes. Evidence stays bounded, canonical, sanitized, offline, and
+operator-controlled.
+
+Criterion 6 must already pass before criterion 7 can pass. No qualifying
+cross-principal or independent-host run has occurred; criterion 7 remains
+unresolved. Windows cleanup remains unimplemented and unauthorized.
+
+M207 adds one architecture guard, RFC-0190, one security decision, and public
+registrations. It adds no harness, validator, runtime API, command, process
+launch, filesystem mutation, native call, dependency, version, workflow,
+permission, credential, or hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

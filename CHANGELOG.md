@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M207/RFC-0190's [Windows independent-host validation
+  contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md).
+  Future criterion 7 evidence must reproduce complete capability profiles on
+  independently provisioned hosts and observe fail-closed NTFS, ReFS, SMB,
+  CsvFS, cross-volume, unknown-capability, identity-reuse, and interruption
+  outcomes. This adds no harness, validator, runtime authority, workflow,
+  hosted allocation, or qualifying evidence; Windows remains unadmitted.
 - Add M206/RFC-0189's source-only [Windows cross-principal evidence
   validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md).
   It checks one stable, bounded canonical artifact, exact sanitized lane and

@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M207 Windows independent-host validation contract
+
+RFC-0190 accepts one direction-preserving, no-authority-increase contract for
+future M199 criterion 7 evidence. Every admitted profile needs at least two
+independently provisioned Windows hosts with observed operating-system,
+filesystem, volume-capability, file-identity, and persistence classifications.
+Processes, sessions, containers, reboots, and same-snapshot clones do not
+establish host independence.
+
+The future matrix requires local fixed NTFS success plus observed safe refusal
+for ReFS, SMB, CsvFS, cross-volume, unknown, and missing-capability profiles,
+and explicit file-ID reuse pressure. Forced-process termination, VM power cut,
+and physical-host power loss remain distinct evidence classes. Collection is
+offline on operator-controlled disposable fixtures and is never attached to a
+public-repository self-hosted workflow.
+
+Criterion 6 must pass before criterion 7 can pass. No qualifying artifact or
+run exists, so criterion 7 remains unresolved and Windows cleanup remains
+unimplemented and unauthorized. No harness, validator, runtime, native call,
+process launch, filesystem mutation, account or credential lifecycle,
+dependency, version, workflow, permission, release authority, or hosted
+allocation is accepted.
+
 ## M206 Windows cross-principal evidence validator
 
 RFC-0189 accepts one direction-preserving, source-only validator for the M205

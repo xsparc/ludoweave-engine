@@ -1218,6 +1218,17 @@ unresolved, and the Windows-admission field must remain false. The validator
 performs no process launch, native call, credential or account management,
 network access, cleanup, or other mutation and adds no hosted allocation.
 
+M207's [Windows independent-host validation
+contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md)
+defines criterion 7 without claiming it. Each admitted profile must reproduce
+on independently provisioned hosts with observed filesystem and volume
+capabilities, explicit NTFS/ReFS/SMB/CsvFS/cross-volume/unknown refusal
+outcomes, file-ID reuse pressure, and separated process, VM, and physical-host
+interruption evidence. Collection remains offline and operator-controlled; no
+privileged harness is attached to public CI. Criterion 7 remains unresolved,
+Windows remains unadmitted, and no runtime, validator, workflow, secret,
+permission, or hosted allocation is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

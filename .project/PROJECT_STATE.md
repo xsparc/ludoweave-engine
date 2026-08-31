@@ -1,5 +1,91 @@
 # Project State
 
+## M207 Windows independent-host validation contract - locally complete, publication withheld
+
+- Base: fully locally validated M206 DCO commit
+  `5ae957ffcfb1523e980ce6ff95841f685e05ea27`, tree
+  `52b47c015b184390618b7ea387b430135894b326`, with sole parent exact M205.
+- Branch hygiene: neutral
+  `release/m207-windows-independent-host-validation-contract` starts from
+  exact M206; the redundant M206 local branch name is removed.
+- Direction: RFC-0190 defines future M199 criterion 7 evidence without adding
+  authority, a harness, a validator, or claiming a qualifying run.
+- Host boundary: every profile requires two independently provisioned hosts
+  with distinct OS, boot, and storage instances.
+- Capability boundary: filesystem, remote/local, volume flags, same-volume,
+  file-ID scope, and persistence are observed and revalidated rather than
+  inferred.
+- Matrix boundary: local fixed NTFS plus ReFS, SMB, CsvFS, cross-volume,
+  unknown, missing-capability, and file-ID-reuse lanes are mandatory; safe
+  refusal must be observed.
+- Durability boundary: forced-process, VM-power-cut, and physical-host-power-
+  loss evidence are distinct and each requires restart reconciliation.
+- Evidence boundary: a future bounded canonical schema is sanitized and bound
+  to exact source, executable, contract, cross-principal evidence, capability,
+  and fixture identities; no machine or principal identifier is public.
+- Custody boundary: operator-controlled offline fixtures only; no public self-
+  hosted runner, network access, account secret, or CI expansion.
+- Readiness: criterion 6 must already pass. Criteria 6 and 7 remain unresolved;
+  Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0190, one security decision, eight public
+  registrations, and four project records. Runtime/package code, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  remain unchanged.
+- Validation: governance baselines pass; research is current; intentional red
+  failed only nine absent contract checks. All 597 Python files are format-
+  clean; Ruff and strict Pyright pass; the exact architecture group passes 108
+  tests; strict docs, governance, and whitespace pass.
+- Supported Python: complete isolated suites pass 4,211/17 skipped on 3.12.13
+  plus graphics and 4,201/18 skipped on both 3.13.13 and 3.14.5.
+- Rendering and samples: ten real-wgpu tests, both one-repeat profiles, eight
+  profile-schema tests, Clockwork Arena, and Agent World Builder reproduce
+  established identities.
+- Packaging: two pre-review builds and two ten-artifact release stages are
+  byte-identical. Installed wheel/scene and complete release smokes pass.
+  Inventory is 114 wheel/989 source entries; all three M207 implementation
+  files are source-only and the wheel has zero forbidden payload.
+- Review: exactly 15 intended paths, zero protected-surface difference, and
+  zero credential, retired-tooling-identity, machine-path, or package-boundary
+  finding. The ABA contract now requires actual observed file-ID reuse;
+  allocation pressure alone remains unsupported. The corrected focused group
+  passes 70 tests with clean static checks.
+- Record-inclusive separator: the locked 45-package graphics environment, all
+  597-file static gates, 108 architecture tests, strict docs, both governance
+  modes, and whitespace pass.
+- Record-state packaging: two builds reproduce the 363,886-byte wheel at
+  SHA-256
+  `43faee0d9c71e5a6b20123bc65582e2394934344eb1e19685b1ca62a4eb76015`
+  and the 2,436,889-byte source archive at SHA-256
+  `f4a4874f97462d018e765c6c5213f0b0141ba4fe9076813a77e4f53c29b4404e`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory remains 114 wheel/989 source entries.
+- Cleanup: all 23 audited M207 scratch targets were repository-confined,
+  ignored, untracked, and recursively reparse-free. Exact guarded removal
+  deleted all 23 and proved a zero-target postcondition.
+- Final separator: all 597-file static gates, 108 architecture tests, strict
+  docs, both governance modes, and whitespace pass. The sole regenerated docs
+  directory was independently audited and removed; zero M207 scratch remains.
+- Pre-commit: exact M206 HEAD/tree/parent, the 15-path allowlist, protected
+  surfaces, maintainer identity, two-branch inventory, expected `0 107`
+  local-main divergence, absent retired root metadata, zero hygiene findings,
+  zero scratch, whitespace, static checks, 108 architecture tests, and Git
+  connectivity pass.
+- Initial local commit: DCO commit
+  `e4b09b803ee4d64b46460f27ab62f18020da4abd`, tree
+  `a697c0132d826da5caf4c476307ce37ecdc7ecea`, has sole parent exact M206,
+  exactly 15 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision whitespace, expected `0 108` local-main divergence,
+  a clean worktree, zero scratch, and clean Git connectivity. This record is
+  incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct query leave public
+  `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M206 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 108`. GitHub
+  authentication is valid, and the public API confirms a public unarchived
+  repository, default `main`, and latest closed merged PR #251. Pushing would
+  expose absent M100-M206 prerequisites, so no push, PR, hosted allocation,
+  tag, release, or package publication occurs.
+
 ## M206 Windows cross-principal evidence validator - locally complete, publication withheld
 
 - Base: fully locally validated M205 DCO commit

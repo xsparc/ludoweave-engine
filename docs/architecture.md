@@ -5376,6 +5376,29 @@ Windows stays unadmitted, and cleanup remains unimplemented and unauthorized.
 No runtime command, launcher, account lifecycle, filesystem mutation, native
 call, dependency, workflow, permission, or hosted allocation is added.
 
+## M207 Windows independent-host validation contract
+
+M207 accepts the [Windows independent-host validation
+contract](security/windows-cache-cleanup-independent-host-validation-contract.md).
+The contract makes M199 criterion 7 reviewable by defining independent host
+qualification, observed capability profiles, exact positive/refusal lanes,
+separate interruption classes, recovery checks, sanitized evidence, and
+fail-closed aggregation.
+
+Host qualification sits outside runtime composition. Operator-controlled
+fixtures observe platform facts and later submit a bounded artifact; neither a
+host object, filesystem handle, machine identifier, native adapter, nor
+privileged coordinator enters the public engine API or canonical world state.
+The default hosted workflow remains unchanged because hosted administrator
+topology cannot establish the required principal/storage facts, while a public
+self-hosted runner would widen the trust boundary.
+
+M207 does not resolve criterion 6 or 7. No qualifying evidence exists,
+Windows stays unadmitted, and cleanup remains unimplemented and unauthorized.
+No harness, validator, runtime command, process launch, filesystem mutation,
+native call, dependency, workflow, permission, credential, or hosted allocation
+is added.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
