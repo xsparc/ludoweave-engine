@@ -5328,6 +5328,34 @@ filesystem adapter, native call, integration fixture, dependency, workflow,
 permission, or hosted allocation. It preserves ADR-0008, ADR-0009, ADR-0017,
 ADR-0019, and RFC-0129 through RFC-0131 as direction-preserving constraints.
 
+## M205 Windows cross-principal validation contract
+
+M205 accepts the [Windows cache-cleanup cross-principal validation
+contract](security/windows-cache-cleanup-cross-principal-validation-contract.md).
+The contract remains outside canonical world state and public protocol
+authority. It defines a private future evidence topology with a trusted
+coordinator, trusted engine, and unrelated hostile process under a genuinely
+distinct independently authenticated principal.
+
+Qualifying evidence uses deterministic barriers around every authority,
+intent, quarantine, deletion, and recovery boundary. The coordinator derives
+identity from owned process/token handles, admits no inherited cleanup handle,
+observes actual ACL and access outcomes, and exercises real hard-link,
+reparse, rename, recreation, duplication, and cross-session pressure. Public
+evidence is bounded and sanitized; account and credential lifecycle remains
+operator-owned.
+
+M205 does not resolve M199 criterion 6 because no qualifying run has occurred.
+Criteria 1 through 5 remain resolved as policy, while criteria 6 and 7 remain
+unresolved. Windows stays unadmitted, and cleanup remains unimplemented and
+unauthorized.
+
+M205 changes no runtime, public API, protocol constant, launcher, account,
+credential, filesystem adapter, native call, integration fixture, dependency,
+workflow, permission, or hosted allocation. It preserves ADR-0008, ADR-0009,
+ADR-0017, ADR-0019, and RFC-0129 through RFC-0131 as direction-preserving
+constraints.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -1,5 +1,96 @@
 # Project State
 
+## M205 Windows cross-principal validation contract - locally complete, publication withheld
+
+- Base: fully locally validated M204 DCO commit
+  `c4b670aab7305c4b1c34a88d5e0725dc1e9b57ce`, tree
+  `382928168f7ba9000bee4fe3225c529582624925`, with sole parent exact M203.
+- Branch hygiene: neutral
+  `release/m205-windows-cross-principal-validation-contract` starts from exact
+  M204; the redundant M204 local branch name is removed.
+- Direction: RFC-0188 defines future M199 criterion 6 evidence without adding
+  authority or claiming a qualifying run.
+- Principal boundary: a different TOKEN_USER SID and independent authenticated
+  logon context are mandatory; same-user surrogates and hosted administrator
+  accounts do not qualify.
+- Credential boundary: accounts and credentials remain operator-provisioned;
+  repository code accepts, stores, logs, or mutates none of them.
+- Adversarial topology: the contract requires unrelated hostile process trees,
+  authenticated-logon and Windows-session lanes, explicit handle inventories,
+  real ACL/alias/reparse pressure, and deterministic transition barriers.
+- Evidence boundary: one bounded canonical document contains only sanitized
+  classifications and observer-derived results; secrets, identifiers, paths,
+  handles, ACL bytes, platform text, and machine-local values are excluded.
+- Readiness: criteria 1 through 5 remain resolved as policy. Criteria 6 and 7
+  remain unresolved; Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0188, one security contract, eight public
+  registrations, and four project records. Runtime, fixtures, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  are unchanged.
+- Focused evidence: the intentional red passed two preservation checks and
+  failed 17 absent contracts; the completed boundary passes all 19 focused
+  tests plus focused Ruff and strict Pyright.
+- Quality: all 593 Python files are format-clean; Ruff and strict Pyright have
+  zero findings; the corrected M59/M199-M205 group passes 85 tests; strict docs,
+  static/current-date governance, and whitespace pass.
+- Supported Python: complete suites pass 4,160/17 skipped on 3.12 with graphics,
+  and 4,150/18 skipped on both 3.13 and 3.14.
+- Rendering and samples: ten real-wgpu tests, two M7 profiles, eight profile
+  tests, Null/wgpu Clockwork Arena, and World Builder reproduce established
+  results.
+- Packaging: two independent builds are byte-identical; installed wheel and
+  scene smoke pass; two byte-identical ten-artifact release stages pass complete
+  smoke. Inventory is 114 wheel and 980 source entries, with all three M205
+  evidence files source-only and zero forbidden wheel entry.
+- Review: restoring exact current-task history corrected an initial accidental
+  deletion; one retired metadata reference restored with that history was
+  normalized. Exactly 15 intended paths remain. Protected/runtime/CI surfaces,
+  credentials, private keys, machine paths, native imports, and package boundary
+  have zero remaining finding.
+- Local closeout is complete; publication is withheld by hosted ancestry.
+- Record state: the unchanged lock/environment and all static/docs/governance
+  separators pass. Two fresh builds reproduce the 363,698-byte pure wheel at
+  SHA-256 `de99b818f41a6c1286a2527cffde21da83ee34c6c3d7b32a6547dd1cd6116c6e`
+  and a 2,405,791-byte source archive at SHA-256
+  `ff2a63ac52a18b7947993b9aea264f28cfbc20eb50951f20464250629e6ef3f6`.
+  Installed wheel/scene smoke and two byte-identical ten-artifact release
+  rehearsals pass. Inventory remains 114 wheel and 980 source entries.
+- Final separator: all 593 Python files remain format-clean; Ruff and strict
+  Pyright are clean; 85 architecture tests, strict docs, static/current-date
+  governance, and whitespace pass.
+- Cleanup: the access-enabled audit proved 20 initial M205 targets
+  repository-confined, ignored, untracked, and recursively reparse-free before
+  exact removal. The final separator's one regenerated docs directory passed the
+  same audit and removal. Zero M205 scratch target remains.
+- Pre-commit: exact M204 HEAD/tree/parent, the 15-path allowlist, protected
+  surfaces, maintainer identity, two-branch inventory, expected `0 105`
+  local-main divergence, zero scratch, added-content hygiene, whitespace,
+  static checks, 85 architecture tests, and Git connectivity pass. Git reports
+  historical dangling objects only.
+- Initial local commit: DCO commit
+  `401cc2e82411cc05db28b78a05b44a65e071706d`, tree
+  `d5960ae6ae89250dc8d55504732a82370d555089`, has sole parent exact M204 and
+  the intended 15-path scope. Its staged check reported two Markdown hard-break
+  spaces and one final blank line before the shell continued to commit. The
+  exact three whitespace findings are corrected for amendment; nothing was
+  pushed.
+- Corrected local commit: amended DCO commit
+  `c38ea2d148f8f68d4e5afc7e69990c0397e17230`, tree
+  `8d3509a97f55e4051d2a078151a2ca84f25dc0e7`, has sole parent exact M204,
+  exactly 15 paths, one matching sign-off, consistent maintainer identity,
+  clean revision whitespace, expected `0 106` local-main divergence, a clean
+  worktree, zero scratch, and clean connectivity apart from historical dangling
+  objects. This hosted-safety record is incorporated by one final amendment.
+- Publication: withheld. A fresh pruned fetch and direct hosted query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; M204 is absent, M99 is present,
+  only remote `main` exists, divergence is `0 106`, and PR #251 remains latest.
+  Pushing would expose absent M100-M204 prerequisites, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- Hosted status: no hosted M205 result is claimed and no CI allocation was
+  introduced.
+
 ## M204 Windows cleanup durable recovery policy - locally complete, publication withheld
 
 - Base: fully locally validated M203 DCO commit
@@ -53,7 +144,8 @@
   removal. Zero M204 scratch target remains.
 - Pre-commit: exact M203 HEAD/tree/parent, 15-path scope, protected surfaces,
   maintainer identity, branch inventory, `0 104` local-main divergence, absent
-  `.ai`, public hygiene, zero scratch, static/focused/whitespace checks, and Git
+  retired root control metadata, public hygiene, zero scratch,
+  static/focused/whitespace checks, and Git
   object connectivity all pass. Historical dangling objects remain noncritical.
 - Initial commit: local DCO commit
   `2411d1519cc25dcb54556cbe7af8a7bd0b7459e9`, tree

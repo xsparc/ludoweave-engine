@@ -3535,6 +3535,30 @@ runtime API, protocol constant, command, recovery store, filesystem adapter,
 native call, integration fixture, dependency, version, workflow, or hosted
 execution path; no hosted check is added.
 
+## M205 Windows cross-principal validation contract
+
+M205 starts from fully locally validated M204 commit
+`c4b670aab7305c4b1c34a88d5e0725dc1e9b57ce`. It accepts a [Windows
+cache-cleanup cross-principal validation
+contract](docs/security/windows-cache-cleanup-cross-principal-validation-contract.md)
+under RFC-0188.
+
+The contract requires a genuinely distinct untrusted local principal in an
+independently authenticated logon context, unrelated process and session
+topologies, explicit handle and ACL evidence, real same-volume hard-link and
+reparse pressure, deterministic adversarial barriers, bounded sanitized
+evidence, and fail-closed teardown. Credentials and account lifecycle remain
+operator-owned and outside repository inputs, storage, logs, and CI.
+
+Criteria 1 through 5 remain resolved as policy; criteria 6 and 7 remain
+unresolved. No qualifying cross-principal run has occurred. Windows cleanup
+remains unimplemented and unauthorized.
+
+M205 adds one architecture guard and decision documentation. It adds no
+runtime API, command, principal launcher, account mutation, credential input,
+filesystem adapter, native call, integration fixture, dependency, version,
+workflow, or hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

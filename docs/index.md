@@ -305,6 +305,11 @@ attestation, with the same allocation topology.
   requires bounded write-ahead intent, same-filesystem no-replace quarantine,
   idempotent reconciliation, and fail-closed handling of ambiguous or altered
   recovery evidence before Windows cleanup can be admitted.
+- A [Windows cache-cleanup cross-principal validation
+  contract](security/windows-cache-cleanup-cross-principal-validation-contract.md)
+  that requires a genuinely distinct untrusted principal, unrelated process
+  and session topologies, deterministic barriers, and real ACL, handle, alias,
+  and reparse pressure before criterion 6 can be resolved.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

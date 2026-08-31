@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M205 Windows cross-principal validation contract
+
+RFC-0188 accepts one direction-preserving, no-authority-increase contract for
+future M199 criterion 6 evidence. A qualifying run uses a genuinely distinct
+untrusted local principal under an independently authenticated logon context;
+same-user restrictions, integrity changes, AppContainers, impersonation, and
+hosted administrator accounts are not substitutes.
+
+The future private fixture requires unrelated process and session topologies,
+explicit handle and ACL observations, real hard-link and reparse pressure,
+deterministic barriers, bounded observer-derived evidence, and fail-closed
+teardown. Accounts and credentials remain operator-owned outside repository
+inputs, storage, logs, evidence, and CI.
+
+M205 performs no qualifying run. Criteria 1 through 5 remain resolved as
+policy; criteria 6 and 7 remain unresolved. Windows cleanup remains
+unimplemented and unauthorized. No runtime, launcher, account mutation,
+credential input, adapter, native call, fixture, dependency, workflow,
+permission, release authority, version, or CI change is accepted.
+
 ## M204 Windows cleanup durable recovery policy
 
 RFC-0187 accepts one direction-preserving, no-authority-increase policy. A

@@ -1196,6 +1196,18 @@ repair, deletion, or restore. Criteria 1 through 5 are resolved as policy;
 criteria 6 and 7 remain unresolved. Windows remains unadmitted, and no runtime,
 workflow, permission, or hosted check is added.
 
+M205's [Windows cache-cleanup cross-principal validation
+contract](docs/security/windows-cache-cleanup-cross-principal-validation-contract.md)
+defines the evidence needed for M199 criterion 6 without claiming it. A future
+run must use a genuinely distinct, independently authenticated untrusted local
+principal, unrelated process/session topology, explicit ACL and handle
+observations, real hard-link and reparse pressure, deterministic barriers, and
+bounded path-free evidence. Same-user restrictions and hosted administrator
+accounts do not qualify. Account and credential lifecycle remain
+operator-owned; repository code accepts no account secret or credential and
+adds no launcher, production authority, workflow, or hosted allocation.
+Criteria 6 and 7 remain unresolved, and Windows stays unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

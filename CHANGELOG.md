@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M205/RFC-0188's [Windows cache-cleanup cross-principal validation
+  contract](docs/security/windows-cache-cleanup-cross-principal-validation-contract.md).
+  Future criterion 6 evidence must use a genuinely distinct untrusted local
+  principal and real unrelated-process, session, ACL, handle, alias, and
+  reparse pressure under deterministic barriers. This adds no launcher,
+  credential custody, runtime authority, hosted allocation, or qualifying
+  evidence; Windows remains unadmitted.
 - Accept M204/RFC-0187's [Windows cleanup durable recovery
   policy](docs/security/windows-cache-cleanup-durable-recovery-policy.md).
   Future cleanup must publish bounded write-ahead intent before
