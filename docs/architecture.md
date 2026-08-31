@@ -5218,6 +5218,33 @@ M200 changes no runtime, public API, integration fixture, dependency, adapter,
 workflow, permission, or hosted allocation. It preserves ADR-0017 and RFC-0129
 through RFC-0131 as a direction-preserving policy refinement.
 
+## M201 Windows cleanup-authority admission policy
+
+M201 accepts the [Windows cleanup-authority admission
+policy](security/windows-cache-cleanup-authority-admission-policy.md). A future
+private authority may be issued only by the trusted composition root after one
+conjunctive admission binds the exact effective Windows token and its security-
+context revision, a retained root's volume/file identity plus trusted owner and
+non-null DACL, and an immutable root-confined durable generation record.
+
+The capability is engine-owned, non-serializable, operation-scoped, single-use,
+cleanup-only, and absent from public APIs and request data. World-write
+capability, CLI/MCP input, project files, paths, environment values, token or
+logon identifiers, inventories, fingerprints, previews, and saved receipts
+cannot create or widen it. Missing, changed, ambiguous, untrusted, invalid, or
+unsupported admission facts fail closed before issuance.
+
+M201 resolves only M199 criterion 1 as policy. M200's criterion-2 singleton-
+link refusal remains. Criteria 3 through 7 remain unresolved, so use-time
+token/root/security/generation revalidation, protocol and receipts, durable
+mutation recovery, cross-principal evidence, and independent-host support are
+still absent. Windows stays unadmitted, and cleanup remains unimplemented and
+unauthorized.
+
+M201 changes no runtime, public API, integration fixture, dependency, adapter,
+workflow, permission, or hosted allocation. It preserves ADR-0017, ADR-0019,
+and RFC-0129 through RFC-0131 as a direction-preserving policy refinement.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

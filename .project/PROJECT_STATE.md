@@ -1,5 +1,54 @@
 # Project State
 
+## M201 Windows cleanup-authority admission policy - locally complete, publication withheld
+
+- Base: fully locally validated M200 DCO commit
+  `42428005cbf2b3fbcd47c787504bab5e0a235804`, tree
+  `cd2429fa610a414ca35bee3df6f29447661d3528`, sole parent exact M199.
+- Branch hygiene: neutral
+  `release/m201-windows-cleanup-authority-admission-policy` starts from exact
+  M200; the redundant M200 branch name is removed.
+- Direction: RFC-0184 resolves only M199 criterion 1 as a strict, conjunctive
+  authority-admission policy without creating production issuance or cleanup.
+- Principal policy: only the trusted composition root can bind the effective
+  token's user SID, token/authentication/modified IDs, token type, and
+  impersonation level. World-write capability and request data are not
+  authentication.
+- Root/generation policy: the exact retained root must bind volume/file
+  identity, ordinary non-reparse type, owner, non-null trusted DACL, and least-
+  privilege policy. One separate immutable root-confined durable generation
+  record binds project/cache, root, policy, record identity, and SHA-256.
+- Capability policy: private, engine-owned, non-serializable, operation-scoped,
+  single-use, cleanup-only, and silent about raw security material. Missing,
+  changed, ambiguous, untrusted, invalid, or unsupported facts refuse before
+  issuance.
+- Remaining gates: criterion 2 remains resolved as policy; criteria 3 through
+  7 remain unresolved. Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0184, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, root
+  exports, and package code remain unchanged.
+- Validation: the corrected focused gate passes nine checks; the exact hygiene,
+  M199, M200, and M201 group passes 29; all 589 Python files are format-clean;
+  Ruff, strict Pyright, strict docs, static/current-date governance, and
+  whitespace pass. CPython 3.12, 3.13, and 3.14 complete suites pass. Real-wgpu,
+  fresh profiles, deterministic examples, reproducible builds, installed-wheel
+  and scene smoke, two byte-identical complete release stages, package
+  inventory, and findings-first review pass. The record-inclusive separator,
+  reproducible distribution, both complete release stages, and package-boundary
+  inventory also pass. Guarded scratch cleanup reached a verified zero-target
+  postcondition after exact revalidation. Final post-cleanup validation passes,
+  and its two regenerated cache targets were revalidated and removed. Commit
+  and publication-safety reconciliation pass. The exact pre-commit scope,
+  history, identity, DCO prerequisites, object connectivity, hygiene, static,
+  architecture, whitespace, and zero-scratch audit passes. Initial local DCO
+  commit `fe8295e6572bd9be2e6830b541a5a8d80ce07902` has exact M200 as its
+  sole parent and is incorporated by one closeout amendment.
+- Publication safety: fresh pruned/direct hosted checks leave only `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M200 is not an ancestor,
+  current divergence is `0 102`, and PR #251 remains latest. No push, PR,
+  hosted check, release, tag, or package publication occurs or is claimed.
+
 ## M200 Windows singleton-link refusal policy - locally complete, publication withheld
 
 - Base: fully locally validated M199 DCO commit

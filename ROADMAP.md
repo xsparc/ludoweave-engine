@@ -3409,6 +3409,39 @@ extension, compiler requirement, version, workflow job/allocation, permission,
 credential, release authority, or CI change. The existing Windows suite remains
 the only future hosted execution path; no hosted check is added.
 
+## M201 Windows cleanup-authority admission policy
+
+M201 starts from fully locally validated M200 commit
+`42428005cbf2b3fbcd47c787504bab5e0a235804`. It accepts a [Windows
+cleanup-authority admission
+policy](docs/security/windows-cache-cleanup-authority-admission-policy.md)
+under RFC-0184.
+
+The policy resolves M199 admission criterion 1 without admitting cleanup. A
+future private engine-owned authority may be issued only by the trusted
+composition root after it binds the exact effective Windows token and security-
+context revision, one retained root's file identity and trusted owner/DACL, and
+one separate immutable root-confined durable generation record. The resulting
+capability must be non-serializable, operation-scoped, single-use, cleanup-only,
+and silent about raw security material.
+
+`AgentCapabilities.write`, CLI or MCP input, project data, paths, environment
+values, token/logon identifiers, and saved cache evidence cannot mint or widen
+authority. Every missing, changed, ambiguous, untrusted, invalid, or
+unsupported fact refuses before issuance. Criterion 2 remains resolved as
+policy; criteria 3 through 7 remain unresolved, including production use-time
+revalidation, protocol/receipts, durable mutation recovery, cross-principal
+evidence, and independent-host support. Windows cleanup remains unimplemented
+and unauthorized.
+
+M201 adds one architecture guard and decision documentation. It adds no runtime
+API, protocol, decoder, CLI command, public authority, production adapter,
+generation record, integration fixture, cache access, quarantine, mutation,
+dependency, native extension, compiler requirement, version, workflow
+job/allocation, permission, credential, release authority, or CI change. The
+existing Windows suite remains the only future hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

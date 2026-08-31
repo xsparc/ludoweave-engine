@@ -1,5 +1,115 @@
 # Current task
 
+## M201 Windows cleanup-authority admission policy
+
+- **Task:** Resolve M199 Windows cleanup admission criterion 1 as an exact,
+  fail-closed authority policy without admitting cleanup or adding runtime or
+  CI surface.
+- **Status:** Locally complete. Explicit approval, current primary-source
+  direction research, exact M200 baseline, neutral branch containment,
+  governance correction, intentional architecture red, accepted RFC/security
+  decision, public registration, focused and whole-project validation,
+  supported-Python coverage, rendering/profile/vertical-slice checks,
+  reproducible package/release rehearsal, findings-first review, record-
+  inclusive closeout, guarded scratch cleanup, post-cleanup validation, pre-
+  commit audit, local DCO commit, and publication-safety reconciliation pass.
+  Publication is withheld because hosted `main` remains at M99 and lacks the
+  M100-M200 prerequisite chain.
+- **Base:** Fully locally validated M200 DCO commit
+  `42428005cbf2b3fbcd47c787504bab5e0a235804`, tree
+  `cd2429fa610a414ca35bee3df6f29447661d3528`, sole parent exact M199.
+- **Branch:** `release/m201-windows-cleanup-authority-admission-policy`; the
+  redundant local M200 branch name was removed after exact M201 branch creation
+  retained its object.
+
+### M201 acceptance boundary
+
+- Accept RFC-0184 and one public Windows cleanup-authority admission policy.
+- Permit future issuance only from the trusted composition root after exact
+  effective-token, retained identity/security-bound root, and separate durable-
+  generation bindings all pass.
+- Bind `TOKEN_USER` user SID plus `TOKEN_STATISTICS` token ID, authentication
+  ID, modified ID, token type, and impersonation level; reject anonymous,
+  identification-only, missing, malformed, changed, or unsupported context.
+- Require a retained root handle, `FILE_ID_INFO` identity, ordinary non-reparse
+  directory type, owner match, non-null trusted DACL, and a versioned least-
+  privilege access profile. Paths and handle-open success supply no authority.
+- Require a separate immutable, root-confined, versioned durable generation
+  record bound to project/cache, root, policy, record identity, and canonical
+  SHA-256. Token/logon/process/path values cannot substitute for generation.
+- Keep the future capability private, engine-owned, non-serializable,
+  operation-scoped, single-use, cleanup-only, and silent about raw security
+  material. World-write capability, request data, and saved evidence cannot
+  mint or widen it.
+- Resolve criterion 1 as policy only, retain criterion 2, and keep criteria 3
+  through 7 unresolved. Windows cleanup remains unimplemented and unauthorized.
+- Preserve exact M200, runtime, fixtures, examples, scripts, dependencies,
+  metadata, workflows, permissions, version, and package surface. Add no
+  production adapter, public authority, generation state, command, cache
+  access, mutation, native code, workflow, job/allocation, or hosted check.
+
+### M201 development evidence so far
+
+- Maintainer approval named the exact M201 policy milestone after two current
+  primary-source scans distinguished world-write capability from Windows
+  principal/root/generation authority.
+- Exact M200 HEAD/tree/parent and configured maintainer identity were
+  reverified. The eight-assertion M200 architecture guard passed in 0.85
+  seconds before edits.
+- The first dated strict governance attempt was denied access to the managed uv
+  cache before checking. Its access-enabled exact rerun returned pass with zero
+  findings across three objectives, seven requirements, and four work items.
+- One exploratory invocation pointed the external governance checker at
+  LudoWeave and returned `registry.unreadable`; that checker owns a separate
+  project registry and is not LudoWeave's traceability format. The prescribed
+  checker-package static invocation returned pass with zero findings.
+- Neutral M201 starts from exact M200. Exact containment made the local M200
+  branch name redundant, so only local `main` and active M201 remain.
+- The intentional architecture-red run passed exact protected-boundary and no-
+  implementation checks and failed only seven absent RFC, decision, and public-
+  registration contracts.
+- RFC-0184, the security decision, and eight public registrations define the
+  complete no-authority-increase policy. The corrected focused gate passes all
+  nine checks; focused format, lint, and strict typing are clean; and the exact
+  repository-hygiene/M199/M200/M201 group passes all 29 checks.
+- The complete CPython 3.12, 3.13, and 3.14 suites pass with respective totals
+  of 4,104/17, 4,094/18, and 4,094/18 passed/skipped tests. The 3.14 result is a
+  clean solo monolithic run, so no shard fallback is claimed.
+- The restored 45-package CPython 3.12 graphics environment passes ten real-
+  wgpu tests, fresh two- and three-workload profile validation, both 600-draw
+  Clockwork Arena modes, and Agent World Builder with established state,
+  capture, and replay identities.
+- Two initial builds are byte-identical; installed wheel/scene and both ten-
+  artifact release smokes pass. Inventory is 114 wheel and 968 source entries,
+  with all three M201 evidence files source-only and zero forbidden wheel entry.
+- Findings-first review covers exactly 15 intended paths with no protected
+  runtime, integration, dependency, workflow, package, identity, machine-path,
+  credential-assignment, scope, correctness, security, or documentation issue.
+- The record-inclusive separator remains clean, and two fresh builds reproduce
+  the 114-entry pure wheel and 968-entry source archive. Installed-wheel,
+  installed-scene, both complete ten-artifact release stages, byte comparison,
+  and source-only M201 evidence inventory all pass.
+- A terminating-error audit proved 41 exact generated targets repository-
+  confined, ignored, untracked, and recursively reparse-free. Revalidating
+  deletion removed those targets and reached a verified zero-target
+  postcondition without changing a tracked path or ACL.
+- The final post-cleanup separator passes; its only two regenerated ignored
+  cache targets were separately revalidated, removed, and verified absent.
+- Pre-commit audit confirms exact M200 ancestry, 15 intended paths, zero
+  protected-surface diff, only local `main` plus neutral M201, configured
+  maintainer identity, clean static/architecture/whitespace gates, zero scratch,
+  clean object connectivity apart from historical dangling objects, and no
+  development-identity, machine-path, or credential-assignment match.
+- Initial local DCO commit `fe8295e6572bd9be2e6830b541a5a8d80ce07902`
+  has tree `967739c36af24a372662fed2afccc7c48eaf6232`, sole parent exact
+  M200, exactly 15 paths, matching configured author/committer identity, one
+  matching sign-off, a clean worktree, and `0 102` divergence from local M99
+  `main`. This factual record is incorporated by one closeout amendment.
+- Fresh pruned and direct hosted checks leave only remote `main` at exact M99;
+  M200 is not its ancestor and PR #251 remains latest. Publishing M201 would
+  expose 101 unpublished prerequisite milestones, so no push, PR, hosted check,
+  tag, release, or package publication occurs.
+
 ## M200 Windows singleton-link refusal policy
 
 - **Task:** Resolve M199 Windows cleanup admission criterion 2 as a strict

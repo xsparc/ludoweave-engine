@@ -286,6 +286,11 @@ attestation, with the same allocation topology.
   requires exactly one handle-derived link at admission and immediately before
   mutation, refuses every other or uncertain count, and rejects name
   enumeration as authority without admitting cleanup.
+- A [Windows cleanup-authority admission
+  policy](security/windows-cache-cleanup-authority-admission-policy.md) that
+  requires exact effective-token, retained trusted-root, and separate durable-
+  generation bindings before any future private authority can be issued,
+  without adding runtime cleanup or CI allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

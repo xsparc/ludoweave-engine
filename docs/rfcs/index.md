@@ -188,3 +188,4 @@ was adopted.
 - [RFC-0181: probe Windows closed-stream write after delivery failure](0181-probe-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure.md)
 - [RFC-0182: refresh Windows cache-cleanup readiness](0182-refresh-windows-cache-cleanup-readiness.md)
 - [RFC-0183: adopt Windows singleton-link refusal policy](0183-adopt-windows-singleton-link-refusal-policy.md)
+- [RFC-0184: adopt Windows cleanup-authority admission policy](0184-adopt-windows-cleanup-authority-admission-policy.md)

@@ -300,8 +300,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > A future adapter must observe exactly one link on the retained opened object
 > at admission and immediately before mutation; every other or uncertain count
 > refuses, and pathname enumeration is never cleanup authority.
+> M201 adopts a [Windows cleanup-authority admission
+> policy](docs/security/windows-cache-cleanup-authority-admission-policy.md).
+> Future private authority must bind the exact effective access token, a
+> retained identity/security-bound root, and a separate durable generation.
+> World-write capability, request data, paths, and saved evidence cannot mint
+> it; Windows cleanup remains unimplemented and unauthorized.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M200 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M201 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

@@ -1151,6 +1151,17 @@ authority. Windows remains unadmitted; production use-time enforcement and
 criteria 1 and 3 through 7 remain unresolved. No runtime, workflow, permission,
 or hosted check is added.
 
+M201's [Windows cleanup-authority admission
+policy](docs/security/windows-cache-cleanup-authority-admission-policy.md)
+resolves only M199 criterion 1 as policy. A future private, least-privilege
+capability may be issued only by the trusted composition root after exact
+effective-token, retained root identity/owner/DACL, and separate durable
+generation bindings all pass. World-write capability, request data, paths,
+logon identifiers, and saved evidence supply no cleanup authority. Criterion 2
+remains resolved as policy; criteria 3 through 7 remain unresolved. Windows
+remains unadmitted, and no runtime, workflow, permission, or hosted check is
+added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

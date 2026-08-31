@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M201/RFC-0184's [Windows cleanup-authority admission
+  policy](docs/security/windows-cache-cleanup-authority-admission-policy.md).
+  A future private authority must bind the exact effective token, one retained
+  identity/security-bound root, and one separate durable generation; request
+  data and world-write capability cannot mint it, and no runtime or CI surface
+  is added.
 - Accept M200/RFC-0183's [Windows singleton-link refusal
   policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md).
   Future candidates require a handle-derived count of exactly one at admission

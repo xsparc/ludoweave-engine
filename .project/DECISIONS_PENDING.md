@@ -2,6 +2,35 @@
 
 No architecture decision is currently blocked.
 
+## M201 Windows cleanup-authority admission policy
+
+RFC-0184 accepts one direction-preserving, no-authority-increase policy. A
+future private Windows cleanup authority may be issued only by the trusted
+composition root after one conjunctive admission binds the exact effective
+access-token context, a retained identity/security-bound root, and a separate
+immutable root-confined durable generation record.
+
+The effective-token tuple includes user SID, token ID, authentication ID,
+modified ID, token type, and impersonation level. The root tuple includes
+handle-derived volume/file identity, ordinary non-reparse directory type,
+owner SID, non-null trusted DACL, and least-privilege policy. The generation
+record separately binds project/cache, root, policy, record identity, and
+canonical SHA-256. Every missing, changed, ambiguous, untrusted, invalid, or
+unsupported fact refuses before authority issuance.
+
+The future capability is private, engine-owned, non-serializable, operation-
+scoped, single-use, cleanup-only, and path/security-material silent.
+`AgentCapabilities.write`, CLI/MCP input, project data, paths, environment,
+token/logon/process identifiers, and saved evidence cannot mint or widen it.
+
+M201 resolves M199 criterion 1 as policy only. M200's criterion 2 remains
+resolved as policy. Criteria 3 through 7 remain unresolved, including
+production use-time token/root/security/generation revalidation, typed protocol
+and receipts, durable mutation recovery, cross-principal evidence, and
+independent-host proof. Windows cleanup remains unimplemented and unauthorized.
+No runtime, adapter, generation state, command, dependency, workflow,
+permission, version, release authority, or CI change is accepted.
+
 ## M200 Windows singleton-link refusal policy
 
 RFC-0183 accepts one direction-preserving, no-authority-increase policy. A
