@@ -1,5 +1,106 @@
 # Current task
 
+## M203 Windows cleanup protocol and receipt policy
+
+- **Task:** Resolve M199 Windows cleanup admission criterion 4 as an exact,
+  bounded request/acknowledgement/receipt policy without admitting cleanup or
+  adding runtime or CI surface.
+- **Status:** Locally complete; publication withheld. Exact M202 baseline, current primary-source
+  research, neutral branch containment, intentional architecture red, accepted
+  RFC/security decision, eight public registrations, focused and whole-project
+  quality, supported-Python suites, rendering/profile/examples, reproducible
+  package/release rehearsal, findings-first review, record-inclusive package/
+  quality separators, guarded scratch cleanup, and final post-cleanup separator
+  are complete. The local DCO commit/object audits and fresh hosted publication-
+  safety gate pass. Publication is withheld because hosted `main` remains exact
+  M99 and does not contain M202 or the M100-M202 prerequisite stack.
+- **Base:** Fully locally validated M202 DCO commit
+  `e95be9726f8b00c5aef81192c6fba23813602e1f`, tree
+  `e08c7aa0b143d7b8c46c14362dcb0c6ad8d97e6f`, sole parent exact M201.
+- **Branch:** `release/m203-windows-cleanup-protocol-receipt-policy`; the
+  redundant local M202 branch name was removed after exact M203 branch creation
+  retained its object.
+
+### M203 acceptance boundary
+
+- Reserve distinct versioned cleanup request, acknowledgement, and receipt
+  document identities outside world command/transaction/receipt v1.
+- Require one complete bounded canonical UTF-8 JSON object per call; reject
+  notifications, batches, sequences, partial parsing, trailing bytes,
+  duplicate/unknown fields, and limit violations.
+- Keep requests path/candidate/native-data-free and make actor attribution,
+  dry-run, and caller intent explicitly non-authorizing.
+- Bind acknowledgement to request/operation IDs and canonical request digest;
+  acceptance means bounded admission only, never mutation or success.
+- Bind receipts to request and acknowledgement digests; expose only bounded,
+  path-free, operation-local typed outcomes and retain evidence-not-authority
+  semantics.
+- Bind retry identity without claiming exactly-once behavior; leave durable
+  lookup, recovery transitions, and delivery-loss reconciliation to criterion
+  5.
+- Resolve criterion 4 as policy, retain criteria 1 through 3 as policy, and
+  leave criteria 5 through 7 unresolved. Windows remains unadmitted and cleanup
+  remains unimplemented and unauthorized.
+- Preserve exact M202, runtime, fixtures, examples, scripts, dependencies,
+  metadata, workflows, permissions, version, and package surface. Add no
+  decoder, command, protocol constant, public type, receipt store, adapter,
+  mutation/recovery code, or hosted check.
+
+### M203 development evidence so far
+
+- Exact M202 history/tree/parent, clean worktree, and branch inventory were
+  reverified. The M202 architecture guard passed all ten tests in 0.56 seconds.
+- Static governance returned pass with zero findings. The first current-date
+  strict invocation was denied managed-cache access before checking; its exact
+  access-enabled rerun passed with zero findings across three objectives, seven
+  requirements, and four work items.
+- Current RFC, JSON-RPC, and NIST primary guidance supports one bounded complete
+  canonical document, mandatory correlation, and typed evidence while rejecting
+  notification/batch/stream-recovery and authenticity/durability overclaims.
+- Neutral M203 starts from exact M202. Exact containment made the local M202
+  branch name redundant, so only local `main` and active M203 remain.
+- The intentional architecture-red run passed two protected containment/no-
+  implementation checks and failed only ten absent RFC, decision, and public-
+  registration contracts in 0.85 seconds.
+- RFC-0186, the security decision, and eight public registrations define the
+  complete no-authority-increase policy. The first focused run passed ten
+  checks and exposed two markdown wording mismatches; the factual phrases were
+  normalized without weakening policy. All twelve checks then passed in 0.56
+  seconds, and focused format, Ruff, and strict Pyright are clean.
+- Whole-project format, Ruff, strict Pyright, architecture, strict docs,
+  governance, and whitespace gates pass. Complete CPython 3.12, 3.13, and 3.14
+  suites each pass 4,126 tests with 17 skips; the 3.13 suite was repeated to
+  capture an authoritative exit code after its first output channel was lost.
+- Ten real-wgpu tests, both fresh M7 profiles and validators, eight profile
+  tests, Null/wgpu Clockwork Arena, and Agent World Builder reproduce their
+  established deterministic identities.
+- Two distributions are byte-reproducible; installed wheel/scene smoke passes;
+  two byte-identical ten-artifact release stages pass complete smoke. Inventory
+  is 114 wheel and 974 source entries, with all three M203 evidence files
+  source-only and zero forbidden wheel entry.
+- Findings-first review corrected one RFC spelling of the exact
+  `recovery_required` status. Exactly 15 intended paths remain, protected
+  runtime/package/CI surfaces have zero diff, and added M203 content contains
+  no development-tool identity, credential assignment, or machine-local path.
+- Record-inclusive quality/governance passes. Two final record-state builds
+  reproduce the unchanged pure wheel and one source archive; installed wheel/
+  scene smoke and both byte-identical ten-artifact release smokes pass.
+- A read-only exact audit proved 21 M203 scratch targets repository-confined,
+  ignored, untracked, and reparse-free. Guarded deletion removed exactly those
+  generated targets and proved none remains.
+- The post-cleanup format/Ruff/Pyright, 51-test architecture, strict-docs,
+  static/dated-governance, and whitespace separator passes. Its sole regenerated
+  docs directory was independently audited and removed; no M203 scratch remains.
+- Initial DCO commit `f11e5b5ed5e0c2ba3739bb630e50ca0c5ad0a023`
+  has tree `c55b1eb833626da07c154b0e31faa0ed8508054b`, sole parent exact M202,
+  exactly 15 files, one matching sign-off, configured maintainer identity, a
+  clean worktree, and clean connectivity apart from historical dangling objects.
+- Fresh fetch/prune, direct hosted-head query, local hosted-ref/tree/ancestry,
+  authenticated repository/default-branch query, and recent PR history prove
+  hosted `main` is exact M99, M202 is absent, only remote `main` exists, and PR
+  #251 remains latest. No push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M202 Windows use-time revalidation policy
 
 - **Task:** Resolve M199 Windows cleanup admission criterion 3 as an exact,

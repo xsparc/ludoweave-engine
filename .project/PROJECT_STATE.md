@@ -1,5 +1,73 @@
 # Project State
 
+## M203 Windows cleanup protocol and receipt policy - locally complete, publication withheld
+
+- Base: fully locally validated M202 DCO commit
+  `e95be9726f8b00c5aef81192c6fba23813602e1f`, tree
+  `e08c7aa0b143d7b8c46c14362dcb0c6ad8d97e6f`, sole parent exact M201.
+- Branch hygiene: neutral `release/m203-windows-cleanup-protocol-receipt-policy`
+  starts from exact M202; the redundant M202 branch name is removed.
+- Direction: RFC-0186 resolves only M199 criterion 4 as a strict bounded
+  protocol/acknowledgement/receipt policy without creating production cleanup.
+- Protocol policy: three distinct canonical cleanup documents remain outside
+  world command/transaction/receipt v1 and accept exactly one bounded complete
+  JSON object per call.
+- Authority policy: requests cannot name targets or carry authority;
+  acknowledgement means bounded admission only; receipts are path-free typed
+  evidence and cannot authorize another effect.
+- Correlation policy: request and acknowledgement canonical SHA-256 values bind
+  IDs and retries while explicitly making no authentication, durability,
+  delivery, non-repudiation, or exactly-once claim.
+- Remaining gates: criteria 1 through 4 are resolved as policy; criteria 5
+  through 7 remain unresolved. Windows cleanup remains unimplemented and
+  unauthorized.
+- Scope: one architecture guard, RFC-0186, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, and
+  package code remain unchanged.
+- Validation: exact baseline, governance, current source research, intentional
+  red, focused and whole-project quality, supported-Python, rendering/profile/
+  example, reproducible package/release, inventory, and findings-first review
+  gates pass. One RFC status-token spelling found by review was corrected.
+- Product/package: ten real-wgpu tests, fresh base/graphics profiles, eight
+  profile tests, both Clockwork renderers, and Agent World Builder reproduce
+  established identities. Two builds and two complete ten-artifact release
+  stages are byte-identical; installed wheel, scene, and both release smokes
+  pass. Inventory is 114 wheel/974 source entries with M203 evidence source-
+  only and zero forbidden wheel entry.
+- Record-state package: two builds reproduce the unchanged 363,400-byte pure
+  wheel at SHA-256
+  `6a81923b593996d70f5c127f724c140e7f5bdb27d745e2a836d557efecdda58b`
+  and identical 2,375,671-byte source archives at SHA-256
+  `06a4ce5270c3131fad04d3d6284708528cdc037094d816ca47c7a9fbbbb57db6`.
+  Installed wheel/scene smoke passes; two byte-identical ten-artifact release
+  stages pass complete smoke. Inventory remains 114 wheel/974 source entries.
+- Cleanup: exactly 21 M203 test/JUnit/profile/docs/distribution/release targets
+  passed confinement, tracking, ignore, and recursive reparse checks before
+  guarded removal; zero M203 scratch target remains.
+- Final separator: post-cleanup format, Ruff, strict Pyright, exact architecture,
+  strict docs, static/dated governance, and whitespace gates pass. The sole
+  regenerated docs target passed the same guard and was removed; zero M203
+  scratch remains.
+- Initial commit: local DCO commit
+  `f11e5b5ed5e0c2ba3739bb630e50ca0c5ad0a023`, tree
+  `c55b1eb833626da07c154b0e31faa0ed8508054b`, has sole parent exact M202,
+  exactly 15 intended files, one matching sign-off, configured maintainer
+  author/committer identity, clean worktree, and `0 104` divergence from local
+  M99 `main`.
+- Hosted safety: a fresh pruned fetch, direct hosted-head query, local hosted-
+  ref/tree/ancestry checks, authenticated public-repository/default-branch
+  query, and recent PR history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, with PR #251 latest. M202 is
+  absent and M99 is present as an ancestor; divergence is `0 104`, and only
+  remote `main` exists.
+- Publication: withheld. Pushing M203 would expose the absent M100-M202
+  prerequisite stack. No push, PR, hosted allocation, tag, release, package
+  publication, or hosted result is claimed.
+- Hosted status: no hosted M203 result is claimed and no additional CI
+  allocation is introduced.
+
 ## M202 Windows use-time revalidation policy - locally complete, publication withheld
 
 - Base: fully locally validated M201 DCO commit

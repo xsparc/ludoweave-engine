@@ -1173,6 +1173,17 @@ and must not guess rollback or proceed to deletion. Criteria 1 through 3 are
 resolved as policy; criteria 4 through 7 remain unresolved. Windows remains
 unadmitted, and no runtime, workflow, permission, or hosted check is added.
 
+M203's [Windows cleanup protocol and receipt
+policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md) resolves
+only M199 criterion 4 as policy. A future request, acknowledgement, and receipt
+use separate bounded canonical documents with exact IDs and digest
+correlation. Requests cannot select paths or candidates; acknowledgement never
+means mutation or success; path-free typed receipts are evidence and cannot
+carry authority, authentication, durability, or exactly-once claims. Criteria
+1 through 4 are resolved as policy; criteria 5 through 7 remain unresolved.
+Windows remains unadmitted, and no runtime, workflow, permission, or hosted
+check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

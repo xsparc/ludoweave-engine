@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M203/RFC-0186's [Windows cleanup protocol and receipt
+  policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md).
+  Future cleanup uses separate bounded request, acknowledgement, and receipt
+  documents with exact digest correlation and path-free typed outcomes; it
+  adds no runtime or CI surface.
 - Accept M202/RFC-0185's [Windows use-time revalidation
   policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md).
   A future private adapter must freshly revalidate the complete admitted

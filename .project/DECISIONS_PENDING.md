@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M203 Windows cleanup protocol and receipt policy
+
+RFC-0186 accepts one direction-preserving, no-authority-increase policy. A
+future Windows cleanup boundary uses separate bounded canonical request,
+acknowledgement, and receipt documents rather than extending canonical world
+transaction protocols.
+
+Requests contain no root, path, candidate, generation, or native data and
+cannot mint private authority. Exactly one acknowledgement binds IDs and the
+canonical request digest; accepted means only bounded admission and never
+mutation or success. A typed receipt binds both request and acknowledgement
+digests and exposes only bounded path-free operation-local outcomes. It remains
+evidence, not authority, authentication, durability, delivery proof,
+non-repudiation, or exactly-once execution.
+
+M203 resolves criterion 4 as policy only. Criteria 1 through 3 remain resolved
+as policy. Criteria 5 through 7 remain unresolved, including durable intent,
+replay lookup, quarantine/recovery, hostile cross-principal evidence, and
+independent-host proof. Windows cleanup remains unimplemented and unauthorized.
+No runtime, decoder, public protocol/type, command, transport, receipt store,
+dependency, workflow, permission, version, release authority, or CI change is
+accepted.
+
 ## M202 Windows use-time revalidation policy
 
 RFC-0185 accepts one direction-preserving, no-authority-increase policy. A

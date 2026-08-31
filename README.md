@@ -312,8 +312,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > generation, lineage, and candidate state with admission immediately before
 > every mutation boundary. A failed first gate leaves the candidate untouched;
 > a failed later gate requires recovery without guessing rollback or deletion.
+> M203 adopts a [Windows cleanup protocol and receipt
+> policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md).
+> Future cleanup requests, acknowledgements, and receipts are separate bounded
+> canonical documents with exact digest correlation and path-free typed
+> outcomes. Acceptance never means mutation or success, and receipts never
+> carry authority.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M202 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M203 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

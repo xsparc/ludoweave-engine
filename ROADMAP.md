@@ -3474,6 +3474,40 @@ version, workflow job/allocation, permission, credential, release authority,
 or CI change. The existing Windows suite remains the only future hosted
 execution path; no hosted check is added.
 
+## M203 Windows cleanup protocol and receipt policy
+
+M203 starts from fully locally validated M202 commit
+`e95be9726f8b00c5aef81192c6fba23813602e1f`. It accepts a [Windows cleanup
+protocol and receipt
+policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md) under
+RFC-0186.
+
+The policy resolves M199 admission criterion 4 without admitting cleanup. It
+reserves separate versioned request, acknowledgement, and receipt documents
+outside the canonical world command/transaction/receipt family. Each future
+decoder accepts exactly one bounded canonical UTF-8 JSON object. Notifications,
+batches, sequences, partial parsing, paths, candidates, native authority, and
+unknown fields refuse.
+
+Acknowledgement binds request and operation IDs plus the canonical request
+digest; acceptance means only bounded request admission, never mutation or
+success. Receipts bind request and acknowledgement digests and expose bounded,
+path-free, operation-local typed outcomes. They are evidence, not authority,
+authentication, durability, non-repudiation, or exactly-once proof.
+
+Criteria 1 through 4 are resolved as policy; criteria 5 through 7 remain
+unresolved. Durable intent/recovery, hostile cross-principal evidence, and
+independent-host support are still absent. Windows cleanup remains
+unimplemented and unauthorized.
+
+M203 adds one architecture guard and decision documentation. It adds no runtime
+API, protocol constant, decoder, CLI/MCP command, public receipt type,
+production adapter, receipt store, integration fixture, cache access,
+quarantine, mutation, recovery path, dependency, native extension, compiler
+requirement, version, workflow job/allocation, permission, credential, release
+authority, or CI change. The existing Windows suite remains the only future
+hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

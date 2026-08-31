@@ -296,6 +296,10 @@ attestation, with the same allocation topology.
   requires the complete admitted token, root, generation, lineage, and
   candidate state to be freshly equal immediately before every future mutation
   boundary.
+- A [Windows cleanup protocol and receipt
+  policy](security/windows-cache-cleanup-protocol-receipt-policy.md) that
+  separates bounded canonical request, acknowledgement, and path-free typed
+  receipt evidence from canonical world transactions and private authority.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

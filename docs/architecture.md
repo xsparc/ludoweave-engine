@@ -5273,6 +5273,33 @@ M202 changes no runtime, public API, integration fixture, dependency, adapter,
 workflow, permission, or hosted allocation. It preserves ADR-0017, ADR-0019,
 and RFC-0129 through RFC-0131 as a direction-preserving policy refinement.
 
+## M203 Windows cleanup protocol and receipt policy
+
+M203 accepts the [Windows cleanup protocol and receipt
+policy](security/windows-cache-cleanup-protocol-receipt-policy.md). Future
+cleanup uses distinct versioned request, acknowledgement, and receipt documents
+instead of extending canonical world command/transaction/receipt v1. Each
+document is one exact bounded canonical UTF-8 JSON object; notifications,
+batches, sequences, partial parsing, trailing bytes, and unknown fields refuse.
+
+Request data contains no path, root, candidate, generation, or native object
+and cannot mint private authority. Acknowledgement correlates the request but
+does not claim mutation or success. The typed receipt correlates both request
+and acknowledgement and exposes only bounded path-free operation-local
+outcomes. It is evidence, not authority, authentication, durable recovery,
+non-repudiation, delivery proof, or exactly-once execution.
+
+M203 resolves only M199 criterion 4 as policy. Criteria 1 through 3 remain
+resolved as policy, while criteria 5 through 7 remain unresolved. Durable
+intent/recovery, hostile cross-principal evidence, and independent-host
+classification remain absent. Windows stays unadmitted, and cleanup remains
+unimplemented and unauthorized.
+
+M203 changes no runtime, public API, protocol constant, decoder, integration
+fixture, dependency, adapter, workflow, permission, or hosted allocation. It
+preserves ADR-0008, ADR-0009, ADR-0017, ADR-0019, and RFC-0129 through RFC-0131
+as a direction-preserving policy refinement.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
