@@ -1184,6 +1184,18 @@ carry authority, authentication, durability, or exactly-once claims. Criteria
 Windows remains unadmitted, and no runtime, workflow, permission, or hosted
 check is added.
 
+M204's [Windows cleanup durable recovery
+policy](docs/security/windows-cache-cleanup-durable-recovery-policy.md) resolves
+only M199 criterion 5 as policy. Future accepted work requires bounded durable
+intent and replay lookup; each effect has a write-ahead phase; quarantine is a
+same-volume no-replace move of the admitted object; and restart recovery must
+reacquire private authority and reconcile exact object state before advancing.
+Invalid chains, unexpected store entries, security/object mismatches, and
+ambiguous physical state block the whole root and generation without automatic
+repair, deletion, or restore. Criteria 1 through 5 are resolved as policy;
+criteria 6 and 7 remain unresolved. Windows remains unadmitted, and no runtime,
+workflow, permission, or hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

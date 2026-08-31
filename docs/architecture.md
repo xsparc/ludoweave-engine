@@ -5300,6 +5300,34 @@ fixture, dependency, adapter, workflow, permission, or hosted allocation. It
 preserves ADR-0008, ADR-0009, ADR-0017, ADR-0019, and RFC-0129 through RFC-0131
 as a direction-preserving policy refinement.
 
+## M204 Windows cleanup durable recovery policy
+
+M204 accepts the [Windows cleanup durable recovery
+policy](security/windows-cache-cleanup-durable-recovery-policy.md). Private
+platform recovery evidence remains outside canonical world state and outside
+public protocol authority. One same-volume, root-confined store admits one
+active operation per trusted root and generation. Its bounded canonical record
+chain publishes intent before acknowledgement and publishes a pending phase
+before every filesystem effect.
+
+The future adapter quarantines the same admitted object through retained
+candidate and directory handles, without replacement or copy/delete fallback.
+After interruption it replays the immutable chain, reacquires fresh private
+authority, applies the M202 use-time gates, and reconciles the exact original
+and quarantine object observations. It appends only the uniquely justified
+next record. Ambiguity, chain alteration, unexpected entries, or security and
+identity mismatch blocks the root/generation while preserving evidence.
+
+M204 resolves only M199 criterion 5 as policy. Criteria 1 through 5 are now
+resolved as policy, while criteria 6 and 7 remain unresolved. Independent
+hostile-principal and Windows/filesystem/power-loss proof remain absent.
+Windows stays unadmitted, and cleanup remains unimplemented and unauthorized.
+
+M204 changes no runtime, public API, protocol constant, recovery store,
+filesystem adapter, native call, integration fixture, dependency, workflow,
+permission, or hosted allocation. It preserves ADR-0008, ADR-0009, ADR-0017,
+ADR-0019, and RFC-0129 through RFC-0131 as direction-preserving constraints.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -1,5 +1,79 @@
 # Project State
 
+## M204 Windows cleanup durable recovery policy - locally complete, publication withheld
+
+- Base: fully locally validated M203 DCO commit
+  `14bcd3be32bbec92538d4f92d223115d57a9e6aa`, tree
+  `5083ee04bdcb879ffa20a2bbad4afe7412b9fe28`, sole parent exact M202.
+- Branch hygiene: neutral `release/m204-windows-cleanup-durable-recovery-policy`
+  starts from exact M203; the redundant M203 branch name is removed.
+- Direction: RFC-0187 resolves only M199 criterion 5 as a strict bounded
+  durable-recovery policy without creating production cleanup.
+- Recovery evidence: one root-confined, same-volume private store serializes an
+  active operation per trusted root and generation. Its bounded immutable
+  canonical record chain is neither world state nor authority.
+- Commit ordering: durable intent and replay lookup precede accepted
+  acknowledgement; a durable pending record precedes each quarantine, deletion,
+  or restoration effect; completed receipt follows durable completion.
+- Quarantine/recovery: the same admitted object moves without replacement or
+  copy/delete fallback. Restart reacquires private authority, reconciles exact
+  physical state, never repeats an observed transition, and stops on ambiguity
+  or tamper.
+- Remaining gates: criteria 1 through 5 are resolved as policy; criteria 6 and
+  7 remain unresolved. Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0187, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, and
+  package code remain unchanged.
+- Validation so far: exact baseline, governance, current source research,
+  intentional red, corrected focused gate, whole-project quality, supported-
+  Python suites, real-wgpu/profile/vertical slices, initial reproducible
+  packaging/release rehearsal, archive inventory, and findings-first review
+  pass. Record-inclusive validation and record-state package/release rehearsal
+  also pass. Final pre/post-cleanup separators and guarded cleanup pass;
+  pre-commit audit and local DCO commit also pass.
+- Product/package: CPython 3.12/3.13/3.14 each pass 4,131 tests with 18 skips;
+  real-wgpu, profiles, and vertical slices reproduce established identities.
+  Two initial builds and two ten-artifact release stages are byte-identical;
+  installed wheel/scene and both release smokes pass. Inventory is 114 wheel/
+  977 source entries with M204 evidence source-only.
+- Record state: two final builds reproduce the same 363,517-byte pure wheel at
+  SHA-256 `cf4a0505419d7084ee2550b38b436cb2744ddb003d9017ecdbe65114b8d9045c`
+  and a 2,390,949-byte source archive at SHA-256
+  `7e3b63be491d1285de45049e40228b2375bd2e2c22188750f895edd24da38f8d`.
+  Installed wheel/scene and two byte-identical ten-artifact release stages pass
+  complete smoke; the 114/977 archive boundary remains exact.
+- Review: exactly 15 intended paths change. Protected runtime, integration,
+  dependency, workflow, version, and package surfaces have zero diff; public
+  disclosure/credential/machine-path scans are clean; corrected policy/docs
+  have no remaining actionable finding.
+- Cleanup: 21 M204 scratch targets passed confinement, tracking, ignore, and
+  recursive reparse checks before guarded removal. The post-cleanup separator's
+  sole regenerated docs directory passed the same corrected exact audit and
+  removal. Zero M204 scratch target remains.
+- Pre-commit: exact M203 HEAD/tree/parent, 15-path scope, protected surfaces,
+  maintainer identity, branch inventory, `0 104` local-main divergence, absent
+  `.ai`, public hygiene, zero scratch, static/focused/whitespace checks, and Git
+  object connectivity all pass. Historical dangling objects remain noncritical.
+- Initial commit: local DCO commit
+  `2411d1519cc25dcb54556cbe7af8a7bd0b7459e9`, tree
+  `933e46fb37af67943efad57447bf3ae3de862f6f`, has sole parent exact M203,
+  exactly 15 intended files, one matching sign-off, configured maintainer
+  author/committer identity, clean worktree, and `0 105` divergence from local
+  M99 `main`.
+- Hosted safety: a fresh pruned fetch, direct hosted-head query, local hosted-
+  ref/tree/ancestry checks, authenticated public-repository/default-branch
+  query, and recent PR history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, with PR #251 latest. M203 is
+  absent and M99 is present as an ancestor; divergence is `0 105`, and only
+  remote `main` exists.
+- Publication: withheld. Pushing M204 would expose the absent M100-M203
+  prerequisite stack. No push, PR, hosted allocation, tag, release, package
+  publication, or hosted result is claimed.
+- Hosted status: no hosted M204 result is claimed and no additional CI
+  allocation is introduced.
+
 ## M203 Windows cleanup protocol and receipt policy - locally complete, publication withheld
 
 - Base: fully locally validated M202 DCO commit

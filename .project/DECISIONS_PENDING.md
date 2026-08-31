@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M204 Windows cleanup durable recovery policy
+
+RFC-0187 accepts one direction-preserving, no-authority-increase policy. A
+future private recovery store is root-confined and same-volume, admits one
+active operation per trusted root and generation, and stores bounded immutable
+write-ahead evidence outside canonical world state.
+
+Accepted acknowledgement follows durable intent and replay lookup. Same-volume
+quarantine uses the same admitted object, an absent engine-generated target,
+and no replacement or copy/delete fallback. Restart reacquires private
+authority, replays the complete chain, reconciles exact original/quarantine
+observations, and appends only a uniquely justified next record. Restore is
+limited to the pre-deletion commit boundary. Ambiguity, invalid chains, unknown
+entries, or security/object mismatch block the whole root/generation while
+preserving evidence; automatic repair and guessed rollback are excluded.
+
+M204 resolves criterion 5 as policy only. Criteria 1 through 4 remain resolved
+as policy. Criteria 6 and 7 remain unresolved, including hostile cross-
+principal evidence and independent Windows/filesystem/crash/power-loss proof.
+Windows cleanup remains unimplemented and unauthorized. No runtime, recovery
+store, adapter, command, protocol constant, public type, dependency, workflow,
+permission, version, release authority, or CI change is accepted.
+
 ## M203 Windows cleanup protocol and receipt policy
 
 RFC-0186 accepts one direction-preserving, no-authority-increase policy. A

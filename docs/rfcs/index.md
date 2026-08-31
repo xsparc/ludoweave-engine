@@ -191,3 +191,4 @@ was adopted.
 - [RFC-0184: adopt Windows cleanup-authority admission policy](0184-adopt-windows-cleanup-authority-admission-policy.md)
 - [RFC-0185: adopt Windows use-time revalidation policy](0185-adopt-windows-use-time-revalidation-policy.md)
 - [RFC-0186: adopt Windows cleanup protocol and receipt policy](0186-adopt-windows-cleanup-protocol-receipt-policy.md)
+- [RFC-0187: adopt Windows cleanup durable recovery policy](0187-adopt-windows-cleanup-durable-recovery-policy.md)

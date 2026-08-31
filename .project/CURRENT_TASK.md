@@ -1,5 +1,128 @@
 # Current task
 
+## M204 Windows cleanup durable recovery policy
+
+- **Task:** Resolve M199 Windows cleanup admission criterion 5 as an exact,
+  bounded durable-intent, same-filesystem quarantine, restart-reconciliation,
+  and rollback-tamper policy without admitting cleanup or adding runtime or CI
+  surface.
+- **Status:** Locally complete; publication withheld. Exact M203 baseline, current primary-source research,
+  neutral branch containment, intentional architecture red, accepted RFC and
+  security decision, public registrations, focused and whole-project quality,
+  supported-Python suites, rendering/profile/examples, initial reproducible
+  package/release rehearsal, archive inventory, and findings-first review are
+  complete. Record-inclusive validation/package rehearsal is also complete.
+  Final separators, guarded cleanup, pre-commit audit, local DCO commit, and
+  hosted publication-safety reconciliation are complete. Publication is
+  withheld because hosted `main` remains exact M99 and does not contain M203
+  or the M100-M203 prerequisite stack.
+- **Base:** Fully locally validated M203 DCO commit
+  `14bcd3be32bbec92538d4f92d223115d57a9e6aa`, tree
+  `5083ee04bdcb879ffa20a2bbad4afe7412b9fe28`, sole parent exact M202.
+- **Branch:** `release/m204-windows-cleanup-durable-recovery-policy`; the
+  redundant local M203 branch name was removed after exact M204 branch creation
+  retained its object.
+
+### M204 acceptance boundary
+
+- Keep one private, same-volume, root-confined recovery store and at most one
+  active operation per trusted root and generation; records remain evidence,
+  not world state or authority.
+- Reserve a bounded immutable canonical hash-chain policy with write-ahead
+  staging, flush, no-replace publication, parent settlement, retained-handle
+  reopen, and exact verification before a phase is durable.
+- Require durable intent and replay lookup before accepted acknowledgement;
+  bind public receipt phase/outcome to the last durable state without claiming
+  exactly-once effects or delivery.
+- Quarantine the same admitted object through retained handles on the same
+  volume, into an absent engine-generated slot, with no replacement or
+  copy/delete fallback.
+- On restart, reacquire fresh private authority, replay the bounded chain,
+  reconcile exact original/quarantine observations, and append only the unique
+  justified next transition without repeating an observed effect.
+- Allow no-replace restoration only before the durable deletion commitment.
+  After that boundary, never guess rollback or infer successful deletion from
+  absence alone.
+- Block the complete root and generation on invalid chains, unknown entries,
+  security/generation mismatch, object mismatch, or ambiguous physical state;
+  preserve evidence and perform no automatic repair, deletion, or restoration.
+- Resolve criterion 5 as policy, retain criteria 1 through 4 as policy, and
+  leave criteria 6 and 7 unresolved. Windows remains unadmitted and cleanup
+  remains unimplemented and unauthorized.
+- Preserve exact M203, runtime, fixtures, examples, scripts, dependencies,
+  metadata, workflows, permissions, version, and package surface. Add no
+  command, public constant/type, recovery store implementation, native adapter,
+  mutation, or hosted check.
+
+### M204 development evidence so far
+
+- Exact M203 commit/tree/parent, clean worktree, protected hashes, maintainer
+  identity, and two-branch inventory were reverified. The exact M203
+  architecture module passed all 12 tests in 0.57 seconds.
+- Static and current-date strict external governance each returned pass with
+  zero findings across three objectives, seven requirements, and four work
+  items.
+- Current Microsoft primary documentation was reviewed for TxF alternatives,
+  rename/replace behavior, cross-volume fallback, caching, flushing, and
+  handle-relative metadata updates. It supports a policy-only application
+  recovery protocol while retaining criteria 6 and 7 for hostile and
+  independent power-loss proof.
+- Neutral M204 starts from exact M203. Exact containment made the local M203
+  branch name redundant, so only local `main` and active M204 remain.
+- The intentional architecture-red run passed the protected-boundary and no-
+  runtime checks and failed only the 13 absent RFC, security-decision, and
+  registration contracts in 0.85 seconds.
+- RFC-0187, the security decision, and eight public registrations define the
+  complete no-authority-increase policy. The first focused run passed eight
+  checks and exposed seven Markdown-format wording mismatches; factual wording
+  was normalized without weakening policy. All 15 checks then passed in 0.56
+  seconds.
+- Initial whole-project format, Ruff, strict Pyright, 66-test architecture,
+  strict docs, static/current-date governance, and whitespace gates pass. The
+  first lock/sync attempts were cache-denied before checking; their exact
+  access-enabled reruns pass. Strict docs first caught four incorrect ADR
+  filenames; corrected links pass the exact rerun.
+- Complete isolated CPython 3.12, 3.13, and 3.14 suites each pass 4,131 tests
+  with 18 skips. Ten real-wgpu tests, fresh base/graphics profile validation,
+  eight profile tests, both 600-tick Clockwork renderers, and Agent World
+  Builder reproduce their established identities.
+- Two initial distributions are byte-identical; installed wheel/scene smoke
+  passes; two byte-identical ten-artifact release stages pass complete smoke.
+  Inventory is 114 wheel and 977 source entries, with all three M204 evidence
+  files source-only and zero forbidden wheel entry.
+- Findings-first review corrected stale ADR filenames, clarified bound
+  exhaustion and immutable-chain wording, normalized one protocol status, and
+  made the phase graph unambiguous. Exactly 15 intended paths remain, protected
+  runtime/package/CI surfaces have zero diff, and 1,013 inspected added lines
+  contain no development-tool identity, credential assignment, or machine-
+  local path. The corrected focused review gate passes all 15 checks.
+- The record-inclusive lock/sync, format, Ruff, strict Pyright, 66-test
+  architecture, strict docs, static/current-date governance, and whitespace
+  separator passes. Two record-state builds reproduce the 363,517-byte wheel
+  and a 2,390,949-byte source archive; installed wheel/scene and both complete
+  release smokes pass. Both ten-artifact stages are byte-identical and the
+  114-wheel/977-source package boundary remains exact.
+- The final pre-cleanup and post-cleanup format/Ruff/Pyright, 66-test
+  architecture, strict-docs, static/current-date governance, and whitespace
+  separators pass. A terminating audit proved 21 initial M204 scratch targets
+  repository-confined, ignored, untracked, and reparse-free before guarded
+  removal. The post-cleanup separator regenerated only one docs directory;
+  its corrected exact audit and revalidated removal leave zero M204 scratch.
+- Pre-commit audit confirms exact M203 ancestry, exactly 15 intended paths,
+  only local `main` plus neutral M204, configured maintainer identity, zero
+  protected-surface diff, clean static/focused/whitespace gates, zero M204
+  scratch, absent `.ai`, clean added-content hygiene, and clean Git connectivity
+  apart from historical dangling objects.
+- Initial DCO commit `2411d1519cc25dcb54556cbe7af8a7bd0b7459e9`,
+  tree `933e46fb37af67943efad57447bf3ae3de862f6f`, has sole parent exact M203,
+  exactly 15 files, one matching sign-off, consistent configured maintainer
+  identity, a clean worktree, and `0 105` divergence from local M99 `main`.
+- Fresh fetch/prune, direct hosted-head query, local hosted-ref/tree/ancestry,
+  authenticated repository/default-branch query, and recent PR history prove
+  hosted `main` is exact M99, M203 is absent, only remote `main` exists, and PR
+  #251 remains latest. No push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M203 Windows cleanup protocol and receipt policy
 
 - **Task:** Resolve M199 Windows cleanup admission criterion 4 as an exact,

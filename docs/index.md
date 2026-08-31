@@ -300,6 +300,11 @@ attestation, with the same allocation topology.
   policy](security/windows-cache-cleanup-protocol-receipt-policy.md) that
   separates bounded canonical request, acknowledgement, and path-free typed
   receipt evidence from canonical world transactions and private authority.
+- A [Windows cleanup durable recovery
+  policy](security/windows-cache-cleanup-durable-recovery-policy.md) that
+  requires bounded write-ahead intent, same-filesystem no-replace quarantine,
+  idempotent reconciliation, and fail-closed handling of ambiguous or altered
+  recovery evidence before Windows cleanup can be admitted.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

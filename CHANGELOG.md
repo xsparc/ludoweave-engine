@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M204/RFC-0187's [Windows cleanup durable recovery
+  policy](docs/security/windows-cache-cleanup-durable-recovery-policy.md).
+  Future cleanup must publish bounded write-ahead intent before
+  acknowledgement, quarantine without replacement on the same filesystem,
+  reconcile exact physical state after interruption, and fail closed on
+  ambiguous or altered recovery evidence. This resolves only M199 criterion 5
+  as policy; Windows remains unadmitted and cleanup remains unimplemented.
 - Accept M203/RFC-0186's [Windows cleanup protocol and receipt
   policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md).
   Future cleanup uses separate bounded request, acknowledgement, and receipt

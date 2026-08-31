@@ -3508,6 +3508,33 @@ requirement, version, workflow job/allocation, permission, credential, release
 authority, or CI change. The existing Windows suite remains the only future
 hosted execution path; no hosted check is added.
 
+## M204 Windows cleanup durable recovery policy
+
+M204 starts from fully locally validated M203 commit
+`14bcd3be32bbec92538d4f92d223115d57a9e6aa`. It accepts a [Windows cleanup
+durable recovery
+policy](docs/security/windows-cache-cleanup-durable-recovery-policy.md) under
+RFC-0187.
+
+The policy resolves M199 admission criterion 5 without admitting cleanup. One
+private same-volume recovery store serializes an active operation per trusted
+root and generation. Bounded immutable hash-chained records publish write-ahead
+intent before acknowledgement, and phase-specific pending records precede
+quarantine, deletion, or restoration. Same-filesystem quarantine never
+replaces or copies a target. Restart recovery reacquires private authority,
+reconciles exact original/quarantine object state, appends only a uniquely
+justified transition, and refuses to guess after ambiguity or tamper.
+
+Criteria 1 through 5 are resolved as policy; criteria 6 and 7 remain
+unresolved. Hostile cross-principal evidence and independent Windows,
+filesystem, forced-crash, and power-loss proof are still absent. Windows
+cleanup remains unimplemented and unauthorized.
+
+M204 adds one architecture guard and decision documentation. It adds no
+runtime API, protocol constant, command, recovery store, filesystem adapter,
+native call, integration fixture, dependency, version, workflow, or hosted
+execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
