@@ -1,5 +1,90 @@
 # Project State
 
+## M206 Windows cross-principal evidence validator - locally complete, publication withheld
+
+- Base: fully locally validated M205 DCO commit
+  `b678ca04de153f1908b7af73f15a471c93e9a486`, tree
+  `5e28c9ea5dfa380af3ba8980af97320d156357c0`, with sole parent exact M204.
+- Branch hygiene: neutral
+  `release/m206-windows-cross-principal-evidence-validator` starts from exact
+  M205; the redundant M205 local branch name is removed.
+- Direction: RFC-0189 adds a source-only offline validator without increasing
+  cleanup or process authority.
+- Input boundary: one stable regular non-symlink file, exact canonical bytes,
+  explicit JSON limits, before/open/after file-identity checks, and no writes.
+- Schema boundary: exact fixed lanes, barriers, statuses, sanitized booleans,
+  outcomes, counts, and attempted-run digest identities.
+- Claim boundary: only complete all-passed evidence may satisfy criterion 6;
+  Windows admission remains false because criterion 7 is absent.
+- Fixture: one canonical all-`not_run` reviewed artifact proves incomplete
+  evidence handling and makes no execution claim.
+- Output: one canonical path-free summary or typed path-free failure; no raw
+  token, account, credential, pathname, handle, ACL, environment, or platform
+  error value.
+- Readiness: criteria 1 through 5 remain resolved as policy. Criteria 6 and 7
+  remain unresolved; Windows cleanup remains unimplemented and unauthorized.
+- Scope: one source-only test-tool module, one integration test module, one
+  reviewed fixture, one architecture guard, RFC-0189, one security decision,
+  eight public registrations, and four project records. Runtime/package code, examples,
+  workflows, dependencies, lock, metadata, version, and CI allocation remain
+  unchanged.
+- Validation: the 73-test baseline and governance checks pass. Intentional red
+  passed two preservation tests and failed the ten expected absent contracts.
+  All 596 Python files are format-clean; Ruff and strict Pyright are clean; the
+  corrected architecture group passes 97 tests; strict docs, governance, and
+  whitespace pass.
+- Supported Python: post-review complete suites pass 4,200/17 skipped on 3.12
+  and 4,190/18 skipped on both 3.13 and 3.14.
+- Rendering and samples: ten real-wgpu tests, both one-repeat profiles, eight
+  profile-schema tests, Null/wgpu Clockwork Arena, and World Builder reproduce
+  established identities.
+- Packaging: initial independent builds are byte-identical; installed wheel and
+  scene smokes pass; two byte-identical ten-artifact stages pass complete
+  release smoke. Inventory is 114 wheel and 986 source entries, with all six
+  M206 artifacts source-only and zero forbidden wheel entry.
+- Review: failed and unsupported lane evidence now preserves corresponding
+  applicable barrier-order observations while remaining criterion-false. The
+  corrected focused group passes 73 tests with clean static checks.
+- Record-inclusive separator: the locked CPython 3.12 graphics environment,
+  all 596-file static gates, 97 architecture tests, strict docs, both governance
+  modes, and whitespace pass.
+- Record-state packaging: two fresh builds reproduce the 363,790-byte pure
+  wheel at SHA-256
+  `acc0693a9ae923341882e3c64edf2a9a994b46f4f0b450ee4f358bcbe8f76101`
+  and a 2,423,882-byte source archive at SHA-256
+  `45f3064d42c4a4f8e83c988e2a7edd92815861a091c3e5f6e54a3e15c87fa0b1`.
+  Installed smokes and two byte-identical ten-artifact release stages pass.
+  Inventory remains 114 wheel/986 source entries with all six M206 artifacts
+  source-only and zero forbidden wheel entry.
+- Review and cleanup: exactly 18 intended paths remain with zero protected,
+  credential, private-key, root-metadata, or package-boundary finding. One
+  pre-existing historical retired-tooling phrase was neutrally restated. All
+  34 audited ignored/untracked/reparse-free M206 scratch targets were removed;
+  zero remains.
+- Final separator: all 596-file static gates, 97 architecture tests, strict
+  docs, both governance modes, and whitespace pass. Its sole regenerated docs
+  directory was audited and removed. Zero M206 scratch remains.
+- Pre-commit: exact M205 HEAD/tree/parent, the 18-path allowlist, protected
+  surfaces, maintainer identity, two-branch inventory, expected `0 106`
+  local-main divergence, zero scratch, whitespace, static checks, 97
+  architecture tests, and Git connectivity pass.
+- Initial local commit: DCO commit
+  `c1f90dd5d31a6b5b5938706e7fbed69051a76b0a`, tree
+  `48fe26e1349876c5afa197033879917fc649a279`, has sole parent exact M205,
+  exactly 18 paths, one matching sign-off, consistent maintainer identity,
+  clean revision whitespace, expected `0 107` divergence, a clean worktree,
+  zero scratch, and clean Git connectivity. This hosted-safety record is
+  incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct hosted query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; M205 is absent, M99 is present,
+  only remote `main` exists, and divergence is `0 107`. The local GitHub CLI
+  credential is invalid; a read-only unauthenticated API fallback confirmed
+  public/unarchived status, default `main`, and latest closed PR #251. Pushing
+  would expose absent M100-M205 prerequisites, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+
 ## M205 Windows cross-principal validation contract - locally complete, publication withheld
 
 - Base: fully locally validated M204 DCO commit

@@ -1,5 +1,116 @@
 # Current task
 
+## M206 Windows cross-principal evidence validator
+
+- **Task:** Add one offline, read-only validator and reviewed incomplete fixture
+  for the M205 evidence envelope without running a privileged fixture or
+  admitting Windows cleanup.
+- **Status:** Locally complete; publication withheld by hosted ancestry.
+- **Base:** fully locally validated M205 DCO commit
+  `b678ca04de153f1908b7af73f15a471c93e9a486`, tree
+  `5e28c9ea5dfa380af3ba8980af97320d156357c0`, sole parent exact M204.
+- **Branch:** `release/m206-windows-cross-principal-evidence-validator`; exact
+  containment made the local M205 branch name redundant, so only local `main`
+  and active M206 remain.
+
+### M206 acceptance boundary
+
+- Read exactly one stable regular non-symlink file and require exact bounded
+  canonical JSON with duplicate and unknown fields rejected.
+- Enforce all 13 M205 lanes, all eight barrier identities, bounded
+  trial/event totals, exact sanitized qualification/control/outcome fields,
+  and exact source/executable digest syntax for attempted evidence.
+- Cross-check every criterion claim. Only an all-passed complete document may
+  set `criterion_6_satisfied` true; `windows_cleanup_admitted` remains false.
+- Emit only path-free canonical validation output and retain no raw principal,
+  token, account, credential, pathname, handle, ACL, environment, or platform
+  error value.
+- Ship a reviewed canonical fixture in which all lanes are `not_run`; describe
+  it as incomplete schema evidence, never as a qualifying execution.
+- Add integration and architecture coverage while preserving runtime,
+  dependency, package, release, and vital-CI boundaries.
+- Keep criteria 6 and 7 unresolved. Add no launcher, account lifecycle, native
+  call, cleanup mutation, workflow, permission, or hosted allocation.
+
+### Development evidence so far
+
+- Exact M205 commit/tree/parent, clean worktree, protected hashes, maintainer
+  identity, local/remote branch inventory, M99 hosted ancestry, and absent
+  retired root control metadata were re-audited before work.
+- The focused M205/canonical/rollback baseline passed 73 tests. Static and
+  current-date strict governance checks passed with zero findings.
+- Current RFC JSON guidance, Microsoft token-statistics documentation, and
+  GitHub-hosted-runner documentation were reviewed before branching. The
+  evidence supports one bounded canonical artifact, sanitized token-derived
+  booleans, and no new hosted allocation.
+- Neutral M206 starts from exact M205. The redundant local M205 branch name was
+  removed while its commit remains the exact parent.
+- The intentional architecture-red run passed two preservation checks and
+  failed only the ten expected absent validator, fixture, decision/RFC, and
+  registration checks.
+- The source-only test validator, reviewed fixture, integration coverage,
+  RFC-0189, security decision, and eight public registrations are implemented.
+- Whole-tree format, Ruff, strict Pyright, the corrected 97-test architecture
+  group, strict docs, static/current-date governance, and whitespace pass.
+- Post-review complete suites pass on CPython 3.12, 3.13, and 3.14. Real wgpu,
+  both profiles, profile-schema tests, Null/wgpu Clockwork Arena, and World
+  Builder reproduce established results.
+- Two initial distributions and two ten-artifact release stages are
+  byte-identical; installed wheel/scene and complete release smokes pass. The
+  114-entry wheel has zero forbidden payload and all six M206 artifacts are
+  source-only within the 986-entry source archive.
+- Findings-first review corrected negative barrier-order handling so failed and
+  unsupported evidence remains structurally reviewable but criterion-false.
+  The expanded focused group passes 73 tests.
+- The record-inclusive locked environment, all static gates, 97 architecture
+  tests, strict docs, static/current-date governance, and whitespace pass.
+- Two final record-state builds reproduce a 363,790-byte pure wheel and a
+  2,423,882-byte source archive; installed smokes and two byte-identical
+  ten-artifact release stages pass. Inventory remains 114 wheel/986 source
+  entries with all six M206 artifacts source-only.
+- Terminating review confirms exactly 18 intended paths, no protected-surface,
+  credential, private-key, root-metadata, or package-boundary finding. One
+  pre-existing historical retired-tooling phrase was neutrally restated. All
+  34 audited ignored/untracked/reparse-free M206 scratch targets were removed;
+  zero remains.
+- The final post-cleanup separator passes all 596-file static gates, 97
+  architecture tests, strict docs, both governance modes, and whitespace. Its
+  sole regenerated documentation directory was audited and removed; zero M206
+  scratch remains.
+- The pre-commit audit confirms exact M205 HEAD/tree/parent, exactly 18 intended
+  paths, zero protected diff, only `main` plus neutral M206, configured
+  maintainer identity, expected `0 106` local-main divergence, clean
+  whitespace/static/architecture gates, zero scratch, and clean Git
+  connectivity.
+
+### Publication result
+
+- Initial DCO commit `c1f90dd5d31a6b5b5938706e7fbed69051a76b0a`,
+  tree `48fe26e1349876c5afa197033879917fc649a279`, has exact M205 as
+  its sole parent, exactly 18 paths, one matching sign-off, consistent
+  maintainer identity, clean revision whitespace, and a clean worktree.
+- A fresh pruned fetch and direct hosted query leave public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`.
+- M205 is absent from hosted `main`, M99 is present, only remote `main` exists,
+  and divergence is `0 107`. A public API fallback confirmed an unarchived
+  public repository, default branch `main`, and latest closed PR #251 after the
+  local GitHub CLI credential was found invalid.
+- Publishing M206 would expose the absent M100-M205 prerequisite stack. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+
+### Publication boundary
+
+- Publication remains authorized only after hosted `main` gains the complete
+  prerequisite ancestry. The current safety gate withholds it.
+
+### Explicit non-scope
+
+- No qualifying cross-principal run, criterion 6 resolution, independent-host
+  criterion 7 evidence, Windows cleanup admission, process launcher, account or
+  credential management, native adapter, production cleanup, runtime command,
+  dependency, version, workflow, permission, or hosted allocation.
+
 ## M205 Windows cross-principal validation contract
 
 - **Task:** Define the exact adversarial evidence, principal qualification,

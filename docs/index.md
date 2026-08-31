@@ -310,6 +310,11 @@ attestation, with the same allocation topology.
   that requires a genuinely distinct untrusted principal, unrelated process
   and session topologies, deterministic barriers, and real ACL, handle, alias,
   and reparse pressure before criterion 6 can be resolved.
+- A source-only [Windows cross-principal evidence
+  validator](security/windows-cache-cleanup-cross-principal-evidence-validator.md)
+  that checks one stable bounded canonical artifact and ships an explicitly
+  all-`not_run` reviewed fixture without claiming criterion 6 or admitting
+  cleanup.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

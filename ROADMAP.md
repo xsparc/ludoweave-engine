@@ -3559,6 +3559,32 @@ runtime API, command, principal launcher, account mutation, credential input,
 filesystem adapter, native call, integration fixture, dependency, version,
 workflow, or hosted execution path; no hosted check is added.
 
+## M206 Windows cross-principal evidence validator
+
+M206 starts from fully locally validated M205 commit
+`b678ca04de153f1908b7af73f15a471c93e9a486`. It accepts a source-only
+[Windows cross-principal evidence
+validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md)
+under RFC-0189.
+
+The offline validator reads one stable regular non-symlink file, applies the
+existing bounded canonical JSON rules, and enforces exact qualification,
+control, lane, barrier, count, outcome, identity, criterion, and admission
+relationships. Its output is canonical and path-free. The reviewed fixture is
+all `not_run`, so it proves incomplete evidence handling without claiming an
+execution.
+
+Criteria 1 through 5 remain resolved as policy; criteria 6 and 7 remain
+unresolved. No qualifying cross-principal run has occurred. Windows cleanup
+remains unimplemented and unauthorized.
+
+M206 adds one source-only test-tool module, one reviewed fixture, integration
+coverage, one architecture guard, RFC-0189, one security decision, and public
+registrations.
+It adds no runtime API, command, launcher, account or credential lifecycle,
+filesystem mutation, native call, dependency, version, workflow, permission,
+or hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -1208,6 +1208,16 @@ operator-owned; repository code accepts no account secret or credential and
 adds no launcher, production authority, workflow, or hosted allocation.
 Criteria 6 and 7 remain unresolved, and Windows stays unadmitted.
 
+M206's source-only [Windows cross-principal evidence
+validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md)
+checks one stable regular-file artifact against the existing bounded canonical
+JSON contract and the exact M205 lane, barrier, sanitization, count, and claim
+relationships. A structurally valid document is not necessarily qualifying:
+the reviewed fixture is intentionally all `not_run`, criterion 6 remains
+unresolved, and the Windows-admission field must remain false. The validator
+performs no process launch, native call, credential or account management,
+network access, cleanup, or other mutation and adds no hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

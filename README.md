@@ -332,8 +332,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > deterministic barriers; real ACL, handle, alias, and reparse pressure; and
 > bounded sanitized evidence. M205 supplies the contract, not the run, so
 > criterion 6 remains unresolved and no hosted check is added.
+> M206 adds a source-only [Windows cross-principal evidence
+> validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md).
+> It strictly checks bounded canonical evidence and ships a reviewed all-
+> `not_run` fixture, but performs no qualifying run, grants no cleanup
+> authority, and adds no hosted allocation.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M205 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M206 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

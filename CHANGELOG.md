@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M206/RFC-0189's source-only [Windows cross-principal evidence
+  validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md).
+  It checks one stable, bounded canonical artifact, exact sanitized lane and
+  barrier relationships, and false-by-default admission claims. The reviewed
+  fixture is intentionally all `not_run`; no qualifying run, launcher,
+  credential custody, cleanup authority, workflow, or hosted allocation is
+  added.
 - Accept M205/RFC-0188's [Windows cache-cleanup cross-principal validation
   contract](docs/security/windows-cache-cleanup-cross-principal-validation-contract.md).
   Future criterion 6 evidence must use a genuinely distinct untrusted local

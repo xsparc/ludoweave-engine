@@ -94,6 +94,7 @@ nav:
   - Windows cleanup protocol and receipt policy: security/windows-cache-cleanup-protocol-receipt-policy.md
   - Windows cleanup durable recovery policy: security/windows-cache-cleanup-durable-recovery-policy.md
   - Windows cross-principal validation contract: security/windows-cache-cleanup-cross-principal-validation-contract.md
+  - Windows cross-principal evidence validator: security/windows-cache-cleanup-cross-principal-evidence-validator.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -288,6 +289,7 @@ nav:
       - RFC-0186 - Adopt Windows cleanup protocol and receipt policy: rfcs/0186-adopt-windows-cleanup-protocol-receipt-policy.md
       - RFC-0187 - Adopt Windows cleanup durable recovery policy: rfcs/0187-adopt-windows-cleanup-durable-recovery-policy.md
       - RFC-0188 - Adopt Windows cross-principal validation contract: rfcs/0188-adopt-windows-cross-principal-validation-contract.md
+      - RFC-0189 - Adopt Windows cross-principal evidence validator: rfcs/0189-adopt-windows-cross-principal-evidence-validator.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

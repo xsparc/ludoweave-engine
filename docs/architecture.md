@@ -5356,6 +5356,26 @@ workflow, permission, or hosted allocation. It preserves ADR-0008, ADR-0009,
 ADR-0017, ADR-0019, and RFC-0129 through RFC-0131 as direction-preserving
 constraints.
 
+## M206 Windows cross-principal evidence validator
+
+M206 accepts the source-only [Windows cross-principal evidence
+validator](security/windows-cache-cleanup-cross-principal-evidence-validator.md).
+The validator is an offline repository tool, not runtime package authority. It
+reads one stable regular non-symlink file, reuses bounded canonical JSON, and
+checks exact M205 qualification, control, lane, barrier, count, outcome,
+identity, criterion, and admission relationships.
+
+Its only retained public result is a canonical path-free validation summary.
+Raw Windows tokens, principal identifiers, accounts, credentials, handles,
+ACLs, pathnames, environment values, and platform error text remain outside the
+evidence boundary. The reviewed fixture contains all 13 lanes as `not_run` and
+therefore makes no execution claim.
+
+M206 does not resolve M199 criterion 6. Criteria 6 and 7 remain unresolved,
+Windows stays unadmitted, and cleanup remains unimplemented and unauthorized.
+No runtime command, launcher, account lifecycle, filesystem mutation, native
+call, dependency, workflow, permission, or hosted allocation is added.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

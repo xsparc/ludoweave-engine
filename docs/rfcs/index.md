@@ -193,3 +193,4 @@ was adopted.
 - [RFC-0186: adopt Windows cleanup protocol and receipt policy](0186-adopt-windows-cleanup-protocol-receipt-policy.md)
 - [RFC-0187: adopt Windows cleanup durable recovery policy](0187-adopt-windows-cleanup-durable-recovery-policy.md)
 - [RFC-0188: adopt Windows cross-principal validation contract](0188-adopt-windows-cross-principal-validation-contract.md)
+- [RFC-0189: adopt Windows cross-principal evidence validator](0189-adopt-windows-cross-principal-evidence-validator.md)

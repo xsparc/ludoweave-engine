@@ -2,6 +2,23 @@
 
 No architecture decision is currently blocked.
 
+## M206 Windows cross-principal evidence validator
+
+RFC-0189 accepts one direction-preserving, source-only validator for the M205
+evidence envelope. It reads one stable regular non-symlink file, reuses bounded
+canonical JSON, rejects unknown/noncanonical input, and checks exact sanitized
+qualification, control, lane, barrier, count, outcome, digest, criterion, and
+admission relationships.
+
+The reviewed fixture is intentionally all `not_run`. Structurally valid does
+not mean qualifying; only an all-passed complete document can satisfy criterion
+6, and M206 always requires the Windows-admission field to remain false.
+
+Criteria 6 and 7 remain unresolved. Windows cleanup remains unimplemented and
+unauthorized. No qualifying run, launcher, account or credential lifecycle,
+native call, cleanup mutation, runtime command, dependency, version, workflow,
+permission, release authority, or hosted allocation is accepted.
+
 ## M205 Windows cross-principal validation contract
 
 RFC-0188 accepts one direction-preserving, no-authority-increase contract for
