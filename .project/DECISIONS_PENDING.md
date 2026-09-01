@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M208 Windows independent-host evidence validator
+
+RFC-0191 accepts one direction-preserving source-only validator for the M207
+evidence envelope. It reads one stable canonical independent-host artifact and
+one separate M206 artifact, validates the M206 companion through the existing
+boundary, recomputes its digest, and derives criterion 6 before evaluating
+criterion 7.
+
+The schema contains fixed sanitized host independence, capability, profile,
+interruption, status, count, outcome, and digest fields. Passed profile lanes
+require at least two passed independent hosts; local fixed NTFS requires the
+complete interruption classes, refusal lanes require observed pre-authority
+engine refusal, and the ABA lane requires actual identity reuse plus stale-
+authorization rejection.
+
+The reviewed fixture has no hosts and all eight profiles `not_run`. Criteria 6
+and 7 remain unresolved. Windows cleanup remains unimplemented and
+unauthorized, and the admission field remains false even for a structurally
+complete artifact pending a later accepted admission decision. No qualifying
+run, collector, coordinator, process launch, native call, account or credential
+lifecycle, cleanup mutation, runtime command, dependency, version, workflow,
+permission, release authority, or hosted allocation is accepted.
+
 ## M207 Windows independent-host validation contract
 
 RFC-0190 accepts one direction-preserving, no-authority-increase contract for

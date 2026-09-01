@@ -1,5 +1,93 @@
 # Project State
 
+## M208 Windows independent-host evidence validator - locally complete, publication withheld
+
+- Base: fully locally validated M207 DCO commit
+  `1b3af35a6b4c2382199e0cdad540b258e0008866`, tree
+  `8e1d5cb86b70e7e4da42f69d044940543fda9c7f`, with sole parent exact M206.
+- Branch hygiene: neutral
+  `release/m208-windows-independent-host-evidence-validator` starts from exact
+  M207; the redundant M207 local branch name is removed.
+- Direction: RFC-0191 adds a source-only offline validator without increasing
+  cleanup, process, credential, host, or filesystem authority.
+- Binding boundary: the validator separately validates the M206 companion,
+  recomputes its digest, and derives criterion 6 before evaluating criterion 7.
+- Input boundary: both artifacts are stable regular non-symlink files; the
+  independent document uses exact bounded canonical JSON and path-free errors.
+- Schema boundary: exact host independence, fixed capability classifications,
+  eight profile lanes, three interruption classes, bounded results/counts,
+  sanitized outcomes, and derived aggregate claims.
+- Fixture: one canonical no-host artifact binds the reviewed incomplete M206
+  fixture and keeps all eight profiles `not_run`.
+- Readiness: criteria 6 and 7 remain unresolved; Windows cleanup remains
+  unimplemented and unauthorized, and admission remains false.
+- Scope: one source-only validator, one reviewed fixture, integration tests,
+  one architecture guard, RFC-0191, one security guide, eight public
+  registrations, and four project records. Runtime/package code, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  remain unchanged.
+- Validation: research and governance baselines pass; intentional red was
+  observed; all 600 Python files were format-clean before review; Ruff and
+  strict Pyright pass; 178 focused architecture/evidence tests and strict docs
+  pass. Complete post-review suites pass 4,254/17 skipped on CPython 3.12.13
+  plus graphics and 4,244/18 skipped on CPython 3.13.13 and 3.14.5. Ten real-
+  wgpu tests, fresh profiles, and both vertical slices pass.
+- Review: the ABA lane was tightened to require the local fixed NTFS stable
+  128-bit host/volume-scoped capability profile; new bounds and symlink
+  regressions were added. The final focused group passes 45 tests with one
+  environment-dependent symlink skip on each supported interpreter. No other
+  actionable source finding remains at this stage.
+- Pre-review packaging: two distributions were byte-identical, installed
+  wheel/scene smokes passed, and two ten-artifact release stages passed complete
+  smoke with zero difference. Record-inclusive packaging and final audit remain
+  in progress.
+- Record-inclusive separator: all 600 Python files are format-clean; Ruff and
+  strict Pyright return zero findings; the exact architecture/evidence group
+  passes 181 tests with one supported-symlink skip; strict docs, both governance
+  modes, and whitespace pass.
+- Record-state packaging: two builds reproduce the 363,972-byte wheel at
+  SHA-256
+  `23c4635ab61bf125978c1fc73d728a05f96219e22847816a9b83be500f38dfaa`
+  and the 2,454,719-byte source archive at SHA-256
+  `5aa0488a9835b0e442eddd9c7bf587b38fe941312ac97295fa62eaf55021de6f`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory is 114 wheel/995 source entries with all six M208 implementation
+  files source-only and zero forbidden wheel or retired-control entry.
+- Scope audit: exactly 18 intended paths remain. Protected runtime, examples,
+  scripts, workflows, metadata, dependency, and lock surfaces have zero diff.
+  Corrected allowlist construction found zero delta; focused service-identity,
+  credential-assignment, and machine-local-path scans have zero match; retired
+  root control metadata remains absent.
+- Cleanup: all 41 M208 test, environment, profile, documentation,
+  distribution, and release scratch targets were repository-confined,
+  ignored, untracked, and recursively reparse-free. Guarded removal revalidated
+  the exact set, and a separate postcondition proves zero target remains.
+  The final separator then passed all 600-file static gates, 181 focused tests
+  with one supported-symlink skip, strict docs, both governance modes, and
+  whitespace. Its two regenerated directories were separately revalidated and
+  removed; zero M208 scratch remains. Commit and publication-safety closeout
+  remain in progress.
+- Pre-commit: corrected quoting proves exact M207 HEAD/tree/parent, the exact
+  18-path allowlist, zero protected diff, only local `main` and neutral M208,
+  configured maintainer identity, expected `0 108` local-main divergence,
+  zero retired root metadata or scratch, clean whitespace, and clean Git
+  connectivity.
+- Initial local commit: DCO commit
+  `ac95e0aaf67188a19ff759811600b8a85a58bf35`, tree
+  `9cef3daa1562fc1b65f2e95de3c9fa90772d7909`, has sole parent exact M207,
+  exactly 18 intended paths, one matching sign-off, consistent author and
+  committer identity, clean revision whitespace, expected `0 109` divergence,
+  a clean worktree, zero scratch, and clean Git connectivity. This record is
+  incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M207 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 109`. Authentication
+  is valid; the repository is public, unarchived, defaults to `main`, and PR
+  #251 remains latest and merged. Publishing would expose absent M100-M207
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M207 Windows independent-host validation contract - locally complete, publication withheld
 
 - Base: fully locally validated M206 DCO commit

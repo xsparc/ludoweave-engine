@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M208/RFC-0191's source-only [Windows independent-host evidence
+  validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md).
+  It validates a bounded canonical host/capability/interruption artifact only
+  when bound to a separately validated M206 companion. The reviewed fixture is
+  entirely `not_run`; criteria 6 and 7 remain unresolved, Windows remains
+  unadmitted, and no harness, runtime authority, workflow, dependency, or
+  hosted allocation is added.
 - Accept M207/RFC-0190's [Windows independent-host validation
   contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md).
   Future criterion 7 evidence must reproduce complete capability profiles on

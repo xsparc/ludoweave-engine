@@ -1229,6 +1229,17 @@ privileged harness is attached to public CI. Criterion 7 remains unresolved,
 Windows remains unadmitted, and no runtime, validator, workflow, secret,
 permission, or hosted allocation is added.
 
+M208's source-only [Windows independent-host evidence
+validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md)
+checks one stable bounded canonical artifact and a separately validated M206
+companion. It recomputes the companion digest, derives criterion 6, and checks
+exact host-independence, capability, profile, interruption, count, outcome, and
+claim relationships. The reviewed fixture is entirely `not_run`; it is not
+execution evidence. The validator performs no collection, native call,
+process launch, network access, account or credential management, filesystem
+mutation, or cleanup and adds no workflow, permission, secret, or hosted
+allocation. Criteria 6 and 7 remain unresolved and Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

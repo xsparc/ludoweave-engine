@@ -320,6 +320,11 @@ attestation, with the same allocation topology.
   that requires observed capability profiles, independent hosts, explicit
   filesystem refusals, and separated interruption classes before criterion 7
   can be resolved.
+- A source-only [Windows independent-host evidence
+  validator](security/windows-cache-cleanup-independent-host-evidence-validator.md)
+  that checks a bounded canonical host artifact only when bound to a separately
+  validated M206 companion, while retaining an all-`not_run` reviewed fixture
+  and false Windows admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

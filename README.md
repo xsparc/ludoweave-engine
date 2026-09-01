@@ -343,8 +343,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > explicit filesystem refusal lanes, and separated interruption classes before
 > criterion 7 can pass. M207 supplies policy only, so Windows remains
 > unadmitted and no hosted check is added.
+> M208 adds a source-only [Windows independent-host evidence
+> validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md).
+> It validates one bounded artifact against a separately validated and digest-
+> bound M206 companion, but the reviewed fixture is entirely `not_run`, no
+> qualifying host execution is claimed, and no hosted allocation is added.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M207 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M208 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

@@ -195,3 +195,4 @@ was adopted.
 - [RFC-0188: adopt Windows cross-principal validation contract](0188-adopt-windows-cross-principal-validation-contract.md)
 - [RFC-0189: adopt Windows cross-principal evidence validator](0189-adopt-windows-cross-principal-evidence-validator.md)
 - [RFC-0190: adopt Windows independent-host validation contract](0190-adopt-windows-independent-host-validation-contract.md)
+- [RFC-0191: adopt Windows independent-host evidence validator](0191-adopt-windows-independent-host-evidence-validator.md)

@@ -1,5 +1,125 @@
 # Current task
 
+## M208 Windows independent-host evidence validator
+
+- **Task:** Add one offline, read-only validator and reviewed incomplete
+  fixture for the M207 evidence envelope, bound to a separately validated M206
+  companion, without running a privileged fixture or admitting Windows cleanup.
+- **Status:** Fully locally validated; pre-commit and publication-safety
+  closeout in progress.
+- **Base:** fully locally validated M207 DCO commit
+  `1b3af35a6b4c2382199e0cdad540b258e0008866`, tree
+  `8e1d5cb86b70e7e4da42f69d044940543fda9c7f`, sole parent exact M206.
+- **Branch:** `release/m208-windows-independent-host-evidence-validator`;
+  exact containment made the local M207 branch name redundant, so only local
+  `main` and active M208 remain.
+
+### M208 acceptance boundary
+
+- Accept exactly one stable bounded canonical independent-host artifact and
+  one separate M206 cross-principal artifact.
+- Validate the M206 companion independently, recompute its digest, and derive
+  criterion 6; never trust a copied criterion claim or unverified binding.
+- Validate at most 32 host records, 128 profile/host results, 4,096 trials,
+  65,536 observations, all eight M207 profile lanes, and all three
+  interruption classes through exact classifications, statuses, totals, and
+  sanitized outcomes.
+- Require at least two passed independent hosts per passed profile, complete
+  physical-persistence interruption evidence for local fixed NTFS, actual
+  engine refusal for refusal lanes, and observed identity reuse plus stale-
+  authorization rejection for the ABA lane.
+- Keep the reviewed fixture all `not_run`, criterion 7 false, and Windows
+  admission false. A complete synthetic validation proves claim relationships
+  only and is not execution evidence.
+- Preserve runtime, package, workflow, dependency, version, native, process,
+  account, credential, network, filesystem-mutation, and hosted-allocation
+  boundaries.
+
+### Development evidence so far
+
+- Exact M207 history, clean worktree, two-branch inventory, absent retired
+  control metadata, current test state, and both external governance modes
+  were audited before branching.
+- Current RFC 8259/RFC 8785, Python stable-file primitives, and Microsoft
+  host-scoped file-identity guidance were reviewed. They support strict
+  canonical/schema validation, M206 companion binding, and sanitized scoped
+  identities without a new format or authority.
+- Neutral M208 starts from exact M207. The redundant local M207 branch name was
+  removed while its commit remains the exact parent.
+- The intentional red failed only because the M208 validator and fixture were
+  absent. The source-only validator, canonical all-`not_run` fixture,
+  integration coverage, architecture guard, RFC-0191, security guide, and
+  eight public registrations are now implemented.
+- Focused Ruff and strict Pyright pass. The corrected M208 integration and
+  architecture group passes 45 tests with one environment-dependent symlink
+  skip on each supported interpreter, including a synthetic complete pair,
+  invalid companion and digest substitution, exact classification/claim
+  mutations, canonical and oversized input, path-free errors, protected
+  surfaces, and no-authority checks.
+- Complete post-review suites pass 4,254 tests with 17 skips on CPython 3.12.13
+  plus graphics and 4,244 tests with 18 skips on CPython 3.13.13 and 3.14.5.
+  Ten real-wgpu tests, fresh profiles, Clockwork Arena, and Agent World Builder
+  reproduce their established identities.
+- Findings-first review tightened the ABA lane to the admitted local fixed
+  NTFS stable 128-bit host/volume-scoped capability profile. Oversized-file,
+  host-count, symlink, and ABA-scope regressions now cover the corrected
+  boundary. No runtime, workflow, dependency, or hosted allocation changed.
+- The record-inclusive 45-package graphics environment, all 600-file static
+  gates, 181 architecture/evidence tests with one supported-symlink skip,
+  strict docs, both governance modes, and whitespace pass.
+- Two record-state distributions reproduce a 363,972-byte pure wheel and a
+  2,454,719-byte source archive. Installed wheel/scene and two complete ten-
+  artifact release stages pass; both stages are byte-identical. Inventory is
+  114 wheel and 995 source entries with all six M208 implementation artifacts
+  source-only and zero forbidden wheel or retired-control entry.
+- The corrected scope audit confirms exactly 18 intended paths, zero protected
+  runtime/workflow/metadata/lock difference, no service identity, credential
+  assignment, machine-local path, or retired root metadata, and clean
+  whitespace.
+- A read-only audit proved all 41 M208 scratch targets repository-confined,
+  ignored, untracked, and recursively reparse-free. Exact guarded removal
+  revalidated the unchanged target set; a separate postcondition confirms zero
+  M208 scratch remains.
+- The final post-cleanup separator keeps all 600 Python files format-clean;
+  Ruff and strict Pyright pass; 181 architecture/evidence tests pass with one
+  supported-symlink skip; strict docs, both governance modes, and whitespace
+  pass. Its two regenerated scratch directories were independently revalidated
+  and removed; zero M208 scratch remains.
+- The corrected pre-commit audit confirms exact M207 HEAD/tree/parent, the
+  18-path allowlist, zero protected diff, only local `main` plus neutral M208,
+  configured maintainer identity, expected `0 108` local-main divergence,
+  absent retired root metadata, zero scratch, clean whitespace, and clean Git
+  object connectivity.
+
+### Commit and publication result
+
+- Initial DCO commit `ac95e0aaf67188a19ff759811600b8a85a58bf35`, tree
+  `9cef3daa1562fc1b65f2e95de3c9fa90772d7909`, has exact M207 as its sole
+  parent, exactly 18 intended paths, one matching sign-off, consistent
+  maintainer identity, clean revision whitespace, expected `0 109` local-main
+  divergence, a clean worktree, zero scratch, and clean Git connectivity. This
+  factual record is incorporated by one closeout amendment.
+- A fresh pruned fetch and direct hosted-head query leave public `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`. M207 is absent, M99 is
+  present, only remote `main` exists, and hosted divergence is `0 109`.
+  GitHub authentication is valid; the repository is public, unarchived,
+  defaults to `main`, and PR #251 remains the latest merged PR.
+- Publishing M208 would expose absent M100-M207 prerequisites. No push, PR,
+  hosted allocation, tag, release, or package publication occurs.
+
+### Publication boundary
+
+- Publication remains authorized only after hosted `main` gains the complete
+  prerequisite ancestry and a fresh safety gate passes.
+
+### Explicit non-scope
+
+- No qualifying Windows run, independent-host collection, physical power-loss
+  execution, criterion 6 or 7 resolution, Windows admission, privileged
+  harness, coordinator, process launch, native API, cleanup implementation,
+  account or credential management, network access, dependency, version,
+  workflow, permission, hosted allocation, release, or publication.
+
 ## M207 Windows independent-host validation contract
 
 - **Task:** Define the exact independent-host, capability-profile,

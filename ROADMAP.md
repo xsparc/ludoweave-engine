@@ -3609,6 +3609,33 @@ registrations. It adds no harness, validator, runtime API, command, process
 launch, filesystem mutation, native call, dependency, version, workflow,
 permission, credential, or hosted execution path; no hosted check is added.
 
+## M208 Windows independent-host evidence validator
+
+M208 starts from fully locally validated M207 commit
+`1b3af35a6b4c2382199e0cdad540b258e0008866`. It adopts the source-only
+[Windows independent-host evidence
+validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md)
+under RFC-0191.
+
+The validator reads one bounded canonical independent-host artifact and one
+separate M206 artifact. It independently validates the M206 companion, checks
+the exact computed digest binding, and derives criterion 6 rather than trusting
+a copied claim. It then validates fixed host independence, capability,
+profile, interruption, result-count, safety-outcome, and criterion-7
+relationships and emits one sanitized path-free summary.
+
+The reviewed fixture contains no host records and all eight profiles are
+`not_run`. It is parser and false-claim evidence only. No qualifying
+cross-principal, independent-host, or physical-interruption run has occurred;
+criteria 6 and 7 remain unresolved. Windows cleanup remains unimplemented and
+unauthorized.
+
+M208 adds one source-only validator, one reviewed fixture, integration tests,
+one architecture guard, RFC-0191, one security decision, and public
+registrations. It adds no runtime API, command, host harness, process launch,
+filesystem mutation, native call, dependency, version, workflow, permission,
+credential, or hosted execution path; no hosted check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

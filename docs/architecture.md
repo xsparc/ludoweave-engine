@@ -5399,6 +5399,28 @@ No harness, validator, runtime command, process launch, filesystem mutation,
 native call, dependency, workflow, permission, credential, or hosted allocation
 is added.
 
+## M208 Windows independent-host evidence validator
+
+M208 adds the source-only [Windows independent-host evidence
+validator](security/windows-cache-cleanup-independent-host-evidence-validator.md).
+The validator is offline test tooling, not runtime composition. It accepts one
+stable independent-host artifact and a separate M206 companion, validates the
+companion through the existing M206 boundary, recomputes its digest, and
+derives criterion 6 before evaluating criterion 7.
+
+The independent artifact contains only bounded canonical classifications,
+booleans, counts, statuses, ordinals, and digests. Exact host/profile result
+relationships enforce the M207 matrix without allowing a filesystem handle,
+native adapter, machine identifier, path, principal, credential, coordinator,
+or collector into the engine API or canonical world state. The reviewed
+fixture contains all eight profiles as `not_run`, contains no hosts, and makes
+no execution claim.
+
+M208 does not resolve criterion 6 or 7. Windows stays unadmitted and cleanup
+remains unimplemented and unauthorized. No runtime command, harness, process
+launch, filesystem mutation, native call, dependency, workflow, permission,
+credential, or hosted allocation is added.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
