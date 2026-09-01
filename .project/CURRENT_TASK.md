@@ -1,5 +1,133 @@
 # Current task
 
+## M211 Windows independent-host process-containment probe
+
+- **Task:** Exercise one test-only, offline Windows suspended-launch and Job
+  Object containment sequence for M209's future fixed participant tree without
+  implementing a privileged collector or admitting Windows cleanup.
+- **Status:** Fully locally validated and DCO-committed; publication is withheld
+  because hosted `main` lacks the M100-M210 prerequisite stack.
+- **Base:** fully locally validated M210 DCO commit
+  `2aa04dd2c6c259e2d8c5295f7ac1ca65df04f6b4`, tree
+  `73983d6e0c17f4ccd5605e59f220058007fe5fae`, with sole parent exact M209.
+- **Branch:**
+  `release/m211-windows-independent-host-process-containment-probe`; exact
+  containment made the local M210 branch name redundant, so only local `main`
+  and active M211 remain.
+
+### M211 acceptance boundary
+
+- Create one unnamed Job Object with kill-on-last-close and no breakaway;
+  create the fixed root suspended, assign its retained handle before any
+  fixture instruction, then resume and close the retained thread handle.
+- Admit exactly one private inherited output handle, accept only two bounded
+  canonical readiness records, retain and verify root and descendant process
+  handles, and require exact two-process Job membership.
+- Prove both fixed Job-scoped termination with settled accounting and
+  last-handle-close fail-safe settlement under bounded native waits.
+- Treat access-denied nested Job assignment as an explicit unsupported-host
+  skip; add no PID-only, unsuspended, shell, breakaway, or widened-membership
+  fallback.
+- Keep the probe Windows-only, test-only, offline, fixed-purpose, and outside
+  the product runtime, CLI, package payload, cleanup authority, collection
+  authority, admission decision, and CI allocation.
+
+### Development evidence so far
+
+- Exact M210 history and clean containment were confirmed. The focused M210
+  handoff passed 29 tests with one supported-symlink skip; both governance
+  modes passed with zero findings.
+- Current Microsoft and GitHub primary guidance supports suspended creation,
+  retained process/thread identity, inherited no-breakaway Job containment,
+  kill-on-last-close, bounded process waits, and exclusion of public
+  self-hosted collection. The current controller is already Job-contained, so
+  incompatible nested assignment remains an explicit skip rather than a
+  weaker fallback.
+- Neutral M211 starts from exact M210. The redundant local M210 branch name was
+  removed while its commit remains the exact parent. The intentional red
+  failed its single selected check only because the five probe/RFC/security
+  artifacts and public registrations were absent.
+- The final focused architecture and live integration group passes 14 tests.
+  Development corrected native integer-handle normalization, text-mode CRLF,
+  virtual-environment launcher identity, and unexpected console-host
+  membership; the final direct `pythonw.exe` tree contains exactly the retained
+  root and descendant.
+- Initial whole-tree gates are clean across 607 Python files. Ruff and strict
+  Pyright report zero findings; the architecture suite passes 2,216 tests with
+  one supported-symlink skip; strict docs and whitespace pass.
+- Complete isolated all-group graphics suites pass identical totals of 4,311
+  tests with 19 skips on CPython 3.12.13, 3.13.13, and 3.14.5.
+- Ten real-wgpu tests, fresh two-/three-workload base and graphics profiles,
+  all eight profile-schema tests, Null/wgpu Clockwork Arena, and Agent World
+  Builder pass and reproduce their established deterministic identities.
+- Two distributions are byte-identical. Installed-wheel and scene smokes pass;
+  two complete ten-artifact release stages pass with zero difference. The
+  114-entry wheel contains no M211 material; all five M211 implementation and
+  decision files are source-only in the 1,009-entry source archive.
+- The record-inclusive separator leaves the unchanged lock and 45-package
+  graphics environment clean, all 607-file static gates clean, 2,216
+  architecture tests with one skip, strict docs, both governance modes, and
+  whitespace passing.
+- Record-state builds reproduce the unchanged 364,279-byte wheel and identical
+  2,500,060-byte source archives. Installed smokes and two complete
+  ten-artifact release stages pass with zero byte difference; inventory remains
+  114 wheel/1,009 source entries with the five M211 files source-only.
+- Findings-first review leaves exactly 17 intended paths, zero protected
+  runtime/package/example/script/benchmark/workflow/metadata/dependency/lock
+  diff, and zero added development-tool identity, credential, machine-path,
+  debug-marker, or retired-control-path match. No actionable correctness,
+  containment, architecture, security, compatibility, documentation, package,
+  or CI-allocation finding remains.
+- The first recursive scratch audit was access-denied inside pytest-owned
+  directories and made no deletion decision. Its exact access-enabled rerun
+  proved all 25 M211 scratch targets repository-confined, ignored, untracked,
+  and reparse-free. Guarded removal revalidated the unchanged set immediately
+  before removing it and left zero M211 scratch target.
+- The post-cleanup separator leaves all 607-file static gates clean, the exact
+  metadata/M210/M211 group at 48 passes with one supported-symlink skip, strict
+  docs, both governance modes, and whitespace passing. Its two regenerated
+  scratch directories were independently revalidated and removed; zero M211
+  scratch remains.
+- The pre-commit audit proves exact M210 HEAD/tree/parent, the exact 17-path
+  allowlist, zero protected diff, only local `main` plus neutral M211,
+  configured maintainer identity, expected `0 111` local-main divergence,
+  zero sensitive added-line or scratch match, clean whitespace, and clean Git
+  object connectivity.
+
+### Explicit non-scope
+
+- No privileged or independent-host collector, production fixture, external
+  host action, cross-principal execution, VM or physical power action,
+  credential lifecycle, evidence admission, filesystem cleanup, runtime or
+  package API, command, dependency, workflow, hosted allocation, tag, release,
+  or package publication.
+- Criteria 6 and 7 remain unresolved. Windows remains unadmitted, and cleanup
+  remains unimplemented and unauthorized.
+
+### Publication boundary
+
+- Initial DCO commit `798f397675a441c05af746f05cb561714c2e3f34`,
+  tree `ffd1520e6e4f889c9897ae322a0b08871d45bd23`, has sole parent exact
+  M210, exactly 17 intended paths, one matching sign-off, clean revision
+  whitespace, expected `0 112` local-main divergence, clean worktree, zero
+  scratch, and clean Git connectivity. This factual record is incorporated by
+  one closeout amendment.
+- Closeout commit `ef5fe47191dabc95bd9ffca94a5f071e8832eebc`,
+  tree `b516b68e46799cdf5bf6e64eb6567d462527e6f1`, retains exact M210 as
+  sole parent, one matching sign-off, exact 17-path scope, clean worktree,
+  zero scratch, clean revision whitespace, expected `0 112` local-main
+  divergence, and clean object connectivity. This hosted-safety record is
+  incorporated by one final evidence-only amendment.
+- A fresh pruned fetch and direct hosted-head query leave public `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M210 is absent, M99 is
+  present, only remote `main` exists, and hosted divergence is `0 112`.
+  Authentication is valid; the repository is public, unarchived, defaults to
+  `main`, and PR #251 remains latest and merged.
+- Publishing M211 would expose absent M100-M210 prerequisites. No push, PR,
+  hosted allocation, tag, release, or package publication occurs. Automatic
+  publication remains authorized only after hosted `main` gains the complete
+  prerequisite ancestry and a fresh safety gate passes.
+
 ## M210 Windows independent-host collection-plan validator
 
 - **Task:** Add one offline, read-only source validator and reviewed incomplete

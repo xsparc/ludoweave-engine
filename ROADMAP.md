@@ -3693,6 +3693,35 @@ secret, or hosted execution path; no hosted check is added. No qualifying run
 has occurred, criteria 6 and 7 remain unresolved, Windows remains unadmitted,
 and cleanup remains unimplemented and unauthorized.
 
+## M211 Windows independent-host process-containment probe
+
+M211 starts from fully locally validated M210 commit
+`2aa04dd2c6c259e2d8c5295f7ac1ca65df04f6b4`. It adopts a test-only
+[Windows independent-host process-containment
+probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md)
+under RFC-0194.
+
+The probe creates one unnamed kill-on-close no-breakaway Job Object, launches
+one fixed direct interpreter suspended with exactly one inherited output handle,
+assigns and verifies its retained process handle before resume, and admits one
+fixed direct descendant. It requires exact two-process membership, retains both
+process handles, and rejects an unexpected helper process or incompatible
+nested-job assignment rather than widening authority or falling back to PID
+termination.
+
+One current Windows host proves bounded explicit Job termination with exact
+test-only exit codes and zero active members, plus last-job-handle fail-safe
+settlement. These observations cover only the native containment primitive for
+M209's future `forced_process_termination` action. They do not collect M207
+evidence, provision independent hosts, issue M209 authority, exercise a cache
+fixture, control VM or physical power, or satisfy criteria 6 or 7.
+
+M211 adds no runtime API, CLI or MCP command, production harness, arbitrary
+process launch, credential or account lifecycle, filesystem mutation, cleanup
+authority, dependency, version, workflow, permission, secret, public runner, or
+hosted execution path; no hosted check is added. Windows remains unadmitted and
+cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

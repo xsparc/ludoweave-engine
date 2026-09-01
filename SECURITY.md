@@ -1264,6 +1264,19 @@ runtime command, privileged harness, process or power control, account or
 credential lifecycle, filesystem mutation, network access, cleanup authority,
 workflow, permission, secret, or hosted allocation; Windows remains unadmitted.
 
+M211's test-only [Windows independent-host process-containment
+probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md)
+creates one fixed participant suspended, assigns its retained process handle to
+an unnamed kill-on-close no-breakaway Job Object before resume, and retains and
+validates one fixed descendant handle. Exact Job membership, bounded
+`TerminateJobObject` settlement, zero active members, and last-job-handle
+fail-safe settlement are observed on one current Windows host. PID-only or
+unsuspended fallback, extra processes, arbitrary commands, public runners, and
+network control remain excluded. This is not independent-host or qualifying
+evidence and adds no collector, cleanup authority, credential lifecycle,
+workflow, hosted allocation, or Windows admission; criteria 6 and 7 remain
+unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

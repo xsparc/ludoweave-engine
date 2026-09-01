@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M211/RFC-0194's test-only [Windows independent-host process-containment
+  probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md).
+  It proves suspended assignment before execution, exact no-breakaway Job
+  membership, retained root/descendant identity, bounded explicit termination,
+  and kill-on-last-close settlement on one current Windows host. It adds no
+  collector, cleanup authority, admission, workflow, dependency, or hosted
+  allocation.
 - Add M210/RFC-0193's source-only [Windows independent-host collection-plan
   validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md).
   It checks one stable bounded canonical plan, exact closed matrices, derived

@@ -5467,6 +5467,29 @@ access, cleanup authority, dependency, workflow, permission, secret, hosted
 allocation, or qualifying evidence. Criteria 6 and 7 remain unresolved, Windows
 stays unadmitted, and cleanup remains unimplemented and unauthorized.
 
+## M211 Windows independent-host process-containment probe
+
+M211 adds the test-only [Windows independent-host process-containment
+probe](security/windows-cache-cleanup-independent-host-process-containment-probe.md).
+It remains below product composition and above no runtime dependency. One fixed
+controller owns an unnamed no-breakaway Job Object, a bounded output pipe, and
+retained native root and descendant process handles.
+
+The root is created suspended with a one-handle startup attribute, assigned and
+verified before resume, and launched through the direct GUI interpreter so a
+virtual-environment redirector or console helper cannot replace the retained
+identity. The root creates one fixed direct descendant. Exact Job membership
+must equal those two retained identities. Explicit termination and last-handle
+close both settle within bounded waits; the explicit path reaches zero active
+members before the Job handle closes.
+
+These native calls exist only in the test fixture and integration probe. They
+are not an engine adapter, collector, public command, or authority surface. M211
+does not provision hosts, handle credentials, collect evidence, control power,
+mutate a filesystem fixture, satisfy criteria 6 or 7, or admit Windows cleanup.
+It adds no runtime/package dependency, workflow, permission, secret, or hosted
+allocation.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

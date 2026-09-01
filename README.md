@@ -358,8 +358,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > It checks one bounded sanitized pre-run structure, exact closed matrices, and
 > false authority/admission claims. The reviewed fixture is all `not_run`; no
 > privileged harness, qualifying run, or hosted allocation is added.
+> M211 adds a test-only [Windows independent-host process-containment
+> probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md).
+> One current host proves suspended Job assignment before fixture execution,
+> exact root/descendant membership, retained process identity, and bounded
+> termination/last-close settlement. It is not independent-host collection,
+> cleanup authority, qualifying evidence, Windows admission, or a hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M210 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M211 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

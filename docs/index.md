@@ -334,6 +334,11 @@ attestation, with the same allocation topology.
   validator](security/windows-cache-cleanup-independent-host-collection-plan-validator.md)
   that checks one bounded sanitized all-`not_run` plan, exact closed matrices,
   and false authority/admission claims without adding a privileged harness.
+- A test-only [Windows independent-host process-containment
+  probe](security/windows-cache-cleanup-independent-host-process-containment-probe.md)
+  that proves suspended assignment, exact retained root/descendant Job
+  membership, and bounded termination settlement on one current host without
+  collecting evidence or admitting Windows cleanup.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M211 Windows independent-host process-containment probe
+
+RFC-0194 accepts one direction-preserving, test-only current-host probe of the
+future private harness's process-containment primitive. The accepted sequence
+uses suspended fixed-interpreter creation, retained-handle Job assignment before
+resume, no breakaway, one private output handle, one fixed inherited
+descendant, exact two-member Job accounting, and both explicit termination and
+kill-on-last-close settlement.
+
+This result does not authorize a collector or cleanup action and is not
+independent-host, cross-principal, interruption, durability, recovery, or
+admission evidence. Incompatible nested Job assignment remains an explicit
+unsupported-host skip; there is no PID-only, ordinary launch, breakaway,
+unexpected-member, shell, or public-runner fallback.
+
+Deferred decisions remain the separately reviewed private harness, disposable
+offline host cohort, credential and authority custody, external VM power
+boundary, operator-only physical interruption, qualifying collection,
+criteria 6 and 7 resolution, and Windows cleanup admission.
+
 ## M210 Windows independent-host collection-plan validator
 
 RFC-0193 accepts a direction-preserving source-only validator for one sanitized
