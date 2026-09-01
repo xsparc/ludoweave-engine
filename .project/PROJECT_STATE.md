@@ -1,5 +1,91 @@
 # Project State
 
+## M217 Windows retained launch-source remote-debug exclusion - locally complete, publication withheld
+
+- Base: exact M216 DCO commit
+  `c10fd5d6ac95f846dd601b30290aadefa8bf2e4a`, tree
+  `501ada51735810995b7e81af0d8c6a5a74ecde4a`, with sole parent exact M215.
+- Branch hygiene: neutral `release/m217-windows-remote-debug-exclusion-probe`
+  starts from exact M216; the redundant local M216 branch name is removed.
+- Direction: RFC-0200 accepts one direction-preserving, current-host,
+  test-only remote-debug exclusion composition with no attachment, mutation,
+  collection, cleanup, or admission authority increase.
+- Boundary: the fixed direct participant adds exact
+  `-X disable_remote_debug`; every M216 retained source/access, token, session,
+  DACL, image, protocol, settlement, and close observation remains required.
+  Only Python 3.14 gives the option security meaning; 3.12/3.13 are command and
+  lifecycle compatibility observations.
+- Scope: one Windows integration probe, one architecture guard, RFC-0200, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, fixtures, examples, scripts, benchmarks, workflows,
+  metadata, dependencies, lock, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused architecture/live 19/19 on CPython 3.12; 620-file static
+  gates clean; architecture plus live M217 2,294/one skipped; strict docs,
+  governance, and whitespace pass; complete suites 4,453/19 skipped on each
+  CPython 3.12, 3.13, and 3.14; real wgpu, profiles, and vertical slices pass.
+  One recursive scoped-composer defect was observed and corrected before the
+  passing gates.
+- Packaging: initial builds reproduce the 364,868-byte pure wheel at SHA-256
+  `f3357ec5586b90acfab8b33abf5390bd935bcae1bbf02fb31526c3b93e2ce634`
+  and 2,573,360-byte source archive at SHA-256
+  `670d707a5a8cf873c1b70092cb08a84889e555b6ebd0ed58695bfa646cb4f286`;
+  all four M217 files are source-only and zero enters the 114-entry wheel. Two
+  ten-artifact release stages are byte-identical.
+- Review: exactly 16 intended paths; zero protected runtime/package/fixture/
+  example/script/benchmark/workflow/metadata/dependency/lock diff; exact M216
+  files and protected trees remain hash-stable. The test patch restores M215's
+  composer, all inherited handle/process/settlement ownership remains frozen,
+  no attachment/injection/process-memory or mutation operation is introduced,
+  and public claims distinguish 3.14 exclusion meaning from 3.12/3.13
+  compatibility. No actionable correctness, security, architecture,
+  documentation, package-boundary, or allocation finding remains.
+- Record separator: all 620 files remain format-clean; Ruff and strict Pyright
+  report zero findings; architecture plus live M217 passes 2,294 tests with one
+  inherited skip; strict docs, static and dated-strict governance, and
+  whitespace pass.
+- Record state: builds reproduce the unchanged 364,868-byte wheel and
+  identical 2,574,415-byte source archives at SHA-256
+  `e803d66d160ead455d6c3cdd78d37b12b8b32c669f25d3d0c89b58347891f9c1`.
+  Installed-wheel and scene smokes pass; both ten-artifact release rehearsals
+  pass with zero byte difference; the source-only package boundary is
+  unchanged.
+- Cleanup: all 21 initial M217 generated test/report/profile/docs/distribution/
+  release targets and 48,902 descendants were proven repository-confined,
+  ignored, untracked, and recursively reparse-free before exact removal. The
+  regenerated docs directory and 760 descendants were independently proven
+  safe before removal. Zero M217 scratch remains; older outputs and all
+  inaccessible M212 roots were untouched.
+- Final separator: all 620 files remain format-clean; Ruff and strict Pyright
+  report zero findings; the exact M217 boundary passes 19 tests; strict docs,
+  dated-strict governance, and whitespace pass.
+- Pre-commit audit: HEAD is exact M216 with exact tree and sole M215 parent;
+  exactly 16 intended paths are present; only local `main` plus active neutral
+  M217 exist; divergence is `0 117`; maintainer identity is configured;
+  protected surfaces, retired root metadata, M217 scratch, whitespace
+  findings, and object-connectivity findings are all zero.
+- Initial commit: DCO object
+  `d12f386c060aa44e52546a02bbb1ab5c4dcac218`, tree
+  `cebc30dd21f72df8e441ff3c16ea12255e4f444f`, has sole parent exact M216,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 118`
+  divergence. This object audit is incorporated by the closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M216 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 118`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M216
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+- Admission: same-process, cooperative, current-host composition only. No
+  remote-attack attempt occurred. Source provenance, imported-module binding,
+  hostile-process behavior, distinct-principal and independent-host proof,
+  criteria 6 and 7, cleanup implementation, and Windows admission remain
+  unresolved.
+- Remaining: hosted integration of the prerequisite stack before this branch
+  can be safely pushed or proposed.
+
 ## M216 Windows retained launch-source access refusal - locally complete, publication withheld
 
 - Base: exact M215 DCO commit

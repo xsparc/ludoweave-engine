@@ -2,6 +2,28 @@
 
 No architecture decision is currently blocked.
 
+## M217 Windows retained launch-source remote-debug exclusion probe
+
+RFC-0200 accepts one direction-preserving, test-only composition of
+`-X disable_remote_debug` with the exact frozen M212-M216 retained
+process/source boundary. M215's original canonical pipe-name validator remains
+authoritative; a scoped composer adds only the exclusion option during process
+creation and is restored immediately afterward. The full M216 access-refusal,
+identity, protocol, settlement, and final-snapshot lifecycle remains required.
+
+Python 3.14 gives the option its documented PEP 768 security meaning. Python
+3.12 and 3.13 accept arbitrary `-X` names, so passing observations there are
+limited to launch and lifecycle compatibility. The probe performs no remote
+attachment, injection, process-memory access, fixture mutation, collection, or
+cleanup and adds no runtime/package surface, workflow, public runner, or hosted
+allocation.
+
+Deferred decisions remain adversarial process-control evidence, trusted
+source-checkout/commit provenance, imported-module binding, hostile ABA/race
+evidence, the distinct-principal private harness, account and credential
+custody, a disposable offline host cohort, qualifying collection, criteria 6
+and 7 resolution, and Windows cleanup admission.
+
 ## M216 Windows retained launch-source access-refusal probe
 
 RFC-0199 accepts one direction-preserving, test-only current-host observation

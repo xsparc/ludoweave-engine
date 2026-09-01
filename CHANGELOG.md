@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M217/RFC-0200's test-only [Windows retained launch-source remote-debug
+  exclusion
+  probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md).
+  It composes exact `-X disable_remote_debug` startup with the frozen
+  retained-source boundary and completes the full access-refusal lifecycle
+  without attempting remote attachment or injection. It adds no runtime,
+  cleanup authority, admission, workflow, or hosted allocation.
 - Add M216/RFC-0199's test-only [Windows retained launch-source access-refusal
   probe](docs/security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md).
   It observes exact write/delete sharing refusal before launch, after

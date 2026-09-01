@@ -5617,6 +5617,30 @@ or Windows admission. M216 adds no runtime, package, dependency, workflow,
 permission, public runner, or hosted allocation; criteria 6 and 7 remain
 unresolved.
 
+## M217 Windows retained launch-source remote-debug exclusion probe
+
+M217 adds the test-only [Windows retained launch-source remote-debug exclusion
+probe](security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md).
+It composes only with the exact frozen M212-M216 test boundary and introduces
+no runtime dependency. M215's canonical pipe-name validation is reused, after
+which a scoped test composer launches the same direct interpreter with exact
+arguments `-I -B -X disable_remote_debug -`.
+
+The existing suspended-process, three-handle inheritance, Job Object,
+client/session/DACL, retained token, executable-image, source stability,
+access-refusal, challenge/release, settlement, and post-settlement observations
+remain mandatory. Python 3.14 gives the exclusion option security meaning;
+Python 3.12 and 3.13 establish only command compatibility because their
+arbitrary `-X` handling predates the remote-debug interface.
+
+The probe performs no remote attachment, injection, process-memory access,
+content mutation, or namespace mutation. It does not prove hostile-process or
+privileged bypass resistance, source-commit provenance, imported-module
+binding, distinct-principal or independent-host behavior, collection, cleanup
+authority, or Windows admission. M217 adds no runtime, package, dependency,
+workflow, permission, public runner, or hosted allocation; criteria 6 and 7
+remain unresolved.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

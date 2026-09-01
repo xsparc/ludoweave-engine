@@ -105,6 +105,7 @@ nav:
   - Windows retained process-image binding probe: security/windows-cache-cleanup-retained-process-image-binding-probe.md
   - Windows retained launch-source binding probe: security/windows-cache-cleanup-retained-launch-source-binding-probe.md
   - Windows retained launch-source access-refusal probe: security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md
+  - Windows retained launch-source remote-debug exclusion probe: security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -310,6 +311,7 @@ nav:
       - RFC-0197 - Probe Windows retained process-image binding: rfcs/0197-probe-windows-retained-process-image-binding.md
       - RFC-0198 - Probe Windows retained launch-source binding: rfcs/0198-probe-windows-retained-launch-source-binding.md
       - RFC-0199 - Probe Windows retained launch-source access refusal: rfcs/0199-probe-windows-retained-launch-source-access-refusal.md
+      - RFC-0200 - Probe Windows retained launch-source remote-debug exclusion: rfcs/0200-probe-windows-retained-launch-source-remote-debug-exclusion.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -3870,6 +3870,35 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M217 Windows retained launch-source remote-debug exclusion probe
+
+M217 starts from fully locally validated M216 commit
+`c10fd5d6ac95f846dd601b30290aadefa8bf2e4a`. It adopts a test-only
+[Windows retained launch-source remote-debug exclusion
+probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md)
+under RFC-0200.
+
+The probe validates the canonical pipe name through M215's frozen composer and
+launches the same direct interpreter with exact arguments
+`-I -B -X disable_remote_debug -`. A scoped test patch changes only process
+creation; the full M216 retained-source access-refusal, identity, protocol,
+settlement, and final snapshot boundary remains required.
+
+Python 3.14 gives the option its documented remote-debug exclusion meaning.
+Python 3.12 and 3.13 accept arbitrary `-X` names, so those runs establish only
+launch and lifecycle compatibility. The probe performs no remote attachment,
+code injection, process-memory access, content mutation, or namespace mutation.
+It does not prove hostile-process behavior, privileged bypass resistance,
+source-commit provenance, imported-module binding, distinct-principal or
+independent-host evidence, fixture mutation, collection, criteria 6 or 7, or
+Windows cleanup admission.
+
+M217 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

@@ -204,3 +204,4 @@ was adopted.
 - [RFC-0197: probe Windows retained process-image binding](0197-probe-windows-retained-process-image-binding.md)
 - [RFC-0198: probe Windows retained launch-source binding](0198-probe-windows-retained-launch-source-binding.md)
 - [RFC-0199: probe Windows retained launch-source access refusal](0199-probe-windows-retained-launch-source-access-refusal.md)
+- [RFC-0200: probe Windows retained launch-source remote-debug exclusion](0200-probe-windows-retained-launch-source-remote-debug-exclusion.md)

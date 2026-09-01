@@ -397,8 +397,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > phases, then proves both access classes settle after retained-handle close
 > without mutating the source. It is not hostile-process, provenance,
 > collection, cleanup, admission, or hosted evidence.
+> M217 adds a test-only [Windows retained launch-source remote-debug exclusion
+> probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md).
+> It composes exact `-X disable_remote_debug` startup with the frozen retained
+> process/source boundary and completes the same access-refusal lifecycle.
+> It performs no remote attachment or injection and adds no runtime,
+> collection, cleanup, admission, workflow, or hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M216 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M217 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

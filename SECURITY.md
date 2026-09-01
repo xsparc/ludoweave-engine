@@ -1337,6 +1337,17 @@ not hostile-process, source-provenance, collection, cleanup-authority, or
 Windows-admission evidence; criteria 6 and 7 remain unresolved and no hosted
 check is added.
 
+M217's test-only [Windows retained launch-source remote-debug exclusion
+probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md)
+adds exact `-X disable_remote_debug` startup to the same direct interpreter and
+complete frozen M212-M216 boundary. On Python 3.14 the option has its documented
+remote-debug exclusion meaning; Python 3.12 and 3.13 provide launch/lifecycle
+compatibility only. The probe performs no remote attachment, code injection,
+process-memory access, content mutation, or namespace mutation. It is not
+hostile-process, source-provenance, collection, cleanup-authority, or
+Windows-admission evidence; criteria 6 and 7 remain unresolved and no hosted
+check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

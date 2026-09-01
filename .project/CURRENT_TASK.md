@@ -1,5 +1,106 @@
 # Current task
 
+## M217 Windows retained launch-source remote-debug exclusion probe
+
+- **Task:** Compose exact `-X disable_remote_debug` startup with the frozen
+  M212-M216 Windows retained process/source boundary without attempting remote
+  attachment, injection, collection, cleanup, or Windows admission.
+- **Status:** Direction research, implementation, complete local validation,
+  findings-first review, record-state packaging/release rehearsal, guarded
+  cleanup, closeout, and the local DCO commit are complete. Publication is
+  withheld because hosted `main` lacks the M100-M216 prerequisite stack.
+- **Base:** exact fully locally validated M216 DCO commit
+  `c10fd5d6ac95f846dd601b30290aadefa8bf2e4a`, tree
+  `501ada51735810995b7e81af0d8c6a5a74ecde4a`, with sole parent exact M215.
+- **Branch:** `release/m217-windows-remote-debug-exclusion-probe`; exact
+  containment made the local M216 branch name redundant, so only local `main`
+  and active M217 remain.
+
+### M217 acceptance boundary
+
+- Retain M215's canonical pipe-name validator and compose exact fixed direct
+  `pythonw.exe -I -B -X disable_remote_debug - <pipe>` only for participant
+  process creation.
+- Preserve M216's three-phase write/delete access refusal, retained token,
+  session/DACL, executable-image, source-stability, release, settlement,
+  post-settlement access, and zero-owned-handle boundary.
+- Treat the option as remote-debug exclusion evidence only on Python 3.14;
+  Python 3.12/3.13 establish command and lifecycle compatibility only.
+- Do not attempt remote attachment, code injection, process-memory access,
+  source mutation, namespace mutation, or an enabled/disabled attack pair.
+- Protect exact M216 evidence plus every runtime, package, fixture, example,
+  script, benchmark, workflow, dependency, lock, metadata, and version surface.
+- Keep source provenance, imported-module binding, hostile-process behavior,
+  distinct-principal and independent-host proof, collection, cleanup, criteria
+  6/7, and Windows admission unresolved. Add zero GitHub Actions jobs or hosted
+  allocation.
+
+### Validation evidence so far
+
+- The exact M216 focused handoff passed 24 tests; static and dated-strict
+  governance passed with zero findings before the branch was created.
+- The intentional architecture red recorded eight absent-artifact/registration
+  failures and two frozen-boundary passes. The first complete live run exposed
+  recursion when the scoped composer consulted its patched module binding; a
+  retained reference to M215's original validator corrected the composition.
+- The exact M217 architecture/live group passes all 19 tests on CPython 3.12.
+  Focused Ruff and strict Pyright report zero findings; strict docs build with
+  only the known Material notice; whitespace passes.
+- Current primary-source research supports the exact 3.14 exclusion spelling,
+  narrow 3.12/3.13 compatibility claim, unchanged Windows handle/share
+  boundary, and zero added public CI allocation.
+- All 620 Python files are format-clean; Ruff and strict Pyright report zero
+  findings; architecture plus the live M217 probe passes 2,294 tests with one
+  inherited capability skip; strict docs, both governance modes, and
+  whitespace pass.
+- Complete isolated all-group graphics suites pass 4,453 tests with 19 skips
+  on each CPython 3.12, 3.13, and 3.14. Ten real-wgpu tests, both one-repeat
+  profile contracts, eight profile tests, two Null Clockwork repeats, wgpu
+  Clockwork, and Agent World Builder pass.
+- Two builds reproduce a 364,868-byte pure wheel at SHA-256
+  `f3357ec5586b90acfab8b33abf5390bd935bcae1bbf02fb31526c3b93e2ce634`
+  and 2,573,360-byte source archive at SHA-256
+  `670d707a5a8cf873c1b70092cb08a84889e555b6ebd0ed58695bfa646cb4f286`.
+  Installed wheel/scene smokes and two byte-identical ten-artifact release
+  rehearsals pass. The 114-entry wheel contains no M217 file; all four new
+  implementation/decision files occur once in the 1,034-entry source archive.
+- Findings-first review confirms exactly 16 intended paths, no protected
+  runtime/package/fixture/CI/dependency/lock change, exact restoration of the
+  frozen composer, no attachment/injection/mutation operation, no authority
+  increase, and no actionable finding.
+- Record-inclusive 620-file format/Ruff/Pyright, 2,294-test architecture/live,
+  strict docs, both governance modes, and whitespace gates pass.
+- Record-state builds reproduce the unchanged wheel and identical
+  2,574,415-byte source archives at SHA-256
+  `e803d66d160ead455d6c3cdd78d37b12b8b32c669f25d3d0c89b58347891f9c1`;
+  installed smokes and both exact release rehearsals pass with the unchanged
+  source-only package boundary.
+- An access-enabled audit proved all 21 initial M217 generated targets and
+  48,902 descendants repository-confined, ignored, untracked, and recursively
+  reparse-free before exact removal. The regenerated docs directory and its
+  760 descendants passed the same independent audit before removal. Older
+  outputs and all inaccessible M212 roots were untouched.
+- Post-cleanup 620-file static/type gates, the exact 19-test M217 boundary,
+  strict docs, dated-strict governance, and whitespace pass. DCO commit-object
+  and Git publication safety remain pending.
+- Pre-commit audit confirms exact M216 history/tree/parent, exactly 16 intended
+  paths, only local `main` plus active neutral M217, expected `0 117`
+  divergence, configured maintainer identity, zero protected-surface change,
+  zero M217 scratch, absent retired root metadata, clean whitespace, and
+  connected Git objects.
+- Initial DCO commit `d12f386c060aa44e52546a02bbb1ab5c4dcac218`, tree
+  `cebc30dd21f72df8e441ff3c16ea12255e4f444f`, has sole parent exact M216,
+  exactly 16 paths, one matching sign-off, consistent maintainer identity,
+  clean revision/worktree/connectivity, and expected `0 118` divergence. This
+  factual record is incorporated by the closeout amendment.
+- Fresh pruned fetch and direct remote-head lookup leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M216 is absent,
+  M99 is present, only remote `main` exists, and divergence is `0 118`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing M217 would expose absent
+  M100-M216 prerequisites, so no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+
 ## M216 Windows retained launch-source access-refusal probe
 
 - **Task:** Exercise one fixed, access-only Windows share-refusal probe around

@@ -364,6 +364,11 @@ attestation, with the same allocation topology.
   that observes exact write/delete sharing refusal at three live phases, then
   proves access settles after retained-handle close without source mutation,
   collection, cleanup, or admission.
+- A test-only [Windows retained launch-source remote-debug exclusion
+  probe](security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md)
+  that composes exact `-X disable_remote_debug` startup with the full retained
+  process/source boundary without remote attachment, injection, collection,
+  cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly
