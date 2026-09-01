@@ -1326,6 +1326,17 @@ remain unbound, hostile ABA resistance is not proved, and no collection,
 cleanup authority, Windows admission, public runner, workflow, or hosted check
 is added; criteria 6 and 7 remain unresolved.
 
+M216's test-only [Windows retained launch-source access-refusal
+probe](docs/security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md)
+requests write and delete access against the exact retained M215 source before
+launch, after connection, and after ready. It accepts only native sharing error
+32, then requires both access classes to become available after source-handle
+settlement and confirms the source snapshot is unchanged. It performs no
+content or namespace mutation. This same-process current-host observation is
+not hostile-process, source-provenance, collection, cleanup-authority, or
+Windows-admission evidence; criteria 6 and 7 remain unresolved and no hosted
+check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

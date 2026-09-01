@@ -1,5 +1,99 @@
 # Current task
 
+## M216 Windows retained launch-source access-refusal probe
+
+- **Task:** Exercise one fixed, access-only Windows share-refusal probe around
+  the exact frozen M212-M215 launch-source boundary without writing, deleting,
+  collecting, cleaning, or admitting Windows cleanup.
+- **Status:** Implementation, complete local validation, record-state
+  packaging, findings-first review, guarded cleanup, final closeout, and the
+  local DCO commit are finished. Publication is withheld because hosted
+  `main` lacks the M100-M215 prerequisite stack.
+- **Base:** exact fully locally validated M215 DCO commit
+  `b1cc04bdc0dc93c0a757e2cf2e6ae655efd05e7f`, tree
+  `7da8fcc38bf90ed59449aea466f11383808bf737`, with sole parent exact M214.
+- **Branch:**
+  `release/m216-windows-retained-launch-source-access-refusal-probe`; exact
+  containment made the local M215 branch name redundant, so only local `main`
+  and active M216 remain.
+
+### M216 acceptance boundary
+
+- Retain the fixed M215 participant source read-only with only read sharing.
+- Request access-only `GENERIC_WRITE` and `DELETE` opens using the competing
+  read/write/delete share mode and `OPEN_EXISTING`; require exact native error
+  32 before launch, after connection, and after `ready`.
+- After child settlement and closure of the retained source handle, require
+  both access opens to succeed and close without exercising either right.
+- Prove the bounded source snapshot is unchanged after every observation.
+- Exclude `WriteFile`, truncation, replacement, rename, move, and delete APIs;
+  protect the exact M215 boundary and every runtime, package, fixture, example,
+  script, benchmark, workflow, dependency, lock, and version surface.
+- Keep source provenance, hostile filesystem races, distinct-principal and
+  independent-host proof, collection, cleanup, criteria 6/7, and Windows
+  admission unresolved. Add zero GitHub Actions jobs or hosted allocation.
+
+### Validation evidence so far
+
+- The exact M215 handoff passed 34 tests; static and dated-strict governance
+  checks passed with zero findings before implementation.
+- The intentional red failed only because the selected M216 probe and decision
+  files were absent. Development corrected one architecture-audit expression,
+  one native invalid-handle representation, and one exact documentation phrase.
+  Final focused formatting, Ruff, strict Pyright, strict docs, whitespace, and
+  all 24 M216 architecture/live tests pass.
+- All 618 Python files are format-clean; Ruff and strict Pyright report zero
+  findings; architecture plus the live M216 probe passes 2,287 tests with one
+  inherited capability skip.
+- Complete isolated all-group graphics suites pass 4,434 tests with 19 skips
+  on each CPython 3.12, 3.13, and 3.14.
+- Ten real-wgpu tests, both one-repeat profile contracts, eight profile tests,
+  two Null Clockwork repeats, wgpu Clockwork, and Agent World Builder pass.
+- Two builds reproduce a 364,763-byte pure wheel at SHA-256
+  `d4f6d66bf7d786ead6fe0b8186df5509f89fdd17272f2c8f10e8f308ef79d0d1`
+  and 2,562,119-byte source archive at SHA-256
+  `f94d7f43cd5e0f62a807e9997f97ca3718ea21f77c8dab61f827e2aa4a3e2077`.
+  Installed wheel/scene smokes and two byte-identical ten-artifact release
+  rehearsals pass. The 114-entry wheel contains no M216 file; the integration
+  probe, architecture guard, RFC, and security guide occur once in the
+  1,030-entry source archive.
+- Record-inclusive static/type/architecture/docs/governance/whitespace gates
+  pass. Two record-state builds reproduce the unchanged wheel and identical
+  2,564,768-byte source archives at SHA-256
+  `3d92c7e824135282cd0f618ef7920efe0cca11f68b71e941356da60719922c7b`;
+  installed smokes and both exact release rehearsals pass.
+- Findings-first review confirms exactly 16 intended paths, no protected
+  product/tooling/fixture/CI/dependency/lock change, no mutation operation or
+  authority increase, correct handle closure and exact-error behavior, and no
+  actionable finding. Commit-object audit and hosted publication-safety review
+  remain to be completed.
+- An access-enabled audit proved all 23 M216 scratch/documentation targets and
+  45,944 descendants repository-confined, ignored, untracked, and recursively
+  reparse-free before exact removal. Zero target remains; older generated
+  outputs and all inaccessible M212 roots were untouched.
+- The post-cleanup 618-file static/type gate, exact 24-test M216 boundary,
+  strict docs, dated-strict governance, and whitespace pass. The regenerated
+  ignored documentation directory and its 756 descendants were separately
+  proven confined, untracked, and reparse-free before exact removal; no M216
+  scratch remains.
+- Pre-commit audit confirms exact M215 history/tree/parent, exactly 16 intended
+  paths, only local `main` plus active neutral M216, expected `0 116`
+  divergence, configured maintainer identity, zero protected-surface change,
+  zero M216 scratch, absent retired root metadata, zero added identity-
+  disclosure match, clean whitespace, and connected Git objects.
+- Initial DCO commit `3eb4bf6de41b372d0c4cab6a6bf1a0b30896241f`, tree
+  `ac36a4224d4a04ac841ac2622834533bcba7b876`, has sole parent exact M215,
+  exactly 16 paths, one matching sign-off, consistent maintainer identity,
+  clean revision/worktree/connectivity, and expected `0 117` divergence. This
+  factual record is incorporated by the closeout amendments.
+- Fresh pruned fetch and direct remote-head lookup leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M215 is absent,
+  M99 is present, only remote `main` exists, and divergence is `0 117`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing M216 would expose absent
+  M100-M215 prerequisites, so no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+
 ## M215 Windows retained launch-source binding probe
 
 - **Task:** Exercise one fixed, test-only retained participant-source check on

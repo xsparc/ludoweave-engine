@@ -3843,6 +3843,33 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M216 Windows retained launch-source access-refusal probe
+
+M216 starts from fully locally validated M215 commit
+`b1cc04bdc0dc93c0a757e2cf2e6ae655efd05e7f`. It adopts a test-only
+[Windows retained launch-source access-refusal
+probe](docs/security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md)
+under RFC-0199.
+
+While the exact M215 source handle remains retained, the controller requests
+write and delete access using broad competing sharing and `OPEN_EXISTING`.
+Both access classes must refuse with exact native sharing error 32 before
+launch, after connection, and after ready. After participant settlement and
+retained-handle close, both access-only opens must succeed and close; the source
+snapshot must remain identical.
+
+The observation is same-process, same-host, same-logon, and same-session only.
+It performs no write, rename, replace, truncate, or delete and does not prove a
+hostile competitor, privileged bypass resistance, source-commit provenance,
+imported-module binding, distinct-principal or independent-host evidence,
+fixture mutation, collection, criteria 6 or 7, or Windows cleanup admission.
+
+M216 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

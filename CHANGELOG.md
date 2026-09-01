@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M216/RFC-0199's test-only [Windows retained launch-source access-refusal
+  probe](docs/security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md).
+  It observes exact write/delete sharing refusal before launch, after
+  connection, and after ready; proves access settles after retained-handle
+  close; and preserves the source snapshot without mutation. It adds no
+  runtime, cleanup authority, admission, workflow, or hosted allocation.
 - Add M215/RFC-0198's test-only [Windows retained launch-source binding
   probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md).
   It executes the retained participant source through isolated inherited

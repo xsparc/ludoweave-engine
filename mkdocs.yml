@@ -104,6 +104,7 @@ nav:
   - Windows local control token-binding probe: security/windows-cache-cleanup-local-control-token-binding-probe.md
   - Windows retained process-image binding probe: security/windows-cache-cleanup-retained-process-image-binding-probe.md
   - Windows retained launch-source binding probe: security/windows-cache-cleanup-retained-launch-source-binding-probe.md
+  - Windows retained launch-source access-refusal probe: security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -308,6 +309,7 @@ nav:
       - RFC-0196 - Probe Windows local control token binding: rfcs/0196-probe-windows-local-control-token-binding.md
       - RFC-0197 - Probe Windows retained process-image binding: rfcs/0197-probe-windows-retained-process-image-binding.md
       - RFC-0198 - Probe Windows retained launch-source binding: rfcs/0198-probe-windows-retained-launch-source-binding.md
+      - RFC-0199 - Probe Windows retained launch-source access refusal: rfcs/0199-probe-windows-retained-launch-source-access-refusal.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

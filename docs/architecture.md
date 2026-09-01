@@ -5594,6 +5594,29 @@ distinct-principal or independent-host evidence, collection, cleanup authority,
 or Windows admission; criteria 6 and 7 remain unresolved. M215 adds no runtime,
 package, dependency, workflow, permission, public runner, or hosted allocation.
 
+## M216 Windows retained launch-source access-refusal probe
+
+M216 adds the test-only [Windows retained launch-source access-refusal
+probe](security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md).
+It composes only with the exact frozen M212-M215 test boundary and introduces
+no runtime dependency. Against M215's retained read-only source handle, the
+controller issues access-only `CreateFileW` requests for write and delete with
+broad competing sharing.
+
+Both requests must return exact sharing error 32 before launch, after the
+participant connects, and after `ready`. After process settlement and retained
+source close, both access requests must succeed and close without exercising
+their rights. A post-settlement read-only snapshot must equal the pre-launch
+source identity, size, and digest.
+
+This observes same-process share-mode enforcement and settlement without a
+content or namespace mutation. It does not prove hostile-process or privileged
+bypass resistance, source-commit provenance, imported-module binding,
+distinct-principal or independent-host behavior, collection, cleanup authority,
+or Windows admission. M216 adds no runtime, package, dependency, workflow,
+permission, public runner, or hosted allocation; criteria 6 and 7 remain
+unresolved.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

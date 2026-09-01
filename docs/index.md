@@ -359,6 +359,11 @@ attestation, with the same allocation topology.
   that executes one retained source through isolated inherited standard input,
   limits inheritance to three fixed standard handles, and rechecks the source
   before release without collection, cleanup, or admission.
+- A test-only [Windows retained launch-source access-refusal
+  probe](security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md)
+  that observes exact write/delete sharing refusal at three live phases, then
+  proves access settles after retained-handle close without source mutation,
+  collection, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

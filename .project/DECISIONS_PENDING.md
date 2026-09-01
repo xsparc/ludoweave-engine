@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M216 Windows retained launch-source access-refusal probe
+
+RFC-0199 accepts one direction-preserving, test-only current-host observation
+of the M215 retained source's Windows share behavior. While the read-only
+source handle is live with read sharing only, access-only `GENERIC_WRITE` and
+`DELETE` opens using the competing read/write/delete share mode must fail with
+exact `ERROR_SHARING_VIOLATION` before launch, after connection, and after
+`ready`. After settlement and retained-handle closure, both opens must succeed
+and close without exercising either right, and the source snapshot must remain
+unchanged.
+
+The probe deliberately requests access but performs no mutation. It cannot
+prove that a future writer or deleter would be authorized by policy, that a
+different process or principal sees the same boundary, or that hostile
+filesystem races are excluded. It adds no cleanup command, collector,
+admission, runtime/package surface, workflow, public runner, or hosted
+allocation.
+
+Deferred decisions remain source-checkout provenance, hostile ABA/race
+evidence, the distinct-principal private harness, account and credential
+custody, a disposable offline host cohort, qualifying collection, criteria 6
+and 7 resolution, and Windows cleanup admission.
+
 ## M215 Windows retained launch-source binding probe
 
 RFC-0198 accepts one direction-preserving, test-only current-host source-byte

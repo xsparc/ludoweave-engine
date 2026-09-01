@@ -1,5 +1,87 @@
 # Project State
 
+## M216 Windows retained launch-source access refusal - locally complete, publication withheld
+
+- Base: exact M215 DCO commit
+  `b1cc04bdc0dc93c0a757e2cf2e6ae655efd05e7f`, tree
+  `7da8fcc38bf90ed59449aea466f11383808bf737`, with sole parent exact M214.
+- Branch hygiene: neutral
+  `release/m216-windows-retained-launch-source-access-refusal-probe` starts
+  from exact M215; the redundant local M215 branch name is removed.
+- Direction: RFC-0199 accepts one direction-preserving, current-host,
+  access-only refusal observation with no mutation, collection, cleanup, or
+  admission authority increase.
+- Boundary: the M215 source remains read-only/share-read while competing
+  write-access and delete-access opens require exact error 32 before launch,
+  after connection, and after `ready`; after settlement and retained-source
+  closure both opens succeed and close without use, and the source snapshot
+  remains unchanged.
+- Scope: one Windows integration probe, one architecture guard, RFC-0199, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, fixtures, examples, scripts, benchmarks, workflows,
+  metadata, dependencies, lock, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused 24/24; 618-file static gates clean; architecture plus
+  live M216 2,287/one skipped; strict docs and whitespace pass; complete suites
+  4,434/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: initial builds reproduce the 364,763-byte pure wheel at SHA-256
+  `d4f6d66bf7d786ead6fe0b8186df5509f89fdd17272f2c8f10e8f308ef79d0d1`
+  and 2,562,119-byte source archive at SHA-256
+  `f94d7f43cd5e0f62a807e9997f97ca3718ea21f77c8dab61f827e2aa4a3e2077`;
+  four M216 files are source-only and zero enters the 114-entry wheel. Two
+  ten-artifact release stages are byte-identical.
+- Record state: source/static/type/architecture/docs/governance/whitespace
+  gates pass; record-state builds reproduce the unchanged wheel and identical
+  2,564,768-byte source archives at SHA-256
+  `3d92c7e824135282cd0f618ef7920efe0cca11f68b71e941356da60719922c7b`.
+  Installed-wheel and scene smokes pass; both ten-artifact releases pass and
+  have zero byte difference; the source-only package boundary is unchanged.
+- Review: exactly 16 intended paths; zero protected runtime/package/fixture/
+  example/script/benchmark/workflow/metadata/dependency/lock diff; no identity
+  disclosure, write/delete exercise, mutation API, network, privilege change,
+  collector, cleanup, admission, or CI expansion. Exact native-error checking,
+  unexpected/successful-handle closure, settlement order, and unchanged source
+  snapshot are covered. No actionable correctness, security, architecture,
+  documentation, compatibility, package-boundary, or allocation finding
+  remains.
+- Cleanup: the first sandboxed recursive audit encountered access denials in
+  six pytest-created directories and stopped before deletion. Its
+  access-enabled rerun proved all 23 exact M216 scratch/documentation targets
+  and 45,944 descendants repository-confined, ignored, untracked, and
+  recursively reparse-free; immediate exact revalidation removed all 23.
+  Older outputs and all inaccessible M212 roots were untouched.
+- Admission: same-process, cooperative, current-host observation only. Source
+  provenance, hostile races, distinct-principal and independent-host proof,
+  criteria 6 and 7, cleanup implementation, and Windows admission remain
+  unresolved.
+- Final separator: all 618 files remain format-clean; Ruff and strict Pyright
+  report zero findings; the exact M216 boundary passes 24 tests; strict docs,
+  dated-strict governance, and whitespace pass. The regenerated ignored site
+  and 756 descendants were independently proven confined, untracked, and
+  reparse-free before exact removal; zero M216 scratch remains.
+- Pre-commit audit: HEAD is exact M215 with exact tree and sole M214 parent;
+  exactly 16 intended paths are present; only local `main` plus active neutral
+  M216 exist; divergence is `0 116`; maintainer identity is configured;
+  protected surfaces, retired root metadata, M216 scratch, added identity-
+  disclosure matches, whitespace findings, and object-connectivity findings
+  are all zero.
+- Initial commit: DCO object
+  `3eb4bf6de41b372d0c4cab6a6bf1a0b30896241f`, tree
+  `ac36a4224d4a04ac841ac2622834533bcba7b876`, has sole parent exact M215,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 117`
+  divergence. This object audit is incorporated by the closeout amendments.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M215 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 117`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M215
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M215 Windows retained launch-source binding probe - locally complete, publication withheld
 
 - Base: exact M214 DCO commit
