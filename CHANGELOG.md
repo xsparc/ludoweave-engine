@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M219/RFC-0202's test-only [Windows contained source-access image-binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-image-binding-probe.md).
+  It binds M218's suspended fixed contender to retained expected/observed
+  interpreter image identity and bytes before resume, then rechecks both file
+  handles after settlement. Script/import provenance, cleanup authority,
+  admission, workflow, and hosted allocation remain unchanged.
 - Add M218/RFC-0201's test-only [Windows contained source-access refusal
   probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md).
   It assigns a fixed argument-free same-logon child suspended to a private

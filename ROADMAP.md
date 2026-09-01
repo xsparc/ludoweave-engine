@@ -3929,6 +3929,34 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M219 Windows contained source-access image-binding probe
+
+M219 starts from fully locally validated M218 commit
+`b85270112d7a550251b38e8fe54ad2c903aceabb`. It adopts a test-only
+[Windows contained source-access image-binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-image-binding-probe.md)
+under RFC-0202.
+
+Before each M218 contender launch, the expected direct interpreter image is
+retained and snapshotted. The fixed contender is created suspended, assigned
+as the private Job's sole member, and verified as same-logon. Its observed
+process image is retained and must match the expected normalized name,
+volume/file identity, bounded size, and SHA-256 before resume. Both retained
+image file handles must remain stable through child settlement, followed by
+exact Job settlement and zero owned handles.
+
+The full M218 three-phase sharing-refusal and M217 participant boundary remains
+required. This does not bind contender script bytes, imported standard-library
+modules, source commits, builds, native DLLs, loader state, distinct-principal
+or independent-host behavior, hostile/privileged bypass, criteria 6/7, or
+Windows cleanup admission.
+
+M219 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

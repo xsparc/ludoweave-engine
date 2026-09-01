@@ -374,6 +374,11 @@ attestation, with the same allocation topology.
   that assigns one fixed same-logon child suspended to a private kill-on-close
   Job and observes exact write/delete sharing refusal without source mutation,
   collection, cleanup, or admission.
+- A test-only [Windows contained source-access image-binding
+  probe](security/windows-cache-cleanup-contained-source-access-image-binding-probe.md)
+  that binds the suspended contender to retained expected/observed interpreter
+  identity and bytes before resume without claiming script provenance,
+  collection, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

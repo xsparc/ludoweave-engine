@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M219 Windows contained source-access image-binding probe
+
+RFC-0202 accepts one direction-preserving test-only observation: retain the
+expected direct interpreter before child creation, retain M218's suspended
+contender process image before resume, and require exact normalized-name,
+volume/file-identity, bounded-size, and SHA-256 agreement after same-logon and
+sole-Job-member checks. Both retained file observations, M218's three refusal
+phases, and the M217 participant boundary must remain stable through settlement.
+
+This does not bind contender script bytes, imported standard-library modules,
+native DLLs, loader/interpreter state, source commit, or build provenance. It
+does not authorize or establish a distinct principal, hostile process,
+independent host, privileged bypass, criterion 6 or 7, cleanup authority, or
+Windows admission. Those decisions remain pending. No public self-hosted runner
+or added hosted check is approved.
+
 ## M218 Windows contained source-access refusal probe
 
 RFC-0201 accepts one direction-preserving test-only observation: a fixed

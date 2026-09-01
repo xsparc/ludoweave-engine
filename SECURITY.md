@@ -1359,6 +1359,21 @@ This is not distinct-principal, hostile-process, independent-host,
 source-provenance, collection, cleanup-authority, or Windows-admission
 evidence; criteria 6 and 7 remain unresolved and no hosted check is added.
 
+M219's test-only [Windows contained source-access image-binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-image-binding-probe.md)
+retains the expected interpreter image before launch and the suspended child's
+observed process image before resume. It requires exact normalized-name,
+volume/file-identity, bounded-size, and SHA-256 agreement after same-logon and
+sole-Job-member checks, then rechecks both retained file handles after child
+settlement.
+
+The complete M218 refusal and M217 participant lifecycle remains mandatory.
+The probe does not bind the contender script, imported modules, source commit,
+build, loader state, or native DLLs. It is not distinct-principal,
+independent-host, hostile-process, privileged-bypass, collection,
+cleanup-authority, or Windows-admission evidence; criteria 6 and 7 remain
+unresolved and no hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

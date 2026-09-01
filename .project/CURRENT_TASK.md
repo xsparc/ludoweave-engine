@@ -1,5 +1,121 @@
 # Current task
 
+## M219 Windows contained source-access image-binding probe
+
+- **Task:** Bind M218's fixed Job-contained same-logon contender to the
+  retained expected interpreter image before resume, without expanding
+  mutation, collection, cleanup, admission, or hosted authority.
+- **Status:** Direction research, implementation, complete supported-Python and
+  graphics validation, initial distribution/release rehearsal, and
+  findings-first review, record-inclusive validation, guarded scratch cleanup,
+  post-cleanup closeout, final ledger verification, local DCO commit, and
+  publication-safety checks pass. Publication is withheld because hosted
+  `main` lacks the M100-M218 prerequisite stack.
+- **Base:** exact fully locally validated M218 DCO commit
+  `b85270112d7a550251b38e8fe54ad2c903aceabb`, tree
+  `08cd24c4e82691bc07a614419d03cecdb955419b`, with sole parent exact M217.
+- **Branch:** `release/m219-windows-contained-source-access-image-binding-probe`;
+  exact containment made the local M218 branch name redundant, so only local
+  `main` and active M219 remain.
+
+### M219 acceptance boundary
+
+- Retain and snapshot the expected direct `pythonw.exe` file before each fixed
+  child launch.
+- Create M218's no-inheritance contender suspended, assign it as the exact sole
+  member of a fresh private kill-on-close Job, and verify same-logon identity.
+- Retain the observed process image before resume and require exact normalized
+  name, volume/file identity, bounded size, and SHA-256 agreement with the
+  expected image.
+- After zero child exit, re-snapshot the two retained image file handles,
+  require stable observations, exact one-total/zero-active Job settlement, and
+  zero owned handles.
+- Preserve M218's three ordered refusal phases and the full M217 participant
+  identity/protocol/source/release/settlement boundary.
+- Protect M218, runtime, package, fixture, example, script, benchmark, workflow,
+  dependency, lock, metadata, and version surfaces. Add zero GitHub Actions job
+  or hosted allocation.
+- Keep contender-script/import/source/build provenance, distinct-principal,
+  hostile-process, independent-host, privileged-bypass, criteria 6/7, cleanup,
+  and Windows admission unresolved.
+
+### Validation evidence so far
+
+- Exact M218 and governance baselines pass; current primary-source direction
+  research supports a suspended pre-resume interpreter-image observation and
+  retaining the existing provenance/admission gaps.
+- The intentional architecture red passed two checks and failed the eight
+  absent M219 implementation/decision/registration checks. The implementation-
+  state architecture run then failed only four absent documentation/registration
+  checks.
+- The first live run exposed native error 31 from a post-exit
+  `QueryFullProcessImageNameW` call. The correction reuses the retained observed
+  file handle after settlement while keeping name capture and the full expected
+  comparison before resume. The corrected live probe passes 3 tests; complete
+  focused architecture/live passes 13 tests.
+- The unchanged 46-package lock resolves and the 45-package all-group plus
+  graphics environment is present. All 625 Python files are format-clean; Ruff
+  and strict Pyright report zero findings. One intervening Pyright run after
+  `--all-groups` correctly failed 17 missing-graphics diagnostics; restoring
+  the locked graphics extra made the exact rerun clean.
+- Architecture plus integration passes 3,366 tests with 12 platform/capability
+  skips. Complete isolated all-group graphics suites each pass 4,488 tests with
+  19 skips on CPython 3.12, 3.13, and 3.14.
+- Ten real-wgpu tests, fresh two-/three-workload profile contracts, eight
+  profile tests, two matching Null Clockwork runs, matching wgpu Clockwork, and
+  Agent World Builder pass with their registered deterministic identities.
+- Strict docs and static/dated-strict governance pass. Two builds reproduce a
+  365,143-byte pure wheel at SHA-256
+  `ae13c543b6c6635bdc08ac282cd3027ae990f85cd31f872d125aa6fbed6dc602`
+  and 2,592,125-byte source archive at SHA-256
+  `a4de1289688885ce8f8749f211176a1e5a8a7478a94cf3aeaa8f49e191e9f0fa`.
+  Installed wheel/scene smokes and two identical ten-artifact release stages
+  pass. Zero M219 file enters the 114-entry wheel; exactly four enter the
+  1,043-entry source archive.
+- Findings-first review confirms exactly 12 pre-record paths, zero protected-
+  surface diff, correct suspended/token/image/resume/settlement ordering, no
+  credential/local-path/tool-identity disclosure, no mutation/network/
+  privilege/runtime surface, and no CI expansion.
+- Record-inclusive formatting, Ruff, and strict Pyright remain clean;
+  architecture/integration again passes 3,366 tests with 12 skips; strict docs,
+  static/dated-strict governance, and whitespace pass.
+- Two record-state builds preserve the exact wheel and reproduce a 2,595,296-
+  byte source archive at SHA-256
+  `2918ba5b63a8c51ea71372faca52e30781dda491c744dd893c586460f156c6db`.
+  Installed wheel/scene smokes and two exact ten-artifact release rehearsals
+  pass; the release inventories have zero difference.
+- An access-enabled audit proved all 21 exact M219 scratch targets and 49,344
+  descendants repository-confined, ignored, untracked, and recursively
+  reparse-free. Immediate exact revalidation removed only those targets and
+  confirmed zero M219 scratch remains; older roots were untouched.
+- Post-cleanup format/Ruff/Pyright remain clean; architecture/integration passes
+  3,366 tests with 12 skips in 241.58 seconds; strict docs, dated-strict
+  governance, and whitespace pass. The regenerated test/docs targets and 8,433
+  descendants were independently proven confined/ignored/untracked/reparse-free,
+  removed exactly, and confirmed absent.
+- Final ledger-inclusive format/Ruff/Pyright remain clean;
+  architecture/integration passes 3,366 tests with 12 skips in 225.58 seconds;
+  strict docs, dated-strict governance, and whitespace pass. Its two generated
+  targets and 8,433 descendants were independently proven confined/ignored/
+  untracked/reparse-free, removed exactly, and confirmed absent.
+- The pre-commit audit confirms exact M218 HEAD/tree/parent, an exact 16-path
+  allowlist, zero protected-surface or added-disclosure finding, only local
+  `main` plus neutral M219, expected `0 119` divergence, configured maintainer
+  identity, absent retired metadata and M219 scratch, clean whitespace, and
+  clean full object connectivity.
+- Initial DCO commit `c471bdec3dcb5e45ca44dae2d7efdc38d6fafbb8`, tree
+  `2a7c195e21ac532c575803ccff555f22ae8e8ad1`, has sole parent exact M218,
+  exactly 16 paths, one matching sign-off, consistent maintainer identity,
+  clean worktree/connectivity, and expected `0 120` divergence. This factual
+  record is incorporated by the closeout amendment.
+- A fresh pruned fetch and direct remote-head query leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M218 is absent,
+  M99 is present, only remote `main` exists, and divergence is `0 120`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; no PR is open and PR #251 remains latest. Publishing M219 would
+  expose absent M100-M218 prerequisites, so no push, PR, hosted allocation,
+  tag, release, or package publication occurs.
+
 ## M218 Windows contained source-access refusal probe
 
 - **Task:** Move the frozen retained-source access-refusal observation into one

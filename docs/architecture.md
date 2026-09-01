@@ -5665,6 +5665,29 @@ provenance, imported-module binding, collection, cleanup authority, or Windows
 admission. M218 adds no runtime, package, dependency, workflow, permission,
 public runner, or hosted allocation; criteria 6 and 7 remain unresolved.
 
+## M219 Windows contained source-access image-binding probe
+
+M219 adds the test-only [Windows contained source-access image-binding
+probe](security/windows-cache-cleanup-contained-source-access-image-binding-probe.md).
+It composes only with the exact frozen M212-M218 test boundary and introduces
+no runtime dependency. The expected direct interpreter file is retained and
+snapshotted before each child creation. After suspended creation, exact Job
+assignment/membership and same-logon verification, the observed process image
+is retained and compared before resume.
+
+Expected and observed images must agree on normalized name, same-computer
+volume/file identity, bounded size, and SHA-256. Their retained file handles
+must reproduce the stable identity/byte observations after child settlement,
+without relying on a post-exit process-name query. Exact Job settlement and
+zero owned handles remain mandatory.
+
+The full M218 three-phase access-refusal and M217 participant boundary remains
+required. The probe does not establish contender-script, imported-module,
+source-commit, build, DLL, or loader provenance; distinct-principal,
+independent-host, hostile/privileged bypass, criteria 6/7, cleanup authority,
+and Windows admission also remain unresolved. M219 adds no runtime, package,
+dependency, workflow, permission, public runner, or hosted allocation.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
