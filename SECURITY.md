@@ -1252,6 +1252,18 @@ M209 adds no harness, process or power control, cleanup authority, workflow,
 secret, permission, or hosted allocation; criteria 6 and 7 remain unresolved
 and Windows remains unadmitted.
 
+M210's source-only [Windows independent-host collection-plan
+validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md)
+checks one stable bounded canonical plan with exact closed profile, barrier,
+interruption, and operation matrices. It derives structural completeness and
+forces collection status to `not_run` plus authority, criteria 6 and 7, and
+Windows admission to false. Stable host, storage, process, principal, session,
+path, credential, and operator identifiers are not schema fields. A complete
+plan remains neither private authority nor qualifying evidence. M210 adds no
+runtime command, privileged harness, process or power control, account or
+credential lifecycle, filesystem mutation, network access, cleanup authority,
+workflow, permission, secret, or hosted allocation; Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

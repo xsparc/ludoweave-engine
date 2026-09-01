@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M210 Windows independent-host collection-plan validator
+
+RFC-0193 accepts a direction-preserving source-only validator for one sanitized
+structural companion to M209's future private run manifest. It validates exact
+closed matrices, bounded host classifications, identity syntax, requirements,
+and derived totals while forcing collection status `not_run`, authority false,
+criteria 6 and 7 false, and Windows admission false.
+
+The reviewed fixture contains no host or stable identity and is parser evidence
+only. A structurally complete plan remains neither authentication, provenance,
+private executable authority, qualifying evidence, nor an admission decision.
+The validator cannot provision a host, mint or consume authority, launch a
+process, control power, manage credentials, mutate a fixture, collect evidence,
+or authorize cleanup.
+
+The separately reviewed smallest private harness, disposable offline host
+cohort, credential custody, native process-tree containment, external VM power
+boundary, operator-only physical power action, qualifying collection, criteria
+6 and 7 resolution, and Windows cleanup admission remain pending. No workflow
+or hosted allocation is added.
+
 ## M209 Windows independent-host collection-authority policy
 
 RFC-0192 accepts a direction-preserving policy for any future private M207/M208

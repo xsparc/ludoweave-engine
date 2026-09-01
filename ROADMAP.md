@@ -3665,6 +3665,34 @@ native call, account or credential lifecycle, filesystem mutation, dependency,
 version, workflow, permission, secret, or hosted execution path; no hosted
 check is added.
 
+## M210 Windows independent-host collection-plan validator
+
+M210 starts from fully locally validated M209 commit
+`03f3848a3bf52945ab4d1b0af4065219568a5b1a`. It adopts a source-only
+[Windows independent-host collection-plan
+validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md)
+under RFC-0193.
+
+The validator reads one stable regular file bounded to 1,048,576 bytes and one
+exact canonical JSON line. It accepts only the exact M207 profile, durability-
+barrier, and interruption matrices plus M209's closed operation sequence,
+ephemeral host ordinals, typed identity syntax, bounded classifications,
+requirement declarations, and derived totals. `plan_complete` is derived from
+structural inputs rather than trusted.
+
+The document remains `not_run`; authority, criteria 6 and 7, and Windows
+admission remain false. The reviewed fixture has no hosts or identities and is
+parser evidence only. Even a structurally complete plan is neither the private
+run manifest nor executable authority, authenticated provenance, qualifying
+evidence, or an admission decision.
+
+M210 adds no runtime API, CLI command, privileged harness, process launch, power
+action, native call, account or credential lifecycle, filesystem mutation,
+network access, cleanup authority, dependency, version, workflow, permission,
+secret, or hosted execution path; no hosted check is added. No qualifying run
+has occurred, criteria 6 and 7 remain unresolved, Windows remains unadmitted,
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

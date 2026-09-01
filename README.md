@@ -353,8 +353,13 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > It confines any future private collector to offline single-use host, lane,
 > barrier, and interruption actions with reviewed custody and teardown. M209
 > adds no harness, qualifying run, cleanup authority, or hosted allocation.
+> M210 adds a source-only [Windows independent-host collection-plan
+> validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md).
+> It checks one bounded sanitized pre-run structure, exact closed matrices, and
+> false authority/admission claims. The reviewed fixture is all `not_run`; no
+> privileged harness, qualifying run, or hosted allocation is added.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M209 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M210 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

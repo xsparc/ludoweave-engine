@@ -5444,6 +5444,29 @@ unauthorized. No runtime command, harness, process launch, power action,
 filesystem mutation, native call, dependency, workflow, permission, credential,
 or hosted allocation is added.
 
+## M210 Windows independent-host collection-plan validator
+
+M210 adds the source-only [Windows independent-host collection-plan
+validator](security/windows-cache-cleanup-independent-host-collection-plan-validator.md).
+It sits below the future private coordinator as offline test tooling and above
+no runtime dependency. The validator reads one bounded stable canonical plan,
+checks exact closed profile/barrier/interruption/operation matrices and sanitized
+host classifications, derives totals and `plan_complete`, and emits one path-free
+result.
+
+The plan is a structural companion to the future private run manifest. It is not
+an authority object, product input, provenance proof, or evidence result. Native
+handles, process identifiers, machine or storage identities, credentials,
+operator identity, paths, and power-controller objects remain outside the schema
+and engine API. The reviewed fixture contains no host or identity and is entirely
+`not_run`.
+
+M210 adds no runtime command, privileged harness, process launch, power action,
+native call, account or credential lifecycle, filesystem mutation, network
+access, cleanup authority, dependency, workflow, permission, secret, hosted
+allocation, or qualifying evidence. Criteria 6 and 7 remain unresolved, Windows
+stays unadmitted, and cleanup remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

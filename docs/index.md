@@ -330,6 +330,10 @@ attestation, with the same allocation topology.
   that confines any future privileged collector to offline, single-use,
   host/lane/barrier-bound actions with reviewed evidence custody and teardown,
   without adding a harness or qualifying run.
+- A source-only [Windows independent-host collection-plan
+  validator](security/windows-cache-cleanup-independent-host-collection-plan-validator.md)
+  that checks one bounded sanitized all-`not_run` plan, exact closed matrices,
+  and false authority/admission claims without adding a privileged harness.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

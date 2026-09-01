@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M210/RFC-0193's source-only [Windows independent-host collection-plan
+  validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md).
+  It checks one stable bounded canonical plan, exact closed matrices, derived
+  structural completeness, and fixed false authority/admission claims. The
+  reviewed fixture is all `not_run`; no privileged harness, qualifying run,
+  runtime surface, workflow, dependency, or hosted allocation is added.
 - Accept M209/RFC-0192's [Windows independent-host collection-authority
   policy](docs/security/windows-cache-cleanup-independent-host-collection-authority-policy.md).
   A future private offline coordinator may issue only single-run, single-use

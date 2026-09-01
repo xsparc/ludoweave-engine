@@ -1,5 +1,73 @@
 # Project State
 
+## M210 Windows independent-host collection-plan validator - locally complete, publication withheld
+
+- Base: fully locally validated M209 DCO commit
+  `03f3848a3bf52945ab4d1b0af4065219568a5b1a`, tree
+  `f82a3b12edfe5a3765580837327d4373671373d6`, with sole parent exact M208.
+- Branch hygiene: neutral
+  `release/m210-windows-independent-host-collection-plan-validator` starts
+  from exact M209; the redundant local M209 branch name is removed.
+- Direction: RFC-0193 adds source-only structural validation before any
+  separately reviewed privileged harness.
+- Input boundary: one stable regular non-symlink file, 1,048,576-byte bound,
+  bounded canonical JSON, exact fields, and path-free failures.
+- Schema boundary: exact ordered M207 profiles/barriers/interruptions, M209
+  operations, at most 32 contiguous ephemeral host ordinals, typed identity
+  syntax, exact requirements, and recomputed totals.
+- Authority boundary: `plan_complete` is derived structural state only;
+  collection remains `not_run`, authority and criteria remain false, and
+  Windows admission remains false.
+- Fixture: one canonical no-host document with null identities, false
+  requirements, all profiles `not_run`, and no stable identifier.
+- Scope: one source-only validator, one fixture, integration tests, one
+  architecture guard, RFC-0193, one security guide, eight public registrations,
+  and four project records. Runtime/package code, examples, scripts, workflows,
+  dependencies, lock, metadata, version, and CI allocation remain unchanged.
+- Validation so far: exact M209 baseline 12/12; both governance modes pass;
+  intentional red observed; final focused M210 integration/architecture group
+  passes 29 tests with one environment-dependent symlink skip. All 604 Python
+  files are format-clean; Ruff and strict Pyright are clean; the architecture
+  suite passes 2,204/1 skipped; strict docs and whitespace pass. Complete
+  isolated suites pass 4,297/19 skipped on each of CPython 3.12.13, 3.13.13,
+  and 3.14.5. Graphics, profiles, vertical slices, reproducible distributions,
+  installed smokes, and two release rehearsals pass.
+- Record-inclusive closeout: unchanged lock and 45-package graphics environment;
+  all 604 Python files format-clean; Ruff and strict Pyright clean; complete
+  architecture 2,204/1 skipped; strict docs, both governance modes, and
+  whitespace pass.
+- Record-state packaging: the 364,159-byte wheel remains SHA-256
+  `d921e8e917106b76274f22a34e1d7b21203f0ba6f539948ce3e20b45acb5338f`;
+  the 2,482,598-byte source archive is SHA-256
+  `5ce0ab59218825dc3dabbfbc34a848797c30d2b7cff7e1bb629b9f8ad72b3036`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory is 114 wheel/1,004 source entries with all six M210 files source-
+  only.
+- Cleanup: an initial sandboxed recursive audit was access-denied and made no
+  deletion decision. The exact access-enabled audit proved all 31 M210 targets
+  repository-confined, ignored, untracked, and reparse-free; guarded removal
+  revalidated the set and left zero target. The post-cleanup static and exact
+  metadata/M209/M210 separator passes 27 tests, both governance modes, and
+  whitespace with zero regenerated M210 scratch.
+- Pre-commit: exact M209 HEAD/tree/parent, exact 18-path allowlist, zero
+  protected diff, only local `main` and neutral M210, configured maintainer
+  identity, expected `0 110` divergence, zero sensitive added-line or scratch
+  match, clean whitespace, and clean Git connectivity.
+- Initial local commit: DCO commit
+  `ee20a6e73e6c6cd6bb833368b7f597634a7d4848`, tree
+  `fb01371982666a8683148a2715b4365ee0acc6c1`, has sole parent exact M209,
+  exactly 18 intended paths, one matching sign-off, expected `0 111`
+  divergence, clean revision whitespace, clean worktree, and clean object
+  connectivity. This record is incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M209 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 111`.
+  Authentication is valid; the renamed repository is public, unarchived,
+  defaults to `main`, and PR #251 remains latest and merged. Publishing would
+  expose absent M100-M209 prerequisites, so no push, PR, hosted allocation,
+  tag, release, or package publication occurs.
+
 ## M209 Windows independent-host collection-authority policy - locally complete, publication withheld
 
 - Base: fully locally validated M208 DCO commit
