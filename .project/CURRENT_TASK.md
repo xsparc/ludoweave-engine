@@ -1,5 +1,128 @@
 # Current task
 
+## M209 Windows independent-host collection-authority policy
+
+- **Task:** Define the least-authority, offline, operator-controlled boundary
+  for a future M207/M208 evidence collector without implementing or running the
+  privileged harness or admitting Windows cleanup.
+- **Status:** Policy, RFC, architecture guard, and registrations are fully
+  locally validated; record, commit, and publication-safety closeout are in
+  progress.
+- **Base:** fully locally validated M208 DCO commit
+  `b30892e35b6dfcb2f0c11a209f04260228738db6`, tree
+  `5478be6d27e81f54f1b6ebae0a616249ee930892`, sole parent exact M207.
+- **Branch:**
+  `release/m209-windows-independent-host-collection-authority-policy`; exact
+  containment made the local M208 branch name redundant, so only local `main`
+  and active M209 remain.
+
+### M209 acceptance boundary
+
+- Bind a future private non-serializable single-run, single-use collection
+  action to one host, fixture, lane, trial, barrier, interruption, exact input
+  identities, and closed operation.
+- Keep collection authority separate from M201 cleanup authority, product
+  commands, canonical world state, production cache access, and Windows
+  admission.
+- Require an offline disposable-host environment with networking, clipboard,
+  writable live shares, public self-hosted runners, repository credentials,
+  and participant self-attestation excluded.
+- Keep process termination bound to exact fixture participants; require VM
+  power cut against current storage without guest shutdown or checkpoint
+  restore; keep physical-host power loss operator-only.
+- Require a private pre-run manifest, chronological custody, atomic same-volume
+  staging, separately retained digest, post-settlement sanitization, authority
+  expiry, and fail-closed teardown before M208 validation.
+- Add no privileged harness, qualifying run, runtime/package API, command,
+  native call, process or power control, credential lifecycle, filesystem
+  mutation, dependency, version, workflow, permission, secret, or hosted
+  allocation.
+
+### Development evidence so far
+
+- Exact M208 history and the DCO-signed M201 ancestry were confirmed. The
+  worktree was clean, retired root control metadata remained absent, and the
+  focused M208 handoff passed 45 tests with one supported-symlink skip.
+- Both required external governance modes passed after the sandboxed first
+  launch was rerun with read-only access to the existing uv cache.
+- Current GitHub, Microsoft, and NIST primary guidance supports offline custody,
+  no public self-hosted runner, deny-by-default Sandbox channels, real VM turn-
+  off without checkpoint restoration, and separately retained evidence
+  digests. The resulting DirectionBriefV1 recommended this policy-only slice.
+- Neutral M209 starts from exact M208. The redundant local M208 branch name was
+  removed while its commit remains the exact parent.
+- The intentional red failed one selected check only because the M209 policy
+  and RFC were absent. The first complete guard run then exposed seven exact-
+  wording mismatches and the second exposed two; the policy language was made
+  explicit. The final focused guard passes all 12 tests, strict docs builds,
+  and whitespace is clean.
+- The initial whole-tree separator passes the unchanged lock and graphics sync,
+  all 601-file static gates, 2,194 architecture tests with one supported-
+  symlink skip, strict docs, and whitespace.
+- Complete isolated suites pass 4,268 tests with 18 skips on each of CPython
+  3.12.13, 3.13.13, and 3.14.5. All ten real-wgpu tests and eight profile-
+  schema tests pass; fresh base and graphics profiles contain two and three
+  workloads.
+- Null and wgpu Clockwork Arena reproduce the established state, 600 draws,
+  and 2,213 sprites; wgpu reproduces its capture. Agent World Builder
+  reproduces established state, capture, replay, query, and batch results.
+- Two pre-record distributions are byte-identical, installed-wheel smoke
+  passes, and two complete ten-artifact release stages pass with zero
+  difference. The 114-entry wheel contains no M209 or project-control payload;
+  all three M209 implementation files are source-only.
+- Findings-first review confirms exactly 15 intended paths, zero protected
+  runtime/package/workflow/dependency/lock difference, zero added credential,
+  machine-local path, or retired tooling identity, and no unresolved security,
+  authority, correctness, compatibility, package, documentation, or CI-
+  allocation finding at this stage.
+- The first record-inclusive architecture run caught one literal disclosure of
+  retired metadata names in the evidence record. Neutral wording replaced it;
+  the corrected complete separator passes all 601-file static gates, 2,194
+  architecture tests with one skip, strict docs, both governance modes, and
+  whitespace.
+- Record-state builds reproduce the unchanged 364,078-byte wheel and a
+  2,468,345-byte source archive. Installed-wheel smoke and two complete,
+  byte-identical ten-artifact release stages pass; inventory remains 114 wheel
+  and 998 source entries with exactly the three M209 implementation files
+  source-only.
+- The final record-inclusive static, metadata-hygiene/M209, strict-docs,
+  governance, and whitespace separator passes. All 26 M209 scratch targets were
+  proven repository-confined, ignored, untracked, and reparse-free immediately
+  before guarded removal; the postcondition found zero remaining target.
+- The corrected pre-commit audit proves exact M208 HEAD/tree/parent, exactly 15
+  intended paths, zero protected diff, only local `main` plus neutral M209,
+  configured maintainer identity, expected `0 109` local-main divergence, zero
+  M209 scratch, clean whitespace, and clean Git object connectivity.
+
+### Explicit non-scope
+
+- No privileged harness, independent-host execution, account or credential
+  handling, native process/power/filesystem implementation, qualifying M206 or
+  M208 artifact, criterion 6 or 7 resolution, Windows admission, cleanup,
+  production cache access, runtime/package change, dependency, workflow, CI
+  allocation, release, or publication.
+
+### Commit and publication result
+
+- Initial DCO commit `185df0d4cf599e4bceb26da5bd4312d25474a5f2`,
+  tree `99255ff861cb7f0d9743bbc2d5bc72aab11b8fed`, has sole parent exact
+  M208, exactly 15 intended paths, matching author/committer/sign-off identity,
+  clean revision whitespace, expected `0 110` local-main divergence, clean
+  worktree, zero scratch, and clean object connectivity. This factual record is
+  incorporated by one closeout amendment.
+- A fresh pruned fetch and direct remote-head query leave hosted `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M208 is absent, M99 is
+  present, only remote `main` exists, and hosted divergence is `0 110`.
+  Authentication is valid; the repository is public, unarchived, defaults to
+  `main`, and PR #251 remains the latest merged PR.
+- Publishing M209 would expose absent M100-M208 prerequisites. No push, PR,
+  hosted allocation, tag, release, or package publication occurs.
+
+### Publication boundary
+
+- Publication remains authorized only after hosted `main` gains the complete
+  prerequisite ancestry and a fresh safety gate passes.
+
 ## M208 Windows independent-host evidence validator
 
 - **Task:** Add one offline, read-only validator and reviewed incomplete

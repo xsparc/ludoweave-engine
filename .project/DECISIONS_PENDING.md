@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M209 Windows independent-host collection-authority policy
+
+RFC-0192 accepts a direction-preserving policy for any future private M207/M208
+evidence collector. A trusted offline coordinator may eventually mint only a
+non-serializable, single-run and single-use action bound to one host, fixture,
+lane, trial, barrier, interruption class, exact evidence inputs, and closed
+operation. Repository input, participant claims, paths, public artifacts, or
+digests alone cannot mint or widen that authority.
+
+Collection authority remains separate from M201 cleanup authority, canonical
+world commands, production cache access, and Windows admission. Offline hosts
+have networking and clipboard disabled, no writable live share, public runner,
+or repository credential. Process termination targets only bound fixture
+participants; VM power cuts preserve current storage without guest shutdown or
+checkpoint restore; physical power loss remains operator-only.
+
+Private collection requires a pre-run manifest, chronological custody, atomic
+same-volume staging, separately retained SHA-256, separate sanitization review,
+authority expiry, and fail-closed teardown before M208 validation. M209 does
+not authorize or implement the privileged harness and produces no qualifying
+evidence. Criteria 6 and 7 remain unresolved; Windows cleanup remains
+unimplemented and unauthorized. No runtime, native, process, power, credential,
+filesystem, dependency, version, workflow, permission, release authority, or
+hosted-allocation change is accepted.
+
 ## M208 Windows independent-host evidence validator
 
 RFC-0191 accepts one direction-preserving source-only validator for the M207

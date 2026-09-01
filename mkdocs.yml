@@ -97,6 +97,7 @@ nav:
   - Windows cross-principal evidence validator: security/windows-cache-cleanup-cross-principal-evidence-validator.md
   - Windows independent-host validation contract: security/windows-cache-cleanup-independent-host-validation-contract.md
   - Windows independent-host evidence validator: security/windows-cache-cleanup-independent-host-evidence-validator.md
+  - Windows independent-host collection-authority policy: security/windows-cache-cleanup-independent-host-collection-authority-policy.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -294,6 +295,7 @@ nav:
       - RFC-0189 - Adopt Windows cross-principal evidence validator: rfcs/0189-adopt-windows-cross-principal-evidence-validator.md
       - RFC-0190 - Adopt Windows independent-host validation contract: rfcs/0190-adopt-windows-independent-host-validation-contract.md
       - RFC-0191 - Adopt Windows independent-host evidence validator: rfcs/0191-adopt-windows-independent-host-evidence-validator.md
+      - RFC-0192 - Adopt Windows independent-host collection-authority policy: rfcs/0192-adopt-windows-independent-host-collection-authority-policy.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

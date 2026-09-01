@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Accept M209/RFC-0192's [Windows independent-host collection-authority
+  policy](docs/security/windows-cache-cleanup-independent-host-collection-authority-policy.md).
+  A future private offline coordinator may issue only single-run, single-use
+  actions bound to one host, lane, trial, barrier, and interruption. Live
+  network/share channels, public runners, checkpoint rollback, credential
+  custody, cleanup authority, qualifying execution, and hosted allocation
+  remain excluded.
 - Add M208/RFC-0191's source-only [Windows independent-host evidence
   validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md).
   It validates a bounded canonical host/capability/interruption artifact only

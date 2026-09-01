@@ -325,6 +325,11 @@ attestation, with the same allocation topology.
   that checks a bounded canonical host artifact only when bound to a separately
   validated M206 companion, while retaining an all-`not_run` reviewed fixture
   and false Windows admission.
+- A [Windows independent-host collection-authority
+  policy](security/windows-cache-cleanup-independent-host-collection-authority-policy.md)
+  that confines any future privileged collector to offline, single-use,
+  host/lane/barrier-bound actions with reviewed evidence custody and teardown,
+  without adding a harness or qualifying run.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

@@ -1240,6 +1240,18 @@ process launch, network access, account or credential management, filesystem
 mutation, or cleanup and adds no workflow, permission, secret, or hosted
 allocation. Criteria 6 and 7 remain unresolved and Windows remains unadmitted.
 
+M209's [Windows independent-host collection-authority
+policy](docs/security/windows-cache-cleanup-independent-host-collection-authority-policy.md)
+confines any future private collector to offline, single-run, single-use
+actions bound to one host, fixture, lane, trial, barrier, and interruption.
+Networking, clipboard redirection, writable live shares, public self-hosted
+runners, repository credentials, checkpoint restoration, and participant self-
+attestation are excluded. Private evidence requires reviewed custody, atomic
+staging, separately retained digests, sanitization, and fail-closed teardown.
+M209 adds no harness, process or power control, cleanup authority, workflow,
+secret, permission, or hosted allocation; criteria 6 and 7 remain unresolved
+and Windows remains unadmitted.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

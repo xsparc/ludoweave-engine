@@ -5421,6 +5421,29 @@ remains unimplemented and unauthorized. No runtime command, harness, process
 launch, filesystem mutation, native call, dependency, workflow, permission,
 credential, or hosted allocation is added.
 
+## M209 Windows independent-host collection-authority policy
+
+M209 accepts the [Windows independent-host collection-authority
+policy](security/windows-cache-cleanup-independent-host-collection-authority-policy.md).
+Collection remains outside runtime composition. A future trusted offline
+coordinator may mint only a private single-use action bound to exact host,
+fixture, profile, trial, barrier, interruption, and source/evidence identities.
+That object cannot enter canonical world state, become request data, mint M201
+cleanup authority, or authorize a production cache operation.
+
+The future control plane has no live network, clipboard, writable host share,
+public runner, or repository credential. Process and power actions stay bound
+to their fixture roles; VM interruption preserves current storage without a
+guest shutdown or checkpoint restore, and physical interruption remains an
+operator action. Private manifest, custody, atomic staging, digest separation,
+sanitization, teardown, and M208 validation precede public evidence.
+
+M209 adds no executable authority or qualifying run. Criteria 6 and 7 remain
+unresolved; Windows stays unadmitted and cleanup remains unimplemented and
+unauthorized. No runtime command, harness, process launch, power action,
+filesystem mutation, native call, dependency, workflow, permission, credential,
+or hosted allocation is added.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

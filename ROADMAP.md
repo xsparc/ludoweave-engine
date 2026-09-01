@@ -3636,6 +3636,35 @@ registrations. It adds no runtime API, command, host harness, process launch,
 filesystem mutation, native call, dependency, version, workflow, permission,
 credential, or hosted execution path; no hosted check is added.
 
+## M209 Windows independent-host collection-authority policy
+
+M209 starts from fully locally validated M208 commit
+`b30892e35b6dfcb2f0c11a209f04260228738db6`. It accepts a [Windows
+independent-host collection-authority
+policy](docs/security/windows-cache-cleanup-independent-host-collection-authority-policy.md)
+under RFC-0192.
+
+The policy defines a future private, non-serializable, single-run and single-
+use authority bound to one independently provisioned host, disposable fixture,
+profile lane, trial, barrier, interruption class, exact evidence identities,
+and closed collection action. It separates operator-owned power and credential
+control from a trusted offline coordinator and from participant claims.
+
+Every run remains offline with network and clipboard channels disabled, no
+writable live host share, no public self-hosted runner, and no repository
+credential. VM power cuts preserve the current storage and use no guest
+shutdown or checkpoint restore. Physical-host power loss remains operator-
+only. Private artifacts require a pre-run manifest, chronological custody,
+atomic same-volume staging, separately retained digest, sanitization review,
+and fail-closed teardown before M208 validation.
+
+No qualifying run has occurred; criteria 6 and 7 remain unresolved. Windows
+cleanup remains unimplemented and unauthorized. M209 does not authorize the
+privileged harness and adds no runtime API, command, process or power control,
+native call, account or credential lifecycle, filesystem mutation, dependency,
+version, workflow, permission, secret, or hosted execution path; no hosted
+check is added.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
