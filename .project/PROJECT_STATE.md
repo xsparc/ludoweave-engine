@@ -1,5 +1,61 @@
 # Project State
 
+## M213 Windows local control token-binding probe - locally complete, publication withheld
+
+- Base: exact fully locally validated M212 DCO commit
+  `98500e9fbe0eda9997d54d729200ba7acdbf05ef`, tree
+  `7c26481ed145ed912fb7e6acb819ec17448c8f1a`, with sole parent exact M211.
+- Branch hygiene: neutral
+  `release/m213-windows-local-control-token-binding-probe` starts from exact
+  M212; the redundant local M212 branch name is removed.
+- Direction: RFC-0196 accepts one direction-preserving test-only retained
+  primary-token and native session-binding probe without increasing collection
+  or cleanup authority.
+- Identity boundary: query-only participant primary token retained across
+  challenge/ready; private user/logon/authentication/token/modified/session/type
+  snapshots match the controller where required and remain stable before
+  release.
+- Session boundary: native pipe-client, retained-process, and participant-token
+  sessions agree; M212's protected single-logon-SID DACL is revalidated using
+  the participant token's copied logon SID.
+- Security boundary: no impersonation, thread-token transition, account launch,
+  credential lifecycle, privilege change, stable-identity disclosure, network,
+  public runner, collection, or cleanup action.
+- Scope: one Windows integration probe, one architecture guard, RFC-0196, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, examples, scripts, benchmarks, workflows, metadata,
+  dependencies, lock, version, permissions, and CI allocation remain unchanged.
+- Validation: focused 25/25; 612-file static gates clean; architecture plus live
+  M213 2,253/one skipped; strict docs/governance/whitespace pass; complete suites
+  4,353/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: final record-state reproducible 364,461-byte pure wheel at SHA-256
+  `906099ccbb2351cd40e6959b35b9ea47ebf9151b6da08e6839905e00cff3a83d`
+  and 2,534,018-byte source archive at SHA-256
+  `0c43685178018c0bced374a2749978630f55891fdce6f99f22ef114d4379141e`;
+  four M213 files are source-only and zero enters the 114-entry wheel.
+- Review: no actionable correctness, authority, security, architecture,
+  documentation, compatibility, package-boundary, or allocation finding.
+  Current repeated Clockwork output supersedes one stale M212 narrative value;
+  frozen runtime and example trees remain unchanged.
+- Cleanup: all 15 M213 generated targets were independently proven confined,
+  ignored, untracked, and reparse-free before exact removal. Previously
+  disclosed inaccessible M212 scratch remains untouched.
+- Admission: same-host, same-logon, same-session observation only. Criteria 6
+  and 7 remain unresolved; Windows remains unadmitted and cleanup remains
+  unimplemented and unauthorized.
+- Commit: initial signed-off object
+  `0b32bb265811b50b91bc1e0862ad5ca50e2828b5`, tree
+  `5ae8220f769e2417f74f9083fa991f49e490d786`, has sole parent exact M212,
+  exactly 16 intended paths, consistent maintainer identity, clean worktree,
+  revision, and object connectivity, plus expected `0 114` divergence. One
+  closeout amendment incorporates this record.
+- Publication: fresh hosted `main` remains exact M99; M212 is absent and only
+  remote `main` exists. Authentication is valid, the repository is public and
+  unarchived, and PR #251 remains latest. Push/PR is withheld because publishing
+  would expose absent M100-M212 prerequisites; no hosted allocation occurs.
+
 ## M212 Windows local control-channel probe - locally complete, publication withheld
 
 - Base: exact fully locally validated M211 DCO commit

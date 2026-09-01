@@ -5518,6 +5518,34 @@ host evidence, mutate a filesystem fixture, control power, satisfy criteria 6
 or 7, or admit Windows cleanup. It adds no runtime/package dependency,
 workflow, permission, secret, or hosted allocation.
 
+## M213 Windows local control token-binding probe
+
+M213 adds the test-only [Windows local control token-binding
+probe](security/windows-cache-cleanup-local-control-token-binding-probe.md).
+It composes only with the exact frozen M212 test boundary and introduces no
+runtime dependency. After M212 binds the native client to the retained process,
+one query-only participant primary-token handle remains open across
+challenge/ready.
+
+Private snapshots bind user SID, logon SID, authentication ID, token ID,
+modified ID, token type, and session ID. The participant identity must match
+the controller's user, logon, authentication, and session context, while native
+pipe-client, process, and token session lookups must agree. The second snapshot
+must equal the first before release, and the M212 pipe DACL is revalidated with
+the participant token's copied logon SID.
+
+No thread impersonation or security-context transition occurs. The token handle
+is explicitly owned and closed; M212 retains ownership of process, Job, pipe,
+and I/O settlement. Raw identity values never enter an artifact, public API, or
+diagnostic.
+
+These native calls exist only in the integration probe. They are not an engine
+adapter, collector, public command, credential channel, or authority surface.
+M213 does not establish distinct-principal or independent-host evidence, mutate
+a filesystem fixture, control power, satisfy criteria 6 or 7, or admit Windows
+cleanup. It adds no runtime/package dependency, workflow, permission, secret,
+or hosted allocation.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

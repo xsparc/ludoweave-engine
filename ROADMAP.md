@@ -3759,6 +3759,37 @@ listener, cleanup authority, dependency, version, workflow, permission,
 secret, public runner, or hosted execution path; no hosted check is added.
 Windows remains unadmitted and cleanup remains unimplemented and unauthorized.
 
+## M213 Windows local control token-binding probe
+
+M213 starts from fully locally validated M212 commit
+`98500e9fbe0eda9997d54d729200ba7acdbf05ef`. It adopts a test-only
+[Windows local control token-binding
+probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md)
+under RFC-0196.
+
+After M212 proves retained process identity, the controller opens that process's
+primary token with query-only access and retains it across challenge/ready. It
+privately copies user and logon SIDs, token/authentication/modified identifiers,
+session ID, and token type before the challenge and after readiness. A
+non-primary token or any identity drift is refused before release.
+
+The participant's user, logon, authentication, and session identity must match
+the controller. Native pipe-client, retained-process, and participant-token
+session identifiers must agree. M212's exact protected pipe DACL is read back
+again against the participant token's copied logon SID.
+
+This is one same-host, same-logon, same-session observation. Token identity
+values remain private, and impersonation is not used. The result does not prove
+distinct-principal or independent-host execution, account or credential
+custody, fixture mutation, interruption, collection, criteria 6 or 7, or
+Windows cleanup admission.
+
+M213 adds no runtime API, CLI or MCP command, production harness, arbitrary
+process or token endpoint, credential lifecycle, filesystem mutation, network
+listener, cleanup authority, dependency, version, workflow, permission,
+secret, public runner, or hosted execution path; no hosted check is added.
+Windows remains unadmitted and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

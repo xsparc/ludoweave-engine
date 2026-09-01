@@ -200,3 +200,4 @@ was adopted.
 - [RFC-0193: adopt Windows independent-host collection-plan validator](0193-adopt-windows-independent-host-collection-plan-validator.md)
 - [RFC-0194: probe Windows independent-host process containment](0194-probe-windows-independent-host-process-containment.md)
 - [RFC-0195: probe a Windows local control channel](0195-probe-windows-local-control-channel.md)
+- [RFC-0196: probe Windows local control token binding](0196-probe-windows-local-control-token-binding.md)

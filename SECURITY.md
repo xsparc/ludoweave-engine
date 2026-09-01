@@ -1291,6 +1291,19 @@ not distinct-principal or independent-host evidence and adds no collector,
 cleanup authority, credential lifecycle, workflow, hosted allocation, or
 Windows admission; criteria 6 and 7 remain unresolved.
 
+M213's test-only [Windows local control token-binding
+probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md)
+retains the M212 participant's query-only primary-token handle across the
+challenge/ready barrier. It requires stable user, logon, authentication, token,
+modified, type, and session identity; native pipe/process/token sessions must
+agree, and the M212 DACL is revalidated against the participant logon SID.
+Impersonation, token adjustment, raw identity disclosure, account launch,
+credentials, arbitrary endpoints, public runners, and unbounded waits remain
+excluded. This same-host/same-logon result is not distinct-principal or
+independent-host evidence and adds no collector, cleanup authority, credential
+lifecycle, workflow, hosted allocation, or Windows admission; criteria 6 and 7
+remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

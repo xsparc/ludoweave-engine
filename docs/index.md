@@ -344,6 +344,11 @@ attestation, with the same allocation topology.
   proves an explicit logon-SID DACL, native retained-client identity, bounded
   challenged sequencing, and replay/wrong-challenge/disconnect refusal on one
   current host without collecting evidence or admitting Windows cleanup.
+- A test-only [Windows local control token-binding
+  probe](security/windows-cache-cleanup-local-control-token-binding-probe.md)
+  that proves retained primary-token identity, native pipe/process/token
+  session agreement, DACL revalidation, and token stability through one local
+  challenge barrier without impersonation, collection, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

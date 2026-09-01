@@ -371,8 +371,15 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > sequence/replay/disconnect behavior. It is not distinct-principal or
 > independent-host evidence, collection authority, cleanup, admission, or a
 > hosted check.
+> M213 adds a test-only [Windows local control token-binding
+> probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md).
+> One current host proves retained primary-token identity, native pipe/process/
+> token session agreement, DACL revalidation, and token stability through the
+> challenge barrier. It uses no impersonation and is not distinct-principal or
+> independent-host evidence, collection authority, cleanup, admission, or a
+> hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M212 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M213 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

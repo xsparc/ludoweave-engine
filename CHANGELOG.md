@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M213/RFC-0196's test-only [Windows local control token-binding
+  probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md).
+  It proves retained primary-token identity, native pipe/process/token session
+  agreement, M212 DACL revalidation, and stable token identity through the
+  challenge barrier on one current Windows host. It uses no impersonation and
+  adds no collector, cleanup authority, admission, workflow, dependency, or
+  hosted allocation.
 - Add M212/RFC-0195's test-only [Windows local control-channel
   probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md).
   It proves an explicit protected logon-SID DACL, first-instance and remote

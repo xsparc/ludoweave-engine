@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M213 Windows local control token-binding probe
+
+RFC-0196 accepts one direction-preserving, test-only current-host probe layered
+on the exact frozen M212 control channel. The participant's retained query-only
+primary token must match the controller's user, logon, authentication, and
+session identity, remain stable across challenge/ready, agree with native pipe
+and process session lookups, and revalidate the M212 pipe DACL with its copied
+logon SID.
+
+Impersonation is explicitly excluded because retained-token and direct session
+queries answer the narrow question without a thread-security transition or a
+failed-reversion hazard. Raw SIDs, LUIDs, session/process identifiers, handles,
+and pipe names remain private transient test values.
+
+Deferred decisions remain the distinct-principal private harness, account and
+credential custody, hostile same-logon and cross-session evidence, disposable
+offline host cohort, external VM/operator power boundaries, qualifying
+collection, criteria 6 and 7 resolution, and Windows cleanup admission. No
+collector, cleanup command, runtime/package surface, workflow, public runner,
+or hosted allocation is added.
+
 ## M212 Windows local control-channel probe
 
 RFC-0195 accepts one direction-preserving, test-only current-host probe of a

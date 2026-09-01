@@ -1,5 +1,103 @@
 # Current task
 
+## M213 Windows local control token-binding probe
+
+- **Task:** Exercise one fixed, test-only retained client-token and native
+  session-binding check on the exact frozen M212 local control channel without
+  impersonation, collection, cleanup authority, or Windows admission.
+- **Status:** Fully locally validated and DCO-committed; project-record
+  closeout, guarded scratch cleanup, and publication-safety review are
+  complete. Publication is withheld because hosted `main` lacks the M100-M212
+  prerequisite stack.
+- **Base:** fully locally validated M212 DCO commit
+  `98500e9fbe0eda9997d54d729200ba7acdbf05ef`, tree
+  `7c26481ed145ed912fb7e6acb819ec17448c8f1a`, with sole parent exact M211.
+- **Branch:** `release/m213-windows-local-control-token-binding-probe`; exact
+  containment made the local M212 branch name redundant, so only local `main`
+  and active M213 remain.
+
+### M213 acceptance boundary
+
+- Open and retain the M212 participant process's primary token with query-only
+  access across challenge/ready; privately copy user SID, logon SID,
+  authentication ID, token ID, modified ID, session ID, and token type.
+- Require the participant to use a primary token and match the controller's
+  user, logon, authentication, and session identity.
+- Require native pipe-client, retained-process, and participant-token session
+  identifiers to agree; revalidate M212's exact DACL against the copied
+  participant logon SID.
+- Re-query the same retained token after `ready` and before `release`; fail
+  closed on any identity drift and explicitly close every token handle.
+- Use no impersonation, alternate-account launch, credential lifecycle,
+  privilege adjustment, runtime/package surface, fixture mutation, cleanup
+  authority, workflow, public runner, or hosted allocation.
+
+### Validation evidence so far
+
+- Exact M212 handoff passed 17 tests; static and dated-strict governance each
+  report zero findings. The intentional architecture red recorded 9 expected
+  missing-artifact/registration failures and 2 protected-boundary passes.
+- Focused formatting, Ruff, strict Pyright, and all 25 M213 architecture/live
+  tests pass. The complete architecture plus live M213 group passes 2,253 tests
+  with one supported-capability skip.
+- All 612 Python files are format-clean; Ruff and strict Pyright report zero
+  findings. Strict docs, both governance modes, and whitespace pass.
+- Complete isolated suites pass identical totals of 4,353 tests with 19 skips
+  on CPython 3.12, 3.13, and 3.14.
+- Ten real-wgpu tests, fresh base/graphics profiles, all eight profile-schema
+  tests, Null/wgpu Clockwork Arena, and Agent World Builder pass. Fresh repeated
+  Clockwork observations agree at state `sha256:c4a5bbedca3a9eb40dbf20745207aeade4e7254e5a5bdd801e64b767a1cce0a0`
+  and 15 sprites; this supersedes the stale M212 narrative for the same current
+  three-tick invocation without changing frozen runtime code.
+- Final record-state distributions are byte-identical: the 364,461-byte pure wheel is SHA-256
+  `906099ccbb2351cd40e6959b35b9ea47ebf9151b6da08e6839905e00cff3a83d`
+  and the 2,534,018-byte source archive is SHA-256
+  `0c43685178018c0bced374a2749978630f55891fdce6f99f22ef114d4379141e`.
+  Installed wheel/scene smokes and two ten-artifact release rehearsals pass;
+  exact release inventories have zero difference. The wheel has 114 entries
+  and no M213 file; all four M213 implementation/decision files occur once in
+  the 1,018-entry source archive.
+- Findings-first review confirms 12 pre-record intended paths, zero runtime,
+  package, example, script, benchmark, workflow, metadata, dependency, or lock
+  diff, and no actionable correctness, authority, security, architecture,
+  documentation, compatibility, package-boundary, or CI-allocation finding.
+- A read-only audit proved all 15 M213 scratch targets repository-confined,
+  ignored, untracked, and recursively reparse-free. Immediate exact
+  revalidation removed all 15; zero M213 scratch target remains. Previously
+  disclosed inaccessible M212 roots were not touched.
+- The record-inclusive separator keeps all 612-file static gates, 2,253/one-
+  skipped architecture/live tests, strict docs, current-date strict governance,
+  and whitespace green. Record-state installed smokes and both byte-identical
+  release rehearsals pass with the final distribution identities above.
+
+### Explicit non-scope
+
+- No distinct-principal, separate-logon, separate-session, hostile connection-
+  race, independent-host, credential-custody, fixture-mutation, interruption,
+  collection, or cleanup evidence.
+- Criteria 6 and 7 remain unresolved. Windows remains unadmitted, and cleanup
+  remains unimplemented and unauthorized.
+- No runtime API, CLI/MCP command, package payload, dependency, workflow,
+  permission, secret, hosted job, tag, release, or package publication.
+
+### Publication boundary
+
+- Initial DCO commit `0b32bb265811b50b91bc1e0862ad5ca50e2828b5`, tree
+  `5ae8220f769e2417f74f9083fa991f49e490d786`, has sole parent exact M212,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 114`
+  local-main divergence. This factual record is incorporated by one closeout
+  amendment.
+- A fresh pruned fetch and direct remote-head query leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M212 is absent, M99 is
+  present, and only remote `main` exists. Hosted divergence is `0 114`.
+  GitHub authentication is valid, the repository is public and unarchived with
+  `main` as default, and PR #251 remains the latest merged PR. Publishing M213
+  would expose the absent M100-M212 stack, so no push, PR, hosted allocation,
+  tag, release, or package publication occurs.
+- Automatic publication remains authorized only when a later fresh gate proves
+  the complete prerequisite stack reachable from hosted `main`.
+
 ## M212 Windows local control-channel probe
 
 - **Task:** Exercise one fixed, test-only Windows named-pipe coordination

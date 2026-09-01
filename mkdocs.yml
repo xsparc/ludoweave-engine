@@ -101,6 +101,7 @@ nav:
   - Windows independent-host collection-plan validator: security/windows-cache-cleanup-independent-host-collection-plan-validator.md
   - Windows independent-host process-containment probe: security/windows-cache-cleanup-independent-host-process-containment-probe.md
   - Windows local control-channel probe: security/windows-cache-cleanup-local-control-channel-probe.md
+  - Windows local control token-binding probe: security/windows-cache-cleanup-local-control-token-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -302,6 +303,7 @@ nav:
       - RFC-0193 - Adopt Windows independent-host collection-plan validator: rfcs/0193-adopt-windows-independent-host-collection-plan-validator.md
       - RFC-0194 - Probe Windows independent-host process containment: rfcs/0194-probe-windows-independent-host-process-containment.md
       - RFC-0195 - Probe a Windows local control channel: rfcs/0195-probe-windows-local-control-channel.md
+      - RFC-0196 - Probe Windows local control token binding: rfcs/0196-probe-windows-local-control-token-binding.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
