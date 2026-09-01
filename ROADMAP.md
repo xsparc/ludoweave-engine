@@ -3899,6 +3899,36 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M218 Windows contained source-access refusal probe
+
+M218 starts from fully locally validated M217 commit
+`ae7769733d59fc825df47c22b2aa37ae2e6ba96d`. It adopts a test-only
+[Windows contained source-access refusal
+probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md)
+under RFC-0201.
+
+At each of the frozen retained-source lifecycle's three refusal phases, one
+fixed argument-free direct child is created suspended with no inherited
+handles, assigned to a fresh private kill-on-close Job, verified as its sole
+member, and bound to the controller's same logon before resume. It performs
+only write- and delete-access `CreateFileW` opens against the fixed participant
+source, accepts only exact sharing error 32, then exits and settles the Job to
+one total and zero active processes with zero owned handles.
+
+The full M217 remote-debug exclusion, participant token/session/DACL,
+executable-image, retained-source, challenge/release, settlement,
+post-settlement access, and final source snapshot boundary remains required.
+The contender performs no content or namespace mutation. It does not prove a
+distinct principal, hostile process, independent host, privileged bypass,
+source-commit provenance, imported-module binding, fixture mutation,
+collection, criteria 6 or 7, or Windows cleanup admission.
+
+M218 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

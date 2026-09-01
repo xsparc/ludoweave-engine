@@ -2,6 +2,20 @@
 
 No architecture decision is currently blocked.
 
+## M218 Windows contained source-access refusal probe
+
+RFC-0201 accepts one direction-preserving test-only observation: a fixed
+argument-free same-logon child is assigned suspended to a private kill-on-close
+Job before it issues access-only write/delete opens against the retained
+participant source. Exact sharing refusal, one-member settlement, unchanged
+source bytes, and zero owned handles are required.
+
+This does not authorize or establish a distinct security principal, hostile
+process, independent host, privileged bypass, source-commit provenance,
+imported standard-library module binding, fixture mutation, collection,
+criterion 6 or 7, cleanup authority, or Windows admission. Those decisions
+remain pending. No public self-hosted runner or added hosted check is approved.
+
 ## M217 Windows retained launch-source remote-debug exclusion probe
 
 RFC-0200 accepts one direction-preserving, test-only composition of

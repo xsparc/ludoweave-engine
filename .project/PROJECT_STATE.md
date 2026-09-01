@@ -1,5 +1,62 @@
 # Project State
 
+## M218 Windows contained source-access refusal - locally complete, publication withheld
+
+- **Baseline:** exact M217 commit
+  `ae7769733d59fc825df47c22b2aa37ae2e6ba96d`, tree
+  `16f44d960b94ed6c736141871d0eb0c599b6f025`, sole parent exact M216.
+- **Direction:** RFC-0201 accepts one direction-preserving, test-only,
+  Job-contained same-logon child observation of the frozen retained-source
+  sharing boundary. It makes no collection or cleanup-authority increase.
+- **Scope:** one fixed fixture, one Windows integration probe, one architecture
+  guard, RFC-0201, one security guide, eight public registrations, and four
+  `.project` records. Runtime/package/dependency/lock/workflow surfaces remain
+  unchanged; zero GitHub Actions job is added.
+- **Behavior:** each phase creates one suspended no-inheritance direct child,
+  assigns it to a private kill-on-close Job, verifies exact sole membership and
+  same-logon token identity before resume, requires write/delete access-only
+  opens to return sharing error 32, and settles exact one-total/zero-active Job
+  accounting with zero owned handles.
+- **Local evidence:** focused M218 22/22; full architecture/live 2,307/one skip;
+  supported Python 3.12/3.13/3.14 each 4,475/19 skips; 10 real-wgpu; both
+  profiles and eight validators; deterministic Null/wgpu Clockwork and Agent
+  World Builder; strict static/type/docs/governance/whitespace gates clean.
+- **Distribution:** two builds are byte-identical. Wheel: 364,984 bytes,
+  SHA-256 `f41d8afcd7d749c767ba2b620984293a82c904b32aaa8aea530e9b2da6ddfae0`.
+  Source: 2,583,147 bytes, SHA-256
+  `5325ee0dcd73972e02b2face117cfa36d54b953b2b3fe85d83c6e7c2fd07df38`.
+  Installed smokes and two identical ten-artifact release stages pass; zero
+  M218 file enters the 114-entry wheel and exactly five occur in the 1,039-entry
+  source archive.
+- **Boundary:** no alternate account, remote host, shell, caller-selected path,
+  inherited handle, output protocol, network, privilege adjustment,
+  impersonation, remote attachment, process-memory access, source mutation,
+  collection, cleanup, or admission action is present.
+- **Record-state evidence:** all 623 files remain static/type clean;
+  architecture/live is 2,307/one skip; strict docs/governance/whitespace pass.
+  The unchanged wheel reproduces, and two 2,586,443-byte source archives match
+  at SHA-256
+  `5e269b17e190ccd4eb82d6179608a577bbc3ee8bc84467ca0744c5a90355b26b`;
+  installed smokes and both exact release rehearsals pass.
+- **Cleanup:** 23 exact M218 scratch targets and 119,301 descendants were
+  proven confined, ignored, untracked, and recursively reparse-free before
+  exact removal. Zero remains; older inaccessible roots were untouched.
+- **Closeout:** post-cleanup format/Ruff/Pyright, 2,307/one-skip
+  architecture/live, strict docs, dated-strict governance, and whitespace pass.
+  Its two generated targets and 5,987 descendants were separately proven
+  confined/ignored/untracked/reparse-free and removed; zero M218 scratch remains.
+- **Commit:** initial DCO commit
+  `80d1134c66af8464a0ee65b1d4ff3c03a57ba491`, tree
+  `9a7e249ba3c140c3fa1c293b385f8bd5957df89c`, has exact M217 as sole parent,
+  17 intended paths, one matching sign-off, consistent maintainer identity,
+  clean worktree/revision/connectivity, and expected `0 119` divergence. This
+  record is incorporated by amendment.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M217 is not its ancestor,
+  only remote `main` exists, and PR #251 remains latest. No branch push, PR,
+  hosted job, tag, release, or package publication occurred.
+
 ## M217 Windows retained launch-source remote-debug exclusion - locally complete, publication withheld
 
 - Base: exact M216 DCO commit

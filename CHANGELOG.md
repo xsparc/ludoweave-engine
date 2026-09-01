@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M218/RFC-0201's test-only [Windows contained source-access refusal
+  probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md).
+  It assigns a fixed argument-free same-logon child suspended to a private
+  kill-on-close Job, requires exact write/delete sharing refusal at all three
+  retained-source phases, and proves one-member settlement without mutation.
+  It adds no runtime, cleanup authority, admission, workflow, or hosted
+  allocation.
 - Add M217/RFC-0200's test-only [Windows retained launch-source remote-debug
   exclusion
   probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md).

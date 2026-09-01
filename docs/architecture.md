@@ -5641,6 +5641,30 @@ authority, or Windows admission. M217 adds no runtime, package, dependency,
 workflow, permission, public runner, or hosted allocation; criteria 6 and 7
 remain unresolved.
 
+## M218 Windows contained source-access refusal probe
+
+M218 adds the test-only [Windows contained source-access refusal
+probe](security/windows-cache-cleanup-contained-source-access-refusal-probe.md).
+It composes only with the exact frozen M212-M217 test boundary and introduces
+no runtime dependency. A fresh fixed argument-free `pythonw.exe -I -B` child
+is created suspended with no inherited handles for each refusal phase, assigned
+to a private Job configured for kill-on-last-close, checked as its exact sole
+member, and verified as same-logon with the controller before resume.
+
+The child derives one fixed tracked source path and requests only write and
+delete access through `CreateFileW`. Both requests must return exact sharing
+error 32; the child performs no mutation operation. The process and Job must
+settle to exact one-total/zero-active accounting with zero owned handles. The
+M217 participant's remote-debug exclusion, native identity, retained token,
+image/source stability, protocol, settlement, post-settlement access, and final
+snapshot observations remain mandatory.
+
+The probe adds an independently executing contained observation, not a distinct
+principal, hostile process, independent host, privileged bypass, source-commit
+provenance, imported-module binding, collection, cleanup authority, or Windows
+admission. M218 adds no runtime, package, dependency, workflow, permission,
+public runner, or hosted allocation; criteria 6 and 7 remain unresolved.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

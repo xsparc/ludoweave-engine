@@ -403,8 +403,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > process/source boundary and completes the same access-refusal lifecycle.
 > It performs no remote attachment or injection and adds no runtime,
 > collection, cleanup, admission, workflow, or hosted check.
+> M218 adds a test-only [Windows contained source-access refusal
+> probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md).
+> A fixed argument-free same-logon child is assigned suspended to a private
+> kill-on-close Job before making access-only write/delete open requests at the
+> three retained-source phases. It mutates nothing and adds no runtime,
+> collection, cleanup, admission, workflow, or hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M217 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M218 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

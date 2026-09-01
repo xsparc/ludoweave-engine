@@ -1348,6 +1348,17 @@ hostile-process, source-provenance, collection, cleanup-authority, or
 Windows-admission evidence; criteria 6 and 7 remain unresolved and no hosted
 check is added.
 
+M218's test-only [Windows contained source-access refusal
+probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md)
+makes the same write/delete access-only requests from a fixed argument-free
+same-logon child. The process is created suspended, assigned to a private
+kill-on-close Job, verified as the sole member, and resumed only after token
+binding; exact sharing error 32 is required at all three retained-source
+phases. The source remains unchanged and the one-member Job settles completely.
+This is not distinct-principal, hostile-process, independent-host,
+source-provenance, collection, cleanup-authority, or Windows-admission
+evidence; criteria 6 and 7 remain unresolved and no hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
