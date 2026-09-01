@@ -3986,6 +3986,33 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M221 Windows contained source-access source-commit binding probe
+
+M221 starts from fully locally validated M220 commit
+`734d4eb943c3da7a1a8357ef3e180cac4353cb6b`. It adopts a test-only
+[Windows contained source-access source-commit binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md)
+under RFC-0204.
+
+Before each M220 contender launch, a fixed direct Git object query requires the
+exact M220 commit, tree, sole parent, source path, blob type, byte count, and
+SHA-256. The retained read-only source snapshot must match that committed blob
+before child creation. After the existing contained contender settles, the
+same commit descriptor and retained source must remain unchanged before close
+and ordinary post-close source access.
+
+The full M220 three-handle source execution and M218/M217 participant boundary
+remains required. This local object check is not a source attestation and does
+not prove repository acquisition, build provenance, imports, native-loader
+state, distinct-principal or independent-host behavior, hostile/privileged
+bypass, criteria 6/7, or Windows cleanup admission.
+
+M221 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

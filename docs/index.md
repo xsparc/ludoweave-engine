@@ -385,6 +385,11 @@ attestation, with the same allocation topology.
   through isolated inherited standard input under an exact three-handle
   allowlist, and rechecks source and interpreter-image snapshots after
   settlement without adding runtime, cleanup, admission, or hosted allocation.
+- A test-only [Windows contained source-access source-commit binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md)
+  that requires the retained contender source to equal one exact immutable
+  local commit/path/blob before child creation and after settlement, without
+  claiming source attestation, build provenance, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

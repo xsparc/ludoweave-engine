@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M221/RFC-0204's test-only [Windows contained source-access source-commit
+  binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md).
+  It requires the retained M220 contender source to match one exact immutable
+  local commit/path/blob before child creation and after settlement. Source
+  attestation, build provenance, cleanup authority, admission, workflow, and
+  hosted allocation remain unchanged.
 - Add M220/RFC-0203's test-only [Windows contained source-access source-binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md).
   It executes a retained fixed contender source through inherited standard

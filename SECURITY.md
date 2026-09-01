@@ -1391,6 +1391,22 @@ Windows admission remain unresolved. It adds no runtime surface, cleanup
 authority, workflow, public runner, or hosted allocation. Windows remains
 unadmitted and cleanup remains unimplemented and unauthorized.
 
+M221's test-only [Windows contained source-access source-commit binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md)
+requires the retained M220 contender source to equal the blob at one exact
+immutable commit/path before child creation and after settlement. Direct Git
+object reads are fixed, bounded, noninteractive, replacement-free, and
+fail-closed. The full M220 Job, token, image, source, access, and three-phase
+participant boundary remains mandatory.
+
+This is a current-repository local-object observation, not a source
+attestation or build-provenance claim. The Git executable, local object store,
+repository acquisition, imports, native-loader state, distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, and Windows
+admission remain unresolved. It adds no runtime surface, cleanup authority,
+workflow, public runner, or hosted allocation. Windows remains unadmitted and
+cleanup remains unimplemented and unauthorized.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

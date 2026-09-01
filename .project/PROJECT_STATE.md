@@ -1,5 +1,78 @@
 # Project State
 
+## M221 Windows contained source-access source-commit binding - locally complete, publication withheld
+
+- **Baseline:** exact M220 commit
+  `734d4eb943c3da7a1a8357ef3e180cac4353cb6b`, tree
+  `5575eeeb8123a0eaed9028a6281227b64fdfb73d`, sole parent exact M219.
+- **Direction:** RFC-0204 accepts one direction-preserving test-only binding of
+  M220's retained contender source to an exact immutable local commit object.
+  It makes no collection or cleanup-authority increase and establishes no
+  source attestation or build provenance.
+- **Scope:** one Windows integration probe, one architecture guard, RFC-0204,
+  one security guide, eight public registrations, and four `.project` records.
+  Runtime/package/dependency/lock/workflow/fixture surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** fail-closed direct Git object reads prove exact commit, tree,
+  parent, path, blob type, size, and digest; retained source equals the blob
+  before child creation and after settlement; M220's exact source, handle,
+  Job, token, image, access, participant, zero-exit, settlement, and close
+  boundary remains mandatory.
+- **Local evidence:** focused M221 17/17; architecture/integration 3,397/12
+  skips; supported Python 3.12/3.13/3.14 each 4,519/19 skips; 10 real-wgpu;
+  fresh two-/three-workload profiles and eight validators; deterministic
+  Null/wgpu Clockwork and Agent World Builder; whole-project static/type gates
+  clean.
+- **Distribution:** two builds are byte-identical. Wheel: 365,395 bytes,
+  SHA-256 `69076bb43e24e32b16ba98b11f5231187d44860f9407ee86a74e5df77211b847`.
+  Source: 2,613,140 bytes, SHA-256
+  `6d34b22b75bbeae5ebf8f20fd786d80f7d680d47b61322a79351902555e4b07f`.
+  Installed smokes and two identical ten-artifact release stages pass; zero
+  M221 file enters the 114-entry wheel and exactly four occur in the
+  1,052-entry source archive.
+- **Record state:** format/Ruff/Pyright, 3,397/12-skip architecture/integration,
+  strict docs, static/dated-strict governance, and whitespace pass. The exact
+  wheel reproduces; two 2,615,756-byte source archives match at SHA-256
+  `811dd4c8f9599b60b4c6f41c60f5bb74eedf600004547a7bee71480dc9b76dd2`;
+  installed smokes and both exact release rehearsals pass.
+- **Review:** exactly 16 intended paths; protected workflow, package, lock,
+  fixture, and M220 hashes remain exact. Direct-Git failure handling and
+  source/child/settlement ordering are bounded; no actionable correctness,
+  disclosure, authority, runtime, dependency, package, or CI finding remains.
+- **Cleanup:** 24 exact M221 scratch targets and 50,154 entries were proven
+  confined, ignored, untracked, and recursively reparse-free before exact
+  removal. Zero remains; older scratch roots were untouched.
+- **Final ledger:** format/Ruff/Pyright, 3,397/12-skip architecture/integration,
+  strict docs, dated-strict governance, and whitespace pass. The 365,395-byte
+  wheel remains exact; two 2,616,648-byte source archives match at SHA-256
+  `0346ebec5f5fffc9b9a3839bd107daf09b78242677360ed7f36fdc306ed06c8d`;
+  installed smokes and both exact release rehearsals pass. Recording this
+  result changes only the source archive afterward.
+- **Final cleanup:** seven exact generated targets and 8,474 entries were
+  separately proven confined, ignored, untracked, and recursively
+  reparse-free, removed exactly, and confirmed absent. Older scratch remains
+  untouched.
+- **Pre-commit audit:** exact 16-path allowlist and M220 HEAD/tree/parent;
+  protected surfaces and disclosure/credential scans clean; only local `main`
+  plus neutral M221; expected `0 121` divergence; correct maintainer identity;
+  retired metadata and M221 scratch absent; whitespace/connectivity clean.
+- **Commit:** initial DCO commit
+  `b2dea997790bbcc45b19b94e1033d8eb9a54f86e`, tree
+  `214cc0139453ff0e523ef25763cb9b8291dc6c3f`, has exact M220 as sole
+  parent, 16 intended paths, one matching sign-off, consistent maintainer
+  identity, a clean worktree/connectivity, and expected `0 122` divergence.
+  This factual record is incorporated by amendment.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M220 is not its ancestor,
+  only remote `main` exists, no PR is open, and PR #251 remains latest. No
+  branch push, PR, hosted job, tag, release, or package publication occurred.
+- **Boundary:** trusted Git executable/local object store, repository
+  acquisition, source attestation, build provenance, imports, native loader,
+  distinct principal, hostile process, independent host, privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unproved. No
+  runtime, package, workflow, public runner, or hosted allocation is added.
+
 ## M220 Windows contained source-access source binding - locally complete, publication withheld
 
 - **Baseline:** exact M219 commit

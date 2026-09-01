@@ -208,3 +208,4 @@ was adopted.
 - [RFC-0201: probe Windows contained source-access refusal](0201-probe-windows-contained-source-access-refusal.md)
 - [RFC-0202: probe Windows contained source-access image binding](0202-probe-windows-contained-source-access-image-binding.md)
 - [RFC-0203: probe Windows contained source-access source binding](0203-probe-windows-contained-source-access-source-binding.md)
+- [RFC-0204: probe Windows contained source-access source-commit binding](0204-probe-windows-contained-source-access-source-commit-binding.md)

@@ -5712,6 +5712,30 @@ criteria 6/7, Windows admission, and cleanup authority remain unresolved. M220
 adds no runtime, package, dependency, workflow, public runner, or hosted
 allocation; cleanup remains unimplemented and unauthorized.
 
+## M221 Windows contained source-access source-commit binding probe
+
+M221 adds the test-only [Windows contained source-access source-commit binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md).
+Before each M220 contained contender runs, a direct bounded Git object query
+requires the exact M220 commit, tree, sole parent, source path, blob type, size,
+and digest. The already retained read-only source must equal that blob before
+child creation and after exact child settlement.
+
+The query uses no shell or input stream, accepts only bounded output with empty
+standard error, disables replacement objects, optional locks, and prompting,
+and fails closed on any mismatch. M220's exact three inherited handles,
+suspended private-Job launch, same-logon token, interpreter-image agreement,
+access refusal, zero exit, settlement, close, and three participant phases are
+reused without modification.
+
+The observation binds only one current local repository object to the fixed
+contender source. It is not source attestation or build provenance; the Git
+executable, local object store, acquisition path, imported modules, native
+loader state, distinct principal, independent host, hostile or privileged
+bypass, criteria 6/7, Windows admission, and cleanup authority remain outside
+the evidence. M221 adds no runtime, package, dependency, workflow, public
+runner, or hosted allocation; cleanup remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

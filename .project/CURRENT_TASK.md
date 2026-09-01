@@ -1,5 +1,113 @@
 # Current task
 
+## M221 Windows contained source-access source-commit binding probe
+
+- **Task:** Bind M220's retained fixed contender source to one exact immutable
+  local Git commit/path/blob while preserving the complete M220 contained
+  source-access refusal boundary.
+- **Status:** Direction research, implementation, complete supported-Python
+  validation, rendering/profile/examples, reproducible distributions/releases,
+  review, guarded cleanup, final ledger, pre-commit audit, and local DCO commit
+  gates pass. Publication is withheld because hosted `main` lacks the M100-M220
+  prerequisite stack.
+- **Base:** exact fully locally validated M220 DCO commit
+  `734d4eb943c3da7a1a8357ef3e180cac4353cb6b`, tree
+  `5575eeeb8123a0eaed9028a6281227b64fdfb73d`, with sole parent exact M219.
+- **Branch:**
+  `release/m221-windows-contained-source-access-source-commit-binding-probe`;
+  exact containment made the local M220 branch name redundant, so only local
+  `main` and active M221 remain.
+
+### M221 acceptance boundary
+
+- Resolve only exact M220 commit, tree, sole parent, contender-source path,
+  blob type, blob byte count, and blob SHA-256; reject moving refs.
+- Invoke a resolved Git executable directly with no shell/input, a fixed
+  timeout, bounded output, empty standard error, disabled replacement objects,
+  optional locks, and prompts, plus sanitized Git-specific environment values.
+- Require M220's retained source snapshot to equal the committed blob before
+  each child creation and after exact child settlement.
+- Preserve M220's exact three inherited handles, suspended private-Job launch,
+  same-logon token, interpreter-image binding, zero-exit/access-refusal checks,
+  three participant phases, settlement, close, and post-close access.
+- Protect runtime, package, dependency, lock, workflow, prior fixture/probe,
+  example, script, and benchmark surfaces. Add zero GitHub Actions job or
+  hosted allocation.
+- Keep trusted-Git/local-object-store, source-attestation, build-provenance,
+  import/native-loader, distinct-principal, hostile-process, independent-host,
+  privileged-bypass, criteria 6/7, cleanup-authority, and Windows-admission
+  gaps unresolved.
+
+### Validation evidence so far
+
+- The intentional architecture red passed two checks and failed only the 11
+  absent implementation, decision, and registration checks. The completed
+  focused architecture/live boundary passes 17 tests; the live probe passes
+  four tests independently and strict focused Pyright is clean.
+- The unchanged 46-package lock resolves; all 630 Python files are
+  format-clean; Ruff and strict Pyright report zero findings. Complete
+  architecture/integration passes 3,397 tests with 12 skips.
+- Isolated frozen CPython 3.12, 3.13, and 3.14 suites each pass 4,519 tests with
+  19 skips.
+- Ten real-wgpu tests, fresh two-/three-workload profiles, all eight profile
+  tests, two Null and one wgpu Clockwork runs, and Agent World Builder pass
+  with their deterministic identities.
+- Two builds reproduce a 365,395-byte pure wheel at SHA-256
+  `69076bb43e24e32b16ba98b11f5231187d44860f9407ee86a74e5df77211b847`
+  and a 2,613,140-byte source archive at SHA-256
+  `6d34b22b75bbeae5ebf8f20fd786d80f7d680d47b61322a79351902555e4b07f`.
+  Installed wheel/scene smokes and two identical ten-artifact release stages
+  pass. The 114-entry wheel contains zero M221 file; the 1,052-entry source
+  archive contains each of the four new implementation/decision files once.
+- Record-inclusive format/Ruff/Pyright, 3,397/12-skip architecture/integration,
+  strict docs, static/dated-strict governance, and whitespace pass. Review
+  confirms exactly 16 intended paths, unchanged protected hashes, absent
+  retired metadata, and zero explicit development-tool identity or
+  high-confidence credential match.
+- Two record-state builds preserve the exact wheel and reproduce a
+  2,615,756-byte source archive at SHA-256
+  `811dd4c8f9599b60b4c6f41c60f5bb74eedf600004547a7bee71480dc9b76dd2`.
+  Installed smokes and both exact ten-artifact release rehearsals pass.
+- The post-review separator passes whole-project static/type checks, all 17
+  focused tests, strict docs, dated-strict governance, and whitespace. A
+  guarded audit proved exactly 24 M221 scratch targets and 50,154 entries
+  confined, ignored, untracked, and reparse-free; immediate exact revalidation
+  removed only those targets and confirmed zero remains.
+- Final post-cleanup format/Ruff/Pyright, 3,397/12-skip architecture/integration,
+  strict docs, dated-strict governance, and whitespace pass. Two final builds
+  preserve the exact wheel and reproduce a 2,616,648-byte source archive at
+  SHA-256
+  `0346ebec5f5fffc9b9a3839bd107daf09b78242677360ed7f36fdc306ed06c8d`;
+  installed smokes and both exact ten-artifact release stages pass.
+- Seven exact final-ledger targets and 8,474 entries were separately proven
+  confined, ignored, untracked, and reparse-free, removed exactly, and
+  confirmed absent; older scratch remains untouched.
+- The corrected pre-commit audit passes exact M220 history, 16-path allowlist,
+  neutral branch/identity, `0 121` divergence, protected-surface, disclosure,
+  credential, retired-metadata, scratch, whitespace, and connectivity gates.
+  Its first invocation used a literal rather than expanded tab delimiter for
+  the divergence assertion and was discarded before commit.
+- Initial DCO commit `b2dea997790bbcc45b19b94e1033d8eb9a54f86e`,
+  tree `214cc0139453ff0e523ef25763cb9b8291dc6c3f`, has exact M220 as
+  sole parent, exactly 16 paths, one matching sign-off, consistent maintainer
+  identity, a clean worktree, clean connectivity, and expected `0 122`
+  divergence. This factual record is incorporated by amendment.
+- A fresh pruned fetch and direct remote-head query leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M220 is absent,
+  M99 is present, only remote `main` exists, no PR is open, and PR #251 remains
+  latest. Publishing M221 would expose the absent M100-M220 stack, so no push,
+  PR, hosted allocation, tag, release, or package publication occurs.
+
+### Remaining gates
+
+- Run record-inclusive formatting, lint, type, architecture/integration,
+  strict docs, static and dated-strict governance, and whitespace checks.
+- Await integration of the prerequisite stack before any M221 publication.
+- Audit exact history, identity, allowlist, protected surfaces, disclosure,
+  branch hygiene, connectivity, and DCO before any local commit.
+- Recheck hosted ancestry before push or PR. Publication remains forbidden if
+  the prerequisite stack is absent from hosted `main`.
+
 ## M220 Windows contained source-access source-binding probe
 
 - **Task:** Bind a new fixed Job-contained same-logon contender to retained

@@ -109,6 +109,7 @@ nav:
   - Windows contained source-access refusal probe: security/windows-cache-cleanup-contained-source-access-refusal-probe.md
   - Windows contained source-access image-binding probe: security/windows-cache-cleanup-contained-source-access-image-binding-probe.md
   - Windows contained source-access source-binding probe: security/windows-cache-cleanup-contained-source-access-source-binding-probe.md
+  - Windows contained source-access source-commit binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -318,6 +319,7 @@ nav:
       - RFC-0201 - Probe Windows contained source-access refusal: rfcs/0201-probe-windows-contained-source-access-refusal.md
       - RFC-0202 - Probe Windows contained source-access image binding: rfcs/0202-probe-windows-contained-source-access-image-binding.md
       - RFC-0203 - Probe Windows contained source-access source binding: rfcs/0203-probe-windows-contained-source-access-source-binding.md
+      - RFC-0204 - Probe Windows contained source-access source-commit binding: rfcs/0204-probe-windows-contained-source-access-source-commit-binding.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

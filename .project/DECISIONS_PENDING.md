@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M221 Windows contained source-access source-commit binding probe
+
+RFC-0204 accepts one direction-preserving test-only observation: require
+M220's retained fixed contender source to equal the blob selected by the exact
+M220 commit, tree, sole parent, repository path, type, size, and SHA-256 before
+child creation and after child settlement. Fixed bounded direct Git object
+reads fail closed and do not consult moving branch or remote refs.
+
+This is local immutable-object identity, not source provenance attestation or
+build provenance. Trust in the Git executable, local object store and
+repository acquisition remains pending, as do imported-module/native-loader
+binding, distinct-principal behavior, hostile process control,
+independent-host evidence, privileged bypass, criteria 6 and 7, cleanup
+authority, and Windows admission. No public self-hosted runner or hosted
+validation job is authorized by this decision.
+
 ## M220 Windows contained source-access source-binding probe
 
 RFC-0203 accepts one direction-preserving test-only observation: retain and
