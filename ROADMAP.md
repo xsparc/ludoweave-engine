@@ -3815,6 +3815,34 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M215 Windows retained launch-source binding probe
+
+M215 starts from fully locally validated M214 commit
+`8da9809a9505437175c09e439e43caca84e7333a`. It adopts a test-only
+[Windows retained launch-source binding
+probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md)
+under RFC-0198.
+
+Before launch, the controller retains and privately snapshots the fixed M212
+participant source. The fixed direct `pythonw.exe -I -B -` child reads those
+source bytes from inherited standard input. `STARTUPINFOEXW` restricts
+inheritance to the source plus separate write-only standard-output and
+standard-error `NUL` handles. After the frozen M212-M214 process, token,
+session, and executable-image bindings and challenge/ready observation, the
+same retained source is rechecked before release.
+
+The observation is same-host, same-logon, and same-session only. It does not
+bind imported module bytes, interpreter state, source-commit provenance, prove
+hostile ABA resistance, provide distinct-principal or independent-host
+evidence, mutate a fixture, control power, collect evidence, satisfy criteria
+6 or 7, or admit Windows cleanup.
+
+M215 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

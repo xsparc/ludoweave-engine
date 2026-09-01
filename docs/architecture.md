@@ -5570,6 +5570,30 @@ fixture, control power, satisfy criteria 6 or 7, or admit Windows cleanup. It
 adds no runtime/package dependency, workflow, permission, secret, or hosted
 allocation.
 
+## M215 Windows retained launch-source binding probe
+
+M215 adds the test-only [Windows retained launch-source binding
+probe](security/windows-cache-cleanup-retained-launch-source-binding-probe.md).
+It composes only with the exact frozen M212-M214 test boundary and introduces
+no runtime dependency. The controller retains and privately snapshots the fixed
+participant source before launch, then rewinds it and creates fixed direct
+`pythonw.exe -I -B -` with that handle as standard input.
+
+The only explicitly inherited handles are the read-only source and two distinct
+write-only `NUL` handles for standard output and standard error. The source,
+retained token, expected executable, and observed executable are rechecked
+after challenge/ready and before release. Retained process identity and native
+session/DACL checks remain required frozen prerequisites before the challenge.
+All names, identifiers, sizes, digests, process identifiers, and handles remain
+private test memory.
+
+This binds the bounded source bytes consumed from inherited standard input. It
+does not bind imported module bytes, interpreter state, native dependencies,
+source-commit provenance, or prove hostile ABA resistance. It is not
+distinct-principal or independent-host evidence, collection, cleanup authority,
+or Windows admission; criteria 6 and 7 remain unresolved. M215 adds no runtime,
+package, dependency, workflow, permission, public runner, or hosted allocation.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

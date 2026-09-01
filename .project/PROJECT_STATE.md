@@ -1,5 +1,78 @@
 # Project State
 
+## M215 Windows retained launch-source binding probe - locally complete, publication withheld
+
+- Base: exact M214 DCO commit
+  `8da9809a9505437175c09e439e43caca84e7333a`, tree
+  `6b06cdd6e404cde29bc705054ff3d5bad8dd9838`, with sole parent exact M213.
+- Branch hygiene: neutral
+  `release/m215-windows-retained-launch-source-binding-probe` starts from exact
+  M214; the redundant local M214 branch name is removed.
+- Direction: RFC-0198 accepts one direction-preserving, current-host,
+  test-only retained launch-source binding probe with no collection or cleanup
+  authority increase.
+- Source boundary: fixed participant source retained and snapshotted before
+  launch, rewound, consumed by fixed direct `pythonw.exe -I -B -` from inherited
+  standard input, and rechecked after challenge/ready before release.
+- Inheritance boundary: exact `STARTUPINFOEXW` allowlist of the source plus two
+  distinct write-only `NUL` handles; retained token and both image handles are
+  rechecked before release, while process, native session, and DACL checks
+  remain required pre-challenge prerequisites.
+- Security boundary: bounded private source identity/content; no pathname
+  reopen, unstable remote-memory introspection, identity disclosure, mutation,
+  imported-module claim, source-commit claim, hostile-ABA claim, account launch,
+  privilege change, network, collector, cleanup, or admission.
+- Scope: one Windows integration probe, one architecture guard, RFC-0198, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, fixtures, examples, scripts, benchmarks, workflows,
+  metadata, dependencies, lock, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused 34/34; 616-file static gates clean; architecture plus
+  live M215 2,284/one skipped; strict docs/governance/whitespace pass; complete
+  suites 4,410/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: record-state builds reproduce the 364,667-byte pure wheel at SHA-256
+  `2e6b684275653afcfa6c2d413ec06c3f6988d8fd74a9aa006d26ca3330bd7cdb`
+  and 2,554,519-byte source archive at SHA-256
+  `274409936034d9d5b54f30ca0a8d8624d3b28db9f324ada10b8475af952ec947`;
+  four M215 files are source-only and zero enters the 114-entry wheel.
+- Review: exactly 16 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; zero retired root
+  control metadata or sensitive added-content disclosure. One documentation
+  overclaim was narrowed to the actual pre-/post-challenge checks and one unused
+  native constant was removed. Corrected focused static/type/docs and 34 tests
+  pass; no actionable correctness, authority, security, architecture,
+  compatibility, documentation, package-boundary, or CI-allocation finding
+  remains.
+- Cleanup: all 25 M215 generated test/report/profile/docs/distribution/release
+  targets and 47,425 descendants were proven repository-confined, ignored,
+  untracked, and recursively reparse-free before exact removal across the
+  primary and regenerated-documentation cleanup. Zero remains; older outputs
+  and the three inaccessible M212 roots were untouched.
+- Pre-commit audit: exact M214 HEAD/tree/parent, exactly 16 intended paths,
+  only local `main` plus active neutral M215, expected `0 115` divergence,
+  configured maintainer identity, zero protected-surface diff, zero M215
+  scratch, absent retired root metadata, clean whitespace, and connected Git
+  objects.
+- Initial commit: DCO object
+  `6903bab3fe9fad9310365aa05ef3482e7a0a21c5`, tree
+  `c56b4b071f11037bd9730af1193780a7b1158f21`, has sole parent exact M214,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 116`
+  divergence. This object audit is incorporated by the closeout amendments.
+- Admission: same-host, same-logon, same-session observation only. Criteria 6
+  and 7 remain unresolved; Windows remains unadmitted and cleanup remains
+  unimplemented and unauthorized.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M214 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 116`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M214
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M214 Windows retained process-image binding probe - locally complete, publication withheld
 
 - Base: exact M213 DCO commit

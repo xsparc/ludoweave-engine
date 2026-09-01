@@ -385,8 +385,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > across challenge/ready. It does not bind loaded script bytes or prove hostile
 > replacement resistance, and adds no collection, cleanup, admission, or
 > hosted check.
+> M215 adds a test-only [Windows retained launch-source binding
+> probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md).
+> The child reads the retained participant source from isolated inherited
+> standard input under an exact three-handle allowlist, with source stability
+> rechecked before release. It does not bind imported modules or source-commit
+> provenance and adds no collection, cleanup, admission, or hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M214 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M215 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

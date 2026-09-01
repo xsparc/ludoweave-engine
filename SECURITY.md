@@ -1313,6 +1313,19 @@ SHA-256 before and after challenge/ready. It does not bind loaded script bytes,
 prove hostile replacement resistance, add collection or cleanup authority, or
 admit Windows; criteria 6 and 7 remain unresolved and no hosted check is added.
 
+M215's test-only [Windows retained launch-source binding
+probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md)
+opens and snapshots the fixed participant source before launch, rewinds that
+retained handle, and supplies it as inherited standard input to fixed direct
+`pythonw.exe -I -B -`. An exact three-handle allowlist includes only the source
+and two write-only `NUL` standard handles. The source and frozen M212-M214
+retained-token and executable-image bindings are rechecked after
+challenge/ready and before release. Native client/session/DACL checks remain
+required before the challenge. Imported modules and source-commit provenance
+remain unbound, hostile ABA resistance is not proved, and no collection,
+cleanup authority, Windows admission, public runner, workflow, or hosted check
+is added; criteria 6 and 7 remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

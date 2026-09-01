@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M215 Windows retained launch-source binding probe
+
+RFC-0198 accepts one direction-preserving, test-only current-host source-byte
+observation layered on the exact frozen M212-M214 boundary. The fixed
+participant source is opened read-only, privately snapshotted, rewound, and
+inherited as standard input by fixed direct `pythonw.exe -I -B -`. An explicit
+`STARTUPINFOEXW` handle list admits only that source and two distinct
+write-only `NUL` handles. The source and prior identity bindings must remain
+stable after challenge/ready and before release.
+
+The decision avoids a participant script pathname and unstable remote-process
+command-line introspection. It does not bind imported standard-library module
+bytes, interpreter state, native dependencies, environment outside isolated
+mode's exclusions, or source-commit provenance and does not prove hostile ABA
+resistance.
+
+Deferred decisions remain the distinct-principal private harness, account and
+credential custody, trusted source checkout/commit binding, hostile
+filesystem/race evidence, disposable offline host cohort, external VM/operator
+power boundaries, qualifying collection, criteria 6 and 7 resolution, and
+Windows cleanup admission. No collector, cleanup command, runtime/package
+surface, workflow, public runner, or hosted allocation is added.
+
 ## M214 Windows retained process-image binding probe
 
 RFC-0197 accepts one direction-preserving, test-only current-host executable

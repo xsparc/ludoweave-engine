@@ -1,5 +1,97 @@
 # Current task
 
+## M215 Windows retained launch-source binding probe
+
+- **Task:** Exercise one fixed, test-only retained participant-source check on
+  the exact frozen M212-M214 process, control, token, session, and executable
+  boundary without collection, cleanup authority, or Windows admission.
+- **Status:** Fully locally validated, findings-first reviewed, and locally
+  DCO-committed; record-state packaging and guarded scratch cleanup pass.
+  Publication is withheld because hosted `main` lacks the M100-M214
+  prerequisite stack.
+- **Base:** exact fully locally validated M214 DCO commit
+  `8da9809a9505437175c09e439e43caca84e7333a`, tree
+  `6b06cdd6e404cde29bc705054ff3d5bad8dd9838`, with sole parent exact M213.
+- **Branch:** `release/m215-windows-retained-launch-source-binding-probe`;
+  exact containment made the local M214 branch name redundant, so only local
+  `main` and active M215 remain.
+
+### M215 acceptance boundary
+
+- Open the fixed participant source read-only before launch, retain it through
+  settlement, and privately snapshot normalized name, volume/file ID, bounded
+  size, and SHA-256 before child creation.
+- Rewind the source and launch fixed direct `pythonw.exe -I -B -` so Python
+  consumes the retained bytes from inherited standard input rather than
+  reopening a script pathname.
+- Use `STARTUPINFOEXW` with an exact three-handle allowlist containing only the
+  source and distinct write-only `NUL` output/error handles.
+- After exact M212-M214 bindings and challenge/ready, recheck source, retained
+  token, expected image, and observed image before release; retain native
+  client/session/DACL checks as pre-challenge prerequisites, fail closed on
+  drift, and close every new handle once.
+- Protect all runtime, package, example, script, benchmark, workflow,
+  dependency, lock, version, fixture, and M214 surfaces.
+- Keep imported-module bytes, interpreter state, source-commit provenance,
+  hostile ABA resistance, distinct-principal and independent-host proof,
+  collection, cleanup, criteria 6/7, and Windows admission unresolved.
+- Add zero GitHub Actions jobs or hosted allocation.
+
+### Validation evidence so far
+
+- The exact M214 handoff passed 23 tests; static and dated-strict governance
+  each passed with zero findings before the branch was created.
+- The intentional red failed only because the probe and decision files were
+  absent. The first code-only guard then found two audit-expression mismatches;
+  explicit source-bound aliases and a correctly scoped fixed-command check
+  corrected them. Focused formatting, Ruff, strict Pyright, strict docs, and all
+  34 M215 architecture/live tests pass.
+- All 616 Python files pass formatting and Ruff; strict Pyright reports zero
+  findings; architecture plus the live M215 probe passes 2,284 tests with one
+  inherited capability skip.
+- Complete isolated all-group graphics suites pass 4,410 tests with 19 skips
+  on each CPython 3.12, 3.13, and 3.14.
+- Ten real-wgpu tests, both one-repeat profile contracts, eight profile tests,
+  two Null Clockwork repeats, wgpu Clockwork, and Agent World Builder pass.
+- Two builds reproduce a 364,667-byte pure wheel at SHA-256
+  `2e6b684275653afcfa6c2d413ec06c3f6988d8fd74a9aa006d26ca3330bd7cdb`
+  and 2,551,937-byte source archive at SHA-256
+  `85653a8e7d72ffbe210708ffbdfea36a4c970b787c32025ad4a12916ecbc41b3`.
+  Installed wheel/scene smokes and two byte-identical ten-artifact release
+  rehearsals pass. The 114-entry wheel contains no M215 file; all four new
+  implementation/decision files occur once in the 1,026-entry source archive.
+- Record-inclusive static, type, architecture/live, strict docs, governance,
+  and whitespace gates pass. Two record-state builds reproduce the unchanged
+  wheel and identical 2,554,519-byte source archives at SHA-256
+  `274409936034d9d5b54f30ca0a8d8624d3b28db9f324ada10b8475af952ec947`;
+  installed smokes and both byte-identical release stages pass.
+- Findings-first review corrected one documentation overclaim so native
+  client/session/DACL checks are described as pre-challenge prerequisites,
+  while only the source, retained token, and expected/observed image handles
+  are claimed as rechecked after `ready`. One unused native constant was
+  removed. The corrected 34-test focused boundary and all static/docs gates
+  pass; no actionable finding remains.
+- All 25 M215 generated targets and 47,425 descendants were proven
+  repository-confined, ignored, untracked, and reparse-free before exact
+  removal across the primary and regenerated-documentation cleanup. Zero M215
+  target remains; older output and all inaccessible M212 roots were untouched.
+- Pre-commit audit confirms exact M214 history/tree/parent, exactly 16 intended
+  paths, only local `main` plus active M215, configured maintainer identity,
+  expected `0 115` pre-commit divergence, zero protected-surface change, zero
+  M215 scratch, absent retired root metadata, clean whitespace, and connected
+  Git objects.
+- Initial DCO commit `6903bab3fe9fad9310365aa05ef3482e7a0a21c5`,
+  tree `c56b4b071f11037bd9730af1193780a7b1158f21`, has sole parent exact
+  M214, exactly 16 paths, one matching sign-off, consistent maintainer
+  identity, expected `0 116` divergence, a clean worktree/revision, and
+  connected objects. This factual record is incorporated by the closeout
+  amendments.
+- Fresh pruned fetch and direct remote-head lookup leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M214 is absent,
+  M99 is present, and only remote `main` exists. Divergence is `0 116`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. No push, PR, or hosted allocation occurs.
+
 ## M214 Windows retained process-image binding probe
 
 - **Task:** Exercise one fixed, test-only retained executable-image check on

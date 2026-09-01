@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M215/RFC-0198's test-only [Windows retained launch-source binding
+  probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md).
+  It executes the retained participant source through isolated inherited
+  standard input, restricts inheritance to three fixed standard handles, and
+  rechecks the source, retained token, and both image handles before release.
+  It adds no runtime, cleanup authority, admission, workflow, or hosted
+  allocation.
 - Add M214/RFC-0197's test-only [Windows retained process-image binding
   probe](docs/security/windows-cache-cleanup-retained-process-image-binding-probe.md).
   It binds the fixed expected executable to the retained participant process
