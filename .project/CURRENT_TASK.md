@@ -1,5 +1,85 @@
 # Current task
 
+## M220 Windows contained source-access source-binding probe
+
+- **Task:** Bind a new fixed Job-contained same-logon contender to retained
+  source bytes executed through inherited standard input while preserving
+  M219's interpreter-image and M218's access-refusal boundaries.
+- **Status:** Direction research, implementation, complete supported-Python and
+  graphics validation, reproducible distribution/release rehearsal,
+  findings-first review, record-inclusive validation, guarded cleanup,
+  post-cleanup closeout, final ledger, pre-commit, and local DCO commit gates
+  pass. Publication is withheld because hosted `main` lacks the M100-M219
+  prerequisite stack.
+- **Base:** exact fully locally validated M219 DCO commit
+  `09e6d3390040498371912d7d47bff5b75be03c35`, tree
+  `1ac6769f0274b1c0aba3ef21b2f32dcc56466137`, with sole parent exact M218.
+- **Branch:** `release/m220-windows-contained-source-access-source-binding-probe`;
+  exact containment made the local M219 branch name redundant, so only local
+  `main` and active M220 remain.
+
+### M220 acceptance boundary
+
+- Open and snapshot the fixed contender source before each child creation and
+  execute it through exact direct `pythonw.exe -I -B -` standard input.
+- Inherit exactly three handles through the explicit handle list: retained
+  read-only source plus distinct write-only `NUL` output and error handles.
+- Create the child suspended, assign it as the private Job's exact sole member,
+  and preserve same-logon and retained expected/observed image agreement before
+  resume.
+- Recheck and rewind source before resume. Require zero exit; stable source and
+  image handles; exact Job settlement; zero owned handles; and post-close
+  source access.
+- Preserve M218's three refusal phases and the full M217 participant boundary.
+- Protect M219, runtime, package, dependency, lock, workflow, metadata,
+  version, prior fixture, example, script, and benchmark surfaces. Add zero
+  GitHub Actions job or hosted allocation.
+- Keep imported-module, source-commit, build, native-loader,
+  distinct-principal, hostile-process, independent-host, privileged-bypass,
+  criteria 6/7, cleanup-authority, and Windows-admission gaps unresolved.
+
+### Validation evidence so far
+
+- Exact M219 and governance baselines pass. Current primary-source research
+  supports an explicit inherited-handle list and stdin execution while keeping
+  source/build provenance and admission separate.
+- The intentional architecture red passed two checks and failed nine expected
+  absent implementation/decision/registration checks. After implementation,
+  7 checks passed and only four absent documentation/registration checks
+  failed.
+- Focused formatting made two mechanical changes; Ruff fixed import ordering
+  and removed one unused import; strict Pyright reported zero findings. The
+  exact live integration passes three tests.
+- After RFC-0203, the security guide, and eight registrations were added, the
+  exact focused architecture/live group passes all 14 tests in 0.64 seconds.
+- Architecture/integration passes 3,380 tests with 12 skips. Complete isolated
+  CPython 3.12, 3.13, and 3.14 suites each pass 4,502 tests with 19 skips.
+- All 628 files are format-clean; Ruff and strict Pyright are clean. Ten real-
+  wgpu tests, fresh two-/three-workload profiles, eight profile tests,
+  deterministic Null/wgpu Clockwork, and Agent World Builder pass.
+- Strict docs and static/dated-strict governance pass. Two builds reproduce a
+  365,280-byte wheel and 2,603,672-byte source archive. Installed smokes and two
+  identical ten-artifact release rehearsals pass; package inventory is exact.
+- Findings-first review confirms exact 17-path scope, zero protected-surface
+  diff, bounded ownership/failure cleanup, no disclosure or authority
+  expansion, and no CI change. Record-inclusive static, architecture,
+  documentation, governance, reproducible distribution, installed smoke, and
+  two exact release rehearsals pass. Guarded cleanup removed exactly 20 audited
+  M220 targets and left zero selected output. The final post-cleanup separator
+  passes and its two regenerated outputs were independently audited and
+  removed. Final ledger format/Ruff/Pyright, architecture/integration, strict
+  docs, dated-strict governance, and whitespace pass; its two generated targets
+  were also audited and removed. The exact 17-path pre-commit scope, history,
+  identity, disclosure, protected-surface, branch, scratch, whitespace, and Git
+  connectivity audit passes. Initial DCO commit
+  `847dd5ec777ad1366580a8b1bed93cf9113fb2cb` has exact M219 as sole parent,
+  exactly 17 paths, one matching sign-off, correct identity, a clean worktree,
+  and clean connectivity. A fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99; M219 is absent, only remote `main` exists,
+  no PR is open, and PR #251 remains latest. Publishing M220 would expose the
+  absent M100-M219 stack, so no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+
 ## M219 Windows contained source-access image-binding probe
 
 - **Task:** Bind M218's fixed Job-contained same-logon contender to the

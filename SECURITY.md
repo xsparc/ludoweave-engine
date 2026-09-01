@@ -1374,6 +1374,23 @@ independent-host, hostile-process, privileged-bypass, collection,
 cleanup-authority, or Windows-admission evidence; criteria 6 and 7 remain
 unresolved and no hosted check is added.
 
+M220's test-only [Windows contained source-access source-binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md)
+retains a fixed contender source before process creation and executes those
+bytes through isolated inherited standard input under an exact three-handle
+allowlist. The child remains suspended until private-Job membership,
+same-logon identity, interpreter-image agreement, and source stability are
+proven. Exact zero exit is followed by retained source/image stability, Job
+settlement, zero owned handles, and post-close source access. The full M218
+three-phase refusal and M217 participant boundary remains required.
+
+This binds only the new fixed contender execution source. Imported modules,
+source-commit and build provenance, native loader state, distinct-principal
+and independent-host behavior, hostile/privileged bypass, criteria 6/7, and
+Windows admission remain unresolved. It adds no runtime surface, cleanup
+authority, workflow, public runner, or hosted allocation. Windows remains
+unadmitted and cleanup remains unimplemented and unauthorized.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

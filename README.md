@@ -415,8 +415,15 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > exact name/identity/size/digest agreement before resume, and rechecks both
 > handles after settlement. It binds no script or imported-module bytes and
 > adds no runtime, cleanup, admission, workflow, or hosted check.
+> M220 adds a test-only [Windows contained source-access source-binding
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md).
+> It retains a fixed contender source before child creation, executes those
+> bytes through isolated inherited standard input under an exact three-handle
+> allowlist, and rechecks source and interpreter images after settlement. It
+> does not establish import, source-commit, or build provenance and adds no
+> runtime, cleanup, admission, workflow, or hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M219 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M220 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

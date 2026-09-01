@@ -5688,6 +5688,30 @@ independent-host, hostile/privileged bypass, criteria 6/7, cleanup authority,
 and Windows admission also remain unresolved. M219 adds no runtime, package,
 dependency, workflow, permission, public runner, or hosted allocation.
 
+## M220 Windows contained source-access source-binding probe
+
+M220 adds the test-only [Windows contained source-access source-binding
+probe](security/windows-cache-cleanup-contained-source-access-source-binding-probe.md).
+The controller retains and snapshots a fixed contender source before creating
+an exact direct `pythonw.exe -I -B -` child. That source becomes standard input;
+an explicit inherited-handle list contains exactly the source plus separate
+write-only `NUL` output and error handles.
+
+The child is created suspended, assigned as the private Job's sole member, and
+must preserve M219's same-logon and expected/observed interpreter-image binding
+before resume. The controller rechecks and rewinds the retained source before
+resume. Exact zero exit is followed by stable source and image snapshots,
+one-total/zero-active Job settlement, zero owned handles, and ordinary source
+access after close. This runs at each of M218's three refusal phases and keeps
+the complete M217 participant boundary.
+
+The observation binds only the new contender's executed fixed source. Imported
+modules, source-commit/build provenance, native loader state,
+distinct-principal/independent-host behavior, hostile or privileged bypass,
+criteria 6/7, Windows admission, and cleanup authority remain unresolved. M220
+adds no runtime, package, dependency, workflow, public runner, or hosted
+allocation; cleanup remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

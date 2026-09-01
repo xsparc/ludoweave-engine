@@ -379,6 +379,12 @@ attestation, with the same allocation topology.
   that binds the suspended contender to retained expected/observed interpreter
   identity and bytes before resume without claiming script provenance,
   collection, cleanup, or admission.
+- A test-only [Windows contained source-access source-binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-binding-probe.md)
+  that retains a fixed contender source before child creation, executes it
+  through isolated inherited standard input under an exact three-handle
+  allowlist, and rechecks source and interpreter-image snapshots after
+  settlement without adding runtime, cleanup, admission, or hosted allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

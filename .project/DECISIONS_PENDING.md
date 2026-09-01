@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M220 Windows contained source-access source-binding probe
+
+RFC-0203 accepts one direction-preserving test-only observation: retain and
+snapshot a new fixed contender source before child creation, execute that open
+file as isolated inherited standard input through an exact three-handle
+allowlist, and preserve M219 same-logon, interpreter-image, Job, and settlement
+requirements. Source and image snapshots must remain stable after exact zero
+exit, and source access must settle after controller handles close.
+
+This binds only the executed fixed contender source. Imported standard-library
+modules, native DLLs, loader/interpreter state, source-commit provenance, build
+provenance, distinct-principal behavior, hostile process control,
+independent-host evidence, privileged bypass, criteria 6 and 7, cleanup
+authority, and Windows admission remain pending. No public self-hosted runner
+or added hosted check is approved.
+
 ## M219 Windows contained source-access image-binding probe
 
 RFC-0202 accepts one direction-preserving test-only observation: retain the

@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M220/RFC-0203's test-only [Windows contained source-access source-binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md).
+  It executes a retained fixed contender source through inherited standard
+  input under an exact three-handle allowlist, preserves M219 interpreter-image
+  binding, and rechecks retained source and image snapshots after settlement.
+  Import/source-commit/build provenance, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
 - Add M219/RFC-0202's test-only [Windows contained source-access image-binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-image-binding-probe.md).
   It binds M218's suspended fixed contender to retained expected/observed

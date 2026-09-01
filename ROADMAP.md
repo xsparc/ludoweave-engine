@@ -3957,6 +3957,35 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M220 Windows contained source-access source-binding probe
+
+M220 starts from fully locally validated M219 commit
+`09e6d3390040498371912d7d47bff5b75be03c35`. It adopts a test-only
+[Windows contained source-access source-binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md)
+under RFC-0203.
+
+Before each contender launch, the fixed contender source is opened and
+snapshotted. The exact direct `pythonw.exe -I -B -` child executes that retained
+file through inherited standard input. An explicit handle list admits exactly
+the source plus two distinct write-only `NUL` handles. The child is created
+suspended, becomes the private Job's sole member, and must preserve M219's
+same-logon and expected/observed interpreter-image agreement before resume.
+Source stability is checked before resume and after exact zero-exit settlement;
+both image handles remain stable, the Job settles exactly, owned handles reach
+zero, and source access succeeds after close.
+
+The full M218 three-phase sharing-refusal and M217 participant boundary remains
+required. This does not bind imported modules, a source commit, a build, native
+DLLs, loader state, distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, or Windows cleanup admission.
+
+M220 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
