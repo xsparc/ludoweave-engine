@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M214/RFC-0197's test-only [Windows retained process-image binding
+  probe](docs/security/windows-cache-cleanup-retained-process-image-binding-probe.md).
+  It binds the fixed expected executable to the retained participant process
+  through private normalized-name, file-ID, bounded-size, and SHA-256 snapshots
+  and rechecks both retained handles before release. It adds no runtime,
+  cleanup authority, admission, workflow, or hosted allocation.
 - Add M213/RFC-0196's test-only [Windows local control token-binding
   probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md).
   It proves retained primary-token identity, native pipe/process/token session

@@ -5546,6 +5546,30 @@ a filesystem fixture, control power, satisfy criteria 6 or 7, or admit Windows
 cleanup. It adds no runtime/package dependency, workflow, permission, secret,
 or hosted allocation.
 
+## M214 Windows retained process-image binding probe
+
+M214 adds the test-only [Windows retained process-image binding
+probe](security/windows-cache-cleanup-retained-process-image-binding-probe.md).
+It composes only with the exact frozen M212/M213 test boundary and introduces
+no runtime dependency. A read-only expected-image handle is retained before
+launch. The executable name is then queried through the retained participant
+process handle and opened as a second retained read-only handle.
+
+The controller privately compares normalized names, volume/file identifiers,
+fixed-bounded sizes, and SHA-256 content from both handles before the challenge.
+It snapshots both again after `ready` and rejects any drift before `release`.
+Image reads are synchronous, bounded to 64 MiB, and chunked at 64 KiB. Process,
+token, file, Job, pipe, and overlapped-I/O ownership remains explicit and
+test-local.
+
+These native calls are not an engine adapter, product collector, public
+command, credential channel, cleanup implementation, or authority surface.
+M214 does not bind loaded script/import bytes, prove hostile ABA resistance,
+establish distinct-principal or independent-host evidence, mutate a filesystem
+fixture, control power, satisfy criteria 6 or 7, or admit Windows cleanup. It
+adds no runtime/package dependency, workflow, permission, secret, or hosted
+allocation.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

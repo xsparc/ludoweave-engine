@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M214 Windows retained process-image binding probe
+
+RFC-0197 accepts one direction-preserving, test-only current-host executable
+identity observation layered on the exact frozen M212/M213 boundary. A
+read-only handle to the fixed direct executable is retained before launch. The
+image queried from the retained participant process is opened read-only, and
+private normalized-name, volume/file-ID, bounded-size, and SHA-256 snapshots
+must match and remain stable across challenge/ready.
+
+The stable uv Python alias and the process-reported versioned target are
+normalized through their filesystem target before private name comparison;
+retained file identity and digest still must match. No identity value is
+serialized. The decision does not bind loaded script/import bytes, command
+line, environment, or interpreter state and does not prove hostile ABA
+resistance.
+
+Deferred decisions remain the distinct-principal private harness, account and
+credential custody, hostile filesystem/race evidence, source-commit binding,
+disposable offline host cohort, external VM/operator power boundaries,
+qualifying collection, criteria 6 and 7 resolution, and Windows cleanup
+admission. No collector, cleanup command, runtime/package surface, workflow,
+public runner, or hosted allocation is added.
+
 ## M213 Windows local control token-binding probe
 
 RFC-0196 accepts one direction-preserving, test-only current-host probe layered

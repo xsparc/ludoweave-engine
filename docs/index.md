@@ -349,6 +349,11 @@ attestation, with the same allocation topology.
   that proves retained primary-token identity, native pipe/process/token
   session agreement, DACL revalidation, and token stability through one local
   challenge barrier without impersonation, collection, or admission.
+- A test-only [Windows retained process-image binding
+  probe](security/windows-cache-cleanup-retained-process-image-binding-probe.md)
+  that binds the fixed expected executable to the retained participant process
+  through private, bounded file-identity snapshots before and after one local
+  challenge barrier without collection, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

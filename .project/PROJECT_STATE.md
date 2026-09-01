@@ -1,5 +1,67 @@
 # Project State
 
+## M214 Windows retained process-image binding probe - locally complete, publication withheld
+
+- Base: exact M213 DCO commit
+  `217d29d07fddf0d123d6c6c903b4133806f226fc`, tree
+  `5f5ac6b6cb9ac7073b37ac9d0aeac469b08fa6bb`, with sole parent exact M212.
+- Branch hygiene: neutral
+  `release/m214-windows-retained-process-image-binding-probe` starts from exact
+  M213; the redundant local M213 branch name is removed.
+- Direction: RFC-0197 accepts one direction-preserving, current-host,
+  test-only retained process-image binding probe with no collection or cleanup
+  authority increase.
+- Image boundary: fixed expected executable retained before launch; observed
+  image queried through the retained participant process and retained through
+  challenge/ready; private normalized name, volume/file ID, bounded size, and
+  SHA-256 must agree and remain stable before release.
+- Security boundary: read-only handles, fixed 64 MiB/64 KiB bounds, no identity
+  disclosure, mutation, loaded-script claim, hostile-ABA claim, account launch,
+  privilege change, network, collector, cleanup, or admission.
+- Scope: one Windows integration probe, one architecture guard, RFC-0197, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, examples, scripts, benchmarks, workflows, metadata,
+  dependencies, lock, version, permissions, and CI allocation remain unchanged.
+- Validation: focused 23/23; 614-file static gates clean; architecture plus
+  live M214 2,262/one skipped; strict docs and whitespace pass; complete suites
+  4,376/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: initial and record-state builds reproduce the 364,573-byte pure
+  wheel at SHA-256
+  `4b45de86d48bb02879b9b336de24c055616071555a94b9bac6353b0803f23dd6`
+  and record-state 2,543,397-byte source archive at SHA-256
+  `011df8367b00f77c93ad81bdeac4d37ee0e84da8026b6be029fcc5469bcf4143`;
+  four M214 files are source-only and zero enters the 114-entry wheel.
+- Review: exactly 16 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; zero retired root
+  control metadata or sensitive added-content disclosure; no actionable
+  correctness, authority, security, architecture, compatibility,
+  documentation, package-boundary, or CI-allocation finding remains.
+- Cleanup: all 20 M214 generated test/report/profile/docs/distribution/release
+  targets and 43,667 descendants were proven repository-confined, ignored,
+  untracked, and recursively reparse-free before exact removal. Zero remains;
+  the one regenerated closeout documentation directory was separately audited
+  and removed. Older outputs and the three inaccessible M212 roots were
+  untouched.
+- Admission: same-host, same-logon, same-session observation only. Criteria 6
+  and 7 remain unresolved; Windows remains unadmitted and cleanup remains
+  unimplemented and unauthorized.
+- Initial commit: DCO object
+  `1adc5e98a7316d0d01ee2d8ecdec636ee69af5f5`, tree
+  `6fe399c064519dbdaa972af1213135c950427cde`, has sole parent exact M213,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 115`
+  divergence. This hosted-safety record is incorporated by one amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M213 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 115`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M213
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M213 Windows local control token-binding probe - locally complete, publication withheld
 
 - Base: exact fully locally validated M212 DCO commit

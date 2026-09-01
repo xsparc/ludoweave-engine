@@ -1304,6 +1304,15 @@ independent-host evidence and adds no collector, cleanup authority, credential
 lifecycle, workflow, hosted allocation, or Windows admission; criteria 6 and 7
 remain unresolved.
 
+M214's test-only [Windows retained process-image binding
+probe](docs/security/windows-cache-cleanup-retained-process-image-binding-probe.md)
+opens the fixed expected executable before launch, binds the image queried from
+the retained participant process to a second retained read-only file handle,
+and privately compares normalized names, stable file IDs, bounded sizes, and
+SHA-256 before and after challenge/ready. It does not bind loaded script bytes,
+prove hostile replacement resistance, add collection or cleanup authority, or
+admit Windows; criteria 6 and 7 remain unresolved and no hosted check is added.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

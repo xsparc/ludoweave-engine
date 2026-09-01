@@ -3790,6 +3790,31 @@ listener, cleanup authority, dependency, version, workflow, permission,
 secret, public runner, or hosted execution path; no hosted check is added.
 Windows remains unadmitted and cleanup remains unimplemented and unauthorized.
 
+## M214 Windows retained process-image binding probe
+
+M214 starts from fully locally validated M213 commit
+`217d29d07fddf0d123d6c6c903b4133806f226fc`. It adopts a test-only
+[Windows retained process-image binding
+probe](docs/security/windows-cache-cleanup-retained-process-image-binding-probe.md)
+under RFC-0197.
+
+Before launch, the controller retains a read-only handle to the fixed direct
+`pythonw.exe`. After the exact M212 process and M213 token/session bindings, it
+queries the retained process's executable name, retains that file, and compares
+private normalized-name, volume/file-ID, bounded-size, and SHA-256 snapshots.
+Both retained handles must remain stable after `ready` and before `release`.
+
+The observation is same-host, same-logon, and same-session only. It does not
+bind loaded script/import bytes, prove hostile ABA resistance, provide
+distinct-principal or independent-host evidence, mutate a fixture, control
+power, collect evidence, satisfy criteria 6 or 7, or admit Windows cleanup.
+
+M214 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
