@@ -1277,6 +1277,20 @@ evidence and adds no collector, cleanup authority, credential lifecycle,
 workflow, hosted allocation, or Windows admission; criteria 6 and 7 remain
 unresolved.
 
+M212's test-only [Windows local control-channel
+probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md)
+creates one randomized first-instance, remote-rejecting message pipe with a
+protected single-logon-SID DACL and reads the native descriptor back. It binds
+the connected client identity to one retained suspended-then-contained process
+before sending a fresh challenge, then observes exact sequenced release plus
+replay, wrong-challenge, and disconnect refusal under bounded overlapped
+controller I/O. Default pipe security, inherited handles, participant-reported
+PID authority, arbitrary endpoints, network listeners, public runners, and
+unbounded controller waits remain excluded. This same-host/same-logon result is
+not distinct-principal or independent-host evidence and adds no collector,
+cleanup authority, credential lifecycle, workflow, hosted allocation, or
+Windows admission; criteria 6 and 7 remain unresolved.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

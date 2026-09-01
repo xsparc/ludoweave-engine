@@ -1,5 +1,106 @@
 # Project State
 
+## M212 Windows local control-channel probe - locally complete, publication withheld
+
+- Base: exact fully locally validated M211 DCO commit
+  `ff78fb674f3c5b18437e1164557e139933d0d424`, tree
+  `4ca126e17fa65609bbe5cad1975fa206262e9e7d`, with sole parent exact M210.
+- Branch hygiene: neutral `release/m212-windows-local-control-channel-probe`
+  starts from exact M211; the redundant local M211 branch name is removed.
+- Direction: RFC-0195 adopts one direction-preserving test-only probe of a
+  Windows same-logon local coordination primitive without increasing
+  collection or cleanup authority.
+- Endpoint boundary: randomized one-instance remote-rejecting message pipe,
+  explicit protected one-logon-SID DACL, exact native readback, and live
+  first-instance collision refusal.
+- Identity boundary: fixed direct participant created suspended, no inherited
+  handles, no-breakaway kill-on-close Job assignment before resume, exact
+  one-member accounting, and native pipe-client identity bound to the retained
+  process handle.
+- Protocol boundary: fresh 256-bit challenge, exact canonical sequences 0-3,
+  1,024-byte messages, bounded overlapped controller connect/read/write, and
+  observed replay, wrong-challenge, malformed-shape, and disconnect refusal.
+- Scope: one test fixture, one Windows integration probe, one architecture
+  guard, RFC-0195, one security guide, eight public registrations, and four
+  project records. Runtime/package code, examples, scripts, workflows,
+  dependencies, lock, metadata, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused live/architecture 17/17; 610-file Ruff formatting and
+  lint clean; strict Pyright clean; architecture 2,228/1 skipped; strict docs
+  and whitespace clean. Complete isolated suites pass 4,328/19 skipped on each
+  of CPython 3.12.13, 3.13.13, and 3.14.5. Real wgpu, profiles, vertical slices,
+  reproducible builds, installed smokes, two release rehearsals, and both
+  governance modes pass.
+- Initial packaging: reproducible 364,404-byte pure wheel at SHA-256
+  `a157884268ed30ec9a7a275d2ea9e40d865e8fd5de0c5b56bdceeab70eb98d13`
+  and 2,516,609-byte source archive at SHA-256
+  `37bce1a2c7718cb7255204778e82fc3e8f68126e442d443a322c1f63c5f407e6`.
+  Inventory is 114 wheel/1,014 source entries; the five M212 implementation
+  and decision files are source-only. The wheel's metadata reflects the
+  updated README but contains no new product module.
+- Record-inclusive closeout: the unchanged lock and 45-package graphics
+  environment, all 610-file static gates, 2,228 architecture passes/one skip,
+  strict docs, both governance modes, and whitespace remain clean. Two builds
+  reproduce a 364,390-byte wheel at SHA-256
+  `0d671cea6ee9f0def17268c126411f7661a853bfbb3f5f6257f60371082370e6`
+  and 2,519,609-byte source archive at SHA-256
+  `d0dabb8fb4db883338a70cbac8cfe7ea169758417820db0c64e914de42d5f2cb`;
+  installed smokes and two byte-identical release stages pass. Inventory
+  remains 114 wheel/1,014 source entries with the five M212 files source-only.
+- Review correction: native wait failures now preserve their exact Windows
+  error category after cancellation settlement rather than being reported as
+  timeouts. Focused static/type checks and all 17 M212 tests pass; complete
+  corrected-tree suites pass 4,328 tests/19 skips on each supported CPython.
+- Final corrected-record packaging reproduces the unchanged 364,390-byte wheel
+  at SHA-256
+  `0d671cea6ee9f0def17268c126411f7661a853bfbb3f5f6257f60371082370e6`
+  and identical 2,520,789-byte source archives at SHA-256
+  `3d85c259b30c2742cf6fbb5f4f912397cc09c63cb9c2d4709579c67aa9bb8e9e`;
+  installed smokes and both byte-identical ten-artifact release stages pass.
+- Review: exactly 17 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; retired root control
+  metadata remains absent; and added-content identity, credential, machine-
+  path, debug, backend, network, evaluation, shell, breakaway, privilege, and
+  account-launch scans have zero match. No actionable finding remains.
+- Cleanup: the first recursive audit stopped before deletion on access denial.
+  Thirty-five exact targets were then proven repository-confined, ignored,
+  untracked, and recursively reparse-free and removed after immediate target-
+  set revalidation. Three ignored/untracked isolated-suite roots remain because
+  their sandbox-owned ACL denies traversal; attempted inherited-access reset
+  failed, and ownership was not changed without separate authority.
+- Post-cleanup separator: all 610 Python files remain format-clean; Ruff and
+  strict Pyright pass; all 17 M212 tests, strict docs, both governance modes,
+  and whitespace pass. The sole regenerated accessible docs target was audited
+  and removed; only the same three inaccessible ignored roots remain.
+- Pre-commit: exact M211 HEAD/tree/parent, exact 17-path allowlist, zero
+  protected diff, only local `main` and neutral M212, configured maintainer
+  identity, expected `0 112` divergence, three disclosed ignored/untracked
+  roots, zero sensitive added-content match, clean whitespace, and clean Git
+  connectivity.
+- Admission: this is one same-host, same-logon observation only. Criteria 6
+  and 7 remain unresolved; Windows cleanup remains unimplemented,
+  unauthorized, and unadmitted.
+- Initial local commit: DCO commit
+  `5ee787e277553d73e58672364708abc7c33be0a1`, tree
+  `c312d44c3861383a5f004d0a9d7e1e7bda633c1f`, has sole parent exact M211,
+  exactly 17 intended paths, one matching sign-off, consistent author and
+  committer identity, clean revision whitespace, expected `0 113` divergence,
+  clean worktree and Git connectivity, and the three disclosed ignored/
+  untracked residual roots. This record is incorporated by one closeout
+  amendment.
+- Closeout commit: `e1e8d5b6b9d1f1ff3812d13240b572080d6b6383`,
+  tree `f613a700b96c35c968995ea4c154a2939275cea8`, retains exact M211 as sole
+  parent, exact 17-path scope, one matching sign-off, consistent identity,
+  clean worktree/revision/connectivity, expected `0 113` divergence, and the
+  three disclosed ignored/untracked roots. This hosted-safety record is
+  incorporated by one final evidence-only amendment.
+- Publication: withheld. A fresh pruned fetch leaves public `origin/main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M211 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 113`. Configured
+  GitHub authentication is invalid. Publishing would expose absent M100-M211
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
 ## M211 Windows independent-host process-containment probe - locally complete, publication withheld
 
 - Base: fully locally validated M210 DCO commit

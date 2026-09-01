@@ -5490,6 +5490,34 @@ mutate a filesystem fixture, satisfy criteria 6 or 7, or admit Windows cleanup.
 It adds no runtime/package dependency, workflow, permission, secret, or hosted
 allocation.
 
+## M212 Windows local control-channel probe
+
+M212 adds the test-only [Windows local control-channel
+probe](security/windows-cache-cleanup-local-control-channel-probe.md). It
+remains below product composition and above no runtime dependency. One fixed
+controller owns a randomized one-instance, remote-rejecting duplex named pipe,
+an explicit protected logon-SID DACL, one no-breakaway kill-on-close Job Object,
+and retained process and overlapped-I/O event handles.
+
+The direct participant is created suspended with inheritance disabled and
+assigned before resume. The controller reads back the exact native DACL, proves
+second-server refusal, and requires the connected pipe-client identity to equal
+both the `CreateProcessW` result and retained process-handle identity before
+sending a challenge. Exact one-process Job membership is preserved.
+
+One fresh 256-bit challenge and sequences 0 through 3 bound the closed
+challenge/ready/release/released exchange. Controller connect, read, and write
+operations have bounded overlapped completion and cancellation. Replay, wrong
+challenge, disconnect, malformed input, timeout, or unexpected process
+membership cannot become a pass.
+
+These native calls exist only in the test fixture and integration probe. They
+are not an engine adapter, collector, public command, credential channel, or
+authority surface. M212 does not establish distinct-principal or independent-
+host evidence, mutate a filesystem fixture, control power, satisfy criteria 6
+or 7, or admit Windows cleanup. It adds no runtime/package dependency,
+workflow, permission, secret, or hosted allocation.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

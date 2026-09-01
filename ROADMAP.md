@@ -3722,6 +3722,43 @@ authority, dependency, version, workflow, permission, secret, public runner, or
 hosted execution path; no hosted check is added. Windows remains unadmitted and
 cleanup remains unimplemented and unauthorized.
 
+## M212 Windows local control-channel probe
+
+M212 starts from fully locally validated M211 commit
+`ff78fb674f3c5b18437e1164557e139933d0d424`. It adopts a test-only
+[Windows local control-channel
+probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md)
+under RFC-0195.
+
+The controller creates one randomized one-instance, remote-rejecting duplex
+named pipe under an explicit protected DACL. It derives the current logon SID
+from its owned token, permits exactly one bounded access ACE, reads that DACL
+back from the native object, and proves a second server instance is refused.
+The broad Windows default pipe descriptor is not accepted.
+
+One fixed direct participant is created suspended with inheritance disabled,
+assigned to a no-breakaway kill-on-close Job Object before resume, and admitted
+as the exact single member. After connection, native pipe-client identity must
+equal the process identifier returned by both `CreateProcessW` and the retained
+process handle before a fresh 256-bit challenge is sent.
+
+Four bounded canonical messages use exact sequence numbers 0 through 3.
+Overlapped controller connect/read/write operations have owned events,
+five-second waits, completion checks, and cancellation. The live probe observes
+one valid release plus replay, wrong-challenge, and disconnect refusals before
+release; every process and handle settles.
+
+These results cover one same-host, same-logon coordination primitive only. They
+do not prove M205's distinct-principal or cross-session lanes, independent-host
+qualification, credentials, fixture mutation, power interruption, collection,
+criteria 6 or 7, or Windows cleanup admission.
+
+M212 adds no runtime API, CLI or MCP command, production harness, arbitrary
+process or pipe endpoint, credential lifecycle, filesystem mutation, network
+listener, cleanup authority, dependency, version, workflow, permission,
+secret, public runner, or hosted execution path; no hosted check is added.
+Windows remains unadmitted and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

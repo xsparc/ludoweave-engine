@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M212/RFC-0195's test-only [Windows local control-channel
+  probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md).
+  It proves an explicit protected logon-SID DACL, first-instance and remote
+  refusal flags, retained native client identity, and bounded fresh-challenge,
+  sequence, replay, wrong-challenge, and disconnect behavior on one current
+  Windows host. It adds no collector, cleanup authority, admission, workflow,
+  dependency, or hosted allocation.
 - Add M211/RFC-0194's test-only [Windows independent-host process-containment
   probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md).
   It proves suspended assignment before execution, exact no-breakaway Job

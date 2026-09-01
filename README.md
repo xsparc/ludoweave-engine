@@ -364,8 +364,15 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > exact root/descendant membership, retained process identity, and bounded
 > termination/last-close settlement. It is not independent-host collection,
 > cleanup authority, qualifying evidence, Windows admission, or a hosted check.
+> M212 adds a test-only [Windows local control-channel
+> probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md).
+> One current host proves an explicit logon-SID DACL, first-instance and remote
+> refusal flags, retained native client identity, and bounded challenged
+> sequence/replay/disconnect behavior. It is not distinct-principal or
+> independent-host evidence, collection authority, cleanup, admission, or a
+> hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M211 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M212 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

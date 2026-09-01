@@ -339,6 +339,11 @@ attestation, with the same allocation topology.
   that proves suspended assignment, exact retained root/descendant Job
   membership, and bounded termination settlement on one current host without
   collecting evidence or admitting Windows cleanup.
+- A test-only [Windows local control-channel
+  probe](security/windows-cache-cleanup-local-control-channel-probe.md) that
+  proves an explicit logon-SID DACL, native retained-client identity, bounded
+  challenged sequencing, and replay/wrong-challenge/disconnect refusal on one
+  current host without collecting evidence or admitting Windows cleanup.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

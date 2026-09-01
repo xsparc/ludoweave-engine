@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M212 Windows local control-channel probe
+
+RFC-0195 accepts one direction-preserving, test-only current-host probe of a
+same-logon Windows local control primitive after M211 containment. The accepted
+endpoint uses a randomized first-instance, one-instance, remote-rejecting
+message pipe with a protected DACL containing exactly one current-logon-SID
+allow ACE. Native readback, retained client-process identity, exact Job
+membership, a fresh challenge, exact sequences, bounded overlapped controller
+I/O, and explicit refusal categories are all required.
+
+The observed generic read/write mapping includes Windows' overlapping pipe-
+instance bit; the probe bounds it with the exact logon SID, unpredictable name,
+one-instance limit, first-instance ownership, and client identity binding. It
+does not exclude a hostile same-logon process and is not cross-principal,
+cross-session, independent-host, interruption, durability, recovery, or
+admission evidence.
+
+Deferred decisions remain the distinct-principal private harness, credential
+and authority custody, hostile connection-race evidence, disposable offline
+host cohort, external VM/operator power boundaries, qualifying collection,
+criteria 6 and 7 resolution, and Windows cleanup admission. No collector,
+cleanup command, runtime/package surface, workflow, public runner, or hosted
+allocation is added.
+
 ## M211 Windows independent-host process-containment probe
 
 RFC-0194 accepts one direction-preserving, test-only current-host probe of the
