@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M229 Windows source-commit Git countersigner-chain binding
+
+RFC-0212 accepts one direction-preserving, test-only composition: repeat
+M228's exact retained-handle cached trust evaluation, then resolve every
+countersigner by zero-based provider index and every countersigner certificate
+by zero-based provider-chain index while state remains live. Copy positive
+per-certificate, per-chain, and aggregate-bounded DER; bind raw signer type,
+provider error, verification time, all exact boundaries, per-certificate and
+per-chain hashes, and one domain-separated aggregate; require the same complete
+observation before and after M228. Provider state closes after success,
+rejection, or extraction failure.
+
+This binds one execution-local countersigner provider-index sequence. It does
+not establish portable timestamp semantics, authorize a signer, publisher, or
+timestamp authority, persist an identity, pin a certificate, define rotation/
+recovery, independently validate a timestamp token or signing time, prove
+revocation freshness, establish trust-store authority, bind native DLL/loader
+state, authenticate the local object store or repository acquisition, or
+provide source/build provenance. Distinct-principal or independent-host
+behavior, hostile/privileged bypass, criteria 6/7, cleanup authority, and
+Windows admission remain pending. No public self-hosted runner or added hosted
+check is authorized.
+
 ## M228 Windows source-commit Git provider-chain binding
 
 RFC-0211 accepts one direction-preserving, test-only composition: repeat

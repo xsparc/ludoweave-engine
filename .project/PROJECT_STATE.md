@@ -1,5 +1,76 @@
 # Project State
 
+## M229 Windows source-commit Git countersigner-chain binding - locally complete, publication withheld
+
+- **Baseline:** exact M228 commit
+  `1ced72e243bae4b3322dfa3e03278b7a588430ab`, tree
+  `eb23d15d02427b513f3dd1c46c46be1a5f5ff255`, sole parent exact M227.
+- **Direction:** RFC-0212 accepts one test-only live-provider-state composition
+  around M228. It binds the complete indexed countersigner sequence and every
+  bounded countersigner provider chain, not portable timestamp semantics,
+  timestamp-authority authorization, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0212, one security guide, eight public registrations, and four
+  `.project` records. M221-M228 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** every indexed countersigner must expose zero provider error,
+  positive raw verification time, and a positive bounded provider-certificate
+  chain. Every bounded DER value is copied before state close; exact raw
+  metadata, per-certificate/per-chain hashes, and an unambiguous aggregate
+  sequence hash must match across M228. Every state closes in `finally`.
+- **Evidence:** the 27-test exact M228 baseline and dated-strict governance
+  pass; current primary-source direction supports observation-only binding; the
+  installed Git exposes valid signer and time-stamper certificates;
+  intentional red isolates nine missing checks; focused formatting/Ruff/
+  Pyright and all 20 live/failure-close tests pass. RFC/security documentation
+  and eight public registrations are present; registered source/live/docs pass
+  at 31 tests. Findings-first review strengthens exact digest-boundary, order,
+  null-certificate-context, and per-chain-cap coverage; all 33 focused tests
+  pass with clean Ruff and strict Pyright. Whole-project static/docs/governance
+  pass; architecture/integration passes 3,541/12; isolated CPython 3.12-3.14
+  each pass 4,663/19; real wgpu, repeated profiles, deterministic examples, and
+  current registered example tests pass. Initial reproducible distributions,
+  installed smokes, two exact release stages, package inventory, and exact
+  findings-first scope/disclosure/connectivity review pass. Record-inclusive
+  source/docs/governance and architecture/integration pass; record-state
+  distributions and release stages reproduce with the four M229 files source-
+  only. Final source/docs/governance and architecture/integration repeat pass
+  at 3,541/12. Final reproducible distributions preserve the 366,178-byte pure
+  wheel and produce a 2,707,530-byte source archive; installed smokes, two exact
+  release stages, release comparison, and exact package inventory pass.
+- **Boundaries:** portable timestamp semantics, timestamp-authority, signer, or
+  publisher authorization, persisted identity, certificate pinning, rotation/
+  recovery, timestamp-token/signing-time validation, revocation freshness,
+  trust-store administration, native DLL/loader state, local-object-store
+  trust, repository acquisition, source/build provenance, distinct-principal/
+  independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+  authority, and Windows admission remain unresolved.
+- **Review:** the terminating metadata/M229 group passes 38 tests. The final
+  pre-commit source separator is clean. Exact M228 history, 16 intended paths,
+  1,538 additions and one deletion, eight protected hashes, neutral branch and
+  configured identity, public disclosure, delta credential/local-path,
+  retired-metadata, whitespace, and object-connectivity checks all pass. No
+  actionable finding remains.
+- **Cleanup:** access-enabled audit proved all 34 exact M229 targets and 134,379
+  entries confined, ignored, untracked, and reparse-free. Exact revalidation
+  removed them, confirmed zero remains, and preserved all 56 older `.tmp`
+  targets.
+- **Commit:** initial DCO commit
+  `e4de3e8d1f08a400a1ed20a1dfad76b7c2a6cf64`, tree
+  `02c3e83014d8001211f52c42ca3834e46fccc53d`, has sole parent exact M228,
+  exactly 16 paths, one expected sign-off, matching author/committer, a clean
+  worktree, `0 130` divergence, zero M229 scratch, and clean whitespace/object
+  connectivity. Ledger amend `892b34e57c7be954873707672a65786e8a254549`,
+  tree `76e269b08fc19097144b89ed2fe4df5862f7f34f`, preserves all commit
+  invariants.
+- **Publication:** fresh fetch, direct hosted-main lookup, authenticated public-
+  repository inspection, and PR inventory show origin/main exact M99, only
+  real remote branch `origin/main`, no hosted M228 ancestry, zero open PRs,
+  and latest PR #251 merged. Publication is withheld because required parent
+  M228 has no hosted base. No push, PR, hosted allocation, tag, release, or
+  package publication occurred.
+
 ## M228 Windows source-commit Git provider-chain binding - locally complete, publication withheld
 
 - **Baseline:** exact M227 commit

@@ -1,5 +1,159 @@
 # Current task
 
+## M229 Windows source-commit Git countersigner-chain binding
+
+- **Task:** Bind the complete bounded countersigner and countersigner-
+  certificate sequences exposed by successful live WinTrust state before and
+  after M228's complete boundary.
+- **Status:** Locally complete; publication withheld. Focused direction
+  research, exact M228 baseline, protected-hash
+  capture, intentional architecture red, native implementation, complete
+  indexed countersigner-chain failure/close cases, RFC-0212, security guidance,
+  eight public registrations, registered focused source/live/docs validation,
+  strengthened digest/certificate-limit review, whole-project static/docs/
+  governance/behavior, supported CPython 3.12-3.14, and rendering/profile/
+  example gates plus initial reproducible packaging/release and findings-first
+  review are complete. Record-inclusive source/behavior/package/release
+  separators and final source/behavior/package/release separators are complete;
+  final exact review, terminating focused separator, and guarded cleanup are
+  complete. The signed commit and ledger amend are valid. A fresh hosted gate
+  found no remote branch containing required parent M228, so no push or PR was
+  created.
+- **Base:** exact fully locally validated M228 DCO commit
+  `1ced72e243bae4b3322dfa3e03278b7a588430ab`, tree
+  `eb23d15d02427b513f3dd1c46c46be1a5f5ff255`, with sole parent exact M227.
+- **Branch:** `release/m229-windows-source-commit-git-countersigner-chain-binding`;
+  exact containment made the local M228 branch redundant, so only local `main`
+  and active M229 remain.
+
+### M229 acceptance boundary
+
+- Repeat M228's exact retained path/handle, no-UI, cache-only,
+  explicit-no-revocation `WINTRUST_ACTION_GENERIC_VERIFY_V2` request.
+- While each successful state is live, require provider data, the primary
+  signer, and the complete positive bounded countersigner sequence by exact
+  zero-based provider index.
+- Require zero provider error, positive raw verification time, and a complete
+  positive bounded provider-certificate sequence for every countersigner.
+- Copy positive per-certificate, per-chain, and aggregate-bounded DER before
+  state close. Bind raw signer type/error/time, every exact index and length,
+  per-certificate/per-chain hashes, and one domain-separated sequence digest.
+- Close provider state in `finally` after success, trust rejection, or any
+  indexed extraction failure. Report close failure when extraction otherwise
+  succeeds.
+- Require the complete immutable observation across M228's complete boundary.
+- Preserve every M221-M228 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep portable timestamp semantics, timestamp-authority/signer/publisher
+  authorization, persisted identity, certificate pinning, rotation/recovery,
+  timestamp-token/signing-time validation, revocation freshness, trust-store
+  administration, DLL/native-loader identity, local-object-store trust,
+  repository acquisition, source/build provenance, distinct principal,
+  hostile/privileged behavior, independent host, criteria 6/7, cleanup
+  authority, and Windows admission unresolved.
+
+### Validation evidence so far
+
+- Exact M228 history and a clean worktree were confirmed. The 27-test M228
+  architecture/live baseline passes in 2.32 seconds; 2026-09-03 strict
+  governance returns zero findings.
+- Current Microsoft provider-signer/helper and Authenticode timestamp guidance,
+  current Git for Windows release information, and SLSA 1.2 support one
+  complete execution-local countersigner-chain observation while portable
+  timestamp policy, authorization, and provenance remain separate. The
+  installed Git reports valid signer and time-stamper certificates.
+- M229 was created from exact M228; redundant local M228 was removed. Protected
+  M228/workflow/package hashes were captured and only local `main` plus active
+  M229 remain.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed nine checks only because the planned probe, RFC/security decision,
+  and public registrations were absent.
+- Ruff formatting changed only the new integration file; focused Ruff and
+  strict Pyright report zero findings. All 20 live, detachment, boundary-
+  digest, provider-error, size, rejection, and failure-close tests pass in 2.58
+  seconds.
+- Registered format/Ruff/strict-Pyright checks pass; all 31 architecture/live
+  tests pass in 2.68 seconds and strict docs build in 3.89 seconds. Findings-
+  first review then added exact equal-byte boundary/order, null certificate-
+  context, and per-chain DER-cap cases; all 33 strengthened focused tests pass
+  in 3.02 seconds with clean Ruff and strict Pyright.
+- The unchanged 46-package lock, 45-package frozen graphics environment, all
+  646 Python files, Ruff, strict Pyright, strict docs, both governance modes,
+  and whitespace pass. Architecture/integration passes 3,541 tests with 12
+  expected skips in 231.83 seconds.
+- Isolated explicit CPython 3.12.13, 3.13.13, and 3.14.5 environments each
+  install 45 packages and pass 4,663 tests with 19 expected skips in 267.63,
+  254.11, and 266.11 seconds. The first 3.13 sync selected the project-default
+  3.12 interpreter before testing; explicit `--python 3.13` supplied the
+  accepted result.
+- Ten real-wgpu tests pass in 7.28 seconds. Five-repeat base/graphics profiles
+  emit two/three workloads and all eight profile tests pass in 0.85 seconds.
+  Two Null and one wgpu Clockwork executions agree on state, draws, and sprites;
+  Agent World Builder reproduces its state/capture/replay hashes and the current
+  registered two-test selector passes in 0.69 seconds.
+- Two initial builds are byte-identical: a 366,178-byte pure wheel at SHA-256
+  `b16f5b983432da8c2d0e061cfb32571252837e874f76f1777fac54bc18af275b`
+  and a 2,707,051-byte source archive at SHA-256
+  `74a8aea168a4c888db302b53695f460c56f80bd06ebaa680dc6ba4a82838ef82`.
+  Installed smokes, two exact ten-artifact release stages, and package inventory
+  pass.
+- Findings-first review confirms exactly 16 intended paths and 1,470 additions,
+  zero protected/runtime/workflow/package-surface changes, zero public tool-
+  identity/credential/local-path findings, absent retired metadata, clean
+  whitespace/connectivity, neutral two-branch hygiene, and no remaining
+  actionable correctness, security, architecture, compatibility, package, or
+  CI-allocation issue at this stage.
+- Record-inclusive lock, all 646 Python files, Ruff, strict Pyright, strict docs,
+  both governance modes, and whitespace pass; architecture/integration passes
+  3,541/12 in 238.15 seconds.
+- Two record-state builds preserve the 366,178-byte wheel and reproduce a
+  2,707,267-byte source archive at SHA-256
+  `09455327d0df69c68cc34ca314b563a917bbba863b28f877d27f1ca93d4dde6f`.
+  Installed smokes, both exact release stages, release comparison, and
+  114-wheel/1,084-source inventory pass; all four M229 files are source-only.
+- The final source separator keeps all 646 Python files format-clean, Ruff and
+  strict Pyright clean, strict docs and dated-strict governance passing, and
+  whitespace clean. The complete architecture/integration boundary repeats at
+  3,541 passed and 12 expected skips in 235.89 seconds.
+- Two final builds preserve the 366,178-byte wheel at SHA-256
+  `b16f5b983432da8c2d0e061cfb32571252837e874f76f1777fac54bc18af275b`
+  and reproduce a 2,707,530-byte source archive at SHA-256
+  `2850d01d8254764f094985804f2f00b727f0e6ebaa0e961f7bfa0760c7589c9b`.
+  Installed wheel/scene and both ten-artifact release smokes pass; exact
+  release comparison finds zero differences and package inventory remains
+  114 wheel/1,084 source entries with all four M229 files source-only.
+- Final review proves exactly 16 intended paths and 1,519 then-current
+  additions, zero protected-surface change, zero public tool-identity or delta
+  credential/local-path finding, absent retired metadata, neutral branches,
+  clean whitespace/connectivity, and no remaining actionable finding. The
+  terminating M59/M229 group passes 38 tests.
+- Access-enabled audit and immediate exact-set revalidation removed only 34
+  M229 targets containing 134,379 entries. Zero M229 scratch remains and all 56
+  older targets remain.
+- The final no-artifact source separator passes. The exact pre-commit audit
+  confirms M228 HEAD/tree/parent, exactly 16 intended paths with 1,538
+  additions and one deletion, eight protected hashes, neutral branch and
+  configured identity, zero disclosure/credential/local-path/retired-metadata
+  findings, zero M229 scratch, and clean whitespace/object connectivity.
+- Initial DCO commit `e4de3e8d1f08a400a1ed20a1dfad76b7c2a6cf64`, tree
+  `02c3e83014d8001211f52c42ca3834e46fccc53d`, has sole parent exact M228,
+  exactly 16 paths, one sign-off, matching author/committer, a clean worktree,
+  expected `0 130` divergence, zero M229 scratch, and clean whitespace/object
+  connectivity.
+- Ledger amend `892b34e57c7be954873707672a65786e8a254549`, tree
+  `76e269b08fc19097144b89ed2fe4df5862f7f34f`, preserves every commit
+  invariant. Fresh hosted inspection confirms origin/main exact M99, only real
+  remote branch `origin/main`, no hosted M228 ancestry, zero open PRs, and
+  latest PR #251 merged. Publication is withheld; no remote mutation or hosted
+  allocation occurred.
+
+### Remaining gates
+
+- None for M229. Continue with the next separately bounded milestone from this
+  exact locally validated lineage; retain publication withholding until its
+  required hosted parent chain exists.
+
 ## M228 Windows source-commit Git provider-chain binding
 
 - **Task:** Bind the complete bounded provider-certificate sequence exposed by

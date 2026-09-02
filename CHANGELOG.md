@@ -6,6 +6,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M229/RFC-0212's test-only [Windows contained source-access source-commit
+  Git countersigner-chain binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md).
+  It copies and hashes every bounded certificate chain for every indexed
+  countersigner around M228 while binding raw provider metadata without
+  creating timestamp-authority policy. Runtime, package, timestamp semantics,
+  signer authorization, certificate pinning, revocation freshness, provenance,
+  cleanup authority, admission, workflow, and hosted allocation remain
+  unchanged.
 - Add M228/RFC-0211's test-only [Windows contained source-access source-commit
   Git provider-chain binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md).

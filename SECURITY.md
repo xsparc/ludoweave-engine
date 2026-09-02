@@ -1525,6 +1525,25 @@ hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
 authority remain unresolved. It adds no runtime surface, workflow, public
 runner, or hosted allocation.
 
+M229's test-only [Windows contained source-access source-commit Git
+countersigner-chain binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md)
+extracts every bounded countersigner certificate by exact zero-based provider
+indexes from live successful WinTrust state before and after M228. It binds raw
+signer type, provider error, verification time, chain boundaries,
+per-certificate and per-chain hashes, plus one unambiguous sequence digest, and
+closes state after success or extraction failure.
+
+This proves one exact indexed countersigner sequence across the retained-file
+interval. It does not establish portable timestamp semantics, authorize a
+signer, publisher, or timestamp authority, persist an identity, pin a
+certificate, prove revocation freshness or signing-time authenticity, bind
+native DLLs or loader state, authenticate the local object store or repository
+acquisition, or establish source/build provenance. Distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain unresolved. It adds no runtime surface,
+workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

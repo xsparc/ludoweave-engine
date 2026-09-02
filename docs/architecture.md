@@ -5925,6 +5925,39 @@ M228 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M229 Windows source-commit Git countersigner-chain binding
+
+M229 adds the test-only [Windows contained source-access source-commit Git
+countersigner-chain binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md).
+It repeats M228's exact retained path/handle and cached Authenticode policy.
+Before provider state closes, it resolves every countersigner by exact
+zero-based provider index and every certificate by exact countersigner
+provider-chain index, copying positive per-certificate, per-chain, and
+aggregate-bounded DER.
+
+The detached observation binds countersigner count, raw signer type, provider
+error, raw FILETIME, chain count, encoded-size and certificate-hash tuples,
+per-chain hashes, and one domain-separated digest over every index, length,
+metadata field, and DER value. The complete immutable observation must match
+before and after M228's complete boundary. Missing state, primary signer,
+countersigner, provider success, verification time, chain, certificate, DER,
+or capacity fails closed. Provider state closes in `finally` after successful
+extraction, trust rejection, or extraction failure.
+
+The result binds only one live countersigner provider-index sequence. It does
+not establish portable timestamp semantics, authorize a signer, publisher, or
+timestamp authority, persist an identity, pin a certificate, define rotation/
+recovery, independently validate a timestamp token or signing time, prove
+revocation freshness, bind DLL/native-loader state, establish local-object-
+store or repository-acquisition trust, or provide source/build provenance.
+Distinct principal, independent host, hostile or privileged bypass, criteria
+6/7, Windows admission, and cleanup authority remain outside the evidence.
+
+M229 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

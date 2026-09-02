@@ -4221,6 +4221,40 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M229 Windows source-commit Git countersigner-chain binding
+
+M229 starts from fully locally validated M228 commit
+`1ced72e243bae4b3322dfa3e03278b7a588430ab`. It adopts the test-only [Windows
+contained source-access source-commit Git countersigner-chain binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md)
+under RFC-0212.
+
+One scoped composition repeats M228's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it requires
+the complete bounded countersigner sequence by zero-based provider index and
+each complete bounded countersigner certificate chain by zero-based provider
+index. It copies every DER value, computes per-certificate and per-chain
+SHA-256 values, and computes one domain-separated aggregate SHA-256 over the
+complete indexed sequence and its raw provider metadata. The exact detached
+observation must match before and after M228's complete boundary; provider
+state closes after success, rejection, or extraction failure.
+
+This binds one countersigner provider-index sequence, not portable timestamp
+semantics, signer, publisher, or timestamp-authority authorization, a persisted
+identity, certificate pinning, rotation/recovery policy, timestamp-token or
+signing-time validation, revocation freshness, native DLL or loader identity,
+object-store trust, repository-acquisition attestation, or source/build
+provenance. Distinct-principal or independent-host behavior, hostile/
+privileged bypass, criteria 6/7, and Windows cleanup admission remain
+unresolved.
+
+M229 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
