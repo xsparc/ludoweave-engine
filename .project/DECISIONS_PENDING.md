@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M225 Windows source-commit Git child process-image binding
+
+RFC-0208 accepts one direction-preserving, test-only composition: preserve
+M224's retained Git executable while each of the 48 inherited CPython Windows
+process creations adds `CREATE_SUSPENDED`. Before the primary thread runs,
+retain the actual child image and require its normalized path, volume/file
+identity, bounded size, and SHA-256 to equal the M224 snapshot. Resume only an
+exact initial suspend count of one, preserve normal `Popen` ownership, retain
+all image files through settlement, and close them in reverse order.
+
+This binds actual child images to one retained local executable. It is not
+executable authenticity, signer/publisher/origin/ACL policy, native DLL/loader
+provenance, local-object-store trust, repository acquisition, or source/build
+provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+admission remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M224 Windows source-commit Git executable file retention
 
 RFC-0207 accepts one direction-preserving, test-only composition: retain the

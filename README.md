@@ -448,8 +448,15 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > proves write/delete sharing refusal without mutation. Authenticity, native-
 > loader identity, cleanup, admission, workflow, and hosted checks remain
 > unchanged.
+> M225 adds a test-only [Windows contained source-access source-commit Git
+> child process-image binding
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md).
+> It creates each of the 48 existing Git children suspended, matches the
+> actual child image to M224's retained file before child code runs, then
+> resumes normal `Popen` ownership. Authenticity, native-loader identity,
+> cleanup, admission, workflow, and hosted checks remain unchanged.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M224 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M225 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

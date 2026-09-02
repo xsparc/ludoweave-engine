@@ -1,5 +1,100 @@
 # Project State
 
+## M225 Windows source-commit Git child image binding - locally complete, publication withheld
+
+- **Baseline:** exact M224 commit
+  `238ed548cc6dc67e07f43ea8585bcc5870828c55`, tree
+  `298e220954566c942d3d7193f1eb39e0aeba0794`, sole parent exact M223.
+- **Direction:** RFC-0208 accepts one test-only suspended process-image
+  composition around M224. It binds actual child images to M224's retained
+  local file, not executable authenticity or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0208, one security guide, eight public registrations, and four
+  `.project` records. M221-M224 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** each of 48 existing CPython `CreateProcess` calls adds
+  `CREATE_SUSPENDED`; the returned process handle identifies and retains the
+  child image before code runs. Its complete snapshot must equal M224's
+  retained executable, an exact suspend count of one resumes, normal `Popen`
+  ownership continues, and all retained image files remain stable through
+  settlement. Pre-return failure terminates, waits, and closes native handles.
+- **Evidence:** the 12-test M224 baseline and dated-strict governance pass.
+  Intentional red isolated nine missing checks. Focused formatting/Ruff/
+  Pyright and 14 tests pass; architecture/integration passes 3,446/12;
+  corrected sequential all-extra CPython 3.12-3.14 each pass 4,568/19; real
+  wgpu, five-repeat profiles, profile tests, and deterministic examples pass.
+- **Initial distribution:** two builds reproduce a 365,817-byte pure wheel at
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and 2,657,128-byte source archive at
+  `0816a2e7b8cdf05b82dc02bba91f6e823986a46096e23f25200b930fac4c2ec3`.
+  Installed smokes, two exact release stages, and package inventories pass.
+- **Review:** exactly 16 intended paths differ and protected surfaces are
+  unchanged. One native negative case was corrected so failed termination is
+  not claimed as completed cleanup. Added-line disclosure, credential,
+  machine-path, retired-metadata, whitespace, and connectivity gates pass; no
+  other actionable finding remains at this stage.
+- **Record-inclusive gates:** the unchanged lock, whole-project format/Ruff/
+  Pyright, strict docs, both governance modes, and the repeated 3,446/12
+  architecture/integration boundary pass.
+- **Record-state distribution:** two builds preserve the 365,817-byte wheel at
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and reproduce a 2,658,115-byte source archive at
+  `f434e273f3b5b1ec129d8fc4fde33790d132080d07800ee84131d2ae0c185d7f`.
+  Installed smokes, exact release stages, and inventories pass.
+- **Cleanup:** the first audit was sandbox-denied and the next two audit
+  commands stopped on incorrect parent-path expressions; none deleted data.
+  The corrected access-enabled audit proved 21 exact M225 targets containing
+  129,598 entries confined, ignored, untracked, and recursively reparse-free.
+  Immediate revalidation removed only them, left zero M225 scratch, and
+  preserved all 56 older `.tmp` targets.
+- **Final source separator:** the unchanged lock, all 638-file format/Ruff,
+  strict Pyright, strict docs, dated-strict governance, and the complete
+  3,446/12 architecture/integration boundary pass after cleanup.
+- **Final distribution:** two builds preserve the reviewed 365,817-byte pure
+  wheel at
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and reproduce source archive
+  `7bd2174cbf3c4eba66ef39367d33aec4bcff49cb58d637f5f880e041cd8d36d7`;
+  installed/release smokes and exact inventories pass.
+- **Final-ledger cleanup:** six exact final targets containing 8,483 entries
+  were proven confined, ignored, untracked, and recursively reparse-free, then
+  removed after immediate exact-set revalidation. Zero M225 scratch remains
+  and all 56 older `.tmp` targets remain.
+- **Pre-commit separator:** whole-project format/Ruff/Pyright, dated-strict
+  governance, whitespace, retired metadata, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M224 history/tree/parent, 16-path scope, neutral
+  two-branch set, configured maintainer identity, expected `0 125` divergence,
+  protected/disclosure/retired-metadata/scratch/whitespace gates, and full
+  connectivity pass.
+- **Initial local commit:** DCO commit
+  `327c421a6991ed6ef3b5c32491d5a58ae771f911`, tree
+  `4e2c679d9b56ccab6fcd4c015ff9a24cc9a3e436`, has exact M224 as sole
+  parent, 16 paths, one matching sign-off, consistent identity, clean
+  whitespace/worktree/connectivity, expected `0 126` divergence, and zero
+  M225 scratch. This factual record is incorporated by amendment.
+- **Amended local commit:** DCO commit
+  `ecde0f0114b6bbf285c76b8b0be01836357a81e0`, tree
+  `28af3e17121c8f53862455ce26d61fa9c0051339`, preserves exact M224 as sole
+  parent, all 16 paths, one sign-off, matching identity, clean revision
+  whitespace/worktree/connectivity, expected `0 126` divergence, and zero
+  M225 scratch. This factual record is incorporated by the final amendment.
+- **Corrections:** the original direct-`Popen` design was tightened before
+  implementation to eliminate a documented short-lived-process race. A first
+  concurrent matrix attempt was rejected because shared pytest scratch caused
+  interference; corrected runs use distinct roots sequentially. A base-only
+  3.12 pass is preliminary; all-extra results are authoritative.
+- **Boundaries:** executable signer/publisher/origin/ACL policy,
+  DLL/native-loader state, local-object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved.
+- **Publication:** withheld after a fresh fetch. Hosted `main` remains exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M99 is an ancestor but M224
+  is not. Only `origin/main` exists, there are no open pull requests, and the
+  latest remains merged PR 251. No push, pull request, hosted allocation, tag,
+  release, or package publication occurred.
+
 ## M224 Windows source-commit Git file retention - locally complete, publication withheld
 
 - **Baseline:** exact M223 commit

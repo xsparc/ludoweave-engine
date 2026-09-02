@@ -1457,6 +1457,22 @@ resolve hostile/privileged bypass or criteria 6/7, admit Windows, or authorize
 cleanup. It adds no runtime surface, workflow, public runner, or hosted
 allocation.
 
+M225's test-only [Windows contained source-access source-commit Git child
+process-image binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md)
+creates each existing Git child with `CREATE_SUSPENDED`, retains and compares
+the actual image with M224's retained executable before its primary thread
+runs, resumes an exact initial suspend count of one, and retains all 48 image
+files through settlement. Pre-return failure terminates, waits, and closes the
+suspended child and its native handles.
+
+This binds the actual child image to a retained local file. It does not
+authenticate the executable, signer, publisher, ACL, native DLL or loader
+state, local object store, repository acquisition, or source/build provenance;
+it does not prove distinct-principal or independent-host behavior, resolve
+hostile/privileged bypass or criteria 6/7, admit Windows, or authorize cleanup.
+It adds no runtime surface, workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

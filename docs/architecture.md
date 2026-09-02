@@ -5811,6 +5811,34 @@ M224 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M225 Windows source-commit Git child process-image binding
+
+M225 adds the test-only [Windows contained source-access source-commit Git
+child process-image binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md).
+It keeps M224's retained Git executable open and adds `CREATE_SUSPENDED` to
+each of the 48 inherited CPython Windows process creations. The returned
+process handle identifies and opens the actual executable image before its
+primary thread runs.
+
+Each child image must match M224's normalized path, volume/file identity,
+positive bounded size, and SHA-256. The primary thread resumes only from an
+exact initial suspend count of one. Every retained child image remains stable
+through complete M223/M222/M221 settlement and closes in reverse order. If
+binding fails before CPython takes ownership, the suspended child is
+terminated, waited, and its process/thread handles are closed.
+
+The result binds actual child images to one retained local executable, not
+executable authenticity, signing, publisher policy, ACL trust,
+DLL/native-loader state, local-object-store trust, repository acquisition, or
+source/build provenance. Distinct principal, independent host, hostile or
+privileged bypass, criteria 6/7, Windows admission, and cleanup authority
+remain outside the evidence.
+
+M225 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

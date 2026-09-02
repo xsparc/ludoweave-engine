@@ -113,6 +113,7 @@ nav:
   - Windows contained source-access source-commit no-lazy-fetch probe: security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md
   - Windows contained source-access source-commit Git executable selection binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md
   - Windows contained source-access source-commit Git executable file retention probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md
+  - Windows contained source-access source-commit Git child process-image binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -326,6 +327,7 @@ nav:
       - RFC-0205 - Exclude Git lazy fetch from the source-commit probe: rfcs/0205-exclude-git-lazy-fetch-from-source-commit-probe.md
       - RFC-0206 - Bind Git executable selection for the source-commit probe: rfcs/0206-bind-git-executable-selection-for-source-commit-probe.md
       - RFC-0207 - Retain the Git executable file for the source-commit probe: rfcs/0207-retain-git-executable-file-for-source-commit-probe.md
+      - RFC-0208 - Bind each Git child process image for the source-commit probe: rfcs/0208-bind-git-child-image-for-source-commit-probe.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M225/RFC-0208's test-only [Windows contained source-access source-commit
+  Git child process-image binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md).
+  It creates each existing Git child suspended, binds the actual process image
+  to M224's retained executable before child code runs, resumes exactly once,
+  and retains all 48 image files through settlement. Runtime, package,
+  authenticity, native-loader identity, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
 - Add M224/RFC-0207's test-only [Windows contained source-access source-commit
   Git executable file retention
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md).

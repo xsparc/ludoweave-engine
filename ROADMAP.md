@@ -4098,6 +4098,37 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M225 Windows source-commit Git child process-image binding
+
+M225 starts from fully locally validated M224 commit
+`238ed548cc6dc67e07f43ea8585bcc5870828c55`. It adopts the test-only [Windows
+contained source-access source-commit Git child process-image binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md)
+under RFC-0208.
+
+One scoped composition keeps M224's retained Git executable open while each
+of the 48 inherited CPython `CreateProcess` calls creates its primary thread
+with `CREATE_SUSPENDED`. Before that thread runs, the actual process image is
+retained and required to match M224's normalized path, volume/file identity,
+positive bounded size, and SHA-256. An exact suspend count of one is resumed;
+all retained image files remain stable through complete child settlement and
+then close in reverse order. Pre-return failure terminates, waits, and closes
+the suspended child and its handles.
+
+This is actual child process-image binding to one retained local executable,
+not executable authentication, signing, publisher policy, DLL/native-loader
+provenance, or object-store trust. Repository acquisition, source/build
+provenance, imports, distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, and Windows cleanup admission remain
+unresolved.
+
+M225 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

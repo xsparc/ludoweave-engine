@@ -1,5 +1,156 @@
 # Current task
 
+## M225 Windows source-commit Git child process-image binding
+
+- **Task:** Bind each actual Git child process image to M224's retained
+  executable before the child's primary thread can run.
+- **Status:** Direction research, exact baseline/protected-hash capture,
+  intentional architecture red, scoped implementation, failure-close
+  hardening, RFC-0208, security guidance, eight public registrations, focused
+  static/type/live tests, whole-project static/docs/architecture/integration,
+  complete supported-Python validation, and rendering/profile/example gates
+  are complete. Initial reproducible distribution/release validation and
+  findings-first review are also complete. Record-inclusive gates and
+  distribution/release rehearsal plus initial guarded cleanup pass. Final
+  source/governance/architecture separators pass. Final distribution,
+  release rehearsal, inventory, and final-target cleanup pass. The no-output
+  pre-commit separator, exact pre-commit audit, local DCO commit verification,
+  and hosted publication-safety gate pass. M225 is locally complete;
+  publication is withheld because hosted `main` lacks the M100-M224
+  prerequisite stack.
+- **Base:** exact fully locally validated M224 DCO commit
+  `238ed548cc6dc67e07f43ea8585bcc5870828c55`, tree
+  `298e220954566c942d3d7193f1eb39e0aeba0794`, with sole parent exact M223.
+- **Branch:** `release/m225-windows-source-commit-git-child-image-binding`;
+  exact containment made the local M224 branch redundant, so only local
+  `main` and active M225 remain.
+
+### M225 acceptance boundary
+
+- Perform one real Git lookup and retain the canonical executable through
+  M224's existing non-inheritable read handle.
+- Intercept exactly 48 CPython Windows `CreateProcess` calls inside the test,
+  add `CREATE_SUSPENDED`, and use each returned process handle to retain the
+  actual child image before its primary thread can run.
+- Require every child image's normalized name, volume/file identity, positive
+  bounded size, and SHA-256 to equal the retained M224 executable. Resume only
+  from an exact initial suspend count of one.
+- Preserve CPython's normal `Popen` ownership after resume. Retain all 48 child
+  image files through complete settlement, verify them again, and close them
+  in reverse order even if a stability check fails.
+- If pre-return observation or resume fails, terminate and wait for the child,
+  close process/thread/image handles, and propagate failure.
+- Preserve every M221-M224 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep executable authenticity/signing/publisher/ACL policy, DLL/native-loader
+  identity, local-object-store trust, repository acquisition, source/build
+  provenance, distinct principal, hostile/privileged behavior, independent
+  host, criteria 6/7, cleanup authority, and Windows admission unresolved.
+
+### Validation evidence so far
+
+- Exact M224 history, clean worktree, retired-metadata absence, and only local
+  `main` plus active M224 were confirmed. The M224 focused baseline passed 12
+  tests; the required governance package passed dated-strict validation after
+  one sandbox-denied cache attempt.
+- Current Microsoft process-image/suspension/termination guidance, supported
+  CPython subprocess implementations, SLSA 1.2, NIST SSDF, and GitHub usage
+  guidance support one local test-only image-binding slice while provenance,
+  authority, admission, and hosted allocation remain outside.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed nine missing implementation/documentation/registration checks.
+- The first live composition proved all 48 suspended Git children. Focused
+  review then added failure-collecting reverse close plus direct retained-image
+  and post-termination settlement-failure native-handle cleanup cases.
+  Formatting, Ruff, strict Pyright, and all 14 focused architecture/live tests
+  pass.
+- The unchanged 46-package lock resolves. All 638 Python files are
+  format-clean; Ruff and strict Pyright report zero findings; strict docs build
+  with only the known Material notice.
+- Complete architecture/integration passes 3,446 tests with 12 expected skips
+  in 227.40 seconds.
+- A concurrent supported-Python attempt was rejected and interrupted because
+  the three runs shared pytest's configured temporary root. A corrected base
+  CPython 3.12 run passed 4,558/20; it was preliminary because optional
+  graphics packages were absent.
+- Corrected sequential frozen all-group/all-extra CPython 3.12, 3.13, and 3.14
+  environments each pass 4,568 tests with 19 expected skips, in 267.65,
+  248.33, and 263.83 seconds respectively.
+- Ten real-wgpu tests pass. Five-repeat base and graphics profiles emit and
+  validate two and three workloads; all eight profile tests pass. Two Null and
+  one wgpu Clockwork runs agree at the established state hash, three draws,
+  and 15 sprites; Agent World Builder reproduces its established identities.
+- Two builds reproduce a 365,817-byte pure wheel at SHA-256
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and a 2,657,128-byte source archive at SHA-256
+  `0816a2e7b8cdf05b82dc02bba91f6e823986a46096e23f25200b930fac4c2ec3`.
+  Installed wheel/scene smokes and both exact ten-artifact release stages pass;
+  the 114-entry wheel is clean and the 1,068-entry source archive contains
+  each of the four new M225 files exactly once.
+- Findings-first review confirms exactly 16 intended paths and zero protected
+  runtime/workflow/package/fixture/M224 diff. It corrected one overclaiming
+  native negative test: failed termination is no longer treated as completed
+  cleanup. The accepted case proves handle closure after accepted termination
+  plus failed settlement. Added-line disclosure, credential, machine-path,
+  retired-metadata, whitespace, and full-connectivity checks pass.
+- Record-inclusive lock, format/Ruff/Pyright, strict docs, static and dated-
+  strict governance, and complete architecture/integration pass; the latter
+  reports 3,446 tests with 12 expected skips in 237.54 seconds.
+- Two record-state builds preserve the 365,817-byte pure wheel at SHA-256
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and reproduce a 2,658,115-byte source archive at SHA-256
+  `f434e273f3b5b1ec129d8fc4fde33790d132080d07800ee84131d2ae0c185d7f`.
+  Installed smokes, both exact release stages, and package inventories pass.
+- A corrected access-enabled audit proved exactly 21 M225 scratch targets with
+  129,598 entries repository-confined, ignored, untracked, and top-level plus
+  recursively reparse-free. Immediate exact-set revalidation removed only
+  those targets, confirmed zero M225 scratch, and preserved all 56 older
+  `.tmp` targets.
+- Final post-cleanup lock, format/Ruff/Pyright, strict docs, dated-strict
+  governance, and complete architecture/integration pass; the final complete
+  boundary reports 3,446 tests with 12 expected skips in 229.00 seconds.
+- Two final builds preserve the 365,817-byte pure wheel at SHA-256
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and reproduce a 2,659,032-byte source archive at SHA-256
+  `7bd2174cbf3c4eba66ef39367d33aec4bcff49cb58d637f5f880e041cd8d36d7`.
+  Installed smokes, both exact final release stages, and package inventories
+  pass.
+- A separate final audit proved exactly six targets with 8,483 entries
+  repository-confined, ignored, untracked, and top-level plus recursively
+  reparse-free. Immediate revalidation removed only those targets, confirmed
+  zero M225 scratch, and again preserved all 56 older `.tmp` targets.
+- The no-output whole-project format/Ruff/Pyright, dated-strict governance,
+  whitespace, retired-metadata, and zero-scratch separator passes.
+- The pre-commit audit passes exact M224 history/tree/parent, the 16-path
+  allowlist, two-branch hygiene, configured maintainer identity, expected
+  `0 125` divergence, protected surfaces, 1,025-line disclosure/credential/
+  local-path scans, whitespace, full connectivity, and zero M225 scratch.
+- Initial local DCO commit
+  `327c421a6991ed6ef3b5c32491d5a58ae771f911`, tree
+  `4e2c679d9b56ccab6fcd4c015ff9a24cc9a3e436`, has exact M224 as sole
+  parent, 16 intended paths, one matching sign-off, matching maintainer
+  identity, clean revision whitespace/worktree/connectivity, expected `0 126`
+  divergence, and zero M225 scratch. This factual record will be incorporated
+  by amendment.
+- Amended local DCO commit
+  `ecde0f0114b6bbf285c76b8b0be01836357a81e0`, tree
+  `28af3e17121c8f53862455ce26d61fa9c0051339`, preserves exact M224 as sole
+  parent, all 16 intended paths, one matching sign-off, matching maintainer
+  identity, clean revision whitespace/worktree/connectivity, expected `0 126`
+  divergence, and zero M225 scratch. This factual record is incorporated by
+  the final amendment.
+- A fresh fetch and remote query prove hosted `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`: M99 is an ancestor, M224 is
+  not, only `origin/main` exists, and there are no open pull requests. The
+  latest pull request remains merged PR 251. No push, pull request, hosted
+  workflow, tag, release, or package publication occurred.
+
+### Remaining gates
+
+- None for M225. Continue from the fully locally validated commit while
+  preserving the hosted publication gate for later milestones.
+
 ## M224 Windows source-commit Git executable file retention
 
 - **Task:** Retain the selected Git executable file across the complete M223
