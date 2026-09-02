@@ -116,6 +116,7 @@ nav:
   - Windows contained source-access source-commit Git child process-image binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md
   - Windows contained source-access source-commit Git Authenticode trust probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md
   - Windows contained source-access source-commit Git signer-certificate binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md
+  - Windows contained source-access source-commit Git provider-chain binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -332,6 +333,7 @@ nav:
       - RFC-0208 - Bind each Git child process image for the source-commit probe: rfcs/0208-bind-git-child-image-for-source-commit-probe.md
       - RFC-0209 - Verify retained Git Authenticode trust for the source-commit probe: rfcs/0209-verify-git-authenticode-trust-for-source-commit-probe.md
       - RFC-0210 - Bind retained Git Authenticode signer certificate: rfcs/0210-bind-git-signer-certificate-for-source-commit-probe.md
+      - RFC-0211 - Bind retained Git WinTrust provider chain: rfcs/0211-bind-git-provider-chain-for-source-commit-probe.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

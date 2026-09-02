@@ -427,6 +427,12 @@ attestation, with the same allocation topology.
   that copies and hashes the bounded primary signer certificate from live
   WinTrust state before and after M226 without authorizing a signer, pinning a
   certificate, proving revocation freshness, or changing cleanup/admission.
+- A test-only [Windows contained source-access source-commit Git provider-chain
+  binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md)
+  that copies and hashes every bounded provider certificate by exact provider
+  index before and after M227 without defining portable chain semantics,
+  authorizing a signer, or changing provenance, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

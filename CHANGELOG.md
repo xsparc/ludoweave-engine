@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M228/RFC-0211's test-only [Windows contained source-access source-commit
+  Git provider-chain binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md).
+  It copies every bounded provider certificate by exact provider index and
+  binds unambiguous per-certificate and aggregate hashes around M227. Runtime,
+  package, portable chain semantics, signer authorization, certificate
+  pinning, revocation freshness, provenance, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
 - Add M227/RFC-0210's test-only [Windows contained source-access source-commit
   Git signer-certificate binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md).

@@ -1506,6 +1506,25 @@ Distinct-principal and independent-host behavior, hostile/privileged bypass,
 criteria 6/7, Windows admission, and cleanup authority remain unresolved. It
 adds no runtime surface, workflow, public runner, or hosted allocation.
 
+M228's test-only [Windows contained source-access source-commit Git provider-
+chain binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md)
+extracts every bounded provider certificate by exact zero-based provider index
+from live successful WinTrust state before and after M227. It copies each DER
+value, computes per-certificate hashes plus one unambiguous aggregate chain
+hash, binds the provider's raw verification time, and closes state after
+success or extraction failure.
+
+This proves one exact provider-index sequence across the retained-file
+interval. It does not define portable chain semantics, authorize a signer or
+publisher, persist an identity, pin a certificate, prove revocation freshness
+or timestamp/countersigner authenticity, bind native DLLs or loader state,
+authenticate the local object store or repository acquisition, or establish
+source/build provenance. Distinct-principal and independent-host behavior,
+hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
+authority remain unresolved. It adds no runtime surface, workflow, public
+runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

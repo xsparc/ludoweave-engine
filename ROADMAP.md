@@ -4189,6 +4189,38 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M228 Windows source-commit Git provider-chain binding
+
+M228 starts from fully locally validated M227 commit
+`b6ae4dd861449b130b59b3d32ad40e2ba3299639`. It adopts the test-only [Windows
+contained source-access source-commit Git provider-chain binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md)
+under RFC-0211.
+
+One scoped composition repeats M227's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it requires
+the complete bounded provider-certificate sequence by zero-based provider
+index, copies every bounded DER value, computes each certificate's SHA-256,
+and computes one domain-separated aggregate SHA-256 over the chain count plus
+each exact index, length, and DER value. The exact detached observation must
+match before and after M227's complete boundary; provider state closes after
+success, rejection, or extraction failure.
+
+This binds one provider-index sequence, not portable leaf/intermediate/root
+semantics, signer or publisher authorization, a persisted identity,
+certificate pinning, rotation/recovery policy, revocation freshness,
+timestamp/countersigner authenticity, native DLL or loader identity, object-
+store trust, repository-acquisition attestation, or source/build provenance.
+Distinct-principal or independent-host behavior, hostile/privileged bypass,
+criteria 6/7, and Windows cleanup admission remain unresolved.
+
+M228 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

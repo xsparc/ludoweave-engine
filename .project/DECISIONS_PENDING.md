@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M228 Windows source-commit Git provider-chain binding
+
+RFC-0211 accepts one direction-preserving, test-only composition: repeat
+M227's exact retained-handle cached trust evaluation, then resolve every
+provider certificate by zero-based provider index while state remains live.
+Copy positive per-certificate and aggregate-bounded DER, compute exact per-
+certificate hashes and one domain-separated count/index/length/value digest,
+retain the provider's nonzero raw verification time, and require the same
+observation before and after M227. Provider state closes after success,
+rejection, or extraction failure.
+
+This binds one provider-index sequence within one execution. It does not
+define portable leaf/intermediate/root semantics, authorize a signer or
+publisher, persist an identity, pin a certificate, define rotation/recovery,
+prove revocation freshness or timestamp/countersigner authenticity, establish
+trust-store authority, bind native DLL/loader state, authenticate the local
+object store or repository acquisition, or provide source/build provenance.
+Distinct-principal or independent-host behavior, hostile/privileged bypass,
+criteria 6/7, cleanup authority, and Windows admission remain pending. No
+public self-hosted runner or added hosted check is authorized.
+
 ## M227 Windows source-commit Git signer-certificate binding
 
 RFC-0210 accepts one direction-preserving, test-only composition: repeat

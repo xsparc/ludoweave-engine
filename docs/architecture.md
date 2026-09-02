@@ -5894,6 +5894,37 @@ M227 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M228 Windows source-commit Git provider-chain binding
+
+M228 adds the test-only [Windows contained source-access source-commit Git
+provider-chain binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md).
+It repeats M227's exact retained path/handle and cached Authenticode policy.
+Before provider state closes, it resolves every provider certificate by exact
+zero-based provider index, copies positive per-certificate and aggregate-
+bounded DER bytes, and computes both per-certificate SHA-256 values and one
+domain-separated aggregate digest over count, index, length, and DER.
+
+The same provider count, encoded-size tuple, certificate-hash tuple, aggregate
+hash, and raw FILETIME value must appear before and after M227's complete
+boundary. Missing state, signer, chain, indexed certificate, DER, aggregate
+capacity, or verification time fails closed. Provider state closes in a
+`finally` boundary after successful extraction, trust rejection, or extraction
+failure.
+
+The result binds only one live provider-index sequence. It does not define
+portable leaf/intermediate/root semantics, authorize a signer or publisher,
+persist an identity, pin a certificate, define rotation/recovery, prove
+revocation freshness or timestamp/countersigner authenticity, bind DLL/native-
+loader state, establish local-object-store or repository-acquisition trust, or
+provide source/build provenance. Distinct principal, independent host, hostile
+or privileged bypass, criteria 6/7, Windows admission, and cleanup authority
+remain outside the evidence.
+
+M228 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

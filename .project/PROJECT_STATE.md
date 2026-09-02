@@ -1,5 +1,88 @@
 # Project State
 
+## M228 Windows source-commit Git provider-chain binding - locally complete, publication withheld
+
+- **Baseline:** exact M227 commit
+  `b6ae4dd861449b130b59b3d32ad40e2ba3299639`, tree
+  `430f48847a4dde2cf325690997b8e30e603f44c0`, sole parent exact M226.
+- **Direction:** RFC-0211 accepts one test-only live-provider-state composition
+  around M227. It binds a complete provider-index sequence, not portable chain
+  semantics, signer authorization, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0211, one security guide, eight public registrations, and four
+  `.project` records. M221-M227 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** every indexed provider certificate must expose positive bounded
+  DER while state is live and the complete sequence must satisfy a separate
+  aggregate bound. Count, index, length, DER, per-certificate hashes, aggregate
+  hash, and raw verification time are detached before state close and must
+  match across M227. Every state closes in `finally`.
+- **Evidence:** the 21-test exact M227 baseline and both governance modes pass;
+  intentional red isolates nine missing checks; focused formatting/Ruff/
+  Pyright and all 14 live/failure-close tests pass; RFC/security documentation
+  and eight registrations are present; corrected format-stable guards and
+  strengthened missing-state/digest-boundary coverage pass all 27 focused tests;
+  strict docs build; whole-project static/docs/governance pass; architecture/
+  integration passes 3,508/12; isolated CPython 3.12-3.14 each pass 4,630/19;
+  real wgpu, repeated profiles, deterministic examples, and current registered
+  example tests pass; initial reproducible distributions, installed smokes,
+  two exact release stages, package inventory, and exact findings-first scope/
+  disclosure/connectivity review pass. Record-inclusive source/docs/governance
+  and architecture/integration pass; final source/docs/governance and
+  architecture/integration repeat pass at 3,508/12. Final reproducible
+  distributions preserve the 366,097-byte pure wheel and produce a
+  2,694,265-byte source archive; installed smokes, two exact release stages,
+  release comparison, and exact package inventory pass with the four M228
+  files source-only.
+- **Corrections:** two architecture strings assumed pre-format single-line
+  layout and were replaced by equivalent semantic fragments. A strengthened
+  test name then lexically overlapped the banned network-module token
+  `requests`; the unambiguous name corrected the false positive. No behavioral
+  pass is claimed for either rejected combined invocation. A stale Clockwork
+  help filename and a stale registered agent-test filename were also rejected;
+  current repository paths supplied the accepted corrections.
+- **Boundaries:** portable chain semantics, signer/publisher authorization,
+  persisted identity, certificate pinning, rotation/recovery, revocation
+  freshness, timestamp/countersigner authenticity, trust-store administration,
+  native DLL/loader state, local-object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved.
+- **Review:** exactly 16 intended paths and 1,275 then-current additions remain.
+  Protected surfaces, public disclosure, delta credential/local-path,
+  retired-metadata, whitespace, and object-connectivity checks pass; the
+  terminating metadata/M228 group passes 32 tests. No actionable finding
+  remains.
+- **Cleanup:** after one expected ordinary Windows ACL denial, the access-
+  enabled audit proved all 34 exact M228 targets and 135,043 entries confined,
+  ignored, untracked, and reparse-free. Exact revalidation removed them,
+  confirmed zero remains, and preserved all 56 older `.tmp` targets.
+- **Pre-commit:** the unchanged lock, whole-tree format/Ruff/Pyright,
+  dated-strict governance, whitespace, and zero-scratch separator passes.
+  Exact history remains M227/tree `430f4884`; exactly 16 intended paths and
+  1,295 then-current additions differ, local branches are `main` plus neutral
+  M228, configured identity matches, protected/disclosure/retired-metadata
+  surfaces remain clean, and full connectivity passes.
+- **Initial DCO object:** `1531adda00a1ce99d1fb78791c68baee9ce94093`,
+  tree `264a092cc63bafe5b9dfdf02b41f35cf13c7a1d3`, has sole parent exact
+  M227, exactly 16 paths, one matching sign-off and author/committer identity,
+  clean whitespace/worktree/connectivity, expected `0 129` divergence, and
+  zero M228 scratch. This factual record will be incorporated by amendment.
+- **Amended DCO object:** `df7b04a11146ee0915c1c038ee93d368001db4de`,
+  tree `f22678c108b987ed179e72fa16a8f722acdc6ebf`, preserves exact M227 as
+  sole parent, all 16 intended paths, one matching sign-off, matching identity,
+  clean whitespace/worktree/connectivity, `0 129` divergence, neutral branches,
+  and zero scratch.
+- **Publication:** withheld. Fresh fetch and direct hosted-head query prove
+  public `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M227 is not its ancestor.
+  Only `origin/main` exists, no pull request is open, and merged PR #251 remains
+  latest. The first remote inventory counted Git's symbolic `origin` alias and
+  stopped before repository/PR evaluation; the corrected classifier supplies
+  the accepted result. No push, PR, hosted allocation, tag, release, or package
+  publication occurred.
+
 ## M227 Windows source-commit Git signer-certificate binding - locally complete, publication withheld
 
 - **Baseline:** exact M226 commit
