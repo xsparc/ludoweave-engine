@@ -1,5 +1,98 @@
 # Project State
 
+## M222 Windows source-commit no-lazy-fetch exclusion - locally complete, publication withheld
+
+- **Baseline:** exact M221 commit
+  `d09d8b561dbebe49af62a6762ef145bb30499845`, tree
+  `c8847a1db0a823396d2b86a0d9cb5914b68015ad`, sole parent exact M220.
+- **Direction:** RFC-0205 corrects the current M221 reader by applying both Git
+  lazy-fetch exclusions. It does not rewrite historical evidence or establish
+  source/build provenance, collection, cleanup authority, or admission.
+- **Scope:** one exact two-line hardening of the M221 integration reader, one
+  Windows regression, one architecture guard, RFC-0205, one security guide,
+  eight public registrations, and four `.project` records. Runtime, package,
+  dependency, lock, workflow, fixture, example, script, and benchmark surfaces
+  remain unchanged; zero GitHub Actions job is added.
+- **Behavior:** every fixed object read passes `--no-lazy-fetch` before `-C`
+  and receives fixed `GIT_NO_LAZY_FETCH=1` after ambient Git variables are
+  removed. The regression observes the exact subprocess boundary and reruns
+  M221's complete three-phase source-commit proof.
+- **Local evidence:** focused M222 13/13; architecture/integration 3,410/12
+  skips; supported Python 3.12/3.13/3.14 each 4,532/19 skips; 10 real-wgpu;
+  fresh two-/three-workload profiles and eight validators; deterministic
+  Null/wgpu Clockwork and Agent World Builder; whole-project static/type and
+  governance gates clean.
+- **Distribution:** two builds are byte-identical. Wheel: 365,482 bytes,
+  SHA-256 `48f75b2f9f1d6718407cfee996715ca123bc94c0ee469e7995381a8be86aacf9`.
+  Source: 2,622,731 bytes, SHA-256
+  `e3b4b7528d2d228d47b62ab7f450bfac5f61a57ff93a38b2feb2403ef1723b45`.
+  Installed smokes and two identical ten-artifact release stages pass. Zero
+  M222/native file enters the 114-entry wheel; exactly four new M222 files
+  occur in the 1,056-entry source archive.
+- **Record state:** format/Ruff/Pyright, 3,410/12-skip
+  architecture/integration, strict docs, static/dated-strict governance, and
+  whitespace pass. Two builds preserve the exact wheel and match at
+  2,625,704 source bytes, SHA-256
+  `0a51570adcc57d2ddd1f763b8b5012a6e7d6adfd02b07717ae1604e35848c232`;
+  installed smokes and both exact release rehearsals pass.
+- **Review:** exactly 17 intended paths; the M221 reader changes by the two
+  required lines; protected surfaces, retired-metadata absence, and 654 added-
+  line disclosure/credential/local-path scans pass. No actionable correctness,
+  ordering, authority, architecture, dependency, package, documentation,
+  compatibility, or CI finding remains.
+- **Post-review:** whole-project format/Ruff/Pyright, all 13 focused tests,
+  strict docs, dated-strict governance, and whitespace pass.
+- **Cleanup:** a corrected read-only audit proved exactly 35 M222 targets and
+  62,495 entries confined, ignored, untracked, and recursively reparse-free.
+  Immediate exact-set revalidation removed only those targets and confirmed
+  zero remains; older scratch was untouched.
+- **Final ledger:** format/Ruff/Pyright, 3,410/12-skip
+  architecture/integration, strict docs, dated-strict governance, and
+  whitespace pass. The 365,482-byte wheel remains exact; two 2,626,600-byte
+  source archives match at SHA-256
+  `dfca995c441293a0162fc5aeb5ce3cd3359e6a4177009173a916cdf5fbf40efc`;
+  installed smokes and both exact release rehearsals pass. Recording this
+  result changes only the source archive afterward.
+- **Final cleanup:** nine exact final-ledger targets and 8,474 entries were
+  separately proven confined, ignored, untracked, and recursively
+  reparse-free, removed exactly, and confirmed absent. Older scratch remains
+  untouched.
+- **No-output separator:** format/Ruff/Pyright, dated-strict governance,
+  whitespace, and zero-M222-scratch checks pass.
+- **Pre-commit audit:** exact 17-path allowlist and M221 HEAD/tree/parent;
+  protected surfaces and 715-line disclosure/credential/local-path scans
+  clean; only local `main` plus neutral M222; expected `0 122` divergence;
+  correct maintainer identity; retired metadata and M222 scratch absent;
+  whitespace and full connectivity clean.
+- **Commit:** initial DCO commit
+  `703ee11ea7be8a3793dc47ed22e6b568390d3189`, tree
+  `78413fb2146446e0fff712dccbd864de4152ed82`, has exact M221 as sole
+  parent, 17 intended paths, one matching sign-off, consistent maintainer
+  identity, a clean worktree/connectivity, expected `0 123` divergence, and
+  zero scratch. This factual record will be incorporated by amendment.
+- **Amended commit:**
+  `bd184eeebd480aa8b4bc33f82a9dc95747e7c522`, tree
+  `9c7a97c390da0b660b1ef63be6af7c45fc828dae`, retains exact M221 as
+  sole parent, 17 intended paths, one matching sign-off, consistent identity,
+  clean worktree/connectivity, expected `0 123` divergence, and zero scratch.
+- **Final pre-publication commit:**
+  `afb7f564a556441276b66f42e9a8927ca93e0fc2`, tree
+  `36602be3264531920ad9f5d930a19dbbd7df7bf2`, retains the exact M221
+  parent, 17 paths, one DCO sign-off, identity, cleanliness, connectivity, and
+  `0 123` divergence boundary.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M221 is not its ancestor,
+  only remote `main` exists, no PR is open, and PR #251 remains latest. No
+  branch push, PR, hosted job, tag, release, or package publication occurred.
+- **Boundary:** trusted Git executable/local object store, repository
+  acquisition, source attestation, build provenance, imports, native loader,
+  distinct principal, hostile process, independent host, privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unproved. No
+  runtime, package, workflow, public runner, or hosted allocation is added.
+- **Closeout:** local milestone complete. Publication awaits prerequisite-stack
+  integration and a fresh ancestry/DCO/CI-scope check.
+
 ## M221 Windows contained source-access source-commit binding - locally complete, publication withheld
 
 - **Baseline:** exact M220 commit

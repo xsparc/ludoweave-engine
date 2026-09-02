@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M222 Windows source-commit no-lazy-fetch exclusion
+
+RFC-0205 accepts one corrective, direction-preserving change: every M221 fixed
+Git object read must pass both `--no-lazy-fetch` and a fixed
+`GIT_NO_LAZY_FETCH=1` after ambient Git environment values are removed. The
+global option precedes repository/object-plumbing arguments, and the complete
+M221 contained source-commit boundary remains mandatory.
+
+This excludes implicit promisor retrieval; it does not authenticate the Git
+executable or local object store and is not source attestation or build
+provenance. Repository acquisition, imported-module/native-loader binding,
+distinct-principal behavior, hostile process control, independent-host
+evidence, privileged bypass, criteria 6 and 7, cleanup authority, and Windows
+admission remain pending. Historical M221 evidence is not rewritten. No public
+self-hosted runner or added hosted check is authorized.
+
 ## M221 Windows contained source-access source-commit binding probe
 
 RFC-0204 accepts one direction-preserving test-only observation: require

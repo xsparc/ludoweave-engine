@@ -1,5 +1,125 @@
 # Current task
 
+## M222 Windows source-commit no-lazy-fetch exclusion
+
+- **Task:** Correct M221's fixed Git object reader so a missing object cannot
+  trigger an implicit promisor-remote fetch while preserving the full M221
+  contained source-commit boundary.
+- **Status:** Direction research, test-first implementation, complete supported-
+  Python validation, rendering/profiles/examples, reproducible distributions/
+  releases, review, guarded cleanup, final ledger, and local DCO gates pass.
+  Publication is withheld because hosted `main` lacks the M100-M221
+  prerequisite stack.
+- **Base:** exact fully locally validated M221 DCO commit
+  `d09d8b561dbebe49af62a6762ef145bb30499845`, tree
+  `c8847a1db0a823396d2b86a0d9cb5914b68015ad`, with sole parent exact M220.
+- **Branch:**
+  `release/m222-windows-source-commit-no-lazy-fetch-exclusion`; exact
+  containment made the local M221 branch name redundant, so only local `main`
+  and active M222 remain.
+
+### M222 acceptance boundary
+
+- Add the documented `--no-lazy-fetch` global option before `-C` and fixed
+  `GIT_NO_LAZY_FETCH=1` after removing every ambient `GIT_*` value.
+- Execute the complete M221 boundary and regress the exact command,
+  environment, no-shell/input, timeout, pipe, and creation-flag shape.
+- Preserve M221's exact fixed commit/tree/parent/path/blob and all inherited
+  M220 source, handle, Job, token, image, access, participant, settlement, and
+  close requirements.
+- Prove the M221 reader changed by exactly those two lines while protecting
+  runtime, package, dependency, lock, workflow, fixtures, examples, scripts,
+  and benchmarks. Add zero GitHub Actions job or hosted allocation.
+- Keep trusted Git/local-object-store, repository-acquisition, source/build
+  provenance, import/native-loader, distinct-principal, hostile-process,
+  independent-host, privileged-bypass, criteria 6/7, cleanup-authority, and
+  Windows-admission gaps unresolved. Historical M221 evidence is not rewritten.
+
+### Validation evidence so far
+
+- The intentional architecture red passed two protected checks and failed the
+  eight expected absent implementation/documentation/registration checks.
+  After the exact two-line correction, regression, RFC-0205, security guide,
+  and eight registrations, all 13 focused architecture/live tests pass.
+- The unchanged 46-package lock resolves; 45 locked packages are installed;
+  all 632 Python files are format-clean; Ruff and strict Pyright report zero
+  findings. Static and dated-strict governance each return zero findings.
+- Complete architecture/integration passes 3,410 tests with 12 expected skips.
+  Two earlier foreground observations ended before a terminal result and are
+  not counted; the detached exact rerun produced the accepted result.
+- Isolated frozen CPython 3.12, 3.13, and 3.14 suites each pass 4,532 tests with
+  19 expected skips and exact exit zero.
+- Ten real-wgpu tests, fresh two-/three-workload profiles, all eight profile
+  tests, two Null and one wgpu Clockwork runs, and Agent World Builder pass
+  with their established deterministic identities.
+- Two builds reproduce a 365,482-byte pure wheel at SHA-256
+  `48f75b2f9f1d6718407cfee996715ca123bc94c0ee469e7995381a8be86aacf9`
+  and a 2,622,731-byte source archive at SHA-256
+  `e3b4b7528d2d228d47b62ab7f450bfac5f61a57ff93a38b2feb2403ef1723b45`.
+  Installed wheel/scene smokes and two identical ten-artifact release stages
+  pass. The 114-entry wheel contains zero M222 evidence/native file; the
+  1,056-entry source archive contains each of four new M222 files once.
+- Preliminary review confirms exactly 13 non-record paths, the M221 reader's
+  exact two-line correction, unchanged protected surfaces, and no explicit
+  development-tool identity or credential-like assignment. One initial scan
+  command had a PowerShell quoting error and its corrected exact rerun passed.
+- Record-inclusive format/Ruff/Pyright, 3,410/12-skip
+  architecture/integration, strict docs, static/dated-strict governance, and
+  whitespace pass. The exact 17-path allowlist, protected surfaces, retired-
+  metadata absence, and 654-line disclosure/credential/local-path scan pass;
+  no actionable review finding remains.
+- Two record-state builds preserve the exact wheel and reproduce a
+  2,625,704-byte source archive at SHA-256
+  `0a51570adcc57d2ddd1f763b8b5012a6e7d6adfd02b07717ae1604e35848c232`.
+  Installed smokes and both exact ten-artifact release rehearsals pass.
+- The post-review separator passes whole-project format/Ruff/Pyright, all 13
+  focused tests, strict docs, dated-strict governance, and whitespace.
+- A corrected guarded audit proved exactly 35 M222 targets and 62,495 entries
+  confined, ignored, untracked, and recursively reparse-free. Immediate exact-
+  set revalidation removed only those targets and confirmed zero remains;
+  older scratch was untouched.
+- Final post-cleanup format/Ruff/Pyright, 3,410/12-skip
+  architecture/integration, strict docs, dated-strict governance, and
+  whitespace pass. Two final builds preserve the exact wheel and reproduce a
+  2,626,600-byte source archive at SHA-256
+  `dfca995c441293a0162fc5aeb5ce3cd3359e6a4177009173a916cdf5fbf40efc`;
+  installed smokes and both exact ten-artifact release stages pass.
+- Nine exact final-ledger targets and 8,474 entries were separately proven
+  confined, ignored, untracked, and recursively reparse-free, removed exactly,
+  and confirmed absent; older scratch remains untouched.
+- The no-output separator passes whole-project format/Ruff/Pyright,
+  dated-strict governance, whitespace, and zero-scratch checks.
+- The pre-commit audit passes exact M221 history, 17-path allowlist, neutral
+  branch/identity, `0 122` divergence, protected-surface, disclosure,
+  credential, local-path, retired-metadata, scratch, whitespace, and full Git
+  connectivity gates.
+- Initial DCO commit `703ee11ea7be8a3793dc47ed22e6b568390d3189`, tree
+  `78413fb2146446e0fff712dccbd864de4152ed82`, has exact M221 as sole
+  parent, 17 intended paths, one matching sign-off, consistent maintainer
+  identity, a clean worktree/connectivity, expected `0 123` divergence, and
+  zero M222 scratch. This factual record will be incorporated by amendment.
+- Amended DCO commit `bd184eeebd480aa8b4bc33f82a9dc95747e7c522`,
+  tree `9c7a97c390da0b660b1ef63be6af7c45fc828dae`, retains exact M221 as
+  sole parent, 17 intended paths, one matching sign-off, consistent identity,
+  a clean worktree/connectivity, expected `0 123` divergence, and zero scratch.
+- Final pre-publication commit
+  `afb7f564a556441276b66f42e9a8927ca93e0fc2`, tree
+  `36602be3264531920ad9f5d930a19dbbd7df7bf2`, retains the same exact
+  17-path/DCO/identity/parent/cleanliness/connectivity boundary.
+- A fresh pruned fetch and direct remote-head query leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`.
+  M221 is absent, only remote `main` exists, no PR is open, and PR #251 remains
+  latest. Publishing M222 would expose the absent M100-M221 stack, so no push,
+  PR, hosted allocation, tag, release, or package publication occurs.
+
+### Remaining gates
+
+- Await integration of the prerequisite stack before any M222 publication.
+- Recheck hosted ancestry, identity, branch hygiene, DCO, and CI scope before
+  any future push or PR.
+- Recheck hosted ancestry before push or PR. Publication remains forbidden if
+  hosted `main` lacks the M100-M221 prerequisite stack.
+
 ## M221 Windows contained source-access source-commit binding probe
 
 - **Task:** Bind M220's retained fixed contender source to one exact immutable

@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M222/RFC-0205's corrective test-only [Windows contained source-access
+  source-commit no-lazy-fetch
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md).
+  It adds `--no-lazy-fetch` and a fixed `GIT_NO_LAZY_FETCH=1` environment to
+  M221's direct object reads, preventing ambient Git values from restoring a
+  promisor-fetch path. Runtime, package, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
 - Add M221/RFC-0204's test-only [Windows contained source-access source-commit
   binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md).

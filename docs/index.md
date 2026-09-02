@@ -390,6 +390,11 @@ attestation, with the same allocation topology.
   that requires the retained contender source to equal one exact immutable
   local commit/path/blob before child creation and after settlement, without
   claiming source attestation, build provenance, cleanup, or admission.
+- A corrective test-only [Windows contained source-access source-commit
+  no-lazy-fetch
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md)
+  that excludes configured promisor retrieval from every M221 object read
+  without adding runtime, cleanup, admission, workflow, or hosted allocation.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

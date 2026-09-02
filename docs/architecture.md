@@ -5736,6 +5736,27 @@ bypass, criteria 6/7, Windows admission, and cleanup authority remain outside
 the evidence. M221 adds no runtime, package, dependency, workflow, public
 runner, or hosted allocation; cleanup remains unimplemented and unauthorized.
 
+## M222 Windows source-commit no-lazy-fetch exclusion
+
+M222 adds the corrective test-only [Windows contained source-access
+source-commit no-lazy-fetch
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md).
+Every M221 direct Git object query now includes `--no-lazy-fetch` before `-C`
+and a fixed `GIT_NO_LAZY_FETCH=1` after all ambient Git values are stripped.
+The regression observes the exact no-shell subprocess boundary, proves ambient
+lazy-fetch and object-directory overrides are excluded, and executes M221's
+full three-phase source-commit binding.
+
+This is an exact two-line correction to the M221 reader plus test and decision
+evidence. It excludes configured promisor retrieval but does not authenticate
+the Git executable or local object store and is not source attestation or build
+provenance. Repository acquisition, imports, native-loader state, distinct
+principal, independent host, hostile or privileged bypass, criteria 6/7,
+Windows admission, and cleanup authority remain outside the evidence.
+
+M222 adds no runtime, package, dependency, lock, workflow, permission, public
+runner, or hosted allocation. Cleanup remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

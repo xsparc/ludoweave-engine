@@ -428,8 +428,14 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > commit/path/blob before child creation and after settlement. It is not a
 > source attestation or build-provenance claim and adds no runtime, cleanup,
 > admission, workflow, or hosted check.
+> M222 adds a corrective test-only [Windows contained source-access
+> source-commit no-lazy-fetch
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md).
+> It applies both documented Git lazy-fetch exclusions to every M221 object
+> read and rejects ambient Git overrides. It adds no runtime, cleanup,
+> admission, workflow, or hosted check.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M221 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M222 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

@@ -209,3 +209,4 @@ was adopted.
 - [RFC-0202: probe Windows contained source-access image binding](0202-probe-windows-contained-source-access-image-binding.md)
 - [RFC-0203: probe Windows contained source-access source binding](0203-probe-windows-contained-source-access-source-binding.md)
 - [RFC-0204: probe Windows contained source-access source-commit binding](0204-probe-windows-contained-source-access-source-commit-binding.md)
+- [RFC-0205: exclude Git lazy fetch from the source-commit probe](0205-exclude-git-lazy-fetch-from-source-commit-probe.md)

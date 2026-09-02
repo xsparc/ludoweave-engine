@@ -4013,6 +4013,32 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M222 Windows source-commit no-lazy-fetch exclusion
+
+M222 starts from fully locally validated M221 commit
+`d09d8b561dbebe49af62a6762ef145bb30499845`. It adopts the corrective
+[Windows contained source-access source-commit no-lazy-fetch
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md)
+under RFC-0205.
+
+Every M221 Git object read now carries both `--no-lazy-fetch` and a fixed
+`GIT_NO_LAZY_FETCH=1` after ambient Git environment removal. The Windows
+regression verifies their exact invocation shape, rejects ambient lazy-fetch
+and object-directory overrides, and reruns M221's complete contained
+source-commit boundary.
+
+This corrects the current tree's offline claim; historical M221 evidence is
+not rewritten. Trusted Git and local-object-store integrity, repository
+acquisition, source attestation, build provenance, imports, native-loader
+state, distinct-principal or independent-host behavior, hostile/privileged
+bypass, criteria 6/7, and Windows cleanup admission remain unresolved.
+
+M222 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

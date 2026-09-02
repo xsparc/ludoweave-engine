@@ -1407,6 +1407,22 @@ admission remain unresolved. It adds no runtime surface, cleanup authority,
 workflow, public runner, or hosted allocation. Windows remains unadmitted and
 cleanup remains unimplemented and unauthorized.
 
+M222's corrective test-only [Windows contained source-access source-commit
+no-lazy-fetch
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md)
+adds both documented Git lazy-fetch exclusions to every M221 object read. It
+fixes `GIT_NO_LAZY_FETCH=1` only after stripping ambient Git values and places
+`--no-lazy-fetch` before repository and object-plumbing arguments. A regression
+verifies the direct no-shell subprocess shape and reruns the complete M221
+boundary.
+
+This excludes an implicit promisor-remote retrieval path; it does not
+authenticate Git or the local object store, attest repository acquisition,
+establish source/build provenance, prove distinct-principal or independent-host
+behavior, resolve hostile/privileged bypass or criteria 6/7, admit Windows, or
+authorize cleanup. It adds no runtime surface, workflow, public runner, or
+hosted allocation. Historical M221 evidence is not rewritten.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython
