@@ -1,5 +1,82 @@
 # Project State
 
+## M227 Windows source-commit Git signer-certificate binding - locally complete, publication withheld
+
+- **Baseline:** exact M226 commit
+  `5782918bb2f2d6036a58d2ef952aaf3242b9b814`, tree
+  `c52708b61142fb4ef3696e11bb518dca698e3b52`, sole parent exact M225.
+- **Direction:** RFC-0210 accepts one test-only live-provider-state composition
+  around M226. It binds detached primary signer-certificate evidence, not
+  signer authorization or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0210, one security guide, eight public registrations, and four
+  `.project` records. M221-M226 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** each successful cached trust state must expose provider data,
+  the primary signer, a bounded chain, bounded certificate DER, and nonzero raw
+  verification time. DER is copied before state close; its size/hash and the
+  FILETIME value must match across M226. Every state closes in `finally`.
+- **Evidence:** the 14-test exact M226 baseline and both governance modes pass;
+  intentional red isolates nine missing checks; corrected focused static and
+  live gates pass; findings-first review strengthens direct rejection coverage
+  to 21 focused tests; whole-project static/docs/governance pass;
+  architecture/integration passes 3,481/12; final isolated CPython 3.12-3.14
+  each pass 4,603/19; rendering, repeated profiles, deterministic examples,
+  initial and record-state reproducible distributions, installed smokes, two
+  exact release stages, and record-inclusive/final source/docs/governance/
+  behavior separators pass. Final architecture/integration passes 3,481/12 in
+  234.07 seconds; the pure wheel remains unchanged and all four M227 files are
+  source-only.
+- **Corrections:** one initial public-certificate inspection command combined
+  two PowerShell command discoveries and did not execute Git; the corrected
+  frozen-environment selector produced the accepted observation. During
+  implementation, import ordering and 36 ctypes typing diagnostics were
+  corrected before an accepted complete static/live gate. Ruff later rejected
+  one assigned lambda before downstream checks. The first preliminary 3.13
+  full run exposed an unignored generated root, and the first final 3.14
+  console-entry run lacked the repository import root. Generated targets now
+  stay under ignored `.tmp/`, and the corrected module-entry matrix passes. No
+  pass is claimed for an unsuccessful invocation. The first staged commit gate
+  then found one RFC end-of-file blank line and stopped before commit; the
+  whitespace-only correction is included in the exact restaged gate.
+- **Boundaries:** signer/publisher authorization, persisted identity,
+  certificate pinning, rotation/recovery, revocation freshness, timestamp/
+  countersigner authenticity, trust-store administration, native DLL/loader
+  state, local-object-store trust, repository acquisition, source/build
+  provenance, distinct-principal/independent-host behavior, hostile/privileged
+  bypass, criteria 6/7, cleanup authority, and Windows admission remain
+  unresolved.
+- **Review:** exactly 16 intended paths and 1,186 additions remain. Protected
+  surfaces, public disclosure, credential/local-path, retired-metadata,
+  whitespace, and object-connectivity checks pass; no actionable finding
+  remains. The terminating focused group passes 26 tests.
+- **Cleanup:** after two path-property classifier corrections and one expected
+  ordinary ACL denial, the corrected access-enabled audit proved all 34 exact
+  M227 targets and 155,019 entries confined, ignored, untracked, and reparse-
+  free. Exact revalidation removed them, confirmed zero remains, and preserved
+  all 56 older `.tmp` targets.
+- **Pre-commit:** the no-artifact source/governance/whitespace gate passes with
+  zero M227 scratch. Exact history remains M226/tree `c52708b6`; exactly 16
+  intended paths and 1,209 then-current additions differ, local branches are
+  `main` plus neutral M227, configured identity matches, protected surfaces
+  remain unchanged, and full connectivity passes.
+- **Initial DCO object:** `f5a8d126d072250a03ee7cf224e8806220432c89`,
+  tree `a261deacef3604bdcc6748836c578d85137d667b`, has sole parent exact
+  M226, exactly 16 paths, one matching sign-off and author/committer identity,
+  clean whitespace/worktree/connectivity, expected `0 128` divergence, and
+  zero M227 scratch.
+- **Amended DCO object:** `d151509e4467cd06d4e1fdf9b7bcb0a079304a4c`,
+  tree `81c97e0cbf9c03ee3b2037fc00fe930037f36b54`, preserves exact M226 as
+  sole parent, all 16 intended paths, one matching sign-off, matching identity,
+  clean whitespace/worktree/connectivity, `0 128` divergence, neutral branches,
+  and zero scratch.
+- **Publication:** withheld. Fresh fetch and `ls-remote` prove hosted `main`
+  remains exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M226 is not its ancestor.
+  Only `origin/main` exists, no pull request is open, and latest PR #251 is
+  merged. No push, PR, hosted allocation, tag, release, or package publication
+  occurred.
+
 ## M226 Windows source-commit Git Authenticode trust - locally complete, publication withheld
 
 - **Baseline:** exact M225 commit

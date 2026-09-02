@@ -1,5 +1,157 @@
 # Current task
 
+## M227 Windows source-commit Git signer-certificate binding
+
+- **Task:** Bind the primary signer certificate exposed by successful live
+  WinTrust provider state before and after M226's complete boundary.
+- **Status:** Direction research, exact M226 baseline, protected-hash capture,
+  intentional architecture red, native implementation, failure-close and
+  extraction-rejection cases, RFC-0210, security guidance, eight public
+  registrations, focused and whole-project static/type/live validation,
+  supported CPython 3.12-3.14 coverage, rendering/profile/example gates,
+  initial, record-state, and final reproducible packaging/release rehearsal,
+  findings-first review, and record-inclusive/final source/docs/governance/
+  behavior separators, final exact/no-output review, guarded cleanup, initial
+  and amended local DCO verification, and the fresh hosted publication-safety
+  gate are complete. M227 is locally complete; publication is withheld because
+  hosted `main` does not contain its M226 prerequisite.
+- **Base:** exact fully locally validated M226 DCO commit
+  `5782918bb2f2d6036a58d2ef952aaf3242b9b814`, tree
+  `c52708b61142fb4ef3696e11bb518dca698e3b52`, with sole parent exact M225.
+- **Branch:** `release/m227-windows-source-commit-git-signer-certificate-binding`;
+  exact containment made the local M226 branch redundant, so only local
+  `main` and active M227 remain.
+
+### M227 acceptance boundary
+
+- Repeat M226's exact retained path/handle, no-UI, cache-only,
+  explicit-no-revocation `WINTRUST_ACTION_GENERIC_VERIFY_V2` request.
+- While each successful state is live, require provider data, the primary
+  signer, a positive bounded certificate chain, and the first provider
+  certificate.
+- Copy positive bounded certificate DER bytes before state close, hash the
+  detached bytes with SHA-256, and retain the provider's nonzero raw
+  verification-time FILETIME value.
+- Close provider state in `finally` after success, trust rejection, or signer
+  extraction failure. Report close failure when extraction otherwise succeeds.
+- Require the exact detached size, DER hash, and verification time before and
+  after M226's complete trust/source-commit/48-child boundary.
+- Preserve every M221-M226 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep signer/publisher authorization, persisted identity, certificate
+  pinning, rotation/recovery, revocation freshness, timestamp/countersigner
+  authenticity, trust-store administration, DLL/native-loader identity,
+  local-object-store trust, repository acquisition, source/build provenance,
+  distinct principal, hostile/privileged behavior, independent host, criteria
+  6/7, cleanup authority, and Windows admission unresolved.
+
+### Validation evidence so far
+
+- Exact M226 history and a clean worktree were confirmed. The 14-test M226
+  architecture/live baseline passes in 2.03 seconds; static and 2026-09-03
+  strict governance each return zero findings.
+- Current Microsoft WinTrust provider/signer/certificate and certificate-
+  context guidance, current Git for Windows release/build information, SLSA
+  1.2, and NIST SSDF support one detached signer-certificate observation while
+  leaving authorization and provenance separate. The installed Git is locally
+  trusted with a timestamped leaf certificate outside its ordinary validity
+  interval; no observed identity is persisted or adopted as policy.
+- M227 was created from exact M226; redundant local M226 was removed. Protected
+  M226/workflow/package hashes were captured and only local `main` plus active
+  M227 remain.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed nine checks only because the planned probe, RFC/security decision,
+  and public registrations were absent.
+- The first implementation formatting pass exposed import ordering. After its
+  deterministic correction, Ruff passed but strict Pyright exposed 36 ctypes
+  pointer-typing diagnostics before tests ran. Replacing typing-only pointer
+  casts with runtime `ctypes.cast` and object-returning test helpers corrected
+  the boundary without changing behavior.
+- Final focused formatting and Ruff pass, strict Pyright reports zero findings,
+  and four live implementation tests pass in 1.93 seconds. After RFC/security
+  documentation and all eight registrations, the first registered group
+  passed 15 architecture/live tests in 2.02 seconds and strict documentation
+  built in 3.70 seconds with only the known Material notice.
+- Findings-first review added direct missing-provider-data, rejected-trust,
+  missing-provider-certificate, missing-signer, empty-chain, empty/missing-DER,
+  zero-verification-time, and successful-extraction/failed-close cases. One
+  lambda-style fake was rejected by Ruff before later gates ran; its named
+  helper correction is format-, Ruff-, and strict-Pyright clean, and all 21
+  focused architecture/live tests pass in 2.06 seconds.
+- The unchanged 46-package lock, 45-package frozen graphics environment, all
+  642 Python files, Ruff, strict Pyright, strict docs, both governance modes,
+  and whitespace pass. The final strengthened architecture/integration group
+  passes 3,481 tests with 12 expected skips in 229.55 seconds.
+- Final isolated CPython 3.12, 3.13, and 3.14 groups each pass 4,603 tests with
+  19 expected skips. A preliminary 3.13 run exposed an unignored generated
+  base-temp placement and was rejected; moving generated roots under ignored
+  `.tmp/` corrected the invocation. The final 3.14 console-entry invocation
+  also failed during collection because the repository namespace was absent;
+  `python -m pytest` corrected that command and passed.
+- Ten real-wgpu tests, repeated base/graphics profiles, eight profile tests,
+  deterministic Null/wgpu Clockwork runs, and Agent World Builder pass with
+  matching recorded state/capture/replay evidence.
+- Two initial builds are byte-identical: a 366,019-byte pure wheel at SHA-256
+  `6c03653a73cb9ed25828451f585aee05e86a0f4b9e828f8f3f7b867bd708a50f`
+  and a 2,680,567-byte source archive at SHA-256
+  `b144ea15addd41e44571cf86cb521f4203d77fff6812ef73f9030ac6f3a38b35`.
+  Installed smokes and two exact ten-artifact release stages pass.
+- After the factual record update, the unchanged lock, all 642 Python files,
+  Ruff, strict Pyright, strict docs, both governance modes, and whitespace pass;
+  architecture/integration passes 3,481/12 in 227.63 seconds.
+- Two record-state builds preserve the 366,019-byte wheel and reproduce a
+  2,682,740-byte source archive at SHA-256
+  `7b231183e2b4235facd4614a3527fc12d80841360daa966efbcb6bfe0a234f3e`.
+  Installed wheel/scene smokes and both exact ten-artifact release stages pass;
+  inventory remains 114 wheel/1,076 source entries with all four M227 files
+  source-only and present once.
+- The terminating source separator preserves the 46-package lock and all 642
+  Python files as format-/Ruff-/strict-Pyright clean; strict docs build in 3.69
+  seconds, dated-strict governance returns zero findings, whitespace passes,
+  and architecture/integration passes 3,481/12 in 234.07 seconds.
+- Two final builds again preserve the exact wheel and reproduce a 2,682,985-
+  byte source archive at SHA-256
+  `c3ae211744b92c0273468ecdb16ec4d3bfb2b9f9a2b8bdbf2b6f42028b2fdb62`.
+  Installed smokes, both release stages, exact release comparison, and package
+  inventory pass. Recording this fact changes only the source archive later.
+- Final exact review finds 16 intended paths and 1,186 added lines, with zero
+  protected-surface changes, disclosure/credential/local-path findings,
+  retired metadata, whitespace errors, connectivity errors, or actionable
+  correctness/security/architecture/compatibility/allocation issue. The
+  terminating repository-hygiene/M227 group passes 26 tests in 2.35 seconds;
+  lock, formatting, Ruff, strict Pyright, dated governance, and whitespace pass.
+- The corrected access-enabled cleanup audit proved 34 exact `.tmp/m227-*`
+  targets and 155,019 entries repository-confined, ignored, untracked, and
+  top-level plus recursively reparse-free. Exact-set revalidation repeated
+  every guard, removed only those targets, confirmed zero M227 target remains,
+  and preserved all 56 older `.tmp` targets.
+- The no-artifact pre-commit separator preserves the 46-package lock, all 642
+  Python files, Ruff, strict Pyright, dated governance, whitespace, and zero
+  M227 scratch. The exact pre-commit history/scope audit confirms exact M226 as
+  HEAD, all 16 intended paths, neutral two-branch hygiene, matching configured
+  identity, `0 127` divergence, 1,209 then-current additions, protected-surface
+  isolation, clean connectivity, and zero M227 scratch.
+- Initial DCO commit `f5a8d126d072250a03ee7cf224e8806220432c89`, tree
+  `a261deacef3604bdcc6748836c578d85137d667b`, preserves exact M226 as its
+  sole parent, contains exactly 16 intended paths and one matching sign-off,
+  uses the matching author/committer identity, has clean revision whitespace,
+  worktree, and connectivity, and produces expected `0 128` divergence.
+- Amended DCO commit `d151509e4467cd06d4e1fdf9b7bcb0a079304a4c`, tree
+  `81c97e0cbf9c03ee3b2037fc00fe930037f36b54`, preserves the same exact
+  parent, paths, sign-off, identity, clean state, divergence, and zero scratch.
+- A fresh fetch and `ls-remote` prove hosted `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`: M99 is its ancestor and M226
+  is not. Only `origin/main` exists, there are no open pull requests, and PR
+  #251 remains the latest merged PR. No push, PR, workflow, tag, release, or
+  package publication occurred.
+
+### Remaining gates
+
+- No M227 implementation work remains. Revisit publication only after hosted
+  `main` contains the complete M100-M226 prerequisite stack; continue with the
+  next direction-preserving local milestone meanwhile.
+
 ## M226 Windows source-commit Git Authenticode trust
 
 - **Task:** Verify the exact retained Git file through bounded local Windows

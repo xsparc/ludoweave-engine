@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M227 Windows source-commit Git signer-certificate binding
+
+RFC-0210 accepts one direction-preserving, test-only composition: repeat
+M226's exact retained-handle cached trust evaluation, then resolve live
+provider data, the primary signer, and its first provider certificate before
+state close. Copy positive bounded DER bytes, hash the detached copy, retain
+the provider's nonzero raw verification time, and require the same observation
+before and after M226. Provider state closes after success, rejection, or
+extraction failure.
+
+This binds one certificate observation within one execution. It is not signer
+or publisher authorization, a persisted identity, certificate pin, rotation/
+recovery policy, revocation-freshness proof, timestamp/countersigner
+authentication, trust-store authority, native DLL/loader binding, local-
+object-store trust, repository-acquisition attestation, or source/build
+provenance. Distinct-principal or independent-host behavior, hostile/
+privileged bypass, criteria 6/7, cleanup authority, and Windows admission
+remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M226 Windows source-commit Git Authenticode trust
 
 RFC-0209 accepts one direction-preserving, test-only composition: retain the

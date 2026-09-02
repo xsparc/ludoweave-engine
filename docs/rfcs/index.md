@@ -214,3 +214,4 @@ was adopted.
 - [RFC-0207: retain the Git executable file for the source-commit probe](0207-retain-git-executable-file-for-source-commit-probe.md)
 - [RFC-0208: bind each Git child process image for the source-commit probe](0208-bind-git-child-image-for-source-commit-probe.md)
 - [RFC-0209: verify retained Git Authenticode trust for the source-commit probe](0209-verify-git-authenticode-trust-for-source-commit-probe.md)
+- [RFC-0210: bind retained Git Authenticode signer certificate](0210-bind-git-signer-certificate-for-source-commit-probe.md)

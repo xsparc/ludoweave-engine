@@ -462,8 +462,15 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > trust policy before and after M225. Signer allowlisting, revocation freshness,
 > native-loader identity, provenance, cleanup, admission, workflow, and hosted
 > checks remain unchanged.
+> M227 adds a test-only [Windows contained source-access source-commit Git
+> signer-certificate binding
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md).
+> It copies and hashes the bounded primary signer certificate from live
+> WinTrust provider state before and after M226. Signer authorization,
+> certificate pinning, revocation freshness, native-loader identity,
+> provenance, cleanup, admission, workflow, and hosted checks remain unchanged.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M226 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M227 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

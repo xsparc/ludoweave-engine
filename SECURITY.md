@@ -1489,6 +1489,23 @@ independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
 admission, and cleanup authority remain unresolved. It adds no runtime surface,
 workflow, public runner, or hosted allocation.
 
+M227's test-only [Windows contained source-access source-commit Git
+signer-certificate binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md)
+extracts the primary signer certificate from live successful WinTrust provider
+state before and after M226. It copies bounded DER bytes, hashes the detached
+copy, binds the provider's raw verification time, and closes state after
+success or extraction failure.
+
+This proves one exact signer-certificate observation across the retained-file
+interval. It does not authorize a signer or publisher, persist an identity,
+pin a certificate, prove revocation freshness or timestamp/countersigner
+authenticity, bind native DLLs or loader state, authenticate the local object
+store or repository acquisition, or establish source/build provenance.
+Distinct-principal and independent-host behavior, hostile/privileged bypass,
+criteria 6/7, Windows admission, and cleanup authority remain unresolved. It
+adds no runtime surface, workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

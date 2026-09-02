@@ -5865,6 +5865,35 @@ M226 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M227 Windows source-commit Git signer-certificate binding
+
+M227 adds the test-only [Windows contained source-access source-commit Git
+signer-certificate binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md).
+It repeats M226's exact retained path/handle and cached Authenticode policy.
+Before provider state closes, it resolves the primary signer and first provider
+certificate, copies positive bounded DER bytes, hashes the detached copy, and
+records the provider's nonzero raw verification time.
+
+The same detached size, DER SHA-256, and raw FILETIME value must appear before
+and after M226's complete trust/source-commit/child-image boundary. Missing
+state, signer, chain, certificate, DER, or verification time fails closed.
+Provider state closes in a `finally` boundary after successful extraction,
+trust rejection, or extraction failure.
+
+The result binds one primary signer-certificate observation to the retained
+file and successful local trust decision. It does not authorize a signer or
+publisher, persist an identity, pin a certificate, define rotation/recovery,
+prove revocation freshness or timestamp/countersigner authenticity, bind DLL/
+native-loader state, establish local-object-store or repository-acquisition
+trust, or provide source/build provenance. Distinct principal, independent
+host, hostile or privileged bypass, criteria 6/7, Windows admission, and
+cleanup authority remain outside the evidence.
+
+M227 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

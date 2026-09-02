@@ -4158,6 +4158,37 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M227 Windows source-commit Git signer-certificate binding
+
+M227 starts from fully locally validated M226 commit
+`5782918bb2f2d6036a58d2ef952aaf3242b9b814`. It adopts the test-only [Windows
+contained source-access source-commit Git signer-certificate binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md)
+under RFC-0210.
+
+One scoped composition repeats M226's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it requires
+the primary signer and a bounded certificate chain, copies the first
+certificate's bounded DER bytes, computes SHA-256 over the detached copy, and
+records the provider's nonzero raw verification time. The exact detached
+observation must match before and after M226's complete boundary; provider
+state closes after success, rejection, or extraction failure.
+
+This binds one primary signer-certificate observation, not signer or publisher
+authorization, a persisted identity, certificate pinning, rotation/recovery
+policy, revocation freshness, timestamp/countersigner authenticity, native DLL
+or loader identity, object-store trust, repository-acquisition attestation, or
+source/build provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, and Windows cleanup admission remain
+unresolved.
+
+M227 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

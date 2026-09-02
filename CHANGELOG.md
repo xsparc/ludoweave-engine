@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M227/RFC-0210's test-only [Windows contained source-access source-commit
+  Git signer-certificate binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md).
+  It copies and hashes the bounded primary signer certificate from live
+  WinTrust state before and after M226 while closing provider state after
+  success or extraction failure. Runtime, package, signer authorization,
+  certificate pinning, revocation freshness, provenance, cleanup authority,
+  admission, workflow, and hosted allocation remain unchanged.
 - Add M226/RFC-0209's test-only [Windows contained source-access source-commit
   Git Authenticode trust
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md).
