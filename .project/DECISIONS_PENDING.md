@@ -2,6 +2,31 @@
 
 No architecture decision is currently blocked.
 
+## M230 Windows source-commit Git signed-message SignerInfo binding
+
+RFC-0213 accepts one direction-preserving, test-only composition: repeat
+M229's exact retained-handle cached trust evaluation, require a compatible
+live provider-message prefix, positive raw encoding, non-null message handle,
+and positive bounded provider signer count, then query the exact equal message
+count and every encoded SignerInfo by zero-based index through bounded two-
+phase `CryptMsgGetParam` retrieval. Copy each exact value before state close;
+bind raw encoding, both counts, every boundary, per-signer hashes, and one
+domain-separated aggregate; require the same complete observation before and
+after M229. Provider state closes after success, rejection, or extraction
+failure.
+
+This binds one execution-local opaque encoded-signer sequence. It does not
+parse or independently validate SignerInfo, define portable timestamp
+semantics, authorize algorithms, attributes, a signer, publisher, or timestamp
+authority, persist an identity, pin a certificate, define rotation/recovery,
+independently validate a timestamp token or signing time, prove revocation
+freshness, establish trust-store authority, bind native DLL/loader state,
+authenticate the local object store or repository acquisition, or provide
+source/build provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+admission remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M229 Windows source-commit Git countersigner-chain binding
 
 RFC-0212 accepts one direction-preserving, test-only composition: repeat

@@ -5958,6 +5958,40 @@ M229 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M230 Windows source-commit Git signed-message SignerInfo binding
+
+M230 adds the test-only [Windows contained source-access source-commit Git
+signed-message SignerInfo binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md).
+It repeats M229's exact retained path/handle and cached Authenticode policy.
+Before provider state closes, it requires a compatible provider prefix,
+positive raw message encoding, non-null cryptographic-message handle, and
+positive bounded provider signer count. It retrieves the message signer count
+and every encoded SignerInfo by exact zero-based index through bounded two-phase
+`CryptMsgGetParam` calls.
+
+Provider and message signer counts must agree. The detached observation binds
+raw encoding, both counts, the exact encoded-size and per-signer hash tuples,
+and one domain-separated digest over every index, length, and opaque encoded
+value. The complete immutable observation must match before and after M229's
+complete boundary. Missing or short provider data, encoding, message handle,
+count agreement, query success, capacity, exact retrieval size, or bytes fails
+closed. Provider state closes in `finally` after successful extraction, trust
+rejection, or extraction failure.
+
+The result binds only one live opaque signed-message signer sequence. It does
+not parse or independently validate SignerInfo, establish portable timestamp
+semantics, authorize a signer, publisher, or timestamp authority, persist an
+identity, pin a certificate, define rotation/recovery, prove revocation
+freshness, bind DLL/native-loader state, establish local-object-store or
+repository-acquisition trust, or provide source/build provenance. Distinct
+principal, independent host, hostile or privileged bypass, criteria 6/7,
+Windows admission, and cleanup authority remain outside the evidence.
+
+M230 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M230/RFC-0213's test-only [Windows contained source-access source-commit
+  Git signed-message SignerInfo binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md).
+  It copies and hashes every bounded encoded SignerInfo by exact message index
+  around M229 while requiring provider/message signer-count agreement. Runtime,
+  package, SignerInfo parsing, timestamp semantics, signer authorization,
+  revocation freshness, provenance, cleanup authority, admission, workflow,
+  and hosted allocation remain unchanged.
 - Add M229/RFC-0212's test-only [Windows contained source-access source-commit
   Git countersigner-chain binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md).

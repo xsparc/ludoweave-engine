@@ -1544,6 +1544,26 @@ independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
 admission, and cleanup authority remain unresolved. It adds no runtime surface,
 workflow, public runner, or hosted allocation.
 
+M230's test-only [Windows contained source-access source-commit Git signed-
+message SignerInfo binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md)
+retrieves every bounded encoded SignerInfo by exact zero-based message index
+from live successful WinTrust state before and after M229. It requires the
+provider and message signer counts to agree, copies each exact value with a
+two-phase bounded query, binds raw encoding, counts, boundaries, per-signer
+hashes, and one unambiguous sequence digest, and closes state after success or
+extraction failure.
+
+This proves one exact opaque signed-message signer sequence across the retained-
+file interval. It does not parse SignerInfo, establish portable timestamp
+semantics, authorize a signer, publisher, or timestamp authority, persist an
+identity, pin a certificate, prove revocation freshness or signing-time
+authenticity, bind native DLLs or loader state, authenticate the local object
+store or repository acquisition, or establish source/build provenance.
+Distinct-principal and independent-host behavior, hostile/privileged bypass,
+criteria 6/7, Windows admission, and cleanup authority remain unresolved. It
+adds no runtime surface, workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

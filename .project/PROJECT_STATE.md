@@ -1,5 +1,77 @@
 # Project State
 
+## M230 Windows source-commit Git signed-message SignerInfo binding - locally complete, publication withheld
+
+- **Baseline:** exact M229 commit
+  `e849c24aa5f742effbb30f9ea04a36d481598a38`, tree
+  `1cced1d87b707920b8594152fe5d86c522e55535`, sole parent exact M228.
+- **Direction:** RFC-0213 accepts one test-only live-provider-message
+  composition around M229. It binds the complete opaque encoded SignerInfo
+  sequence, not SignerInfo parsing, timestamp semantics, authorization, or
+  provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0213, one security guide, eight public registrations, and four `.project`
+  records. M221-M229 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** the live provider prefix must expose positive raw encoding, a
+  non-null message, and a positive bounded signer count equal to the message
+  count. Every bounded encoded SignerInfo is copied through an exact two-phase
+  retrieval before state close; raw encoding, both counts, exact boundaries,
+  per-signer hashes, and an unambiguous aggregate must match across M229. Every
+  state closes in `finally`.
+- **Evidence:** the exact M229 history, 38-test retained baseline, and both
+  governance modes pass. Current primary-source direction supports opaque
+  message binding while keeping parsing, policy, and provenance separate. A
+  live preflight observed encoding 65,537, matching one-signer counts, and one
+  7,209-byte encoded value, then removed its temporary probe. Intentional red
+  isolates ten missing checks. After correcting two typing findings and one
+  fixture expectation without changing the boundary, both new Python files are
+  format/Ruff/strict-Pyright clean and all 28 live/failure-close tests pass.
+  RFC/security documentation and eight registrations are present; the complete
+  40-test architecture/live group and strict docs build pass. Whole-project
+  source/docs/governance passes; architecture/integration passes 3,581/12;
+  isolated CPython 3.12-3.14 each pass 4,703/19; real wgpu, repeated profiles,
+  deterministic examples, and current registered example tests pass. Initial
+  reproducible distributions, installed smokes, two exact release stages,
+  package inventory, and exact findings-first scope/disclosure/connectivity
+  review pass. Record-inclusive and final source/docs/governance plus
+  architecture/integration separators pass. Final distributions reproduce the
+  unchanged 366,279-byte pure wheel and a 2,720,840-byte source archive;
+  installed smokes, two exact ten-artifact release stages, and exact package
+  inventory pass with the four M230 files source-only.
+- **Boundaries:** SignerInfo parsing/validation, portable timestamp semantics,
+  algorithm/attribute or timestamp-authority/signer/publisher authorization,
+  persisted identity, certificate pinning, rotation/recovery, timestamp-token/
+  signing-time validation, revocation freshness, trust-store administration,
+  native DLL/loader state, local-object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved.
+- **Publication:** fresh fetch and GitHub inventory find only hosted `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M229, no PR is open, and PR #251 remains the latest merge.
+  Publication is correctly withheld. No push, PR, hosted allocation, tag,
+  release, or package publication has occurred.
+- **Review:** exactly 16 intended paths and 1,441 then-current additions plus
+  one deletion remain. Protected surfaces, public disclosure, delta
+  credential/local-path, retired-metadata, whitespace, and object-connectivity
+  checks pass. Findings-first review reports no remaining actionable issue. The
+  terminating source/focused/governance separator passes after using Python's
+  module entry point for the importlib-mode focused suite; its exact M59/M230
+  group passes 45 tests. Guarded cleanup removed all 14 exact M230 scratch
+  targets and 80 entries while preserving all 56 older `.tmp` targets. The
+  post-cleanup no-artifact source/docs/governance/focused/integrity gate passes;
+  exact pre-commit scope is 16 paths with zero M230 scratch target. Initial DCO
+  commit `619a611d5c62acbbc181d40ba8beb4a571ec4504` has exact tree
+  `d2952fea69c68750a1656f0d2903b3ce0849559e`, sole parent exact M229, exact
+  scope, correct identity/trailer, and a clean worktree; only this factual
+  three-record amend follows. Amended commit
+  `dde93938772a7c54a0108451de8e78e65f57b518` has exact tree
+  `52edbe67ad0cd3820ffdf594e856db1d84070815`, sole parent exact M229,
+  exact scope/identity/DCO, and a clean worktree; its terminating M59/M230
+  group passes 45 tests before this final hosted-gate ledger amend.
+
 ## M229 Windows source-commit Git countersigner-chain binding - locally complete, publication withheld
 
 - **Baseline:** exact M228 commit

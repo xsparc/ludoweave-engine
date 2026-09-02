@@ -1,5 +1,166 @@
 # Current task
 
+## M230 Windows source-commit Git signed-message SignerInfo binding
+
+- **Task:** Bind the complete bounded encoded SignerInfo sequence exposed by
+  the live WinTrust cryptographic message before and after M229's complete
+  boundary.
+- **Status:** Locally complete; publication withheld. Focused primary-source direction research, exact M229 baseline,
+  protected-hash capture, live capability preflight, intentional architecture
+  red, native implementation, complete message/count/size/failure-close cases,
+  RFC-0213, security guidance, eight public registrations, focused and complete
+  source/live/docs validation, supported-interpreter, rendering/profile/example,
+  reproducible package/release, package-inventory, and findings-first review
+  gates are complete. Terminating separator, guarded cleanup, DCO commit, and
+  publication-safety gates pass. No real remote branch contains required M229,
+  so no push, PR, or hosted allocation was created.
+- **Base:** exact fully locally validated M229 DCO commit
+  `e849c24aa5f742effbb30f9ea04a36d481598a38`, tree
+  `1cced1d87b707920b8594152fe5d86c522e55535`, with sole parent exact M228.
+- **Branch:** `release/m230-windows-source-commit-git-signer-info-binding`;
+  exact containment made the local M229 branch redundant, so only local `main`
+  and active M230 remain.
+
+### M230 acceptance boundary
+
+- Repeat M229's exact retained path/handle, no-UI, cache-only,
+  explicit-no-revocation `WINTRUST_ACTION_GENERIC_VERIFY_V2` request.
+- While each successful state is live, require a compatible provider prefix,
+  positive raw message encoding, non-null cryptographic-message handle, and a
+  positive bounded provider signer count.
+- Query the message signer count into exactly one `DWORD`; require the same
+  positive bounded count as the provider.
+- Retrieve every encoded SignerInfo by exact zero-based message index through a
+  successful size query and exact-size read. Reject empty, oversized, changed,
+  or aggregate-overflowing results.
+- Copy every complete value before state close. Bind raw encoding, both counts,
+  every exact index and length, per-signer SHA-256 values, and one domain-
+  separated sequence digest.
+- Close provider state in `finally` after success, trust rejection, or any
+  provider/message extraction failure. Report close failure when extraction
+  otherwise succeeds.
+- Require the complete immutable observation across M229's complete boundary.
+- Preserve every M221-M229 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep SignerInfo parsing/validation, portable timestamp semantics, algorithm/
+  attribute policy, timestamp-authority/signer/publisher authorization,
+  persisted identity, certificate pinning, rotation/recovery, timestamp-token/
+  signing-time validation, revocation freshness, trust-store administration,
+  DLL/native-loader identity, local-object-store trust, repository acquisition,
+  source/build provenance, distinct principal, hostile/privileged behavior,
+  independent host, criteria 6/7, cleanup authority, and Windows admission
+  unresolved.
+
+### Validation evidence so far
+
+- Exact M229 history and a clean worktree were confirmed. The retained M59/M229
+  group passes 38 tests in 3.33 seconds; static and 2026-09-03 strict governance
+  each return zero findings.
+- Current Microsoft provider-data, message-parameter, SignerInfo, and
+  Authenticode guidance, Git for Windows 2.55.0.5, and SLSA 1.2 support one
+  opaque execution-local encoded-signer sequence while parsing, authorization,
+  timestamp semantics, and provenance remain separate.
+- M230 was created from exact M229; redundant local M229 was removed. Protected
+  M229/workflow/package hashes were captured and only local `main` plus active
+  M230 remain.
+- A live preflight observed raw encoding 65,537, one provider signer, one
+  message signer, and one 7,209-byte encoded SignerInfo; its temporary probe was
+  removed immediately.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed ten checks only because the planned probe, RFC/security decision, and
+  public registrations were absent.
+- The first native implementation exposed two static typing findings and one
+  incorrect oversized-count fixture expectation; the correction changed no
+  boundary. Both new Python files are format- and Ruff-clean; strict Pyright
+  reports zero findings and all 28 live, detachment, digest-boundary, count,
+  size, capacity, rejection, and failure-close tests pass in 2.04 seconds.
+- RFC/security documentation and eight public registrations are present. Both
+  Python files remain format/Ruff/strict-Pyright clean; all 40 architecture/live
+  tests pass in 2.11 seconds and strict docs build in 3.88 seconds with only the
+  known Material notice.
+- The unchanged 46-package lock, 45-package frozen graphics environment, all
+  648 Python files, Ruff, strict Pyright, strict docs, both governance modes,
+  and whitespace pass. Architecture/integration passes 3,581 tests with 12
+  expected skips in 239.09 seconds.
+- Isolated explicit CPython 3.12.13, 3.13.13, and 3.14.5 environments each
+  install 45 packages and pass 4,703 tests with 19 expected skips in 271.24,
+  262.43, and 273.35 seconds.
+- Ten real-wgpu tests pass in 6.83 seconds. Five-repeat base/graphics profiles
+  emit two/three workloads and all eight profile tests pass in 2.39 seconds.
+  Two Null and one wgpu Clockwork executions agree on state, draws, and sprites;
+  Agent World Builder reproduces its state/capture/replay hashes and the current
+  registered two-test selector passes in 0.63 seconds.
+- Two initial builds are byte-identical: a 366,279-byte pure wheel at SHA-256
+  `29fd3640d0dd47e57dd742ee35a5a58ffda961e8183d15516b12f7cda2f1d086`
+  and a 2,720,018-byte source archive at SHA-256
+  `65478582363d1f58186e82bc83b3af495e0ca75660499031e040c383244a84b3`.
+  Installed smokes, two exact ten-artifact release stages, and package inventory
+  pass.
+- Findings-first review confirms exactly 16 intended paths and 1,385 additions
+  plus one deletion, zero protected/runtime/workflow/package-surface change,
+  zero public tool-identity/credential/local-path finding, absent retired
+  metadata, clean whitespace/connectivity, neutral two-branch hygiene, and no
+  remaining actionable correctness, security, architecture, compatibility,
+  package, or CI-allocation issue. Six exact M230 generated scratch targets
+  contain 28 entries pending guarded cleanup.
+- Record-inclusive lock, all 648 Python files, Ruff, strict Pyright, strict docs,
+  both governance modes, and whitespace pass; architecture/integration passes
+  3,581/12 in 237.54 seconds.
+- Two record-state builds preserve the 366,279-byte wheel and reproduce a
+  2,720,603-byte source archive at SHA-256
+  `357e13d45c17c883fb3f3baf736cfebedfb08019adc19b2744dd4b4f25bec50f`.
+  Installed smokes, both release stages, release comparison, and 114-wheel/
+  1,088-source inventory pass; all four M230 files are source-only.
+- The final source separator keeps the unchanged lock and all 648 Python files
+  clean under formatting, Ruff, and strict Pyright; strict docs, both
+  governance modes, whitespace, and 3,581 architecture/integration tests with
+  12 expected skips pass.
+- Two final builds preserve the 366,279-byte wheel and reproduce a 2,720,840-
+  byte source archive at SHA-256
+  `a56cda2a8ee33332348312a4a47862e45e2e556c9dc6d0b14aa1bdfb258c79a9`.
+  Installed smokes, both exact ten-artifact release stages, release comparison,
+  and exact 114-wheel/1,088-source inventory pass.
+- Final exact review confirms 16 intended paths and 1,441 then-current
+  additions plus one deletion, zero protected-surface change, zero public
+  tool-identity or delta credential/local-path finding, absent retired
+  metadata, clean whitespace/connectivity, neutral two-branch hygiene, and no
+  remaining actionable issue. Fourteen exact M230 generated scratch targets
+  contain 80 entries pending guarded cleanup.
+- The terminating source separator keeps all 648 Python files format-clean,
+  Ruff and strict Pyright clean, dated strict governance at zero findings, and
+  whitespace clean. The exact M59/M230 group passes 45 tests in 2.49 seconds
+  through Python's module entry point; two earlier console-script invocations
+  stopped at collection because importlib mode omitted the repository root.
+- Guarded cleanup revalidated all 14 exact M230 scratch targets and 80 entries
+  as repository-confined, ignored, untracked, and reparse-free, removed only
+  that exact set, confirmed zero M230 target remains, and preserved all 56
+  older `.tmp` targets.
+- The post-cleanup no-artifact gate resolves the unchanged lock, keeps all 648
+  Python files and strict docs clean, returns zero Ruff/Pyright/governance
+  findings, passes the exact 45-test M59/M230 group, whitespace, and full
+  connectivity, and confirms the unchanged M229 base plus exact 16-path scope.
+- Initial DCO commit `619a611d5c62acbbc181d40ba8beb4a571ec4504`
+  has exact tree `d2952fea69c68750a1656f0d2903b3ce0849559e`, sole parent
+  exact M229, exact 16-path/1,482-addition/one-deletion scope, correct identity
+  and DCO trailer, and a clean worktree. Only the factual three-record amend
+  follows before hosted publication safety is evaluated.
+- Amended DCO commit `dde93938772a7c54a0108451de8e78e65f57b518`
+  has exact tree `52edbe67ad0cd3820ffdf594e856db1d84070815`, sole parent exact
+  M229, exact 16-path/1,492-addition/one-deletion scope, correct identity/DCO,
+  and a clean worktree. The terminating M59/M230 group passes 45 tests in 2.51
+  seconds before this final factual amend.
+- Fresh fetch and GitHub inventory find only hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M229, no PR is open, and merged PR #251 remains latest.
+  Publication is therefore withheld without a push, PR, or workflow allocation.
+
+### Remaining gates
+
+- No local M230 gate remains. Publish only after the hosted prerequisite chain
+  contains M229; do not expose the unpublished 131-commit stack merely to open
+  a PR.
+
 ## M229 Windows source-commit Git countersigner-chain binding
 
 - **Task:** Bind the complete bounded countersigner and countersigner-
