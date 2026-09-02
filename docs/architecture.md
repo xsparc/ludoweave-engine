@@ -5757,6 +5757,30 @@ Windows admission, and cleanup authority remain outside the evidence.
 M222 adds no runtime, package, dependency, lock, workflow, permission, public
 runner, or hosted allocation. Cleanup remains unimplemented and unauthorized.
 
+## M223 Windows source-commit Git executable selection binding
+
+M223 adds the test-only [Windows contained source-access source-commit Git
+executable selection binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md).
+One scoped composition resolves M221's Git selector before entering M222 and
+holds that existing absolute path across the complete three-participant
+observation. A subprocess observer requires exactly 48 fixed object reads and
+the selected path as every command's first element.
+
+The composition changes no M221/M222 evidence file. M222's command,
+environment, no-lazy-fetch, no-replacement, timeout, output, and no-shell rules
+remain mandatory, as do M220's retained source/image, private Job, same-logon,
+access-refusal, settlement, and close boundaries.
+
+The result binds selection, not executable content, signing, provenance,
+path-target replacement, DLL/native-loader state, local-object-store trust, or
+repository acquisition. Source/build provenance, distinct principal,
+independent host, hostile or privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain outside the evidence.
+
+M223 adds no runtime, package, dependency, lock, workflow, permission, public
+runner, or hosted allocation. Cleanup remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

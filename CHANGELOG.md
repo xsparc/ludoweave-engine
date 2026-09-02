@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M223/RFC-0206's test-only [Windows contained source-access source-commit
+  Git executable selection binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md).
+  It performs one `PATH`/`PATHEXT` lookup and holds that absolute Git path
+  across all 48 fixed object reads in M222's complete boundary. Executable
+  identity/provenance, runtime, package, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
 - Add M222/RFC-0205's corrective test-only [Windows contained source-access
   source-commit no-lazy-fetch
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md).

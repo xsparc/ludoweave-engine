@@ -111,6 +111,7 @@ nav:
   - Windows contained source-access source-binding probe: security/windows-cache-cleanup-contained-source-access-source-binding-probe.md
   - Windows contained source-access source-commit binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md
   - Windows contained source-access source-commit no-lazy-fetch probe: security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md
+  - Windows contained source-access source-commit Git executable selection binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -322,6 +323,7 @@ nav:
       - RFC-0203 - Probe Windows contained source-access source binding: rfcs/0203-probe-windows-contained-source-access-source-binding.md
       - RFC-0204 - Probe Windows contained source-access source-commit binding: rfcs/0204-probe-windows-contained-source-access-source-commit-binding.md
       - RFC-0205 - Exclude Git lazy fetch from the source-commit probe: rfcs/0205-exclude-git-lazy-fetch-from-source-commit-probe.md
+      - RFC-0206 - Bind Git executable selection for the source-commit probe: rfcs/0206-bind-git-executable-selection-for-source-commit-probe.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

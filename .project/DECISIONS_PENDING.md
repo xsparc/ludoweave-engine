@@ -2,6 +2,22 @@
 
 No architecture decision is currently blocked.
 
+## M223 Windows source-commit Git executable selection binding
+
+RFC-0206 accepts one direction-preserving, test-only composition: resolve
+M221's existing Git executable selector once before the complete M222
+observation, retain that existing absolute path, and require all 48 fixed
+object-read subprocess commands to begin with it. M222's command/environment,
+no-lazy-fetch, retained-source, containment, settlement, and participant
+requirements remain mandatory. M221 and M222 evidence files remain unchanged.
+
+This binds executable selection, not executable-file content, signer, origin,
+path-target replacement, native-loader state, or provenance. Local-object-store
+trust, repository acquisition, source/build provenance, distinct-principal or
+independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+authority, and Windows admission remain pending. No public self-hosted runner
+or added hosted check is authorized.
+
 ## M222 Windows source-commit no-lazy-fetch exclusion
 
 RFC-0205 accepts one corrective, direction-preserving change: every M221 fixed

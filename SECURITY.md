@@ -1423,6 +1423,21 @@ behavior, resolve hostile/privileged bypass or criteria 6/7, admit Windows, or
 authorize cleanup. It adds no runtime surface, workflow, public runner, or
 hosted allocation. Historical M221 evidence is not rewritten.
 
+M223's test-only [Windows contained source-access source-commit Git executable
+selection binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md)
+resolves one existing absolute Git path before the complete M222 observation,
+then requires all 48 fixed object reads to invoke that same path. It preserves
+M222's full no-lazy-fetch, no-shell, environment, timeout, output, retained-
+source, image, Job, token, access, settlement, and participant boundary.
+
+This binds only executable selection. It does not authenticate executable
+bytes, a signer or publisher, path-target replacement, native DLL/loader state,
+or the local object store; it does not attest source/build provenance, prove
+distinct-principal or independent-host behavior, resolve hostile/privileged
+bypass or criteria 6/7, admit Windows, or authorize cleanup. It adds no runtime
+surface, workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

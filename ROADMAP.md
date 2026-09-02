@@ -4039,6 +4039,33 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M223 Windows source-commit Git executable selection binding
+
+M223 starts from fully locally validated M222 commit
+`73da0b02fab8aa90c2c74802cc43d130e58fbeda`. It adopts the test-only [Windows
+contained source-access source-commit Git executable selection binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md)
+under RFC-0206.
+
+One scoped composition resolves M221's Git executable exactly once, requires
+an existing absolute file, and holds that path while the complete M222/M221
+three-participant observation performs all 48 fixed object reads. Every direct
+subprocess command must begin with that same path. The complete M222
+no-lazy-fetch and inherited M220 source/image/Job/token/access/settlement
+boundary remains mandatory, and all M221/M222 evidence files remain unchanged.
+
+This is executable selection binding, not executable-file identity, signing,
+provenance, or loader binding. Path-target replacement, the local object store,
+repository acquisition, source/build provenance, imports, native-loader state,
+distinct-principal or independent-host behavior, hostile/privileged bypass,
+criteria 6/7, and Windows cleanup admission remain unresolved.
+
+M223 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, version, workflow, permission, secret, public runner,
+or hosted execution path; no hosted check is added. Windows remains unadmitted
+and cleanup remains unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

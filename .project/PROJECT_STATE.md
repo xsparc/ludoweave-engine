@@ -1,5 +1,75 @@
 # Project State
 
+## M223 Windows source-commit Git selection binding - locally complete, publication withheld
+
+- **Baseline:** exact M222 commit
+  `73da0b02fab8aa90c2c74802cc43d130e58fbeda`, tree
+  `a04773cf16ecef4b8de578ad2b0fd2144297660c`, sole parent exact M221.
+- **Direction:** RFC-0206 accepts one test-only scoped binding of M221's
+  absolute Git executable selection across M222's complete observation. It
+  does not establish executable-file identity or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0206, one security guide, eight public registrations, and four
+  `.project` records. M221/M222 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** one PATH/PATHEXT lookup selects an existing absolute Git file;
+  all 48 fixed reads in the complete M222/M221 participant boundary use that
+  exact path while M222's lazy-fetch and inherited containment rules remain.
+- **Evidence:** the 13-test M222 baseline and both governance modes pass. The
+  intentional red isolated seven expected missing checks. Whole-project
+  static/type checks are clean; architecture/integration passes 3,420/12;
+  isolated CPython 3.12-3.14 each pass 4,542/19; real wgpu, five-repeat
+  profiles, deterministic examples, reproducible distributions, installed
+  smokes, and two exact release stages pass.
+- **Review:** one uncounted preliminary `shutil.which()` call was removed so
+  the full regression, not just the nested observation, performs exactly one
+  real lookup. Corrected focused tests and static/type checks pass. The exact
+  16-path scope/protected/disclosure audit is clean.
+- **Record-inclusive gates:** lock/format/Ruff/Pyright, strict docs, both
+  governance modes, whitespace, and the repeated 3,420/12 architecture/
+  integration boundary pass. Record-state distributions/releases pass.
+- **Cleanup:** the post-review separator passes. Exactly 19 M223 scratch
+  targets containing 50,157 entries were proven repository-confined, ignored,
+  untracked, and recursively reparse-free, then removed; zero M223 scratch
+  remains and older scratch was untouched.
+- **Final separator:** post-cleanup static/type/docs/governance/whitespace and
+  complete architecture/integration again pass.
+- **Final distributions:** two builds preserve the pure wheel at
+  `49465199c876f6394fc3d09c11239d6fd7a9ea7eae9d29b0c9bb7aa7d6a1b806`
+  and reproduce source archive
+  `90607a72edce14704318b3f5ff752d9646685b885f8b5e55ab5d3f307b30f35f`;
+  installed/release smokes and exact inventories pass.
+- **Final ledger cleanup:** six exact final targets containing 8,475 entries
+  were proven confined, ignored, untracked, and recursively reparse-free, then
+  removed; zero M223 scratch remains.
+- **Pre-commit separator:** whole-project format/Ruff/Pyright, dated-strict
+  governance, whitespace, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M222 history, 16-path scope, neutral branch,
+  configured maintainer identity, `0 123` divergence, protected/disclosure/
+  retired-metadata/scratch/whitespace gates, and full connectivity pass. Local
+  DCO commit and hosted publication-safety checks remain.
+- **Initial commit correction:** local commit `56d01b4` retained the intended
+  parent/scope, but post-commit whitespace verification rejected one extra EOF
+  blank line in RFC-0206. It was corrected before amendment; nothing was
+  published.
+- **Correction validation:** the working tree correction passes whole-project
+  static/type, ten focused tests, strict docs, dated-strict governance, and
+  whitespace. Its single 784-entry ignored/untracked/reparse-free docs target
+  was removed before amendment.
+- **Local commit:** amended DCO commit `76ad1aca32d4f4a2e04a9f42e4bfed97605eb454`
+  has exact M222 as sole parent, 16 paths, one matching sign-off, consistent
+  identity, clean whitespace/worktree/connectivity, and zero M223 scratch.
+- **Publication:** fresh public `main` remains exact M99 and does not contain
+  M222. Only remote `main` exists, no PR is open, and PR #251 is latest. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+- **Boundaries:** executable bytes/signature/origin, replacement at the path,
+  native-loader state, object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved. Publication is withheld pending hosted ancestry
+  of the prerequisite stack.
+
 ## M222 Windows source-commit no-lazy-fetch exclusion - locally complete, publication withheld
 
 - **Baseline:** exact M221 commit
