@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M226/RFC-0209's test-only [Windows contained source-access source-commit
+  Git Authenticode trust
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md).
+  It verifies the retained Git file handle through cache-only, no-UI Windows
+  generic Authenticode policy before and after M225, and closes trust-provider
+  state on success or rejection. Runtime, package, signer policy, revocation
+  freshness, provenance, cleanup authority, admission, workflow, and hosted
+  allocation remain unchanged.
 - Add M225/RFC-0208's test-only [Windows contained source-access source-commit
   Git child process-image binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md).

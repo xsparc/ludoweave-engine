@@ -2,6 +2,24 @@
 
 No architecture decision is currently blocked.
 
+## M226 Windows source-commit Git Authenticode trust
+
+RFC-0209 accepts one direction-preserving, test-only composition: retain the
+one real Git selection through M224's existing file handle, then pass that
+canonical path and exact readable handle to
+`WINTRUST_ACTION_GENERIC_VERIFY_V2` before and after M225's complete boundary.
+The verifier must suppress UI and network retrieval, make no-revocation policy
+explicit, require exact local trust success, and close provider state after
+every verification even when trust is rejected.
+
+This is one cached current-host Windows trust-policy observation. It is not a
+signer or publisher allowlist, certificate pin, revocation-freshness proof,
+trust-store authority, native DLL/loader binding, local-object-store trust,
+repository-acquisition attestation, or source/build provenance. Distinct-
+principal or independent-host behavior, hostile/privileged bypass, criteria
+6/7, cleanup authority, and Windows admission remain pending. No public self-
+hosted runner or added hosted check is authorized.
+
 ## M225 Windows source-commit Git child process-image binding
 
 RFC-0208 accepts one direction-preserving, test-only composition: preserve

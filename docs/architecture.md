@@ -5839,6 +5839,32 @@ M225 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M226 Windows source-commit Git Authenticode trust
+
+M226 adds the test-only [Windows contained source-access source-commit Git
+Authenticode trust
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md).
+It retains the one real Git selection through M224's existing handle and passes
+that canonical path plus readable handle to Windows generic Authenticode policy
+before and after the complete M225 observation.
+
+The verifier disables UI and network retrieval, explicitly suppresses
+revocation checking, and always closes provider state. M225's 48 suspended
+child-image bindings and full source-commit settlement remain mandatory between
+the two successful trust results. The retained path, file identity, size, and
+SHA-256 must also remain unchanged.
+
+The result is one current-host cached trust-policy observation, not signer or
+publisher authorization, certificate pinning, revocation freshness, DLL/native-
+loader binding, local-object-store trust, repository acquisition, or
+source/build provenance. Distinct principal, independent host, hostile or
+privileged bypass, criteria 6/7, Windows admission, and cleanup authority
+remain outside the evidence.
+
+M226 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

@@ -1,5 +1,99 @@
 # Project State
 
+## M226 Windows source-commit Git Authenticode trust - locally complete, publication withheld
+
+- **Baseline:** exact M225 commit
+  `1f93733d8d5163a1d1b000a52f4b4bc543490377`, tree
+  `0892b8af06a09b4231745e77a11d6c5326eeefdf`, sole parent exact M224.
+- **Direction:** RFC-0209 accepts one test-only, no-UI, cache-only
+  retained-handle `WinVerifyTrust` composition around M225. It observes local
+  generic Authenticode policy, not signer authorization or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0209, one security guide, eight public registrations, and four
+  `.project` records. M221-M225 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** the exact retained Git path and readable handle must satisfy
+  `WINTRUST_ACTION_GENERIC_VERIFY_V2` before and after M225's complete 48-child
+  boundary. UI and network retrieval are disabled, revocation behavior is
+  explicit, the retained snapshot remains stable, and provider state always
+  closes.
+- **Evidence:** corrected module-form baseline passes 14 tests; both governance
+  modes return zero findings; intentional red isolates nine expected missing
+  checks; final focused format/Ruff/Pyright and all 14 architecture/live tests
+  pass. Whole-project static/docs/governance pass; architecture/integration
+  passes 3,460/12; isolated CPython 3.12-3.14 each pass 4,582/19; real wgpu,
+  five-repeat profiles, deterministic examples, initial reproducible
+  distributions, installed smokes, and two exact release stages pass. The
+  installed Git reports valid Authenticode status without adopting its
+  observed signer as policy.
+- **Initial distribution:** two builds reproduce a 365,915-byte pure wheel at
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and 2,668,527-byte source archive at
+  `1e0579128cda3879b849c34a23c1d257d6d36d156f498b4a0031d2d8b9a296df`.
+  Installed smokes, two exact release stages, and package inventories pass.
+- **Review:** exactly 16 intended paths differ and protected surfaces are
+  unchanged. The complete 743-line then-current addition has zero development-
+  tool identity, credential-like assignment, or machine-local path; retired
+  metadata, whitespace, and connectivity gates pass. No actionable
+  correctness, security, architecture, compatibility, package-boundary, or CI-
+  allocation finding remains at this stage.
+- **Record-inclusive gates:** the unchanged lock, whole-project format/Ruff/
+  Pyright, strict docs, both governance modes, whitespace, and the repeated
+  3,460/12 architecture/integration boundary pass.
+- **Record-state distribution:** two builds preserve the 365,915-byte wheel at
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and reproduce a 2,669,326-byte source archive at
+  `58561da3a44bd6b2cd5f46145b21bc281193b20a292a8746e554e511c4558b05`.
+  Installed smokes, exact release stages, and inventories pass.
+- **Final source separator:** the unchanged lock, all 640-file format/Ruff,
+  strict Pyright, strict docs, dated-strict governance, whitespace, and the
+  complete 3,460/12 architecture/integration boundary pass.
+- **Final distribution:** two builds preserve the 365,915-byte pure wheel at
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and reproduce source archive
+  `2f323c0a9300c93a864039c9b7a3e0155cc7bc4793352a5db9341014bba18018`;
+  installed/release smokes and exact inventories pass.
+- **Cleanup:** exactly 27 M226 targets containing 57,887 entries were proven
+  repository-confined, ignored, untracked, and recursively reparse-free, then
+  removed after immediate exact-set revalidation. Zero M226 scratch remains;
+  all 56 older `.tmp` targets remain.
+- **Pre-commit separator:** lock, all-file format/Ruff/Pyright, dated-strict
+  governance, whitespace, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M225 history/tree/parent, 16-path scope, neutral
+  two-branch set, configured maintainer identity, expected `0 126` divergence,
+  protected/disclosure/retired-metadata/scratch/whitespace gates, and full
+  connectivity pass.
+- **Initial local commit:** DCO commit
+  `0221b00c2519fcf189b418d46cd7f042c481efe9`, tree
+  `972a98676e18675ca12a9e9e8d8ba57b7afda76d`, has exact M225 as sole
+  parent, exactly 16 paths, one matching sign-off, matching author/committer
+  identity, clean worktree/revision/connectivity, expected `0 127` divergence,
+  neutral two-branch hygiene, and zero M226 scratch. This factual record will
+  be incorporated by amendment.
+- **Amended local commit:** DCO commit
+  `19e3972de3f37226eadcc9467e5731d2fb462cd9`, tree
+  `29bf1d04caf6f362734dd41c1cd062436ac4efd4`, preserves exact M225 as sole
+  parent, exactly 16 paths, one matching sign-off, matching maintainer
+  identity, clean worktree/revision/connectivity, expected `0 127` divergence,
+  neutral two-branch hygiene, and zero M226 scratch. This factual record is
+  incorporated by the final amendment.
+- **Corrections:** the first sandboxed baseline was cache-denied, and direct
+  pytest could not import namespace-style test modules. During implementation,
+  one Ruff and one Pyright finding were corrected; a lazy native-export lookup
+  and two formatting-sensitive guards were then corrected. No complete pass is
+  claimed for an unsuccessful invocation.
+- **Boundaries:** signer/publisher allowlisting, certificate pinning,
+  revocation freshness, trust-store administration, native DLL/loader state,
+  local-object-store trust, repository acquisition, source/build provenance,
+  distinct-principal/independent-host behavior, hostile/privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unresolved.
+- **Publication:** withheld after a fresh gate. Hosted `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M99 is its ancestor but M225
+  is not. Only `origin/main` exists, no pull requests are open, and latest PR
+  251 remains merged. Publishing M226 alone would omit M100-M225, so no push,
+  PR, hosted allocation, tag, release, or package publication occurred.
+
 ## M225 Windows source-commit Git child image binding - locally complete, publication withheld
 
 - **Baseline:** exact M224 commit

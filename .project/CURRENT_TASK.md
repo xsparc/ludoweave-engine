@@ -1,5 +1,155 @@
 # Current task
 
+## M226 Windows source-commit Git Authenticode trust
+
+- **Task:** Verify the exact retained Git file through bounded local Windows
+  Authenticode policy before and after M225's complete child-image boundary.
+- **Status:** Direction research, exact M225 baseline, protected-hash capture,
+  intentional architecture red, native retained-handle implementation,
+  failure-close cases, RFC-0209, security guidance, eight public
+  registrations, focused static/type/live validation, whole-project static/
+  docs/governance/architecture/integration, supported-Python coverage,
+  rendering/profile/example gates, initial distribution/release rehearsal,
+  findings-first review, record-inclusive separators, final distribution/
+  release rehearsal, cleanup, and initial local DCO commit verification are
+  complete. The amended local DCO commit and fresh hosted publication-safety
+  gate also pass. M226 is locally complete; publication is withheld because
+  hosted `main` does not contain its M225 prerequisite.
+- **Base:** exact fully locally validated M225 DCO commit
+  `1f93733d8d5163a1d1b000a52f4b4bc543490377`, tree
+  `0892b8af06a09b4231745e77a11d6c5326eeefdf`, with sole parent exact M224.
+- **Branch:** `release/m226-windows-source-commit-git-authenticode-trust`;
+  exact containment made the local M225 branch redundant, so only local
+  `main` and active M226 remain.
+
+### M226 acceptance boundary
+
+- Perform one real Git lookup and retain the canonical executable through
+  M224's existing non-inheritable read handle.
+- Pass both that canonical path and exact readable handle to
+  `WINTRUST_ACTION_GENERIC_VERIFY_V2` with no UI, cache-only URL retrieval,
+  explicit provider revocation-check suppression, and no additional
+  revocation checking.
+- Require exact local Windows trust success before and after M225's complete
+  48-child image-binding and settlement boundary, with an unchanged retained
+  path, file identity, bounded size, and SHA-256 between checks.
+- Pair every `WTD_STATEACTION_VERIFY` with `WTD_STATEACTION_CLOSE` in a
+  `finally` boundary. Close state after trust rejection and report close
+  failure when verification otherwise succeeds.
+- Preserve every M221-M225 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep signer/publisher allowlisting, certificate pinning, revocation
+  freshness, trust-store administration, DLL/native-loader identity,
+  local-object-store trust, repository acquisition, source/build provenance,
+  distinct principal, hostile/privileged behavior, independent host, criteria
+  6/7, cleanup authority, and Windows admission unresolved.
+
+### Validation evidence so far
+
+- Exact M225 history and a clean worktree were confirmed before branching. A
+  direct pytest console invocation could not import the repository namespace;
+  the corrected repository-compatible module invocation passed all 14 exact
+  M225 baseline tests in 2.04 seconds.
+- The first sandboxed baseline/governance invocation was denied access to uv's
+  existing cache before execution. Its access-enabled static and 2026-09-03
+  strict governance reruns each returned zero findings.
+- Current Microsoft WinTrust/file/data, PE-signature, and PowerShell guidance,
+  current Git for Windows application guidance, SLSA 1.2, and NIST SSDF support
+  one cache-only retained-handle trust observation while authority,
+  revocation freshness, native loading, provenance, and admission remain
+  separate. The installed Git reports a valid Authenticode signature and
+  version `2.54.0.windows.1`; no signer identity is adopted as policy.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed nine missing implementation, documentation, and registration checks.
+- The first native live implementation passed three tests in 1.91 seconds.
+  Focused review found one mechanical constant-attribute Ruff finding and one
+  narrow ctypes type diagnostic. After correction, the first registered run
+  exposed lazy DLL-export resolution and two formatting-sensitive guard
+  assertions; those were corrected without changing the boundary.
+- Final focused formatting and Ruff pass, strict Pyright reports zero findings,
+  and all 14 architecture/live tests pass in 1.99 seconds.
+- The unchanged 46-package lock and 45-package all-group graphics environment
+  resolve. All 640 Python files are format-clean; Ruff and strict Pyright
+  report zero findings; strict docs build with only the known Material notice;
+  static and dated-strict governance each return zero findings.
+- Complete architecture/integration passes 3,460 tests with 12 expected skips
+  in 225.63 seconds.
+- Isolated frozen all-group/all-extra CPython 3.12, 3.13, and 3.14 environments
+  each pass 4,582 tests with 19 expected skips, in 266.16, 274.64, and 271.36
+  seconds respectively.
+- Ten real-wgpu tests pass. Five-repeat base and graphics profiles emit and
+  validate two and three workloads; all eight profile tests pass. Two Null and
+  one wgpu Clockwork runs agree at the established state hash, three draws,
+  and 15 sprites; Agent World Builder reproduces its established identities.
+- Two builds reproduce a 365,915-byte pure wheel at SHA-256
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and a 2,668,527-byte source archive at SHA-256
+  `1e0579128cda3879b849c34a23c1d257d6d36d156f498b4a0031d2d8b9a296df`.
+  Installed wheel/scene smokes and both exact ten-artifact release stages pass;
+  the 114-entry wheel is pure and M226-free, and the 1,072-entry source archive
+  contains each new M226 file exactly once.
+- Findings-first review confirms exactly 16 intended paths and zero protected
+  runtime/workflow/package/fixture/M225 diff. Across 743 then-current added
+  lines there is zero development-tool identity, credential-like assignment,
+  or machine-local path; retired metadata is absent, whitespace and full
+  connectivity pass, and no actionable finding remains at this stage.
+- Record-inclusive lock, all-file format/Ruff/Pyright, strict docs, static and
+  dated-strict governance, and whitespace pass. Complete architecture/
+  integration passes 3,460 tests with 12 expected skips in 228.38 seconds.
+- Two record-state builds preserve the 365,915-byte wheel at SHA-256
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and reproduce a 2,669,326-byte source archive at SHA-256
+  `58561da3a44bd6b2cd5f46145b21bc281193b20a292a8746e554e511c4558b05`.
+  Installed smokes, both exact release stages, and package inventories pass.
+- Final lock, 640-file format/Ruff/Pyright, strict docs, dated-strict
+  governance, and whitespace pass. Complete architecture/integration again
+  passes 3,460 tests with 12 expected skips in 243.90 seconds.
+- Two final builds preserve the 365,915-byte wheel at SHA-256
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and reproduce a 2,669,632-byte source archive at SHA-256
+  `2f323c0a9300c93a864039c9b7a3e0155cc7bc4793352a5db9341014bba18018`.
+  Installed smokes, both exact final release stages, and package inventories
+  pass.
+- A guarded read-only audit proved exactly 27 M226 targets containing 57,887
+  entries repository-confined, ignored, untracked, and top-level plus
+  recursively reparse-free. Immediate exact-set revalidation removed only
+  those targets, confirmed zero M226 scratch remains, and preserved all 56
+  older `.tmp` targets.
+- The no-output lock/format/Ruff/Pyright/dated-strict-governance/whitespace
+  separator passes with zero M226 scratch. The exact pre-commit audit confirms
+  M225 history, the 16-path allowlist, neutral two-branch hygiene, configured
+  maintainer identity, expected `0 126` divergence, zero protected diff, zero
+  retired metadata, 866 then-current added lines with zero development-tool
+  identity, credential-like assignment, or machine-local path, clean
+  whitespace/connectivity, and zero M226 scratch.
+- Initial local DCO commit
+  `0221b00c2519fcf189b418d46cd7f042c481efe9`, tree
+  `972a98676e18675ca12a9e9e8d8ba57b7afda76d`, has exact M225 as sole
+  parent, exactly 16 intended paths, one matching DCO sign-off, matching
+  author/committer identity, clean revision whitespace/worktree/connectivity,
+  expected `0 127` divergence from hosted M99 `main`, neutral two-branch
+  hygiene, and zero M226 scratch. An earlier PowerShell-sensitive unquoted
+  tree expression failed and is not used; the exact quoted rerun passed.
+- Amended local DCO commit
+  `19e3972de3f37226eadcc9467e5731d2fb462cd9`, tree
+  `29bf1d04caf6f362734dd41c1cd062436ac4efd4`, preserves exact M225 as sole
+  parent, all 16 intended paths, one matching sign-off, matching maintainer
+  identity, clean revision whitespace/worktree/connectivity, expected `0 127`
+  divergence, neutral two-branch hygiene, and zero M226 scratch. This factual
+  record is incorporated by the final amendment.
+- A fresh fetch and remote query prove hosted `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`: M99 is an ancestor, M225 is
+  not, only `origin/main` exists, and there are no open pull requests. The
+  latest pull request remains merged PR 251. Publishing M226 alone would omit
+  the M100-M225 prerequisite stack, so no push, pull request, hosted workflow,
+  tag, release, or package publication occurred.
+
+### Remaining gates
+
+- None for M226. Continue from the fully locally validated commit while
+  preserving the hosted publication gate for later milestones.
+
 ## M225 Windows source-commit Git child process-image binding
 
 - **Task:** Bind each actual Git child process image to M224's retained

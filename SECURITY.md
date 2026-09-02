@@ -1473,6 +1473,22 @@ it does not prove distinct-principal or independent-host behavior, resolve
 hostile/privileged bypass or criteria 6/7, admit Windows, or authorize cleanup.
 It adds no runtime surface, workflow, public runner, or hosted allocation.
 
+M226's test-only [Windows contained source-access source-commit Git
+Authenticode trust
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md)
+passes M224's exact retained path and readable handle to Windows generic
+Authenticode policy before and after M225's complete boundary. It disables UI
+and network retrieval, makes revocation behavior explicit, and closes provider
+state after every verification.
+
+This proves one cached current-host trust-policy result. It does not allowlist
+a signer or publisher, pin a certificate, prove revocation freshness, bind
+native DLLs or loader state, authenticate the local object store or repository
+acquisition, or establish source/build provenance. Distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain unresolved. It adds no runtime surface,
+workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

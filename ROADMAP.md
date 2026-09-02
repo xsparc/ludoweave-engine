@@ -4129,6 +4129,35 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M226 Windows source-commit Git Authenticode trust
+
+M226 starts from fully locally validated M225 commit
+`1f93733d8d5163a1d1b000a52f4b4bc543490377`. It adopts the test-only [Windows
+contained source-access source-commit Git Authenticode trust
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md)
+under RFC-0209.
+
+One scoped composition performs a real Git lookup and retains the canonical
+file through M224's existing handle. It passes that exact path and readable
+handle to `WINTRUST_ACTION_GENERIC_VERIFY_V2` with no UI, cache-only URL
+retrieval, and explicit no-revocation policy. Provider state closes after every
+verification. Exact local trust success and an unchanged retained-file
+snapshot are required before and after M225's complete 48-child boundary.
+
+This is one current-host cached Authenticode trust observation, not a signer or
+publisher allowlist, certificate pin, revocation-freshness proof, native DLL or
+loader binding, object-store trust, repository-acquisition attestation, or
+source/build provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, and Windows cleanup admission remain
+unresolved.
+
+M226 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

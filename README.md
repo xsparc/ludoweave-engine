@@ -455,8 +455,15 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > actual child image to M224's retained file before child code runs, then
 > resumes normal `Popen` ownership. Authenticity, native-loader identity,
 > cleanup, admission, workflow, and hosted checks remain unchanged.
+> M226 adds a test-only [Windows contained source-access source-commit Git
+> Authenticode trust
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md).
+> It verifies the exact retained Git handle under cache-only local Windows
+> trust policy before and after M225. Signer allowlisting, revocation freshness,
+> native-loader identity, provenance, cleanup, admission, workflow, and hosted
+> checks remain unchanged.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M225 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M226 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:
