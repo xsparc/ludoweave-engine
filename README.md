@@ -440,8 +440,16 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > It resolves one absolute Git path for the complete M222 observation and
 > proves all 48 direct object reads use it. Executable identity and provenance,
 > cleanup, admission, workflow, and hosted checks remain unchanged.
+> M224 adds a test-only [Windows contained source-access source-commit Git
+> executable file retention
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md).
+> It holds one non-inheritable read handle across the complete M223 observation
+> and rechecks file identity and SHA-256. The identical retainer separately
+> proves write/delete sharing refusal without mutation. Authenticity, native-
+> loader identity, cleanup, admission, workflow, and hosted checks remain
+> unchanged.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M223 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M224 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

@@ -1438,6 +1438,25 @@ distinct-principal or independent-host behavior, resolve hostile/privileged
 bypass or criteria 6/7, admit Windows, or authorize cleanup. It adds no runtime
 surface, workflow, public runner, or hosted allocation.
 
+M224's test-only [Windows contained source-access source-commit Git executable
+file retention
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md)
+holds one non-inheritable read-only handle with only `FILE_SHARE_READ` across
+M223's complete observation. It snapshots normalized path, volume/file
+identity, bounded size, and SHA-256; access-only checks require competing write
+and delete/rename opens against the identical retainer's writable test source
+to fail while retained, then settle after close with an identical fresh
+snapshot. The separation avoids treating an installed Git file's host ACL
+denial as sharing evidence.
+
+This binds an ordinary local retained-file interval. It does not authenticate
+the executable, signer, publisher, ACL, actual child process image, native DLL
+or loader state, local object store, repository acquisition, or source/build
+provenance; it does not prove distinct-principal or independent-host behavior,
+resolve hostile/privileged bypass or criteria 6/7, admit Windows, or authorize
+cleanup. It adds no runtime surface, workflow, public runner, or hosted
+allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

@@ -5781,6 +5781,36 @@ admission, and cleanup authority remain outside the evidence.
 M223 adds no runtime, package, dependency, lock, workflow, permission, public
 runner, or hosted allocation. Cleanup remains unimplemented and unauthorized.
 
+## M224 Windows source-commit Git executable file retention
+
+M224 adds the test-only [Windows contained source-access source-commit Git
+executable file retention
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md).
+It resolves Git once, opens the canonical file through one non-inheritable
+read-only handle with only `FILE_SHARE_READ`, and retains that handle while the
+complete M223/M222/M221 boundary performs all 48 fixed object reads.
+
+The retained snapshot binds normalized path, volume/file identity, positive
+bounded size, and SHA-256. The same retainer's share-mode behavior is exercised
+against its writable test source so host ACLs on an installed Git executable
+cannot masquerade as sharing evidence. Access-only probes refuse competing
+write and delete/rename opens while retained; once the handle closes, those
+access categories must settle and a new shared snapshot must equal the retained
+snapshot. M223's path and subprocess observer plus all M222/M220 command,
+source, image, Job, token, access, settlement, and close boundaries remain
+mandatory.
+
+The result binds one local retained-file interval, not executable
+authenticity, signing, publisher policy, ACL trust, actual child image,
+DLL/native-loader state, local-object-store trust, repository acquisition, or
+source/build provenance. Distinct principal, independent host, hostile or
+privileged bypass, criteria 6/7, Windows admission, and cleanup authority
+remain outside the evidence.
+
+M224 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

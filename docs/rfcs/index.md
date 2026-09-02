@@ -211,3 +211,4 @@ was adopted.
 - [RFC-0204: probe Windows contained source-access source-commit binding](0204-probe-windows-contained-source-access-source-commit-binding.md)
 - [RFC-0205: exclude Git lazy fetch from the source-commit probe](0205-exclude-git-lazy-fetch-from-source-commit-probe.md)
 - [RFC-0206: bind Git executable selection for the source-commit probe](0206-bind-git-executable-selection-for-source-commit-probe.md)
+- [RFC-0207: retain the Git executable file for the source-commit probe](0207-retain-git-executable-file-for-source-commit-probe.md)

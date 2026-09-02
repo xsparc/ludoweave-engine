@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M224 Windows source-commit Git executable file retention
+
+RFC-0207 accepts one direction-preserving, test-only composition: retain the
+canonical Git executable selected once before M223 through a non-inheritable
+read handle that permits only `FILE_SHARE_READ`. Require identical normalized
+path, volume/file identity, bounded size, and SHA-256 after all 48 inherited
+reads and again through a fresh shared post-close handle.
+
+The same retainer's write/delete share behavior is exercised through access-
+only opens against its writable test source. This separation prevents an
+installed Git file's independent host ACL denial from being misreported as a
+sharing-violation result. No file bytes are written, deleted, or renamed.
+
+This is one retained-file interval, not executable authenticity, signer,
+publisher, origin, ACL policy, actual child-process image, or native DLL/
+loader provenance. Local-object-store trust, repository acquisition,
+source/build provenance, distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+admission remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M223 Windows source-commit Git executable selection binding
 
 RFC-0206 accepts one direction-preserving, test-only composition: resolve

@@ -4066,6 +4066,38 @@ authority, dependency, version, workflow, permission, secret, public runner,
 or hosted execution path; no hosted check is added. Windows remains unadmitted
 and cleanup remains unimplemented and unauthorized.
 
+## M224 Windows source-commit Git executable file retention
+
+M224 starts from fully locally validated M223 commit
+`81603c8e6c567063f8a3d492fed3d5be9b1c4489`. It adopts the test-only [Windows
+contained source-access source-commit Git executable file retention
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md)
+under RFC-0207.
+
+One scoped composition performs the real Git selection once, opens the
+canonical file with one non-inheritable read handle that permits only
+`FILE_SHARE_READ`, and holds that handle through M223's complete 48-read
+observation. It snapshots normalized path, volume/file identity, positive
+bounded size, and SHA-256 before and after. The identical retainer is exercised
+against its writable test source: access-only probes require competing write
+and delete/rename opens to fail while retained and to settle after close; a
+fresh final snapshot must remain identical. The proof avoids conflating an
+installed Git file's independent ACL denial with share-mode behavior.
+
+This is executable-file retention, not executable authentication, signing,
+publisher policy, actual process-image binding, or native-loader provenance.
+ACL trust, the local object store, repository acquisition, source/build
+provenance, imports, distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, and Windows cleanup admission remain
+unresolved.
+
+M224 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

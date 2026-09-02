@@ -1,5 +1,143 @@
 # Current task
 
+## M224 Windows source-commit Git executable file retention
+
+- **Task:** Retain the selected Git executable file across the complete M223
+  observation and demonstrate the retainer's ordinary write/delete exclusion
+  without mutating the proof file.
+- **Status:** Direction research, protected-baseline capture, intentional
+  architecture red, scoped implementation, ACL-sensitive proof correction,
+  RFC-0207, security guidance, eight public registrations, focused and whole-
+  project static/type/live tests, complete supported-Python validation,
+  rendering/profiles/examples, and initial reproducible distribution/release
+  rehearsal are complete. Findings-first review, record-inclusive validation,
+  distribution/release rehearsal, guarded cleanup, final separators, local DCO
+  commit verification, and hosted publication-safety gate are complete.
+  Publication is withheld because hosted `main` lacks the M100-M223
+  prerequisite stack.
+- **Base:** exact fully locally validated M223 DCO commit
+  `81603c8e6c567063f8a3d492fed3d5be9b1c4489`, tree
+  `b5d83a896a6b3d4e9baa88b9e91aa85e9f45bade`, with sole parent exact M222.
+- **Branch:** `release/m224-windows-source-commit-git-file-retention`;
+  exact containment made the local M223 branch redundant, so only local
+  `main` and active M224 remain.
+
+### M224 acceptance boundary
+
+- Perform exactly one real Git lookup, require its canonical absolute file,
+  and open that file through one non-inheritable read-only handle with only
+  `FILE_SHARE_READ` before the M223 observation.
+- Snapshot normalized path, volume/file identity, positive bounded size, and
+  SHA-256 before and after all 48 inherited Git reads; require a fresh shared
+  post-close snapshot to remain identical.
+- Exercise the identical retainer against its writable test source using only
+  competing access opens. Require exact sharing refusal for write and
+  delete/rename while retained, settlement after close, and unchanged bytes.
+  Do not misclassify installed-Git ACL denial as share-mode evidence.
+- Preserve every M223/M222/M221 evidence file byte-for-byte and retain all
+  inherited no-lazy-fetch, direct-command, source, image, Job, token, access,
+  participant, settlement, and close requirements.
+- Protect runtime, package, dependency, lock, workflow, fixture, example,
+  script, and benchmark surfaces. Add zero GitHub Actions job or hosted
+  allocation.
+- Keep executable authenticity/signing/publisher/ACL policy, actual child-
+  process image, DLL/native-loader identity, local-object-store trust,
+  repository acquisition, source/build provenance, distinct principal,
+  hostile/privileged behavior, independent host, criteria 6/7, cleanup
+  authority, and Windows admission unresolved.
+
+### Validation evidence so far
+
+- The clean M223 focused baseline passes 10 tests. Static and dated-strict
+  governance each report zero findings.
+- Current primary Windows, Python, SLSA, GitHub, NIST, and engineering-systems
+  evidence supports a local retained-file slice while retaining provenance,
+  authority, admission, and hosted-allocation gaps.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed exactly eight absent implementation/documentation/registration
+  checks.
+- The first live run found installed Git write access returns access denied
+  before share evaluation. The corrected proof retains the real Git file
+  across M223 and separately exercises the same retainer against its writable
+  test source without mutation. Focused Ruff/Pyright and all 12 tests pass.
+- The unchanged 46-package lock and 45-package graphics environment resolve.
+  All 636 Python files are format-clean; Ruff and strict Pyright report zero
+  findings; strict docs and both governance modes pass.
+- Complete architecture/integration passes 3,432 tests with 12 expected skips.
+  Isolated frozen CPython 3.12, 3.13, and 3.14 each pass 4,554 tests with 19
+  expected skips.
+- Ten real-wgpu tests, five-repeat base/graphics profiles, eight profile tests,
+  two Null and one wgpu Clockwork runs, and Agent World Builder pass with the
+  established deterministic identities.
+- Two builds reproduce a 365,699-byte pure wheel at SHA-256
+  `c932fbddb8cc8eb7a59cc1d911d17eac7afa45bcbafd0ebfaa89237055ccd283`
+  and a 2,642,242-byte source archive at SHA-256
+  `acbf53523e1adf1a8593a562afc988d22d4b8eef6d810fd5495932a8326f612a`.
+  Installed wheel/scene smokes and two exact ten-artifact release stages pass.
+- Findings-first review confirms exactly 16 intended paths and unchanged
+  protected surfaces. Three public summaries were corrected so the separate
+  access-only proof cannot be mistaken for a direct installed-Git ACL result.
+  Added-line disclosure, credential, local-path, retired-metadata, whitespace,
+  and full-connectivity checks pass.
+- Record-inclusive lock/format/Ruff/Pyright, strict docs, both governance
+  modes, whitespace, and the repeated complete architecture/integration
+  boundary pass; the latter reports 3,432 tests with 12 skips.
+- Record-state builds reproduce a 365,711-byte pure wheel at SHA-256
+  `0499ac3998dc626345f58231900fb8a1f077c10fced1761f2a145ddac5c4f855`
+  and a 2,646,129-byte source archive at SHA-256
+  `1e61022979248562f594263eb2d9150d98b69cfceaed493301619b44d3046226`.
+  Installed smokes, two exact release stages, and the 114-entry wheel/1,064-
+  entry source inventory pass; each of the four new M224 files occurs once
+  only in the source archive.
+- The post-review separator passes. A corrected terminating audit proved
+  exactly 19 M224 scratch targets containing 50,184 entries confined, ignored,
+  untracked, and recursively reparse-free. Immediate exact-set revalidation
+  removed only those targets and confirmed zero remains; older scratch was
+  untouched.
+- Final post-cleanup format/Ruff/Pyright, strict docs, dated-strict governance,
+  whitespace, and complete architecture/integration pass; the complete suite
+  reports 3,432 tests with 12 expected skips in 228.06 seconds.
+- Two final builds preserve the 365,711-byte pure wheel at SHA-256
+  `0499ac3998dc626345f58231900fb8a1f077c10fced1761f2a145ddac5c4f855`
+  and reproduce a 2,647,038-byte source archive at SHA-256
+  `be88403c36ae83b25a23f1f82caeb0d2472cea3be4734bded24b7be9528589b0`.
+  Installed smokes, both exact release stages, and package inventories pass.
+- A separate final-ledger audit proved exactly six M224 targets containing
+  8,485 entries confined, ignored, untracked, and recursively reparse-free;
+  immediate exact-set revalidation removed only them and confirmed zero M224
+  scratch remains.
+- The no-output whole-project format/Ruff/Pyright, dated-strict governance,
+  whitespace, and zero-scratch separator passes.
+- The pre-commit audit passes exact M223 history, 16-path allowlist, neutral
+  branch/identity, expected `0 124` divergence, protected surfaces, disclosure/
+  credential/local-path scans across 845 added lines, retired metadata,
+  scratch, formatting/lint/type/whitespace, and full connectivity.
+- Initial local DCO commit
+  `424ad9f3dbf44ecf57a4cd9b2f72daf8242099d7`, tree
+  `4978e0a10a05ba143001fe34038f7f25b78a9287`, has exact M223 as sole
+  parent, 16 intended paths, one matching sign-off, matching maintainer
+  identity, clean revision whitespace/worktree/connectivity, expected `0 125`
+  divergence, and zero M224 scratch. This factual record will be incorporated
+  by amendment.
+- Amended local DCO commit
+  `b8dab63ee5903e3ef17f6a6d0c15264b5e20b028`, tree
+  `94af602c63e27e9d369c3e92d6ae48a6a2bec410`, retains exact M223 as
+  sole parent, 16 intended paths, one matching sign-off, matching maintainer
+  identity, clean revision whitespace/worktree/connectivity, expected `0 125`
+  divergence, and zero M224 scratch. This factual record is incorporated by
+  the final amendment.
+- A fresh pruned fetch and direct remote-head query leave public `origin/main`
+  at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`. M223 is absent,
+  M99 is present, only remote `main` exists, no PR is open, and PR #251 remains
+  latest. Publishing M224 would expose the absent M100-M223 stack, so no push,
+  PR, hosted allocation, tag, release, or package publication occurs.
+
+### Remaining gates
+
+- Await integration of the prerequisite stack before any M224 publication.
+- Recheck hosted ancestry, identity, branch hygiene, DCO, and CI scope before
+  any future push or PR.
+
 ## M223 Windows source-commit Git executable selection binding
 
 - **Task:** Bind one resolved absolute Git executable path across every fixed

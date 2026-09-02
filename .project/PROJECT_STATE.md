@@ -1,5 +1,94 @@
 # Project State
 
+## M224 Windows source-commit Git file retention - locally complete, publication withheld
+
+- **Baseline:** exact M223 commit
+  `81603c8e6c567063f8a3d492fed3d5be9b1c4489`, tree
+  `b5d83a896a6b3d4e9baa88b9e91aa85e9f45bade`, sole parent exact M222.
+- **Direction:** RFC-0207 accepts one test-only retained-file composition around
+  M223. It binds one local file-handle interval, not executable authenticity or
+  provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0207, one security guide, eight public registrations, and four
+  `.project` records. M221-M223 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** one real lookup selects a canonical absolute Git file; one non-
+  inheritable read handle with only `FILE_SHARE_READ` retains its normalized
+  name, volume/file identity, bounded size, and SHA-256 across all 48 M223
+  reads. The same retainer's share effect is proven without mutation on its
+  writable test source, avoiding an installed-file ACL false inference.
+- **Evidence:** the 10-test M223 baseline and both governance modes pass. The
+  intentional red isolated eight expected missing checks. Focused static/type
+  and 12 tests pass; architecture/integration passes 3,432/12; isolated CPython
+  3.12-3.14 each pass 4,554/19; real wgpu, profiles, deterministic examples,
+  initial reproducible distributions, installed smokes, and two exact release
+  stages pass.
+- **Initial distribution:** wheel 365,699 bytes at
+  `c932fbddb8cc8eb7a59cc1d911d17eac7afa45bcbafd0ebfaa89237055ccd283`;
+  source archive 2,642,242 bytes at
+  `acbf53523e1adf1a8593a562afc988d22d4b8eef6d810fd5495932a8326f612a`.
+  The 114-entry pure wheel contains no M224 evidence. Final record-inclusive
+  inventory remains pending.
+- **Review:** exactly 16 intended paths differ. Three summaries were corrected
+  to distinguish actual Git retention/snapshot evidence from the identical
+  retainer's separate access-only proof. Protected surfaces, added-line
+  disclosure/credential/local-path scans, retired metadata, whitespace, and
+  connectivity are clean; no further actionable finding remains.
+- **Record-inclusive gates:** the unchanged lock, whole-project format/Ruff/
+  Pyright, strict docs, both governance modes, whitespace, and a repeated
+  3,432/12 architecture/integration boundary pass.
+- **Record-state distribution:** two builds reproduce the reviewed 365,711-
+  byte pure wheel at
+  `0499ac3998dc626345f58231900fb8a1f077c10fced1761f2a145ddac5c4f855`
+  and 2,646,129-byte source archive at
+  `1e61022979248562f594263eb2d9150d98b69cfceaed493301619b44d3046226`.
+  Installed smokes, two exact ten-artifact release stages, and exact package
+  inventories pass.
+- **Cleanup:** post-review static/type/focused/docs/governance/whitespace pass.
+  Exactly 19 M224 scratch targets containing 50,184 entries were proven
+  immediate under `.tmp`, ignored, untracked, and recursively reparse-free,
+  then removed after exact-set revalidation; zero remains and older scratch was
+  untouched.
+- **Final separator:** post-cleanup whole-project format/Ruff/Pyright, strict
+  docs, dated-strict governance, whitespace, and the complete 3,432/12
+  architecture/integration boundary pass.
+- **Final distribution:** two builds preserve the reviewed pure wheel at
+  `0499ac3998dc626345f58231900fb8a1f077c10fced1761f2a145ddac5c4f855`
+  and reproduce source archive
+  `be88403c36ae83b25a23f1f82caeb0d2472cea3be4734bded24b7be9528589b0`;
+  installed/release smokes and exact inventories pass.
+- **Final-ledger cleanup:** six exact final targets containing 8,485 entries
+  were proven confined, ignored, untracked, and recursively reparse-free, then
+  removed after exact-set revalidation; zero M224 scratch remains.
+- **Pre-commit separator:** whole-project format/Ruff/Pyright, dated-strict
+  governance, whitespace, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M223 history, 16-path scope, neutral branch,
+  configured maintainer identity, expected `0 124` divergence, protected/
+  disclosure/retired-metadata/scratch/whitespace gates, and full connectivity
+  pass.
+- **Initial local commit:** DCO commit
+  `424ad9f3dbf44ecf57a4cd9b2f72daf8242099d7`, tree
+  `4978e0a10a05ba143001fe34038f7f25b78a9287`, has exact M223 as sole
+  parent, 16 paths, one matching sign-off, consistent identity, clean
+  whitespace/worktree/connectivity, expected `0 125` divergence, and zero
+  M224 scratch. This factual record is incorporated by amendment.
+- **Amended local commit:** DCO commit
+  `b8dab63ee5903e3ef17f6a6d0c15264b5e20b028`, tree
+  `94af602c63e27e9d369c3e92d6ae48a6a2bec410`, retains exact M223 as
+  sole parent, 16 paths, one matching sign-off, consistent identity, clean
+  whitespace/worktree/connectivity, expected `0 125` divergence, and zero
+  M224 scratch. This factual record is incorporated by the final amendment.
+- **Boundaries:** executable signer/publisher/origin/ACL policy, actual child
+  image, DLL/native-loader state, local-object-store trust, repository
+  acquisition, source/build provenance, distinct-principal/independent-host
+  behavior, hostile/privileged bypass, criteria 6/7, cleanup authority, and
+  Windows admission remain unresolved.
+- **Publication:** fresh public `main` remains exact M99 and does not contain
+  M223. Only remote `main` exists, no PR is open, and PR #251 is latest. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+  Publication is withheld pending hosted ancestry of the prerequisite stack.
+
 ## M223 Windows source-commit Git selection binding - locally complete, publication withheld
 
 - **Baseline:** exact M222 commit

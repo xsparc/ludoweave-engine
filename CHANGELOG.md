@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M224/RFC-0207's test-only [Windows contained source-access source-commit
+  Git executable file retention
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md).
+  It retains one non-inheritable read-only handle across M223's complete
+  48-read boundary and rechecks path/file identity, bounded size, and SHA-256.
+  The identical retainer separately proves write/delete sharing refusal without
+  mutation. Runtime, package, authenticity, native-loader identity, cleanup
+  authority, admission, workflow, and hosted allocation remain unchanged.
 - Add M223/RFC-0206's test-only [Windows contained source-access source-commit
   Git executable selection binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md).
