@@ -1,5 +1,79 @@
 # Project State
 
+## M231 Windows source-commit Git message-signer certificate binding - locally complete, publication withheld
+
+- **Baseline:** exact M230 commit
+  `ffab7037a22095233937aaac3980a37f94e37102`, tree
+  `97247063bc8bf49f9b4007e1422697920366a63f`, sole parent exact M229.
+- **Direction:** RFC-0214 accepts one test-only live-provider composition around
+  M230. It verifies every exact message signer and correlates returned
+  certificate DER with the same-index primary provider certificate, without
+  creating publisher policy, revocation freshness, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0214, one security guide, eight public registrations, and four `.project`
+  records. M221-M230 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** provider and message signer counts must agree within bounds;
+  every exact signer index must verify and return the same index plus an owned
+  bounded certificate context. Its DER must equal the corresponding primary
+  provider certificate bytes. Counts, boundaries, both hash sequences, and an
+  unambiguous aggregate must match across M230. Certificate contexts and
+  provider state close on every outcome.
+- **Evidence:** exact M230 history, the 45-test retained baseline, and both
+  governance modes pass. Current primary-source direction supports indexed
+  signature/certificate correlation while keeping policy and provenance
+  separate. Intentional red isolates ten missing checks. The first
+  implementation pass exposed mechanical format/import/ctypes typing issues
+  and one incorrect absent-context free expectation; the corrected files are
+  format/Ruff/strict-Pyright clean and all 38 live/failure-cleanup tests pass.
+  The live host exposes two provider stores, one signer, and equal 1,620-byte
+  message/provider certificate bytes. RFC/security documentation and eight
+  registrations are present; the complete 50-test architecture/live group and
+  strict docs build pass. Whole-project source/docs/governance passes;
+  architecture/integration passes 3,631/12; serial isolated CPython 3.12-3.14
+  each pass 4,753/19 after correcting an invalid concurrent harness attempt.
+  Real-wgpu, both profiles, both deterministic examples, reproducible builds,
+  installed smokes, two exact release stages, and package inventory pass.
+  Findings-first review corrected a fake-helper empty-sequence ambiguity; the
+  resulting 51-test focused group passes and exact scope/disclosure/security/
+  connectivity review finds no remaining actionable issue. Record-inclusive
+  source/docs/governance and 3,632/12 architecture/integration validation pass;
+  record-state builds preserve the exact pure wheel, reproduce the source
+  archive, and pass all installed and release-stage checks. Final source/docs/
+  governance and architecture/integration plus reproducible package/release
+  separators repeat cleanly. The guarded cleanup preflight proves 34 exact
+  M231 scratch targets containing 95,107 recursive entries are repository-
+  confined, ignored, untracked, and recursively reparse-free. The terminating
+  56-test M59/M231 group and source/governance separators pass; immediate exact-
+  set revalidation removed only those targets and confirms zero M231 scratch.
+  The post-cleanup source/focused/docs/integrity and exact scope/disclosure/
+  identity audit passes with no regenerated M231 artifact. Initial DCO commit
+  `0920956a8a47798d83213c6bbaaed22f3e028302` has exact tree
+  `a596dae192f0621738f4fb08f311d11ced2ba9c9`, sole parent exact M230,
+  exact 16-path scope, correct identity/sign-off, clean worktree/whitespace,
+  and complete object connectivity. Amended commit
+  `57e173f9b09454c77d0c079de9fbeeee9d69fa96`, tree
+  `0d40cdeac9b404f07076189dcd63bedcdf480134`, preserves the same exact parent,
+  scope, identity, DCO, clean state, and connectivity; its terminating
+  M59/M231 group and strict governance pass before this final hosted-gate amend.
+- **Boundaries:** signer/publisher authorization, persisted identity,
+  certificate allowlisting/pinning/rotation/recovery, revocation freshness,
+  portable chain/timestamp semantics, timestamp-authority policy, trust-store
+  administration, native DLL/loader state, local-object-store trust,
+  repository acquisition, source/build provenance, distinct-principal/
+  independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+  authority, and Windows admission remain unresolved.
+- **Publication:** fresh fetch and GitHub inventory find only hosted `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M230, no PR is open, and PR #251 remains latest. Publishing
+  would expose the absent prerequisite stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- **Review:** exact 16-path scope, protected surfaces, public disclosure,
+  delta credential/local-path, retired metadata, package inventory,
+  whitespace, scratch, object connectivity, identity/DCO, and hosted ancestry
+  all pass. Findings-first review reports no remaining actionable issue.
+
 ## M230 Windows source-commit Git signed-message SignerInfo binding - locally complete, publication withheld
 
 - **Baseline:** exact M229 commit

@@ -218,3 +218,4 @@ was adopted.
 - [RFC-0211: bind retained Git WinTrust provider chain](0211-bind-git-provider-chain-for-source-commit-probe.md)
 - [RFC-0212: bind retained Git WinTrust countersigner chains](0212-bind-git-countersigner-chain-for-source-commit-probe.md)
 - [RFC-0213: bind retained Git WinTrust signed-message SignerInfo values](0213-bind-git-signed-message-signer-info-for-source-commit-probe.md)
+- [RFC-0214: bind verified Git message signers to provider certificates](0214-bind-git-message-signer-certificate-for-source-commit-probe.md)

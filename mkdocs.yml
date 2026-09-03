@@ -119,6 +119,7 @@ nav:
   - Windows contained source-access source-commit Git provider-chain binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md
   - Windows contained source-access source-commit Git countersigner-chain binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md
   - Windows contained source-access source-commit Git signed-message SignerInfo binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md
+  - Windows contained source-access source-commit Git message-signer certificate binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -338,6 +339,7 @@ nav:
       - RFC-0211 - Bind retained Git WinTrust provider chain: rfcs/0211-bind-git-provider-chain-for-source-commit-probe.md
       - RFC-0212 - Bind retained Git WinTrust countersigner chains: rfcs/0212-bind-git-countersigner-chain-for-source-commit-probe.md
       - RFC-0213 - Bind retained Git WinTrust signed-message SignerInfo values: rfcs/0213-bind-git-signed-message-signer-info-for-source-commit-probe.md
+      - RFC-0214 - Bind verified Git message signers to provider certificates: rfcs/0214-bind-git-message-signer-certificate-for-source-commit-probe.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

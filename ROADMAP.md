@@ -4291,6 +4291,42 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M231 Windows source-commit Git message-signer certificate binding
+
+M231 starts from fully locally validated M230 commit
+`ffab7037a22095233937aaac3980a37f94e37102`. It adopts the test-only [Windows
+contained source-access source-commit Git message-signer certificate binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md)
+under RFC-0214.
+
+One scoped composition repeats M230's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it requires
+bounded equal provider/message signer counts and a bounded provider-store
+array. It verifies every exact message signer index with
+`CryptMsgGetAndVerifySigner`, copies the returned bounded certificate DER, and
+requires it to equal the primary provider certificate at the same index.
+
+The detached observation binds store and signer counts, exact sizes, both
+per-source certificate-hash tuples, and one domain-separated digest over every
+index, length, and byte sequence. Every returned certificate context is freed,
+provider state closes after every outcome, and the complete observation must
+match before and after M230.
+
+This binds execution-local message/provider certificate correlation, not signer
+or publisher authorization, a persisted identity, certificate pinning,
+rotation/recovery policy, revocation freshness, portable timestamp semantics,
+native DLL or loader identity, object-store trust, repository-acquisition
+attestation, or source/build provenance. Distinct-principal or independent-host
+behavior, hostile/privileged bypass, criteria 6/7, and Windows cleanup admission
+remain unresolved.
+
+M231 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup authority,
+dependency, lock, fixture, example, script, benchmark, version, workflow,
+permission, secret, public runner, or hosted execution path; no hosted check is
+added. Windows remains unadmitted and cleanup remains unimplemented and
+unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

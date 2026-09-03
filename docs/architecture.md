@@ -5992,6 +5992,38 @@ M230 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M231 Windows source-commit Git message-signer certificate binding
+
+M231 adds the test-only [Windows contained source-access source-commit Git
+message-signer certificate binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md).
+It repeats M230's retained path/handle and cached Authenticode policy. While
+provider state remains live, it requires bounded equal provider/message signer
+counts, a bounded provider-store count, and a live store array when nonempty.
+
+For every exact signer index, `CryptMsgGetAndVerifySigner` verifies the message
+with `CMSG_USE_SIGNER_INDEX_FLAG`, returns the same index and an owned
+certificate context, and exposes positive bounded DER. The same provider state
+resolves its corresponding primary provider certificate. Exact DER equality is
+mandatory. The detached observation binds store/signer counts, every index and
+length, both per-source hashes, and both exact byte sequences in one domain-
+separated aggregate. It must match before and after M230's complete boundary.
+Each returned context is freed and provider state closes in `finally` after
+success, rejection, or correlation failure.
+
+The result binds only execution-local message/provider certificate correlation.
+It does not authorize a signer or publisher, persist an identity, pin a
+certificate, define rotation/recovery, establish revocation freshness or
+portable timestamp semantics, bind DLL/native-loader state, establish local-
+object-store or repository-acquisition trust, or provide source/build
+provenance. Distinct principal, independent host, hostile or privileged bypass,
+criteria 6/7, Windows admission, and cleanup authority remain outside the
+evidence.
+
+M231 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

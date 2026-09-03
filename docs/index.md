@@ -446,6 +446,13 @@ attestation, with the same allocation topology.
   that copies and hashes every bounded opaque encoded SignerInfo by exact
   message index before and after M229 without parsing it, creating signer or
   timestamp-authority policy, or changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git message-signer
+  certificate binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md)
+  that verifies every bounded exact message signer and requires its certificate
+  DER to equal the corresponding primary provider certificate before and after
+  M230 without creating publisher policy or changing provenance, cleanup, or
+  admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

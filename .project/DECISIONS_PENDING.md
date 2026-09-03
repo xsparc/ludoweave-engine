@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M231 Windows source-commit Git message-signer certificate binding
+
+RFC-0214 accepts one direction-preserving, test-only composition: repeat
+M230's exact retained-handle cached trust evaluation, require bounded equal
+provider/message signer counts and a bounded provider-store array, then verify
+every exact message signer index with `CryptMsgGetAndVerifySigner`. Copy each
+returned bounded certificate before release, resolve the corresponding primary
+provider certificate in the same state, require exact DER equality, bind both
+hash sequences and one domain-separated aggregate, and require the same
+complete observation before and after M230. Every returned certificate context
+and provider state closes after every outcome.
+
+This correlates execution-local message and provider certificate identity. It
+does not authorize a signer or publisher, make provider stores independently
+trusted, persist an identity, create an allowlist or pin, define rotation/
+recovery, prove revocation freshness, establish portable chain or timestamp
+semantics, authorize a timestamp authority, bind native-loader state,
+authenticate the local object store or repository acquisition, or provide
+source/build provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+admission remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M230 Windows source-commit Git signed-message SignerInfo binding
 
 RFC-0213 accepts one direction-preserving, test-only composition: repeat

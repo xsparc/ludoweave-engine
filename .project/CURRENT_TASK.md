@@ -1,5 +1,145 @@
 # Current task
 
+## M231 Windows source-commit Git message-signer certificate binding
+
+- **Task:** Correlate every bounded verified message-signer certificate with
+  the primary WinTrust provider certificate at the same index before and after
+  M230's complete boundary.
+- **Status:** Direction research, exact M230 baseline, protected-hash capture,
+  intentional architecture red, native implementation, failure/free/close
+  coverage, live capability observation, RFC-0214, security guidance, eight
+  public registrations, whole-project and supported-interpreter validation,
+  rendering/profile/example coverage, reproducible package/release rehearsal,
+  package inventory, findings-first review, and record-inclusive source/docs/
+  governance/architecture/package/release validation are complete. Final
+  source/docs/governance/architecture and reproducible package/release
+  separators, the terminating focused gate, and guarded exact-set cleanup are
+  complete. DCO object, terminating focused/governance, and fresh hosted
+  publication-safety audits are complete. M231 is locally complete;
+  publication is withheld because no real remote branch contains required
+  M230.
+- **Base:** exact fully locally validated M230 DCO commit
+  `ffab7037a22095233937aaac3980a37f94e37102`, tree
+  `97247063bc8bf49f9b4007e1422697920366a63f`, with sole parent exact M229.
+- **Branch:** `release/m231-windows-source-commit-git-message-signer-certificate-binding`;
+  exact containment made the local M230 branch redundant, so only local `main`
+  and active M231 remain.
+
+### M231 acceptance boundary
+
+- Repeat M230's exact retained path/handle, no-UI, cache-only,
+  explicit-no-revocation `WINTRUST_ACTION_GENERIC_VERIFY_V2` request.
+- While each successful provider state is live, require a compatible provider
+  prefix, non-null message, equal positive bounded provider/message signer
+  counts, and a bounded provider-store array.
+- Verify every exact signer index with `CryptMsgGetAndVerifySigner` and only
+  `CMSG_USE_SIGNER_INDEX_FLAG`; require successful message-signature
+  verification, an unchanged returned index, and an owned certificate context.
+- Copy positive per-certificate and aggregate-bounded DER, resolve the primary
+  provider certificate at the same index, and require exact byte equality.
+- Bind store/signer counts, every index and length, both per-source SHA-256
+  tuples, and a domain-separated complete-sequence digest.
+- Free every returned certificate context. Close provider state in `finally`
+  after success, trust rejection, correlation failure, or free failure while
+  preserving the primary failure.
+- Require the complete immutable observation across M230's complete boundary.
+- Preserve every M221-M230 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep signer/publisher authorization, persisted identity, certificate
+  allowlisting/pinning/rotation/recovery, revocation freshness, portable chain
+  or timestamp semantics, timestamp-authority policy, trust-store
+  administration, native-loader identity, local-object-store trust, repository
+  acquisition, source/build provenance, distinct principal, hostile/privileged
+  behavior, independent host, criteria 6/7, cleanup authority, and Windows
+  admission unresolved.
+
+### Validation evidence so far
+
+- Exact M230 history and a clean worktree were confirmed. The retained
+  M59/M230 group passes 45 tests in 2.42 seconds; static and 2026-09-03 strict
+  governance each return zero findings.
+- Current Microsoft message-verification, certificate-context, provider-data,
+  and context-release documentation, Git for Windows 2.55.0.5, and SLSA 1.2
+  support one execution-local indexed message/provider certificate correlation
+  while publisher policy, revocation freshness, and provenance remain separate.
+- M231 was created from exact M230; redundant local M230 was removed. Protected
+  M230/workflow/package hashes were captured and only local `main` plus active
+  M231 remain.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed ten checks only because the planned probe, RFC/security decision, and
+  public registrations were absent.
+- The first implementation run exposed two format changes, one import-order and
+  one nested-condition lint finding, 42 dynamic-ctypes annotation findings,
+  and one incorrect no-context free expectation; 37 behavior cases passed.
+  The correction changes no boundary. Both Python files are format/Ruff/strict-
+  Pyright clean and all 38 live, detachment, order/boundary, verification,
+  provider-correlation, capacity, free, rejection, and state-close cases pass
+  in 2.14 seconds.
+- A direct live observation reports two provider stores, one signer, one
+  1,620-byte certificate, equal message/provider SHA-256
+  `637c86766a7fb03a8af3b6d18e2f1183594bd60a75afc1c36ba9af46ce2a5a36`,
+  and sequence SHA-256
+  `f82a6f922fab59cf00fe2bcc4c5fbe6b0ad44127468864b43dc1f2ac5f3d0e17`.
+- The post-implementation architecture cut passed eight checks and failed four
+  only for the still-absent RFC/security/public registration layer. RFC-0214,
+  security guidance, and eight registrations are now present; both Python
+  files remain clean, all 50 architecture/live tests pass in 2.38 seconds, and
+  strict docs build in 4.89 seconds with only the known Material notice.
+- The unchanged lock/environment, all 650 Python files, Ruff, strict Pyright,
+  strict docs, both governance modes, and whitespace pass. Architecture and
+  integration passes 3,631 tests with 12 skips. After an invalid concurrent
+  attempt demonstrated the retained-source suite's cross-process exclusivity,
+  fresh serial isolated CPython 3.12, 3.13, and 3.14 suites each pass 4,753
+  tests with 19 expected skips.
+- Ten real-wgpu tests, both five-repeat profiles, both deterministic vertical
+  slices, and the current registered example selector pass. Two builds are
+  byte-identical; installed wheel/scene smokes and both exact ten-artifact
+  release rehearsals pass. The pure 114-entry wheel excludes M231 and native
+  payload; the 1,092-entry source archive contains all four new files once.
+- Findings-first review corrected one fake-helper `None`/empty-tuple ambiguity
+  and added its regression. Both files are again format/Ruff/strict-Pyright
+  clean and all 51 focused checks pass. Exact scope, protected-surface,
+  disclosure, credential/path, retired-metadata, whitespace, and connectivity
+  review passes with no remaining actionable finding.
+- Record-inclusive source, docs, governance, and architecture/integration pass;
+  the latter reports 3,632 tests with 12 expected skips. Two record-state
+  builds preserve the exact wheel and reproduce the changed source archive;
+  all installed smokes, two ten-artifact release stages, exact release
+  comparison, and package inventory pass.
+- Final source/docs/governance and 3,632/12 architecture/integration separators
+  pass. Two final builds preserve the exact pure wheel and reproduce the
+  source archive; installed smokes, both release stages, exact comparison, and
+  inventory pass. An access-enabled cleanup preflight proved 34 exact M231
+  targets containing 95,107 recursive entries confined, ignored, untracked,
+  and reparse-free after the ordinary read hit expected generated ACL denials.
+- The terminating M59/M231 group passes 56 tests with source, typing,
+  governance, and whitespace clean. Immediate revalidation removed only the
+  same 34 targets and 95,107 recursive entries; zero M231 scratch remains and
+  all older `.tmp` targets are preserved.
+- The post-cleanup source, focused, docs, whitespace, connectivity, exact-scope,
+  protected-surface, disclosure, credential/path, retired-metadata, branch,
+  identity, and zero-scratch gate passes.
+- Initial DCO commit `0920956a8a47798d83213c6bbaaed22f3e028302`
+  has exact tree `a596dae192f0621738f4fb08f311d11ced2ba9c9`, sole parent exact M230,
+  exact 16-path scope with 1,734 additions and one deletion, correct identity
+  and sign-off, clean worktree, clean revision whitespace, and complete object
+  connectivity. Its factual three-record amendment produced the audited
+  candidate below.
+- Amended commit `57e173f9b09454c77d0c079de9fbeeee9d69fa96`
+  has exact tree `0d40cdeac9b404f07076189dcd63bedcdf480134`, sole parent exact M230,
+  exact 16-path scope, correct identity/DCO, clean worktree/whitespace/
+  connectivity, and a passing 56-test M59/M231 plus strict-governance audit.
+- Fresh hosted inventory finds only public `main` at exact M99; no real remote
+  branch contains M230, no PR is open, and PR #251 remains the latest merge.
+  No push, PR, hosted allocation, tag, release, or package publication occurs.
+
+### Remaining gates
+
+- None for M231. Preserve the withheld-publication boundary until the required
+  parent milestone is hosted; select the next independently approved local
+  milestone without expanding CI.
+
 ## M230 Windows source-commit Git signed-message SignerInfo binding
 
 - **Task:** Bind the complete bounded encoded SignerInfo sequence exposed by
