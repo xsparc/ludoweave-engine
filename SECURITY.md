@@ -1624,6 +1624,29 @@ hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
 authority remain unresolved. It adds no runtime surface, workflow, public
 runner, or hosted allocation.
 
+M234's test-only [Windows contained source-access source-commit Git CMS
+SignerInfo certificate-ID binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md)
+retrieves `CMSG_CMS_SIGNER_INFO_PARAM` for every exact bounded message signer
+index after M233's complete correlation. It validates the signer-info version
+and explicit `SignerId` choice before reading union data, accepts only the
+current-host version-1 issuer/serial form, copies that bounded payload, and
+requires it to equal a same-state, same-index dedicated M233 certificate ID
+and M233's detached observation. The result binds counts, indexes, versions,
+choices, boundaries, per-index hashes, and one unambiguous sequence digest
+before and after complete M233.
+
+This proves one execution-local decoded CMS identifier representation. It does
+not support alternate signer-info versions or identifier forms, inspect
+algorithms or attributes, revalidate the signature, authorize a signer or
+publisher, define an allowlist, persisted identity, or pin, establish
+revocation freshness or portable chain/timestamp semantics, bind native DLLs
+or loader state, authenticate the local object store or repository acquisition,
+or establish source/build provenance. Distinct-principal and independent-host
+behavior, hostile/privileged bypass, criteria 6/7, Windows admission, and
+cleanup authority remain unresolved. It adds no runtime surface, workflow,
+public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

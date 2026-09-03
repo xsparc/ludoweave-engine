@@ -122,6 +122,7 @@ nav:
   - Windows contained source-access source-commit Git message-signer certificate binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md
   - Windows contained source-access source-commit Git message-signer certificate-identifier binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md
   - Windows contained source-access source-commit Git message-signer certificate-ID binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md
+  - Windows contained source-access source-commit Git CMS SignerInfo certificate-ID binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -344,6 +345,7 @@ nav:
       - RFC-0214 - Bind verified Git message signers to provider certificates: rfcs/0214-bind-git-message-signer-certificate-for-source-commit-probe.md
       - RFC-0215 - Bind Git message signer certificate identifiers: rfcs/0215-bind-git-message-signer-certificate-identifier-for-source-commit-probe.md
       - RFC-0216 - Bind the explicit Git message signer certificate ID: rfcs/0216-bind-git-message-signer-certificate-id-for-source-commit-probe.md
+      - RFC-0217 - Bind the Git CMS SignerInfo certificate ID: rfcs/0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

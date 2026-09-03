@@ -4405,6 +4405,46 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding
+
+M234 starts from fully locally validated M233 commit
+`cb4dd28e021372be3c228eb911c871ef3ffbbda0`. It adopts the test-only [Windows
+contained source-access source-commit Git CMS SignerInfo certificate-ID binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md)
+under RFC-0217.
+
+One scoped composition repeats M233's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it executes
+M233's complete message/verified/provider and explicit-certificate-ID
+correlation, then retrieves `CMSG_CMS_SIGNER_INFO_PARAM` for every exact
+bounded message signer through a two-phase read. It validates the signer-info
+version and `SignerId` discriminant before reading pointer-bearing union data,
+requires the current-host version-1 issuer/serial form, copies the bounded
+payload, and requires exact equality with a same-state, same-index dedicated
+M233 certificate-ID read and detached observation.
+
+The detached observation binds signer count, every exact index, version,
+choice, component sizes, per-index hashes, and one domain-separated aggregate
+before and after complete M233. Version 3, key-ID, hash-ID, unknown, malformed,
+or unavailable forms refuse rather than silently weakening comparison
+semantics.
+
+This binds one decoded CMS `SignerId` representation, not alternate CMS
+support, algorithm or attribute policy, signature revalidation, signer or
+publisher authorization, a persisted identity, certificate pinning,
+rotation/recovery policy, revocation freshness, portable chain or timestamp
+semantics, native DLL or loader identity, object-store trust, repository-
+acquisition attestation, or source/build provenance. Distinct-principal or
+independent-host behavior, hostile/privileged bypass, criteria 6/7, and Windows
+cleanup admission remain unresolved.
+
+M234 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

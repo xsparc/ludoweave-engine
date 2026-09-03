@@ -6,6 +6,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M234/RFC-0217's test-only [Windows contained source-access source-commit
+  Git CMS SignerInfo certificate-ID binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md).
+  It validates every bounded exact CMS signer-info version and `SignerId`,
+  requires the current-host version-1 issuer/serial form, and binds its copied
+  payload to M233's same-state, same-index certificate ID around the complete
+  M233 boundary. Runtime, package, alternate CMS support, algorithm or
+  attribute policy, signature revalidation, signer or publisher authorization,
+  revocation freshness, provenance, cleanup authority, admission, workflow,
+  and hosted allocation remain unchanged.
 - Add M233/RFC-0216's test-only [Windows contained source-access source-commit
   Git message-signer certificate-ID binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md).

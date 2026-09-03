@@ -1,5 +1,85 @@
 # Project State
 
+## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding - locally complete, publication withheld
+
+- **Baseline:** exact M233 commit
+  `cb4dd28e021372be3c228eb911c871ef3ffbbda0`, tree
+  `220d041798b5f0c67694af4178d219e38f1a8a49`, sole parent exact M232.
+- **Direction:** RFC-0217 accepts one test-only live-provider composition around
+  complete M233. It validates every exact CMS signer-info version and
+  `SignerId`, requires the current-host version-1 issuer/serial form, and binds
+  copied payload to M233 without adding CMS, algorithm, signature, identity,
+  publisher, revocation, or provenance policy.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0217, one security guide, eight public registrations, and four `.project`
+  records. M233 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** every bounded exact signer is queried through a two-phase
+  parameter-39 read. Only the aligned version/`SignerId` prefix is read;
+  pointer-bearing issuer/serial bytes are detached within buffer lifetime and
+  must equal a same-state dedicated M233 read plus M233's observation. Version
+  3, alternate identifier choices, malformed values, and mismatches refuse;
+  inherited provider-state close semantics remain unchanged.
+- **Evidence:** the retained 40-test M233 baseline and strict governance pass.
+  The intentional red isolated nine missing boundary/registration checks.
+  The implementation passes 25 live/fake tests; after one mechanical import-
+  order correction, both new Python files are format/Ruff/strict-Pyright clean
+  and the exact M59/M234 group passes 41 tests.
+- **Source/docs:** the unchanged lock/environment, all 656 Python files, strict
+  docs, both governance modes, and whitespace pass.
+- **Architecture/integration:** the first complete run passed 3,757 tests and
+  skipped 12 but hit one pre-existing M223 Job Object settling failure; the
+  exact isolated test immediately passed and a clean complete rerun later
+  passed 3,759 tests with 12 expected skips.
+- **Supported interpreters:** isolated CPython 3.12, 3.13, and 3.14 each pass
+  4,880 tests with 19 expected skips.
+- **Rendering/examples:** real wgpu, both five-repeat profiles, Null/wgpu
+  Clockwork, Agent World Builder, and the selected three-test example group
+  reproduce established identities and pass.
+- **Distribution:** two byte-identical 366,676-byte pure wheels and 2,778,811-
+  byte source archives pass installed smokes; both ten-artifact release stages
+  pass and compare exactly. Inventory keeps M234 out of the wheel and includes
+  each new source once.
+- **Review:** no boundary defect remains known. An additional equal-
+  concatenation/different-boundary digest case passes; focused validation now
+  reports 42 passes. Exact scope, disclosure, credential/path, retired-
+  metadata, branch, identity, whitespace, and Git-object audits are clean.
+- **Record-inclusive separator:** source, docs, both governance modes, and
+  whitespace pass; a clean complete architecture/integration rerun passes
+  3,759 tests with 12 expected skips and does not reproduce the earlier M223
+  settling failure.
+- **Record-state release:** the pure wheel remains stable; the record-inclusive
+  source archive reproduces, installed smokes pass, and both ten-artifact
+  release stages are exact with expected inventories.
+- **Final behavioral separator:** source, docs, dated strict governance, and
+  whitespace are clean; a second complete architecture/integration run passes
+  3,759 tests with 12 expected skips.
+- **Final release separator:** the pure wheel remains stable, the source
+  archive reproduces, installed smokes pass, and both release stages and
+  inventories match exactly.
+- **Cleanup:** 17 exact generated M234 targets containing 76,399 recursive
+  entries were revalidated as confined, ignored, untracked, and reparse-free
+  before removal; zero M234 scratch remains and all 56 older entries are
+  preserved.
+- **Post-cleanup gate:** the lock, all 656 Python files, focused 42-test group,
+  strict docs/governance, whitespace, object connectivity, and zero-scratch
+  assertion pass.
+- **Scope review:** exactly 16 intended paths, no protected drift, no public
+  development-tool disclosure or credential-like/machine-local additions, no
+  retired metadata, correct neutral branch/identity, exact ancestry, and clean
+  whitespace/connectivity.
+- **DCO candidate:** initial exact-parent 16-path commit is clean, correctly
+  attributed and signed off, whitespace-clean, fully connected, zero-scratch,
+  and passes focused/governance checks. This factual ledger amendment is
+  pending before the hosted safety gate.
+- **Publication:** amended exact-parent candidate is clean and fully validated.
+  Fresh hosted inventory still has only M99 on `main`; no remote contains M233
+  and no PR is open. M234 remains local to avoid exposing M100-M233 or spending
+  hosted CI allocation.
+- **Pending:** none for M234. Preserve the withheld-publication boundary until
+  its required parent is hosted.
+
 ## M233 Windows source-commit Git message-signer certificate-ID binding - locally complete, publication withheld
 
 - **Baseline:** exact M232 commit

@@ -221,3 +221,4 @@ was adopted.
 - [RFC-0214: bind verified Git message signers to provider certificates](0214-bind-git-message-signer-certificate-for-source-commit-probe.md)
 - [RFC-0215: bind Git message signer certificate identifiers](0215-bind-git-message-signer-certificate-identifier-for-source-commit-probe.md)
 - [RFC-0216: bind the explicit Git message signer certificate ID](0216-bind-git-message-signer-certificate-id-for-source-commit-probe.md)
+- [RFC-0217: bind the Git CMS SignerInfo certificate ID](0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md)

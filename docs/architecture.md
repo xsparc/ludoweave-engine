@@ -6094,6 +6094,43 @@ M233 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding
+
+M234 adds the test-only [Windows contained source-access source-commit Git CMS
+SignerInfo certificate-ID binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md).
+It repeats M233's retained path/handle and cached Authenticode policy. While
+provider state remains live, complete M233 runs first; the extension then
+reacquires the same message and bounded signer count.
+
+For every exact message signer index, a bounded two-phase
+`CMSG_CMS_SIGNER_INFO_PARAM` read returns a pointer-bearing CMS signer record.
+Only the aligned version and `SignerId` prefix is read. This current-host
+profile requires version 1 plus `CERT_ID_ISSUER_SERIAL_NUMBER`; version 3,
+key-ID, SHA-1 hash-ID, unknown, malformed, empty, oversized, or unavailable
+forms refuse. Issuer and serial bytes are copied before the native buffer
+expires and must equal both a same-state, same-index dedicated M233 certificate
+ID and M233's detached observation.
+
+The immutable result extends M233's complete observation with each CMS version,
+choice, component lengths, domain-separated per-index hashes, and one count/
+index/version/choice/length/value sequence digest. Equality is required before
+and after complete M233. Provider state retains M233's close-on-every-outcome
+discipline.
+
+This is execution-local CMS certificate-ID representation binding, not general
+CMS support, algorithm or attribute policy, signature revalidation,
+certificate equivalence, signer or publisher authorization, identity
+persistence, pinning, rotation/recovery, revocation freshness, portable chain/
+timestamp semantics, native-loader trust, local-object-store or repository-
+acquisition trust, or source/build provenance. Distinct principal, independent
+host, hostile or privileged bypass, criteria 6/7, Windows admission, and cleanup
+authority remain outside the evidence.
+
+M234 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

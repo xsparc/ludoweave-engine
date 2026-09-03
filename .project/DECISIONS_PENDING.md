@@ -2,6 +2,29 @@
 
 No architecture decision is currently blocked.
 
+## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding
+
+RFC-0217 accepts one direction-preserving, test-only composition: execute
+M233's complete correlation in live WinTrust provider state, then retrieve
+each exact signer's `CMSG_CMS_SIGNER_INFO_PARAM` through a bounded two-phase
+read. Read only the version/`SignerId` prefix, validate both discriminants,
+require the current-host version-1 issuer/serial form, copy both components
+within the owning buffer lifetime, and require equality with a same-state,
+same-index dedicated M233 read and detached observation. Bind counts, indexes,
+versions, choices, boundaries, per-index hashes, and one domain-separated
+aggregate before and after complete M233.
+
+This binds one execution-local CMS representation. It deliberately refuses
+version 3 and alternate identifier forms and does not inspect algorithms or
+attributes, revalidate signatures, authorize a signer or publisher, persist
+identity, pin a certificate, prove revocation freshness, establish portable
+chain/timestamp or trust-store authority, bind native DLL/loader state,
+authenticate the object store or repository acquisition, or provide source/
+build provenance. Distinct-principal or independent-host behavior, hostile/
+privileged bypass, criteria 6/7, cleanup authority, and Windows admission
+remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M233 Windows source-commit Git message-signer certificate-ID binding
 
 RFC-0216 accepts one direction-preserving, test-only composition: execute
