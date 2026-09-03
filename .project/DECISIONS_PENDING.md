@@ -2,6 +2,27 @@
 
 No architecture decision is currently blocked.
 
+## M233 Windows source-commit Git message-signer certificate-ID binding
+
+RFC-0216 accepts one direction-preserving, test-only composition: execute
+M232's complete correlation in live WinTrust provider state, then retrieve each
+exact signer's `CMSG_SIGNER_CERT_ID_PARAM` through a bounded two-phase read.
+Validate the explicit discriminant before union access, require the current-
+host issuer/serial choice, copy both components within the owning buffer
+lifetime, and require equality with M232's same-index legacy selector. Bind
+counts, indexes, choices, boundaries, per-index hashes, and one domain-
+separated aggregate before and after complete M232.
+
+This binds one explicit execution-local representation. It deliberately
+refuses key-ID and hash-ID forms and does not authorize a signer or publisher,
+persist identity, pin a certificate, define rotation/recovery, prove revocation
+freshness, establish portable chain/timestamp semantics or trust-store
+authority, bind native DLL/loader state, authenticate the local object store or
+repository acquisition, or provide source/build provenance. Distinct-
+principal or independent-host behavior, hostile/privileged bypass, criteria
+6/7, cleanup authority, and Windows admission remain pending. No public self-
+hosted runner or added hosted check is authorized.
+
 ## M232 Windows source-commit Git message-signer certificate-identifier binding
 
 RFC-0215 accepts one direction-preserving, test-only composition: repeat

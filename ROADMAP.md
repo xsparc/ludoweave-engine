@@ -4368,6 +4368,43 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M233 Windows source-commit Git message-signer certificate-ID binding
+
+M233 starts from fully locally validated M232 commit
+`2442998c1ae64d26c0b871a92ad9757416364716`. It adopts the test-only [Windows
+contained source-access source-commit Git message-signer certificate-ID binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md)
+under RFC-0216.
+
+One scoped composition repeats M232's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it executes
+M232's complete message/verified/provider certificate-identifier correlation,
+then retrieves `CMSG_SIGNER_CERT_ID_PARAM` for every exact bounded message
+signer through a two-phase read. It validates the `CERT_ID` discriminant before
+reading its union, requires the current-host issuer/serial choice, copies the
+bounded payload, and requires exact equality with M232's same-index legacy
+message selector.
+
+The detached observation binds the signer count, every exact index and choice,
+component sizes, per-index hashes, and one domain-separated aggregate before
+and after complete M232. Key-ID, hash-ID, unknown, malformed, or unavailable
+forms refuse rather than silently weakening comparison semantics.
+
+This binds one explicit message certificate-ID representation, not alternate-
+identifier support, signer or publisher authorization, a persisted identity,
+certificate pinning, rotation/recovery policy, revocation freshness, portable
+chain or timestamp semantics, native DLL or loader identity, object-store
+trust, repository-acquisition attestation, or source/build provenance.
+Distinct-principal or independent-host behavior, hostile/privileged bypass,
+criteria 6/7, and Windows cleanup admission remain unresolved.
+
+M233 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

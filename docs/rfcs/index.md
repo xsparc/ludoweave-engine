@@ -220,3 +220,4 @@ was adopted.
 - [RFC-0213: bind retained Git WinTrust signed-message SignerInfo values](0213-bind-git-signed-message-signer-info-for-source-commit-probe.md)
 - [RFC-0214: bind verified Git message signers to provider certificates](0214-bind-git-message-signer-certificate-for-source-commit-probe.md)
 - [RFC-0215: bind Git message signer certificate identifiers](0215-bind-git-message-signer-certificate-identifier-for-source-commit-probe.md)
+- [RFC-0216: bind the explicit Git message signer certificate ID](0216-bind-git-message-signer-certificate-id-for-source-commit-probe.md)

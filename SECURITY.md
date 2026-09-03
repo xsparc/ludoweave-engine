@@ -1603,6 +1603,27 @@ principal and independent-host behavior, hostile/privileged bypass, criteria
 6/7, Windows admission, and cleanup authority remain unresolved. It adds no
 runtime surface, workflow, public runner, or hosted allocation.
 
+M233's test-only [Windows contained source-access source-commit Git message-
+signer certificate-ID binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md)
+retrieves `CMSG_SIGNER_CERT_ID_PARAM` for every exact bounded message signer
+index after M232's complete correlation. It validates the explicit choice
+before reading its union, accepts only the current-host issuer/serial form,
+copies that bounded payload, and requires it to equal M232's same-index legacy
+message selector. The detached result binds counts, indexes, choices,
+boundaries, per-index hashes, and one unambiguous sequence digest before and
+after complete M232.
+
+This proves one execution-local explicit certificate-ID representation. It
+does not support key-ID or hash-ID forms, authorize a signer or publisher,
+define an allowlist, persisted identity, or pin, establish revocation freshness
+or portable chain/timestamp semantics, bind native DLLs or loader state,
+authenticate the local object store or repository acquisition, or establish
+source/build provenance. Distinct-principal and independent-host behavior,
+hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
+authority remain unresolved. It adds no runtime surface, workflow, public
+runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

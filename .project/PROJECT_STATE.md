@@ -1,5 +1,73 @@
 # Project State
 
+## M233 Windows source-commit Git message-signer certificate-ID binding - locally complete, publication withheld
+
+- **Baseline:** exact M232 commit
+  `2442998c1ae64d26c0b871a92ad9757416364716`, tree
+  `1b61fbce1211c0e331eec7e7732f9c910dd92952`, sole parent exact M231.
+- **Direction:** RFC-0216 accepts one test-only live-provider composition around
+  M232. It validates each explicit `CERT_ID` discriminant, requires the
+  current-host issuer/serial form, and binds its copied payload to M232's same-
+  index selector without adding identity, publisher, revocation, or provenance
+  policy.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0216, one security guide, eight public registrations, and four `.project`
+  records. M232 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** every bounded exact signer is queried through a two-phase
+  parameter-38 read; the discriminant is checked before union access; issuer
+  and serial bytes are detached inside the buffer lifetime and must exactly
+  equal M232. Key-ID, hash-ID, unknown, malformed, empty, oversized, missing,
+  or mismatched values refuse. Provider-state close semantics are inherited
+  unchanged from M232.
+- **Evidence:** corrected focused M59/M232 baseline passes 60 tests. The
+  intentional M233 red failed nine absence checks while two protection checks
+  passed. The implementation passes 19 live/fake tests; after one lint and six
+  typing corrections, both new Python files are clean and the registered M233
+  architecture/live group passes all 30 tests.
+- **Whole-project gate:** the unchanged lock/environment, all 654 Python files,
+  strict docs, both governance modes, and whitespace are clean. Architecture
+  and integration pass 3,717 tests with 12 expected skips. Isolated CPython
+  3.12, 3.13, and 3.14 each pass 4,839 tests with 19 expected skips.
+- **Rendering/examples:** real wgpu, five-repeat base/graphics profiles, the
+  Clockwork Null/wgpu comparison, Agent World Builder, and selected registered
+  example tests reproduce their established deterministic identities.
+- **Distribution:** two byte-identical pure wheels and source archives pass all
+  installed smokes; two ten-artifact release stages pass and compare exactly.
+  Inventory keeps M233 out of the wheel and includes its four source files once.
+- **Review:** no boundary defect remains known. Focused digest, malformed-read,
+  oversized-component, error-context, and lifecycle proof now passes 35 tests.
+- **Record-inclusive separator:** source, docs, governance, whitespace, and the
+  3,722-pass/12-skip architecture/integration boundary are clean.
+- **Record-state release:** the pure wheel remains stable; the record-inclusive
+  source archive reproduces, installed smokes pass, and both ten-artifact
+  release stages are exact.
+- **Final behavioral separator:** source, docs, governance, whitespace, and a
+  second 3,722-pass/12-skip architecture/integration run are clean.
+- **Final release separator:** the pure wheel remains stable, the source archive
+  reproduces, installed smokes pass, and both release stages and inventories
+  match exactly.
+- **Cleanup:** 23 exact generated M233 scratch targets were revalidated as
+  confined, ignored, untracked, and reparse-free before removal; zero M233
+  scratch remains and older scratch is preserved.
+- **Post-cleanup gate:** the lock, all 654 Python files, focused 40-test group,
+  dated strict governance, whitespace, and object connectivity pass with zero
+  M233 scratch.
+- **Scope review:** exactly 16 intended paths, no protected drift, no public
+  development-tool disclosure or credential-like assignment, no retired
+  metadata, correct neutral branch/identity, and clean focused/governance/
+  whitespace checks.
+- **DCO candidate:** initial exact-parent 16-path commit is clean, correctly
+  attributed and signed off, whitespace-clean, and fully connected. Its
+  factual ledger amendment is pending before the fresh hosted safety gate.
+- **Publication:** amended exact-parent candidate is clean and fully validated.
+  Fresh hosted inventory still has only M99 on `main`; no remote contains M232
+  and no PR is open. M233 remains local to avoid exposing M100-M232 or spending
+  hosted CI allocation.
+- **Pending:** complete cross-version, docs, package/release, review, guarded
+  cleanup, DCO, and fresh hosted publication-safety gates.
+
 ## M232 Windows source-commit Git message-signer certificate-identifier binding - locally complete, publication withheld
 
 - **Baseline:** exact M231 commit

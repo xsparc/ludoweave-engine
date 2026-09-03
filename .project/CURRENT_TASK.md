@@ -1,5 +1,132 @@
 # Current task
 
+## M233 Windows source-commit Git message-signer certificate-ID binding
+
+- **Task:** Bind every bounded message signer's explicit `CERT_ID` choice and
+  copied issuer/serial payload to M232's same-index legacy message selector
+  before and after the complete M232 boundary.
+- **Status:** Direction research, exact M232 baseline, protected-hash capture,
+  neutral branch containment, intentional architecture red, native
+  implementation, alternate-choice/malformed-input failure coverage, live
+  capability observation, RFC-0216, security guidance, eight public
+  registrations, complete cross-version validation, rendering/profile/example
+  coverage, reproducible package/release rehearsal, findings-first review,
+  guarded cleanup, DCO object, and fresh hosted publication-safety audits are
+  complete. M233 is locally complete; publication is withheld because no real
+  remote branch contains required M232.
+- **Base:** exact fully locally validated M232 DCO commit
+  `2442998c1ae64d26c0b871a92ad9757416364716`, tree
+  `1b61fbce1211c0e331eec7e7732f9c910dd92952`, with sole parent exact M231.
+- **Branch:** `release/m233-windows-source-commit-git-message-signer-certificate-id-binding`;
+  exact containment made the local M232 branch redundant, so only local
+  `main` and active M233 remain.
+
+### M233 acceptance boundary
+
+- Repeat M232's exact retained path/handle, no-UI, cache-only,
+  explicit-no-revocation `WINTRUST_ACTION_GENERIC_VERIFY_V2` request.
+- Execute M232's complete message/verified/provider certificate-identifier
+  correlation while provider state remains live.
+- Retrieve `CMSG_SIGNER_CERT_ID_PARAM` for every exact bounded signer through a
+  bounded two-phase read and validate `dwIdChoice` before union access.
+- Require the current-host `CERT_ID_ISSUER_SERIAL_NUMBER` form; refuse key-ID,
+  hash-ID, unknown, malformed, empty, oversized, or unavailable values.
+- Copy the pointer-bearing issuer and serial payload before its native buffer
+  expires and require exact equality with M232's same-index legacy selector.
+- Bind counts, indexes, explicit choices, component lengths, per-index hashes,
+  and one domain-separated aggregate; require the immutable observation across
+  complete M232.
+- Preserve M232 and every earlier protected boundary byte-for-byte. Add zero
+  runtime/package/dependency/lock/workflow/fixture/example/script/benchmark
+  surface and zero hosted allocation.
+- Keep alternate identifier support, signer/publisher authorization,
+  allowlisting/pinning/rotation/recovery, revocation freshness, portable chain
+  or timestamp semantics, trust-store administration, native-loader identity,
+  object-store/repository-acquisition/source/build provenance, criteria 6/7,
+  cleanup authority, and Windows admission unresolved.
+
+### Validation evidence so far
+
+- Exact M232 history and clean worktree were confirmed. After correcting the
+  retained M59 test filename and module invocation, the M59/M232 baseline
+  passes 60 tests in 2.51 seconds. Ruff, strict Pyright, and dated strict
+  governance return zero findings.
+- Current Microsoft documentation defines `CERT_ID` as a discriminated union
+  of issuer/serial, key-ID, or SHA-1 hash-ID and documents parameter 38 as the
+  exact per-signer public-key identifier. SLSA 1.2 continues to keep source
+  provenance SCS-issued and separate from local executable observations.
+- Exact M232/workflow/package hashes were captured. Neutral M233 was created
+  from exact M232, redundant local M232 was removed, and only local `main` plus
+  active M233 remain.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed nine checks only because the planned probe, RFC/security decision,
+  and public registrations were absent.
+- The first implementation pass passed all 19 live/fake tests but exposed one
+  ctypes-union Ruff annotation and six strict typing findings. The mechanical
+  correction is format/Ruff/strict-Pyright clean. With RFC-0216, security
+  guidance, and eight registrations present, all 30 M233 architecture/live
+  tests pass in 2.14 seconds.
+- The unchanged 46-package lock and 45-package frozen all-group/graphics
+  environment pass. All 654 Python files are format-clean; Ruff, strict
+  Pyright, strict docs, both governance modes, and whitespace pass. The full
+  architecture/integration boundary passes 3,717 tests with 12 expected skips
+  in 251.68 seconds.
+- Fresh isolated CPython 3.12, 3.13, and 3.14 runs each install the frozen 45-
+  package all-group/graphics environment and pass 4,839 tests with 19 expected
+  skips. They ran serially with separate M233 scratch roots.
+- Ten real-wgpu tests, both five-repeat profiles, two identical Null and one
+  matching wgpu Clockwork runs, Agent World Builder, and the selected three-
+  test registered example group pass with the established deterministic state,
+  capture, and replay identities.
+- Two builds are byte-identical; installed wheel/scene/scene-file smokes and
+  both exact ten-artifact release rehearsals pass. The pure 114-entry wheel
+  excludes M233/native/test/documentation payload; the 1,100-entry source
+  archive contains each new M233 file once.
+- Findings-first review found no boundary defect and added digest-boundary/
+  order, short-read, oversized-component, native-error, and named-lifecycle
+  hardening. Both new Python files are clean and all 35 focused checks pass.
+- Record-inclusive source, docs, both governance modes, and whitespace pass;
+  the complete architecture/integration separator passes 3,722 tests with 12
+  expected skips in 247.26 seconds.
+- Two record-state builds preserve the pure wheel, reproduce the source
+  archive, pass all installed smokes, and produce two identical passing ten-
+  artifact release stages.
+- The final source/docs/governance/whitespace separator passes, and the final
+  complete architecture/integration run again reports 3,722 passes and 12
+  expected skips.
+- Two final builds again preserve the pure wheel, reproduce the source archive,
+  pass all installed smokes, and produce identical passing ten-artifact release
+  stages with the expected 114/1,100 package inventories.
+- Guarded exact-set cleanup removed only 23 generated M233 targets containing
+  57,952 recursive entries after path/ignore/tracking/reparse revalidation;
+  zero M233 scratch remains and older `.tmp` content is preserved.
+- The post-cleanup lock/source/focused/governance/whitespace/connectivity gate
+  passes: 654 files are clean and the exact M59/M233 group passes 40 tests in
+  2.55 seconds with zero M233 scratch.
+- Final exact-scope review confirms the intended 16 paths, zero protected-
+  surface drift, zero public development-tool disclosure or credential-like
+  assignment, absent retired metadata, neutral two-branch hygiene, correct Git
+  identity, and a passing 40-test focused plus strict-governance separator.
+- Initial DCO commit `9416e1b7ab4d13976502763ace25902c2491d2a8`
+  has exact tree `32577b6d1f5701df068ba0d00bbbaba96908f3a4`, sole parent exact M232,
+  exact 16-path scope with 1,422 additions and one deletion, correct identity/
+  sign-off, clean worktree/whitespace, and complete object connectivity. Only
+  this factual ledger amendment precedes the hosted safety gate.
+- Amended candidate `9037f99241f30131cab0a2b2737dc12346dafb4c`
+  has exact tree `d9c1368dbc22ed2889f47846c26b408e3ee61aed`, sole parent exact M232,
+  exact 16-path scope with 1,431 additions and one deletion, correct identity/
+  DCO, clean worktree/whitespace/connectivity, zero M233 scratch, and a passing
+  40-test M59/M233 plus strict-governance audit.
+- Fresh hosted inventory finds only public `main` at exact M99; no real remote
+  branch contains M232, no PR is open, and PR #251 remains the latest merge.
+  No push, PR, hosted allocation, tag, release, or package publication occurs.
+
+### Remaining gates
+
+- None for M233. Preserve the withheld-publication boundary until the required
+  parent milestone is hosted; continue only with another approved local,
+  CI-neutral milestone.
+
 ## M232 Windows source-commit Git message-signer certificate-identifier binding
 
 - **Task:** Bind every bounded message signer certificate selector's exact

@@ -6059,6 +6059,41 @@ M232 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M233 Windows source-commit Git message-signer certificate-ID binding
+
+M233 adds the test-only [Windows contained source-access source-commit Git
+message-signer certificate-ID binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md).
+It repeats M232's retained path/handle and cached Authenticode policy. While
+provider state remains live, complete M232 runs first; the extension then
+reacquires the same message and bounded signer count.
+
+For every exact message signer index, a bounded two-phase
+`CMSG_SIGNER_CERT_ID_PARAM` read returns a pointer-bearing `CERT_ID`. The
+discriminant is validated before union access. This current-host profile
+requires `CERT_ID_ISSUER_SERIAL_NUMBER`; key-ID, SHA-1 hash-ID, unknown,
+malformed, empty, oversized, or unavailable forms refuse. Issuer and serial
+bytes are copied before the native buffer expires and must equal M232's same-
+index legacy message selector.
+
+The immutable result extends M232's complete observation with each explicit
+choice, component lengths, domain-separated per-index hashes, and one count/
+index/choice/length/value sequence digest. Equality is required before and
+after complete M232. Provider state retains M232's close-on-every-outcome
+discipline.
+
+This is execution-local certificate-ID representation binding, not general
+identifier support, certificate equivalence, signer or publisher
+authorization, identity persistence, pinning, rotation/recovery, revocation
+freshness, portable chain/timestamp semantics, native-loader trust, local-
+object-store or repository-acquisition trust, or source/build provenance.
+Distinct principal, independent host, hostile or privileged bypass, criteria
+6/7, Windows admission, and cleanup authority remain outside the evidence.
+
+M233 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,
