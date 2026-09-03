@@ -505,7 +505,17 @@ LudoWeave is an experimental, deterministic, headless-first Python engine for 2D
 > native-loader identity, provenance, cleanup, admission, workflow, and hosted
 > checks remain unchanged.
 
-> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M231 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
+> M232 adds a test-only [Windows contained source-access source-commit Git
+> message-signer certificate-identifier binding
+> probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md).
+> It retrieves every bounded exact message signer certificate selector and
+> requires its issuer and serial number to equal the verified and same-index
+> provider certificates before and after M231. Signer or publisher
+> authorization, persistent identity, pinning, revocation freshness,
+> native-loader identity, provenance, cleanup, admission, workflow, and hosted
+> checks remain unchanged.
+
+> Project status: community-alpha release candidate (`0.1.0a1`). M0 through M99 are hosted-validated and integrated into `main`; M100 through M232 are locally validated stacked milestones from the exact M99 closeout. External adoption and release-readiness observations remain explicitly bounded by the reviewed evidence records and roadmap. No public release has been made.
 
 Earlier readiness evidence remains deliberately empty where no external result
 exists:

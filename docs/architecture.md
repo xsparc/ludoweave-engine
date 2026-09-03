@@ -6024,6 +6024,41 @@ M231 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M232 Windows source-commit Git message-signer certificate-identifier binding
+
+M232 adds the test-only [Windows contained source-access source-commit Git
+message-signer certificate-identifier binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md).
+It repeats M231's retained path/handle and cached Authenticode policy. While
+provider state remains live, it requires bounded equal provider/message signer
+counts, a bounded provider-store count, and a live store array when nonempty.
+
+For every exact signer index, a bounded two-phase
+`CMSG_SIGNER_CERT_INFO_PARAM` read copies only its documented valid issuer and
+serial-number fields. The same fields are copied from the exact verified
+message certificate before its context is released and from the same-index
+primary provider certificate. M231's exact verified/provider DER equality is
+retained. Exact identifier equality is required across all three sources.
+
+The detached observation binds the store and signer counts, issuer/serial
+component lengths, domain-separated per-source hashes, and one unambiguous
+source/index/length/value sequence digest. It must match before and after the
+complete M231 boundary. Every returned certificate context is freed and
+provider state closes after success or failure.
+
+This is an execution-local certificate-selector correlation, not a general
+certificate-equivalence or identity service. It does not authorize a signer or
+publisher, persist an identity, pin a certificate, define rotation/recovery,
+establish revocation freshness or portable chain/timestamp semantics, bind
+DLL/native-loader state, establish local-object-store or repository-acquisition
+trust, or provide source/build provenance. Distinct principal, independent
+host, hostile or privileged bypass, criteria 6/7, Windows admission, and
+cleanup authority remain outside the evidence.
+
+M232 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

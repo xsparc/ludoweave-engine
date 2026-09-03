@@ -4327,6 +4327,47 @@ permission, secret, public runner, or hosted execution path; no hosted check is
 added. Windows remains unadmitted and cleanup remains unimplemented and
 unauthorized.
 
+## M232 Windows source-commit Git message-signer certificate-identifier binding
+
+M232 starts from fully locally validated M231 commit
+`b4d213a11af0b2cbb9bb9c300ec1e728d951a45e`. It adopts the test-only [Windows
+contained source-access source-commit Git message-signer certificate-identifier
+binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md)
+under RFC-0215.
+
+One scoped composition repeats M231's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it requires
+bounded equal provider/message signer counts and a bounded provider-store
+array. For every exact signer index it retrieves
+`CMSG_SIGNER_CERT_INFO_PARAM` through a bounded two-phase read and copies the
+only documented valid fields: issuer and serial number.
+
+The probe copies those same fields from the exact verified message certificate
+and same-index primary provider certificate while retaining M231's DER
+equality. All three identifiers must be exactly equal. The detached observation
+binds counts, exact component sizes, domain-separated per-source hashes, and
+one unambiguous index/length/value sequence digest before and after M231. Every
+returned certificate context is freed and provider state closes after every
+outcome.
+
+This binds execution-local message selector, verified-certificate, and
+provider-certificate correlation. It does not authorize a signer or publisher,
+create a persisted identity or allowlist, pin a certificate, define
+rotation/recovery, prove revocation freshness, establish portable chain or
+timestamp semantics, bind native DLL or loader identity, authenticate the
+local object store or repository acquisition, or establish source/build
+provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, and Windows cleanup admission remain
+unresolved.
+
+M232 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the

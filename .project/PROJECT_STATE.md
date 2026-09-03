@@ -1,5 +1,76 @@
 # Project State
 
+## M232 Windows source-commit Git message-signer certificate-identifier binding - locally complete, publication withheld
+
+- **Baseline:** exact M231 commit
+  `b4d213a11af0b2cbb9bb9c300ec1e728d951a45e`, tree
+  `1673b24fe72b950babbd964db50845f446886e62`, sole parent exact M230.
+- **Direction:** RFC-0215 accepts one test-only live-provider composition around
+  M231. It copies every exact message selector's issuer and serial number and
+  requires them to equal the exact verified and same-index provider
+  certificates, without creating identity or publisher policy, revocation
+  freshness, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0215, one security guide, eight public registrations, and four `.project`
+  records. M221-M231 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** provider and message signer counts must agree within bounds;
+  every exact signer certificate-info parameter is copied through a bounded
+  two-phase read. Its issuer and serial number must equal the live verified and
+  provider certificate fields while verified/provider DER remains equal.
+  Counts, boundaries, all three hash sequences, and an unambiguous aggregate
+  must match across M231. Certificate contexts and provider state close on
+  every outcome.
+- **Evidence:** exact M231 history, the 56-test retained baseline, and both
+  governance modes pass. Current Microsoft and SDK direction supports exact
+  indexed selector correlation while keeping authorization and provenance
+  separate. Intentional red isolated nine missing checks. After one mechanical
+  import-order correction, both Python files are format/Ruff/strict-Pyright
+  clean and all 43 live/failure-cleanup integration tests pass. RFC/security
+  documentation and eight registrations are present; the complete 54-test
+  architecture/live group and strict docs build pass. Whole-project source,
+  typing, docs, governance, and whitespace pass; architecture/integration
+  passes 3,686/12; isolated CPython 3.12-3.14 each pass 4,808/19. Real-wgpu,
+  both profiles, deterministic examples, reproducible builds, installed
+  smokes, two exact release stages, and package inventory pass. Findings-first
+  review moved message identifier copying inside the owning native-buffer frame
+  and fixed one empty-sequence fixture ambiguity; the resulting 55-test focused
+  group passes and exact scope/disclosure/security/connectivity review finds no
+  remaining actionable issue. Record-inclusive source/docs/governance and
+  3,687/12 architecture/integration validation pass; record-state builds
+  preserve the exact pure wheel, reproduce the source archive, and pass all
+  installed, release-stage, comparison, and inventory checks. Final source,
+  docs, governance, and 3,687/12 architecture/integration separators repeat
+  cleanly; final builds again preserve the wheel and pass every distribution,
+  installed, release-stage, comparison, and inventory check. The terminating
+  60-test M59/M232 group and source/governance separators pass; guarded exact-
+  set revalidation removes only 17 M232 scratch targets and 32,484 recursive
+  entries, leaving zero M232 scratch and preserving older generated output.
+  The post-cleanup source/focused/docs/governance/whitespace/connectivity and
+  exact scope/protected-surface/disclosure/identity audit also pass.
+- **Boundaries:** signer/publisher authorization, persisted identity,
+  certificate allowlisting/pinning/rotation/recovery, revocation freshness,
+  portable chain/timestamp semantics, timestamp-authority policy, trust-store
+  administration, native DLL/loader state, local-object-store trust,
+  repository acquisition, source/build provenance, distinct-principal/
+  independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+  authority, and Windows admission remain unresolved.
+- **Publication:** amended local DCO candidate
+  `f6d2ee79585e4f6c65ad240e147b53b6de9760ab`, tree
+  `29400b49d14a76ffb7aa095733719afd00c490f3`, has the exact M231 parent,
+  exact 16-path scope, correct identity/DCO, clean state, whitespace,
+  connectivity, zero scratch, and a passing terminating focused/governance
+  audit. Fresh fetch and GitHub inventory find only hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M231, no PR is open, and PR #251 remains latest. Publishing
+  would expose the absent prerequisite stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- **Review:** exact 16-path scope, protected surfaces, public disclosure, delta
+  credential/local-path, retired metadata, package inventory, whitespace,
+  scratch, object connectivity, identity/DCO, and hosted ancestry all pass.
+  Findings-first review reports no remaining actionable issue.
+
 ## M231 Windows source-commit Git message-signer certificate binding - locally complete, publication withheld
 
 - **Baseline:** exact M230 commit

@@ -1583,6 +1583,26 @@ hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
 authority remain unresolved. It adds no runtime surface, workflow, public
 runner, or hosted allocation.
 
+M232's test-only [Windows contained source-access source-commit Git message-
+signer certificate-identifier binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md)
+retrieves the signer-certificate selector for every exact bounded message
+signer index and copies its issuer and serial-number blobs. It copies those
+same fields from the exact verified certificate and same-index primary provider
+certificate while retaining M231's DER equality. All three identifier values
+must match, and the detached observation binds counts, component boundaries,
+per-source hashes, and one unambiguous sequence digest before and after M231.
+
+This proves one execution-local indexed message/verified/provider certificate-
+identifier correlation across the retained-file interval. It does not
+authorize a signer or publisher, define an allowlist, persisted identity, or
+pin, establish revocation freshness or portable chain/timestamp semantics,
+bind native DLLs or loader state, authenticate the local object store or
+repository acquisition, or establish source/build provenance. Distinct-
+principal and independent-host behavior, hostile/privileged bypass, criteria
+6/7, Windows admission, and cleanup authority remain unresolved. It adds no
+runtime surface, workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

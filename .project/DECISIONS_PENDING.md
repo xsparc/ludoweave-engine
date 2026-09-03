@@ -2,6 +2,30 @@
 
 No architecture decision is currently blocked.
 
+## M232 Windows source-commit Git message-signer certificate-identifier binding
+
+RFC-0215 accepts one direction-preserving, test-only composition: repeat
+M231's exact retained-handle cached trust evaluation, retrieve each exact
+message signer's `CMSG_SIGNER_CERT_INFO_PARAM` through a bounded two-phase
+read, and copy only its issuer and serial-number blobs. Copy those same fields
+from the exact verified message certificate and same-index primary provider
+certificate while retaining M231's DER equality. Require exact three-source
+identifier equality, bind all counts, boundaries, per-source hashes, and one
+domain-separated aggregate, and require the same complete observation before
+and after M231. Every returned certificate context and provider state closes
+after every outcome.
+
+This correlates one execution-local message selector with already byte-equal
+verified/provider certificates. It does not authorize a signer or publisher,
+persist an identity, create an allowlist or pin, define rotation/recovery,
+prove revocation freshness, establish portable chain or timestamp semantics,
+authorize a timestamp authority, bind native-loader state, authenticate the
+local object store or repository acquisition, or provide source/build
+provenance. Distinct-principal or independent-host behavior,
+hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+admission remain pending. No public self-hosted runner or added hosted check is
+authorized.
+
 ## M231 Windows source-commit Git message-signer certificate binding
 
 RFC-0214 accepts one direction-preserving, test-only composition: repeat

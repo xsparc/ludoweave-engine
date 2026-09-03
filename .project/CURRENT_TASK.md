@@ -1,5 +1,137 @@
 # Current task
 
+## M232 Windows source-commit Git message-signer certificate-identifier binding
+
+- **Task:** Bind every bounded message signer certificate selector's exact
+  issuer and serial-number blobs to the verified and same-index provider
+  certificates before and after M231's complete boundary.
+- **Status:** Direction research, exact M231 baseline, protected-hash capture,
+  neutral branch containment, intentional architecture red, native
+  implementation, focused failure/free/close coverage, live capability
+  observation, RFC-0215, security guidance, eight public registrations,
+  whole-project and supported-interpreter validation, rendering/profile/
+  example coverage, reproducible package/release rehearsal, package inventory,
+  findings-first review, record-inclusive and final separators, guarded
+  cleanup, DCO object, terminating focused/governance, and fresh hosted
+  publication-safety audits are complete. M232 is locally complete;
+  publication is withheld because no real remote branch contains required
+  M231.
+- **Base:** exact fully locally validated M231 DCO commit
+  `b4d213a11af0b2cbb9bb9c300ec1e728d951a45e`, tree
+  `1673b24fe72b950babbd964db50845f446886e62`, with sole parent exact M230.
+- **Branch:** `release/m232-windows-source-commit-git-message-signer-certificate-identifier-binding`;
+  exact containment made the local M231 branch redundant, so only local `main`
+  and active M232 remain.
+
+### M232 acceptance boundary
+
+- Repeat M231's exact retained path/handle, no-UI, cache-only,
+  explicit-no-revocation `WINTRUST_ACTION_GENERIC_VERIFY_V2` request.
+- While each successful provider state is live, require a compatible provider
+  prefix, non-null message, equal positive bounded provider/message signer
+  counts, and a bounded provider-store array.
+- Retrieve `CMSG_SIGNER_CERT_INFO_PARAM` for every exact signer index through a
+  bounded two-phase read; copy only its documented valid issuer and serial-
+  number blobs.
+- Verify that exact signer, copy the same fields from its live certificate
+  context before release, resolve the same-index primary provider certificate,
+  and retain M231's exact verified/provider DER equality.
+- Require exact identifier equality across message, verified-certificate, and
+  provider-certificate sources. Bind store/signer counts, component sizes,
+  domain-separated per-source hashes, and a complete sequence digest.
+- Free every returned certificate context and close provider state in
+  `finally`, preserving a primary failure over a simultaneous free failure.
+- Require the complete immutable observation across M231's complete boundary.
+- Preserve every M221-M231 evidence file byte-for-byte. Protect runtime,
+  package, dependency, lock, workflow, fixture, example, script, and benchmark
+  surfaces; add zero GitHub Actions job or hosted allocation.
+- Keep signer/publisher authorization, persisted identity, certificate
+  allowlisting/pinning/rotation/recovery, revocation freshness, portable chain
+  or timestamp semantics, timestamp-authority policy, trust-store
+  administration, native-loader identity, local-object-store trust, repository
+  acquisition, source/build provenance, distinct principal, hostile/privileged
+  behavior, independent host, criteria 6/7, cleanup authority, and Windows
+  admission unresolved.
+
+### Validation evidence so far
+
+- Exact M231 history and clean worktree were confirmed. The retained M59/M231
+  group passes 56 tests in 2.66 seconds. Static and 2026-09-03 strict
+  governance each return zero findings.
+- Current Microsoft documentation defines parameter 7 as returning the signer
+  `CERT_INFO` needed for certificate retrieval, with only issuer and serial
+  number valid; the installed SDK agrees. Current SLSA 1.2 guidance keeps
+  source provenance and producer expectations separate from local executable
+  identity correlation.
+- M232 was created from exact M231; redundant local M231 was removed. Protected
+  M231/workflow/package hashes were captured and only local `main` plus active
+  M232 remain.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed nine checks only because the planned probe, RFC/security decision, and
+  public registrations were absent.
+- The first implementation pass needed one mechanical import-order correction;
+  strict Pyright was already clean and all 30 initial live/failure cases passed.
+  Expanded identifier and retained-boundary coverage is format/Ruff/strict-
+  Pyright clean and all 43 integration cases pass in 2.23 seconds.
+- RFC-0215, security guidance, and eight registrations are present. All 54
+  architecture/live tests pass in 2.21 seconds and strict docs build in 4.06
+  seconds with only the known Material notice.
+- The unchanged 46-package lock, 45-package frozen graphics environment, all
+  652 Python files, Ruff, strict Pyright, strict docs, both governance modes,
+  and whitespace pass. Architecture/integration passes 3,686 tests with 12
+  expected skips. Isolated CPython 3.12, 3.13, and 3.14 each pass 4,808 tests
+  with 19 expected skips.
+- Ten real-wgpu tests, both five-repeat profiles, two identical Null and one
+  matching wgpu Clockwork runs, Agent World Builder, and the registered two-
+  test example selector pass. Two builds are byte-identical; installed wheel/
+  scene/scene-file smokes and both exact ten-artifact release rehearsals pass.
+  The pure 114-entry wheel excludes M232/native payload; the 1,096-entry source
+  archive contains each new M232 file once.
+- Findings-first review corrected one message `CERT_INFO` buffer-lifetime risk
+  by copying identifier bytes inside the owning call frame and one fake-helper
+  empty-sequence ambiguity. Both files are again format/Ruff/strict-Pyright
+  clean and all 55 focused checks pass. Exact scope, protected-surface,
+  disclosure, credential/path, retired-metadata, whitespace, connectivity,
+  branch, and identity review finds no remaining actionable issue.
+- Record-inclusive source/docs/governance and 3,687/12 architecture/integration
+  validation pass. Two record-state builds preserve the exact pure wheel,
+  reproduce the changed source archive, and pass all installed smokes, two
+  exact release stages, release comparison, and package inventory.
+- Final source/docs/governance and 3,687/12 architecture/integration separators
+  pass. Two final builds again preserve the exact pure wheel, reproduce the
+  changed source archive, and pass all installed, release-stage, comparison,
+  and inventory checks.
+- The terminating M59/M232 group passes 60 tests with source, typing,
+  governance, and whitespace clean. Immediate exact-set revalidation removed
+  only 17 generated M232 targets containing 32,484 recursive entries; zero
+  M232 scratch remains and all older `.tmp` targets are preserved.
+- The post-cleanup lock/source/focused/docs/governance/whitespace/connectivity
+  gate passes. Exact audit confirms 16 intended paths, zero protected-surface
+  drift, zero M232 scratch, neutral two-branch hygiene, correct identity, and
+  no disclosure or credential/local-path finding.
+- The final pre-stage M59/M232 group passes 60 tests in 2.52 seconds; dated
+  strict governance and whitespace remain clean.
+- Initial DCO commit `c5bda1cdf5b514f184557e6da1754165b6ce8f62`
+  has exact tree `84e6c3fd5d21f926cd23d267182f2e106b2efe06`, sole parent exact M231,
+  exact 16-path scope with 1,889 additions and one deletion, correct identity
+  and sign-off, clean worktree/whitespace, and complete object connectivity.
+  Only the factual project-ledger amendment follows before hosted safety is
+  evaluated.
+- Amended DCO candidate `f6d2ee79585e4f6c65ad240e147b53b6de9760ab`
+  has exact tree `29400b49d14a76ffb7aa095733719afd00c490f3`, sole parent exact M231,
+  exact 16-path scope with 1,901 additions and one deletion, correct identity/
+  DCO, clean worktree/whitespace/connectivity, zero M232 scratch, and a passing
+  60-test M59/M232 plus strict-governance audit.
+- Fresh hosted inventory finds only public `main` at exact M99; no real remote
+  branch contains M231, no PR is open, and PR #251 remains the latest merge.
+  No push, PR, hosted allocation, tag, release, or package publication occurs.
+
+### Remaining gates
+
+- None for M232. Preserve the withheld-publication boundary until the required
+  parent milestone is hosted; select the next approved local milestone without
+  expanding CI.
+
 ## M231 Windows source-commit Git message-signer certificate binding
 
 - **Task:** Correlate every bounded verified message-signer certificate with

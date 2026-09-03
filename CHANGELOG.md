@@ -6,6 +6,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M232/RFC-0215's test-only [Windows contained source-access source-commit
+  Git message-signer certificate-identifier binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md).
+  It copies each bounded exact message selector's issuer and serial-number
+  blobs and requires them to equal the verified and same-index provider
+  certificates around M231. Runtime, package, signer or publisher
+  authorization, persistent identity, certificate pinning, revocation
+  freshness, provenance, cleanup authority, admission, workflow, and hosted
+  allocation remain unchanged.
 - Add M231/RFC-0214's test-only [Windows contained source-access source-commit
   Git message-signer certificate binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md).
