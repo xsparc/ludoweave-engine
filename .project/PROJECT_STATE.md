@@ -1,5 +1,70 @@
 # Project State
 
+## M235 Windows source-commit Git CMS signer hash-algorithm binding - locally validated, publication withheld
+
+- **Baseline:** exact M234 commit
+  `93a975dd3b77702ac0424b5f943ab0a626b68bd0`, tree
+  `e7250b5f32939d9f9d1fad0ac502723072af7efd`, sole parent exact M233.
+- **Direction:** RFC-0218 accepts one test-only, direction-preserving
+  composition around complete M234. It binds two native representations of
+  algorithm identity and opaque encoded parameters without creating
+  cryptographic policy, signature revalidation, or provenance claims.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0218, one security guide, eight public registrations, and four `.project`
+  records. M234 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** every bounded exact signer is queried independently through
+  CMS parameter 39 and dedicated parameter 8. Each actual output buffer owns
+  the OID and encoded-parameter ranges; values are bounded, pointer-confined,
+  copied during owner lifetime, syntax-checked, and required to be exactly
+  equal before and after complete M234. Provider-state closure is inherited.
+- **Evidence:** the retained M59/M234 baseline and strict governance pass. The
+  intentional red isolated ten missing boundary/registration checks. After
+  correcting initial fixture pointer conversion, close assertion, typing, and
+  formatting findings, both new Python files are clean and all 35 focused
+  architecture/live/adversarial checks pass.
+- **Whole-project:** all 658 Python files, strict docs, both governance modes,
+  and whitespace pass. Complete architecture/integration reports 3,794 passes
+  and 12 expected skips. Fresh supported CPython 3.12-3.14 runs each report
+  4,916 passes and 19 expected skips.
+- **Rendering/examples:** real wgpu, five-repeat base/graphics profiles,
+  profile validation, deterministic Null/wgpu Clockwork, Agent World Builder,
+  and selected registered examples reproduce established identities and pass.
+- **Distribution:** two byte-identical pure wheels/source archives, installed
+  smokes, two exact ten-artifact release stages, and package inventories pass.
+- **Review:** direct owner-buffer mutation now proves detached OID/parameter
+  values. The reviewed focus passes 36 cases on each supported interpreter;
+  exact scope, protected boundaries, disclosure/security/path, retired-
+  metadata, branch/identity, whitespace, and connectivity audits are clean.
+- **Record-inclusive separator:** the lock, all 658 Python files, strict docs,
+  both governance modes, and whitespace are clean; complete architecture/
+  integration reports 3,795 passes and 12 expected skips.
+- **Record-state release:** the pure wheel remains stable; the source archive
+  reproduces, installed smokes pass, and both ten-artifact release stages and
+  expected package inventories match exactly.
+- **Final behavioral separator:** source, docs, dated strict governance,
+  whitespace, the 41-test M59/M235 focus, and a second complete 3,795-pass/12-
+  skip architecture/integration run are clean.
+- **Execution transport:** a duplicate final package build and access-enabled
+  recursive scratch audit each stopped before process creation on an
+  authorization-transport HTTP 404. No pass is claimed and no scratch was
+  removed; three pytest scratch trees remain inaccessible to sandboxed
+  recursive enumeration.
+- **Recovery, 2026-09-05:** the approved access-enabled audit and immediate
+  revalidation succeeded. Cleanup removed 13 generated targets containing
+  32,470 entries; all 56 older scratch targets remain and no M235 target remains.
+- **Package evidence:** the completed record-state reproducibility and smoke
+  results stand. The unexecuted third build remains uncredited; subsequent
+  edits only update records and do not justify repeating the package suite.
+- **Publication:** fresh remote inspection finds only main at M99, no open
+  PR, and no branch containing required M234. Publishing remains withheld.
+- **Post-cleanup verification:** 41 M59/M235 tests pass, focused formatting
+  and lint pass, and whitespace is clean. The 2026-09-05 plugin registry
+  checker passes; it is not a validator of this repository's records.
+- **Pending:** publication requires hosted prerequisites. The local change is
+  validated and prepared for its DCO commit, whose identity is recorded in Git.
+
 ## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding - locally complete, publication withheld
 
 - **Baseline:** exact M233 commit

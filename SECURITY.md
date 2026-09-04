@@ -1647,6 +1647,28 @@ behavior, hostile/privileged bypass, criteria 6/7, Windows admission, and
 cleanup authority remain unresolved. It adds no runtime surface, workflow,
 public runner, or hosted allocation.
 
+M235's test-only [Windows contained source-access source-commit Git CMS signer
+hash-algorithm binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md)
+retrieves both the CMS `HashAlgorithm` and dedicated signer hash-algorithm
+parameter for every exact bounded signer index after M234's complete
+correlation. It confines each pointer-bearing result to its actual owner
+buffer, copies the bounded OID and opaque encoded parameters during that
+buffer's lifetime, and requires exact same-index equality. The detached result
+binds counts, indexes, OIDs, parameter boundaries, per-representation hashes,
+and one unambiguous sequence digest before and after complete M234.
+
+This proves one execution-local correlation between two native algorithm-
+identifier representations. It does not approve or reject an algorithm,
+define an allowlist or strength policy, interpret encoded parameters,
+revalidate the signature, authorize a signer or publisher, establish
+revocation freshness or portable chain/timestamp semantics, bind native DLLs
+or loader state, authenticate the local object store or repository
+acquisition, or establish source/build provenance. Distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain unresolved. It adds no runtime
+surface, workflow, public runner, or hosted allocation.
+
 ## Unsupported interpreter observations
 
 M118 retains Python 3.15 outside the supported range. One exact Windows CPython

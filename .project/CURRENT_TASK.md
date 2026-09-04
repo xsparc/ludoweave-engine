@@ -1,5 +1,120 @@
 # Current task
 
+## M235 Windows source-commit Git CMS signer hash-algorithm binding
+
+- **Task:** Bind the CMS `HashAlgorithm` and dedicated signer hash-algorithm
+  parameter for every bounded exact signer index around the complete M234
+  retained-file boundary.
+- **Status:** Direction research, exact M234 baseline, protected-hash capture,
+  neutral branch containment, intentional architecture red, pointer-confined
+  native/fake implementation, live current-host observation, RFC-0218,
+  security guidance, eight public registrations, and the focused green gate
+  are complete. Whole-project, supported-interpreter, rendering/profile,
+  package/release, and findings-first review gates are complete. Record-
+  inclusive and final behavioral separators are complete. Cleanup recovered
+  on 2026-09-05 and post-cleanup checks passed. The local commit is prepared;
+  publication is withheld
+  because the required M234 parent is absent from every remote branch.
+- **Base:** exact fully locally validated M234 DCO commit
+  `93a975dd3b77702ac0424b5f943ab0a626b68bd0`, tree
+  `e7250b5f32939d9f9d1fad0ac502723072af7efd`, with sole parent exact M233.
+- **Branch:** `release/m235-windows-source-commit-git-cms-signer-hash-algorithm-binding`;
+  exact containment made the local M234 branch redundant, so only local
+  `main` and active M235 remain.
+
+### M235 acceptance boundary
+
+- Execute M234's complete certificate and decoded CMS SignerInfo identifier
+  correlation while the same provider state remains live.
+- Retrieve parameter 39's CMS `HashAlgorithm` and parameter 8's dedicated
+  algorithm identifier for every exact bounded signer through independent
+  bounded two-phase reads.
+- Confine OID and non-empty parameter pointers to each actual returned owner
+  buffer, require bounded in-buffer termination and dotted-decimal syntax, and
+  detach all bytes before that owner expires.
+- Require exact same-index equality of OID and opaque encoded parameters and
+  bind counts, indexes, values, component sizes, and domain-separated hashes
+  across complete M234.
+- Preserve M234 and every earlier protected boundary byte-for-byte. Add zero
+  runtime/package/dependency/lock/workflow/fixture/example/script/benchmark
+  surface and zero hosted allocation.
+- Keep algorithm approval/strength policy, parameter interpretation,
+  signature revalidation, signer/publisher authorization, revocation,
+  provenance, criteria 6/7, cleanup authority, and Windows admission
+  unresolved.
+
+### Validation evidence so far
+
+- Exact M234 history and clean starting worktree were confirmed. The retained
+  M59/M234 baseline passes 42 tests; focused Ruff/Pyright and dated strict
+  governance are clean after the sandbox-only uv cache denial was retried with
+  access.
+- Microsoft documents the CMS signer-info `HashAlgorithm`, dedicated exact-
+  index parameter 8, pointer-bearing `CRYPT_ALGORITHM_IDENTIFIER`, and two-
+  phase `CryptMsgGetParam` size contract. Git for Windows remains active and
+  SLSA source provenance remains separate from local executable metadata.
+- Exact M234/workflow/package hashes were captured. Neutral M235 was created
+  from exact M234, redundant local M234 was removed, and only local `main` plus
+  active M235 remain.
+- The intentional architecture red passed two protected/non-runtime checks and
+  failed ten planned-absence/registration checks.
+- The first implementation run passed 19 of 23 cases and exposed one pointer-
+  conversion defect plus one incorrect close-call assertion; both were fixed.
+  One strict typing redundancy and two formatting requests were also corrected.
+- The live current-host case and all adversarial fake cases pass. RFC-0218,
+  security guidance, and eight public registrations are present; both new
+  Python files are format/Ruff/strict-Pyright clean and the combined focused
+  architecture/integration gate passes 35 tests.
+- The unchanged lock/environment, all 658 Python files, strict docs, both
+  governance modes, and whitespace pass after the missing RFC nav entry was
+  correctly detected and fixed. The complete architecture/integration
+  boundary passes 3,794 tests with 12 expected skips.
+- Fresh isolated CPython 3.12, 3.13, and 3.14 runs each pass 4,916 tests with
+  19 expected skips. Real wgpu, both five-repeat profiles, profile schemas,
+  deterministic Null/wgpu Clockwork, Agent World Builder, and selected
+  registered example checks reproduce established identities and pass.
+- Two independent builds are byte-identical; installed wheel/scene/scene-file
+  smokes and both exact ten-artifact release stages pass. The pure 114-entry
+  wheel excludes native/M235 payload; the 1,108-entry source archive contains
+  each new M235 file once.
+- Findings-first review strengthened the detachment proof with direct owner-
+  buffer mutation. The corrected focus passes 36 checks on CPython 3.12,
+  3.13, and 3.14. Exact scope, disclosure, credential/path, retired-metadata,
+  branch, identity, whitespace, and Git-object audits are clean.
+- Record-inclusive lock/source/docs/governance/whitespace pass, and the
+  complete reviewed architecture/integration boundary passes 3,795 tests with
+  12 expected skips.
+- Two record-state builds preserve the pure wheel and reproduce the source
+  archive; installed smokes pass, both ten-artifact release stages match
+  exactly, and package inventories retain the intended pure-wheel/source-only
+  M235 boundary.
+- The final source/docs/governance/whitespace separator passes; the exact
+  M59/M235 group passes 41 tests and the complete recorded architecture/
+  integration boundary again passes 3,795 tests with 12 expected skips.
+- A duplicate final package-build launch and the required access-enabled
+  recursive scratch audit were each stopped before process creation by an
+  authorization-transport HTTP 404. A sandboxed audit cannot enumerate three
+  pytest trees. No final duplicate package pass or cleanup pass is claimed,
+  and no scratch was removed.
+
+### Recovery and closeout - 2026-09-05
+
+- Explicit continuation approval restored the access-enabled audit. Exactly
+  13 generated M235 targets were checked for confinement, ignore/tracking
+  state, and recursive reparse points, then checked again before removal.
+  Cleanup removed 32,470 entries and preserved all 56 older scratch targets.
+- The completed record-state distribution pair remains the accepted package
+  evidence. A third duplicate build is unnecessary: subsequent changes only
+  record validation and cleanup, and no product or probe code changed.
+- Fresh fetch, remote-head inventory, and open-PR query show only main at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, and no remote
+  containing required M234. M235 publication remains withheld.
+- Post-cleanup verification passed all 41 M59/M235 tests in 4.88 seconds;
+  focused formatting/lint and whitespace passed. The dated plugin registry
+  check passed after retrying the sandbox cache denial; it does not validate
+  LudoWeave's separate records. No implementation or validation work remains.
+  Commit identity is recorded by Git; publication awaits hosted prerequisites.
+
 ## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding
 
 - **Task:** Bind every bounded CMS signer record's explicit version and

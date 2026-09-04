@@ -6,6 +6,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+- Add M235/RFC-0218's test-only [Windows contained source-access source-commit
+  Git CMS signer hash-algorithm binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md).
+  It confines and copies the CMS `HashAlgorithm` and dedicated same-index
+  signer hash-algorithm OID and encoded parameters, then requires exact
+  equality around complete M234. Runtime, package, algorithm policy, signature
+  revalidation, signer or publisher authorization, revocation freshness,
+  provenance, cleanup authority, admission, workflow, and hosted allocation
+  remain unchanged.
 - Add M234/RFC-0217's test-only [Windows contained source-access source-commit
   Git CMS SignerInfo certificate-ID binding
   probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md).

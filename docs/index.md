@@ -475,6 +475,13 @@ attestation, with the same allocation topology.
   payload to M233's same-state, same-index certificate ID before and after
   complete M233 without adding CMS, algorithm, attribute, signature, or
   publisher policy or changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git CMS signer
+  hash-algorithm binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md)
+  that confines and copies both same-index native algorithm identifiers and
+  requires their OID and opaque encoded parameters to match before and after
+  complete M234 without adding algorithm or signature policy or changing
+  provenance, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly

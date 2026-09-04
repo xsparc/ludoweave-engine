@@ -6131,6 +6131,39 @@ M234 adds no runtime, package, dependency, lock, fixture, example, script,
 benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
 remains unimplemented and unauthorized.
 
+## M235 Windows source-commit Git CMS signer hash-algorithm binding
+
+M235 adds the test-only [Windows contained source-access source-commit Git CMS
+signer hash-algorithm binding
+probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md).
+It repeats M234's retained path/handle and cached Authenticode policy. While
+provider state remains live, complete M234 runs first; the extension then
+reacquires the same message and bounded signer count.
+
+For every exact signer index, bounded two-phase reads retrieve both the CMS
+signer record's `HashAlgorithm` and the dedicated signer hash-algorithm
+parameter. OID and parameter pointers must be wholly confined to the actual
+returned owner buffer. The probe copies one bounded, in-buffer-terminated
+ASCII dotted-decimal OID plus bounded opaque encoded parameters before the
+owner expires, then requires exact equality between both same-index values.
+
+The immutable result extends M234's complete observation with OIDs, parameter
+sizes, domain-separated per-representation hashes, and one count/index/value
+sequence digest. Equality is required before and after complete M234. Provider
+state retains M234's close-on-every-outcome discipline.
+
+This is execution-local native-representation binding, not cryptographic
+algorithm approval, an allowlist or strength policy, parameter interpretation,
+signature revalidation, signer or publisher authorization, revocation
+freshness, portable chain/timestamp semantics, native-loader trust, local-
+object-store or repository-acquisition trust, or source/build provenance.
+Distinct principal, independent host, hostile or privileged bypass, criteria
+6/7, Windows admission, and cleanup authority remain outside the evidence.
+
+M235 adds no runtime, package, dependency, lock, fixture, example, script,
+benchmark, workflow, permission, public runner, or hosted allocation. Cleanup
+remains unimplemented and unauthorized.
+
 ## Deferred architecture
 
 Persistent commands/receipts, snapshots/hashes, replay/branches,

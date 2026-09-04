@@ -2,6 +2,26 @@
 
 No architecture decision is currently blocked.
 
+## M235 Windows source-commit Git CMS signer hash-algorithm binding
+
+RFC-0218 accepts one direction-preserving, test-only composition: execute
+M234's complete correlation in live WinTrust provider state, then retrieve
+both the CMS `HashAlgorithm` and dedicated signer hash-algorithm parameter for
+every exact signer index through bounded two-phase reads. Confine each OID and
+non-empty parameter range to its actual returned owner buffer, detach bounded
+bytes during that lifetime, and require exact same-index equality. Bind counts,
+indexes, OIDs, opaque parameter boundaries, per-representation hashes, and one
+domain-separated aggregate before and after complete M234.
+
+This proves execution-local native-representation equality only. It does not
+approve or reject an algorithm, create an allowlist or strength/deprecation
+policy, interpret parameters, revalidate the signature, authorize a signer or
+publisher, establish revocation freshness or portable chain/timestamp
+semantics, bind native loaders, authenticate repository acquisition, or prove
+source/build provenance. Criteria 6/7, Windows admission, and cleanup authority
+remain unresolved. No runtime, dependency, lock, workflow, hosted allocation,
+or cleanup surface is added.
+
 ## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding
 
 RFC-0217 accepts one direction-preserving, test-only composition: execute

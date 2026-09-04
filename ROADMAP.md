@@ -4445,6 +4445,45 @@ workflow, permission, secret, public runner, or hosted execution path; no
 hosted check is added. Windows remains unadmitted and cleanup remains
 unimplemented and unauthorized.
 
+## M235 Windows source-commit Git CMS signer hash-algorithm binding
+
+M235 starts from fully locally validated M234 commit
+`93a975dd3b77702ac0424b5f943ab0a626b68bd0`. It adopts the test-only [Windows
+contained source-access source-commit Git CMS signer hash-algorithm binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md)
+under RFC-0218.
+
+One scoped composition repeats M234's retained path/handle and exact cached
+trust policy. While each successful provider state remains live, it executes
+M234's complete certificate and CMS SignerInfo identifier correlation, then
+retrieves both `CMSG_CMS_SIGNER_INFO_PARAM` and
+`CMSG_SIGNER_HASH_ALGORITHM_PARAM` for every exact bounded signer index through
+independent two-phase reads.
+
+Each pointer-bearing algorithm identifier must remain wholly within its actual
+returned owner buffer. The probe copies a bounded, terminated ASCII dotted-
+decimal OID and bounded opaque encoded parameters before that owner expires,
+then requires exact equality between both same-index native representations.
+The detached observation binds signer count, exact indexes, OIDs, parameter
+sizes, per-representation hashes, and one domain-separated sequence digest
+before and after complete M234.
+
+This binds two native representations of algorithm identity and opaque
+parameters. It does not approve or reject an algorithm, create an allowlist,
+interpret parameters, negotiate an algorithm, revalidate the signature,
+authorize a signer or publisher, establish revocation freshness, bind native
+DLL or loader identity, authenticate the object store or repository
+acquisition, or establish source/build provenance. Distinct-principal or
+independent-host behavior, hostile/privileged bypass, criteria 6/7, and Windows
+cleanup admission remain unresolved.
+
+M235 adds no runtime API, CLI or MCP command, production harness, collector,
+credential lifecycle, filesystem mutation, network listener, cleanup
+authority, dependency, lock, fixture, example, script, benchmark, version,
+workflow, permission, secret, public runner, or hosted execution path; no
+hosted check is added. Windows remains unadmitted and cleanup remains
+unimplemented and unauthorized.
+
 ## Good-first contribution queue
 
 These are issue-ready cards, not assigned work. A maintainer opens one with the
