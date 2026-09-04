@@ -2,6 +2,32 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M236 publication audit - 2026-09-05, Windows
+
+Baseline: M235 `1273e367949a94e7e99dc4a3418d2cf26daf14ef` against main
+`5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`. The reproduction ran in an isolated
+local depth-one checkout; the original worktree and historical objects were
+preserved. Commands below use the existing locked environment's Python.
+
+| Executed check | Result |
+| --- | --- |
+| `git fetch --prune origin`; `git ls-remote --heads origin`; `gh pr list --repo xsparc/ludoweave-engine --state open --json number,title,headRefName,baseRefName,url` | Exit 0: only M99 main, no open PR. |
+| `git rev-list --reverse origin/main..HEAD`; per-commit `git show -s --format=%B`; `git rev-list --count --merges origin/main..HEAD` | Exit 0: 136 commits, zero missing DCO trailers, zero merge commits. |
+| `git diff --check origin/main...HEAD`; `git fsck --full --no-dangling` | Exit 0, no findings. |
+| `git diff --quiet origin/main HEAD -- .github/workflows scripts/classify_ci_changes.py` | Exit 0: workflows and classifier unchanged. |
+| `git clone --quiet --depth 1 --no-local --branch release/m235-windows-source-commit-git-cms-signer-hash-algorithm-binding <local-file-URL> .tmp/m236-shallow-checkout`; `git -C .tmp/m236-shallow-checkout rev-parse --is-shallow-repository` | Exit 0; `true`. Local transport only; no hosted allocation. |
+| `git -C .tmp/m236-shallow-checkout cat-file -t 734d4eb943c3da7a1a8357ef3e180cac4353cb6b` | Exit 128: object unavailable. Same command in the full checkout exits 0 and reports `commit`. |
+| Existing environment's `python -m pytest -q tests/integration/test_windows_contained_source_access_source_commit_binding_probe.py::test_committed_source_descriptor_is_exact`, working directory `.tmp/m236-shallow-checkout` | Exit 1: one failed in 0.42 seconds, `fixed Git object read returned nonzero`. |
+| Same pytest command in the full checkout | Exit 0: one passed in 0.59 seconds. |
+| Per-commit `git show -s --format='%an <%ae>'` compared with exact DCO trailers | Exit 0: zero author/sign-off mismatches across 136 commits. |
+| Existing environment's `python -m pytest -q tests/architecture/test_m59_repository_metadata_hygiene.py` | Exit 0: five passed in 0.57 seconds. |
+| Existing environment's `python -m mkdocs build --strict`; `git diff --check` | Exit 0: documentation built in 4.38 seconds with the existing Material notice; no whitespace findings. |
+| `uv run --offline --no-python-downloads --no-project python -B <plugin-root>/scripts/check_project_governance.py --repository-root <plugin-root>`, then with `--as-of 2026-09-05 --strict` | Both exit 0, zero findings. These validate the installed plugin registry only, not LudoWeave records. |
+
+Publication is withheld at this reproduced failure. No full-suite rerun, new
+package build, hosted CI pass, completed security review, or PR is claimed for
+M236. Historical M235 validation does not prove shallow-checkout portability.
+
 ## M235 cleanup recovery - 2026-09-05, Windows
 
 | Executed check | Result |

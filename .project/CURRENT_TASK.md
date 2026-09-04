@@ -1,5 +1,22 @@
 # Current task
 
+## M236 consolidated publication recovery
+
+- **Approval:** 2026-09-05, audit M100-M235 and prepare one PR against main,
+  preserving the existing three-job CI; no merge or release.
+- **Branch:** `release/m236-publication-recovery`, from exact M235
+  `1273e367949a94e7e99dc4a3418d2cf26daf14ef`.
+- **Status:** publication audit found a reproduced checkout-portability
+  blocker. M221's historical Git-object test passes in the full checkout and
+  fails in a depth-one checkout matching the desktop CI history boundary.
+  M222-M235 reuse that dependency. A squash merge does not retain M220 as an
+  ancestor, so full-depth fetching alone is not a durable repair.
+- **Evidence:** see [publication review](M236_PUBLICATION_REVIEW.md) and the
+  M236 section of [test evidence](TEST_EVIDENCE.md).
+- **Next gate:** approve a bounded portability repair preserving real binding
+  assertions, then complete consolidated review and validation before one PR.
+  No test policy, workflow, source, push, or hosted allocation changed.
+
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding
 
 - **Task:** Bind the CMS `HashAlgorithm` and dedicated signer hash-algorithm

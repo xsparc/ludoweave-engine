@@ -1,6 +1,20 @@
 # Decisions Pending
 
-No architecture decision is currently blocked.
+M236 publication is blocked pending the checkout-portability decision below.
+
+## M236 historical Git-object probe portability
+
+The approved consolidated PR cannot pass the current Windows shallow-checkout
+test path: M221 requires the original M220 commit object, and later compositions
+reuse it. A local depth-one clone reproduces the failure. Keeping the complete
+branch history is insufficient for the requested squash-merge lifecycle.
+
+Approve a bounded test-portability repair before implementation. It must
+preserve real source-binding assertions in shallow and squash-merged checkouts,
+retain offline/no-lazy-fetch operation, distinguish controlled fixture evidence
+from current-host historical observations, and add no CI jobs or cleanup
+authority. Do not silently skip unavailable history or weaken checks to obtain
+a green PR. See [the review](M236_PUBLICATION_REVIEW.md).
 
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding
 

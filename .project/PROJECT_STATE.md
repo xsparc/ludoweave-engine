@@ -1,5 +1,24 @@
 # Project State
 
+## M236 consolidated publication recovery - blocked by checkout portability
+
+The maintainer approved one consolidated M100-M235 PR on 2026-09-05. Fresh
+remote inspection still finds only M99 main and no open PR. The preserved
+136-commit stack has 570 changed paths and no merge commits; all commits have
+DCO trailers, Git object integrity passes, and workflow/classifier bytes match
+main. M235 is committed locally as `1273e367949a94e7e99dc4a3418d2cf26daf14ef`.
+
+The publication audit reproduced a blocking Windows test failure: M221's exact
+historical M220 Git object is unavailable in a depth-one checkout. Its
+descriptor test passes in the full checkout (0.59 seconds) and fails in the
+shallow checkout (0.42 seconds). M222-M235 reuse the boundary. A squash merge
+also does not preserve that history as an ancestor of main. No public PR or CI
+run has been started with this known failure.
+
+The [M236 review](M236_PUBLICATION_REVIEW.md) records scope, history, navigation,
+failure evidence, unchanged CI budget, and the needed portability decision.
+Runtime and probe implementation remain unchanged; M236 is not complete.
+
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding - locally validated, publication withheld
 
 - **Baseline:** exact M234 commit
