@@ -2,6 +2,63 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M236 approved portability repair - 2026-09-05, Windows
+
+The maintainer approved the repair after the audit. Original probe files and
+guards remain unchanged; new test setup uses pinned original fixture objects.
+
+| Executed check | Result |
+| --- | --- |
+| Initial focused tests using the existing environment | Sandbox access to the existing pytest temporary tree failed. The access-enabled rerun passed 17 of 18 cases; the remaining case incorrectly expected Git to load the parent object's contents when resolving its ID. The unused parent object was removed from the fixture. |
+| Focused Ruff, formatting, and Pyright | Formatting/import findings and untyped pytest request-member access were corrected; final focused checks passed. |
+| `python -m pytest -q --tb=short tests/unit/test_git_source_fixture.py tests/integration/test_windows_contained_source_access_source_commit_fixture_portability.py tests/integration/test_windows_contained_source_access_source_commit_git_cms_signer_hash_algorithm_binding_probe.py` | Intermediate implementation: 37 passed in 4.25 seconds. |
+| Whole-project Ruff and Pyright; focused unit/wiring/M59 tests; strict docs | Exit 0: zero static findings, 21 passed in 3.00 seconds, docs built in 4.24 seconds. |
+| Depth-one checkout focus: unit fixture, fixture wiring, original M221 module, and M235 module | Initial run: four failures and 40 passes exposed pytest's separate directly collected M221 module. Binding both module instances corrected it: 44 passed in 8.37 seconds. |
+| Synthetic squash checkout with original M99 parent | Created only in the isolated local clone: commit `8ccd56b`, parent `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, two commits visible. Original M220 object lookup still exits 128. Same four-module focus: 44 passed in 7.77 seconds. |
+| Exact pytest console entry point in the squash checkout after typed module lookup and helper-discovery correction | Exit 0: 44 passed in 7.89 seconds. No history fetch, skip, or mocked Git result substitutes for the assertions. |
+| `uv lock --check`; `uv sync --frozen --all-groups --extra graphics`; `uv run --frozen ruff format --check .` | Exit 0: unchanged 46-package lock, 45 installed packages, 662 Python files formatted at this stage. |
+| First `uv run --frozen pytest -q --tb=short` | Collection stopped because the console entry point lacked the repository-only helper import path; `tests/conftest.py` corrects this without changing runtime imports or pytest configuration. |
+
+### Final local validation
+
+| Exact command or audit | Result |
+| --- | --- |
+| `uv run --frozen pytest -q --tb=short` | Exit 0: 4,933 passed, 19 skipped in 289.23 seconds on Windows CPython 3.12.13, including unchanged historical guards and live probe compositions. |
+| `uv run --frozen ruff format --check .`; `uv run --frozen ruff check .`; `uv run --frozen pyright` | Exit 0: 663 files formatted; no lint or type findings. |
+| `uv run --frozen mkdocs build --strict`; `git diff --check` | Exit 0: docs built in 4.42 seconds, existing Material notice only; clean whitespace. |
+| `uv run --frozen pytest -q tests/architecture/test_m59_repository_metadata_hygiene.py tests/unit/test_git_source_fixture.py` | Exit 0: 20 passed in 4.27 seconds after final documentation edits. |
+| `uv build --out-dir .tmp/m236-dist-first`; `uv build --out-dir .tmp/m236-dist-second`; `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m236-dist-first .tmp/m236-dist-second` | All exit 0: byte-identical 366,958-byte wheels, SHA-256 `36ceab25f51e00f9ac60bee694b8506f02b7a8f076c3f4081ff8ba1212e30b14`; 2,813,708-byte source archives, SHA-256 `bc205d427568131532f790b8c90d949d4913f1a7949418b7aa1c1bf6963fc46c`. Later evidence-only edits change source-archive bytes; these hashes identify the measured pair, not a subsequent rebuild. |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m236-dist-first`; `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m236-dist-first` | Both exit 0: installed wheel smoke and scene smoke passed. |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m236-dist-first .tmp/m236-release-candidate`; `uv run --frozen python scripts/smoke_release.py .tmp/m236-release-candidate` | Both exit 0: ten artifacts staged and complete release smoke passed; no release published. |
+| Distribution inventory using standard-library ZIP/TAR readers | The 114-entry pure wheel contains no native or test-fixture payload; each of the six new test/setup/fixture paths occurs once in the source archive. |
+| Historical added-line scan for high-confidence credential patterns; exact implementation-scope audit | Zero credential-pattern matches; no M236 changes to runtime, scripts, examples, benchmarks, workflows, dependencies, or lock. Pattern matching is not proof that every possible secret was excluded. |
+| Offline plugin governance checker, static and `--as-of 2026-09-05 --strict` | Both exit 0 with zero findings, scoped to the plugin registry, not LudoWeave project validation. |
+
+The README workload commands were executed with new M236 output paths to
+preserve older results. Every command below exited 0. M1 reports one observed
+target out of two recorded; M3 meets zero of two timing targets. Successful
+schema validation is not a claim that all performance targets passed. These
+informational measurements do not change the native-acceleration decision.
+
+```text
+uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m236-m1-benchmark.json
+uv run --frozen python benchmarks/validate_m1_results.py .tmp/m236-m1-benchmark.json
+uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m236-m2-benchmark.json
+uv run --frozen python benchmarks/validate_m2_results.py .tmp/m236-m2-benchmark.json
+uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m236-m3-benchmark.json
+uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m236-m3-benchmark.json
+uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m236-m4-benchmark.json
+uv run --frozen python benchmarks/validate_m4_results.py .tmp/m236-m4-benchmark.json
+uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m236-m7-profile-base.json
+uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m236-m7-profile-base.json
+uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m236-m7-profile-graphics.json
+uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m236-m7-profile-graphics.json
+```
+
+Cross-platform hosted results are not claimed here. They belong to the eventual
+single consolidated PR's existing three-job qualification. No extra CI lane is
+introduced. The original audit evidence follows.
+
 ## M236 publication audit - 2026-09-05, Windows
 
 Baseline: M235 `1273e367949a94e7e99dc4a3418d2cf26daf14ef` against main

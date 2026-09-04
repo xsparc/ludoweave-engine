@@ -77,3 +77,56 @@ is promoted by this review.
 The five metadata-hygiene tests and strict documentation build pass after
 recording this finding. The isolated ignored `.tmp/m236-shallow-checkout`
 remains available for reproducing the failure and validating a future repair.
+
+## Approved repair and focused research
+
+The maintainer subsequently approved the portability repair without weakening
+binding assertions or changing the three-job CI. RFC-0219 records the decision.
+The historical findings above remain a record of the pre-repair state.
+
+DirectionBriefV1: schema version 1; baseline
+`1340e8b7eaabfee6a9062bbb3cc8e348e24d75ec`; scanned 2026-09-05. Coverage was
+focused on Git object format, checkout depth, squash semantics, and test
+reliability. The reference pages are living documents; no new release-event
+date is asserted.
+
+- **Finding:** [Git's repository layout](https://git-scm.com/docs/gitrepository-layout)
+  and [loose-object format](https://git-scm.com/docs/gitformat-loose) support
+  an isolated object-store fixture. Confidence high; aligned with offline test
+  portability. Engineering cost is a test fixture, composition, negative tests,
+  and documentation. Disposition adopt within the approved repair; no runtime
+  roadmap expansion. Verify exact object identities and real traversal.
+- **Finding:** [checkout defaults](https://github.com/actions/checkout) and
+  [squash semantics](https://docs.github.com/en/pull-requests/reference/pull-request-merges)
+  do not guarantee original intermediate commit objects. Confidence high;
+  direct relevance to the reproduced failure. Disposition no-change to CI;
+  retain existing jobs and verify both absent-history layouts locally.
+- **Recommendation:** bind the unchanged probe family explicitly to five pinned
+  original objects for every automated run, with no environment-dependent
+  fallback. Evidence gap: this proves fixture binding, not checkout provenance
+  or complete history connectivity. Next review trigger is a changed probe
+  object inventory, Git format, pytest loading behavior, or support policy.
+
+Focused validation corrected a mistaken unused-parent-object expectation,
+pytest's dual module-import wiring, and console-script helper discovery. The
+repaired depth-one and synthetic squash checkouts each pass the 44-test focus,
+including the original direct M221 test and complete M235 composition. Full
+suite and publication gates were pending at that point; no assertions were removed.
+
+## Local qualification conclusion
+
+Final Windows CPython 3.12.13 validation passes 4,933 tests with 19 skips.
+Formatting, lint, typing, documentation, reproducibility, installed wheel/scene,
+release smoke, and benchmark-schema checks complete. No new source, dependency,
+workflow, or original-probe diff is present. The high-confidence historical
+credential-pattern scan is clear. M3 informational timing targets remain unmet.
+Detailed commands and failures corrected during development are recorded in
+TEST_EVIDENCE.md.
+
+Proceed with one approved consolidated PR, preserving all commits and their
+DCO identity. Do not claim a new exhaustive line-by-line security audit of the
+entire historical stack or hosted cross-platform success from this local run.
+The large review surface, current-host native assumptions, deliberately partial
+fixture database, and deferred Windows cleanup remain explicit review risks.
+The PR's check suite is authoritative for hosted qualification; no merge or
+release is performed as part of this publication step.

@@ -6,6 +6,13 @@ issues become the discussion and assignment record once a card is opened.
 
 ## Community-alpha release candidate
 
+M236 consolidates the unpublished M100-M235 stack for one PR against main.
+The approved [portable Git source-probe fixture](docs/rfcs/0219-portable-git-source-probe-fixture.md)
+repairs the Windows shallow/squash-checkout test boundary without adding a CI
+job, weakening binding assertions, or admitting Windows cleanup. Publication
+and hosted qualification are pending; local evidence alone does not complete
+integration.
+
 | Lane | Outcome | Evidence gate |
 | --- | --- | --- |
 | Done | M0 repository/runtime walking skeleton | Installed pure wheel and cross-platform CI |

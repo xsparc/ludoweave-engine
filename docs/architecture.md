@@ -2,6 +2,12 @@
 
 ## Product boundary
 
+M236's [test-only Git fixture composition](rfcs/0219-portable-git-source-probe-fixture.md)
+keeps historical source-binding probes independent of checkout depth and merge
+ancestry. It changes test setup, not the runtime or the source-binding assertions.
+Those automated observations bind against pinned fixture objects; they do not
+prove checkout provenance or cleanup authority.
+
 LudoWeave is designed around deterministic world operations. The ECS/world store is the only canonical runtime state. Human tools, tests, CLI adapters, replay, and software-agent adapters submit the same versioned, validated world commands and receive receipts.
 
 M0 established lifecycle, time, error, rendering, packaging, and dependency contracts. M1-01 adds generational entity identity, M1-02 adds immutable component schemas and registries, M1-03 adds canonical world storage plus an independent reference model, M1-04 adds storage-neutral queries and local deferred structural commands, and M1-05 adds typed resources plus conflict-aware serial schedule planning.

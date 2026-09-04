@@ -1,6 +1,6 @@
 # Decisions Pending
 
-M236 publication is blocked pending the checkout-portability decision below.
+M236 checkout-portability repair is approved; validation and publication remain pending.
 
 ## M236 historical Git-object probe portability
 
@@ -9,12 +9,13 @@ test path: M221 requires the original M220 commit object, and later compositions
 reuse it. A local depth-one clone reproduces the failure. Keeping the complete
 branch history is insufficient for the requested squash-merge lifecycle.
 
-Approve a bounded test-portability repair before implementation. It must
+The maintainer approved a bounded test-portability repair. It must
 preserve real source-binding assertions in shallow and squash-merged checkouts,
 retain offline/no-lazy-fetch operation, distinguish controlled fixture evidence
 from current-host historical observations, and add no CI jobs or cleanup
 authority. Do not silently skip unavailable history or weaken checks to obtain
-a green PR. See [the review](M236_PUBLICATION_REVIEW.md).
+a green PR. RFC-0219 implements this through a pinned partial object database
+with real Git reads and unchanged probe assertions. See [the review](M236_PUBLICATION_REVIEW.md).
 
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding
 

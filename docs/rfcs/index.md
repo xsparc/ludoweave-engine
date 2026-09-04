@@ -223,3 +223,4 @@ was adopted.
 - [RFC-0216: bind the explicit Git message signer certificate ID](0216-bind-git-message-signer-certificate-id-for-source-commit-probe.md)
 - [RFC-0217: bind the Git CMS SignerInfo certificate ID](0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md)
 - [RFC-0218: bind the Git CMS signer hash algorithm](0218-bind-git-cms-signer-hash-algorithm-for-source-commit-probe.md)
+- [RFC-0219: portable Git source-probe fixture](0219-portable-git-source-probe-fixture.md)

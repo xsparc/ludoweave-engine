@@ -13,9 +13,21 @@
   ancestor, so full-depth fetching alone is not a durable repair.
 - **Evidence:** see [publication review](M236_PUBLICATION_REVIEW.md) and the
   M236 section of [test evidence](TEST_EVIDENCE.md).
-- **Next gate:** approve a bounded portability repair preserving real binding
-  assertions, then complete consolidated review and validation before one PR.
-  No test policy, workflow, source, push, or hosted allocation changed.
+- **Repair approval:** the maintainer explicitly approved checkout portability
+  with unchanged binding assertions and three-job CI. RFC-0219 defines the
+  explicit offline fixture composition; original M221-M235 probe/guard files,
+  runtime, dependencies, and workflows are unchanged.
+- **Repair progress:** bounded manifest and five original objects are pinned;
+  missing/corrupt objects refuse; both pytest import instances use a temporary
+  store. The shallow and synthetic-squash focus each passes 44 checks. The
+  console entry point is now covered as well as `python -m pytest`.
+- **Local qualification:** 4,933 tests passed and 19 skipped; formatting,
+  lint, typing, strict docs, reproducible distributions, installed smokes,
+  release rehearsal, and benchmark/schema commands completed. Informational
+  M3 timing targets were not met; no performance improvement is claimed.
+- **Next gate:** publish the approved single consolidated PR and use its
+  existing three-job checks for hosted qualification. No merge or release is
+  authorized by this milestone. Hosted state is reported on the PR itself.
 
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding
 

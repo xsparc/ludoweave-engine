@@ -348,6 +348,7 @@ nav:
       - RFC-0216 - Bind the explicit Git message signer certificate ID: rfcs/0216-bind-git-message-signer-certificate-id-for-source-commit-probe.md
       - RFC-0217 - Bind the Git CMS SignerInfo certificate ID: rfcs/0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md
       - RFC-0218 - Bind the Git CMS signer hash algorithm: rfcs/0218-bind-git-cms-signer-hash-algorithm-for-source-commit-probe.md
+      - RFC-0219 - Portable Git source-probe fixture: rfcs/0219-portable-git-source-probe-fixture.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

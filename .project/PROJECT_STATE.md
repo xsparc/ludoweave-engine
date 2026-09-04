@@ -1,6 +1,6 @@
 # Project State
 
-## M236 consolidated publication recovery - blocked by checkout portability
+## M236 consolidated publication recovery - locally qualified for one PR
 
 The maintainer approved one consolidated M100-M235 PR on 2026-09-05. Fresh
 remote inspection still finds only M99 main and no open PR. The preserved
@@ -18,6 +18,18 @@ run has been started with this known failure.
 The [M236 review](M236_PUBLICATION_REVIEW.md) records scope, history, navigation,
 failure evidence, unchanged CI budget, and the needed portability decision.
 Runtime and probe implementation remain unchanged; M236 is not complete.
+
+The maintainer subsequently approved the checkout-portability repair. RFC-0219
+makes the test metadata store explicit: five pinned original Git objects are
+materialized only beneath a pytest-owned temporary destination. Original
+M221-M235 probes and guards remain unchanged. The existing assertions execute
+real Git/native reads; fixture evidence does not establish checkout ancestry.
+Both shallow and synthetic-squash focused runs pass 44 checks. Final Windows
+validation reports 4,933 passes and 19 skips. Static/docs checks, reproducible
+builds, installed smokes, release staging/smoke, and benchmark-schema commands
+complete; informational M3 timing targets are not met. No runtime change or
+performance improvement is claimed. Hosted qualification is the next gate,
+using the approved single PR and unchanged three-job workflow.
 
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding - locally validated, publication withheld
 

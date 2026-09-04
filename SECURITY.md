@@ -1,5 +1,11 @@
 # Security Policy
 
+M236's [Git source-probe fixture](docs/rfcs/0219-portable-git-source-probe-fixture.md)
+changes the automated M221-M235 metadata-store input to pinned offline test
+objects. Native and source-binding assertions are retained, but these results
+do not attest current checkout ancestry or acquisition. The fixture adds no
+production cleanup implementation or authority.
+
 ## Supported versions
 
 LudoWeave `0.1.0a1` is a community-alpha candidate, not a long-term support line. Security fixes are applied on a best-effort basis to the default branch and the current alpha until a version-support policy is announced. Older development snapshots are unsupported.

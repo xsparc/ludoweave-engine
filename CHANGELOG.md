@@ -1,5 +1,12 @@
 # Changelog
 
+## M236 publication recovery
+
+- Supply an explicit pinned offline Git-object fixture to the Windows
+  source-commit probes so shallow and squash-merged checkouts can retain all
+  binding assertions without extra CI jobs or network fetches (RFC-0219).
+  Automated fixture evidence is distinct from checkout ancestry or provenance.
+
 All notable changes to LudoWeave Engine will be documented in this file.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project intends to use [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once release compatibility levels are defined.
