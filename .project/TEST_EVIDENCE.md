@@ -6,6 +6,33 @@ Only commands actually executed in the current repository are recorded here.
 
 ### Hosted publication and collection correction
 
+The second [CI run 33931584593](https://github.com/xsparc/ludoweave-engine/actions/runs/33931584593)
+completed collection, then reported 83 failed, 4,450 passed, and 411 skipped in
+233.22 seconds. Every failure was a protected-tree architecture comparison;
+the example digest differed because `Path` ordering is case-sensitive on POSIX
+and case-insensitive on Windows. A local calculation over identical example
+files reproduced Windows `af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30`
+and POSIX `81b604fe9fe603c096b19fb8f9a0f73dee1ff7d80acd4c33f92eda7a1bc3374c`.
+
+The corrected M153-M235 helpers sort explicit case-folded component tuples with
+exact component tie-breakers. Original names and bytes still enter the digest;
+protected-tree values are unchanged. All 83 actual file hashes match the planned
+mechanical edits and dependent guard-file pin updates. Runtime, workflows,
+dependencies, scripts, examples, benchmarks, native probes, and integration
+setup have no diff in this correction.
+
+`uv run --frozen ruff format --check tests/architecture tests/unit/test_architecture_tree_order.py`
+and corresponding Ruff lint return 0; 228 files were already formatted.
+`uv run --frozen pyright tests/unit/test_architecture_tree_order.py` returns 0.
+`uv run --frozen pytest -q tests/unit/test_architecture_tree_order.py tests/architecture`
+returns 0: 2,486 passed, one skipped in 16.85 seconds. The new four regressions
+exercise all 83 helpers under both path flavours and reversed traversal order.
+`git diff --check` returns 0. No hosted success is claimed for either failed run.
+Whole-project `uv run --frozen pyright` then returns 0 with zero findings;
+`uv run --frozen mkdocs build --strict` returns 0 in 4.08 seconds;
+`uv run --frozen pytest -q tests/architecture/test_m59_repository_metadata_hygiene.py`
+returns 0 with five passes in 0.52 seconds after the evidence/documentation edits.
+
 - Published commit `8eb113eccb1effbc3a5376a1906f65c4014c23d4` on
   `release/m236-publication-recovery` and opened
   [PR #252](https://github.com/xsparc/ludoweave-engine/pull/252) against main.

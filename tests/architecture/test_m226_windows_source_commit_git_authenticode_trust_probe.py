@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m225_windows_source_commit_git_child_image_binding_probe.py": (
-        "a386fb689c14cfe84fcd8396a6ab90092e667e58d10b78e3575be8f54fc375cf"
+        "32d08061b5fcf18b2e250b843171d9c017b0e5e711c21248388b2749ab3c5122"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_child_image_binding_probe.py": (
         "2a71dd1a486e2ed117b02b90544ce71d292345ffacb62c8131632a16d5666535"
@@ -52,7 +52,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

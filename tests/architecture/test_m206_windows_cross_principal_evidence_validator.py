@@ -37,7 +37,7 @@ _PROTECTED_FILES = {
     ),
     "scripts/smoke_wheel.py": ("2727640d8696c9ff67c3f2a7a23af06b89a98d9edc40400696e4a9ed34ce464c"),
     "tests/architecture/test_m205_windows_cross_principal_validation_contract.py": (
-        "656abb40e0af758bd139630db7c577970f2e4f69ac4c52b17fc9f4d92015a564"
+        "d1704adda2110083f70091da1e20b09721d3c779ca41112bbe2c9e532420cda3"
     ),
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
 }
@@ -78,7 +78,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

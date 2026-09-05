@@ -30,13 +30,26 @@ working-tree files are used to construct the database.
 
 The integration fixture redirects only the metadata repository path. It does
 not mock subprocess results, native handles, signer data, retained source
-bytes, or receipts. All existing probes and architecture guards remain
-byte-for-byte unchanged. They continue to execute real sanitized Git reads,
+bytes, or receipts. All existing native probes remain byte-for-byte unchanged.
+They continue to execute real sanitized Git reads,
 check commit/tree/parent/path/type/size/digest identities, compare the retained
 contender bytes before and after execution, and enforce native process and
 resource boundaries. Setup failure fails tests; there is no skip or fallback.
 
 ## Evidence interpretation
+
+Hosted qualification also exposed two legacy portability defects. M159's
+already Windows-only test must be excluded before import on non-Windows hosts,
+because it imports `msvcrt` before pytest evaluates its platform marker. Its
+Windows execution and assertions remain intact.
+
+M153-M235 tree guards used the host-dependent ordering of `Path` objects. They
+now sort by case-folded path-component tuples, with exact component tuples as
+the tie-breaker. Names and payload bytes entering the digest are not normalized
+or excluded. The existing protected-tree digests are unchanged. Only the
+ordering expression and dependent guard-file hash pins change in those 83
+files. A regression runs every affected guard against both path flavours and
+opposite input orders, retaining mixed-case names and directory/file ordering.
 
 This supersedes RFC-0204's assumption that automated runs read the developer's
 existing checkout object database. Automated results now mean that current-host

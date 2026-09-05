@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m186_windows_independent_hard_link_alias_mutator_aba_boundary.py": (
-        "c230ba596091b5d4faf4c9044259a1a9482508b58433101ae5b90c08cc3e1c00"
+        "a68bbb0a6870d5c56c7556f16830610f8e5fe9a71157d46dc5b70b4dab68d9dc"
     ),
     "tests/architecture/test_m192_windows_hard_link_alias_mutator_invalid_prefix_valid_close_suffix_after_recreate_boundary.py": (
-        "cdd579d02ef819abb150a699353d919e2358e751a4d2d07d00a74c019068d29a"
+        "5f3aa69e4aaf70327533a33569ee696661ab86587c3e80c3519e54b67fabce5c"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -52,7 +52,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

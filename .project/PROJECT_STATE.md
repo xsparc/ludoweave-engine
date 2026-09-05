@@ -37,6 +37,14 @@ The correction excludes only that file on unsupported hosts and preserves its
 Windows execution unchanged. Three platform-policy cases, live M159, and
 fixture wiring pass locally; hosted validation remains outstanding.
 
+The second hosted run completed collection but found 83 architecture failures
+from platform-dependent path sorting (4,450 passed, 411 skipped). The same
+example bytes reproduce both platform hashes locally. The correction makes
+ordering explicit without changing protected tree digests; dependent guard-file
+pins are refreshed, and all original native probes remain unchanged. The
+architecture suite plus all-guard POSIX/Windows ordering regressions passes
+2,486 tests with one skip. No runtime or workflow change is introduced.
+
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding - locally validated, publication withheld
 
 - **Baseline:** exact M234 commit

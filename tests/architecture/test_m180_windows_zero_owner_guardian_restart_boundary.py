@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m179_windows_overlapping_guardian_rotation.py": (
-        "6f207c0d67d6a90048ab4e1add0f766f2ca30d2d20a14b305421c1cac3df1265"
+        "d42fa2539410223d024f64e29706ab696f6f3bb13c2dee84e41bed4388b0dfee"
     ),
     "tests/fixtures/windows_coordination_guardian_child.py": (
         "89f0b520c1e8966a5b577f63b254385a61c23c2427fb39b4911680b4fe5549d9"
@@ -67,7 +67,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

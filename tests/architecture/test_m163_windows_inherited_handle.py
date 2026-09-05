@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m162_windows_duplicated_handle.py": (
-        "53ffef719020ef9faf598badf8f6253570b2c31f4dc064f6a24d68b214df322c"
+        "4d06802a87e57347bfa4f00151366655aaac0f42003d49460586a5604f2e3b6c"
     ),
     "tests/integration/test_windows_cache_cleanup_duplicated_handle_probe.py": (
         "de32c80aa74c28d64484c0faa07b3c32f7d884246ad9838afe2202d2d79bf926"
@@ -39,7 +39,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

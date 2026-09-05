@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m155_windows_child_owned_share_delete_handshake.py": (
-        "2253dceee85c7c38976e14f276ce6bf5c92be7ebfa783d737dfa1a29b5c7c271"
+        "cd00d8eae446c89f32784bb6ec71ca7212d4fbf7e1d93513065e7eb9c147b91e"
     ),
     "tests/fixtures/windows_share_delete_blocker_child.py": (
         "be8da81a030f5de9490410e23d67147d777368f4b66e10cc580103add41b8f5d"
@@ -42,7 +42,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

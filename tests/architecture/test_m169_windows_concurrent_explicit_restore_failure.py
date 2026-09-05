@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m165_windows_inherited_restore_failure.py": (
-        "64261c1cd39a2d7e211650887811e5e509b8820f2bf7c55311bd6549c737e2de"
+        "7434a108068501e74ea781d4526a0a8336a6554a5ac3017792c5bc309f692739"
     ),
     "tests/architecture/test_m168_windows_concurrent_explicit_launch_failure.py": (
-        "b68bf847b3e13a2fae8b583d9241e912d65b1c765ca167945c6d13a829cf0992"
+        "5841f46b30281f139045567e738bd34193bb604fd1e45a81e46fa1aff13dd0b1"
     ),
     "tests/fixtures/windows_share_delete_inherited_blocker_child.py": (
         "2c695324c4f7fecbbe98b71a540a1b4000f0361e55ab6f469c52ccb8b4110a4c"
@@ -55,7 +55,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

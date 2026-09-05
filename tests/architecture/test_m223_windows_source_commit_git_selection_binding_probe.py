@@ -37,10 +37,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m221_windows_contained_source_access_source_commit_binding_probe.py": (
-        "2b03b42afb2e6cf0fdca14cd495f16279af1ab16cfb1bc61b6b0d13f3920d68a"
+        "5eb6ab94b0e4aa678d557f95c1c3dab867e9bb2b58b85ea2d2040f3587dee7fd"
     ),
     "tests/architecture/test_m222_windows_source_commit_no_lazy_fetch_exclusion.py": (
-        "cd848bbf112e1aabc57b616c26de0b14426ac1210bb737dcbb18855dbcc82eec"
+        "a51d698b9cc18b3f213d1894d793a8554fea0482df1ab8dcafaf1dad011f323a"
     ),
     "tests/fixtures/windows_contained_source_access_bound_contender.py": (
         "fa01dae3119f817c62d0b27b0f575642c9837ad5259d79507bd2a1c09c41d2dd"
@@ -70,7 +70,10 @@ def _sha256(path: Path) -> str:
 
 def _tree_sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    for candidate in sorted(path.rglob("*")):
+    for candidate in sorted(
+        path.rglob("*"),
+        key=lambda item: (tuple(part.casefold() for part in item.parts), item.parts),
+    ):
         if (
             candidate.is_file()
             and "__pycache__" not in candidate.parts

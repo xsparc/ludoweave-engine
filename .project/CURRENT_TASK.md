@@ -32,6 +32,13 @@
   exposed M159's import-before-platform-skip defect. A narrow pre-import
   exclusion preserves Windows execution; five focused correction checks pass.
   The next gate is the corrected PR's hosted qualification, not another PR.
+- **Second hosted finding:** Linux collected successfully and reported 4,450
+  passes, 411 skips, and 83 failures sharing host-dependent `Path` ordering in
+  frozen tree guards. Explicit component ordering preserves every protected
+  tree digest. The 83 guard rewrites and their dependent hash pins match the
+  planned correction exactly; native probes and runtime stay unchanged.
+  The complete architecture group plus cross-flavour regressions passes
+  2,486 checks with one skip. Hosted qualification remains the next gate.
 
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding
 
