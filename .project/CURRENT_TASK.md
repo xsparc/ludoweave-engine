@@ -28,6 +28,10 @@
 - **Next gate:** publish the approved single consolidated PR and use its
   existing three-job checks for hosted qualification. No merge or release is
   authorized by this milestone. Hosted state is reported on the PR itself.
+- **Publication:** PR #252 is open at the approved base. Its first Linux run
+  exposed M159's import-before-platform-skip defect. A narrow pre-import
+  exclusion preserves Windows execution; five focused correction checks pass.
+  The next gate is the corrected PR's hosted qualification, not another PR.
 
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding
 

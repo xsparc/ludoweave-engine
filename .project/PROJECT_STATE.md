@@ -31,6 +31,12 @@ complete; informational M3 timing targets are not met. No runtime change or
 performance improvement is claimed. Hosted qualification is the next gate,
 using the approved single PR and unchanged three-job workflow.
 
+PR #252 is now open. The initial Linux run failed during collection because
+M159 imports Windows-only `msvcrt` before its platform marker takes effect.
+The correction excludes only that file on unsupported hosts and preserves its
+Windows execution unchanged. Three platform-policy cases, live M159, and
+fixture wiring pass locally; hosted validation remains outstanding.
+
 ## M235 Windows source-commit Git CMS signer hash-algorithm binding - locally validated, publication withheld
 
 - **Baseline:** exact M234 commit

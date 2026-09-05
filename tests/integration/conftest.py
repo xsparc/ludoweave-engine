@@ -9,6 +9,14 @@ import pytest
 
 from tests.tools.git_source_fixture import materialize_m220_objects
 
+# M159 already declares a Windows-only marker, but imports the Windows-only
+# msvcrt module before pytest can evaluate that marker. Preserve the protected
+# probe and its Windows execution; exclude only this file before import on
+# unsupported hosts. This is unrelated to missing historical Git objects.
+collect_ignore = (
+    ["test_windows_cache_cleanup_broken_control_pipe_probe.py"] if sys.platform != "win32" else []
+)
+
 
 @pytest.fixture(scope="session")
 def m220_git_object_store(tmp_path_factory: pytest.TempPathFactory) -> Path:

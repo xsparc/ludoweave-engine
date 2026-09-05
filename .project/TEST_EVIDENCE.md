@@ -4,6 +4,32 @@ Only commands actually executed in the current repository are recorded here.
 
 ## M236 approved portability repair - 2026-09-05, Windows
 
+### Hosted publication and collection correction
+
+- Published commit `8eb113eccb1effbc3a5376a1906f65c4014c23d4` on
+  `release/m236-publication-recovery` and opened
+  [PR #252](https://github.com/xsparc/ludoweave-engine/pull/252) against main.
+  The redundant local M235 branch was removed after ancestry/worktree checks;
+  its history remains contained in M236. Only main and M236 remain locally.
+- [CI run 33931337284](https://github.com/xsparc/ludoweave-engine/actions/runs/33931337284)
+  passed formatting, lint, typing, and docs but failed Linux baseline collection
+  in 8.25 seconds: M159 imported `msvcrt` before its existing non-Windows skip
+  marker could be evaluated. Desktop jobs did not start. No hosted test pass
+  or cross-platform success is claimed for that run.
+- Integration collection now excludes exactly that already Windows-only file
+  before import on Linux/macOS. Windows still imports and executes the unchanged
+  probe. No unavailable-history skip, mocked native module, changed assertion,
+  or added CI job is introduced.
+- Focused Ruff, format, and Pyright checks on the collection configuration and
+  regression test exit 0. `uv run --frozen pytest -q
+  tests/unit/test_windows_collection_policy.py
+  tests/integration/test_windows_cache_cleanup_broken_control_pipe_probe.py
+  tests/integration/test_windows_contained_source_access_source_commit_fixture_portability.py`
+  exits 0: five passed in 0.85 seconds, including real Windows M159 execution.
+- Local Linux availability check found no running Docker engine and only the
+  Docker-managed WSL distribution; no Linux service or new environment was
+  started. Hosted Linux validation remains necessary.
+
 The maintainer approved the repair after the audit. Original probe files and
 guards remain unchanged; new test setup uses pinned original fixture objects.
 
