@@ -1,5 +1,11 @@
 # Security Policy
 
+M236's [Git source-probe fixture](docs/rfcs/0219-portable-git-source-probe-fixture.md)
+changes the automated M221-M235 metadata-store input to pinned offline test
+objects. Native and source-binding assertions are retained, but these results
+do not attest current checkout ancestry or acquisition. The fixture adds no
+production cleanup implementation or authority.
+
 ## Supported versions
 
 LudoWeave `0.1.0a1` is a community-alpha candidate, not a long-term support line. Security fixes are applied on a best-effort basis to the default branch and the current alpha until a version-support policy is announced. Older development snapshots are unsupported.
@@ -393,6 +399,155 @@ Maintainers will acknowledge the report through the same private channel, assess
   header bound, or inter-member layout validator, and changes no workflow,
   dependency, producer, runtime API, or release authority; it is not a general
   archive sandbox and is not a real public release observation.
+- M100 reads each bounded four-byte local compressed size after M99 and
+  requires exact equality with public central `ZipInfo.compress_size` before
+  decoded names, metadata, inventory, staging, or reads. Its content-silent
+  error is `sample bundle local header compressed sizes are inconsistent`.
+  This one four-byte local-compressed-size consistency classifier performs no
+  decompression or recompression, no uncompressed-size comparison, no payload
+  or next-header bound, and no inter-member layout validator, and changes no
+  workflow, dependency, producer, runtime API, or release authority; it is not
+  a general archive sandbox and is not a real public release observation.
+- M101 reads each bounded four-byte local uncompressed size after M100 and
+  requires exact equality with public central `ZipInfo.file_size` before
+  decoded names, metadata, inventory, staging, or reads. Its content-silent
+  error is `sample bundle local header uncompressed sizes are inconsistent`.
+  This one four-byte local-uncompressed-size consistency classifier performs no
+  decompression or recompression, no compression-ratio policy, no payload or
+  next-header bound, and no inter-member layout validator, and changes no
+  workflow, dependency, producer, runtime API, or release authority; it is not
+  a general archive sandbox and is not a real public release observation.
+- M102 calculates each compressed payload end after M101 and requires it not to
+  exceed the next ordered local header or conventional central directory before
+  decoded names, metadata, inventory, staging, or reads. Its content-silent
+  error is `sample bundle member payloads are out of bounds`. This one
+  compressed-payload upper-bound classifier performs no decompression or
+  recompression, adds no exact-contiguity requirement, no gap or adjacency ban,
+  and no payload-integrity certification, and changes no workflow, dependency,
+  producer, runtime API, or release authority; it is not a general archive
+  sandbox and is not a real public release observation.
+- M103 requires each compressed payload end to equal the next ordered local
+  header or conventional central directory after M102 and before decoded names,
+  metadata, inventory, staging, or reads. Its content-silent error is `sample
+  bundle member payloads are not contiguous`. This exact compressed-payload
+  contiguity preflight is one compressed-payload equality classifier with no
+  decompression or recompression, no payload-content read, and no payload-
+  integrity certification. It changes no workflow, dependency, producer,
+  runtime API, or release authority; it is not a general archive sandbox and is
+  not a real public release observation.
+- M104 requires public central `ZipInfo.extra` to be empty after established
+  Unicode Path, ZIP64, local/central consistency, payload-bound, and contiguity
+  checks and before decoded names, metadata, inventory, staging, or reads. Its
+  content-silent error is `sample bundle contains an unsupported extra field`.
+  This empty sample-member extra-field profile preflight is one central-extra
+  emptiness classifier with no extra-field semantics parser and no payload-
+  content read. It changes no workflow, dependency, producer, runtime API, or
+  release authority; it is not a general archive sandbox and is not a real
+  public release observation.
+- M105 requires public central `ZipInfo.flag_bits` to equal zero after
+  established specific-flag, local/central consistency, payload-layout, and
+  M104 extra-field checks, then after decoded names and member metadata but
+  before exact inventory, staging, or reads. Its content-silent error is
+  `sample bundle contains unsupported general-purpose flags`. This zero sample-
+  member general-purpose-flag profile preflight is one central-flag zero-
+  profile classifier with no flag-semantics parser and no payload-content read.
+  It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
+- M106 requires public central `ZipInfo.reserved` to equal zero after M105 and
+  before exact inventory, staging, or reads. Its content-silent error is
+  `sample bundle has a nonzero extraction-version reserved byte`. This zero
+  sample-member extraction-version reserved-byte profile preflight is one
+  central-reserved zero-profile classifier with no extraction-version semantics
+  parser and no payload-content read. It changes no workflow, dependency,
+  producer, runtime API, or release authority; it is not a general archive
+  sandbox and is not a real public release observation.
+- M107 requires public central `ZipInfo.extract_version` to equal `20` after
+  M106 and before exact inventory, staging, or reads. Its content-silent error
+  is `sample bundle has an unsupported extraction version`. This exact sample-
+  member extraction-version profile preflight is one central-extraction-version
+  exact-profile classifier with no general extraction-version semantics parser
+  and no payload-content read. It changes no workflow, dependency, producer,
+  runtime API, or release authority; it is not a general archive sandbox and is
+  not a real public release observation.
+- M108 requires public central `ZipInfo.create_version` to equal `20` after
+  M107 and before exact inventory, staging, or reads. Its content-silent error
+  is `sample bundle has an unsupported creation version`. This exact sample-
+  member creation-version profile preflight is one central-creation-version
+  exact-profile classifier with no general creation-version semantics parser
+  and no payload-content read. It changes no workflow, dependency, producer,
+  runtime API, or release authority; it is not a general archive sandbox and is
+  not a real public release observation.
+- M109 requires public central `ZipInfo.internal_attr` to equal zero after M108
+  and before exact inventory, staging, or reads. Its content-silent error is
+  `sample bundle has unsupported internal attributes`. This zero sample-member
+  internal-attribute profile preflight is one central-internal-attribute exact-
+  profile classifier with no text/binary content interpretation and no payload-
+  content read. It changes no workflow, dependency, producer, runtime API, or
+  release authority; it is not a general archive sandbox and is not a real
+  public release observation.
+- M110 retains sample-member timestamp compatibility after an exact fixed-
+  producer tuple caused 22 established architecture regressions. M98 continues
+  to require local/central consistency, while the verifier performs no timezone
+  or UTC conversion and no payload-content read. This is one central-timestamp
+  compatibility decision, with no workflow, dependency, producer, runtime API,
+  or release-authority change; it is not a general archive sandbox and is not a
+  real public release observation.
+- M111 retains sample-member permission compatibility. M65 continues to reject
+  encoded symlinks and non-regular file types while admitting missing type bits
+  and regular-file permission variants. This is one permission-bit
+  compatibility decision with no exact external-attribute profile, no
+  permission restoration, and no payload-content read. It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
+- M112 retains sample-member creating-system compatibility. Standard-library
+  host markers remain admitted while M65's existing encoded file-type boundary
+  remains in force and the producer stays fixed at host `3`. This is one host-
+  marker compatibility decision with no creating-system allowlist, no host-
+  specific external-attribute interpretation, and no payload-content read. It
+  changes no workflow, dependency, producer, runtime API, or release authority;
+  it is not a general archive sandbox and is not a real public release
+  observation.
+- M113 retains sample-member compression-method compatibility. M64's exact
+  stored/deflated allowlist and M95's local/central method agreement remain in
+  force, while the fixed producer remains deflated. This is one compression-
+  method compatibility decision with no exact deflate-only profile, no new
+  decompressor, and no payload-content read. It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
+- M114 retains sample-member compression-level non-observability. Reopened
+  member metadata does not establish the exact writer configuration, so the
+  verifier does not infer a compressor level from attributes, compressed bytes,
+  or sizes. The fixed producer remains explicit at level `9`, while M105's zero
+  flags and M113's method policy remain in force. This is one compression-level
+  non-observability decision with no exact level-9 verifier profile, no inferred
+  compressor level, and no payload-content read. It changes no workflow,
+  dependency, producer, runtime API, or release authority; it is not a general
+  archive sandbox and is not a real public release observation.
+- M115 scopes sample-bundle byte reproducibility to the release environment.
+  Repeated production within one fixed resolved environment remains the exact
+  byte-identity claim; supported runtimes receive no cross-runtime byte-
+  identity promise. This is one sample-bundle reproducibility-scope decision
+  with no compressor-identity manifest field. It changes no workflow,
+  allocation, dependency, producer, verifier, runtime API, or release
+  authority; it is not a general reproducible-build claim and is not a real
+  public release observation.
+- M116 separates sample-bundle semantic portability from byte identity. The
+  exact supported-runtime Windows producer-consumer matrix extracted the same
+  fixed 50-file tree from both observed archive identities. This is one sample-
+  bundle semantic-portability decision recording cross-runtime producer-
+  consumer compatibility with no alternate compression method or cross-runtime
+  byte-identity claim. It changes no workflow, allocation, dependency,
+  producer, verifier, runtime API, or release authority; it is not a general
+  ZIP interoperability claim and is not a real public release observation.
+- M117 retains standard GIL CPython as the supported baseline after one exact
+  Windows CPython 3.14.5t installed-wheel serial compatibility observation.
+  The GIL-disabled probe preserved deterministic headless execution, explicit
+  owner-thread rejection, and orderly close. It is one free-threaded serial-
+  compatibility decision, not a support promise, and makes no concurrent-
+  safety claim. It adds no graphics, performance, cross-platform, extension,
+  workflow, allocation, dependency, runtime API, or release-authority change
+  and is not a real public release observation.
 - No PyPI trusted-publishing or upload step exists in community alpha.
 - M26 release-channel evidence is offline and empty; it does not publish,
   download, resolve, or establish a supported release channel.
@@ -502,3 +657,1030 @@ records the prospective assets, actors, entry points, trust boundaries,
 blocking findings, verification requirements, and residual risk. Its findings
 are feature-admission blockers, not claims of a current executable-mod
 vulnerability.
+
+## Asset-cache cleanup boundary
+
+LudoWeave has no asset-cache cleanup command or background collector. Existing
+inventory, fingerprint, comparison, and unreferenced-preview records are
+read-only aggregate integrity evidence and grant no deletion authority.
+
+The accepted [asset-cache cleanup threat
+model](docs/security/cache-cleanup-threat-model.md) covers TOCTOU races,
+symlink/junction/reparse and hard-link substitution, concurrent readers and
+writers, malformed or stale evidence, trusted-time rollback, crash recovery,
+quarantine, replay, rollback tampering, and path privacy. A future implementation
+must fail closed unless it proves handle-relative no-follow safety and complete
+retained-root/quiescence semantics on the target platform.
+
+The accepted [platform-capability
+decision](docs/security/cache-cleanup-platform-capability-decision.md) records
+that current portable CPython does not supply that complete mutation chain.
+No platform is admitted for cleanup, and individual flags or a successful path-
+based deletion must not be treated as capability evidence.
+
+M149's test-only [Windows capability
+probe](docs/security/cache-cleanup-windows-capability-probe.md) exercises one
+owned handle chain beneath pytest temporary storage. It is feasibility evidence
+only. The privilege-gated reparse case, filesystem coverage, concurrent
+namespace attacks, cross-process exclusion, recovery, and durable receipts
+remain unresolved, so Windows is still not admitted for cache mutation.
+
+M150's test-only [Windows directory-junction
+probe](docs/security/cache-cleanup-windows-junction-probe.md) executes one NTFS
+reparse refusal without elevation. The retained-handle open refuses the
+junction before traversal and explicit junction removal preserves the target.
+This does not resolve symbolic links, other tags/filesystems, namespace races,
+recovery, or mutation authority; Windows remains unadmitted.
+
+M151's test-only [Windows retained-parent substitution
+probe](docs/security/cache-cleanup-windows-retained-parent-substitution-probe.md)
+renames an opened directory, rebinds its former name to a junction, and proves
+that fresh traversal refuses the junction while the retained parent remains
+bound to the original file identity. This same-process fixture is not
+concurrency, locking, recovery, or mutation authority; Windows remains
+unadmitted.
+
+M152's test-only [Windows cross-process substitution
+probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md)
+gives the fixed rename-plus-junction operation to a non-inheriting child process
+while the parent retains the original directory handle. It proves one
+cross-process namespace change, fresh-name refusal, and original-object identity
+on the current host. It does not prove concurrency, exclusion, quiescence,
+recovery, or mutation authority; Windows remains unadmitted.
+
+M153's test-only [Windows share-delete exclusion
+probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md)
+omits delete sharing from one retained directory handle. One fixed child rename
+fails without changing the namespace, and the identical rename succeeds after
+the parent closes the blocking handle. This does not establish general
+cross-process exclusion, controlled interleavings, oplock behavior, quiescence,
+recovery, or mutation authority; Windows remains unadmitted.
+
+M154's test-only [Windows native sharing-violation
+probe](docs/security/cache-cleanup-windows-native-sharing-violation-probe.md)
+replaces localized command diagnostics with one fixed isolated child's direct
+`MoveFileExW` result. It observes false/error 32 before blocker close and
+true/code zero afterward. Microsoft warns that exact native errors can vary by
+system or driver, so this does not establish a universal error contract,
+general exclusion, recovery, or mutation authority; Windows remains unadmitted.
+
+M155's test-only [Windows child-owned share-delete
+handshake](docs/security/cache-cleanup-windows-child-owned-share-delete-handshake.md)
+makes a distinct process own and acknowledge the blocking handle lifecycle. A
+separate native rename child observes false/error 32 while that owner remains
+alive and true/code zero only after acknowledged close. This is one ordered
+current-host transition, not a concurrent race, general exclusion, recovery,
+or mutation authority; Windows remains unadmitted.
+
+M156's test-only [Windows abrupt blocker-owner termination
+probe](docs/security/cache-cleanup-windows-abrupt-blocker-termination-probe.md)
+reuses that distinct owner but sends no graceful release token. The parent
+forces termination, waits with a fixed bound, observes no close
+acknowledgement, and retries the unchanged native rename once. This is one
+current-host process-termination observation, not crash or restart recovery,
+general exclusion, or mutation authority; Windows remains unadmitted.
+
+M157's test-only [Windows blocker control-pipe EOF
+probe](docs/security/cache-cleanup-windows-control-pipe-eof-probe.md) instead
+closes only the parent control writer after readiness. The unchanged helper
+closes its native handle in `finally`, exits with its fixed invalid-control
+status, and emits no close acknowledgement before one identical rename retry.
+This is not arbitrary pipe failure, recovery, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
+M158's test-only [Windows blocker invalid-control-token
+probe](docs/security/cache-cleanup-windows-invalid-control-token-probe.md)
+writes and flushes exactly one fixed non-release byte after readiness. The
+unchanged helper closes its native handle in `finally`, exits with its fixed
+invalid-control status, and emits no close acknowledgement before one
+identical rename retry. This is not arbitrary malformed input, partial or
+multiple write behavior, broken-pipe recovery, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
+M159's test-only [Windows blocker broken-control-pipe
+probe](docs/security/cache-cleanup-windows-broken-control-pipe-probe.md) kills
+and boundedly reaps the unchanged blocker before one direct late `WriteFile`.
+The current host reports false/error 232 with zero bytes, the parent writer
+closes explicitly, and one identical rename succeeds. This is not a universal
+Windows error result, Python exception mapping, retry or recovery contract,
+general exclusion, or mutation authority; Windows remains unadmitted.
+
+M160's test-only [Windows live-blocker wait-timeout
+probe](docs/security/cache-cleanup-windows-live-wait-timeout-probe.md) performs
+one zero-duration wait after the unchanged blocker is ready. The wait raises
+`TimeoutExpired`; the child and false/error 32 denial remain live until the
+existing graceful close orders one successful rename. This is not a timeout
+recovery contract, cancellation policy, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
+M161's test-only [Windows acknowledged-release timeout
+probe](docs/security/cache-cleanup-windows-acknowledged-release-timeout-probe.md)
+uses separate fixed release-intent and close tokens. Exact `release-held`
+acknowledges intent while retaining false/error 32 denial; one immediate wait
+times out before the close token orders exact `closed`, exit zero, and one
+successful rename. This is not a graceful-close timeout contract, recovery
+policy, general exclusion, or mutation authority; Windows remains unadmitted.
+
+M162's test-only [Windows duplicated-handle retention
+probe](docs/security/cache-cleanup-windows-duplicated-handle-probe.md) creates
+one noninheritable same-process duplicate of the no-delete-share directory
+handle. Closing only the original leaves false/error 32 denial in force;
+closing the final duplicate permits one successful rename. This is not
+inherited-handle or cross-process duplication evidence, general exclusion, or
+mutation authority; Windows remains unadmitted.
+
+M163's test-only [Windows inherited-handle retention
+probe](docs/security/cache-cleanup-windows-inherited-handle-probe.md) passes
+only one no-delete-share directory handle through a `STARTUPINFO` explicit
+handle list, then immediately restores the parent's handle to noninheritable.
+Closing the parent copy leaves false/error 32 denial in force until the fixed
+child closes its inherited handle. This is not a concurrency-safe inheritance
+contract, broad inheritance, leak-freedom under concurrent launches, general
+exclusion, or mutation authority; Windows remains unadmitted.
+
+M164's test-only [Windows inherited-launch failure
+probe](docs/security/cache-cleanup-windows-inherited-launch-failure-probe.md)
+uses one fixed missing executable to produce a real process-creation failure
+after temporary explicit handle allowlisting. The parent restores
+noninheritability and retains false/error 32 until explicit close. This is not
+restoration-failure injection, arbitrary launch-failure coverage, concurrent-
+launch safety, recovery, general exclusion, or mutation authority; Windows
+remains unadmitted.
+
+M165's test-only [Windows inherited-handle restoration-failure
+probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md)
+injects one fixed error before the native restore call after successful child
+creation. The unchanged helper closes and reaps the child before propagating
+the exact error; the caller then explicitly repairs the still-inheritable
+parent handle and retains false/error 32 until close. This is not a real native
+restoration failure, concurrent-launch safety, recovery, general exclusion, or
+mutation authority; Windows remains unadmitted.
+
+M166's test-only [Windows concurrent broad-inheritance leak
+probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md)
+uses bounded events to pause M163's explicit-list launch while its exact parent
+handle is temporarily inheritable, then starts the same fixed child with broad
+inheritance. Native rename remains false/error 32 after the parent and intended
+child close and becomes true/code zero only after the broad child closes. This
+is one controlled real leak observation, not a concurrency-safe spawning
+contract, general leak-freedom, recovery, general exclusion, or mutation
+authority; Windows remains unadmitted.
+
+M167's test-only [Windows concurrent explicit-list isolation
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md)
+holds two distinct blocker handles inheritable across two real one-handle-list
+process creations. After both parent handles close, releasing either child
+permits rename only for its root; both release orders prove the same pairwise
+isolation. This is not a concurrency-safe process-creation contract, general
+leak-freedom, recovery, general exclusion, or mutation authority; Windows
+remains unadmitted.
+
+M168's test-only [Windows concurrent explicit-list launch-failure
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md)
+holds a successful fixed-child launch and a real missing-executable launch in
+one shared temporary-inheritability window. After both parents close, the
+failed-launch root becomes renameable while the successful child still blocks
+only its own root. This is not arbitrary failure coverage, a concurrency-safe
+process-creation contract, recovery, general exclusion, or mutation authority;
+Windows remains unadmitted.
+
+M169's test-only [Windows concurrent explicit-list restoration-failure
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md)
+starts two real fixed children with distinct handles, then injects one restore
+failure while both helpers are at restoration. The failed child is reaped
+before the error escapes; after explicit parent repair and close, the failed-
+restoration root releases while the survivor child still blocks only its own
+root. This is not a real native restoration failure, not a concurrency-safe
+process-creation contract, recovery, general exclusion, or mutation authority;
+Windows remains unadmitted.
+
+M170's test-only [Windows concurrent explicit-list abrupt-termination
+probe](docs/security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md)
+starts two real fixed children with distinct handles and closes both parent
+copies. One child is forcibly terminated and waited for; only its root releases
+while the survivor remains live and blocks its own root until graceful close.
+This is not crash recovery, not a concurrency-safe process-creation contract,
+recovery, general exclusion, or mutation authority; Windows remains
+unadmitted.
+
+M171's test-only [Windows exclusive-root acquisition
+probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md)
+proves two fail-closed sharing-mode transitions: one no-sharing directory owner
+denies a fixed late child open, and one existing fixed child makes the same
+parent acquisition fail with error 32 until acknowledged close. This is not a
+complete quiescence protocol, lock API, recovery, general exclusion, cleanup
+authority, or mutation authority; Windows remains unadmitted.
+
+M172's test-only [Windows descendant non-exclusion
+probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md)
+proves that M171's zero-sharing directory owner and a separate descendant file
+owner coexist in either acquisition order. The directory primitive is not
+recursive subtree quiescence and cannot alone authorize cleanup. No runtime
+lock, participant registry, cleanup authority, or mutation is added; Windows
+remains unadmitted.
+
+M173's test-only [Windows cooperative-lock
+probe](docs/security/cache-cleanup-windows-cooperative-lock-probe.md) proves
+that two shared owners of one fixed coordination range coexist and preserve
+exclusive refusal through the last exact release, while an exclusive owner
+refuses a late shared participant. This is only an opt-in participant
+primitive: uncooperative actors, identity/generation binding, complete retained
+roots, mapped views, substitution, recovery, policy, and receipts remain open.
+It is not cleanup authority; Windows remains unadmitted.
+
+M174's test-only [Windows cooperative-lock substitution
+probe](docs/security/cache-cleanup-windows-cooperative-lock-substitution-probe.md)
+proves that renaming and replacing the coordination pathname while an M173
+participant remains live creates a distinct replacement identity and lock
+generation. Old and new participants can remain live independently, so a
+reusable pathname is not stable coordination authority. Root/file identity,
+generation binding, revalidation, recovery, policy, and receipts remain open.
+It is negative capability evidence, not cleanup authority; Windows remains
+unadmitted.
+
+M175's test-only [Windows live substitution-exclusion
+probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md)
+proves that participants which omit delete sharing prevent M174's rename and
+replacement through the final live protected owner while preserving M173's
+shared/exclusive range refusal. Substitution succeeds after the final close,
+so trusted root/file identity, generation continuity, recovery, policy, and
+receipts remain open. This is not cleanup authority; Windows remains
+unadmitted.
+
+M176's test-only [Windows cooperative-lock abrupt-settlement
+probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md)
+proves that killing and reaping one protected participant releases only that
+participant while a survivor preserves substitution and exclusive-range
+refusal. After the survivor is killed and reaped, both ownership types settle
+on the observed host. Operating-system release can be delayed elsewhere, and
+the zero-participant identity gap, durable recovery, policy, and receipts
+remain open. This is not cleanup authority; Windows remains unadmitted.
+
+M177's test-only [Windows protected guardian-handoff
+probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md)
+proves that a non-range-locking no-delete-share guardian can preserve one
+coordination identity through a participant-free interval and then release
+while a later protected participant retains substitution exclusion. Exclusive
+range ownership remains available when only the guardian exists, so namespace
+continuity is not treated as quiescence. This is not generation authority,
+trusted placement, crash recovery, admission, or cleanup authority; Windows
+remains unadmitted.
+
+M178's test-only [Windows guardian abrupt-handoff
+probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md)
+proves that, after an M175 protected participant joins the retained identity,
+killing and boundedly waiting for the non-range-locking guardian leaves the
+survivor's substitution and exclusive-range refusals intact. This is a post-
+wait overlapping-ownership observation, not guardian restart, crash recovery,
+generation authority, complete admission, or cleanup authority; Windows
+remains unadmitted.
+
+M179's test-only [Windows overlapping guardian-rotation
+probe](docs/security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md)
+proves that two already-live compatible guardians can overlap on the retained
+identity. After the first is abruptly reaped and the protected participant
+later closes, the second guardian alone retains substitution refusal while
+exclusive range ownership is available. This is overlapping rotation, not
+guardian restart, crash recovery, election, generation authority, complete
+admission, or cleanup authority; Windows remains unadmitted.
+
+M180's test-only [Windows zero-owner guardian restart-boundary
+probe](docs/security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md)
+proves that a later guardian attaches to the unchanged identity when no
+mutation occurs after the first guardian is abruptly reaped. If substitution
+occurs during that zero-owner interval, the later guardian instead protects
+the replacement identity and cannot recover the displaced original. This is
+not crash recovery, generation authority, continuity, complete admission, or
+cleanup authority; Windows remains unadmitted.
+
+M181's test-only [Windows expected-identity guardian admission
+probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md)
+passes a retained `FILE_ID_INFO` to a child that denies delete sharing before
+querying and comparing that identity on the same opened handle. A match is
+admitted while that handle remains live. A preexisting replacement is rejected
+with exact `identity_mismatch` only after the handle closes, leaving rename and
+range ownership available. This is not trusted identity provenance, durable
+storage, generation authority, authenticated launch, recovery, complete
+admission, or cleanup authority; Windows remains unadmitted.
+
+M182's test-only [Windows hard-link alias non-exclusion
+probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md)
+creates a peer hard link for that same coordination file before guardian
+launch. On the observed NTFS host, the matching guardian rejects rename of the
+exact name it opened but does not prevent rename of the preexisting alias. The
+guardian remains live and continues rejecting exact-name rename afterward.
+This is negative evidence: an identity match is not root-confined ownership
+and cannot replace trusted-root and link-count policy. Windows remains
+unadmitted.
+
+M183's test-only [Windows post-admission hard-link creation
+probe](docs/security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md)
+starts with one link, admits the matching guardian, and then creates a peer
+alias while that guardian remains live. Both handles report the same identity
+and the link count changes to two; the exact opened name remains protected.
+Admission therefore does not freeze the link set, and a prior identity/count
+sample is not root-confined ownership. Windows remains unadmitted.
+
+M184's test-only [Windows hard-link alias deletion non-exclusion
+probe](docs/security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md)
+starts with two links and admits the matching guardian. On the observed NTFS
+host, deletion of the peer alias succeeds while the guardian remains live;
+the original handle reports link count one and the exact opened name continues
+rejecting rename. Link removal is therefore not excluded, and the surviving
+identity/count sample is not root-confined ownership. Windows remains
+unadmitted.
+
+M185's test-only [Windows hard-link alias delete/recreate ABA
+probe](docs/security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md)
+combines deletion and recreation of the same peer pathname while the matching
+guardian child remains live. The parent process observes one identity and
+exact bytes while link count changes `2 -> 1 -> 2`; exact-name rename remains
+refused until guardian close. This two-process, same-principal result shows
+that an observed one-link state is transient, not root-confined ownership.
+Cross-principal behavior, an independent third mutation actor, cleanup
+authority, and Windows admission remain unresolved.
+
+M186's test-only [Windows independent hard-link alias mutator ABA
+probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md)
+moves the alias deletion and recreation into a distinct sibling child while
+the matching guardian child remains live. The parent only coordinates and
+observes the same identity, bytes, exact-name refusal, and `2 -> 1 -> 2`
+transition. This three-process result remains under one principal and one
+parent-owned process tree; it is not cross-principal or root-confined
+ownership evidence. Cleanup authority and Windows admission remain unresolved.
+
+M187's test-only [Windows hard-link alias mutator abrupt-loss
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md)
+terminates and reaps the independent mutator after its exact `deleted` event
+and before any recreate token. The peer alias remains absent and the original
+retains its identity, bytes, and one-link count while the matching guardian
+continues protecting the exact name. This three-process, same-principal result
+is negative recovery evidence: there is no automatic rollback or recovery.
+Cleanup authority and Windows admission remain unresolved.
+
+M188's test-only [Windows hard-link alias mutator abrupt-loss-after-recreate
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md)
+sends the exact recreate token, requires exact `recreated`, and then terminates
+and reaps the independent mutator before any close token. The peer alias
+remains present and both names retain shared identity, bytes, and link count
+two while the matching guardian continues protecting the original name. This
+three-process, same-principal result is negative rollback evidence: there is no
+automatic rollback to one link. It is not durable commit, crash consistency,
+or recovery evidence. Cleanup authority and Windows admission remain
+unresolved.
+
+M189's test-only [Windows hard-link alias mutator control-pipe EOF after
+recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md)
+sends the exact recreate token, requires exact `recreated`, and then closes
+only the parent control writer before any close token. The unchanged child
+settles with exact exit 5, stdout EOF, and empty stderr. The peer alias remains
+present and both names retain shared identity, bytes, and link count two while
+the matching guardian continues protecting the original name. This three-
+process, same-principal result is negative rollback evidence, not abrupt
+termination, durable commit, crash consistency, or recovery evidence. Cleanup
+authority and Windows admission remain unresolved.
+
+M190's test-only [Windows hard-link alias mutator invalid control token after
+recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md)
+sends the exact recreate token, requires exact `recreated`, then writes and
+flushes the fixed invalid `?` byte before closing the parent control writer.
+The unchanged child settles with exact exit 5, stdout EOF, and empty stderr.
+The peer alias remains present and both names retain shared identity, bytes,
+and link count two while the matching guardian continues protecting the
+original name. This three-process, same-principal result is negative rollback
+evidence, not control-pipe EOF, abrupt termination, arbitrary malformed-input,
+durable commit, crash consistency, or recovery evidence. Cleanup authority
+and Windows admission remain unresolved.
+
+M191's test-only [Windows hard-link alias mutator valid close prefix with one
+trailing byte after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md)
+writes and flushes fixed `!?` once after exact recreation. The unchanged child
+emits exact `closed` and exits 0 while the parent writer remains open, leaving
+the peer alias present with shared identity, bytes, and link count two while
+the guardian remains protective. This three-process, same-principal result is
+bounded byte-prefix acceptance evidence, not general message framing,
+arbitrary malformed-input handling, durable commit, recovery, or cleanup
+authority. Windows remains unadmitted.
+
+M192's test-only [Windows hard-link alias mutator invalid prefix with one valid
+close suffix after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md)
+writes and flushes fixed `?!` once after exact recreation. The unchanged child
+emits no `closed` event and exits 5, leaving the peer alias present with shared
+identity, bytes, and link count two while the guardian remains protective. This
+three-process, same-principal result is bounded leading-byte rejection evidence,
+not general message framing, arbitrary malformed-input handling, durable
+commit, recovery, or cleanup authority. Windows remains unadmitted.
+
+M193's test-only [Windows hard-link alias mutator invalid-prefix open-writer
+settlement after recreation
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md)
+writes and flushes fixed `?!`, then waits while the parent writer remains open.
+The unchanged bounded-output child emits no `closed` event and exits 5 before
+the writer is closed, while the two-link alias state and guardian protection
+remain intact. This three-process, same-principal result distinguishes the
+fixed rejection from control-pipe EOF; it is not general framing, arbitrary
+malformed-input or unbounded-output handling, durable recovery, or cleanup
+authority. Windows remains unadmitted.
+
+M194's test-only [Windows hard-link alias mutator late valid-close delivery-
+failure after invalid settlement
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md)
+first reproduces M193's exit 5 while the parent writer remains open. A late
+valid byte is then accepted into the parent buffer, but delivery fails on
+`flush()` with generic `OSError`. This proves only that buffer acceptance is
+not peer receipt for one fixed sequence and fixture; it creates no exception-
+code portability, acknowledgement, durable recovery, or cleanup authority.
+Windows remains unadmitted.
+
+M195's test-only [Windows hard-link alias mutator buffered-close delivery-
+failure after invalid settlement
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md)
+reproduces the one-byte late buffer acceptance but performs no late `flush()`.
+Direct `close()` reports generic `OSError` as the first delivery attempt and
+still leaves the stream closed. This is only close-triggered delivery evidence
+for one fixed sequence and fixture; it creates no exception-code portability,
+acknowledgement, durable recovery, or cleanup authority. Windows remains
+unadmitted.
+
+M196's test-only [Windows hard-link alias mutator repeated buffered-close after
+delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md)
+reuses M195's exact failed first close and closed-state result. A second
+`close()` then returns `None` and leaves the stream closed. This is only local
+repeated-close disposition evidence for one fixed sequence and fixture; it
+does not retry delivery and creates no acknowledgement, durable recovery, or
+cleanup authority. Windows remains unadmitted.
+
+M197's test-only [Windows hard-link alias mutator closed-stream flush after
+delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md)
+reuses M196's exact first-close failure, second-close no-op, and closed state.
+One later `flush()` raises generic `ValueError` and leaves the concrete stream
+closed. This is only local closed-stream flush disposition evidence for one
+fixed sequence and fixture; it does not establish a second native write,
+delivery retry, acknowledgement, durable recovery, or cleanup authority.
+Windows remains unadmitted.
+
+M198's test-only [Windows hard-link alias mutator closed-stream write after
+delivery-failure
+probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md)
+reuses M197's exact close failure, repeated-close no-op, closed-stream flush
+failure, and closed state. One later `write(b"!")` raises generic `ValueError`
+and leaves the concrete stream closed. This is only local closed-stream write
+disposition evidence for one fixed sequence, argument, and fixture; it does not
+establish native-call suppression, retry, acknowledgement, durable recovery,
+or cleanup authority. Windows remains unadmitted.
+
+M199's [Windows cache-cleanup readiness
+refresh](docs/security/cache-cleanup-windows-readiness-refresh.md) consolidates
+the complete M149-M198 current-host sequence. Windows remains unimplemented and
+unauthorized for cleanup: local same-principal identity, sharing, guardian,
+alias, control, and stream observations do not establish authenticated
+trusted-root authority, complete hard-link policy, use-time revalidation,
+durable recovery, cross-principal resistance, or independent-host support.
+Standalone closed-stream method probing ends after M198; future work must
+resolve a named admission criterion. No runtime, workflow, permission, or
+hosted check is added.
+
+M200's [Windows singleton-link refusal
+policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md)
+resolves only M199 hard-link criterion 2 as policy. A future engine-owned
+adapter must retain the exact opened object and observe a handle-derived link
+count of exactly one at admission and immediately before mutation. Zero,
+multiple, changed, unavailable, invalid, or unsupported counts refuse before
+mutation. Hard-link name enumeration is pathname-based observation, not
+authority. Windows remains unadmitted; production use-time enforcement and
+criteria 1 and 3 through 7 remain unresolved. No runtime, workflow, permission,
+or hosted check is added.
+
+M201's [Windows cleanup-authority admission
+policy](docs/security/windows-cache-cleanup-authority-admission-policy.md)
+resolves only M199 criterion 1 as policy. A future private, least-privilege
+capability may be issued only by the trusted composition root after exact
+effective-token, retained root identity/owner/DACL, and separate durable
+generation bindings all pass. World-write capability, request data, paths,
+logon identifiers, and saved evidence supply no cleanup authority. Criterion 2
+remains resolved as policy; criteria 3 through 7 remain unresolved. Windows
+remains unadmitted, and no runtime, workflow, permission, or hosted check is
+added.
+
+M202's [Windows use-time revalidation
+policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md)
+resolves only M199 criterion 3 as policy. A future private adapter must freshly
+compare the complete token, root, generation, lineage, and candidate state
+with admission immediately before every mutation boundary while retaining the
+same owned objects and uninterrupted single-owner gate. A failed initial gate
+leaves the candidate untouched; a later failure enters recovery-required state
+and must not guess rollback or proceed to deletion. Criteria 1 through 3 are
+resolved as policy; criteria 4 through 7 remain unresolved. Windows remains
+unadmitted, and no runtime, workflow, permission, or hosted check is added.
+
+M203's [Windows cleanup protocol and receipt
+policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md) resolves
+only M199 criterion 4 as policy. A future request, acknowledgement, and receipt
+use separate bounded canonical documents with exact IDs and digest
+correlation. Requests cannot select paths or candidates; acknowledgement never
+means mutation or success; path-free typed receipts are evidence and cannot
+carry authority, authentication, durability, or exactly-once claims. Criteria
+1 through 4 are resolved as policy; criteria 5 through 7 remain unresolved.
+Windows remains unadmitted, and no runtime, workflow, permission, or hosted
+check is added.
+
+M204's [Windows cleanup durable recovery
+policy](docs/security/windows-cache-cleanup-durable-recovery-policy.md) resolves
+only M199 criterion 5 as policy. Future accepted work requires bounded durable
+intent and replay lookup; each effect has a write-ahead phase; quarantine is a
+same-volume no-replace move of the admitted object; and restart recovery must
+reacquire private authority and reconcile exact object state before advancing.
+Invalid chains, unexpected store entries, security/object mismatches, and
+ambiguous physical state block the whole root and generation without automatic
+repair, deletion, or restore. Criteria 1 through 5 are resolved as policy;
+criteria 6 and 7 remain unresolved. Windows remains unadmitted, and no runtime,
+workflow, permission, or hosted check is added.
+
+M205's [Windows cache-cleanup cross-principal validation
+contract](docs/security/windows-cache-cleanup-cross-principal-validation-contract.md)
+defines the evidence needed for M199 criterion 6 without claiming it. A future
+run must use a genuinely distinct, independently authenticated untrusted local
+principal, unrelated process/session topology, explicit ACL and handle
+observations, real hard-link and reparse pressure, deterministic barriers, and
+bounded path-free evidence. Same-user restrictions and hosted administrator
+accounts do not qualify. Account and credential lifecycle remain
+operator-owned; repository code accepts no account secret or credential and
+adds no launcher, production authority, workflow, or hosted allocation.
+Criteria 6 and 7 remain unresolved, and Windows stays unadmitted.
+
+M206's source-only [Windows cross-principal evidence
+validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md)
+checks one stable regular-file artifact against the existing bounded canonical
+JSON contract and the exact M205 lane, barrier, sanitization, count, and claim
+relationships. A structurally valid document is not necessarily qualifying:
+the reviewed fixture is intentionally all `not_run`, criterion 6 remains
+unresolved, and the Windows-admission field must remain false. The validator
+performs no process launch, native call, credential or account management,
+network access, cleanup, or other mutation and adds no hosted allocation.
+
+M207's [Windows independent-host validation
+contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md)
+defines criterion 7 without claiming it. Each admitted profile must reproduce
+on independently provisioned hosts with observed filesystem and volume
+capabilities, explicit NTFS/ReFS/SMB/CsvFS/cross-volume/unknown refusal
+outcomes, file-ID reuse pressure, and separated process, VM, and physical-host
+interruption evidence. Collection remains offline and operator-controlled; no
+privileged harness is attached to public CI. Criterion 7 remains unresolved,
+Windows remains unadmitted, and no runtime, validator, workflow, secret,
+permission, or hosted allocation is added.
+
+M208's source-only [Windows independent-host evidence
+validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md)
+checks one stable bounded canonical artifact and a separately validated M206
+companion. It recomputes the companion digest, derives criterion 6, and checks
+exact host-independence, capability, profile, interruption, count, outcome, and
+claim relationships. The reviewed fixture is entirely `not_run`; it is not
+execution evidence. The validator performs no collection, native call,
+process launch, network access, account or credential management, filesystem
+mutation, or cleanup and adds no workflow, permission, secret, or hosted
+allocation. Criteria 6 and 7 remain unresolved and Windows remains unadmitted.
+
+M209's [Windows independent-host collection-authority
+policy](docs/security/windows-cache-cleanup-independent-host-collection-authority-policy.md)
+confines any future private collector to offline, single-run, single-use
+actions bound to one host, fixture, lane, trial, barrier, and interruption.
+Networking, clipboard redirection, writable live shares, public self-hosted
+runners, repository credentials, checkpoint restoration, and participant self-
+attestation are excluded. Private evidence requires reviewed custody, atomic
+staging, separately retained digests, sanitization, and fail-closed teardown.
+M209 adds no harness, process or power control, cleanup authority, workflow,
+secret, permission, or hosted allocation; criteria 6 and 7 remain unresolved
+and Windows remains unadmitted.
+
+M210's source-only [Windows independent-host collection-plan
+validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md)
+checks one stable bounded canonical plan with exact closed profile, barrier,
+interruption, and operation matrices. It derives structural completeness and
+forces collection status to `not_run` plus authority, criteria 6 and 7, and
+Windows admission to false. Stable host, storage, process, principal, session,
+path, credential, and operator identifiers are not schema fields. A complete
+plan remains neither private authority nor qualifying evidence. M210 adds no
+runtime command, privileged harness, process or power control, account or
+credential lifecycle, filesystem mutation, network access, cleanup authority,
+workflow, permission, secret, or hosted allocation; Windows remains unadmitted.
+
+M211's test-only [Windows independent-host process-containment
+probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md)
+creates one fixed participant suspended, assigns its retained process handle to
+an unnamed kill-on-close no-breakaway Job Object before resume, and retains and
+validates one fixed descendant handle. Exact Job membership, bounded
+`TerminateJobObject` settlement, zero active members, and last-job-handle
+fail-safe settlement are observed on one current Windows host. PID-only or
+unsuspended fallback, extra processes, arbitrary commands, public runners, and
+network control remain excluded. This is not independent-host or qualifying
+evidence and adds no collector, cleanup authority, credential lifecycle,
+workflow, hosted allocation, or Windows admission; criteria 6 and 7 remain
+unresolved.
+
+M212's test-only [Windows local control-channel
+probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md)
+creates one randomized first-instance, remote-rejecting message pipe with a
+protected single-logon-SID DACL and reads the native descriptor back. It binds
+the connected client identity to one retained suspended-then-contained process
+before sending a fresh challenge, then observes exact sequenced release plus
+replay, wrong-challenge, and disconnect refusal under bounded overlapped
+controller I/O. Default pipe security, inherited handles, participant-reported
+PID authority, arbitrary endpoints, network listeners, public runners, and
+unbounded controller waits remain excluded. This same-host/same-logon result is
+not distinct-principal or independent-host evidence and adds no collector,
+cleanup authority, credential lifecycle, workflow, hosted allocation, or
+Windows admission; criteria 6 and 7 remain unresolved.
+
+M213's test-only [Windows local control token-binding
+probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md)
+retains the M212 participant's query-only primary-token handle across the
+challenge/ready barrier. It requires stable user, logon, authentication, token,
+modified, type, and session identity; native pipe/process/token sessions must
+agree, and the M212 DACL is revalidated against the participant logon SID.
+Impersonation, token adjustment, raw identity disclosure, account launch,
+credentials, arbitrary endpoints, public runners, and unbounded waits remain
+excluded. This same-host/same-logon result is not distinct-principal or
+independent-host evidence and adds no collector, cleanup authority, credential
+lifecycle, workflow, hosted allocation, or Windows admission; criteria 6 and 7
+remain unresolved.
+
+M214's test-only [Windows retained process-image binding
+probe](docs/security/windows-cache-cleanup-retained-process-image-binding-probe.md)
+opens the fixed expected executable before launch, binds the image queried from
+the retained participant process to a second retained read-only file handle,
+and privately compares normalized names, stable file IDs, bounded sizes, and
+SHA-256 before and after challenge/ready. It does not bind loaded script bytes,
+prove hostile replacement resistance, add collection or cleanup authority, or
+admit Windows; criteria 6 and 7 remain unresolved and no hosted check is added.
+
+M215's test-only [Windows retained launch-source binding
+probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md)
+opens and snapshots the fixed participant source before launch, rewinds that
+retained handle, and supplies it as inherited standard input to fixed direct
+`pythonw.exe -I -B -`. An exact three-handle allowlist includes only the source
+and two write-only `NUL` standard handles. The source and frozen M212-M214
+retained-token and executable-image bindings are rechecked after
+challenge/ready and before release. Native client/session/DACL checks remain
+required before the challenge. Imported modules and source-commit provenance
+remain unbound, hostile ABA resistance is not proved, and no collection,
+cleanup authority, Windows admission, public runner, workflow, or hosted check
+is added; criteria 6 and 7 remain unresolved.
+
+M216's test-only [Windows retained launch-source access-refusal
+probe](docs/security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md)
+requests write and delete access against the exact retained M215 source before
+launch, after connection, and after ready. It accepts only native sharing error
+32, then requires both access classes to become available after source-handle
+settlement and confirms the source snapshot is unchanged. It performs no
+content or namespace mutation. This same-process current-host observation is
+not hostile-process, source-provenance, collection, cleanup-authority, or
+Windows-admission evidence; criteria 6 and 7 remain unresolved and no hosted
+check is added.
+
+M217's test-only [Windows retained launch-source remote-debug exclusion
+probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md)
+adds exact `-X disable_remote_debug` startup to the same direct interpreter and
+complete frozen M212-M216 boundary. On Python 3.14 the option has its documented
+remote-debug exclusion meaning; Python 3.12 and 3.13 provide launch/lifecycle
+compatibility only. The probe performs no remote attachment, code injection,
+process-memory access, content mutation, or namespace mutation. It is not
+hostile-process, source-provenance, collection, cleanup-authority, or
+Windows-admission evidence; criteria 6 and 7 remain unresolved and no hosted
+check is added.
+
+M218's test-only [Windows contained source-access refusal
+probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md)
+makes the same write/delete access-only requests from a fixed argument-free
+same-logon child. The process is created suspended, assigned to a private
+kill-on-close Job, verified as the sole member, and resumed only after token
+binding; exact sharing error 32 is required at all three retained-source
+phases. The source remains unchanged and the one-member Job settles completely.
+This is not distinct-principal, hostile-process, independent-host,
+source-provenance, collection, cleanup-authority, or Windows-admission
+evidence; criteria 6 and 7 remain unresolved and no hosted check is added.
+
+M219's test-only [Windows contained source-access image-binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-image-binding-probe.md)
+retains the expected interpreter image before launch and the suspended child's
+observed process image before resume. It requires exact normalized-name,
+volume/file-identity, bounded-size, and SHA-256 agreement after same-logon and
+sole-Job-member checks, then rechecks both retained file handles after child
+settlement.
+
+The complete M218 refusal and M217 participant lifecycle remains mandatory.
+The probe does not bind the contender script, imported modules, source commit,
+build, loader state, or native DLLs. It is not distinct-principal,
+independent-host, hostile-process, privileged-bypass, collection,
+cleanup-authority, or Windows-admission evidence; criteria 6 and 7 remain
+unresolved and no hosted check is added.
+
+M220's test-only [Windows contained source-access source-binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md)
+retains a fixed contender source before process creation and executes those
+bytes through isolated inherited standard input under an exact three-handle
+allowlist. The child remains suspended until private-Job membership,
+same-logon identity, interpreter-image agreement, and source stability are
+proven. Exact zero exit is followed by retained source/image stability, Job
+settlement, zero owned handles, and post-close source access. The full M218
+three-phase refusal and M217 participant boundary remains required.
+
+This binds only the new fixed contender execution source. Imported modules,
+source-commit and build provenance, native loader state, distinct-principal
+and independent-host behavior, hostile/privileged bypass, criteria 6/7, and
+Windows admission remain unresolved. It adds no runtime surface, cleanup
+authority, workflow, public runner, or hosted allocation. Windows remains
+unadmitted and cleanup remains unimplemented and unauthorized.
+
+M221's test-only [Windows contained source-access source-commit binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md)
+requires the retained M220 contender source to equal the blob at one exact
+immutable commit/path before child creation and after settlement. Direct Git
+object reads are fixed, bounded, noninteractive, replacement-free, and
+fail-closed. The full M220 Job, token, image, source, access, and three-phase
+participant boundary remains mandatory.
+
+This is a current-repository local-object observation, not a source
+attestation or build-provenance claim. The Git executable, local object store,
+repository acquisition, imports, native-loader state, distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, and Windows
+admission remain unresolved. It adds no runtime surface, cleanup authority,
+workflow, public runner, or hosted allocation. Windows remains unadmitted and
+cleanup remains unimplemented and unauthorized.
+
+M222's corrective test-only [Windows contained source-access source-commit
+no-lazy-fetch
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md)
+adds both documented Git lazy-fetch exclusions to every M221 object read. It
+fixes `GIT_NO_LAZY_FETCH=1` only after stripping ambient Git values and places
+`--no-lazy-fetch` before repository and object-plumbing arguments. A regression
+verifies the direct no-shell subprocess shape and reruns the complete M221
+boundary.
+
+This excludes an implicit promisor-remote retrieval path; it does not
+authenticate Git or the local object store, attest repository acquisition,
+establish source/build provenance, prove distinct-principal or independent-host
+behavior, resolve hostile/privileged bypass or criteria 6/7, admit Windows, or
+authorize cleanup. It adds no runtime surface, workflow, public runner, or
+hosted allocation. Historical M221 evidence is not rewritten.
+
+M223's test-only [Windows contained source-access source-commit Git executable
+selection binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md)
+resolves one existing absolute Git path before the complete M222 observation,
+then requires all 48 fixed object reads to invoke that same path. It preserves
+M222's full no-lazy-fetch, no-shell, environment, timeout, output, retained-
+source, image, Job, token, access, settlement, and participant boundary.
+
+This binds only executable selection. It does not authenticate executable
+bytes, a signer or publisher, path-target replacement, native DLL/loader state,
+or the local object store; it does not attest source/build provenance, prove
+distinct-principal or independent-host behavior, resolve hostile/privileged
+bypass or criteria 6/7, admit Windows, or authorize cleanup. It adds no runtime
+surface, workflow, public runner, or hosted allocation.
+
+M224's test-only [Windows contained source-access source-commit Git executable
+file retention
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md)
+holds one non-inheritable read-only handle with only `FILE_SHARE_READ` across
+M223's complete observation. It snapshots normalized path, volume/file
+identity, bounded size, and SHA-256; access-only checks require competing write
+and delete/rename opens against the identical retainer's writable test source
+to fail while retained, then settle after close with an identical fresh
+snapshot. The separation avoids treating an installed Git file's host ACL
+denial as sharing evidence.
+
+This binds an ordinary local retained-file interval. It does not authenticate
+the executable, signer, publisher, ACL, actual child process image, native DLL
+or loader state, local object store, repository acquisition, or source/build
+provenance; it does not prove distinct-principal or independent-host behavior,
+resolve hostile/privileged bypass or criteria 6/7, admit Windows, or authorize
+cleanup. It adds no runtime surface, workflow, public runner, or hosted
+allocation.
+
+M225's test-only [Windows contained source-access source-commit Git child
+process-image binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md)
+creates each existing Git child with `CREATE_SUSPENDED`, retains and compares
+the actual image with M224's retained executable before its primary thread
+runs, resumes an exact initial suspend count of one, and retains all 48 image
+files through settlement. Pre-return failure terminates, waits, and closes the
+suspended child and its native handles.
+
+This binds the actual child image to a retained local file. It does not
+authenticate the executable, signer, publisher, ACL, native DLL or loader
+state, local object store, repository acquisition, or source/build provenance;
+it does not prove distinct-principal or independent-host behavior, resolve
+hostile/privileged bypass or criteria 6/7, admit Windows, or authorize cleanup.
+It adds no runtime surface, workflow, public runner, or hosted allocation.
+
+M226's test-only [Windows contained source-access source-commit Git
+Authenticode trust
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md)
+passes M224's exact retained path and readable handle to Windows generic
+Authenticode policy before and after M225's complete boundary. It disables UI
+and network retrieval, makes revocation behavior explicit, and closes provider
+state after every verification.
+
+This proves one cached current-host trust-policy result. It does not allowlist
+a signer or publisher, pin a certificate, prove revocation freshness, bind
+native DLLs or loader state, authenticate the local object store or repository
+acquisition, or establish source/build provenance. Distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain unresolved. It adds no runtime surface,
+workflow, public runner, or hosted allocation.
+
+M227's test-only [Windows contained source-access source-commit Git
+signer-certificate binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md)
+extracts the primary signer certificate from live successful WinTrust provider
+state before and after M226. It copies bounded DER bytes, hashes the detached
+copy, binds the provider's raw verification time, and closes state after
+success or extraction failure.
+
+This proves one exact signer-certificate observation across the retained-file
+interval. It does not authorize a signer or publisher, persist an identity,
+pin a certificate, prove revocation freshness or timestamp/countersigner
+authenticity, bind native DLLs or loader state, authenticate the local object
+store or repository acquisition, or establish source/build provenance.
+Distinct-principal and independent-host behavior, hostile/privileged bypass,
+criteria 6/7, Windows admission, and cleanup authority remain unresolved. It
+adds no runtime surface, workflow, public runner, or hosted allocation.
+
+M228's test-only [Windows contained source-access source-commit Git provider-
+chain binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md)
+extracts every bounded provider certificate by exact zero-based provider index
+from live successful WinTrust state before and after M227. It copies each DER
+value, computes per-certificate hashes plus one unambiguous aggregate chain
+hash, binds the provider's raw verification time, and closes state after
+success or extraction failure.
+
+This proves one exact provider-index sequence across the retained-file
+interval. It does not define portable chain semantics, authorize a signer or
+publisher, persist an identity, pin a certificate, prove revocation freshness
+or timestamp/countersigner authenticity, bind native DLLs or loader state,
+authenticate the local object store or repository acquisition, or establish
+source/build provenance. Distinct-principal and independent-host behavior,
+hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
+authority remain unresolved. It adds no runtime surface, workflow, public
+runner, or hosted allocation.
+
+M229's test-only [Windows contained source-access source-commit Git
+countersigner-chain binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md)
+extracts every bounded countersigner certificate by exact zero-based provider
+indexes from live successful WinTrust state before and after M228. It binds raw
+signer type, provider error, verification time, chain boundaries,
+per-certificate and per-chain hashes, plus one unambiguous sequence digest, and
+closes state after success or extraction failure.
+
+This proves one exact indexed countersigner sequence across the retained-file
+interval. It does not establish portable timestamp semantics, authorize a
+signer, publisher, or timestamp authority, persist an identity, pin a
+certificate, prove revocation freshness or signing-time authenticity, bind
+native DLLs or loader state, authenticate the local object store or repository
+acquisition, or establish source/build provenance. Distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain unresolved. It adds no runtime surface,
+workflow, public runner, or hosted allocation.
+
+M230's test-only [Windows contained source-access source-commit Git signed-
+message SignerInfo binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md)
+retrieves every bounded encoded SignerInfo by exact zero-based message index
+from live successful WinTrust state before and after M229. It requires the
+provider and message signer counts to agree, copies each exact value with a
+two-phase bounded query, binds raw encoding, counts, boundaries, per-signer
+hashes, and one unambiguous sequence digest, and closes state after success or
+extraction failure.
+
+This proves one exact opaque signed-message signer sequence across the retained-
+file interval. It does not parse SignerInfo, establish portable timestamp
+semantics, authorize a signer, publisher, or timestamp authority, persist an
+identity, pin a certificate, prove revocation freshness or signing-time
+authenticity, bind native DLLs or loader state, authenticate the local object
+store or repository acquisition, or establish source/build provenance.
+Distinct-principal and independent-host behavior, hostile/privileged bypass,
+criteria 6/7, Windows admission, and cleanup authority remain unresolved. It
+adds no runtime surface, workflow, public runner, or hosted allocation.
+
+M231's test-only [Windows contained source-access source-commit Git message-
+signer certificate binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md)
+uses every exact bounded message signer index to verify the live message and
+copy its returned certificate before release. It resolves the corresponding
+primary provider certificate in the same WinTrust state, requires exact DER
+equality, binds counts, boundaries, per-source hashes, and one unambiguous
+sequence digest, and closes every certificate context and provider state.
+
+This proves one execution-local indexed message/provider certificate
+correlation across the retained-file interval. It does not authorize a signer
+or publisher, define a certificate allowlist or pin, establish revocation
+freshness or portable timestamp semantics, bind native DLLs or loader state,
+authenticate the local object store or repository acquisition, or establish
+source/build provenance. Distinct-principal and independent-host behavior,
+hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
+authority remain unresolved. It adds no runtime surface, workflow, public
+runner, or hosted allocation.
+
+M232's test-only [Windows contained source-access source-commit Git message-
+signer certificate-identifier binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md)
+retrieves the signer-certificate selector for every exact bounded message
+signer index and copies its issuer and serial-number blobs. It copies those
+same fields from the exact verified certificate and same-index primary provider
+certificate while retaining M231's DER equality. All three identifier values
+must match, and the detached observation binds counts, component boundaries,
+per-source hashes, and one unambiguous sequence digest before and after M231.
+
+This proves one execution-local indexed message/verified/provider certificate-
+identifier correlation across the retained-file interval. It does not
+authorize a signer or publisher, define an allowlist, persisted identity, or
+pin, establish revocation freshness or portable chain/timestamp semantics,
+bind native DLLs or loader state, authenticate the local object store or
+repository acquisition, or establish source/build provenance. Distinct-
+principal and independent-host behavior, hostile/privileged bypass, criteria
+6/7, Windows admission, and cleanup authority remain unresolved. It adds no
+runtime surface, workflow, public runner, or hosted allocation.
+
+M233's test-only [Windows contained source-access source-commit Git message-
+signer certificate-ID binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md)
+retrieves `CMSG_SIGNER_CERT_ID_PARAM` for every exact bounded message signer
+index after M232's complete correlation. It validates the explicit choice
+before reading its union, accepts only the current-host issuer/serial form,
+copies that bounded payload, and requires it to equal M232's same-index legacy
+message selector. The detached result binds counts, indexes, choices,
+boundaries, per-index hashes, and one unambiguous sequence digest before and
+after complete M232.
+
+This proves one execution-local explicit certificate-ID representation. It
+does not support key-ID or hash-ID forms, authorize a signer or publisher,
+define an allowlist, persisted identity, or pin, establish revocation freshness
+or portable chain/timestamp semantics, bind native DLLs or loader state,
+authenticate the local object store or repository acquisition, or establish
+source/build provenance. Distinct-principal and independent-host behavior,
+hostile/privileged bypass, criteria 6/7, Windows admission, and cleanup
+authority remain unresolved. It adds no runtime surface, workflow, public
+runner, or hosted allocation.
+
+M234's test-only [Windows contained source-access source-commit Git CMS
+SignerInfo certificate-ID binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md)
+retrieves `CMSG_CMS_SIGNER_INFO_PARAM` for every exact bounded message signer
+index after M233's complete correlation. It validates the signer-info version
+and explicit `SignerId` choice before reading union data, accepts only the
+current-host version-1 issuer/serial form, copies that bounded payload, and
+requires it to equal a same-state, same-index dedicated M233 certificate ID
+and M233's detached observation. The result binds counts, indexes, versions,
+choices, boundaries, per-index hashes, and one unambiguous sequence digest
+before and after complete M233.
+
+This proves one execution-local decoded CMS identifier representation. It does
+not support alternate signer-info versions or identifier forms, inspect
+algorithms or attributes, revalidate the signature, authorize a signer or
+publisher, define an allowlist, persisted identity, or pin, establish
+revocation freshness or portable chain/timestamp semantics, bind native DLLs
+or loader state, authenticate the local object store or repository acquisition,
+or establish source/build provenance. Distinct-principal and independent-host
+behavior, hostile/privileged bypass, criteria 6/7, Windows admission, and
+cleanup authority remain unresolved. It adds no runtime surface, workflow,
+public runner, or hosted allocation.
+
+M235's test-only [Windows contained source-access source-commit Git CMS signer
+hash-algorithm binding
+probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md)
+retrieves both the CMS `HashAlgorithm` and dedicated signer hash-algorithm
+parameter for every exact bounded signer index after M234's complete
+correlation. It confines each pointer-bearing result to its actual owner
+buffer, copies the bounded OID and opaque encoded parameters during that
+buffer's lifetime, and requires exact same-index equality. The detached result
+binds counts, indexes, OIDs, parameter boundaries, per-representation hashes,
+and one unambiguous sequence digest before and after complete M234.
+
+This proves one execution-local correlation between two native algorithm-
+identifier representations. It does not approve or reject an algorithm,
+define an allowlist or strength policy, interpret encoded parameters,
+revalidate the signature, authorize a signer or publisher, establish
+revocation freshness or portable chain/timestamp semantics, bind native DLLs
+or loader state, authenticate the local object store or repository
+acquisition, or establish source/build provenance. Distinct-principal and
+independent-host behavior, hostile/privileged bypass, criteria 6/7, Windows
+admission, and cleanup authority remain unresolved. It adds no runtime
+surface, workflow, public runner, or hosted allocation.
+
+## Unsupported interpreter observations
+
+M118 retains Python 3.15 outside the supported range. One exact Windows CPython
+3.15.0b1 pure-wheel probe used an explicit metadata override, and `doctor`
+correctly rejected that interpreter even though deterministic serial headless
+execution completed. This unsupported prerelease compatibility observation is
+no support promise and authorizes no workflow, dependency, metadata, runtime,
+provider, release-authority, or security-support change. It is not a real
+public release observation.

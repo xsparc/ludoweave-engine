@@ -71,8 +71,8 @@ The current built-in argument shapes are:
 
 Component records use UUID, schema version, and field values. Spawn aliases are
 transaction-local protocol data and are unrelated to M1 `DeferredEntity`
-tokens. Scene operations remain explicitly unsupported because no scene schema
-exists yet.
+tokens. M119 scene planning uses this existing operation rather than adding a
+scene operation to the persistent command registry.
 
 Every session resource must have exactly one explicit role. Only `STATE`
 resource schemas participate in authority hashes and patches. Input and
@@ -109,6 +109,409 @@ Receipt and diff limits are checked before adoption. Receipts do not embed
 component or resource values, reducing accidental disclosure; authoritative
 hashes prove the exact state and query/snapshot services provide deliberate
 state observation paths.
+
+## M119 scene transaction planning
+
+`ludoweave.scene/1` is a versioned data-only scene document. Its exact root
+fields are `$schema`, `scene_id`, `entities`, and `dependencies`. Each entity
+declares a stable transaction-alias-compatible local ID, a unique bounded name,
+an optional parent local ID, and component records keyed by registered
+module-qualified name. Component records contain an exact positive schema
+version and canonical JSON object values. Dependencies are distinct canonical
+`asset://` identities; planning reports them but does not load them.
+
+`SceneDocument` applies the shared bounded canonical JSON profile, rejects
+duplicate members and unknown fields, detaches nested caller input, sorts
+entities/components/dependencies, and rejects repeated IDs/names, missing or
+self parents, and parent cycles. Custom limits may tighten but never enlarge
+the documented hard maxima. This produces a deterministic authoring input, not
+a second world-state representation.
+
+`compile_scene()` receives an explicit immutable `ComponentRegistry`. It
+resolves every named schema, performs existing version migration and current-
+value validation, and adds the compiler-owned `SceneNode` provenance component
+before it constructs any world mutation. The complete result is one ordinary
+transaction of ordinary `entity.spawn` commands. Applying it through
+`TransactionService` preserves the established all-or-nothing staging rules;
+receipt aliases provide the deterministic local-ID-to-runtime-entity mapping.
+The stored `SceneNode` keeps `scene_id`, `instance_id`, local ID, name, and
+parent local ID in canonical ECS state. Canonical runtime state remains in the
+world store.
+
+Compilation owns no world, renderer, asset loader, file handle, or background
+resource and therefore has no close method. The caller owns the immutable
+document and plan; `WorldSession` and `TransactionService` retain their existing
+single-owner and atomic failure semantics. Unknown components, incompatible
+values, a missing `SceneNode` registration, or an invalid plan raise structured
+`SceneError` before a transaction can mutate authority.
+
+M119 has no file I/O, no prefab inheritance, no live update/reimport semantics,
+no implicit parent-to-runtime-handle relation, no arbitrary Python graph or
+import, no new command operation, no root-package export, no dependency, and no
+workflow or hosted runner change. M120 provides the separately assigned prefab
+fragment planning slice; a runtime `EntityRef` facade remains deferred.
+
+## M120 one-level prefab fragment planning
+
+`ludoweave.prefab/1` is a versioned data-only scene fragment. Its exact root
+fields are `$schema`, `prefab_id`, `entities`, and `dependencies`; entity,
+hierarchy, component, asset, canonical ordering, ownership, and hard-limit
+semantics are the M119 scene invariants.
+
+`ludoweave.prefab-instance/1` names the exact `prefab_id`, one stable
+`instance_id`, and a bounded override array. Each override contains exactly
+`local_id`, `component`, `version`, and non-empty `changes`. The local entity
+and named component must already exist in the fragment. `version` must equal
+the registered current component schema, and every changed field/value passes
+that schema. Overrides cannot add or remove entities, components, or parent
+relationships.
+
+`compile_prefab()` receives both detached immutable documents plus an explicit
+`ComponentRegistry` and existing transaction identities. It migrates base
+values, applies all schema-aware replacements before mutation, adds the
+compiler-owned `PrefabNode`, and delegates to M119 planning. The returned plan
+contains ordinary `entity.spawn` commands in one atomic `CommandTransaction`.
+Receipt aliases provide the local-ID-to-runtime-entity mapping. Canonical
+runtime state remains in the world store.
+
+The source fragment and instance request remain caller-owned and unchanged.
+Planning owns no resources and failures are structured `PrefabError` values.
+A transaction stale-hash or later command rejection remains all-or-nothing.
+Changing a source fragment has no effect on an existing runtime instance; a
+caller must explicitly compile and apply another transaction.
+
+M120 is one-level only: no nested prefab inheritance, variant chain, parameter
+expression, file I/O, asset loading, live update, reimport, silent propagation,
+source write-back, runtime link graph, or arbitrary Python import/evaluation.
+There is no new persistent operation, root-package export, dependency,
+workflow, or hosted runner change.
+
+## M121 project-confined scene file loading
+
+The existing headless composition root can load one scene explicitly:
+
+```python
+from pathlib import Path
+
+from ludoweave.tools.headless_project import HeadlessProject
+
+project = HeadlessProject.load(Path("my-game"))
+scene = project.load_scene("scenes/main.json")
+assert scene.protocol == "ludoweave.scene/1"
+```
+
+`load_scene()` requires one project-relative path and accepts an exact
+`SceneLimits` when callers need tighter bounds. It reuses M2 path confinement,
+regular-file validation, sanitized errors, and a handle read capped at one byte
+beyond the limit. The handle closes inside the call. The resulting detached
+immutable document uses the unchanged M119 decoder and canonical ordering.
+
+The load performs no world mutation. Callers separately invoke
+`compile_scene()` and apply the returned ordinary transaction to obtain a
+receipt. Filesystem time and concurrent external edits are outside simulation
+determinism; load source data before deterministic execution. Changing or
+removing the source file cannot alter the returned document or existing world
+state.
+
+M121 has no directory discovery, prefab file loader, file URI, include/import
+graph, asset loading, cache, watcher, live update/reimport, source write-back,
+remote access, arbitrary Python import/evaluation, new persistent operation,
+dependency, root-package export, workflow, or hosted runner change. Root
+containment is not a race-free filesystem sandbox.
+
+## M122 project-confined prefab file loading
+
+The existing headless composition root loads prefab source and instance files
+explicitly:
+
+```python
+from pathlib import Path
+
+from ludoweave.tools.headless_project import HeadlessProject
+
+project = HeadlessProject.load(Path("my-game"))
+prefab = project.load_prefab("prefabs/scout.prefab.json")
+instance = project.load_prefab_instance("prefabs/scout.instance.json")
+assert prefab.protocol == "ludoweave.prefab/1"
+assert instance.protocol == "ludoweave.prefab-instance/1"
+```
+
+These are two explicit files with no implicit pairing. Each synchronous call
+uses the established project-confined bounded reader and returns detached
+immutable data after closing its descriptor. `compile_prefab()` subsequently
+checks that both records name the same prefab source. Loading performs no world
+mutation; applying the compiled ordinary transaction remains the receipt
+boundary.
+
+M122 has no directory discovery, extension routing, manifest lookup, asset
+loading, cache, watcher, live update, reimport, nested composition, write-back,
+remote access, new persistent operation, dependency, root export, workflow, or
+hosted runner change.
+
+## M123 read-only source preflight
+
+`ludoweave source check` provides a structured project-confined check before a
+caller chooses to compile or instantiate source data. Scene mode accepts one
+file; prefab mode accepts two explicit files and verifies exact source/instance
+identity. A valid result uses `ludoweave.cli.source-check/1` and includes
+canonical source hashes and bounded counts.
+
+The check performs no compile, creates no session or world, applies no command,
+and causes no world mutation, so there is no receipt. It does not prove that
+component payloads match a later application-supplied registry. There is no
+directory discovery, cache, live update, write-back, asset loading, remote
+access, new persistent operation, dependency, root export, or workflow
+allocation.
+
+## M124 explicit source manifests
+
+`ludoweave.source-manifest/1` is a bounded data-only list for source preflight.
+Its exact root fields are `$schema`, `manifest_id`, and `entries`. Each nonempty
+manifest has at most 256 entries. Entries contain an `entry_id`, `kind`, and
+normalized portable project-relative `source`; prefab entries additionally
+require one explicit `instance`. Entry IDs and exact references are unique, and
+the normalized value orders entries by ID. `SourceManifestLimits` may tighten
+the 64 KiB document, 256-entry, and 1,024-byte path bounds but cannot enlarge
+them.
+
+The focused types are experimental exports from `ludoweave.scene`.
+`HeadlessProject.load_source_manifest()` is an internal composition method that
+uses the same bounded project confinement as M121-M122. The manifest owns no
+file handle, world, registry, renderer, or background resource after loading.
+
+CLI `--manifest FILE` mode checks every explicit entry with the unchanged
+scene/prefab readers and emits
+`ludoweave.cli.source-manifest-check/1`. It reports normalized manifest and
+source hashes plus per-entry and aggregate counts without paths. It performs no
+compile or component semantic validation, causes no world mutation, writes no
+project file, and produces no receipt. There is no directory discovery, glob,
+implicit pairing, asset loading, cache, watcher, live update, remote access,
+dependency, root export, persistent operation, or workflow allocation.
+
+## M125 source-integrity locks
+
+`ludoweave.source-lock/1` is a bounded path-independent record of one normalized
+M124 manifest and the content identity observed for every explicit entry. Its
+exact root fields are `$schema`, `manifest_id`, `manifest_sha256`, and
+`entries`. Each entry repeats the stable manifest entry ID and kind, then binds
+the accepted source protocol, stable source ID, and lowercase `sha256:`
+identity. Prefab entries additionally bind the instance protocol, ID, and hash.
+Entries normalize by ID and must be unique.
+
+`SourceLockLimits` may tighten but not enlarge the 64 KiB and 256-entry hard
+bounds. `SourceLock.verify()` compares manifest identity, the exact entry-ID
+set, and each entry field in deterministic order. Mismatch errors contain only
+the first differing field and optional entry ID; expected and actual hashes are
+not disclosed. The focused lock values are experimental `ludoweave.scene`
+exports. `HeadlessProject.load_source_lock()` remains an internal confined,
+bounded, detached reader.
+
+`ludoweave source lock PROJECT --manifest FILE` emits canonical lock bytes to
+stdout without writing the project. `ludoweave source verify PROJECT --manifest
+FILE --lock FILE` loads the confined expected lock, recomputes current
+identities, and emits `ludoweave.cli.source-lock-verify/1` only after an exact
+match. Existing `source check` output remains unchanged.
+
+This is content integrity for explicit accepted JSON, not an atomic filesystem
+snapshot, signature, provenance or authenticity proof, asset import, dependency
+resolution, compile, registry lookup, or cache. It performs no world mutation,
+writes no project file, and produces no receipt. There is no discovery,
+watcher, live update, remote access, dependency, root export, workflow job, or
+workflow allocation.
+
+## M127 source-to-asset dependency checking
+
+`AssetManifest.dependency_closure()` accepts an exact tuple of distinct direct
+`AssetUri` roots and returns those roots plus all reachable dependencies as a
+unique sorted tuple. Unknown roots and invalid root containers fail with typed
+`AssetError` values. The existing manifest constructor has already required
+every asset-to-asset edge to resolve and the graph to be acyclic.
+
+`ludoweave source assets PROJECT --manifest FILE --assets FILE` uses the
+unchanged M124 source inspection and M126 asset-manifest loader. Canonical
+`ludoweave.cli.source-asset-check/1` output binds both normalized manifest
+identities, preserves each source entry's direct declarations, and reports a
+separate resolved closure. A missing direct URI returns exit 2 with the source
+entry and logical dependency identity, writes no success document, and leaves
+the project unchanged.
+
+The checker does not infer application component references or reject unused
+asset entries. It performs no asset source read, payload decode, asset build,
+import, cache use or creation, compile, registry resolution, world mutation,
+receipt, file write, discovery, watcher, live update, dependency, root export,
+workflow job, or workflow allocation. Separate file reads are not an atomic
+snapshot.
+
+## M128 asset-source lock verification
+
+`AssetSourceLock` is a frozen, slotted, bounded
+`ludoweave.asset-source-lock/1` value. It binds canonical source-lock and asset-
+manifest hashes, unique sorted direct roots, and exact URI-sorted resolved
+entries containing logical URI, kind, source-byte count, and source SHA-256.
+Tightening-only decode limits cap the JSON at 1 MiB and roots/entries at 4,096.
+
+`ludoweave source asset-lock PROJECT --manifest FILE --assets FILE` reuses the
+unchanged M124-M127 readers and closure, hashes only selected source files, and
+writes the lock to stdout after complete success. Each source is streamed in
+64 KiB blocks through one owned confined regular-file descriptor, with a
+256 MiB per-source and 1 GiB accepted aggregate bound.
+
+`ludoweave source asset-verify PROJECT --manifest FILE --assets FILE --lock
+FILE` loads a confined expected lock and emits canonical
+`ludoweave.cli.asset-source-lock-verify/1` only after exact comparison. A
+mismatch returns exit 2 and only the first field plus optional logical URI; no
+expected/current hash, byte count, or path is disclosed.
+
+This is repeatable input identity, not an atomic snapshot, signature,
+provenance, authenticity, imported artifact, build result, or cache key. There
+is no asset decode, no asset build, no import, no cache write, no discovery,
+watcher, live update, world mutation, receipt, dependency, root export,
+workflow job, or workflow allocation.
+
+## M129 deterministic verified asset build planning
+
+`AssetBuildPlan` is a frozen, slotted, bounded
+`ludoweave.asset-build-plan/1` value. It binds the canonical M128 lock and M126
+manifest identities, unique sorted roots, the exact rooted closure, and
+prospective actions in dependency-first order. URI order breaks ties between
+ready actions. Tightening-only decoding caps the document at 8 MiB and roots or
+entries at 4,096.
+
+Every `AssetBuildPlanEntry` contains URI, kind, normalized settings, source
+SHA-256/byte count, sorted direct dependency URIs, and cache key. Construction
+and decoding require dependencies to precede their consumers, entries to equal
+the rooted closure, and cache keys to match the exact existing M4 identity.
+`ASSET_LOADER_PROTOCOL` names that unchanged identity; M4 artifact/cache bytes
+do not change.
+
+`ludoweave source asset-plan PROJECT --manifest FILE --assets FILE --lock FILE`
+recomputes and verifies current M128 inputs before emitting canonical plan bytes
+after complete success. Lock mismatch remains hash-, size-, and path-silent.
+
+A plan is prospective work identity only. There is no asset decode, no asset
+build, no cache read, no cache write, no artifact, import, scheduler, worker,
+discovery, watcher, live update, world mutation, receipt, dependency, root
+export, workflow job, or workflow allocation.
+
+## M130 confined asset build-plan verification
+
+`HeadlessProject.load_asset_build_plan()` reads one explicit project-relative
+plan through the existing confined regular-file boundary and the plan's 8 MiB
+decode limit. The returned value is detached and immutable; the loader retains
+no descriptor.
+
+`AssetBuildPlan.verify()` compares one saved plan with an exact current plan.
+After exact type/protocol construction it checks source-lock identity, asset-
+manifest identity, roots, entry URI sequence, then kind, settings, source hash/
+size, dependencies, and cache key in stable order. A mismatch contains only the
+first field and optional logical URI; compared content and paths are absent.
+
+`ludoweave source asset-plan-verify PROJECT --manifest FILE --assets FILE
+--lock FILE --plan FILE` loads the saved plan, recomputes and verifies current
+M128 inputs, regenerates the M129 plan, and compares before emitting canonical
+`ludoweave.cli.asset-build-plan-verify/1`. Success contains only protocol,
+status, loader/plan protocols, and aggregate root/entry counts.
+
+This is verification only. There is no asset decode, no asset build, no cache
+read, no cache write, no artifact, import, execution, scheduler, worker,
+discovery, watcher, live update, world mutation, receipt, dependency, root
+export, workflow job, or workflow allocation.
+
+## M131 bounded in-memory asset plan execution
+
+`AssetBuildInput` is a frozen, slotted logical URI plus exact immutable source
+bytes. `execute_asset_build_plan()` accepts an exact M129 plan and exact input
+tuple in plan order. It validates the entire source set—URI sequence, sizes,
+hashes, per-file limits, and aggregate limit—before decoding anything.
+
+Only the existing built-in PNG, JSON, WGSL, and audio behavior executes. Each
+payload is bounded, hashed, counted, and released after its result entry is
+created. `AssetBuildResult` emits canonical
+`ludoweave.asset-build-result/1` with the plan hash, loader protocol, aggregate
+counts, and plan-ordered output identities. It never contains a decoded
+payload or filesystem path.
+
+`ludoweave source asset-build PROJECT --manifest FILE --assets FILE --lock FILE
+--plan FILE` repeats the M130 saved/current verification chain, acquires exact
+detached sources through project confinement, executes, and writes one result
+only after complete success. Source drift, limits, and decoder failures are
+structured and content-silent.
+
+M131 has no cache read, no cache write, no persisted artifact, no project
+write, no atomic publication, no scheduler, worker, process, thread, plugin,
+decoder registration, discovery, watcher, reimport, renderer upload, world
+mutation, receipt, dependency, root export, workflow job, or workflow
+allocation.
+
+## M132 verified local asset cache publication
+
+`AssetBuildArtifact` pairs exact decoded bytes with one M131 result entry.
+`AssetBuildMaterialization` requires its plan-ordered artifact entries to equal
+the complete result entries. `materialize_asset_build_plan()` uses the same
+complete preflight, built-in decoder behavior, and resource limits as M131;
+payload retention is explicit and separate from the unchanged identity-only
+execution function.
+
+`AssetCacheStore` owns only an explicit local root. `publish()` first verifies
+or atomically stores each artifact by its SHA-256 in `cas/`, then atomically
+publishes canonical `ludoweave.asset-cache-entry/1` metadata under the existing
+action cache key in `actions/`. `load()` requires an exact expected result entry
+and returns bytes only after metadata, byte-count, and SHA-256 verification.
+
+`ludoweave source asset-cache PROJECT --manifest FILE --assets FILE --lock FILE
+--plan FILE --cache DIRECTORY` performs the full verification and
+materialization chain before any cache write. Its path-free
+`ludoweave.asset-cache-publish/1` summary reports `published` and `reused`
+entries only after complete verification.
+
+M132 performs atomic per-entry publication, not an atomic all-plan transaction.
+It has no remote cache, cache deletion/repair/eviction, network, scheduler,
+worker, plugin, discovery, watcher, reimport, renderer upload, world mutation,
+receipt, project write, dependency, root export, workflow job, or CI change.
+
+## M133 verified read-only asset cache lookup
+
+`AssetCacheStore(..., writable=False)` opens one caller-selected local root
+without creating it and makes `publish()` unavailable. `load_action()` accepts
+only an exact current `AssetBuildPlanEntry`; an absent action is a miss, while a
+present action must pass strict duplicate-free canonical metadata, plan-field,
+ordinary-file, byte-count, and payload-SHA-256 verification.
+
+`AssetCacheStore.inspect()` returns plan-ordered
+`ludoweave.asset-cache-lookup/1` entries with logical identity, `hit` or `miss`,
+and artifact identity only for verified hits. It never enumerates unrelated
+cache history.
+
+`ludoweave source asset-cache-check PROJECT --manifest FILE --assets FILE
+--lock FILE --plan FILE --cache DIRECTORY` completes current lock and plan
+verification before read-only inspection. A missing cache remains absent;
+success and structured failures omit filesystem paths.
+
+M133 has no cache-assisted execution, decoder bypass, cache write/repair/
+deletion/eviction, remote cache, network, discovery, worker, plugin, project
+write, world mutation, receipt, dependency, root export, workflow job, or CI
+change.
+
+## M134 read-only cache-assisted asset realization
+
+`realize_asset_build_plan()` requires an exact current plan, its complete
+detached input tuple, and an explicit `AssetCacheStore`. It preflights every
+source before reading any action, verifies every cache candidate before a miss
+decoder runs, and combines verified hits with decoded misses in plan order.
+Both sources and artifacts retain the M131 tightening-only per-entry and
+aggregate limits.
+
+`ludoweave source asset-realize PROJECT --manifest FILE --assets FILE --lock
+FILE --plan FILE --cache DIRECTORY` repeats current lock and plan verification,
+acquires the project-confined inputs, then opens the cache with read-only
+authority. It emits canonical `ludoweave.asset-build-realization/1` JSON with
+logical identities, artifact hashes and sizes, `hit` or `decoded` statuses,
+and aggregate counts. A missing cache remains absent; a present corrupt entry
+fails before any miss decoder and produces no success document.
+
+M134 has no automatic cache publication, cache/project write, cache repair,
+remote cache, network, discovery, worker, plugin, renderer upload, world
+mutation, receipt, dependency, root export, workflow job, or CI change.
 
 ## Canonical snapshots and random state
 

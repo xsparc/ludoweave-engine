@@ -70,6 +70,10 @@ _SAMPLE_LOCAL_HEADER_TIMESTAMP_OFFSET = 10
 _SAMPLE_LOCAL_HEADER_TIMESTAMP_BYTES = 4
 _SAMPLE_LOCAL_HEADER_CRC_OFFSET = 14
 _SAMPLE_LOCAL_HEADER_CRC_BYTES = 4
+_SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_OFFSET = 18
+_SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_BYTES = 4
+_SAMPLE_LOCAL_HEADER_UNCOMPRESSED_SIZE_OFFSET = 22
+_SAMPLE_LOCAL_HEADER_UNCOMPRESSED_SIZE_BYTES = 4
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET = 26
 _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES = 4
 _SAMPLE_UTF8_FILENAME_FLAG = 1 << 11
@@ -558,6 +562,23 @@ def _extract_checksum_admitted_bundle(
             snapshot=snapshot_stream,
             infos=infos,
         )
+        _validate_sample_local_header_compressed_sizes(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
+        _validate_sample_local_header_uncompressed_sizes(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
+        _validate_sample_payload_bounds(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
+        _validate_sample_payload_contiguity(
+            snapshot=snapshot_stream,
+            infos=infos,
+        )
+        _validate_sample_extra_field_profile(infos=infos)
 
         for info in infos:
             _validate_sample_member_name(original_name=info.orig_filename)
@@ -610,6 +631,11 @@ def _extract_checksum_admitted_bundle(
             for depth in range(1, len(member_key))
         ):
             raise RuntimeError("sample bundle member paths collide")
+        _validate_sample_general_purpose_flag_profile(infos=infos)
+        _validate_sample_extraction_version_reserved_byte_profile(infos=infos)
+        _validate_sample_extraction_version_profile(infos=infos)
+        _validate_sample_creation_version_profile(infos=infos)
+        _validate_sample_internal_attribute_profile(infos=infos)
         _validate_sample_inventory(observed_members)
 
         with tempfile.TemporaryDirectory(
@@ -1074,6 +1100,162 @@ def _validate_sample_local_header_crcs(
                 raise RuntimeError("sample bundle local header CRC-32 values are inconsistent")
     finally:
         snapshot.seek(position)
+
+
+def _validate_sample_local_header_compressed_sizes(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local compressed sizes to match parser-exposed central values."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_OFFSET)
+            expected = info.compress_size.to_bytes(4, "little")
+            if snapshot.read(_SAMPLE_LOCAL_HEADER_COMPRESSED_SIZE_BYTES) != expected:
+                raise RuntimeError("sample bundle local header compressed sizes are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_local_header_uncompressed_sizes(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require local uncompressed sizes to match parser-exposed central values."""
+
+    position = snapshot.tell()
+    try:
+        for info in infos:
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_UNCOMPRESSED_SIZE_OFFSET)
+            expected = info.file_size.to_bytes(4, "little")
+            if snapshot.read(_SAMPLE_LOCAL_HEADER_UNCOMPRESSED_SIZE_BYTES) != expected:
+                raise RuntimeError("sample bundle local header uncompressed sizes are inconsistent")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_payload_bounds(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require compressed member payloads not to overlap later ZIP records."""
+
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    limits = (*(info.header_offset for info in infos[1:]), directory_offset) if infos else ()
+    position = snapshot.tell()
+    try:
+        for info, limit in zip(infos, limits, strict=True):
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET)
+            lengths = snapshot.read(_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES)
+            name_length = int.from_bytes(lengths[:2], "little")
+            extra_length = int.from_bytes(lengths[2:], "little")
+            payload_end = (
+                info.header_offset
+                + _SAMPLE_FIXED_LOCAL_HEADER_BYTES
+                + name_length
+                + extra_length
+                + info.compress_size
+            )
+            if payload_end > limit:
+                raise RuntimeError("sample bundle member payloads are out of bounds")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_payload_contiguity(
+    *,
+    snapshot: IO[bytes],
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require compressed member payloads to end exactly at later ZIP records."""
+
+    end_record, _ = _read_final_sample_eocd(snapshot=snapshot)
+    directory_offset = int.from_bytes(end_record[16:20], "little")
+    limits = (*(info.header_offset for info in infos[1:]), directory_offset) if infos else ()
+    position = snapshot.tell()
+    try:
+        for info, limit in zip(infos, limits, strict=True):
+            snapshot.seek(info.header_offset + _SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_OFFSET)
+            lengths = snapshot.read(_SAMPLE_LOCAL_HEADER_LENGTH_FIELDS_BYTES)
+            name_length = int.from_bytes(lengths[:2], "little")
+            extra_length = int.from_bytes(lengths[2:], "little")
+            payload_end = (
+                info.header_offset
+                + _SAMPLE_FIXED_LOCAL_HEADER_BYTES
+                + name_length
+                + extra_length
+                + info.compress_size
+            )
+            if payload_end != limit:
+                raise RuntimeError("sample bundle member payloads are not contiguous")
+    finally:
+        snapshot.seek(position)
+
+
+def _validate_sample_extra_field_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer sample profile to contain no extra fields."""
+
+    if any(info.extra for info in infos):
+        raise RuntimeError("sample bundle contains an unsupported extra field")
+
+
+def _validate_sample_general_purpose_flag_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer sample profile to contain zero flag bits."""
+
+    if any(info.flag_bits != 0 for info in infos):
+        raise RuntimeError("sample bundle contains unsupported general-purpose flags")
+
+
+def _validate_sample_extraction_version_reserved_byte_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer extraction-version reserved byte to be zero."""
+
+    if any(info.reserved != 0 for info in infos):
+        raise RuntimeError("sample bundle has a nonzero extraction-version reserved byte")
+
+
+def _validate_sample_extraction_version_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer extraction version to equal 2.0."""
+
+    if any(info.extract_version != 20 for info in infos):
+        raise RuntimeError("sample bundle has an unsupported extraction version")
+
+
+def _validate_sample_creation_version_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer creation version to equal 2.0."""
+
+    if any(info.create_version != 20 for info in infos):
+        raise RuntimeError("sample bundle has an unsupported creation version")
+
+
+def _validate_sample_internal_attribute_profile(
+    *,
+    infos: tuple[zipfile.ZipInfo, ...],
+) -> None:
+    """Require the fixed-producer internal attributes to equal zero."""
+
+    if any(info.internal_attr != 0 for info in infos):
+        raise RuntimeError("sample bundle has unsupported internal attributes")
 
 
 def _read_final_sample_eocd(*, snapshot: IO[bytes]) -> tuple[bytes, int]:

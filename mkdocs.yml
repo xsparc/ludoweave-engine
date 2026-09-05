@@ -35,6 +35,95 @@ nav:
   - Constrained 3D scope decision: constrained-3d-decision.md
   - Visual-editor admission decision: visual-editor-decision.md
   - WASM-mod security decision: wasm-mod-security-decision.md
+  - Asset-cache cleanup threat model: security/cache-cleanup-threat-model.md
+  - Cache-cleanup platform-capability decision: security/cache-cleanup-platform-capability-decision.md
+  - Windows cache-cleanup capability probe: security/cache-cleanup-windows-capability-probe.md
+  - Windows directory-junction refusal probe: security/cache-cleanup-windows-junction-probe.md
+  - Windows retained-parent substitution probe: security/cache-cleanup-windows-retained-parent-substitution-probe.md
+  - Windows cross-process substitution probe: security/cache-cleanup-windows-cross-process-substitution-probe.md
+  - Windows share-delete exclusion probe: security/cache-cleanup-windows-share-delete-exclusion-probe.md
+  - Windows native sharing-violation probe: security/cache-cleanup-windows-native-sharing-violation-probe.md
+  - Windows child-owned share-delete handshake: security/cache-cleanup-windows-child-owned-share-delete-handshake.md
+  - Windows abrupt blocker-owner termination probe: security/cache-cleanup-windows-abrupt-blocker-termination-probe.md
+  - Windows blocker control-pipe EOF probe: security/cache-cleanup-windows-control-pipe-eof-probe.md
+  - Windows blocker invalid-control-token probe: security/cache-cleanup-windows-invalid-control-token-probe.md
+  - Windows blocker broken-control-pipe probe: security/cache-cleanup-windows-broken-control-pipe-probe.md
+  - Windows live-blocker wait-timeout probe: security/cache-cleanup-windows-live-wait-timeout-probe.md
+  - Windows acknowledged-release timeout probe: security/cache-cleanup-windows-acknowledged-release-timeout-probe.md
+  - Windows duplicated-handle retention probe: security/cache-cleanup-windows-duplicated-handle-probe.md
+  - Windows inherited-handle retention probe: security/cache-cleanup-windows-inherited-handle-probe.md
+  - Windows inherited-launch failure probe: security/cache-cleanup-windows-inherited-launch-failure-probe.md
+  - Windows inherited-handle restoration-failure probe: security/cache-cleanup-windows-inherited-restore-failure-probe.md
+  - Windows concurrent broad-inheritance leak probe: security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md
+  - Windows concurrent explicit-list isolation probe: security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md
+  - Windows concurrent explicit-list launch-failure probe: security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md
+  - Windows concurrent explicit-list restoration-failure probe: security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md
+  - Windows concurrent explicit-list abrupt-termination probe: security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md
+  - Windows exclusive-root acquisition probe: security/cache-cleanup-windows-exclusive-root-acquisition-probe.md
+  - Windows descendant non-exclusion probe: security/cache-cleanup-windows-descendant-non-exclusion-probe.md
+  - Windows cooperative-lock probe: security/cache-cleanup-windows-cooperative-lock-probe.md
+  - Windows cooperative-lock substitution probe: security/cache-cleanup-windows-cooperative-lock-substitution-probe.md
+  - Windows live coordination-substitution exclusion probe: security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md
+  - Windows cooperative-lock abrupt-settlement probe: security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md
+  - Windows protected guardian-handoff probe: security/cache-cleanup-windows-protected-guardian-handoff-probe.md
+  - Windows guardian abrupt-handoff probe: security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md
+  - Windows overlapping guardian-rotation probe: security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md
+  - Windows zero-owner guardian restart-boundary probe: security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md
+  - Windows expected-identity guardian admission probe: security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md
+  - Windows hard-link alias non-exclusion probe: security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md
+  - Windows post-admission hard-link creation probe: security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md
+  - Windows hard-link alias deletion non-exclusion probe: security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md
+  - Windows hard-link alias delete/recreate ABA probe: security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md
+  - Windows independent hard-link alias mutator ABA probe: security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md
+  - Windows hard-link alias mutator abrupt-loss probe: security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md
+  - Windows hard-link alias mutator abrupt-loss-after-recreate probe: security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md
+  - Windows hard-link alias mutator control-pipe EOF after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md
+  - Windows hard-link alias mutator invalid control token after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md
+  - Windows hard-link alias mutator valid close prefix with trailing byte after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md
+  - Windows hard-link alias mutator invalid prefix with valid close suffix after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md
+  - Windows hard-link alias mutator invalid-prefix open-writer settlement after recreation probe: security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md
+  - Windows hard-link alias mutator late valid-close delivery failure after invalid settlement probe: security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md
+  - Windows hard-link alias mutator buffered-close delivery failure after invalid settlement probe: security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md
+  - Windows hard-link alias mutator repeated buffered close after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md
+  - Windows hard-link alias mutator closed-stream flush after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md
+  - Windows hard-link alias mutator closed-stream write after delivery failure probe: security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md
+  - Windows cache-cleanup readiness refresh: security/cache-cleanup-windows-readiness-refresh.md
+  - Windows singleton-link refusal policy: security/windows-cache-cleanup-singleton-link-refusal-policy.md
+  - Windows cleanup-authority admission policy: security/windows-cache-cleanup-authority-admission-policy.md
+  - Windows use-time revalidation policy: security/windows-cache-cleanup-use-time-revalidation-policy.md
+  - Windows cleanup protocol and receipt policy: security/windows-cache-cleanup-protocol-receipt-policy.md
+  - Windows cleanup durable recovery policy: security/windows-cache-cleanup-durable-recovery-policy.md
+  - Windows cross-principal validation contract: security/windows-cache-cleanup-cross-principal-validation-contract.md
+  - Windows cross-principal evidence validator: security/windows-cache-cleanup-cross-principal-evidence-validator.md
+  - Windows independent-host validation contract: security/windows-cache-cleanup-independent-host-validation-contract.md
+  - Windows independent-host evidence validator: security/windows-cache-cleanup-independent-host-evidence-validator.md
+  - Windows independent-host collection-authority policy: security/windows-cache-cleanup-independent-host-collection-authority-policy.md
+  - Windows independent-host collection-plan validator: security/windows-cache-cleanup-independent-host-collection-plan-validator.md
+  - Windows independent-host process-containment probe: security/windows-cache-cleanup-independent-host-process-containment-probe.md
+  - Windows local control-channel probe: security/windows-cache-cleanup-local-control-channel-probe.md
+  - Windows local control token-binding probe: security/windows-cache-cleanup-local-control-token-binding-probe.md
+  - Windows retained process-image binding probe: security/windows-cache-cleanup-retained-process-image-binding-probe.md
+  - Windows retained launch-source binding probe: security/windows-cache-cleanup-retained-launch-source-binding-probe.md
+  - Windows retained launch-source access-refusal probe: security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md
+  - Windows retained launch-source remote-debug exclusion probe: security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md
+  - Windows contained source-access refusal probe: security/windows-cache-cleanup-contained-source-access-refusal-probe.md
+  - Windows contained source-access image-binding probe: security/windows-cache-cleanup-contained-source-access-image-binding-probe.md
+  - Windows contained source-access source-binding probe: security/windows-cache-cleanup-contained-source-access-source-binding-probe.md
+  - Windows contained source-access source-commit binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md
+  - Windows contained source-access source-commit no-lazy-fetch probe: security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md
+  - Windows contained source-access source-commit Git executable selection binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md
+  - Windows contained source-access source-commit Git executable file retention probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md
+  - Windows contained source-access source-commit Git child process-image binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md
+  - Windows contained source-access source-commit Git Authenticode trust probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md
+  - Windows contained source-access source-commit Git signer-certificate binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md
+  - Windows contained source-access source-commit Git provider-chain binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md
+  - Windows contained source-access source-commit Git countersigner-chain binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md
+  - Windows contained source-access source-commit Git signed-message SignerInfo binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md
+  - Windows contained source-access source-commit Git message-signer certificate binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md
+  - Windows contained source-access source-commit Git message-signer certificate-identifier binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md
+  - Windows contained source-access source-commit Git message-signer certificate-ID binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md
+  - Windows contained source-access source-commit Git CMS SignerInfo certificate-ID binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md
+  - Windows contained source-access source-commit Git CMS signer hash-algorithm binding probe: security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md
   - First contribution: first-contribution.md
   - Release process: release-process.md
   - Alpha release notes: releases/0.1.0a1.md
@@ -123,6 +212,143 @@ nav:
       - RFC-0080 - Require consistent local-header extraction versions: rfcs/0080-require-consistent-local-header-extraction-versions.md
       - RFC-0081 - Require consistent local-header timestamps: rfcs/0081-require-consistent-local-header-timestamps.md
       - RFC-0082 - Require consistent local-header CRC-32 values: rfcs/0082-require-consistent-local-header-crcs.md
+      - RFC-0083 - Require consistent local-header compressed sizes: rfcs/0083-require-consistent-local-header-compressed-sizes.md
+      - RFC-0084 - Require consistent local-header uncompressed sizes: rfcs/0084-require-consistent-local-header-uncompressed-sizes.md
+      - RFC-0085 - Bound sample-member compressed payloads: rfcs/0085-bound-sample-member-payloads.md
+      - RFC-0086 - Require contiguous sample-member payloads: rfcs/0086-require-contiguous-sample-payloads.md
+      - RFC-0087 - Require empty sample-member extra fields: rfcs/0087-require-empty-sample-member-extra-fields.md
+      - RFC-0088 - Require zero sample-member general-purpose flags: rfcs/0088-require-zero-sample-member-general-purpose-flags.md
+      - RFC-0089 - Require zero sample-member extraction-version reserved bytes: rfcs/0089-require-zero-sample-member-extraction-version-reserved-bytes.md
+      - RFC-0090 - Require exact sample-member extraction version: rfcs/0090-require-exact-sample-member-extraction-version.md
+      - RFC-0091 - Require exact sample-member creation version: rfcs/0091-require-exact-sample-member-creation-version.md
+      - RFC-0092 - Require zero sample-member internal attributes: rfcs/0092-require-zero-sample-member-internal-attributes.md
+      - RFC-0093 - Retain sample-member timestamp compatibility: rfcs/0093-retain-sample-member-timestamp-compatibility.md
+      - RFC-0094 - Retain sample-member permission compatibility: rfcs/0094-retain-sample-member-permission-compatibility.md
+      - RFC-0095 - Retain sample-member creating-system compatibility: rfcs/0095-retain-sample-member-creating-system-compatibility.md
+      - RFC-0096 - Retain sample-member compression-method compatibility: rfcs/0096-retain-sample-member-compression-method-compatibility.md
+      - RFC-0097 - Retain sample-member compression-level non-observability: rfcs/0097-retain-sample-member-compression-level-non-observability.md
+      - RFC-0098 - Scope sample-bundle byte reproducibility to the release environment: rfcs/0098-scope-sample-bundle-byte-reproducibility.md
+      - RFC-0099 - Separate sample-bundle semantic portability from byte identity: rfcs/0099-separate-sample-semantic-portability.md
+      - RFC-0100 - Retain the standard CPython baseline after a free-threaded serial probe: rfcs/0100-retain-standard-cpython-baseline.md
+      - RFC-0101 - Retain Python 3.15 prerelease outside support: rfcs/0101-retain-python315-prerelease-outside-support.md
+      - RFC-0102 - Add data-only scene transaction planning: rfcs/0102-add-data-only-scene-transaction-planning.md
+      - RFC-0103 - Add one-level prefab fragment planning: rfcs/0103-add-one-level-prefab-fragment-planning.md
+      - RFC-0104 - Add project-confined scene file loading: rfcs/0104-add-project-confined-scene-file-loading.md
+      - RFC-0105 - Add project-confined prefab file loading: rfcs/0105-add-project-confined-prefab-file-loading.md
+      - RFC-0106 - Add read-only source-check CLI: rfcs/0106-add-read-only-source-check-cli.md
+      - RFC-0107 - Add explicit source-manifest checking: rfcs/0107-add-explicit-source-manifest-checking.md
+      - RFC-0108 - Add source-integrity lock verification: rfcs/0108-add-source-integrity-lock-verification.md
+      - RFC-0109 - Add project-confined asset-manifest loading: rfcs/0109-add-project-confined-asset-manifest-loading.md
+      - RFC-0110 - Add source-to-asset dependency checking: rfcs/0110-add-source-to-asset-dependency-checking.md
+      - RFC-0111 - Add asset-source lock verification: rfcs/0111-add-asset-source-lock-verification.md
+      - RFC-0112 - Add deterministic asset build planning: rfcs/0112-add-deterministic-asset-build-planning.md
+      - RFC-0113 - Add confined asset build-plan verification: rfcs/0113-add-confined-asset-build-plan-verification.md
+      - RFC-0114 - Add bounded in-memory asset plan execution: rfcs/0114-add-bounded-in-memory-asset-plan-execution.md
+      - RFC-0115 - Add verified local asset cache publication: rfcs/0115-add-verified-local-asset-cache-publication.md
+      - RFC-0116 - Add verified read-only asset cache lookup: rfcs/0116-add-verified-read-only-asset-cache-lookup.md
+      - RFC-0117 - Add read-only cache-assisted asset realization: rfcs/0117-add-read-only-cache-assisted-asset-realization.md
+      - RFC-0118 - Add explicit post-realization cache population: rfcs/0118-add-post-realization-cache-population.md
+      - RFC-0119 - Add saved cache-population verification: rfcs/0119-add-saved-cache-population-verification.md
+      - RFC-0120 - Add bounded read-only asset-cache inventory: rfcs/0120-add-bounded-asset-cache-inventory.md
+      - RFC-0121 - Add deterministic cache-observation fingerprint: rfcs/0121-add-deterministic-cache-observation-fingerprint.md
+      - RFC-0122 - Add saved cache-fingerprint verification: rfcs/0122-add-saved-cache-fingerprint-verification.md
+      - RFC-0123 - Add path-free cache-fingerprint comparison: rfcs/0123-add-path-free-cache-fingerprint-comparison.md
+      - RFC-0124 - Add offline cache-fingerprint comparison: rfcs/0124-add-offline-cache-fingerprint-comparison.md
+      - RFC-0125 - Verify saved cache-fingerprint comparison evidence: rfcs/0125-verify-saved-cache-fingerprint-comparison.md
+      - RFC-0126 - Add a path-free unreferenced-blob preview: rfcs/0126-add-path-free-unreferenced-blob-preview.md
+      - RFC-0127 - Add an offline unreferenced-blob preview: rfcs/0127-add-offline-unreferenced-blob-preview.md
+      - RFC-0128 - Verify a saved unreferenced-blob preview: rfcs/0128-verify-saved-unreferenced-blob-preview.md
+      - RFC-0129 - Defer asset-cache cleanup: rfcs/0129-defer-asset-cache-cleanup.md
+      - RFC-0130 - Adopt the asset-cache cleanup threat model: rfcs/0130-asset-cache-cleanup-threat-model.md
+      - RFC-0131 - Defer portable cache-cleanup capability: rfcs/0131-defer-portable-cache-cleanup-capability.md
+      - RFC-0132 - Probe Windows cache-cleanup capability: rfcs/0132-probe-windows-cache-cleanup-capability.md
+      - RFC-0133 - Probe Windows directory-junction refusal: rfcs/0133-probe-windows-junction-refusal.md
+      - RFC-0134 - Probe Windows retained-parent substitution safety: rfcs/0134-probe-windows-retained-parent-substitution.md
+      - RFC-0135 - Probe Windows cross-process retained-parent substitution: rfcs/0135-probe-windows-cross-process-substitution.md
+      - RFC-0136 - Probe Windows cross-process share-delete exclusion: rfcs/0136-probe-windows-share-delete-exclusion.md
+      - RFC-0137 - Probe the Windows native sharing-violation result: rfcs/0137-probe-windows-native-sharing-violation.md
+      - RFC-0138 - Probe a child-owned Windows share-delete handshake: rfcs/0138-probe-windows-child-owned-share-delete-handshake.md
+      - RFC-0139 - Probe abrupt termination of a Windows blocker owner: rfcs/0139-probe-windows-abrupt-blocker-termination.md
+      - RFC-0140 - Probe Windows blocker control-pipe EOF closure: rfcs/0140-probe-windows-control-pipe-eof.md
+      - RFC-0141 - Probe a Windows blocker invalid control token: rfcs/0141-probe-windows-invalid-control-token.md
+      - RFC-0142 - Probe a broken Windows blocker control pipe: rfcs/0142-probe-windows-broken-control-pipe.md
+      - RFC-0143 - Probe an immediate Windows blocker wait timeout: rfcs/0143-probe-windows-live-wait-timeout.md
+      - RFC-0144 - Probe an acknowledged Windows blocker release timeout: rfcs/0144-probe-windows-acknowledged-release-timeout.md
+      - RFC-0145 - Probe a duplicated Windows blocker handle: rfcs/0145-probe-windows-duplicated-blocker-handle.md
+      - RFC-0146 - Probe an inherited Windows blocker handle: rfcs/0146-probe-windows-inherited-blocker-handle.md
+      - RFC-0147 - Probe Windows inherited-handle launch failure: rfcs/0147-probe-windows-inherited-launch-failure.md
+      - RFC-0148 - Probe Windows inherited-handle restoration failure: rfcs/0148-probe-windows-inherited-restore-failure.md
+      - RFC-0149 - Probe Windows concurrent broad-inheritance leakage: rfcs/0149-probe-windows-concurrent-inheritance-leak.md
+      - RFC-0150 - Probe Windows concurrent explicit-list isolation: rfcs/0150-probe-windows-concurrent-explicit-inheritance.md
+      - RFC-0151 - Probe Windows concurrent explicit-list launch failure: rfcs/0151-probe-windows-concurrent-explicit-launch-failure.md
+      - RFC-0152 - Probe Windows concurrent explicit-list restoration failure: rfcs/0152-probe-windows-concurrent-explicit-restore-failure.md
+      - RFC-0153 - Probe Windows concurrent explicit-list abrupt termination: rfcs/0153-probe-windows-concurrent-explicit-abrupt-termination.md
+      - RFC-0154 - Probe Windows exclusive-root acquisition: rfcs/0154-probe-windows-exclusive-root-acquisition.md
+      - RFC-0155 - Probe Windows descendant non-exclusion: rfcs/0155-probe-windows-descendant-non-exclusion.md
+      - RFC-0156 - Probe Windows cooperative coordination locking: rfcs/0156-probe-windows-cooperative-lock.md
+      - RFC-0157 - Probe Windows cooperative-lock pathname substitution: rfcs/0157-probe-windows-cooperative-lock-substitution.md
+      - RFC-0158 - Probe Windows live coordination-substitution exclusion: rfcs/0158-probe-windows-live-coordination-substitution-exclusion.md
+      - RFC-0159 - Probe Windows cooperative-lock abrupt settlement: rfcs/0159-probe-windows-cooperative-lock-abrupt-settlement.md
+      - RFC-0160 - Probe Windows protected guardian handoff: rfcs/0160-probe-windows-protected-guardian-handoff.md
+      - RFC-0161 - Probe Windows guardian abrupt handoff: rfcs/0161-probe-windows-guardian-abrupt-handoff.md
+      - RFC-0162 - Probe Windows overlapping guardian rotation: rfcs/0162-probe-windows-overlapping-guardian-rotation.md
+      - RFC-0163 - Probe Windows zero-owner guardian restart boundary: rfcs/0163-probe-windows-zero-owner-guardian-restart-boundary.md
+      - RFC-0164 - Probe Windows expected-identity guardian admission: rfcs/0164-probe-windows-expected-identity-guardian-admission.md
+      - RFC-0165 - Probe Windows hard-link alias non-exclusion: rfcs/0165-probe-windows-hard-link-alias-non-exclusion.md
+      - RFC-0166 - Probe Windows post-admission hard-link creation: rfcs/0166-probe-windows-post-admission-hard-link-creation.md
+      - RFC-0167 - Probe Windows hard-link alias deletion non-exclusion: rfcs/0167-probe-windows-hard-link-alias-deletion-non-exclusion.md
+      - RFC-0168 - Probe Windows hard-link alias delete/recreate ABA: rfcs/0168-probe-windows-hard-link-alias-delete-recreate-aba.md
+      - RFC-0169 - Probe Windows independent hard-link alias mutator ABA: rfcs/0169-probe-windows-independent-hard-link-alias-mutator-aba.md
+      - RFC-0170 - Probe Windows hard-link alias mutator abrupt loss: rfcs/0170-probe-windows-hard-link-alias-mutator-abrupt-loss.md
+      - RFC-0171 - Probe Windows hard-link alias mutator abrupt loss after recreation: rfcs/0171-probe-windows-hard-link-alias-mutator-abrupt-loss-after-recreate.md
+      - RFC-0172 - Probe Windows alias-mutator control-pipe EOF after recreation: rfcs/0172-probe-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate.md
+      - RFC-0173 - Probe Windows alias-mutator invalid control token after recreation: rfcs/0173-probe-windows-hard-link-alias-mutator-invalid-control-token-after-recreate.md
+      - RFC-0174 - Probe Windows alias-mutator valid close prefix with trailing byte after recreation: rfcs/0174-probe-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate.md
+      - RFC-0175 - Probe Windows alias-mutator invalid prefix with valid close suffix after recreation: rfcs/0175-probe-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate.md
+      - RFC-0176 - Probe Windows alias-mutator invalid-prefix settlement with an open writer: rfcs/0176-probe-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate.md
+      - RFC-0177 - Probe Windows late valid-close delivery failure after invalid settlement: rfcs/0177-probe-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement.md
+      - RFC-0178 - Probe Windows buffered-close delivery failure after invalid settlement: rfcs/0178-probe-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement.md
+      - RFC-0179 - Probe Windows repeated buffered close after delivery failure: rfcs/0179-probe-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure.md
+      - RFC-0180 - Probe Windows closed-stream flush after delivery failure: rfcs/0180-probe-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure.md
+      - RFC-0181 - Probe Windows closed-stream write after delivery failure: rfcs/0181-probe-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure.md
+      - RFC-0182 - Refresh Windows cache-cleanup readiness: rfcs/0182-refresh-windows-cache-cleanup-readiness.md
+      - RFC-0183 - Adopt Windows singleton-link refusal policy: rfcs/0183-adopt-windows-singleton-link-refusal-policy.md
+      - RFC-0184 - Adopt Windows cleanup-authority admission policy: rfcs/0184-adopt-windows-cleanup-authority-admission-policy.md
+      - RFC-0185 - Adopt Windows use-time revalidation policy: rfcs/0185-adopt-windows-use-time-revalidation-policy.md
+      - RFC-0186 - Adopt Windows cleanup protocol and receipt policy: rfcs/0186-adopt-windows-cleanup-protocol-receipt-policy.md
+      - RFC-0187 - Adopt Windows cleanup durable recovery policy: rfcs/0187-adopt-windows-cleanup-durable-recovery-policy.md
+      - RFC-0188 - Adopt Windows cross-principal validation contract: rfcs/0188-adopt-windows-cross-principal-validation-contract.md
+      - RFC-0189 - Adopt Windows cross-principal evidence validator: rfcs/0189-adopt-windows-cross-principal-evidence-validator.md
+      - RFC-0190 - Adopt Windows independent-host validation contract: rfcs/0190-adopt-windows-independent-host-validation-contract.md
+      - RFC-0191 - Adopt Windows independent-host evidence validator: rfcs/0191-adopt-windows-independent-host-evidence-validator.md
+      - RFC-0192 - Adopt Windows independent-host collection-authority policy: rfcs/0192-adopt-windows-independent-host-collection-authority-policy.md
+      - RFC-0193 - Adopt Windows independent-host collection-plan validator: rfcs/0193-adopt-windows-independent-host-collection-plan-validator.md
+      - RFC-0194 - Probe Windows independent-host process containment: rfcs/0194-probe-windows-independent-host-process-containment.md
+      - RFC-0195 - Probe a Windows local control channel: rfcs/0195-probe-windows-local-control-channel.md
+      - RFC-0196 - Probe Windows local control token binding: rfcs/0196-probe-windows-local-control-token-binding.md
+      - RFC-0197 - Probe Windows retained process-image binding: rfcs/0197-probe-windows-retained-process-image-binding.md
+      - RFC-0198 - Probe Windows retained launch-source binding: rfcs/0198-probe-windows-retained-launch-source-binding.md
+      - RFC-0199 - Probe Windows retained launch-source access refusal: rfcs/0199-probe-windows-retained-launch-source-access-refusal.md
+      - RFC-0200 - Probe Windows retained launch-source remote-debug exclusion: rfcs/0200-probe-windows-retained-launch-source-remote-debug-exclusion.md
+      - RFC-0201 - Probe Windows contained source-access refusal: rfcs/0201-probe-windows-contained-source-access-refusal.md
+      - RFC-0202 - Probe Windows contained source-access image binding: rfcs/0202-probe-windows-contained-source-access-image-binding.md
+      - RFC-0203 - Probe Windows contained source-access source binding: rfcs/0203-probe-windows-contained-source-access-source-binding.md
+      - RFC-0204 - Probe Windows contained source-access source-commit binding: rfcs/0204-probe-windows-contained-source-access-source-commit-binding.md
+      - RFC-0205 - Exclude Git lazy fetch from the source-commit probe: rfcs/0205-exclude-git-lazy-fetch-from-source-commit-probe.md
+      - RFC-0206 - Bind Git executable selection for the source-commit probe: rfcs/0206-bind-git-executable-selection-for-source-commit-probe.md
+      - RFC-0207 - Retain the Git executable file for the source-commit probe: rfcs/0207-retain-git-executable-file-for-source-commit-probe.md
+      - RFC-0208 - Bind each Git child process image for the source-commit probe: rfcs/0208-bind-git-child-image-for-source-commit-probe.md
+      - RFC-0209 - Verify retained Git Authenticode trust for the source-commit probe: rfcs/0209-verify-git-authenticode-trust-for-source-commit-probe.md
+      - RFC-0210 - Bind retained Git Authenticode signer certificate: rfcs/0210-bind-git-signer-certificate-for-source-commit-probe.md
+      - RFC-0211 - Bind retained Git WinTrust provider chain: rfcs/0211-bind-git-provider-chain-for-source-commit-probe.md
+      - RFC-0212 - Bind retained Git WinTrust countersigner chains: rfcs/0212-bind-git-countersigner-chain-for-source-commit-probe.md
+      - RFC-0213 - Bind retained Git WinTrust signed-message SignerInfo values: rfcs/0213-bind-git-signed-message-signer-info-for-source-commit-probe.md
+      - RFC-0214 - Bind verified Git message signers to provider certificates: rfcs/0214-bind-git-message-signer-certificate-for-source-commit-probe.md
+      - RFC-0215 - Bind Git message signer certificate identifiers: rfcs/0215-bind-git-message-signer-certificate-identifier-for-source-commit-probe.md
+      - RFC-0216 - Bind the explicit Git message signer certificate ID: rfcs/0216-bind-git-message-signer-certificate-id-for-source-commit-probe.md
+      - RFC-0217 - Bind the Git CMS SignerInfo certificate ID: rfcs/0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md
+      - RFC-0218 - Bind the Git CMS signer hash algorithm: rfcs/0218-bind-git-cms-signer-hash-algorithm-for-source-commit-probe.md
+      - RFC-0219 - Portable Git source-probe fixture: rfcs/0219-portable-git-source-probe-fixture.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md

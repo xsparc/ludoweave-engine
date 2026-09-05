@@ -363,6 +363,17 @@ def _internal_import_allowed(*, source: str, imported: str) -> bool:
         return _is_any_module_or_child(imported, ("ludoweave.core", "ludoweave.ecs"))
     if _is_module_or_child(source, "ludoweave.assets"):
         return _is_any_module_or_child(imported, ("ludoweave.assets", "ludoweave.core"))
+    if _is_module_or_child(source, "ludoweave.scene"):
+        return _is_any_module_or_child(
+            imported,
+            (
+                "ludoweave.assets",
+                "ludoweave.core",
+                "ludoweave.ecs",
+                "ludoweave.scene",
+                "ludoweave.world",
+            ),
+        )
     if _is_module_or_child(source, "ludoweave.audio"):
         return _is_any_module_or_child(imported, ("ludoweave.audio", "ludoweave.core"))
     if _is_module_or_child(source, "ludoweave.collision"):

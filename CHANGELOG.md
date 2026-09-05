@@ -1,11 +1,774 @@
 # Changelog
 
+## M236 publication recovery
+
+- Supply an explicit pinned offline Git-object fixture to the Windows
+  source-commit probes so shallow and squash-merged checkouts can retain all
+  binding assertions without extra CI jobs or network fetches (RFC-0219).
+  Automated fixture evidence is distinct from checkout ancestry or provenance.
+
 All notable changes to LudoWeave Engine will be documented in this file.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project intends to use [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once release compatibility levels are defined.
 
 ## Unreleased
 
+- Add M235/RFC-0218's test-only [Windows contained source-access source-commit
+  Git CMS signer hash-algorithm binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md).
+  It confines and copies the CMS `HashAlgorithm` and dedicated same-index
+  signer hash-algorithm OID and encoded parameters, then requires exact
+  equality around complete M234. Runtime, package, algorithm policy, signature
+  revalidation, signer or publisher authorization, revocation freshness,
+  provenance, cleanup authority, admission, workflow, and hosted allocation
+  remain unchanged.
+- Add M234/RFC-0217's test-only [Windows contained source-access source-commit
+  Git CMS SignerInfo certificate-ID binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md).
+  It validates every bounded exact CMS signer-info version and `SignerId`,
+  requires the current-host version-1 issuer/serial form, and binds its copied
+  payload to M233's same-state, same-index certificate ID around the complete
+  M233 boundary. Runtime, package, alternate CMS support, algorithm or
+  attribute policy, signature revalidation, signer or publisher authorization,
+  revocation freshness, provenance, cleanup authority, admission, workflow,
+  and hosted allocation remain unchanged.
+- Add M233/RFC-0216's test-only [Windows contained source-access source-commit
+  Git message-signer certificate-ID binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md).
+  It validates every bounded exact `CERT_ID` choice, requires the current-host
+  issuer/serial form, and binds its copied payload to M232's same-index message
+  selector around the complete M232 boundary. Runtime, package, alternate
+  identifier support, signer or publisher authorization, persistent identity,
+  pinning, revocation freshness, provenance, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
+- Add M232/RFC-0215's test-only [Windows contained source-access source-commit
+  Git message-signer certificate-identifier binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md).
+  It copies each bounded exact message selector's issuer and serial-number
+  blobs and requires them to equal the verified and same-index provider
+  certificates around M231. Runtime, package, signer or publisher
+  authorization, persistent identity, certificate pinning, revocation
+  freshness, provenance, cleanup authority, admission, workflow, and hosted
+  allocation remain unchanged.
+- Add M231/RFC-0214's test-only [Windows contained source-access source-commit
+  Git message-signer certificate binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md).
+  It verifies every bounded exact message signer and requires its returned
+  certificate DER to equal the corresponding primary provider certificate
+  around M230. Runtime, package, publisher policy, certificate pinning,
+  revocation freshness, provenance, cleanup authority, admission, workflow,
+  and hosted allocation remain unchanged.
+- Add M230/RFC-0213's test-only [Windows contained source-access source-commit
+  Git signed-message SignerInfo binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md).
+  It copies and hashes every bounded encoded SignerInfo by exact message index
+  around M229 while requiring provider/message signer-count agreement. Runtime,
+  package, SignerInfo parsing, timestamp semantics, signer authorization,
+  revocation freshness, provenance, cleanup authority, admission, workflow,
+  and hosted allocation remain unchanged.
+- Add M229/RFC-0212's test-only [Windows contained source-access source-commit
+  Git countersigner-chain binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md).
+  It copies and hashes every bounded certificate chain for every indexed
+  countersigner around M228 while binding raw provider metadata without
+  creating timestamp-authority policy. Runtime, package, timestamp semantics,
+  signer authorization, certificate pinning, revocation freshness, provenance,
+  cleanup authority, admission, workflow, and hosted allocation remain
+  unchanged.
+- Add M228/RFC-0211's test-only [Windows contained source-access source-commit
+  Git provider-chain binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md).
+  It copies every bounded provider certificate by exact provider index and
+  binds unambiguous per-certificate and aggregate hashes around M227. Runtime,
+  package, portable chain semantics, signer authorization, certificate
+  pinning, revocation freshness, provenance, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
+- Add M227/RFC-0210's test-only [Windows contained source-access source-commit
+  Git signer-certificate binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md).
+  It copies and hashes the bounded primary signer certificate from live
+  WinTrust state before and after M226 while closing provider state after
+  success or extraction failure. Runtime, package, signer authorization,
+  certificate pinning, revocation freshness, provenance, cleanup authority,
+  admission, workflow, and hosted allocation remain unchanged.
+- Add M226/RFC-0209's test-only [Windows contained source-access source-commit
+  Git Authenticode trust
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md).
+  It verifies the retained Git file handle through cache-only, no-UI Windows
+  generic Authenticode policy before and after M225, and closes trust-provider
+  state on success or rejection. Runtime, package, signer policy, revocation
+  freshness, provenance, cleanup authority, admission, workflow, and hosted
+  allocation remain unchanged.
+- Add M225/RFC-0208's test-only [Windows contained source-access source-commit
+  Git child process-image binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md).
+  It creates each existing Git child suspended, binds the actual process image
+  to M224's retained executable before child code runs, resumes exactly once,
+  and retains all 48 image files through settlement. Runtime, package,
+  authenticity, native-loader identity, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
+- Add M224/RFC-0207's test-only [Windows contained source-access source-commit
+  Git executable file retention
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md).
+  It retains one non-inheritable read-only handle across M223's complete
+  48-read boundary and rechecks path/file identity, bounded size, and SHA-256.
+  The identical retainer separately proves write/delete sharing refusal without
+  mutation. Runtime, package, authenticity, native-loader identity, cleanup
+  authority, admission, workflow, and hosted allocation remain unchanged.
+- Add M223/RFC-0206's test-only [Windows contained source-access source-commit
+  Git executable selection binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md).
+  It performs one `PATH`/`PATHEXT` lookup and holds that absolute Git path
+  across all 48 fixed object reads in M222's complete boundary. Executable
+  identity/provenance, runtime, package, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
+- Add M222/RFC-0205's corrective test-only [Windows contained source-access
+  source-commit no-lazy-fetch
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md).
+  It adds `--no-lazy-fetch` and a fixed `GIT_NO_LAZY_FETCH=1` environment to
+  M221's direct object reads, preventing ambient Git values from restoring a
+  promisor-fetch path. Runtime, package, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
+- Add M221/RFC-0204's test-only [Windows contained source-access source-commit
+  binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md).
+  It requires the retained M220 contender source to match one exact immutable
+  local commit/path/blob before child creation and after settlement. Source
+  attestation, build provenance, cleanup authority, admission, workflow, and
+  hosted allocation remain unchanged.
+- Add M220/RFC-0203's test-only [Windows contained source-access source-binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-source-binding-probe.md).
+  It executes a retained fixed contender source through inherited standard
+  input under an exact three-handle allowlist, preserves M219 interpreter-image
+  binding, and rechecks retained source and image snapshots after settlement.
+  Import/source-commit/build provenance, cleanup authority, admission,
+  workflow, and hosted allocation remain unchanged.
+- Add M219/RFC-0202's test-only [Windows contained source-access image-binding
+  probe](docs/security/windows-cache-cleanup-contained-source-access-image-binding-probe.md).
+  It binds M218's suspended fixed contender to retained expected/observed
+  interpreter image identity and bytes before resume, then rechecks both file
+  handles after settlement. Script/import provenance, cleanup authority,
+  admission, workflow, and hosted allocation remain unchanged.
+- Add M218/RFC-0201's test-only [Windows contained source-access refusal
+  probe](docs/security/windows-cache-cleanup-contained-source-access-refusal-probe.md).
+  It assigns a fixed argument-free same-logon child suspended to a private
+  kill-on-close Job, requires exact write/delete sharing refusal at all three
+  retained-source phases, and proves one-member settlement without mutation.
+  It adds no runtime, cleanup authority, admission, workflow, or hosted
+  allocation.
+- Add M217/RFC-0200's test-only [Windows retained launch-source remote-debug
+  exclusion
+  probe](docs/security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md).
+  It composes exact `-X disable_remote_debug` startup with the frozen
+  retained-source boundary and completes the full access-refusal lifecycle
+  without attempting remote attachment or injection. It adds no runtime,
+  cleanup authority, admission, workflow, or hosted allocation.
+- Add M216/RFC-0199's test-only [Windows retained launch-source access-refusal
+  probe](docs/security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md).
+  It observes exact write/delete sharing refusal before launch, after
+  connection, and after ready; proves access settles after retained-handle
+  close; and preserves the source snapshot without mutation. It adds no
+  runtime, cleanup authority, admission, workflow, or hosted allocation.
+- Add M215/RFC-0198's test-only [Windows retained launch-source binding
+  probe](docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md).
+  It executes the retained participant source through isolated inherited
+  standard input, restricts inheritance to three fixed standard handles, and
+  rechecks the source, retained token, and both image handles before release.
+  It adds no runtime, cleanup authority, admission, workflow, or hosted
+  allocation.
+- Add M214/RFC-0197's test-only [Windows retained process-image binding
+  probe](docs/security/windows-cache-cleanup-retained-process-image-binding-probe.md).
+  It binds the fixed expected executable to the retained participant process
+  through private normalized-name, file-ID, bounded-size, and SHA-256 snapshots
+  and rechecks both retained handles before release. It adds no runtime,
+  cleanup authority, admission, workflow, or hosted allocation.
+- Add M213/RFC-0196's test-only [Windows local control token-binding
+  probe](docs/security/windows-cache-cleanup-local-control-token-binding-probe.md).
+  It proves retained primary-token identity, native pipe/process/token session
+  agreement, M212 DACL revalidation, and stable token identity through the
+  challenge barrier on one current Windows host. It uses no impersonation and
+  adds no collector, cleanup authority, admission, workflow, dependency, or
+  hosted allocation.
+- Add M212/RFC-0195's test-only [Windows local control-channel
+  probe](docs/security/windows-cache-cleanup-local-control-channel-probe.md).
+  It proves an explicit protected logon-SID DACL, first-instance and remote
+  refusal flags, retained native client identity, and bounded fresh-challenge,
+  sequence, replay, wrong-challenge, and disconnect behavior on one current
+  Windows host. It adds no collector, cleanup authority, admission, workflow,
+  dependency, or hosted allocation.
+- Add M211/RFC-0194's test-only [Windows independent-host process-containment
+  probe](docs/security/windows-cache-cleanup-independent-host-process-containment-probe.md).
+  It proves suspended assignment before execution, exact no-breakaway Job
+  membership, retained root/descendant identity, bounded explicit termination,
+  and kill-on-last-close settlement on one current Windows host. It adds no
+  collector, cleanup authority, admission, workflow, dependency, or hosted
+  allocation.
+- Add M210/RFC-0193's source-only [Windows independent-host collection-plan
+  validator](docs/security/windows-cache-cleanup-independent-host-collection-plan-validator.md).
+  It checks one stable bounded canonical plan, exact closed matrices, derived
+  structural completeness, and fixed false authority/admission claims. The
+  reviewed fixture is all `not_run`; no privileged harness, qualifying run,
+  runtime surface, workflow, dependency, or hosted allocation is added.
+- Accept M209/RFC-0192's [Windows independent-host collection-authority
+  policy](docs/security/windows-cache-cleanup-independent-host-collection-authority-policy.md).
+  A future private offline coordinator may issue only single-run, single-use
+  actions bound to one host, lane, trial, barrier, and interruption. Live
+  network/share channels, public runners, checkpoint rollback, credential
+  custody, cleanup authority, qualifying execution, and hosted allocation
+  remain excluded.
+- Add M208/RFC-0191's source-only [Windows independent-host evidence
+  validator](docs/security/windows-cache-cleanup-independent-host-evidence-validator.md).
+  It validates a bounded canonical host/capability/interruption artifact only
+  when bound to a separately validated M206 companion. The reviewed fixture is
+  entirely `not_run`; criteria 6 and 7 remain unresolved, Windows remains
+  unadmitted, and no harness, runtime authority, workflow, dependency, or
+  hosted allocation is added.
+- Accept M207/RFC-0190's [Windows independent-host validation
+  contract](docs/security/windows-cache-cleanup-independent-host-validation-contract.md).
+  Future criterion 7 evidence must reproduce complete capability profiles on
+  independently provisioned hosts and observe fail-closed NTFS, ReFS, SMB,
+  CsvFS, cross-volume, unknown-capability, identity-reuse, and interruption
+  outcomes. This adds no harness, validator, runtime authority, workflow,
+  hosted allocation, or qualifying evidence; Windows remains unadmitted.
+- Add M206/RFC-0189's source-only [Windows cross-principal evidence
+  validator](docs/security/windows-cache-cleanup-cross-principal-evidence-validator.md).
+  It checks one stable, bounded canonical artifact, exact sanitized lane and
+  barrier relationships, and false-by-default admission claims. The reviewed
+  fixture is intentionally all `not_run`; no qualifying run, launcher,
+  credential custody, cleanup authority, workflow, or hosted allocation is
+  added.
+- Accept M205/RFC-0188's [Windows cache-cleanup cross-principal validation
+  contract](docs/security/windows-cache-cleanup-cross-principal-validation-contract.md).
+  Future criterion 6 evidence must use a genuinely distinct untrusted local
+  principal and real unrelated-process, session, ACL, handle, alias, and
+  reparse pressure under deterministic barriers. This adds no launcher,
+  credential custody, runtime authority, hosted allocation, or qualifying
+  evidence; Windows remains unadmitted.
+- Accept M204/RFC-0187's [Windows cleanup durable recovery
+  policy](docs/security/windows-cache-cleanup-durable-recovery-policy.md).
+  Future cleanup must publish bounded write-ahead intent before
+  acknowledgement, quarantine without replacement on the same filesystem,
+  reconcile exact physical state after interruption, and fail closed on
+  ambiguous or altered recovery evidence. This resolves only M199 criterion 5
+  as policy; Windows remains unadmitted and cleanup remains unimplemented.
+- Accept M203/RFC-0186's [Windows cleanup protocol and receipt
+  policy](docs/security/windows-cache-cleanup-protocol-receipt-policy.md).
+  Future cleanup uses separate bounded request, acknowledgement, and receipt
+  documents with exact digest correlation and path-free typed outcomes; it
+  adds no runtime or CI surface.
+- Accept M202/RFC-0185's [Windows use-time revalidation
+  policy](docs/security/windows-cache-cleanup-use-time-revalidation-policy.md).
+  A future private adapter must freshly revalidate the complete admitted
+  token, root, generation, lineage, and candidate state immediately before
+  every mutation boundary; failures refuse or enter recovery-required state,
+  and no runtime or CI surface is added.
+- Accept M201/RFC-0184's [Windows cleanup-authority admission
+  policy](docs/security/windows-cache-cleanup-authority-admission-policy.md).
+  A future private authority must bind the exact effective token, one retained
+  identity/security-bound root, and one separate durable generation; request
+  data and world-write capability cannot mint it, and no runtime or CI surface
+  is added.
+- Accept M200/RFC-0183's [Windows singleton-link refusal
+  policy](docs/security/windows-cache-cleanup-singleton-link-refusal-policy.md).
+  Future candidates require a handle-derived count of exactly one at admission
+  and immediately before mutation; all other or uncertain counts refuse, name
+  enumeration supplies no authority, and no runtime or CI surface is added.
+- Accept M199/RFC-0182's [Windows cache-cleanup readiness
+  refresh](docs/security/cache-cleanup-windows-readiness-refresh.md). It
+  consolidates the complete 50-milestone M149-M198 test-only sequence, keeps
+  Windows cleanup deferred, closes standalone closed-stream method probing,
+  and adds no runtime or CI surface.
+- Add M198/RFC-0181's test-only [Windows hard-link alias mutator closed-stream
+  write after delivery-failure
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md).
+  It requires one `write(b"!")` on M197's closed stream to raise generic
+  `ValueError` without widening runtime or CI surface.
+- Add M197/RFC-0180's test-only [Windows hard-link alias mutator closed-stream
+  flush after delivery-failure
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md).
+  It requires one flush on M196's closed stream to raise generic `ValueError`
+  without widening runtime or CI surface.
+- Add M196/RFC-0179's test-only [Windows hard-link alias mutator repeated
+  buffered-close after delivery-failure
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md).
+  It requires a second close to return `None` after M195's failed first close
+  has already closed the stream, and adds no runtime or CI surface.
+- Add M195/RFC-0178's test-only [Windows hard-link alias mutator buffered-close
+  delivery-failure after invalid settlement
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md).
+  It isolates direct stream close as the first late delivery attempt, requires
+  final stream closure after generic failure, and adds no runtime or CI surface.
+- Add M194/RFC-0177's test-only [Windows hard-link alias mutator late valid-
+  close delivery-failure after invalid settlement
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md).
+  It distinguishes local buffer acceptance from failed peer delivery after
+  child exit and adds no runtime or CI surface.
+- Add M193/RFC-0176's test-only [Windows hard-link alias mutator invalid-prefix
+  open-writer settlement after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md).
+  It leaves the parent writer open across bounded exit 5, distinguishes the
+  fixed rejection from control-pipe EOF, and adds no runtime or CI surface.
+- Add M192/RFC-0175's test-only [Windows hard-link alias mutator invalid prefix
+  with valid close suffix after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md).
+  It writes and flushes fixed `?!` once, records no close acknowledgement and
+  exit 5 with the persistent two-link state, and adds no runtime or CI surface.
+- Add M191/RFC-0174's test-only [Windows hard-link alias mutator valid close
+  prefix with trailing byte after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md).
+  It writes and flushes fixed `!?` once, records exact `closed` and exit 0 with
+  the persistent two-link state, and adds no runtime or CI surface.
+- Add M190/RFC-0173's test-only [Windows hard-link alias mutator invalid
+  control token after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md).
+  It writes and flushes one fixed invalid byte after exact recreation and
+  records fixture exit 5 with the persistent two-link, alias-present state,
+  without expanding runtime or CI.
+- Add M189/RFC-0172's test-only [Windows hard-link alias mutator control-pipe
+  EOF after recreation
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md).
+  It closes only the parent control writer after exact recreation and records
+  fixed exit 5 with the persistent two-link, alias-present state, without
+  expanding runtime or CI.
+- Add M188/RFC-0171's test-only [Windows hard-link alias mutator abrupt-loss-
+  after-recreate
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md).
+  It terminates and reaps the independent mutator after exact recreation and
+  records the persistent two-link, alias-present state as negative rollback
+  evidence, without expanding runtime or CI.
+- Add M187/RFC-0170's test-only [Windows hard-link alias mutator abrupt-loss
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md).
+  It terminates and reaps the independent mutator after its exact delete event
+  and records the persistent one-link, alias-absent state as a recovery gap,
+  without expanding runtime or CI.
+- Add M186/RFC-0169's test-only [Windows independent hard-link alias mutator
+  ABA
+  probe](docs/security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md).
+  A distinct sibling child owns the alias deletion and recreation while the
+  guardian child remains live, preserving the three-process, same-principal
+  limit without expanding runtime or CI.
+- Add M185/RFC-0168's test-only [Windows hard-link alias delete/recreate ABA
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md).
+  It shows one peer pathname and link count changing `2 -> 1 -> 2` while a
+  matching guardian child remains live, and corrects the evidence boundary to
+  two processes under one principal.
+- Add M184/RFC-0167's test-only [Windows hard-link alias deletion
+  non-exclusion
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md).
+  It preserves the corrected live result that a peer alias can be deleted
+  while the guardian continues protecting the exact name it opened.
+- Add M183/RFC-0166's test-only [Windows post-admission hard-link creation
+  probe](docs/security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md).
+  It shows that a one-link file can gain a peer alias after guardian admission,
+  so expected identity and an earlier link-count sample do not freeze ownership.
+- Add M182/RFC-0165's test-only [Windows hard-link alias non-exclusion
+  probe](docs/security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md).
+  It shows that M181's guardian continues protecting the exact name it opened
+  while a preexisting hard-link alias can be renamed, so identity alone is not
+  root-confined ownership.
+- Add M181/RFC-0164's test-only [Windows expected-identity guardian admission
+  probe](docs/security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md).
+  It compares `FILE_ID_INFO` on the same no-delete-share handle that protects
+  an admitted match and closes before reporting a preexisting replacement.
+- Add M180/RFC-0163's test-only [Windows zero-owner guardian
+  restart-boundary
+  probe](docs/security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md).
+  It proves a later guardian attaches to the unchanged current identity when
+  no mutation occurs and to the replacement identity when substitution occurs
+  during the unprotected interval.
+- Add M179/RFC-0162's test-only [Windows overlapping guardian-rotation
+  probe](docs/security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md).
+  It proves a second already-live guardian retains namespace protection after
+  the first is abruptly reaped and the range participant later closes.
+- Add M178/RFC-0161's test-only [Windows guardian abrupt-handoff
+  probe](docs/security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md).
+  It proves an already-live protected participant retains namespace and range
+  protection after the overlapping guardian is abruptly terminated and reaped.
+- Add M177/RFC-0160's test-only [Windows protected guardian-handoff
+  probe](docs/security/cache-cleanup-windows-protected-guardian-handoff-probe.md).
+  It preserves one coordination identity through a participant-free interval
+  while keeping namespace protection distinct from cooperative range ownership.
+- Add M176/RFC-0159's test-only [Windows cooperative-lock abrupt-settlement
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md).
+  It proves abrupt owner settlement preserves a surviving protected
+  participant before final release, without runtime or CI expansion.
+- Add M175/RFC-0158's test-only [Windows live substitution-exclusion
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md).
+  It proves protected participants preserve rename and exclusive-lock refusal
+  through the final live owner while retaining the zero-participant identity
+  gap, without runtime or CI expansion.
+- Add M174/RFC-0157's test-only [Windows cooperative-lock substitution
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-substitution-probe.md).
+  It proves that renaming and replacing the coordination pathname creates
+  independently lockable old and new file generations, without runtime or CI
+  expansion.
+- Add M173/RFC-0156's test-only [Windows cooperative-lock
+  probe](docs/security/cache-cleanup-windows-cooperative-lock-probe.md). Two
+  shared participants collectively refuse a fail-immediate exclusive owner
+  until the last exact release, and the exclusive owner refuses a late shared
+  participant, without runtime or CI expansion.
+- Add M172/RFC-0155's test-only [Windows descendant non-exclusion
+  probe](docs/security/cache-cleanup-windows-descendant-non-exclusion-probe.md).
+  It proves that a zero-sharing directory owner and a separate descendant file
+  owner coexist in both acquisition orders, preventing the directory primitive
+  from being mistaken for recursive quiescence without adding CI allocation.
+- Add M171/RFC-0154's test-only [Windows exclusive-root acquisition
+  probe](docs/security/cache-cleanup-windows-exclusive-root-acquisition-probe.md).
+  It proves two-way fail-closed sharing violations around one no-sharing
+  directory owner and deterministic release, without adding cleanup authority,
+  runtime coordination, or CI allocation.
+- Add M170/RFC-0153's test-only [Windows concurrent explicit-list abrupt-
+  termination probe](docs/security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md).
+  It proves one forcibly terminated child releases only its inherited blocker
+  while a concurrent survivor remains live and isolated, without adding
+  runtime coordination or CI allocation.
+- Add M169/RFC-0152's test-only [Windows concurrent explicit-list restoration-
+  failure probe](docs/security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md).
+  It proves one injected restore failure reaps only its created child while a
+  concurrent explicit-list child keeps only its distinct blocker, without
+  adding runtime coordination or CI allocation.
+- Add M168/RFC-0151's test-only [Windows concurrent explicit-list launch-
+  failure probe](docs/security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md).
+  It proves a successful child retains only its blocker while a concurrent
+  missing-executable launch restores and releases its distinct root, without
+  adding runtime coordination or CI allocation.
+- Add M167/RFC-0150's test-only [Windows concurrent explicit-list isolation
+  probe](docs/security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md).
+  It proves pairwise isolation for two controlled overlapping one-handle lists
+  in both release orders, without adding runtime coordination or CI allocation.
+- Add M166/RFC-0149's test-only [Windows concurrent broad-inheritance leak
+  probe](docs/security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md).
+  It proves one controlled broad launch retains the temporarily inheritable
+  blocker after parent and intended-child close, without adding runtime
+  coordination or CI allocation.
+- Add M165/RFC-0148's test-only [Windows inherited-handle restoration-failure
+  probe](docs/security/cache-cleanup-windows-inherited-restore-failure-probe.md).
+  It proves an already-created child is reaped before one injected restoration
+  error escapes and keeps parent repair duty explicit, without adding runtime
+  behavior or CI allocation.
+- Add M164/RFC-0147's test-only [Windows inherited-launch failure
+  probe](docs/security/cache-cleanup-windows-inherited-launch-failure-probe.md).
+  It proves one real missing-executable failure restores noninheritability
+  while preserving parent ownership and denial, without adding runtime
+  behavior or CI allocation.
+- Add M163/RFC-0146's test-only [Windows inherited-handle retention
+  probe](docs/security/cache-cleanup-windows-inherited-handle-probe.md). It
+  proves one explicitly allowlisted inherited handle retains the native rename
+  denial after the parent closes its handle, without adding runtime behavior
+  or CI allocation.
+- Add M162/RFC-0145's test-only [Windows duplicated-handle retention
+  probe](docs/security/cache-cleanup-windows-duplicated-handle-probe.md). It
+  proves one same-process duplicate retains the native rename denial after the
+  original closes, without adding runtime behavior or CI allocation.
+- Add M161/RFC-0144's test-only [Windows acknowledged-release timeout
+  probe](docs/security/cache-cleanup-windows-acknowledged-release-timeout-probe.md).
+  It separates accepted release intent from native handle close without adding
+  runtime behavior or CI allocation.
+- Add M160/RFC-0143's test-only [Windows live-blocker wait-timeout
+  probe](docs/security/cache-cleanup-windows-live-wait-timeout-probe.md).
+  It captures one immediate live-child wait timeout without adding runtime
+  behavior or CI allocation.
+- Add M159/RFC-0142's test-only [Windows blocker broken-control-pipe
+  probe](docs/security/cache-cleanup-windows-broken-control-pipe-probe.md).
+  It captures one exact post-termination native pipe-write failure without
+  adding runtime behavior or CI allocation.
+- Add M158/RFC-0141's test-only [Windows blocker invalid-control-token
+  probe](docs/security/cache-cleanup-windows-invalid-control-token-probe.md).
+  It distinguishes one fixed non-release byte from EOF without adding runtime
+  behavior or CI allocation.
+- Add M157/RFC-0140's test-only [Windows blocker control-pipe EOF
+  probe](docs/security/cache-cleanup-windows-control-pipe-eof-probe.md). It
+  exercises the existing helper's invalid-control cleanup without adding
+  runtime or CI allocation.
+- Add M156/RFC-0139's test-only [Windows abrupt blocker-owner termination
+  probe](docs/security/cache-cleanup-windows-abrupt-blocker-termination-probe.md).
+  It bypasses the graceful release handshake and verifies one bounded
+  forced-termination transition without adding runtime or CI allocation.
+- Add M155/RFC-0138's test-only [Windows child-owned share-delete
+  handshake](docs/security/cache-cleanup-windows-child-owned-share-delete-handshake.md).
+  It orders a distinct blocker process's acquisition and close around the
+  unchanged native rename probe without adding runtime or CI allocation.
+- Add M154/RFC-0137's test-only [Windows native sharing-violation
+  probe](docs/security/cache-cleanup-windows-native-sharing-violation-probe.md).
+  It captures one direct child `MoveFileExW` denial/release result without
+  adding runtime, dependency, workflow, or CI allocation.
+- Add M153/RFC-0136's test-only [Windows share-delete exclusion
+  probe](docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md).
+  It pairs one blocked child rename with the identical post-close success
+  without adding runtime, dependency, workflow, or CI allocation.
+- Add M152/RFC-0135's test-only [Windows cross-process substitution
+  probe](docs/security/cache-cleanup-windows-cross-process-substitution-probe.md).
+  It executes one fixed child-process namespace change without adding runtime,
+  dependency, workflow, or CI allocation.
+- Add M151/RFC-0134's test-only [Windows retained-parent substitution
+  probe](docs/security/cache-cleanup-windows-retained-parent-substitution-probe.md).
+  It executes one deterministic namespace substitution without adding runtime,
+  dependency, workflow, or CI allocation.
+- Add M150/RFC-0133's test-only [Windows directory-junction refusal
+  probe](docs/security/cache-cleanup-windows-junction-probe.md). It executes an
+  NTFS reparse case without elevation and adds no runtime, dependency,
+  workflow, or CI allocation.
+- Add M149/RFC-0132's test-only [Windows cache-cleanup capability
+  probe](docs/security/cache-cleanup-windows-capability-probe.md). It exercises
+  private owned handles only under pytest temporary storage; Windows remains
+  unadmitted and no runtime, dependency, workflow, or CI allocation is added.
+- Accept M148/RFC-0131's [cache-cleanup platform-capability
+  decision](docs/security/cache-cleanup-platform-capability-decision.md).
+  Current portable CPython is insufficient for the complete M147 safe-mutation
+  chain; no platform, cleanup API, dependency, workflow, or CI change is added.
+- Adopt M147/RFC-0130's [asset-cache cleanup threat
+  model](docs/security/cache-cleanup-threat-model.md). It defines the assets,
+  trust boundaries, filesystem/concurrency/recovery threats, invariants, and
+  cross-platform verification gate while adding no cleanup authority, runtime,
+  dependency, workflow, or CI change.
+- Record M146/RFC-0129 cache-cleanup readiness deferral. Existing aggregate
+  evidence does not identify deletion candidates or prove current-state safety;
+  cleanup remains deferred with explicit identity, roots, quiescence, policy,
+  recovery, and authorization gates and no runtime, dependency, workflow, or CI
+  change.
+- Add M145/RFC-0128 strict saved unreferenced-preview verification. One bounded
+  canonical preview is recomputed against the exact plan and admitted saved
+  fingerprint entirely offline; success binds the preview digest without cache
+  access, authenticity claims, mutation, dependency, workflow, or CI changes.
+- Add M144/RFC-0127 offline unreferenced-blob preview composition. The new
+  command strictly admits one bounded saved fingerprint after current-input
+  preflight and emits the unchanged M143 aggregate preview without cache access,
+  a new protocol, trust claim, mutation, dependency, workflow, or CI change.
+- Add M143/RFC-0126 path-free unreferenced-blob preview evidence. The new
+  command reuses one verified read-only fingerprint observation and reports
+  only existing aggregate count/bytes plus plan/observation identity; it grants
+  no deletion eligibility, mutation, policy, dependency, workflow, or CI.
+- Add M142/RFC-0125 strict saved cache-fingerprint comparison verification.
+  One bounded canonical report is recomputed from the exact current plan and
+  two admitted fingerprints entirely offline; success binds the path-free
+  report digest without claiming authenticity, reading a cache, adding a
+  dependency, changing a workflow, or expanding CI.
+- Add M141/RFC-0124 offline comparison of two canonical saved cache
+  fingerprints. Both records bind to one exact current plan and reuse M140's
+  fixed path-free aggregate report with no cache access, fresh observation,
+  new protocol, authenticity claim, dependency, workflow, or CI change.
+- Add M140/RFC-0123 path-free saved cache-fingerprint comparison. One exact
+  plan preflight and one unchanged bounded observation produce fixed signed
+  deltas for the twelve existing M137 aggregate fields plus an identity-equality
+  boolean. It adds no per-object diff, identity/path disclosure, authenticity,
+  cleanup authority, dependency, workflow, or CI change.
+- Add M139/RFC-0122 strict saved cache-fingerprint verification. Bounded
+  duplicate/non-finite-rejecting canonical decoding binds the saved M138 record
+  to the exact current plan before one fresh read-only observation; success is
+  path-free `ludoweave.asset-cache-fingerprint-verification/1` integrity
+  equality, not authenticity, provenance, cleanup authority, dependency,
+  workflow, or CI change.
+- Add M138/RFC-0121 deterministic cache-observation fingerprinting. One M137
+  bounded verification pass now emits path-free
+  `ludoweave.asset-cache-fingerprint/1` evidence binding exact canonical action
+  metadata and CAS digest/size membership under sorted length-framed SHA-256.
+  It adds no timestamp, atomic-snapshot claim, deletion eligibility, cleanup
+  authority, dependency, workflow, or CI change.
+- Add M137/RFC-0120 bounded read-only whole-cache inventory. The additive
+  `ludoweave.asset-cache-inventory/1` contract strictly verifies engine-owned
+  action metadata and streams every CAS blob under tightening-only entry and
+  byte limits, then reports current-plan, other, and no-observed-reference
+  storage aggregates. It adds no deletion eligibility, cleanup authority,
+  dependency, workflow, or CI change.
+- Add M136/RFC-0119 bounded saved asset-cache population verification. Strict
+  duplicate-rejecting decoding reconstructs `ludoweave.asset-cache-population/1`
+  under hard byte/entry bounds; the new `source
+  asset-cache-population-verify` command preflights the complete exact current
+  plan before read-only verification of every referenced action and CAS
+  payload. It adds no decoder fallback, cache/project write, signature,
+  authenticity/provenance claim, dependency, workflow, or CI change.
+- Add M135/RFC-0118 explicit post-realization cache population. The new
+  `ludoweave.asset-cache-population/1` operation and `source
+  asset-cache-populate` command verify current inputs and every cache candidate,
+  decode only misses, and acquire write authority only after complete
+  realization. Publication retains M132's atomic per-entry behavior and
+  possible valid-prefix/orphan effects on later failure; it adds no rollback,
+  remote cache, dependency, engine-root API, version, workflow, or CI change.
+- Add M134/RFC-0117 read-only cache-assisted asset realization. Complete
+  detached-source preflight and all cache verification precede decoding of
+  exact misses; hit and decoded artifacts share the existing bounds and
+  canonical plan order, with no automatic cache publication or CI change.
+- Add M133/RFC-0116 verified read-only asset-cache lookup. Exact current plan
+  actions now produce path-free hit/miss evidence only after duplicate-free
+  canonical metadata and referenced CAS payload verification, without creating
+  or changing the cache, decoding an asset, or changing CI.
+- Add M132/RFC-0115 explicit local asset-cache publication. Materialized M131
+  payloads are stored in a verified SHA-256 CAS before atomically visible
+  action metadata; corrupt collisions fail closed and no project, remote cache,
+  dependency, workflow, or CI surface changes.
+- Add M131/RFC-0114 bounded built-in decoder execution through `ludoweave
+  source asset-build`. Exact detached inputs are revalidated before decoding;
+  canonical `ludoweave.asset-build-result/1` records output identities with no
+  retained payload, cache read/write, project write, worker, plugin, or
+  workflow allocation.
+- Add M130/RFC-0113 confined saved-plan loading plus read-only `ludoweave
+  source asset-plan-verify`. Verification recomputes current M128 inputs and
+  the M129 plan, reports mismatches without compared content, and performs no
+  asset decode/build, cache read/write, artifact creation, or workflow
+  allocation.
+- Add M129/RFC-0112 canonical `ludoweave.asset-build-plan/1` values plus
+  read-only `ludoweave source asset-plan`. Plans verify current M128 inputs,
+  order the exact selected closure dependency-first with URI tie-breaking, and
+  precompute unchanged M4 cache keys without asset decode/build, cache read or
+  write, artifact creation, scheduler execution, or workflow allocation.
+- Add M128/RFC-0111 canonical `ludoweave.asset-source-lock/1` values plus
+  read-only `ludoweave source asset-lock` generation and `asset-verify`.
+  Selected sources are hashed through project-confined bounded descriptors;
+  there is no asset decode, asset build, import, cache write, world mutation,
+  or workflow allocation.
+- Add M127/RFC-0110 deterministic source-to-asset dependency checking through
+  `ludoweave source assets`. The read-only report preserves direct declarations
+  separately from their resolved asset-graph closure, reads no asset source,
+  rejects no unused asset, builds no asset, mutates no world, and adds no
+  workflow allocation.
+- Add M126/RFC-0109 bounded project-confined loading, deterministic decoding,
+  and canonical normalization for the existing `ludoweave.assets/1` manifest.
+  The loader reads no asset source, builds no asset, creates no cache, performs
+  no source-to-asset resolution or world mutation, and adds no workflow
+  allocation.
+- Add M125/RFC-0108 canonical `ludoweave.source-lock/1` values plus read-only
+  `ludoweave source lock` generation and `ludoweave source verify`. Locks bind
+  the normalized manifest and every explicit scene/prefab content identity;
+  they are not atomic filesystem snapshots, signatures, imports, caches, world
+  mutations, receipts, or new workflow allocations.
+- Add M124/RFC-0107 bounded `ludoweave.source-manifest/1` values and
+  `ludoweave source check PROJECT --manifest FILE`. The aggregate canonical
+  report validates only explicit project-confined scene or prefab/instance
+  entries; there is no discovery, compile, application-schema resolution,
+  world mutation, receipt, write, dependency, root-API, or workflow allocation
+  change.
+- Add M123/RFC-0106 `ludoweave source check` for read-only, project-confined
+  scene or explicit prefab-pair preflight. Success emits canonical
+  `ludoweave.cli.source-check/1` JSON; there is no compile, world mutation,
+  receipt, directory discovery, cache, dependency, root-API, or workflow
+  allocation change.
+- Add M122/RFC-0105 project-confined prefab file loading through two explicit
+  `HeadlessProject` methods. Callers select separate `ludoweave.prefab/1` and
+  `ludoweave.prefab-instance/1` files; there is no implicit pairing, directory
+  discovery, cache, live update, world mutation, workflow, dependency, or
+  root-API change.
+- Add M121/RFC-0104 project-confined scene file loading to the existing
+  headless composition root. Reads are relative, bounded, synchronous, and
+  detached before the unchanged `ludoweave.scene/1` decoder; there is no world
+  mutation, directory discovery, prefab file loading, file URI handling, live
+  update, dependency, workflow, or root-API change.
+- Add M120/RFC-0103 one-level `ludoweave.prefab/1` fragments and
+  `ludoweave.prefab-instance/1` schema-aware field replacements. Planning adds
+  canonical prefab provenance and compiles to ordinary `entity.spawn` commands
+  with receipt aliases, with no nested prefab inheritance, live update, file
+  I/O, new persistent operation, dependency, workflow, or root-API change.
+- Add M119/RFC-0102 versioned data-only scene documents and deterministic
+  compilation to ordinary `entity.spawn` commands. Receipt aliases expose the
+  local-ID-to-runtime-entity mapping while canonical runtime state remains in
+  the world store; there is no file I/O, prefab inheritance, live update,
+  dependency, workflow, or root-API change.
+- Record M118/RFC-0101 decision to retain Python 3.15 outside the supported
+  range after one exact Windows CPython 3.15.0b1 installed-wheel observation,
+  with no metadata, doctor, runtime, dependency, workflow, or support change.
+- Record M117/RFC-0100 decision to retain standard GIL CPython as the supported
+  baseline after an exact CPython 3.14.5t installed-wheel serial-compatibility
+  observation, with no concurrent-safety, graphics, performance, workflow,
+  dependency, runtime API, or support-promotion claim.
+- Record M116/RFC-0099 decision to separate sample-bundle semantic portability
+  from byte identity. The exact supported-runtime Windows producer-consumer
+  matrix extracts the same 50-file source tree despite different valid Deflate
+  bytes, with no alternate compression method, workflow, dependency, producer,
+  verifier, runtime API, or release-authority change.
+- Record M115/RFC-0098 decision to scope sample-bundle byte reproducibility to
+  the release environment. Repeated fixed-environment production remains the
+  claim; supported runtimes receive no cross-runtime byte-identity promise and
+  manifests gain no compressor identity. There is no workflow, allocation,
+  dependency, producer, verifier, runtime API, or release-authority change.
+- Record M114/RFC-0097 decision to retain sample-member compression-level non-
+  observability. The fixed producer remains explicit at level `9`, while the
+  verifier adds no exact level-9 profile, inferred compressor level, payload-
+  content read, workflow, dependency, producer, runtime API, or release-
+  authority change.
+- Record M113/RFC-0096 decision to retain sample-member compression-method
+  compatibility. M64's stored/deflated allowlist and M95's local/central
+  agreement remain unchanged while the producer stays deflated, with no exact
+  deflate-only profile, new decompressor, payload-content read, workflow,
+  dependency, producer, runtime API, or release-authority change.
+- Record M112/RFC-0095 decision to retain sample-member creating-system
+  compatibility. Standard-library host markers remain admitted without a
+  creating-system allowlist or host-specific external-attribute interpretation;
+  M65's file-type boundary and the producer's fixed host `3` remain unchanged,
+  with no payload-content read, workflow, dependency, producer, runtime API,
+  or release-authority change.
+- Record M111/RFC-0094 decision to retain sample-member permission
+  compatibility. M65's symlink/non-regular rejection remains the verifier
+  boundary, with no exact external-attribute profile, permission restoration,
+  payload-content read, workflow, dependency, producer, runtime API, or
+  release-authority change.
+- Record M110/RFC-0093 decision to retain sample-member timestamp compatibility.
+  An exact fixed-producer tuple caused 22 established architecture regressions,
+  so M98 local/central consistency remains the verifier boundary with no
+  timezone or UTC conversion, payload-content read, workflow, dependency,
+  producer, runtime API, or release-authority change.
+- Add M109/RFC-0092 zero sample-member internal-attribute profile preflight.
+  Public central `ZipInfo.internal_attr` must equal zero after established
+  local-header, payload-layout, extra-field, member-metadata, and M105-M108
+  profile checks and before exact inventory, reads, or staging, with no text/
+  binary content interpretation, payload-content read, workflow, dependency,
+  producer, runtime API, or release-authority change.
+- Add M108/RFC-0091 exact sample-member creation-version profile preflight.
+  Public central `ZipInfo.create_version` must equal `20` after established
+  local-header, payload-layout, extra-field, member-metadata, M105 flag, M106
+  reserved-byte, and M107 extraction-version checks and before exact inventory,
+  reads, or staging, with no general creation-version semantics parser,
+  payload-content read, workflow, dependency, producer, runtime API, or release-
+  authority change.
+- Add M107/RFC-0090 exact sample-member extraction-version profile preflight.
+  Public central `ZipInfo.extract_version` must equal `20` after established
+  local-header, payload-layout, extra-field, member-metadata, M105 flag, and
+  M106 reserved-byte checks and before exact inventory, reads, or staging, with
+  no general extraction-version semantics parser, no payload-content read, and
+  no workflow, dependency, producer, runtime API, or release-authority change.
+- Add M106/RFC-0089 zero sample-member extraction-version reserved-byte
+  profile preflight. Public central `ZipInfo.reserved` must equal zero after
+  established local-header, payload-layout, extra-field, member-metadata, and
+  M105 flag-profile checks and before exact inventory, reads, or staging, with
+  no extraction-version semantics parser, no payload-content read, and no
+  workflow, dependency, producer, runtime API, or release-authority change.
+- Add M105/RFC-0088 zero sample-member general-purpose-flag profile preflight.
+  Public central `ZipInfo.flag_bits` must equal zero after established specific-
+  flag, local-header, payload-layout, and extra-field checks, then after decoded-
+  name/member-metadata policy and before exact inventory, reads, or staging,
+  with no flag-semantics parser, no payload-content read, and no workflow,
+  dependency, producer, runtime API, or release-authority change.
+- Add M104/RFC-0087 empty sample-member extra-field profile preflight. Public
+  central `ZipInfo.extra` must be empty after established extra-field,
+  local-header, payload-bound, and contiguity checks and before decoded-name
+  policy, metadata, inventory, reads, or staging, with no extra-field semantics
+  parser, no payload-content read, and no workflow, dependency, producer,
+  runtime API, or release-authority change.
+- Add M103/RFC-0086 exact compressed-payload contiguity preflight. Each
+  calculated payload end must equal the next local header or conventional
+  central directory before decoded-name policy, metadata, inventory, reads, or
+  staging, with M102 overlap precedence, no decompression or recompression, no
+  payload-content read, no payload-integrity certification, and no workflow,
+  dependency, producer, runtime API, or release-authority change.
+- Add M102/RFC-0085 compressed-payload upper-bound preflight. Each calculated
+  compressed payload end must not exceed the next local header or conventional
+  central directory before decoded-name policy, metadata, inventory, reads, or
+  staging, with no decompression or recompression, no exact-contiguity
+  requirement, no gap or adjacency ban, no payload-integrity certification,
+  and no workflow, dependency, producer, runtime API, or release-authority
+  change.
+- Add M101/RFC-0084 local-header uncompressed-size consistency preflight. Each
+  bounded four-byte local uncompressed size must equal public central
+  `ZipInfo.file_size` before decoded-name policy, metadata, inventory, reads,
+  or staging, with no decompression or recompression, no compression-ratio
+  policy, no payload or next-header bound, no inter-member layout validator,
+  and no workflow, dependency, producer, runtime API, or release-authority
+  change.
+- Add M100/RFC-0083 local-header compressed-size consistency preflight. Each
+  bounded four-byte local compressed size must equal public central
+  `ZipInfo.compress_size` before decoded-name policy, metadata, inventory,
+  reads, or staging, with no decompression or recompression, no uncompressed-
+  size comparison, no payload or next-header bound, no inter-member layout
+  validator, and no workflow, dependency, producer, runtime API, or release-
+  authority change.
 - Add M99/RFC-0082 local-header CRC-32 consistency preflight. Each bounded
   four-byte local CRC must equal public central `ZipInfo.CRC` before decoded-
   name policy, metadata, inventory, reads, or staging, without CRC

@@ -24,12 +24,54 @@ _CACHE_KEY = re.compile(r"sha256:[0-9a-f]{64}\Z")
 _PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 _MAX_SOURCE_BYTES = 256 * 1024 * 1024
 _MAX_TEXTURE_DIMENSION = 16_384
-_LOADER_VERSION = "ludoweave.assets/1"
+_MAX_MANIFEST_BYTES = 4 * 1024 * 1024
+_MAX_MANIFEST_ASSETS = 4_096
+_MAX_MANIFEST_DEPENDENCIES = 256
+_MAX_MANIFEST_SETTINGS = 128
+ASSET_MANIFEST_PROTOCOL = "ludoweave.assets/1"
+ASSET_LOADER_PROTOCOL = "ludoweave.assets/1"
 type SettingValue = str | int | float | bool
 
 
 class AssetError(LudoWeaveError):
     """Raised for asset identity, manifest, decoding, or cache failures."""
+
+
+@dataclass(frozen=True, slots=True)
+class AssetManifestLimits:
+    """Tightening-only limits for one existing asset manifest."""
+
+    max_bytes: int = _MAX_MANIFEST_BYTES
+    max_assets: int = _MAX_MANIFEST_ASSETS
+    max_dependencies: int = _MAX_MANIFEST_DEPENDENCIES
+    max_settings: int = _MAX_MANIFEST_SETTINGS
+
+    def __post_init__(self) -> None:
+        maxima = (
+            ("max_bytes", _MAX_MANIFEST_BYTES),
+            ("max_assets", _MAX_MANIFEST_ASSETS),
+            ("max_dependencies", _MAX_MANIFEST_DEPENDENCIES),
+            ("max_settings", _MAX_MANIFEST_SETTINGS),
+        )
+        for field, maximum in maxima:
+            value = getattr(self, field)
+            if type(value) is not int or value <= 0:
+                raise _asset_error(
+                    "asset manifest limits must be exact positive integers within hard maxima",
+                    phase="configure_manifest",
+                    details={"field": field, "actual_type": type(value).__name__},
+                    code="asset.invalid_manifest_limits",
+                )
+            if value > maximum:
+                raise _asset_error(
+                    "asset manifest limits may tighten but not exceed hard maxima",
+                    phase="configure_manifest",
+                    details={"field": field, "actual": value, "maximum": maximum},
+                    code="asset.invalid_manifest_limits",
+                )
+
+
+DEFAULT_ASSET_MANIFEST_LIMITS = AssetManifestLimits()
 
 
 @dataclass(frozen=True, slots=True, order=True)
@@ -86,11 +128,16 @@ class AssetEntry:
             )
         _relative_source(self.source)
         settings = tuple(self.settings)
+        if len(settings) > _MAX_MANIFEST_SETTINGS:
+            raise _manifest_limit_error(
+                field="settings", actual=len(settings), limit=_MAX_MANIFEST_SETTINGS
+            )
         if any(
             type(item) is not tuple
             or len(item) != 2
             or type(item[0]) is not str
             or not item[0]
+            or not _utf8_text(item[0])
             or not _setting(item[1])
             for item in settings
         ):
@@ -106,6 +153,12 @@ class AssetEntry:
                 details={"field": "settings"},
             )
         dependencies = tuple(self.dependencies)
+        if len(dependencies) > _MAX_MANIFEST_DEPENDENCIES:
+            raise _manifest_limit_error(
+                field="dependencies",
+                actual=len(dependencies),
+                limit=_MAX_MANIFEST_DEPENDENCIES,
+            )
         if any(type(item) is not AssetUri for item in dependencies) or self.uri in dependencies:
             raise _asset_error(
                 "asset dependencies must be distinct exact URIs without self-reference",
@@ -143,6 +196,10 @@ class AssetManifest:
                 phase="manifest",
                 details={"field": "entries"},
             )
+        if len(values) > _MAX_MANIFEST_ASSETS:
+            raise _manifest_limit_error(
+                field="assets", actual=len(values), limit=_MAX_MANIFEST_ASSETS
+            )
         by_uri = {item.uri: item for item in values}
         if len(by_uri) != len(values):
             raise _asset_error(
@@ -164,54 +221,118 @@ class AssetManifest:
         self._entries = MappingProxyType(by_uri)
 
     @classmethod
-    def load(cls, path: Path, *, project_root: Path | None = None) -> AssetManifest:
+    def from_json(
+        cls,
+        document: str | bytes,
+        *,
+        project_root: Path,
+        limits: AssetManifestLimits = DEFAULT_ASSET_MANIFEST_LIMITS,
+    ) -> AssetManifest:
+        """Decode one bounded exact asset manifest from detached JSON."""
+
+        checked_limits = _require_manifest_limits(limits)
+        raw = _manifest_bytes(document, checked_limits.max_bytes)
+        try:
+            text = raw.decode("utf-8")
+            decoded: object = json.loads(
+                text,
+                object_pairs_hook=_unique_object,
+                parse_float=_finite_json_float,
+                parse_constant=_reject_json_constant,
+            )
+        except (UnicodeDecodeError, json.JSONDecodeError, ValueError, RecursionError) as error:
+            raise _asset_error(
+                "asset manifest JSON could not be decoded",
+                phase="decode_manifest",
+                details={"cause_type": type(error).__name__},
+                code="asset.invalid_manifest_json",
+            ) from error
+        return cls._from_document(decoded, project_root=project_root, limits=checked_limits)
+
+    @classmethod
+    def load(
+        cls,
+        path: Path,
+        *,
+        project_root: Path | None = None,
+        limits: AssetManifestLimits = DEFAULT_ASSET_MANIFEST_LIMITS,
+    ) -> AssetManifest:
         """Decode an exact ``ludoweave.assets/1`` JSON manifest."""
 
-        manifest_path = path.resolve(strict=True)
-        root = manifest_path.parent if project_root is None else _root(project_root)
+        checked_limits = _require_manifest_limits(limits)
+        try:
+            manifest_path = path.resolve(strict=True)
+            root = manifest_path.parent if project_root is None else _root(project_root)
+        except OSError as error:
+            raise _asset_error(
+                "asset manifest is unavailable",
+                phase="open_manifest",
+                details={"cause_type": type(error).__name__},
+                code="asset.invalid_manifest",
+            ) from error
         if not manifest_path.is_relative_to(root):
             raise _asset_error(
                 "asset manifest must be inside the project root",
-                phase="manifest",
+                phase="open_manifest",
                 details={"field": "path"},
+                code="asset.invalid_manifest",
             )
         try:
-            raw = manifest_path.read_bytes()
-            if len(raw) > 4 * 1024 * 1024:
-                raise ValueError("manifest_too_large")
-            document: object = json.loads(raw)
-        except Exception as error:
+            with manifest_path.open("rb") as handle:
+                raw = handle.read(checked_limits.max_bytes + 1)
+        except OSError as error:
             raise _asset_error(
-                "asset manifest could not be decoded",
-                phase="manifest",
+                "asset manifest could not be read",
+                phase="open_manifest",
                 details={"cause_type": type(error).__name__},
+                code="asset.invalid_manifest",
             ) from error
+        return cls.from_json(raw, project_root=root, limits=checked_limits)
+
+    @classmethod
+    def _from_document(
+        cls,
+        document: object,
+        *,
+        project_root: Path,
+        limits: AssetManifestLimits,
+    ) -> AssetManifest:
         if type(document) is not dict:
             raise _asset_error(
                 "asset manifest requires an object document",
-                phase="manifest",
+                phase="decode_manifest",
                 details={"field": "document"},
+                code="asset.invalid_manifest",
             )
         checked_document = cast(dict[object, object], document)
         if set(checked_document) != {"protocol", "assets"}:
             raise _asset_error(
                 "asset manifest requires exact protocol and assets fields",
-                phase="manifest",
+                phase="decode_manifest",
                 details={"field": "document"},
+                code="asset.invalid_manifest",
             )
         if (
-            checked_document["protocol"] != _LOADER_VERSION
+            checked_document["protocol"] != ASSET_MANIFEST_PROTOCOL
             or type(checked_document["assets"]) is not list
         ):
             raise _asset_error(
                 "asset manifest protocol is unsupported",
-                phase="manifest",
+                phase="decode_manifest",
                 details={"field": "protocol"},
+                code="asset.incompatible_manifest_protocol",
             )
-        entries = tuple(
-            _decode_entry(item) for item in cast(list[object], checked_document["assets"])
-        )
-        return cls(root, entries)
+        assets = cast(list[object], checked_document["assets"])
+        if len(assets) > limits.max_assets:
+            raise _manifest_limit_error(field="assets", actual=len(assets), limit=limits.max_assets)
+        entries = tuple(_decode_entry(item, limits=limits) for item in assets)
+        return cls(project_root, entries)
+
+    @property
+    def protocol(self) -> str:
+        """Return the exact persistent asset-manifest protocol."""
+
+        return ASSET_MANIFEST_PROTOCOL
 
     @property
     def project_root(self) -> Path:
@@ -220,6 +341,71 @@ class AssetManifest:
     @property
     def entries(self) -> tuple[AssetEntry, ...]:
         return tuple(self._entries[uri] for uri in sorted(self._entries))
+
+    def as_dict(self) -> dict[str, object]:
+        """Return a detached normalized JSON-compatible representation."""
+
+        assets: list[dict[str, object]] = []
+        for entry in self.entries:
+            assets.append(
+                {
+                    "uri": entry.uri.value,
+                    "kind": entry.kind.value,
+                    "source": entry.source,
+                    "settings": dict(entry.settings),
+                    "dependencies": [dependency.value for dependency in entry.dependencies],
+                }
+            )
+        return {"protocol": self.protocol, "assets": assets}
+
+    def canonical_bytes(self) -> bytes:
+        """Return deterministic normalized manifest bytes."""
+
+        encoded = json.dumps(
+            self.as_dict(),
+            ensure_ascii=False,
+            allow_nan=False,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+        if len(encoded) > _MAX_MANIFEST_BYTES:
+            raise _manifest_limit_error(
+                field="document", actual=len(encoded), limit=_MAX_MANIFEST_BYTES
+            )
+        return encoded
+
+    def dependency_closure(self, roots: tuple[AssetUri, ...]) -> tuple[AssetUri, ...]:
+        """Resolve exact direct roots through the validated acyclic asset graph."""
+
+        if (
+            type(roots) is not tuple
+            or len(roots) > _MAX_MANIFEST_ASSETS
+            or any(type(root) is not AssetUri for root in roots)
+            or len(set(roots)) != len(roots)
+        ):
+            raise _asset_error(
+                "asset dependency roots must be a tuple of distinct exact URIs",
+                phase="resolve_dependencies",
+                details={"field": "roots"},
+                code="asset.invalid_dependency_roots",
+            )
+        missing = tuple(sorted(root for root in roots if root not in self._entries))
+        if missing:
+            raise _asset_error(
+                "asset dependency root is not declared in the manifest",
+                phase="resolve_dependencies",
+                details={"uri": missing[0].value},
+                code="asset.unknown_uri",
+            )
+        resolved: set[AssetUri] = set()
+        pending = list(reversed(sorted(roots)))
+        while pending:
+            uri = pending.pop()
+            if uri in resolved:
+                continue
+            resolved.add(uri)
+            pending.extend(reversed(self._entries[uri].dependencies))
+        return tuple(sorted(resolved))
 
     def entry(self, uri: AssetUri) -> AssetEntry:
         if type(uri) is not AssetUri:
@@ -337,20 +523,13 @@ class AssetPipeline:
             )
         source_hash = f"sha256:{sha256(source).hexdigest()}"
         dependency_keys = tuple(item.cache_key for item in dependencies)
-        identity = json.dumps(
-            {
-                "dependencies": dependency_keys,
-                "kind": entry.kind.value,
-                "loader": _LOADER_VERSION,
-                "settings": entry.settings,
-                "source_hash": source_hash,
-                "uri": uri.value,
-            },
-            sort_keys=True,
-            separators=(",", ":"),
-            ensure_ascii=True,
-        ).encode("ascii")
-        cache_key = f"sha256:{sha256(identity).hexdigest()}"
+        cache_key = asset_cache_key(
+            uri=uri,
+            kind=entry.kind,
+            settings=entry.settings,
+            source_hash=source_hash,
+            dependency_keys=dependency_keys,
+        )
         payload = self._load(entry.kind, source)
         artifact = AssetArtifact(
             uri,
@@ -404,7 +583,7 @@ class AssetPipeline:
                 "cache_key": artifact.cache_key,
                 "dependencies": artifact.dependency_keys,
                 "kind": artifact.kind.value,
-                "protocol": _LOADER_VERSION,
+                "protocol": ASSET_LOADER_PROTOCOL,
                 "source_hash": artifact.source_hash,
                 "uri": artifact.uri.value,
             },
@@ -421,6 +600,30 @@ class AssetPipeline:
                 details={"cause_type": type(error).__name__},
                 code="asset.cache_failed",
             ) from error
+
+
+def asset_cache_key(
+    *,
+    uri: AssetUri,
+    kind: AssetKind,
+    settings: tuple[tuple[str, SettingValue], ...],
+    source_hash: str,
+    dependency_keys: tuple[str, ...],
+) -> str:
+    identity = json.dumps(
+        {
+            "dependencies": dependency_keys,
+            "kind": kind.value,
+            "loader": ASSET_LOADER_PROTOCOL,
+            "settings": settings,
+            "source_hash": source_hash,
+            "uri": uri.value,
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+    ).encode("ascii")
+    return f"sha256:{sha256(identity).hexdigest()}"
 
 
 @dataclass(frozen=True, slots=True)
@@ -644,7 +847,7 @@ def _paeth(left: int, above: int, upper_left: int) -> int:
     return upper_left
 
 
-def _decode_entry(value: object) -> AssetEntry:
+def _decode_entry(value: object, *, limits: AssetManifestLimits) -> AssetEntry:
     if type(value) is not dict:
         raise _asset_error(
             "asset manifest entry must be an object",
@@ -666,6 +869,18 @@ def _decode_entry(value: object) -> AssetEntry:
             phase="manifest",
             details={"field": "asset"},
         )
+    settings = cast(dict[object, object], settings_value)
+    dependencies = cast(list[object], dependencies_value)
+    if len(settings) > limits.max_settings:
+        raise _manifest_limit_error(
+            field="settings", actual=len(settings), limit=limits.max_settings
+        )
+    if len(dependencies) > limits.max_dependencies:
+        raise _manifest_limit_error(
+            field="dependencies",
+            actual=len(dependencies),
+            limit=limits.max_dependencies,
+        )
     try:
         kind = AssetKind(entry["kind"])
     except (TypeError, ValueError) as error:
@@ -678,32 +893,103 @@ def _decode_entry(value: object) -> AssetEntry:
         AssetUri(cast(str, entry["uri"])),
         kind,
         cast(str, entry["source"]),
-        tuple(cast(dict[str, SettingValue], settings_value).items()),
-        tuple(AssetUri(cast(str, item)) for item in cast(list[object], dependencies_value)),
+        tuple(cast(dict[str, SettingValue], settings).items()),
+        tuple(AssetUri(cast(str, item)) for item in dependencies),
+    )
+
+
+def _require_manifest_limits(value: object) -> AssetManifestLimits:
+    if type(value) is not AssetManifestLimits:
+        raise _asset_error(
+            "asset manifest limits require an exact AssetManifestLimits value",
+            phase="configure_manifest",
+            details={"actual_type": type(value).__name__},
+            code="asset.invalid_manifest_limits",
+        )
+    return value
+
+
+def _manifest_bytes(document: str | bytes, limit: int) -> bytes:
+    if type(document) is bytes:
+        raw = document
+    elif type(document) is str:
+        try:
+            raw = document.encode("utf-8")
+        except UnicodeEncodeError as error:
+            raise _asset_error(
+                "asset manifest text is not UTF-8 encodable",
+                phase="decode_manifest",
+                details={"cause_type": type(error).__name__},
+                code="asset.invalid_manifest_json",
+            ) from error
+    else:
+        raise _asset_error(
+            "asset manifest input must be bytes or text",
+            phase="decode_manifest",
+            details={"actual_type": type(document).__name__},
+            code="asset.invalid_manifest_json",
+        )
+    if len(raw) > limit:
+        raise _manifest_limit_error(field="document", actual=len(raw), limit=limit)
+    return raw
+
+
+def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate_object_key")
+        result[key] = value
+    return result
+
+
+def _reject_json_constant(value: str) -> object:
+    del value
+    raise ValueError("nonfinite_json_number")
+
+
+def _finite_json_float(value: str) -> float:
+    parsed = float(value)
+    if not isfinite(parsed):
+        raise ValueError("nonfinite_json_number")
+    return parsed
+
+
+def _manifest_limit_error(*, field: str, actual: int, limit: int) -> AssetError:
+    return _asset_error(
+        "asset manifest exceeds a configured resource limit",
+        phase="decode_manifest",
+        details={"field": field, "actual": actual, "limit": limit},
+        code="asset.manifest_limit_exceeded",
     )
 
 
 def _require_acyclic(entries: Mapping[AssetUri, AssetEntry]) -> None:
-    visited: set[AssetUri] = set()
-    active: set[AssetUri] = set()
-
-    def visit(uri: AssetUri) -> None:
-        if uri in active:
-            raise _asset_error(
-                "asset dependencies contain a cycle",
-                phase="manifest",
-                details={"uri": uri.value},
-            )
-        if uri in visited:
-            return
-        active.add(uri)
-        for dependency in entries[uri].dependencies:
-            visit(dependency)
-        active.remove(uri)
-        visited.add(uri)
-
-    for uri in sorted(entries):
-        visit(uri)
+    state: dict[AssetUri, int] = {}
+    for root in sorted(entries):
+        if state.get(root) == 2:
+            continue
+        state[root] = 1
+        stack: list[tuple[AssetUri, int]] = [(root, 0)]
+        while stack:
+            uri, index = stack[-1]
+            dependencies = entries[uri].dependencies
+            if index == len(dependencies):
+                state[uri] = 2
+                stack.pop()
+                continue
+            dependency = dependencies[index]
+            stack[-1] = (uri, index + 1)
+            dependency_state = state.get(dependency, 0)
+            if dependency_state == 1:
+                raise _asset_error(
+                    "asset dependencies contain a cycle",
+                    phase="manifest",
+                    details={"uri": dependency.value},
+                )
+            if dependency_state == 0:
+                state[dependency] = 1
+                stack.append((dependency, 0))
 
 
 def _root(value: Path) -> Path:
@@ -711,7 +997,13 @@ def _root(value: Path) -> Path:
 
 
 def _relative_source(value: object) -> Path:
-    if type(value) is not str or not value or "\\" in value:
+    if (
+        type(value) is not str
+        or not value
+        or not _utf8_text(value)
+        or "\0" in value
+        or "\\" in value
+    ):
         raise _asset_error(
             "asset source must be a normalized project-relative path",
             phase="manifest",
@@ -728,7 +1020,19 @@ def _relative_source(value: object) -> Path:
 
 
 def _setting(value: object) -> bool:
-    return type(value) in (str, int, bool) or (type(value) is float and isfinite(value))
+    return (
+        (type(value) is str and _utf8_text(value))
+        or type(value) in (int, bool)
+        or (type(value) is float and isfinite(value))
+    )
+
+
+def _utf8_text(value: str) -> bool:
+    try:
+        value.encode("utf-8")
+    except UnicodeEncodeError:
+        return False
+    return True
 
 
 def _atomic_write(path: Path, payload: bytes) -> None:

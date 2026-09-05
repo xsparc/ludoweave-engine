@@ -650,6 +650,165 @@ allowlist, enhanced-deflate decoder, raw parser, repair, workflow, dependency,
 sample producer, runtime API, or release authority, is not a general archive
 sandbox, and is not a real public release observation.
 
+M107/RFC-0090 requires public central `ZipInfo.extract_version` to equal `20`
+after M106 and before exact inventory, staging, or member reads. This exact
+sample-member extraction-version profile preflight is one central-extraction-
+version exact-profile classifier. Failure emits stable content-silent error
+`sample bundle has an unsupported extraction version`; established local
+extraction-version mismatch, payload-layout, extra-field, codec, path, flag,
+and reserved-byte errors retain precedence and all owned resources close before
+control returns.
+
+The fixed producer's 50 members already have extraction-version pair `(20, 0)`.
+M107 adds no general extraction-version semantics parser, capability evaluator,
+raw record parser, payload-content read, decompression, recompression, or
+general ZIP validity claim. It adds no workflow, dependency, runtime API,
+release authority, or producer change, is not a general archive sandbox, and is
+not a real public release observation.
+
+M108/RFC-0091 requires public central `ZipInfo.create_version` to equal `20`
+after M107 and before exact inventory, staging, or member reads. This exact
+sample-member creation-version profile preflight is one central-creation-
+version exact-profile classifier. Failure emits stable content-silent error
+`sample bundle has an unsupported creation version`; established local-header,
+payload-layout, metadata, M105, M106, and M107 errors retain precedence and all
+owned resources close before control returns.
+
+The fixed producer's 50 members already have version-made-by pair `(20, 3)`.
+M108 adds no general creation-version semantics parser, producer-capability
+evaluator, attribute-host policy, raw record parser, payload-content read,
+decompression, recompression, or general ZIP validity claim. It adds no
+workflow, dependency, runtime API, release authority, or producer change, is
+not a general archive sandbox, and is not a real public release observation.
+
+M109/RFC-0092 requires public central `ZipInfo.internal_attr` to equal zero
+after M108 and before exact inventory, staging, or member reads. This zero
+sample-member internal-attribute profile preflight is one central-internal-
+attribute exact-profile classifier. Failure emits stable content-silent error
+`sample bundle has unsupported internal attributes`; established local-header,
+payload-layout, metadata, and M105-M108 errors retain precedence and all owned
+resources close before control returns.
+
+The fixed producer's 50 members already have zero internal attributes. M109
+adds no text/binary content interpretation, record-control semantics parser,
+supported-bit mask, external-attribute or host-system policy, raw record parser,
+payload-content read, decompression, recompression, or general ZIP validity
+claim. It adds no workflow, dependency, runtime API, release authority, or
+producer change, is not a general archive sandbox, and is not a real public
+release observation.
+
+M110/RFC-0093 retains sample-member timestamp compatibility after an exact
+fixed-producer verifier profile caused 22 established architecture regressions
+across supported extraction, atomicity, inventory, snapshot, and diagnostic
+fixtures. Those established contracts remain unchanged rather than being
+rewritten around producer-specific metadata.
+
+M98 still requires local/central timestamp consistency, and the fixed producer's
+50 members still use `(1980, 1, 1, 0, 0, 0)` for reproducibility. M110 is one
+central-timestamp compatibility decision. It performs no timezone or UTC
+conversion, wall-clock lookup, extra-field timestamp interpretation, raw record
+parsing, or payload-content read. It adds no workflow, verifier, dependency,
+runtime API, release authority, or producer change, is not a general archive
+sandbox, and is not a real public release observation.
+
+M111/RFC-0094 retains sample-member permission compatibility. M65 still reads
+the upper 16 external-attribute bits, rejects encoded symlinks and other
+non-regular types, and admits missing type bits or a regular-file type across
+permission variants. The fixed producer's 50 members remain UNIX regular files
+with mode `0100644`.
+
+M111 is one permission-bit compatibility decision. Complete release smoke adds
+no exact external-attribute profile, host-system interpretation, permission
+allowlist, or chmod behavior; extraction performs no permission restoration and
+no payload-content read for this decision. It adds no workflow, verifier,
+dependency, runtime API, release authority, or producer change, is not a
+general archive sandbox, and is not a real public release observation.
+
+M112/RFC-0095 retains sample-member creating-system compatibility. CPython
+initializes `ZipInfo.create_system` to host `0` on Windows and host `3`
+elsewhere. Those standard-library markers and other parser-exposed markers
+remain unclassified when every established check passes. The fixed producer's
+50 members remain explicit host `3` for reproducibility.
+
+M112 is one host-marker compatibility decision. Complete release smoke adds no
+creating-system allowlist, no exact creating-system profile, no host-specific
+external-attribute interpretation, and no payload-content read. M65's encoded
+file-type boundary remains unchanged and extraction applies no archived host
+attributes. M112 adds no workflow, verifier, dependency, runtime API, release
+authority, or producer change, is not a general archive sandbox, and is not a
+real public release observation.
+
+M113/RFC-0096 retains sample-member compression-method compatibility. PKWARE
+defines method `0` as stored and method `8` as deflated; Python exposes and
+reads both and defaults new archives to stored. Complete release smoke retains
+M64's exact stored/deflated allowlist and M95's local/central method agreement.
+The fixed 50-member producer remains deflated for reproducibility.
+
+M113 is one compression-method compatibility decision. Complete release smoke
+adds no exact deflate-only profile, no new decompressor, recompression,
+compression-ratio policy, or payload-content read. Other compression methods
+remain outside the sample profile and established diagnostics retain their
+order. M113 adds no workflow, verifier, dependency, runtime API, release
+authority, or producer change, is not a general archive sandbox, and is not a
+real public release observation.
+
+M114/RFC-0097 retains sample-member compression-level non-observability.
+Python's `compresslevel` controls writing, but exact CPython 3.12.13, 3.13.13,
+and 3.14.5 do not recover requested levels `0`, `1`, `6`, or `9` from reopened
+member metadata. The fixed 50-member producer remains explicit at level `9`.
+
+M114 is one compression-level non-observability decision. Complete release
+smoke adds no exact level-9 verifier profile and no inferred compressor level
+from public or protected attributes, compressed bytes, or sizes. M105's zero-
+flag profile, M113's stored/deflated compatibility, and established diagnostic
+order remain unchanged. M114 adds no payload-content read, workflow, verifier,
+dependency, runtime API, release authority, or producer change, is not a
+general archive sandbox, and is not a real public release observation.
+
+M115/RFC-0098 scopes sample-bundle byte reproducibility to the release
+environment. Repeated production in one fixed resolved environment must remain
+byte-identical. Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 probes each
+met that same-environment condition, while Python 3.14's default Windows
+zlib-ng implementation emitted different compressed bytes from the zlib
+implementation used by 3.12 and 3.13.
+
+The official producer remains the existing baseline CPython 3.12 release job.
+Supported CPython 3.12-3.14 runtimes remain compatible consumers and local
+staging environments, with no cross-runtime byte-identity claim. This is one
+sample-bundle reproducibility-scope decision with no compressor-identity
+manifest field, runtime rejection, or new verifier. The fixed producer's
+`compresslevel=9` and RFC-0021's separate same-source, same-job wheel/sdist
+boundary remain unchanged. M115 adds no workflow, allocation, dependency,
+producer, verifier, runtime API, or release-authority change, is not a general
+reproducible-build claim, and is not a real public release observation.
+
+M116/RFC-0099 separates sample-bundle semantic portability from byte identity.
+Exact Windows CPython 3.12.13, 3.13.13, and 3.14.5 each produced the fixed
+sample bundle, then each runtime consumed all three archives through the
+complete extraction boundary. All nine cross-runtime producer-consumer
+compatibility combinations extracted the same 50-file source tree even though
+the 3.14 zlib-ng archive retained its different M115 digest.
+
+This is one sample-bundle semantic-portability decision. M64's exact stored/
+deflated allowlist, M95's local/central method agreement, M113's method
+compatibility, M114's level non-observability, M115's fixed-environment byte
+scope, integrity checksums, and complete-release error order remain unchanged.
+M116 adds no alternate compression method, new decoder, recompression, digest
+allowlist, cross-runtime byte-identity claim, cross-platform proof, workflow,
+allocation, dependency, producer, verifier, runtime API, or release-authority
+change. It is not a general ZIP interoperability claim and is not a real public
+release observation.
+
+M117/RFC-0100 retains standard GIL CPython as the supported baseline after an
+exact Windows CPython 3.14.5t installed-wheel serial compatibility probe. The
+pure wheel installed without dependencies; version, doctor, deterministic
+headless execution, explicit owner-thread rejection, and orderly close passed
+with the GIL disabled. This is one free-threaded serial-compatibility decision,
+not a support promise or release qualification. It makes no concurrent-safety
+claim and adds no graphics, performance, cross-platform, extension, workflow,
+allocation, dependency, metadata, runtime API, or release-authority change. It
+is not a real public release observation.
+
 M77/RFC-0060 checks every decoded `ZipInfo.orig_filename` for an exact NUL byte
 after the established flag preflight and before member metadata, inventory
 validation, staging, or member reads. Complete release smoke emits the stable
@@ -969,6 +1128,110 @@ inter-member layout validator, workflow, dependency, runtime API, release
 authority, or producer change. This profile is not a general archive sandbox
 and is not a real public release observation.
 
+M100/RFC-0083 reads the bounded four-byte local compressed size after M99 and
+requires it to match public central `ZipInfo.compress_size` encoded little-
+endian. This one four-byte local-compressed-size consistency classifier runs
+before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle local header
+compressed sizes are inconsistent`; all owned resources close before control
+returns.
+
+The fixed producer's 50 local and central compressed sizes match. M100 performs
+no decompression or recompression, no uncompressed-size comparison, no
+compression-ratio policy, no field-wide consistency check, no payload or next-
+header bound, and no inter-member layout validator, workflow, dependency,
+runtime API, release authority, or producer change. This profile is not a
+general archive sandbox and is not a real public release observation.
+
+M101/RFC-0084 reads the bounded four-byte local uncompressed size after M100
+and requires it to match public central `ZipInfo.file_size` encoded little-
+endian. This one four-byte local-uncompressed-size consistency classifier runs
+before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle local header
+uncompressed sizes are inconsistent`; all owned resources close before control
+returns.
+
+The fixed producer's 50 local and central uncompressed sizes match. M101
+performs no decompression or recompression, no payload-content read during
+preflight, no compression-ratio policy, no field-wide consistency check, no
+payload or next-header bound, and no inter-member layout validator, workflow,
+dependency, runtime API, release authority, or producer change. This profile is
+not a general archive sandbox and is not a real public release observation.
+
+M102/RFC-0085 calculates each compressed payload end after M101 and requires it
+not to exceed the next ordered local header or conventional central directory.
+This one compressed-payload upper-bound classifier runs before decoded-name
+policy, metadata, exact inventory, staging, or member reads. Failure emits
+stable content-silent error `sample bundle member payloads are out of bounds`;
+all owned resources close before control returns.
+
+The fixed producer's 50 payloads end exactly at their next header or directory
+limit. M102 performs no decompression or recompression, reads no payload
+content, adds no exact-contiguity requirement, no gap or adjacency ban, no
+compression-ratio policy, no payload-integrity certification, workflow,
+dependency, runtime API, release authority, or producer change. This profile is
+not a general archive sandbox and is not a real public release observation.
+
+M103/RFC-0086 requires each compressed payload end to equal the next ordered
+local header or conventional central directory. This exact compressed-payload
+contiguity preflight is one compressed-payload equality classifier after M102
+and before decoded-name policy, metadata, exact inventory, staging, or member
+reads. Failure emits stable content-silent error `sample bundle member payloads
+are not contiguous`; M102 retains overlap precedence and all owned resources
+close before control returns.
+
+The fixed producer's 50 payloads already end exactly at their next limit. M103
+performs no decompression or recompression, reads no payload content, and makes
+no payload-integrity certification. It adds no workflow, dependency, runtime
+API, release authority, or producer change, is not a general archive sandbox,
+and is not a real public release observation.
+
+M104/RFC-0087 requires public central `ZipInfo.extra` to be empty after
+established Unicode Path, ZIP64, local/central consistency, payload-bound, and
+contiguity checks. This empty sample-member extra-field profile preflight is one
+central-extra emptiness classifier before decoded-name policy, metadata, exact
+inventory, staging, or member reads. Failure emits stable content-silent error
+`sample bundle contains an unsupported extra field`; established specific and
+layout errors retain precedence and all owned resources close before control
+returns.
+
+The fixed producer's 50 members already have empty extra fields. M104 adds no
+extra-field semantics parser, field-ID registry, payload-content read,
+decompression, recompression, or general ZIP validity claim. It adds no
+workflow, dependency, runtime API, release authority, or producer change, is
+not a general archive sandbox, and is not a real public release observation.
+
+M105/RFC-0088 requires public central `ZipInfo.flag_bits` to equal zero after
+established specific-flag, local/central consistency, payload-layout, and M104
+extra-field checks. This zero sample-member general-purpose-flag profile
+preflight is one central-flag zero-profile classifier after decoded-name and
+member-metadata policy but before exact inventory, staging, or member reads.
+Failure emits stable content-silent error `sample bundle contains unsupported
+general-purpose flags`; established specific, codec, path, and layout errors
+retain precedence and all owned resources close before control returns.
+
+The fixed producer's 50 members already have zero general-purpose flags. M105
+adds no flag-semantics parser, bit registry, payload-content read,
+decompression, recompression, or general ZIP validity claim. It adds no
+workflow, dependency, runtime API, release authority, or producer change, is
+not a general archive sandbox, and is not a real public release observation.
+
+M106/RFC-0089 requires public central `ZipInfo.reserved` to equal zero after
+M105 and before exact inventory, staging, or member reads. This zero sample-
+member extraction-version reserved-byte profile preflight is one central-
+reserved zero-profile classifier. Failure emits stable content-silent error
+`sample bundle has a nonzero extraction-version reserved byte`; established
+local extraction-version mismatch, payload-layout, extra-field, codec, path,
+and flag-profile errors retain precedence and all owned resources close before
+control returns.
+
+The fixed producer's 50 members already have zero extraction-version reserved
+bytes. M106 adds no extraction-version semantics parser, supported-version
+allowlist, raw record parser, payload-content read, decompression,
+recompression, or general ZIP validity claim. It adds no workflow, dependency,
+runtime API, release authority, or producer change, is not a general archive
+sandbox, and is not a real public release observation.
+
 M26/RFC-0009 adds offline admission machinery for the future supported
 deprecation-capable feature-release channel. The current workflow remains
 prerelease-only, no release record is admitted, and gate 6 remains false. See
@@ -1061,6 +1324,20 @@ keeps API-only headers on the fixed API host, and reports timeout,
 transport/protocol, and local-output failures distinctly. Fixture and
 pull-request evidence do not substitute for an authorized tag run or the
 independent consumer check in gate 23.
+
+## M118 prerelease interpreter observation
+
+M118 retains Python 3.15 outside the supported range. The exact Windows CPython
+3.15.0b1 pure-wheel installation required an explicit metadata override;
+ordinary installers must continue to enforce `>=3.12,<3.15`. Version and serial
+headless execution worked, while `doctor` correctly rejected the interpreter.
+
+This unsupported prerelease compatibility observation is no support promise,
+release qualification, or instruction to override package metadata. It adds no
+workflow, allocation, dependency, lock, version, runtime API, provider, tag,
+release, publication, or release-authority change. It is not a real public
+release observation. Reconsider only after final Python 3.15 and the complete
+supported release matrix are available.
 
 M49 makes every fixed API and redirected asset request prove its actual
 port-443 TLS peer is globally reachable unicast before HTTP transmission. It

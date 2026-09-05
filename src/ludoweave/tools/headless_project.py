@@ -12,6 +12,21 @@ from hashlib import sha256
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import cast
 
+from ludoweave.assets.locks import (
+    DEFAULT_ASSET_SOURCE_LOCK_LIMITS,
+    AssetSourceLock,
+    AssetSourceLockLimits,
+)
+from ludoweave.assets.pipeline import (
+    DEFAULT_ASSET_MANIFEST_LIMITS,
+    AssetManifest,
+    AssetManifestLimits,
+)
+from ludoweave.assets.plans import (
+    DEFAULT_ASSET_BUILD_PLAN_LIMITS,
+    AssetBuildPlan,
+    AssetBuildPlanLimits,
+)
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.ecs import (
     ComponentRegistry,
@@ -19,6 +34,19 @@ from ludoweave.ecs import (
     ResourceStore,
     World,
     WorldStore,
+)
+from ludoweave.scene.document import DEFAULT_SCENE_LIMITS, SceneDocument, SceneLimits
+from ludoweave.scene.locks import DEFAULT_SOURCE_LOCK_LIMITS, SourceLock, SourceLockLimits
+from ludoweave.scene.prefab import (
+    DEFAULT_PREFAB_LIMITS,
+    PrefabDocument,
+    PrefabInstance,
+    PrefabLimits,
+)
+from ludoweave.scene.sources import (
+    DEFAULT_SOURCE_MANIFEST_LIMITS,
+    SourceManifest,
+    SourceManifestLimits,
 )
 from ludoweave.world import (
     AuthorityResourceRegistry,
@@ -219,6 +247,184 @@ class HeadlessProject:
         path = _resolve_relative(self.root, relative, must_exist=True, role=role)
         return _read_bounded(path, max_bytes=max_bytes, role=role)
 
+    def hash_relative(self, relative: str, *, max_bytes: int, role: str) -> tuple[str, int]:
+        """Hash one confined regular file without retaining its source bytes."""
+
+        path = _resolve_relative(self.root, relative, must_exist=True, role=role)
+        return _hash_bounded(path, max_bytes=max_bytes, role=role)
+
+    def load_asset_manifest(
+        self,
+        relative: str,
+        *,
+        limits: AssetManifestLimits = DEFAULT_ASSET_MANIFEST_LIMITS,
+    ) -> AssetManifest:
+        """Load one bounded asset manifest through project confinement."""
+
+        if type(limits) is not AssetManifestLimits:
+            raise _tool_error(
+                "asset manifest limits must be an exact AssetManifestLimits value",
+                code="tools.invalid_asset_manifest_limits",
+                phase="load_asset_manifest",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="asset_manifest",
+        )
+        return AssetManifest.from_json(document, project_root=self.root, limits=limits)
+
+    def load_asset_source_lock(
+        self,
+        relative: str,
+        *,
+        limits: AssetSourceLockLimits = DEFAULT_ASSET_SOURCE_LOCK_LIMITS,
+    ) -> AssetSourceLock:
+        """Load one bounded asset-source lock through project confinement."""
+
+        if type(limits) is not AssetSourceLockLimits:
+            raise _tool_error(
+                "asset-source lock limits must be an exact AssetSourceLockLimits value",
+                code="tools.invalid_asset_source_lock_limits",
+                phase="load_asset_source_lock",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="asset_source_lock",
+        )
+        return AssetSourceLock.from_json(document, limits=limits)
+
+    def load_asset_build_plan(
+        self,
+        relative: str,
+        *,
+        limits: AssetBuildPlanLimits = DEFAULT_ASSET_BUILD_PLAN_LIMITS,
+    ) -> AssetBuildPlan:
+        """Load one bounded asset build plan through project confinement."""
+
+        if type(limits) is not AssetBuildPlanLimits:
+            raise _tool_error(
+                "asset build plan limits must be an exact AssetBuildPlanLimits value",
+                code="tools.invalid_asset_build_plan_limits",
+                phase="load_asset_build_plan",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="asset_build_plan",
+        )
+        return AssetBuildPlan.from_json(document, limits=limits)
+
+    def load_scene(
+        self,
+        relative: str,
+        *,
+        limits: SceneLimits = DEFAULT_SCENE_LIMITS,
+    ) -> SceneDocument:
+        """Load one detached scene document from a project-confined file."""
+
+        if type(limits) is not SceneLimits:
+            raise _tool_error(
+                "scene limits must be an exact SceneLimits value",
+                code="tools.invalid_scene_limits",
+                phase="load_scene",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(relative, max_bytes=limits.max_bytes, role="scene")
+        return SceneDocument.from_json(document, limits=limits)
+
+    def load_prefab(
+        self,
+        relative: str,
+        *,
+        limits: PrefabLimits = DEFAULT_PREFAB_LIMITS,
+    ) -> PrefabDocument:
+        """Load one detached prefab source from a project-confined file."""
+
+        if type(limits) is not PrefabLimits:
+            raise _tool_error(
+                "prefab limits must be an exact PrefabLimits value",
+                code="tools.invalid_prefab_limits",
+                phase="load_prefab",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.scene.max_bytes,
+            role="prefab",
+        )
+        return PrefabDocument.from_json(document, limits=limits)
+
+    def load_prefab_instance(
+        self,
+        relative: str,
+        *,
+        limits: PrefabLimits = DEFAULT_PREFAB_LIMITS,
+    ) -> PrefabInstance:
+        """Load one detached prefab instance from a project-confined file."""
+
+        if type(limits) is not PrefabLimits:
+            raise _tool_error(
+                "prefab limits must be an exact PrefabLimits value",
+                code="tools.invalid_prefab_limits",
+                phase="load_prefab_instance",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.scene.max_bytes,
+            role="prefab_instance",
+        )
+        return PrefabInstance.from_json(document, limits=limits)
+
+    def load_source_manifest(
+        self,
+        relative: str,
+        *,
+        limits: SourceManifestLimits = DEFAULT_SOURCE_MANIFEST_LIMITS,
+    ) -> SourceManifest:
+        """Load one detached explicit source manifest from a confined file."""
+
+        if type(limits) is not SourceManifestLimits:
+            raise _tool_error(
+                "source manifest limits must be an exact SourceManifestLimits value",
+                code="tools.invalid_source_manifest_limits",
+                phase="load_source_manifest",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="source_manifest",
+        )
+        return SourceManifest.from_json(document, limits=limits)
+
+    def load_source_lock(
+        self,
+        relative: str,
+        *,
+        limits: SourceLockLimits = DEFAULT_SOURCE_LOCK_LIMITS,
+    ) -> SourceLock:
+        """Load one detached source-integrity lock from a confined file."""
+
+        if type(limits) is not SourceLockLimits:
+            raise _tool_error(
+                "source lock limits must be an exact SourceLockLimits value",
+                code="tools.invalid_source_lock_limits",
+                phase="load_source_lock",
+                details={"actual_type": type(limits).__name__},
+            )
+        document = self.read_relative(
+            relative,
+            max_bytes=limits.max_bytes,
+            role="source_lock",
+        )
+        return SourceLock.from_json(document, limits=limits)
+
     def write_relative(self, relative: str, document: bytes, *, role: str) -> None:
         path = _resolve_relative(self.root, relative, must_exist=False, role=role)
         parent = path.parent
@@ -334,6 +540,56 @@ def _read_bounded(path: Path, *, max_bytes: int, role: str) -> bytes:
             details={"role": role, "limit": max_bytes},
         )
     return document
+
+
+def _hash_bounded(path: Path, *, max_bytes: int, role: str) -> tuple[str, int]:
+    descriptor: int | None = None
+    try:
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(path, flags)
+        status = os.fstat(descriptor)
+        if not stat.S_ISREG(status.st_mode):
+            raise _tool_error(
+                "input must be a regular file",
+                code="tools.input_unavailable",
+                phase="read",
+                details={"role": role},
+            )
+        if status.st_size > max_bytes:
+            raise _tool_error(
+                "input exceeds its byte limit",
+                code="tools.input_oversized",
+                phase="read",
+                details={"role": role, "limit": max_bytes},
+            )
+        digest = sha256()
+        total = 0
+        with os.fdopen(descriptor, "rb") as handle:
+            descriptor = None
+            while block := handle.read(65_536):
+                total += len(block)
+                if total > max_bytes:
+                    raise _tool_error(
+                        "input exceeds its byte limit",
+                        code="tools.input_oversized",
+                        phase="read",
+                        details={"role": role, "limit": max_bytes},
+                    )
+                digest.update(block)
+    except LudoWeaveError:
+        raise
+    except OSError as error:
+        raise _tool_error(
+            "input could not be read",
+            code="tools.input_unavailable",
+            phase="read",
+            details={"role": role},
+        ) from error
+    finally:
+        if descriptor is not None:
+            with suppress(OSError):
+                os.close(descriptor)
+    return f"sha256:{digest.hexdigest()}", total
 
 
 def _text(value: object, *, field: str) -> str:

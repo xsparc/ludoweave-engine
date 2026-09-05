@@ -22,6 +22,7 @@ _MODULES = {
     "ludoweave.render.backends",
     "ludoweave.render.backends.wgpu",
     "ludoweave.samples",
+    "ludoweave.scene",
     "ludoweave.world",
 }
 

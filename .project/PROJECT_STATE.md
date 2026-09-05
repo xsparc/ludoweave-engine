@@ -1,6 +1,9581 @@
 # Project State
 
-## M99 local-header CRC-32 consistency preflight - integration record merged; closeout active
+## M236 consolidated publication recovery - locally qualified for one PR
+
+The maintainer approved one consolidated M100-M235 PR on 2026-09-05. Fresh
+remote inspection still finds only M99 main and no open PR. The preserved
+136-commit stack has 570 changed paths and no merge commits; all commits have
+DCO trailers, Git object integrity passes, and workflow/classifier bytes match
+main. M235 is committed locally as `1273e367949a94e7e99dc4a3418d2cf26daf14ef`.
+
+The publication audit reproduced a blocking Windows test failure: M221's exact
+historical M220 Git object is unavailable in a depth-one checkout. Its
+descriptor test passes in the full checkout (0.59 seconds) and fails in the
+shallow checkout (0.42 seconds). M222-M235 reuse the boundary. A squash merge
+also does not preserve that history as an ancestor of main. No public PR or CI
+run has been started with this known failure.
+
+The [M236 review](M236_PUBLICATION_REVIEW.md) records scope, history, navigation,
+failure evidence, unchanged CI budget, and the needed portability decision.
+Runtime and probe implementation remain unchanged; M236 is not complete.
+
+The maintainer subsequently approved the checkout-portability repair. RFC-0219
+makes the test metadata store explicit: five pinned original Git objects are
+materialized only beneath a pytest-owned temporary destination. Original
+M221-M235 probes and guards remain unchanged. The existing assertions execute
+real Git/native reads; fixture evidence does not establish checkout ancestry.
+Both shallow and synthetic-squash focused runs pass 44 checks. Final Windows
+validation reports 4,933 passes and 19 skips. Static/docs checks, reproducible
+builds, installed smokes, release staging/smoke, and benchmark-schema commands
+complete; informational M3 timing targets are not met. No runtime change or
+performance improvement is claimed. Hosted qualification is the next gate,
+using the approved single PR and unchanged three-job workflow.
+
+PR #252 is now open. The initial Linux run failed during collection because
+M159 imports Windows-only `msvcrt` before its platform marker takes effect.
+The correction excludes only that file on unsupported hosts and preserves its
+Windows execution unchanged. Three platform-policy cases, live M159, and
+fixture wiring pass locally; hosted validation remains outstanding.
+
+The second hosted run completed collection but found 83 architecture failures
+from platform-dependent path sorting (4,450 passed, 411 skipped). The same
+example bytes reproduce both platform hashes locally. The correction makes
+ordering explicit without changing protected tree digests; dependent guard-file
+pins are refreshed, and all original native probes remain unchanged. The
+architecture suite plus all-guard POSIX/Windows ordering regressions passes
+2,486 tests with one skip. No runtime or workflow change is introduced.
+
+## M235 Windows source-commit Git CMS signer hash-algorithm binding - locally validated, publication withheld
+
+- **Baseline:** exact M234 commit
+  `93a975dd3b77702ac0424b5f943ab0a626b68bd0`, tree
+  `e7250b5f32939d9f9d1fad0ac502723072af7efd`, sole parent exact M233.
+- **Direction:** RFC-0218 accepts one test-only, direction-preserving
+  composition around complete M234. It binds two native representations of
+  algorithm identity and opaque encoded parameters without creating
+  cryptographic policy, signature revalidation, or provenance claims.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0218, one security guide, eight public registrations, and four `.project`
+  records. M234 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** every bounded exact signer is queried independently through
+  CMS parameter 39 and dedicated parameter 8. Each actual output buffer owns
+  the OID and encoded-parameter ranges; values are bounded, pointer-confined,
+  copied during owner lifetime, syntax-checked, and required to be exactly
+  equal before and after complete M234. Provider-state closure is inherited.
+- **Evidence:** the retained M59/M234 baseline and strict governance pass. The
+  intentional red isolated ten missing boundary/registration checks. After
+  correcting initial fixture pointer conversion, close assertion, typing, and
+  formatting findings, both new Python files are clean and all 35 focused
+  architecture/live/adversarial checks pass.
+- **Whole-project:** all 658 Python files, strict docs, both governance modes,
+  and whitespace pass. Complete architecture/integration reports 3,794 passes
+  and 12 expected skips. Fresh supported CPython 3.12-3.14 runs each report
+  4,916 passes and 19 expected skips.
+- **Rendering/examples:** real wgpu, five-repeat base/graphics profiles,
+  profile validation, deterministic Null/wgpu Clockwork, Agent World Builder,
+  and selected registered examples reproduce established identities and pass.
+- **Distribution:** two byte-identical pure wheels/source archives, installed
+  smokes, two exact ten-artifact release stages, and package inventories pass.
+- **Review:** direct owner-buffer mutation now proves detached OID/parameter
+  values. The reviewed focus passes 36 cases on each supported interpreter;
+  exact scope, protected boundaries, disclosure/security/path, retired-
+  metadata, branch/identity, whitespace, and connectivity audits are clean.
+- **Record-inclusive separator:** the lock, all 658 Python files, strict docs,
+  both governance modes, and whitespace are clean; complete architecture/
+  integration reports 3,795 passes and 12 expected skips.
+- **Record-state release:** the pure wheel remains stable; the source archive
+  reproduces, installed smokes pass, and both ten-artifact release stages and
+  expected package inventories match exactly.
+- **Final behavioral separator:** source, docs, dated strict governance,
+  whitespace, the 41-test M59/M235 focus, and a second complete 3,795-pass/12-
+  skip architecture/integration run are clean.
+- **Execution transport:** a duplicate final package build and access-enabled
+  recursive scratch audit each stopped before process creation on an
+  authorization-transport HTTP 404. No pass is claimed and no scratch was
+  removed; three pytest scratch trees remain inaccessible to sandboxed
+  recursive enumeration.
+- **Recovery, 2026-09-05:** the approved access-enabled audit and immediate
+  revalidation succeeded. Cleanup removed 13 generated targets containing
+  32,470 entries; all 56 older scratch targets remain and no M235 target remains.
+- **Package evidence:** the completed record-state reproducibility and smoke
+  results stand. The unexecuted third build remains uncredited; subsequent
+  edits only update records and do not justify repeating the package suite.
+- **Publication:** fresh remote inspection finds only main at M99, no open
+  PR, and no branch containing required M234. Publishing remains withheld.
+- **Post-cleanup verification:** 41 M59/M235 tests pass, focused formatting
+  and lint pass, and whitespace is clean. The 2026-09-05 plugin registry
+  checker passes; it is not a validator of this repository's records.
+- **Pending:** publication requires hosted prerequisites. The local change is
+  validated and prepared for its DCO commit, whose identity is recorded in Git.
+
+## M234 Windows source-commit Git CMS SignerInfo certificate-ID binding - locally complete, publication withheld
+
+- **Baseline:** exact M233 commit
+  `cb4dd28e021372be3c228eb911c871ef3ffbbda0`, tree
+  `220d041798b5f0c67694af4178d219e38f1a8a49`, sole parent exact M232.
+- **Direction:** RFC-0217 accepts one test-only live-provider composition around
+  complete M233. It validates every exact CMS signer-info version and
+  `SignerId`, requires the current-host version-1 issuer/serial form, and binds
+  copied payload to M233 without adding CMS, algorithm, signature, identity,
+  publisher, revocation, or provenance policy.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0217, one security guide, eight public registrations, and four `.project`
+  records. M233 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** every bounded exact signer is queried through a two-phase
+  parameter-39 read. Only the aligned version/`SignerId` prefix is read;
+  pointer-bearing issuer/serial bytes are detached within buffer lifetime and
+  must equal a same-state dedicated M233 read plus M233's observation. Version
+  3, alternate identifier choices, malformed values, and mismatches refuse;
+  inherited provider-state close semantics remain unchanged.
+- **Evidence:** the retained 40-test M233 baseline and strict governance pass.
+  The intentional red isolated nine missing boundary/registration checks.
+  The implementation passes 25 live/fake tests; after one mechanical import-
+  order correction, both new Python files are format/Ruff/strict-Pyright clean
+  and the exact M59/M234 group passes 41 tests.
+- **Source/docs:** the unchanged lock/environment, all 656 Python files, strict
+  docs, both governance modes, and whitespace pass.
+- **Architecture/integration:** the first complete run passed 3,757 tests and
+  skipped 12 but hit one pre-existing M223 Job Object settling failure; the
+  exact isolated test immediately passed and a clean complete rerun later
+  passed 3,759 tests with 12 expected skips.
+- **Supported interpreters:** isolated CPython 3.12, 3.13, and 3.14 each pass
+  4,880 tests with 19 expected skips.
+- **Rendering/examples:** real wgpu, both five-repeat profiles, Null/wgpu
+  Clockwork, Agent World Builder, and the selected three-test example group
+  reproduce established identities and pass.
+- **Distribution:** two byte-identical 366,676-byte pure wheels and 2,778,811-
+  byte source archives pass installed smokes; both ten-artifact release stages
+  pass and compare exactly. Inventory keeps M234 out of the wheel and includes
+  each new source once.
+- **Review:** no boundary defect remains known. An additional equal-
+  concatenation/different-boundary digest case passes; focused validation now
+  reports 42 passes. Exact scope, disclosure, credential/path, retired-
+  metadata, branch, identity, whitespace, and Git-object audits are clean.
+- **Record-inclusive separator:** source, docs, both governance modes, and
+  whitespace pass; a clean complete architecture/integration rerun passes
+  3,759 tests with 12 expected skips and does not reproduce the earlier M223
+  settling failure.
+- **Record-state release:** the pure wheel remains stable; the record-inclusive
+  source archive reproduces, installed smokes pass, and both ten-artifact
+  release stages are exact with expected inventories.
+- **Final behavioral separator:** source, docs, dated strict governance, and
+  whitespace are clean; a second complete architecture/integration run passes
+  3,759 tests with 12 expected skips.
+- **Final release separator:** the pure wheel remains stable, the source
+  archive reproduces, installed smokes pass, and both release stages and
+  inventories match exactly.
+- **Cleanup:** 17 exact generated M234 targets containing 76,399 recursive
+  entries were revalidated as confined, ignored, untracked, and reparse-free
+  before removal; zero M234 scratch remains and all 56 older entries are
+  preserved.
+- **Post-cleanup gate:** the lock, all 656 Python files, focused 42-test group,
+  strict docs/governance, whitespace, object connectivity, and zero-scratch
+  assertion pass.
+- **Scope review:** exactly 16 intended paths, no protected drift, no public
+  development-tool disclosure or credential-like/machine-local additions, no
+  retired metadata, correct neutral branch/identity, exact ancestry, and clean
+  whitespace/connectivity.
+- **DCO candidate:** initial exact-parent 16-path commit is clean, correctly
+  attributed and signed off, whitespace-clean, fully connected, zero-scratch,
+  and passes focused/governance checks. This factual ledger amendment is
+  pending before the hosted safety gate.
+- **Publication:** amended exact-parent candidate is clean and fully validated.
+  Fresh hosted inventory still has only M99 on `main`; no remote contains M233
+  and no PR is open. M234 remains local to avoid exposing M100-M233 or spending
+  hosted CI allocation.
+- **Pending:** none for M234. Preserve the withheld-publication boundary until
+  its required parent is hosted.
+
+## M233 Windows source-commit Git message-signer certificate-ID binding - locally complete, publication withheld
+
+- **Baseline:** exact M232 commit
+  `2442998c1ae64d26c0b871a92ad9757416364716`, tree
+  `1b61fbce1211c0e331eec7e7732f9c910dd92952`, sole parent exact M231.
+- **Direction:** RFC-0216 accepts one test-only live-provider composition around
+  M232. It validates each explicit `CERT_ID` discriminant, requires the
+  current-host issuer/serial form, and binds its copied payload to M232's same-
+  index selector without adding identity, publisher, revocation, or provenance
+  policy.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0216, one security guide, eight public registrations, and four `.project`
+  records. M232 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** every bounded exact signer is queried through a two-phase
+  parameter-38 read; the discriminant is checked before union access; issuer
+  and serial bytes are detached inside the buffer lifetime and must exactly
+  equal M232. Key-ID, hash-ID, unknown, malformed, empty, oversized, missing,
+  or mismatched values refuse. Provider-state close semantics are inherited
+  unchanged from M232.
+- **Evidence:** corrected focused M59/M232 baseline passes 60 tests. The
+  intentional M233 red failed nine absence checks while two protection checks
+  passed. The implementation passes 19 live/fake tests; after one lint and six
+  typing corrections, both new Python files are clean and the registered M233
+  architecture/live group passes all 30 tests.
+- **Whole-project gate:** the unchanged lock/environment, all 654 Python files,
+  strict docs, both governance modes, and whitespace are clean. Architecture
+  and integration pass 3,717 tests with 12 expected skips. Isolated CPython
+  3.12, 3.13, and 3.14 each pass 4,839 tests with 19 expected skips.
+- **Rendering/examples:** real wgpu, five-repeat base/graphics profiles, the
+  Clockwork Null/wgpu comparison, Agent World Builder, and selected registered
+  example tests reproduce their established deterministic identities.
+- **Distribution:** two byte-identical pure wheels and source archives pass all
+  installed smokes; two ten-artifact release stages pass and compare exactly.
+  Inventory keeps M233 out of the wheel and includes its four source files once.
+- **Review:** no boundary defect remains known. Focused digest, malformed-read,
+  oversized-component, error-context, and lifecycle proof now passes 35 tests.
+- **Record-inclusive separator:** source, docs, governance, whitespace, and the
+  3,722-pass/12-skip architecture/integration boundary are clean.
+- **Record-state release:** the pure wheel remains stable; the record-inclusive
+  source archive reproduces, installed smokes pass, and both ten-artifact
+  release stages are exact.
+- **Final behavioral separator:** source, docs, governance, whitespace, and a
+  second 3,722-pass/12-skip architecture/integration run are clean.
+- **Final release separator:** the pure wheel remains stable, the source archive
+  reproduces, installed smokes pass, and both release stages and inventories
+  match exactly.
+- **Cleanup:** 23 exact generated M233 scratch targets were revalidated as
+  confined, ignored, untracked, and reparse-free before removal; zero M233
+  scratch remains and older scratch is preserved.
+- **Post-cleanup gate:** the lock, all 654 Python files, focused 40-test group,
+  dated strict governance, whitespace, and object connectivity pass with zero
+  M233 scratch.
+- **Scope review:** exactly 16 intended paths, no protected drift, no public
+  development-tool disclosure or credential-like assignment, no retired
+  metadata, correct neutral branch/identity, and clean focused/governance/
+  whitespace checks.
+- **DCO candidate:** initial exact-parent 16-path commit is clean, correctly
+  attributed and signed off, whitespace-clean, and fully connected. Its
+  factual ledger amendment is pending before the fresh hosted safety gate.
+- **Publication:** amended exact-parent candidate is clean and fully validated.
+  Fresh hosted inventory still has only M99 on `main`; no remote contains M232
+  and no PR is open. M233 remains local to avoid exposing M100-M232 or spending
+  hosted CI allocation.
+- **Pending:** complete cross-version, docs, package/release, review, guarded
+  cleanup, DCO, and fresh hosted publication-safety gates.
+
+## M232 Windows source-commit Git message-signer certificate-identifier binding - locally complete, publication withheld
+
+- **Baseline:** exact M231 commit
+  `b4d213a11af0b2cbb9bb9c300ec1e728d951a45e`, tree
+  `1673b24fe72b950babbd964db50845f446886e62`, sole parent exact M230.
+- **Direction:** RFC-0215 accepts one test-only live-provider composition around
+  M231. It copies every exact message selector's issuer and serial number and
+  requires them to equal the exact verified and same-index provider
+  certificates, without creating identity or publisher policy, revocation
+  freshness, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0215, one security guide, eight public registrations, and four `.project`
+  records. M221-M231 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** provider and message signer counts must agree within bounds;
+  every exact signer certificate-info parameter is copied through a bounded
+  two-phase read. Its issuer and serial number must equal the live verified and
+  provider certificate fields while verified/provider DER remains equal.
+  Counts, boundaries, all three hash sequences, and an unambiguous aggregate
+  must match across M231. Certificate contexts and provider state close on
+  every outcome.
+- **Evidence:** exact M231 history, the 56-test retained baseline, and both
+  governance modes pass. Current Microsoft and SDK direction supports exact
+  indexed selector correlation while keeping authorization and provenance
+  separate. Intentional red isolated nine missing checks. After one mechanical
+  import-order correction, both Python files are format/Ruff/strict-Pyright
+  clean and all 43 live/failure-cleanup integration tests pass. RFC/security
+  documentation and eight registrations are present; the complete 54-test
+  architecture/live group and strict docs build pass. Whole-project source,
+  typing, docs, governance, and whitespace pass; architecture/integration
+  passes 3,686/12; isolated CPython 3.12-3.14 each pass 4,808/19. Real-wgpu,
+  both profiles, deterministic examples, reproducible builds, installed
+  smokes, two exact release stages, and package inventory pass. Findings-first
+  review moved message identifier copying inside the owning native-buffer frame
+  and fixed one empty-sequence fixture ambiguity; the resulting 55-test focused
+  group passes and exact scope/disclosure/security/connectivity review finds no
+  remaining actionable issue. Record-inclusive source/docs/governance and
+  3,687/12 architecture/integration validation pass; record-state builds
+  preserve the exact pure wheel, reproduce the source archive, and pass all
+  installed, release-stage, comparison, and inventory checks. Final source,
+  docs, governance, and 3,687/12 architecture/integration separators repeat
+  cleanly; final builds again preserve the wheel and pass every distribution,
+  installed, release-stage, comparison, and inventory check. The terminating
+  60-test M59/M232 group and source/governance separators pass; guarded exact-
+  set revalidation removes only 17 M232 scratch targets and 32,484 recursive
+  entries, leaving zero M232 scratch and preserving older generated output.
+  The post-cleanup source/focused/docs/governance/whitespace/connectivity and
+  exact scope/protected-surface/disclosure/identity audit also pass.
+- **Boundaries:** signer/publisher authorization, persisted identity,
+  certificate allowlisting/pinning/rotation/recovery, revocation freshness,
+  portable chain/timestamp semantics, timestamp-authority policy, trust-store
+  administration, native DLL/loader state, local-object-store trust,
+  repository acquisition, source/build provenance, distinct-principal/
+  independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+  authority, and Windows admission remain unresolved.
+- **Publication:** amended local DCO candidate
+  `f6d2ee79585e4f6c65ad240e147b53b6de9760ab`, tree
+  `29400b49d14a76ffb7aa095733719afd00c490f3`, has the exact M231 parent,
+  exact 16-path scope, correct identity/DCO, clean state, whitespace,
+  connectivity, zero scratch, and a passing terminating focused/governance
+  audit. Fresh fetch and GitHub inventory find only hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M231, no PR is open, and PR #251 remains latest. Publishing
+  would expose the absent prerequisite stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- **Review:** exact 16-path scope, protected surfaces, public disclosure, delta
+  credential/local-path, retired metadata, package inventory, whitespace,
+  scratch, object connectivity, identity/DCO, and hosted ancestry all pass.
+  Findings-first review reports no remaining actionable issue.
+
+## M231 Windows source-commit Git message-signer certificate binding - locally complete, publication withheld
+
+- **Baseline:** exact M230 commit
+  `ffab7037a22095233937aaac3980a37f94e37102`, tree
+  `97247063bc8bf49f9b4007e1422697920366a63f`, sole parent exact M229.
+- **Direction:** RFC-0214 accepts one test-only live-provider composition around
+  M230. It verifies every exact message signer and correlates returned
+  certificate DER with the same-index primary provider certificate, without
+  creating publisher policy, revocation freshness, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0214, one security guide, eight public registrations, and four `.project`
+  records. M221-M230 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** provider and message signer counts must agree within bounds;
+  every exact signer index must verify and return the same index plus an owned
+  bounded certificate context. Its DER must equal the corresponding primary
+  provider certificate bytes. Counts, boundaries, both hash sequences, and an
+  unambiguous aggregate must match across M230. Certificate contexts and
+  provider state close on every outcome.
+- **Evidence:** exact M230 history, the 45-test retained baseline, and both
+  governance modes pass. Current primary-source direction supports indexed
+  signature/certificate correlation while keeping policy and provenance
+  separate. Intentional red isolates ten missing checks. The first
+  implementation pass exposed mechanical format/import/ctypes typing issues
+  and one incorrect absent-context free expectation; the corrected files are
+  format/Ruff/strict-Pyright clean and all 38 live/failure-cleanup tests pass.
+  The live host exposes two provider stores, one signer, and equal 1,620-byte
+  message/provider certificate bytes. RFC/security documentation and eight
+  registrations are present; the complete 50-test architecture/live group and
+  strict docs build pass. Whole-project source/docs/governance passes;
+  architecture/integration passes 3,631/12; serial isolated CPython 3.12-3.14
+  each pass 4,753/19 after correcting an invalid concurrent harness attempt.
+  Real-wgpu, both profiles, both deterministic examples, reproducible builds,
+  installed smokes, two exact release stages, and package inventory pass.
+  Findings-first review corrected a fake-helper empty-sequence ambiguity; the
+  resulting 51-test focused group passes and exact scope/disclosure/security/
+  connectivity review finds no remaining actionable issue. Record-inclusive
+  source/docs/governance and 3,632/12 architecture/integration validation pass;
+  record-state builds preserve the exact pure wheel, reproduce the source
+  archive, and pass all installed and release-stage checks. Final source/docs/
+  governance and architecture/integration plus reproducible package/release
+  separators repeat cleanly. The guarded cleanup preflight proves 34 exact
+  M231 scratch targets containing 95,107 recursive entries are repository-
+  confined, ignored, untracked, and recursively reparse-free. The terminating
+  56-test M59/M231 group and source/governance separators pass; immediate exact-
+  set revalidation removed only those targets and confirms zero M231 scratch.
+  The post-cleanup source/focused/docs/integrity and exact scope/disclosure/
+  identity audit passes with no regenerated M231 artifact. Initial DCO commit
+  `0920956a8a47798d83213c6bbaaed22f3e028302` has exact tree
+  `a596dae192f0621738f4fb08f311d11ced2ba9c9`, sole parent exact M230,
+  exact 16-path scope, correct identity/sign-off, clean worktree/whitespace,
+  and complete object connectivity. Amended commit
+  `57e173f9b09454c77d0c079de9fbeeee9d69fa96`, tree
+  `0d40cdeac9b404f07076189dcd63bedcdf480134`, preserves the same exact parent,
+  scope, identity, DCO, clean state, and connectivity; its terminating
+  M59/M231 group and strict governance pass before this final hosted-gate amend.
+- **Boundaries:** signer/publisher authorization, persisted identity,
+  certificate allowlisting/pinning/rotation/recovery, revocation freshness,
+  portable chain/timestamp semantics, timestamp-authority policy, trust-store
+  administration, native DLL/loader state, local-object-store trust,
+  repository acquisition, source/build provenance, distinct-principal/
+  independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+  authority, and Windows admission remain unresolved.
+- **Publication:** fresh fetch and GitHub inventory find only hosted `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M230, no PR is open, and PR #251 remains latest. Publishing
+  would expose the absent prerequisite stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- **Review:** exact 16-path scope, protected surfaces, public disclosure,
+  delta credential/local-path, retired metadata, package inventory,
+  whitespace, scratch, object connectivity, identity/DCO, and hosted ancestry
+  all pass. Findings-first review reports no remaining actionable issue.
+
+## M230 Windows source-commit Git signed-message SignerInfo binding - locally complete, publication withheld
+
+- **Baseline:** exact M229 commit
+  `e849c24aa5f742effbb30f9ea04a36d481598a38`, tree
+  `1cced1d87b707920b8594152fe5d86c522e55535`, sole parent exact M228.
+- **Direction:** RFC-0213 accepts one test-only live-provider-message
+  composition around M229. It binds the complete opaque encoded SignerInfo
+  sequence, not SignerInfo parsing, timestamp semantics, authorization, or
+  provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0213, one security guide, eight public registrations, and four `.project`
+  records. M221-M229 evidence, runtime, package, dependency, lock, workflow,
+  fixture, example, script, and benchmark surfaces remain unchanged; zero
+  GitHub Actions job is added.
+- **Behavior:** the live provider prefix must expose positive raw encoding, a
+  non-null message, and a positive bounded signer count equal to the message
+  count. Every bounded encoded SignerInfo is copied through an exact two-phase
+  retrieval before state close; raw encoding, both counts, exact boundaries,
+  per-signer hashes, and an unambiguous aggregate must match across M229. Every
+  state closes in `finally`.
+- **Evidence:** the exact M229 history, 38-test retained baseline, and both
+  governance modes pass. Current primary-source direction supports opaque
+  message binding while keeping parsing, policy, and provenance separate. A
+  live preflight observed encoding 65,537, matching one-signer counts, and one
+  7,209-byte encoded value, then removed its temporary probe. Intentional red
+  isolates ten missing checks. After correcting two typing findings and one
+  fixture expectation without changing the boundary, both new Python files are
+  format/Ruff/strict-Pyright clean and all 28 live/failure-close tests pass.
+  RFC/security documentation and eight registrations are present; the complete
+  40-test architecture/live group and strict docs build pass. Whole-project
+  source/docs/governance passes; architecture/integration passes 3,581/12;
+  isolated CPython 3.12-3.14 each pass 4,703/19; real wgpu, repeated profiles,
+  deterministic examples, and current registered example tests pass. Initial
+  reproducible distributions, installed smokes, two exact release stages,
+  package inventory, and exact findings-first scope/disclosure/connectivity
+  review pass. Record-inclusive and final source/docs/governance plus
+  architecture/integration separators pass. Final distributions reproduce the
+  unchanged 366,279-byte pure wheel and a 2,720,840-byte source archive;
+  installed smokes, two exact ten-artifact release stages, and exact package
+  inventory pass with the four M230 files source-only.
+- **Boundaries:** SignerInfo parsing/validation, portable timestamp semantics,
+  algorithm/attribute or timestamp-authority/signer/publisher authorization,
+  persisted identity, certificate pinning, rotation/recovery, timestamp-token/
+  signing-time validation, revocation freshness, trust-store administration,
+  native DLL/loader state, local-object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved.
+- **Publication:** fresh fetch and GitHub inventory find only hosted `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; no real remote branch
+  contains required M229, no PR is open, and PR #251 remains the latest merge.
+  Publication is correctly withheld. No push, PR, hosted allocation, tag,
+  release, or package publication has occurred.
+- **Review:** exactly 16 intended paths and 1,441 then-current additions plus
+  one deletion remain. Protected surfaces, public disclosure, delta
+  credential/local-path, retired-metadata, whitespace, and object-connectivity
+  checks pass. Findings-first review reports no remaining actionable issue. The
+  terminating source/focused/governance separator passes after using Python's
+  module entry point for the importlib-mode focused suite; its exact M59/M230
+  group passes 45 tests. Guarded cleanup removed all 14 exact M230 scratch
+  targets and 80 entries while preserving all 56 older `.tmp` targets. The
+  post-cleanup no-artifact source/docs/governance/focused/integrity gate passes;
+  exact pre-commit scope is 16 paths with zero M230 scratch target. Initial DCO
+  commit `619a611d5c62acbbc181d40ba8beb4a571ec4504` has exact tree
+  `d2952fea69c68750a1656f0d2903b3ce0849559e`, sole parent exact M229, exact
+  scope, correct identity/trailer, and a clean worktree; only this factual
+  three-record amend follows. Amended commit
+  `dde93938772a7c54a0108451de8e78e65f57b518` has exact tree
+  `52edbe67ad0cd3820ffdf594e856db1d84070815`, sole parent exact M229,
+  exact scope/identity/DCO, and a clean worktree; its terminating M59/M230
+  group passes 45 tests before this final hosted-gate ledger amend.
+
+## M229 Windows source-commit Git countersigner-chain binding - locally complete, publication withheld
+
+- **Baseline:** exact M228 commit
+  `1ced72e243bae4b3322dfa3e03278b7a588430ab`, tree
+  `eb23d15d02427b513f3dd1c46c46be1a5f5ff255`, sole parent exact M227.
+- **Direction:** RFC-0212 accepts one test-only live-provider-state composition
+  around M228. It binds the complete indexed countersigner sequence and every
+  bounded countersigner provider chain, not portable timestamp semantics,
+  timestamp-authority authorization, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0212, one security guide, eight public registrations, and four
+  `.project` records. M221-M228 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** every indexed countersigner must expose zero provider error,
+  positive raw verification time, and a positive bounded provider-certificate
+  chain. Every bounded DER value is copied before state close; exact raw
+  metadata, per-certificate/per-chain hashes, and an unambiguous aggregate
+  sequence hash must match across M228. Every state closes in `finally`.
+- **Evidence:** the 27-test exact M228 baseline and dated-strict governance
+  pass; current primary-source direction supports observation-only binding; the
+  installed Git exposes valid signer and time-stamper certificates;
+  intentional red isolates nine missing checks; focused formatting/Ruff/
+  Pyright and all 20 live/failure-close tests pass. RFC/security documentation
+  and eight public registrations are present; registered source/live/docs pass
+  at 31 tests. Findings-first review strengthens exact digest-boundary, order,
+  null-certificate-context, and per-chain-cap coverage; all 33 focused tests
+  pass with clean Ruff and strict Pyright. Whole-project static/docs/governance
+  pass; architecture/integration passes 3,541/12; isolated CPython 3.12-3.14
+  each pass 4,663/19; real wgpu, repeated profiles, deterministic examples, and
+  current registered example tests pass. Initial reproducible distributions,
+  installed smokes, two exact release stages, package inventory, and exact
+  findings-first scope/disclosure/connectivity review pass. Record-inclusive
+  source/docs/governance and architecture/integration pass; record-state
+  distributions and release stages reproduce with the four M229 files source-
+  only. Final source/docs/governance and architecture/integration repeat pass
+  at 3,541/12. Final reproducible distributions preserve the 366,178-byte pure
+  wheel and produce a 2,707,530-byte source archive; installed smokes, two exact
+  release stages, release comparison, and exact package inventory pass.
+- **Boundaries:** portable timestamp semantics, timestamp-authority, signer, or
+  publisher authorization, persisted identity, certificate pinning, rotation/
+  recovery, timestamp-token/signing-time validation, revocation freshness,
+  trust-store administration, native DLL/loader state, local-object-store
+  trust, repository acquisition, source/build provenance, distinct-principal/
+  independent-host behavior, hostile/privileged bypass, criteria 6/7, cleanup
+  authority, and Windows admission remain unresolved.
+- **Review:** the terminating metadata/M229 group passes 38 tests. The final
+  pre-commit source separator is clean. Exact M228 history, 16 intended paths,
+  1,538 additions and one deletion, eight protected hashes, neutral branch and
+  configured identity, public disclosure, delta credential/local-path,
+  retired-metadata, whitespace, and object-connectivity checks all pass. No
+  actionable finding remains.
+- **Cleanup:** access-enabled audit proved all 34 exact M229 targets and 134,379
+  entries confined, ignored, untracked, and reparse-free. Exact revalidation
+  removed them, confirmed zero remains, and preserved all 56 older `.tmp`
+  targets.
+- **Commit:** initial DCO commit
+  `e4de3e8d1f08a400a1ed20a1dfad76b7c2a6cf64`, tree
+  `02c3e83014d8001211f52c42ca3834e46fccc53d`, has sole parent exact M228,
+  exactly 16 paths, one expected sign-off, matching author/committer, a clean
+  worktree, `0 130` divergence, zero M229 scratch, and clean whitespace/object
+  connectivity. Ledger amend `892b34e57c7be954873707672a65786e8a254549`,
+  tree `76e269b08fc19097144b89ed2fe4df5862f7f34f`, preserves all commit
+  invariants.
+- **Publication:** fresh fetch, direct hosted-main lookup, authenticated public-
+  repository inspection, and PR inventory show origin/main exact M99, only
+  real remote branch `origin/main`, no hosted M228 ancestry, zero open PRs,
+  and latest PR #251 merged. Publication is withheld because required parent
+  M228 has no hosted base. No push, PR, hosted allocation, tag, release, or
+  package publication occurred.
+
+## M228 Windows source-commit Git provider-chain binding - locally complete, publication withheld
+
+- **Baseline:** exact M227 commit
+  `b6ae4dd861449b130b59b3d32ad40e2ba3299639`, tree
+  `430f48847a4dde2cf325690997b8e30e603f44c0`, sole parent exact M226.
+- **Direction:** RFC-0211 accepts one test-only live-provider-state composition
+  around M227. It binds a complete provider-index sequence, not portable chain
+  semantics, signer authorization, or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0211, one security guide, eight public registrations, and four
+  `.project` records. M221-M227 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** every indexed provider certificate must expose positive bounded
+  DER while state is live and the complete sequence must satisfy a separate
+  aggregate bound. Count, index, length, DER, per-certificate hashes, aggregate
+  hash, and raw verification time are detached before state close and must
+  match across M227. Every state closes in `finally`.
+- **Evidence:** the 21-test exact M227 baseline and both governance modes pass;
+  intentional red isolates nine missing checks; focused formatting/Ruff/
+  Pyright and all 14 live/failure-close tests pass; RFC/security documentation
+  and eight registrations are present; corrected format-stable guards and
+  strengthened missing-state/digest-boundary coverage pass all 27 focused tests;
+  strict docs build; whole-project static/docs/governance pass; architecture/
+  integration passes 3,508/12; isolated CPython 3.12-3.14 each pass 4,630/19;
+  real wgpu, repeated profiles, deterministic examples, and current registered
+  example tests pass; initial reproducible distributions, installed smokes,
+  two exact release stages, package inventory, and exact findings-first scope/
+  disclosure/connectivity review pass. Record-inclusive source/docs/governance
+  and architecture/integration pass; final source/docs/governance and
+  architecture/integration repeat pass at 3,508/12. Final reproducible
+  distributions preserve the 366,097-byte pure wheel and produce a
+  2,694,265-byte source archive; installed smokes, two exact release stages,
+  release comparison, and exact package inventory pass with the four M228
+  files source-only.
+- **Corrections:** two architecture strings assumed pre-format single-line
+  layout and were replaced by equivalent semantic fragments. A strengthened
+  test name then lexically overlapped the banned network-module token
+  `requests`; the unambiguous name corrected the false positive. No behavioral
+  pass is claimed for either rejected combined invocation. A stale Clockwork
+  help filename and a stale registered agent-test filename were also rejected;
+  current repository paths supplied the accepted corrections.
+- **Boundaries:** portable chain semantics, signer/publisher authorization,
+  persisted identity, certificate pinning, rotation/recovery, revocation
+  freshness, timestamp/countersigner authenticity, trust-store administration,
+  native DLL/loader state, local-object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved.
+- **Review:** exactly 16 intended paths and 1,275 then-current additions remain.
+  Protected surfaces, public disclosure, delta credential/local-path,
+  retired-metadata, whitespace, and object-connectivity checks pass; the
+  terminating metadata/M228 group passes 32 tests. No actionable finding
+  remains.
+- **Cleanup:** after one expected ordinary Windows ACL denial, the access-
+  enabled audit proved all 34 exact M228 targets and 135,043 entries confined,
+  ignored, untracked, and reparse-free. Exact revalidation removed them,
+  confirmed zero remains, and preserved all 56 older `.tmp` targets.
+- **Pre-commit:** the unchanged lock, whole-tree format/Ruff/Pyright,
+  dated-strict governance, whitespace, and zero-scratch separator passes.
+  Exact history remains M227/tree `430f4884`; exactly 16 intended paths and
+  1,295 then-current additions differ, local branches are `main` plus neutral
+  M228, configured identity matches, protected/disclosure/retired-metadata
+  surfaces remain clean, and full connectivity passes.
+- **Initial DCO object:** `1531adda00a1ce99d1fb78791c68baee9ce94093`,
+  tree `264a092cc63bafe5b9dfdf02b41f35cf13c7a1d3`, has sole parent exact
+  M227, exactly 16 paths, one matching sign-off and author/committer identity,
+  clean whitespace/worktree/connectivity, expected `0 129` divergence, and
+  zero M228 scratch. This factual record will be incorporated by amendment.
+- **Amended DCO object:** `df7b04a11146ee0915c1c038ee93d368001db4de`,
+  tree `f22678c108b987ed179e72fa16a8f722acdc6ebf`, preserves exact M227 as
+  sole parent, all 16 intended paths, one matching sign-off, matching identity,
+  clean whitespace/worktree/connectivity, `0 129` divergence, neutral branches,
+  and zero scratch.
+- **Publication:** withheld. Fresh fetch and direct hosted-head query prove
+  public `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M227 is not its ancestor.
+  Only `origin/main` exists, no pull request is open, and merged PR #251 remains
+  latest. The first remote inventory counted Git's symbolic `origin` alias and
+  stopped before repository/PR evaluation; the corrected classifier supplies
+  the accepted result. No push, PR, hosted allocation, tag, release, or package
+  publication occurred.
+
+## M227 Windows source-commit Git signer-certificate binding - locally complete, publication withheld
+
+- **Baseline:** exact M226 commit
+  `5782918bb2f2d6036a58d2ef952aaf3242b9b814`, tree
+  `c52708b61142fb4ef3696e11bb518dca698e3b52`, sole parent exact M225.
+- **Direction:** RFC-0210 accepts one test-only live-provider-state composition
+  around M226. It binds detached primary signer-certificate evidence, not
+  signer authorization or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0210, one security guide, eight public registrations, and four
+  `.project` records. M221-M226 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** each successful cached trust state must expose provider data,
+  the primary signer, a bounded chain, bounded certificate DER, and nonzero raw
+  verification time. DER is copied before state close; its size/hash and the
+  FILETIME value must match across M226. Every state closes in `finally`.
+- **Evidence:** the 14-test exact M226 baseline and both governance modes pass;
+  intentional red isolates nine missing checks; corrected focused static and
+  live gates pass; findings-first review strengthens direct rejection coverage
+  to 21 focused tests; whole-project static/docs/governance pass;
+  architecture/integration passes 3,481/12; final isolated CPython 3.12-3.14
+  each pass 4,603/19; rendering, repeated profiles, deterministic examples,
+  initial and record-state reproducible distributions, installed smokes, two
+  exact release stages, and record-inclusive/final source/docs/governance/
+  behavior separators pass. Final architecture/integration passes 3,481/12 in
+  234.07 seconds; the pure wheel remains unchanged and all four M227 files are
+  source-only.
+- **Corrections:** one initial public-certificate inspection command combined
+  two PowerShell command discoveries and did not execute Git; the corrected
+  frozen-environment selector produced the accepted observation. During
+  implementation, import ordering and 36 ctypes typing diagnostics were
+  corrected before an accepted complete static/live gate. Ruff later rejected
+  one assigned lambda before downstream checks. The first preliminary 3.13
+  full run exposed an unignored generated root, and the first final 3.14
+  console-entry run lacked the repository import root. Generated targets now
+  stay under ignored `.tmp/`, and the corrected module-entry matrix passes. No
+  pass is claimed for an unsuccessful invocation. The first staged commit gate
+  then found one RFC end-of-file blank line and stopped before commit; the
+  whitespace-only correction is included in the exact restaged gate.
+- **Boundaries:** signer/publisher authorization, persisted identity,
+  certificate pinning, rotation/recovery, revocation freshness, timestamp/
+  countersigner authenticity, trust-store administration, native DLL/loader
+  state, local-object-store trust, repository acquisition, source/build
+  provenance, distinct-principal/independent-host behavior, hostile/privileged
+  bypass, criteria 6/7, cleanup authority, and Windows admission remain
+  unresolved.
+- **Review:** exactly 16 intended paths and 1,186 additions remain. Protected
+  surfaces, public disclosure, credential/local-path, retired-metadata,
+  whitespace, and object-connectivity checks pass; no actionable finding
+  remains. The terminating focused group passes 26 tests.
+- **Cleanup:** after two path-property classifier corrections and one expected
+  ordinary ACL denial, the corrected access-enabled audit proved all 34 exact
+  M227 targets and 155,019 entries confined, ignored, untracked, and reparse-
+  free. Exact revalidation removed them, confirmed zero remains, and preserved
+  all 56 older `.tmp` targets.
+- **Pre-commit:** the no-artifact source/governance/whitespace gate passes with
+  zero M227 scratch. Exact history remains M226/tree `c52708b6`; exactly 16
+  intended paths and 1,209 then-current additions differ, local branches are
+  `main` plus neutral M227, configured identity matches, protected surfaces
+  remain unchanged, and full connectivity passes.
+- **Initial DCO object:** `f5a8d126d072250a03ee7cf224e8806220432c89`,
+  tree `a261deacef3604bdcc6748836c578d85137d667b`, has sole parent exact
+  M226, exactly 16 paths, one matching sign-off and author/committer identity,
+  clean whitespace/worktree/connectivity, expected `0 128` divergence, and
+  zero M227 scratch.
+- **Amended DCO object:** `d151509e4467cd06d4e1fdf9b7bcb0a079304a4c`,
+  tree `81c97e0cbf9c03ee3b2037fc00fe930037f36b54`, preserves exact M226 as
+  sole parent, all 16 intended paths, one matching sign-off, matching identity,
+  clean whitespace/worktree/connectivity, `0 128` divergence, neutral branches,
+  and zero scratch.
+- **Publication:** withheld. Fresh fetch and `ls-remote` prove hosted `main`
+  remains exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M226 is not its ancestor.
+  Only `origin/main` exists, no pull request is open, and latest PR #251 is
+  merged. No push, PR, hosted allocation, tag, release, or package publication
+  occurred.
+
+## M226 Windows source-commit Git Authenticode trust - locally complete, publication withheld
+
+- **Baseline:** exact M225 commit
+  `1f93733d8d5163a1d1b000a52f4b4bc543490377`, tree
+  `0892b8af06a09b4231745e77a11d6c5326eeefdf`, sole parent exact M224.
+- **Direction:** RFC-0209 accepts one test-only, no-UI, cache-only
+  retained-handle `WinVerifyTrust` composition around M225. It observes local
+  generic Authenticode policy, not signer authorization or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0209, one security guide, eight public registrations, and four
+  `.project` records. M221-M225 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** the exact retained Git path and readable handle must satisfy
+  `WINTRUST_ACTION_GENERIC_VERIFY_V2` before and after M225's complete 48-child
+  boundary. UI and network retrieval are disabled, revocation behavior is
+  explicit, the retained snapshot remains stable, and provider state always
+  closes.
+- **Evidence:** corrected module-form baseline passes 14 tests; both governance
+  modes return zero findings; intentional red isolates nine expected missing
+  checks; final focused format/Ruff/Pyright and all 14 architecture/live tests
+  pass. Whole-project static/docs/governance pass; architecture/integration
+  passes 3,460/12; isolated CPython 3.12-3.14 each pass 4,582/19; real wgpu,
+  five-repeat profiles, deterministic examples, initial reproducible
+  distributions, installed smokes, and two exact release stages pass. The
+  installed Git reports valid Authenticode status without adopting its
+  observed signer as policy.
+- **Initial distribution:** two builds reproduce a 365,915-byte pure wheel at
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and 2,668,527-byte source archive at
+  `1e0579128cda3879b849c34a23c1d257d6d36d156f498b4a0031d2d8b9a296df`.
+  Installed smokes, two exact release stages, and package inventories pass.
+- **Review:** exactly 16 intended paths differ and protected surfaces are
+  unchanged. The complete 743-line then-current addition has zero development-
+  tool identity, credential-like assignment, or machine-local path; retired
+  metadata, whitespace, and connectivity gates pass. No actionable
+  correctness, security, architecture, compatibility, package-boundary, or CI-
+  allocation finding remains at this stage.
+- **Record-inclusive gates:** the unchanged lock, whole-project format/Ruff/
+  Pyright, strict docs, both governance modes, whitespace, and the repeated
+  3,460/12 architecture/integration boundary pass.
+- **Record-state distribution:** two builds preserve the 365,915-byte wheel at
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and reproduce a 2,669,326-byte source archive at
+  `58561da3a44bd6b2cd5f46145b21bc281193b20a292a8746e554e511c4558b05`.
+  Installed smokes, exact release stages, and inventories pass.
+- **Final source separator:** the unchanged lock, all 640-file format/Ruff,
+  strict Pyright, strict docs, dated-strict governance, whitespace, and the
+  complete 3,460/12 architecture/integration boundary pass.
+- **Final distribution:** two builds preserve the 365,915-byte pure wheel at
+  `8cbe17bc42721af23c6a658b5d4286d23bfa298f946e4b652179075a9bb03e86`
+  and reproduce source archive
+  `2f323c0a9300c93a864039c9b7a3e0155cc7bc4793352a5db9341014bba18018`;
+  installed/release smokes and exact inventories pass.
+- **Cleanup:** exactly 27 M226 targets containing 57,887 entries were proven
+  repository-confined, ignored, untracked, and recursively reparse-free, then
+  removed after immediate exact-set revalidation. Zero M226 scratch remains;
+  all 56 older `.tmp` targets remain.
+- **Pre-commit separator:** lock, all-file format/Ruff/Pyright, dated-strict
+  governance, whitespace, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M225 history/tree/parent, 16-path scope, neutral
+  two-branch set, configured maintainer identity, expected `0 126` divergence,
+  protected/disclosure/retired-metadata/scratch/whitespace gates, and full
+  connectivity pass.
+- **Initial local commit:** DCO commit
+  `0221b00c2519fcf189b418d46cd7f042c481efe9`, tree
+  `972a98676e18675ca12a9e9e8d8ba57b7afda76d`, has exact M225 as sole
+  parent, exactly 16 paths, one matching sign-off, matching author/committer
+  identity, clean worktree/revision/connectivity, expected `0 127` divergence,
+  neutral two-branch hygiene, and zero M226 scratch. This factual record will
+  be incorporated by amendment.
+- **Amended local commit:** DCO commit
+  `19e3972de3f37226eadcc9467e5731d2fb462cd9`, tree
+  `29bf1d04caf6f362734dd41c1cd062436ac4efd4`, preserves exact M225 as sole
+  parent, exactly 16 paths, one matching sign-off, matching maintainer
+  identity, clean worktree/revision/connectivity, expected `0 127` divergence,
+  neutral two-branch hygiene, and zero M226 scratch. This factual record is
+  incorporated by the final amendment.
+- **Corrections:** the first sandboxed baseline was cache-denied, and direct
+  pytest could not import namespace-style test modules. During implementation,
+  one Ruff and one Pyright finding were corrected; a lazy native-export lookup
+  and two formatting-sensitive guards were then corrected. No complete pass is
+  claimed for an unsuccessful invocation.
+- **Boundaries:** signer/publisher allowlisting, certificate pinning,
+  revocation freshness, trust-store administration, native DLL/loader state,
+  local-object-store trust, repository acquisition, source/build provenance,
+  distinct-principal/independent-host behavior, hostile/privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unresolved.
+- **Publication:** withheld after a fresh gate. Hosted `main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M99 is its ancestor but M225
+  is not. Only `origin/main` exists, no pull requests are open, and latest PR
+  251 remains merged. Publishing M226 alone would omit M100-M225, so no push,
+  PR, hosted allocation, tag, release, or package publication occurred.
+
+## M225 Windows source-commit Git child image binding - locally complete, publication withheld
+
+- **Baseline:** exact M224 commit
+  `238ed548cc6dc67e07f43ea8585bcc5870828c55`, tree
+  `298e220954566c942d3d7193f1eb39e0aeba0794`, sole parent exact M223.
+- **Direction:** RFC-0208 accepts one test-only suspended process-image
+  composition around M224. It binds actual child images to M224's retained
+  local file, not executable authenticity or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0208, one security guide, eight public registrations, and four
+  `.project` records. M221-M224 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** each of 48 existing CPython `CreateProcess` calls adds
+  `CREATE_SUSPENDED`; the returned process handle identifies and retains the
+  child image before code runs. Its complete snapshot must equal M224's
+  retained executable, an exact suspend count of one resumes, normal `Popen`
+  ownership continues, and all retained image files remain stable through
+  settlement. Pre-return failure terminates, waits, and closes native handles.
+- **Evidence:** the 12-test M224 baseline and dated-strict governance pass.
+  Intentional red isolated nine missing checks. Focused formatting/Ruff/
+  Pyright and 14 tests pass; architecture/integration passes 3,446/12;
+  corrected sequential all-extra CPython 3.12-3.14 each pass 4,568/19; real
+  wgpu, five-repeat profiles, profile tests, and deterministic examples pass.
+- **Initial distribution:** two builds reproduce a 365,817-byte pure wheel at
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and 2,657,128-byte source archive at
+  `0816a2e7b8cdf05b82dc02bba91f6e823986a46096e23f25200b930fac4c2ec3`.
+  Installed smokes, two exact release stages, and package inventories pass.
+- **Review:** exactly 16 intended paths differ and protected surfaces are
+  unchanged. One native negative case was corrected so failed termination is
+  not claimed as completed cleanup. Added-line disclosure, credential,
+  machine-path, retired-metadata, whitespace, and connectivity gates pass; no
+  other actionable finding remains at this stage.
+- **Record-inclusive gates:** the unchanged lock, whole-project format/Ruff/
+  Pyright, strict docs, both governance modes, and the repeated 3,446/12
+  architecture/integration boundary pass.
+- **Record-state distribution:** two builds preserve the 365,817-byte wheel at
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and reproduce a 2,658,115-byte source archive at
+  `f434e273f3b5b1ec129d8fc4fde33790d132080d07800ee84131d2ae0c185d7f`.
+  Installed smokes, exact release stages, and inventories pass.
+- **Cleanup:** the first audit was sandbox-denied and the next two audit
+  commands stopped on incorrect parent-path expressions; none deleted data.
+  The corrected access-enabled audit proved 21 exact M225 targets containing
+  129,598 entries confined, ignored, untracked, and recursively reparse-free.
+  Immediate revalidation removed only them, left zero M225 scratch, and
+  preserved all 56 older `.tmp` targets.
+- **Final source separator:** the unchanged lock, all 638-file format/Ruff,
+  strict Pyright, strict docs, dated-strict governance, and the complete
+  3,446/12 architecture/integration boundary pass after cleanup.
+- **Final distribution:** two builds preserve the reviewed 365,817-byte pure
+  wheel at
+  `aae31bbc25717b94bc8bd45fdd73dda1dd44927b7092d8222ab821337e138c1d`
+  and reproduce source archive
+  `7bd2174cbf3c4eba66ef39367d33aec4bcff49cb58d637f5f880e041cd8d36d7`;
+  installed/release smokes and exact inventories pass.
+- **Final-ledger cleanup:** six exact final targets containing 8,483 entries
+  were proven confined, ignored, untracked, and recursively reparse-free, then
+  removed after immediate exact-set revalidation. Zero M225 scratch remains
+  and all 56 older `.tmp` targets remain.
+- **Pre-commit separator:** whole-project format/Ruff/Pyright, dated-strict
+  governance, whitespace, retired metadata, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M224 history/tree/parent, 16-path scope, neutral
+  two-branch set, configured maintainer identity, expected `0 125` divergence,
+  protected/disclosure/retired-metadata/scratch/whitespace gates, and full
+  connectivity pass.
+- **Initial local commit:** DCO commit
+  `327c421a6991ed6ef3b5c32491d5a58ae771f911`, tree
+  `4e2c679d9b56ccab6fcd4c015ff9a24cc9a3e436`, has exact M224 as sole
+  parent, 16 paths, one matching sign-off, consistent identity, clean
+  whitespace/worktree/connectivity, expected `0 126` divergence, and zero
+  M225 scratch. This factual record is incorporated by amendment.
+- **Amended local commit:** DCO commit
+  `ecde0f0114b6bbf285c76b8b0be01836357a81e0`, tree
+  `28af3e17121c8f53862455ce26d61fa9c0051339`, preserves exact M224 as sole
+  parent, all 16 paths, one sign-off, matching identity, clean revision
+  whitespace/worktree/connectivity, expected `0 126` divergence, and zero
+  M225 scratch. This factual record is incorporated by the final amendment.
+- **Corrections:** the original direct-`Popen` design was tightened before
+  implementation to eliminate a documented short-lived-process race. A first
+  concurrent matrix attempt was rejected because shared pytest scratch caused
+  interference; corrected runs use distinct roots sequentially. A base-only
+  3.12 pass is preliminary; all-extra results are authoritative.
+- **Boundaries:** executable signer/publisher/origin/ACL policy,
+  DLL/native-loader state, local-object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved.
+- **Publication:** withheld after a fresh fetch. Hosted `main` remains exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M99 is an ancestor but M224
+  is not. Only `origin/main` exists, there are no open pull requests, and the
+  latest remains merged PR 251. No push, pull request, hosted allocation, tag,
+  release, or package publication occurred.
+
+## M224 Windows source-commit Git file retention - locally complete, publication withheld
+
+- **Baseline:** exact M223 commit
+  `81603c8e6c567063f8a3d492fed3d5be9b1c4489`, tree
+  `b5d83a896a6b3d4e9baa88b9e91aa85e9f45bade`, sole parent exact M222.
+- **Direction:** RFC-0207 accepts one test-only retained-file composition around
+  M223. It binds one local file-handle interval, not executable authenticity or
+  provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0207, one security guide, eight public registrations, and four
+  `.project` records. M221-M223 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** one real lookup selects a canonical absolute Git file; one non-
+  inheritable read handle with only `FILE_SHARE_READ` retains its normalized
+  name, volume/file identity, bounded size, and SHA-256 across all 48 M223
+  reads. The same retainer's share effect is proven without mutation on its
+  writable test source, avoiding an installed-file ACL false inference.
+- **Evidence:** the 10-test M223 baseline and both governance modes pass. The
+  intentional red isolated eight expected missing checks. Focused static/type
+  and 12 tests pass; architecture/integration passes 3,432/12; isolated CPython
+  3.12-3.14 each pass 4,554/19; real wgpu, profiles, deterministic examples,
+  initial reproducible distributions, installed smokes, and two exact release
+  stages pass.
+- **Initial distribution:** wheel 365,699 bytes at
+  `c932fbddb8cc8eb7a59cc1d911d17eac7afa45bcbafd0ebfaa89237055ccd283`;
+  source archive 2,642,242 bytes at
+  `acbf53523e1adf1a8593a562afc988d22d4b8eef6d810fd5495932a8326f612a`.
+  The 114-entry pure wheel contains no M224 evidence. Final record-inclusive
+  inventory remains pending.
+- **Review:** exactly 16 intended paths differ. Three summaries were corrected
+  to distinguish actual Git retention/snapshot evidence from the identical
+  retainer's separate access-only proof. Protected surfaces, added-line
+  disclosure/credential/local-path scans, retired metadata, whitespace, and
+  connectivity are clean; no further actionable finding remains.
+- **Record-inclusive gates:** the unchanged lock, whole-project format/Ruff/
+  Pyright, strict docs, both governance modes, whitespace, and a repeated
+  3,432/12 architecture/integration boundary pass.
+- **Record-state distribution:** two builds reproduce the reviewed 365,711-
+  byte pure wheel at
+  `0499ac3998dc626345f58231900fb8a1f077c10fced1761f2a145ddac5c4f855`
+  and 2,646,129-byte source archive at
+  `1e61022979248562f594263eb2d9150d98b69cfceaed493301619b44d3046226`.
+  Installed smokes, two exact ten-artifact release stages, and exact package
+  inventories pass.
+- **Cleanup:** post-review static/type/focused/docs/governance/whitespace pass.
+  Exactly 19 M224 scratch targets containing 50,184 entries were proven
+  immediate under `.tmp`, ignored, untracked, and recursively reparse-free,
+  then removed after exact-set revalidation; zero remains and older scratch was
+  untouched.
+- **Final separator:** post-cleanup whole-project format/Ruff/Pyright, strict
+  docs, dated-strict governance, whitespace, and the complete 3,432/12
+  architecture/integration boundary pass.
+- **Final distribution:** two builds preserve the reviewed pure wheel at
+  `0499ac3998dc626345f58231900fb8a1f077c10fced1761f2a145ddac5c4f855`
+  and reproduce source archive
+  `be88403c36ae83b25a23f1f82caeb0d2472cea3be4734bded24b7be9528589b0`;
+  installed/release smokes and exact inventories pass.
+- **Final-ledger cleanup:** six exact final targets containing 8,485 entries
+  were proven confined, ignored, untracked, and recursively reparse-free, then
+  removed after exact-set revalidation; zero M224 scratch remains.
+- **Pre-commit separator:** whole-project format/Ruff/Pyright, dated-strict
+  governance, whitespace, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M223 history, 16-path scope, neutral branch,
+  configured maintainer identity, expected `0 124` divergence, protected/
+  disclosure/retired-metadata/scratch/whitespace gates, and full connectivity
+  pass.
+- **Initial local commit:** DCO commit
+  `424ad9f3dbf44ecf57a4cd9b2f72daf8242099d7`, tree
+  `4978e0a10a05ba143001fe34038f7f25b78a9287`, has exact M223 as sole
+  parent, 16 paths, one matching sign-off, consistent identity, clean
+  whitespace/worktree/connectivity, expected `0 125` divergence, and zero
+  M224 scratch. This factual record is incorporated by amendment.
+- **Amended local commit:** DCO commit
+  `b8dab63ee5903e3ef17f6a6d0c15264b5e20b028`, tree
+  `94af602c63e27e9d369c3e92d6ae48a6a2bec410`, retains exact M223 as
+  sole parent, 16 paths, one matching sign-off, consistent identity, clean
+  whitespace/worktree/connectivity, expected `0 125` divergence, and zero
+  M224 scratch. This factual record is incorporated by the final amendment.
+- **Boundaries:** executable signer/publisher/origin/ACL policy, actual child
+  image, DLL/native-loader state, local-object-store trust, repository
+  acquisition, source/build provenance, distinct-principal/independent-host
+  behavior, hostile/privileged bypass, criteria 6/7, cleanup authority, and
+  Windows admission remain unresolved.
+- **Publication:** fresh public `main` remains exact M99 and does not contain
+  M223. Only remote `main` exists, no PR is open, and PR #251 is latest. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+  Publication is withheld pending hosted ancestry of the prerequisite stack.
+
+## M223 Windows source-commit Git selection binding - locally complete, publication withheld
+
+- **Baseline:** exact M222 commit
+  `73da0b02fab8aa90c2c74802cc43d130e58fbeda`, tree
+  `a04773cf16ecef4b8de578ad2b0fd2144297660c`, sole parent exact M221.
+- **Direction:** RFC-0206 accepts one test-only scoped binding of M221's
+  absolute Git executable selection across M222's complete observation. It
+  does not establish executable-file identity or provenance.
+- **Scope:** one Windows integration composition, one architecture guard,
+  RFC-0206, one security guide, eight public registrations, and four
+  `.project` records. M221/M222 evidence, runtime, package, dependency, lock,
+  workflow, fixture, example, script, and benchmark surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** one PATH/PATHEXT lookup selects an existing absolute Git file;
+  all 48 fixed reads in the complete M222/M221 participant boundary use that
+  exact path while M222's lazy-fetch and inherited containment rules remain.
+- **Evidence:** the 13-test M222 baseline and both governance modes pass. The
+  intentional red isolated seven expected missing checks. Whole-project
+  static/type checks are clean; architecture/integration passes 3,420/12;
+  isolated CPython 3.12-3.14 each pass 4,542/19; real wgpu, five-repeat
+  profiles, deterministic examples, reproducible distributions, installed
+  smokes, and two exact release stages pass.
+- **Review:** one uncounted preliminary `shutil.which()` call was removed so
+  the full regression, not just the nested observation, performs exactly one
+  real lookup. Corrected focused tests and static/type checks pass. The exact
+  16-path scope/protected/disclosure audit is clean.
+- **Record-inclusive gates:** lock/format/Ruff/Pyright, strict docs, both
+  governance modes, whitespace, and the repeated 3,420/12 architecture/
+  integration boundary pass. Record-state distributions/releases pass.
+- **Cleanup:** the post-review separator passes. Exactly 19 M223 scratch
+  targets containing 50,157 entries were proven repository-confined, ignored,
+  untracked, and recursively reparse-free, then removed; zero M223 scratch
+  remains and older scratch was untouched.
+- **Final separator:** post-cleanup static/type/docs/governance/whitespace and
+  complete architecture/integration again pass.
+- **Final distributions:** two builds preserve the pure wheel at
+  `49465199c876f6394fc3d09c11239d6fd7a9ea7eae9d29b0c9bb7aa7d6a1b806`
+  and reproduce source archive
+  `90607a72edce14704318b3f5ff752d9646685b885f8b5e55ab5d3f307b30f35f`;
+  installed/release smokes and exact inventories pass.
+- **Final ledger cleanup:** six exact final targets containing 8,475 entries
+  were proven confined, ignored, untracked, and recursively reparse-free, then
+  removed; zero M223 scratch remains.
+- **Pre-commit separator:** whole-project format/Ruff/Pyright, dated-strict
+  governance, whitespace, and zero-scratch checks pass.
+- **Pre-commit audit:** exact M222 history, 16-path scope, neutral branch,
+  configured maintainer identity, `0 123` divergence, protected/disclosure/
+  retired-metadata/scratch/whitespace gates, and full connectivity pass. Local
+  DCO commit and hosted publication-safety checks remain.
+- **Initial commit correction:** local commit `56d01b4` retained the intended
+  parent/scope, but post-commit whitespace verification rejected one extra EOF
+  blank line in RFC-0206. It was corrected before amendment; nothing was
+  published.
+- **Correction validation:** the working tree correction passes whole-project
+  static/type, ten focused tests, strict docs, dated-strict governance, and
+  whitespace. Its single 784-entry ignored/untracked/reparse-free docs target
+  was removed before amendment.
+- **Local commit:** amended DCO commit `76ad1aca32d4f4a2e04a9f42e4bfed97605eb454`
+  has exact M222 as sole parent, 16 paths, one matching sign-off, consistent
+  identity, clean whitespace/worktree/connectivity, and zero M223 scratch.
+- **Publication:** fresh public `main` remains exact M99 and does not contain
+  M222. Only remote `main` exists, no PR is open, and PR #251 is latest. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+- **Boundaries:** executable bytes/signature/origin, replacement at the path,
+  native-loader state, object-store trust, repository acquisition,
+  source/build provenance, distinct-principal/independent-host behavior,
+  hostile/privileged bypass, criteria 6/7, cleanup authority, and Windows
+  admission remain unresolved. Publication is withheld pending hosted ancestry
+  of the prerequisite stack.
+
+## M222 Windows source-commit no-lazy-fetch exclusion - locally complete, publication withheld
+
+- **Baseline:** exact M221 commit
+  `d09d8b561dbebe49af62a6762ef145bb30499845`, tree
+  `c8847a1db0a823396d2b86a0d9cb5914b68015ad`, sole parent exact M220.
+- **Direction:** RFC-0205 corrects the current M221 reader by applying both Git
+  lazy-fetch exclusions. It does not rewrite historical evidence or establish
+  source/build provenance, collection, cleanup authority, or admission.
+- **Scope:** one exact two-line hardening of the M221 integration reader, one
+  Windows regression, one architecture guard, RFC-0205, one security guide,
+  eight public registrations, and four `.project` records. Runtime, package,
+  dependency, lock, workflow, fixture, example, script, and benchmark surfaces
+  remain unchanged; zero GitHub Actions job is added.
+- **Behavior:** every fixed object read passes `--no-lazy-fetch` before `-C`
+  and receives fixed `GIT_NO_LAZY_FETCH=1` after ambient Git variables are
+  removed. The regression observes the exact subprocess boundary and reruns
+  M221's complete three-phase source-commit proof.
+- **Local evidence:** focused M222 13/13; architecture/integration 3,410/12
+  skips; supported Python 3.12/3.13/3.14 each 4,532/19 skips; 10 real-wgpu;
+  fresh two-/three-workload profiles and eight validators; deterministic
+  Null/wgpu Clockwork and Agent World Builder; whole-project static/type and
+  governance gates clean.
+- **Distribution:** two builds are byte-identical. Wheel: 365,482 bytes,
+  SHA-256 `48f75b2f9f1d6718407cfee996715ca123bc94c0ee469e7995381a8be86aacf9`.
+  Source: 2,622,731 bytes, SHA-256
+  `e3b4b7528d2d228d47b62ab7f450bfac5f61a57ff93a38b2feb2403ef1723b45`.
+  Installed smokes and two identical ten-artifact release stages pass. Zero
+  M222/native file enters the 114-entry wheel; exactly four new M222 files
+  occur in the 1,056-entry source archive.
+- **Record state:** format/Ruff/Pyright, 3,410/12-skip
+  architecture/integration, strict docs, static/dated-strict governance, and
+  whitespace pass. Two builds preserve the exact wheel and match at
+  2,625,704 source bytes, SHA-256
+  `0a51570adcc57d2ddd1f763b8b5012a6e7d6adfd02b07717ae1604e35848c232`;
+  installed smokes and both exact release rehearsals pass.
+- **Review:** exactly 17 intended paths; the M221 reader changes by the two
+  required lines; protected surfaces, retired-metadata absence, and 654 added-
+  line disclosure/credential/local-path scans pass. No actionable correctness,
+  ordering, authority, architecture, dependency, package, documentation,
+  compatibility, or CI finding remains.
+- **Post-review:** whole-project format/Ruff/Pyright, all 13 focused tests,
+  strict docs, dated-strict governance, and whitespace pass.
+- **Cleanup:** a corrected read-only audit proved exactly 35 M222 targets and
+  62,495 entries confined, ignored, untracked, and recursively reparse-free.
+  Immediate exact-set revalidation removed only those targets and confirmed
+  zero remains; older scratch was untouched.
+- **Final ledger:** format/Ruff/Pyright, 3,410/12-skip
+  architecture/integration, strict docs, dated-strict governance, and
+  whitespace pass. The 365,482-byte wheel remains exact; two 2,626,600-byte
+  source archives match at SHA-256
+  `dfca995c441293a0162fc5aeb5ce3cd3359e6a4177009173a916cdf5fbf40efc`;
+  installed smokes and both exact release rehearsals pass. Recording this
+  result changes only the source archive afterward.
+- **Final cleanup:** nine exact final-ledger targets and 8,474 entries were
+  separately proven confined, ignored, untracked, and recursively
+  reparse-free, removed exactly, and confirmed absent. Older scratch remains
+  untouched.
+- **No-output separator:** format/Ruff/Pyright, dated-strict governance,
+  whitespace, and zero-M222-scratch checks pass.
+- **Pre-commit audit:** exact 17-path allowlist and M221 HEAD/tree/parent;
+  protected surfaces and 715-line disclosure/credential/local-path scans
+  clean; only local `main` plus neutral M222; expected `0 122` divergence;
+  correct maintainer identity; retired metadata and M222 scratch absent;
+  whitespace and full connectivity clean.
+- **Commit:** initial DCO commit
+  `703ee11ea7be8a3793dc47ed22e6b568390d3189`, tree
+  `78413fb2146446e0fff712dccbd864de4152ed82`, has exact M221 as sole
+  parent, 17 intended paths, one matching sign-off, consistent maintainer
+  identity, a clean worktree/connectivity, expected `0 123` divergence, and
+  zero scratch. This factual record will be incorporated by amendment.
+- **Amended commit:**
+  `bd184eeebd480aa8b4bc33f82a9dc95747e7c522`, tree
+  `9c7a97c390da0b660b1ef63be6af7c45fc828dae`, retains exact M221 as
+  sole parent, 17 intended paths, one matching sign-off, consistent identity,
+  clean worktree/connectivity, expected `0 123` divergence, and zero scratch.
+- **Final pre-publication commit:**
+  `afb7f564a556441276b66f42e9a8927ca93e0fc2`, tree
+  `36602be3264531920ad9f5d930a19dbbd7df7bf2`, retains the exact M221
+  parent, 17 paths, one DCO sign-off, identity, cleanliness, connectivity, and
+  `0 123` divergence boundary.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M221 is not its ancestor,
+  only remote `main` exists, no PR is open, and PR #251 remains latest. No
+  branch push, PR, hosted job, tag, release, or package publication occurred.
+- **Boundary:** trusted Git executable/local object store, repository
+  acquisition, source attestation, build provenance, imports, native loader,
+  distinct principal, hostile process, independent host, privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unproved. No
+  runtime, package, workflow, public runner, or hosted allocation is added.
+- **Closeout:** local milestone complete. Publication awaits prerequisite-stack
+  integration and a fresh ancestry/DCO/CI-scope check.
+
+## M221 Windows contained source-access source-commit binding - locally complete, publication withheld
+
+- **Baseline:** exact M220 commit
+  `734d4eb943c3da7a1a8357ef3e180cac4353cb6b`, tree
+  `5575eeeb8123a0eaed9028a6281227b64fdfb73d`, sole parent exact M219.
+- **Direction:** RFC-0204 accepts one direction-preserving test-only binding of
+  M220's retained contender source to an exact immutable local commit object.
+  It makes no collection or cleanup-authority increase and establishes no
+  source attestation or build provenance.
+- **Scope:** one Windows integration probe, one architecture guard, RFC-0204,
+  one security guide, eight public registrations, and four `.project` records.
+  Runtime/package/dependency/lock/workflow/fixture surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** fail-closed direct Git object reads prove exact commit, tree,
+  parent, path, blob type, size, and digest; retained source equals the blob
+  before child creation and after settlement; M220's exact source, handle,
+  Job, token, image, access, participant, zero-exit, settlement, and close
+  boundary remains mandatory.
+- **Local evidence:** focused M221 17/17; architecture/integration 3,397/12
+  skips; supported Python 3.12/3.13/3.14 each 4,519/19 skips; 10 real-wgpu;
+  fresh two-/three-workload profiles and eight validators; deterministic
+  Null/wgpu Clockwork and Agent World Builder; whole-project static/type gates
+  clean.
+- **Distribution:** two builds are byte-identical. Wheel: 365,395 bytes,
+  SHA-256 `69076bb43e24e32b16ba98b11f5231187d44860f9407ee86a74e5df77211b847`.
+  Source: 2,613,140 bytes, SHA-256
+  `6d34b22b75bbeae5ebf8f20fd786d80f7d680d47b61322a79351902555e4b07f`.
+  Installed smokes and two identical ten-artifact release stages pass; zero
+  M221 file enters the 114-entry wheel and exactly four occur in the
+  1,052-entry source archive.
+- **Record state:** format/Ruff/Pyright, 3,397/12-skip architecture/integration,
+  strict docs, static/dated-strict governance, and whitespace pass. The exact
+  wheel reproduces; two 2,615,756-byte source archives match at SHA-256
+  `811dd4c8f9599b60b4c6f41c60f5bb74eedf600004547a7bee71480dc9b76dd2`;
+  installed smokes and both exact release rehearsals pass.
+- **Review:** exactly 16 intended paths; protected workflow, package, lock,
+  fixture, and M220 hashes remain exact. Direct-Git failure handling and
+  source/child/settlement ordering are bounded; no actionable correctness,
+  disclosure, authority, runtime, dependency, package, or CI finding remains.
+- **Cleanup:** 24 exact M221 scratch targets and 50,154 entries were proven
+  confined, ignored, untracked, and recursively reparse-free before exact
+  removal. Zero remains; older scratch roots were untouched.
+- **Final ledger:** format/Ruff/Pyright, 3,397/12-skip architecture/integration,
+  strict docs, dated-strict governance, and whitespace pass. The 365,395-byte
+  wheel remains exact; two 2,616,648-byte source archives match at SHA-256
+  `0346ebec5f5fffc9b9a3839bd107daf09b78242677360ed7f36fdc306ed06c8d`;
+  installed smokes and both exact release rehearsals pass. Recording this
+  result changes only the source archive afterward.
+- **Final cleanup:** seven exact generated targets and 8,474 entries were
+  separately proven confined, ignored, untracked, and recursively
+  reparse-free, removed exactly, and confirmed absent. Older scratch remains
+  untouched.
+- **Pre-commit audit:** exact 16-path allowlist and M220 HEAD/tree/parent;
+  protected surfaces and disclosure/credential scans clean; only local `main`
+  plus neutral M221; expected `0 121` divergence; correct maintainer identity;
+  retired metadata and M221 scratch absent; whitespace/connectivity clean.
+- **Commit:** initial DCO commit
+  `b2dea997790bbcc45b19b94e1033d8eb9a54f86e`, tree
+  `214cc0139453ff0e523ef25763cb9b8291dc6c3f`, has exact M220 as sole
+  parent, 16 intended paths, one matching sign-off, consistent maintainer
+  identity, a clean worktree/connectivity, and expected `0 122` divergence.
+  This factual record is incorporated by amendment.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M220 is not its ancestor,
+  only remote `main` exists, no PR is open, and PR #251 remains latest. No
+  branch push, PR, hosted job, tag, release, or package publication occurred.
+- **Boundary:** trusted Git executable/local object store, repository
+  acquisition, source attestation, build provenance, imports, native loader,
+  distinct principal, hostile process, independent host, privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unproved. No
+  runtime, package, workflow, public runner, or hosted allocation is added.
+
+## M220 Windows contained source-access source binding - locally complete, publication withheld
+
+- **Baseline:** exact M219 commit
+  `09e6d3390040498371912d7d47bff5b75be03c35`, tree
+  `1ac6769f0274b1c0aba3ef21b2f32dcc56466137`, sole parent exact M218.
+- **Direction:** RFC-0203 accepts one direction-preserving test-only binding of
+  a new fixed contender to retained source bytes supplied through inherited
+  standard input. It makes no collection or cleanup-authority increase and
+  establishes no source-commit or build provenance.
+- **Scope:** one fixed fixture, one Windows integration probe, one architecture
+  guard, RFC-0203, one security guide, eight public registrations, and four
+  `.project` records. Runtime/package/dependency/lock/workflow surfaces remain
+  unchanged; zero GitHub Actions job is added.
+- **Behavior:** retain and snapshot source before child creation; inherit it as
+  stdin with distinct write-only `NUL` output/error handles; create suspended;
+  prove sole-Job membership, same-logon identity, and M219 image agreement;
+  then require pre-resume/post-exit source stability, exact zero exit, stable
+  image handles, exact Job settlement, zero owned handles, and post-close
+  source access across all three M218 phases.
+- **Local evidence:** focused M220 14/14; architecture/integration 3,380/12
+  skips; supported Python 3.12/3.13/3.14 each 4,502/19 skips; 10 real-wgpu;
+  both fresh profiles and eight validators; deterministic Null/wgpu Clockwork
+  and Agent World Builder; strict static/type/docs/governance gates clean.
+- **Distribution:** two builds are byte-identical. Wheel: 365,280 bytes,
+  SHA-256 `c9a295515c82a5cedf5d76403c9ef3092282037c144666d18035357a4714af72`.
+  Source: 2,603,672 bytes, SHA-256
+  `3a3d96ebb28ff88b8e70c0f4c11195f6a2b6e0e7711463610797b2a68707e358`.
+  Installed smokes and two identical ten-artifact release stages pass; zero
+  M220 file enters the 114-entry wheel and exactly five occur in the 1,048-entry
+  source archive.
+- **Review:** exact 17-path scope and protected-surface checks pass. Source,
+  standard-handle, Job, token, image, resume, settlement, and close ordering is
+  bounded; no actionable cleanup, disclosure, authority, runtime, or CI finding
+  remains.
+- **Record state:** all 628 Python files remain static/type clean;
+  architecture/integration is 3,380/12 skips; strict docs/governance/whitespace
+  pass. The wheel remains exact and two 2,604,563-byte source archives match at
+  SHA-256 `526a878701b08d39f4f537c343ad788cdcf5a371a9deb72f4723726c069ca2ac`;
+  installed smokes and both exact release rehearsals pass. Cleanup, final
+  closeout, commit, and publication gates remain pending.
+- **Cleanup:** 20 exact M220 scratch targets and 48,576 descendants were proven
+  confined, ignored, untracked, and recursively reparse-free before exact
+  removal. Zero remains; older scratch roots were untouched. Final closeout,
+  commit, and publication gates remain pending.
+- **Closeout:** post-cleanup format/Ruff/Pyright, 3,380/12-skip architecture/
+  integration, strict docs, dated-strict governance, and whitespace pass. The
+  resulting two generated targets and 8,437 descendants were separately proven
+  confined/ignored/untracked/reparse-free, removed exactly, and confirmed
+  absent.
+- **Final ledger:** format/Ruff/Pyright, 3,380/12-skip architecture/integration,
+  strict docs, dated-strict governance, and whitespace pass. Its two generated
+  targets and 8,437 descendants were separately proven confined/ignored/
+  untracked/reparse-free, removed exactly, and confirmed absent.
+- **Pre-commit audit:** exact 17-path allowlist; exact M219 HEAD/tree/parent;
+  zero protected-surface or added-disclosure finding; only local `main` and
+  neutral M220; expected `0 120` divergence; correct maintainer identity;
+  retired metadata and M220 scratch absent; whitespace/connectivity clean.
+- **Commit:** initial DCO commit
+  `847dd5ec777ad1366580a8b1bed93cf9113fb2cb`, tree
+  `24a315920d3622105d1fca96ac685ec92189d81f`, has exact M219 as sole parent,
+  17 intended paths, one matching sign-off, consistent maintainer identity,
+  clean worktree/connectivity, and expected `0 121` divergence. This record is
+  incorporated by amendment.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M219 is not its ancestor,
+  only remote `main` exists, no PR is open, and PR #251 remains latest. No
+  branch push, PR, hosted job, tag, release, or package publication occurred.
+- **Boundary:** imported modules, source commit, build, DLL/loader state,
+  distinct principal, hostile process, independent host, privileged bypass,
+  criteria 6/7, cleanup authority, and Windows admission remain unproved. No
+  runtime, package, workflow, public runner, or hosted allocation is added.
+
+## M219 Windows contained source-access image binding - locally complete, publication withheld
+
+- **Baseline:** exact M218 commit
+  `b85270112d7a550251b38e8fe54ad2c903aceabb`, tree
+  `08cd24c4e82691bc07a614419d03cecdb955419b`, sole parent exact M217.
+- **Direction:** RFC-0202 accepts one direction-preserving, test-only binding of
+  M218's contained contender to retained expected/observed interpreter-image
+  identity and bytes before resume. It makes no collection or cleanup-authority
+  increase and establishes no source/build provenance.
+- **Scope:** one Windows integration probe, one architecture guard, RFC-0202,
+  one security guide, eight public registrations, and four `.project` records.
+  Runtime/package/dependency/lock/workflow/fixture surfaces remain unchanged;
+  zero GitHub Actions job is added.
+- **Behavior:** before each child creation, retain the expected interpreter
+  image. After suspended creation, sole-Job assignment and same-logon binding,
+  retain the observed process image and require exact normalized name,
+  volume/file identity, bounded size, and SHA-256 equality before resume. Both
+  retained file observations must remain stable after child exit, followed by
+  exact Job settlement and zero owned handles.
+- **Local evidence:** focused M219 13/13; architecture/integration 3,366/12
+  skips; supported Python 3.12/3.13/3.14 each 4,488/19 skips; 10 real-wgpu;
+  both fresh profiles and eight validators; deterministic Null/wgpu Clockwork
+  and Agent World Builder; strict static/type/docs/governance gates clean.
+- **Distribution:** two builds are byte-identical. Wheel: 365,143 bytes,
+  SHA-256 `ae13c543b6c6635bdc08ac282cd3027ae990f85cd31f872d125aa6fbed6dc602`.
+  Source: 2,592,125 bytes, SHA-256
+  `a4de1289688885ce8f8749f211176a1e5a8a7478a94cf3aeaa8f49e191e9f0fa`.
+  Installed smokes and two identical ten-artifact release stages pass; zero
+  M219 file enters the 114-entry wheel and exactly four occur in the 1,043-entry
+  source archive.
+- **Boundary:** contender script bytes, imported modules, source commit, build,
+  DLL/loader state, distinct principal, hostile process, independent host,
+  privileged bypass, criteria 6/7, cleanup authority, and Windows admission
+  remain unproved. No runtime, package, workflow, public runner, or hosted
+  allocation is added.
+- **Record-state evidence:** all 625 Python files remain static/type clean;
+  architecture/integration is 3,366/12 skips; strict docs/governance/whitespace
+  pass. The exact wheel reproduces, and two 2,595,296-byte source archives
+  match at SHA-256
+  `2918ba5b63a8c51ea71372faca52e30781dda491c744dd893c586460f156c6db`;
+  installed smokes and both exact release rehearsals pass.
+- **Cleanup:** 21 exact M219 scratch targets and 49,344 descendants were proven
+  confined, ignored, untracked, and recursively reparse-free before exact
+  removal. Zero remains; older scratch roots were untouched.
+- **Closeout:** post-cleanup format/Ruff/Pyright, 3,366/12-skip architecture/
+  integration, strict docs, dated-strict governance, and whitespace pass. The
+  resulting two generated targets and 8,433 descendants were separately proven
+  confined/ignored/untracked/reparse-free and removed; zero M219 scratch
+  remains.
+- **Final ledger:** format/Ruff/Pyright, 3,366/12-skip architecture/integration,
+  strict docs, dated-strict governance, and whitespace pass. Its two generated
+  targets and 8,433 descendants were separately proven confined/ignored/
+  untracked/reparse-free and removed; zero M219 scratch remains.
+- **Pre-commit audit:** exact 16-path allowlist; exact M218 HEAD/tree/parent;
+  zero protected-surface or added-disclosure finding; only local `main` and
+  neutral M219; expected `0 119` divergence; correct maintainer identity;
+  retired metadata and M219 scratch absent; whitespace/connectivity clean.
+- **Commit:** initial DCO commit
+  `c471bdec3dcb5e45ca44dae2d7efdc38d6fafbb8`, tree
+  `2a7c195e21ac532c575803ccff555f22ae8e8ad1`, has exact M218 as sole parent,
+  16 intended paths, one matching sign-off, consistent maintainer identity,
+  clean worktree/connectivity, and expected `0 120` divergence. This record is
+  incorporated by amendment.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M218 is not its ancestor,
+  only remote `main` exists, no PR is open, and PR #251 remains latest. No branch
+  push, PR, hosted job, tag, release, or package publication occurred.
+
+## M218 Windows contained source-access refusal - locally complete, publication withheld
+
+- **Baseline:** exact M217 commit
+  `ae7769733d59fc825df47c22b2aa37ae2e6ba96d`, tree
+  `16f44d960b94ed6c736141871d0eb0c599b6f025`, sole parent exact M216.
+- **Direction:** RFC-0201 accepts one direction-preserving, test-only,
+  Job-contained same-logon child observation of the frozen retained-source
+  sharing boundary. It makes no collection or cleanup-authority increase.
+- **Scope:** one fixed fixture, one Windows integration probe, one architecture
+  guard, RFC-0201, one security guide, eight public registrations, and four
+  `.project` records. Runtime/package/dependency/lock/workflow surfaces remain
+  unchanged; zero GitHub Actions job is added.
+- **Behavior:** each phase creates one suspended no-inheritance direct child,
+  assigns it to a private kill-on-close Job, verifies exact sole membership and
+  same-logon token identity before resume, requires write/delete access-only
+  opens to return sharing error 32, and settles exact one-total/zero-active Job
+  accounting with zero owned handles.
+- **Local evidence:** focused M218 22/22; full architecture/live 2,307/one skip;
+  supported Python 3.12/3.13/3.14 each 4,475/19 skips; 10 real-wgpu; both
+  profiles and eight validators; deterministic Null/wgpu Clockwork and Agent
+  World Builder; strict static/type/docs/governance/whitespace gates clean.
+- **Distribution:** two builds are byte-identical. Wheel: 364,984 bytes,
+  SHA-256 `f41d8afcd7d749c767ba2b620984293a82c904b32aaa8aea530e9b2da6ddfae0`.
+  Source: 2,583,147 bytes, SHA-256
+  `5325ee0dcd73972e02b2face117cfa36d54b953b2b3fe85d83c6e7c2fd07df38`.
+  Installed smokes and two identical ten-artifact release stages pass; zero
+  M218 file enters the 114-entry wheel and exactly five occur in the 1,039-entry
+  source archive.
+- **Boundary:** no alternate account, remote host, shell, caller-selected path,
+  inherited handle, output protocol, network, privilege adjustment,
+  impersonation, remote attachment, process-memory access, source mutation,
+  collection, cleanup, or admission action is present.
+- **Record-state evidence:** all 623 files remain static/type clean;
+  architecture/live is 2,307/one skip; strict docs/governance/whitespace pass.
+  The unchanged wheel reproduces, and two 2,586,443-byte source archives match
+  at SHA-256
+  `5e269b17e190ccd4eb82d6179608a577bbc3ee8bc84467ca0744c5a90355b26b`;
+  installed smokes and both exact release rehearsals pass.
+- **Cleanup:** 23 exact M218 scratch targets and 119,301 descendants were
+  proven confined, ignored, untracked, and recursively reparse-free before
+  exact removal. Zero remains; older inaccessible roots were untouched.
+- **Closeout:** post-cleanup format/Ruff/Pyright, 2,307/one-skip
+  architecture/live, strict docs, dated-strict governance, and whitespace pass.
+  Its two generated targets and 5,987 descendants were separately proven
+  confined/ignored/untracked/reparse-free and removed; zero M218 scratch remains.
+- **Commit:** initial DCO commit
+  `80d1134c66af8464a0ee65b1d4ff3c03a57ba491`, tree
+  `9a7e249ba3c140c3fa1c293b385f8bd5957df89c`, has exact M217 as sole parent,
+  17 intended paths, one matching sign-off, consistent maintainer identity,
+  clean worktree/revision/connectivity, and expected `0 119` divergence. This
+  record is incorporated by amendment.
+- **Publication:** withheld. Fresh pruned fetch and direct remote query leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M217 is not its ancestor,
+  only remote `main` exists, and PR #251 remains latest. No branch push, PR,
+  hosted job, tag, release, or package publication occurred.
+
+## M217 Windows retained launch-source remote-debug exclusion - locally complete, publication withheld
+
+- Base: exact M216 DCO commit
+  `c10fd5d6ac95f846dd601b30290aadefa8bf2e4a`, tree
+  `501ada51735810995b7e81af0d8c6a5a74ecde4a`, with sole parent exact M215.
+- Branch hygiene: neutral `release/m217-windows-remote-debug-exclusion-probe`
+  starts from exact M216; the redundant local M216 branch name is removed.
+- Direction: RFC-0200 accepts one direction-preserving, current-host,
+  test-only remote-debug exclusion composition with no attachment, mutation,
+  collection, cleanup, or admission authority increase.
+- Boundary: the fixed direct participant adds exact
+  `-X disable_remote_debug`; every M216 retained source/access, token, session,
+  DACL, image, protocol, settlement, and close observation remains required.
+  Only Python 3.14 gives the option security meaning; 3.12/3.13 are command and
+  lifecycle compatibility observations.
+- Scope: one Windows integration probe, one architecture guard, RFC-0200, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, fixtures, examples, scripts, benchmarks, workflows,
+  metadata, dependencies, lock, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused architecture/live 19/19 on CPython 3.12; 620-file static
+  gates clean; architecture plus live M217 2,294/one skipped; strict docs,
+  governance, and whitespace pass; complete suites 4,453/19 skipped on each
+  CPython 3.12, 3.13, and 3.14; real wgpu, profiles, and vertical slices pass.
+  One recursive scoped-composer defect was observed and corrected before the
+  passing gates.
+- Packaging: initial builds reproduce the 364,868-byte pure wheel at SHA-256
+  `f3357ec5586b90acfab8b33abf5390bd935bcae1bbf02fb31526c3b93e2ce634`
+  and 2,573,360-byte source archive at SHA-256
+  `670d707a5a8cf873c1b70092cb08a84889e555b6ebd0ed58695bfa646cb4f286`;
+  all four M217 files are source-only and zero enters the 114-entry wheel. Two
+  ten-artifact release stages are byte-identical.
+- Review: exactly 16 intended paths; zero protected runtime/package/fixture/
+  example/script/benchmark/workflow/metadata/dependency/lock diff; exact M216
+  files and protected trees remain hash-stable. The test patch restores M215's
+  composer, all inherited handle/process/settlement ownership remains frozen,
+  no attachment/injection/process-memory or mutation operation is introduced,
+  and public claims distinguish 3.14 exclusion meaning from 3.12/3.13
+  compatibility. No actionable correctness, security, architecture,
+  documentation, package-boundary, or allocation finding remains.
+- Record separator: all 620 files remain format-clean; Ruff and strict Pyright
+  report zero findings; architecture plus live M217 passes 2,294 tests with one
+  inherited skip; strict docs, static and dated-strict governance, and
+  whitespace pass.
+- Record state: builds reproduce the unchanged 364,868-byte wheel and
+  identical 2,574,415-byte source archives at SHA-256
+  `e803d66d160ead455d6c3cdd78d37b12b8b32c669f25d3d0c89b58347891f9c1`.
+  Installed-wheel and scene smokes pass; both ten-artifact release rehearsals
+  pass with zero byte difference; the source-only package boundary is
+  unchanged.
+- Cleanup: all 21 initial M217 generated test/report/profile/docs/distribution/
+  release targets and 48,902 descendants were proven repository-confined,
+  ignored, untracked, and recursively reparse-free before exact removal. The
+  regenerated docs directory and 760 descendants were independently proven
+  safe before removal. Zero M217 scratch remains; older outputs and all
+  inaccessible M212 roots were untouched.
+- Final separator: all 620 files remain format-clean; Ruff and strict Pyright
+  report zero findings; the exact M217 boundary passes 19 tests; strict docs,
+  dated-strict governance, and whitespace pass.
+- Pre-commit audit: HEAD is exact M216 with exact tree and sole M215 parent;
+  exactly 16 intended paths are present; only local `main` plus active neutral
+  M217 exist; divergence is `0 117`; maintainer identity is configured;
+  protected surfaces, retired root metadata, M217 scratch, whitespace
+  findings, and object-connectivity findings are all zero.
+- Initial commit: DCO object
+  `d12f386c060aa44e52546a02bbb1ab5c4dcac218`, tree
+  `cebc30dd21f72df8e441ff3c16ea12255e4f444f`, has sole parent exact M216,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 118`
+  divergence. This object audit is incorporated by the closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M216 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 118`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M216
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+- Admission: same-process, cooperative, current-host composition only. No
+  remote-attack attempt occurred. Source provenance, imported-module binding,
+  hostile-process behavior, distinct-principal and independent-host proof,
+  criteria 6 and 7, cleanup implementation, and Windows admission remain
+  unresolved.
+- Remaining: hosted integration of the prerequisite stack before this branch
+  can be safely pushed or proposed.
+
+## M216 Windows retained launch-source access refusal - locally complete, publication withheld
+
+- Base: exact M215 DCO commit
+  `b1cc04bdc0dc93c0a757e2cf2e6ae655efd05e7f`, tree
+  `7da8fcc38bf90ed59449aea466f11383808bf737`, with sole parent exact M214.
+- Branch hygiene: neutral
+  `release/m216-windows-retained-launch-source-access-refusal-probe` starts
+  from exact M215; the redundant local M215 branch name is removed.
+- Direction: RFC-0199 accepts one direction-preserving, current-host,
+  access-only refusal observation with no mutation, collection, cleanup, or
+  admission authority increase.
+- Boundary: the M215 source remains read-only/share-read while competing
+  write-access and delete-access opens require exact error 32 before launch,
+  after connection, and after `ready`; after settlement and retained-source
+  closure both opens succeed and close without use, and the source snapshot
+  remains unchanged.
+- Scope: one Windows integration probe, one architecture guard, RFC-0199, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, fixtures, examples, scripts, benchmarks, workflows,
+  metadata, dependencies, lock, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused 24/24; 618-file static gates clean; architecture plus
+  live M216 2,287/one skipped; strict docs and whitespace pass; complete suites
+  4,434/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: initial builds reproduce the 364,763-byte pure wheel at SHA-256
+  `d4f6d66bf7d786ead6fe0b8186df5509f89fdd17272f2c8f10e8f308ef79d0d1`
+  and 2,562,119-byte source archive at SHA-256
+  `f94d7f43cd5e0f62a807e9997f97ca3718ea21f77c8dab61f827e2aa4a3e2077`;
+  four M216 files are source-only and zero enters the 114-entry wheel. Two
+  ten-artifact release stages are byte-identical.
+- Record state: source/static/type/architecture/docs/governance/whitespace
+  gates pass; record-state builds reproduce the unchanged wheel and identical
+  2,564,768-byte source archives at SHA-256
+  `3d92c7e824135282cd0f618ef7920efe0cca11f68b71e941356da60719922c7b`.
+  Installed-wheel and scene smokes pass; both ten-artifact releases pass and
+  have zero byte difference; the source-only package boundary is unchanged.
+- Review: exactly 16 intended paths; zero protected runtime/package/fixture/
+  example/script/benchmark/workflow/metadata/dependency/lock diff; no identity
+  disclosure, write/delete exercise, mutation API, network, privilege change,
+  collector, cleanup, admission, or CI expansion. Exact native-error checking,
+  unexpected/successful-handle closure, settlement order, and unchanged source
+  snapshot are covered. No actionable correctness, security, architecture,
+  documentation, compatibility, package-boundary, or allocation finding
+  remains.
+- Cleanup: the first sandboxed recursive audit encountered access denials in
+  six pytest-created directories and stopped before deletion. Its
+  access-enabled rerun proved all 23 exact M216 scratch/documentation targets
+  and 45,944 descendants repository-confined, ignored, untracked, and
+  recursively reparse-free; immediate exact revalidation removed all 23.
+  Older outputs and all inaccessible M212 roots were untouched.
+- Admission: same-process, cooperative, current-host observation only. Source
+  provenance, hostile races, distinct-principal and independent-host proof,
+  criteria 6 and 7, cleanup implementation, and Windows admission remain
+  unresolved.
+- Final separator: all 618 files remain format-clean; Ruff and strict Pyright
+  report zero findings; the exact M216 boundary passes 24 tests; strict docs,
+  dated-strict governance, and whitespace pass. The regenerated ignored site
+  and 756 descendants were independently proven confined, untracked, and
+  reparse-free before exact removal; zero M216 scratch remains.
+- Pre-commit audit: HEAD is exact M215 with exact tree and sole M214 parent;
+  exactly 16 intended paths are present; only local `main` plus active neutral
+  M216 exist; divergence is `0 116`; maintainer identity is configured;
+  protected surfaces, retired root metadata, M216 scratch, added identity-
+  disclosure matches, whitespace findings, and object-connectivity findings
+  are all zero.
+- Initial commit: DCO object
+  `3eb4bf6de41b372d0c4cab6a6bf1a0b30896241f`, tree
+  `ac36a4224d4a04ac841ac2622834533bcba7b876`, has sole parent exact M215,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 117`
+  divergence. This object audit is incorporated by the closeout amendments.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M215 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 117`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M215
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
+## M215 Windows retained launch-source binding probe - locally complete, publication withheld
+
+- Base: exact M214 DCO commit
+  `8da9809a9505437175c09e439e43caca84e7333a`, tree
+  `6b06cdd6e404cde29bc705054ff3d5bad8dd9838`, with sole parent exact M213.
+- Branch hygiene: neutral
+  `release/m215-windows-retained-launch-source-binding-probe` starts from exact
+  M214; the redundant local M214 branch name is removed.
+- Direction: RFC-0198 accepts one direction-preserving, current-host,
+  test-only retained launch-source binding probe with no collection or cleanup
+  authority increase.
+- Source boundary: fixed participant source retained and snapshotted before
+  launch, rewound, consumed by fixed direct `pythonw.exe -I -B -` from inherited
+  standard input, and rechecked after challenge/ready before release.
+- Inheritance boundary: exact `STARTUPINFOEXW` allowlist of the source plus two
+  distinct write-only `NUL` handles; retained token and both image handles are
+  rechecked before release, while process, native session, and DACL checks
+  remain required pre-challenge prerequisites.
+- Security boundary: bounded private source identity/content; no pathname
+  reopen, unstable remote-memory introspection, identity disclosure, mutation,
+  imported-module claim, source-commit claim, hostile-ABA claim, account launch,
+  privilege change, network, collector, cleanup, or admission.
+- Scope: one Windows integration probe, one architecture guard, RFC-0198, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, fixtures, examples, scripts, benchmarks, workflows,
+  metadata, dependencies, lock, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused 34/34; 616-file static gates clean; architecture plus
+  live M215 2,284/one skipped; strict docs/governance/whitespace pass; complete
+  suites 4,410/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: record-state builds reproduce the 364,667-byte pure wheel at SHA-256
+  `2e6b684275653afcfa6c2d413ec06c3f6988d8fd74a9aa006d26ca3330bd7cdb`
+  and 2,554,519-byte source archive at SHA-256
+  `274409936034d9d5b54f30ca0a8d8624d3b28db9f324ada10b8475af952ec947`;
+  four M215 files are source-only and zero enters the 114-entry wheel.
+- Review: exactly 16 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; zero retired root
+  control metadata or sensitive added-content disclosure. One documentation
+  overclaim was narrowed to the actual pre-/post-challenge checks and one unused
+  native constant was removed. Corrected focused static/type/docs and 34 tests
+  pass; no actionable correctness, authority, security, architecture,
+  compatibility, documentation, package-boundary, or CI-allocation finding
+  remains.
+- Cleanup: all 25 M215 generated test/report/profile/docs/distribution/release
+  targets and 47,425 descendants were proven repository-confined, ignored,
+  untracked, and recursively reparse-free before exact removal across the
+  primary and regenerated-documentation cleanup. Zero remains; older outputs
+  and the three inaccessible M212 roots were untouched.
+- Pre-commit audit: exact M214 HEAD/tree/parent, exactly 16 intended paths,
+  only local `main` plus active neutral M215, expected `0 115` divergence,
+  configured maintainer identity, zero protected-surface diff, zero M215
+  scratch, absent retired root metadata, clean whitespace, and connected Git
+  objects.
+- Initial commit: DCO object
+  `6903bab3fe9fad9310365aa05ef3482e7a0a21c5`, tree
+  `c56b4b071f11037bd9730af1193780a7b1158f21`, has sole parent exact M214,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 116`
+  divergence. This object audit is incorporated by the closeout amendments.
+- Admission: same-host, same-logon, same-session observation only. Criteria 6
+  and 7 remain unresolved; Windows remains unadmitted and cleanup remains
+  unimplemented and unauthorized.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M214 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 116`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M214
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
+## M214 Windows retained process-image binding probe - locally complete, publication withheld
+
+- Base: exact M213 DCO commit
+  `217d29d07fddf0d123d6c6c903b4133806f226fc`, tree
+  `5f5ac6b6cb9ac7073b37ac9d0aeac469b08fa6bb`, with sole parent exact M212.
+- Branch hygiene: neutral
+  `release/m214-windows-retained-process-image-binding-probe` starts from exact
+  M213; the redundant local M213 branch name is removed.
+- Direction: RFC-0197 accepts one direction-preserving, current-host,
+  test-only retained process-image binding probe with no collection or cleanup
+  authority increase.
+- Image boundary: fixed expected executable retained before launch; observed
+  image queried through the retained participant process and retained through
+  challenge/ready; private normalized name, volume/file ID, bounded size, and
+  SHA-256 must agree and remain stable before release.
+- Security boundary: read-only handles, fixed 64 MiB/64 KiB bounds, no identity
+  disclosure, mutation, loaded-script claim, hostile-ABA claim, account launch,
+  privilege change, network, collector, cleanup, or admission.
+- Scope: one Windows integration probe, one architecture guard, RFC-0197, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, examples, scripts, benchmarks, workflows, metadata,
+  dependencies, lock, version, permissions, and CI allocation remain unchanged.
+- Validation: focused 23/23; 614-file static gates clean; architecture plus
+  live M214 2,262/one skipped; strict docs and whitespace pass; complete suites
+  4,376/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: initial and record-state builds reproduce the 364,573-byte pure
+  wheel at SHA-256
+  `4b45de86d48bb02879b9b336de24c055616071555a94b9bac6353b0803f23dd6`
+  and record-state 2,543,397-byte source archive at SHA-256
+  `011df8367b00f77c93ad81bdeac4d37ee0e84da8026b6be029fcc5469bcf4143`;
+  four M214 files are source-only and zero enters the 114-entry wheel.
+- Review: exactly 16 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; zero retired root
+  control metadata or sensitive added-content disclosure; no actionable
+  correctness, authority, security, architecture, compatibility,
+  documentation, package-boundary, or CI-allocation finding remains.
+- Cleanup: all 20 M214 generated test/report/profile/docs/distribution/release
+  targets and 43,667 descendants were proven repository-confined, ignored,
+  untracked, and recursively reparse-free before exact removal. Zero remains;
+  the one regenerated closeout documentation directory was separately audited
+  and removed. Older outputs and the three inaccessible M212 roots were
+  untouched.
+- Admission: same-host, same-logon, same-session observation only. Criteria 6
+  and 7 remain unresolved; Windows remains unadmitted and cleanup remains
+  unimplemented and unauthorized.
+- Initial commit: DCO object
+  `1adc5e98a7316d0d01ee2d8ecdec636ee69af5f5`, tree
+  `6fe399c064519dbdaa972af1213135c950427cde`, has sole parent exact M213,
+  exactly 16 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision/worktree/connectivity, and expected `0 115`
+  divergence. This hosted-safety record is incorporated by one amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote-head query
+  leave public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M213 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 115`.
+  Authentication is valid; the repository is public, unarchived, and defaults
+  to `main`; PR #251 remains latest. Publishing would expose absent M100-M213
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
+## M213 Windows local control token-binding probe - locally complete, publication withheld
+
+- Base: exact fully locally validated M212 DCO commit
+  `98500e9fbe0eda9997d54d729200ba7acdbf05ef`, tree
+  `7c26481ed145ed912fb7e6acb819ec17448c8f1a`, with sole parent exact M211.
+- Branch hygiene: neutral
+  `release/m213-windows-local-control-token-binding-probe` starts from exact
+  M212; the redundant local M212 branch name is removed.
+- Direction: RFC-0196 accepts one direction-preserving test-only retained
+  primary-token and native session-binding probe without increasing collection
+  or cleanup authority.
+- Identity boundary: query-only participant primary token retained across
+  challenge/ready; private user/logon/authentication/token/modified/session/type
+  snapshots match the controller where required and remain stable before
+  release.
+- Session boundary: native pipe-client, retained-process, and participant-token
+  sessions agree; M212's protected single-logon-SID DACL is revalidated using
+  the participant token's copied logon SID.
+- Security boundary: no impersonation, thread-token transition, account launch,
+  credential lifecycle, privilege change, stable-identity disclosure, network,
+  public runner, collection, or cleanup action.
+- Scope: one Windows integration probe, one architecture guard, RFC-0196, one
+  security guide, eight public registrations, and four project records.
+  Runtime/package code, examples, scripts, benchmarks, workflows, metadata,
+  dependencies, lock, version, permissions, and CI allocation remain unchanged.
+- Validation: focused 25/25; 612-file static gates clean; architecture plus live
+  M213 2,253/one skipped; strict docs/governance/whitespace pass; complete suites
+  4,353/19 skipped on CPython 3.12, 3.13, and 3.14; real wgpu, profiles,
+  vertical slices, reproducible builds, installed smokes, and two exact release
+  rehearsals pass.
+- Packaging: final record-state reproducible 364,461-byte pure wheel at SHA-256
+  `906099ccbb2351cd40e6959b35b9ea47ebf9151b6da08e6839905e00cff3a83d`
+  and 2,534,018-byte source archive at SHA-256
+  `0c43685178018c0bced374a2749978630f55891fdce6f99f22ef114d4379141e`;
+  four M213 files are source-only and zero enters the 114-entry wheel.
+- Review: no actionable correctness, authority, security, architecture,
+  documentation, compatibility, package-boundary, or allocation finding.
+  Current repeated Clockwork output supersedes one stale M212 narrative value;
+  frozen runtime and example trees remain unchanged.
+- Cleanup: all 15 M213 generated targets were independently proven confined,
+  ignored, untracked, and reparse-free before exact removal. Previously
+  disclosed inaccessible M212 scratch remains untouched.
+- Admission: same-host, same-logon, same-session observation only. Criteria 6
+  and 7 remain unresolved; Windows remains unadmitted and cleanup remains
+  unimplemented and unauthorized.
+- Commit: initial signed-off object
+  `0b32bb265811b50b91bc1e0862ad5ca50e2828b5`, tree
+  `5ae8220f769e2417f74f9083fa991f49e490d786`, has sole parent exact M212,
+  exactly 16 intended paths, consistent maintainer identity, clean worktree,
+  revision, and object connectivity, plus expected `0 114` divergence. One
+  closeout amendment incorporates this record.
+- Publication: fresh hosted `main` remains exact M99; M212 is absent and only
+  remote `main` exists. Authentication is valid, the repository is public and
+  unarchived, and PR #251 remains latest. Push/PR is withheld because publishing
+  would expose absent M100-M212 prerequisites; no hosted allocation occurs.
+
+## M212 Windows local control-channel probe - locally complete, publication withheld
+
+- Base: exact fully locally validated M211 DCO commit
+  `ff78fb674f3c5b18437e1164557e139933d0d424`, tree
+  `4ca126e17fa65609bbe5cad1975fa206262e9e7d`, with sole parent exact M210.
+- Branch hygiene: neutral `release/m212-windows-local-control-channel-probe`
+  starts from exact M211; the redundant local M211 branch name is removed.
+- Direction: RFC-0195 adopts one direction-preserving test-only probe of a
+  Windows same-logon local coordination primitive without increasing
+  collection or cleanup authority.
+- Endpoint boundary: randomized one-instance remote-rejecting message pipe,
+  explicit protected one-logon-SID DACL, exact native readback, and live
+  first-instance collision refusal.
+- Identity boundary: fixed direct participant created suspended, no inherited
+  handles, no-breakaway kill-on-close Job assignment before resume, exact
+  one-member accounting, and native pipe-client identity bound to the retained
+  process handle.
+- Protocol boundary: fresh 256-bit challenge, exact canonical sequences 0-3,
+  1,024-byte messages, bounded overlapped controller connect/read/write, and
+  observed replay, wrong-challenge, malformed-shape, and disconnect refusal.
+- Scope: one test fixture, one Windows integration probe, one architecture
+  guard, RFC-0195, one security guide, eight public registrations, and four
+  project records. Runtime/package code, examples, scripts, workflows,
+  dependencies, lock, metadata, version, permissions, and CI allocation remain
+  unchanged.
+- Validation: focused live/architecture 17/17; 610-file Ruff formatting and
+  lint clean; strict Pyright clean; architecture 2,228/1 skipped; strict docs
+  and whitespace clean. Complete isolated suites pass 4,328/19 skipped on each
+  of CPython 3.12.13, 3.13.13, and 3.14.5. Real wgpu, profiles, vertical slices,
+  reproducible builds, installed smokes, two release rehearsals, and both
+  governance modes pass.
+- Initial packaging: reproducible 364,404-byte pure wheel at SHA-256
+  `a157884268ed30ec9a7a275d2ea9e40d865e8fd5de0c5b56bdceeab70eb98d13`
+  and 2,516,609-byte source archive at SHA-256
+  `37bce1a2c7718cb7255204778e82fc3e8f68126e442d443a322c1f63c5f407e6`.
+  Inventory is 114 wheel/1,014 source entries; the five M212 implementation
+  and decision files are source-only. The wheel's metadata reflects the
+  updated README but contains no new product module.
+- Record-inclusive closeout: the unchanged lock and 45-package graphics
+  environment, all 610-file static gates, 2,228 architecture passes/one skip,
+  strict docs, both governance modes, and whitespace remain clean. Two builds
+  reproduce a 364,390-byte wheel at SHA-256
+  `0d671cea6ee9f0def17268c126411f7661a853bfbb3f5f6257f60371082370e6`
+  and 2,519,609-byte source archive at SHA-256
+  `d0dabb8fb4db883338a70cbac8cfe7ea169758417820db0c64e914de42d5f2cb`;
+  installed smokes and two byte-identical release stages pass. Inventory
+  remains 114 wheel/1,014 source entries with the five M212 files source-only.
+- Review correction: native wait failures now preserve their exact Windows
+  error category after cancellation settlement rather than being reported as
+  timeouts. Focused static/type checks and all 17 M212 tests pass; complete
+  corrected-tree suites pass 4,328 tests/19 skips on each supported CPython.
+- Final corrected-record packaging reproduces the unchanged 364,390-byte wheel
+  at SHA-256
+  `0d671cea6ee9f0def17268c126411f7661a853bfbb3f5f6257f60371082370e6`
+  and identical 2,520,789-byte source archives at SHA-256
+  `3d85c259b30c2742cf6fbb5f4f912397cc09c63cb9c2d4709579c67aa9bb8e9e`;
+  installed smokes and both byte-identical ten-artifact release stages pass.
+- Review: exactly 17 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; retired root control
+  metadata remains absent; and added-content identity, credential, machine-
+  path, debug, backend, network, evaluation, shell, breakaway, privilege, and
+  account-launch scans have zero match. No actionable finding remains.
+- Cleanup: the first recursive audit stopped before deletion on access denial.
+  Thirty-five exact targets were then proven repository-confined, ignored,
+  untracked, and recursively reparse-free and removed after immediate target-
+  set revalidation. Three ignored/untracked isolated-suite roots remain because
+  their sandbox-owned ACL denies traversal; attempted inherited-access reset
+  failed, and ownership was not changed without separate authority.
+- Post-cleanup separator: all 610 Python files remain format-clean; Ruff and
+  strict Pyright pass; all 17 M212 tests, strict docs, both governance modes,
+  and whitespace pass. The sole regenerated accessible docs target was audited
+  and removed; only the same three inaccessible ignored roots remain.
+- Pre-commit: exact M211 HEAD/tree/parent, exact 17-path allowlist, zero
+  protected diff, only local `main` and neutral M212, configured maintainer
+  identity, expected `0 112` divergence, three disclosed ignored/untracked
+  roots, zero sensitive added-content match, clean whitespace, and clean Git
+  connectivity.
+- Admission: this is one same-host, same-logon observation only. Criteria 6
+  and 7 remain unresolved; Windows cleanup remains unimplemented,
+  unauthorized, and unadmitted.
+- Initial local commit: DCO commit
+  `5ee787e277553d73e58672364708abc7c33be0a1`, tree
+  `c312d44c3861383a5f004d0a9d7e1e7bda633c1f`, has sole parent exact M211,
+  exactly 17 intended paths, one matching sign-off, consistent author and
+  committer identity, clean revision whitespace, expected `0 113` divergence,
+  clean worktree and Git connectivity, and the three disclosed ignored/
+  untracked residual roots. This record is incorporated by one closeout
+  amendment.
+- Closeout commit: `e1e8d5b6b9d1f1ff3812d13240b572080d6b6383`,
+  tree `f613a700b96c35c968995ea4c154a2939275cea8`, retains exact M211 as sole
+  parent, exact 17-path scope, one matching sign-off, consistent identity,
+  clean worktree/revision/connectivity, expected `0 113` divergence, and the
+  three disclosed ignored/untracked roots. This hosted-safety record is
+  incorporated by one final evidence-only amendment.
+- Publication: withheld. A fresh pruned fetch leaves public `origin/main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M211 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 113`. Configured
+  GitHub authentication is invalid. Publishing would expose absent M100-M211
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
+## M211 Windows independent-host process-containment probe - locally complete, publication withheld
+
+- Base: fully locally validated M210 DCO commit
+  `2aa04dd2c6c259e2d8c5295f7ac1ca65df04f6b4`, tree
+  `73983d6e0c17f4ccd5605e59f220058007fe5fae`, with sole parent exact M209.
+- Branch hygiene: neutral
+  `release/m211-windows-independent-host-process-containment-probe` starts
+  from exact M210; the redundant local M210 branch name is removed.
+- Direction: RFC-0194 adopts one test-only current-host proof of the fixed
+  Windows process-containment primitive without increasing cleanup or
+  collection authority.
+- Launch boundary: one unnamed no-breakaway kill-on-close Job Object; direct
+  fixed `pythonw.exe` root created suspended, retained-handle assignment before
+  resume, one inherited private output handle, and retained thread closure.
+- Membership boundary: one fixed direct descendant, two bounded canonical
+  readiness records, retained root and descendant process handles, exact
+  native identity checks, and exact two-member Job accounting.
+- Settlement boundary: fixed Job-scoped termination and last-job-handle-close
+  fail-safe both settle the retained tree under bounded waits; incompatible
+  nested assignment skips explicitly and has no weaker fallback.
+- Scope: one test fixture, one Windows integration probe, one architecture
+  guard, RFC-0194, one security guide, eight public registrations, and four
+  project records. Runtime/package code, examples, scripts, workflows,
+  dependencies, lock, metadata, version, and hosted CI allocation remain
+  unchanged.
+- Validation so far: focused live and architecture checks pass 14 tests; all
+  607 Python files are format-clean; Ruff and strict Pyright are clean; the
+  architecture suite passes 2,216 tests with one skip; strict docs and
+  whitespace pass. Complete isolated suites pass 4,311 tests with 19 skips on
+  each of CPython 3.12.13, 3.13.13, and 3.14.5. Real wgpu, profiles, vertical
+  slices, reproducible distributions, installed smokes, and two release
+  rehearsals pass.
+- Packaging: the pre-record 364,279-byte pure wheel is SHA-256
+  `0f12406dc0639ef3eb2b296720ef9c3c68690bef91f5243d4381c76201e7c3bd`;
+  the 2,496,919-byte source archive is SHA-256
+  `f4267f3f48495ffc52e9c2de81893a2a911c948489f328db488adc290069298b`.
+  The 114-entry wheel has zero M211 material; the 1,009-entry source archive
+  contains exactly the five M211 implementation and decision artifacts.
+- Record-inclusive closeout: the lock and 45-package graphics environment are
+  unchanged; all 607-file static gates pass; complete architecture passes
+  2,216 tests with one skip; strict docs, both governance modes, and whitespace
+  pass. Two record-state builds reproduce the unchanged wheel and identical
+  2,500,060-byte source archives at SHA-256
+  `2b0c3c41efc65d96458939c03fa29facb961057f7a36dec9f0cb9e79df2d9e43`;
+  installed smokes and two byte-identical release stages pass.
+- Review: exactly 17 intended paths; zero protected runtime/package/example/
+  script/benchmark/workflow/metadata/dependency/lock diff; and zero added
+  development-tool identity, credential, machine path, debug marker, or
+  retired-control-path match. No actionable finding remains.
+- Cleanup: the first recursive audit was access-denied and did not authorize
+  deletion. The exact access-enabled audit proved all 25 targets confined to
+  repository `.tmp`, ignored, untracked, and reparse-free; guarded removal
+  revalidated the same set and left zero M211 scratch target.
+- Post-cleanup separator: all 607 Python files remain format-clean; Ruff and
+  strict Pyright pass; the exact metadata/M210/M211 group passes 48 tests with
+  one supported-symlink skip; strict docs, both governance modes, and
+  whitespace pass. The two regenerated scratch targets were independently
+  revalidated and removed, leaving zero M211 target.
+- Pre-commit: exact M210 HEAD/tree/parent, exact 17-path allowlist, zero
+  protected diff, only local `main` and neutral M211, configured maintainer
+  identity, expected `0 111` divergence, zero sensitive added-line or scratch
+  match, clean whitespace, and clean object connectivity.
+- Initial local commit: DCO commit
+  `798f397675a441c05af746f05cb561714c2e3f34`, tree
+  `ffd1520e6e4f889c9897ae322a0b08871d45bd23`, has sole parent exact M210,
+  exactly 17 intended paths, one matching sign-off, expected `0 112`
+  divergence, clean revision whitespace, clean worktree, zero scratch, and
+  clean object connectivity. This record is incorporated by one closeout
+  amendment.
+- Closeout commit: `ef5fe47191dabc95bd9ffca94a5f071e8832eebc`, tree
+  `b516b68e46799cdf5bf6e64eb6567d462527e6f1`, retains exact M210 as sole
+  parent, exact 17-path scope, one matching sign-off, expected `0 112`
+  divergence, clean worktree, zero scratch, clean whitespace, and clean object
+  connectivity. This hosted-safety record is incorporated by one final
+  evidence-only amendment.
+- Admission: criteria 6 and 7 remain unresolved; no qualifying independent-
+  host collection has occurred; Windows cleanup remains unimplemented,
+  unauthorized, and unadmitted.
+- Publication: withheld. A fresh pruned fetch and direct hosted-head query
+  leave public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M210 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 112`.
+  Authentication is valid; the repository is public, unarchived, defaults to
+  `main`, and PR #251 remains latest and merged. Publishing would expose the
+  absent M100-M210 prerequisite stack, so no push, PR, hosted allocation, tag,
+  release, or package publication occurs.
+
+## M210 Windows independent-host collection-plan validator - locally complete, publication withheld
+
+- Base: fully locally validated M209 DCO commit
+  `03f3848a3bf52945ab4d1b0af4065219568a5b1a`, tree
+  `f82a3b12edfe5a3765580837327d4373671373d6`, with sole parent exact M208.
+- Branch hygiene: neutral
+  `release/m210-windows-independent-host-collection-plan-validator` starts
+  from exact M209; the redundant local M209 branch name is removed.
+- Direction: RFC-0193 adds source-only structural validation before any
+  separately reviewed privileged harness.
+- Input boundary: one stable regular non-symlink file, 1,048,576-byte bound,
+  bounded canonical JSON, exact fields, and path-free failures.
+- Schema boundary: exact ordered M207 profiles/barriers/interruptions, M209
+  operations, at most 32 contiguous ephemeral host ordinals, typed identity
+  syntax, exact requirements, and recomputed totals.
+- Authority boundary: `plan_complete` is derived structural state only;
+  collection remains `not_run`, authority and criteria remain false, and
+  Windows admission remains false.
+- Fixture: one canonical no-host document with null identities, false
+  requirements, all profiles `not_run`, and no stable identifier.
+- Scope: one source-only validator, one fixture, integration tests, one
+  architecture guard, RFC-0193, one security guide, eight public registrations,
+  and four project records. Runtime/package code, examples, scripts, workflows,
+  dependencies, lock, metadata, version, and CI allocation remain unchanged.
+- Validation so far: exact M209 baseline 12/12; both governance modes pass;
+  intentional red observed; final focused M210 integration/architecture group
+  passes 29 tests with one environment-dependent symlink skip. All 604 Python
+  files are format-clean; Ruff and strict Pyright are clean; the architecture
+  suite passes 2,204/1 skipped; strict docs and whitespace pass. Complete
+  isolated suites pass 4,297/19 skipped on each of CPython 3.12.13, 3.13.13,
+  and 3.14.5. Graphics, profiles, vertical slices, reproducible distributions,
+  installed smokes, and two release rehearsals pass.
+- Record-inclusive closeout: unchanged lock and 45-package graphics environment;
+  all 604 Python files format-clean; Ruff and strict Pyright clean; complete
+  architecture 2,204/1 skipped; strict docs, both governance modes, and
+  whitespace pass.
+- Record-state packaging: the 364,159-byte wheel remains SHA-256
+  `d921e8e917106b76274f22a34e1d7b21203f0ba6f539948ce3e20b45acb5338f`;
+  the 2,482,598-byte source archive is SHA-256
+  `5ce0ab59218825dc3dabbfbc34a848797c30d2b7cff7e1bb629b9f8ad72b3036`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory is 114 wheel/1,004 source entries with all six M210 files source-
+  only.
+- Cleanup: an initial sandboxed recursive audit was access-denied and made no
+  deletion decision. The exact access-enabled audit proved all 31 M210 targets
+  repository-confined, ignored, untracked, and reparse-free; guarded removal
+  revalidated the set and left zero target. The post-cleanup static and exact
+  metadata/M209/M210 separator passes 27 tests, both governance modes, and
+  whitespace with zero regenerated M210 scratch.
+- Pre-commit: exact M209 HEAD/tree/parent, exact 18-path allowlist, zero
+  protected diff, only local `main` and neutral M210, configured maintainer
+  identity, expected `0 110` divergence, zero sensitive added-line or scratch
+  match, clean whitespace, and clean Git connectivity.
+- Initial local commit: DCO commit
+  `ee20a6e73e6c6cd6bb833368b7f597634a7d4848`, tree
+  `fb01371982666a8683148a2715b4365ee0acc6c1`, has sole parent exact M209,
+  exactly 18 intended paths, one matching sign-off, expected `0 111`
+  divergence, clean revision whitespace, clean worktree, and clean object
+  connectivity. This record is incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M209 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 111`.
+  Authentication is valid; the renamed repository is public, unarchived,
+  defaults to `main`, and PR #251 remains latest and merged. Publishing would
+  expose absent M100-M209 prerequisites, so no push, PR, hosted allocation,
+  tag, release, or package publication occurs.
+
+## M209 Windows independent-host collection-authority policy - locally complete, publication withheld
+
+- Base: fully locally validated M208 DCO commit
+  `b30892e35b6dfcb2f0c11a209f04260228738db6`, tree
+  `5478be6d27e81f54f1b6ebae0a616249ee930892`, with sole parent exact M207.
+- Branch hygiene: neutral
+  `release/m209-windows-independent-host-collection-authority-policy` starts
+  from exact M208; the redundant local M208 branch name is removed.
+- Direction: RFC-0192 defines future private collection authority without
+  adding an executable capability, privileged harness, or qualifying run.
+- Authority boundary: private, non-serializable, single-run and single-use;
+  exact host, fixture, lane, trial, barrier, interruption, identity, and closed-
+  operation binding.
+- Isolation boundary: offline disposable hosts, disabled network and clipboard,
+  no writable live share, public runner, repository credential, or participant
+  self-attestation.
+- Interruption boundary: exact spawned-process targeting; current-storage VM
+  turn-off without guest shutdown or checkpoint restore; operator-only physical
+  power loss.
+- Custody boundary: private manifest, chronological record, atomic same-volume
+  staging, separately retained digest, separate sanitization, authority expiry,
+  bounded teardown, and quarantine on ambiguity.
+- Readiness: criteria 6 and 7 remain unresolved; Windows cleanup remains
+  unimplemented and unauthorized, and admission remains false.
+- Scope: one architecture guard, RFC-0192, one security policy, eight public
+  registrations, and four project records. Runtime/package code, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  remain unchanged.
+- Validation: focused M208 baseline passes 45 tests with one skip; both
+  governance modes pass; current official-source research is recorded; the
+  intentional red failed its one selected missing-policy check; and the final
+  M209 guard passes all 12 tests. The unchanged lock/graphics sync, all 601-
+  file static gates, 2,194 architecture tests with one skip, strict docs, and
+  whitespace pass. Complete isolated suites pass 4,268/18 skipped on each of
+  CPython 3.12.13, 3.13.13, and 3.14.5.
+- Graphics and samples: ten real-wgpu tests, two fresh one-repeat profiles,
+  eight profile assertions, Null/wgpu Clockwork Arena, and Agent World Builder
+  pass and reproduce their established identities.
+- Pre-record packaging: two distributions are byte-identical; installed-wheel
+  smoke and two complete byte-identical ten-artifact release stages pass. The
+  114-entry wheel has zero M209/project-control payload, while the 998-entry
+  source archive includes the three M209 source-only implementation files.
+- Review: exactly 15 intended paths, zero protected runtime/package/workflow/
+  dependency/lock difference, absent retired root control metadata, and zero
+  added credential, machine-local path, or tooling-identity match. No
+  actionable security, authority, correctness, compatibility, documentation,
+  package-boundary, or CI-allocation finding remains. One evidence-row wording
+  disclosure was caught by the repository-hygiene guard and corrected.
+- Record-inclusive closeout: all 601-file static gates pass; the complete
+  architecture suite passes 2,194 tests with one skip; strict docs, both
+  governance modes, and whitespace pass. Two builds reproduce the unchanged
+  364,078-byte wheel at SHA-256
+  `3bdffc633cc0f3a6e05bc20d5d720ea49dc58d0daac5efca5bd806575365de1d`
+  and a 2,468,345-byte source archive at SHA-256
+  `36d2e0631af54b93fa8a6d50466368cfb15a9a645c0ea7262e097cf8355cb140`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory is 114 wheel/998 source entries with exactly the three M209 files
+  source-only.
+- Final separator and cleanup: all 601 Python files remain format-clean; Ruff
+  and strict Pyright pass; the exact metadata-hygiene/M209 group passes 17
+  tests; strict docs, both governance modes, and whitespace pass. All 26 exact
+  M209 scratch targets were verified repository-confined, ignored, untracked,
+  and reparse-free immediately before guarded removal; zero remains. Final
+  post-record source checks also pass and their sole remaining docs target was
+  safely removed.
+- Pre-commit: corrected quoting proves exact M208 HEAD/tree/parent, the exact
+  15-path allowlist, zero protected diff, only local `main` and neutral M209,
+  configured maintainer identity, expected `0 109` local-main divergence,
+  zero scratch, clean whitespace, and clean Git connectivity.
+- Initial local commit: DCO commit
+  `185df0d4cf599e4bceb26da5bd4312d25474a5f2`, tree
+  `99255ff861cb7f0d9743bbc2d5bc72aab11b8fed`, has sole parent exact M208,
+  exactly 15 intended paths, matching author/committer/sign-off identity,
+  clean revision whitespace, expected `0 110` divergence, clean worktree, zero
+  scratch, and clean object connectivity. This record is incorporated by one
+  closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M208 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 110`.
+  Authentication is valid; the repository is public, unarchived, defaults to
+  `main`, and PR #251 remains latest and merged. Publishing would expose absent
+  M100-M208 prerequisites, so no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+
+## M208 Windows independent-host evidence validator - locally complete, publication withheld
+
+- Base: fully locally validated M207 DCO commit
+  `1b3af35a6b4c2382199e0cdad540b258e0008866`, tree
+  `8e1d5cb86b70e7e4da42f69d044940543fda9c7f`, with sole parent exact M206.
+- Branch hygiene: neutral
+  `release/m208-windows-independent-host-evidence-validator` starts from exact
+  M207; the redundant M207 local branch name is removed.
+- Direction: RFC-0191 adds a source-only offline validator without increasing
+  cleanup, process, credential, host, or filesystem authority.
+- Binding boundary: the validator separately validates the M206 companion,
+  recomputes its digest, and derives criterion 6 before evaluating criterion 7.
+- Input boundary: both artifacts are stable regular non-symlink files; the
+  independent document uses exact bounded canonical JSON and path-free errors.
+- Schema boundary: exact host independence, fixed capability classifications,
+  eight profile lanes, three interruption classes, bounded results/counts,
+  sanitized outcomes, and derived aggregate claims.
+- Fixture: one canonical no-host artifact binds the reviewed incomplete M206
+  fixture and keeps all eight profiles `not_run`.
+- Readiness: criteria 6 and 7 remain unresolved; Windows cleanup remains
+  unimplemented and unauthorized, and admission remains false.
+- Scope: one source-only validator, one reviewed fixture, integration tests,
+  one architecture guard, RFC-0191, one security guide, eight public
+  registrations, and four project records. Runtime/package code, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  remain unchanged.
+- Validation: research and governance baselines pass; intentional red was
+  observed; all 600 Python files were format-clean before review; Ruff and
+  strict Pyright pass; 178 focused architecture/evidence tests and strict docs
+  pass. Complete post-review suites pass 4,254/17 skipped on CPython 3.12.13
+  plus graphics and 4,244/18 skipped on CPython 3.13.13 and 3.14.5. Ten real-
+  wgpu tests, fresh profiles, and both vertical slices pass.
+- Review: the ABA lane was tightened to require the local fixed NTFS stable
+  128-bit host/volume-scoped capability profile; new bounds and symlink
+  regressions were added. The final focused group passes 45 tests with one
+  environment-dependent symlink skip on each supported interpreter. No other
+  actionable source finding remains at this stage.
+- Pre-review packaging: two distributions were byte-identical, installed
+  wheel/scene smokes passed, and two ten-artifact release stages passed complete
+  smoke with zero difference. Record-inclusive packaging and final audit remain
+  in progress.
+- Record-inclusive separator: all 600 Python files are format-clean; Ruff and
+  strict Pyright return zero findings; the exact architecture/evidence group
+  passes 181 tests with one supported-symlink skip; strict docs, both governance
+  modes, and whitespace pass.
+- Record-state packaging: two builds reproduce the 363,972-byte wheel at
+  SHA-256
+  `23c4635ab61bf125978c1fc73d728a05f96219e22847816a9b83be500f38dfaa`
+  and the 2,454,719-byte source archive at SHA-256
+  `5aa0488a9835b0e442eddd9c7bf587b38fe941312ac97295fa62eaf55021de6f`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory is 114 wheel/995 source entries with all six M208 implementation
+  files source-only and zero forbidden wheel or retired-control entry.
+- Scope audit: exactly 18 intended paths remain. Protected runtime, examples,
+  scripts, workflows, metadata, dependency, and lock surfaces have zero diff.
+  Corrected allowlist construction found zero delta; focused service-identity,
+  credential-assignment, and machine-local-path scans have zero match; retired
+  root control metadata remains absent.
+- Cleanup: all 41 M208 test, environment, profile, documentation,
+  distribution, and release scratch targets were repository-confined,
+  ignored, untracked, and recursively reparse-free. Guarded removal revalidated
+  the exact set, and a separate postcondition proves zero target remains.
+  The final separator then passed all 600-file static gates, 181 focused tests
+  with one supported-symlink skip, strict docs, both governance modes, and
+  whitespace. Its two regenerated directories were separately revalidated and
+  removed; zero M208 scratch remains. Commit and publication-safety closeout
+  remain in progress.
+- Pre-commit: corrected quoting proves exact M207 HEAD/tree/parent, the exact
+  18-path allowlist, zero protected diff, only local `main` and neutral M208,
+  configured maintainer identity, expected `0 108` local-main divergence,
+  zero retired root metadata or scratch, clean whitespace, and clean Git
+  connectivity.
+- Initial local commit: DCO commit
+  `ac95e0aaf67188a19ff759811600b8a85a58bf35`, tree
+  `9cef3daa1562fc1b65f2e95de3c9fa90772d7909`, has sole parent exact M207,
+  exactly 18 intended paths, one matching sign-off, consistent author and
+  committer identity, clean revision whitespace, expected `0 109` divergence,
+  a clean worktree, zero scratch, and clean Git connectivity. This record is
+  incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct remote query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M207 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 109`. Authentication
+  is valid; the repository is public, unarchived, defaults to `main`, and PR
+  #251 remains latest and merged. Publishing would expose absent M100-M207
+  prerequisites, so no push, PR, hosted allocation, tag, release, or package
+  publication occurs.
+
+## M207 Windows independent-host validation contract - locally complete, publication withheld
+
+- Base: fully locally validated M206 DCO commit
+  `5ae957ffcfb1523e980ce6ff95841f685e05ea27`, tree
+  `52b47c015b184390618b7ea387b430135894b326`, with sole parent exact M205.
+- Branch hygiene: neutral
+  `release/m207-windows-independent-host-validation-contract` starts from
+  exact M206; the redundant M206 local branch name is removed.
+- Direction: RFC-0190 defines future M199 criterion 7 evidence without adding
+  authority, a harness, a validator, or claiming a qualifying run.
+- Host boundary: every profile requires two independently provisioned hosts
+  with distinct OS, boot, and storage instances.
+- Capability boundary: filesystem, remote/local, volume flags, same-volume,
+  file-ID scope, and persistence are observed and revalidated rather than
+  inferred.
+- Matrix boundary: local fixed NTFS plus ReFS, SMB, CsvFS, cross-volume,
+  unknown, missing-capability, and file-ID-reuse lanes are mandatory; safe
+  refusal must be observed.
+- Durability boundary: forced-process, VM-power-cut, and physical-host-power-
+  loss evidence are distinct and each requires restart reconciliation.
+- Evidence boundary: a future bounded canonical schema is sanitized and bound
+  to exact source, executable, contract, cross-principal evidence, capability,
+  and fixture identities; no machine or principal identifier is public.
+- Custody boundary: operator-controlled offline fixtures only; no public self-
+  hosted runner, network access, account secret, or CI expansion.
+- Readiness: criterion 6 must already pass. Criteria 6 and 7 remain unresolved;
+  Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0190, one security decision, eight public
+  registrations, and four project records. Runtime/package code, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  remain unchanged.
+- Validation: governance baselines pass; research is current; intentional red
+  failed only nine absent contract checks. All 597 Python files are format-
+  clean; Ruff and strict Pyright pass; the exact architecture group passes 108
+  tests; strict docs, governance, and whitespace pass.
+- Supported Python: complete isolated suites pass 4,211/17 skipped on 3.12.13
+  plus graphics and 4,201/18 skipped on both 3.13.13 and 3.14.5.
+- Rendering and samples: ten real-wgpu tests, both one-repeat profiles, eight
+  profile-schema tests, Clockwork Arena, and Agent World Builder reproduce
+  established identities.
+- Packaging: two pre-review builds and two ten-artifact release stages are
+  byte-identical. Installed wheel/scene and complete release smokes pass.
+  Inventory is 114 wheel/989 source entries; all three M207 implementation
+  files are source-only and the wheel has zero forbidden payload.
+- Review: exactly 15 intended paths, zero protected-surface difference, and
+  zero credential, retired-tooling-identity, machine-path, or package-boundary
+  finding. The ABA contract now requires actual observed file-ID reuse;
+  allocation pressure alone remains unsupported. The corrected focused group
+  passes 70 tests with clean static checks.
+- Record-inclusive separator: the locked 45-package graphics environment, all
+  597-file static gates, 108 architecture tests, strict docs, both governance
+  modes, and whitespace pass.
+- Record-state packaging: two builds reproduce the 363,886-byte wheel at
+  SHA-256
+  `43faee0d9c71e5a6b20123bc65582e2394934344eb1e19685b1ca62a4eb76015`
+  and the 2,436,889-byte source archive at SHA-256
+  `f4a4874f97462d018e765c6c5213f0b0141ba4fe9076813a77e4f53c29b4404e`.
+  Installed smokes and two byte-identical ten-artifact release stages pass;
+  inventory remains 114 wheel/989 source entries.
+- Cleanup: all 23 audited M207 scratch targets were repository-confined,
+  ignored, untracked, and recursively reparse-free. Exact guarded removal
+  deleted all 23 and proved a zero-target postcondition.
+- Final separator: all 597-file static gates, 108 architecture tests, strict
+  docs, both governance modes, and whitespace pass. The sole regenerated docs
+  directory was independently audited and removed; zero M207 scratch remains.
+- Pre-commit: exact M206 HEAD/tree/parent, the 15-path allowlist, protected
+  surfaces, maintainer identity, two-branch inventory, expected `0 107`
+  local-main divergence, absent retired root metadata, zero hygiene findings,
+  zero scratch, whitespace, static checks, 108 architecture tests, and Git
+  connectivity pass.
+- Initial local commit: DCO commit
+  `e4b09b803ee4d64b46460f27ab62f18020da4abd`, tree
+  `a697c0132d826da5caf4c476307ce37ecdc7ecea`, has sole parent exact M206,
+  exactly 15 intended paths, one matching sign-off, consistent maintainer
+  identity, clean revision whitespace, expected `0 108` local-main divergence,
+  a clean worktree, zero scratch, and clean Git connectivity. This record is
+  incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct query leave public
+  `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M206 is absent, M99 is
+  present, only remote `main` exists, and divergence is `0 108`. GitHub
+  authentication is valid, and the public API confirms a public unarchived
+  repository, default `main`, and latest closed merged PR #251. Pushing would
+  expose absent M100-M206 prerequisites, so no push, PR, hosted allocation,
+  tag, release, or package publication occurs.
+
+## M206 Windows cross-principal evidence validator - locally complete, publication withheld
+
+- Base: fully locally validated M205 DCO commit
+  `b678ca04de153f1908b7af73f15a471c93e9a486`, tree
+  `5e28c9ea5dfa380af3ba8980af97320d156357c0`, with sole parent exact M204.
+- Branch hygiene: neutral
+  `release/m206-windows-cross-principal-evidence-validator` starts from exact
+  M205; the redundant M205 local branch name is removed.
+- Direction: RFC-0189 adds a source-only offline validator without increasing
+  cleanup or process authority.
+- Input boundary: one stable regular non-symlink file, exact canonical bytes,
+  explicit JSON limits, before/open/after file-identity checks, and no writes.
+- Schema boundary: exact fixed lanes, barriers, statuses, sanitized booleans,
+  outcomes, counts, and attempted-run digest identities.
+- Claim boundary: only complete all-passed evidence may satisfy criterion 6;
+  Windows admission remains false because criterion 7 is absent.
+- Fixture: one canonical all-`not_run` reviewed artifact proves incomplete
+  evidence handling and makes no execution claim.
+- Output: one canonical path-free summary or typed path-free failure; no raw
+  token, account, credential, pathname, handle, ACL, environment, or platform
+  error value.
+- Readiness: criteria 1 through 5 remain resolved as policy. Criteria 6 and 7
+  remain unresolved; Windows cleanup remains unimplemented and unauthorized.
+- Scope: one source-only test-tool module, one integration test module, one
+  reviewed fixture, one architecture guard, RFC-0189, one security decision,
+  eight public registrations, and four project records. Runtime/package code, examples,
+  workflows, dependencies, lock, metadata, version, and CI allocation remain
+  unchanged.
+- Validation: the 73-test baseline and governance checks pass. Intentional red
+  passed two preservation tests and failed the ten expected absent contracts.
+  All 596 Python files are format-clean; Ruff and strict Pyright are clean; the
+  corrected architecture group passes 97 tests; strict docs, governance, and
+  whitespace pass.
+- Supported Python: post-review complete suites pass 4,200/17 skipped on 3.12
+  and 4,190/18 skipped on both 3.13 and 3.14.
+- Rendering and samples: ten real-wgpu tests, both one-repeat profiles, eight
+  profile-schema tests, Null/wgpu Clockwork Arena, and World Builder reproduce
+  established identities.
+- Packaging: initial independent builds are byte-identical; installed wheel and
+  scene smokes pass; two byte-identical ten-artifact stages pass complete
+  release smoke. Inventory is 114 wheel and 986 source entries, with all six
+  M206 artifacts source-only and zero forbidden wheel entry.
+- Review: failed and unsupported lane evidence now preserves corresponding
+  applicable barrier-order observations while remaining criterion-false. The
+  corrected focused group passes 73 tests with clean static checks.
+- Record-inclusive separator: the locked CPython 3.12 graphics environment,
+  all 596-file static gates, 97 architecture tests, strict docs, both governance
+  modes, and whitespace pass.
+- Record-state packaging: two fresh builds reproduce the 363,790-byte pure
+  wheel at SHA-256
+  `acc0693a9ae923341882e3c64edf2a9a994b46f4f0b450ee4f358bcbe8f76101`
+  and a 2,423,882-byte source archive at SHA-256
+  `45f3064d42c4a4f8e83c988e2a7edd92815861a091c3e5f6e54a3e15c87fa0b1`.
+  Installed smokes and two byte-identical ten-artifact release stages pass.
+  Inventory remains 114 wheel/986 source entries with all six M206 artifacts
+  source-only and zero forbidden wheel entry.
+- Review and cleanup: exactly 18 intended paths remain with zero protected,
+  credential, private-key, root-metadata, or package-boundary finding. One
+  pre-existing historical retired-tooling phrase was neutrally restated. All
+  34 audited ignored/untracked/reparse-free M206 scratch targets were removed;
+  zero remains.
+- Final separator: all 596-file static gates, 97 architecture tests, strict
+  docs, both governance modes, and whitespace pass. Its sole regenerated docs
+  directory was audited and removed. Zero M206 scratch remains.
+- Pre-commit: exact M205 HEAD/tree/parent, the 18-path allowlist, protected
+  surfaces, maintainer identity, two-branch inventory, expected `0 106`
+  local-main divergence, zero scratch, whitespace, static checks, 97
+  architecture tests, and Git connectivity pass.
+- Initial local commit: DCO commit
+  `c1f90dd5d31a6b5b5938706e7fbed69051a76b0a`, tree
+  `48fe26e1349876c5afa197033879917fc649a279`, has sole parent exact M205,
+  exactly 18 paths, one matching sign-off, consistent maintainer identity,
+  clean revision whitespace, expected `0 107` divergence, a clean worktree,
+  zero scratch, and clean Git connectivity. This hosted-safety record is
+  incorporated by one closeout amendment.
+- Publication: withheld. A fresh pruned fetch and direct hosted query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; M205 is absent, M99 is present,
+  only remote `main` exists, and divergence is `0 107`. The local GitHub CLI
+  credential is invalid; a read-only unauthenticated API fallback confirmed
+  public/unarchived status, default `main`, and latest closed PR #251. Pushing
+  would expose absent M100-M205 prerequisites, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+
+## M205 Windows cross-principal validation contract - locally complete, publication withheld
+
+- Base: fully locally validated M204 DCO commit
+  `c4b670aab7305c4b1c34a88d5e0725dc1e9b57ce`, tree
+  `382928168f7ba9000bee4fe3225c529582624925`, with sole parent exact M203.
+- Branch hygiene: neutral
+  `release/m205-windows-cross-principal-validation-contract` starts from exact
+  M204; the redundant M204 local branch name is removed.
+- Direction: RFC-0188 defines future M199 criterion 6 evidence without adding
+  authority or claiming a qualifying run.
+- Principal boundary: a different TOKEN_USER SID and independent authenticated
+  logon context are mandatory; same-user surrogates and hosted administrator
+  accounts do not qualify.
+- Credential boundary: accounts and credentials remain operator-provisioned;
+  repository code accepts, stores, logs, or mutates none of them.
+- Adversarial topology: the contract requires unrelated hostile process trees,
+  authenticated-logon and Windows-session lanes, explicit handle inventories,
+  real ACL/alias/reparse pressure, and deterministic transition barriers.
+- Evidence boundary: one bounded canonical document contains only sanitized
+  classifications and observer-derived results; secrets, identifiers, paths,
+  handles, ACL bytes, platform text, and machine-local values are excluded.
+- Readiness: criteria 1 through 5 remain resolved as policy. Criteria 6 and 7
+  remain unresolved; Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0188, one security contract, eight public
+  registrations, and four project records. Runtime, fixtures, examples,
+  scripts, workflows, dependencies, lock, metadata, version, and CI allocation
+  are unchanged.
+- Focused evidence: the intentional red passed two preservation checks and
+  failed 17 absent contracts; the completed boundary passes all 19 focused
+  tests plus focused Ruff and strict Pyright.
+- Quality: all 593 Python files are format-clean; Ruff and strict Pyright have
+  zero findings; the corrected M59/M199-M205 group passes 85 tests; strict docs,
+  static/current-date governance, and whitespace pass.
+- Supported Python: complete suites pass 4,160/17 skipped on 3.12 with graphics,
+  and 4,150/18 skipped on both 3.13 and 3.14.
+- Rendering and samples: ten real-wgpu tests, two M7 profiles, eight profile
+  tests, Null/wgpu Clockwork Arena, and World Builder reproduce established
+  results.
+- Packaging: two independent builds are byte-identical; installed wheel and
+  scene smoke pass; two byte-identical ten-artifact release stages pass complete
+  smoke. Inventory is 114 wheel and 980 source entries, with all three M205
+  evidence files source-only and zero forbidden wheel entry.
+- Review: restoring exact current-task history corrected an initial accidental
+  deletion; one retired metadata reference restored with that history was
+  normalized. Exactly 15 intended paths remain. Protected/runtime/CI surfaces,
+  credentials, private keys, machine paths, native imports, and package boundary
+  have zero remaining finding.
+- Local closeout is complete; publication is withheld by hosted ancestry.
+- Record state: the unchanged lock/environment and all static/docs/governance
+  separators pass. Two fresh builds reproduce the 363,698-byte pure wheel at
+  SHA-256 `de99b818f41a6c1286a2527cffde21da83ee34c6c3d7b32a6547dd1cd6116c6e`
+  and a 2,405,791-byte source archive at SHA-256
+  `ff2a63ac52a18b7947993b9aea264f28cfbc20eb50951f20464250629e6ef3f6`.
+  Installed wheel/scene smoke and two byte-identical ten-artifact release
+  rehearsals pass. Inventory remains 114 wheel and 980 source entries.
+- Final separator: all 593 Python files remain format-clean; Ruff and strict
+  Pyright are clean; 85 architecture tests, strict docs, static/current-date
+  governance, and whitespace pass.
+- Cleanup: the access-enabled audit proved 20 initial M205 targets
+  repository-confined, ignored, untracked, and recursively reparse-free before
+  exact removal. The final separator's one regenerated docs directory passed the
+  same audit and removal. Zero M205 scratch target remains.
+- Pre-commit: exact M204 HEAD/tree/parent, the 15-path allowlist, protected
+  surfaces, maintainer identity, two-branch inventory, expected `0 105`
+  local-main divergence, zero scratch, added-content hygiene, whitespace,
+  static checks, 85 architecture tests, and Git connectivity pass. Git reports
+  historical dangling objects only.
+- Initial local commit: DCO commit
+  `401cc2e82411cc05db28b78a05b44a65e071706d`, tree
+  `d5960ae6ae89250dc8d55504732a82370d555089`, has sole parent exact M204 and
+  the intended 15-path scope. Its staged check reported two Markdown hard-break
+  spaces and one final blank line before the shell continued to commit. The
+  exact three whitespace findings are corrected for amendment; nothing was
+  pushed.
+- Corrected local commit: amended DCO commit
+  `c38ea2d148f8f68d4e5afc7e69990c0397e17230`, tree
+  `8d3509a97f55e4051d2a078151a2ca84f25dc0e7`, has sole parent exact M204,
+  exactly 15 paths, one matching sign-off, consistent maintainer identity,
+  clean revision whitespace, expected `0 106` local-main divergence, a clean
+  worktree, zero scratch, and clean connectivity apart from historical dangling
+  objects. This hosted-safety record is incorporated by one final amendment.
+- Publication: withheld. A fresh pruned fetch and direct hosted query leave
+  public `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; M204 is absent, M99 is present,
+  only remote `main` exists, divergence is `0 106`, and PR #251 remains latest.
+  Pushing would expose absent M100-M204 prerequisites, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- Hosted status: no hosted M205 result is claimed and no CI allocation was
+  introduced.
+
+## M204 Windows cleanup durable recovery policy - locally complete, publication withheld
+
+- Base: fully locally validated M203 DCO commit
+  `14bcd3be32bbec92538d4f92d223115d57a9e6aa`, tree
+  `5083ee04bdcb879ffa20a2bbad4afe7412b9fe28`, sole parent exact M202.
+- Branch hygiene: neutral `release/m204-windows-cleanup-durable-recovery-policy`
+  starts from exact M203; the redundant M203 branch name is removed.
+- Direction: RFC-0187 resolves only M199 criterion 5 as a strict bounded
+  durable-recovery policy without creating production cleanup.
+- Recovery evidence: one root-confined, same-volume private store serializes an
+  active operation per trusted root and generation. Its bounded immutable
+  canonical record chain is neither world state nor authority.
+- Commit ordering: durable intent and replay lookup precede accepted
+  acknowledgement; a durable pending record precedes each quarantine, deletion,
+  or restoration effect; completed receipt follows durable completion.
+- Quarantine/recovery: the same admitted object moves without replacement or
+  copy/delete fallback. Restart reacquires private authority, reconciles exact
+  physical state, never repeats an observed transition, and stops on ambiguity
+  or tamper.
+- Remaining gates: criteria 1 through 5 are resolved as policy; criteria 6 and
+  7 remain unresolved. Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0187, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, and
+  package code remain unchanged.
+- Validation so far: exact baseline, governance, current source research,
+  intentional red, corrected focused gate, whole-project quality, supported-
+  Python suites, real-wgpu/profile/vertical slices, initial reproducible
+  packaging/release rehearsal, archive inventory, and findings-first review
+  pass. Record-inclusive validation and record-state package/release rehearsal
+  also pass. Final pre/post-cleanup separators and guarded cleanup pass;
+  pre-commit audit and local DCO commit also pass.
+- Product/package: CPython 3.12/3.13/3.14 each pass 4,131 tests with 18 skips;
+  real-wgpu, profiles, and vertical slices reproduce established identities.
+  Two initial builds and two ten-artifact release stages are byte-identical;
+  installed wheel/scene and both release smokes pass. Inventory is 114 wheel/
+  977 source entries with M204 evidence source-only.
+- Record state: two final builds reproduce the same 363,517-byte pure wheel at
+  SHA-256 `cf4a0505419d7084ee2550b38b436cb2744ddb003d9017ecdbe65114b8d9045c`
+  and a 2,390,949-byte source archive at SHA-256
+  `7e3b63be491d1285de45049e40228b2375bd2e2c22188750f895edd24da38f8d`.
+  Installed wheel/scene and two byte-identical ten-artifact release stages pass
+  complete smoke; the 114/977 archive boundary remains exact.
+- Review: exactly 15 intended paths change. Protected runtime, integration,
+  dependency, workflow, version, and package surfaces have zero diff; public
+  disclosure/credential/machine-path scans are clean; corrected policy/docs
+  have no remaining actionable finding.
+- Cleanup: 21 M204 scratch targets passed confinement, tracking, ignore, and
+  recursive reparse checks before guarded removal. The post-cleanup separator's
+  sole regenerated docs directory passed the same corrected exact audit and
+  removal. Zero M204 scratch target remains.
+- Pre-commit: exact M203 HEAD/tree/parent, 15-path scope, protected surfaces,
+  maintainer identity, branch inventory, `0 104` local-main divergence, absent
+  retired root control metadata, public hygiene, zero scratch,
+  static/focused/whitespace checks, and Git
+  object connectivity all pass. Historical dangling objects remain noncritical.
+- Initial commit: local DCO commit
+  `2411d1519cc25dcb54556cbe7af8a7bd0b7459e9`, tree
+  `933e46fb37af67943efad57447bf3ae3de862f6f`, has sole parent exact M203,
+  exactly 15 intended files, one matching sign-off, configured maintainer
+  author/committer identity, clean worktree, and `0 105` divergence from local
+  M99 `main`.
+- Hosted safety: a fresh pruned fetch, direct hosted-head query, local hosted-
+  ref/tree/ancestry checks, authenticated public-repository/default-branch
+  query, and recent PR history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, with PR #251 latest. M203 is
+  absent and M99 is present as an ancestor; divergence is `0 105`, and only
+  remote `main` exists.
+- Publication: withheld. Pushing M204 would expose the absent M100-M203
+  prerequisite stack. No push, PR, hosted allocation, tag, release, package
+  publication, or hosted result is claimed.
+- Hosted status: no hosted M204 result is claimed and no additional CI
+  allocation is introduced.
+
+## M203 Windows cleanup protocol and receipt policy - locally complete, publication withheld
+
+- Base: fully locally validated M202 DCO commit
+  `e95be9726f8b00c5aef81192c6fba23813602e1f`, tree
+  `e08c7aa0b143d7b8c46c14362dcb0c6ad8d97e6f`, sole parent exact M201.
+- Branch hygiene: neutral `release/m203-windows-cleanup-protocol-receipt-policy`
+  starts from exact M202; the redundant M202 branch name is removed.
+- Direction: RFC-0186 resolves only M199 criterion 4 as a strict bounded
+  protocol/acknowledgement/receipt policy without creating production cleanup.
+- Protocol policy: three distinct canonical cleanup documents remain outside
+  world command/transaction/receipt v1 and accept exactly one bounded complete
+  JSON object per call.
+- Authority policy: requests cannot name targets or carry authority;
+  acknowledgement means bounded admission only; receipts are path-free typed
+  evidence and cannot authorize another effect.
+- Correlation policy: request and acknowledgement canonical SHA-256 values bind
+  IDs and retries while explicitly making no authentication, durability,
+  delivery, non-repudiation, or exactly-once claim.
+- Remaining gates: criteria 1 through 4 are resolved as policy; criteria 5
+  through 7 remain unresolved. Windows cleanup remains unimplemented and
+  unauthorized.
+- Scope: one architecture guard, RFC-0186, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, and
+  package code remain unchanged.
+- Validation: exact baseline, governance, current source research, intentional
+  red, focused and whole-project quality, supported-Python, rendering/profile/
+  example, reproducible package/release, inventory, and findings-first review
+  gates pass. One RFC status-token spelling found by review was corrected.
+- Product/package: ten real-wgpu tests, fresh base/graphics profiles, eight
+  profile tests, both Clockwork renderers, and Agent World Builder reproduce
+  established identities. Two builds and two complete ten-artifact release
+  stages are byte-identical; installed wheel, scene, and both release smokes
+  pass. Inventory is 114 wheel/974 source entries with M203 evidence source-
+  only and zero forbidden wheel entry.
+- Record-state package: two builds reproduce the unchanged 363,400-byte pure
+  wheel at SHA-256
+  `6a81923b593996d70f5c127f724c140e7f5bdb27d745e2a836d557efecdda58b`
+  and identical 2,375,671-byte source archives at SHA-256
+  `06a4ce5270c3131fad04d3d6284708528cdc037094d816ca47c7a9fbbbb57db6`.
+  Installed wheel/scene smoke passes; two byte-identical ten-artifact release
+  stages pass complete smoke. Inventory remains 114 wheel/974 source entries.
+- Cleanup: exactly 21 M203 test/JUnit/profile/docs/distribution/release targets
+  passed confinement, tracking, ignore, and recursive reparse checks before
+  guarded removal; zero M203 scratch target remains.
+- Final separator: post-cleanup format, Ruff, strict Pyright, exact architecture,
+  strict docs, static/dated governance, and whitespace gates pass. The sole
+  regenerated docs target passed the same guard and was removed; zero M203
+  scratch remains.
+- Initial commit: local DCO commit
+  `f11e5b5ed5e0c2ba3739bb630e50ca0c5ad0a023`, tree
+  `c55b1eb833626da07c154b0e31faa0ed8508054b`, has sole parent exact M202,
+  exactly 15 intended files, one matching sign-off, configured maintainer
+  author/committer identity, clean worktree, and `0 104` divergence from local
+  M99 `main`.
+- Hosted safety: a fresh pruned fetch, direct hosted-head query, local hosted-
+  ref/tree/ancestry checks, authenticated public-repository/default-branch
+  query, and recent PR history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, with PR #251 latest. M202 is
+  absent and M99 is present as an ancestor; divergence is `0 104`, and only
+  remote `main` exists.
+- Publication: withheld. Pushing M203 would expose the absent M100-M202
+  prerequisite stack. No push, PR, hosted allocation, tag, release, package
+  publication, or hosted result is claimed.
+- Hosted status: no hosted M203 result is claimed and no additional CI
+  allocation is introduced.
+
+## M202 Windows use-time revalidation policy - locally complete, publication withheld
+
+- Base: fully locally validated M201 DCO commit
+  `df54db0fa4b188048cfcb1075a9f5dc7934e6749`, tree
+  `dd9c65821a294ddbbb8dced43a4867d0a976e1d1`, sole parent exact M200.
+- Branch hygiene: neutral `release/m202-windows-use-time-revalidation-policy`
+  starts from exact M201; the redundant M201 branch name is removed.
+- Direction: RFC-0185 resolves only M199 criterion 3 as a strict use-time
+  revalidation policy without creating production cleanup.
+- Retained-object policy: revalidation uses the same effective-token, trusted-
+  root, durable-generation, acquisition-lineage, and candidate objects and
+  requires complete equality with admission.
+- Mutation-boundary policy: token/security and handle-derived identity, type,
+  link, root, and generation facts are freshly checked immediately before every
+  mutation boundary under an uninterrupted private single-owner gate.
+- Failure policy: pre-first-mutation failure leaves the candidate untouched;
+  post-transition failure stops before deletion and enters recovery-required
+  disposition without guessing rollback.
+- Remaining gates: criteria 1 through 3 are resolved as policy; criteria 4
+  through 7 remain unresolved. Windows cleanup remains unimplemented and
+  unauthorized.
+- Scope: one architecture guard, RFC-0185, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, and
+  package code remain unchanged.
+- Validation: exact baseline, governance, current source research, intentional
+  red, focused and whole-tree policy/static/docs/governance gates, complete
+  supported-Python suites, rendering/profile/example checks, reproducible
+  package/release rehearsal, package inventory, and findings-first review are
+  complete. The record-inclusive separator and final record-state reproducible
+  distribution/release rehearsal also pass. Exact guarded cleanup removed all
+  18 validated generated targets; post-cleanup validation passes and its sole
+  regenerated docs target is removed. Pre-commit scope/history/identity/hygiene
+  review passes. The exact 15-path DCO object and factual closeout are verified.
+- Publication: a fresh pruned fetch and direct hosted query leave public
+  `origin/main` at exact M99. M201 is absent from hosted ancestry, only remote
+  `main` exists, and PR #251 remains latest. Publishing M202 would expose the
+  absent M100-M201 stack, so no push, PR, hosted allocation, tag, release, or
+  package publication occurs.
+- Hosted status: no hosted M202 result is claimed and no additional CI
+  allocation is introduced.
+
+## M201 Windows cleanup-authority admission policy - locally complete, publication withheld
+
+- Base: fully locally validated M200 DCO commit
+  `42428005cbf2b3fbcd47c787504bab5e0a235804`, tree
+  `cd2429fa610a414ca35bee3df6f29447661d3528`, sole parent exact M199.
+- Branch hygiene: neutral
+  `release/m201-windows-cleanup-authority-admission-policy` starts from exact
+  M200; the redundant M200 branch name is removed.
+- Direction: RFC-0184 resolves only M199 criterion 1 as a strict, conjunctive
+  authority-admission policy without creating production issuance or cleanup.
+- Principal policy: only the trusted composition root can bind the effective
+  token's user SID, token/authentication/modified IDs, token type, and
+  impersonation level. World-write capability and request data are not
+  authentication.
+- Root/generation policy: the exact retained root must bind volume/file
+  identity, ordinary non-reparse type, owner, non-null trusted DACL, and least-
+  privilege policy. One separate immutable root-confined durable generation
+  record binds project/cache, root, policy, record identity, and SHA-256.
+- Capability policy: private, engine-owned, non-serializable, operation-scoped,
+  single-use, cleanup-only, and silent about raw security material. Missing,
+  changed, ambiguous, untrusted, invalid, or unsupported facts refuse before
+  issuance.
+- Remaining gates: criterion 2 remains resolved as policy; criteria 3 through
+  7 remain unresolved. Windows cleanup remains unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0184, one security decision, eight public
+  registrations, and four project records. Runtime, integration fixtures,
+  examples, scripts, workflows, dependencies, lock, metadata, version, root
+  exports, and package code remain unchanged.
+- Validation: the corrected focused gate passes nine checks; the exact hygiene,
+  M199, M200, and M201 group passes 29; all 589 Python files are format-clean;
+  Ruff, strict Pyright, strict docs, static/current-date governance, and
+  whitespace pass. CPython 3.12, 3.13, and 3.14 complete suites pass. Real-wgpu,
+  fresh profiles, deterministic examples, reproducible builds, installed-wheel
+  and scene smoke, two byte-identical complete release stages, package
+  inventory, and findings-first review pass. The record-inclusive separator,
+  reproducible distribution, both complete release stages, and package-boundary
+  inventory also pass. Guarded scratch cleanup reached a verified zero-target
+  postcondition after exact revalidation. Final post-cleanup validation passes,
+  and its two regenerated cache targets were revalidated and removed. Commit
+  and publication-safety reconciliation pass. The exact pre-commit scope,
+  history, identity, DCO prerequisites, object connectivity, hygiene, static,
+  architecture, whitespace, and zero-scratch audit passes. Initial local DCO
+  commit `fe8295e6572bd9be2e6830b541a5a8d80ce07902` has exact M200 as its
+  sole parent and is incorporated by one closeout amendment.
+- Publication safety: fresh pruned/direct hosted checks leave only `main` at
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M200 is not an ancestor,
+  current divergence is `0 102`, and PR #251 remains latest. No push, PR,
+  hosted check, release, tag, or package publication occurs or is claimed.
+
+## M200 Windows singleton-link refusal policy - locally complete, publication withheld
+
+- Base: fully locally validated M199 DCO commit
+  `31d786f203de0e51b08f13f72a0340ff8c44e27a`, tree
+  `d1a62006d7c116b2859bca50687be022d40b665c`, sole parent exact M198.
+- Branch hygiene: neutral
+  `release/m200-windows-singleton-link-refusal-policy` starts from exact M199;
+  the redundant M199 branch name is removed.
+- Direction: RFC-0183 resolves only M199 hard-link criterion 2 as a strict
+  singleton-link refusal policy without admitting cleanup.
+- Policy: the same retained opened object must report exactly one handle-
+  derived link at admission and immediately before mutation. Every other,
+  changed, uncertain, invalid, or unsupported observation refuses before
+  mutation. Name enumeration supplies no authority.
+- Remaining gates: criterion 1 and criteria 3 through 7 remain unresolved,
+  including production use-time enforcement. Windows cleanup remains
+  unimplemented and unauthorized.
+- Scope: one architecture guard, RFC-0183, one security decision, eight public
+  registrations, and four project records. Runtime, fixtures, examples,
+  scripts, workflows, dependencies, lock, metadata, version, root exports, and
+  package code remain unchanged.
+- Development evidence: exact M199 baseline and static governance pass;
+  intentional red failed only five absent public contracts; after the RFC,
+  decision, and registrations all eight focused architecture assertions pass.
+  The first complete run exposed a decision-filename collision with M199's
+  protected evidence glob; the corrected source-only filename preserves exact
+  M199 and the combined guard passes 15 assertions.
+- Complete regression: CPython 3.12.13 and 3.13.13 each pass 4,095 tests with
+  17 skips. CPython 3.14.5 has complete disjoint-shard coverage at the same
+  count after two monolithic attempts each encountered a different unchanged
+  15-second subprocess timeout with 4,094 other passes. Whole-tree format,
+  Ruff, strict Pyright, docs, governance, lock/environment, and whitespace
+  gates pass.
+- Product/package: ten real-wgpu tests, both fresh profiles and validators,
+  Null/wgpu Clockwork Arena, and Agent World Builder reproduce established
+  identities. Two distributions and two ten-artifact release stages are byte-
+  identical; installed and complete release smokes pass. Inventory remains 114
+  pure wheel entries and advances to 965 source entries with all three M200
+  files source-only.
+- Review: exactly 15 intended paths, zero protected runtime, fixture,
+  dependency, workflow, and M199 diff; 20 hygiene/M199/M200 assertions pass;
+  654 added lines contain no development-identity, credential-assignment, or
+  machine-local-path match. No actionable M200 finding remains.
+- Record-inclusive closeout: the unchanged lock/environment, all 588 Python
+  files, 20 review tests, strict docs, both governance modes, and whitespace
+  pass. Two builds reproduce a 363,080-byte wheel at
+  `f24ef5b59f18b4fceb4e7ee431398dbf227a547656e7b82b45e49cea826681c6`
+  and a 2,335,224-byte source archive at
+  `fa66361b2b41611bbf1ab915c61d43a45433fb01eb63cded52fdad7cf0181883`;
+  installed and both identical ten-artifact release rehearsals pass. Final pre-
+  cleanup validation also passes.
+- Cleanup: exactly 36 `.tmp/m200*` test, JUnit, profile, docs, distribution, and
+  release targets were proven repository-confined, ignored, untracked, direct-
+  child, and top-level plus recursively reparse-free. A long deletion detached
+  from its wrapper after removing 29; an intermediate check found seven, and a
+  later exact check proved the continuing bounded operation removed all 36.
+  Final post-cleanup static, review, docs, governance, and whitespace checks
+  pass. The sole regenerated docs target was then separately audited and
+  removed. Zero M200 scratch remains; no ACL changed.
+- Pre-commit readiness: exact M199 HEAD/tree and sole parent, exactly 15 paths,
+  zero protected-surface diff, only local `main` and neutral M200, expected
+  `0 100` divergence, configured identity, zero scratch, clean whitespace and
+  object connectivity, 20 passing review checks, strict governance, and zero
+  public-hygiene match across 732 added lines.
+- Initial object: DCO commit
+  `2d0fd45633f69aa29ba74d60305976bd033bd8cf`, tree
+  `f25ce04801feaaa4a79c27b88e1a5baeafe6e976`, has sole parent exact M199,
+  exactly 15 paths, one matching DCO trailer, consistent configured identity,
+  no merge, expected `0 101` divergence, clean revision whitespace and object
+  connectivity, a clean worktree, and zero scratch. This record is folded into
+  one closeout amendment.
+- Final hosted safety: a fresh pruned fetch leaves only remote `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` with tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; divergence is `0 101`, and
+  M198 plus M199 are absent as ancestors. PR #251 remains the latest merge. No
+  push, PR, hosted allocation, tag, release, or package publication occurs.
+- No hosted check, PR, release, tag, or package publication is claimed.
+
+## M199 Windows cleanup readiness refresh - locally complete, publication withheld
+
+- Base: fully locally validated M198 DCO commit
+  `36f2778c1924409e9916611f49996c513d4c7185`, tree
+  `1a849f5ee00012f01ed0056520dfc8e06746637b`, sole parent exact M197.
+- Branch hygiene: neutral `release/m199-windows-cache-cleanup-readiness-refresh`
+  starts from exact M198; the redundant M198 branch name is removed.
+- Direction: RFC-0182 consolidates the complete M149-M198 Windows evidence set,
+  keeps cleanup deferred, and closes standalone closed-stream method probing.
+- Evidence boundary: exactly 50 current-host milestones, 50 Windows integration
+  probes, and 50 pre-M199 security records remain test-only, same-principal
+  evidence rather than production authority.
+- Admission remains gated on authenticated trusted-root authority, hard-link
+  policy, use-time identity/link-count revalidation, acknowledged typed
+  receipts, durable recovery, cross-principal evidence, and independent-host
+  proof.
+- Scope: one architecture guard, RFC-0182, one security decision, eight public
+  registrations, and four project records. Runtime, fixtures, examples,
+  scripts, workflows, dependencies, lock, metadata, version, root exports, and
+  package code remain unchanged.
+- Development evidence: exact M198 baseline and both governance modes pass;
+  current primary-source direction research supports the refresh; intentional
+  red failed only four absent public contracts; the first public-integrated run
+  exposed one missing exact phrase; corrected focused format, Ruff, strict
+  Pyright, and all seven architecture assertions pass.
+- Complete regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  4,087 tests with 17 skips. Whole-tree format, Ruff, strict Pyright, docs,
+  governance, lock/environment, and whitespace gates pass.
+- Product/package: ten real-wgpu tests, fresh M7 profiles, profile validation,
+  Null/wgpu Clockwork Arena, and Agent World Builder pass with established
+  identities. Two distributions and two ten-artifact release stages are byte-
+  identical; installed and complete release smokes pass. Inventory is 114 pure
+  wheel and 962 source entries with all three M199 files source-only.
+- Review: exactly 15 intended paths, zero protected runtime, fixture,
+  dependency, workflow, and M198 diff; 12 hygiene/M199 assertions pass; 598
+  added lines contain no development-identity, credential-assignment, or
+  machine-local-path match. No actionable finding remains.
+- Record-inclusive closeout: the unchanged lock/environment, all 587 Python
+  files, 12 review tests, strict docs, both governance modes, and whitespace
+  pass. Two builds reproduce a 362,956-byte wheel at
+  `ab8875fa0a8cdc4f07ce70217ef822d9156a3efc7ee5a24999cbf6aea032d9cb`
+  and a 2,323,423-byte source archive at
+  `166cef1e1d40f2ab85e42b98219d2f48f772538c37b6fe52be2321d3ec2a75e1`;
+  installed and both identical ten-artifact release rehearsals pass. Final
+  pre-cleanup validation, cleanup, and hosted reconciliation now pass; the
+  closeout amendment remains.
+- Final pre-cleanup validation keeps all 587 Python files static-clean, passes
+  12 review checks, strict docs, both governance modes, and whitespace.
+- Cleanup: exactly 21 `.tmp/m199*` test, JUnit, profile, docs, distribution, and
+  release targets were confined, ignored, untracked, direct-child, and top-
+  level plus recursively reparse-free. Each was revalidated before exact
+  removal. Zero M199 scratch remains; no ACL changed. Final post-cleanup
+  validation and hosted reconciliation now pass; the closeout amendment
+  remains.
+- Final post-cleanup validation keeps all 587 Python files static-clean, passes
+  12 review checks in 0.75 seconds, builds strict docs in 3.19 seconds, passes
+  both governance modes and whitespace, and leaves zero scratch. The first
+  cleanup guard expected two regenerated targets but correctly stopped after
+  finding only the docs directory; the corrected exact audit removed that sole
+  target without changing ACLs. Hosted reconciliation passes; the closeout
+  amendment remains.
+- Pre-commit readiness: exact M198 HEAD/tree, exactly 15 paths, zero protected-
+  surface or M198 diff, only local `main` and neutral M199, expected `0 99`
+  divergence, configured identity, zero scratch, clean whitespace and object
+  connectivity, and zero public-hygiene match across the current 781 added
+  lines. That audit preceded the initial DCO object and final hosted safety
+  result recorded below.
+- Initial object: DCO commit `4f6b3d52ac2444ee72e97ae0a6597725f478b990`,
+  tree `578de20f3d9b8f0e0c53cc69d99b37ca16271289`, has sole parent exact M198,
+  exactly 15 paths, one matching DCO trailer, consistent configured identity,
+  no merge, clean revision whitespace and connectivity, a clean worktree, and
+  zero scratch. This record is folded into one closeout amendment.
+- Final hosted safety: a fresh pruned fetch leaves only remote `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` with tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; divergence is `0 100`, and M198
+  plus the initial M199 object are absent as ancestors. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- No hosted check, PR, release, tag, or package publication is claimed.
+
+## M198 closed-stream write - locally complete, publication withheld
+
+- Base: fully locally validated M197 DCO commit
+  `7a317300b01f6c02a959d1e3018f94aee178d603`, exact tree
+  `96bcfc262ec0f4c73b057b01234eb354d86b655b`, sole parent exact M196.
+- Branch hygiene: neutral
+  `release/m198-windows-alias-mutator-closed-stream-write-after-delivery-failure-boundary`;
+  the redundant M197 branch name was removed after exact branch creation.
+- Direction: RFC-0181 accepts one current-host Windows-only, test-only closed-
+  stream write disposition boundary over M197's protected closed-flush path.
+- Live result: after the protected sequence leaves the stream closed, one
+  `write(b"!")` raises generic `ValueError` and leaves the concrete stream
+  closed.
+- Security limit: one Windows/NTFS current-host observation, three processes,
+  one principal, and one parent-owned tree. This does not establish native-call
+  suppression, retry, acknowledgement, portable closed-stream behavior,
+  durable recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0181, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused development: exact M197 baseline and first live behavior pass;
+  intentional public-contract red failed only its three absent documentation
+  boundaries; both governance modes pass; both new Python files are static-
+  clean; all nine focused checks pass.
+- Complete regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  4,080 tests with 17 skips. The exact M149-M198 boundary passes 387 tests with
+  one established skip, and 20 independent live observations pass.
+- Product/package: ten real-wgpu tests, fresh profiles and validators, Null and
+  wgpu Clockwork Arena, and Agent World Builder pass with established
+  identities. Two distribution builds and two ten-artifact release stages are
+  byte-identical; all installed and release smokes pass. Inventory is 114 pure
+  wheel entries and 959 source entries, with all four M198 files source-only.
+- Review: exactly 16 intended paths, zero protected runtime, fixture,
+  dependency, workflow, and M197 diff; 14 hygiene and boundary tests pass; 892
+  added lines contain no development-identity, credential-assignment, or
+  machine-local-path match. No actionable finding remains.
+- Record-inclusive closeout: the unchanged lock, all 586 Python files, 14
+  review tests, strict docs, both governance modes, and whitespace pass. Two
+  builds reproduce a 362,840-byte pure wheel at
+  `811a9fb8b83e68fe8b5d974dcb7a1936a1f8f51e7969bff06fe822a44834b142`
+  and a 2,309,053-byte source archive at
+  `19598ff4c00590f04316ede1e277e845a16e5d0be33b7bdc25a901a839456e73`;
+  both installed and release rehearsals pass. Final pre-cleanup validation,
+  guarded cleanup, final post-cleanup validation, and hosted reconciliation
+  pass; the closeout amendment remains.
+- Final pre-cleanup validation keeps all 586 Python files static-clean, passes
+  14 review checks, strict docs, both governance modes, and whitespace.
+  Guarded cleanup, final post-cleanup validation, and hosted reconciliation now
+  pass; the closeout amendment remains.
+- Cleanup: 52 exact `.tmp/m198*` targets were confined, ignored, untracked, and
+  top-level non-reparse. Forty-one recursively audited reparse-free targets
+  were removed first. An exact complementary access-enabled read-only audit
+  proved the remaining 11 pytest roots recursively reparse-free; exact guarded
+  removal revalidated and removed them. Zero `.tmp/m198*` target remains, and
+  no ACL was changed.
+- Read-only readiness: exact M197 HEAD/tree, exactly 16 intended paths, zero
+  protected-surface diff, only local `main` and neutral M198, expected `0 98`
+  divergence, configured maintainer identity, clean whitespace, and clean
+  object connectivity. That audit preceded the completed complementary
+  cleanup, final post-cleanup validation, and initial DCO object.
+- Hosted state: a fresh pruned fetch and authenticated read-only audit leave
+  public `origin/main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M196/M197 absent,
+  show only remote `main`, and report PR #251 as latest. No push, PR, hosted
+  allocation, tag, release, or package publication occurs because the required
+  M100-M197 stack is absent.
+- Post-hosted-readiness validation keeps all 586 Python files static-clean,
+  builds strict docs, passes both governance modes and whitespace, and removes
+  its exact audited generated-docs target. The subsequent complementary audit
+  and guarded delete completed the remaining scratch cleanup without changing
+  ACLs.
+- Final post-cleanup validation keeps all 586 Python files static-clean, passes
+  the exact 14-test hygiene/M198 group in 0.97 seconds, builds strict docs in
+  3.19 seconds, passes static and corrected current-date governance plus
+  whitespace, and removes both regenerated scratch targets under the same
+  guards. Zero `.tmp/m198*` target remains.
+- Initial object: DCO commit `f40e17844c861e408d7ef53314659f93b3f04bb1`,
+  tree `c034e90791840f2efc822ed947bcd0e5d7cf77be`, has sole parent exact M197,
+  exactly 16 paths, one matching DCO trailer, consistent configured identity,
+  no merge, clean revision whitespace and connectivity, a clean worktree, and
+  zero scratch. This record is folded into one closeout amendment.
+- Final hosted safety: a fresh pruned fetch leaves only remote `main` at exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` with tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`; divergence is `0 99`, and M197
+  plus the initial M198 object are absent as ancestors. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+
+## M197 closed-stream flush - locally complete, publication withheld
+
+- Base: fully locally validated M196 DCO commit
+  `b4a7623541767c191750cc404781e11f370be133`, exact tree
+  `49257842225afc0a7d304e011a9e601a918c19de`, sole parent exact M195.
+- Branch hygiene: neutral
+  `release/m197-windows-alias-mutator-buffered-flush-after-close-delivery-failure-boundary`;
+  the redundant M196 branch name was removed after exact branch creation.
+- Direction: RFC-0180 accepts one current-host Windows-only, test-only closed-
+  stream flush disposition boundary over M196's protected repeated-close path.
+- Live result: after M195's first `close()` raises generic `OSError`, M196's
+  second `close()` returns `None`, and the stream remains closed, one `flush()`
+  raises generic `ValueError` and leaves the concrete stream closed.
+- Security limit: one Windows/NTFS current-host observation, three processes,
+  one principal, and one parent-owned tree. This does not establish a second
+  native write, retry, acknowledgement, portable closed-stream behavior,
+  durable recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0180, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused development: exact M196 baseline and first live behavior pass;
+  static and corrected dated governance pass; intentional architecture red
+  found only the three absent decision/registration contracts. Both Python
+  files are static-clean after mechanical formatting and all nine focused
+  checks pass.
+- Complete regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  4,071 tests with 17 skips. The exact 98-file Windows boundary passes 378
+  tests with one established skip, and 20 independent M197 live runs pass.
+- Product/distribution: ten real-wgpu tests, fresh base/graphics M7 profiles,
+  eight profile-schema tests, both Clockwork Arena renderers, Agent World
+  Builder, two byte-identical builds, installed-wheel and scene-wheel smoke,
+  and two identical fully smoked ten-artifact release stages pass. The 114-
+  entry pure wheel excludes all M197 source-only evidence and forbidden
+  payload; the source archive has 955 entries.
+- Review: exactly 16 intended paths remain; protected runtime, fixtures,
+  examples, scripts, CI, dependencies, metadata, lock, and prior M196 surfaces
+  have zero diff. Fourteen exact hygiene/M197 checks pass and 874 added lines
+  contain no development identity, credential assignment, or machine-local
+  path. No actionable finding remains.
+- Record-inclusive static/docs/governance, reproducible artifact, cleanup,
+  DCO, and hosted-publication gates remain pending.
+- Record-inclusive separator: the unchanged lock resolves; all 584 Python files
+  remain format-, Ruff-, and strict-Pyright clean; 14 review checks, strict
+  docs, static/current-date strict governance, and whitespace pass.
+  Record-inclusive artifacts, cleanup, DCO, and hosted reconciliation remain.
+- Record-state distribution/release: two builds reproduce a 362,790-byte pure
+  wheel at SHA-256
+  `63f4574a3ceda02023dc4580ab9da463ce457964296e59bcdd03a7ccca97a935`
+  and a 2,303,731-byte source archive at SHA-256
+  `e7c59a35a3dc05cd0434672ed5746782ab3061f8f6e0f2cc6a9e21adb1c453a5`.
+  Installed-wheel and scene-wheel smoke pass; both byte-identical ten-artifact
+  release stages pass complete release smoke. Inventory remains 114 wheel/955
+  source entries with exact source-only confinement and zero forbidden wheel
+  payload. Cleanup, DCO, and hosted reconciliation remain.
+- Final pre-cleanup separator: all 584 Python files remain static-clean; 14
+  review checks, strict docs, current-date strict governance, and whitespace
+  pass. Guarded cleanup, DCO, and hosted reconciliation remain.
+- Guarded cleanup proved all 49 exact M197 scratch targets repository-confined,
+  ignored, untracked, and top-level plus recursively reparse-free, removed them
+  exactly, and confirmed zero remains. Final post-cleanup separator, DCO, and
+  hosted reconciliation remain.
+- Final post-cleanup separator: both M197 Python files remain format-, Ruff-,
+  and strict-Pyright clean; 14 review checks, strict docs, current-date strict
+  governance, and whitespace pass. The two exact regenerated review/docs
+  directories were revalidated and removed; zero M197 scratch remains. DCO
+  and hosted-publication reconciliation are the only remaining closeout gates.
+- Pre-commit audit proves exact M196 HEAD/tree, exactly 16 intended paths,
+  zero protected-surface diff, only local `main` and neutral M197, expected
+  `0 97` divergence from local M99 `main`, configured maintainer identity,
+  zero M197 scratch, clean whitespace, and clean object connectivity.
+- Initial signed DCO object `18615c8d17ad51452a6ca7d73c140fe2be2f7fc6`,
+  tree `610aa576ad204a3dc44264641b7c7281cc6f5a59`, has sole parent exact
+  M196, exactly 16 intended paths, one matching sign-off, consistent identity,
+  no merge, expected `0 98` divergence, clean tree, zero scratch, clean
+  whitespace, and clean object connectivity. This record is folded into one
+  closeout amendment.
+- Hosted publication safety: a fresh pruned fetch, local hosted-ref/tree and
+  ancestry checks, authenticated account/default-repository query, and recent
+  PR history leave remote `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M196 absent, show
+  only remote `main`, and report PR #251 as latest. Publishing M197 would
+  expose the absent M100-M196 prerequisite stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+
+## M196 repeated buffered close - locally complete, publication withheld
+
+- Base: fully locally validated M195 DCO commit
+  `496e47d534bea27f387be15702504a6bb75efdb9`, exact tree
+  `53c62d76e6f79a7fa30bfdb1ec03e05e3909f264`, sole parent exact M194.
+- Branch hygiene: neutral
+  `release/m196-windows-alias-mutator-repeated-buffered-close-after-delivery-failure-boundary`;
+  the redundant M195 branch name was removed after exact branch creation.
+- Direction: RFC-0179 accepts one current-host Windows-only, test-only
+  repeated-close disposition boundary over M195's protected first-close path.
+- Live result: after M195's first `close()` raises generic `OSError` and leaves
+  the stream closed, a second `close()` returns `None` and leaves it closed.
+  The second call does not retry delivery or establish acknowledgement.
+- Security limit: one Windows/NTFS current-host observation, three processes,
+  one principal, and one parent-owned tree. This is not general closed-stream
+  behavior, portable exception translation, acknowledgement, durable recovery,
+  Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0179, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M195 baseline passed; first M196 live behavior
+  passed; the intended architecture red found only the three absent decision/
+  registration contracts; both Python files are static-clean after mechanical
+  formatting; all nine M196 focused checks pass.
+- Complete regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  4,062 tests with 17 skips. The exact 96-file Windows boundary passes 369
+  tests with one established skip, and 20 independent M196 live runs pass.
+- Product/distribution: ten real-wgpu tests, fresh base/graphics M7 profiles,
+  eight profile-schema tests, both Clockwork Arena renderers, Agent World
+  Builder, two byte-identical builds, installed-wheel and scene-wheel smoke,
+  and two identical fully smoked ten-artifact release stages pass. The 114-
+  entry pure wheel excludes all M196 source-only evidence and forbidden
+  payload; the source archive has 951 entries.
+- Record-inclusive source/release: the unchanged 362,709-byte wheel reproduces
+  at SHA-256
+  `fac8fd367e910ebe7b121ed8d74a2c43211396bda41285ded887e8f89211c737`;
+  two 2,296,404-byte source archives reproduce at SHA-256
+  `5d823da03301da046190dd9e1df940c12a01460510c9de81207ceebf61502ad6`.
+  Installed-wheel and scene-wheel smoke pass. A corrected exact comparator
+  proves two byte-identical ten-artifact release stages and both complete
+  release smokes pass. Inventory remains 114 wheel/951 source entries, all
+  four M196 files remain source-only, and forbidden wheel payload remains zero.
+- Review: exactly 16 intended paths remain; protected runtime, fixtures,
+  examples, scripts, CI, dependencies, metadata, lock, and prior M195 surfaces
+  have zero diff. Fourteen exact hygiene/M196 checks pass and 875 added lines
+  contain no development identity, credential assignment, or machine-local
+  path. No actionable finding remains.
+- Record-inclusive static/docs/governance and reproducible artifact gates are
+  complete. The final pre-cleanup separator also passes whole-tree static
+  checks, 14 review checks, strict docs, current-date strict governance, and
+  whitespace after correcting one wrong-root governance invocation and one
+  cache-denied dated launch. Cleanup, DCO, and hosted-publication gates remain
+  pending.
+- Guarded cleanup's first recursive audit was sandbox-denied before deletion.
+  Its access-enabled rerun proved all 48 exact M196 scratch targets repository-
+  confined, ignored, untracked, and top-level plus recursively reparse-free,
+  removed them exactly, and confirmed zero remains. Final post-cleanup
+  separator, DCO, and hosted-publication gates remain.
+- Final post-cleanup separator: both M196 Python files remain format-, Ruff-,
+  and strict-Pyright clean; 14 review checks, strict docs, current-date strict
+  governance, and whitespace pass. The two exact regenerated review/docs
+  directories were revalidated and removed; zero M196 scratch remains. DCO
+  and hosted-publication reconciliation are the only remaining closeout gates.
+- Pre-commit audit proves exact M195 HEAD/tree, exactly 16 intended paths,
+  zero protected-surface diff, only local `main` and neutral M196, expected
+  `0 96` divergence from local M99 `main`, configured maintainer identity,
+  zero M196 scratch, clean whitespace, and clean object connectivity.
+- Initial signed DCO object `0b1a57729c3b8e038b4365cc6769381e310af551`,
+  tree `b7c2064ebde0e34c8a425228d6c40dba28c313c4`, has sole parent exact
+  M195, exactly 16 intended paths, one matching sign-off, consistent identity,
+  no merge, expected `0 97` divergence, clean tree, zero scratch, clean
+  whitespace, and clean object connectivity. This record is folded into one
+  closeout amendment.
+- Hosted publication safety: a fresh pruned fetch, local hosted-ref/tree and
+  ancestry checks, authenticated account/default-repository query, and recent
+  PR history leave remote `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M195 absent, show
+  only remote `main`, and report PR #251 as latest. Publishing M196 would
+  expose the absent M100-M195 prerequisite stack, so no push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+
+## M195 buffered-close delivery failure - locally complete, publication withheld
+
+- Base: fully locally validated M194 DCO commit
+  `4b1314d58095a93963df2ded846b7b2bf77ed27e`, exact tree
+  `131de175d73ade7ac9fceb926984ccefe284d0d4`, sole parent exact M193.
+- Branch hygiene: neutral
+  `release/m195-windows-alias-mutator-buffered-close-delivery-failure-boundary`;
+  the redundant M194 branch name was removed after exact branch creation.
+- Direction: RFC-0178 accepts one current-host Windows-only, test-only direct-
+  close delivery boundary over M186's unchanged fixture.
+- Live result: after exact M194 invalid settlement and one-byte late buffer
+  acceptance, direct `close()` without a preceding failed late flush raises
+  generic `OSError` and still leaves the writer closed. The child has already
+  exited 5, emits no `closed`, and the peer alias retains shared identity,
+  bytes, and link count two under the guardian.
+- Evidence limit: one fixed late byte, one buffered writer, one fixture, three
+  processes, one principal, and one parent-owned tree. This is not general
+  buffering, portable exception translation, acknowledgement, durable
+  recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0178, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M194 baseline passed; the live observation passed
+  first run; intentional red phases found only missing decision/registration
+  contracts; both Python files are format-, Ruff-, and strict-Pyright clean;
+  all nine M195 focused checks pass.
+- Complete regression: after correcting one tool-neutral project-record phrase
+  found by the first 3.12 run, exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  pass 4,053 tests with 17 skips. The exact 94-file Windows boundary passes 360
+  tests with one established capability skip, and 20 independent M195 live
+  runs pass.
+- Product/distribution: ten real-wgpu tests, fresh base/graphics M7 profiles,
+  eight profile-schema tests, both Clockwork Arena renderers, Agent World
+  Builder, two byte-identical builds, installed-wheel smoke, and two identical
+  fully smoked ten-artifact release stages pass. The 114-entry pure wheel
+  excludes all M195 source-only evidence and forbidden payload; the source
+  archive has 947 entries.
+- Review: exactly 16 intended paths remain; protected runtime, fixtures,
+  examples, scripts, CI, dependencies, metadata, lock, and prior M194 surfaces
+  have zero diff. Fourteen exact hygiene/M195 checks pass and 931 added lines
+  contain no credential assignment or machine-local path. No actionable
+  finding remains.
+- Record-inclusive distribution/release: the pure wheel remains exactly
+  362,634 bytes at SHA-256
+  `572a29b6a9306556fcac51d663b322487e885da2957142ef83709f70a6358c47`;
+  two 2,288,447-byte source archives reproduce at SHA-256
+  `08224ecda9b1b11a6a8f094d6b8ab2b5d73fabcca86fb9bb74b30aa222a8d057`.
+  Installed-wheel smoke and both identical ten-artifact release stages pass.
+- Final record separator, guarded scratch cleanup, DCO object audit, and
+  hosted-publication reconciliation remain in progress. The separator passes
+  whole-tree static checks, 14 review checks, strict docs, dated governance,
+  and whitespace. Its final pair preserves the wheel and reproduces identical
+  2,288,781-byte source archives at SHA-256
+  `0819cfe055960862800ce7fbe2ec5ae5f5c2bbf991a10d45290f51f69c01d034`;
+  installed-wheel and both ten-artifact release smokes pass.
+- Guarded cleanup's first recursive audit was sandbox-denied before deletion.
+  Its access-enabled rerun proved all 59 exact M195 targets repository-confined,
+  ignored, untracked, and top-level plus recursively reparse-free, then removed
+  all 59 and confirmed zero remains. DCO object audit and hosted-publication
+  reconciliation remain in progress.
+- Post-cleanup separator: both Python files remain static-clean; 14 review
+  checks, strict docs, dated governance, and whitespace pass. The two exact
+  regenerated targets were revalidated and removed; zero M195 scratch remains.
+  DCO object audit and hosted-publication reconciliation are the only remaining
+  closeout steps.
+- Corrected pre-commit audit proves exact M194 HEAD/tree, 16 intended paths,
+  only local `main` and neutral M195, expected `0 95` divergence, zero
+  protected-surface diff, configured identity, zero M195 scratch, clean
+  whitespace, and clean object connectivity. The first tree query was
+  PowerShell-misparsed and made no accepted tree claim.
+- Initial signed DCO object `31563f13616403d75e621bf70da2d9b12e93416a`,
+  tree `987202c629abb8c7f1eba41b53876b223cc19a1a`, has sole parent exact
+  M194, exactly 16 intended paths, one matching sign-off, consistent identity,
+  clean tree, zero scratch, clean whitespace, and clean connectivity after one
+  corrected invalid revision query. This record is folded into its closeout
+  amendment.
+- Hosted publication: fresh fetch and authenticated inspection leave remote
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, only remote
+  `main`, and PR #251 latest. M194 is absent from hosted ancestry, so M195 push/
+  PR and the associated hosted allocation are withheld rather than exposing
+  the missing M100-M194 prerequisite stack.
+
+## M194 late valid-close delivery failure - locally complete, publication withheld
+
+- Base: fully locally validated M193 DCO commit
+  `71e5ae471fc6e63b26a8e31e40389e3342aa8491`, exact tree
+  `3aaef65cd46db0bf4ae16426da56d50cab9044e3`, sole parent exact M192.
+- Branch hygiene: neutral
+  `release/m194-windows-alias-mutator-late-close-delivery-failure-boundary`;
+  the redundant M193 branch name was removed after exact branch creation.
+- Direction: RFC-0177 accepts one current-host Windows-only, test-only buffered
+  acceptance-versus-delivery boundary over M186's unchanged fixture.
+- Live result: after exact M193 invalid settlement, one late valid `!` is
+  accepted into the parent buffer; delivery then fails with generic `OSError`
+  on flush. The child has already exited 5, emits no `closed`, and the peer
+  alias retains shared identity, bytes, and link count two under the guardian.
+- Evidence limit: one fixed late byte, one buffered writer, one fixture, three
+  processes, one principal, and one parent-owned tree. This is not general
+  buffering, portable exception translation, acknowledgement, durable
+  recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0177, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M193 baseline passed; the live observation passed
+  first run; intentional red phases and one corrected guard are retained;
+  both Python files are format-, Ruff-, and strict-Pyright clean; all nine M194
+  focused checks pass.
+- Complete regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  4,044 tests with 17 skips. The exact 92-file Windows boundary passes 351
+  tests with one established capability skip, and 20 independent M194 live
+  runs pass.
+- Product/distribution: ten real-wgpu tests, fresh base/graphics M7 profiles,
+  eight profile-schema tests, both Clockwork Arena renderers, Agent World
+  Builder, two byte-identical builds, installed-wheel smoke, and two identical
+  fully smoked ten-artifact release stages pass. The 114-entry pure wheel
+  excludes all M194 source-only evidence and forbidden payload; the source
+  archive has 943 entries.
+- Review: exactly 16 intended paths remain; protected runtime, fixtures,
+  examples, scripts, CI, dependencies, metadata, lock, and prior M193 surfaces
+  have zero diff. Fourteen exact hygiene/M194 checks pass and 926 added lines
+  contain no credential assignment or machine-local path. No actionable
+  finding remains.
+- Record-inclusive distribution/release: the pure wheel remains exactly
+  362,574 bytes at SHA-256
+  `f77493f515eeaa40a4e56b1db707094ea21d8fa2ae9afe40ec6d2624e232849f`;
+  two final 2,282,185-byte source archives reproduce at SHA-256
+  `45d7cc9f29ecf144eb35841215daba45ba1e646781f0bee26dcf5b44c2d2cfec`.
+  Installed-wheel smoke and both identical ten-artifact release stages pass.
+- Guarded cleanup verified and removed all 46 exact M194 generated targets;
+  zero remains. The post-cleanup 14-test, static, docs, dated-governance, and
+  whitespace separator passes. Exact 16-path scope, protected surfaces, base,
+  branch inventory, configured identity, and object connectivity pass their
+  pre-commit audit. The initial DCO object has the exact M193 sole parent, 16
+  intended paths, one matching sign-off, consistent identity, clean tree, and
+  clean connectivity; this record is folded into its closeout amendment.
+- Hosted publication: fresh fetch and authenticated inspection leave remote
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, only remote
+  `main`, and PR #251 latest. M193 is absent from hosted ancestry, so M194 push/
+  PR and the associated hosted allocation are withheld rather than exposing
+  the missing M100-M193 prerequisite stack.
+
+## M193 open-writer invalid-prefix settlement - locally complete, publication withheld
+
+- Base: fully locally validated M192 DCO commit
+  `3b9c7e43c3deac47b040c837844945e07514ba69`, exact tree
+  `7edd933e7bd4da487d9f2079a5e86b408b3fd161`, sole parent exact M191.
+- Branch hygiene: neutral
+  `release/m193-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-boundary`;
+  the redundant M192 branch name was removed after exact branch creation.
+- Direction: RFC-0176 accepts one current-host Windows-only, test-only open-
+  writer settlement boundary using M186's unchanged bounded-output fixture.
+- Live result: after exact recreation, one flushed `?!` write produces exit 5
+  while the parent writer remains open. No `closed` event is emitted; stdout is
+  EOF and stderr empty before the parent closes its writer. The peer alias
+  retains shared identity, bytes, and link count two under the live guardian.
+- Evidence limit: one fixed sequence, one bounded-output fixture, three
+  processes, one principal, and one parent-owned tree. This is not general
+  framing, arbitrary malformed-input/output handling, durable recovery,
+  Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0176, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: exact M192 baseline passed; the live observation passed
+  first run; intentional red phases identified only absent decisions and
+  registrations; both Python files are format-, Ruff-, and strict-Pyright
+  clean; all nine M193 focused checks pass.
+- Regression: exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 each
+  pass 4,035 tests with 17 skips. The 90-file Windows boundary passes 342 tests
+  with one skip; 20 independent live repetitions pass.
+- Graphics/product: ten real-wgpu tests, fresh two/three-workload profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass and
+  reproduce established deterministic identities.
+- Static/governance: the unchanged 46-package lock and 45-package environment
+  resolve; all 576 Python files are formatted; Ruff, strict Pyright, strict
+  docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,492-byte wheel at SHA-256
+  `75b9bfc69b4d54ee00e48784ed96e9c9a03b456bf165a7fca8b57c107ea7bd48`
+  and a 2,271,984-byte source archive at SHA-256
+  `e461731453e04cf061e4c119d5ec8baf7f3d3a92b80b6ecb970f892c62ecd710`.
+  Installed-wheel smoke and two identical ten-artifact release smokes pass.
+  Inventory is 114 wheel/939 source entries; all four M193 evidence files are
+  source-only.
+- Review: exactly 16 intended paths remain; protected runtime/package/
+  fixture/dependency/workflow surfaces have zero diff. Fourteen exact review
+  tests pass; 907 added lines have zero retired-identity, credential-
+  assignment, or local-path match; the wheel has no forbidden payload. No
+  actionable finding remains.
+- Record separator: the first exact review run found one retired identity term
+  in three evidence summaries. Corrected neutral wording leaves all 576 Python
+  files static-clean; 14 review checks, strict docs, dated governance, and
+  whitespace pass.
+- Final distribution: two record-state builds reproduce the unchanged wheel
+  and identical 2,273,075-byte source archives at SHA-256
+  `4f21e5a177cd7447ba3c7a2252224e28819845027798a493890bb012d780a77b`.
+  Installed-wheel smoke passes; two final ten-artifact release stages are byte-
+  identical and both complete release smokes pass.
+- Post-record separator: both Python files remain static-clean; 14 exact review
+  tests, strict docs, dated governance, and whitespace pass.
+- Cleanup: the first recursive audit was access-denied before deletion. Its
+  access-enabled rerun verified all 46 exact M193 scratch targets as repository-
+  confined, ignored, and top-level plus recursively reparse-free; guarded
+  removal completed with zero target remaining.
+- Initial DCO commit `2b3cf8273d2aa5bed0fa888ae7ea02e7419b9bac`, tree
+  `0b3ae83543db3bacbe55604d11ee0e96dce6847a`, has sole parent exact M192,
+  exactly 16 intended paths, one matching sign-off, truthful identity, no
+  merge, expected `0 94` divergence, clean worktree, and zero scratch. This
+  record is folded into the closeout amendment; the successor records its final
+  hash without self-reference.
+- Pre-publication amended DCO object
+  `607bf9802cbf1abca6be90f892db536712b0ba57`, tree
+  `d25cdd2fc1343de8e7a16a30f17dfcca580c56fe`, has sole parent exact M192,
+  exactly 16 paths, one matching sign-off, truthful identity, no merge, clean
+  worktree, expected `0 94` divergence, and zero scratch.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry tests, branch inventory, authenticated account check, and recent PR
+  history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, prove M192 absent, report PR
+  #251 as latest, and show no hosted milestone branch. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- This reconciliation record is folded into the final closeout amendment; the
+  successor records the ultimate M193 hash without self-reference. Local
+  closeout is complete.
+
+## M192 post-recreate invalid prefix with valid close suffix - locally complete, publication withheld
+
+- Base: fully locally validated M191 DCO commit
+  `882d8827aee17cca4d4acf3fdc4da43d185a8856`, exact tree
+  `0f57ff5c0207ea26c000959a7a0ff3697a5fd2ce`, sole parent exact M190.
+- Branch hygiene: neutral
+  `release/m192-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-boundary`;
+  the redundant M191 branch name was removed after exact branch creation.
+- Direction: RFC-0175 accepts one current-host Windows-only, test-only
+  leading-byte rejection boundary using M186's unchanged mutator fixture.
+- Live result: after exact recreation, one flushed `?!` write produces no
+  `closed` event and exit 5. The peer alias remains present with shared
+  identity, bytes, and link count two while the guardian remains live and
+  protective.
+- Evidence limit: one fixed two-byte sequence, three processes, one principal,
+  and one parent-owned tree. This is not arbitrary malformed input, general
+  message framing, durable commit, recovery, Windows admission, or cleanup
+  authority.
+- Scope: one integration probe, one architecture guard, RFC-0175, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: the exact M191 baseline passed nine tests; the new live
+  observation passed first run; intentional red phases identified only absent
+  decisions/registrations; both Python files are format-, Ruff-, and
+  strict-Pyright clean; all nine M192 focused checks pass.
+- Regression: exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5 each
+  pass 4,026 tests with 17 skips. The 88-file Windows boundary passes 333 tests
+  with one skip; 20 live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder reproduce established
+  deterministic identities.
+- Static/governance: the 46-package lock and 45-package graphics environment
+  resolve; all 574 Python files are formatted; Ruff, strict Pyright, strict
+  docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,408-byte wheel at SHA-256
+  `58ba23dc880407426b3b24b88732bd7d7fe90ad073c0a712a8cb00fd977e2a67`
+  and a 2,264,718-byte source archive at SHA-256
+  `8aff71208ca31320aba05cdbd6e5428ed6171bd8294454d4eed1cce2261622c2`.
+  Installed-wheel smoke and two identical ten-artifact release-stage smokes
+  pass. Inventory is 114 wheel/935 source entries; all M192 evidence is
+  source-only and no forbidden wheel payload exists.
+- Review: exactly 16 intended paths remain. Runtime, package code, fixtures,
+  examples, scripts, workflows, metadata, dependencies, lock, version, and
+  root exports have zero diff. Public-hygiene and architecture guards pass;
+  added-content scans find no development-tool identity, credential assignment,
+  or local-path material. No actionable finding remains.
+- Final distribution: two record-state builds reproduce the unchanged wheel
+  and identical 2,265,482-byte source archives at SHA-256
+  `1ac927e641d39dc82896628dd450ceaf85fa868b9ae419445dacd6498036c087`.
+  Installed-wheel smoke passes; two final ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Record separator: all 574 Python files remain format-, Ruff-, and
+  strict-Pyright clean; 14 exact review tests, strict docs, dated governance,
+  and whitespace pass.
+- Cleanup: after two fail-closed parent-property audit corrections, all 49
+  exact M192 test, environment, profile, docs, distribution, and release
+  targets were repository-confined, ignored, and top-level plus recursively
+  reparse-free. Guarded removal completed and zero M192 target remains.
+- Post-record separator: both Python files remain static-clean; 14 exact review
+  tests, strict docs, dated governance, and whitespace pass. Its two exact
+  generated targets were revalidated, removed, and confirmed absent.
+- Initial DCO commit `4ff6e8442736c3e240afc7e1f0f940776156757c`, tree
+  `0a8642e432b890961536e790b3066d71ce8368fd`, has sole parent exact M191,
+  exactly 16 intended paths, one matching sign-off, truthful identity, no
+  merge, expected `0 93` divergence, clean worktree, zero M192 scratch, and
+  clean connectivity apart from ordinary dangling records. This record is
+  folded into the closeout amendment; the successor milestone records its
+  final hash without self-reference.
+- Pre-publication amended DCO object
+  `060f1e2c9e6cd2befc9bad9b204ffc2b360adf47`, tree
+  `194941a19d838c7df9af5c69bd9e993899db1155`, has sole parent exact M191,
+  exactly 16 paths, one matching sign-off, truthful identity, no merge, clean
+  worktree, expected `0 93` divergence, and zero scratch.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry tests, branch inventory, authenticated account check, and recent PR
+  history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, prove M191 absent, report PR
+  #251 as latest, and show no hosted milestone branch. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- This reconciliation record is folded into the final closeout amendment; the
+  successor milestone records its ultimate hash without self-reference. Local
+  closeout is complete.
+
+## M191 post-recreate valid close prefix with trailing byte - locally complete, publication withheld
+
+- Base: fully locally validated M190 DCO commit
+  `3d84bda9e41caf82a683e359210b7b9e74e9f8cc`, exact tree
+  `6d49c1eeb2b383a6bf267fb05a44e8a4326e4bb8`, sole parent exact M189.
+- Branch hygiene: neutral
+  `release/m191-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-boundary`;
+  the redundant M190 branch name was removed after exact branch creation.
+- Direction: RFC-0174 accepts one current-host Windows-only, test-only
+  byte-prefix acceptance boundary using M186's unchanged mutator fixture.
+- Live result: after exact recreation, one flushed `!?` write produces exact
+  `closed` and exit 0 while the parent writer is still open. The peer alias
+  remains present with shared identity, bytes, and link count two while the
+  guardian remains live and protective.
+- Evidence limit: one fixed two-byte sequence, three processes, one principal,
+  and one parent-owned tree. This is not arbitrary malformed input, general
+  message framing, durable commit, recovery, Windows admission, or cleanup
+  authority.
+- Scope: one integration probe, one architecture guard, RFC-0174, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused validation: the exact M190 baseline passed nine tests; the new live
+  observation passed first run; both Python files are format-, Ruff-, and
+  strict-Pyright clean; all nine M191 focused checks pass; strict docs and both
+  governance modes pass.
+- Regression: exact CPython 3.12.13, isolated 3.13.13, and isolated 3.14.5
+  each pass 4,017 tests with 17 skips. The first 3.12 run correctly failed one
+  new non-neutral evidence phrase; the corrected hygiene guard and full suite
+  pass. The 86-file Windows boundary passes 324 tests with one skip; 20 live
+  repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder reproduce established
+  deterministic identities.
+- Static/governance: the 46-package lock and 45-package graphics environment
+  resolve; all 572 Python files are formatted; Ruff, strict Pyright, strict
+  docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,338-byte wheel at SHA-256
+  `301aee0997a554793462edcadd63081ee8b4ee85f75c51706466a6a408d57bc6`
+  and a 2,257,594-byte sdist at SHA-256
+  `55b2c01d16800c959207bb925a5b7cbf2ad9fbb6c7b610de3cea64b0002fa0e5`.
+  Installed-wheel smoke and two identical ten-artifact release-stage smokes
+  pass. Inventory is 114 wheel/931 sdist entries; all M191 evidence is
+  source-only and no forbidden wheel payload exists.
+- Review: exactly 16 intended paths remain. Runtime, package code, fixtures,
+  examples, scripts, workflows, metadata, dependencies, lock, version, and
+  root exports have zero diff. Tool-neutrality and architecture guards pass;
+  corrected added-content scans find no credential or local-path material. No
+  actionable finding remains.
+- Final distribution: two record-state builds reproduce the unchanged wheel
+  and identical 2,258,812-byte source archives at SHA-256
+  `4cc112204d1f18df5727ced8a84e6ec85e5e076c4ca3c78d059280419a510292`.
+  Installed-wheel smoke passes; two final ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Final separator: both Python files remain format-, Ruff-, and strict-Pyright
+  clean; 14 exact hygiene/architecture/live checks, strict docs, dated
+  governance, and whitespace pass.
+- Cleanup: all 49 exact M191 test, environment, profile, docs, distribution,
+  and release targets were repository-confined, ignored, and top-level plus
+  recursively reparse-free. Guarded removal completed and zero M191 target or
+  generated site remains.
+- Post-record separator: both Python files remain static-clean; 14 exact
+  hygiene/architecture/live checks, strict docs, dated governance, and
+  whitespace pass. Its two exact generated targets were revalidated, removed,
+  and confirmed absent.
+- Initial DCO commit `7313bae15ab1f830891c521dc6ec5ef9b69f990f`, tree
+  `1dd6beb3c0dd6205ca8f16c6dc9c8588fee22790`, has sole parent exact M190,
+  exactly 16 intended paths, one matching sign-off, truthful identity, no
+  merge, expected `0 92` divergence, clean worktree, zero M191 scratch, and
+  clean connectivity apart from ordinary dangling records. This record is
+  folded into the closeout amendment; the successor milestone records its
+  final hash without self-reference.
+- Pre-publication amended DCO object
+  `a4da22845a844d934ae5b5e3914ebbd989de0f00`, tree
+  `cd9da89a59bbcf4338c558ebdad88c4aa2c718d4`, has sole parent exact M190,
+  exactly 16 paths, one matching sign-off, truthful identity, no merge, clean
+  worktree, expected `0 92` divergence, zero scratch, and clean connectivity.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry tests, branch inventory, authenticated account check, and recent PR
+  history leave hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, prove M190 absent, report PR
+  #251 as latest, and show no hosted milestone branch. No push, PR, hosted
+  allocation, tag, release, or package publication occurs.
+- This reconciliation record is folded into the final closeout amendment; the
+  successor milestone records its ultimate hash without self-reference. Local
+  closeout is complete.
+
+## M190 post-recreate mutator invalid control - locally complete, publication withheld
+
+- Base: fully locally validated M189 DCO commit
+  `2f7c61379ccd608a869c866e4937e7937906a64c`, exact tree
+  `641b6e8fae20947e92fd5b87f58ca07d958757ee`, sole parent exact M188.
+- Branch hygiene: neutral
+  `release/m190-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-boundary`;
+  the redundant M189 branch name was removed after exact branch creation.
+- Direction: RFC-0173 accepts one current-host Windows-only, test-only
+  negative rollback boundary using M186's unchanged mutator fixture.
+- Live result: after exact recreation, one fixed invalid `?` byte settles the
+  child with exact exit 5, stdout EOF, empty stderr, and no close event. The
+  peer alias remains present with shared identity, bytes, and link count two
+  while the guardian remains live and protective.
+- Evidence limit: three processes under one principal and one parent-owned
+  tree. There is no automatic rollback to one link; this is neither the M189
+  EOF path nor abrupt termination, durable commit, recovery, Windows
+  admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0173, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Regression: CPython 3.12.13, 3.13.13, and 3.14.5 each pass 4,008 tests with
+  17 skips. The 84-file Windows boundary passes 315 tests with one skip; 20
+  corrected live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder pass with their
+  established deterministic identities.
+- Static: the 46-package lock and 45-package graphics environment resolve; all
+  570 Python files are formatted; Ruff, strict Pyright, strict docs, and
+  whitespace pass.
+- Initial distribution: two builds reproduce a 362,252-byte wheel at SHA-256
+  `275738ae405af226003a2884951afa3ad379e32e397d5cdc2f966750ced5d43f`
+  and a 2,247,477-byte sdist at SHA-256
+  `d35b7b4f4f15265f4a48fa43ecaf84dca19c1b9f0affca744c7731af7470c3ac`.
+  Complete installed-wheel smoke passes; dual ten-artifact release stages are
+  identical and both pass. Inventory is 114 wheel/927 sdist entries, with all
+  four M190 files source-only and no forbidden wheel payload.
+- Record-inclusive source, Windows, docs, governance, scope, security, and
+  package-boundary gates pass. Final record-state builds reproduce the
+  unchanged wheel and a 2,250,591-byte source archive at SHA-256
+  `4ecc42087b2a458e7b8c0c1da96f5a51907dcad264edf78d19065e901274dcf3`;
+  installed-wheel and dual release smokes pass.
+- The final source separator corrected one documentation/guard wording
+  mismatch, after which both Python files, nine focused checks, strict docs,
+  dated governance, and whitespace pass.
+- Guarded cleanup verified and removed all 56 exact repository-confined,
+  untracked, reparse-free M190 scratch targets; zero M190 target remains.
+- The final post-record separator passes both Python files, all nine focused
+  checks, strict docs, dated governance, and whitespace; its two exact
+  generated targets were revalidated, removed, and confirmed absent.
+- Final DCO commit `3d84bda9e41caf82a683e359210b7b9e74e9f8cc`,
+  tree `6d49c1eeb2b383a6bf267fb05a44e8a4326e4bb8`, has sole parent exact
+  M189, exactly 16 paths, one matching sign-off, truthful author/committer
+  identity, no merge, clean worktree, expected `0 91` divergence, zero M190
+  scratch, and clean connectivity apart from ordinary dangling records.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry tests, branch inventory, and authenticated PR history leave hosted
+  `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M189 absent, report
+  PR #251 as the latest merge, and show no hosted milestone branch. No branch,
+  PR, hosted allocation, tag, release, or package is published.
+- Local closeout is complete; M191 retains this exact object as its base.
+
+## M189 post-recreate mutator control EOF - locally complete, publication withheld
+
+- Base: fully locally validated M188 DCO commit
+  `137442543d50f6795308372230c6677f34eec087`, exact tree
+  `a12e0c5139c9ce60cf85a62f5a087cce5ae5a032`, sole parent exact M187.
+- Branch hygiene: the M189 name was retired after exact M190 branch creation;
+  final M189 remains the exact M190 base.
+- Direction: RFC-0172 accepts one current-host Windows-only, test-only
+  negative rollback boundary using M186's unchanged mutator fixture.
+- Live result: after exact recreation, closing only the parent control writer
+  settles the child with exact exit 5, stdout EOF, and no close event. The peer
+  alias remains present with shared identity, bytes, and link count two while
+  the guardian remains live and protective.
+- Evidence limit: three processes under one principal and one parent-owned
+  tree. There is no automatic rollback to one link; this is not abrupt
+  termination, durable commit, recovery, Windows admission, or cleanup
+  authority.
+- Scope: one integration probe, one architecture guard, RFC-0172, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Regression: CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,999 tests with
+  17 skips. The 82-file Windows boundary passes 306 tests with one skip; 20
+  live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder pass.
+- Static/governance: 46 locked packages and the 45-package graphics
+  environment resolve; all 568 Python files are formatted; Ruff, strict
+  Pyright, strict docs, both governance modes, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,208-byte wheel at SHA-256
+  `0265b8f0b004d4a9f9db39cba7a149feddc6521417859944499bd7c09d2b37e5`
+  and a 2,241,034-byte sdist at SHA-256
+  `7b691bfb273df0ae6bac0ebd0d66acd768b35800f43b272cf143308b4e092cba`.
+  Primary plus 27 consumers pass; dual ten-artifact release stages are
+  identical and pass. Inventory is 114 wheel/923 sdist entries, with all four
+  M189 files source-only.
+- Record-inclusive closure: lock/environment, all 568 Python files, nine
+  focused checks, the 82-file Windows boundary, strict docs, both governance
+  modes, and whitespace pass.
+- Final distribution: two builds reproduce a 362,195-byte wheel at SHA-256
+  `5673fc31242a65ec10ceecc614806fd81357564fb3edcce8bbbab6f804d8173d`
+  and identical 2,243,024-byte source archives at SHA-256
+  `07e2c5c9108d9548e33d738aace9d410ec068ad5c2fddca6c8ddfbfd60a0aa05`.
+  Primary plus all 27 consumers pass against the final wheel; dual final
+  ten-artifact release stages are identical and pass.
+- Review: exactly 16 intended paths remain; runtime/package/fixture/CI/
+  dependency surfaces have zero diff. Added-line/new-file scans find no
+  development-tool identity, credential assignment, or local path. The
+  114-entry wheel contains no native or WASM payload. No actionable finding
+  remains.
+- Cleanup: all 45 exact M189 test, profile, docs, distribution, and release
+  targets were repository-confined. Two pre-delete property corrections were
+  required; a sandboxed attempt removed 13 accessible targets and was followed
+  by a terminating access-enabled audit/removal of the remaining 32. The final
+  audit found zero reparse points and zero remaining target.
+- Final separator: both M189 Python files remain format-, Ruff-, and strict-
+  Pyright clean; nine focused checks, strict docs, dated governance, and
+  whitespace pass. Both exact regenerated targets were revalidated, removed,
+  and confirmed absent.
+- Final object: DCO commit
+  `2f7c61379ccd608a869c866e4937e7937906a64c`, tree
+  `641b6e8fae20947e92fd5b87f58ca07d958757ee`, has sole parent exact M188,
+  exactly 16 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 90` divergence, zero M189 scratch, and
+  clean connectivity apart from ordinary dangling records.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry test, remote-branch inventory, and authenticated PR history leave
+  hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M188 absent, report PR
+  #251 as the latest hosted PR, and show only remote `main`. No branch, PR,
+  hosted allocation, tag, release, or package is published.
+- Local closeout is complete; M190 retains this exact object as its base.
+
+## M188 post-recreate mutator abrupt loss - locally complete, publication withheld
+
+- Base: fully locally validated M187 DCO commit
+  `2f0869c3aeb632daa68a2e460f2b2cb3d34a1e7e`, exact tree
+  `9efa5bcdf44ca8cd47831f9eacabe207383587a1`, sole parent exact M186.
+- Branch hygiene: neutral
+  `release/m188-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-boundary`;
+  the redundant M187 branch name was removed by in-place rename.
+- Direction: RFC-0171 accepts one current-host Windows-only, test-only
+  negative rollback boundary using M186's unchanged mutator fixture.
+- Live result: after exact child-owned recreation, terminate/reap leaves the
+  alias present and both names retain shared identity, bytes, and link count
+  two while the matching guardian remains live and protects the exact name.
+- Evidence limit: three processes under one principal and one parent-owned
+  tree. There is no automatic rollback to one link; this is not durable commit,
+  crash consistency, recovery, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0171, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused proof: both Python files are format-, Ruff-, and strict-Pyright clean;
+  eight architecture guards plus the live observation pass nine tests; strict
+  docs and whitespace pass.
+- Regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 complete graphics
+  environments each pass 3,990 tests with 17 skips. The 80-file Windows
+  boundary passes 297 tests with one skip; 20 live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder pass.
+- Static: the 46-package lock and 45-package graphics environment resolve; all
+  566 Python files are formatted; Ruff and strict Pyright report zero findings.
+- Initial distribution: two builds reproduce a 362,127-byte wheel at SHA-256
+  `228066129979b3eceb3c766e66d7ed2577172998e76e309635a324a24a4f1660`
+  and a 2,234,521-byte sdist at SHA-256
+  `40f19af2899390a323bdb6e4398b15c898498f281b17921178be71055b30d0e5`.
+  Primary plus 27 consumers pass; dual ten-artifact release stages are
+  identical and pass. Inventory is 114 wheel/919 sdist entries, with all four
+  M188 files source-only.
+- Record-inclusive closure: the unchanged lock/environment, all 566 Python
+  files, nine focused checks, the 80-file Windows boundary, strict docs, both
+  governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged wheel and identical
+  2,236,761-byte source archives at SHA-256
+  `5cd21d6a7a1bc6e0c670d96fc907facc6328a8852006eb519c219b184a00277c`.
+  Primary wheel smoke and both final ten-artifact release smokes pass; the
+  earlier 27 consumers apply byte-for-byte to the unchanged wheel.
+- Review: exactly 16 intended paths remain; runtime/package/fixture/CI/
+  dependency surfaces have zero diff. Added public/new-file scans find no
+  development-tool identity, credential assignment, or local path. No
+  actionable correctness, architecture, security, docs, compatibility,
+  package, or CI-allocation finding remains.
+- Cleanup: all 42 exact M188 test, profile, docs, distribution, and release
+  targets were repository-confined and top-level plus nested reparse-free.
+  Expected test hard links remained within disposable fixtures. All targets
+  were removed; zero exact M188 scratch remains.
+- Final separator: both M188 Python files remain format-, Ruff-, and strict-
+  Pyright clean; nine focused checks, strict docs, dated governance, and
+  whitespace pass. Both exact regenerated targets were revalidated, removed,
+  and confirmed absent.
+- Final object: DCO commit
+  `137442543d50f6795308372230c6677f34eec087`, tree
+  `a12e0c5139c9ce60cf85a62f5a087cce5ae5a032`, has sole parent exact M187,
+  exactly 16 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 89` divergence, zero M188 scratch, and
+  clean connectivity apart from 325 ordinary dangling records.
+- Post-record separator: nine focused checks, strict docs, dated governance,
+  and whitespace pass; both exact regenerated targets were revalidated,
+  removed, and confirmed absent.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry test, remote-branch inventory, and authenticated PR history leave
+  hosted `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, prove M187 absent, report PR
+  #251 as the latest merge, and show only remote `main`. No branch, PR, hosted
+  allocation, tag, release, or package is published.
+- Local closeout is complete; M189 retains this exact object as its base.
+
+## M187 alias mutator abrupt loss - locally complete, publication withheld
+
+- Base: fully locally validated M186 DCO commit
+  `3357f1e38de6b25ecdf15502ae46124bebcb3597`, exact tree
+  `6fc99f5496b39cf3304cf1713db9f93e20452322`, sole parent exact M185.
+- Branch hygiene: neutral
+  `release/m187-windows-hard-link-alias-mutator-abrupt-loss-boundary`; the
+  redundant M186 branch name was removed by in-place rename.
+- Direction: RFC-0170 accepts one current-host Windows-only, test-only
+  negative recovery boundary using M186's unchanged mutator fixture.
+- Live result: after exact child-owned deletion, terminate/reap leaves the
+  alias absent and original identity/bytes/link count one unchanged while the
+  matching guardian remains live and preserves exact-name refusal.
+- Evidence limit: three processes under one principal and one parent-owned
+  tree. There is no automatic rollback or recovery; this is not crash
+  consistency, root ownership, Windows admission, or cleanup authority.
+- Scope: one integration probe, one architecture guard, RFC-0170, one security
+  decision, eight public registrations, and four project records. Runtime,
+  fixtures, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused proof: both Python files are format-, Ruff-, and strict-Pyright clean;
+  eight architecture guards plus the live observation pass nine tests; strict
+  docs pass with only the known Material notice.
+- Regression: exact CPython 3.12.13, 3.13.13, and 3.14.5 complete graphics
+  environments each pass 3,981 tests with 17 skips. The 78-file Windows
+  boundary passes 288 tests with one skip; 20 live repetitions pass.
+- Graphics/product: ten real-wgpu tests, two/three-workload profiles, eight
+  profile tests, Clockwork Arena, and Agent World Builder pass.
+- Static/governance: 46 locked packages and the 45-package graphics environment
+  resolve; all 564 Python files are formatted; Ruff, strict Pyright, strict
+  docs, static/dated governance, and whitespace pass.
+- Initial distribution: two builds reproduce a 362,058-byte wheel at SHA-256
+  `5792c7c9206f318cacc65d468a8419a0ef54450c12fbccdb51a0acb3bf6b5080`
+  and a 2,227,485-byte sdist at SHA-256
+  `e6bf579a9bc04f05c2ed1bb2013727b3a265f2109378809b0d31b1ac60d659db`.
+  Primary plus 27 consumers pass; dual ten-artifact release stages are
+  identical and pass. Inventory is 114 wheel/915 sdist entries, with all four
+  M187 files source-only.
+- Record-inclusive closure: the unchanged lock/environment, all 564 Python
+  files, nine focused checks, the 78-file Windows boundary, strict docs, both
+  governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged wheel and identical
+  2,230,290-byte source archives at SHA-256
+  `32bf32c2a1ccd251e173bf30714b4e5cc9a38f96f465c448bdcb9fbecb03cf49`.
+  Primary wheel smoke passes, the earlier 27 consumers apply byte-for-byte,
+  and both final ten-artifact release bundles pass.
+- Review: exactly 16 intended paths remain; runtime/package/fixture/CI/
+  dependency surfaces have zero diff. Added public/new-file scans find no
+  development-tool identity, credential assignment, or local path. No
+  actionable correctness, architecture, security, docs, compatibility,
+  package, or CI-allocation finding remains.
+- Cleanup: all 45 exact M187 distribution, release, profile, test, and
+  generated-docs targets were repository-confined, ignored, untracked, and
+  top-level plus nested reparse-free before deletion. All were removed; zero
+  exact M187 scratch remains.
+- Final separator: both M187 Python files remain format-, Ruff-, and
+  strict-Pyright clean; nine focused checks, strict docs, dated governance, and
+  whitespace pass. The two exact regenerated targets were revalidated,
+  removed, and confirmed absent.
+- Initial object: DCO commit
+  `b8ff0fe3663983bc6a39274bd754306d34ab5a0e`, tree
+  `77cd50b714162df5b311096c3b6f412d037174e6`, has sole parent exact M186,
+  exactly 16 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 88` divergence, zero M187 scratch, and
+  clean connectivity apart from 323 ordinary dangling records. This record is
+  folded into the closeout object.
+- Post-record separator: nine focused checks, strict docs, dated governance,
+  and whitespace pass; both exact regenerated targets were revalidated,
+  removed, and confirmed absent.
+- Publication is withheld: a fresh pruned fetch, direct hosted ref/tree,
+  ancestry test, remote-branch inventory, and authenticated PR history leave
+  hosted `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`,
+  prove M186 absent, report PR #251 as the latest merge, and show only remote
+  `main`. No branch, PR, hosted allocation, tag, release, or package is
+  published.
+
+## M186 independent alias mutator ABA - locally complete, publication withheld
+
+- Base: fully locally validated M185 DCO commit
+  `4dd880402a8e6f6f1e74bd69be1cd3ad0366b513`, exact tree
+  `418e75176693f0ea30f43dac80bf0c8451f5a29e`, sole parent exact M184.
+- Branch hygiene: neutral
+  `release/m186-windows-independent-hard-link-alias-mutator-aba-boundary`;
+  exact containment removed the redundant M185 branch name.
+- Direction: RFC-0169 accepts one current-host Windows-only, test-only
+  negative boundary. A distinct sibling child owns the fixed alias delete and
+  recreate calls while the matching guardian child remains live.
+- Evidence limit: three processes under one principal and one parent-owned
+  process tree. This is not cross-principal, unrelated-session, hostile-process,
+  simultaneous-race, root-ownership, admission, or cleanup-authority evidence.
+- Live result: the parent only coordinates and observes; one identity and exact
+  bytes remain stable while peer-path membership and link count change
+  `2 -> 1 -> 2`, and exact-name rename remains refused until guardian close.
+- Scope: one fixed test fixture, one integration probe, one architecture guard,
+  RFC-0169, one security decision, eight public registrations, and four project
+  records. Runtime, examples, scripts, workflows, metadata, dependencies, lock,
+  version, root exports, and package code remain unchanged.
+- Focused proof: all three Python files are format-, Ruff-, and strict-Pyright
+  clean. Eight architecture guards plus the live observation pass nine tests;
+  strict docs pass with only the known Material notice.
+- Regression: exact CPython 3.12.13 and isolated complete frozen graphics
+  environments on 3.13.13 and 3.14.5 each pass 3,972 tests with 17 skips. The
+  76-file M149-M186 Windows boundary passes 279 tests with one skip; 20
+  corrected live repetitions pass.
+- Graphics and product slices: ten real-wgpu tests, fresh base/graphics
+  profiles, eight profile-schema tests, Clockwork Arena, and Agent World
+  Builder pass with their established identities.
+- Static/governance: the unchanged 46-package lock and exact 45-package
+  graphics environment resolve. All 562 Python files are formatted; Ruff and
+  strict Pyright report zero findings; strict docs, static and dated governance,
+  and whitespace pass.
+- Initial package/release: two builds reproduce a 361,987-byte pure wheel and
+  2,217,745-byte source archive. Primary plus 27 additional installed-wheel
+  consumers pass. Two ten-artifact release stages are byte-identical and both
+  release smokes pass. Inventory contains 114 wheel and 911 source entries;
+  all five M186 files remain source-only.
+- Record-inclusive closure: the unchanged lock and graphics environment, all
+  562 Python files, nine focused assertions, the 76-file Windows boundary,
+  strict docs, both governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged 361,987-byte wheel at
+  SHA-256 `45b977971af0e3340b8ca3fcd3be10b84d5b6359cb3ff4d7ba9b201d9f0a11df`
+  and identical 2,220,908-byte source archives at SHA-256
+  `77228bd4bbb19331ffd5c422db5413c49208377c402d396a225f5ab25f1e5f45`.
+  Primary wheel smoke passes; all 27 earlier consumers apply byte-for-byte.
+  Two final ten-artifact release stages are identical and both release smokes
+  pass.
+- Review: exactly 17 intended paths, zero runtime/package/CI/dependency drift,
+  zero added public development-tool identity, credential assignment, or local
+  path, and no actionable correctness, architecture, security, documentation,
+  compatibility, package-boundary, or CI-allocation finding remains.
+- Cleanup: 41 exact M186 distribution, release, profile, test, and generated-
+  docs targets were repository-confined, ignored, and top-level plus nested
+  reparse-free before deletion. All were removed with sufficient Windows ACL
+  access; zero exact M186 scratch remains.
+- Final separator: all three M186 Python files remain format-, Ruff-, and
+  strict-Pyright clean; nine focused assertions, dated strict governance, and
+  whitespace pass. The exact regenerated test root was revalidated, removed,
+  and confirmed absent.
+- Initial object: DCO commit `279d135db74565dd10c4eb8e2a61727ebf16e893`,
+  tree `accededba4eb41d2394ef7d7cb2104c0c75ffc66`, has sole parent exact M185,
+  17 intended paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 87` divergence, and clean connectivity
+  apart from ordinary dangling objects. This record is folded into the amended
+  closeout object.
+- Post-record separator: nine focused assertions, dated strict governance, and
+  whitespace pass; the exact regenerated test root was revalidated, removed,
+  and confirmed absent.
+- Pre-publication object: amended commit
+  `3aae3959e2dcf966cda26aa627fef65301c6470b`, tree
+  `cb8edf9f9aa3f40affb2fb9ca6f07266cf91e587`, retains sole parent exact M185,
+  exactly 17 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 87` divergence, zero M186 scratch, and
+  clean connectivity apart from 322 ordinary dangling objects. The immutable
+  final revision is reported at closeout rather than embedded here.
+- Publication is withheld. A final fresh pruned fetch leaves hosted
+  `main` at exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, which does not
+  contain M185 or the local prerequisite stack. Direct `ls-remote` agrees;
+  GitHub reports PR #251 as the latest merge, and only remote `main` exists.
+- No branch, PR, hosted allocation, tag, release, or package is published.
+- Remaining: no M186 implementation work. Revisit publication only after an
+  ancestry-safe prerequisite integration; the next continuation must select a
+  new bounded direction slice.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
+## M185 alias delete/recreate ABA - locally complete, publication withheld
+
+- Base: fully locally validated M184 DCO commit
+  `5f4d1863984063fe3bc53951424a7b2b606f8f03`, exact tree
+  `59c2cc1580d227354cdc1c902ab5be1a8dfc6847`, sole parent exact M183.
+- Branch hygiene: neutral
+  `release/m185-windows-hard-link-alias-delete-recreate-aba-boundary`; exact
+  containment removed the redundant M184 branch name.
+- Direction: RFC-0168 accepts one current-host, Windows-only, test-only
+  negative boundary. The same peer pathname can be deleted and recreated while
+  M181's matching guardian child remains live.
+- Evidence correction: the mutation actor and guardian in M184 are separate
+  parent and child processes under one principal. M185 supersedes the prior
+  single-process wording without claiming cross-principal behavior or an
+  independent third actor.
+- Live result: one identity and exact bytes remain stable while peer-path
+  membership and link count change `2 -> 1 -> 2`; exact-name rename remains
+  refused until guardian close.
+- Scope so far: one integration probe, one architecture guard, RFC-0168, one
+  security decision, narrow M184 evidence corrections, eight public
+  registrations, and four project-record updates. Runtime, examples, scripts,
+  fixtures, workflows, metadata, dependencies, lock, version, and root exports
+  remain unchanged.
+- Focused proof: both Python files are format-, Ruff-, and strict-Pyright
+  clean. Seven architecture guards plus the live observation pass eight tests.
+  Strict docs build passes with only the known Material notice.
+- Regression: exact CPython 3.12.13 plus isolated complete frozen graphics
+  environments on 3.13.13 and 3.14.5 each pass 3,963 tests with 17 skips. The
+  74-file M149-M185 Windows boundary passes 270 tests with one skip; 20 live
+  repetitions pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass.
+- Initial package/release: two builds reproduce a 361,907-byte pure wheel and
+  2,206,707-byte source archive. Primary plus 27 additional installed-wheel
+  consumers pass. Two ten-artifact release stages are byte-identical and both
+  complete release smokes pass. Inventory contains 114 wheel and 906 source
+  entries; all four M185 source-only files occur once in the sdist and no M185,
+  test, native, or project-record payload enters the wheel.
+- Record-inclusive closure: the unchanged lock and graphics environment, all
+  559 Python files, eight focused assertions, the 74-file Windows boundary,
+  strict docs, both governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged 361,907-byte wheel at
+  SHA-256 `4b2060b9310d4ecdbab5faa136bcf34e8a34f1564b24fbdd284b151d3802d635`
+  and identical 2,209,784-byte source archives at SHA-256
+  `d6a56a08cac9ec524c4030e9a2de5c807fd25d177be65f461d321f2773fc6289`.
+  Primary wheel smoke passes; the earlier 27 consumers apply byte-for-byte.
+  Two final ten-artifact stages are identical and both release smokes pass.
+- Review: exactly 18 intended paths, zero runtime/package/CI/dependency drift,
+  zero added public development-tool identity, credential assignment, or local
+  path, and no actionable correctness, architecture, security, documentation,
+  compatibility, package-boundary, or CI-allocation finding remains.
+- Cleanup: 42 exact M185 distribution, release, profile, test, and generated-
+  docs targets were repository-confined, untracked/ignored, and top-level plus
+  nested reparse-free before deletion. All 42 were removed with sufficient
+  Windows ACL access; zero exact M185 target or generated docs site remains.
+- Final separator: both M185 Python files remain format-, Ruff-, and strict-
+  Pyright clean; eight focused assertions, dated strict governance, and
+  whitespace pass. The exact regenerated test root was revalidated, removed,
+  and confirmed absent.
+- Initial object: DCO commit `0a9c8e224f4a30c1bbe8070435fe707a0577d84d`,
+  tree `a72bd1e243921ada161322ab202ea588055349bb`, has sole parent exact M184,
+  18 intended paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 86` divergence, and clean connectivity
+  apart from ordinary dangling objects. This record is folded into the amended
+  closeout object.
+- Post-record separator: eight focused assertions, dated strict governance,
+  and whitespace pass; the exact regenerated test root was revalidated,
+  removed, and confirmed absent.
+- Static/governance: the unchanged 46-package lock and 45-package graphics
+  environment resolve, all 559 Python files are formatted, Ruff and strict
+  Pyright report zero findings, strict docs and whitespace pass, and static
+  plus dated strict governance return zero findings.
+- Publication: withheld. Fresh fetch, direct remote-ref, and GitHub
+  PR history still place hosted `main` at M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, so M184 is absent despite the
+  user's squash-merge notice.
+- Final object: the amended closeout commit retains sole parent exact M184,
+  exactly 18 paths, one matching sign-off, truthful author/committer identity,
+  no merge, clean worktree, expected `0 86` divergence, zero exact M185
+  scratch, protected runtime/package/CI surfaces, and clean connectivity apart
+  from ordinary dangling objects. The immutable revision is reported at
+  closeout rather than embedded self-referentially here.
+- Final publication gate: a fresh fetch, direct hosted ref, merge-base check,
+  remote branch inventory, and authenticated PR history leave hosted `main` at
+  exact M99 and prove M184 absent. PR #251 remains the latest merge. No branch,
+  PR, hosted allocation, tag, release, or package was published.
+- Remaining: no M185 implementation work. Revisit publication only after an
+  ancestry-safe prerequisite integration; the next continuation must select a
+  new bounded direction slice.
+- Security interpretation: guardian admission does not freeze peer-path
+  membership, and a one-link observation is not durable root-confined
+  ownership. Root policy, enumeration, use-time validation, recovery, receipts,
+  cleanup authority, Windows admission, and independent-host proof remain open.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
+## M184 alias deletion non-exclusion - locally complete, publication withheld
+
+- Base: fully locally validated M183 DCO commit
+  `e44ce6a12d61a5c1b857b88e81c45015a986df77`, exact tree
+  `6c2a7a69ec36328182fda066b946272c4eb0a227`, sole parent exact M182.
+- Branch hygiene: neutral
+  `release/m184-windows-hard-link-alias-deletion-boundary`; exact containment
+  allowed the redundant M183 branch name to be pruned.
+- Direction: RFC-0167 accepts one current-host, Windows-only, test-only
+  negative boundary. M181's matching guardian protects its exact opened name
+  but does not exclude deletion of a peer hard-link entry.
+- Correction evidence: the first live run expected alias deletion refusal and
+  failed because no `OSError` was raised. The corrected test preserves the
+  successful deletion, proves guardian liveness and continued exact-name
+  protection, and passes.
+- Live result: the file begins at link count two; `Path.unlink` removes the
+  peer alias while the guardian remains live; the retained original handle
+  reports count one; exact-name rename remains refused until guardian close.
+- Scope so far: one integration probe, one architecture guard, RFC-0167, one
+  security decision, eight public registrations, and four project-record
+  updates. Runtime, examples, scripts, fixtures, workflows, metadata,
+  dependencies, lock, version, and root exports remain unchanged.
+- Focused proof: both Python files are format-, Ruff-, and strict-Pyright
+  clean. Seven architecture guards plus the corrected live observation pass
+  eight tests. Strict docs build with only the known Material notice.
+- Regression: exact CPython 3.12.13 and fresh isolated 3.13.13/3.14.5 each pass
+  3,955 tests with 17 skips. The 72-file M149-M184 Windows boundary passes 262
+  tests with one skip; 20 corrected live repetitions pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass
+  with established identities.
+- Package/release: two builds reproduce a 361,819-byte pure wheel and a
+  2,200,431-byte source archive. Primary plus 27 additional installed-wheel
+  consumers pass. Two ten-artifact release stages are byte-identical and both
+  complete release smokes pass. Inventory is pure, excludes M184 tests from
+  the wheel, and retains all four M184 source-only files once in the source
+  archive.
+- Review: exact 16-path scope, protected M183/runtime/package/CI surfaces,
+  metadata hygiene, public identity/path/credential scans, strict docs,
+  whitespace, and static plus dated strict governance pass. No actionable
+  code, architecture, security, documentation, compatibility, package,
+  allocation, or public-hygiene finding remains.
+- Record-inclusive closure: the unchanged lock and graphics environment, all
+  557 Python files, 13 focused assertions, 72-file Windows boundary, strict
+  docs, both governance modes, and whitespace pass.
+- Final distribution: two builds reproduce the unchanged 361,819-byte wheel
+  and an identical 2,201,207-byte source archive. Primary wheel smoke passes;
+  the earlier 27 consumers apply to the byte-identical wheel. Two final
+  ten-artifact release stages are identical and both complete smokes pass.
+- Cleanup: all 48 exact generated M184 targets were checked for repository
+  confinement, tracked content, ignore status, and top-level/nested reparse
+  points. Ordinary cleanup removed 35; elevated revalidation removed the 13
+  targets at the complementary Windows ACL boundary. Zero remains.
+- Final separator: both M184 Python files remain format-, Ruff-, and strict-
+  Pyright clean; 13 focused assertions, strict docs, dated strict governance,
+  and whitespace pass. Its exact two outputs were guarded and removed.
+- Post-record separator: 13 metadata/M184 assertions, dated strict governance,
+  and whitespace pass; the exact regenerated test root was guarded and removed.
+- Pre-commit audit: exactly 16 intended paths, zero protected-surface or public
+  hygiene finding, zero exact scratch, only local `main` plus neutral M184,
+  truthful configured identity, exact M183 ancestry, and clean connectivity.
+- Initial object: DCO commit `426ccd31707461a1c4cf8ccfeb29780ac56a3dd0`,
+  tree `6666e414a80aa863705e6c9612153f416329fa16`, has sole parent exact M183,
+  16 intended paths, one sign-off, matching identity, no merge, clean worktree,
+  and clean object connectivity. This record is folded into the closeout object.
+- Publication: withheld. Fresh `origin/main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` and does not contain M183. GitHub
+  reports no open PR, PR #251 as the latest merge, and only remote `main`.
+  Pushing M184 would expose the absent M100-M183 prerequisite stack, so no
+  branch, PR, hosted allocation, tag, release, or package publication is made.
+- Remaining: final amended-object audit. The immutable final revision is
+  reported at closeout rather than embedded self-referentially here.
+- Security interpretation: exact-name protection does not control the file's
+  complete link set. A later count of one is not root-confined ownership.
+  Trusted-root placement, enumeration, link-count/use-time policy, recovery,
+  receipts, cleanup authority, Windows admission, and independent-host proof
+  remain unresolved.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
+## M183 post-admission hard-link creation - locally complete, publication withheld
+
+- Base: fully locally validated M182 DCO commit
+  `b9d02dbdfbb13f290079970305e2e1c5c6cd783f`, exact tree
+  `e27c14aa60b7ac9fa63af769e51d5344e5cca72a`, sole parent exact M181.
+- Branch hygiene: neutral
+  `release/m183-windows-post-admission-hard-link-creation-boundary`; exact
+  containment allowed the redundant M182 branch name to be pruned.
+- Direction: RFC-0166 accepts one current-host, Windows-only, test-only
+  negative boundary. M181's matching guardian protects its exact opened name
+  but does not freeze the file's link set after admission.
+- Live result: the file begins at link count one; `os.link` creates a peer
+  alias while the guardian remains live; both handles retain identity and
+  report link count two; exact-name rename remains refused.
+- Scope so far: one integration probe, one architecture guard, RFC-0166, one
+  security decision, eight public registrations, and four project-record
+  updates. Runtime, examples, scripts, fixtures, workflows, metadata,
+  dependencies, lock, version, and root exports remain unchanged.
+- Regression: exact CPython 3.12.13 and fresh isolated 3.13.13/3.14.5 each pass
+  3,947 tests with 17 skips. The 70-file M149-M183 Windows boundary passes 254
+  tests with one skip; 20 repeated live observations pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass
+  with established identities.
+- Package/release: two builds reproduce a 361,753-byte pure wheel and a
+  2,191,922-byte source archive. Primary plus 27 additional installed-wheel
+  consumers pass. Two ten-artifact release stages are byte-identical and both
+  complete release smokes pass. Archive inventory is clean and keeps all four
+  M183 source-only files out of the wheel.
+- Review: 13 metadata/M183 assertions pass; no high-confidence credential
+  shape or protected-surface change is present. Findings-first review finds no
+  actionable code, architecture, security, documentation, compatibility,
+  package, allocation, or public-hygiene issue across exactly 16 paths.
+- Record-inclusive closure: the unchanged lock/environment, all static checks,
+  13 focused tests, 70-file Windows boundary, strict docs, both governance
+  modes, and whitespace pass. Two final builds reproduce the same fully
+  consumed wheel and a 2,192,904-byte source archive; two final ten-artifact
+  release stages are byte-identical and both complete smokes pass.
+- Cleanup: 43 exact generated M183/site targets were verified confined,
+  untracked, ignored, and reparse-free. Ordinary cleanup removed 32; elevated
+  revalidation removed the 11 pytest-owned roots at the complementary ACL
+  boundary. Zero exact target remains; older scratch and `.venv` are retained.
+- Final separator: both M183 Python files remain format-, Ruff-, and strict-
+  Pyright clean; 13 focused assertions, strict docs, dated strict governance,
+  and whitespace pass. The regenerated site and final pytest-owned root were
+  guarded and removed.
+- Initial object: DCO commit `271cb353d1497e81c069c594c807122ba5636e1c`,
+  tree `b4ece8c1f47cc6815bb3d9f43a190bca0b6f1f23`, has sole parent exact M182,
+  16 intended paths, one sign-off, matching identity, no merge, clean worktree,
+  and clean object connectivity. This record is folded into the closeout object.
+- Publication: withheld. Fresh `origin/main` remains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` and does not contain M182. GitHub
+  reports no open PR, PR #251 as the latest merge, and only remote `main`.
+  Pushing M183 would expose the absent M100-M182 prerequisite stack, so no
+  branch, PR, hosted allocation, tag, release, or package publication is made.
+- Final object shape: sole parent exact M182, exactly 16 intended paths, one
+  sign-off, matching author/committer identity, no merge, expected `0 84`
+  divergence from local M99 `main`, clean worktree, zero M183/site scratch,
+  unchanged protected runtime/package/CI surfaces, and clean connectivity.
+- Next: choose one separately bounded M184 direction slice. Do not widen this
+  milestone into runtime cleanup or Windows admission.
+- Security interpretation: expected identity and a prior link-count sample are
+  not root-confined ownership. Trusted-root placement, enumeration,
+  link-count/use-time policy, recovery, receipts, cleanup authority, Windows
+  admission, and independent-host proof remain unresolved.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
+## M182 hard-link alias non-exclusion - locally complete, publication withheld
+
+- Base: fully locally validated M181 DCO commit
+  `d808b94102acd576c7ac8e458fe119692d614c4e`, exact tree
+  `109ed76a0c95d80b3f0cf8c002ef543d077d4b3f`, sole parent exact M180.
+- Branch hygiene: neutral
+  `release/m182-windows-hard-link-alias-non-exclusion-boundary`; the inaccurate
+  initial protection name was corrected in place and no redundant predecessor
+  branch remains.
+- Direction: RFC-0165 accepts one current-host, Windows-only, test-only
+  negative boundary. M181's guardian protects its exact opened name but does
+  not exclude rename through a preexisting hard-link alias for the same file.
+- Correction evidence: the first live run expected alias rename refusal and
+  failed because no `OSError` was raised. The corrected test preserves that
+  observation, proves guardian liveness and continued exact-name protection,
+  and passes.
+- Scope so far: one integration probe, one architecture guard, RFC-0165, one
+  security decision, eight public registrations, and four project-record
+  updates. Runtime, examples, scripts, fixtures, workflows, metadata,
+  dependencies, lock, version, and root exports remain unchanged.
+- Regression: exact CPython 3.12.13 and fresh isolated 3.13.13/3.14.5 each pass
+  3,939 tests with 17 skips. The 68-file M149-M182 Windows boundary passes 246
+  tests with one skip; 20 independent live observations pass.
+- Graphics and product slices: ten real-wgpu tests, base/graphics profiles,
+  eight profile-schema tests, Clockwork Arena, and Agent World Builder pass
+  with established identities.
+- Distribution: two builds are byte-identical, primary and 27 additional
+  installed-wheel smokes pass, two ten-artifact release stages are identical,
+  and both full release smokes pass. The wheel remains pure and excludes M182
+  test sources; all four new source records occur once in the source archive.
+- Governance and review: full static analysis, strict docs, whitespace, static
+  and dated strict governance, exact protected-surface comparison, focused
+  metadata/security assertions, and public identity/credential/local-path
+  scans pass. No actionable finding remains.
+- Record-inclusive separator: the unchanged lock, all 553 Python files, exact
+  focused metadata/M182 assertions, the 68-file Windows boundary, strict docs,
+  whitespace, and both governance modes pass.
+- Cleanup: 41 exact M182 scratch targets were checked across the complementary
+  Windows access identities for workspace confinement, tracked content,
+  ignore status, and recursive reparse points. Twenty-nine were removed under
+  the ordinary identity and 12 under the complementary identity; zero remain.
+- Initial commit: `f70689b623a7ec432351864e06f2db468761c135`, tree
+  `c3c6080b732a33a8dc903e379839d4e19ad13a26`, sole parent exact M181, 16
+  intended paths, one DCO sign-off, matching maintainer identity, no merge,
+  expected `0 83` divergence, clean worktree, and clean object connectivity.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M181. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M182 is not pushed and no PR or hosted allocation is
+  created while M100-M181 remain unpublished prerequisites.
+- Final object: amended DCO shape, exact M181 parentage, 16-path scope, one
+  sign-off, maintainer identity, clean worktree, expected divergence, and
+  object connectivity pass. The exact immutable revision is reported at
+  closeout rather than embedded self-referentially here.
+- Security interpretation: expected identity is not sole-name authority and
+  not root-confined ownership. Trusted-root placement, enumeration,
+  link-count/use-time policy, recovery, receipts, cleanup authority, Windows
+  admission, and independent-host proof remain unresolved.
+- CI economy: no workflow, job, matrix allocation, action, permission, or
+  hosted check is added.
+
+## M181 expected-identity guardian admission - locally complete, publication withheld
+
+- Base: fully locally validated M180 DCO commit
+  `d19e03ec9f83134d72086b93ebd988a5cade8f0d`, tree
+  `bffe676c2da214b77c757f914372ba351712da18`, sole parent exact M179.
+- Branch hygiene: neutral
+  `release/m181-windows-expected-identity-guardian-admission` starts at exact
+  M180. Exact containment allowed redundant M180 to be pruned; only local
+  `main` and active M181 remain.
+- Direction: RFC-0164 accepts one test-only expected-identity child and two
+  current-host cases. It rejects trusted provenance, durable storage,
+  generation authority, recovery, Windows admission, cleanup authority, and
+  CI growth.
+- Behavior: the child denies delete sharing before rejecting reparse points
+  and comparing `FILE_ID_INFO` on the same handle. A match reaches `ready` and
+  remains protected. A preexisting replacement closes before exact
+  `identity_mismatch` and leaves no namespace protection behind.
+- Focused proof: eight architecture guards plus two live cases pass ten
+  assertions. All three new Python files are format-, Ruff-, and strict-
+  Pyright clean after one unused import removal and one mechanical format.
+- Complete proof: all 551 Python files pass formatting, Ruff, and strict
+  Pyright. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,931 tests with
+  17 skips. Twenty independent invocations pass all 40 central cases.
+- Corrective proof: the first full baseline run exposed one inherited M180
+  metadata-neutrality defect after 3,930 tests passed. Three historical phrases
+  were neutralized; the exact 15-case regression and corrected full suite pass.
+- Rendering and slices: ten real-wgpu tests, both fresh profile schemas,
+  Clockwork Arena, and Agent World Builder pass with their established outputs.
+- Initial distribution: two builds reproduce a 361,611-byte pure wheel at
+  SHA-256 `e1ec8690060d7c3fc5711a42f7a72a31643b0900c76ee215790f8e1f78cfb0fd`
+  and a 2,169,797-byte source archive at SHA-256
+  `52a598705cd832db2aa76fa91eb12a21164588f76501430fe9417412a6e9f848`.
+  Wheel smoke, two identical ten-artifact release stages, and both release
+  smokes pass.
+- Inventory: 114 wheel and 890 source entries, no native/WASM/bytecode entry,
+  no M181 test-only source in the wheel, and all five new M181 sources exactly
+  once in the source archive.
+- Governance and review: strict docs, static and dated strict governance,
+  whitespace, protected surfaces, and bounded scope pass before final record
+  inclusion. No remaining actionable defect is known.
+- Protected scope: M180, every reused fixture/helper, runtime, examples,
+  scripts, dependencies, workflows, metadata, and lock remain unchanged. No
+  runtime API, workflow, matrix, job, permission, dependency, or allocation is
+  added.
+- Record-inclusive closure: the unchanged lock and graphics environment, all
+  551 Python files, 15 focused assertions, the 238-pass/one-skip M149-M181
+  boundary, strict docs, whitespace, both governance modes, exact 17-path
+  scope, and protected surfaces pass.
+- Final distribution: two builds reproduce the unchanged 361,611-byte wheel
+  and an identical 2,172,927-byte source archive at SHA-256
+  `fc3d4fdb365cccf6371123f43df660ad367a9833c5bc2dd2614768595aafeba5`.
+  Primary smoke, all 27 additional installed-wheel consumers, two identical
+  ten-artifact release stages, both release smokes, and final inventory pass.
+- Cleanup: 47 exact ignored M181 validation targets were confined, checked for
+  tracked content, ignore status, and reparse points, removed across the two
+  Windows access identities, and confirmed absent.
+- Final separator: the three M181 Python files remain static-clean; 15 focused
+  assertions, strict docs, whitespace, and both governance modes pass. The two
+  regenerated outputs were guarded, removed, and confirmed absent.
+- Commit gate: initial DCO commit
+  `70cd29751405b6cbc7b23b446216d258d043009d`, tree
+  `4069c350a3bd8dee1110ce12b191cf1f95aae91c`, has sole parent exact M180,
+  exactly 17 intended paths, one sign-off, matching configured maintainer
+  identity, no merge, expected `0 82` divergence, and a clean worktree. This
+  factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M180. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M181 is not pushed and no PR or hosted allocation is
+  created while M100-M180 remain unpublished prerequisites.
+- Remaining gate: final amended-object audit.
+
+## M180 zero-owner guardian restart boundary - locally complete, publication withheld
+
+- Base: fully locally validated M179 DCO commit
+  `2d6312fbc59358f8ef080f5b335a815c6ffe2d15`, tree
+  `9246c860dd6b18c4615c761fbeff0f5b619dd03c`, sole parent exact M178.
+- Branch hygiene: neutral
+  `release/m180-windows-zero-owner-guardian-restart-boundary` starts at exact
+  M179. Exact containment allowed redundant M179 to be pruned; only local
+  `main` and active M180 remain.
+- Direction: RFC-0163 accepts two current-host, test-only post-wait sequences:
+  a benign restart over the unchanged identity and a restart after substitution
+  that protects the replacement. It rejects recovery, generation authority,
+  admission, cleanup authority, and CI growth.
+- Behavior: both sequences abruptly reap the first unchanged guardian. The
+  benign sequence observes and reacquires the original identity; the mutation
+  sequence substitutes first and proves the later guardian blocks rename only
+  on the replacement identity. The guardian never owns the cooperative range.
+- Focused proof: seven architecture guards plus two live cases pass nine
+  assertions. Both Python files are format-, Ruff-, and strict-Pyright clean.
+  Review strengthened exact hashes for every reused helper.
+- Complete proof: all 548 Python files pass formatting, Ruff, and strict
+  Pyright. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,921 tests with
+  17 skips. The 64-module M149-M180 boundary passes 228 tests with one skip;
+  twenty independent invocations pass all 40 central cases.
+- Rendering and slices: ten real-wgpu tests, both fresh profile schemas, all
+  eight validator tests, Clockwork Arena, and Agent World Builder pass with
+  their established deterministic identities.
+- Final distribution: two record-inclusive builds reproduce a 361,539-byte pure wheel at
+  SHA-256 `e34d7611f26232764885316f2babed041e241222e1484a6d7236521b7a4a1230`
+  and a 2,161,961-byte source archive at SHA-256
+  `320c840ba7fdc1de476d571d472814c6463bf60f2ea4c20ce9073184a785c56b`.
+  Wheel smoke, two identical ten-artifact stages, and both release smokes pass.
+- Inventory: 114 wheel and 885 source entries, zero native/WASM/bytecode or
+  hidden development root, no M180 wheel source, and all four new M180 sources
+  in the source archive. One first inventory selector misspelled the
+  architecture filename; the corrected exact selector found it once.
+- Governance and review: strict docs, static and dated strict governance,
+  whitespace, protected surfaces, and bounded scope pass. No remaining
+  actionable code, architecture, security, documentation, compatibility,
+  allocation, or public-hygiene issue is known.
+- Record-inclusive closure: the 46-package lock, all 548 Python files, nine
+  focused assertions, the 228-pass/one-skip integrated boundary, strict docs,
+  whitespace, and both governance modes pass after recording broad evidence.
+- Scope and hygiene: exactly 16 intended paths remain. Corrected added/new
+  content scans find zero public development identity, local path, or
+  high-confidence credential assignment; the retired hidden roots and
+  their root guidance file remain absent.
+- Final record-only separator: both M180 Python files are format-, lint-, and
+  type-clean; all nine focused assertions pass in 1.02 seconds; strict docs
+  build in 2.75 seconds; whitespace and both governance modes pass.
+- Cleanup: all 51 exact generated M180/pytest/docs targets were repository-
+  confined, untracked, ignored, recursively reparse-free, removed across the
+  two Windows execution identities, and confirmed absent.
+- Final factual separator: both Python files remain static-clean; nine focused
+  assertions, strict docs, dated governance, and whitespace pass. The two
+  regenerated outputs were guarded, removed, and confirmed absent.
+- Commit gate: initial DCO commit
+  `a9ff96c7265872b149cfb09cc89500b8ad8d52d7`, tree
+  `217559d9a39475210572c9aadcd4d862716eead6`, has sole parent exact M179,
+  exactly 16 intended paths, one sign-off, matching configured maintainer
+  identity, no merge, expected `0 81` divergence, and a clean worktree. This
+  factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M179. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M180 is not pushed and no PR or hosted allocation is
+  created while M100-M179 remain unpublished prerequisites.
+- Protected scope: M179, every reused fixture/helper, runtime, examples,
+  scripts, dependencies, workflows, metadata, and lock remain unchanged. No
+  fixture, workflow, matrix, job, permission, dependency, or allocation is
+  added.
+- Remaining gate: final amended-object audit.
+
+## M179 overlapping guardian rotation - locally complete, publication withheld
+
+- Base: fully locally validated M178 DCO commit
+  `e77068a9a2150e6820c979a4b809e76f21d36bc0`, tree
+  `2a823e2c312a93e89cf18dcfd8e687001a03bed8`, sole parent exact M177.
+- Branch hygiene: neutral
+  `release/m179-windows-overlapping-guardian-rotation` starts at exact M178.
+  Exact containment allowed redundant M178 to be pruned; only local `main` and
+  active M179 remain.
+- Direction: RFC-0162 accepts one current-host, test-only observation in which
+  two compatible guardians overlap before the first is abruptly reaped. It
+  rejects restart, recovery, election, generation authority, Windows
+  admission, cleanup authority, and CI growth.
+- Baseline: exact M178 is clean and its nine focused assertions pass in 1.08
+  seconds. Static and dated strict governance return zero findings.
+- Behavior: the unchanged first guardian admits M175's participant and a
+  second unchanged guardian. After abrupt first-guardian wait, both survivors
+  retain protection. Participant close restores range availability while the
+  second guardian alone retains original identity and namespace protection.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions in 1.02 seconds. Both new Python files are format-, Ruff-, and
+  strict-Pyright clean after one mechanical architecture format. Strict docs
+  and whitespace pass.
+- Complete proof: all 546 Python files pass formatting, Ruff, and strict
+  Pyright. Exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass 3,912 tests with
+  17 skips. The corrected 62-module M149-M179 boundary passes 219 tests with one
+  established skip, and twenty independent central observations pass.
+- Rendering and slices: ten real-wgpu tests, both fresh profile schemas, all
+  eight profile-validator tests, Clockwork Arena, and Agent World Builder pass
+  with their established deterministic identities.
+- Distribution and release: two final record-inclusive builds reproduce a
+  361,461-byte pure wheel and 2,152,246-byte source archive. Primary smoke, all
+  27 additional installed consumers, two byte-identical ten-artifact release
+  stages, and both release smokes pass. Inventory reports 114 wheel and 881
+  source entries, no native/WASM/bytecode or hidden development root, no M179
+  wheel entry, and all four exact M179 sources in the source archive.
+- Governance and review: strict docs, static and dated strict governance,
+  whitespace, exact 16-path scope, protected surfaces, and public-hygiene scans
+  pass. Findings-first review finds no remaining actionable issue.
+- Record-inclusive separator: the unchanged 46-package lock, all 546 Python
+  files, seven focused assertions, 219-pass/one-skip integrated boundary,
+  strict docs, whitespace, and both governance modes pass after recording the
+  broad evidence.
+- Final record-only separator: both M179 Python files remain format-, lint-,
+  and type-clean; seven focused assertions, strict docs, whitespace, static
+  governance, and dated strict governance pass.
+- Cleanup and pre-commit: all 46 exact ignored M179/test/docs targets were
+  independently confined, tracked-content/reparse checked, removed, and
+  confirmed absent. Exactly 16 intended paths remain; protected surfaces,
+  branch hygiene, configured maintainer identity, whitespace, and corrected
+  added/new-content hygiene pass.
+- Final factual separator: after the cleanup record, seven focused assertions
+  pass in 1.09 seconds, strict docs build in 3.11 seconds, dated strict
+  governance and whitespace pass, and the two regenerated ignored outputs are
+  revalidated, removed, and absent.
+- Protected scope: M178, its fixed guardian, runtime, examples, scripts,
+  dependencies, workflows, metadata, and lock remain unchanged. No fixture,
+  workflow, matrix, job, permission, dependency, or hosted allocation is added.
+- Commit gate: initial DCO commit
+  `186ae451dac6e0a07d2f2001b90ff7ae9a11ba77`, tree
+  `26a572cdaedf5da302d9dedfc212bc6a3d163add`, has sole parent exact M178,
+  exactly 16 paths, one sign-off, matching configured maintainer identity, no
+  merge, expected `0 80` divergence, a clean worktree, and successful full
+  object checking. This factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M178. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M179 is not pushed and no PR or hosted allocation is created
+  while M100-M178 remain unpublished prerequisites.
+
+## M178 guardian abrupt handoff - locally complete, publication withheld
+
+- Base: fully locally validated M177 DCO commit
+  `afa5aed0862c4a560a262a61a395b228d56afc3e`, tree
+  `cb96284e742a966e6724ae569463171df2d22f25`, sole parent exact M176.
+- Branch hygiene: neutral `release/m178-windows-guardian-abrupt-handoff`
+  starts at exact M177. Exact containment allowed redundant M177 to be pruned;
+  only local `main` and active M178 remain.
+- Direction: RFC-0161 accepts one current-host, test-only post-wait observation
+  in which an already-live protected participant retains protection after
+  abrupt guardian loss. It rejects runtime promotion, recovery, generation
+  authority, Windows admission, cleanup authority, and CI growth.
+- Baseline: exact M177 is clean at expected `0 78` divergence and its seven
+  focused assertions pass in 0.83 seconds. Static and dated strict governance
+  return zero findings.
+- Intended behavior: a fixed isolated non-range-locking guardian first protects
+  the original identity; M175's participant joins; M176's bounded kill/wait
+  reaps the guardian; and the survivor retains substitution and exclusive-
+  range refusals until its own exact close.
+- Findings-first correction: review added the guardian's acknowledged-close
+  observation, made the architecture guard require exact null-security and
+  no-follow flag composition, explicitly forbade delete sharing, and narrowed
+  the RFC's dynamic-validation wording. The corrected nine-case group passes
+  on exact CPython 3.12.13, 3.13.13, and 3.14.5.
+- Supported Python: before the test-only correction, exact CPython 3.12.13,
+  3.13.13, and 3.14.5 each passed the complete suite with 3,904 tests and 17
+  skips. The exact corrected 60-module M149-M178 boundary passes 212 tests with
+  one established skip. Twenty independent central live observations pass.
+- Current-source closure: all 544 Python files pass format, Ruff, and strict
+  Pyright. Strict docs, static and dated strict governance, whitespace, exact
+  17-path scope, protected surfaces, and public-hygiene scans pass.
+- Rendering and consumers: ten real-wgpu tests, both profile schemas,
+  Clockwork Arena, Agent World Builder, primary smoke, all 27 additional wheel
+  consumers, and two byte-identical ten-artifact release stages pass.
+- Evidence-inclusive distribution: two builds reproduce the unchanged
+  361,396-byte pure wheel and identical 2,143,429-byte source archives. Primary
+  installed-wheel smoke passes. Two fresh ten-artifact release stages are
+  byte-identical and both release smokes pass; inventory finds 114 wheel and
+  877 source entries, no native/WASM/bytecode or hidden development root, no
+  M178 wheel entry, and all five exact M178 sources in the source archive.
+- Record-only and cleanup: the three M178 Python files remain format-, lint-,
+  and type-clean; nine focused assertions, strict docs, whitespace, static
+  governance, and dated governance pass. All 47 exact repository-confined,
+  untracked M178/pytest/docs outputs were recursively checked for reparse
+  points, removed, and confirmed absent.
+- Pre-commit scope: exactly 17 intended paths differ from M177. Runtime,
+  examples, scripts, workflows, metadata, and lock remain unchanged. Public
+  hygiene and whitespace scans pass, scratch is absent, only local `main` and
+  neutral M178 remain, and configured maintainer identity is present.
+- Protected scope: M177, runtime, examples, scripts, dependencies, workflows,
+  metadata, and lock remain unchanged. No workflow, matrix, job, permission,
+  dependency, or hosted allocation is added.
+- Commit gate: initial DCO commit
+  `c52b38cd4b9923bfe5c750cecb0ddf7c579e2a69`, tree
+  `c41c4850e16befa24d7f0984b115cb6f288778fd`, has sole parent exact M177,
+  exactly 17 paths, one sign-off, matching configured maintainer identity, no
+  merge, expected `0 79` divergence, a clean tree, and successful object
+  checking. This factual record is incorporated by one final amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M177. GitHub has no open PR; PR #251 remains the latest merge; only `main`
+  exists remotely. M178 is not pushed and no PR or hosted allocation is
+  created while M100-M177 remain unpublished prerequisites.
+
+## M177 protected guardian handoff - locally complete, publication withheld
+
+- Base: fully locally validated M176 DCO commit
+  `16c6c730c4b7756dc38b5b8de8eef479efa32c12`, tree
+  `67bda7d793bf9c22f6d9107d339d609fee0a2ab2`, sole parent exact M175.
+- Branch hygiene: neutral `release/m177-windows-protected-guardian-handoff`
+  starts at exact M176. Exact containment allowed redundant M176 to be pruned;
+  only local `main` and active M177 remain.
+- Direction: RFC-0160 accepts one current-host, test-only guardian-handoff
+  observation. It separates namespace identity continuity from cooperative
+  range ownership and rejects runtime promotion, generation authority, trusted
+  placement, recovery, Windows admission, cleanup authority, and CI growth.
+- Baseline: exact M176 is clean at expected `0 77` divergence and its seven
+  focused assertions pass in 0.59 seconds. Static and dated strict governance
+  return zero findings; the dated command required an approved exact rerun
+  after sandbox cache denial before project checking.
+- Intended behavior: a non-range-locking, no-delete-share guardian blocks
+  substitution while exclusive range ownership remains available; it spans a
+  participant-free interval, admits a later protected participant on the same
+  identity, and closes while that participant preserves both protections.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions on all three supported interpreters. Both M177 Python files are format-clean,
+  Ruff-clean, and strict-Pyright clean after one mechanical architecture
+  formatting correction. Findings-first review removed a redundant guardian
+  release that could double-close after an assertion failure and added an
+  architecture guard against recurrence.
+- Supported Python: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass the
+  complete suite with 3,896 tests and 17 skips. The first 3.12 invocation was
+  interrupted without a result; the verified rerun is the only pass claim.
+- Integrated behavior: the complete 58-module M149-M177 boundary passes 203
+  tests with one established capability skip. Twenty independent corrected
+  live probes pass. Eleven real-wgpu tests, both profile schemas, Clockwork
+  Arena, and Agent World Builder pass with established identities.
+- Current-source closure: all 541 Python files pass format, Ruff, and strict
+  Pyright; strict docs, whitespace, static governance, and dated governance
+  pass. Exact scope is 16 paths and all protected surfaces retain zero diff.
+- Protected scope: M176, runtime, examples, scripts, dependencies, workflows,
+  metadata, and lock remain unchanged. No fixture, workflow, matrix, job,
+  permission, dependency, or hosted allocation is added.
+- Final builds reproduce a 361,308-byte pure wheel and 2,135,232-byte source
+  archive. Primary installed-wheel smoke, both byte-identical ten-artifact
+  release stages, both complete release smokes, and package inventory pass.
+  All 28 installed-wheel consumers also passed before the test-only review
+  correction. The record-only separator passes and all exact generated M177/
+  site scratch is removed after guarded, identity-aware cleanup.
+- Commit gate: the initial DCO commit has sole parent exact M176, exactly 16
+  paths, one sign-off, truthful maintainer identity, no merge, a clean tree,
+  and successful object checking. This factual closeout record is incorporated
+  by the final single amendment.
+- Publication gate: fresh hosted `main` remains exact M99 and does not contain
+  M176. GitHub has no open PR, PR #251 remains the latest merge, and `main` is
+  the only remote branch. M177 is therefore not pushed and no PR or workflow
+  allocation is created while M100-M176 remain absent.
+
+## M176 protected-lock abrupt settlement - locally complete, publication withheld
+
+- Base: fully locally validated M175 DCO commit
+  `9e5d440b9c16687c7291c6abdf63b806b2cd33cf`, tree
+  `630dfc51f599a5bf1298e6538441da589d77e9f0`, sole parent exact M174.
+- Branch hygiene: neutral
+  `release/m176-windows-protected-lock-abrupt-settlement` starts at exact M175.
+  Exact containment allowed redundant M175 to be pruned; only local `main` and
+  active M176 remain.
+- Direction: RFC-0159 accepts one current-host, test-only abrupt-settlement
+  observation ordered after bounded process wait. It rejects a portable
+  immediate-release promise, crash recovery, runtime promotion, Windows
+  admission, cleanup authority, and CI growth.
+- Behavior: two M175 protected participants first refuse substitution and
+  exclusive ownership. After one is killed and reaped, the survivor preserves
+  both refusals. After it is also killed and reaped, exact exclusive acquire/
+  release and M174 substitution succeed with retained/displaced identity,
+  distinct replacement identity, and exact bytes.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions. Both M176 Python files are format-clean, Ruff-clean, and strict-
+  Pyright clean after one mechanical architecture format correction. Strict
+  docs and whitespace pass after one split compound phrase was reflowed.
+- Static and Python matrix: all 539 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,889 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 each pass 3,879 tests with 18 skips.
+- Integrated behavior: the complete M149-M176 boundary passes 196 tests with
+  one established capability skip. Twenty consecutive live abrupt-settlement
+  observations pass.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Pre-review development distribution: two builds reproduce a 361,222-byte
+  pure wheel at SHA-256
+  `185ac4ef85d7b067e3799c651cb62c88b1846564300c118f3143dd3b0fb7ab37`
+  and a 2,124,277-byte source archive at SHA-256
+  `c550e371e166ee9a01f84c2c29dc5bfdfd694a36809f34b9bfce82868a5a1077`.
+  All 28 installed-wheel consumers pass. Two ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Archive boundary: the wheel has 114 entries and the pre-review source
+  archive 868. All four M176 files are source-only and no native, WASM, or
+  bytecode entry exists.
+- Governance: static and 2026-08-29 dated strict checks return zero findings
+  across three objectives, seven requirements, and four work items.
+- Findings-first review: no actionable code, architecture, security, or
+  compatibility defect is known. One RFC statement was narrowed from preserving
+  wheel contents to preserving the wheel package boundary because the README
+  legitimately changes packaged metadata. Exact 16-path scope, protected
+  surfaces, and disclosure/credential/local-path scans pass.
+- Evidence-inclusive source closure: the unchanged 46-package lock resolves;
+  all 539 Python files, Ruff, and strict Pyright pass; seven focused assertions
+  and the 196/1 cumulative boundary pass; strict docs, whitespace, both
+  governance audits, exact 16-path scope, protected surfaces, and disclosure,
+  credential, and local-path scans pass.
+- Final reproduction: two builds retain the 361,222-byte pure wheel at SHA-256
+  `185ac4ef85d7b067e3799c651cb62c88b1846564300c118f3143dd3b0fb7ab37`;
+  both 2,125,029-byte source archives have SHA-256
+  `4bba1f59b64496a9f6e7308908352930088da5399c0d5722e0be2a7402280cf0`.
+  Installed-wheel smoke, two identical ten-artifact release stages, and both
+  release smokes pass. Archive boundaries remain 114/868 entries, all four
+  M176 files source-only, and no native/WASM/bytecode entry.
+- Record-only separator: both M176 Python files remain format-clean,
+  Ruff-clean, and strict-Pyright clean; all seven focused assertions pass in
+  0.64 seconds; strict docs build in 2.61 seconds; whitespace passes; and both
+  static and 2026-08-29 dated strict governance return zero findings.
+- Scratch closure: all 46 exact M176/pytest targets were verified
+  repository-confined, untracked, and non-reparse. Ordinary removal deleted 14
+  and was denied on 32 test-owned directories; the approved retry repeated all
+  guards, removed exactly those 32, and confirmed zero target remains.
+- Pre-commit audit: exactly 16 intended paths remain with no missing or
+  unexpected path. M175/runtime/examples/scripts/workflows/metadata/lock have
+  zero diff; public development-tool identity, credential assignment, and
+  local-user path scans have zero match; whitespace and scratch are clean;
+  only local `main` plus active M176 remain; and configured maintainer identity
+  is present.
+- Initial commit: DCO commit
+  `cbe6ea913c1707262b195741b580b9123adf706c`, tree
+  `313400db57958c708b407efede620ba5578a755d`, has sole parent exact M175,
+  exactly 16 paths, one sign-off, truthful configured identity, no merge,
+  expected `0 77` divergence, clean worktree, and successful full object check.
+- Publication gate: after a fresh prune fetch, local/hosted `main` remain exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`. Hosted `main` lacks M175,
+  no PR is open, PR #251 remains the latest merge, and `main` is the only
+  remote branch. Push and PR are withheld rather than publishing M100-M175 as
+  an implicit prerequisite stack; no hosted workflow allocation was created.
+- Protected scope: M175, runtime, examples, scripts, dependencies, workflows,
+  metadata, and lock are unchanged. No fixture, workflow, matrix, job,
+  permission, dependency, or hosted allocation is added.
+- The final amendment incorporates these factual records; immutable commit
+  shape is verified afterward without further source edits.
+
+## M175 live cooperative substitution exclusion - finalization in progress
+
+- Base: fully locally validated M174 DCO commit
+  `f4aa920fa3b6cbcb8a9711111aaeb102f60902d4`, tree
+  `3fe906267b6c89708d8f2a6fa5926a4e4184404a`, sole parent exact M173.
+- Branch hygiene: neutral
+  `release/m175-windows-live-substitution-exclusion` starts at exact M174.
+  Exact containment allowed redundant M174 to be pruned; only local `main` and
+  active M175 remain.
+- Direction: RFC-0158 accepts one current-host, test-only positive observation
+  for continuous cooperative live ownership. It rejects zero-participant-gap
+  coverage, runtime promotion, Windows admission, cleanup authority, and CI
+  growth.
+- Behavior: two shared range-lock participants deny delete sharing. Native
+  pathname substitution returns error 32 and exclusive range acquisition
+  returns error 33 through the final live participant. After exact settlement,
+  exclusive acquire/release and then M174 substitution succeed, with the
+  displaced identity retained and the replacement identity distinct.
+- Focused proof: six architecture guards plus the live observation pass seven
+  assertions. All three M175 Python files are format-clean, Ruff-clean, and
+  strict-Pyright clean after mechanical formatting. Strict docs and whitespace
+  pass.
+- Findings-first correction: the initial two launches preceded cleanup-block
+  entry, so a second-launch failure could strand the first child. Both process
+  variables now start empty, both launches occur inside the guarded block, and
+  cleanup is conditional. Focused and full static gates pass afterward.
+- Reviewed Python matrix: exact CPython 3.12.13 passes 3,882 tests with 17
+  skips; exact CPython 3.13.13 and 3.14.5 each pass 3,872 tests with 18 skips.
+  The complete M149-M175 boundary passes 189 tests with one established skip,
+  and twenty consecutive corrected live probes pass.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Pre-review development distribution: two builds reproduce a 361,149-byte
+  pure wheel at SHA-256
+  `2a0d00e5b72b30f0a49d57e5e4702562b4e4d9cc63dd56f8596d4f462e91b964`
+  and a 2,115,125-byte source archive at SHA-256
+  `a14c94f85969ffcd27e154ed9516089979c914825fb642f7d3259ced6189b943`.
+  All 28 installed-wheel consumers pass. Two ten-artifact release stages are
+  byte-identical and both complete release smokes pass.
+- Archive boundary: the wheel has 114 entries and the pre-review source
+  archive 864. All five M175 files are source-only and no native, WASM, or
+  bytecode entry exists.
+- Governance: static and 2026-08-29 dated strict checks return zero findings
+  across three objectives, seven requirements, and four work items.
+- Evidence-inclusive source closure: the unchanged 46-package lock resolves;
+  all 537 Python files, Ruff, and strict Pyright pass; seven focused assertions
+  and the 189/1 cumulative boundary pass; strict docs, whitespace, both
+  governance audits, exact 17-path scope, protected surfaces, and disclosure,
+  credential, and local-path scans pass.
+- Final reproduction: two builds retain the 361,149-byte pure wheel at SHA-256
+  `2a0d00e5b72b30f0a49d57e5e4702562b4e4d9cc63dd56f8596d4f462e91b964`;
+  both 2,116,472-byte source archives have SHA-256
+  `57f5c8dec507a34d4c5862b74d60fc7af97b3bbc4c3f4ec300cd54d87b87283d`.
+  Installed-wheel smoke, two identical ten-artifact release stages, and both
+  release smokes pass. Archive boundaries remain 114/864 entries, all five
+  M175 files source-only, and no native/WASM/bytecode entry.
+- Record-only separator: all three M175 Python files remain format-clean,
+  Ruff-clean, and strict-Pyright clean. Seven focused assertions pass in 0.61
+  seconds; strict docs build in 2.53 seconds; whitespace and both strict
+  governance modes pass.
+- Cleanup: 68 exact repository-confined, untracked, non-reparse M175 scratch
+  targets were selected. Ordinary removal was denied on the first Windows
+  pytest root before any target was removed; an approved retry repeated every
+  guard, removed all 68, and confirmed none remain. The separately verified
+  generated pytest root required the same guarded approved removal and is also
+  absent.
+- Pre-commit review: exactly 17 intended paths remain; protected surfaces,
+  whitespace, public-identity, credential-assignment, and local-path scans
+  pass; scratch is absent; and only local `main` plus neutral M175 remain.
+- Initial DCO commit `81a97157914d7f6be236c8f5a7e4bfda03fd362d`
+  has tree `7effa8279d5a641d8f5cc602f888c354d531efe5`, sole parent exact
+  M174, exactly 17 paths, truthful configured author/committer identity, one
+  sign-off, no merge parent, expected `0 76` divergence, a clean worktree, and
+  successful full object check.
+- Hosted gate: a fresh pruned fetch retains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` at `origin/main`, 76 commits
+  behind M175, with exact M174 absent from hosted ancestry. No PR is open and
+  PR #251 remains the latest merge. Publication is withheld because hosted
+  M100-M174 prerequisites are absent; no push, PR, or hosted run occurred.
+- Final amended-object audit follows this record.
+- Protected scope: runtime, examples, scripts, dependencies, workflows,
+  metadata, lock, and the exact M174 boundary are unchanged. No workflow,
+  matrix, job, permission, dependency, or hosted allocation is added.
+- No local validation or publication gate remains pending; final immutable
+  object verification follows the one factual-record amendment.
+
+## M174 Windows coordination-lock substitution - locally validated
+
+- Base: fully locally validated M173 DCO commit
+  `767337f7ea8138bdc14455296c54d0261cd20e9e`, tree
+  `114a874eb76a920b334fbf26190efc4cf63a0f97`, sole parent exact M172.
+- Branch hygiene: neutral `release/m174-windows-lock-substitution` starts at
+  exact M173. Exact containment allowed redundant M173 to be pruned; only local
+  `main` and active M174 remain.
+- Direction: RFC-0157 accepts one current-host, test-only negative pathname-
+  substitution observation. It rejects runtime promotion, Windows admission,
+  cleanup authority, and CI growth.
+- Behavior: an unchanged M173 participant remains bound to the renamed old
+  identity while a fresh participant locks an identical-byte replacement at
+  the original pathname. Each generation refuses and releases exclusive
+  ownership independently.
+- Focused proof: the live observation passes. Six architecture guards plus the
+  live test pass seven assertions. Strict Pyright and Ruff pass after one
+  mechanical import correction; one mechanical architecture format correction
+  is applied and the corrected focused gate passes. Twenty consecutive live
+  substitutions pass; the integrated M149-M174 boundary passes 182 tests with
+  one established skip.
+- Static and Python matrix: all 534 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,875 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 each pass 3,865 tests with 18 skips.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 361,088-byte pure wheel at
+  SHA-256 `b6a6f5e75861d3b483533b0abbb110aa058b7b1d9c880948cbdd4f6e96d47acc`
+  and a 2,105,817-byte source archive at SHA-256
+  `b7d6ea6be098cd0ce3257c99c732a42f6f455232bdb08c218abe5a37c54dc777`.
+  Installed-wheel smoke passes and both ten-artifact release stages reproduce
+  byte-for-byte and pass complete release smoke.
+- Archive boundary: the wheel has 114 entries and the source archive 859.
+  M174 adds no wheel entry and exactly five source-only files; no native, WASM,
+  bytecode, or tool-specific control entry exists.
+- Governance: final static and dated strict checks return zero findings. Final
+  evidence-inclusive static, focused, integrated, docs, whitespace, and
+  governance gates pass.
+- Final reproduction: two evidence-inclusive builds retain the 361,088-byte
+  wheel and SHA-256
+  `b6a6f5e75861d3b483533b0abbb110aa058b7b1d9c880948cbdd4f6e96d47acc`;
+  both 2,107,218-byte source archives have SHA-256
+  `8e68012e170376d26657e5d0b0f47568b094bf24fa920123da7041ccf6ca89a9`.
+  Installed-wheel smoke, both identical ten-artifact stages, and both complete
+  release smokes pass. Archive boundaries remain 114/859 entries and five
+  source-only M174 files.
+- Findings-first review: no remaining actionable code, architecture, security,
+  documentation, compatibility, or scope finding is known. Public development-
+  tool identity, added credential/local-path, protected-surface, and package
+  boundary scans pass. Recording this factual row necessarily changes only the
+  source archive afterward.
+- Final separator: all three M174 Python files remain format-clean, Ruff-clean,
+  and strict-Pyright clean. All seven focused assertions pass in 0.48 seconds;
+  strict docs build in 2.50 seconds; whitespace, static governance, and dated
+  governance pass.
+- Cleanup: 46 exact repository-confined, untracked, non-reparse M174 scratch
+  targets were selected. Ordinary removal cleared 14 and Windows denied 32;
+  an approved retry repeated every guard, removed only the 32 remaining
+  targets, and confirmed zero M174 or default pytest scratch remains.
+- Pre-commit review: exactly 17 intended paths remain; protected surfaces,
+  whitespace, public-identity, credential-assignment, and local-path scans
+  pass; scratch is absent; and only local `main` plus neutral M174 remain.
+- Initial DCO commit `7a72b810ff70ad49df950976445bfdac5ffa336b`
+  has tree `4896c5493f97cab663c083b46c8fddd8784eb57f`, sole parent exact
+  M173, exactly 17 paths, truthful configured identity, one sign-off, expected
+  `0 75` divergence, a clean worktree, and successful full object check.
+- Hosted gate: a fresh pruned fetch retains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` at `origin/main`, 75 commits
+  behind M174. No PR is open and PR #251 remains the latest merge. Publication
+  is withheld because hosted M100-M173 prerequisites are absent; no push, PR,
+  or hosted run occurred.
+- Final amended-object audit follows this record.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation change is introduced.
+
+## M173 Windows cooperative locking - locally validated
+
+- Base: fully locally validated M172 DCO commit
+  `00eceb56246307f6fa57172fe674488189bfff4e`, tree
+  `edd0f778ab9ced8f09145a4728b2e40a41651ef2`, sole parent exact M171.
+- Branch hygiene: neutral `release/m173-windows-cooperative-lock` starts at
+  exact M172. Exact containment allowed redundant M172 to be pruned; only local
+  `main` and active M173 remain.
+- Direction: RFC-0156 accepts one current-host, test-only positive cooperative
+  shared/exclusive range-lock observation. It rejects general exclusion,
+  runtime promotion, Windows admission, and CI growth.
+- Scope: one fixed child fixture, one live integration probe, one architecture
+  boundary, two decision/security documents, eight public navigation/status
+  documents, and four neutral project records only. Runtime, examples, scripts,
+  dependencies, workflows, metadata, lock, and prior probes remain protected.
+- Behavior: two distinct shared owners coexist on byte zero/length one of
+  `live/coordination.lock`. Exclusive acquisition returns native error 33 until
+  the last shared owner unlocks/closes. An exclusive owner makes a late shared
+  child report error 33; a fresh child succeeds after exact release. All bytes
+  and ownership counts remain exact.
+- Focused proof: eight architecture guards plus two live tests pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M173 boundary passes 175
+  assertions with one established capability skip.
+- Static and Python matrix: all 531 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,858 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,858 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 361,025-byte pure wheel at
+  SHA-256 `56614442ebfbaea633edfbf0860da022707e177d91aa6bfb83d492187ce1321f`
+  and a 2,096,856-byte source archive at SHA-256
+  `42251b3a98f94ef0e229ee7ee9a90e570723ec681dccc24b57990253d27ca1a4`.
+  All 28 isolated installed-wheel consumers pass.
+- Release rehearsal: two ten-artifact stages are byte-identical and pass full
+  release smoke. Archive inventory is 114 wheel and 854 source entries with no
+  native/WASM/bytecode or hidden-control entry, no M173 wheel entry, and all
+  five exact M173 sources source-only.
+- Final evidence-inclusive reproduction retains the 361,025-byte wheel and
+  SHA-256 `56614442ebfbaea633edfbf0860da022707e177d91aa6bfb83d492187ce1321f`;
+  the 2,098,453-byte source archive has SHA-256
+  `95a5cbe2592d66a72316c518edfff44dd8983a4d73b0524dc937819adf1edfdb`.
+  Primary installed-wheel smoke and both final release stages pass; all ten
+  release artifacts reproduce byte-for-byte and archive boundaries remain
+  unchanged.
+- Governance/review: static and dated strict governance return zero findings.
+  Protected surfaces retain zero diff and no actionable finding is known.
+- Final separator: all three M173 Python files remain format-clean, Ruff-clean,
+  and strict-Pyright clean. All ten focused assertions pass in 0.44 seconds;
+  strict docs build in 2.42 seconds; static and dated strict governance return
+  zero findings. All exact final artifact/test/docs roots are absent after one
+  corrected, revalidated Windows removal retry.
+- Pre-commit review: exactly 17 intended paths remain; protected surfaces,
+  whitespace, public-identity, credential-assignment, and local-path checks
+  pass; scratch is absent; and only local `main` plus neutral M173 remain.
+- Initial DCO commit `e13ab4547d51c2dbd23a0d593f00fe7529ea8804`
+  has tree `315a83a395e60cabfc78e332da3c8dd3f80abb17`, sole parent exact
+  M172, exactly 17 paths, truthful configured identity, one sign-off, expected
+  `0 74` divergence, a clean worktree, and successful full object check.
+- Hosted gate: a fresh pruned fetch retains exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e` at `origin/main`, 74 commits
+  behind M173. No PR is open and PR #251 remains the latest merge. Publication
+  is withheld because hosted M100-M172 prerequisites are absent; no push, PR,
+  or hosted run occurred.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation changes. Final amended-object audit follows this record.
+
+## M172 Windows descendant non-exclusion - locally validated
+
+- Base: fully locally validated M171 DCO commit
+  `960efe770c48ddbfb925fd2cd7f9d220bca2e3ed`, tree
+  `7ffa65efd2519c787a056e18d069bb561bb9764d`, sole parent exact M170.
+- Branch hygiene: neutral
+  `release/m172-windows-descendant-non-exclusion` starts at exact M171. Exact
+  containment allowed redundant M171 to be pruned; only local `main` and active
+  M172 remain.
+- Direction: RFC-0155 accepts one current-host, test-only negative observation
+  that a zero-sharing directory owner is not recursive descendant exclusion.
+  It rejects runtime promotion, Windows admission, and CI growth.
+- Scope: one fixed child fixture, one live integration probe, one architecture
+  boundary, two decision/security documents, eight public navigation/status
+  documents, and four neutral project records only. Runtime, examples, scripts,
+  dependencies, workflows, metadata, lock, and prior probes remain protected.
+- Behavior: one fixed noninheritable child holds only
+  `live/candidate.bin` for generic read with all sharing. The descendant and
+  M171's zero-sharing directory owner coexist in both acquisition orders,
+  remain simultaneously live, close independently, and preserve exact bytes.
+- Focused proof: seven architecture guards plus two live tests pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M172 boundary passes 165
+  assertions with one established capability skip.
+- Static and Python matrix: all 528 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,848 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,848 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,956-byte pure wheel at
+  SHA-256 `1fa1a84119c30634d5f7e48a8efe58dcc4168f6a8c9dd2f26b910af34b1453bd`
+  and a 2,087,257-byte source archive at SHA-256
+  `cc1583c6d03ef7e54b9667c7a845bec4fa8261900c4838b6f63e472dd66c61e2`.
+  All 28 isolated installed-wheel consumers pass.
+- Release rehearsal: two ten-artifact stages are byte-identical and pass full
+  release smoke. Archive inventory is 114 wheel and 849 source entries with no
+  native/WASM/bytecode or hidden-control entry, no M172 wheel entry, and all
+  five exact M172 sources source-only.
+- Final evidence-inclusive reproduction retains the 360,956-byte wheel and
+  SHA-256 `1fa1a84119c30634d5f7e48a8efe58dcc4168f6a8c9dd2f26b910af34b1453bd`;
+  the 2,088,833-byte source archive has SHA-256
+  `0bc09829f2ce71cef6b861fb91ed3b95cb7038f9cad3f4316d0b67fe4f3325d9`.
+  Primary installed-wheel smoke and both final release stages pass; all ten
+  release artifacts reproduce byte-for-byte and archive boundaries remain
+  unchanged.
+- Governance/review: static and dated strict governance return zero findings
+  after the incorrect first checker target and uv-cache sandbox denial were
+  corrected. Protected surfaces retain zero diff and no actionable finding is
+  known.
+- Final separator: all three M172 Python files remain format-clean, Ruff-clean,
+  and strict-Pyright clean. All nine focused assertions pass in 0.37 seconds;
+  strict docs build in 2.44 seconds; static and dated strict governance return
+  zero findings. All exact final artifact/test/docs roots are absent.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation changes. Hosted publication and final amended-object gates remain.
+- Initial DCO commit `9471b26ecfaca163e6521b2cbfa03ed30f05634f` has tree
+  `17d386d5fb6712465ef934f1fb1d8e5f01fd77c3`, sole parent exact M171,
+  exact configured maintainer author/committer identity, one sign-off, 17
+  intended paths, no merge, a clean worktree, and zero critical object finding.
+  Its factual audit was folded into the same commit before the hosted-state
+  decision.
+- Hosted publication: fresh fetch and authenticated queries find hosted/local
+  `main` at exact M99, no open PR, and PR #251 as the latest merge. Hosted
+  `main` does not contain exact M171; M172 is 73 commits ahead and zero behind.
+  Push and PR are therefore withheld, with no workflow allocation.
+
+## M171 Windows exclusive-root acquisition - locally validated
+
+- Base: fully locally validated M170 DCO commit
+  `0c658d43886c986b129aa76dcc0ab413fd5cf618`, tree
+  `24b543ba5c230e2d7907d03187c803db1290a731`, sole parent exact M169.
+- Branch hygiene: neutral `release/m171-windows-exclusive-root-acquisition`
+  starts at exact M170. Exact containment allowed redundant M170 to be pruned;
+  only local `main` and active M171 remain.
+- Direction: RFC-0154 accepts one current-host, test-only two-way sharing-mode-
+  zero acquisition observation. It rejects a runtime lock, complete quiescence,
+  recovery, cleanup authority, Windows admission, and CI growth.
+- Scope: one fixed child fixture, one live integration probe, one architecture
+  boundary, two decision/security documents, eight public navigation/status
+  documents, and four neutral project records only. Runtime, examples, scripts,
+  prior fixtures/probes, dependencies, workflows, metadata, and lock remain
+  protected.
+- Behavior: one private noninheritable zero-sharing owner denies a fixed late
+  all-sharing child with error 32 until exact close. M155's existing fixed child
+  causes the same parent acquisition to fail with error 32 and adopt no owner;
+  after acknowledged close and zero exit, acquisition succeeds and closes.
+  Both candidate payloads remain unchanged.
+- Focused proof: seven architecture guards plus two live tests pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M171 boundary passes 156
+  assertions with one established capability skip.
+- Static and Python matrix: all 525 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,839 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,839 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,880-byte pure wheel at
+  SHA-256 `539aebac6aabe325fef9e6a6e6e6b66d38cf550f85a3473117501f15c62d25b5`
+  and a 2,078,343-byte source archive at SHA-256
+  `f6af972bbc63942e792f59dd534597ad7a3fe6e391705ae695e0eca05d941a45`.
+  All 28 isolated installed-wheel consumers pass.
+- Release rehearsal: two ten-artifact stages are byte-identical and pass full
+  release smoke. Archive inventory is 114 wheel and 844 source entries with no
+  native/WASM/bytecode or hidden-control entry, no M171 wheel entry, and all
+  five exact M171 sources source-only.
+- Final evidence-inclusive reproduction retains the 360,880-byte wheel and
+  SHA-256 `539aebac6aabe325fef9e6a6e6b66d38cf550f85a3473117501f15c62d25b5`;
+  the 2,080,783-byte source archive has SHA-256
+  `ea46ccd72c52be88635a73be5d7f629b779a118bce71cda87470ee6c0586db79`.
+  Primary installed-wheel smoke and both final release stages pass.
+- Governance/review: static and dated strict governance return zero findings.
+  Complete review corrected one documentation wording issue; protected surfaces
+  retain zero diff, identity/credential/local-path scans find zero match, and no
+  remaining actionable finding is known.
+- CI restraint: no workflow, matrix, job, permission, dependency, or hosted
+  allocation changes. Hosted publication remains subject to the preceding-stack
+  containment gate.
+- Hosted publication: fresh fetch and authenticated queries find hosted/local
+  `main` at exact M99, no open PR, and PR #251 as the latest merge. Hosted
+  `main` does not contain exact M170; M171 is 72 commits ahead and zero behind.
+  Push and PR are therefore withheld, with no workflow allocation.
+- Initial DCO commit `6677516b73121c0959d4ad2ea1164fccc4546a56` has the
+  exact M170 parent, truthful maintainer identity, one sign-off, 17 intended
+  paths, no merge, a clean tree, and zero critical object finding. Its factual
+  audit is being folded into the same commit before the hosted-state decision.
+
+## M170 Windows concurrent explicit-list abrupt termination - locally validated
+
+- Base: fully locally validated M169 DCO commit
+  `3707e1bfe38b3fa21f66183dbe827888bb6e24ea`, tree
+  `0eaaa689072049f80bafc65d289e2d1eede80339`, sole parent exact M168.
+- Branch hygiene: neutral `release/m170-concurrent-abrupt-child-isolation`
+  starts at exact M169. Exact containment allowed redundant M169 to be pruned;
+  only local `main` and active M170 remain.
+- Direction: RFC-0153 accepts one controlled two-created-child, one-forced-
+  termination explicit-list interleaving. It rejects crash recovery, general
+  concurrency safety, a runtime coordinator, Windows admission, and CI growth.
+- Scope: one integration probe, one architecture boundary, two decision and
+  security documents, eight public navigation/status documents, and four
+  project records only. Runtime, examples, scripts, helpers, fixtures,
+  dependencies, workflows, metadata, and lock remain protected.
+- Behavior: both distinct parent blockers remain inheritable through both real
+  child creations and both restoration entries. After both flags restore and
+  both parent handles close, both roots remain denied. A real `kill()` plus
+  bounded nonzero wait releases only the abrupt child's root without a graceful
+  acknowledgement; the survivor remains live and denied until acknowledged
+  zero-exit close. Both A/B assignments and payloads survive.
+- Focused proof: seven architecture guards plus two live A/B cases pass. Twenty
+  consecutive invocations pass 40 live cases. The M149-M170 boundary passes 147
+  assertions with one established capability skip.
+- Static and Python matrix: all 522 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,840 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,830 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,806-byte pure wheel at
+  SHA-256 `882adb7a7f000ac1c59a4a18c3fbf21852fcdbb0f16b5b8e0683b03c9537caa1`
+  and a 2,068,678-byte source archive at SHA-256
+  `d74a8c6eaf0258fe30cc0143ad7b564eaa5416521362e0cd6612f4a53b43c2f2`.
+  All 28 installed consumers pass. Two byte-identical ten-artifact release
+  stages pass complete smoke; archive inventory is 114 wheel and 839 source
+  entries with all four M170 sources source-only.
+- Governance/review: static and dated strict governance return zero findings
+  across three objectives, seven requirements, and four work items. Protected
+  surfaces have zero diff; disclosure, credential, forbidden-process, and
+  hidden-root scans are clean. No actionable finding is known.
+- Evidence-inclusive distribution: two final builds reproduce the same pure
+  wheel and a 2,070,226-byte source archive at SHA-256
+  `12aa01bbd9a6cecdbe528daf44f303c55a2fb36e79b6077d590f4751bfec4314`.
+  Primary wheel smoke passes. Two final ten-artifact stages are byte-identical
+  and pass complete release smoke; inventory remains 114 wheel and 839 source
+  entries, with no forbidden packaged binary/control entry and all four M170
+  sources source-only.
+- Final separator: both focused Python files, all nine M170 assertions, strict
+  docs, both governance modes, whitespace, exact 16-path scope, protected
+  surfaces, and disclosure/credential scans pass.
+- Closeout: initial DCO commit
+  `11f917a1f16c26c3573621154b1efadf4d82216a` has tree
+  `d973e83d88d1c224a0c4c12b6afd0d59ec50b765`, sole parent exact M169,
+  exact maintainer identity, one sign-off, 16 intended paths, no merge, clean
+  objects, and a clean worktree. Final artifact and generated roots are absent;
+  only local `main` and active M170 remain.
+- Publication gate: fresh fetch and authenticated GitHub queries find hosted
+  `main` still exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`,
+  no open PR, and PR #251 as the newest merge. M170 is 71 commits ahead and
+  would expose absent M100-M170, so no push, PR, workflow allocation, tag, or
+  release occurred.
+
+## M169 Windows concurrent explicit-list restoration failure - locally validated
+
+- Base: fully locally validated M168 DCO commit
+  `54a123e59e8d5905750c2946786dedd534181884`, tree
+  `d874891d313de33d0924717d0d88cef7e027f985`, sole parent exact M167.
+- Branch hygiene: neutral
+  `release/m169-concurrent-restore-failure-isolation` starts at exact M168.
+  Exact containment allowed redundant M168 to be pruned; only local `main` and
+  active M169 remain.
+- Direction: RFC-0152 accepts one controlled two-created-child, one-injected-
+  restore-failure explicit-list interleaving. It rejects a real native failure,
+  general concurrency safety, a runtime coordinator, Windows admission, and CI
+  growth.
+- Scope: one integration probe, one architecture boundary, two decision and
+  security documents, eight public navigation/status documents, and four
+  project records only. Runtime, examples, scripts, helpers, fixture,
+  dependencies, workflows, metadata, and lock remain protected.
+- Behavior: both distinct parent blockers remain inheritable through both real
+  child creations and both restoration entries. M163 reaps only the failed
+  side's child before returning the exact injected object; the survivor remains
+  ready and live. After explicit repair and parent close, only the failed-
+  restoration root renames; the survivor root remains denied until its child
+  closes. Both payloads survive.
+- Focused proof: seven architecture guards plus two live A/B cases pass. Twenty
+  confirmed invocations pass 40 live cases. The M149-M169 boundary passes 138
+  assertions with one established capability skip.
+- Static and Python matrix: all 520 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,831 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,821 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,741-byte pure wheel at
+  SHA-256 `9ff47422741836517d580f90316e48adca7f14091da9beb315f05ea2bc6db346`
+  and a 2,061,195-byte source archive at SHA-256
+  `7100a495e860f2a48b1fd1f6efa3c3fddc24d15860382f40168452f1f6090ed0`.
+  All 28 installed consumers pass. Two byte-identical ten-artifact release
+  stages pass complete smoke; archive inventory is 114 wheel and 835 source
+  entries with no native/WASM/bytecode and all four M169 sources source-only.
+- Governance/review: static and dated strict governance return zero findings
+  across three objectives, seven requirements, and four work items. Protected
+  surfaces have zero diff; disclosure, credential, forbidden-process, and
+  hidden-root scans are clean. No actionable finding is known.
+- Evidence-inclusive distribution: two final builds reproduce the same pure
+  wheel and a 2,063,065-byte source archive at SHA-256
+  `ae5bc9ae1d8a9f6ce5dde66714a7bd07d975d465af5bd3616a6c661cf696d022`.
+  Primary wheel smoke passes. Two final ten-artifact stages are byte-identical
+  and pass complete release smoke; inventory remains 114 wheel and 835 source
+  entries, with all four M169 sources source-only.
+- Closeout: initial DCO commit `23f662ef13dbeea17d32dfe8cacdf48d6764fed8`
+  has tree `b286cf70274b2d62b83332febe790defe413188d`, sole parent exact
+  M168, exact configured author/committer identity, one sign-off, 16 intended
+  paths, no merge, clean objects, and a clean worktree. Final artifact and
+  generated roots are absent; only local `main` and active M169 remain.
+- Publication gate: fresh fetch and authenticated GitHub queries find hosted
+  `main` still exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`,
+  no open PR, and PR #251 as the newest merge. M169 is 70 commits ahead and
+  would expose absent M100-M169, so no push, PR, workflow allocation, tag, or
+  release occurred.
+
+## M168 Windows concurrent explicit-list launch failure - locally validated
+
+- Base: fully locally validated M167 DCO commit
+  `dc3a1d154b4706518a0abb7e09f0531230e7de11`, tree
+  `d46020c720b5890d2959a7f0dab3a526c752d196`, sole parent exact M166.
+- Branch hygiene: neutral
+  `release/m168-concurrent-launch-failure-isolation` starts at exact M167.
+  Exact containment allowed redundant M167 to be pruned; only local `main` and
+  active M168 remain.
+- Direction: RFC-0151 accepts one controlled simultaneous successful/missing-
+  executable explicit-list pair because Python, current CPython, and Microsoft
+  define the relevant failure and ownership boundary. It rejects general
+  concurrency safety, a runtime coordinator, Windows admission, and CI growth.
+- Scope: one integration probe, one architecture boundary, two decision and
+  security documents, eight public navigation/status documents, and four
+  project records only. Runtime, examples, scripts, helpers, fixture,
+  dependencies, workflows, metadata, and lock remain protected.
+- Behavior: both distinct parent blockers remain inheritable through both real
+  outcomes and both restoration entries. The successful process is captured;
+  the failed call returns exact `FileNotFoundError`/`ENOENT`/Windows error 2.
+  After both parents close, only the failed-launch root renames; the successful
+  root remains denied until its live child closes. Both payloads survive.
+- Focused proof: six architecture guards plus two live A/B cases pass. Twenty
+  explicit consecutive invocations pass 40 live cases. The M149-M168 boundary
+  passes 129 assertions with one established capability skip.
+- Static and Python matrix: all 518 Python files pass Ruff formatting, Ruff,
+  and strict Pyright. Exact CPython 3.12.13 passes 3,822 tests with 17 skips;
+  exact 3.13.13 and 3.14.5 pass 3,812 tests with 18 skips each.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Development distribution: two builds reproduce a 360,675-byte pure wheel at
+  SHA-256 `c25614dc8a6b46923b68acfdea738eee79ae496d293badefcdeda6c66eff4e48`
+  and a 2,054,633-byte source archive at SHA-256
+  `b4905073c762ea4875126c7ec6e3d2dc8b53cb5885e23c0524b611997e088aa5`.
+  All 28 installed-wheel consumers pass. Two byte-identical ten-artifact
+  release stages pass complete smoke. Inventory is 114 wheel and 831 source
+  entries with no native/WASM/bytecode, no M168 wheel entry, and all four M168
+  source-only files.
+- Corrections retained: initial formatting requested one layout change; a docs
+  guard rejected a split nonclaim and passed after unambiguous reflow. One
+  accidentally overlapping full-suite rerun contended for `.pytest-tmp` and
+  produced one setup error after 3,821 passing tests; exact scratch cleanup and
+  a serial rerun produced the accepted 3.12 result. Sandboxed 3.13/3.14 uv
+  launches were denied user-cache access and their approved exact reruns pass.
+- Final closure: the evidence-inclusive lock/environment, all static checks,
+  M149-M168 boundary, strict docs, corrected governance checks, and whitespace
+  pass. Two final builds reproduce the same wheel and a 2,055,450-byte source
+  archive at SHA-256
+  `70e845a26559399c8af16d30e8b732bd3b321bd57e8df19aecb1e7a15fb164af`.
+  Primary wheel smoke and two byte-identical final release stages pass.
+- Scope/cleanup: exactly 16 intended paths remain; protected surfaces have zero
+  change; public identity and credential-assignment scans have zero matches.
+  All twelve exact M168 `.tmp` targets plus generated `.pytest-tmp` and `site`
+  were non-reparse, removed, and confirmed absent.
+- Record-only closeout: both M168 Python files remain focused-static clean; all
+  eight assertions, strict docs, both governance modes, whitespace, exact
+  scope, and regenerated scratch cleanup pass.
+- Initial commit audit: DCO commit
+  `7d3e025f5c354b9cb64192834f4e6bc913dd3d01` has tree
+  `a0b5445f34bbcbb00fa09d8ab56e3fdaa7f4577e`, sole parent exact M167, exact
+  maintainer identity, one sign-off, 16 intended paths, no merge, clean
+  worktree, `0 69` divergence, and only local `main` plus M168. Full object
+  verification exits zero with only historical dangling objects and no
+  corruption or missing object. This checkpoint is folded into the same commit.
+- Final hosted audit: fetch/prune leaves the sole hosted branch `main` at exact
+  M99. There is no open PR; PR #251 remains the newest merge at that commit.
+  Publishing would expose M100-M168, so no push or PR occurred.
+
+## M167 Windows concurrent explicit-list isolation - locally validated
+
+- Base: fully locally validated M166 DCO commit
+  `86b0e49d0d91ab2e134a8d7b9cb247012883fe7e`, tree
+  `cb12cc6c6f196d1ee3c605ce94cbbe6b91572316`, sole parent exact M165.
+- Branch hygiene: neutral `release/m167-concurrent-explicit-isolation` starts
+  at exact M166. Exact containment allowed the redundant M166 branch to be
+  pruned; only local `main` and active M167 remain.
+- Direction: RFC-0150 accepts one controlled successful simultaneous
+  explicit-list pair because Python and Microsoft document explicit selection
+  as the narrow alternative to broad inheritance. It rejects general safety,
+  a runtime/global coordinator, Windows admission, and CI expansion.
+- Scope: two test modules, two decision/security documents, eight public
+  navigation/status documents, and four project records only. Runtime,
+  examples, scripts, fixture, dependencies, and both workflows are protected.
+- Behavior: both real one-handle-list `Popen` calls complete while both distinct
+  parent blockers remain inheritable. Both helpers wait at restoration while
+  both flags are true, then restore them. With both parents closed, A-to-B and
+  B-to-A releases each make only the corresponding root renameable.
+- Focused proof: six architecture guards plus two live cases pass. Twenty
+  explicit consecutive invocations pass 40 live cases. The M149-M167 group
+  passes 121 assertions with one established capability skip.
+- Complete proof: all 516 Python files pass Ruff formatting, Ruff, and strict
+  Pyright; strict docs pass with the known Material notice. Exact 3.12.13
+  passes 3,814 tests with 17 skips; exact 3.13.13 and 3.14.5 each pass 3,804
+  tests with 18 skips.
+- Rendering/slices: ten real-wgpu tests, both one-repeat profile schemas,
+  Clockwork Arena, and Agent World Builder pass with established identities.
+- Distribution: two development builds reproduce a 360,595-byte pure wheel at
+  SHA-256 `474eccf6c1d8f6aeba7a1b43c5445b25fbd77980a000c4a715d1444ce6372508`
+  and a 2,044,435-byte sdist at SHA-256
+  `a5353c6380cc9fb22ae4e9990e829b1866fdfdcf1c0793a9fb49748c0a01987a`.
+  All 28 wheel consumers pass. Two byte-identical ten-artifact release stages
+  pass complete smoke. Inventory is 114 wheel and 827 source entries with no
+  native/WASM/bytecode, no M167 wheel entries, and all four M167 source-only
+  files.
+- Final closure: after recording the broad evidence, the unchanged lock,
+  complete static gates, 121/1 integrated boundary, strict docs, both
+  governance modes, and whitespace pass. Two final builds reproduce the same
+  wheel and a 2,046,312-byte source archive at SHA-256
+  `508a9fa7925fe9413e2a38aaafab33de4d06669fe99eb4319b1c3cf920e51196`.
+  Primary wheel smoke and two byte-identical final ten-artifact release stages
+  pass; inventory remains 114/827 with exact source-only confinement.
+- Corrections: a first baseline selector omitted one accepted module; the
+  corrected group passed 113/1. Initial formatter/lint/type findings were
+  corrected before acceptance. Unsupported `pytest --count` was rejected
+  before collection and replaced by an explicit loop. An Agent World Builder
+  help probe executed its fixed sample and was followed by the documented
+  explicit run. The first archive selector omitted the underscore-named
+  integration module; the corrected selector found all four sources.
+- Publication: fresh hosted state still reports `main` at exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, no open PR, and PR #251 as the
+  newest merge. Final publication is gated against exposing the absent local
+  milestone stack.
+- Scope/cleanup: exactly 16 intended paths remain; protected surfaces have zero
+  change; whitespace, public identity, and credential scans pass. All twelve
+  exact M167 scratch targets resolved directly beneath repository `.tmp`, were
+  non-reparse, were removed, and are confirmed absent.
+- Record-only closeout: both M167 Python files remain format/Ruff/Pyright clean;
+  all eight focused assertions pass in 1.41 seconds; strict docs build in 2.38
+  seconds with only the known Material notice; static and dated governance each
+  return zero findings; and whitespace passes.
+- Initial commit audit: DCO commit
+  `4c1765fadeaa422e361727174ef330eac01d5cef` has tree
+  `7281d26fbc4949402c8d6027f8e329301faa4d2e`, sole parent exact M166, exact
+  maintainer identity, one sign-off, 16 intended paths, no merge, clean
+  worktree, `0 68` divergence, and only local `main` plus M167. Full object
+  verification exits zero with only historical dangling objects and no
+  corruption or missing object. This checkpoint is folded into the same commit.
+- Final hosted audit: fetch/prune leaves the sole hosted branch `main` at exact
+  M99. There is no open PR; PR #251 remains the newest merge at that commit.
+  Publishing would expose M100-M167, so no push or PR occurred.
+
+## M166 Windows concurrent broad-inheritance leak - locally validated
+
+- Base: fully locally validated M165 DCO commit
+  `5ec5e79330c5798e13424dfea5a11522b6c93f7a`, tree
+  `4e10da2a5f9dcc012cd175362b716c1863902e8c`, sole parent exact M164.
+- Branch: `release/m166-concurrent-inheritance-leak`; exact containment allowed
+  the redundant M165 branch to be pruned.
+- Direction: RFC-0149 accepts one test-only event-controlled observation of a
+  broad launch acquiring M163's temporarily inheritable blocker. It records a
+  real current-host hazard, not a concurrency-safe spawning contract.
+- Scope: one integration probe, one architecture boundary, and documentation;
+  no accepted helper/fixture mutation, runtime, public probe, coordination,
+  recovery, adapter, cache, CLI, dependency, workflow/CI, version, release, or
+  product mutation change.
+- Baseline: the M149-M165 probe/boundary group passes 106 assertions with one
+  established skip in 4.08 seconds. Static governance returns zero findings.
+  Fresh hosted-state inspection exposes exact M99 main, no open PR, and no
+  hosted milestone branch.
+- Focused development: redundant casts, shared-module proxy leakage, and an
+  invalid post-release parent query were corrected before acceptance. Review
+  then required failure cleanup to reclaim an intended child still queued by
+  the worker. The final seven-assertion gate and 20 consecutive live
+  interleavings pass; no accepted helper or fixture changed.
+- Complete acceptance: CPython 3.12.13 passes 3,806 tests with 17 skips;
+  3.13.13 and 3.14.5 each pass 3,796 tests with 18 skips. All 514 Python files,
+  Ruff, strict Pyright, strict docs, both governance modes, real wgpu, both
+  profiles, both deterministic vertical slices, the primary and all 27
+  additional wheel consumers, two reproducible builds, and two byte-identical
+  complete release rehearsals pass.
+- Development packages: the 360,501-byte pure wheel has SHA-256
+  `029cfc8ab30d0f4831d2fc637aa4edb76ae16392bd65c22b848a52e748ba9044`;
+  the 2,034,147-byte source archive has SHA-256
+  `955dbac003c2b2dfe049f711b416d2bc7e98e482bf6492fedebbc837607cfe0c`.
+  Archive inventory is 114 wheel and 823 source entries, with zero native,
+  WASM, or bytecode and exactly the four M166 sources absent from the wheel and
+  present in the source archive.
+- Final package closure: two evidence-inclusive builds retain the same wheel
+  and reproduce a 2,035,732-byte source archive at SHA-256
+  `2df192cb25f7438ab86720d34e7ebbd9f7df0750fb79bf710dec9a061998a263`.
+  Primary wheel smoke and both byte-identical ten-artifact release stages pass;
+  archive inventory and native/M166 confinement remain exact. The factual
+  package row necessarily changes only the source archive afterward.
+- Scratch closure: all ten exact M166 profile, distribution, and release
+  targets were verified beneath repository `.tmp`, removed, and confirmed
+  absent. Final whitespace, 16-path scope, protected surfaces, public identity,
+  credential, and two-branch checks pass.
+- Initial DCO commit `95a560d9b8a7ff89d724394ca1cd30fbd3578c07`
+  has tree `7f1793047b73ac5a7ca83524cf6b19e1c87f7d04`, sole parent exact M165,
+  exact maintainer identity, one DCO sign-off, exactly 16 intended paths, no
+  merge commit, clean worktree, expected `0 67` divergence, and only local
+  `main` plus M166. Full object checking exits zero without an integrity error.
+  This factual checkpoint is folded into the same commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the
+  newest merge, open PRs are empty, and the only remote branch is `main`.
+  Publishing M166 would expose the absent M100-M166 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.
+
+## M165 Windows inherited-handle restoration failure - locally validated and committed
+
+- Base: fully locally validated M164 DCO commit
+  `70ca584aeda0f0f718ef83438e67b3422acde184`, tree
+  `1e20cd0aaa929c2ce35b604834b24798e266e4b4`, sole parent exact M163.
+- Branch: `release/m165-inherited-restore-failure`; exact containment allowed
+  the redundant M164 branch to be pruned.
+- Direction: RFC-0148 accepts one test-only injected restoration failure after
+  a successful M163 child launch. Child reclamation must finish before exact
+  error propagation, while parent inheritability repair remains explicit.
+- Scope: one integration probe, one architecture boundary, and documentation;
+  no fixture mutation, runtime, public probe, recovery, adapter, cache, CLI,
+  dependency, workflow/CI, version, release, or product mutation change.
+- Baseline: the M149-M164 probe/boundary group passes 99 assertions with one
+  established skip in 3.89 seconds. Static governance returns zero findings.
+  The first sandboxed baseline test invocation was denied uv-cache access
+  before collection; its exact approved rerun passed.
+- Development acceptance: CPython 3.12.13 passes 3,799 tests with 17 skips;
+  CPython 3.13.13 and 3.14.5 each pass 3,789 tests with 18 skips. All ten real-
+  wgpu tests, both profiles, both vertical slices, the primary and all 27
+  additional installed-wheel consumers, two reproducible builds, two byte-
+  identical ten-artifact release stages, strict docs/static/governance, and 60
+  repeated live executions pass through the first review correction; 20 final
+  fail-once executions bring accepted repeated coverage to 80.
+- Review: the close observer was strengthened to require the already-created
+  child live immediately before delegated reclamation. A second pass then
+  constrained the injected predicate explicitly to attempt zero so its
+  implementation matches the documented one-failure boundary. Corrected
+  focused behavior passes on all supported interpreters and 40 post-review
+  repetitions; no remaining actionable finding is known.
+- Development packages: the 360,404-byte pure wheel has SHA-256
+  `339f535560ff111a4dc3a836872a5bfe685051b856771f15951299e57bbe65b5`;
+  the 2,023,354-byte source archive has SHA-256
+  `0c5867889669c526d3417c1c3065235c71ed312986d556cde1dbb65b70c5b83c`.
+  Archive inventory is 114 wheel and 819 source entries, with zero M165 wheel
+  entries and exactly four M165 source entries. Final record-inclusive builds
+  remain required.
+- Final source closure: the unchanged 46-package lock resolves in 0.96
+  milliseconds; all 512 Python files, Ruff, strict Pyright, the 106-assertion
+  M149-M165 boundary group with one established skip, strict docs, static and
+  dated governance, protected scope, and whitespace pass. Exactly 16 intended
+  paths remain.
+- Final package closure: two evidence-inclusive builds reproduce the same
+  360,404-byte pure wheel at SHA-256
+  `339f535560ff111a4dc3a836872a5bfe685051b856771f15951299e57bbe65b5`
+  and a 2,025,187-byte source archive at SHA-256
+  `96490f9e1e93637a5f41e84516eec20131344bd602afa9e96b9620be34f93f62`.
+  Primary wheel smoke and both byte-identical ten-artifact final release
+  stages pass. Archive inventory remains 114 wheel and 819 source entries,
+  zero native/WASM/bytecode, zero M165 wheel entries, and exactly four M165
+  source entries.
+- Initial DCO commit `b8892a75006c55f003faddd0a68ae50f79a75eb9`
+  has tree `9f2c7a7cfa19920a544c511eb5b994c748e6bcd6`, sole parent exact M164,
+  exact configured maintainer identity, one DCO sign-off, exactly 16 intended
+  paths, no merge commit, a clean worktree, expected `0 66` divergence from
+  local M99 main, and only local `main` plus M165. Full object checking exits
+  zero with historical dangling objects only and no corruption or missing
+  object. This factual closeout is folded into the same local commit before
+  publication.
+- Pre-record amended commit
+  `12977dacfa8744632312f1b679b95cb185b78a88` has tree
+  `83243e90f3eb00fac6db3475795b40bd6d555587`, sole parent exact M164,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 66` divergence, and only local
+  `main` plus M165. Whitespace passes. This factual closeout is folded into the
+  same local commit before publication.
+- Post-record checkpoint `dd99c222e064aacf53aa3d0c3d53ecf485c1445f`
+  has tree `b7c42dc9c1ce6e6b45dd7a4408340563ef28b3d6`, sole parent exact M164,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 66` divergence, and only local
+  `main` plus M165. All fourteen exact M165 scratch targets were verified
+  beneath repository `.tmp`, removed, and confirmed absent.
+- Hosted state: fresh preimplementation and final postcommit audits expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`;
+  PR #251 remains the newest merge, open PRs are empty, and the only remote
+  branch is `main`. Publishing M165 would expose the absent M100-M165 stack,
+  so no push, PR, workflow allocation, tag, or release occurred.
+
+## M164 Windows inherited-handle launch failure - locally validated and committed
+
+- Base: fully locally validated M163 DCO commit
+  `86ba05218f8bae79153677e8c6fae200a61f019f`, tree
+  `c945019b831f2e13e1afb8046ab5f6664ee1cbfd`, sole parent exact M162.
+- Branch: `release/m164-inherited-launch-failure`; exact containment allowed
+  the redundant M163 branch to be pruned.
+- Direction: RFC-0147 accepts one test-only real missing-executable process-
+  creation failure. Only one blocker handle is allowlisted, temporary
+  inheritability is restored in `finally`, parent ownership/false-32 denial
+  remains, and only parent close orders true/0.
+- Scope: one integration probe, one architecture boundary, and documentation;
+  no child fixture, runtime, accepted-fixture mutation, public probe, recovery,
+  adapter, cache, CLI, dependency, workflow/CI, version, release, or product
+  mutation change.
+- Development acceptance: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  3,782 non-wgpu tests with 17 expected skips. All ten real-wgpu tests,
+  profiles, both vertical slices, all 28 installed-wheel consumers, two
+  reproducible builds, two byte-identical ten-artifact release stages, strict
+  docs/static/governance, and 40 explicit repeated live executions pass.
+- Review: the fixed missing path, explicit executable, one-handle list,
+  noninheritability rollback, no-process result, parent ownership, two native
+  rename results, unexpected-process reaping, and namespace/content invariants
+  were reviewed. No remaining actionable finding is known.
+- Final closure: all 510 Python files, Ruff, strict Pyright, the 99-assertion
+  M149-M164 boundary group, strict docs, static/dated governance, scope, and
+  whitespace pass. Final evidence-inclusive builds reproduce a 360,308-byte
+  pure wheel at SHA-256
+  `901554f82bff648b87d34d3469b04081dbe7068b12d68144810e020aec42a31a`
+  and a 2,015,852-byte source archive at SHA-256
+  `40acdf97a564425c148e96fa266aadcc5bfe64df02271685be27517dac3e9181`.
+  The primary wheel smoke and both byte-identical ten-artifact final release
+  stages pass; archive inventory remains 114 wheel and 815 source entries.
+- Initial DCO commit `a7bdea7cf7a988678b7fe21d21ce0b189213f504`
+  has tree `e59fcfb77afd1cc10fe005a275afab70f76f4170`, sole parent exact M163,
+  exact configured maintainer identity, one DCO sign-off, exactly 16 intended
+  paths, no merge commit, a clean worktree, expected `0 65` divergence from
+  local M99 main, and only local `main` plus M164. Full object checking exits
+  zero with historical dangling objects only. This factual closeout is folded
+  into the same local commit before publication.
+- Pre-record amended commit
+  `0381c5b59d1b1b92eba6dff28b4149783626d622` has tree
+  `a563a087e1f95f234b9c5c7e4927d7e648389b8d`, sole parent exact M163,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 65` divergence, and only local
+  `main` plus M164. Whitespace passes. This factual closeout is folded into the
+  same local commit before publication.
+- Post-record checkpoint `d89c77deb474a86907e5858ad36f8ed0828c5013`
+  has tree `97b11680ef9b14339801a2d60eb21f466542e636`, sole parent exact M163,
+  exact maintainer identity, one DCO sign-off, the same 16 intended paths, no
+  merge commit, clean worktree, expected `0 65` divergence, and only local
+  `main` plus M164. All ten exact M164 scratch targets were verified beneath
+  repository `.tmp`, removed, and confirmed absent.
+- Hosted state: fresh preimplementation and final postcommit audits expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`;
+  PR #251 remains the newest merge, open PRs are empty, and the only remote
+  branch is `main`. Publishing M164 would expose the absent M100-M164 stack,
+  so no push, PR, workflow allocation, tag, or release occurred.
+
+## M163 Windows inherited-handle retention - locally validated
+
+- Base: fully locally validated M162 DCO commit
+  `82f39fcccae309db6fde508ed04b468661fcaa6e`, tree
+  `a4403cc41c8747581f67e550d57ff80f86b00c39`, sole parent exact M161.
+- Branch: `release/m163-inherited-handle-retention`; exact containment allowed
+  the redundant M162 branch to be pruned.
+- Direction: RFC-0146 accepts one test-only serial `STARTUPINFO` explicit-
+  handle-list observation. The parent restores its handle to noninheritable
+  immediately, closes it before a second false/32 denial, and only the child's
+  acknowledged inherited-handle close orders true/0.
+- Scope: one fixed fixture, integration/architecture tests, and documentation;
+  no runtime, accepted-fixture mutation, public probe, recovery, adapter,
+  cache, CLI, dependency, workflow/CI, version, release, or product mutation
+  change.
+- Development acceptance: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass
+  3,776 non-wgpu tests with 17 expected skips. All ten real-wgpu tests,
+  profiles, both vertical slices, all 28 installed-wheel consumers, two
+  reproducible builds, two byte-identical ten-artifact release stages, strict
+  docs/static/governance, and 40 explicit repeated live executions pass.
+- Review: a restoration-failure ownership gap was corrected so a child created
+  before a failed noninheritability restore is closed and reaped before the
+  error propagates. Corrected focused behavior passes all six assertions on
+  each supported interpreter; no remaining actionable finding is known.
+- Final closure: all 508 Python files, Ruff, strict Pyright, the 93-assertion
+  M149-M163 boundary group, strict docs, static/dated governance, scope, and
+  whitespace pass. Final evidence-inclusive builds reproduce a 360,235-byte
+  pure wheel at SHA-256
+  `f15932172c19ed3f357a1b65edc23248cf5278841d761a7dde788a280bca5a69`
+  and a 2,009,065-byte source archive at SHA-256
+  `daa99dfa0b8143ca46acf83860e41c23c5515349deb5d9a31acc05802ff9da83`.
+  The primary wheel smoke and both byte-identical ten-artifact final release
+  stages pass; archive inventory remains 114 wheel and 811 source entries.
+- Initial DCO commit `3e27efade29170976695b21a6c7cec09796319ed`
+  has tree `96b240f0eac0a3750275e64520e1996009d8371a`, sole parent exact M162,
+  exact maintainer identity, one sign-off, 17 intended paths, no merge commit,
+  clean worktree, and expected `0 64` divergence. Full object verification
+  reports historical dangling objects only and exits zero. This factual
+  closeout is folded into the same local commit before publication.
+- Pre-record amended commit
+  `3c1e5f525f3f901c8a7ed5b839e34c446c4624c3` has tree
+  `7c39b21a9ce662b1695b5f6c120e6af4351aaf23`, sole parent exact M162, one
+  sign-off, the same 17 intended paths, no merge commit, clean worktree, and
+  expected `0 64` divergence. This factual closeout is folded into the same
+  local commit before publication.
+- Hosted state: fresh preimplementation and final postcommit audits expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publishing
+  M163 would expose the absent M100-M163 stack, so no push, PR, workflow
+  allocation, tag, or release occurred.
+
+## M162 Windows duplicated-handle retention - locally validated
+
+- Base: fully locally validated M161 DCO commit
+  `d0cac5376e4c67c2e1609b1e2119df28a8e057e3`, tree
+  `8a79445ed45c39b6c1bcbc3a4bbef31f6886a850`, sole parent exact M160.
+- Branch: `release/m162-duplicated-handle-retention`; exact containment allowed
+  the redundant M161 branch to be pruned.
+- Direction: RFC-0145 accepts one test-only same-process duplicate created with
+  unchanged access and inheritance disabled. The original closes before a
+  second false/32 denial; only final duplicate close orders true/0.
+- Scope: one fixed fixture, integration/architecture tests, and documentation;
+  no runtime, accepted-fixture mutation, public probe, recovery, adapter,
+  cache, CLI, dependency, workflow/CI, version, release, or product mutation
+  change.
+- Acceptance: complete through exact supported-Python behavior,
+  full regression, architecture/static/docs gates, real wgpu, profiles,
+  vertical slices, all installed-wheel consumers, reproducible distributions,
+  release rehearsal, archive inspection, 40 repeated live-host executions,
+  findings-first review, and final evidence-inclusive source/package closure.
+  Initial DCO commit `907a53b377706f62501eb42082254fb06220bb85`
+  has tree `733d4187213a18e7a326c2986929ffc8b972493e`, sole parent exact M161,
+  exact maintainer identity, one sign-off, 17 intended paths, a clean
+  worktree, and expected `0 63` divergence from local M99 main. Full object
+  verification reports historical dangling objects only and exits zero. This
+  factual closeout is folded into the same local commit before publication.
+- Amended local commit `eabd2d5f0a42b3ffaabd327f5f6e255890513dfa`
+  has tree `7e0e97b32407dfb2a114d9ec1b328d2a09b8e8ec`, sole parent exact M161,
+  exact maintainer identity, one sign-off, the same 17 intended paths, no
+  merge commit, clean worktree, and expected `0 63` divergence. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publishing
+  M162 would expose the absent M100-M162 stack, so no push, PR, workflow
+  allocation, tag, or release occurred.
+
+## M161 Windows acknowledged-release timeout - locally validated
+
+- Base: fully locally validated M160 DCO commit
+  `2ef87449a23b05e637b876cdee238cc58b10bd10`, tree
+  `88ebbabe1115d78c72791a1a81c08b4356d5f957`, sole parent exact M159.
+- Branch: `release/m161-acknowledged-release-timeout`; exact containment
+  allowed the redundant M160 branch to be pruned.
+- Direction: RFC-0144 accepts one test-only two-token child protocol that
+  acknowledges release intent while retaining false/32, then orders native
+  close and true/0 only from a separate close token.
+- Scope: one fixed fixture, integration/architecture tests, and documentation;
+  no runtime, accepted-fixture mutation, public probe, timeout recovery,
+  adapter, cache, CLI, dependency, workflow/CI, version, release, or product
+  mutation change.
+- Acceptance: complete through exact supported-Python behavior, full regression,
+  architecture/static/docs gates, real wgpu, profiles, vertical slices, all
+  installed-wheel consumers, reproducible distributions, release rehearsal,
+  archive inspection, 40 total repeated live-host executions across initial
+  and hardened source, findings-first review, DCO commit, and exact object
+  audit.
+- Initial DCO commit: `93d69f5e0b662b6db7a5647c57a4962fa81cc589`,
+  tree `67c6465dfaedb60be48b138268a29e5d2f8e4181`, sole parent exact M160.
+  It has exact maintainer identity, one DCO sign-off, 17 intended paths, a clean
+  worktree, and expected `0 62` divergence from local M99 main. Full object
+  checking reports only dangling objects and no integrity error. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the
+  newest merge, open PRs are empty, and the only remote branch is `main`.
+  Publishing M161 would expose the absent M100-M161 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.
+
+## M160 Windows live-blocker wait timeout - locally validated
+
+- Base: fully locally validated M159 DCO commit
+  `78837a61695a38207f06ca474f50f58d9bb9c62e`, tree
+  `0fcd74bfa70210e2944e7a43da45bddf136f7082`, sole parent exact M158.
+- Branch: `release/m160-live-wait-timeout`; exact containment allowed the
+  redundant M159 branch to be pruned.
+- Direction: RFC-0143 accepts one test-only zero-duration `Popen.wait`
+  observation while M155's blocker and M154's false/32 native rename denial
+  remain live, before the unchanged graceful release orders true/0.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, timeout recovery, adapter, cache, CLI, dependency,
+  workflow/CI, version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions,
+  findings-first review, DCO commit, and exact object audit.
+- Initial DCO commit: `9faec84ee019ae392bb7bc4ae1947f839e59bec6`,
+  tree `af7fd2f280fd22defc4948a58707e4f2e8bf6c88`, sole parent exact M159.
+  It has exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 61` divergence from local M99 main. Full object
+  checking reports only dangling objects and no integrity error. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the
+  newest merge, open PRs are empty, and the only remote branch is `main`.
+  Publishing M160 would expose the absent M100-M160 stack, so no push, PR,
+  workflow allocation, tag, or release occurred.
+
+## M159 Windows blocker broken control pipe - locally validated
+
+- Base: fully locally validated M158 DCO commit
+  `9061edfe4fd04685a57425bb049834a9fc1bffd5`, tree
+  `e182978ba1e735d014205b04b24853951bae950e`, sole parent exact M157.
+- Branch: `release/m159-broken-control-pipe-write`; exact containment allowed
+  the redundant M158 branch to be pruned.
+- Direction: RFC-0142 accepts one direct test-only native late write after
+  M155's blocker is killed, boundedly reaped, and observed at output EOF. The
+  current host returns false/error 232 with zero bytes before M154's unchanged
+  native rename succeeds.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review.
+- Initial DCO commit: `1f0534139f998e9c030e7ca79a4496b3ac968991`, tree
+  `bd433c41494fb322834e4ee12ffcfad4159880f4`, sole parent exact M158. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 60` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit audits expose exact M99
+  `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remained the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publishing
+  M159 would expose the absent M100-M159 stack, so no push, PR, workflow
+  allocation, tag, or release occurred.
+
+## M158 Windows blocker invalid control token - locally validated
+
+- Base: fully locally validated M157 DCO commit
+  `7c28ad99d2d13c64a7d45cdbd9d6f2181eb24c99`, tree
+  `985c7a4a50dadb49805dd67a060641eee0dd8c1b`, sole parent exact M156.
+- Branch: `release/m158-invalid-control-token`; exact containment allowed the
+  redundant M157 branch to be pruned.
+- Direction: RFC-0141 accepts one fixed invalid-byte observation that
+  exercises M155's existing invalid-control `finally` close before M154's
+  unchanged native rename retries once.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review. Branch commits remain subject to DCO sign-off.
+- Initial DCO commit: `9f8cbe9febbfc24ac7ebcd83989c427bec601688`, tree
+  `e3fcf03e5e974a227b455aa6c2055a1ac22a3f6c`, sole parent exact M157. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 59` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit GitHub PR/branch audits
+  still expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
+## M157 Windows blocker control-pipe EOF - locally validated
+
+- Base: fully locally validated M156 DCO commit
+  `b0076e48e6538744a8ffc1909c725d1293d56eba`, tree
+  `a3205dd9f139748e9331dd316ed8c9548bb52834`, sole parent exact M155.
+- Branch: `release/m157-control-pipe-eof-close`; exact containment allowed the
+  redundant M156 branch to be pruned.
+- Direction: RFC-0140 accepts one bounded parent-writer EOF observation that
+  exercises M155's existing invalid-control `finally` close before M154's
+  unchanged native rename retries once.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review. Branch commits remain subject to DCO sign-off.
+- Initial DCO commit: `d5927125f2f18f9ae84e55aa86e103f363ee52a8`, tree
+  `a52a1ac9bf4fd8bfdda4c90704108ad62c42a929`, sole parent exact M156. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 58` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit GitHub PR/branch audits
+  still expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
+## M156 Windows abrupt blocker-owner termination - locally validated
+
+- Base: fully locally validated M155 DCO commit
+  `40aee9c75a8d10bc9876869788b9e39db73c1151`, tree
+  `1383b854ba3bc10c79dec0b01894500b459368c4`, sole parent exact M154.
+- Branch: `release/m156-abrupt-blocker-termination`; exact containment allowed
+  the redundant M155 branch to be pruned.
+- Direction: RFC-0139 accepts one bounded forced-termination observation that
+  bypasses M155's graceful release token and retries M154's unchanged native
+  rename once after the child has terminated.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  helper, public probe, recovery, adapter, cache, CLI, dependency, workflow/CI,
+  version, release, or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review. Branch commits remain subject to DCO sign-off.
+- Initial DCO commit: `e1829ee5c8017fea8d25227d5a00875be9ef98b8`, tree
+  `a8e4f05840dee31cdf7512f8d06341dd01536d0c`, sole parent exact M155. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 57` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: fresh preimplementation and postcommit GitHub PR/branch audits
+  still expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; PR #251 remains the newest
+  merge, open PRs are empty, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
+## M155 Windows child-owned share-delete handshake - locally validated
+
+- Base: fully locally validated M154 DCO commit
+  `e831a1cc098ea22d94cd87c7f7d9cf785012d97e`, tree
+  `4a48a85386eae6745c32ee16ccd6e0a583143b5e`, sole parent exact M153.
+- Branch: `release/m155-child-owned-share-delete-handshake`; exact containment
+  allowed the redundant M154 branch to be pruned.
+- Direction: RFC-0138 accepts one fixed child-owned no-delete-share blocker and
+  bounded release acknowledgement around M154's unchanged native rename child.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, 20 repeated live-host executions, and
+  findings-first review. Branch commits remain subject to DCO sign-off.
+- Initial DCO commit: `fcdb032451b83bd8d1b5c6b1374fd09a3bae589a`, tree
+  `64f53c68080d54d8c59a4641603ee0135f0b8070`, sole parent exact M154. It has
+  exact maintainer identity, one DCO sign-off, 17 intended paths, a clean
+  worktree, and expected `0 56` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: a fresh postcommit fetch and GitHub PR/branch audit still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; open PRs are empty, PR #251
+  remains the newest merge, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
+## M154 Windows native sharing-violation result - locally validated
+
+- Base: fully locally validated M153 DCO commit
+  `f34bf8032c523a60e80711745c2776b5ca6d99ab`, tree
+  `df3c460b8afa8ad3ab84327a7ba9685b89436da5`, sole parent exact M152.
+- Branch: `release/m154-windows-native-sharing-violation`; exact containment
+  allowed the redundant M153 branch to be pruned.
+- Direction: RFC-0137 accepts one isolated, fixed, direct `MoveFileExW` child
+  fixture to capture current-host false/32 before close and true/0 afterward.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Initial DCO commit: `3a2e96c80794d0a8b91a86500fbb2b4cbe0629a2`, tree
+  `2a7d6fc28034d352c316cf2edeb8264702967024`, sole parent exact M153. It has
+  exact maintainer identity, one DCO sign-off, 17 intended paths, a clean
+  worktree, and expected `0 55` divergence from local M99 main. This factual
+  closeout is folded into the same local commit before publication.
+- Hosted state: a fresh postcommit fetch and GitHub PR/branch audit still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; open PRs are empty, PR #251
+  remains the newest merge, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
+## M153 Windows cross-process share-delete exclusion - locally validated
+
+- Base: fully locally validated M152 DCO commit
+  `44953ff23ed84a50cdeed47c4564ebbc45c8447a`, tree
+  `163d5b6568e2f117dbe98c859e5ae93c1d1f6f6b`, sole parent exact M151.
+- Branch: `release/m153-windows-share-delete-exclusion`; exact containment
+  allowed the redundant M152 branch to be pruned.
+- Direction: RFC-0136 accepts one test-only NTFS paired share-mode fixture to
+  observe cross-process rename denial before close and success after close.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Initial DCO commit: `097752e59a7be2d76688bd8335dcd1ad106c9ac8`, tree
+  `1ed516da32132ff97123bee4d5c15b4834e4b266`, sole parent exact M152. It
+  has exact maintainer identity, one DCO sign-off, 16 intended paths, a clean
+  worktree, and expected `0 54` divergence from local M99 main. This factual
+  closeout is folded into the same commit by one final amendment.
+- Hosted state: a fresh postcommit fetch and GitHub PR/branch audit still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; open PRs are empty, PR #251
+  remains the newest merge, and the only remote branch is `main`. Publication
+  is withheld until the local stack is present on hosted `main`.
+
+## M152 Windows cross-process namespace substitution - locally validated
+
+- Base: fully locally validated M151 DCO commit
+  `3df94f419f14e230275d4dd38ee9f0bcb53b49f6`, tree
+  `f1035e580e2f827390c99ef9b15690c003229bde`, sole parent exact M150.
+- Branch: `release/m152-windows-cross-process-substitution`; exact containment
+  allowed the redundant M151 branch to be pruned.
+- Direction: RFC-0135 accepts one test-only NTFS child-process substitution
+  fixture to execute a process-boundary namespace change without timing.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Hosted state: publication remains gated on a fresh postcommit audit proving
+  that the unpublished preceding local stack is present on hosted `main`.
+
+## M151 Windows retained-parent namespace substitution - locally validated
+
+- Base: fully locally validated M150 DCO commit
+  `42cac8b6ade92af3bb29bbd2e9781cb0799ddc58`, tree
+  `08156f9bc9e8d86175c77c2ae15b4929e8096956`, sole parent exact M149.
+- Branch: `release/m151-windows-retained-parent-substitution`; exact
+  containment allowed the redundant M150 branch to be pruned.
+- Direction: RFC-0134 accepts one test-only NTFS retained-parent substitution
+  fixture to execute a deterministic namespace change without timing.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, all installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Hosted state: publication remains gated on a fresh postcommit audit proving
+  that the unpublished preceding local stack is present on hosted `main`.
+
+## M150 Windows directory-junction refusal probe - locally validated
+
+- Base: fully locally validated M149 DCO commit
+  `b9c3a3b38b3cf22cf5351e13b362602d0c46d9eb`, tree
+  `5ed1460fd133e81c3738a451f58437c88d9b63f8`, sole parent exact M148.
+- Branch: `release/m150-windows-junction-refusal-probe`; exact containment
+  allowed the redundant M149 branch to be pruned.
+- Direction: RFC-0133 accepts one test-only NTFS directory-junction fixture to
+  execute M149's reparse refusal without symbolic-link privilege.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, full
+  regression, architecture/static/docs gates, real wgpu, profiles, vertical
+  slices, installed-wheel consumers, reproducible distributions, release
+  rehearsal, archive inspection, and findings-first review. Branch commits
+  remain subject to DCO sign-off.
+- Hosted state: publication remains gated on a fresh postcommit audit proving
+  that the unpublished preceding local stack is present on hosted `main`.
+
+## M149 Windows cache-cleanup capability probe - locally validated and committed
+
+- Base: fully locally validated M148 DCO commit
+  `4f6b59ef37877ba3575ca19e0f15cfdadcc6a253`, tree
+  `6eacc1a7d0a85d66916c011e544a991fd8e7afae`, sole parent exact M147.
+- Branch: `release/m149-windows-cleanup-capability-probe`; exact containment
+  allowed the redundant M148 branch to be pruned.
+- Direction: RFC-0132 accepts one test-only Windows native-capability probe but
+  preserves M148's no-platform-admission decision.
+- Scope: tests, documentation, and architecture protection only; no runtime,
+  public probe, adapter, cache, CLI, dependency, workflow/CI, version, release,
+  or product mutation change.
+- Acceptance: complete through exact supported-Python behavior, architecture,
+  real wgpu, profiles, vertical slices, all 28 installed-package consumers,
+  byte-identical distributions and release rehearsals, archive inspection,
+  findings-first review, final source separation, and bounded cleanup.
+- Initial DCO commit: `8adc3bf1bef8ba28bab12a5e175fb99381215894`, tree
+  `376ac9103846e35f9982de3bd0e943ba04b2b996`, sole parent exact M148. It has
+  exact maintainer identity, one DCO sign-off, 16 intended paths, `0 50`
+  divergence from local M99 main, and zero critical object-integrity finding.
+  This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and anonymous GitHub API audit still expose
+  exact M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`;
+  only remote `main` exists, open PRs are empty, no workflow run exists after
+  2026-08-22, and releases/tags are empty. No M149 remote action occurred
+  because publishing would expose the absent M100-M149 stack.
+
+## M148 cache-cleanup platform-capability decision - locally validated and committed
+
+- Base: fully locally validated M147 DCO commit
+  `752334dd981799c95d24308087222be487c0587e`, tree
+  `273f80c3740d5ad21d27afbc872f6457f204a566`, sole parent exact M146.
+- Branch: `release/m148-cache-cleanup-capability-decision`; exact containment
+  allowed the redundant M147 branch to be pruned.
+- Direction: RFC-0131 rejects a standard-library-only portable cleanup path and
+  requires per-platform engine-owned adapters plus real-host adversarial proof
+  before any platform is admitted.
+- Scope: documentation and architecture protection only; no runtime, probe,
+  adapter, native code, cache, CLI, dependency, workflow/CI, version, release,
+  or mutation change.
+- Acceptance: complete through static/architecture/docs/governance checks,
+  supported-Python behavior, real wgpu, profiles, vertical slices,
+  reproducible distributions, all 28 installed consumers, two identical
+  release rehearsals, archive inspection, and findings-first review. Final
+  evidence-inclusive builds reproduce exactly, the source separator passes,
+  and bounded cleanup is complete.
+- Initial DCO commit: `9a6229f5c40712ce287f96618c78c60943f54fe0`, tree
+  `dd2cc8462140108aaca11f574debfacfe2ad5576`, sole parent exact M147. It has
+  exact maintainer identity, one DCO sign-off, 15 paths, `0 49` divergence from
+  local M99 main, clean whitespace, and zero critical object-integrity finding.
+  This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and GitHub API query still expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main`
+  exists, open PRs are empty, PR #251 remains newest, no workflow run exists
+  after 2026-08-22, and releases are empty. No M148 remote action occurred
+  because publishing would expose the absent M100-M148 stack.
+
+## M147 asset-cache cleanup threat model - locally validated and committed
+
+- Base: fully locally validated M146 DCO commit
+  `15a1294e02c0efc77fdb668430d89413af424c9d`, tree
+  `950357cf643ddc9472f1ba6cda47ccb14b798f18`, sole parent exact M145.
+- Branch: `release/m147-cache-cleanup-threat-model`; exact containment allowed
+  the redundant M146 branch to be pruned.
+- Direction: RFC-0130 adopts a dedicated cleanup threat model covering
+  filesystem namespace races, concurrency, evidence/time trust, recovery,
+  privacy, misuse cases, security invariants, and cross-platform verification.
+- Scope: documentation and architecture protection only; no runtime, cache,
+  CLI, dependency, workflow/CI, version, release, or mutation change.
+- Acceptance: complete through supported-Python behavior, real wgpu, profiles,
+  vertical slices, reproducible distributions, all 28 installed consumers, two
+  identical release rehearsals, archive inspection, and findings-first review.
+  Final evidence-inclusive builds reproduce exactly, and the final source
+  separator, bounded cleanup, initial DCO commit, and local object audit are
+  complete. This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and GitHub API query still expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main`
+  exists, open PRs are empty, PR #251 remains newest, no workflow run exists
+  after 2026-08-22, and releases are empty. No M147 remote action occurred
+  because publishing would expose the absent M100-M147 stack.
+
+## M146 cache-cleanup readiness decision - locally validated and committed
+
+- Base: fully locally validated M145 DCO commit
+  `2a08a5cde25cab2b6a9950c0013c69286da873bb`, tree
+  `a53ff7c7427695689337d8e120579abd74fbc883`, sole parent exact M144.
+- Branch: `release/m146-cache-cleanup-readiness-decision`; exact containment
+  allowed the redundant M145 branch to be pruned.
+- Direction: RFC-0129 defers cleanup because aggregate evidence cannot prove
+  identity or current reachability and records the full reconsideration gate.
+- Scope: documentation and architecture protection only; no runtime, cache,
+  CLI, dependency, workflow/CI, version, release, or mutation change.
+- Acceptance: complete static/architecture/docs/governance, supported Python,
+  real-wgpu, profiles, vertical slices, reproducible distributions, all 28
+  installed consumers, identical release rehearsals, archive inspection, and
+  findings-first review pass.
+- Initial DCO commit: `6e2b69f7c7ac7204fc3fc0142be48c684e9eeea5`, tree
+  `8fe2f8da34405d0a595f3c1bf03147c893906bcc`, sole parent exact M145. It has
+  exact maintainer identity, one DCO sign-off, 12 paths, `0 47` divergence from
+  local M99 main, clean whitespace, and zero critical object-integrity finding.
+  This closeout is folded into the same commit by one final amendment.
+- Hosted state: a postcommit fetch and GitHub API query still expose exact M99
+  `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main`
+  exists, open PRs are empty, PR #251 remains newest, no workflow run exists
+  after 2026-08-22, and releases are empty. No M146 remote action occurred
+  because publishing would expose the absent M100-M146 stack.
+
+## M145 saved unreferenced-preview verification - locally validated and committed
+
+- Base: fully locally validated M144 DCO commit
+  `d6bbf33e35b5e21fa48d6553e1b3b73d104b0cd6`, tree
+  `197792e9cc5226084a1d947916349b5e9cc0f1af`, sole parent exact M143.
+- Branch: `release/m145-saved-unreferenced-preview-verification`. Exact ancestry
+  proved the contained M144 branch redundant and it was pruned; only local
+  `main` and active M145 remain.
+- Direction: accepted RFC-0128 adds bounded canonical admission and pure offline
+  verification of one saved aggregate preview against its exact plan and
+  admitted fingerprint. The fixed report binds exact preview bytes without
+  reading a cache or adding trust claims.
+- Implemented: a 2,048-byte tightening-only limit, strict exact-schema decoder,
+  immutable verification value, pure exact-value verifier, CLI composition,
+  focused unit/integration coverage, installed-wheel smoke, architecture guard,
+  and public documentation.
+- Focused evidence: all 17 unit cases pass after correcting field-specific
+  digest diagnostics; all three selected CLI cases pass after correcting one
+  test-only helper typo; the initial isolated no-dependency wheel consumer
+  passes after deleting the originating cache.
+- Acceptance: all complete static/architecture/docs/governance gates, all three
+  supported Python suites, real-wgpu, profiles, both vertical slices, two
+  reproducible distributions, all 28 installed consumers, two identical
+  release rehearsals, archive inspection, and findings-first scope/security
+  review pass.
+- Initial DCO commit: `de16694f03eb1174de090ae5ae1016c35f662c4e`, tree
+  `17a8363e66a83916b5a86c1d081f8fda3e0e8126`, sole parent exact M144. It has
+  exact maintainer author/committer identity, one DCO sign-off, 19 paths, clean
+  whitespace, `0 46` divergence from local M99 main, and zero critical
+  object-integrity finding. This closeout is folded into the same commit by one
+  final amendment.
+- Hosted state: a postcommit fetch and independent GitHub API query still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; only remote `main` exists, open
+  PRs are empty, PR #251 remains newest, no workflow run exists after
+  2026-08-22, and releases are empty. No M145 remote action occurred because
+  publishing would expose the absent M100-M145 stack.
+- Scope: no cache access, current-state/chronology/authenticity claim,
+  candidate/path disclosure, deletion authority, mutation, dependency, version,
+  workflow/CI, release, backend/native, or root-API change.
+
+## M144 offline unreferenced-blob preview - locally validated and committed
+
+- Base: fully locally validated M143 DCO commit
+  `1e9eedd5307d3c1249fe1dcd2b22acf4a01ccfc2`, tree
+  `a2320515ef4e97b5d4be3a9091dd6f90a11ad86b`, sole parent exact M142.
+- Branch: `release/m144-offline-unreferenced-blob-preview`. Exact ancestry
+  proved the contained M143 branch redundant and it was pruned.
+- Direction: current RFC 8785 and Python JSON guidance supports reuse of M139's
+  strict canonical decoder; SLSA preserves a separate authenticity boundary;
+  GitHub workflow guidance supports no CI expansion.
+- Contract: preflight current inputs, read one bounded project-confined saved
+  fingerprint, strictly admit it through M139, then reuse pure M143 and its
+  unchanged output protocol without cache access.
+- Complete proof: 466 Python files are format-clean; Ruff and strict Pyright
+  pass; all 1,731 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 pass
+  3,654/3,644/3,644 tests; and real-wgpu, profiles, and both deterministic
+  vertical slices reproduce their established identities.
+- Distribution proof: two record-inclusive builds reproduce a 355,539-byte
+  pure wheel at SHA-256
+  `51d5ce7187cff20429f40374b8cfaa923a24e3b8686006da837961ccfbb6fc47`;
+  all 27 isolated installed consumers pass; and two byte-identical ten-artifact
+  release rehearsals pass.
+- Review: exactly 16 intended paths remain. Workflows, dependencies, lock,
+  protected runtime/release surfaces, public identity, credentials,
+  backend/native imports, disclosure, and mutation boundaries are clean.
+- Hosted state: a postcommit fetch and independent API query still expose exact
+  M99 `main` at `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; there is no open PR, PR #251
+  remains the newest merge, and no M144 remote action occurred. Publication is
+  held because the required M100-M143 base is not present remotely.
+- Scope: no new runtime value/protocol/decoder, cache access/observation,
+  trust/chronology, candidate/path disclosure, retention/deletion authority,
+  mutation, dependency, version, CI/workflow, release, or remote change.
+
+## M143 path-free unreferenced-blob preview - locally validated and committed
+
+- Base: fully locally validated M142 DCO commit
+  `9f4a84b0e1f251d400398da4ef27d5c37eee386b`, tree
+  `2e1d9c4c693658036500921cb45039366dda0765`, sole parent exact M141.
+- Exact DCO commit `1e9eedd5307d3c1249fe1dcd2b22acf4a01ccfc2`, tree
+  `a2320515ef4e97b5d4be3a9091dd6f90a11ad86b`, is the M144 base. Its redundant
+  local branch was pruned after exact ancestry proof.
+- Branch: `release/m143-path-free-unreferenced-blob-preview`. Exact ancestry
+  proved the contained M142 branch redundant and it was pruned.
+- Direction: current CNCF Distribution, Git, Bazel, Gradle, BuildKit, Remote
+  Execution API, OpenTelemetry, NIST, and GitHub workflow guidance supports a
+  read-only, aggregate, path-free preview while reserving deletion for a later
+  design with roots, age/grace, quiescence, concurrency, and recovery safety.
+- Contract: one pure function recomputes exact plan identity, verifies the
+  nested M138 plan binding, and emits only fixed protocols/status/digests plus
+  the existing unreferenced-blob count and byte aggregate.
+- CLI: `source asset-cache-unreferenced-preview` preflights current project
+  inputs before exactly one unchanged bounded M138 observation. An absent cache
+  returns zero without creation; a nonzero diagnostic remains exit 0.
+- Complete proof: all 464 Python files are format-clean; Ruff and strict
+  Pyright pass; all 1,727 architecture assertions pass with one established
+  skip; strict docs and both governance modes pass; exact CPython 3.12-3.14
+  pass 3,647/3,637/3,637 tests; and real-wgpu, profiles, and both deterministic
+  vertical slices reproduce their established identities.
+- Distribution proof: two evidence-inclusive builds reproduce a 355,411-byte
+  pure wheel at SHA-256
+  `8e47ee0f28c1e396ecfa1e0614a20d637d172999b77341977f363c83a5b89eb4`;
+  all 26 isolated installed consumers pass; two identical ten-artifact release
+  rehearsals pass; and archives contain no native, WASM, bytecode, or retired
+  hidden control-directory entries.
+- Audit: exactly 19 intended paths remain; protected workflows/dependencies/
+  cache/release surfaces are unchanged; public development-tool identity,
+  credential, disclosure, backend/native, and mutation scans are empty. All 43
+  prior stack commits are linear, identity/DCO clean, and object-integrity
+  checking has zero critical finding. All audited generated scratch is absent
+  and `.venv` is retained.
+- Hosted state: a fresh fetch plus GitHub branch and merged-PR queries still
+  expose exact M99 `main` at
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; the reported squash merge is not
+  visible, so publication remains held while local acceptance continues.
+- Scope: no candidate identities/paths/payloads/age, deletion eligibility,
+  retention/cleanup/mutation, atomic snapshot, remote cache/network,
+  dependencies, version, CI/workflows, release authority, or remote change.
+
+## M142 saved cache-fingerprint comparison verification - locally validated and committed
+
+- Base: fully locally validated M141 DCO commit
+  `bff0e111b40a6e4b342fe4e5b93307d770b7be95`, tree
+  `bc5476e90d05ae4f2c27a2d2eebecc0821331a41`, sole parent exact M140.
+- Exact DCO commit `9f4a84b0e1f251d400398da4ef27d5c37eee386b`, tree
+  `2e1d9c4c693658036500921cb45039366dda0765`, is the M143 base. Its redundant
+  local branch was pruned after exact ancestry proof; it remains unpublished
+  because the hosted base is still exact M99.
+- Direction: RFC 8785 and Python 3.12 support bounded canonical admission;
+  NIST supports change-detection digests; OpenTelemetry supports minimized
+  aggregate disclosure; SLSA requires separate trusted signatures/subjects/
+  expectations for authenticity. GitHub workflow/billing guidance justifies no
+  CI expansion.
+- Contract: one 4,096-byte exact-schema saved M140 report is reconstructed and
+  compared with pure M141 recomputation from one exact plan and two admitted
+  fingerprints, without cache/filesystem/environment/clock/network effects.
+- CLI: `source asset-cache-fingerprint-comparison-verify` preflights current
+  inputs before three independently bounded project-confined reads and emits
+  path-free valid evidence for a correctly derived equal or different report.
+- Complete proof: all 460 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,722 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 pass
+  3,619/3,609/3,609 tests; and real-wgpu, retained profiles, and both
+  deterministic vertical slices pass with unchanged identities.
+- Distribution proof: two current-tree builds reproduce byte-for-byte; all 25
+  isolated no-dependency installed consumers pass; two identical ten-artifact
+  release rehearsals pass; and the wheel/source archives contain no native,
+  WASM, bytecode, or retired hidden control-directory entries.
+- Audit: exactly 19 intended paths remain; protected workflows/dependencies/
+  release surfaces are unchanged; public development-tool identity, credential,
+  and focused backend/native scans are empty. Exact M141 history and all 42
+  prior stack commits pass linearity, identity, DCO, and object-integrity checks.
+  A fresh fetch still shows only exact M99 remote main, no open PR, no post-M99
+  run, and no release, so the public-review hold remains.
+- Scope: no cache access, detailed diff/identity/path/observation disclosure,
+  chronology/trust/authenticity, atomic snapshot, record storage/retention,
+  mutation/cleanup, remote cache/network, dependency, version, workflow/
+  allocation, release authority, or remote change.
+
+## M141 offline cache-fingerprint comparison - locally validated and committed
+
+- Base: fully locally validated M140 DCO commit
+  `81d55ac7b531d5782aec8723a8df9b0be18b49ca`, tree
+  `710867b3c6229c4c3bb86f0e1b80b1c1ce9cc2b3`, sole parent exact M139.
+- Exact DCO commit `bff0e111b40a6e4b342fe4e5b93307d770b7be95`, tree
+  `bc5476e90d05ae4f2c27a2d2eebecc0821331a41`, is the M142 base. Its redundant
+  local branch was pruned after exact ancestry proof; it remains unpublished
+  under the existing public-review identity hold.
+- Direction: NIST/OpenTelemetry guidance supports aggregate change detection
+  and disclosure minimization; SLSA/GitHub guidance requires separate trusted
+  signed provenance and advises against attestations for frequent test builds.
+- Contract: one exact plan binds two admitted canonical fingerprint values;
+  pure in-memory comparison reuses M140's fixed report without cache access,
+  fresh observation, filesystem, environment, clock, or network effects.
+- CLI: `source asset-cache-fingerprint-record-compare` verifies current inputs,
+  independently admits two bounded project-confined records, and returns
+  canonical stdout with 0/1 equal/different semantics or structured exit 2.
+- Core evidence: all 456 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,717 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 passes
+  3,597/3,587/3,587 tests; real-wgpu, profiles, and both deterministic vertical
+  slices pass.
+- Complete proof: two final distributions reproduce byte-for-byte; all 24
+  installed-wheel consumers pass; two identical ten-artifact release rehearsals
+  pass; archives and scope/disclosure/identity/credential boundaries are clean.
+- Audit: postcommit exact tree/parent/identity/DCO, all 42 M100-M141 stack
+  commits, linearity, object-integrity, and local-branch checks pass. A fresh fetch still
+  shows only exact M99 remote main, no open PR, no post-M99 run, and no release,
+  so the public-review hold remains and no remote action occurred.
+- Scope: no cache access, detailed diff/identity/path/digest disclosure,
+  chronology/trust/authenticity, atomic snapshot, retention/deletion authority,
+  mutation/cleanup, remote cache/network, dependency, version, workflow/
+  allocation, release authority, or remote change.
+
+## M140 path-free cache-fingerprint comparison - locally validated
+
+- Base: fully locally validated M139 DCO commit
+  `e7c01044da87004cea065fd07f379ea7ba09128f`, tree
+  `c52f9af36d464d539df1bb2164a3e7b56e2741be`, sole parent exact M138.
+- The redundant local milestone branch was pruned after exact ancestry proof;
+  the commit remains the M141 base and is unpublished under the existing
+  public-review identity hold.
+- Direction: current NIST Privacy Framework and OpenTelemetry guidance support
+  minimization/aggregation; RFC 6902 confirms that generic JSON Patch would
+  require paths and can carry values, widening the existing disclosure surface.
+- Contract: exact-plan preflight precedes one unchanged M138 observation; a
+  frozen report contains only the plan/fingerprint protocol, equality status,
+  one identity-equality flag, and signed deltas for twelve existing aggregates.
+- CLI: `source asset-cache-fingerprint-compare` returns canonical stdout and 0
+  for equal, canonical stdout and 1 for different, or structured stderr and 2
+  for invalid/failed processing.
+- Evidence so far: all 453 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,712 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 passes
+  3,581/3,571/3,571 tests; real-wgpu, profiles, both vertical slices, and all 23
+  isolated installed-wheel consumers pass. Cross-plan aggregate construction
+  is independently rejected after findings-first review.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  two identical ten-artifact release rehearsals pass; archives, protected
+  surfaces, disclosure/identity, changed-path credentials, capability, and CI-
+  scope scans are clean.
+- Audit: exact M139 history, all 40 prior stack commits, DCO/identity, commit-
+  graph/object integrity, and hosted absence pass. A fresh fetch still shows
+  only exact M99 remote main, so the reported squash merge is not visible and
+  the public-review hold remains.
+- Cleanup and handoff: 25 exact generated targets are removed, `.tmp` is
+  absent, `.venv` is retained, and only local `main` plus active M140 remain.
+  Exactly 19 intended paths await the authorized local DCO commit.
+- Scope: no detailed diff/identity/path/digest disclosure, trust/authenticity,
+  atomic snapshot, retention/deletion authority, mutation/cleanup, remote
+  cache/network, dependency, version, workflow/allocation, release authority,
+  or remote change.
+
+## M139 saved cache-fingerprint verification - locally validated
+
+- Base: fully locally validated M138 DCO commit
+  `aeca2b3ea1c1e6122df4080641f707e36a9a43d7`, tree
+  `28c6e0a5b423eb7e340d5ffa010d9997c1d408af`, sole parent exact M137.
+- The redundant local milestone branch was pruned after exact ancestry proof;
+  the commit remains the M140 base and is unpublished under the existing
+  public-review identity hold.
+- Direction: Python 3.12 JSON guidance requires explicit input limits and
+  supports duplicate/non-finite rejection hooks; NIST describes digests as
+  changed-message detection; SLSA requires separate roots of trust, signatures,
+  subject binding, and expectations for authenticity.
+- Contract: one bounded canonical exact-schema saved M138 record is completely
+  bound to the exact current plan before one unchanged fresh M138 read-only
+  observation compares both inventory and observation digest.
+- CLI: `source asset-cache-fingerprint-verify` verifies current inputs/lock/plan,
+  reads the project-confined saved record under 65,536 bytes, preflights it, and
+  emits path-free valid evidence without decoder, source acquisition, cache
+  mutation, or identity disclosure.
+- Evidence so far: all 449 Python files are format-clean; Ruff and strict
+  Pyright pass; 1,706 architecture assertions pass with one established skip;
+  strict docs and both governance modes pass; exact CPython 3.12-3.14 passes
+  3,562/3,552/3,552 tests; real-wgpu, profiles, both vertical slices, and the
+  primary plus all 21 focused installed consumers pass. Decoder review added
+  independent hard caps for every detached aggregate and left 20 focused
+  assertions green.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  two identical ten-artifact release rehearsals pass; archives, protected
+  surfaces, public identity, added-line credentials, capability, and CI-scope
+  scans are clean.
+- Audit: exact M138 history, all 39 prior stack commits, DCO/identity, commit-
+  graph/object integrity, local branches, and hosted absence pass. A fresh
+  fetch still shows only exact M99 remote main, so the reported squash merge is
+  not visible and the public-review hold remains.
+- Cleanup and handoff: 42 exact generated targets are removed, `.tmp` is empty,
+  `.venv` is retained, and exactly 18 intended paths are ready for the
+  authorized local DCO commit. Publication remains held.
+- Scope: no trust/authenticity mechanism, cache/object diff, snapshot claim,
+  retention/deletion authority, mutation/cleanup, remote cache/network,
+  dependency, version, workflow/allocation, release authority, or remote
+  change.
+
+## M138 deterministic cache-observation fingerprint - locally validated
+
+- Base: fully locally validated M137 DCO commit
+  `b5b904b22303991474ed99a8ed4473738070dd45`, tree
+  `5fe36bb63ec751406e690d279776a0bf5d97ebff`, sole parent exact M136.
+- Branch: `release/m138-deterministic-cache-observation-fingerprint`;
+  unpublished under the existing public-review identity hold.
+- Direction: current Bazel, Gradle 9.7.1, and Git primary references require
+  materially more than unreferenced observation for cleanup: explicit age/
+  size and idle/managed policy or reachability/grace, with concurrency caveats.
+- Contract: one M137 bounded verified storage pass supplies unchanged aggregate
+  inventory plus a plan-independent SHA-256 over domain-separated sorted typed
+  length-framed canonical action and CAS identity/size records.
+- CLI: `source asset-cache-fingerprint` completes current lock and exact saved-
+  plan verification before one read-only observation, without source payload
+  acquisition, decoder use, second enumeration, cache creation, or mutation.
+- Evidence so far: 445 Python files are format-clean; Ruff and strict Pyright
+  pass; 1,700 architecture assertions pass with one established skip; strict
+  docs, whitespace, both governance modes, full CPython 3.12-3.14 suites, real
+  wgpu, profiles, deterministic vertical slices, 53 focused assertions, and the
+  new isolated no-dependency wheel consumer pass.
+- Review: plan-relative inventory and plan-independent storage identity remain
+  distinct. Exact metadata, action/CAS membership, digest, and byte count are
+  bound without publishing the identities or building an aggregate object list.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  the primary and all 20 focused installed consumers pass against the exact
+  wheel; two byte-identical complete release rehearsals pass; archive,
+  protected-surface, public identity, changed-path credential, capability, and
+  CI-scope scans are clean.
+- Cleanup and audit: 38 exact scratch targets are removed, `.tmp` is empty, and
+  `.venv` retained. Exact M137 history, all 38 prior stack commits, DCO/
+  identity, commit-graph/object integrity, local branches, and hosted absence
+  pass. The stack remains unpublished and no hosted allocation occurred.
+- Final post-record metadata separation is clean. Exactly 19 intended paths are
+  ready for the authorized local DCO commit; publication remains held.
+- Scope: no atomic snapshot/diff, saved verifier, retention root, timestamp/age
+  policy, cleanup/mutation, remote cache/network, trust/provenance claim,
+  decoder/source acquisition, dependency, version, workflow/allocation,
+  release authority, or remote change.
+
+## M137 bounded asset-cache inventory - locally validated
+
+- Base: fully locally validated M136 DCO commit
+  `d090131871594c8d49410c8d66e101376c010acc`, tree
+  `c4b2e3fb3c85330fb45730649410a1b83b3d0433`, sole parent exact M135.
+- Branch: `release/m137-bounded-asset-cache-inventory`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle 9.7.1, and Python 3.12 primary references
+  support distinct action/CAS inspection, separately governed cleanup policy,
+  and explicit no-follow entry classification.
+- Contract: bounded sorted inspection of the fixed engine-owned cache layout
+  strictly verifies canonical action metadata, location/key binding, every CAS
+  payload, and action/blob closure before comparing storage to the exact
+  current saved plan.
+- CLI: `source asset-cache-inventory` first verifies the current lock and exact
+  plan, then opens only a read-only project-confined cache and emits path-free
+  `ludoweave.asset-cache-inventory/1` counts without source acquisition,
+  decoder use, cache creation, or mutation.
+- Evidence so far: 442 Python files are format-clean; Ruff and strict Pyright
+  pass; 1,694 architecture assertions pass with one established skip; strict
+  docs, whitespace, both governance modes, full CPython 3.12-3.14 suites, real
+  wgpu, profiles, deterministic vertical slices, and the initial installed
+  inventory consumer pass.
+- Review hardening: admitted entries are collected under incremental hard
+  bounds and processed in sorted order; current-plan cache keys must be unique;
+  aggregate budgets are enforced from metadata before opening content and
+  again during bounded reads; the CAS budget admits the exact maximum valid
+  artifact size.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  the primary and all 19 focused installed consumers pass against the exact
+  wheel; two byte-identical complete release rehearsals pass; archive,
+  protected-surface, public identity, changed-path credential, capability, and
+  CI-scope scans are clean.
+- Cleanup and audit: all exact M137 scratch targets are removed, `.tmp` is
+  empty, and `.venv` retained. A stale unreachable commit-graph record was
+  isolated from the healthy object graph and corrected by regenerating derived
+  metadata; commit-graph and full object verification now pass. Exact M136
+  history, all 37 prior stack commits, DCO/identity, local branches, and hosted
+  absence pass. The stack remains unpublished and no hosted allocation
+  occurred.
+- Final post-record metadata separation is clean. Exactly 19 intended paths are
+  ready for the authorized local DCO commit; publication remains held.
+- Scope: no mutation, repair, deletion/eviction/garbage collection, cleanup or
+  retention decision, hostile-concurrency snapshot claim, remote cache,
+  network, trust/provenance claim, decoder/source acquisition, dependency,
+  version, workflow/allocation, release authority, or remote change.
+
+## M136 saved asset-cache population verification - locally validated
+
+- Base: fully locally validated M135 DCO commit
+  `59796814ee340254c11ccfde9330184ba7ef148d`, tree
+  `e0cf313f78c830c2a93c07e29bacb130b7effa18`, sole parent exact M134.
+- Branch: `release/m136-saved-cache-population-verification`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Bazel, Python JSON, and SLSA 1.2 primary references support
+  separate action/CAS verification, duplicate-rejecting parsing, and explicit
+  subject/expectation/trust-root requirements before authenticity claims.
+- Contract: bounded strict reconstruction of saved M135 evidence completely
+  preflights exact current plan identity before a read-only cache store verifies
+  every current action, CAS payload, and complete saved result identity.
+- CLI: `source asset-cache-population-verify` completes current lock/plan
+  verification, reads the project-confined report under 8 MiB/4,096-entry hard
+  bounds, and emits path-free canonical success without decoder or mutation.
+- Evidence so far: 438 Python files are format-clean; Ruff and strict Pyright
+  pass; 1,688 architecture assertions pass with one established skip; strict
+  docs, whitespace, both governance modes, full CPython 3.12-3.14 suites, real
+  wgpu, profiles, deterministic vertical slices, and all 19 installed-wheel
+  consumers pass.
+- Review: no remaining actionable implementation defect. Complete preflight,
+  duplicate/schema/type/count/aggregate checks, read-only action/CAS behavior,
+  missing/corrupt/mismatch failures, project/cache immutability, path/content
+  silence, and non-provenance language are covered.
+- Complete proof: two record-inclusive distributions reproduce byte-for-byte;
+  all 19 installed consumers pass against their exact wheel; two byte-identical
+  complete release rehearsals pass; archive, protected-surface, public identity,
+  credential, backend/network/write, and CI-scope scans are clean.
+- Cleanup and audit: 36 exact scratch targets were safely removed; `.tmp` is
+  empty and `.venv` retained. Exact M135 history, all 36 prior stack commits,
+  DCO/identity, object integrity, local branches, and hosted absence pass. The
+  stack remains unpublished and no hosted allocation occurred.
+- Final metadata separation is clean. Exactly 19 intended paths are ready for
+  the authorized local DCO commit; publication remains held.
+- Scope: no cache write/repair/delete/fallback, decoder, remote cache, network,
+  signature/attestation, provenance/authenticity claim, hostile-concurrency
+  claim, dependency, version, workflow/allocation, release authority, or remote
+  change.
+
+## M135 explicit post-realization asset-cache population - locally validated
+
+- Base: fully locally validated M134 DCO commit
+  `a6263a2e7d0df18ff1a34d32f02f88be29ee006c`, tree
+  `de0284fc44a825ead61440ad231b2fb6de559950`, sole parent exact M133.
+- Branch: `release/m135-post-realization-cache-population`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Bazel and Gradle primary references support distinct
+  lookup, miss execution, and later store/upload phases plus independently
+  controlled read/write authority. They do not establish all-plan atomicity,
+  rollback, hostile-concurrency safety, repair, eviction, or remote trust.
+- Contract: `populate_asset_build_cache()` opens the explicit cache read-only,
+  completes M134 realization, then and only then opens the same resolved root
+  writable and invokes the unchanged M132 publisher. The immutable path-free
+  `ludoweave.asset-cache-population/1` report combines exact plan-ordered
+  realization and publication statuses.
+- CLI: `source asset-cache-populate` completes current lock/plan verification
+  and confined source acquisition before entering population. Cold, warm, and
+  mixed paths report decoded/published or hit/reused evidence; project bytes
+  remain unchanged.
+- Failure boundary: source/cache/decoder/limit failure precedes write authority
+  and leaves an absent cache absent. Publication remains atomic per entry, not
+  across the plan; later failure can retain an earlier valid entry or valid
+  unreferenced CAS blob and emits no M135 success report.
+- Focused proof: all 434 Python files, Ruff, strict Pyright, 61 retained/new
+  behavior and boundary assertions, strict docs, whitespace, and the installed
+  cold/warm consumer pass.
+- Complete proof: 1,683 architecture assertions with one established skip,
+  both governance modes, the full Python 3.12-3.14 matrix, real wgpu, both
+  profiles, both deterministic vertical slices, the primary installed smoke,
+  all 17 focused wheel consumers, two byte-identical record-inclusive
+  distributions, and two byte-identical ten-artifact release rehearsals pass.
+- Review: no remaining actionable defect. Exact source/cache/decoder/write
+  ordering, status/identity coupling, project/cache/path behavior, protected
+  surfaces, public tool identity, credentials, backend/network leakage, and CI
+  scope have no remaining actionable finding. Exactly 19 intended paths
+  change.
+- Scope: no implicit M134 write, all-plan transaction, rollback, repair/
+  deletion/eviction, remote cache, shared-writer claim, discovery/watcher,
+  worker/process/thread, plugin, renderer upload, world/session mutation,
+  dependency, version, workflow/allocation, release authority, or remote
+  change.
+
+## M134 read-only cache-assisted asset realization - locally validated
+
+- Base: fully locally validated M133 DCO commit
+  `e3f79339bc5765ec8f11a0dee6b6e8cb3e687845`, tree
+  `9c38e2115e04443dd8c2a61a5acea1b0cfd03d02`, sole parent exact M132.
+- Branch: `release/m134-cache-assisted-asset-realization`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Bazel and Gradle primary references support complete
+  stable inputs, action-keyed verified reuse, local execution of misses, and
+  cache reads with writes independently disabled.
+- Contract: exact detached source preflight precedes every M133 action lookup;
+  every cache candidate is verified before any miss decoder. Hits and decoded
+  misses retain exact plan order, immutable payloads, and M131 limits under
+  `ludoweave.asset-build-realization/1` path-free evidence.
+- CLI: `source asset-realize` completes current lock/plan verification and
+  project-confined source acquisition, then uses the explicit cache read-only.
+  Missing cache roots remain absent; project and cache bytes remain unchanged.
+- Focused proof: all 430 Python files, Ruff, strict Pyright, 75 retained/new
+  behavior and boundary assertions, strict docs, whitespace, and the installed
+  miss/hit consumer pass.
+- Complete proof: 1,679 architecture assertions with one established
+  skip, both governance modes, the full post-review Python 3.12-3.14 matrix,
+  real wgpu, both profiles and deterministic vertical slices, two initial
+  and two final record-inclusive distributions, all 17 installed consumers,
+  and two byte-identical ten-artifact release rehearsals pass.
+- Review: one mixed-hit aggregate-limit diagnostic-order defect was found and
+  corrected. A regression now binds cached failure code/details to uncached
+  plan order. Protected surfaces, public tool identity, credentials, backend/
+  network/write leakage, and CI scope have no remaining actionable finding.
+- Scope: no automatic publication, cache/project mutation, remote cache,
+  network, authentication, repair/deletion/eviction, discovery/watcher,
+  worker/process/thread, plugin, renderer upload, world/session mutation,
+  dependency, version, workflow/allocation, release authority, or remote
+  change.
+
+## M133 verified read-only asset cache lookup - direction selected
+
+- Base: fully locally validated M132 DCO commit
+  `da62eda909cbf47abfd7ef1e8c83a52466d8210a`, tree
+  `ad2d0e147147a430ca2738fb27448750462e2a09`, sole parent exact M131.
+- Branch: `release/m133-verified-asset-cache-lookup`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle, and Python JSON primary references support
+  current-action-key lookup, separate CAS verification, independent read/write
+  authority, bounded untrusted parsing, and explicit duplicate-name rejection.
+- Contract: `writable=False` creates nothing and cannot publish. Lookup inspects
+  only exact current plan action keys, treats absence as a miss, strictly
+  reconstructs canonical M132 metadata, matches plan-known fields, and verifies
+  bounded ordinary CAS bytes by SHA-256. Present corruption fails closed.
+- CLI: `source asset-cache-check` completes current lock and plan verification,
+  then emits path-free plan-ordered `ludoweave.asset-cache-lookup/1` evidence
+  without acquiring decoder inputs or changing cache/project state.
+- Focused proof: all 426 Python files, Ruff, strict Pyright, 55 unit/CLI/M132/
+  M133 assertions, strict docs, whitespace, and one isolated no-dependency
+  wheel miss-then-hit lookup smoke pass.
+- Complete proof: 1,675 architecture assertions, strict docs and governance,
+  the full Python 3.12-3.14 matrix, real wgpu, both profiles and deterministic
+  vertical slices, reproducible distributions, all 16 installed consumers,
+  and two byte-identical complete release rehearsals pass. Findings-first
+  review tightened exact status types, bounded oversized metadata, and raw
+  enumeration-failure normalization; reviewed counts are 3,453 passes with 16
+  skips on 3.12 and 3,443 with 17 skips on both 3.13 and 3.14.
+- Review: exact current-plan binding, duplicate/noncanonical/unbounded metadata,
+  missing versus corrupt behavior, CAS verification, read-only root authority,
+  project/cache immutability, path-silent reports/errors, protected surfaces,
+  archive contents, public tool identity, credentials, and CI scope have no
+  remaining actionable finding. Exactly 21 intended paths change.
+- Scope: no cache-assisted execution, decoder bypass, cache write/repair/
+  deletion/eviction, remote cache, network, discovery/enumeration, watcher,
+  worker/process/thread, plugin, renderer upload, project write, world/session
+  mutation, dependency, version, workflow/allocation, release authority, or
+  remote change.
+
+## M132 verified local asset cache publication - locally validated and committed
+
+- Commit: `da62eda909cbf47abfd7ef1e8c83a52466d8210a`, tree
+  `ad2d0e147147a430ca2738fb27448750462e2a09`, sole parent exact M131; exact
+  maintainer identity, one DCO sign-off, 23 paths, `0 33` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M131 DCO commit
+  `ea472476ee5cfca05afeda90fa888bf5557a3128`, tree
+  `7de987430ac34cf22071cfcb58644b65b32f8d21`, sole parent exact M130.
+- Branch: `release/m132-verified-local-asset-cache`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel cache/CAS and Remote Execution API documentation,
+  Gradle 9.7 build-cache concepts, and Python 3.14 `os.replace()` documentation
+  support separate action and payload identities, verified reads,
+  payload-before-action publication, and destination-filesystem staging.
+- Contract: exact M131 materialization retains immutable bounded payloads only
+  for an explicit consumer. `AssetCacheStore` publishes payloads by artifact
+  SHA-256 under `cas/` and canonical action metadata by the existing cache key
+  under `actions/`; every hit and collision is reverified.
+- Failure boundary: complete M130/M131 verification, source acquisition, and
+  materialization precede cache-root construction in CLI composition. Corrupt
+  content fails closed without repair or overwrite. Staging is removed; a
+  valid orphan CAS blob may remain after later action publication fails.
+- Evidence: 424 Python files are format-clean; Ruff and strict Pyright pass;
+  1,671 architecture assertions pass with one established Windows capability
+  skip; strict docs, whitespace, and both governance modes pass. Exact CPython
+  3.12.13 passes 3,434 tests with 16 skips; exact 3.13.13 and 3.14.5 each pass
+  3,424 with 17 skips.
+- Graphics and artifacts: all ten real-wgpu tests, both M7 profile contracts,
+  and both deterministic vertical slices pass. Two distributions reproduce a
+  325,332-byte pure wheel and 1,749,163-byte source archive. All 15 isolated
+  wheel consumers pass. Two complete ten-artifact release stages are
+  byte-identical and both release smokes pass.
+- Review: separate action/CAS layout, action-failure orphan reuse, payload
+  deduplication, project immutability, path-silent errors/reports, archive
+  hygiene, protected surfaces, public tool-identity, credentials, backend
+  leakage, and CI scope have no remaining actionable finding. Exactly 23
+  intended paths change; workflows, dependencies, lock, version, legacy asset
+  contracts, release scripts, and prior installed evidence retain zero diff.
+- Scope: no remote cache, transport, authentication, shared service, eviction,
+  deletion/repair, quota, worker/process/thread, discovery/watcher/reimport,
+  renderer upload, project write, world/session mutation, dependency, version,
+  workflow/allocation, release authority, or remote change.
+
+## M131 bounded in-memory asset plan execution - locally validated and committed
+
+- Commit: `ea472476ee5cfca05afeda90fa888bf5557a3128`, tree
+  `7de987430ac34cf22071cfcb58644b65b32f8d21`, sole parent exact M130; exact
+  maintainer identity, one DCO sign-off, 21 paths, `0 32` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M130 DCO commit
+  `1b69a30820d94c23272d7e1982ec80f978da8194`, tree
+  `8270d4de2a49808d5a7bb7c348a4bc8152e721a2`, sole parent exact M129.
+- Branch: `release/m131-bounded-asset-plan-execution`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle, and Godot primary references support
+  separating verified action execution and output identity from later cache
+  lookup/publication and generated-import ownership.
+- Contract: exact plan-ordered immutable source inputs are completely
+  preflighted before existing built-in PNG/JSON/WGSL/audio decoding. The
+  versioned result retains only plan/output identities and byte counts.
+- Baseline: exact M130 commit/tree/parent, clean status, and `0 31` divergence
+  pass. The focused asset/source/CLI suite passes 88 tests in 6.73 seconds;
+  static and dated governance pass. One initial lock call was cache-denied
+  before execution; its approved rerun resolved the unchanged lock.
+- Deliberate red: after two mechanical reflows and correction of two guessed
+  protected hashes, the protected-surface assertion passes, behavior stops
+  only on absent exports, and four intended implementation/CLI/installed/docs
+  assertions fail.
+- Implementation: frozen execution limits, detached inputs, immutable result
+  values, built-in cache-free execution, CLI composition, behavior tests, and
+  installed verifier are implemented. RFC/public documentation is drafted.
+- Focused proof: the first checkpoint found one export-order lint issue and
+  test-only typing/immutable-detail assumptions. After test-only corrections,
+  formatting, Ruff, strict Pyright, and all 16 execution/CLI assertions pass in
+  2.61 seconds. Three boundaries pass; installed/docs were then absent.
+- Complete proof: strict source/docs/governance gates, all 1,667 architecture
+  assertions, the complete 3.12-3.14 matrix, real wgpu, retained profiles and
+  vertical slices, reproducible distributions, all 14 installed-wheel
+  consumers, and two release rehearsals pass. Findings-first review added
+  complete-preflight and CLI failure-atomicity regressions; the review-hardened
+  suites pass 3,412 tests on 3.12 and 3,402 tests on both 3.13 and 3.14.
+- Scope: no cache read/write, persisted artifact, project write, atomic
+  publication, scheduler/worker/process/thread, plugin/decoder registration,
+  discovery, watcher, reimport, renderer upload, world mutation, receipt,
+  dependency, metadata, version, workflow/allocation, release authority, or
+  remote change.
+
+## M130 confined asset build-plan verification - locally validated and committed
+
+- Commit: `1b69a30820d94c23272d7e1982ec80f978da8194`, tree
+  `8270d4de2a49808d5a7bb7c348a4bc8152e721a2`, sole parent exact M129; exact
+  maintainer identity, one DCO sign-off, 21 paths, `0 31` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M129 DCO commit
+  `ae1b2bf01a001ea157e170626544a2d487055d09`, tree
+  `ea7b58efafa29cb5af4ee40617636dce34176e5c`, sole parent exact M128.
+- Branch: `release/m130-asset-build-plan-verification`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Gradle, Godot, and Python primary references support
+  revalidating recorded input fingerprints before cache/use/execution while
+  retaining a separate generated-output/cache boundary.
+- Contract: one saved M129 plan will load through project confinement and
+  compare content-silently with a plan recomputed only after current M128 lock
+  verification. Success exposes only protocol/status and aggregate counts.
+- Baseline: exact M129 commit/tree/parent, clean status, and `0 30` divergence
+  pass. After correcting one nonexistent test filename, 168 focused assertions
+  pass with one established skip in 5.00 seconds. Static governance passes;
+  the dated call passes on an approved rerun after a pre-execution cache denial.
+- Deliberate red: all three evidence files were formatted. Four behavior cases
+  failed only on absent verification/loader/CLI behavior; four intended M130
+  boundary assertions failed and the protected-surface assertion passed.
+- Implementation: exact content-silent plan comparison, confined plan loading,
+  current-input CLI verification, behavior evidence, installed verifier, RFC,
+  and public documentation are implemented. No plan/build/cache effect occurs.
+- Focused proof: the first checkpoint stopped on one test-only strict-typing
+  inference gap. After correction, all statics and 14 behavior assertions pass
+  in 3.32 seconds; three boundaries pass while installed/docs were still absent.
+- Documentation/installed proof: after one mechanical smoke-script reflow and
+  one retained governance cache denial, all statics, 177 focused assertions
+  with one established skip, strict docs, approved dated governance, and
+  whitespace pass. Strengthened load-order/limits evidence raises the focused
+  result to 178 passes with one skip; the isolated no-dependency wheel verifies
+  the saved plan and creates no cache.
+- Complete source gate: after one retained pre-execution cache denial, all 414
+  Python files, Ruff, strict Pyright, 1,662 architecture assertions with one
+  established skip, strict docs, both governance modes, and whitespace pass.
+- Supported runtimes: after one factually retained lost-session attempt, a
+  directly tracked exact 3.12.13 graphics rerun passes 3,387 tests with 16
+  skips; exact 3.13.13 and 3.14.5 base each pass 3,377 with 17 skips.
+- Graphics/profiles/verticals: all ten real-wgpu tests pass; both fresh M7
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic state, capture, and replay identities.
+- Initial packages/releases: two builds reproduce the pure wheel/source
+  archives; all 13 isolated consumers pass; two byte-identical ten-artifact
+  release rehearsals and both complete release smokes pass. The 103-entry wheel
+  and 667-entry source archive contain no forbidden binary/control metadata.
+- Review/hygiene: no actionable finding remains. Exactly 21 intended paths
+  change; protected surfaces retain zero diff; public tool-identity and high-
+  confidence credential scans return zero files; new runtime additions have no
+  build/cache/write/backend/native/time/entropy effect; whitespace passes.
+- Review-record separator: lock, all 414 Python files, Ruff, strict Pyright,
+  1,662 architecture assertions with one established skip, strict docs, dated
+  governance, and whitespace pass on the factual evidence tree.
+- Final packages/releases: two final builds reproduce the unchanged wheel and
+  a record-inclusive source archive; all 13 final installed consumers pass;
+  both final ten-artifact stages are byte-identical and complete release smoke
+  passes.
+- History/hosted state: remote main remains exact M99; M100-M129 are 30 linear
+  exact-identity singly DCO-signed commits; M129 is the exact base with `0 30`
+  divergence. The 32 expected local branches and only remote main exist;
+  object integrity has zero critical finding. Aggregate anonymous public REST
+  checks return no M130 branch, PR, run, tag, or release. No remote mutation
+  occurred.
+- Scratch: all 13 exact M130 generated build/test targets were removed after an
+  ordinary Windows denial on only `.pytest-tmp` and a guarded elevated retry;
+  zero audited generated target remains.
+- Final metadata separator: all formatting, Ruff, strict Pyright, 15 selected
+  metadata/boundary assertions, both governance modes, protected-surface,
+  identity/credential, scratch-absence, exact 21-path, and whitespace checks
+  pass. M130 is ready for its local DCO commit.
+- Scope: no plan execution, decoder execution, build, import, cache use/write,
+  artifact, scheduler, discovery, watcher, write, dependency, metadata,
+  version, workflow/allocation, release-authority, or remote change.
+
+## M129 deterministic verified asset build planning - locally validated and committed
+
+- Commit: `ae1b2bf01a001ea157e170626544a2d487055d09`, tree
+  `ea7b58efafa29cb5af4ee40617636dce34176e5c`, sole parent exact M128; exact
+  maintainer identity, one DCO sign-off, 23 paths, `0 30` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M128 DCO commit
+  `ad6b43a9d480cd3bd94298799125ee736d15124e`, tree
+  `f293f187a5c4f38bc3850c8ba0ffdc679582b472`, sole parent exact M127.
+- Branch: `release/m129-deterministic-asset-build-plan`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Bazel, Python, Unity, and Godot primary references support
+  separating explicit dependency/action planning from cache and execution.
+- Contract: one immutable dependency-first plan will bind the canonical M128
+  lock and M126 manifest, preserve the exact M127 selected closure, break ready-
+  set ties by URI, and precompute unchanged M4 cache keys.
+- CLI: one read-only `source asset-plan` mode will recompute and verify M128
+  inputs before emitting canonical plan bytes after complete success.
+- Baseline: exact M128 commit/tree/parent, clean status, and `0 29` divergence
+  pass. The focused M124-M128 asset/source/CLI suite passes 125 tests in 6.29
+  seconds; both governance modes return zero findings.
+- Deliberate red: behavior collection stops only on absent plan exports. The
+  M129 boundary has three intended absent implementation/CLI/docs failures and
+  two protected/evidence passes. Three files need mechanical formatting; no
+  implementation or formatting pass is claimed.
+- Implementation: immutable plan values, dependency-first URI-tied ordering,
+  exact existing cache-key reuse, strict decoding, package exports, verified
+  CLI composition, installed evidence, and a 1,100-node iterative regression
+  are implemented. No decoder, build, or cache effect is invoked by planning.
+- Focused proof: the first static checkpoint stopped on import/helper findings;
+  after correction, all statics and 36 focused behavior assertions pass in
+  3.82 seconds. Nine combined boundaries pass; only M129 docs remain absent.
+- Documentation: RFC-0112 and public guides define exact plan identity,
+  dependency ordering, loader/cache-key compatibility, ownership, failure,
+  determinism, and complete no-execution/no-cache non-scope. After correcting
+  one nonexistent test filename, all statics, 147 focused assertions, strict
+  docs, dated governance, and whitespace pass.
+- Review correction: a focused red proved decoded same-level entries could be
+  swapped despite the URI tie-break contract. Validation now recomputes and
+  requires the exact ready-set heap order; all 147 focused assertions and
+  statics pass after correction.
+- Installed proof: the corrected isolated no-dependency wheel emits the exact
+  loader/plan protocols, two dependency-first entries with cache keys, no cache
+  directory, and pass status.
+- Complete source gate: all 410 Python files, Ruff, strict Pyright, 1,657
+  architecture assertions with one established capability skip, strict docs,
+  both governance modes, and whitespace pass on exact CPython 3.12.13.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,377 tests
+  with 16 skips; exact CPython 3.13.13 and 3.14.5 base each pass 3,367 tests
+  with 17 skips.
+- Graphics/profiles/verticals: all ten real-wgpu tests pass; both fresh M7
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic state, capture, and replay identities.
+- Initial packages/releases: two builds reproduce a 316,332-byte pure wheel
+  and 1,711,983-byte source archive; all 12 isolated consumers pass on a
+  compact recorded rerun; two byte-identical ten-artifact release rehearsals
+  and both complete release smokes pass.
+- Review/hygiene: the same-ready URI-order defect found during review is fixed
+  and regression-covered. Exactly 23 intended paths change; protected
+  surfaces retain zero diff; the 103-entry wheel and 662-entry source archive
+  contain no forbidden binary or retired control metadata; public tool-
+  identity and high-confidence credential scans return zero files.
+- Review-record separator: after two factually retained sandbox cache denials,
+  approved lock/governance reruns pass. All 410 Python files, Ruff, strict
+  Pyright, 1,657 architecture assertions with one established skip, strict
+  docs, both governance modes, and whitespace pass on the factual record.
+- Final packages/releases: after one retained pre-execution cache denial, two
+  approved final builds reproduce the unchanged wheel and a record-inclusive
+  source archive. All 12 final installed consumers pass; two complete final
+  release stages are byte-identical and both release smokes pass.
+- History/hosted state: remote main remains exact M99; M100-M128 are 29 linear
+  exact-identity singly DCO-signed commits; M128 is the exact base with `0 29`
+  divergence. The 31 expected local branches and only remote main exist;
+  object integrity has zero critical finding. The GitHub CLI credential is
+  expired, but approved anonymous public REST checks return no M129 branch,
+  PR, run, tag, or release. No remote mutation occurred.
+- Scratch: all 14 exact ignored M129 build/test targets were removed after an
+  ordinary Windows denial on only `.pytest-tmp` and a guarded elevated retry;
+  zero audited generated target remains.
+- Final metadata separator: all formatting, Ruff, strict Pyright, 15 selected
+  metadata/boundary assertions, approved dated governance, protected-surface,
+  identity/credential, scratch-absence, exact 23-path, and whitespace checks
+  pass. M129 is ready for its local DCO commit.
+- Scope: no decode, build, import, cache use/write, artifact, scheduler,
+  discovery, watcher, write, dependency, metadata, version, workflow,
+  allocation, release-authority, or remote change.
+
+## M128 asset-source lock verification - direction selected
+
+- Base: fully locally validated M127 DCO commit
+  `276d869b829735dcca7256cb73f190e15e84d9c0`, tree
+  `6eb4384906e37bf708a90a542a8293b15b855d7e`, sole parent exact M126.
+- Branch: `release/m128-asset-source-lock-verification`; unpublished under the
+  existing public-review identity hold.
+- Direction: current Unity, Godot, Bazel, and Python primary sources support
+  explicit source/input content identity separately from imported/cache
+  outputs. M128 will lock only the M127-selected asset source inputs.
+- Contract: a bounded immutable asset-source lock binds the canonical M125
+  source lock, canonical M126 asset manifest, direct roots, and exact resolved
+  URI/kind/byte-count/SHA-256 entries. Empty closures remain valid.
+- CLI: separate read-only generation and verification reuse the unchanged
+  project readers and M127 closure. Source paths, expected/actual hashes, and
+  byte counts remain absent from mismatch diagnostics.
+- Bounds: sources are read sequentially, at most 256 MiB each and 1 GiB
+  accepted aggregate. No success bytes precede complete hashing.
+- Baseline: exact M127 commit/tree/parent, clean status, and `0 28` divergence
+  pass. The focused M124-M127 asset/source/project/CLI suite passes 119 tests
+  with one established skip in 4.24 seconds; both governance modes return zero
+  findings.
+- Deliberate red: behavior collection stops only on the absent lock exports.
+  The M128 boundary has three intended absent implementation/CLI/docs failures
+  and two protected/evidence passes. Two test files require mechanical format;
+  no implementation or formatting pass is claimed.
+- Implementation: focused immutable lock values, assets exports, confined lock
+  loading, generation/verification CLI modes, source/asset identity binding,
+  and path/hash-silent errors are implemented. Source files are streamed in
+  64 KiB blocks through owned bounded descriptors; payload bytes are not kept.
+- Focused proof: the first static checkpoint stopped on two import-order issues,
+  then one test-only strict-typing inference gap. After non-runtime correction,
+  all statics and 48 focused behavior assertions pass in 2.97 seconds.
+- Historical-boundary correction: the first combined run exposed M127's whole-
+  loader freeze plus the intentionally absent M128 docs. M127 now guards its
+  owned contracts; 115 combined implementation/import/API assertions pass and
+  only M128 documentation remains absent.
+- Documentation: RFC-0111 and public guides define exact lock ownership, 256
+  MiB/1 GiB bounds, streaming reads, mismatch silence, sequential-read limits,
+  compatibility, and complete no-build/no-cache non-scope. All 164 focused
+  behavior/boundary assertions, statics, strict docs, dated governance, and
+  whitespace pass.
+- Installed proof: generation succeeds when a declared unselected source is
+  absent, selected descriptors support an immediate Windows rename round-trip,
+  and the isolated no-dependency wheel passes exact lock generation and
+  verification with two selected entries.
+- Review: the absent-unselected-source correction closes the sole evidence
+  weakness. No remaining actionable issue was found in confinement, streaming,
+  closure selection, descriptor ownership, identity binding, output timing, or
+  mismatch disclosure.
+- Complete source gate: all 405 Python files, Ruff, strict Pyright, 1,652
+  architecture assertions with one established capability skip, strict docs,
+  both governance modes, and whitespace pass on exact CPython 3.12.13.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,362 tests
+  with 16 skips; exact CPython 3.13.13 and 3.14.5 base each pass 3,352 tests
+  with 17 skips.
+- Graphics/profiles/verticals: all ten real-wgpu tests pass; both fresh M7
+  profiles validate; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic state, capture, and replay identities.
+- Initial packages/releases: two builds reproduce the pure wheel and source
+  archive; all eleven isolated wheel consumers pass; two byte-identical ten-
+  artifact release rehearsals and both complete release smokes pass. Package
+  inventories contain no native, WASM, bytecode, or retired control metadata.
+- Scope/hygiene: exactly 23 intended paths change; all protected surfaces are
+  unchanged; new runtime code has no backend/native or nondeterministic source;
+  public tool-identity, credential, and whitespace scans pass.
+- Review-record separator: lock, all statics, 1,652 architecture assertions,
+  strict docs, both governance modes, and whitespace pass on the factual
+  evidence tree.
+- Final packages/releases: a fresh pair reproduces the pure wheel and source
+  archive; all eleven final installed consumers pass; both final ten-artifact
+  release stages are byte-identical and complete release smoke passes.
+- History/hosted state: remote main remains exact M99; M100-M127 are 28 linear
+  exact-identity singly DCO-signed commits; M127 is the exact base with `0 28`
+  divergence. The 30 expected local branches and only remote main exist; object
+  integrity is healthy; no M128 hosted branch, PR, run, tag, or release exists.
+- Scratch: all 20 exact ignored M128 build/test targets were removed after an
+  ordinary sandbox denial and guarded elevated retry; zero generated target
+  remains.
+- Final metadata separator: selected formatting, repository-wide Ruff and
+  strict Pyright, 15 metadata/boundary assertions, dated governance, and
+  whitespace pass; its sole explicit pytest root was removed ordinarily.
+- Scope: no decode, build, import, cache, discovery, watcher, reimport, live
+  update, write, world/runtime activation, dependency, metadata, version,
+  workflow/allocation, release-authority, or remote change.
+
+## M127 source-to-asset dependency checking - locally validated and committed
+
+- Commit: `276d869b829735dcca7256cb73f190e15e84d9c0`, tree
+  `6eb4384906e37bf708a90a542a8293b15b855d7e`, sole parent exact M126; exact
+  maintainer identity, one DCO sign-off, 21 paths, `0 28` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M126 DCO commit
+  `9b373698c206982bcb6e86127ac8dffb2385a261`, tree
+  `9f2b0b7fceb1241c14a659e26c1f5c95fe775c2e`, sole parent exact M125.
+- Branch: `release/m127-source-asset-dependency-checking`; unpublished under
+  the existing public-review identity hold.
+- Direction: current Unity, Bazel, Godot, JSON Schema, and Python graph sources
+  support explicit direct roots plus deterministic transitive closure, while
+  keeping semantic graph checking separate from import, loading, and caching.
+- Contract: strict `AssetManifest.dependency_closure()` accepts exact distinct
+  direct roots and returns roots plus all reachable graph dependencies exactly
+  once in URI order. Empty roots produce an empty closure.
+- CLI: `ludoweave source assets PROJECT --manifest FILE --assets FILE` reuses
+  unchanged source inspection and project-confined asset-manifest loading.
+  Canonical `ludoweave.cli.source-asset-check/1` retains direct declarations
+  separately from resolved closures and emits only after complete success.
+- Failure: a missing direct root returns structured
+  `tools.missing_asset_dependency` with the first normalized entry ID and
+  logical URI, emits no success bytes, discloses no path, and leaves the project
+  unchanged.
+- Baseline: exact M126 commit/tree/parent, clean status, and `0 27` divergence
+  pass. Seventy-four focused asset/source/project/CLI assertions pass with one
+  established skip in 4.38 seconds; both governance modes return zero findings.
+- Deliberate red: the first attempt was cache-blocked before project execution
+  and makes no claim. Its approved rerun produced eight intended absent method
+  and CLI failures. Four intended M127 implementation/evidence/docs assertions
+  failed and one protected assertion passed.
+- Implementation: `AssetManifest` owns the graph traversal; the CLI records
+  source dependencies while using the existing M124 inspection path and M126
+  loader. It reads no asset source and builds no asset. One installed-wheel
+  verifier exercises the exact CLI from a no-dependency wheel.
+- Focused proof: the first checkpoint passed formatting and Ruff but strict
+  Pyright found four test/smoke JSON container annotations and stopped before
+  behavior. After annotation-only correction, Ruff and strict Pyright pass and
+  31 closure/CLI/asset/source/lock assertions pass in 3.61 seconds.
+- Historical-boundary correction: the first combined M126/M127 architecture
+  run found one intentionally absent docs failure and that M126 froze the whole
+  CLI despite owning no CLI change. Its guard now retains M126's actual source
+  contracts; M127 owns the new CLI boundary.
+- Documentation: RFC-0110 and public docs define direct versus resolved
+  ownership, missing-root order, admitted unused entries, inability to infer
+  component references, sequential-read limits, determinism, and non-scope.
+  The first combined patch was rejected atomically on one wrapped paragraph;
+  smaller context-verified patches applied the same decision.
+- Documentation-inclusive proof: seven selected files are format-clean; Ruff
+  and strict Pyright pass; all 41 focused behavior/boundary assertions pass in
+  3.64 seconds; strict docs, dated governance, and whitespace pass.
+- Review hardening: the pre-existing recursive asset cycle validator is now
+  deterministic iterative DFS so valid graphs within the 4,096-node limit do
+  not hit Python's recursion ceiling. Direct roots share that hard bound; a
+  1,100-node chain and empty source/asset graph compatibility are covered.
+- Installed proof: the first isolated verifier used an obsolete project-
+  protocol literal and correctly failed before M127. After a fixture-only
+  correction, the no-dependency wheel emitted the expected one-direct/two-
+  resolved canonical report with both manifest identities and no asset source
+  directory. Final statics, whitespace, and 40 focused assertions pass.
+- Complete validation: all 400 Python files are format-clean; Ruff and strict
+  Pyright pass; all 1,647 architecture assertions pass with one established
+  skip; strict docs, both governance modes, and whitespace pass. Exact CPython
+  3.12.13 graphics passes 3,339 tests with 16 skips, while exact 3.13.13 and
+  3.14.5 each pass 3,329 with 17 skips.
+- Graphics and vertical slices: all ten real-wgpu tests pass. Fresh base and
+  graphics profiles validate. The workflow-equivalent Clockwork Arena and
+  Agent World Builder reproduce their established state/capture identities,
+  with three/16 draw-instance counts and six-query/five-replay evidence.
+- Review and artifacts: no actionable finding remains. Two independent package
+  builds and two ten-artifact release stages are byte-identical; all ten
+  isolated no-dependency wheel smokes and both release smokes pass. Archives
+  contain 101 wheel and 650 source entries with zero native, bytecode, WASM, or
+  retired control metadata. Exactly 21 intended paths differ and protected,
+  public-identity, credential, and whitespace checks pass.
+- Final artifacts: record-inclusive final builds reproduce a 305,246-byte pure
+  wheel and 1,679,345-byte source archive byte-for-byte across two builds. The
+  wheel identity is unchanged from the reviewed build; the source archive
+  correctly incorporates later neutral engineering records. All ten wheel
+  smokes and two identical release rehearsals pass again.
+- Precommit history: fetch/prune confirms exact remote main/M99, exact M126
+  head/tree/M125 parent, `0 27` divergence, a linear 27-commit exact-identity/
+  single-signoff stack, 29 required local branches, only remote main, and zero
+  critical object finding. Hosted M127 branch/PR/run/tag/release queries are
+  empty, as required by the public-review identity hold.
+- Cleanup: all 13 exact workspace-confined, untracked, non-reparse M127 build,
+  release, profile, docs, and pytest scratch targets are absent. Windows denied
+  only the pytest directory during ordinary cleanup; a revalidated elevated
+  retry removed that sole remaining target.
+- Commit readiness: final clean-scratch statics, 15 metadata/boundary tests,
+  dated governance, exact 21-path scope, protected surfaces, public-identity,
+  credential, whitespace, and zero-scratch checks pass. M127 is ready for its
+  local DCO commit; public operations remain held.
+- Scope: no actual-reference inference, indirect redeclaration rule, unused-
+  asset rejection, asset source read, decode, build, import, cache, compile,
+  registry lookup, discovery, watcher, live update, write, world/session,
+  command, mutation, receipt, dependency, root API, version, workflow/
+  allocation, or release-authority change.
+
+## M126 project-confined asset-manifest loading - locally validated and committed
+
+- Commit: `9b373698c206982bcb6e86127ac8dffb2385a261`, tree
+  `9f2b0b7fceb1241c14a659e26c1f5c95fe775c2e`, sole parent exact M125; exact
+  maintainer identity, one DCO sign-off, 18 paths, `0 27` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M125 DCO commit
+  `cc440c84dbc53a07b5640ca46410e461fe686cb0`, tree
+  `9b9daea68cc32d13a1ba03575ca58db0d511698a`, sole parent exact M124.
+- Branch: `release/m126-project-confined-asset-manifest-loading`; unpublished
+  under the existing public-review identity hold.
+- Direction: current stable Godot `ResourceLoader`, Unity dependency-query,
+  current PyPA lockfile, and JSON Schema validation sources support an explicit
+  bounded dependency-document loader but not discovery, source-to-asset
+  resolution, import, build, cache, reimport, or live update.
+- Contract: retain exact `ludoweave.assets/1`; add focused experimental
+  `ASSET_MANIFEST_PROTOCOL` and immutable slotted `AssetManifestLimits` with
+  tightening-only 4 MiB, 4,096-asset, 256-dependency, and 128-setting maxima.
+- Runtime: `AssetManifest.from_json()` enforces unique UTF-8 finite JSON and
+  existing exact field/URI/source/dependency/cycle rules. `as_dict()` and
+  `canonical_bytes()` normalize content. Existing `load()` caps and closes one
+  handle before delegation. `HeadlessProject.load_asset_manifest()` reuses the
+  established confined bounded reader.
+- Ownership: no asset source is read; no asset is decoded or built; no cache is
+  used or written; no handle, watcher, world, renderer, or background task is
+  retained. The manifest keeps its existing resolved project-root context for
+  later caller-owned `source_path()`/pipeline use.
+- Baseline: exact M125 commit/tree/parent, clean status, and `0 26` divergence
+  pass. Thirty-one focused baseline assertions pass with one established skip;
+  both governance modes return zero findings.
+- Deliberate red: the unit module failed only on absent exports; four absent
+  implementation/evidence/docs assertions failed and one protected assertion
+  passed.
+- Development correction: one combined patch was rejected atomically because
+  it targeted the same file twice. No file changed; split patches applied the
+  intended design. The first implementation checkpoint then passed formatting
+  and Ruff but strict Pyright found six annotation-only container gaps and
+  stopped before behavior.
+- Focused proof: after explicit annotations, six files are format-clean; Ruff
+  and strict Pyright pass; 32 asset/project assertions pass with one established
+  skip in 0.39 seconds. Ten M125/M126 implementation/protection assertions pass
+  with only deliberately absent docs failing before documentation.
+- Installed proof: the first pure build succeeds. An isolated no-dependency
+  wheel checks both focused experimental exports, the project loader, two
+  URI-sorted entries, canonical identity
+  `sha256:c8d712bf64a1efb9860674e4b00e5200cd00852dd02276d351ef808df4ff01dd`,
+  and absence of the named asset sources.
+- Documentation: RFC-0109 and public docs define limits, ownership,
+  deterministic ordering, retained compatibility, cooperative confinement,
+  and complete loader-only non-scope.
+- Documentation-inclusive proof: the first attempt stopped only on one
+  formatter wrap before later commands. After that mechanical correction, all
+  396 files are format-clean; Ruff and strict Pyright pass; 46 focused
+  assertions pass with one established skip in 0.43 seconds; strict docs,
+  dated governance, and whitespace pass.
+- Review hardening: findings-first review added parse-time exponent-overflow
+  rejection, actual/maximum diagnostics for overlarge limits, and regressions
+  for frozen/slotted limits, dependency and setting caps, and closed-descriptor
+  rename behavior. A second adversarial read then rejected surrogate-bearing
+  source/setting text and NUL source paths before canonical encoding or path
+  use. Formatting, Ruff, strict Pyright, whitespace, and 48 corrected focused
+  assertions with one established skip pass; no actionable finding remains.
+- Complete source proof: the unchanged 46-package lock resolves in 0.88
+  milliseconds; all 396 Python files are format-clean; Ruff and strict Pyright
+  pass; all 1,642 architecture assertions pass with one established skip in
+  11.25 seconds; strict docs, both governance modes, and whitespace pass.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,323 tests
+  with 16 skips in 118.02 seconds. Exact CPython 3.13.13 and 3.14.5 base
+  environments each pass 3,313 tests with 17 skips in 109.22 and 114.05
+  seconds. Every sync and execution command explicitly selected and printed
+  its runtime.
+- Graphics/vertical proof: the restored exact 45-package CPython 3.12.13
+  graphics environment passes ten real-wgpu tests in 6.78 seconds. Fresh
+  one-repeat base and graphics profiles validate with two and three workloads.
+  Clockwork Arena and Agent World Builder retain their established state,
+  capture, replay, draw, sprite, query, and registered-test identities.
+- Initial artifacts: two builds reproduce a 304,126-byte pure wheel and
+  1,665,856-byte source archive. All nine isolated no-dependency wheel smokes
+  pass. Two complete ten-artifact release stages are byte-identical and both
+  complete release smokes pass; wheel/source hygiene and repository identity,
+  credential, protected-surface, and exact 18-path scope scans pass.
+- Review-inclusive source proof: after cache-access-only sandbox corrections,
+  the unchanged lock, 396-file formatting, Ruff, strict Pyright, all 1,642
+  architecture assertions with one established skip, strict docs, both
+  governance modes, and whitespace pass. Exact CPython 3.12.13 with graphics
+  then passes 3,324 tests with 16 established skips in 117.94 seconds on the
+  hardened recorded tree.
+- Final artifacts: two fresh builds reproduce a 304,190-byte pure wheel and
+  1,667,252-byte source archive. All nine isolated no-dependency wheel smokes
+  pass. Two complete ten-artifact release stages are byte-identical and both
+  release smokes pass; final 101-wheel/645-source package hygiene, exact
+  18-path scope, protected surfaces, identity, credential, and whitespace
+  scans pass. The factual record changes the source archive afterward.
+- Precommit history: fetch/prune confirms exact M99 local/remote main and merge
+  base, exact M125 head/tree/parent, `0 26` divergence, 26 linear single-parent
+  exact-identity singly signed stack commits, 28 required local branches, only
+  remote main, 18 worktree paths, and zero critical Git finding. Read-only
+  hosted queries return no M126 branch, PR, run, tag, or release.
+- Cleanup: all 13 exact M126 build, release, profile, docs, distribution, and
+  pytest targets were validated as workspace-confined, untracked, and non-
+  reparse. The guarded ordinary pass removed 12; an elevated exact-target retry
+  removed only Windows-denied `.pytest-tmp`. All 13 are absent.
+- Final factual source separator: the unchanged lock, 396-file formatting,
+  Ruff, strict Pyright, all 1,642 architecture assertions with one established
+  skip, strict docs, both governance modes, and whitespace pass.
+- Final post-record separator: six selected Python files are format-clean;
+  Ruff and strict Pyright pass; all ten M59/M126 metadata and boundary
+  assertions pass in 0.36 seconds; dated governance, protected surfaces,
+  whitespace, exact 18-path scope, identity/credential scans, and zero scratch
+  pass. One earlier cleanup tail was noisy because the tests created no temp;
+  the absence-aware rerun is clean.
+- Scope: no discovery, source-manifest integration, dependency resolution,
+  source read, payload decode, build, cache, import, compile, watcher, live
+  update, write-back, world/session, command, mutation, receipt, CLI,
+  dependency, engine-root API, version, workflow/allocation, or release-
+  authority change.
+
+## M125 source-integrity lock verification - locally validated and committed
+
+- Commit: `cc440c84dbc53a07b5640ca46410e461fe686cb0`, tree
+  `9b9daea68cc32d13a1ba03575ca58db0d511698a`, sole parent exact M124; exact
+  maintainer identity, one DCO sign-off, 23 paths, `0 26` divergence, clean
+  worktree, zero scratch, and zero critical Git finding verified after commit.
+
+- Base: fully locally validated M124 DCO commit
+  `c73242b29325977484df271a107287d688fbdb54`, tree
+  `f703877a9516af679c338dfcd002619bb18b668e`, sole parent exact M123.
+- Branch: `release/m125-source-lock-verification`; unpublished under the
+  existing public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-26 were current Godot
+  ResourceUID/import-process docs, Unity asset-metadata docs, the current PyPA
+  `pylock.toml` specification, and JSON Schema Draft 2020-12 validation. They
+  support stable resource identity, checksum change detection, explicit format
+  versions, deterministic lock ordering, and pre-use hash validation. They do
+  not justify discovery, import, caching, automatic reimport, live update,
+  signing, or trust semantics. Confidence is high for a bounded identity lock.
+- Contract: `ludoweave.source-lock/1` binds one normalized M124 manifest ID/hash
+  and 1-256 immutable entry-ID-ordered source protocol/ID/hash records. Prefabs
+  also bind the explicit instance protocol/ID/hash; scenes forbid those fields.
+  `SourceLockLimits` may tighten but not enlarge 64 KiB and 256-entry maxima.
+- Runtime: `HeadlessProject.load_source_lock()` reuses established confinement
+  and bounded reads. `ludoweave source lock` emits canonical lock bytes only to
+  stdout. `ludoweave source verify` loads an expected lock, recomputes current
+  identities through unchanged M121-M124 readers, and emits
+  `ludoweave.cli.source-lock-verify/1` only after exact success.
+- Failure/ownership: mismatch reports only the first differing field and
+  optional entry ID, never hash/path values. Every descriptor closes before a
+  detached value is used; both commands own no persistent resource and leave
+  the project unchanged. Sequential reads are not an atomic filesystem
+  snapshot. SHA-256 is content identity, not signature, provenance,
+  authenticity, authorization, freshness, or artifact-security evidence.
+- Exact baseline: M124 commit/tree/sole-parent, clean status, and `0 25`
+  divergence pass. Static and dated strict governance each return zero
+  findings.
+- Deliberate red: exact CPython 3.12.13 produced five intended absent contract,
+  loader, CLI, installed-verifier, or docs failures and one protected-surface
+  pass in 0.21 seconds.
+- Corrections: the first implementation checkpoint stopped at one mechanically
+  unsorted export list. The next reached strict typing and found one redundant
+  literal cast plus two test-only decoded-list type gaps. After those type-only
+  corrections, statics passed and one of 24 behavior cases failed because its
+  expected manifest hash used raw entry order instead of M124 normalized
+  canonical bytes. Correcting only that expectation aligned the test with the
+  established identity rule.
+- Focused proof: formatting, Ruff, and strict Pyright pass; all 24 M125 plus
+  retained M124 behavior cases pass in 2.68 seconds. Twelve M124/M125
+  implementation/protection assertions pass with only the deliberately absent
+  documentation assertion failing before docs.
+- Installed proof: the first package build succeeds. An isolated no-dependency
+  wheel verifies the four new focused experimental exports, emits a two-entry
+  `ludoweave.source-lock/1`, and verifies it under
+  `ludoweave.cli.source-lock-verify/1` with the expected manifest identity.
+- Documentation: RFC-0108 and public docs define exact fields/limits, canonical
+  ordering, stdout-only generation, confined verification, mismatch silence,
+  ownership, sequential-read determinism, compatibility, integrity-only hash
+  semantics, and complete non-scope.
+- Documentation-inclusive proof: all ten selected Python files are
+  format-clean; Ruff and strict Pyright pass; all 37 M125 behavior plus
+  M124/M125 boundary assertions pass in 2.72 seconds; strict docs build in 1.62
+  seconds with only the known Material notice; dated strict governance returns
+  zero findings; and whitespace passes.
+- Review evidence correction: findings-first inspection found behavior already
+  compared manifest ID/hash before entry IDs/fields, but tests covered only an
+  entry hash drift. Unit evidence now fixes manifest-ID, manifest-hash,
+  entry-set, and exact-type behavior; integration evidence proves manifest
+  identity drift fails before entries without hash/path disclosure or mutation.
+  Formatting, Ruff, strict Pyright, all 42 corrected focused assertions in
+  3.15 seconds, and whitespace pass with no runtime change.
+- Complete source proof: the unchanged 46-package lock resolves in 0.75
+  milliseconds; all 393 Python files are format-clean; Ruff and strict Pyright
+  pass; all 1,637 architecture assertions pass with one established Windows
+  capability skip in 11.23 seconds; strict docs build in 1.69 seconds with only
+  the known Material notice; both governance modes return zero findings; and
+  whitespace passes.
+- Supported runtimes: exact CPython 3.12.13 with the graphics extra passes
+  3,307 tests with 16 skips in 117.82 seconds. Exact CPython 3.13.13 and 3.14.5
+  base environments pass 3,297 tests with 17 skips in 108.51 and 114.22
+  seconds. Each environment was recreated sequentially from the frozen lock.
+  The first 3.13 attempt correctly created a 3.13 environment, but its next
+  `uv run` omitted `--python`, followed `.python-version`, recreated 3.12.13,
+  and was interrupted at 52 percent. No 3.13 claim relies on that run; the
+  corrected commands selected exact 3.13.13 on every invocation and printed
+  the exact runtime before testing.
+- Graphics/vertical proof: the restored exact 45-package CPython 3.12.13
+  graphics environment passes ten real-wgpu tests in 7.00 seconds. Fresh
+  one-repeat base and graphics profiles validate with two and three workloads.
+  Clockwork Arena retains state
+  `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`,
+  capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`,
+  three draws, and 16 sprites. Agent World Builder retains state
+  `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`,
+  capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`,
+  replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`,
+  six query matches, five replay batches, and passing registered tests.
+- Artifact proof: two independent builds reproduce a 302,340-byte pure wheel
+  at SHA-256
+  `4b5b5c405fd299740a838ce3ff19b2edb9588af278b0c5cc67cc43201732f3d2`
+  and a 1,653,268-byte source archive at SHA-256
+  `bea630a61a0fe44e79af723300afa8a6e951e760add525b6c1cd0928a7a236f1`.
+  All eight isolated no-dependency wheel smokes pass. Two complete ten-artifact
+  release stages are byte-identical and both release smokes pass; the sample
+  remains 111,168 bytes at SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Hygiene/review: 101 wheel and 641 source-archive entries contain zero
+  forbidden native, WASM, bytecode, or retired control metadata; public
+  development-tool identity and high-confidence credential scans have zero
+  matches. Findings-first review covers exactly 23 intended paths, confirms
+  deterministic mismatch precedence and content-silent failures, and finds no
+  remaining actionable runtime, API, ownership, documentation, or scope
+  defect. Protected workflows, dependencies, lock, metadata, engine root,
+  existing scene/prefab/manifest contracts and planners, prior installed
+  verifier, and release scripts retain zero diff.
+- Review-record separator: the unchanged lock, all 393-file formatting, Ruff,
+  strict Pyright, 1,637 architecture assertions with one established skip,
+  strict docs, corrected static and dated strict governance, and whitespace
+  pass. The first governance invocation used the project rather than checker
+  registry root and failed only with `registry.unreadable`; the corrected
+  invocations return zero findings.
+- Final artifact proof: two review-record-inclusive fresh builds reproduce the
+  unchanged 302,340-byte wheel at SHA-256
+  `4b5b5c405fd299740a838ce3ff19b2edb9588af278b0c5cc67cc43201732f3d2`
+  and a 1,654,264-byte source archive at SHA-256
+  `5807e9419945ebf506672c93f8e31e62c69772be1d95edb3c3c7fb0f36955e69`.
+  All eight isolated wheel smokes pass; two ten-artifact release stages are
+  byte-identical and both complete smokes pass. Final 101/641-entry package
+  hygiene and repository identity/credential scans again return zero match.
+- History/hosted audit: fetch/prune leaves local main, remote main, and merge
+  base at exact M99. M124 retains its exact commit/tree/sole parent; divergence
+  is `0 25`; all 25 stacked commits are linear, exact-identity, and singly
+  DCO-signed. The 27 local branches are main plus required M100-M125 branches;
+  only remote main exists. Full Git checking reports 44 dangling-only records
+  and zero critical finding. Authenticated read-only queries return no M125
+  remote branch, PR, run, tag, or release. An initial counter included the
+  symbolic `origin` ref and an obsolete dangling expectation; the corrected
+  audit excludes symbolic refs and passes.
+- Final factual separator: the unchanged lock, all 393-file formatting, Ruff,
+  strict Pyright, 1,637 architecture assertions with one established skip,
+  strict docs, both governance modes, and whitespace pass.
+- Cleanup: all 13 exact M125 build, release, profile, docs, distribution, and
+  pytest targets are absent. The guarded ordinary pass removed 12; after
+  Windows denied only `.pytest-tmp`, an elevated exact-path revalidation and
+  removal completed cleanup.
+- Final metadata/scope proof: selected formatting, Ruff, strict Pyright, all 11
+  M59/M125 assertions, dated strict governance, protected-surface comparison,
+  whitespace, exact 23-path scope, zero-scratch proof, and repository
+  identity/credential scans pass.
+- Scope: no discovery, import, compile, application schema semantics, asset or
+  dependency load, cache, watcher, live update, write-back, world/session,
+  mutation, receipt, signature/trust claim, dependency, engine-root API,
+  workflow/allocation, or release-authority change.
+
+## M124 explicit source-manifest checking - locally validated and committed
+
+- Commit: `c73242b29325977484df271a107287d688fbdb54`, tree
+  `f703877a9516af679c338dfcd002619bb18b668e`, sole parent exact M123; exact
+  maintainer identity, one DCO sign-off, 26 paths, clean worktree, zero scratch,
+  and `0 25` divergence verified after commit.
+
+- Base: fully locally validated M123 DCO commit
+  `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree
+  `7f71d824ee30fd7cbc7b996aa6913f0b0a1a2074`, sole parent exact M122.
+- Branch: `release/m124-explicit-source-manifest-check`; unpublished under the
+  existing public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-26 were current Godot and
+  Unity command-line documentation, JSON Schema Draft 2020-12 and validation
+  vocabulary, and Python `argparse`, `hashlib`, and `json` documentation. They
+  support explicit project/profile boundaries, bounded structural lists,
+  canonical output, and SHA-256 identities. Discovery, arbitrary execution,
+  compile/import, registry, cache, and live-update semantics remain evidence
+  gaps and non-scope. Confidence is high for the bounded explicit manifest.
+- Contract: `ludoweave.source-manifest/1` has one stable ID and 1-256 immutable
+  explicit entries. Each entry has a stable unique ID and one normalized scene
+  path or one prefab source/instance pair. Exact repeated references fail;
+  normalized values order entries by ID. Limits may tighten the 64 KiB
+  document, 256-entry, and 1,024-byte path maxima.
+- Runtime: `HeadlessProject.load_source_manifest()` reuses existing confinement
+  and bounded reads. `ludoweave source check PROJECT --manifest FILE` checks
+  every entry through M121/M122 and emits canonical
+  `ludoweave.cli.source-manifest-check/1` with no host path.
+- Ownership/mutation: all values detach before use and each descriptor closes
+  before return. The CLI registers or resolves no application component schema,
+  creates no world/session, calls no planner or transaction service, writes no
+  project file, performs no compile or world mutation, and produces no receipt.
+  Multiple reads are not an atomic filesystem snapshot; stable inputs are
+  required for deterministic output.
+- Exact baseline: M123 commit/tree/sole-parent, one DCO sign-off, 18 paths,
+  clean status, zero scratch, and `0 24` divergence pass. Static and dated
+  strict governance each return zero findings.
+- Deliberate red: exact CPython 3.12.13 produced five intended absent contract,
+  loader, CLI, evidence, or docs failures and one protected-surface pass in
+  0.21 seconds.
+- Corrections: the first implementation checkpoint passed Ruff while strict
+  Pyright found one redundant literal cast and three test-only immutable-detail
+  or negative-typing issues. Removing the cast and making those test intentions
+  explicit corrected all four without changing runtime behavior. The first
+  combined docs patch was rejected atomically on a stale context; split patches
+  applied cleanly and preserved existing prose. A subsequent factual review
+  narrowed inherited “creates no registry” wording to the actual no application
+  schema registration/resolution boundary and aligned manifest path validation
+  with existing cross-platform device-name, colon, and trailing-character
+  rejection.
+- Focused proof: Ruff and strict Pyright pass; all 22 unit/integration cases pass
+  in 1.26 seconds. Five implementation/protection boundary assertions then
+  passed with only the intended missing-doc assertion failing. After RFC-0107
+  and public docs, all 28 focused assertions pass in 1.29 seconds; strict docs
+  build in 1.61 seconds with only the known Material notice; whitespace passes.
+- Corrected portability/accuracy proof: Ruff and strict Pyright pass; all 31
+  focused assertions pass in 1.29 seconds; strict docs build in 1.66 seconds
+  with only the known Material notice; whitespace passes.
+- Historical guards: M123 no longer freezes the whole internal headless-project
+  file, while retaining its workflow, metadata, root, scene/prefab, CLI, and
+  no-mutation checks. M119/M120 now protect their required scene-package
+  subsets; M124 owns the exact current six-file inventory including the
+  exercised `sources.py` module.
+- Complete source proof: after two accurately recorded interrupted attempts,
+  the unchanged 46-package lock, all 388 Python files, Ruff, strict Pyright, all
+  1,631 architecture assertions with one established skip, strict docs, both
+  governance modes, and whitespace pass.
+- Supported runtimes: exact CPython 3.12.13 with graphics passes 3,277 tests
+  with 16 skips in 115.97 seconds. Exact 3.13.13 and 3.14.5 base environments
+  each pass 3,267 with 17 skips in 107.30 and 112.55 seconds. Each environment
+  was recreated sequentially from the frozen lock.
+- Graphics/vertical proof: the restored exact 45-package CPython 3.12.13
+  graphics environment passes ten real-wgpu tests in 6.97 seconds; fresh base
+  and graphics profiles validate with two and three workloads. Clockwork Arena
+  and Agent World Builder retain their established state, capture, and replay
+  identities and passing acceptance fields.
+- Distribution: two independent builds reproduce a 297,737-byte pure wheel at
+  `12bca6db106aac02fd62e784658e309af99121bf9d00c5253b8cd3fd36cdb03a`
+  and a 1,636,936-byte source archive at
+  `f78627a5f2aa9fc907eb2b78b2d3e799a2a248c6f7191047a0d198ca3a814a34`.
+  All seven general, scene, prefab, file-loading, source-check, and manifest-
+  check isolated no-dependency wheel smokes pass.
+- Release rehearsal: two complete ten-artifact stages are byte-identical and
+  both release smokes pass. The 111,168-byte sample archive retains SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Hygiene: the 100-entry wheel and 635-entry sdist contain zero native, WASM,
+  bytecode, or retired control metadata. Repository-wide public tool-identity
+  and high-confidence credential scans return zero files.
+- Findings-first review: exactly 26 intended project records, public docs/RFC,
+  contract/loader/CLI, tests, historical guards, and verifier paths change.
+  Manifest bounds, normalized paths, ordering, duplicate rules, read-only
+  aggregation, failure silence, and public stability metadata align. Protected
+  workflows, dependencies, lock, root/module entry, scene/prefab schemas and
+  planners, prior smokes, release producer, and release authority retain zero
+  diff. No actionable finding remains.
+- Installed-API correction: the manifest wheel verifier now directly checks all
+  four new focused experimental exports in addition to the CLI. Ruff and strict
+  Pyright pass; the corrected verifier and all 32 focused assertions pass;
+  whitespace remains clean.
+- Review-record source separator: the unchanged lock, all 388 Python files,
+  Ruff, strict Pyright, all 1,631 architecture assertions with one established
+  skip, strict docs, both governance modes, and whitespace pass.
+- Review-inclusive artifact proof: the pure wheel remains 297,737 bytes at
+  `12bca6db106aac02fd62e784658e309af99121bf9d00c5253b8cd3fd36cdb03a`;
+  the record-inclusive sdist is 1,638,466 bytes at
+  `e8de5c33e5ca6fd081e6a60dddf18454bb50947963d78d28af3233fed4d51d99`.
+  All seven wheel smokes, two byte-identical ten-artifact release stages, both
+  release smokes, and package hygiene pass. The sample archive retains its
+  established identity.
+- Final factual source separator: the unchanged 46-package lock resolved in
+  0.86 milliseconds. All 388 Python files were format-clean; Ruff and strict
+  Pyright passed; all 1,631 architecture assertions passed with one established
+  Windows capability skip in 12.12 seconds; strict docs built in 1.66 seconds
+  with only the known Material notice; static and dated strict governance
+  returned zero findings; and whitespace passed.
+- Precommit history/hosted audit: local/remote main and merge base remain exact
+  M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M123 remains exact head
+  `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree
+  `7f71d824ee30fd7cbc7b996aa6913f0b0a1a2074`, and sole parent M122
+  `176c21d12adc00c71cab63a777d0cd0eb6d66215`. Divergence is `0 24`; all
+  24 M100-M123 commits are linear, single-parent, exact maintainer identity,
+  and singly DCO-signed. Main plus the 25 required milestone branches exist
+  locally; only remote main exists. Full Git checking reports 287 dangling-only
+  records and zero critical finding. Authentication is valid; M124 PR/run,
+  remote-branch, release, and tag queries are empty, so no hosted allocation
+  was triggered.
+- Scratch cleanup: all 13 exact M124 build, release, profile, docs, and pytest
+  targets resolved inside the workspace and were confirmed untracked and
+  non-reparse. Ordinary access removed 12 and denied only `.pytest-tmp`; no
+  complete claim relies on that exit. A separately verified elevated retry
+  removed only the exact workspace-local `.pytest-tmp` and confirmed zero
+  remaining targets.
+- Cleanup-record-inclusive source separator: the unchanged 46-package lock
+  resolved in 0.87 milliseconds. All 388 Python files were format-clean; Ruff
+  and strict Pyright passed; all 1,631 architecture assertions passed with one
+  established Windows capability skip in 11.23 seconds; strict docs built in
+  1.59 seconds with only the known Material notice; both governance modes
+  returned zero findings; and whitespace passed.
+- Final metadata/scope separator: all 25 M59 and M119/M120/M123/M124 boundary
+  assertions pass in 0.46 seconds. Dated strict governance returns zero
+  findings; the worktree exactly matches the 26 intended paths; protected
+  workflows, metadata, lock, root/module entry, retained scene/prefab
+  contracts, examples, prior smokes, and release surfaces retain zero diff;
+  public tool-identity and high-confidence credential scans return zero files;
+  and whitespace passes. The regenerated `site` and `.pytest-tmp` targets were
+  verified workspace-confined, untracked, and non-reparse, then exactly removed
+  with zero remaining.
+- Installed proof: the first package build succeeds and the isolated
+  no-dependency wheel verifier checks one scene plus one prefab pair from an
+  explicit manifest with the expected protocol, ID, kind, and entry counts.
+- Scope: no discovery, glob, implicit pairing, compile, registry semantics,
+  world/session, mutation, receipt, persistent report, cache, watcher, live
+  update, remote access, dependency, engine-root API, workflow, allocation, or
+  release-authority change.
+
+## M123 read-only source-check CLI - locally validated and committed
+
+- Commit: `1b092a85487b355fac688e15daeaed0ebcfa665a`, tree
+  `7f71d824ee30fd7cbc7b996aa6913f0b0a1a2074`, sole parent exact M122; exact
+  maintainer identity, one DCO sign-off, 18 paths, clean worktree, zero scratch,
+  and `0 24` divergence verified after commit.
+
+- Base: fully locally validated M122 DCO commit
+  `176c21d12adc00c71cab63a777d0cd0eb6d66215`, tree
+  `5d130ba83014145ccc398d119de71618bd2a943d`, sole parent exact M121.
+- Branch: `release/m123-read-only-source-check`; unpublished under the existing
+  public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-26 were current Godot
+  command-line documentation, Unity 6 command-line build documentation, JSON
+  Schema Draft 2020-12, and Python `argparse`. Explicit project/headless
+  operation and separated validation support a structured read-only preflight;
+  arbitrary script execution, import/build, recursive discovery, component
+  registry semantics, and cache policy remain evidence gaps and non-scope.
+  Recommendation confidence is high for the bounded adapter.
+- Runtime: `ludoweave source check PROJECT` accepts either `--scene FILE` or
+  `--prefab FILE --instance FILE`. It reuses M121/M122 loaders, checks prefab
+  source identity, and emits canonical `ludoweave.cli.source-check/1` protocol,
+  source IDs/hashes, and bounded counts without disclosing paths.
+- Ownership/mutation: each synchronous read closes before output. The command
+  registers or resolves no application component schema, creates no
+  world/session, calls no planner or transaction service, writes no project
+  file, performs no world mutation, and produces no receipt.
+- Deliberate red: exact CPython 3.12.13 produced nine intended absent-command,
+  verifier, or docs failures and one protected-surface pass in 1.50 seconds.
+- Corrections: the first implementation behavior run passed all six cases while
+  strict Pyright found two nested empty-map fixture inference gaps. Explicit
+  fixture annotations corrected typing. The first docs-inclusive boundary run
+  then found only two test/prose literal mismatches; formatting-insensitive
+  matching and one explicit sentence corrected them without runtime change.
+- Focused proof: Ruff and strict Pyright pass; all ten behavior/architecture
+  assertions pass in 1.46 seconds; strict docs build in 1.66 seconds with only
+  the known Material notice; whitespace passes.
+- Installed proof: the first package build and isolated no-dependency wheel
+  verifier pass for both scene and two-file prefab modes with expected stable
+  identities.
+- Architecture correction: the first full gate showed that M118 froze the
+  entire CLI despite guarding Python 3.15 support. M123 narrows only that stale
+  coupling; metadata, doctor, workflows, lock, and wheel smoke remain pinned.
+  All 1,624 architecture assertions then pass with one established skip.
+- Complete validation: all 383 Python files, Ruff, strict Pyright, strict docs,
+  both governance modes, and whitespace pass. Exact 3.12.13 passes 3,245 tests
+  with 16 skips; exact 3.13.13 and 3.14.5 each pass 3,235 with 17 skips.
+- Graphics/vertical proof: ten real-wgpu tests pass; two- and three-workload
+  profiles validate; Clockwork Arena and Agent World Builder retain established
+  deterministic identities and passing acceptance fields.
+- Distribution: two initial builds reproduce a 293,358-byte pure wheel at
+  `90d9adf3dddacf152f84cf42b7b334ef14fb760834465c85f02206b4ea77e92f`
+  and 1,621,988-byte sdist at
+  `6c9843dc0f479a80b78b70a264cd66b1dc2b4d672118871140c410090cba5899`.
+  All six installed-wheel smokes pass; two identical ten-artifact release
+  stages and both release smokes pass.
+- Hygiene/review: 99 wheel and 629 sdist entries contain zero forbidden files;
+  public identity and high-confidence secret scans have zero matches. Review of
+  18 intended paths found no actionable issue and protected surfaces retain
+  zero diff.
+- Review-inclusive artifact proof: the pure wheel remains 293,358 bytes at
+  `90d9adf3dddacf152f84cf42b7b334ef14fb760834465c85f02206b4ea77e92f`;
+  the record-inclusive sdist is 1,623,354 bytes at
+  `fbca3ab9ab75e25e1d047c446e18bc43edf5bc4665450c8f55bba815dcd6bc9f`.
+  All six wheel smokes, two byte-identical ten-artifact release stages, both
+  release smokes, and package hygiene pass. The sample archive retains its
+  established identity.
+- History/hosted audit: local/remote main and merge base remain exact M99;
+  M100-M122 are 23 linear single-parent commits with exact maintainer identity,
+  one DCO sign-off each, and no merge. Git integrity has 287 dangling-only
+  records and no critical finding. Only required local milestone branches and
+  remote main exist; M123 has no PR, run, release, or remote tag, so no hosted
+  allocation was triggered.
+- Scratch cleanup: all 13 exact M123 build, release, profile, docs, and pytest
+  targets resolved inside the workspace, were untracked and non-reparse, and
+  were removed in one guarded pass. A separate remaining count was zero.
+- Final source separator: the unchanged 46-package lock, all 383 Python files,
+  Ruff, strict Pyright, all 1,624 architecture assertions with one established
+  skip, strict docs, corrected static and dated strict governance, and
+  whitespace pass. The first governance command targeted the project instead
+  of the prescribed registry root and reported only that absent registry; the
+  corrected commands returned zero findings.
+- Final metadata/scope separator: all 14 M59/M118/M123 assertions pass; dated
+  strict governance and whitespace pass. The worktree contains exactly the 18
+  intended paths, protected workflows/metadata/lock/root/headless/prior-smoke
+  surfaces retain zero diff, and the two regenerated docs/pytest targets were
+  removed after being proved workspace-confined, untracked, and non-reparse.
+- Scope: no compile, application component registration/resolution, asset
+  loading, directory discovery, implicit pairing, cache, watcher, live update,
+  write-back, arbitrary script, remote access, dependency, root API, workflow
+  job, or hosted allocation.
+
+## M122 project-confined prefab file loading - locally validated, commit pending
+
+- Base: fully locally validated M121 DCO commit
+  `18d1571badc416801151b6f5df67e3cfcef78ba1`, tree
+  `2a2cfae57f9d6546ad74657f8a82b26ca5ac6085`, sole parent exact M120.
+- Branch: `release/m122-project-confined-prefab-file-loading`; unpublished
+  under the existing public-review identity hold.
+- Direction brief: primary sources accessed 2026-08-25 were current Godot
+  `ResourceLoader`, current Unity prefab documentation, RFC 8089, and JSON
+  Schema Core 2020-12. General handler discovery, nondeterministic directory
+  listing, cache/dependency policy, and nested/variant relationships justify
+  keeping M122 at two explicit file reads. Recommendation confidence is high
+  for this bounded local composition slice; discovery, live-update conflict
+  policy, and nested composition remain explicit evidence gaps.
+- Runtime: `HeadlessProject.load_prefab()` and `load_prefab_instance()` accept
+  exact project-relative paths and `PrefabLimits`, reuse existing bounded path
+  policy, and return detached immutable M120 records. The caller chooses both;
+  existing `compile_prefab()` validates exact source identity.
+- Ownership/security: each synchronous call owns one descriptor, closes it,
+  and retains no persistent handle, cache, watcher, world, provider, renderer,
+  or thread. Existing traversal/root-escape/non-regular/size policies and
+  sanitized errors apply. The boundary is not a race-free hostile-filesystem
+  sandbox.
+- Deliberate red: exact CPython 3.12.13 produced 15 expected missing-method,
+  verifier, or docs failures and one protected-boundary pass.
+- Test correction: after implementation, one Hypothesis value equaled the
+  108-byte instance fixture and correctly loaded. Restricting generated limits
+  below both fixture sizes removed that test-only error; all 12 unit assertions
+  pass in 0.58 seconds.
+- Focused proof: format, Ruff, and strict Pyright pass; 16 M122 assertions pass
+  in 0.60 seconds; strict docs build in 1.58 seconds with only the known
+  Material notice. The inherited focused set passes 92 tests with two
+  established capability skips in 1.19 seconds.
+- Installed proof: the first package build and isolated no-dependency wheel
+  verifier passed, loading two explicit files and committing one ordinary
+  command/entity with the expected alias and source/instance identities.
+- Complete validation: 380 Python files are format-clean; Ruff, strict Pyright,
+  strict docs, both governance modes, and whitespace pass. Architecture passes
+  1,619 assertions with one established skip. Exact 3.12.13 passes 3,234 tests
+  with 16 skips; exact 3.13.13 and 3.14.5 each pass 3,224 with 17 skips.
+- Graphics/vertical proof: ten real-wgpu tests pass; two- and three-workload
+  profiles validate; Clockwork Arena and Agent World Builder retain established
+  deterministic identities and passing acceptance fields.
+- Distribution: two initial builds reproduce a 292,732-byte pure wheel at
+  `5d7ffe5332e8ccbb542cb3ed58f2579a3d0ae555b91edd148d09e327a710ba9c`
+  and 1,612,909-byte sdist at
+  `c1d11e4d99770cef2d17b21d5fce0c8ad737bde90f0df19896dd3fe1880ce9a7`.
+  All five installed-wheel smokes pass; two identical ten-artifact release
+  stages and both release smokes pass.
+- Hygiene/review: 99 wheel and 625 sdist entries contain zero forbidden native,
+  WASM, bytecode, or retired control metadata. Corrected public-identity and
+  high-confidence secret scans have zero matches. Findings-first review of 17
+  intended paths found no actionable issue and protected surfaces retain zero
+  diff.
+- Review-inclusive artifact proof: the pure wheel remains 292,732 bytes at
+  `5d7ffe5332e8ccbb542cb3ed58f2579a3d0ae555b91edd148d09e327a710ba9c`;
+  the record-inclusive sdist is 1,614,073 bytes at
+  `b365c6dff16fa0bca8767b413efa96ff207f5a08a7846deb1a6d1f54c2dbc6c5`.
+  All five wheel smokes, two byte-identical ten-artifact release stages, both
+  release smokes, and package hygiene pass. The sample archive retains 111,168
+  bytes and SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- History/hosted audit: local/remote main and merge base remain exact M99;
+  M100-M121 are 22 linear single-parent commits with exact maintainer identity,
+  one DCO sign-off each, and no merge. Git integrity has 287 dangling-only
+  records and no critical finding. Only required local milestone branches and
+  remote main exist; M122 has no PR, run, release, or remote tag, so no hosted
+  allocation was triggered.
+- Cleanup: all exact M122 build, release, profile, docs, distribution, and pytest
+  scratch targets are absent. The first cleanup needed a corrected elevated
+  retry for the exact verified workspace-local pytest directory; no broader
+  path was removed.
+- Final source separator: the unchanged lock, all 380 Python files, Ruff, strict
+  Pyright, 1,619 architecture assertions with one established skip, strict
+  docs, both governance modes, and whitespace pass on the factual record tree.
+- Final metadata separator: all nine M59/M122 assertions and dated strict
+  governance pass; exactly 17 intended paths remain, protected diff is zero,
+  and all 14 audited scratch targets are absent.
+- Scope: no implicit pairing, directory discovery, extension routing, manifest
+  lookup, cache, dependency traversal, live update, nesting, asset loading,
+  mutation-on-load, operation, dependency, root API, workflow, or hosted
+  allocation change.
+
+## M121 project-confined scene file loading - implementation in progress
+
+- Base: fully locally validated M120 DCO commit
+  `dbe8108abc29c93aed4317456ee67efb8b99e1ea`, tree
+  `aa2e642ce931775f06f9bb36b34c6ee3ba8d5a22`, sole parent exact M119.
+- Branch: `release/m121-project-confined-scene-file-loading`; unpublished under
+  the existing public-review identity hold.
+- Direction: keep filesystem policy in the existing tools composition root.
+  Reuse exact project-relative path confinement and bounded one-handle reads,
+  then delegate detached bytes to the unchanged scene decoder.
+- Runtime: `HeadlessProject.load_scene()` accepts an exact relative path and
+  `SceneLimits`, returning one detached immutable `ludoweave.scene/1` document.
+  Asset identities remain unresolved and world mutation remains a later
+  explicit compile/apply transaction with a receipt.
+- Ownership/security: the synchronous call owns and closes one descriptor. It
+  adds no persistent handle, cache, watcher, world, provider, renderer, or
+  thread. Existing traversal/root-escape/non-regular/size policies and
+  sanitized errors apply. The claim is not a race-free hostile-filesystem
+  sandbox.
+- Scope: no directory discovery, prefab file loader, file URI, include/import,
+  remote path, asset loading, live update, write-back, new operation,
+  dependency, root API, scene/prefab schema/planner, or workflow change.
+- Deliberate red: after one test-only Hypothesis fixture correction, exact
+  CPython 3.12.13 retained 17 intended absent-capability/docs failures, one
+  protected-surface pass, and one symlink-capability skip.
+- Focused proof: the first implementation launch passed all 14 executable
+  behavior assertions with one platform skip and found only test formatting and
+  typing issues. Corrected Ruff and strict Pyright pass; all 14 assertions pass
+  in 0.54 seconds with the one capability skip.
+- Documented focus: after correcting one project-record metadata phrase, all
+  132 focused loader, inherited scene/prefab, stability, import, and metadata
+  assertions pass in 1.83 seconds with one capability skip; strict docs build in
+  1.61 seconds; focused formatting, Ruff, strict Pyright, and whitespace pass.
+- Review: the exact limits check precedes path access; established confinement,
+  regular-file, sanitized-error, and bounded descriptor behavior is reused;
+  the descriptor closes before scene decode; and the result cannot mutate a
+  world. No actionable finding or guarantee beyond the existing reader remains.
+- Complete source proof: the unchanged 46-package lock and exact 45-package
+  CPython 3.12.13 graphics environment pass; all 377 files are format-clean;
+  Ruff and strict Pyright report zero findings; strict docs build; all 1,615
+  architecture assertions pass with one established Windows capability skip;
+  both governance modes and all nine focused protection assertions pass.
+- Complete suites: exact CPython 3.12.13 with graphics passes 3,218 tests with
+  16 skips; exact CPython 3.13.13 and 3.14.5 base environments each pass 3,208
+  tests with 17 skips. One first 3.13 orchestration accidentally recreated 3.12
+  and was interrupted; all authoritative runs pin the interpreter explicitly.
+- Graphics proof: all ten real-wgpu tests, fresh base/graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with established deterministic
+  state, capture, replay, draw, query, and batch identities.
+- Packaging: two builds reproduce a 292,537-byte pure wheel at SHA-256
+  `df63a499dadb8fd378a19d8b38cdc9b97704338878f1b0ae9d7c05c29fd6568f`
+  and a 1,604,588-byte source archive at SHA-256
+  `81a4a277bc11457f66789d0a753886805aed8af9237bd22d9465addb4a2cf145`.
+  All four installed-wheel verifiers pass; two ten-artifact release stages are
+  byte-identical and both complete release smokes pass. Archive hygiene reports
+  99 wheel/621 source entries with zero forbidden path.
+- Scope/security: exactly 13 modified plus four new intended paths remain.
+  Protected workflow, metadata, lock, root, scene/prefab/world, and inherited
+  verifier surfaces have zero diff. Public identity, secret-assignment, and new-
+  method ambient/mutating-capability scans return zero finding.
+- Final separator: the unchanged lock, 377-file formatting, Ruff, strict
+  Pyright, strict docs, all 1,615 architecture assertions with one established
+  Windows skip, all nine focused M59/M121 assertions, both governance modes,
+  and whitespace pass.
+- History/hosted audit: after fetch/prune, local/remote `main` and merge base
+  remain exact M99; M120 remains exact head/tree with sole parent M119;
+  divergence is `0 21`. All 21 M100-M120 commits are linear, single-parent,
+  exact maintainer identity, and singly DCO-signed. Git integrity reports 287
+  dangling-only records and zero critical finding. Remote state has only main
+  and no M121 PR, run, release, or tag, so no hosted allocation was triggered.
+- Cleanup: generated docs, two profiles, two build roots, two release roots,
+  and the pytest root were each verified inside the workspace as untracked,
+  non-reparse targets and removed in one guarded pass. All eight are absent.
+- Final metadata separator: strict governance returns zero findings; all nine
+  M59/M121 assertions and whitespace pass; exactly 13 modified plus four new
+  intended paths remain; all eight audited scratch targets are absent.
+- Remaining: local DCO commit. Publication remains held.
+
+## M120 one-level prefab fragment planning - locally committed
+
+- Base: fully locally validated M119 DCO commit
+  `b30ca99c3ae639653394a378465c0088ee5c2995`, tree
+  `8d51081377cdef16fda69c17ebbec9008b44deef`, sole parent exact M118.
+- Branch: `release/m120-prefab-fragment-planning`; unpublished under the
+  existing public-review identity hold.
+- Direction: exact field replacements reuse the current component schema;
+  RFC 6902/6901 inform fail-closed behavior but their general patch/pointer
+  languages are not adopted. Official engine docs reinforce keeping nested
+  apply-target and live-link policy outside the first contract.
+- Runtime: `ludoweave.prefab/1` wraps one exact M119 scene fragment;
+  `ludoweave.prefab-instance/1` names one source/instance and canonical unique
+  current-schema overrides. Planning migrates base values, validates merges,
+  adds canonical `PrefabNode`, and delegates to ordinary spawn transactions.
+- Authority/ownership: documents and plans are immutable caller-owned values.
+  The world store is the sole runtime authority; no source-instance link,
+  loader, provider, file, thread, renderer, or closeable resource is owned.
+- Failure: malformed/bounded input, source mismatch, unknown local targets,
+  missing components, incompatible versions/values, reserved provenance, and
+  missing explicit registries fail with structured `PrefabError` before a
+  transaction exists. Existing stale-hash and staged rejection semantics apply.
+- Scope: one-level only; no nested inheritance/variants, parameters, structural
+  overrides, file I/O, asset loading, live update/reimport, source write-back,
+  persistent operation, dependency, root export, or workflow/allocation change.
+- Deliberate red: corrected behavior collection fails only absent new prefab
+  exports. Architecture passes the protected-surface assertion and fails only
+  absent module/verifier/docs boundaries.
+- Focused proof: after factual fixture/static corrections and findings-first
+  hardening, Ruff and strict Pyright pass; all 136 focused behavior,
+  architecture, stability, and import assertions pass in 1.58 seconds; strict
+  docs build in 1.69 seconds; whitespace passes.
+- Complete source proof: all 374 Python files are format-clean; Ruff and strict
+  Pyright report zero findings; strict docs build; all 1,611 architecture
+  assertions pass with one established Windows capability skip; all nine
+  focused M59/M120 assertions pass; protected surfaces and whitespace pass.
+- Complete suites: exact CPython 3.12.13 with graphics passes 3,200 tests with
+  15 skips; exact CPython 3.13.13 and 3.14.5 base environments each pass 3,190
+  tests with 16 skips.
+- Graphics proof: all ten real-wgpu tests, fresh base/graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Packaging: two builds reproduce a 292,311-byte pure wheel at SHA-256
+  `a9d4da28a35e77f26492ba459077c309656d7fa84e54bb00e9a14841e020b76f`
+  and a 1,594,507-byte source archive at SHA-256
+  `01fa2791ea4be00ae2638312ed05a075e67e759641cfada3792b33e7aa483693`.
+  The inherited, scene, and prefab installed-wheel verifiers pass. Two complete
+  ten-artifact release stages are byte-identical and complete release smoke
+  passes; package hygiene reports 99 wheel/617 source entries with zero
+  forbidden native, WASM, bytecode, or retired control-metadata path.
+- Review: exactly 14 modified plus six new intended paths remain. Protected
+  workflows, metadata, lock, root API, world command/operation/transaction
+  surfaces, and inherited scene smoke have zero diff. Public identity,
+  high-confidence secret, backend/native/evaluation, TODO, and placeholder
+  scans return zero finding. No actionable source finding remains.
+- Final separator: the unchanged lock, 374-file formatting, Ruff, strict
+  Pyright, strict docs, all 1,611 architecture assertions with one established
+  Windows skip, all nine focused M59/M120 assertions, both governance modes,
+  and whitespace pass. The first attempt exposed and then corrected one
+  project-record metadata-hygiene phrase; no product code changed.
+- History/hosted audit: after fetch/prune, local/remote `main` and merge base
+  remain exact M99; M119 remains exact head/tree with sole parent M118;
+  divergence is `0 20`. All 20 M100-M119 commits are linear, single-parent,
+  exact maintainer identity, and singly DCO-signed. Git integrity reports 287
+  dangling-only records and zero critical finding. Remote state has only main
+  and no M120 PR, run, release, or tag, so no hosted allocation was triggered.
+- Cleanup: the exact generated docs, two profiles, two build roots, two release
+  roots, and pytest root were verified inside the workspace as untracked,
+  non-reparse targets and removed. Windows denied the pytest root on the first
+  attempt; an exact-root retry removed it. All eight targets are absent.
+- Final metadata separator: strict governance returns zero findings; all nine
+  M59/M120 assertions and whitespace pass; exactly 14 modified plus six new
+  intended paths remain; all eight audited scratch targets are absent.
+- Local commit: `dbe8108abc29c93aed4317456ee67efb8b99e1ea`, tree
+  `aa2e642ce931775f06f9bb36b34c6ee3ba8d5a22`, sole parent exact M119, exact
+  maintainer identity, one DCO sign-off, 20 paths, and `0 21` divergence.
+  Publication remains held.
+
+## M119 data-only scene transaction planning - ready for local commit
+
+- Base: fully locally validated M118 DCO commit
+  `7b68f3d02987ee9824785c1699592c4670dbe267`, tree
+  `a60c9e3668a0ed1f5462015210a8b8e9ee593a3f`, sole parent exact M117.
+- Branch: `release/m119-scene-transaction-planning`; unpublished under the
+  existing public-review identity hold.
+- Direction: add a bounded versioned data-only scene document and deterministic
+  compiler to existing world transactions. RFC 8259, JSON Schema Core draft
+  2020-12, and RFC 3986 inform exact members, bounded decoding, and asset URI
+  identity; no runtime dependency is added.
+- Runtime: `ludoweave.scene/1` normalizes stable local entities, unique names,
+  parent DAGs, versioned named component values, and `asset://` dependencies.
+  Planning resolves an explicit `ComponentRegistry`, validates/migrates before
+  mutation, injects canonical `SceneNode` provenance, and emits ordinary
+  `entity.spawn` commands. Receipt aliases return the local/runtime mapping.
+- Authority: canonical runtime state remains solely in the world store. Scene
+  documents/plans are immutable caller-owned data and the planner owns no
+  closeable resources, file handles, loaders, providers, or threads.
+- Failure: duplicate/unknown fields, duplicate JSON members, invalid parent
+  graphs/assets/limits, unknown or incompatible components, reserved
+  provenance, missing `SceneNode`, and invalid plan identities fail with
+  structured scene errors before world mutation.
+- Scope: no file I/O, prefab inheritance/overrides, live updates, `EntityRef`
+  facade, asset loading, scene operation, arbitrary Python graph/import, second
+  authority, dependency, root export, or workflow/allocation change.
+- Deliberate red: exact CPython 3.12.13 behavior failed only absent scene
+  package; focused architecture passed protected surfaces and failed absent
+  package/rule/docs as intended.
+- Focused proof: after recorded test/schema/ordering/type corrections and
+  findings-first limit hardening, Ruff and strict Pyright pass and all 127
+  focused behavior/architecture assertions pass. Exact CPython 3.12.13,
+  3.13.13, and 3.14.5 each pass all 26 M119 contract assertions.
+- Complete source proof: 369 files are format-clean; Ruff and strict Pyright
+  report zero findings; strict docs build; all 1,607 architecture assertions
+  pass with one established Windows capability skip; protected workflows,
+  metadata, lock, root API, and inherited wheel smoke remain exact.
+- Complete suites: exact 3.12.13 with graphics passes 3,168 tests with 15
+  skips; exact 3.13.13 and 3.14.5 base each pass 3,158 with 16 skips.
+- Graphics proof: all ten real-wgpu tests, fresh base/graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with established deterministic
+  identities.
+- Packaging: two initial builds are reproducible; the inherited wheel smoke and
+  standalone installed-scene verifier pass; two ten-artifact stages are
+  byte-identical; complete release smoke and 98/611-entry package hygiene pass.
+  Review-inclusive builds reproduce a 286,784-byte pure wheel at SHA-256
+  `8449c96e6eac4f33f0ed08ce24177ecdc908f77c91314fca8252389dbe91d042`
+  and a 1,577,942-byte source archive; both wheel verifiers, twice-staged
+  ten-artifact identity, complete release smoke, and package hygiene pass.
+- Review: exactly 22 intended files, no remaining actionable finding, no
+  backend/dependency/root/workflow leakage, and zero added-line development-tool
+  identity or high-confidence secret match. Strict governance has zero finding.
+- Final separator: unchanged lock, 369-file formatting, Ruff, strict Pyright,
+  strict docs, 1,607 architecture assertions with one established Windows skip,
+  focused M59/M119, strict governance, and whitespace all pass.
+- History/hosted audit: remote/local `main` remain exact M99; the 19-commit
+  M100-M118 stack is linear with exact identity and DCO; Git integrity has 287
+  dangling-only records and zero critical finding; remote state has no M119 PR,
+  run, release, or tag and incurred no hosted allocation.
+- Cleanup: twelve exact non-reparse M119 build/profile/docs/pytest scratch
+  targets were removed; one Windows-denied pytest root required an exact-root
+  approved retry. A later documentation invocation recreated only the generated
+  `site` directory; its resolved path was reverified inside the workspace as a
+  non-reparse target and removed. Zero target remains and no tracked path was
+  removed.
+- Final metadata separator: all nine focused M59/M119 assertions pass in 0.42
+  seconds, whitespace passes, exactly 13 modified plus nine new intended paths
+  remain, and all audited scratch targets are absent.
+- Remaining: create the standalone DCO commit and verify its history, tree,
+  identity, scope, and clean worktree. Publication remains held.
+
+## M118 Python 3.15 prerelease compatibility - implementation in progress
+
+- Base: fully locally validated M117 DCO commit
+  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
+  `a031129b5a46003dbc5b588cab94c3adba704301`, sole parent exact M116.
+- Branch: `release/m118-python315-prerelease-compatibility`; unpublished under
+  the existing public-review identity hold.
+- Direction: retain Python 3.15 outside the supported range after one exact
+  installed-wheel prerelease compatibility observation. No metadata, doctor,
+  runtime, dependency, workflow, or CI change is justified.
+- Current-source basis: PEP 790 records candidate 1 on 2026-08-04 and schedules
+  3.15.0 final for 2026-10-01; uv classifies 3.15 prereleases as Tier 2.
+- Exact inventory: no 3.15 runtime was initially installed. The exact RC1 uv
+  request had no managed Windows x86-64 download. The available-version query
+  exposed only 3.15.0b1, which installed successfully.
+- Exact installed-wheel observation: a pure local wheel and isolated CPython
+  3.15.0b1 environment were created. uv warned that the runtime is incompatible
+  with `>=3.12,<3.15`; pip installed the wheel without dependencies only under
+  an explicit metadata override.
+- Expected boundary: module version passed. Doctor ran its checks but correctly
+  returned overall error and exit 1 for unsupported Python. A separate probe
+  completed 120 virtual ticks/frames in 2,000,000,000 nanoseconds, closed, and
+  rejected a worker-thread initialize call with `engine.wrong_thread`. The
+  installed headless example matched the deterministic summary.
+- Development correction: the first install/probe orchestration used an invalid
+  PowerShell selection parameter and then supplied no pip requirement. The
+  corrected install sequence stopped at expected doctor exit 1; the following
+  expected-boundary run explicitly required doctor 1 and both serial probes 0.
+- Deliberate red: the ignored probe and focused contract are format/Ruff-clean.
+  Exact CPython 3.12.13 passes three metadata, doctor, and protected-surface
+  assertions and fails only the intended absent-RFC/docs assertion in 0.28
+  seconds.
+- Implementation correction: the first focused run passed three assertions but
+  one required phrase was interrupted by Markdown code formatting. The RFC now
+  states it plainly; all four assertions pass in 0.19 seconds. Strict docs built
+  in 1.73 seconds; whitespace passes; exactly 16 intended paths change.
+- Static/source proof: the unchanged 46-package lock, exact 45-package CPython
+  3.12.13 graphics environment, 361-file formatting, Ruff, strict Pyright,
+  strict docs, protected surfaces, and whitespace pass. All 1,603 architecture
+  assertions pass with one established Windows capability skip. Exact standard
+  CPython 3.12.13, 3.13.13, and 3.14.5 each pass all four focused assertions.
+- Complete suites: exact 3.12.13 with graphics passes 3,143 tests with 15 skips;
+  exact standard 3.13.13 and 3.14.5 base environments each pass 3,133 tests
+  with 16 skips.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,778-byte pure wheel at
+  SHA-256
+  `254c3da96cc0b7161425ea09a9883279ba91f030a7790d5c1ac89149acbcd9ba`
+  and a 1,557,512-byte source archive at SHA-256
+  `27adfcbf099b8092bcaead44e07a5afd0e8b1b51ff91000fa8e2320441ddba40`.
+  Wheel smoke passes. Two complete same-environment ten-artifact stages are
+  byte-identical; complete release smoke and 94/602-entry package hygiene pass.
+- Findings-first review: exactly 16 intended paths, no actionable finding,
+  zero protected workflow/doctor/CLI/wheel-smoke/runtime/metadata/lock diff,
+  zero public identity or high-confidence secret match, clean package hygiene,
+  and clean whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,778-byte
+  wheel at SHA-256
+  `254c3da96cc0b7161425ea09a9883279ba91f030a7790d5c1ac89149acbcd9ba`
+  and a 1,558,615-byte source archive at SHA-256
+  `ec194e05707eb847e2ca7f9d6671d04dd04c87c7f68693f0c488762ec7087051`.
+  Wheel smoke, twice-staged ten-artifact byte identity, complete release smoke,
+  and 94/602-entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Final source separator: the unchanged 46-package lock, 361-file formatting,
+  Ruff, strict Pyright, strict docs, protected surfaces, and whitespace pass.
+  All 1,603 architecture assertions pass with one established Windows
+  capability skip; all nine focused M59/M118 assertions pass.
+- Precommit history/hosted-state audit: after fetch/prune, local and remote
+  `main` and the merge base remain exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M117 remains exact head
+  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
+  `a031129b5a46003dbc5b588cab94c3adba704301`, with sole parent M116.
+  Divergence is `0 18`; all 18 commits are linear with exact maintainer
+  identity and one DCO sign-off each. Only `main` plus required M100-M118
+  local branches and only remote `main` exist. Full Git checking reports 44
+  dangling-only lines and zero critical finding. GitHub authentication is
+  valid; M118 PR/run, releases, and remote tags are empty; no hosted Actions
+  allocation was triggered.
+- Post-audit separator: strict docs build in 1.64 seconds with only the known
+  Material notice and all nine M59/M118 assertions pass in 0.38 seconds.
+  Protected surfaces, exact 16-path scope, whitespace, public identity hygiene,
+  and high-confidence secret scans pass.
+- Final precommit metadata separator: all nine focused M59/M118 assertions pass
+  in 0.37 seconds after the post-audit task-state update, and whitespace passes.
+- Implementation scope: RFC-0101, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, metadata, doctor,
+  lock, dependencies, version, runtime package/API, providers, and release
+  authority remain unchanged.
+- Qualification status: all local M118 gates pass; commit and scratch cleanup
+  remain.
+- Nonclaims: no Python 3.15 support, final/later-prerelease, cross-platform,
+  graphics, free-threaded, full-suite, extension/provider, hosted M118 run,
+  real public release, tag, release, publication, push, or PR.
+
+## M117 free-threaded serial compatibility - local qualification complete
+
+- Base: fully locally validated M116 DCO commit
+  `34bad8a0fa304a2e0a96f5cc177483d09abd7acd`, tree
+  `26be29b19d1b91e3e3b889d6a3337541290739b9`, sole parent exact M115.
+- Branch: `release/m117-free-threaded-serial-compatibility`; unpublished under
+  the existing public-review identity hold.
+- Direction: retain standard GIL CPython 3.12-3.14 as the supported baseline;
+  record exact free-threaded serial compatibility as an optional observation,
+  not a support or concurrency promise.
+- Current-source basis: PEP 779 moved free-threaded CPython to supported-but-
+  optional Phase II for Python 3.14; Python documents remaining object-level
+  thread-safety limits; uv supports explicit `3.14t` selection.
+- Exact Windows probe: uv installed CPython 3.14.5 free-threaded. A pure local
+  wheel installed without dependencies into an isolated environment. Version
+  and doctor passed. With the build free-threaded and its GIL disabled, 120
+  virtual ticks/frames completed in 2,000,000,000 nanoseconds, lifecycle closed,
+  and a worker-thread call failed with `engine.wrong_thread`. The installed-
+  wheel headless example matched the deterministic summary.
+- Deliberate red: after one mechanical Ruff reformat, the exact CPython 3.12.13
+  contract passed three protected baseline/ownership/scope assertions and
+  failed only the intended absent-RFC/docs assertion in 0.23 seconds.
+- Implementation correction: the first post-implementation run failed only
+  because one required prose phrase was checked case-sensitively at sentence
+  start. The corrected case-normalized contract remains format/Ruff-clean and
+  all four assertions pass in 0.20 seconds. Strict docs build in 1.64 seconds;
+  whitespace passes; exactly 16 intended paths change.
+- Focused proof: the first exact-runtime launches were sandbox-blocked before
+  pytest. Approved reruns pass all four assertions on exact standard-GIL
+  CPython 3.12.13, 3.13.13, and 3.14.5 in 0.21, 0.68, and 0.58 seconds.
+- Static/source proof: the unchanged 46-package lock, 360-file format check,
+  Ruff, strict Pyright, 1,599 architecture assertions with one established
+  Windows capability skip, strict docs, protected surfaces, and whitespace
+  pass.
+- Complete suites: exact 3.12.13 with graphics passes 3,139 tests with 15
+  skips; exact standard-GIL 3.13.13 and 3.14.5 base environments each pass
+  3,129 tests with 16 skips.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,576-byte pure wheel at
+  SHA-256
+  `5161d89bb35aaf7b8a5af78912cbd5858c0ec67364002b44ed4f92c05021095d`
+  and a 1,551,612-byte source archive at SHA-256
+  `286306db276e076688abc92bfb8c16c374a60b64579ea6789fb6d8116233fb12`.
+  Wheel smoke passes. Two complete same-environment ten-artifact stages are
+  byte-identical; complete release smoke and 94/600-entry package hygiene pass.
+- Findings-first review: exactly 16 intended paths, no actionable finding,
+  zero protected workflow/lifecycle/wheel-smoke/runtime/metadata/lock diff, zero
+  public tool-identity or high-confidence secret match, clean package hygiene,
+  and clean whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,576-byte
+  wheel at SHA-256
+  `5161d89bb35aaf7b8a5af78912cbd5858c0ec67364002b44ed4f92c05021095d`
+  and a 1,551,972-byte source archive at SHA-256
+  `9ea05239d408bbead73a774790da1fe273b8cf2252b1fd4cdbae462e817333d6`.
+  Wheel smoke, twice-staged ten-artifact byte identity, complete release smoke,
+  and 94/600-entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Final source separator: the unchanged 46-package lock, 360-file formatting,
+  Ruff, strict Pyright, strict docs, protected surfaces, and whitespace pass.
+  All 1,599 architecture assertions pass with one established Windows
+  capability skip; all nine focused M59/M117 assertions pass.
+- Precommit history/hosted-state audit: after fetch/prune, local and remote
+  `main` and the merge base remain exact M99
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M116 remains exact head
+  `34bad8a0fa304a2e0a96f5cc177483d09abd7acd`, tree
+  `26be29b19d1b91e3e3b889d6a3337541290739b9`, with sole parent M115.
+  Divergence is `0 17`; all 17 commits are linear with exact maintainer
+  identity and one DCO sign-off each. Only `main` plus required M100-M117
+  local branches and only remote `main` exist. Full Git checking reports 44
+  dangling-only lines and zero critical finding. GitHub authentication is
+  valid; M117 PR/run, releases, and remote tags are empty; no hosted Actions
+  allocation was triggered.
+- Post-audit separator: the first strict-docs and focused-test launches were
+  blocked before project execution by sandbox denial of the existing uv cache.
+  The approved rerun built strict docs in 1.70 seconds with only the known
+  Material notice and passed all nine M59/M117 assertions in 0.39 seconds.
+  Protected surfaces, exact 16-path scope, whitespace, public identity hygiene,
+  and high-confidence secret scans pass.
+- Final precommit metadata separator: all nine focused M59/M117 assertions pass
+  in 0.38 seconds after the post-audit task-state update, and whitespace passes.
+- Implementation scope: RFC-0100, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, metadata, lock,
+  dependencies, version, runtime package/API, graphics, and release authority
+  remain unchanged.
+- Qualification status: exact DCO commit
+  `2015e8c613366996a813362a1d95edea98b42bb0`, tree
+  `a031129b5a46003dbc5b588cab94c3adba704301`, sole parent M116, 16 intended
+  paths, exact maintainer identity, one sign-off, and `0 18` divergence.
+  Fourteen audited ignored/untracked/non-reparse M117/test scratch targets were
+  removed and zero remain; the tracked worktree was clean before M118.
+- Nonclaims: no concurrent safety, performance, graphics/wgpu, cross-platform
+  free-threaded support, extension compatibility, hosted M117 run, real public
+  release, tag, release, publication, push, or PR.
+
+## M116 sample-bundle semantic portability - implementation in progress
+
+- Base: fully locally validated M115 DCO commit
+  `b16e5dc0b1f2b67edddce36e3e7ae10799467da1`, tree
+  `b3877bf9a11cddbb4dca28cc5a8488ff29cfaf68`, sole parent exact M114.
+- Branch: `release/m116-separate-sample-semantic-portability`; unpublished
+  under the existing public-review identity hold.
+- Direction: separate semantic portability from byte identity. Supported
+  runtime producers may emit different valid Deflate bytes while supported
+  consumers extract the same fixed source-defined sample tree.
+- Primary-source basis: PKWARE assigns method `8` to Deflate; Python documents
+  `ZIP_DEFLATED` as the usual ZIP method and reports no known incompatibility
+  from its default Windows zlib-ng change; zlib-ng documents a zlib-compatible
+  API.
+- Exact Windows matrix: CPython 3.12.13, 3.13.13, and 3.14.5 each produced the
+  fixed bundle and each consumed all three outputs through complete extraction.
+  All nine combinations passed with 50 files and canonical extracted-tree
+  SHA-256
+  `eb4089dc35539baa9af95c757da9172506d61b6d45ab19d5ad5d8740b77a9ed0`.
+  The zlib and zlib-ng archive identities remain different exactly as M115
+  records.
+- Deliberate red: exact CPython 3.12.13 passed five behavior and protected-
+  surface assertions and failed only the intended absent-documentation
+  assertion in 0.32 seconds. One initial format check requested a mechanical
+  reformat; the corrected test and ignored probe are Ruff-clean.
+- Implementation scope: RFC-0099, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, producer, verifier,
+  reproducibility script, manifests, dependencies, lock, version, runtime
+  package/API, and release authority remain unchanged.
+- Focused proof: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass all six
+  M116 assertions.
+- Static/source proof: the unchanged 46-package lock, 359-file format check,
+  Ruff, strict Pyright, 1,595 architecture assertions with one established
+  Windows capability skip, strict docs, protected surfaces, and whitespace
+  pass.
+- Complete suites: exact 3.12.13 with graphics passes 3,135 tests with 15
+  skips; exact 3.13.13 and 3.14.5 base environments each pass 3,125 tests with
+  16 skips. The first 3.14.5 process was interrupted and supplies no result;
+  its clean rerun passed in 115.07 seconds.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profiles,
+  Clockwork Arena, and Agent World Builder pass with the established
+  deterministic state, capture, and replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,345-byte pure wheel at
+  SHA-256
+  `0d399846d6222fa62c5a7dfd84c4344bf5268f597d2f617cd88804adb0df153c`
+  and a 1,542,886-byte source archive at SHA-256
+  `2e9b7fe85ca29c5bb845a3aa9dcc578b325b2c2d40bd2286948e4b75bc20bbd3`.
+  Wheel smoke passes. Two complete same-environment ten-artifact stages are
+  byte-identical; complete release smoke and 94/598-entry package hygiene pass.
+- Findings-first review: exactly 15 intended paths, no actionable finding,
+  zero protected workflow/stager/verifier/reproducibility/runtime/metadata/lock
+  diff, zero public tool-identity or high-confidence secret match, clean
+  package hygiene, and clean whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,345-byte
+  wheel at SHA-256
+  `0d399846d6222fa62c5a7dfd84c4344bf5268f597d2f617cd88804adb0df153c`
+  and a 1,544,475-byte source archive at SHA-256
+  `69e4adf74f2b5425b5cedbe45b692ec8f4ba63b266b93c4f5571668ab1f96b41`.
+  Wheel smoke, twice-staged ten-artifact byte identity, complete release smoke,
+  and 94/598-entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Corrected final source separator: the unchanged 46-package lock, 359-file
+  formatting, Ruff, strict Pyright, strict docs, protected surfaces, and
+  whitespace pass. All 1,595 architecture assertions pass with one established
+  Windows capability skip; all 11 focused M59/M116 assertions pass.
+- Precommit history/hosted-state audit: local/remote `main` and merge base are
+  exact M99 `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`; M115 is exact head
+  `b16e5dc0b1f2b67edddce36e3e7ae10799467da1`, tree
+  `b3877bf9a11cddbb4dca28cc5a8488ff29cfaf68`, sole parent M114. Divergence is
+  `0 16`; the range is linear M100-M115 with exact maintainer identity and one
+  DCO sign-off on each commit. Exactly 15 intended paths change. Only `main`
+  plus required M100-M116 local branches and only remote `main` exist. Full Git
+  checking reports 44 dangling-only lines and zero critical finding. GitHub
+  authentication is valid and M116 PR/run, releases, and remote tags are empty;
+  no hosted Actions allocation was triggered.
+- Post-audit separator: strict docs, all 11 focused M59/M116 assertions,
+  protected surfaces, whitespace, exact 15-path scope, and public tool-identity/
+  high-confidence secret scans pass.
+- Final precommit metadata separator: all 11 focused assertions and whitespace
+  pass after the post-audit task-state update.
+- Qualification status: all local M116 gates pass; commit and scratch cleanup
+  remain.
+- Nonclaims: no alternate method, cross-runtime byte identity, cross-platform
+  proof, general ZIP interoperability, hosted M116 run, real public release,
+  tag, release, publication, push, or PR.
+
+## M115 scope sample-bundle byte reproducibility - implementation in progress
+
+- Base: fully locally validated M114 DCO commit
+  `0d365baf584fd4074e6b46128a6b4a1016ca296f`, tree
+  `2b3e8d8d173ed9a99978a92f072ff385422b9334`, sole parent exact M113.
+- Branch: `release/m115-scope-sample-bundle-reproducibility`; unpublished
+  under the existing public-review identity hold.
+- Direction: scope sample-bundle byte reproducibility to repeated production
+  within one fixed resolved release environment. Supported CPython 3.12-3.14
+  runtimes remain compatible consumers/verifiers/local staging environments,
+  not cross-runtime byte-identical producers.
+- Primary-source basis: Python 3.14.0 released on 2025-10-07; official Python
+  documentation records zlib-ng as the default Windows `zlib` implementation
+  and exposes build/runtime implementation constants.
+- Exact Windows producer probe: CPython 3.12.13 and 3.13.13 used zlib 1.3.1 and
+  each repeated a 111,168-byte archive at SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+  CPython 3.14.5 used zlib-ng 2.2.4 and repeated a different 111,413-byte
+  archive at SHA-256
+  `d592e99c8c3a65ae63f0cf89ed7eff6094365ca98ba58d08c2099fac4316834b`.
+  Every pair was byte-identical within its resolved environment.
+- Infrastructure fact: the first sandboxed exact-runtime launches exited 1
+  before project execution because uv's existing user cache was inaccessible;
+  approved cache-access reruns exited 0.
+- Deliberate red: exact CPython 3.12.13 passed six behavior and protected-
+  surface assertions and failed only the intended absent-documentation
+  assertion in 0.32 seconds.
+- Implementation scope: RFC-0098, one focused architecture contract, and
+  aligned public/project records. Workflows, allocation, producer, verifier,
+  reproducibility script, manifest, dependencies, lock, version, runtime
+  package/API, and release authority remain unchanged.
+- Focused proof: exact CPython 3.12.13, 3.13.13, and 3.14.5 each pass all
+  seven M115 assertions.
+- Static/source proof: the unchanged 46-package lock, 358-file format check,
+  Ruff, corrected strict Pyright with the locked graphics extra, 1,589
+  architecture assertions with one established capability skip, strict docs,
+  and whitespace pass. The first Pyright environment omitted the optional
+  graphics providers and its failure is retained factually.
+- Complete suites: exact 3.12.13 with graphics passes 3,129 tests with 15
+  skips; exact 3.13.13 and 3.14.5 base environments each pass 3,119 tests with
+  16 skips.
+- Provider/slice proof: all ten real-wgpu tests, base and graphics profile
+  smokes, Clockwork Arena, and Agent World Builder pass with unchanged
+  deterministic state/replay identities.
+- Initial artifacts: two fresh builds reproduce a 278,133-byte pure wheel at
+  SHA-256
+  `1c60a9d05b6180649c7cb975c0394eda198df3061769de7956a5b3112a1b970a`
+  and a 1,536,034-byte source archive at SHA-256
+  `bb04237c4ac401e5c1044c4c36f1dc4c3e044b1aed3760c023a10eb6d8f96aa0`.
+  Wheel smoke passes. Two complete same-environment stages are byte-identical,
+  including the 111,168-byte sample archive at SHA-256
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`;
+  complete release smoke and 94/596-entry package hygiene pass.
+- Findings-first review: exactly 15 intended paths, no actionable finding,
+  zero protected workflow/stager/verifier/reproducibility/runtime/metadata/lock
+  diff, zero public tool-identity or high-confidence secret match, and clean
+  whitespace.
+- Review-inclusive artifacts: two builds reproduce the unchanged 278,133-byte
+  wheel at SHA-256
+  `1c60a9d05b6180649c7cb975c0394eda198df3061769de7956a5b3112a1b970a`
+  and a 1,537,594-byte source archive at SHA-256
+  `93a6b2df81e8b229c4dc2e89453d4477426925b41a967eed893c6b3a994d6aca`.
+  Wheel smoke, twice-staged byte identity, complete release smoke, and 94/596-
+  entry package hygiene pass; the sample identity remains
+  `52e3fe162b844ba2c88634871e3d2d67a9afbf42fc1cd2c74b508186f786f2b3`.
+- Final source separator: lock, 358-file formatting, Ruff, strict Pyright,
+  strict docs, protected surfaces, and whitespace pass. An initial parallel
+  pair of pytest gates collided on the shared `.pytest-tmp` root; after exact
+  verified cleanup, the architecture suite passed sequentially with 1,589
+  assertions and one established skip, then all 12 focused metadata/M115
+  assertions passed. The first sequential launch was separately blocked before
+  project execution by sandboxed uv-cache access and the approved rerun passed.
+- History/hosted-state audit: refreshed local/remote `main` and merge base are
+  exact M99; M114 head/tree/sole-parent and the M100-M114 linear stack are
+  exact with `0 15` divergence. Exact maintainer identity and one M114 DCO
+  sign-off pass. Only required local stack branches and `origin/main` exist.
+  Git fsck reports 44 dangling-only lines and zero critical finding. M115 PR,
+  Actions-run, release, and remote-tag queries are empty, so local work consumed
+  no hosted runner allocation.
+- Post-audit separator: strict docs, all 12 focused metadata/M115 assertions,
+  protected surfaces, whitespace, exact 15-path scope, public tool-identity
+  scan, and high-confidence secret scan pass.
+- Final precommit metadata separator: all 12 focused metadata/M115 assertions
+  and whitespace pass after final task-state wording.
+- Qualification status: commit and cleanup remain.
+- Nonclaims: no cross-runtime byte identity, compressor identity/provenance,
+  general reproducible-build result, hosted M115 run, real public release,
+  tag, release, publication, push, or PR.
+
+## M114 retain sample-member compression-level non-observability - implementation in progress
+
+- Base: fully locally validated M113 standalone DCO commit
+  `0c1d81bea0079e2946b2ec2919c1e7fc6cfbf9b3`, tree
+  `14c2b29bcc787c3c784168b5efbc726ed25a2d72`, with sole parent exact M112.
+  It remains unpushed and has no hosted qualification claim.
+- M113 closeout: exact maintainer author/committer identity, one DCO trailer,
+  15 intended paths, clean tracked state, and `0 14` divergence from current
+  `origin/main` were verified. Nine audited M113 scratch targets were removed
+  and separately confirmed absent.
+- Direction evidence: PKWARE's Deflate option bits identify broad normal,
+  maximum, fast, and super-fast categories rather than an exact numeric level.
+  Python's `compresslevel` configures writing; CPython 3.13 added public
+  `ZipInfo.compress_level`, while parsed members initialize it as unknown.
+- Exact runtime/producer probe: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  requested levels `0`, `1`, `6`, and `9`, then reopened every member with
+  method `8`, extraction version `20`, zero flags, readable bytes, and no
+  recovered exact level. Controlled levels `6` and `9` produced identical
+  archive bytes on all three runtimes. The fixed producer remains explicit at
+  level `9`; all 50 reopened members likewise expose no exact level.
+- Probe correction: its first format/lint checks requested one formatting pass
+  and one import sort. Ruff applied those mechanical corrections, after which
+  both checks passed. All three exact runtime executions had already exited
+  zero; no clean static claim relies on the initial checks.
+- Deliberate-red contract: the format/Ruff-clean exact CPython 3.12.13 run
+  passes 15 behavior, complete/mixed level, standard-writer, inventory,
+  producer, source-shape, and protected-surface assertions and fails only the
+  intentionally missing documentation assertion in 0.45 seconds.
+- Implementation scope: RFC-0097 and aligned records retain compression-level
+  non-observability without changing runtime. The decision adds no exact level-
+  9 verifier profile, inferred compressor level, compression-ratio policy,
+  recompression, raw Deflate parser, payload-content read, workflow, dependency,
+  producer, runtime API, version, or release authority.
+- Implementation checkpoint: the focused contract remains format/Ruff clean;
+  all 16 assertions pass on exact CPython 3.12.13 in 0.41 seconds; strict docs
+  and whitespace pass.
+- Supported-Python focused proof: all 16 assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.41, 0.78, and 0.76 seconds.
+- Static/architecture proof: the unchanged 46-package lock resolves; the exact
+  45-package graphics environment is restored; all 357 Python files are format
+  clean; Ruff and strict Pyright pass; all 1,582 architecture assertions pass
+  with one established skip in 10.83 seconds; strict docs and whitespace pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,122
+  tests with 15 skips in 108.75 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,112 tests with 16 skips in 100.51 and 106.05 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.53 seconds;
+  fresh one-repeat base and graphics profiles validate with two and three
+  workloads. Clockwork Arena and Agent World Builder reproduce their
+  established state, capture, replay, render, query, and registered-test
+  identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,859-byte
+  pure wheel at
+  `da01350575fe086ab26f361b6d7cd7517b1559bba857453fbe9683de645cc4db`
+  and a 1,528,920-byte source archive at
+  `61ed0826b9d17ff152c1fcfae70218fd162524b189b8fe64adb812d1580c3b0d`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/594-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review: exactly 15 intended record, documentation, and test
+  paths change. Protected workflows, verifier, stager, metadata, lock, runtime
+  package/API, dependencies, producer, version, and release authority have zero
+  diff. The contract covers all four requested levels, reopened metadata,
+  byte-level ambiguity, complete and mixed bundles, the standard-writer
+  default, inventory precedence, fixed-producer configuration, source shape,
+  and protected surfaces. Public tool-identity, high-confidence secret,
+  whitespace, and stale-current-status scans are clean. No actionable finding
+  remains.
+- Review-inclusive artifacts: two fresh builds reproduce the unchanged
+  277,859-byte pure wheel at
+  `da01350575fe086ab26f361b6d7cd7517b1559bba857453fbe9683de645cc4db`
+  and a 1,530,147-byte source archive at
+  `c0970acd55a1ab4c2af5e718c265b634bdea9064ac2c9b8bfaa1ce869fb35e4f`.
+  Reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  complete release smoke, and 94/594-entry package hygiene pass.
+- Final reviewed-tree separator: the unchanged 46-package lock, 357-file format
+  check, Ruff, strict Pyright, all 1,582 architecture assertions with one
+  established Windows capability skip, strict docs, all 21 M59 metadata-
+  hygiene plus M114 compatibility assertions, and whitespace pass.
+- Precommit audit: fetch/prune retains exact M113 head/tree/parent and exact M99
+  local-main/origin-main/merge-base identity with `0 14` divergence and a
+  linear M100-M113 range. Exactly 15 intended paths change. Only `main` plus
+  required M100-M114 local branches exist and only `origin/main` remotely.
+  Exact maintainer identity, protected surfaces, whitespace, object integrity,
+  high-confidence secret scan, and public tool-identity scan pass. GitHub
+  reports no M114 PR/run, release, or tag. The first release-list query used an
+  unsupported `url` field and exited before returning data; the corrected
+  supported-field query returned empty.
+- Final post-audit separator: strict docs, all 21 M59 metadata-hygiene plus M114
+  compatibility assertions, protected surfaces, whitespace, exact 15-path
+  scope, high-confidence secret scan, and public tool-identity scan pass.
+- Final precommit metadata separator: all 21 M59 metadata-hygiene plus M114
+  compatibility assertions and whitespace pass after the task-state closeout.
+
+## M113 retain sample-member compression-method compatibility - implementation in progress
+
+- Base: fully locally validated M112 standalone DCO commit
+  `b3c9406c382dc91802a424e308801be2ef1b100e`, tree
+  `2cfd7f3bb027736cc6a0b755a182e8300bcfb68d`, with sole parent exact M111.
+  It remains unpushed and has no hosted qualification claim.
+- M112 closeout: exact maintainer author/committer identity, one DCO trailer,
+  15 intended paths, clean tracked state, and `0 13` divergence from current
+  `origin/main` were verified. Nine direct ignored, untracked, non-reparse
+  `.tmp/m112*` targets matched the exact expected set, were removed through an
+  absolute-parent guard, and were separately confirmed absent.
+- Direction evidence: PKWARE defines compression as optional, method `0` as
+  stored, and method `8` as deflated. Python exposes and reads both and defaults
+  new archives to stored. M64 already admits exactly those two methods and M95
+  independently requires local/central method agreement.
+- Exact runtime/producer probe: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  preserve/read stored and deflated members with version `20`, flags `0`, and
+  payload `payload`. All 50 fixed-producer members remain method `8`, versions
+  `20`, and flags `0`.
+- Deliberate-red contract: after one Ruff-only assertion-order correction, the
+  format/Ruff-clean exact CPython 3.12.13 run passes 13 behavior, complete and
+  mixed bundle, standard-writer, file-type, unsupported-method, inventory,
+  producer, source-shape, and protected-surface assertions and fails only the
+  intentionally missing documentation assertion in 0.76 seconds.
+- Implementation scope: RFC-0096 and aligned records retain M64's stored/
+  deflated allowlist and M95's local/central agreement without changing
+  runtime. The decision adds no exact deflate-only profile, new decompressor,
+  compression-level or ratio policy, recompression, payload-content read,
+  workflow, dependency, producer, runtime API, version, or release authority.
+- Implementation checkpoint: the focused contract remains format/Ruff clean;
+  all 14 assertions pass on exact CPython 3.12.13 in 0.37 seconds; strict docs
+  and whitespace pass.
+- Supported-Python focused proof: all 14 assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.35, 0.71, and 0.72 seconds.
+- Static/architecture proof: the unchanged lock resolves; all 356 files are
+  format clean; Ruff and strict Pyright pass; all 1,566 architecture assertions
+  pass with one established skip in 11.23 seconds; strict docs and whitespace
+  pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,106
+  tests with 15 skips in 109.96 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,096 tests with 16 skips in 101.88 and 105.82 seconds.
+- Graphics/profile/vertical proof: the first command was sandbox-denied before
+  pytest and left both profile targets absent. The approved rerun passes all
+  ten real-wgpu tests in 6.68 seconds; two- and three-workload profiles
+  validate; Clockwork Arena and Agent World Builder reproduce their established
+  state, capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,620-byte
+  pure wheel at
+  `f88ce3fcc215203e053e43b78586531259daea01aa59464691391706f0a1ee7b`
+  and a 1,523,453-byte source archive at
+  `393ce4098c849721da265794cef6f82132536c13a6c45b14b097f218ce99a90d`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/592-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review corrected the inventory-precedence fixture to create
+  and assert both stored and deflated members before the unchanged no-read/no-
+  staging failure. The corrected focused/metadata/docs/whitespace gate passes.
+  Exactly 15 intended record, documentation, and test paths change; protected
+  workflows, validator, stager, metadata, lock, runtime package/API,
+  dependencies, producer, version, and release authority have zero diff. No
+  actionable finding remains.
+- Review-inclusive artifacts: two fresh builds reproduce the unchanged
+  277,620-byte pure wheel at
+  `f88ce3fcc215203e053e43b78586531259daea01aa59464691391706f0a1ee7b`
+  and a 1,524,010-byte source archive at
+  `849f0b20c9f4db764b637d65786cdd1a86ab6dde2d8b749e7d98c1bcbea59c43`.
+  Reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  complete release smoke, and 94/592-entry package hygiene pass.
+- Final reviewed-tree separator: the unchanged lock, 356-file format check,
+  Ruff, strict Pyright, 1,566 architecture assertions with one established
+  Windows capability skip, strict docs, 19 focused metadata/compatibility
+  assertions, and whitespace all pass.
+- Precommit audit: fetch/prune retains exact M112 head/tree/parent and exact
+  M99 local-main/origin-main/merge-base identity with `0 13` divergence and a
+  linear M100-M112 range. Exactly 15 intended paths change. Only `main` plus
+  required M100-M113 local branches exist and only `origin/main` remotely.
+  Exact maintainer identity, protected surfaces, whitespace, object integrity,
+  secret scan, and public tool-identity scan pass. GitHub reports no M113 PR/
+  run, release, or tag.
+- Final post-audit separator: strict docs, all 19 focused assertions, protected
+  surfaces, whitespace, exact 15-path scope, high-confidence secret scan, and
+  public tool-identity scan pass.
+
+## M112 retain sample-member creating-system compatibility - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `b3c9406c382dc91802a424e308801be2ef1b100e`, tree
+  `2cfd7f3bb027736cc6a0b755a182e8300bcfb68d`, has sole parent exact M111,
+  exact maintainer author/committer identity, one sign-off, and 15 intended
+  paths. Nine audited `.tmp/m112*` targets were removed and zero remain.
+
+- Base: fully locally validated M111 standalone DCO commit
+  `fb577c5d414653fe2a6f66841bda8d86c8f306f7`, tree
+  `833039101e454e72872d203605a266bce7c9d82c`, with sole parent exact M110.
+  It remains unpushed and has no hosted qualification claim.
+- M111 closeout: exact maintainer author/committer identity, one DCO trailer,
+  15 intended paths, and `0 12` divergence from current `origin/main` were
+  verified. Nine direct ignored non-reparse `.tmp/m111*` targets were audited,
+  removed through an exact-set guard, and separately confirmed absent. The
+  tracked worktree was clean before M112 began.
+- Direction evidence: PKWARE makes the upper `version made by` byte identify
+  the host system compatible with external attributes and defines hosts `0`
+  and `3` as DOS-family and UNIX. CPython initializes `ZipInfo.create_system`
+  to `0` on Windows and `3` elsewhere. M108 already rejected an exact host-`3`
+  rule after 54 established Windows-fixture regressions.
+- Exact runtime/producer probe: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  preserve creating-system markers `0`, `3`, `10`, `19`, and `255`, retain
+  creation version `20`, mode `0100644`, and readable payloads. All 50 fixed-
+  producer members remain creation version `20`, creating system `3`, and mode
+  `0100644`.
+- Deliberate-red contract: the format/Ruff-clean exact CPython 3.12.13 run
+  passes 15 behavior, representative-host, complete-bundle, standard-writer,
+  file-type, inventory, producer, source-shape, and protected-surface
+  assertions and fails only the intentionally missing documentation assertion
+  in 0.50 seconds.
+- Implementation scope: RFC-0095 and aligned records retain parser-exposed
+  creating-system compatibility without changing runtime. The decision adds no
+  creating-system allowlist, host-specific external-attribute interpretation,
+  permission restoration, payload-content read, workflow, dependency,
+  producer, runtime API, version, or release authority.
+- Corrected focused proof: all 16 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.44, 0.80, and 0.79 seconds. The test remains format/
+  Ruff clean; strict docs and whitespace pass.
+- Static/architecture proof: the unchanged lock resolves; all 355 files are
+  format clean; Ruff and strict Pyright pass; all 1,552 architecture assertions
+  pass with one established skip in 10.42 seconds; strict docs and whitespace
+  pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,092
+  tests with 15 skips in 108.98 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,082 tests with 16 skips in 99.76 and 105.83 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.62 seconds;
+  two- and three-workload profiles validate; Clockwork Arena and Agent World
+  Builder reproduce their established state, capture, replay, render, query,
+  and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,458-byte
+  pure wheel at
+  `d19962155511815c3b165236af6a99f354511cca497ee5145af0b96524dfd897`
+  and a 1,517,698-byte source archive at
+  `a685c1f1a226e9800c6376ca046e76afaafa6b26ae08431539908f3a56461c57`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/590-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review corrected two weak assertions to require exact mixed-
+  host extraction-root and standard-writer host identities. The corrected
+  focused/metadata/docs/whitespace gate passes. Exactly 15 intended record,
+  documentation, and test paths change; protected workflows, validator,
+  stager, metadata, lock, runtime package/API, dependencies, producer, version,
+  and release authority have zero diff. No actionable finding remains.
+- Review-inclusive artifacts: two fresh builds reproduce the unchanged
+  277,458-byte pure wheel at
+  `d19962155511815c3b165236af6a99f354511cca497ee5145af0b96524dfd897`
+  and a 1,518,358-byte source archive at
+  `be95c1d0b91ea8694bddd7071bb52ea36ac8cfc3b735722d778332a3595c1cd5`.
+  Reproducibility, isolated-wheel smoke, deterministic ten-artifact staging,
+  and complete release smoke pass. Both builds contain 94 wheel and 590 source
+  entries with no native, WASM, bytecode, or retired control-metadata paths.
+  The first archive-inspection wrapper failed before inspection on an
+  unsupported PowerShell option; the corrected explicit-cardinality audit
+  passed.
+- Final reviewed-tree separator: the unchanged lock, 355-file format check,
+  Ruff, strict Pyright, 1,552 architecture assertions with one established
+  Windows capability skip, strict docs, 21 focused metadata/compatibility
+  assertions, and whitespace all pass.
+- Precommit audit: fetch/prune retains exact M111 head/tree/parent and exact
+  M99 local-main/origin-main/merge-base identity with `0 12` divergence and a
+  linear M100-M111 range. The complete scope is exactly 15 paths: 13 tracked
+  edits and two new files. Only `main` plus required M100-M112 local branches
+  exist and only `origin/main` remotely. Exact maintainer identity, protected
+  surfaces, whitespace, object integrity, secret scan, and public tool-
+  identity scan pass. GitHub reports no M112 PR/run, release, or tag.
+- Final post-audit separator: strict docs, all 21 focused assertions, protected
+  surfaces, whitespace, exact 15-path scope, high-confidence secret scan, and
+  public tool-identity scan pass.
+
+## M111 retain sample-member permission compatibility - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `fb577c5d414653fe2a6f66841bda8d86c8f306f7`, tree
+  `833039101e454e72872d203605a266bce7c9d82c`, has sole parent exact M110,
+  exact maintainer author/committer identity, one sign-off, and 15 intended
+  paths. Nine audited `.tmp/m111*` targets were removed and zero remain.
+
+- Base: fully locally validated M110 DCO commit
+  `e7730664c4486cdf1fa0f171bf057cb146db7aa3`, tree
+  `d88e6ca2c85012b8fdb785ea7547224c46af87a5`, with sole parent exact M109.
+  It remains unpushed and has no hosted qualification claim.
+- M110 verification and cleanup: the commit has exact maintainer author/
+  committer identity, one DCO trailer, 15 intended paths, and `0 11` divergence
+  from current `origin/main`. The first cleanup guard failed safely before
+  deletion because `DirectoryInfo.DirectoryName` did not represent the parent.
+  The corrected absolute-parent/no-reparse guard removed exactly eight audited
+  ignored `.tmp/m110*` targets; zero remain and the worktree became clean.
+- Direction evidence: PKWARE defines external attributes relative to the
+  encoded creating host. Python exposes public `ZipInfo.external_attr`; the
+  accepted response is to retain M65's file-type boundary and permission-bit
+  compatibility, not add exact producer metadata admission. No CI expansion is
+  justified.
+- Runtime/producer evidence: exact CPython 3.12.13, 3.13.13, and 3.14.5 each
+  expose and read regular-file permission variants `0100400`, `0100600`,
+  `0100644`, `0100755`, and `0100777`, plus missing-type mode `0600`. All 50
+  producer members expose create system `3`, external attribute `2175008768`,
+  and mode `0100644`.
+- Corrected red contract: the first contract passed 15 assertions but failed an
+  invalid all-zero preservation control plus the intended docs assertion because
+  CPython normalizes zero external attributes to `0600`. After removing that
+  case, exact CPython 3.12.13 passes 15 behavior, file-type, inventory, producer,
+  source, and protected-surface assertions and fails only documentation in 0.51
+  seconds.
+- Implementation scope: RFC-0094 and aligned records protect the existing M65
+  file-type classifier without changing runtime. It adds no exact external-
+  attribute profile, host-semantics expansion, permission restoration, payload-
+  content read, workflow, dependency, producer, runtime API, version, release
+  authority, tag, release, or publication.
+- Corrected proof: all 16 focused compatibility assertions pass on exact
+  CPython 3.12.13, 3.13.13, and 3.14.5 in 0.48, 0.82, and 0.82 seconds. The
+  unchanged lock resolves; all 354 files are format clean; Ruff and strict
+  Pyright pass; all 1,536 architecture assertions pass with one established
+  skip in 10.16 seconds; strict docs and whitespace pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,076
+  tests with 15 skips in 108.50 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,066 tests with 16 skips in 99.50 and 105.35 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.82 seconds;
+  two- and three-workload profiles validate; Clockwork Arena and Agent World
+  Builder reproduce their established state, capture, replay, render, query,
+  and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,330-byte
+  pure wheel at
+  `5f0d10775f4098394fe6dffce4a7c5a578dae2554f8c1df1ba0b1f2872514c0c`
+  and a 1,511,678-byte source archive at
+  `cb5e3411da250a4b63a6e6fdf8ffa9c1d45204f02f67bc44e1e3fc5c8975bcf9`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/588-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review covers exactly 15 intended record/documentation/test
+  paths and found no runtime, security, architecture, diagnostic-order,
+  ownership, documentation, or scope defect. Protected workflows, verifier,
+  stager, metadata, lock, runtime package/API, dependencies, producer, version,
+  and release authority have zero diff and retain their recorded hashes. Narrow
+  service-identity and high-confidence secret scans return zero matches.
+- Review-inclusive artifacts reproduce the unchanged 277,330-byte wheel at
+  `5f0d10775f4098394fe6dffce4a7c5a578dae2554f8c1df1ba0b1f2872514c0c`
+  and a 1,512,317-byte source archive at
+  `8d9e37f28502639868f257f76c5e372aa8a84dfa060b392b3decccbaaaca38ab`.
+  Reproducibility, isolated-wheel, ten-artifact release, complete release-smoke,
+  and 94/588-entry package-hygiene checks pass.
+- Precommit audit: fetch/prune leaves local/remote `main` at exact M99 and the
+  expected `0 11` divergence. Exactly 15 intended paths change; local branches
+  are only `main` plus the required M100-M111 unpublished stack; the remote has
+  only `main`. DCO identity is exact, protected surfaces have zero diff, secret
+  and metadata-hygiene checks pass, full Git checking finds no corruption, and
+  GitHub reports no open PR, M111 run, release, or tag.
+- Final post-audit strict docs, 21-assertion metadata/M111, secret, scope, and
+  whitespace separator passes. The qualified 15-path diff is ready for its
+  standalone DCO commit.
+
+## M110 retain sample-member timestamp compatibility - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `e7730664c4486cdf1fa0f171bf057cb146db7aa3`, tree
+  `d88e6ca2c85012b8fdb785ea7547224c46af87a5`, has sole parent exact M109,
+  exact maintainer author/committer identity, one sign-off, and 15 intended
+  paths. Eight audited `.tmp/m110*` targets were removed and zero remain.
+
+- Base: fully locally validated M109 DCO commit
+  `42671751f5243e52ec3db7cb6737b2ada87d5e01`, tree
+  `9b799a8ef957efd93acbb8fc1cd8aad7c2cf6b68`, with sole parent exact M108.
+  It remains unpushed and has no hosted qualification claim.
+- M109 verification and cleanup: the commit has exact maintainer author/
+  committer identity, one DCO trailer, 16 intended paths, and `0 10` divergence
+  from current `origin/main`. Its eight audited direct, ignored, non-reparse
+  `.tmp/m109*` targets were removed; zero remain and the base was clean.
+- Rejected direction: a corrected raw central-field probe showed exact CPython
+  3.12.13, 3.13.13, and 3.14.5 expose nonzero `ZipInfo.volume`, but unchanged
+  M109 already rejects it through M82's earlier split-volume gate. The proposed
+  later zero-volume profile was redundant and was removed without a milestone.
+- Timestamp evidence: PKWARE defines MS-DOS calendar timestamp fields relative
+  to 1980 with two-second resolution, not an absolute UTC instant. Exact
+  CPython 3.12.13, 3.13.13, and 3.14.5 each expose alternate
+  `(2026, 8, 25, 12, 34, 56)` and read the fixture payload, while all 50 fixed-
+  producer members expose only `(1980, 1, 1, 0, 0, 0)`.
+- Red contract: exact CPython 3.12.13 collects 21 assertions, passes 11
+  established behavior, precedence, producer, inventory, and protected-
+  surface assertions, and fails ten targeted ordering, stable-error, cleanup,
+  exact-value, helper, and documentation assertions in 0.77 seconds against
+  unchanged M109.
+- Rejected exact direction: the exact-profile implementation passed all 21
+  focused assertions on exact CPython 3.12.13, 3.13.13, and 3.14.5 in 0.26,
+  0.62, and 0.61 seconds. The complete architecture suite then failed 22
+  established compatibility assertions with 1,507 passes and one skip in 10.12
+  seconds. Failures covered bounded extraction, portable paths, atomic staging,
+  exact inventory, owned snapshots, decompression, and diagnostic precedence.
+- Corrected decision: retain M98 local/central timestamp consistency and
+  alternate consistent timestamps while the fixed producer retains its exact
+  reproducible tuple. The exact runtime classifier was removed; smoke-release
+  runtime is byte-identical to M109. RFC-0093 records the compatibility boundary.
+  It adds no timezone or UTC conversion, verifier clock use, payload-content
+  read, workflow, dependency, producer, runtime API, version, release authority,
+  tag, release, or publication. No CI expansion is justified.
+- Corrected proof: all 12 focused compatibility assertions pass on exact
+  CPython 3.12.13, 3.13.13, and 3.14.5 in 0.40, 0.77, and 0.75 seconds. The
+  unchanged lock resolves; all 353 files are format clean; Ruff and strict
+  Pyright pass; all 1,520 architecture assertions pass with one established
+  skip in 9.92 seconds; strict docs and whitespace pass.
+- Complete supported-Python proof: exact 3.12.13 with graphics passes 3,060
+  tests with 15 skips in 108.05 seconds; exact 3.13.13 and 3.14.5 each pass
+  3,050 tests with 16 skips in 99.12 and 105.34 seconds.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.82 seconds;
+  two- and three-workload profiles validate; Clockwork Arena and Agent World
+  Builder reproduce their established state, capture, replay, render, query,
+  and registered-test identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 277,151-byte
+  pure wheel at
+  `d952df3f9f0f9772ea641cc9b8e82c5741a44b0245b47e905081403b934b885e`
+  and a 1,505,464-byte source archive at
+  `89303fc818d7e4d7a5c2d65701c0d946b1941e770b1023ebf31150946e833771`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/586-entry package hygiene pass. Factual record updates alter
+  the source archive afterward.
+- Findings-first review covers exactly 15 intended record/documentation/test
+  paths. It corrected one stale historical phrase from “accepted” to “initially
+  selected” for the rejected exact profile and found no remaining runtime,
+  security, architecture, diagnostic, ownership, documentation, or scope
+  defect. Protected workflows, verifier, stager, metadata, lock, runtime
+  package/API, dependencies, producer, version, and release authority have zero
+  diff and retain their recorded hashes. Narrow service-identity, secret,
+  backend/native, and whitespace scans return zero findings.
+- Review-inclusive builds reproduce the same 277,151-byte pure wheel at
+  `d952df3f9f0f9772ea641cc9b8e82c5741a44b0245b47e905081403b934b885e`
+  and a 1,506,500-byte source archive at
+  `dc71320033da2e955a85b282a35a526c491d92b848fb2a7fef30d2ebed68fcb9`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/586-entry package hygiene pass. Final factual records alter the
+  source archive afterward.
+- Final source separator: the unchanged 46-package lock resolves in 0.68
+  milliseconds; all 353 files remain format clean; Ruff and strict Pyright
+  pass; all 1,520 architecture assertions pass with one established skip in
+  10.06 seconds; strict docs build in 1.55 seconds; all 17 metadata/M110
+  assertions pass in 0.99 seconds; and whitespace passes.
+- Precommit audit establishes exact M100-M109 ancestry, M109 head and tree,
+  local/remote M99 main and merge base, and expected `0 10` divergence. Exactly
+  15 intended paths change; only main and required M100-M110 local branches
+  exist, while only `origin/main` plus its symbolic HEAD exists remotely. Exact
+  DCO identity is configured. Authentication is valid; read-only queries report
+  no open PR, M110 run, release, or tag. Git checking reports 287 dangling-only
+  objects and zero defect.
+- Post-audit separator: strict docs build in 1.52 seconds; all 17 metadata/M110
+  assertions pass in 0.59 seconds; exactly 15 paths remain; protected surfaces
+  have zero diff; narrow service-identity and high-confidence secret scans
+  return zero matches; and whitespace passes.
+
+## M109 zero sample-member internal-attribute profile preflight - local qualification and commit complete
+
+- Closeout: standalone DCO commit
+  `42671751f5243e52ec3db7cb6737b2ada87d5e01`, tree
+  `9b799a8ef957efd93acbb8fc1cd8aad7c2cf6b68`, has sole parent exact M108,
+  exact maintainer author/committer identity, one sign-off, and 16 intended
+  paths. Eight audited `.tmp/m109*` targets were removed and zero remain.
+
+- Base: fully locally validated M108 DCO commit
+  `921b8416e187a200d812486fc91c5675cb92b0ef`, tree
+  `8812c7b7bd1a7a3872f99f514ecee4499d09fd3c`, with sole parent exact M107.
+  It remains unpushed and has no hosted qualification claim.
+- M108 verification and cleanup: the commit has exact maintainer author/
+  committer identity, one DCO trailer, 16 intended paths, and `0 9` divergence
+  from current `origin/main`. An exact read-only audit identified nine ignored,
+  direct, non-reparse `.tmp` children. The guarded removal deleted exactly nine;
+  a follow-up found zero remaining targets and a clean worktree.
+- Direction evidence: PKWARE defines the central internal-file-attribute field
+  as an advisory apparent-text bit plus a mainframe record-control bit, with
+  other bits reserved or unused. Python exposes public `ZipInfo.internal_attr`;
+  CPython initializes it to zero. The selected response is one fixed-producer
+  exact profile after M108, not payload classification or general ZIP security.
+  No CI expansion is justified.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each admitted public
+  central internal attributes `1`, read the payload, and confirmed all 50
+  producer members expose only zero.
+- Red contract: exact CPython 3.12.13 collects 20 assertions, passes ten
+  established behavior, precedence, producer, empty-inventory, and protected-
+  surface assertions, and fails ten targeted ordering, stable-error, cleanup,
+  exact-value, helper, and documentation assertions in 0.71 seconds against
+  unchanged M108.
+- Implementation scope: one aggregate public central `info.internal_attr != 0`
+  classifier after M108 and before inventory, plus RFC-0092 and aligned records.
+  It adds no text/binary content interpretation, record-control semantics,
+  external-attribute/host policy, payload-content read, workflow, dependency,
+  producer, runtime API, version, release authority, tag, release, or
+  publication.
+- First implementation checkpoint: both affected Python files are format clean
+  and pass Ruff. The first focused run passed 19 assertions but failed the docs
+  contract because wrapping split the exact classifier phrase, so no complete
+  pass is claimed. After RFC-0092 reflow, all 20 focused assertions pass on
+  exact CPython 3.12.13 in 0.25 seconds, strict docs build in 1.52 seconds, and
+  whitespace passes.
+- Supported-runtime and architecture proof: all 20 focused assertions pass on
+  exact CPython 3.12.13, 3.13.13, and 3.14.5 in 0.25, 0.62, and 0.61 seconds.
+  After restoring the 45-package exact 3.12 graphics environment, the unchanged
+  46-package lock resolves in 0.78 milliseconds; all 352 files are format clean;
+  Ruff and strict Pyright pass; and all 1,508 architecture assertions pass with
+  one established skip in 9.66 seconds.
+- Complete supported-Python proof: exact CPython 3.12.13 passes 3,048 tests with
+  15 skips in 108.19 seconds; exact 3.13.13 and 3.14.5 each pass 3,038 tests with
+  16 skips in 102.84 and 105.11 seconds. The 3.12 environment retained graphics
+  dependencies.
+- Graphics/profile/vertical proof: the exact 45-package CPython 3.12.13 graphics
+  environment was restored; all ten real-wgpu tests pass in 7.24 seconds;
+  fresh one-repeat base and graphics profiles validate with two and three
+  workloads; Clockwork Arena and Agent World Builder reproduce their
+  established state, capture, replay, render, query, and registered-test
+  identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 276,980-byte
+  pure wheel at
+  `462a73cd9c19e5d9e70d2e4095cb5d0bcc05c0727fa6b2045377deae3dabd331`
+  and a 1,500,146-byte source archive at
+  `ff697915b2aacca8d367ad7edea965af9473eee4462a4aa84216cb5f6bcd60f7`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/584-entry package hygiene pass. Factual record updates alter the
+  source archive afterward.
+- Findings-first review covers exactly 16 intended paths and found no runtime,
+  security, architecture, diagnostic-order, ownership, documentation, or scope
+  defect. Protected workflows, stager, metadata, lock, runtime package/API,
+  dependencies, producer, version, and release authority have zero diff and
+  retain their exact recorded hashes. Narrow service-identity and high-
+  confidence secret scans return zero matches.
+- Review-inclusive builds reproduce the same 276,980-byte pure wheel at
+  `462a73cd9c19e5d9e70d2e4095cb5d0bcc05c0727fa6b2045377deae3dabd331`
+  and a 1,500,775-byte source archive at
+  `cd3c0c67ab872df731880322b4c987e4561f3655247f6619b959a98a6c2d369a`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/584-entry package hygiene pass. Final factual records alter the
+  source archive afterward.
+- Final source separator: the unchanged 46-package lock resolves in 0.83
+  milliseconds; all 352 files remain format clean; Ruff and strict Pyright
+  pass; all 1,508 architecture assertions pass with one established skip in
+  9.89 seconds; strict docs build in 1.58 seconds; all 25 metadata/M109
+  assertions pass in 0.82 seconds; and whitespace passes.
+- Precommit audit establishes exact M100-M108 ancestry, M108 head and tree,
+  local/remote M99 main and merge base, and expected `0 9` divergence. Exactly
+  16 intended paths change; only main and required M100-M109 local branches
+  exist, while only `origin/main` plus its symbolic HEAD exists remotely. Exact
+  DCO identity is configured. Authentication is valid; read-only queries report
+  no open PR, M109 run, release, or tag. Git checking reports 287 dangling-only
+  objects and zero defect.
+- Post-audit separator: strict docs build in 1.48 seconds; all 25 metadata/M109
+  assertions pass in 0.42 seconds; exactly 16 paths remain; protected surfaces
+  have zero diff; narrow service-identity and high-confidence secret scans
+  return zero matches; and whitespace passes.
+- Publication hold: M100-M109 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M108 exact sample-member creation-version profile preflight - local qualification and commit complete
+
+- Base: fully locally validated M107 DCO commit
+  `3817d10e362f76f80a0d78c349a541df0ba5b928`, tree
+  `0cc44c16f7f3452a007a1b01dc15fb19bee55422`, with sole parent exact M106.
+  It remains unpushed and has no hosted qualification claim.
+- M107 cleanup: an exact read-only audit identified ten ignored, direct,
+  non-reparse `.tmp` children. The guarded removal deleted exactly ten; a
+  follow-up found zero remaining targets and a clean worktree.
+- Rejected host direction: exact UNIX host `3` passed 17 focused assertions and
+  strict docs but failed 54 established architecture assertions in Windows-
+  created compatibility fixtures. No complete gate pass is claimed. That
+  implementation, contract, and documentation were replaced; host-specific
+  attribute semantics remain deferred.
+- Corrected direction evidence: PKWARE defines the lower `version made by` byte
+  as the encoder's supported ZIP specification version. Python exposes public
+  `ZipInfo.create_version`; CPython defaults to `20`. The selected response is
+  one fixed-producer exact profile after M107, not general encoder capability
+  or ZIP security. No CI expansion is justified.
+- Corrected runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each admitted
+  public central creation version `21`, exposed host `3` and extraction version
+  `20`, read the payload, and confirmed all 50 producer members use creation
+  version `20` and host `3`.
+- Corrected red contract: exact CPython 3.12.13 passed nine established
+  precedence/behavior/protected-surface assertions and failed 11 targeted
+  stable-error, cleanup, exact-value, helper/order, and documentation assertions
+  in 0.74 seconds against unchanged M107. One invalid flag case was removed
+  because the standard writer cleared its synthetic flag input.
+- Implementation scope: one aggregate public central
+  `info.create_version != 20` classifier after M107 and before inventory, plus
+  RFC-0091 and aligned records. It adds no general creation-version semantics
+  parser, attribute-host policy, payload-content read, workflow, dependency,
+  producer, runtime API, version, release authority, tag, release, or
+  publication.
+- Corrected focused proof: all 19 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.26, 1.04, and 0.62 seconds. The complete architecture
+  suite passes 1,488 assertions with one established skip, first in 8.93 and
+  finally in 10.52 seconds.
+- Complete supported-Python proof: exact CPython 3.12.13 passes 3,028 tests with
+  15 skips in 108.28 seconds; exact 3.13.13 and 3.14.5 each pass 3,018 tests
+  with 16 skips in 98.97 and 104.54 seconds. The 3.12 environment retained
+  graphics dependencies.
+- Corrected local gate: the unchanged 46-package lock resolves in 0.81
+  milliseconds; exact graphics sync installs 45 packages; all 351 files are
+  format clean; Ruff and strict Pyright pass; strict docs build in 1.64 seconds;
+  all 24 metadata/M108 assertions pass in 0.80 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 5.90 seconds;
+  one-repeat base and graphics profiles validate with two and three workloads;
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two builds reproduce a 276,893-byte pure
+  wheel at `43857f8a089eb88a396dcad319c4e0452ca20791633317f98f9a83194b28881b`
+  and a 1,496,675-byte source archive at
+  `85f7a823ab86f4780edb8b3ccb36a40aa09c676093d5bba8277377e9115fe59b`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/582-entry package hygiene pass. Factual record updates alter the
+  source archive afterward.
+- Findings-first review covers exactly 16 intended paths and found no runtime,
+  security, architecture, diagnostic-order, ownership, documentation, or scope
+  defect. Protected workflows, stager, metadata, lock, runtime package/API,
+  dependencies, producer, version, and release authority have no diff and
+  retain their exact recorded hashes. Narrow service-identity and high-
+  confidence secret scans return zero matches.
+- Review-inclusive builds reproduce the same 276,893-byte pure wheel at
+  `43857f8a089eb88a396dcad319c4e0452ca20791633317f98f9a83194b28881b`
+  and a 1,497,481-byte source archive at
+  `f54aa1adc8a62003f29036aeef906755e2804e78f183ebb77ab891a01d97f41b`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/582-entry package hygiene pass. Final factual records alter the
+  source archive afterward.
+- Final source separator: after discarding a sandbox-only cache-denied composite
+  attempt, the approved rerun resolves the unchanged 46-package lock in 0.89
+  milliseconds; all 351 files remain format clean; Ruff and strict Pyright
+  pass; all 1,488 architecture assertions pass with one established skip in
+  8.94 seconds; strict docs build in 1.50 seconds; all 24 metadata/M108
+  assertions pass in 0.82 seconds; and whitespace passes.
+- Corrected precommit audit establishes exact M100-M107 ancestry, M107 head and
+  tree, local/remote M99 main and merge base, and expected `0 8` divergence.
+  Exactly 16 intended paths change; only main and required M100-M108 local
+  branches exist, while only `origin/main` plus its symbolic HEAD exists
+  remotely. Exact DCO identity is configured. Authentication is valid; the
+  approved corrected read-only rerun reports no open PR, M108 run, release, or
+  tag. Git checking reports 287 dangling-only objects and zero defect. The
+  initial sandbox-blocked GitHub result and unsupported release JSON field are
+  discarded.
+- Post-audit separator: strict docs build in 1.53 seconds; all 24 metadata/M108
+  assertions pass in 0.43 seconds; exactly 16 paths remain; protected surfaces
+  have zero diff; narrow service-identity and high-confidence secret scans
+  return zero matches; and whitespace passes.
+- Publication hold: M100-M108 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M107 exact sample-member extraction-version profile preflight - local qualification and commit complete
+
+- Base: fully locally validated M106 DCO commit
+  `630f794cd1e3609f9e0b20d2f7f16e4d1fb27ef5`, tree
+  `708753da831b9a3942affa128f4ac9dc4fb6dbca`, with sole parent exact M105.
+  It remains unpushed and has no hosted qualification claim.
+- M106 cleanup: an exact read-only audit identified ten ignored, direct,
+  non-reparse `.tmp` children. The guarded removal deleted exactly ten; a
+  follow-up found zero remaining targets and a clean worktree.
+- Direction evidence: PKWARE assigns extraction version 2.0 to Deflate; Python
+  exposes public `ZipInfo.extract_version`; CPython uses default value `20` and
+  recognizes features through 6.3. The selected response is one fixed-producer
+  exact profile, not general extraction-version semantics or ZIP security. No
+  CI expansion is justified.
+- Runtime gap: the ignored probe first required a mechanical formatter reflow,
+  then passed Ruff. Exact CPython 3.12.13, 3.13.13, and 3.14.5 exposed matching
+  local/central `(21, 0)` pairs, read both payloads, and confirmed all 50 fixed-
+  producer pairs are `(20, 0)`.
+- Red contract: the exact CPython 3.12.13 suite passed 11 established behavior/
+  protected-surface assertions and failed nine targeted stable-error, cleanup,
+  exact-value, helper/order, and documentation assertions in 0.37 seconds
+  against unchanged M106. No complete pass is claimed.
+- Implementation scope: one aggregate public central
+  `info.extract_version != 20` classifier after M106 and before inventory, plus
+  RFC-0090 and aligned records. It adds no general semantics parser, payload-
+  content read, workflow, dependency, producer, runtime API, version, release
+  authority, tag, release, or publication.
+- First focused correction: 19 assertions passed but the docs contract failed
+  because line wrapping split the exact classifier phrase. RFC-0090 was
+  reflowed; all 20 assertions then pass on exact CPython 3.12.13 in 0.25 seconds,
+  strict docs build in 1.44 seconds, and whitespace passes.
+- Supported-Python proof: all 20 focused assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.25, 0.63, and 0.62 seconds. Complete suites
+  pass 3,009 tests with 15 skips on 3.12.13 in 106.98 seconds and 2,999 tests
+  with 16 skips on 3.13.13 and 3.14.5 in 102.12 and 108.06 seconds. The 3.12
+  environment retained graphics dependencies.
+- Local gate: the unchanged 46-package lock resolves in 0.78 milliseconds; the
+  exact CPython 3.12.13 locked graphics environment installs 45 packages; all
+  350 Python files are format clean; Ruff and strict Pyright pass; all 1,469
+  architecture assertions pass with one established Windows capability skip in
+  9.47 seconds; strict docs build in 1.58 seconds; all 25 metadata/M107
+  assertions pass in 0.82 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.66 seconds;
+  one-repeat base and graphics profiles validate with two and three workloads;
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two builds reproduce a 276,812-byte pure
+  wheel at `aa46f3ab81e92efc04e04655323eb97f553c077eb5ccb77472aee4cde9657a3c`
+  and a 1,488,822-byte source archive at
+  `0edc1ecc0980f506fd830d644aa8f228f43ad94f5575ac3f54ffe0f2c12ab6db`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. The 94-entry wheel and 580-entry source archive contain
+  no native, WASM, bytecode, or retired control-metadata paths. Factual record
+  updates alter the source archive afterward.
+- Findings-first review covers exactly 16 intended paths and found no runtime,
+  security, architecture, diagnostic-order, ownership, documentation, or scope
+  defect. Protected surfaces have no diff; narrow service-identity and high-
+  confidence secret scans return zero matches.
+- Review-inclusive artifacts: two builds reproduce the same 276,812-byte pure
+  wheel at `aa46f3ab81e92efc04e04655323eb97f553c077eb5ccb77472aee4cde9657a3c`
+  and a 1,489,494-byte source archive at
+  `c65fc7ec2130bed55168e9d4aaa3f8d12724c47881c63ae3f3f2ab3fff3e20b6`.
+  Isolated-wheel smoke, ten-artifact staging, complete release smoke, and
+  94/580-entry package hygiene pass. Final record changes alter the source
+  archive afterward.
+- Final source separator passes frozen lock, formatting, Ruff, strict Pyright,
+  1,469 architecture assertions with one established skip, strict docs, 25
+  metadata/M107 assertions, and whitespace. The first lock attempt was a
+  sandbox-only cache denial; its approved rerun resolved the unchanged lock.
+- Corrected precommit history establishes exact M100-M106 ancestry, local and
+  remote M99 main, exact M106 head/tree, and `0 7` divergence. Exactly 16 paths
+  change, exact DCO identity is configured, only the required local stack and
+  remote main exist, hosted PR/run/release/tag queries are empty, and Git fsck
+  reports 44 dangling-only objects with zero defect.
+- Post-audit strict docs, metadata/M107 assertions, protected-surface hashes,
+  exact 16-path scope, identity/credential hygiene, and whitespace all pass.
+  One unbounded secret pattern produced six established `task-directed` false
+  positives; the corrected boundary-aware scan reports zero.
+- Publication hold: M100-M107 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M106 zero sample-member extraction-version reserved-byte profile preflight - local qualification and commit complete
+
+- Base: fully locally validated M105 DCO commit
+  `6155e125968c92dfbae44da6c6f13f9684f11fcd`, tree
+  `ae77b746a5ed9491da14aa2f6ad69f0663e92bfd`, with sole parent exact M104.
+  It remains unpushed and has no hosted qualification claim.
+- M105 cleanup: an exact read-only audit identified 17 ignored, direct,
+  non-reparse `.tmp` children. The guarded removal deleted exactly 17; a
+  follow-up found zero remaining targets and a clean worktree.
+- Direction evidence: Python documents public `ZipInfo.reserved` as zero;
+  CPython initializes and serializes it as zero; PKWARE defines the enclosing
+  two-byte version-needed-to-extract field. The selected response is one fixed-
+  producer profile, not general extraction-version semantics or ZIP security.
+  No CI expansion is justified.
+- Runtime gap: an initial sandboxed probe could not access uv's external cache
+  and exited 1 for all three invocations. The approved rerun on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 exposed matching local/central `(20, 1)` pairs,
+  read both payloads, and confirmed all 50 fixed-producer reserved values are
+  zero.
+- Red contract: the exact CPython 3.12.13 focused regression exited 1 with one
+  intended failure in 0.22 seconds because unchanged M105 reached exact
+  inventory rather than rejecting the matching nonzero byte. No pass is
+  claimed from that run.
+- Implementation scope: one aggregate public central `info.reserved != 0`
+  classifier after M105 and before inventory, plus RFC-0089 and aligned records.
+  It adds no extraction-version semantics parser, payload-content read,
+  workflow, dependency, producer, runtime API, version, release authority, tag,
+  release, or publication.
+- First focused checkpoint: all 15 M106 assertions pass on exact CPython
+  3.12.13 in 0.25 seconds; affected formatting and Ruff pass.
+- Supported-Python proof: all 15 focused assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.25, 0.65, and 0.62 seconds. Complete suites
+  pass 2,989 tests with 15 skips on 3.12.13 in 114.15 seconds, and 2,979 tests
+  with 16 skips on 3.13.13 and 3.14.5 in 101.92 and 107.77 seconds. The 3.12
+  environment retained graphics dependencies and therefore collected ten more
+  real-wgpu tests than the later base environments.
+- Static correction: the first grouped repository checkpoint followed a 3.14
+  base-environment replacement. Formatting, Ruff, strict docs, and whitespace
+  passed, but Pyright reported 17 missing/unknown optional-wgpu diagnostics.
+  Restoring the exact locked 45-package CPython 3.12.13 graphics environment
+  made strict Pyright report zero findings; no source correction was needed.
+- Local gate: the unchanged 46-package lock resolves in 0.79 milliseconds; all
+  349 Python files are format clean; Ruff and strict Pyright pass; all 1,449
+  architecture assertions pass with one established Windows capability skip
+  in 10.17 seconds; strict docs build in 1.53 seconds; all 20 metadata/M106
+  assertions pass in 0.78 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 5.87 seconds;
+  one-repeat base and graphics profiles validate with two and three workloads;
+  Clockwork Arena and Agent World Builder reproduce their established state,
+  capture, replay, render, query, and registered-test identities.
+- Initial reproducible artifacts: two builds reproduce a 276,680-byte pure
+  wheel at `613d1d72ea8583f03dfc7ecb941d40df23522a19b877ee1fcbf5ab908db9216e`
+  and a 1,483,265-byte source archive at
+  `596219c8ed041afd918a488a6a574379da23b7ce6ee5b4d2f0715a4110a7eca2`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. The 94-entry wheel and 578-entry source archive contain
+  no native, WASM, bytecode, or retired control-metadata paths. Factual record
+  updates alter the source archive afterward.
+- Findings-first review: exactly 16 intended paths change. No runtime,
+  security, architecture, diagnostic-order, resource-ownership, or scope defect
+  was found. The documentation contract now requires every listed document and
+  covers the changed roadmap. Affected Ruff and strict Pyright pass, all 20
+  metadata/M106 assertions pass in 0.43 seconds, strict docs build in 1.50
+  seconds, and whitespace passes. The runtime diff remains one ordered call
+  plus one aggregate public central-reserved classifier. Protected workflows,
+  release stager, metadata, lock, runtime package/API, dependencies, producer,
+  version, and release authority have no diff. Explicit service-identity and
+  high-confidence secret scans return zero matches.
+- Review-inclusive artifacts: two builds reproduce the same 276,680-byte pure
+  wheel at `613d1d72ea8583f03dfc7ecb941d40df23522a19b877ee1fcbf5ab908db9216e`
+  and a 1,485,135-byte source archive at
+  `ba60a0813bfc32a75184a43275ea84d8f89d3be98d7839014ee567f0a2c8e786`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/578-entry package inventories pass with no banned or retired
+  paths. Final factual records alter the source archive afterward.
+- Final source separator: the unchanged 46-package lock resolves in 0.86
+  milliseconds; all 349 files remain format clean; Ruff and strict Pyright
+  pass; all 1,449 architecture assertions pass with one established skip in
+  8.75 seconds; strict docs build in 1.48 seconds; all 20 metadata/M106
+  assertions pass in 0.81 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: the first branch-ref command mistyped M104
+  and M102 branch names, and those two fields are discarded. A fully corrected
+  audit establishes exact M100-M105 commits, local/remote M99 `main`, the M99
+  merge base, and expected `0 6` divergence. Exactly 16 intended paths change;
+  only `main` and the required M100-M106 local stack branches exist, while only
+  `origin/main` exists remotely. Authentication is valid; open PR, M106 run,
+  release, and tag queries are empty. Exact maintainer DCO identity is
+  configured. Protected workflow/release/stager/metadata/lock surfaces have no
+  diff; Git checking reports 287 dangling-only lines and zero critical finding;
+  runtime backend/native/wall-clock, explicit service-identity, and high-
+  confidence secret scans return zero matches; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.49 seconds with only the
+  known upstream Material notice; all 20 metadata/M106 assertions pass in 0.40
+  seconds; explicit service-identity and high-confidence secret scans return
+  zero matches; exactly 16 intended paths remain changed; and whitespace is
+  clean.
+- Publication hold: M100-M106 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M105 zero sample-member general-purpose-flag profile preflight - local qualification and commit complete
+
+- Base: fully locally validated M104 DCO commit
+  `3c734d627c90cd9071350d5b4863711a6ba3113e`, tree
+  `2b99704ee9639854af0fe6f2ee4875db527246ad`, with sole parent exact M103.
+  It remains unpushed and has no hosted qualification claim.
+- M104 cleanup: an immediately preceding read-only audit showed all 28 targets
+  were ignored direct `.tmp` children with no reparse points. The removal
+  command emitted non-terminating `DirectoryName` validation errors for
+  directory entries, so its internal parent guard is not claimed as successful.
+  It reported `removed=28; remaining=0`, and an independent follow-up confirmed
+  zero targets and a clean tracked worktree.
+- Direction evidence: PKWARE defines meaningful, reserved, and currently unused
+  general-purpose bits; CPython exposes public central `ZipInfo.flag_bits` and
+  selectively interprets known bits. The policy is a fixed-producer zero
+  profile, not a general ZIP validity or safety claim. No CI expansion is
+  justified.
+- Runtime gap: the corrected format/Ruff-clean probe on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 retained matching unused bit 7 as value `128`, read both
+  payloads, and confirmed the fixed producer's 50 members have sole flag value
+  zero. Initial Ruff found one surplus blank line; it was removed before the
+  recorded clean static result.
+- Red contract: the first run used a missing nested pytest base parent and is
+  unusable as contract evidence. The corrected 16-assertion run passed 11
+  established behavior/protected-surface controls while five intended stable-
+  error, cleanup, helper/order, and documentation assertions failed in 0.30
+  seconds against exact M104. No complete pass is claimed.
+- Implementation scope: one post-M104 aggregate central-flag zero classifier
+  plus RFC-0088 and aligned records. Established specific-flag, M94 consistency,
+  M102/M103 layout, and M104 extra-field errors retain precedence. No flag-
+  semantics parser, payload-content read, workflow, dependency, producer,
+  runtime API, version, release authority, tag, release, or publication is
+  added.
+- Focused checkpoint: affected formatting and Ruff pass; strict Pyright reports
+  zero findings; all 16 M105 assertions pass in 0.23 seconds; strict docs build
+  in 1.47 seconds with only the known upstream Material notice; and whitespace
+  passes.
+- Diagnostic-order correction: the first exact 3.12.13 complete suite exited 1
+  with three failures, 2,959 passes, and 16 skips in 102.51 seconds because the
+  initial aggregate check displaced established LZMA, UTF-8 path, and M76
+  stored-bit behavior. The classifier now runs after decoded-name/member-
+  metadata checks; M64/M65 diagnostics retain precedence and M76 explicitly
+  records M105's stored-bit supersession. All 64 relevant assertions and the
+  affected static/docs gate pass.
+- Supported-Python proof: all 18 final focused assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.60, 0.59, and 0.58 seconds. Corrected
+  complete suites each pass 2,964 tests with 16 established skips in 100.89,
+  98.09, and 103.75 seconds.
+- Local gate: the unchanged 46-package lock resolves in 0.80 milliseconds and
+  the exact CPython 3.12.13 locked graphics environment installs 45 packages.
+  All 348 Python files are format clean; Ruff and strict Pyright pass; all 1,434
+  architecture assertions pass with one established Windows capability skip in
+  9.32 seconds; strict docs build in 1.47 seconds; all 23 metadata/M105
+  assertions pass in 0.44 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.06
+  seconds; one-repeat base and graphics profiles validate with two and three
+  workloads; Clockwork Arena and Agent World Builder reproduce their
+  established deterministic identities.
+- Initial reproducible artifacts: two fresh builds reproduce a 276,588-byte
+  pure wheel at `07fb9037775621176dfd1736ba5bdb8b3c2ff063a1a10d714d40cc5d0147324e`
+  and a 1,478,156-byte source archive at
+  `54467dd8c6ea402ea134355350532235762091440541fc9d6cdcf50007caadc8`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. The 94-entry wheel and 576-entry source archive contain
+  no native, WASM, bytecode, or retired control-metadata paths. Factual record
+  updates alter the source archive afterward.
+- Findings-first review: exactly 17 intended paths change. The review retained
+  the diagnostic-order correction, clarified RFC/public placement and M76
+  supersession, and found no remaining actionable issue. The runtime diff is
+  one ordered call plus one aggregate public central-flag classifier; the
+  existing M76 regression is the only earlier test changed. Workflows, release
+  workflow, stager, metadata, lock, runtime package/API, dependencies, producer,
+  version, and release authority have no diff. Credential, explicit service-
+  identity, backend/native, wall-clock, and retired-control scans are empty.
+- Review-inclusive artifacts: two fresh builds reproduce the 276,588-byte pure
+  wheel at `dd2fae65bab55e8ed87beb89028b37150b90e617099ce4ab2240c667b348a474`
+  and a 1,479,641-byte source archive at
+  `0596b0f5b55a4fadc3bd116f33485f87a6c6db98c92ae08ceed085b2a82cead6`;
+  isolated-wheel smoke, deterministic ten-artifact staging, complete release
+  smoke, and 94/576-entry package inventories pass with no banned or retired
+  paths. Final factual records alter the source archive afterward.
+- Final source separator: the unchanged 46-package lock resolves in 0.82
+  milliseconds; all 348 files remain format clean; Ruff and strict Pyright
+  pass; all 1,434 architecture assertions pass with one established skip in
+  8.64 seconds; strict docs build in 1.42 seconds; all 23 metadata/M105
+  assertions pass in 0.42 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: one initial multi-ref command mistyped the
+  M102 branch and its ref result is discarded. The corrected labeled audit
+  establishes exact M100-M104 commits, local/remote M99 `main`, the M99 merge
+  base, and expected `0 5` divergence. Exactly 17 intended paths change; only
+  `main` and the required M100-M105 local stack branches exist, while only
+  `origin/main` exists remotely. Authentication is valid; open PR, M105 run,
+  release, and tag queries are empty. Exact maintainer DCO identity is
+  configured. Protected workflow/release/stager/metadata/lock hashes remain
+  exact; Git checking reports 287 dangling-only lines and zero critical
+  finding; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.44 seconds with only the
+  known upstream Material notice; all 23 metadata/M105 assertions pass in 0.42
+  seconds; credential, explicit service-identity, runtime leakage, and retired-
+  control scans return zero matches; exactly 17 intended paths remain changed;
+  and whitespace remains clean.
+- Publication hold: M100-M105 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M104 empty sample-member extra-field profile preflight - local qualification and commit complete
+
+- Standalone commit: M104 is exact DCO commit
+  `3c734d627c90cd9071350d5b4863711a6ba3113e`, tree
+  `2b99704ee9639854af0fe6f2ee4875db527246ad`, with sole parent exact M103
+  `19ccf5076d391924e969b57e76c25049068553a6` and 16 intended paths.
+- Postcommit cleanup: an immediately preceding read-only audit established 28
+  exact ignored direct `.tmp` children with no reparse points. The removal
+  command's in-command `DirectoryName` validation emitted non-terminating
+  errors for directory targets and is therefore not claimed as successful; the
+  same command reported `removed=28; remaining=0`, and a separate follow-up
+  confirmed zero remaining targets and a clean tracked worktree.
+
+- Base: fully locally validated M103 DCO commit
+  `19ccf5076d391924e969b57e76c25049068553a6`, tree
+  `95ae0ce0a58d6d0df6284f7689de01c794acb69d`, with sole parent exact M102.
+  It remains unpushed and has no hosted qualification claim.
+- M103 cleanup: nine generated targets were verified as direct, untracked,
+  non-reparse children of the exact workspace `.tmp` root, permanently removed
+  in one authorized pass, and confirmed absent. No tracked or recoverable file
+  was deleted.
+- Direction evidence: PKWARE defines local/central extra fields as valid ZIP
+  extensibility; Python exposes central bytes through public `ZipInfo.extra`;
+  CPython interprets selected known fields and retains uninterpreted bytes. The
+  policy is a fixed-producer profile, not a general ZIP validity or safety claim.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained equal
+  local/central third-party extra field `feca02006f6b` and read both probe
+  payloads. The fixed 50-member producer already emits empty extra fields.
+- Red contract: the 13-assertion M104 contract is format/Ruff clean and strict-
+  Pyright clean. Exact CPython 3.14.5 passed eight established behavior and
+  protected-surface controls while five intended stable-error, cleanup,
+  helper/order, and documentation assertions failed in 0.66 seconds against
+  unchanged M103. No complete pass is claimed.
+- Implementation scope: one post-M103 central-extra emptiness classifier plus
+  RFC-0087 and aligned records. Unicode Path, ZIP64, M96 consistency, M102
+  bounds, and M103 contiguity errors retain precedence. No extra-field semantics
+  parser, payload-content read, workflow, dependency, producer, runtime API,
+  version, release authority, tag, release, or publication is added.
+- Corrected implementation checkpoint: affected Ruff and strict Pyright pass,
+  and all 26 combined M103-M104 assertions pass in 0.75 seconds. The first
+  strict docs build correctly rejected the missing RFC-0087 navigation entry;
+  after adding it, strict docs build in 1.45 seconds with only the known
+  upstream Material notice, and whitespace passes.
+- Supported-Python proof: all 13 M104 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.22, 0.59, and 0.57 seconds. The three complete
+  suites each pass 2,946 tests with 16 established skips in 101.40, 97.80, and
+  103.88 seconds respectively.
+- Local gate: the unchanged 46-package lock resolves in 0.83 milliseconds and
+  the exact CPython 3.12.13 locked all-groups graphics environment installs 45
+  packages. All 347 Python files are format clean; Ruff and strict Pyright pass;
+  all 1,416 architecture assertions pass with one established Windows
+  capability skip in 9.44 seconds; strict docs build in 1.58 seconds; all 18
+  metadata/M104 assertions pass in 0.82 seconds; and whitespace passes.
+- Graphics/profile/vertical proof: all ten real-wgpu tests pass in 6.13
+  seconds; one-repeat base and graphics profiles validate with two and three
+  workloads. Clockwork Arena reproduces state
+  `sha256:c8cd6e3d7706e22003e11ccaf8e63b72627c364d42e6e1889c377d562cd3c859`,
+  capture `05fc014f471d5094f08c8151c650530a6f61016e7b38ee6908306f0ba0b2e906`,
+  three draws, and 16 sprites. Agent World Builder reproduces state
+  `sha256:ad940fab4c432f3c67f5e217f9c7f7460c28973f21ac2f85feb74d9666346be7`,
+  capture `sha256:8e8cf5d6cbf1a73ecba00269c63125816db208b090a59d3fdba4ead5d6c31850`,
+  replay `sha256:d5051aa5b4a004e48f449940ec4788f8f227d4509d80f080f6371d7c9299b2ef`,
+  six query matches, five replay batches, and passing registered tests.
+- Initial reproducible artifacts: three intended output roots were confirmed
+  absent. Two fresh builds reproduce a 276,387-byte pure wheel at
+  `112c6f190792ce1ef10287e60da249bf941f975ea372112140b7aaaae3f8c150`
+  and a 1,472,219-byte source archive at
+  `9c7c6ccc888a3679d0556aef6fad07258f8f57931156346c051f7149215a446f`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 16 intended paths change. One overbroad use of
+  “unknown” for the `0xCAFE` fixture was corrected to “third-party field not
+  interpreted by CPython”; affected formatting, Ruff, strict Pyright, all 13
+  M104 assertions, strict docs, and whitespace then passed. The runtime is one
+  ordered call plus one public central-extra emptiness helper with established
+  specific and layout precedence. Workflow, release workflow, stager,
+  metadata, lock, runtime package/API, dependencies, producer, version, and
+  release authority have no diff. Credential, explicit service-identity,
+  backend/native, wall-clock, and retired-control scans are empty. The 94-entry
+  pure wheel and 574-entry source archive contain no native, WASM, bytecode, or
+  retired control-metadata entries. No actionable finding remains.
+- Review-inclusive artifacts: three fresh output roots were confirmed absent.
+  Two builds reproduce the 276,387-byte pure wheel at
+  `112c6f190792ce1ef10287e60da249bf941f975ea372112140b7aaaae3f8c150`
+  and a 1,473,352-byte source archive at
+  `23a4e2b70f9e026627575da17e23757dbdc8b7708dbd2365be99d94d85dae04a`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Final factual records alter the source archive; hosted
+  exact-head artifacts would remain authoritative after publication.
+- Final source separator: the unchanged 46-package lock resolves in 0.80
+  milliseconds. All 347 files remain format clean; Ruff and strict Pyright
+  pass; all 1,416 architecture assertions pass with one established skip in
+  9.12 seconds; strict docs build in 1.50 seconds; all 18 metadata/M104
+  assertions pass in 0.43 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: after fetch/prune, `HEAD` and M103 resolve to
+  exact `19ccf5076d391924e969b57e76c25049068553a6`, M100-M102 retain exact commits,
+  local/remote `main` retain exact M99, merge base is M99, and divergence is the
+  expected `0 4`. Exactly 16 intended paths change; only `main` and the required
+  M100-M104 local stack branches exist, while only `origin/main` exists
+  remotely. Authentication is valid; open PR, M104 run, release, and tag
+  queries are empty. Exact maintainer DCO identity is configured. Protected
+  workflow/release/stager/metadata/lock hashes remain exact; final credential,
+  identity, backend/native, wall-clock, and retired-control scans are empty;
+  full Git checking reports 44 historical dangling-object lines and zero
+  critical finding; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.44 seconds with only the
+  known upstream Material notice; all 18 metadata/M104 assertions pass in 0.40
+  seconds; credential, explicit service-identity, backend/native, wall-clock,
+  and retired-control scans return zero matches; exactly 16 intended paths
+  remain changed; and whitespace remains clean.
+- Publication hold: M100-M104 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M103 exact compressed-payload contiguity preflight - initial local qualification complete
+
+- Base: fully locally validated M102 DCO commit
+  `d9e2f5cd6d72bf03008b6d2478818631ec0b92ce`, tree
+  `669a254d2a3b567938f49df23656d24862124b7a`, with sole parent exact M101.
+  It remains unpushed and has no hosted qualification claim.
+- M102 cleanup: 12 generated targets were verified as direct, untracked,
+  non-reparse children of the exact workspace `.tmp` root, permanently removed
+  in one authorized pass, and confirmed absent. No tracked or recoverable file
+  was deleted.
+- Selected policy: after M102, require each compressed payload end to equal its
+  next ordered local-header or conventional central-directory limit. A shorter
+  extent raises content-silent `sample bundle member payloads are not
+  contiguous` before decoded names, metadata, inventory, staging, or reads;
+  M102 retains precedence for overlap.
+- Runtime gap: the format/Ruff-clean deterministic probe on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 inserted one inter-member byte while updating
+  conventional offsets. Each runtime admitted gap widths `[1, 0]`, offsets
+  `[0, 59]`, payload ends `[58, 117]`, and readable `payload-0`/`payload-1`.
+- Red-contract correction: the initial format/Ruff-clean, strict-Pyright-clean
+  13-assertion run passed four controls and failed nine assertions because its
+  behavior control hard-coded the short probe's offset for a longer fixture
+  prefix. After deriving that offset from the fixture, static checks remained
+  clean and exact CPython 3.14.5 passed five supported-runtime, M102-precedence,
+  empty-archive, producer, and protected-surface controls while eight intended
+  policy/helper/cleanup/ordering/documentation assertions failed in 0.71
+  seconds against unchanged M102. No complete pass is claimed.
+- Implementation scope: one post-M102 compressed-payload equality classifier
+  plus RFC-0086 and aligned records. No decompression/recompression,
+  payload-content read, CRC recomputation, compressed-stream interpretation,
+  payload-integrity claim, workflow, dependency, producer, runtime API,
+  version, release authority, tag, release, or publication is added.
+- Implementation checkpoint: all three affected Python files are format/Ruff
+  clean and strict Pyright reports zero findings. All 26 combined M102-M103
+  assertions pass in 0.37 seconds; strict docs build in 1.52 seconds with only
+  the known upstream Material notice; and whitespace passes.
+- Supported-Python proof: all 13 M103 assertions pass on exact CPython 3.12.13,
+  3.13.13, and 3.14.5 in 0.26, 0.67, and 0.59 seconds. The three complete
+  suites each pass 2,933 tests with 16 established skips in 102.16, 99.75, and
+  105.09 seconds respectively.
+- Local gate: the unchanged 46-package lock resolves in 0.79 milliseconds and
+  the exact CPython 3.12.13 locked 45-package graphics environment installs.
+  All 346 Python files are format clean; Ruff and strict Pyright pass; all
+  1,403 architecture assertions pass with one established Windows capability
+  skip in 10.11 seconds; strict docs build in 1.50 seconds; all 18 metadata/M103
+  assertions pass in 0.82 seconds; and whitespace passes.
+- Graphics/release proof: ten real-wgpu tests pass in 6.02 seconds; one-repeat
+  base and graphics profiles validate; Clockwork Arena and Agent World Builder
+  retain their established state/capture/replay identities. Two fresh builds
+  reproduce a 276,244-byte pure wheel at
+  `08ffddb77c7b37cd5e9c905167d98962901fd97727af4bdd0f77dc4ff514ba1e`
+  and a 1,466,013-byte source archive at
+  `f4c199cf32fec52421c4d4f13c802402b43edb9fca452db53c36ef0a38310560`.
+  Isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 15 intended paths change. The runtime diff is
+  one ordered call and one position-restoring equality helper using public
+  `ZipInfo.header_offset` and `ZipInfo.compress_size`; M102 overlap precedence,
+  stable content-silent failure, empty behavior, cleanup, exact acceptance, and
+  nonfinal/final gaps are covered. Separate M102/M103 calculations preserve
+  independently testable policy contracts. Workflow, release workflow, stager,
+  metadata, lock, runtime package/API, dependencies, producer, version, and
+  release authority have no diff. Credential, explicit service-identity, and
+  retired-control-path scans returned zero matches. The 94-entry pure wheel and
+  572-entry source archive contain no native, WASM, bytecode, or retired
+  control-metadata entries. No actionable finding remains.
+- Review-inclusive artifacts: two fresh builds reproduce the 276,244-byte pure
+  wheel at
+  `08ffddb77c7b37cd5e9c905167d98962901fd97727af4bdd0f77dc4ff514ba1e`
+  and a 1,467,000-byte source archive at
+  `0e60cc6e01267878bc0a393512fb732f8ee54efaa046e26dd5e8bbd6a8989011`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Final factual record changes alter the source archive;
+  hosted exact-head artifacts would remain authoritative after publication.
+- Final source separator: the unchanged 46-package lock resolves in 0.78
+  milliseconds. All 346 files remain format clean; Ruff and strict Pyright
+  pass; all 1,403 architecture assertions pass with one established skip in
+  8.52 seconds; strict docs build in 1.47 seconds; all 18 metadata/M103
+  assertions pass in 0.80 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: after fetch/prune, `HEAD` and the M102 branch
+  resolve to exact M102, M100/M101 retain exact commits, local/remote `main`
+  retain exact M99, merge base is M99, and divergence from `origin/main` is the
+  expected `0 3` before the M103 commit. Exactly 15 intended paths change; only
+  `main` and the required M100-M103 local stack branches exist, while only
+  `origin/main` exists remotely. Authentication is valid; open PR, M103 run,
+  release, and tag queries are empty. Exact maintainer DCO identity is
+  configured. Protected surfaces have no diff, final credential/identity/
+  retired-control scans return zero matches, full Git checking reports 286
+  historical dangling-object lines and zero critical finding, and whitespace
+  is clean.
+- Final post-audit separator: strict docs built in 1.45 seconds with only the
+  known upstream Material notice; all 18 metadata/M103 assertions passed in
+  0.42 seconds; credential, explicit service-identity, and retired-control
+  scans returned zero matches; exactly 15 intended paths remained changed; and
+  whitespace remained clean.
+- Publication hold: M100-M103 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M102 compressed-payload upper-bound preflight - initial local qualification complete
+
+- Base: fully locally validated M101 DCO commit
+  `7b73861adc268182b6322e79c5a8651ca9c4db3d`, tree
+  `b2c2348df504217315dd008d3eba083be8175c38`, with sole parent exact M100.
+  It remains unpushed and has no hosted qualification claim.
+- M101 cleanup: 26 generated targets were verified directly within the exact
+  workspace `.tmp` root, permanently removed in one approved pass, and
+  confirmed absent. No tracked or recoverable file was deleted.
+- Selected policy: after M101, calculate each compressed payload end from its
+  already bounded local envelope and public central `ZipInfo.compress_size`.
+  Require each nonfinal end not to exceed the next ordered local-header offset
+  and the final end not to exceed the conventional central-directory offset.
+  The stable content-silent error is `sample bundle member payloads are out of
+  bounds`, before decoded names, metadata, inventory, staging, or reads.
+- Primary-source basis: PKWARE APPNOTE defines local file data after the
+  variable local-header envelope and the central directory after local records.
+  Established M88/M89/M92/M100/M101 policy already supplies ordered offsets,
+  the directory upper bound, bounded envelopes, and matching size fields.
+- Runtime gap: the initial exact 3.12.13 probe was format clean and demonstrated
+  matching local/central compressed sizes `[12, 11]`, first payload end `54`
+  crossing the next header at `53`, delayed first-read `BadZipFile`, and a
+  readable second payload; Ruff found one unused `noqa`. After that static-only
+  correction, exact CPython 3.12.13, 3.13.13, and 3.14.5 reproduced identical
+  behavior and the probe is format/Ruff clean.
+- Red-contract correction: initial strict Pyright passed while format requested
+  one reflow and Ruff found one tuple-concatenation presentation issue. The
+  initial run still passed five supported-runtime, M101-precedence, empty-
+  archive, producer, and protected-surface controls and failed eight intended
+  policy/helper/cleanup/ordering/documentation assertions. After mechanical
+  correction, the 13-assertion contract is format/Ruff clean, strict Pyright
+  reports zero findings, and exact CPython 3.14.5 repeats five passes and eight
+  expected failures in 0.70 seconds against unchanged M101. No complete pass is
+  claimed.
+- Implementation scope: one compressed-payload upper-bound classifier after
+  M101 plus RFC-0085 and aligned records. No decompression/recompression,
+  payload-content read, exact-contiguity rule, gap/adjacency ban, compression-
+  ratio policy, payload-integrity claim, workflow, dependency, producer,
+  runtime API, version, release authority, tag, release, or publication is
+  added.
+- Implementation checkpoint: the first gate stopped on one required Ruff
+  runtime reflow. After applying it, affected-file format, Ruff, and strict
+  Pyright checks passed. A focused invocation then used a nonexistent
+  abbreviated M101 filename and collected no tests; the corrected tracked path
+  passed all 28 combined M101-M102 assertions in 0.36 seconds. Strict docs built
+  in 1.45 seconds with only the known Material notice, and whitespace passed.
+- Supported-Python proof: the first exact 3.12 focused invocation was blocked
+  before pytest by sandbox denial of uv's user cache. With that existing cache
+  authorized, all 13 M102 assertions pass on exact CPython 3.12.13, 3.13.13,
+  and 3.14.5 in 0.27, 0.63, and 0.60 seconds. The three complete suites each
+  pass 2,920 tests with 16 established skips in 111.93, 102.87, and 107.01
+  seconds respectively.
+- Local gate: the unchanged 46-package lock resolves in 0.94 milliseconds and
+  the exact CPython 3.12.13 locked 45-package graphics environment installs.
+  All 345 Python files are format clean; Ruff and strict Pyright pass; all
+  1,390 architecture assertions pass with one established Windows capability
+  skip in 10.48 seconds; strict docs build in 1.50 seconds; all 18 metadata/M102
+  assertions pass in 0.81 seconds; and whitespace passes.
+- Graphics/release proof: ten real-wgpu tests pass in 6.13 seconds; one-repeat
+  base and graphics profiles validate; Clockwork Arena and Agent World Builder
+  retain their established state/capture/replay identities. Two fresh builds
+  reproduce a 276,141-byte pure wheel at
+  `d44412d063b0cb85be358fad3849b29400fd75e08a3a4895c453840019749ae9`
+  and a 1,460,394-byte source archive at
+  `226fb991c517778c07f29a3d50fe35718303e820964a65bb010d9674683b113a`.
+  The first read-only hash reporter had a PowerShell pipeline syntax error; a
+  corrected reporter established those exact identities. Isolated-wheel smoke,
+  deterministic ten-artifact staging, and complete release smoke pass.
+  Recording changes the source archive afterward.
+- Findings-first review: exactly 15 intended paths change. The runtime diff is
+  one ordered call and one position-restoring helper using public
+  `ZipInfo.header_offset` and `ZipInfo.compress_size`; M101 precedence, stable
+  content-silent failure, empty behavior, cleanup, exact/gap admission, and
+  both overlap limits are covered. Workflow, release workflow, stager,
+  metadata, lock, runtime package/API, dependencies, producer, version, and
+  release authority have no diff. A first credential scan misparsed a
+  leading-dash pattern; the corrected credential scan, explicit service-
+  identity scan, and retired-control-path scan returned zero matches. The
+  94-entry pure wheel and 570-entry source archive contain no native, WASM,
+  bytecode, or retired control-metadata entries. No actionable finding remains.
+- Review-inclusive artifacts: two fresh builds reproduce the 276,141-byte pure
+  wheel at
+  `d44412d063b0cb85be358fad3849b29400fd75e08a3a4895c453840019749ae9`
+  and a 1,462,149-byte source archive at
+  `a53fb59806725ea2c1f9bd7c2b91ac89239bb11eeb362a4333e2c0a0447a435d`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Final factual record changes alter the source archive;
+  hosted exact-head artifacts would remain authoritative after publication.
+- Final source separator: the first sandboxed lock check was blocked before
+  project evaluation by uv user-cache denial. The authorized lock check then
+  resolved the unchanged 46-package lock in 0.81 milliseconds. All 345 files
+  remained format clean; Ruff and strict Pyright passed; all 1,390 architecture
+  assertions passed with one established skip in 8.80 seconds; strict docs
+  built in 1.56 seconds; all 18 metadata/M102 assertions passed in 0.84 seconds;
+  and whitespace remained clean.
+- Precommit stacked-history audit: after fetch/prune, `HEAD` and the M101 branch
+  resolve to exact M101, M100 retains its exact commit, local/remote `main`
+  retain exact M99, merge base is M99, and divergence from `origin/main` is the
+  expected `0 2` before the M102 commit. Exactly 15 intended paths change; only
+  `main` and the required M100-M102 local stack branches exist, while only
+  `origin/main` exists remotely. Authentication is valid; open PR, M102 run,
+  release, and tag queries are empty. Exact maintainer DCO identity is
+  configured. Protected surfaces have no diff, final credential/identity/
+  retired-control scans return zero matches, full Git checking reports 286
+  historical dangling-object lines and zero critical finding, and whitespace
+  is clean.
+- Final post-audit separator: strict docs built in 1.53 seconds with only the
+  known upstream Material notice; all 18 metadata/M102 assertions passed in
+  0.43 seconds; credential, explicit service-identity, and retired-control
+  scans returned zero matches; exactly 15 intended paths remained changed; and
+  whitespace remained clean.
+- Publication hold: M100-M102 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M101 local-header uncompressed-size consistency preflight - fully locally validated; publication held
+
+- Base: fully locally validated M100 DCO commit
+  `103f84bf57f0b4ae0ca07548b453c199eec88f49`, tree
+  `ff3a7105aa7fef413d7cea40a126758cbc42882b`, with sole parent exact M99
+  closeout. It remains unpushed and has no hosted qualification claim.
+- M100 cleanup: 26 generated targets were verified within the exact workspace
+  `.tmp` root. The sandboxed pass removed nine and hit access denial on 17
+  pytest directories; the approved exact-root retry removed those 17. No
+  tracked or recoverable file was deleted, and no M100 scratch target remains.
+- Selected policy: after M100, read exactly four bytes at each public
+  `ZipInfo.header_offset + 22` and require equality with public central
+  `ZipInfo.file_size` encoded unsigned little-endian before decoded names,
+  metadata, exact inventory, staging, or reads. The stable content-silent error
+  is `sample bundle local header uncompressed sizes are inconsistent`.
+- Primary-source basis: PKWARE APPNOTE 6.3.10 sections 4.3.3, 4.3.7, 4.3.9,
+  and 4.3.12 define little-endian ZIP fields, duplicated four-byte uncompressed
+  sizes, and descriptor/ZIP64 exceptions already excluded by earlier policy.
+  Python documents public `ZipInfo.file_size` and `ZipInfo.header_offset`.
+- Runtime gap: after one recorded formatter correction, exact CPython 3.12.13,
+  3.13.13, and 3.14.5 each retained local and central uncompressed sizes
+  `[9, 9]` and read both payloads after only the second local uncompressed size
+  changed to `10`.
+- Red-contract correction: initial Ruff and strict Pyright checks passed while
+  format requested one reflow. The first red run also exposed a test mutation
+  defect: XOR changed `9` to `8`, conflicting with the probed `10`. After
+  deterministic increment and formatting, the 15-assertion contract is format/
+  Ruff clean and strict Pyright reports zero findings. Exact CPython 3.14.5
+  passes five supported-runtime, M100-precedence, empty-archive, producer, and
+  protected-surface controls; ten stable-error, helper, cleanup, ordering, and
+  documentation assertions fail in 0.74 seconds because unchanged M100 has no
+  M101 policy/helper/RFC. No complete pass is claimed.
+- Implementation scope: one four-byte equality classifier after M100 plus
+  RFC-0084 and aligned records. No decompression/recompression, payload-content
+  read, compression-ratio policy, payload or next-header bound, inter-member
+  layout policy, workflow, dependency, producer, runtime API, version, release
+  authority, tag, release, or publication is added.
+- First checkpoint correction: Ruff and strict Pyright passed, all 45 combined
+  M100-M101 assertions passed in 0.83 seconds, strict docs built in 1.64
+  seconds, and whitespace was clean, but format check requested one mechanical
+  runtime reflow. No clean format or complete checkpoint claim is made from
+  that invocation. After correction, both affected Python files are format/
+  Ruff clean, strict Pyright reports zero findings, all 45 assertions pass in
+  0.42 seconds, strict docs build in 1.59 seconds, and whitespace is clean.
+- Supported-runtime proof: all 15 M101 assertions pass on exact CPython
+  3.12.13, 3.13.13, and 3.14.5 in 0.26, 0.74, and 0.61 seconds. Each complete
+  suite passes 2,907 tests with 16 established skips in 109.53, 100.69, and
+  108.07 seconds respectively.
+- Local gate: the unchanged 46-package lock resolves in 0.91 milliseconds and
+  the exact CPython 3.12.13 locked 45-package graphics environment installs.
+  All 344 Python files are format clean; Ruff and strict Pyright pass; all 1,377
+  architecture assertions pass with one established Windows capability skip in
+  9.10 seconds; strict docs build in 1.49 seconds; all 20 metadata/M101
+  assertions pass; and whitespace is clean.
+- Graphics/release proof: all ten real-wgpu tests pass in 6.83 seconds; both
+  one-repeat profiles validate; Clockwork Arena and Agent World Builder retain
+  canonical state/capture/replay identities. Two fresh builds reproduce a
+  275,992-byte pure wheel at
+  `6a218c01241cb53133c6cee75c84da577ad848c544195897e810733772498c3e`
+  and a 1,453,740-byte source archive at
+  `b054c4e6db0806c3d2a88b0e03706b61d22c706a43bb8e52cb3f5a2732a6303c`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 15 intended paths change. The runtime diff is
+  one two-constant/call/helper slice using public `ZipInfo.header_offset` and
+  `ZipInfo.file_size`, with M100 precedence, stable content-silent error,
+  snapshot restoration, empty-inventory behavior, and owned cleanup preserved.
+  No workflow/release-workflow, lock, metadata, runtime package/API, sample
+  producer, dependency, version, release authority, credential, backend/native/
+  WASM, or explicit service-identity change was found. No retired control path
+  is tracked. The 94-entry wheel remains pure `py3-none-any`; it and the 568-
+  entry source archive contain no banned native/WASM/bytecode/control-metadata
+  entry. No remaining actionable review finding exists.
+- Review-inclusive artifacts: two fresh builds reproduce the 275,992-byte pure
+  wheel at
+  `6a218c01241cb53133c6cee75c84da577ad848c544195897e810733772498c3e`
+  and a 1,454,710-byte source archive at
+  `a9b014dcc5fb21d0e4880b2b9f1ef182a5c9ef26ee0ced9b556072cdb58a1509`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Hosted exact-head artifacts would remain authoritative
+  after final factual record updates change the source archive.
+- Final source separator: the unchanged 46-package lock resolves in 0.82
+  milliseconds; all 344 files remain format clean; Ruff and strict Pyright
+  pass; all 1,377 architecture assertions pass with one established skip in
+  8.49 seconds; strict docs build in 1.44 seconds; all 20 metadata/M101
+  assertions pass in 0.42 seconds; and whitespace remains clean.
+- Precommit stacked-history audit: after fetch/prune, branch `HEAD`, the M100
+  branch, and expected M100 base are exact
+  `103f84bf57f0b4ae0ca07548b453c199eec88f49`; local `main` and `origin/main`
+  remain exact M99 closeout; the merge base is M100 and precommit divergence
+  from `origin/main` is the expected `1 0`. Exactly 15 intended paths change;
+  only `main` and required M100/M101 branches exist locally and only
+  `origin/main` remotely. Authentication is valid; open PR, M101 workflow,
+  release, and tag queries are empty. Protected surfaces have no M101 diff;
+  credential, explicit service-identity, and retired-control scans are empty;
+  full Git checking reports 43 expected dangling-object lines and zero critical
+  finding; exact DCO identity is configured; and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.48 seconds with only the
+  known upstream Material notice; all 20 metadata/M101 assertions pass in 0.43
+  seconds; credential, explicit service-identity, and retired-control scans
+  remain at zero; and whitespace remains clean.
+- Publication hold: M100 and M101 remain local because a no-finding automated
+  review on the completed M99 closeout exposed the configured review service's
+  identity. Ready public PRs will not be created until that risk is resolved or
+  explicitly accepted by the maintainer.
+
+## M100 local-header compressed-size consistency preflight - fully locally validated; publication held
+
+- Base: exact verified M99 closeout squash
+  `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`.
+- Selected policy: after M99, read exactly four bytes at each public
+  `ZipInfo.header_offset + 18` and require equality with public central
+  `ZipInfo.compress_size` encoded unsigned little-endian before decoded names,
+  metadata, exact inventory, staging, or reads. The stable content-silent error
+  is `sample bundle local header compressed sizes are inconsistent`.
+- Primary-source basis: PKWARE APPNOTE 6.3.10 sections 4.3.3, 4.3.7, 4.3.9,
+  and 4.3.12 define little-endian ZIP fields, duplicated four-byte compressed
+  sizes, and descriptor/ZIP64 exceptions already excluded by earlier policy.
+  Python documents public `ZipInfo.compress_size` and `ZipInfo.header_offset`;
+  CPython's writer derives the corresponding local field from the same size.
+- Runtime gap: exact CPython 3.12.13, 3.13.13, and 3.14.5 each retained local
+  and central compressed sizes `[11, 11]` and read both payloads after only the
+  second local compressed size changed from `11` to `12`.
+- Red contract: the 30-assertion M100 contract is format/Ruff clean and strict
+  Pyright reports zero findings. Exact CPython 3.14.5 passed 20 established
+  runtime, precedence, producer, empty-archive, and protected-surface controls;
+  ten stable-error, helper, cleanup, ordering, and documentation assertions
+  failed because closed M99 had no M100 policy/helper/RFC. No complete pass was
+  claimed.
+- Implementation scope: one four-byte equality classifier after M99 plus
+  RFC-0083 and aligned records. No decompression or recompression,
+  uncompressed-size comparison, compression-ratio policy, payload or next-
+  header bound, inter-member layout policy, workflow, dependency, producer,
+  runtime API, version, release authority, tag, release, or publication is
+  added.
+- First checkpoint correction: Ruff and strict Pyright passed, all 59 combined
+  M99-M100 assertions passed in 0.48 seconds, strict docs built in 1.53 seconds,
+  and whitespace was clean, but format check requested one mechanical reflow in
+  the runtime helper. No clean format or complete checkpoint claim is made from
+  that invocation.
+- Corrected checkpoint: one runtime file was mechanically reformatted. Both
+  affected Python files are now format/Ruff clean; strict Pyright reports zero
+  findings; all 59 M99-M100 assertions pass in 0.43 seconds; strict docs build
+  in 1.44 seconds with only the known upstream Material notice; and whitespace
+  is clean.
+- Supported-runtime correction: the first sandboxed parallel invocation could
+  not access uv's shared cache. The escalated parallel retry then raced three
+  interpreter-specific invocations against one `.venv`; exact 3.14 passed 30
+  assertions while 3.12/3.13 failed during environment replacement. Sequential
+  correction passes all 30 M100 assertions on exact CPython 3.12.13, 3.13.13,
+  and 3.14.5 in 0.74, 1.39, and 1.45 seconds respectively.
+- Full-suite documentation correction: the initial exact 3.12.13 suite passed
+  2,886 tests with 16 established skips but failed six historical README
+  boundary assertions because compacting the status paragraph removed or split
+  exact M28-M34 no-evidence phrases. Restoring those facts as readable bullets
+  made the six assertions pass. Corrected exact 3.12.13, 3.13.13, and 3.14.5
+  suites each pass 2,892 tests with 16 skips in 109.88, 102.30, and 109.01
+  seconds.
+- Local gate: the unchanged 46-package lock resolves in one millisecond and the
+  exact CPython 3.12.13 locked 45-package graphics environment installs. All
+  343 Python files are format clean; Ruff and strict Pyright pass; all 1,362
+  architecture assertions pass with one established Windows capability skip
+  in 9.90 seconds; strict docs build in 1.55 seconds; all 35 metadata/M100
+  assertions pass; and whitespace is clean.
+- Graphics/release proof: all ten real-wgpu tests pass in 7.49 seconds; both
+  one-repeat profiles validate; Clockwork Arena and Agent World Builder retain
+  canonical state/capture/replay identities. Two fresh builds reproduce a
+  275,920-byte pure wheel at
+  `eccad7badcf0c629d04f23531a0402c24f718b442153907d678a898662452ccb`
+  and a 1,448,116-byte source archive at
+  `f24551359391ddd62b1f3a4a0692bff7c70a4681d5363d0eedf1e350f88bc78b`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Recording changes the source archive afterward.
+- Findings-first review: exactly 15 intended paths change. The runtime diff is
+  one two-constant/call/helper slice using public `ZipInfo.header_offset` and
+  `ZipInfo.compress_size`, with M99 precedence, stable content-silent error,
+  snapshot restoration, empty-inventory behavior, and owned cleanup preserved.
+  No workflow/release-workflow, lock, metadata, runtime package/API, sample
+  producer, dependency, version, release authority, credential, backend/
+  native/WASM, or explicit service-identity change was found. No retired
+  control path is tracked. The 94-entry wheel remains pure `py3-none-any`; it
+  and the 566-entry source archive contain no banned native/WASM/bytecode/
+  control-metadata entry. No remaining actionable review finding exists.
+- Review-inclusive artifacts: two fresh builds reproduce the 275,920-byte pure
+  wheel at
+  `eccad7badcf0c629d04f23531a0402c24f718b442153907d678a898662452ccb`
+  and a 1,450,072-byte source archive at
+  `bccf6d8f119d8f633a39a64094badf3ad8a6c1dfb40ffe4eca1396465619211a`;
+  isolated-wheel smoke, deterministic ten-artifact staging, and complete
+  release smoke pass. Hosted exact-head artifacts would remain authoritative
+  after final factual record updates change the source archive.
+- Final source separator: the unchanged 46-package lock resolves in 0.78
+  milliseconds; all 343 files remain format clean; Ruff and strict Pyright
+  pass; all 1,362 architecture assertions pass with one established skip in
+  10.28 seconds; strict docs build in 1.61 seconds; all 35 metadata/M100
+  assertions pass in 0.50 seconds; and whitespace remains clean.
+- Precommit audit: after fetch/prune, branch base, local `main`, `origin/main`,
+  and merge base remain exact M99 closeout with divergence `0 0`. Exactly 15
+  intended paths change; only `main` plus the neutral M100 feature branch exist
+  locally and only `origin/main` remotely. Authentication is valid; open PR,
+  current-branch workflow, release, and tag queries are empty. Protected
+  workflow, project metadata, lock, runtime package, and sample producer
+  surfaces have no diff; credential, explicit service-identity, and retired-
+  control-path scans are empty; full Git checking reports 43 expected dangling-
+  object lines and zero critical finding; exact DCO identity is configured;
+  and whitespace is clean.
+- Final post-audit separator: strict docs build in 1.47 seconds with only the
+  known upstream Material notice; all 35 metadata/M100 assertions pass in 0.47
+  seconds; credential, explicit service-identity, and retired-control scans
+  remain at zero; and whitespace remains clean.
+- Publication hold: a no-finding automated review appeared on the completed
+  M99 closeout PR after merge and exposed the configured review service's
+  identity. Local M100 development and validation continue, but a ready public
+  PR will not be created until that exposure risk is resolved or explicitly
+  accepted by the maintainer.
+
+## M99 local-header CRC-32 consistency preflight - complete and closed
 
 - Base: exact verified M98 closeout squash
   `6d4529efb0476f3e3e45f78204d2b0aa192da018`, tree
@@ -185,6 +9760,26 @@
 - Final closeout separator: all five metadata-hygiene assertions passed in
   0.32 seconds; whitespace and exact three-path scope remain clean; and the
   added-content explicit development-tool-identity scan returned no matches.
+- Closeout PR #251 exact DCO head
+  `98cea33e59d948ac346b3ea7d10b5c7199f58ed1`, tree
+  `c52ea4bfe80ffa3aa5883414b5ab0fd1af9d1b70`, had no workflow by design and
+  passed two separated readiness audits before merge.
+- Guarded closeout squash `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`
+  has the exact reviewed tree, sole M99 integration-record parent, standalone
+  DCO trailer, and valid GitHub signature verified at `2026-08-24T13:06:35Z`.
+- Final M99 audit: local `main` and `origin/main` resolved to exact closeout
+  with divergence `0 0`; only `main` remained locally/remotely; open PR,
+  release, tag, and relevant run queries were empty; the three-squash chain
+  retained exact parents, reviewed trees, DCO trailers, and valid signatures;
+  all real M99 scratch targets were independently confirmed absent; metadata
+  and whitespace passed. The initial cleanup reporter accidentally treated its
+  own status text as synthetic targets and emitted non-terminating errors, but
+  independent literal-path verification confirmed all 12 actual targets were
+  absent and `.tmp` was empty.
+- After the final audit, a no-finding automated review was added to the merged
+  closeout PR by an external repository setting. It changes no source or M99
+  qualification result but creates a public service-identity disclosure risk
+  that holds later ready-PR publication pending maintainer direction.
 
 ## M98 local-header timestamp consistency preflight - complete and closed
 

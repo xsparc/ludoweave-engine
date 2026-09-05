@@ -18,7 +18,8 @@ The `0.1.0a1` surfaces are:
 | `ludoweave.render.backends` | Null validation adapters | Experimental |
 | `ludoweave.render.backends.wgpu` | Optional concrete WebGPU device entry point | Experimental |
 | `ludoweave.platform` | Provider-neutral events and gamepad-provider protocol | Experimental |
-| `ludoweave.assets` | Project-confined asset contracts | Experimental |
+| `ludoweave.assets` | Project-confined asset manifests, loading, and pipeline contracts | Experimental |
+| `ludoweave.scene` | Versioned data-only scene/prefab/source-manifest/source-lock documents and world-transaction planning | Experimental |
 | `ludoweave.audio` | Audio protocol, mix graph, and Null adapter | Experimental |
 | `ludoweave.collision` | Deterministic bounded collision | Experimental |
 | `ludoweave.presentation` | Tick animation, bitmap text, tilemap, particle, and extraction contracts | Experimental |
@@ -29,7 +30,53 @@ The `0.1.0a1` surfaces are:
 Names from `ludoweave.tools` are composition-root internals unless a future
 decision exports them. CLI commands and persistent protocols have separately
 documented versioned contracts; a Python stability label does not override a
-wire-format revision.
+wire-format revision. M121 extends the internal `HeadlessProject` composition
+with project-confined scene file loading without exporting a new public symbol.
+M122 similarly adds explicit project-confined prefab source and instance file
+loading only to that internal composition root; the public exports are
+unchanged. M123 adds a versioned CLI output protocol and no Python export.
+M124 adds experimental `SourceManifest`, `SourceManifestEntry`,
+`SourceManifestLimits`, and `SOURCE_MANIFEST_PROTOCOL` exports through the
+focused `ludoweave.scene` package plus a versioned CLI result; the engine root
+remains unchanged. M125 adds experimental `SourceLock`, `SourceLockEntry`,
+`SourceLockLimits`, and `SOURCE_LOCK_PROTOCOL` through the same focused package
+plus a versioned verification result; the engine root remains unchanged.
+M126 adds experimental `ASSET_MANIFEST_PROTOCOL` and `AssetManifestLimits`
+through the focused `ludoweave.assets` package plus internal project-confined
+loading and canonical methods on the existing `AssetManifest`; the engine root
+remains unchanged. M127 adds experimental `dependency_closure()` behavior to
+that existing class plus a versioned read-only CLI result. It adds no Python
+export and the engine root remains unchanged.
+M128 adds experimental `ASSET_SOURCE_LOCK_PROTOCOL`,
+`ASSET_SOURCE_MAX_BYTES`, `ASSET_SOURCE_TOTAL_MAX_BYTES`,
+`AssetSourceLockLimits`, `AssetSourceLockEntry`, and `AssetSourceLock` through
+the focused `ludoweave.assets` package plus a versioned verification result.
+The engine root remains unchanged.
+M129 adds experimental `ASSET_BUILD_PLAN_PROTOCOL`, `ASSET_LOADER_PROTOCOL`,
+`AssetBuildPlanLimits`, `AssetBuildPlanEntry`, and `AssetBuildPlan` through the
+focused `ludoweave.assets` package. The new loader constant names the exact
+existing M4 cache-key identity and does not change its bytes. Planning adds a
+versioned CLI document; the engine root remains unchanged.
+M130 adds experimental exact verification behavior to `AssetBuildPlan`, an
+internal project-confined plan loader, and a versioned CLI verification result.
+It adds no Python export and the engine root remains unchanged.
+M131 adds experimental `ASSET_BUILD_RESULT_PROTOCOL`,
+`AssetBuildExecutionLimits`, `AssetBuildInput`, `AssetBuildResultEntry`,
+`AssetBuildResult`, and `execute_asset_build_plan` through the focused
+`ludoweave.assets` package. The versioned result retains output identities but
+not payloads; the engine root remains unchanged.
+M132 adds experimental `AssetBuildArtifact`, `AssetBuildMaterialization`,
+`materialize_asset_build_plan()`, `ASSET_CACHE_ENTRY_PROTOCOL`,
+`ASSET_CACHE_PUBLISH_PROTOCOL`, `AssetCacheError`, `AssetCachePublishEntry`,
+`AssetCachePublishSummary`, and `AssetCacheStore` through
+`ludoweave.assets`. Cache protocols and storage remain local-only; the engine
+root remains unchanged.
+M133 adds experimental `ASSET_CACHE_LOOKUP_PROTOCOL`,
+`AssetCacheLookupEntry`, `AssetCacheLookupSummary`, read-only
+`AssetCacheStore.load_action()`, `AssetCacheStore.inspect()`, and explicit
+`writable` authority through `ludoweave.assets`. This verifies current-plan
+cache evidence but does not authorize cache-assisted execution; the engine
+root remains unchanged.
 
 M20 confirms that the installed command/transaction/receipt path is canonical,
 atomic, and transport-independent within one version. It remains experimental:

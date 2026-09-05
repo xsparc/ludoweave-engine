@@ -229,7 +229,7 @@ def test_enhanced_deflate_preflight_closes_owned_archive_and_source(
     assert list(output.iterdir()) == []
 
 
-def test_encryption_precedes_enhanced_deflate_and_stored_bit_is_out_of_scope(
+def test_encryption_precedes_enhanced_deflate_and_m105_supersedes_stored_bit_scope(
     tmp_path: Path,
 ) -> None:
     module = _smoke()
@@ -250,13 +250,17 @@ def test_encryption_precedes_enhanced_deflate_and_stored_bit_is_out_of_scope(
     _set_member_flags(stored, member_index=0, flag_bits=0x0010)
     stored_output = tmp_path / "stored-output"
     stored_output.mkdir()
-    extracted = module._extract_bundle(
-        stored,
-        stored_output,
-        version=_VERSION,
-        expected_sha256=_sha256(stored),
-    )
-    assert extracted.is_dir()
+    with pytest.raises(
+        RuntimeError,
+        match=r"^sample bundle contains unsupported general-purpose flags$",
+    ):
+        module._extract_bundle(
+            stored,
+            stored_output,
+            version=_VERSION,
+            expected_sha256=_sha256(stored),
+        )
+    assert list(stored_output.iterdir()) == []
 
 
 def test_current_producer_uses_no_enhanced_deflate_indicator(tmp_path: Path) -> None:

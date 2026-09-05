@@ -54,6 +54,434 @@ attestation, with the same allocation topology.
   semantic foundation while leaving GUI/editor runtime surfaces absent.
 - Deterministic WASM-mod security evidence that confirms the inert plugin
   boundary while leaving runtimes, guest execution, WASI, and host calls absent.
+- An accepted [asset-cache cleanup threat
+  model](security/cache-cleanup-threat-model.md) that defines the future
+  filesystem, concurrency, recovery, and safe-refusal gate while leaving
+  cleanup unimplemented.
+- An accepted [cache-cleanup platform-capability
+  decision](security/cache-cleanup-platform-capability-decision.md) that rejects
+  partial portable primitives and admits no platform without real-host adapter
+  evidence.
+- A test-only [Windows cache-cleanup capability
+  probe](security/cache-cleanup-windows-capability-probe.md) that exercises a
+  bounded owned-handle chain without admitting Windows or runtime cleanup.
+- A test-only [Windows directory-junction refusal
+  probe](security/cache-cleanup-windows-junction-probe.md) that executes one
+  NTFS reparse case without adding runtime shelling or platform admission.
+- A test-only [Windows retained-parent substitution
+  probe](security/cache-cleanup-windows-retained-parent-substitution-probe.md)
+  that distinguishes an opened original directory from a junction rebound at
+  its former name without adding runtime behavior or platform admission.
+- A test-only [Windows cross-process substitution
+  probe](security/cache-cleanup-windows-cross-process-substitution-probe.md)
+  that moves the fixed namespace change to a non-inheriting child process
+  without adding runtime behavior, another CI allocation, or platform admission.
+- A test-only [Windows share-delete exclusion
+  probe](security/cache-cleanup-windows-share-delete-exclusion-probe.md) that
+  pairs a blocked child rename with the identical post-close success without
+  adding runtime behavior, another CI allocation, or platform admission.
+- A test-only [Windows native sharing-violation
+  probe](security/cache-cleanup-windows-native-sharing-violation-probe.md) that
+  captures one direct bounded child native result without adding runtime
+  behavior, another CI allocation, or platform admission.
+- A test-only [Windows child-owned share-delete
+  handshake](security/cache-cleanup-windows-child-owned-share-delete-handshake.md)
+  that orders a distinct blocker process's acquisition and close without
+  adding runtime behavior, another CI allocation, or platform admission.
+- A test-only [Windows abrupt blocker-owner termination
+  probe](security/cache-cleanup-windows-abrupt-blocker-termination-probe.md)
+  that bypasses graceful close and bounds one forced owner-termination
+  transition without adding runtime behavior, recovery, or CI allocation.
+- A test-only [Windows blocker control-pipe EOF
+  probe](security/cache-cleanup-windows-control-pipe-eof-probe.md) that closes
+  the parent control writer after readiness without adding runtime behavior,
+  arbitrary pipe recovery, or CI allocation.
+- A test-only [Windows blocker invalid-control-token
+  probe](security/cache-cleanup-windows-invalid-control-token-probe.md) that
+  sends one fixed non-release byte after readiness without adding runtime
+  behavior, arbitrary malformed-input handling, or CI allocation.
+- A test-only [Windows blocker broken-control-pipe
+  probe](security/cache-cleanup-windows-broken-control-pipe-probe.md) that
+  captures one direct late native write result after bounded owner termination
+  without adding runtime recovery, a universal error contract, or CI
+  allocation.
+- A test-only [Windows live-blocker wait-timeout
+  probe](security/cache-cleanup-windows-live-wait-timeout-probe.md) that
+  captures one immediate wait timeout while ownership and denial remain live,
+  without adding runtime recovery, timeout policy, or CI allocation.
+- A test-only [Windows acknowledged-release timeout
+  probe](security/cache-cleanup-windows-acknowledged-release-timeout-probe.md)
+  that separates accepted release intent from native handle close without
+  adding runtime recovery, graceful-close policy, or CI allocation.
+- A test-only [Windows duplicated-handle retention
+  probe](security/cache-cleanup-windows-duplicated-handle-probe.md) that proves
+  one same-process duplicate retains the observed denial after the original
+  closes, without adding inherited-handle claims, runtime behavior, or CI
+  allocation.
+- A test-only [Windows inherited-handle retention
+  probe](security/cache-cleanup-windows-inherited-handle-probe.md) that proves
+  one explicitly allowlisted child handle retains the observed denial after
+  the parent closes its handle, without adding concurrency-safe inheritance,
+  runtime behavior, or CI allocation.
+- A test-only [Windows inherited-launch failure
+  probe](security/cache-cleanup-windows-inherited-launch-failure-probe.md) that
+  proves one real missing-executable failure restores noninheritability while
+  preserving parent ownership, without adding arbitrary rollback, runtime
+  behavior, or CI allocation.
+- A test-only [Windows inherited-handle restoration-failure
+  probe](security/cache-cleanup-windows-inherited-restore-failure-probe.md) that
+  proves one already-created child is reaped before an injected restore error
+  escapes while keeping parent repair duty explicit, without adding runtime
+  behavior or CI allocation.
+- A test-only [Windows concurrent broad-inheritance leak
+  probe](security/cache-cleanup-windows-concurrent-inheritance-leak-probe.md)
+  that proves one controlled broad launch retains the temporarily inheritable
+  blocker after parent and intended-child close, without adding runtime
+  coordination or CI allocation.
+- A test-only [Windows concurrent explicit-list isolation
+  probe](security/cache-cleanup-windows-concurrent-explicit-inheritance-probe.md)
+  that proves two overlapping one-handle lists isolate distinct blockers in
+  both release orders, without adding runtime coordination or CI allocation.
+- A test-only [Windows concurrent explicit-list launch-failure
+  probe](security/cache-cleanup-windows-concurrent-explicit-launch-failure-probe.md)
+  that proves a concurrent missing-executable launch releases its distinct root
+  while the successful child retains only its own blocker, without runtime or
+  CI expansion.
+- A test-only [Windows concurrent explicit-list restoration-failure
+  probe](security/cache-cleanup-windows-concurrent-explicit-restore-failure-probe.md)
+  that proves one injected restoration error reaps only its child while the
+  concurrent survivor retains only its distinct blocker, without runtime or
+  CI expansion.
+- A test-only [Windows concurrent explicit-list abrupt-termination
+  probe](security/cache-cleanup-windows-concurrent-explicit-abrupt-termination-probe.md)
+  that proves one forcibly terminated child releases only its inherited
+  blocker while the concurrent survivor remains live, without runtime or CI
+  expansion.
+- A test-only [Windows exclusive-root acquisition
+  probe](security/cache-cleanup-windows-exclusive-root-acquisition-probe.md)
+  that proves two-way fail-closed no-sharing acquisition and deterministic
+  release without introducing a runtime lock, cleanup authority, or CI
+  expansion.
+- A test-only [Windows descendant non-exclusion
+  probe](security/cache-cleanup-windows-descendant-non-exclusion-probe.md) that
+  proves a zero-sharing directory owner does not recursively exclude a separate
+  descendant file owner, without runtime or CI expansion.
+- A test-only [Windows cooperative-lock
+  probe](security/cache-cleanup-windows-cooperative-lock-probe.md) that proves
+  multiple shared owners collectively refuse one exclusive coordination-range
+  owner through the last release, without granting cleanup authority.
+- A test-only [Windows cooperative-lock substitution
+  probe](security/cache-cleanup-windows-cooperative-lock-substitution-probe.md)
+  that proves pathname replacement splits live participants across independent
+  file identities and lock generations, without runtime or CI expansion.
+- A test-only [Windows live substitution-exclusion
+  probe](security/cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe.md)
+  that blocks rename/replacement through the final protected participant while
+  preserving the zero-participant identity gap and no-authority boundary.
+- A test-only [Windows cooperative-lock abrupt-settlement
+  probe](security/cache-cleanup-windows-cooperative-lock-abrupt-settlement-probe.md)
+  that proves one abruptly terminated owner settles while a survivor retains
+  both protections, before final settlement releases both ownership types.
+- A test-only [Windows protected guardian-handoff
+  probe](security/cache-cleanup-windows-protected-guardian-handoff-probe.md)
+  that bridges a participant-free interval without treating identity
+  protection as cooperative range ownership or runtime authority.
+- A test-only [Windows guardian abrupt-handoff
+  probe](security/cache-cleanup-windows-guardian-abrupt-handoff-probe.md) that
+  proves a joined participant retains independent protection after the
+  overlapping guardian is abruptly terminated and reaped.
+- A test-only [Windows overlapping guardian-rotation
+  probe](security/cache-cleanup-windows-overlapping-guardian-rotation-probe.md)
+  that preserves namespace protection through one already-overlapped guardian
+  loss and later participant close without claiming restart or recovery.
+- A test-only [Windows zero-owner guardian restart-boundary
+  probe](security/cache-cleanup-windows-zero-owner-guardian-restart-boundary-probe.md)
+  that distinguishes benign identity reacquisition from pathname substitution
+  during an unprotected interval without claiming recovery or authority.
+- A test-only [Windows expected-identity guardian admission
+  probe](security/cache-cleanup-windows-expected-identity-guardian-admission-probe.md)
+  that compares the expected identity on the same protecting handle and
+  rejects a preexisting replacement without claiming identity authority.
+- A test-only [Windows hard-link alias non-exclusion
+  probe](security/cache-cleanup-windows-hard-link-alias-non-exclusion-probe.md)
+  that distinguishes exact-name protection from root-confined ownership.
+- A test-only [Windows post-admission hard-link creation
+  probe](security/cache-cleanup-windows-post-admission-hard-link-creation-probe.md)
+  that proves matching guardian admission does not freeze the link set.
+- A test-only [Windows hard-link alias deletion non-exclusion
+  probe](security/cache-cleanup-windows-hard-link-alias-deletion-non-exclusion-probe.md)
+  that proves exact-name protection does not exclude peer-link removal.
+- A test-only [Windows hard-link alias delete/recreate ABA
+  probe](security/cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe.md)
+  that proves guardian admission does not freeze peer-path membership or make
+  a one-link observation durable ownership.
+- A test-only [Windows independent hard-link alias mutator ABA
+  probe](security/cache-cleanup-windows-independent-hard-link-alias-mutator-aba-probe.md)
+  that reproduces the transition with a distinct sibling mutation process
+  while preserving the same-principal evidence limit.
+- A test-only [Windows hard-link alias mutator abrupt-loss
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-probe.md)
+  that records the alias-absent, one-link state after the mutation child is
+  terminated and reaped before recreation.
+- A test-only [Windows hard-link alias mutator abrupt-loss-after-recreate
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-abrupt-loss-after-recreate-probe.md)
+  that records the alias-present, two-link state after the mutation child is
+  terminated and reaped following exact recreation.
+- A test-only [Windows hard-link alias mutator control-pipe EOF after
+  recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe.md)
+  that records exact fixture exit 5 and the persistent alias-present, two-link
+  state after closing only the parent control writer following recreation.
+- A test-only [Windows hard-link alias mutator invalid control token after
+  recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-control-token-after-recreate-probe.md)
+  that records exact fixture exit 5 and the persistent alias-present, two-link
+  state after writing and flushing one fixed invalid byte following recreation.
+- A test-only [Windows hard-link alias mutator valid close prefix with trailing
+  byte after recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-valid-close-prefix-trailing-byte-after-recreate-probe.md)
+  that records exact `closed`, exit 0, and the persistent two-link state after
+  writing and flushing fixed `!?` once following recreation.
+- A test-only [Windows hard-link alias mutator invalid prefix with valid close
+  suffix after recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-after-recreate-probe.md)
+  that records no close acknowledgement, exit 5, and the persistent two-link
+  state after writing and flushing fixed `?!` once following recreation.
+- A test-only [Windows hard-link alias mutator invalid-prefix open-writer
+  settlement after recreation
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-invalid-prefix-valid-close-suffix-open-writer-settlement-after-recreate-probe.md)
+  that records exit 5 while the parent writer remains open, separating the
+  fixed rejection from control-pipe EOF for the bounded fixture.
+- A test-only [Windows hard-link alias mutator late valid-close delivery-
+  failure after invalid settlement
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-late-valid-close-delivery-failure-after-invalid-settlement-probe.md)
+  that records one local buffered-byte acceptance followed by failed flush
+  delivery after the child has already exited.
+- A test-only [Windows hard-link alias mutator buffered-close delivery-failure
+  after invalid settlement
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-buffered-close-delivery-failure-after-invalid-settlement-probe.md)
+  that records generic delivery failure from direct close and final stream
+  closure without a preceding failed late flush.
+- A test-only [Windows hard-link alias mutator repeated buffered-close after
+  delivery-failure
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-repeated-buffered-close-after-delivery-failure-probe.md)
+  that records a second close returning `None` after the failed first close
+  has already left the parent stream closed.
+- A test-only [Windows hard-link alias mutator closed-stream flush after
+  delivery-failure
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-flush-after-delivery-failure-probe.md)
+  that records one later flush raising generic `ValueError` while the concrete
+  stream remains closed.
+- A test-only [Windows hard-link alias mutator closed-stream write after
+  delivery-failure
+  probe](security/cache-cleanup-windows-hard-link-alias-mutator-closed-stream-write-after-delivery-failure-probe.md)
+  that records one later `write(b"!")` raising generic `ValueError` while the
+  concrete stream remains closed.
+- A [Windows cache-cleanup readiness
+  refresh](security/cache-cleanup-windows-readiness-refresh.md) that consolidates
+  M149-M198, keeps cleanup deferred, and requires future work to resolve a
+  named admission criterion rather than extend standalone stream probing.
+- A [Windows singleton-link refusal
+  policy](security/windows-cache-cleanup-singleton-link-refusal-policy.md) that
+  requires exactly one handle-derived link at admission and immediately before
+  mutation, refuses every other or uncertain count, and rejects name
+  enumeration as authority without admitting cleanup.
+- A [Windows cleanup-authority admission
+  policy](security/windows-cache-cleanup-authority-admission-policy.md) that
+  requires exact effective-token, retained trusted-root, and separate durable-
+  generation bindings before any future private authority can be issued,
+  without adding runtime cleanup or CI allocation.
+- A [Windows use-time revalidation
+  policy](security/windows-cache-cleanup-use-time-revalidation-policy.md) that
+  requires the complete admitted token, root, generation, lineage, and
+  candidate state to be freshly equal immediately before every future mutation
+  boundary.
+- A [Windows cleanup protocol and receipt
+  policy](security/windows-cache-cleanup-protocol-receipt-policy.md) that
+  separates bounded canonical request, acknowledgement, and path-free typed
+  receipt evidence from canonical world transactions and private authority.
+- A [Windows cleanup durable recovery
+  policy](security/windows-cache-cleanup-durable-recovery-policy.md) that
+  requires bounded write-ahead intent, same-filesystem no-replace quarantine,
+  idempotent reconciliation, and fail-closed handling of ambiguous or altered
+  recovery evidence before Windows cleanup can be admitted.
+- A [Windows cache-cleanup cross-principal validation
+  contract](security/windows-cache-cleanup-cross-principal-validation-contract.md)
+  that requires a genuinely distinct untrusted principal, unrelated process
+  and session topologies, deterministic barriers, and real ACL, handle, alias,
+  and reparse pressure before criterion 6 can be resolved.
+- A source-only [Windows cross-principal evidence
+  validator](security/windows-cache-cleanup-cross-principal-evidence-validator.md)
+  that checks one stable bounded canonical artifact and ships an explicitly
+  all-`not_run` reviewed fixture without claiming criterion 6 or admitting
+  cleanup.
+- A [Windows independent-host validation
+  contract](security/windows-cache-cleanup-independent-host-validation-contract.md)
+  that requires observed capability profiles, independent hosts, explicit
+  filesystem refusals, and separated interruption classes before criterion 7
+  can be resolved.
+- A source-only [Windows independent-host evidence
+  validator](security/windows-cache-cleanup-independent-host-evidence-validator.md)
+  that checks a bounded canonical host artifact only when bound to a separately
+  validated M206 companion, while retaining an all-`not_run` reviewed fixture
+  and false Windows admission.
+- A [Windows independent-host collection-authority
+  policy](security/windows-cache-cleanup-independent-host-collection-authority-policy.md)
+  that confines any future privileged collector to offline, single-use,
+  host/lane/barrier-bound actions with reviewed evidence custody and teardown,
+  without adding a harness or qualifying run.
+- A source-only [Windows independent-host collection-plan
+  validator](security/windows-cache-cleanup-independent-host-collection-plan-validator.md)
+  that checks one bounded sanitized all-`not_run` plan, exact closed matrices,
+  and false authority/admission claims without adding a privileged harness.
+- A test-only [Windows independent-host process-containment
+  probe](security/windows-cache-cleanup-independent-host-process-containment-probe.md)
+  that proves suspended assignment, exact retained root/descendant Job
+  membership, and bounded termination settlement on one current host without
+  collecting evidence or admitting Windows cleanup.
+- A test-only [Windows local control-channel
+  probe](security/windows-cache-cleanup-local-control-channel-probe.md) that
+  proves an explicit logon-SID DACL, native retained-client identity, bounded
+  challenged sequencing, and replay/wrong-challenge/disconnect refusal on one
+  current host without collecting evidence or admitting Windows cleanup.
+- A test-only [Windows local control token-binding
+  probe](security/windows-cache-cleanup-local-control-token-binding-probe.md)
+  that proves retained primary-token identity, native pipe/process/token
+  session agreement, DACL revalidation, and token stability through one local
+  challenge barrier without impersonation, collection, or admission.
+- A test-only [Windows retained process-image binding
+  probe](security/windows-cache-cleanup-retained-process-image-binding-probe.md)
+  that binds the fixed expected executable to the retained participant process
+  through private, bounded file-identity snapshots before and after one local
+  challenge barrier without collection, cleanup, or admission.
+- A test-only [Windows retained launch-source binding
+  probe](security/windows-cache-cleanup-retained-launch-source-binding-probe.md)
+  that executes one retained source through isolated inherited standard input,
+  limits inheritance to three fixed standard handles, and rechecks the source
+  before release without collection, cleanup, or admission.
+- A test-only [Windows retained launch-source access-refusal
+  probe](security/windows-cache-cleanup-retained-launch-source-access-refusal-probe.md)
+  that observes exact write/delete sharing refusal at three live phases, then
+  proves access settles after retained-handle close without source mutation,
+  collection, cleanup, or admission.
+- A test-only [Windows retained launch-source remote-debug exclusion
+  probe](security/windows-cache-cleanup-retained-launch-source-remote-debug-exclusion-probe.md)
+  that composes exact `-X disable_remote_debug` startup with the full retained
+  process/source boundary without remote attachment, injection, collection,
+  cleanup, or admission.
+- A test-only [Windows contained source-access refusal
+  probe](security/windows-cache-cleanup-contained-source-access-refusal-probe.md)
+  that assigns one fixed same-logon child suspended to a private kill-on-close
+  Job and observes exact write/delete sharing refusal without source mutation,
+  collection, cleanup, or admission.
+- A test-only [Windows contained source-access image-binding
+  probe](security/windows-cache-cleanup-contained-source-access-image-binding-probe.md)
+  that binds the suspended contender to retained expected/observed interpreter
+  identity and bytes before resume without claiming script provenance,
+  collection, cleanup, or admission.
+- A test-only [Windows contained source-access source-binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-binding-probe.md)
+  that retains a fixed contender source before child creation, executes it
+  through isolated inherited standard input under an exact three-handle
+  allowlist, and rechecks source and interpreter-image snapshots after
+  settlement without adding runtime, cleanup, admission, or hosted allocation.
+- A test-only [Windows contained source-access source-commit binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-binding-probe.md)
+  that requires the retained contender source to equal one exact immutable
+  local commit/path/blob before child creation and after settlement, without
+  claiming source attestation, build provenance, cleanup, or admission.
+- A corrective test-only [Windows contained source-access source-commit
+  no-lazy-fetch
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-no-lazy-fetch-probe.md)
+  that excludes configured promisor retrieval from every M221 object read
+  without adding runtime, cleanup, admission, workflow, or hosted allocation.
+- A test-only [Windows contained source-access source-commit Git executable
+  selection binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe.md)
+  that holds one absolute Git path across all 48 reads in the complete M222
+  observation without claiming executable identity, provenance, cleanup, or
+  admission.
+- A test-only [Windows contained source-access source-commit Git executable
+  file retention
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-file-retention-probe.md)
+  that holds one non-inheritable read-only handle across all 48 reads, rechecks
+  identity and SHA-256, and separately proves the retainer's write/delete
+  exclusion without claiming authenticity, native-loader provenance, cleanup,
+  or admission.
+- A test-only [Windows contained source-access source-commit Git child
+  process-image binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe.md)
+  that suspends each of the 48 existing children, matches its actual image to
+  M224's retained executable before child code runs, and resumes normal
+  `Popen` ownership without claiming authenticity, native-loader provenance,
+  cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git Authenticode
+  trust
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-authenticode-trust-probe.md)
+  that verifies the exact retained handle under cache-only local Windows trust
+  policy before and after M225 without defining signer policy, revocation
+  freshness, provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git
+  signer-certificate binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-signer-certificate-binding-probe.md)
+  that copies and hashes the bounded primary signer certificate from live
+  WinTrust state before and after M226 without authorizing a signer, pinning a
+  certificate, proving revocation freshness, or changing cleanup/admission.
+- A test-only [Windows contained source-access source-commit Git provider-chain
+  binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-provider-chain-binding-probe.md)
+  that copies and hashes every bounded provider certificate by exact provider
+  index before and after M227 without defining portable chain semantics,
+  authorizing a signer, or changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git
+  countersigner-chain binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-countersigner-chain-binding-probe.md)
+  that copies and hashes every bounded certificate chain for every exact
+  countersigner index before and after M228 without establishing portable
+  timestamp semantics, authorizing a timestamp authority, or changing
+  provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git signed-message
+  SignerInfo binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-signed-message-signer-info-binding-probe.md)
+  that copies and hashes every bounded opaque encoded SignerInfo by exact
+  message index before and after M229 without parsing it, creating signer or
+  timestamp-authority policy, or changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git message-signer
+  certificate binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-binding-probe.md)
+  that verifies every bounded exact message signer and requires its certificate
+  DER to equal the corresponding primary provider certificate before and after
+  M230 without creating publisher policy or changing provenance, cleanup, or
+  admission.
+- A test-only [Windows contained source-access source-commit Git message-signer
+  certificate-identifier binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-identifier-binding-probe.md)
+  that copies each bounded exact message selector's issuer and serial number
+  and requires them to equal the verified and same-index provider certificates
+  before and after M231 without creating identity or publisher policy or
+  changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git message-signer
+  certificate-ID binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md)
+  that validates every bounded exact `CERT_ID` choice, requires the current-
+  host issuer/serial form, and binds its payload to M232's same-index selector
+  before and after complete M232 without adding alternate-identifier or
+  publisher policy or changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git CMS SignerInfo
+  certificate-ID binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-info-certificate-id-binding-probe.md)
+  that validates every bounded exact signer-info version and `SignerId`,
+  requires the current-host version-1 issuer/serial form, and binds its copied
+  payload to M233's same-state, same-index certificate ID before and after
+  complete M233 without adding CMS, algorithm, attribute, signature, or
+  publisher policy or changing provenance, cleanup, or admission.
+- A test-only [Windows contained source-access source-commit Git CMS signer
+  hash-algorithm binding
+  probe](security/windows-cache-cleanup-contained-source-access-source-commit-git-cms-signer-hash-algorithm-binding-probe.md)
+  that confines and copies both same-index native algorithm identifiers and
+  requires their OID and opaque encoded parameters to match before and after
+  complete M234 without adding algorithm or signature policy or changing
+  provenance, cleanup, or admission.
 - Versioned, sanitized render-device conformance evidence over explicitly
   supplied trusted factories, with no adapter discovery or certification.
 - Versioned, sanitized 12-tool agent conformance evidence over explicitly
@@ -73,7 +501,7 @@ attestation, with the same allocation topology.
   a reviewed empty manifest, pending-item preservation, and no inferred SLA.
 - A pure-wheel community-alpha candidate with a deterministic sample bundle, checksums, SPDX SBOM, notices, explicit stability metadata, command/receipt readiness evidence, and cross-platform release smoke.
 
-Start with the [community-alpha user guide](user-guide.md), then read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [command and receipt stability decision](command-receipt-stability-decision.md), [operation-argument compatibility guide](operation-argument-compatibility.md), [bounded receipt-reader guide](receipt-reader.md), [external-contributor rehearsal readiness guide](external-contributor-rehearsal-readiness.md), [external contributor-retention readiness guide](external-contributor-retention-readiness.md), [rendering contract](rendering.md), [render-device conformance guide](render-device-conformance.md), [agent-tool conformance guide](agent-tool-conformance.md), [WorldStore conformance guide](world-store-conformance.md), [rich 2D presentation guide](presentation.md), [plugin compatibility guide](plugins.md), [constrained 3D decision](constrained-3d-decision.md), [visual-editor admission decision](visual-editor-decision.md), [WASM-mod security decision](wasm-mod-security-decision.md), [gameplay guide](gameplay.md), [agent control interface](agent-control.md), [API status](api-status.md), and [accepted decisions](adr/index.md) before building on the experimental and preview APIs.
+Start with the [community-alpha user guide](user-guide.md), then read the [architecture overview](architecture.md), [runtime contract](runtime-contract.md), [entity identity contract](ecs.md), [headless command workflow](cli-workflows.md), [command and receipt stability decision](command-receipt-stability-decision.md), [operation-argument compatibility guide](operation-argument-compatibility.md), [bounded receipt-reader guide](receipt-reader.md), [external-contributor rehearsal readiness guide](external-contributor-rehearsal-readiness.md), [external contributor-retention readiness guide](external-contributor-retention-readiness.md), [rendering contract](rendering.md), [render-device conformance guide](render-device-conformance.md), [agent-tool conformance guide](agent-tool-conformance.md), [WorldStore conformance guide](world-store-conformance.md), [rich 2D presentation guide](presentation.md), [plugin compatibility guide](plugins.md), [constrained 3D decision](constrained-3d-decision.md), [visual-editor admission decision](visual-editor-decision.md), [WASM-mod security decision](wasm-mod-security-decision.md), [asset-cache cleanup threat model](security/cache-cleanup-threat-model.md), [cache-cleanup platform-capability decision](security/cache-cleanup-platform-capability-decision.md), [Windows cache-cleanup capability probe](security/cache-cleanup-windows-capability-probe.md), [Windows directory-junction refusal probe](security/cache-cleanup-windows-junction-probe.md), [Windows retained-parent substitution probe](security/cache-cleanup-windows-retained-parent-substitution-probe.md), [Windows cross-process substitution probe](security/cache-cleanup-windows-cross-process-substitution-probe.md), [Windows share-delete exclusion probe](security/cache-cleanup-windows-share-delete-exclusion-probe.md), [Windows native sharing-violation probe](security/cache-cleanup-windows-native-sharing-violation-probe.md), [Windows child-owned share-delete handshake](security/cache-cleanup-windows-child-owned-share-delete-handshake.md), [gameplay guide](gameplay.md), [agent control interface](agent-control.md), [API status](api-status.md), and [accepted decisions](adr/index.md) before building on the experimental and preview APIs.
 
 ## Quick check
 

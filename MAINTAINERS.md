@@ -434,10 +434,214 @@ consistency classifier performs no CRC recomputation, compressed/uncompressed
 size comparison, payload or next-header bound, or inter-member layout
 validation. It adds no workflow, allocation, dependency, version, producer,
 runtime source/API, release authority, tag, release, or publication. It is not
-a general archive sandbox and is not a real public release observation. M0
-through M98 are complete, reviewed, hosted-validated, and integrated into
-`main`. M99 starts from exact verified M98 closeout
-`6d4529efb0476f3e3e45f78204d2b0aa192da018`.
+a general archive sandbox and is not a real public release observation.
+
+M100 reads the four-byte local compressed size after M99 and requires exact
+equality with public central `ZipInfo.compress_size` before decoded names,
+metadata, inventory, staging, or reads. Its stable content-silent error is
+`sample bundle local header compressed sizes are inconsistent`. This one four-
+byte local-compressed-size consistency classifier performs no decompression or
+recompression, no uncompressed-size comparison, no payload or next-header
+bound, and no inter-member layout validator. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M0 through M99 are complete, reviewed, hosted-
+validated, and integrated into `main`. M100 starts from exact verified M99
+closeout `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`.
+
+M101 reads the four-byte local uncompressed size after M100 and requires exact
+equality with public central `ZipInfo.file_size` before decoded names, metadata,
+inventory, staging, or reads. Its stable content-silent error is `sample bundle
+local header uncompressed sizes are inconsistent`. This one four-byte local-
+uncompressed-size consistency classifier performs no decompression or
+recompression, no compression-ratio policy, no payload or next-header bound,
+and no inter-member layout validator. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M101 is locally stacked on the fully validated,
+unpushed M100 DCO commit; neither milestone has hosted qualification.
+
+M102 calculates each compressed payload end after M101 and requires it not to
+exceed the next ordered local header or conventional central directory before
+decoded names, metadata, inventory, staging, or reads. Its stable content-
+silent error is `sample bundle member payloads are out of bounds`. This one
+compressed-payload upper-bound classifier performs no decompression or
+recompression, adds no exact-contiguity requirement, no gap or adjacency ban,
+and no payload-integrity certification. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M102 is locally stacked on fully validated,
+unpushed M101; none of M100-M102 has hosted qualification.
+
+M103 requires each compressed payload end to equal the next ordered local
+header or conventional central directory after M102 and before decoded names,
+metadata, inventory, staging, or reads. Its stable content-silent error is
+`sample bundle member payloads are not contiguous`. This exact compressed-
+payload contiguity preflight is one compressed-payload equality classifier. It
+performs no decompression or recompression, reads no payload content, and makes
+no payload-integrity certification. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M103 is locally stacked on fully validated,
+unpushed M102; none of M100-M103 has hosted qualification.
+
+M104 requires public central `ZipInfo.extra` to be empty after established
+Unicode Path, ZIP64, local/central consistency, payload-bound, and contiguity
+checks and before decoded names, metadata, inventory, staging, or reads. Its
+stable content-silent error is `sample bundle contains an unsupported extra
+field`. This empty sample-member extra-field profile preflight is one central-
+extra emptiness classifier with no extra-field semantics parser and no payload-
+content read. It adds no workflow, allocation, dependency, version, producer,
+runtime source/API, release authority, tag, release, or publication. It is not
+a general archive sandbox and is not a real public release observation. M104 is
+locally stacked on fully validated, unpushed M103; none of M100-M104 has hosted
+qualification.
+
+M105 requires public central `ZipInfo.flag_bits` to equal zero after
+established specific-flag, local/central consistency, payload-layout, and M104
+extra-field checks, then after decoded names and member metadata but before
+exact inventory, staging, or reads. Its stable content-silent error is `sample
+bundle contains unsupported general-purpose flags`. This zero sample-member
+general-purpose-flag profile preflight is one central-flag zero-profile
+classifier with no flag-semantics parser and no payload-content read. It adds
+no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M105 is locally stacked on fully validated,
+unpushed M104; none of M100-M105 has hosted qualification.
+
+M106 requires public central `ZipInfo.reserved` to equal zero after M105 and
+before exact inventory, staging, or reads. Its stable content-silent error is
+`sample bundle has a nonzero extraction-version reserved byte`. This zero
+sample-member extraction-version reserved-byte profile preflight is one
+central-reserved zero-profile classifier with no extraction-version semantics
+parser and no payload-content read. It adds no workflow, allocation,
+dependency, version, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M106 is locally stacked on fully validated,
+unpushed M105; none of M100-M106 has hosted qualification.
+
+M107 requires public central `ZipInfo.extract_version` to equal `20` after M106
+and before exact inventory, staging, or reads. Its stable content-silent error
+is `sample bundle has an unsupported extraction version`. This exact sample-
+member extraction-version profile preflight is one central-extraction-version
+exact-profile classifier with no general extraction-version semantics parser
+and no payload-content read. It adds no workflow, allocation, dependency,
+version, producer, runtime source/API, release authority, tag, release, or
+publication. It is not a general archive sandbox and is not a real public
+release observation. M107 is locally stacked on fully validated, unpushed M106;
+none of M100-M107 has hosted qualification.
+
+M108 requires public central `ZipInfo.create_version` to equal `20` after M107
+and before exact inventory, staging, or reads. Its stable content-silent error
+is `sample bundle has an unsupported creation version`. This exact sample-
+member creation-version profile preflight is one central-creation-version
+exact-profile classifier with no general creation-version semantics parser and
+no payload-content read. It adds no workflow, allocation, dependency, version,
+producer, runtime source/API, release authority, tag, release, or publication.
+It is not a general archive sandbox and is not a real public release
+observation. M108 is locally stacked on fully validated, unpushed M107; none of
+M100-M108 has hosted qualification.
+
+M109 requires public central `ZipInfo.internal_attr` to equal zero after M108
+and before exact inventory, staging, or reads. Its stable content-silent error
+is `sample bundle has unsupported internal attributes`. This zero sample-member
+internal-attribute profile preflight is one central-internal-attribute exact-
+profile classifier with no text/binary content interpretation and no payload-
+content read. It adds no workflow, allocation, dependency, version, producer,
+runtime source/API, release authority, tag, release, or publication. It is not
+a general archive sandbox and is not a real public release observation. M109 is
+locally stacked on fully validated, unpushed M108; none of M100-M109 has hosted
+qualification.
+
+M110 retains sample-member timestamp compatibility after an exact fixed-
+producer tuple caused 22 established architecture regressions in valid
+standard-library-written fixtures. M98 local/central consistency remains the
+verifier boundary, while the fixed producer remains reproducible. This is one
+central-timestamp compatibility decision with no timezone or UTC conversion
+and no payload-content read. It adds no workflow, allocation, dependency,
+version, verifier, producer, runtime source/API, release authority, tag,
+release, or publication. It is not a general archive sandbox and is not a real
+public release observation. M110 is locally stacked on fully validated,
+unpushed M109; none of M100-M110 has hosted qualification.
+
+M111 retains sample-member permission compatibility. M65 continues to reject
+encoded symlinks and non-regular file types while admitting missing type bits
+and regular-file permission variants. The fixed producer remains UNIX mode
+`0100644`. This is one permission-bit compatibility decision with no exact
+external-attribute profile, no permission restoration, and no payload-content
+read. It adds no workflow, allocation, dependency, version, verifier, producer,
+runtime source/API, release authority, tag, release, or publication. It is not
+a general archive sandbox and is not a real public release observation. M111 is
+locally stacked on fully validated, unpushed M110; none of M100-M111 has hosted
+qualification.
+
+M112 retains sample-member creating-system compatibility. Standard-library
+Windows and non-Windows host markers remain admitted when every established
+check passes; M65's file-type boundary remains unchanged and the deterministic
+producer remains fixed at host `3`. This is one host-marker compatibility
+decision with no creating-system allowlist, no host-specific external-attribute
+interpretation, and no payload-content read. It adds no workflow, allocation,
+dependency, version, verifier, producer, runtime source/API, release authority,
+tag, release, or publication. It is not a general archive sandbox and is not a
+real public release observation. M112 is locally stacked on fully validated,
+unpushed M111; none of M100-M112 has hosted qualification.
+
+M113 retains sample-member compression-method compatibility. M64 continues to
+admit only stored method `0` and deflated method `8`, and M95 continues to
+require local/central method agreement. The deterministic producer remains
+deflated. This is one compression-method compatibility decision with no exact
+deflate-only profile, no new decompressor, and no payload-content read. It adds
+no workflow, allocation, dependency, version, verifier, producer, runtime
+source/API, release authority, tag, release, or publication. It is not a
+general archive sandbox and is not a real public release observation. M113 is
+locally stacked on fully validated, unpushed M112; none of M100-M113 has hosted
+qualification.
+
+M114 retains sample-member compression-level non-observability. The fixed
+producer continues to request level `9`, but complete release smoke must not
+infer that setting from reopened attributes, compressed bytes, or sizes. M105's
+zero flag profile and M113's compression-method compatibility remain unchanged.
+This is one compression-level non-observability decision with no exact level-9
+verifier profile, no inferred compressor level, and no payload-content read. It
+adds no workflow, allocation, dependency, version, verifier, producer, runtime
+source/API, release authority, tag, release, or publication. It is not a
+general archive sandbox and is not a real public release observation. M114 is
+locally stacked on fully validated, unpushed M113; none of M100-M114 has hosted
+qualification.
+
+M115 scopes sample-bundle byte reproducibility to the release environment.
+Repeated staging inside one fixed resolved environment must remain
+byte-identical. Supported CPython 3.12-3.14 runtimes remain compatible
+consumers and local staging environments; they do not receive a cross-runtime
+byte-identity promise. This is one sample-bundle reproducibility-scope decision
+with no compressor-identity manifest field. It adds no workflow, allocation,
+dependency, version, verifier, producer, runtime source/API, release authority,
+tag, release, or publication. It is not a general reproducible-build claim and
+is not a real public release observation. M115 is locally stacked on fully
+validated, unpushed M114; none of M100-M115 has hosted qualification.
+
+M116 separates sample-bundle semantic portability from byte identity. Exact
+Windows CPython 3.12.13, 3.13.13, and 3.14.5 producers and consumers completed
+the full 3x3 matrix, and every combination extracted the same fixed 50-file
+source tree. This is one sample-bundle semantic-portability decision recording
+cross-runtime producer-consumer compatibility without a cross-runtime byte-
+identity claim. It adds no alternate compression method, workflow, allocation,
+dependency, version, verifier, producer, runtime source/API, release authority,
+tag, release, or publication. It is not a general ZIP interoperability claim
+and is not a real public release observation. M116 is locally stacked on fully
+validated, unpushed M115; none of M100-M116 has hosted qualification.
+
+M117 retains standard GIL CPython as the supported baseline after an exact
+Windows CPython 3.14.5t installed-wheel serial compatibility observation. The
+free-threaded build ran with its GIL disabled, completed the deterministic
+headless example, preserved explicit owner-thread rejection, and closed
+normally. This is one free-threaded serial-compatibility decision and not a
+support promise. It makes no concurrent-safety claim and adds no graphics,
+performance, cross-platform, extension, workflow, allocation, dependency,
+version, runtime API, release-authority, tag, release, or publication change.
+It is not a real public release observation. M117 is locally stacked on fully
+validated, unpushed M116; none of M100-M117 has hosted qualification.
 
 M59 current-tree metadata hygiene remains the repository disclosure convention.
 It does not rewrite Git history, attribution, DCO evidence, or external records;
@@ -862,3 +1066,15 @@ final evidence head `4e378756b2a1733de28e7160ac2d6d72921f3e4a` into `main` as
 GitHub-verified commit `6bfb56555cafc93a7312f64465ea15cd7c450e79`;
 both trees are `ea3f410fac31d7a32faee4e697c4fb0941b657df`. No hosted pass or
 integration widens the M21 boundary or establishes cross-version compatibility.
+
+## M118 Python 3.15 prerelease boundary
+
+Retain Python 3.15 outside the supported range. The exact Windows CPython
+3.15.0b1 result required an explicit metadata override and is an unsupported
+prerelease compatibility observation only. `doctor` correctly rejected the
+interpreter; successful version, deterministic serial headless execution,
+orderly close, and owner-thread rejection do not create a support promise.
+M118 adds no workflow, allocation, metadata, dependency, lock, version, runtime
+API, provider, release authority, tag, release, or publication, and is not a
+real public release observation. Reconsider after the final release and full
+supported-platform, toolchain, dependency, provider, and installed-wheel gates.

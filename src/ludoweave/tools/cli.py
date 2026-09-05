@@ -6,11 +6,46 @@ import argparse
 import json
 import sys
 from collections.abc import Sequence
+from dataclasses import dataclass
+from hashlib import sha256
 from pathlib import Path
 from typing import cast
 
 from ludoweave import __version__
 from ludoweave.agent import AGENT_TOOL_NAMES
+from ludoweave.assets import (
+    ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES,
+    ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+    ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
+    ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_MAX_BYTES,
+    ASSET_SOURCE_MAX_BYTES,
+    ASSET_SOURCE_TOTAL_MAX_BYTES,
+    AssetBuildInput,
+    AssetBuildPlan,
+    AssetCachePopulationRecord,
+    AssetCacheStore,
+    AssetError,
+    AssetManifest,
+    AssetSourceLock,
+    AssetSourceLockEntry,
+    AssetUri,
+    compare_asset_cache_fingerprint,
+    compare_asset_cache_fingerprint_records,
+    decode_asset_cache_fingerprint,
+    decode_asset_cache_fingerprint_comparison,
+    decode_asset_cache_unreferenced_preview,
+    execute_asset_build_plan,
+    fingerprint_asset_cache_observation,
+    inspect_asset_cache_inventory,
+    materialize_asset_build_plan,
+    populate_asset_build_cache,
+    preview_asset_cache_unreferenced_blobs,
+    realize_asset_build_plan,
+    verify_asset_cache_fingerprint,
+    verify_asset_cache_fingerprint_comparison,
+    verify_asset_cache_population,
+    verify_asset_cache_unreferenced_preview,
+)
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.plugins import (
     PluginDeterminism,
@@ -20,6 +55,7 @@ from ludoweave.plugins import (
     current_plugin_context,
 )
 from ludoweave.samples import create_agent_world_builder
+from ludoweave.scene import SourceLock, SourceLockEntry
 from ludoweave.tools.agent_service import headless_agent_service
 from ludoweave.tools.doctor import run_doctor
 from ludoweave.tools.headless_project import HeadlessProject
@@ -45,6 +81,26 @@ _MAX_PLUGIN_MANIFEST_BYTES = 65_536
 _MAX_PLUGIN_MANIFESTS = 64
 
 
+@dataclass(frozen=True, slots=True)
+class _SourceAssetDeclaration:
+    entry_id: str
+    kind: str
+    dependencies: tuple[AssetUri, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class _SourceManifestInspection:
+    lock: SourceLock
+    manifest_protocol: str
+    check_entries: tuple[JsonValue, ...]
+    asset_dependencies: tuple[_SourceAssetDeclaration, ...]
+    scenes: int
+    prefabs: int
+    entities: int
+    overrides: int
+    dependencies: int
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ludoweave",
@@ -53,6 +109,322 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--version", action="version", version=f"ludoweave {__version__}")
     subparsers = parser.add_subparsers(dest="command")
     subparsers.add_parser("doctor", help="run structured local environment diagnostics")
+
+    source_parser = subparsers.add_parser("source", help="validate project-confined sources")
+    source_subparsers = source_parser.add_subparsers(dest="source_command", required=True)
+    source_check_parser = source_subparsers.add_parser(
+        "check",
+        help="check one scene or one explicit prefab source/instance pair",
+    )
+    source_check_parser.add_argument("project", type=Path, help="project directory")
+    source_mode = source_check_parser.add_mutually_exclusive_group(required=True)
+    source_mode.add_argument("--scene", help="project-relative scene JSON")
+    source_mode.add_argument("--prefab", help="project-relative prefab source JSON")
+    source_mode.add_argument("--manifest", help="project-relative explicit source manifest")
+    source_check_parser.add_argument(
+        "--instance",
+        help="project-relative prefab instance JSON; required with --prefab",
+    )
+    source_lock_parser = source_subparsers.add_parser(
+        "lock",
+        help="emit a canonical path-independent lock for one explicit source manifest",
+    )
+    source_lock_parser.add_argument("project", type=Path, help="project directory")
+    source_lock_parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    source_verify_parser = source_subparsers.add_parser(
+        "verify",
+        help="verify current explicit sources against one confined source lock",
+    )
+    source_verify_parser.add_argument("project", type=Path, help="project directory")
+    source_verify_parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    source_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative source-integrity lock"
+    )
+    source_assets_parser = source_subparsers.add_parser(
+        "assets",
+        help="check declared source assets and resolve their asset-graph dependencies",
+    )
+    source_assets_parser.add_argument("project", type=Path, help="project directory")
+    source_assets_parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    source_assets_parser.add_argument(
+        "--assets", required=True, help="project-relative asset manifest"
+    )
+    source_asset_lock_parser = source_subparsers.add_parser(
+        "asset-lock",
+        help="emit a canonical lock for source-selected asset input bytes",
+    )
+    _add_asset_source_arguments(source_asset_lock_parser)
+    source_asset_verify_parser = source_subparsers.add_parser(
+        "asset-verify",
+        help="verify selected asset input bytes against one confined lock",
+    )
+    _add_asset_source_arguments(source_asset_verify_parser)
+    source_asset_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_plan_parser = source_subparsers.add_parser(
+        "asset-plan",
+        help="emit a dependency-first plan for verified selected asset inputs",
+    )
+    _add_asset_source_arguments(source_asset_plan_parser)
+    source_asset_plan_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_plan_verify_parser = source_subparsers.add_parser(
+        "asset-plan-verify",
+        help="verify a saved asset plan against current selected inputs",
+    )
+    _add_asset_source_arguments(source_asset_plan_verify_parser)
+    source_asset_plan_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_plan_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_build_parser = source_subparsers.add_parser(
+        "asset-build",
+        help="execute built-in decoders for one verified asset build plan",
+    )
+    _add_asset_source_arguments(source_asset_build_parser)
+    source_asset_build_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_build_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_parser = source_subparsers.add_parser(
+        "asset-cache",
+        help="publish verified built-in decoder outputs to one explicit local cache",
+    )
+    _add_asset_source_arguments(source_asset_cache_parser)
+    source_asset_cache_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_check_parser = source_subparsers.add_parser(
+        "asset-cache-check",
+        help="inspect verified local cache hits for one exact current asset plan",
+    )
+    _add_asset_source_arguments(source_asset_cache_check_parser)
+    source_asset_cache_check_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_check_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_check_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_inventory_parser = source_subparsers.add_parser(
+        "asset-cache-inventory",
+        help="verify and classify one bounded engine-owned local cache read-only",
+    )
+    _add_asset_source_arguments(source_asset_cache_inventory_parser)
+    source_asset_cache_inventory_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_inventory_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_inventory_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_fingerprint_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint",
+        help="fingerprint one verified sequential local-cache observation",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_parser)
+    source_asset_cache_fingerprint_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_unreferenced_preview_parser = source_subparsers.add_parser(
+        "asset-cache-unreferenced-preview",
+        help="preview path-free unreferenced-blob aggregates without mutation",
+    )
+    _add_asset_source_arguments(source_asset_cache_unreferenced_preview_parser)
+    source_asset_cache_unreferenced_preview_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_unreferenced_preview_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_unreferenced_preview_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_fingerprint_record_preview_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-record-preview",
+        help="preview path-free unreferenced aggregates from a saved fingerprint",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_record_preview_parser)
+    source_asset_cache_fingerprint_record_preview_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_record_preview_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_record_preview_parser.add_argument(
+        "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser = source_subparsers.add_parser(
+        "asset-cache-unreferenced-preview-verify",
+        help="verify one saved unreferenced preview against saved fingerprint evidence",
+    )
+    _add_asset_source_arguments(source_asset_cache_unreferenced_preview_verify_parser)
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_unreferenced_preview_verify_parser.add_argument(
+        "--preview", required=True, help="project-relative saved unreferenced preview"
+    )
+    source_asset_cache_fingerprint_verify_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-verify",
+        help="verify saved fingerprint evidence against an exact current plan and cache",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_verify_parser)
+    source_asset_cache_fingerprint_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_verify_parser.add_argument(
+        "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_fingerprint_verify_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_fingerprint_compare_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-compare",
+        help="diagnose path-free aggregate changes from one saved cache fingerprint",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_compare_parser)
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--fingerprint", required=True, help="project-relative saved cache fingerprint"
+    )
+    source_asset_cache_fingerprint_compare_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_fingerprint_record_compare_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-record-compare",
+        help="compare two saved cache fingerprints without cache access",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_record_compare_parser)
+    source_asset_cache_fingerprint_record_compare_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_record_compare_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_record_compare_parser.add_argument(
+        "--expected-fingerprint",
+        required=True,
+        help="project-relative expected cache fingerprint",
+    )
+    source_asset_cache_fingerprint_record_compare_parser.add_argument(
+        "--current-fingerprint",
+        required=True,
+        help="project-relative current cache fingerprint",
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser = source_subparsers.add_parser(
+        "asset-cache-fingerprint-comparison-verify",
+        help="verify a saved comparison against two saved cache fingerprints",
+    )
+    _add_asset_source_arguments(source_asset_cache_fingerprint_comparison_verify_parser)
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--expected-fingerprint",
+        required=True,
+        help="project-relative expected cache fingerprint",
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--current-fingerprint",
+        required=True,
+        help="project-relative current cache fingerprint",
+    )
+    source_asset_cache_fingerprint_comparison_verify_parser.add_argument(
+        "--comparison",
+        required=True,
+        help="project-relative saved cache-fingerprint comparison",
+    )
+    source_asset_cache_populate_parser = source_subparsers.add_parser(
+        "asset-cache-populate",
+        help="realize one exact plan before explicitly populating a local cache",
+    )
+    _add_asset_source_arguments(source_asset_cache_populate_parser)
+    source_asset_cache_populate_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_populate_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_populate_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_cache_population_verify_parser = source_subparsers.add_parser(
+        "asset-cache-population-verify",
+        help="verify saved population evidence against an exact current plan and cache",
+    )
+    _add_asset_source_arguments(source_asset_cache_population_verify_parser)
+    source_asset_cache_population_verify_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_cache_population_verify_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_cache_population_verify_parser.add_argument(
+        "--population", required=True, help="project-relative saved population report"
+    )
+    source_asset_cache_population_verify_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
+    source_asset_realize_parser = source_subparsers.add_parser(
+        "asset-realize",
+        help="realize one verified asset plan from read-only cache hits and decoded misses",
+    )
+    _add_asset_source_arguments(source_asset_realize_parser)
+    source_asset_realize_parser.add_argument(
+        "--lock", required=True, help="project-relative asset-source lock"
+    )
+    source_asset_realize_parser.add_argument(
+        "--plan", required=True, help="project-relative asset build plan"
+    )
+    source_asset_realize_parser.add_argument(
+        "--cache", required=True, type=Path, help="local cache directory outside the project"
+    )
 
     apply_parser = subparsers.add_parser(
         "apply",
@@ -173,6 +545,55 @@ def main(argv: Sequence[str] | None = None) -> int:
         _print_json(report)
         return exit_code
     try:
+        if command == "source":
+            source_command: object = getattr(args, "source_command", None)
+            if source_command == "check":
+                return _run_source_check(args)
+            if source_command == "lock":
+                return _run_source_lock(args)
+            if source_command == "verify":
+                return _run_source_verify(args)
+            if source_command == "assets":
+                return _run_source_assets(args)
+            if source_command == "asset-lock":
+                return _run_asset_source_lock(args)
+            if source_command == "asset-verify":
+                return _run_asset_source_verify(args)
+            if source_command == "asset-plan":
+                return _run_asset_build_plan(args)
+            if source_command == "asset-plan-verify":
+                return _run_asset_build_plan_verify(args)
+            if source_command == "asset-build":
+                return _run_asset_build_plan_execute(args)
+            if source_command == "asset-cache":
+                return _run_asset_cache_publish(args)
+            if source_command == "asset-cache-check":
+                return _run_asset_cache_check(args)
+            if source_command == "asset-cache-inventory":
+                return _run_asset_cache_inventory(args)
+            if source_command == "asset-cache-fingerprint":
+                return _run_asset_cache_fingerprint(args)
+            if source_command == "asset-cache-unreferenced-preview":
+                return _run_asset_cache_unreferenced_preview(args)
+            if source_command == "asset-cache-fingerprint-record-preview":
+                return _run_asset_cache_fingerprint_record_preview(args)
+            if source_command == "asset-cache-unreferenced-preview-verify":
+                return _run_asset_cache_unreferenced_preview_verify(args)
+            if source_command == "asset-cache-fingerprint-compare":
+                return _run_asset_cache_fingerprint_compare(args)
+            if source_command == "asset-cache-fingerprint-record-compare":
+                return _run_asset_cache_fingerprint_record_compare(args)
+            if source_command == "asset-cache-fingerprint-comparison-verify":
+                return _run_asset_cache_fingerprint_comparison_verify(args)
+            if source_command == "asset-cache-fingerprint-verify":
+                return _run_asset_cache_fingerprint_verify(args)
+            if source_command == "asset-cache-populate":
+                return _run_asset_cache_populate(args)
+            if source_command == "asset-cache-population-verify":
+                return _run_asset_cache_population_verify(args)
+            if source_command == "asset-realize":
+                return _run_asset_realize(args)
+            raise _argument_error("source_command")
         if command == "apply":
             return _run_apply(args)
         if command == "snapshot":
@@ -194,6 +615,801 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 2
     parser.print_help()
     return 0
+
+
+def _run_source_check(args: argparse.Namespace) -> int:
+    if _text_argument(args, "source_command") != "check":
+        raise _argument_error("source_command")
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    scene_name = _optional_text_argument(args, "scene")
+    prefab_name = _optional_text_argument(args, "prefab")
+    manifest_name = _optional_text_argument(args, "manifest")
+    instance_name = _optional_text_argument(args, "instance")
+    if scene_name is not None:
+        if instance_name is not None:
+            raise _argument_error("source_mode")
+        scene = project.load_scene(scene_name)
+        _write_stdout(
+            canonical_dumps(
+                {
+                    "protocol": "ludoweave.cli.source-check/1",
+                    "status": "valid",
+                    "kind": "scene",
+                    "source_protocol": scene.protocol,
+                    "source_id": scene.scene_id,
+                    "source_sha256": f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}",
+                    "entities": len(scene.entities),
+                    "dependencies": len(scene.dependencies),
+                }
+            )
+        )
+        return 0
+    if manifest_name is not None:
+        if instance_name is not None:
+            raise _argument_error("source_mode")
+        inspection = _inspect_source_manifest(project, manifest_name)
+        _write_stdout(
+            canonical_dumps(
+                {
+                    "protocol": "ludoweave.cli.source-manifest-check/1",
+                    "status": "valid",
+                    "manifest_protocol": inspection.manifest_protocol,
+                    "manifest_id": inspection.lock.manifest_id,
+                    "manifest_sha256": inspection.lock.manifest_sha256,
+                    "entries": list(inspection.check_entries),
+                    "entry_count": len(inspection.check_entries),
+                    "scenes": inspection.scenes,
+                    "prefabs": inspection.prefabs,
+                    "entities": inspection.entities,
+                    "overrides": inspection.overrides,
+                    "dependencies": inspection.dependencies,
+                }
+            )
+        )
+        return 0
+    if prefab_name is None or instance_name is None:
+        raise _argument_error("source_mode")
+    prefab = project.load_prefab(prefab_name)
+    instance = project.load_prefab_instance(instance_name)
+    _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.source-check/1",
+                "status": "valid",
+                "kind": "prefab",
+                "source_protocol": prefab.protocol,
+                "instance_protocol": instance.protocol,
+                "source_id": prefab.prefab_id,
+                "instance_id": instance.instance_id,
+                "source_sha256": f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}",
+                "instance_sha256": f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}",
+                "entities": len(prefab.entities),
+                "overrides": len(instance.overrides),
+                "dependencies": len(prefab.dependencies),
+            }
+        )
+    )
+    return 0
+
+
+def _require_prefab_pair(source_id: str, instance_source_id: str) -> None:
+    if source_id != instance_source_id:
+        raise LudoWeaveError(
+            "prefab instance does not identify the supplied source",
+            code="tools.prefab_source_mismatch",
+            subsystem="tools",
+            phase="check_source",
+            details={"field": "prefab_id"},
+        )
+
+
+def _run_source_lock(args: argparse.Namespace) -> int:
+    inspection = _inspect_source_manifest(
+        HeadlessProject.load(_path_argument(args, "project")),
+        _text_argument(args, "manifest"),
+    )
+    _write_stdout(inspection.lock.canonical_bytes())
+    return 0
+
+
+def _run_source_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected = project.load_source_lock(_text_argument(args, "lock"))
+    inspection = _inspect_source_manifest(project, _text_argument(args, "manifest"))
+    expected.verify(inspection.lock)
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.source-lock-verify/1",
+                "status": "verified",
+                "manifest_id": inspection.lock.manifest_id,
+                "manifest_sha256": inspection.lock.manifest_sha256,
+                "entry_count": len(inspection.lock.entries),
+            }
+        )
+    )
+    return 0
+
+
+def _run_source_assets(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    inspection = _inspect_source_manifest(project, _text_argument(args, "manifest"))
+    asset_manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    entries: list[JsonValue] = []
+    all_direct: set[AssetUri] = set()
+    all_resolved: set[AssetUri] = set()
+    for declaration in inspection.asset_dependencies:
+        for dependency in declaration.dependencies:
+            try:
+                asset_manifest.entry(dependency)
+            except AssetError as error:
+                raise LudoWeaveError(
+                    "source declares an asset absent from the explicit asset manifest",
+                    code="tools.missing_asset_dependency",
+                    subsystem="tools",
+                    phase="check_source_assets",
+                    details={
+                        "entry_id": declaration.entry_id,
+                        "dependency": dependency.value,
+                    },
+                ) from error
+        resolved = asset_manifest.dependency_closure(declaration.dependencies)
+        all_direct.update(declaration.dependencies)
+        all_resolved.update(resolved)
+        entries.append(
+            {
+                "entry_id": declaration.entry_id,
+                "kind": declaration.kind,
+                "direct": [dependency.value for dependency in declaration.dependencies],
+                "resolved": [dependency.value for dependency in resolved],
+            }
+        )
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.source-asset-check/1",
+                "status": "valid",
+                "source_manifest_protocol": inspection.manifest_protocol,
+                "source_manifest_id": inspection.lock.manifest_id,
+                "source_manifest_sha256": inspection.lock.manifest_sha256,
+                "asset_manifest_protocol": asset_manifest.protocol,
+                "asset_manifest_sha256": (
+                    f"sha256:{sha256(asset_manifest.canonical_bytes()).hexdigest()}"
+                ),
+                "entries": entries,
+                "entry_count": len(entries),
+                "direct_asset_count": len(all_direct),
+                "resolved_asset_count": len(all_resolved),
+            }
+        )
+    )
+    return 0
+
+
+def _add_asset_source_arguments(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("project", type=Path, help="project directory")
+    parser.add_argument(
+        "--manifest", required=True, help="project-relative explicit source manifest"
+    )
+    parser.add_argument("--assets", required=True, help="project-relative asset manifest")
+
+
+def _run_asset_source_lock(args: argparse.Namespace) -> int:
+    _write_stdout(_current_asset_source_lock(args).canonical_bytes())
+    return 0
+
+
+def _run_asset_source_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current = _current_asset_source_lock(args, project=project)
+    expected.verify(current)
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.asset-source-lock-verify/1",
+                "status": "valid",
+                "lock_protocol": current.protocol,
+                "root_count": len(current.roots),
+                "entry_count": len(current.entries),
+            }
+        )
+    )
+    return 0
+
+
+def _run_asset_build_plan(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current = _current_asset_source_lock(args, project=project)
+    expected.verify(current)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    plan = AssetBuildPlan.from_inputs(manifest, current)
+    _write_stdout(plan.canonical_bytes())
+    return 0
+
+
+def _run_asset_build_plan_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    _write_stdout(
+        canonical_dumps(
+            {
+                "protocol": "ludoweave.cli.asset-build-plan-verify/1",
+                "status": "valid",
+                "plan_protocol": current_plan.protocol,
+                "loader_protocol": current_plan.loader_protocol,
+                "root_count": len(current_plan.roots),
+                "entry_count": len(current_plan.entries),
+            }
+        )
+    )
+    return 0
+
+
+def _run_asset_build_plan_execute(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    result = execute_asset_build_plan(current_plan, inputs)
+    _write_stdout(result.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_publish(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    materialized = materialize_asset_build_plan(current_plan, inputs)
+    store = AssetCacheStore(_path_argument(args, "cache"), project_root=project.root)
+    summary = store.publish(materialized)
+    _write_stdout(summary.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_check(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    store = AssetCacheStore(
+        _path_argument(args, "cache"),
+        project_root=project.root,
+        writable=False,
+    )
+    summary = store.inspect(current_plan)
+    _write_stdout(summary.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_inventory(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inventory = inspect_asset_cache_inventory(
+        current_plan,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(inventory.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_fingerprint(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint = fingerprint_asset_cache_observation(
+        current_plan,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(fingerprint.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_unreferenced_preview(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint = fingerprint_asset_cache_observation(
+        current_plan,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    preview = preview_asset_cache_unreferenced_blobs(current_plan, fingerprint)
+    _write_stdout(preview.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_fingerprint_record_preview(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="asset_cache_fingerprint",
+        )
+    )
+    preview = preview_asset_cache_unreferenced_blobs(current_plan, fingerprint)
+    _write_stdout(preview.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_unreferenced_preview_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="asset_cache_fingerprint",
+        )
+    )
+    preview = decode_asset_cache_unreferenced_preview(
+        project.read_relative(
+            _text_argument(args, "preview"),
+            max_bytes=ASSET_CACHE_UNREFERENCED_PREVIEW_RECORD_MAX_BYTES,
+            role="asset_cache_unreferenced_preview",
+        )
+    )
+    verification = verify_asset_cache_unreferenced_preview(current_plan, fingerprint, preview)
+    _write_stdout(verification.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_fingerprint_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint_document = project.read_relative(
+        _text_argument(args, "fingerprint"),
+        max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+        role="asset_cache_fingerprint",
+    )
+    fingerprint = decode_asset_cache_fingerprint(fingerprint_document)
+    verification = verify_asset_cache_fingerprint(
+        current_plan,
+        fingerprint,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(verification.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_fingerprint_compare(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    fingerprint_document = project.read_relative(
+        _text_argument(args, "fingerprint"),
+        max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+        role="asset_cache_fingerprint",
+    )
+    fingerprint = decode_asset_cache_fingerprint(fingerprint_document)
+    comparison = compare_asset_cache_fingerprint(
+        current_plan,
+        fingerprint,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(comparison.canonical_bytes())
+    return 0 if comparison.equal else 1
+
+
+def _run_asset_cache_fingerprint_record_compare(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    expected_document = project.read_relative(
+        _text_argument(args, "expected_fingerprint"),
+        max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+        role="expected_asset_cache_fingerprint",
+    )
+    current_document = project.read_relative(
+        _text_argument(args, "current_fingerprint"),
+        max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+        role="current_asset_cache_fingerprint",
+    )
+    expected = decode_asset_cache_fingerprint(expected_document)
+    current = decode_asset_cache_fingerprint(current_document)
+    comparison = compare_asset_cache_fingerprint_records(current_plan, expected, current)
+    _write_stdout(comparison.canonical_bytes())
+    return 0 if comparison.equal else 1
+
+
+def _run_asset_cache_fingerprint_comparison_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    expected = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "expected_fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="expected_asset_cache_fingerprint",
+        )
+    )
+    current = decode_asset_cache_fingerprint(
+        project.read_relative(
+            _text_argument(args, "current_fingerprint"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_RECORD_MAX_BYTES,
+            role="current_asset_cache_fingerprint",
+        )
+    )
+    comparison = decode_asset_cache_fingerprint_comparison(
+        project.read_relative(
+            _text_argument(args, "comparison"),
+            max_bytes=ASSET_CACHE_FINGERPRINT_COMPARISON_RECORD_MAX_BYTES,
+            role="asset_cache_fingerprint_comparison",
+        )
+    )
+    verification = verify_asset_cache_fingerprint_comparison(
+        current_plan,
+        expected,
+        current,
+        comparison,
+    )
+    _write_stdout(verification.canonical_bytes())
+    return 0
+
+
+def _run_asset_realize(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    store = AssetCacheStore(
+        _path_argument(args, "cache"),
+        project_root=project.root,
+        writable=False,
+    )
+    realization = realize_asset_build_plan(current_plan, inputs, store)
+    _write_stdout(realization.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_populate(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    inputs = _acquire_asset_build_inputs(project, manifest, current_plan)
+    population = populate_asset_build_cache(
+        current_plan,
+        inputs,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(population.canonical_bytes())
+    return 0
+
+
+def _run_asset_cache_population_verify(args: argparse.Namespace) -> int:
+    project = HeadlessProject.load(_path_argument(args, "project"))
+    expected_plan = project.load_asset_build_plan(_text_argument(args, "plan"))
+    expected_lock = project.load_asset_source_lock(_text_argument(args, "lock"))
+    current_lock = _current_asset_source_lock(args, project=project)
+    expected_lock.verify(current_lock)
+    manifest = project.load_asset_manifest(_text_argument(args, "assets"))
+    current_plan = AssetBuildPlan.from_inputs(manifest, current_lock)
+    expected_plan.verify(current_plan)
+    population_document = project.read_relative(
+        _text_argument(args, "population"),
+        max_bytes=ASSET_CACHE_POPULATION_RECORD_MAX_BYTES,
+        role="asset_cache_population",
+    )
+    population = AssetCachePopulationRecord.from_json(population_document)
+    verification = verify_asset_cache_population(
+        current_plan,
+        population,
+        _path_argument(args, "cache"),
+        project_root=project.root,
+    )
+    _write_stdout(verification.canonical_bytes())
+    return 0
+
+
+def _acquire_asset_build_inputs(
+    project: HeadlessProject,
+    manifest: AssetManifest,
+    plan: AssetBuildPlan,
+) -> tuple[AssetBuildInput, ...]:
+    inputs: list[AssetBuildInput] = []
+    total_bytes = 0
+    for entry in plan.entries:
+        source = manifest.entry(entry.uri).source
+        try:
+            payload = project.read_relative(
+                source,
+                max_bytes=ASSET_SOURCE_MAX_BYTES,
+                role="asset_build_source",
+            )
+        except LudoWeaveError as error:
+            raise LudoWeaveError(
+                "verified asset source could not be acquired for execution",
+                code="tools.asset_build_source_unavailable",
+                subsystem="tools",
+                phase="execute_asset_plan",
+                details={"uri": entry.uri.value, "cause_code": error.code},
+            ) from error
+        total_bytes += len(payload)
+        if total_bytes > ASSET_SOURCE_TOTAL_MAX_BYTES:
+            raise LudoWeaveError(
+                "asset build sources exceed the aggregate execution bound",
+                code="tools.asset_build_sources_oversized",
+                subsystem="tools",
+                phase="execute_asset_plan",
+                details={"uri": entry.uri.value, "limit": ASSET_SOURCE_TOTAL_MAX_BYTES},
+            )
+        inputs.append(AssetBuildInput(entry.uri, payload))
+    return tuple(inputs)
+
+
+def _current_asset_source_lock(
+    args: argparse.Namespace,
+    *,
+    project: HeadlessProject | None = None,
+) -> AssetSourceLock:
+    selected_project = (
+        HeadlessProject.load(_path_argument(args, "project")) if project is None else project
+    )
+    inspection = _inspect_source_manifest(
+        selected_project,
+        _text_argument(args, "manifest"),
+    )
+    manifest = selected_project.load_asset_manifest(_text_argument(args, "assets"))
+    roots = _source_asset_roots(inspection, manifest)
+    resolved = manifest.dependency_closure(roots)
+    locked: list[AssetSourceLockEntry] = []
+    total_bytes = 0
+    for uri in resolved:
+        entry = manifest.entry(uri)
+        try:
+            source_hash, source_bytes = selected_project.hash_relative(
+                entry.source,
+                max_bytes=ASSET_SOURCE_MAX_BYTES,
+                role="asset_source",
+            )
+        except LudoWeaveError as error:
+            code = (
+                "tools.asset_source_oversized"
+                if error.code == "tools.input_oversized"
+                else "tools.asset_source_unavailable"
+            )
+            raise LudoWeaveError(
+                "selected asset source could not be read within its bounds",
+                code=code,
+                subsystem="tools",
+                phase="lock_asset_sources",
+                details={"uri": uri.value, "cause_code": error.code},
+            ) from error
+        total_bytes += source_bytes
+        if total_bytes > ASSET_SOURCE_TOTAL_MAX_BYTES:
+            raise LudoWeaveError(
+                "selected asset sources exceed the aggregate byte bound",
+                code="tools.asset_sources_oversized",
+                subsystem="tools",
+                phase="lock_asset_sources",
+                details={"uri": uri.value, "limit": ASSET_SOURCE_TOTAL_MAX_BYTES},
+            )
+        locked.append(
+            AssetSourceLockEntry(
+                uri=uri,
+                kind=entry.kind,
+                source_sha256=source_hash,
+                source_bytes=source_bytes,
+            )
+        )
+    return AssetSourceLock(
+        source_lock_sha256=(f"sha256:{sha256(inspection.lock.canonical_bytes()).hexdigest()}"),
+        asset_manifest_sha256=(f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"),
+        roots=roots,
+        entries=tuple(locked),
+    )
+
+
+def _source_asset_roots(
+    inspection: _SourceManifestInspection,
+    manifest: AssetManifest,
+) -> tuple[AssetUri, ...]:
+    roots: set[AssetUri] = set()
+    for declaration in inspection.asset_dependencies:
+        for dependency in declaration.dependencies:
+            try:
+                manifest.entry(dependency)
+            except AssetError as error:
+                raise LudoWeaveError(
+                    "source declares an asset absent from the explicit asset manifest",
+                    code="tools.missing_asset_dependency",
+                    subsystem="tools",
+                    phase="check_source_assets",
+                    details={
+                        "entry_id": declaration.entry_id,
+                        "dependency": dependency.value,
+                    },
+                ) from error
+            roots.add(dependency)
+    return tuple(sorted(roots))
+
+
+def _inspect_source_manifest(
+    project: HeadlessProject,
+    manifest_name: str,
+) -> _SourceManifestInspection:
+    manifest = project.load_source_manifest(manifest_name)
+    lock_entries: list[SourceLockEntry] = []
+    check_entries: list[JsonValue] = []
+    asset_dependencies: list[_SourceAssetDeclaration] = []
+    scenes = 0
+    prefabs = 0
+    entities = 0
+    dependencies = 0
+    overrides = 0
+    for entry in manifest.entries:
+        if entry.kind == "scene":
+            scene = project.load_scene(entry.source)
+            dependencies_for_entry = scene.dependencies
+            source_sha256 = f"sha256:{sha256(scene.canonical_bytes()).hexdigest()}"
+            lock_entries.append(
+                SourceLockEntry(
+                    entry.entry_id,
+                    "scene",
+                    scene.protocol,
+                    scene.scene_id,
+                    source_sha256,
+                )
+            )
+            result: dict[str, JsonValue] = {
+                "entry_id": entry.entry_id,
+                "kind": "scene",
+                "source_protocol": scene.protocol,
+                "source_id": scene.scene_id,
+                "source_sha256": source_sha256,
+                "entities": len(scene.entities),
+                "dependencies": len(scene.dependencies),
+            }
+            scenes += 1
+            entities += len(scene.entities)
+            dependencies += len(scene.dependencies)
+        else:
+            if entry.instance is None:
+                raise _argument_error("source_manifest")
+            prefab = project.load_prefab(entry.source)
+            instance = project.load_prefab_instance(entry.instance)
+            _require_prefab_pair(prefab.prefab_id, instance.prefab_id)
+            dependencies_for_entry = prefab.dependencies
+            source_sha256 = f"sha256:{sha256(prefab.canonical_bytes()).hexdigest()}"
+            instance_sha256 = f"sha256:{sha256(instance.canonical_bytes()).hexdigest()}"
+            lock_entries.append(
+                SourceLockEntry(
+                    entry.entry_id,
+                    "prefab",
+                    prefab.protocol,
+                    prefab.prefab_id,
+                    source_sha256,
+                    instance_protocol=instance.protocol,
+                    instance_id=instance.instance_id,
+                    instance_sha256=instance_sha256,
+                )
+            )
+            result = {
+                "entry_id": entry.entry_id,
+                "kind": "prefab",
+                "source_protocol": prefab.protocol,
+                "instance_protocol": instance.protocol,
+                "source_id": prefab.prefab_id,
+                "instance_id": instance.instance_id,
+                "source_sha256": source_sha256,
+                "instance_sha256": instance_sha256,
+                "entities": len(prefab.entities),
+                "overrides": len(instance.overrides),
+                "dependencies": len(prefab.dependencies),
+            }
+            prefabs += 1
+            entities += len(prefab.entities)
+            overrides += len(instance.overrides)
+            dependencies += len(prefab.dependencies)
+        asset_dependencies.append(
+            _SourceAssetDeclaration(
+                entry_id=entry.entry_id,
+                kind=entry.kind,
+                dependencies=dependencies_for_entry,
+            )
+        )
+        check_entries.append(result)
+    manifest_sha256 = f"sha256:{sha256(manifest.canonical_bytes()).hexdigest()}"
+    return _SourceManifestInspection(
+        lock=SourceLock(manifest.manifest_id, manifest_sha256, tuple(lock_entries)),
+        manifest_protocol=manifest.protocol,
+        check_entries=tuple(check_entries),
+        asset_dependencies=tuple(asset_dependencies),
+        scenes=scenes,
+        prefabs=prefabs,
+        entities=entities,
+        overrides=overrides,
+        dependencies=dependencies,
+    )
 
 
 def _run_apply(args: argparse.Namespace) -> int:
