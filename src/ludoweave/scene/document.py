@@ -211,6 +211,13 @@ class SceneDocument:
                 phase="construct",
                 details={"field": "entities"},
             )
+        if len(self.entities) > _MAX_ENTITIES:
+            raise _scene_error(
+                "scene exceeds its entity limit",
+                code="scene.limit_exceeded",
+                phase="construct",
+                details={"field": "entities", "actual": len(self.entities), "limit": _MAX_ENTITIES},
+            )
         local_ids = tuple(item.local_id for item in self.entities)
         names = tuple(item.name for item in self.entities)
         if len(set(local_ids)) != len(local_ids):

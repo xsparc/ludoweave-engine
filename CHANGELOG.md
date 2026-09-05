@@ -1,5 +1,13 @@
 # Changelog
 
+## M237 input-validation corrections
+
+- Enforce the existing 4,096-entity and 4,096-override hard limits in direct
+  `SceneDocument` and `PrefabInstance` construction, not just decoding.
+- Convert unencodable fingerprint/population record text into the existing
+  structured invalid-JSON cache errors, retaining the original encoding cause.
+  Valid records, protocol versions, and canonical bytes remain unchanged.
+
 ## M236 publication recovery
 
 - Supply an explicit pinned offline Git-object fixture to the Windows

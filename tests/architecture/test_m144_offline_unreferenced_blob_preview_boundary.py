@@ -18,7 +18,7 @@ _PROTECTED = {
         "5da1b6074bae2c09d2737a404ff10b0091b089a627615e2d0af755aed98017e8"
     ),
     "src/ludoweave/assets/fingerprint_verification.py": (
-        "19f992d3a9ab6465e41808789453823d29cbb228ffc277b5e0e55c7cb8a27f8c"
+        "f871de4856b3d4428c2a63c8c36797f38daf7beaef905c98c4b05dbdb27a18ad"
     ),
     "src/ludoweave/assets/unreferenced_preview.py": (
         "697e0c7bfb33a0f2ed8dbb59bc46535dc2841bc55b535d1bc301639c3e6fd448"
@@ -36,7 +36,7 @@ _PROTECTED = {
         "fd48c7efb9e2160256f08217303812b07d7a11fcf9e9bc4ca03d3f609cded89a"
     ),
     "tests/architecture/test_m143_path_free_unreferenced_blob_preview_boundary.py": (
-        "303bee0cb3bddaf97fe17b2ede3dd5b271909b0dc318d5287063083a6b64274e"
+        "106341db3ca70bbd2d9d282bf59338148ffc3ef11cb93e5fa13abad925c18117"
     ),
 }
 

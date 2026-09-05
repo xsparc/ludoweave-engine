@@ -13,12 +13,12 @@ _PROTECTED = {
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "src/ludoweave/assets/inventory.py": "5da1b6074bae2c09d2737a404ff10b0091b089a627615e2d0af755aed98017e8",
-    "src/ludoweave/assets/fingerprint_verification.py": "19f992d3a9ab6465e41808789453823d29cbb228ffc277b5e0e55c7cb8a27f8c",
+    "src/ludoweave/assets/fingerprint_verification.py": "f871de4856b3d4428c2a63c8c36797f38daf7beaef905c98c4b05dbdb27a18ad",
     "scripts/release_artifacts.py": "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca",
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_comparison_wheel.py": "e40dd846d35ebfde36a6771778467b20ccced903aa702aefbbb2d76e90c6c4f1",
     "docs/rfcs/0123-add-path-free-cache-fingerprint-comparison.md": "d4a9450ec2df36239634acdb2b2218d88938b7dd9c05c5e63a59a98c5050d323",
-    "tests/architecture/test_m140_path_free_cache_fingerprint_comparison_boundary.py": "abf630797123c85cb5c2d597a99eb846b214b7bb707fe5e9ce052d9a7e8972e1",
+    "tests/architecture/test_m140_path_free_cache_fingerprint_comparison_boundary.py": "2cfeba68e437955b5b1a627634534e06281060a6c5afc4178b25ddd71dc2cc14",
 }
 
 

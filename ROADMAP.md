@@ -9,9 +9,10 @@ issues become the discussion and assignment record once a card is opened.
 M236 consolidates the unpublished M100-M235 stack for one PR against main.
 The approved [portable Git source-probe fixture](docs/rfcs/0219-portable-git-source-probe-fixture.md)
 repairs the Windows shallow/squash-checkout test boundary without adding a CI
-job, weakening binding assertions, or admitting Windows cleanup. Publication
-and hosted qualification are pending; local evidence alone does not complete
-integration.
+job, weakening binding assertions, or admitting Windows cleanup. PR #252 is
+squash-integrated, and all three jobs in run 33932581373 passed. M237 is the
+approved focused follow-up for its constructor-limit and cache-text-error review
+findings; it introduces no new subsystem or CI job.
 
 | Lane | Outcome | Evidence gate |
 | --- | --- | --- |

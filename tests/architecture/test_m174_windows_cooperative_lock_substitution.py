@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m173_windows_cooperative_lock.py": (
-        "cc707b494f6996c2c87dd21fc140000583728a911d11dec8afc903cb30933ed3"
+        "1cff19552ac5f0c9634c22866d42a4d5132364c4413ad7786b15ae77b052860a"
     ),
     "tests/fixtures/windows_coordination_lock_participant_child.py": (
         "edd544660138b0637c6fd66934f9f3458e76a2d3aa9c4ffd25924ee5a3768d84"
@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _PROBE = (
     _ROOT / "tests/integration/test_windows_cache_cleanup_cooperative_lock_substitution_probe.py"

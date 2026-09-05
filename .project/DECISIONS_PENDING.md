@@ -1,6 +1,9 @@
 # Decisions Pending
 
-M236 checkout-portability repair is approved; validation and publication remain pending.
+M236 is squash-integrated through PR #252 with all three hosted jobs passing.
+M237's focused constructor-limit and cache-text-error corrections are approved
+and locally qualified; one follow-up PR is next. No additional policy,
+cleanup authority, merge, release, or CI allocation is authorized.
 
 ## M236 historical Git-object probe portability
 

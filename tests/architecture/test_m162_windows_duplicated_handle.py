@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m161_windows_acknowledged_release_timeout.py": (
-        "5ce2f3cbe2a3ec69dc6b0016dc5f0447a749c2048ee776aed445d6ee81b0aa56"
+        "34864ede0d6e89c6680269ef1d5e22387211bd8b004a59dd7bb8946d656f4c70"
     ),
     "tests/integration/test_windows_cache_cleanup_acknowledged_release_timeout_probe.py": (
         "653cc2e34cd4ddea922c82fe45df0405435f9181631022217759883deb90de4e"
@@ -29,7 +29,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 
 

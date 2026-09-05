@@ -2,6 +2,10 @@
 
 ## Product boundary
 
+M237 closes direct-construction count-limit bypasses in scene/prefab values and
+normalizes unencodable saved-cache text to existing structured errors. It changes
+no protocol, valid canonical representation, ownership, or dependency direction.
+
 M236's [test-only Git fixture composition](rfcs/0219-portable-git-source-probe-fixture.md)
 keeps historical source-binding probes independent of checkout depth and merge
 ancestry. It changes test setup, not the runtime or the source-binding assertions.

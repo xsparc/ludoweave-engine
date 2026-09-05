@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m150_windows_junction_refusal_probe.py": (
-        "1dcd6d9bdae35eb7a3ec97d6d4f34060280d332cef3b063eb3995a3d7b27d532"
+        "528443ddf6151b7c8beb0524f114252199bbb1cc41c47c108c3dba5b33cc9275"
     ),
     "tests/integration/test_windows_cache_cleanup_junction_probe.py": (
         "78d08aa892efa5e8c251615a65fc071adb1452661e944e8b19d4b6b667c5f8e9"
@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
 }
 _PROTECTED_TREES = {
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 
 

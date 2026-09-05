@@ -13,7 +13,7 @@ _PROTECTED = {
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "src/ludoweave/assets/inventory.py": "5da1b6074bae2c09d2737a404ff10b0091b089a627615e2d0af755aed98017e8",
-    "src/ludoweave/assets/fingerprint_verification.py": "19f992d3a9ab6465e41808789453823d29cbb228ffc277b5e0e55c7cb8a27f8c",
+    "src/ludoweave/assets/fingerprint_verification.py": "f871de4856b3d4428c2a63c8c36797f38daf7beaef905c98c4b05dbdb27a18ad",
     "src/ludoweave/assets/fingerprint_comparison.py": "22ad26eb008f7ffc77099bcadcb7dc5b81658ca44bbe1822faccba84376416a7",
     "src/ludoweave/assets/fingerprint_comparison_verification.py": (
         "8c81ffbd941b3e6ed9bb24defd3497323d6eb1a73ee24a1a458009480e4ff8d1"
@@ -27,7 +27,7 @@ _PROTECTED = {
         "4c6c751c28d6dd30c9fa2ea0b2a82d0dd633e89192d648b1b26bce7590d8d83a"
     ),
     "tests/architecture/test_m142_saved_cache_fingerprint_comparison_verification_boundary.py": (
-        "e1fad52727c36444a98649ac76d9198526a6cfc1b32c886a13bea5b9332fa2a4"
+        "1a0b9a00d8894c1494db16beb287446437f027f0edbad32875b7cce3abcf20ef"
     ),
 }
 

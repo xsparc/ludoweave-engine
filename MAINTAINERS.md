@@ -42,6 +42,14 @@ claims.
 
 ## Current boundary
 
+M237 is the approved focused follow-up to PR #252: enforce the existing direct
+scene/prefab count limits and normalize unencodable fingerprint/population text
+to existing structured cache errors. Only those four runtime modules and their
+regression/evidence surface may change. Dependent historical architecture hash
+pins are refreshed mechanically for these reviewed corrections; their checks
+and all unrelated protected content remain intact. No new API, protocol,
+dependency, CI allocation, production cleanup authority, merge, or release.
+
 M65 extends M64's complete staged sample-ZIP preflight with one portable sample
 member path identity. The relative path is at most 255 ASCII characters; every
 component uses the restricted portable grammar, excludes trailing periods and

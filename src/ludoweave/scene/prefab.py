@@ -304,6 +304,17 @@ class PrefabInstance:
                 phase="construct",
                 details={"field": "overrides"},
             )
+        if len(self.overrides) > _MAX_OVERRIDES:
+            raise _prefab_error(
+                "prefab instance exceeds its override limit",
+                code="prefab.limit_exceeded",
+                phase="construct",
+                details={
+                    "field": "overrides",
+                    "actual": len(self.overrides),
+                    "limit": _MAX_OVERRIDES,
+                },
+            )
         keys = tuple((item.local_id, item.qualified_name) for item in self.overrides)
         if len(set(keys)) != len(keys):
             raise _prefab_error(

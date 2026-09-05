@@ -4,7 +4,9 @@
 
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
-M236 prepares one consolidated M100-M235 PR. Its approved
+M236 integrated the consolidated M100-M235 work through PR #252; its three
+hosted jobs passed. M237 corrects direct-construction limits and cache-text
+error handling found during that review. M236's approved
 [portable Git source-probe fixture](docs/rfcs/0219-portable-git-source-probe-fixture.md)
 keeps the Windows binding tests independent of checkout depth and squash-merge
 ancestry without skipping assertions or adding CI jobs. Automated results bind
