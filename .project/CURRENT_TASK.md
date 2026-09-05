@@ -1,5 +1,27 @@
 # Current task
 
+## M237 approved PR #252 input-validation corrections
+
+- **Approval:** 2026-09-05, one focused follow-up PR for two constructor-limit
+  bypasses and the fingerprint/population text-encoding error boundary.
+- **Base:** squash-merged main `546d4fa155c616766a33cb947e601e948ac1211c`;
+  its tree exactly matches PR #252 head `6e618481101ca74b5b54b9e0ca09071d8db2f02b`.
+- **Branch:** `fix/m237-input-validation`.
+- **Acceptance:** exact 4,096 counts remain accepted and canonical; 4,097
+  entities/overrides fail direct construction with structured limit context.
+  Unencodable text produces the existing record-specific invalid-JSON error
+  with its cause retained; invalid UTF-8 bytes and valid records remain stable.
+- **Scope:** four runtime modules, one regression module, changelog/current
+  maintenance records, and mechanical dependent architecture hash pins only.
+  No new API, schema, dependency, workflow, CI job, cleanup authority, merge,
+  release, benchmark target, or further milestone.
+- **Progress:** intentional red was 10 failed/4 passed; the corrected focus
+  passes 69 tests, full suite 4,954/19 skipped, architecture/regressions 2,496/1,
+  and isolated-wheel regressions 14/0. Static/docs, byte-identical builds,
+  installed/release smokes, and benchmark/schema commands passed. M1/M3 timing
+  misses remain recorded; no speedup is claimed. Local review is complete;
+  DCO commit and one PR are next. Hosted M237 qualification is not yet claimed.
+
 ## M236 consolidated publication recovery
 
 - **Approval:** 2026-09-05, audit M100-M235 and prepare one PR against main,

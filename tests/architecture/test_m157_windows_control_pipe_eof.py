@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m156_windows_abrupt_blocker_termination.py": (
-        "99db0aed3bb0eb84741fe72a5be3ffc00af09b33dce0ab47a03199f36662ded4"
+        "c27e94cc2965d5b65fe64feec9cb2a636befa08c3e8551c080f5e10136f00c73"
     ),
     "tests/integration/test_windows_cache_cleanup_abrupt_blocker_termination_probe.py": (
         "2c32cd507db78552d6372cc31588e44408fa1bd9b7bf2615c85a5ec5b72a1b0c"
@@ -29,7 +29,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 
 

@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m194_windows_hard_link_alias_mutator_late_valid_close_delivery_failure_after_invalid_settlement_boundary.py": (
-        "d17d76c8f8fe336dc3deb753588f585802ed35bd10f7d6644b89010c73b81f5b"
+        "2e08628e2cba380d98b479a4a2d57eaa5f71f73ac3bbb81cfa4dae8d71818318"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _PROBE = (
     _ROOT

@@ -17,7 +17,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_inventory_wheel.py": "b3d70140b5468e1cfb448d33c05f159b4260d3271592fe333abbe31f9e4d7ce4",
     "docs/rfcs/0120-add-bounded-asset-cache-inventory.md": "8e8adaf89431111739148d710743768f6233c26b8a9fc4f28166b62df6df8b44",
-    "tests/architecture/test_m137_bounded_asset_cache_inventory_boundary.py": "67ce74ea2f7b9653bda2cec6960f951eef234a90ed266132b6723af949ee2c96",
+    "tests/architecture/test_m137_bounded_asset_cache_inventory_boundary.py": "589b89e7f301aa775e43817c7bc46cdcf432e8083e70c037d4cf933b55f79c82",
 }
 
 

@@ -397,7 +397,15 @@ def _entry(value: object) -> AssetCachePopulationRecordEntry:
 
 def _document_bytes(document: str | bytes, *, maximum: int) -> bytes:
     if type(document) is str:
-        raw = document.encode("utf-8")
+        try:
+            raw = document.encode("utf-8")
+        except UnicodeEncodeError as error:
+            raise _record_error(
+                "asset cache population record JSON could not be decoded",
+                code="asset_cache.invalid_population_json",
+                phase="decode",
+                details={"cause_type": type(error).__name__},
+            ) from error
     elif type(document) is bytes:
         raw = document
     else:

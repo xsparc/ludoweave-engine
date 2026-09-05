@@ -21,14 +21,14 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1"),
     "tests/architecture/test_m200_windows_singleton_link_refusal_policy.py": (
-        "ee873966ba6750a551a7ca9a464f7729985b7264ba21c35794e30669d9710faa"
+        "77e7ed818b26e9cf59a72331c07330b74e6184306d75c899660f009490cf5450"
     ),
     "uv.lock": ("e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed"),
 }
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _DECISION = _ROOT / "docs/security/windows-cache-cleanup-authority-admission-policy.md"
 _RFC = _ROOT / "docs/rfcs/0184-adopt-windows-cleanup-authority-admission-policy.md"

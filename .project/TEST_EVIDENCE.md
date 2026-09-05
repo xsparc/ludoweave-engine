@@ -2,6 +2,105 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M237 approved input-validation corrections - 2026-09-05
+
+Baseline: main `546d4fa155c616766a33cb947e601e948ac1211c`, tree
+`15419e9076545dd320569b1c28f174ee7c18807a`, exactly equal to M236 PR head.
+Windows, CPython 3.12.13, existing locked uv environment; Git identity preserved.
+
+| Command | Exit | Observed result |
+| --- | ---: | --- |
+| `git diff --exit-code 6e618481101ca74b5b54b9e0ca09071d8db2f02b origin/main` | 0 | Exact squash tree equality; sole parent is previous main `5238941c77fbbbd0ff5fd72834d3bead66b2ed3e`. |
+| `gh run view 33932581373 --repo xsparc/ludoweave-engine --json status,conclusion,jobs` | 0 | Completed/success for all three jobs at exact M236 head. |
+| `gh run view 33932581373 --repo xsparc/ludoweave-engine --log` (test-summary filter) | 0 | Linux 3.12: 4,537 passed/411 skipped in 226.56s; Linux 3.13: 4,537/412 in 187.19s; Linux 3.14: 4,537/412 in 193.84s; macOS 3.14: 4,537/412 in 182.26s; Windows 3.14: 4,949/1 in 357.10s. |
+| `uv run --frozen pytest -q tests/unit/test_input_validation_regressions.py --tb=short` before correction | 1 | Intentional red: 10 failed, 4 passed in 0.68s. Both limit bypasses and eight unencodable-text cases fail. |
+| `uv run --frozen pytest -q tests/unit/test_input_validation_regressions.py tests/unit/test_scene_documents.py tests/unit/test_prefab_documents.py tests/unit/test_asset_cache_fingerprint_verification.py tests/unit/test_asset_cache_population_verification.py` | 0 | Corrected focus: 69 passed in 1.79s. |
+| `uv run --frozen ruff format src/ludoweave/scene/document.py src/ludoweave/scene/prefab.py src/ludoweave/assets/fingerprint_verification.py src/ludoweave/assets/population_verification.py tests/unit/test_input_validation_regressions.py` | 0 | Five files left unchanged. |
+| `uv run --frozen ruff check src/ludoweave/scene/document.py src/ludoweave/scene/prefab.py src/ludoweave/assets/fingerprint_verification.py src/ludoweave/assets/population_verification.py tests/unit/test_input_validation_regressions.py` | 0 | All checks passed. |
+
+The one-off architecture refresh checks old hashes against main and permits only
+protected hash-literal substitutions for the four approved runtime files, the
+runtime tree, and transitively affected guards. It updates 105 guard files;
+no assertion, native probe, workflow, dependency, or unrelated content changes.
+New source-tree digest: `a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb`.
+These pins supersede the historical no-runtime-change comparison only for this
+approved patch; earlier milestone history remains in Git.
+
+### M237 complete local qualification
+
+All following commands exited 0. Output paths use fresh M237-specific directories
+instead of overwriting the README's generic scratch paths. Builds measure the
+implementation/evidence tree at execution time; subsequent closeout-record edits
+change the source archive, not the four packaged corrected modules.
+
+| Command | Observed result |
+| --- | --- |
+| `uv lock --check` | Unchanged 46-package lock. |
+| `uv sync --frozen --all-groups --extra graphics` | Checked 45 packages. |
+| `uv run --frozen ruff format --check .` | 666 files already formatted. |
+| `uv run --frozen ruff check .` | All checks passed. |
+| `uv run --frozen pyright` | Zero errors, warnings, or information findings. |
+| `uv run --frozen pytest -q tests/architecture tests/unit/test_input_validation_regressions.py --tb=short` | 2,496 passed, one skipped in 17.89s. |
+| `uv run --frozen pytest -q` | 4,954 passed, 19 skipped in 281.88s. Skips are retained, not credited as passes. |
+| `uv run --frozen mkdocs build --strict` | Built in 4.19s; upstream Material informational notice remains. |
+| `uv build --out-dir .tmp/m237-dist-first` | Built sdist and pure wheel. |
+| `uv build --out-dir .tmp/m237-dist-second` | Built an independent second pair. |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m237-dist-first .tmp/m237-dist-second` | Both artifacts byte-identical; measured hashes below. |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m237-dist-first` | Installed-wheel smoke passed. |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m237-dist-first` | Scene wheel smoke passed, one command/entity. |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m237-dist-first .tmp/m237-release-candidate` | Staged ten artifacts locally; no publication. |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m237-release-candidate` | Complete release-bundle smoke passed. |
+| `uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m237-m1-benchmark.json` | Completed 30-sample observations. |
+| `uv run --frozen python benchmarks/validate_m1_results.py .tmp/m237-m1-benchmark.json` | Valid; one of two timing targets observed. |
+| `uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m237-m2-benchmark.json` | Completed 30-sample observations. |
+| `uv run --frozen python benchmarks/validate_m2_results.py .tmp/m237-m2-benchmark.json` | Valid target-free schema. |
+| `uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m237-m3-benchmark.json` | Completed extraction and real-wgpu observations. |
+| `uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m237-m3-benchmark.json` | Valid; zero of two timing targets met. |
+| `uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m237-m4-benchmark.json` | Completed 300 samples after 60 warmups. |
+| `uv run --frozen python benchmarks/validate_m4_results.py .tmp/m237-m4-benchmark.json` | Valid; baseline timing target observed. |
+| `uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m237-m7-profile-base.json` | Two workloads, five repeats. |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m237-m7-profile-base.json` | Valid. |
+| `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m237-m7-profile-graphics.json` | Three workloads, five repeats. |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m237-m7-profile-graphics.json` | Valid. |
+| `git diff --check` | No whitespace errors. |
+| `git diff --exit-code main -- .github pyproject.toml uv.lock scripts examples benchmarks` | No workflow, dependency, script, example, or benchmark changes. |
+
+Measured wheel: 367,143 bytes, SHA-256
+`06554eaa3a67b904e7da812ddde9692e1708b63718a00e1e7aa6aaf80771b7ed`.
+Measured sdist: 2,822,811 bytes, SHA-256
+`b4e525bc8b5edd7b11067117c19fb1176451cbf5c60e393d42ef2668823f9069`.
+The wheel has 114 entries, no native/test payload, and byte-exact copies of all
+four corrected modules. An independent AST comparison of main/current guards
+confirmed 105 files differ only in hash literals. Added-line high-confidence
+credential-pattern scan found zero matches; this is not an exhaustive guarantee.
+
+The new regressions also passed against the isolated installed wheel, with an
+explicit assertion that the imported package is outside this checkout:
+
+```console
+uv run --no-project --with .tmp/m237-dist-first/ludoweave-0.1.0a1-py3-none-any.whl --with pytest==9.1.1 python -I -c 'from pathlib import Path; import ludoweave, pytest; assert not Path(ludoweave.__file__).resolve().is_relative_to(Path.cwd()); raise SystemExit(pytest.main(["-q", "-c", "pyproject.toml", "--confcutdir=tests/unit", "--basetemp=.tmp/m237-wheel-regressions", "tests/unit/test_input_validation_regressions.py"]))'
+```
+
+Exit 0: 14 passed in 0.60s. This uses the built wheel, not editable source.
+The installed OpenSteward 0.18.0 registry checker passed both static and
+2026-09-05 strict modes with zero findings (3 objectives, 7 requirements,
+4 work items). That checker validates its plugin registry, not LudoWeave's
+separate `.project` records. No native acceleration or performance improvement
+is claimed; the recorded M1/M3 target misses remain explicit.
+
+Initial sandboxed GitHub reads failed on network policy; approved access-enabled
+reads succeeded. Logs requested before run completion were unavailable and are
+not credited as successful log reads. No new CI run has been triggered yet.
+
+Final record-inclusive separator: `uv run --frozen pytest -q
+tests/architecture/test_m59_repository_metadata_hygiene.py
+tests/unit/test_input_validation_regressions.py` exited 0 with 19 passed in
+0.85s; `uv run --frozen mkdocs build --strict` exited 0 in 4.11s;
+`git diff --check` exited 0. Fresh GitHub reads confirmed main remains the exact
+M236 squash, no open duplicate PR, and the full M236 history remains available
+through `refs/pull/252/head` at the verified original head. No merge or release
+was performed during M237.
+
 ## M236 approved portability repair - 2026-09-05, Windows
 
 ### Hosted publication and collection correction

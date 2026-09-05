@@ -14,12 +14,12 @@ _PROTECTED = {
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "src/ludoweave/assets/inventory.py": "5da1b6074bae2c09d2737a404ff10b0091b089a627615e2d0af755aed98017e8",
-    "src/ludoweave/assets/fingerprint_verification.py": "19f992d3a9ab6465e41808789453823d29cbb228ffc277b5e0e55c7cb8a27f8c",
+    "src/ludoweave/assets/fingerprint_verification.py": "f871de4856b3d4428c2a63c8c36797f38daf7beaef905c98c4b05dbdb27a18ad",
     "scripts/release_artifacts.py": "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca",
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_verification_wheel.py": "00cf1b7042b169af640f831d5eed1e67e1899e9de5688e23764a957b49926ee8",
     "docs/rfcs/0122-add-saved-cache-fingerprint-verification.md": "bc1136e4ea3548f28d87e68c620769d0786f96509bc71e7a0956cebe5bd75370",
-    "tests/architecture/test_m139_saved_cache_fingerprint_verification_boundary.py": "3122331859b265673f614adb75c80ef03e602761bc440b636261946250b9235c",
+    "tests/architecture/test_m139_saved_cache_fingerprint_verification_boundary.py": "9b845b5292fabfcf55138ab7ad74ea1566d33188951a867a0ff5f350b302f974",
 }
 _DELTA_FIELDS = (
     "current_actions",

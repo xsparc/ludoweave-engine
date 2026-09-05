@@ -25,13 +25,13 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m156_windows_abrupt_blocker_termination.py": (
-        "99db0aed3bb0eb84741fe72a5be3ffc00af09b33dce0ab47a03199f36662ded4"
+        "c27e94cc2965d5b65fe64feec9cb2a636befa08c3e8551c080f5e10136f00c73"
     ),
     "tests/architecture/test_m167_windows_concurrent_explicit_inheritance.py": (
-        "3c0989fe5bfe2abe33cb5f144cdfa1d0b6c64dd77389186367d8401888ab2f33"
+        "1f09e4c81e2a17ac9d75df4ebcb09ae7e44ffc9b2486cd99a3565c8ddcd3ab00"
     ),
     "tests/architecture/test_m169_windows_concurrent_explicit_restore_failure.py": (
-        "a2331b15631eb8fb0541e001933e341cf36bddba742bdf8d78175ad7c3b92cbb"
+        "6e8d68ff663750996acd8d1223b8d3b30abd9bdf476ba36e24546f013bc9adb7"
     ),
     "tests/fixtures/windows_share_delete_inherited_blocker_child.py": (
         "2c695324c4f7fecbbe98b71a540a1b4000f0361e55ab6f469c52ccb8b4110a4c"
@@ -53,7 +53,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _PROBE = (
     _ROOT

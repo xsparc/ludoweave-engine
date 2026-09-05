@@ -13,13 +13,13 @@ _PROTECTED = {
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "src/ludoweave/assets/inventory.py": "5da1b6074bae2c09d2737a404ff10b0091b089a627615e2d0af755aed98017e8",
-    "src/ludoweave/assets/fingerprint_verification.py": "19f992d3a9ab6465e41808789453823d29cbb228ffc277b5e0e55c7cb8a27f8c",
+    "src/ludoweave/assets/fingerprint_verification.py": "f871de4856b3d4428c2a63c8c36797f38daf7beaef905c98c4b05dbdb27a18ad",
     "src/ludoweave/assets/fingerprint_comparison.py": "22ad26eb008f7ffc77099bcadcb7dc5b81658ca44bbe1822faccba84376416a7",
     "scripts/release_artifacts.py": "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca",
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_record_comparison_wheel.py": "299cdf804c91c2224c6fb49702d526278b23853d604a72369e4956202cf24492",
     "docs/rfcs/0124-add-offline-cache-fingerprint-comparison.md": "727119631ef33af8ce66f7b1ce2549a3cdc46391d6889485014b319715113b72",
-    "tests/architecture/test_m141_offline_cache_fingerprint_comparison_boundary.py": "9e3d7acd38361a4b4ce2b88eb0a2af13cac3364192fd4a9ba60b6a4eb716e3d9",
+    "tests/architecture/test_m141_offline_cache_fingerprint_comparison_boundary.py": "d068329c6713d9b091ddc321fe8c79bb6b4bcf7e2ba5a93bb78b5c4ee2b4bd0b",
 }
 
 

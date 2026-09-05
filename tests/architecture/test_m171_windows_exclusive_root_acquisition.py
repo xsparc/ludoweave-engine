@@ -25,7 +25,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m170_windows_concurrent_explicit_abrupt_termination.py": (
-        "2fa2ad134d645a2c5372ca564ee91df081dca7613ae434986bc8c83a5e99f89f"
+        "dbd62d05c1a4ceab679da36659e7cf36fd66267a456a286ecd60e9147a2b87c4"
     ),
     "tests/fixtures/windows_share_delete_blocker_child.py": (
         "be8da81a030f5de9490410e23d67147d777368f4b66e10cc580103add41b8f5d"
@@ -47,7 +47,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _PROBE = _ROOT / "tests/integration/test_windows_cache_cleanup_exclusive_root_acquisition_probe.py"
 _CHILD = _ROOT / "tests/fixtures/windows_exclusive_directory_open_child.py"

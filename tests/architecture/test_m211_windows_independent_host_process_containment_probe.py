@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m210_windows_independent_host_collection_plan_validator.py": (
-        "04888d6042aa3c07ec4feb5c329e4628d814d48ed3be91f3e085fb491a00141c"
+        "b166e81e82b730ea3162ac1e9644b72bd891ae380237d826371b234740388cda"
     ),
     "tests/fixtures/windows_cleanup_independent_host_collection_plan.json": (
         "c9c8e2f082583d4458d6a7a0b56d34c5d373149d15e3e9ca9528a5bdc915e8c6"
@@ -44,7 +44,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 
 

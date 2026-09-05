@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m175_windows_live_substitution_exclusion.py": (
-        "88ddd6eab2261d5017302d0596fe8ce9916c5a057e7780dd42fd44160a2dca65"
+        "0cccd4939b9727b3de90e12f424f52576df0391179bab39d2e5c95d7c5c963f5"
     ),
     "tests/fixtures/windows_coordination_lock_protected_participant_child.py": (
         "bad17ab99ac177ed90af258a27a48a9f5e35a693d65659c95963bced8a4e2ab6"
@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _PROBE = (
     _ROOT / "tests/integration/"

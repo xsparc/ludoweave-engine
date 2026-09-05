@@ -13,7 +13,7 @@ _PROTECTED = {
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/__init__.py": "dc8ac74a439a1e190a976a6a87713612fa27ce3b8218f1c11695f2c52c65970e",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
-    "src/ludoweave/assets/population_verification.py": "a934f5e32733331570cd051a889f5edf3a44e17e575ba70ce0eae43660f2f9ea",
+    "src/ludoweave/assets/population_verification.py": "d08bef93809082cee7d0adc353db68c15c58e5ab815af620515fb63c42c9596d",
     "scripts/release_artifacts.py": "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca",
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_population_verification_wheel.py": "056af8032c21fcaf8ae068b92747304ff578a5bfc8bd383b3dac1bb7e7fcc5c7",

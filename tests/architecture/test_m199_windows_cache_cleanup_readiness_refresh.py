@@ -22,7 +22,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1"),
     "tests/architecture/test_m198_windows_hard_link_alias_mutator_closed_stream_write_after_delivery_failure_boundary.py": (
-        "38d113b1152b412b36e26fd3157139d891f634a9beaa7e6ca661a8393a6f8a2b"
+        "2e3598563fcf28a9ea6d9ceb5ddb1673a786f7162896638184f69ef515352eb6"
     ),
     "tests/integration/test_windows_cache_cleanup_hard_link_alias_mutator_closed_stream_write_after_delivery_failure_probe.py": (
         "246d0015e30b8ecd563b915d44ffadd30bf31009eb185c8cd73ece0f1b61c58b"
@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _DECISION = _ROOT / "docs/security/cache-cleanup-windows-readiness-refresh.md"
 _RFC = _ROOT / "docs/rfcs/0182-refresh-windows-cache-cleanup-readiness.md"

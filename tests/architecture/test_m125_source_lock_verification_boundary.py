@@ -12,9 +12,9 @@ _PROTECTED = {
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
     "src/ludoweave/__init__.py": "dc8ac74a439a1e190a976a6a87713612fa27ce3b8218f1c11695f2c52c65970e",
-    "src/ludoweave/scene/document.py": "28ff581ab61eb84116675526bd8f2dfedbcc990dec0d09de4b03774d1c9a8b81",
+    "src/ludoweave/scene/document.py": "ed18afa22514a39585b303c7cc4f78a912b4486a86f64a57c797f884d377d9c7",
     "src/ludoweave/scene/planning.py": "a47fbbd14f7583bf3bdb9284c3dc902d46e541fb8640dd569b60ff6e526b0716",
-    "src/ludoweave/scene/prefab.py": "19fff5db607e808be41d5453668c8976fb79de0a7ca0614f901f440bb7e294a3",
+    "src/ludoweave/scene/prefab.py": "114d5884a31595d3e637393c18f1b864a8c1996becbd186624bd1e0b060ae0b0",
     "src/ludoweave/scene/sources.py": "1a5075fc0711330d7407537ba5f85ca15d2fc5d6e9bab733f954416420b30303",
     "scripts/smoke_source_manifest_check_wheel.py": "420752c11dd8050a1d74d1c769f1003841b55b34c50cd1acafdf12b799e6672b",
 }

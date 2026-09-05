@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m226_windows_source_commit_git_authenticode_trust_probe.py": (
-        "663d4168e0c126948c33b4ccd54767375402950edfc698d3246a5aedd1072923"
+        "82e7362bf91b4eac17e601563d42fda920c066f7cd55aeff6a4c025685729608"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_authenticode_trust_probe.py": (
         "1f5e02d67b8e7fc4a8f8c4c67960f386e36988a1ebe4510c7f232197f1dd5bb3"
@@ -42,7 +42,7 @@ _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 
 

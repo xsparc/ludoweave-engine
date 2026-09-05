@@ -1,5 +1,27 @@
 # Project State
 
+## M237 input-validation follow-up - approved, in validation
+
+PR #252 was squash-merged by the maintainer on 2026-09-05 as
+`546d4fa155c616766a33cb947e601e948ac1211c`. Its exact tree equals the final PR
+head. Run 33932581373 subsequently completed successfully in all three unchanged
+Linux/macOS/Windows jobs. This corrects the historical pending status below.
+
+Three unresolved P2 review findings were independently reproduced: direct scene
+and prefab-instance construction accepted 4,097 entries, and fingerprint plus
+population text decoders leaked `UnicodeEncodeError`. The maintainer approved
+one focused follow-up PR. M237 enforces existing hard count bounds and maps
+encoding failures to existing structured record errors without changing valid
+records, protocol fields, cleanup policy, or CI allocation. Four runtime files
+change; 105 architecture files receive only exact dependent hash-literal updates.
+The regression module first failed 10 cases; all 69 focused tests now pass.
+Full qualification passes 4,954 tests with 19 skips; the architecture/regression
+group passes 2,496 with one skip, and all 14 new tests pass against the isolated
+wheel. Static/docs, reproducible distributions, installed/release smokes, and
+benchmark/schema commands passed. M1/M3 informational target misses remain;
+no speedup or new capability is claimed. Local review is complete. The approved
+DCO commit and one PR remain next; no M237 hosted pass is claimed.
+
 ## M236 consolidated publication recovery - locally qualified for one PR
 
 The maintainer approved one consolidated M100-M235 PR on 2026-09-05. Fresh

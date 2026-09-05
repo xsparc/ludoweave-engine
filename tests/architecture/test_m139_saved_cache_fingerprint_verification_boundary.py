@@ -17,7 +17,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_wheel.py": "afe0d9a3b55edf42ba4d187e5a59547f4767d26c2be587ad1d643a01ff0aa495",
     "docs/rfcs/0121-add-deterministic-cache-observation-fingerprint.md": "db537708a082e384ff8938b7e37382c79e37776c2dde5ed14f5bb6e201610689",
-    "tests/architecture/test_m138_cache_observation_fingerprint_boundary.py": "4854e6931bacdb970e7b917b362ff26f7875e49897a57cd99979ae2fe36d54ca",
+    "tests/architecture/test_m138_cache_observation_fingerprint_boundary.py": "81d72f3606265c70b9329631ae278f043060bd70735cf5510e78a48f38cf961d",
 }
 
 

@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
     "tests/architecture/test_m171_windows_exclusive_root_acquisition.py": (
-        "0036723ba0d8186c783f21f5111e555b118b05fb3f91e9192a5f4103055fe135"
+        "c3208f58bccc36d3faf8067020dfc94292204142d134e75a65b17cd0a59dee10"
     ),
     "tests/fixtures/windows_exclusive_directory_open_child.py": (
         "763bc2dbb558f244c4050fc1529c5158bdb5890c34f4d75185c65e32665c8e22"
@@ -41,7 +41,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
     "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "6434a67931fabd685a34fc8b4130091d06b4de04fdf21517c35b638b78efd66c",
+    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
 }
 _PROBE = _ROOT / "tests/integration/test_windows_cache_cleanup_descendant_non_exclusion_probe.py"
 _CHILD = _ROOT / "tests/fixtures/windows_descendant_file_holder_child.py"
