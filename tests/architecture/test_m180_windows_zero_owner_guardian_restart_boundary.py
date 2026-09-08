@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m179_windows_overlapping_guardian_rotation.py": (
-        "edf423d29def10a78d8d00bf01ff6e3e33f12c60892f518f214307140d6bbb48"
+        "759e28401e7b3ef96858b3fbf3bb1b8aefe0edc1cea56d48ebd59eb25e4fde97"
     ),
     "tests/fixtures/windows_coordination_guardian_child.py": (
         "89f0b520c1e8966a5b577f63b254385a61c23c2427fb39b4911680b4fe5549d9"
@@ -53,7 +53,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
     "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = (
     _ROOT

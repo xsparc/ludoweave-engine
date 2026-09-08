@@ -11,6 +11,7 @@ from ludoweave.app.errors import InputError
 from ludoweave.app.input import InputAction, InputSnapshot, InputSource
 from ludoweave.core.errors import LudoWeaveError
 from ludoweave.world.canonical import JsonLimits, JsonValue, canonical_dumps, canonical_loads
+from ludoweave.world.errors import IncompatibleReplayError
 from ludoweave.world.replay import ReplayResult, ReplayRunner, ReplayTimeline
 from ludoweave.world.state import TickExecutor
 
@@ -131,7 +132,7 @@ class InputReplay:
                     raise _error("input history exceeds the aggregate action limit")
                 snapshots.append(snapshot)
             return cls(timeline, tuple(snapshots))
-        except InputError:
+        except (InputError, IncompatibleReplayError):
             raise
         except LudoWeaveError as error:
             raise _error("input replay contains an invalid nested value") from error

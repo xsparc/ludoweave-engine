@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m160_windows_live_wait_timeout.py": (
-        "fef7680762053eafa7ef0373dcb46dddf0c2d20266ea4c4b813d849cff292330"
+        "6c50e6bd77811a1708cf64edd3f21b0600054fc5be1f207c9e78384f1150720a"
     ),
     "tests/integration/test_windows_cache_cleanup_live_wait_timeout_probe.py": (
         "cc63d5528ad538bcfa7497b5a2cfc31fd53fbeb8eb648af6ce97773123ce5f5f"
@@ -29,7 +29,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
     "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 
 

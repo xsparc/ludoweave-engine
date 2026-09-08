@@ -21,14 +21,14 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m204_windows_cleanup_durable_recovery_policy.py": (
-        "248c2641c1388c4f7289861782bc1fe202045e5f28e565ad1b696a362332579f"
+        "5a27af538f46fe4b121db5d87e05c36b3247b7b903756b8f9a03772e0926419f"
     ),
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
     "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _DECISION = _ROOT / "docs/security/windows-cache-cleanup-cross-principal-validation-contract.md"
 _RFC = _ROOT / "docs/rfcs/0188-adopt-windows-cross-principal-validation-contract.md"

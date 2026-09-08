@@ -1,5 +1,40 @@
 # Test Evidence
 
+## M239 review correction (2026-09-09)
+
+PR #255 implementation head `7ec1cbb9ef68f4c688787f8a6d953ec2aebee5c7`
+passed all three jobs in hosted run 34288945240. This precedes the correction.
+Review found nested unsupported engine/determinism versions were incorrectly
+wrapped as malformed input. Regression reproduction:
+`uv run --frozen pytest -q tests/unit/test_input_replay.py -k nested_replay_incompatibility --tb=short`
+exited 1: 2 failed, 36 deselected in 0.69s. After preserving the original
+exception, focused tests passed 38 in 3.80s. Windows CPython 3.12.13 correction
+qualification below actually ran; every command exited 0.
+
+| Command | Exit |
+| --- | --- |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m239-review-dist-first` | 0 |
+| `uv build --out-dir .tmp/m239-review-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m239-review-dist-first .tmp/m239-review-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m239-review-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m239-review-dist-first` | 0 |
+| `git diff --check` | 0 |
+
+Full suite: **5,009 passed, 19 skipped in 261.19s**. Reproducible builds before
+these evidence-only edits: wheel 373,321 bytes SHA-256
+`6c1e8df233766734cc4ad440f07130468858461e388f92a72bd9b7abd527c27d`;
+sdist 2,851,546 bytes SHA-256
+`6d79eb33d3edb66043bbd6f635b972a76241dbc3ef57556ebd70ff5234fc7bef`.
+These are not hashes of a later evidence-inclusive sdist. Historical dependent
+guard updates preserve assertions; only verified digest literals change.
+Correction hosted validation remains pending. No benchmark rerun or new CI job
+was needed for this exception-preservation fix.
+
 ## M239 complete local qualification (2026-09-09)
 
 Environment: Windows, managed CPython 3.12.13. Base is exact M238 squash

@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m186_windows_independent_hard_link_alias_mutator_aba_boundary.py": (
-        "ba200f56ebb7a1c307730ef7c45d6d5e50efaddbca47d89938081a27fcaf0314"
+        "f54ec37f4df43548c75ce3a36b765fbfc93416c5920f3a2b9e6613d2c11fa844"
     ),
     "tests/architecture/test_m188_windows_hard_link_alias_mutator_abrupt_loss_after_recreate_boundary.py": (
-        "94a4e1ae88c34f12bda7112380361d69652d50083fc6a8d88b81c53c26d88033"
+        "b9301eed326bff1e484ea5edf7ba46eb8c5f664447cc78e4c3a8723075b24caa"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -38,7 +38,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
     "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = (
     _ROOT

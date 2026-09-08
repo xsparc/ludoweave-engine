@@ -37,13 +37,13 @@ _PROTECTED_FILES = {
     ),
     "scripts/smoke_wheel.py": ("2727640d8696c9ff67c3f2a7a23af06b89a98d9edc40400696e4a9ed34ce464c"),
     "tests/architecture/test_m205_windows_cross_principal_validation_contract.py": (
-        "e73def6758140bdf99cf73141c7370d2e4d1abbd33080c03090275626a618550"
+        "1476d48deac1ee236434f3083fa0378bb6b167c6d509ae4ffe61dcf64ced4d16"
     ),
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _LANES = (
     "baseline_denial",

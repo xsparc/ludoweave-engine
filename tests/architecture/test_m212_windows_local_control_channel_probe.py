@@ -26,7 +26,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m211_windows_independent_host_process_containment_probe.py": (
-        "e25f07539b68bcec2a230261d9dd17d47ffb8fb8a073e5c47da9c2f560cbaae4"
+        "2975adb80646caadb7995b95de7c77a9105b5d61a8138d555724fb4400277fd5"
     ),
     "tests/fixtures/windows_independent_host_process_tree_participant.py": (
         "218330d71df63277b2c9ab8edcbfbdfa4745675ab0cb2a7d017fbd845d01774a"
@@ -39,7 +39,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
     "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 
 

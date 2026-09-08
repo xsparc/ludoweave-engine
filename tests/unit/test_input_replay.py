@@ -234,6 +234,22 @@ def test_composition_failure_precedes_factory() -> None:
     assert not called
 
 
+@pytest.mark.parametrize(
+    ("field", "value"), [("engine_version", "99.0.0"), ("determinism", "future-profile")]
+)
+def test_nested_replay_incompatibility_remains_distinct(field: str, value: str) -> None:
+    document = cast(dict[str, JsonValue], canonical_loads(_artifact(1).canonical_bytes()))
+    timeline = cast(dict[str, JsonValue], document["timeline"])
+    cast(dict[str, JsonValue], timeline["header"])[field] = value
+    with pytest.raises(IncompatibleReplayError) as legacy:
+        from ludoweave.world import ReplayTimeline
+
+        ReplayTimeline.from_json(canonical_dumps(timeline))
+    with pytest.raises(IncompatibleReplayError) as envelope:
+        InputReplay.from_json(canonical_dumps(document))
+    assert envelope.value.as_dict() == legacy.value.as_dict()
+
+
 def test_tampered_inputs_change_artifact_hash_and_diverge() -> None:
     artifact = _artifact(12)
     changed = replace(artifact, snapshots=tuple(InputSnapshot(tick) for tick in range(12)))

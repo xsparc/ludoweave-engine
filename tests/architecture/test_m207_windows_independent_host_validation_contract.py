@@ -21,7 +21,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m206_windows_cross_principal_evidence_validator.py": (
-        "a872a9ffcef8612c6c7fe73e245d11631ddb97835857140bb56e00a9387ca0e4"
+        "27576879ea48514b030d96008abec69321c37e9f2bc2489b7bff87535d6d0fe3"
     ),
     "tests/fixtures/windows_cleanup_cross_principal_evidence.json": (
         "b1e20ff9518c52dab5e8251597e5c8344bbca18f81b4ad008c4ac7f5b41cbc9b"
@@ -34,7 +34,7 @@ _PROTECTED_FILES = {
 _PROTECTED_TREES = {
     "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
     "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
-    "src/ludoweave": "7aca7145f0f8184c23539f2fa1aa2d000939991873f0ecd660aa6cb8e56cad43",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _DECISION = _ROOT / "docs/security/windows-cache-cleanup-independent-host-validation-contract.md"
 _RFC = _ROOT / "docs/rfcs/0190-adopt-windows-independent-host-validation-contract.md"

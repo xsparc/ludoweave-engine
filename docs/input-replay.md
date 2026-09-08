@@ -36,8 +36,11 @@ Decoded values and direct construction share the budgets.
 before calling the explicitly trusted factory with the embedded input source.
 The document selects no Python code or import. The caller owns any resources
 created by its factory; execution is synchronous and not concurrently safe.
-State hashes and checkpoints are always checked. Changed inputs can still decode,
-but cause replay divergence when they change recorded world outcomes. Hashes are
+State hashes and checkpoints are always checked.
+Unsupported embedded replay engine/determinism versions retain the existing
+`IncompatibleReplayError`, distinct from malformed-input `InputError` failures.
+Changed inputs can still decode, but cause replay divergence when they change
+recorded world outcomes. Hashes are
 not signatures and do not prove that an input history came from a human device.
 
 Old replay-v1 files and their APIs continue to work as before. The new artifact
