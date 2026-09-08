@@ -37,6 +37,7 @@ _WASM_RUNTIME_PROJECTS = frozenset(
 _EXPECTED_DISTRIBUTION_REQUIREMENTS = (
     "glfw==2.10.2; extra == 'graphics'",
     "rendercanvas[glfw]==2.7.2; extra == 'graphics'",
+    "sounddevice==0.5.6; extra == 'audio'",
     "wgpu==0.32.0; extra == 'graphics'",
 )
 _EXECUTABLE_FIELDS = ("artifact", "entry_point", "host_imports", "module", "wasi", "wasm")

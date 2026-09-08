@@ -67,7 +67,10 @@ def test_distribution_adds_no_wasm_runtime_dependency() -> None:
     project = cast(dict[str, object], document["project"])
 
     assert project["dependencies"] == []
-    assert project["optional-dependencies"] == {"graphics": _GRAPHICS_DEPENDENCIES}
+    assert project["optional-dependencies"] == {
+        "audio": ["sounddevice==0.5.6"],
+        "graphics": _GRAPHICS_DEPENDENCIES,
+    }
 
 
 @pytest.mark.parametrize(

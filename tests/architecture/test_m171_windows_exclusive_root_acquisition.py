@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
-    ".github/workflows/ci.yml": "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946",
+    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
     ),
@@ -23,9 +23,9 @@ _PROTECTED_FILES = {
     "docs/security/cache-cleanup-windows-share-delete-exclusion-probe.md": (
         "57aa6c26387ba3a1739bbe9499ec5640473218bc7830f51fd1c7cb0a71f92225"
     ),
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m170_windows_concurrent_explicit_abrupt_termination.py": (
-        "dbd62d05c1a4ceab679da36659e7cf36fd66267a456a286ecd60e9147a2b87c4"
+        "6969d460f3f80159b4c1b3191d12288ff651ba77588bb8e3948a8a13ee95145d"
     ),
     "tests/fixtures/windows_share_delete_blocker_child.py": (
         "be8da81a030f5de9490410e23d67147d777368f4b66e10cc580103add41b8f5d"
@@ -42,12 +42,12 @@ _PROTECTED_FILES = {
     "tests/integration/test_windows_cache_cleanup_share_delete_probe.py": (
         "41877f26d92168b802c0b7d712b2fccb524fd9c3dcee913fc9e254921b8f440c"
     ),
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
-    "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
+    "examples": "8e8d3a618b8bb14c439d4c0809db345fe471dc7c07f1765b03c4bb507f8fc98a",
+    "scripts": "8833e1120f60e74f4b5024ef6a6049821a72afef44c0143bab3f7bbd9298e247",
+    "src/ludoweave": "1e7f21b3d5bb0a8021f47f9bf1089873a59cb3e798b02933569d3eee3c9a35c1",
 }
 _PROBE = _ROOT / "tests/integration/test_windows_cache_cleanup_exclusive_root_acquisition_probe.py"
 _CHILD = _ROOT / "tests/fixtures/windows_exclusive_directory_open_child.py"

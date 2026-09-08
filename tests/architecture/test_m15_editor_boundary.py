@@ -48,7 +48,10 @@ def test_runtime_dependency_contract_is_unchanged() -> None:
     project = cast(dict[str, object], document["project"])
 
     assert project["dependencies"] == []
-    assert project["optional-dependencies"] == {"graphics": _GRAPHICS_DEPENDENCIES}
+    assert project["optional-dependencies"] == {
+        "audio": ["sounddevice==0.5.6"],
+        "graphics": _GRAPHICS_DEPENDENCIES,
+    }
 
 
 def _editor_exports(exports: tuple[str, ...]) -> tuple[str, ...]:

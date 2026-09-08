@@ -349,6 +349,7 @@ nav:
       - RFC-0217 - Bind the Git CMS SignerInfo certificate ID: rfcs/0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md
       - RFC-0218 - Bind the Git CMS signer hash algorithm: rfcs/0218-bind-git-cms-signer-hash-algorithm-for-source-commit-probe.md
       - RFC-0219 - Portable Git source-probe fixture: rfcs/0219-portable-git-source-probe-fixture.md
+      - RFC-0220 - Optional blocking audio: rfcs/0220-optional-blocking-audio.md
   - Issue triage: triage.md
   - Runtime contract: runtime-contract.md
   - ECS and world storage: ecs.md
@@ -397,6 +398,7 @@ nav:
       - ADR-0031 - Installed render conformance: adr/0031-explicit-installed-render-device-conformance.md
       - ADR-0032 - Installed agent conformance: adr/0032-explicit-installed-agent-tool-conformance.md
       - ADR-0033 - Installed WorldStore conformance: adr/0033-explicit-installed-world-store-conformance.md
+      - ADR-0034 - Optional callback-free audio: adr/0034-optional-callback-free-audio.md
       - ADR template: adr/template.md
 validation:
   omitted_files: warn

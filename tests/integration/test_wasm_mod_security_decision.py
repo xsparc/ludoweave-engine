@@ -73,6 +73,7 @@ def test_wasm_mod_security_evidence_is_repeatable_and_deferred() -> None:
     assert boundary["distribution_requirements"] == [
         "glfw==2.10.2; extra == 'graphics'",
         "rendercanvas[glfw]==2.7.2; extra == 'graphics'",
+        "sounddevice==0.5.6; extra == 'audio'",
         "wgpu==0.32.0; extra == 'graphics'",
     ]
     assert boundary["public_execution_surface_exported"] is False
@@ -133,6 +134,7 @@ def test_evidence_rejects_an_unexpected_installed_requirement(
             "extism==1.0.0",
             "glfw==2.10.2; extra == 'graphics'",
             "rendercanvas[glfw]==2.7.2; extra == 'graphics'",
+            "sounddevice==0.5.6; extra == 'audio'",
             "wgpu==0.32.0; extra == 'graphics'",
         ]
 

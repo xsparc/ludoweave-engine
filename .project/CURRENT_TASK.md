@@ -1,5 +1,27 @@
 # Current task
 
+## M238 optional audible Clockwork Arena
+
+- Approval: 2026-09-09, optional real audio and sample integration; no new CI jobs.
+- Base: clean main `960158196a3d69a14dc351c837cdb908f1eac9d4` (PR #253).
+- Branch: `feature/m238-audible-clockwork`.
+- Acceptance: bounded PCM; play/stop/loop/gains; owner-thread lifecycle;
+  structured provider failures; no Python callbacks; identical canonical
+  results with Null/real output; optional installed-wheel delivery.
+- Plan: inspect provider source/wheels; implement adapter/sample; validate
+  focused behavior and actual output; run README gates; review protected-hash
+  changes; DCO commit and publish one PR.
+- Scope: isolated audio adapter, sample, tests, optional dependency, existing-job
+  steps, ADR/RFC/docs and evidence. No worker, resampling, spatial audio,
+  native project code, cleanup authority or release.
+- Progress: all 28 local qualification commands pass, including 4,971 tests
+  (19 skips), byte-identical builds, installed audio wiring and release smoke.
+  The real-device run matched Null state exactly; the maintainer heard the tones.
+  Review is complete. The maintainer explicitly waived only the installed
+  maintenance tool's unrelated overdue registry-review warning and authorized
+  commit, push and PR publication. All repository gates remain required.
+  Final publication checks are in progress; hosted results are not yet claimed.
+
 ## M237 approved PR #252 input-validation corrections
 
 - **Approval:** 2026-09-05, one focused follow-up PR for two constructor-limit

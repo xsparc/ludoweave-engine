@@ -2,6 +2,13 @@
 
 **Build worlds humans can play and agents can operate.**
 
+Optional audio: `uv run --frozen --extra audio python examples/clockwork_arena.py --ticks 180 --audio device`
+plays quiet synthesized effects with blocking presentation pacing. Default Null
+audio stays headless and unpaced. Linux needs system PortAudio (`libportaudio2`
+on Debian/Ubuntu). See the [audio contract](docs/rfcs/0220-optional-blocking-audio.md).
+After building, validate isolated optional wiring with
+`uv run --frozen python scripts/smoke_audio_wheel.py .tmp/dist-first`.
+
 LudoWeave is an experimental, deterministic, headless-first Python engine for 2D and layered-2D games. Human-facing tools, tests, replay, and software agents operate the same canonical world through typed, validated commands.
 
 M236 integrated the consolidated M100-M235 work through PR #252; its three

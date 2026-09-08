@@ -131,7 +131,10 @@ def test_m29_adds_no_runtime_export_dependency_version_release_or_provider() -> 
 
     assert project["version"] == "0.1.0a1"
     assert project["dependencies"] == []
-    assert project["optional-dependencies"] == {"graphics": _GRAPHICS_DEPENDENCIES}
+    assert project["optional-dependencies"] == {
+        "audio": ["sounddevice==0.5.6"],
+        "graphics": _GRAPHICS_DEPENDENCIES,
+    }
     assert "ContributorRetention" not in ludoweave.__all__
     assert not any(
         "contributor_retention" in path.name for path in (_ROOT / "src/ludoweave").rglob("*")

@@ -36,3 +36,4 @@ Accepted decisions are authoritative until superseded by another ADR or, for pro
 - [ADR-0032: explicit installed agent-tool conformance](0032-explicit-installed-agent-tool-conformance.md)
 - [ADR-0033: explicit installed WorldStore conformance](0033-explicit-installed-world-store-conformance.md)
 - [ADR template](template.md)
+- [ADR-0034: optional callback-free audio](0034-optional-callback-free-audio.md)

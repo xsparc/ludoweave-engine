@@ -1,5 +1,25 @@
 # Project State
 
+## M238 optional audio - locally qualified, publication pending
+
+M237 is integrated as `960158196a3d69a14dc351c837cdb908f1eac9d4` through
+PR #253. Hosted run 33934457752 passed the three existing jobs. Its squash tree
+matches the PR head. These observations supersede historical pending entries.
+
+M238 is approved on 2026-09-09. The optional blocking raw-output adapter uses
+sounddevice 0.5.6 with no Python callbacks or additional canonical state.
+Null remains default. Effects derive from committed gameplay counters; only
+device mode is paced by output. All 28 local qualification commands pass:
+4,971 tests with 19 skips, static/docs checks, reproducible builds, installed
+audio wiring, release rehearsal and benchmark validators. M1 and M3 each miss
+one of two timing targets; no speedup is claimed. The maintainer heard the real
+device tones, and canonical output matches Null exactly. Review is complete.
+The maintainer explicitly waived only the installed maintenance tool's unrelated
+overdue-registry warning and authorized commit, push and PR publication. Its
+static check passes; no failed repository gate is waived. Publication checks
+are in progress, with no hosted pass claimed. No new CI job, cleanup authority,
+merge or release is introduced.
+
 ## M237 input-validation follow-up - approved, in validation
 
 PR #252 was squash-merged by the maintainer on 2026-09-05 as

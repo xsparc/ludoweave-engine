@@ -9,9 +9,9 @@ _ROOT = Path(__file__).parents[2]
 _CI = _ROOT / ".github" / "workflows" / "ci.yml"
 _RELEASE = _ROOT / ".github" / "workflows" / "release.yml"
 _VERIFY = _ROOT / "scripts" / "verify_release_draft.py"
-_CI_SHA256 = "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
-_PYPROJECT_SHA256 = "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1"
-_LOCK_SHA256 = "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed"
+_CI_SHA256 = "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+_PYPROJECT_SHA256 = "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"
+_LOCK_SHA256 = "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18"
 
 
 def _step(source: str, name: str, next_name: str | None = None) -> str:

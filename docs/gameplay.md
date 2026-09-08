@@ -1,5 +1,10 @@
 # M4 gameplay vertical slice
 
+M238 adds [optional real audio](rfcs/0220-optional-blocking-audio.md): use
+`--audio device` with the `audio` extra for shot, destruction and damage tones.
+This supersedes the historical M4/M11 Null-only restriction below. Default Null
+mode is unchanged; output timing is never canonical world state.
+
 M4 adds the first playable composition without changing the engine's canonical
 state rule. Clockwork Arena stores transforms, player/enemy/projectile state,
 and metrics in an authoritative `WorldSession`. Every tick is a versioned

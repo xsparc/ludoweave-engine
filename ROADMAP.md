@@ -4509,6 +4509,11 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 
 ## Proposal backlog
 
+M238 is assigned to optional callback-free audio and Clockwork Arena effects
+under [ADR-0034](docs/adr/0034-optional-callback-free-audio.md). Local qualification
+passes; hosted qualification is pending. Background mixing, resampling and
+richer audio remain proposals.
+
 These areas remain uncommitted proposals and require milestone assignment plus the
 design process in `GOVERNANCE.md`: nested prefab composition and live updates,
 production audio,

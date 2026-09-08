@@ -2,6 +2,11 @@
 
 ## Product boundary
 
+M238 adds [optional callback-free audio](adr/0034-optional-callback-free-audio.md).
+Only `ludoweave.audio.sounddevice` imports the provider. Explicit presentation
+pumping owns device timing, never world state. This supersedes the historical
+Null-only restriction below.
+
 M237 closes direct-construction count-limit bypasses in scene/prefab values and
 normalizes unencodable saved-cache text to existing structured errors. It changes
 no protocol, valid canonical representation, ownership, or dependency direction.
