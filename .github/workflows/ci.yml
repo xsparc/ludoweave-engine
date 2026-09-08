@@ -117,6 +117,9 @@ jobs:
       - name: Smoke-test optional installed audio wiring
         if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen python scripts/smoke_audio_wheel.py .tmp/ci-dist-first
+      - name: Smoke-test installed replay-owned input
+        if: steps.scope.outputs.substantive == 'true'
+        run: uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/ci-dist-first
       - name: Stage release candidate
         run: uv run --frozen python scripts/release_artifacts.py .tmp/ci-dist-first .tmp/ci-release
       - name: Smoke-test release candidate

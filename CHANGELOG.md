@@ -1,5 +1,13 @@
 # Changelog
 
+## M239 replay-owned input history
+
+- Add experimental `InputReplay`, binding bounded exact tick inputs and a legacy
+  replay timeline in one versioned, data-only application artifact.
+- Add separate-process Clockwork Arena record/replay and dependency-free installed
+  wheel verification. Legacy replay bytes remain unchanged; no network or CI job
+  is added.
+
 ## M238 optional callback-free audio
 
 - Add optional `BlockingAudioBackend` with bounded mono PCM16 clips, voices,

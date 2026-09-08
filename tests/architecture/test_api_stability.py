@@ -10,6 +10,7 @@ _MODULES = {
     "ludoweave",
     "ludoweave.agent",
     "ludoweave.app",
+    "ludoweave.app.replay",
     "ludoweave.assets",
     "ludoweave.audio",
     "ludoweave.audio.sounddevice",

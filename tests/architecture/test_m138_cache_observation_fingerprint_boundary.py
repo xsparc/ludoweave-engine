@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
+    ".github/workflows/ci.yml": "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -17,7 +17,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_inventory_wheel.py": "b3d70140b5468e1cfb448d33c05f159b4260d3271592fe333abbe31f9e4d7ce4",
     "docs/rfcs/0120-add-bounded-asset-cache-inventory.md": "8e8adaf89431111739148d710743768f6233c26b8a9fc4f28166b62df6df8b44",
-    "tests/architecture/test_m137_bounded_asset_cache_inventory_boundary.py": "6442d3e065027ae255a8ea5cb010bec4f069037b27366dc6174ed92ce546b8b4",
+    "tests/architecture/test_m137_bounded_asset_cache_inventory_boundary.py": "7ee254ab98af03823b15f8d0076c0d7e8515ba3a1eccaa5183c983866654a339",
 }
 
 

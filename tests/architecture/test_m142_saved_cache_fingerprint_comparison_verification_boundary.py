@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
+    ".github/workflows/ci.yml": "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -19,7 +19,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_record_comparison_wheel.py": "299cdf804c91c2224c6fb49702d526278b23853d604a72369e4956202cf24492",
     "docs/rfcs/0124-add-offline-cache-fingerprint-comparison.md": "727119631ef33af8ce66f7b1ce2549a3cdc46391d6889485014b319715113b72",
-    "tests/architecture/test_m141_offline_cache_fingerprint_comparison_boundary.py": "3d15a90503a167eed29ed79c47470f8d221cd0b5d043993b0d5beb899cc18702",
+    "tests/architecture/test_m141_offline_cache_fingerprint_comparison_boundary.py": "db18964a2af28d9fa6f5d6d4cadbb8ad7bffb91cb56eddc624d16603560d2652",
 }
 
 

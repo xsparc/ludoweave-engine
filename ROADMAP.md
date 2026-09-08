@@ -4509,6 +4509,10 @@ another card. The [triage contract](docs/triage.md) defines when it is ready.
 
 ## Proposal backlog
 
+M239 is assigned to replay-owned input history under RFC-0221. Fresh-process and
+installed-wheel replay are locally qualified; hosted qualification is pending. This closes
+the application's ambient input dependency without admitting networking.
+
 M238 is assigned to optional callback-free audio and Clockwork Arena effects
 under [ADR-0034](docs/adr/0034-optional-callback-free-audio.md). Local qualification
 passes; hosted qualification is pending. Background mixing, resampling and

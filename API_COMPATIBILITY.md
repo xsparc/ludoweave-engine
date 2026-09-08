@@ -5,6 +5,11 @@ format is implicitly stable.
 
 ## Supported public surface
 
+`ludoweave.app.replay.InputReplay` is experimental. Its versioned
+`ludoweave.input-replay/1` envelope owns action history around an unchanged
+`ludoweave.replay/1` timeline. Existing replay readers and timeline hashes remain
+unchanged; envelope hashes include inputs. No package-root export is added.
+
 The supported Python surface is the exact set of names listed by `__all__` in
 an exported package/module. Each such module exposes `__stability__`, a mapping
 whose keys exactly equal `__all__` and whose values are one of:

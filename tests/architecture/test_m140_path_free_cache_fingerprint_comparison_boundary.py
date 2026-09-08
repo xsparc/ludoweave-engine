@@ -8,7 +8,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
+    ".github/workflows/ci.yml": "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -19,7 +19,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_verification_wheel.py": "00cf1b7042b169af640f831d5eed1e67e1899e9de5688e23764a957b49926ee8",
     "docs/rfcs/0122-add-saved-cache-fingerprint-verification.md": "bc1136e4ea3548f28d87e68c620769d0786f96509bc71e7a0956cebe5bd75370",
-    "tests/architecture/test_m139_saved_cache_fingerprint_verification_boundary.py": "632939323decc1a635819c74698ae7552f15c39973195f533483b5473055f460",
+    "tests/architecture/test_m139_saved_cache_fingerprint_verification_boundary.py": "aa252c175a6a1d06b1a985036a28fc898b8276949b9e4849c94d32289179a2d9",
 }
 _DELTA_FIELDS = (
     "current_actions",

@@ -42,6 +42,14 @@ claims.
 
 ## Current boundary
 
+M239 is assigned following M238 integration: bounded replay-owned input history
+and fresh-process/installed-wheel gameplay verification. Preserve legacy replay-v1
+bytes and public world contracts; add the application envelope described in
+RFC-0221. Tests, examples, docs and one existing-job smoke step are in scope.
+Reviewed dependent digest literals may be refreshed without weakening guards.
+No networking, native code, new dependency, additional CI job, merge or release.
+The prior milestone boundaries below remain historical.
+
 M238 is approved: optional callback-free real audio and Clockwork Arena effects,
 retaining default Null execution and three hosted CI jobs. ADR-0034 supersedes
 only ADR-0018's Null-only restriction. Adapter, sample, optional dependency,

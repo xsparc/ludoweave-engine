@@ -2,6 +2,11 @@
 
 ## Product boundary
 
+M239's [replay-owned input envelope](adr/0035-replay-owned-input-history.md)
+belongs to the application layer. It composes immutable input snapshots with an
+unchanged world replay timeline; no upward world-to-application dependency is
+introduced. Existing world authority and checkpoint verification remain in force.
+
 M238 adds [optional callback-free audio](adr/0034-optional-callback-free-audio.md).
 Only `ludoweave.audio.sounddevice` imports the provider. Explicit presentation
 pumping owns device timing, never world state. This supersedes the historical
