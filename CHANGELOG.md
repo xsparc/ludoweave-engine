@@ -1,5 +1,14 @@
 # Changelog
 
+## M238 optional callback-free audio
+
+- Add optional `BlockingAudioBackend` with bounded mono PCM16 clips, voices,
+  gains, looping, explicit presentation pumping and owned stream cleanup.
+- Add `--audio device` to Clockwork Arena for quiet synthesized gameplay
+  effects. Default Null stays unpaced; world results are independent of audio.
+- Admit sounddevice 0.5.6 only through the `audio` extra, without Python device
+  callbacks, a mixer worker, base runtime dependencies or additional CI jobs.
+
 ## M237 input-validation corrections
 
 - Enforce the existing 4,096-entity and 4,096-override hard limits in direct

@@ -32,6 +32,7 @@ _BOUNDARY: dict[str, object] = {
     "distribution_requirements": [
         "glfw==2.10.2; extra == 'graphics'",
         "rendercanvas[glfw]==2.7.2; extra == 'graphics'",
+        "sounddevice==0.5.6; extra == 'audio'",
         "wgpu==0.32.0; extra == 'graphics'",
     ],
     "executable_manifest_fields_rejected": {

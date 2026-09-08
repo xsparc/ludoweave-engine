@@ -17,7 +17,7 @@ _DECISION = _ROOT / "docs/security/windows-cache-cleanup-cross-principal-evidenc
 _RFC = _ROOT / "docs/rfcs/0189-adopt-windows-cross-principal-evidence-validator.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
     "docs/security/windows-cache-cleanup-cross-principal-validation-contract.md": (
         "5169f2d7680a4dfb0db48faea006262d8a4049ec48ddcaa093f7edfb76e1e8b6"
     ),
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "scripts/release_artifacts.py": (
         "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca"
     ),
@@ -37,13 +37,13 @@ _PROTECTED_FILES = {
     ),
     "scripts/smoke_wheel.py": ("2727640d8696c9ff67c3f2a7a23af06b89a98d9edc40400696e4a9ed34ce464c"),
     "tests/architecture/test_m205_windows_cross_principal_validation_contract.py": (
-        "1a722e1d31c552053606aea14d1462cb7d4c1d0fd88921a6e2ae179baf42af3b"
+        "30ab2a0a142d3a192809c9ee22f9332de9b07fb389170601e74e758c65da4a54"
     ),
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
-    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
+    "examples": "8e8d3a618b8bb14c439d4c0809db345fe471dc7c07f1765b03c4bb507f8fc98a",
+    "src/ludoweave": "1e7f21b3d5bb0a8021f47f9bf1089873a59cb3e798b02933569d3eee3c9a35c1",
 }
 _LANES = (
     "baseline_denial",

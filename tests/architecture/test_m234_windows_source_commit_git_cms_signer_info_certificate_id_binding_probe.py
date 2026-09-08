@@ -19,7 +19,7 @@ _DECISION = _ROOT / "docs/security" / f"{_SLUG}.md"
 _RFC = _ROOT / "docs/rfcs/0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -30,20 +30,20 @@ _PROTECTED_FILES = {
     "docs/security/windows-cache-cleanup-contained-source-access-source-commit-git-message-signer-certificate-id-binding-probe.md": (
         "fcca82dde9f0da04ecb3a0522436ae6ea63e327790e9660039cee6527446d20a"
     ),
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m233_windows_source_commit_git_message_signer_certificate_id_binding_probe.py": (
-        "038a5f4e2f265dc6d9933a0c1f86e9dd7e25f4220ec9c8bdb04c229d1d14d9b5"
+        "525ef9b1235fa212f8a30c81d49eaa51f1b50e0da7a4d789b264a8a4ecaf303a"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_message_signer_certificate_id_binding_probe.py": (
         "9edf1dbd0a910d8b11b47d2ad718b623637d0e472d9c83bc9a069ab7afc6f843"
     ),
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
-    "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
-    "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
+    "examples": "8e8d3a618b8bb14c439d4c0809db345fe471dc7c07f1765b03c4bb507f8fc98a",
+    "scripts": "8833e1120f60e74f4b5024ef6a6049821a72afef44c0143bab3f7bbd9298e247",
+    "src/ludoweave": "1e7f21b3d5bb0a8021f47f9bf1089873a59cb3e798b02933569d3eee3c9a35c1",
 }
 
 

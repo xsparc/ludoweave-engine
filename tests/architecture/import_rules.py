@@ -129,7 +129,7 @@ def check_source_tree(source_root: Path) -> list[ImportViolation]:
             adapter_import = (
                 normalized_root in _GRAPHICS_ADAPTER_ROOTS
                 and module == "ludoweave.render.backends.wgpu"
-            )
+            ) or (normalized_root == "sounddevice" and module == "ludoweave.audio.sounddevice")
             plugin_contract = _is_module_or_child(module, "ludoweave.plugins")
             dedicated_network_import = module in _LOCAL_STDIO_MODULES and root in _BANNED_MCP_ROOTS
             external_import = (

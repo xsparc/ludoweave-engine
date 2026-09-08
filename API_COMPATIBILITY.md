@@ -18,9 +18,11 @@ whose keys exactly equal `__all__` and whose values are one of:
 
 `internal` code has no compatibility promise and is not listed in `__all__`.
 Importing a non-exported name from an implementation module does not make that
-name public. The sole concrete-adapter entry point is explicitly exported from
-`ludoweave.render.backends.wgpu`; provider-native objects are still forbidden
-from its engine-facing API.
+name public. Optional concrete-adapter entry points are explicitly exported
+from `ludoweave.render.backends.wgpu` and `ludoweave.audio.sounddevice`.
+The latter exports experimental `BlockingAudioBackend`, including its explicit
+presentation `pump` operation. Provider-native objects remain forbidden from
+engine-facing APIs.
 
 Exports introduced through M11 are `experimental`. The M12
 `ludoweave.plugins` exports are the first `preview` surface under RFC-0002: an

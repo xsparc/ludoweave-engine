@@ -2,6 +2,153 @@
 
 Only commands actually executed in the current repository are recorded here.
 
+## M238 final local qualification - 2026-09-09
+
+### Hosted setup correction
+
+PR #254 was published at DCO commit
+`b416c82f1db3c1f01351e4db0c25f844d8bd2974`. Run 34279607663 failed at
+Linux Pyright: sounddevice was absent because the earlier install selected
+only graphics. Desktop jobs were gated; no duplicate run was requested.
+
+The existing Linux install now selects `--extra audio` before typing, with a
+regression assertion and dependent protected hashes refreshed. Runtime,
+examples, package metadata and lock are unchanged by this correction.
+`uv sync --frozen --all-groups --extra graphics --extra audio` exited 0;
+`uv run --frozen pyright` exited 0 with zero errors/warnings.
+`uv run --frozen pytest -q tests/architecture tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py --tb=short`
+exited 0: 2,499 passed, one skipped in 19.62 seconds. Formatting checked 670
+files, lint and `git diff --check` passed. The installed maintenance check
+still reports only the exact overdue-review warning already waived by the
+maintainer; no additional gate was waived. Hosted correction results remain
+pending and will be reported on the existing PR.
+
+All commands below exited 0. Durations are outer command wall times; pytest
+itself reported **4,971 passed, 19 skipped in 266.58 seconds**. This is local
+Windows CPython 3.12.13 evidence, not hosted or cross-platform qualification.
+
+| Exact command | Seconds |
+| --- | ---: |
+| `uv lock --check` | 0.03 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0.02 |
+| `uv run --frozen ruff format --check .` | 0.08 |
+| `uv run --frozen ruff check .` | 0.06 |
+| `uv run --frozen pyright` | 14.20 |
+| `uv run --frozen pytest -q` | 267.36 |
+| `uv run --frozen mkdocs build --strict` | 4.91 |
+| `uv build --out-dir .tmp/m238-dist-first` | 4.78 |
+| `uv build --out-dir .tmp/m238-dist-second` | 3.67 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m238-dist-first .tmp/m238-dist-second` | 0.12 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m238-dist-first` | 14.28 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m238-dist-first` | 0.86 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m238-dist-first` | 1.03 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m238-dist-first .tmp/m238-release-candidate` | 0.16 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m238-release-candidate` | 8.02 |
+| `uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m238-m1-benchmark.json` | 14.84 |
+| `uv run --frozen python benchmarks/validate_m1_results.py .tmp/m238-m1-benchmark.json` | 0.09 |
+| `uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m238-m2-benchmark.json` | 10.34 |
+| `uv run --frozen python benchmarks/validate_m2_results.py .tmp/m238-m2-benchmark.json` | 0.09 |
+| `uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m238-m3-benchmark.json` | 3.23 |
+| `uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m238-m3-benchmark.json` | 0.08 |
+| `uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m238-m4-benchmark.json` | 2.53 |
+| `uv run --frozen python benchmarks/validate_m4_results.py .tmp/m238-m4-benchmark.json` | 0.25 |
+| `uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m238-m7-profile-base.json` | 2.48 |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m238-m7-profile-base.json` | 0.09 |
+| `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m238-m7-profile-graphics.json` | 4.20 |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m238-m7-profile-graphics.json` | 0.09 |
+| `git diff --check` | 0.12 |
+
+The two builds were byte-identical at this validation point (before final
+record-only closeout edits): wheel 370,367 bytes, SHA-256
+`edbbb0850369570a8def18ab7966a0d5caccb963f7ee7653d93f5195657981f5`;
+sdist 2,836,358 bytes, SHA-256
+`4f72b35f7595164de55646950a623abf3cd33d8d122d7617694659b2c81b918c`.
+The isolated audio smoke installed sounddevice 0.5.6, CFFI 2.1.1 and
+pycparser 3.0 from wheels. It verified fake-output wiring, not physical sound.
+The separate real-device run and maintainer listening confirmation are below.
+
+M1 observed one of two timing targets; M3 met one of two; M4 observed its
+baseline target. M2 is informational. M7 base/graphics profile validators
+passed two/three workloads respectively. No performance improvement, native
+acceleration admission, cross-host audio guarantee or hosted pass is claimed.
+
+Final review found no change to existing runtime source files: the adapter is
+new. Existing root exports, world/protocol formats, graphics dependencies,
+release authority and three-job CI allocation remain intact. Native provider
+objects stay private; no compiler, worker, decoder or resampler enters the base
+package. Historical hash/metadata updates are bounded as described below.
+No unrelated plugin, credential, Git identity, merge or release was changed.
+
+The maintainer subsequently explicitly waived only the installed maintenance
+tool's unrelated overdue-registry warning and authorized commit, push and PR
+publication. No repository validation requirement is waived. The warning is
+not relabeled as a pass, and no installed plugin record was edited. Publication
+and hosted results will be reported on the PR; no hosted pass is claimed here.
+
+After final record-only updates, `uv run --frozen mkdocs build --strict`
+completed again (4.50-second docs build), and `git diff --check` passed.
+
+After the explicit narrow waiver, the publication recheck
+`uv run --frozen pytest -q tests/architecture tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py --tb=short`
+exited 0: 2,499 passed, one skipped in 20.31 seconds. Formatting checked 670
+files, Ruff lint passed, strict docs built in 4.31 seconds, and
+`git diff --check` passed. No runtime change followed the full qualification.
+
+## M238 optional audio - 2026-09-09, qualification in progress
+
+Base: clean main `960158196a3d69a14dc351c837cdb908f1eac9d4` (PR #253),
+Windows CPython 3.12.13, uv-managed environment. Branch:
+`feature/m238-audible-clockwork`. No commit or publication yet.
+
+- `uv lock`: exit 0, 47 packages; only sounddevice 0.5.6 added.
+- `uv sync --frozen --all-groups --extra graphics --extra audio`: exit 0.
+- Initial focused run: 14 passes and two setup/teardown errors caused by an
+  oversized parameter ID. Explicit short IDs corrected the fixture; no runtime
+  pass is inferred from that failed run.
+- `uv run --frozen pytest -q tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py`:
+  exit 0, 15 passed in 0.37 seconds at the initial test surface.
+- `uv run --frozen --extra audio python examples/clockwork_arena.py --ticks 180 --audio device`:
+  exit 0, real default-device output and orderly close. The maintainer separately
+  confirmed hearing the tones. No recording or hardware-loopback measurement.
+- `uv run --frozen python examples/clockwork_arena.py --ticks 180`: exit 0;
+  the entire JSON equals the device run: 180 ticks, 18 shots, three destroyed
+  enemies, score 300, state hash
+  `sha256:da6140a2de95519957eeb74291d301b984d33a31e1ee4ff71970c06459625c4f`.
+- `uv run --frozen pytest -q tests/architecture --tb=line`: exit 1, 218 failed,
+  2,264 passed, one skipped in 17.20 seconds before expectation updates.
+- After hash refresh, architecture: 17 failed, 2,465 passed, one skipped in
+  19.38 seconds; all failures froze the pre-audio optional dependency inventory.
+- `uv run --frozen pytest -q --tb=short`: exit 1, nine failed, 4,960 passed,
+  19 skipped in 276.69 seconds. All failures shared the old exact installed
+  dependency inventory in the WASM evidence example; its WASM refusal stays intact.
+- Corrected audio/WASM focus: 31 passed in 2.80 seconds. Next architecture run:
+  one failed, 2,481 passed, one skipped in 21.83 seconds; the remaining failure
+  was a CI-step range spanning the newly added conditional audio smoke step.
+- `uv run --frozen pytest -q tests/architecture/test_m37_ci_change_qualification.py tests/architecture/test_import_boundaries.py tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py`:
+  exit 0, 122 passed in 2.35 seconds after the exact step locator correction.
+- `uv run --frozen pyright`: exit 0, zero errors/warnings (initial and smoke-tool checks).
+- `uv run --frozen ruff check .`: exit 0 after one fixture-style correction.
+- `uv run --frozen ruff format --check .`: exit 0 after formatting corrections.
+- `uv run --frozen mkdocs build --strict`: initially exit 1 for two missing nav
+  entries; corrected rerun exit 0, documentation built in 4.38 seconds.
+- `git diff --check`: exit 0.
+- A superseded full qualification attempt was deliberately stopped after the
+  additional CI-step locator issue was identified; that interrupted test run
+  has no pass claim. A final complete qualification run remains required.
+
+Mechanical review: 215 historical architecture files retain identical ASTs
+except approved hash literals, 17 exact optional-dependency dictionaries now
+including the pinned audio extra, and one corrected CI-step range endpoint.
+No assertions were removed. The three existing CI allocations remain unchanged.
+
+Skill-required checker (installed plugin, not LudoWeave's records):
+`uv run --offline --no-python-downloads --no-project python -B <plugin-root>/scripts/check_project_governance.py --repository-root <plugin-root>`
+returned exit 0, pass, zero findings. Here `<plugin-root>` is the installed
+OpenSteward 0.18.0 package. The same command with `--as-of 2026-09-09 --strict`
+returned exit 1, warn: its own registry review is overdue. No plugin records
+were edited. An explicit exception has been requested; repository qualification
+continues independently and publication is not claimed.
+
 ## M237 approved input-validation corrections - 2026-09-05
 
 Baseline: main `546d4fa155c616766a33cb947e601e948ac1211c`, tree

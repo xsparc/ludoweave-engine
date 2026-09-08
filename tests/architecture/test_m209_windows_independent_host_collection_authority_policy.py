@@ -12,7 +12,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0192-adopt-windows-independent-host-collection-authority-policy.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -23,9 +23,9 @@ _PROTECTED_FILES = {
     "docs/security/windows-cache-cleanup-independent-host-evidence-validator.md": (
         "ee37286cee8b80bf45053e97e0ff11c661eae90e8d68c7f008d05341c1973453"
     ),
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m208_windows_independent_host_evidence_validator.py": (
-        "dd4f06e9d2ecccc9f5e492e40cbec0f7b5224fc858389f0677150b9cad599510"
+        "7489ab54e1259da68b6879b96444c53861ea8a24fa14efdd5d9edbfaabe58317"
     ),
     "tests/fixtures/windows_cleanup_independent_host_evidence.json": (
         "ac326e940e5bc3250b44f5d26dbf1d7592b56edb53c563d374301c9bea3461f8"
@@ -36,12 +36,12 @@ _PROTECTED_FILES = {
     "tests/tools/validate_windows_independent_host_evidence.py": (
         "e320947eb6857f23f8c99a63311fae4458d55daf04facab2d2c92b3d956a27a2"
     ),
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
-    "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
+    "examples": "8e8d3a618b8bb14c439d4c0809db345fe471dc7c07f1765b03c4bb507f8fc98a",
+    "scripts": "8833e1120f60e74f4b5024ef6a6049821a72afef44c0143bab3f7bbd9298e247",
+    "src/ludoweave": "1e7f21b3d5bb0a8021f47f9bf1089873a59cb3e798b02933569d3eee3c9a35c1",
 }
 
 

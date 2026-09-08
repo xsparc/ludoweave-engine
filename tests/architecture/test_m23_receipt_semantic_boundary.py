@@ -172,5 +172,8 @@ def test_m23_adds_no_runtime_export_dependency_or_provider() -> None:
 
     assert project["version"] == "0.1.0a1"
     assert project["dependencies"] == []
-    assert project["optional-dependencies"] == {"graphics": _GRAPHICS_DEPENDENCIES}
+    assert project["optional-dependencies"] == {
+        "audio": ["sounddevice==0.5.6"],
+        "graphics": _GRAPHICS_DEPENDENCIES,
+    }
     assert "ReceiptSemanticPolicy" not in ludoweave.__all__

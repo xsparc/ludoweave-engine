@@ -61,12 +61,12 @@ jobs:
         if: steps.scope.outputs.substantive == 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends libvulkan1 mesa-vulkan-drivers
+          sudo apt-get install --yes --no-install-recommends libvulkan1 mesa-vulkan-drivers libportaudio2
       - name: Verify lockfile
         run: uv lock --check
       - name: Install locked baseline and graphics environment
         if: steps.scope.outputs.substantive == 'true'
-        run: uv sync --frozen --all-groups --extra graphics
+        run: uv sync --frozen --all-groups --extra graphics --extra audio
       - name: Install locked documentation environment
         if: steps.scope.outputs.substantive != 'true'
         run: uv sync --frozen --all-groups
@@ -93,6 +93,9 @@ jobs:
       - name: Run Linux graphics smoke
         if: steps.scope.outputs.substantive == 'true'
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
+      - name: Verify optional callback-free audio wiring
+        if: steps.scope.outputs.substantive == 'true'
+        run: uv run --frozen --extra audio pytest -q tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py
       - name: Run Linux graphics profiling contract smoke
         if: steps.scope.outputs.substantive == 'true'
         run: |
@@ -111,6 +114,9 @@ jobs:
           uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/ci-dist-first .tmp/ci-dist-second
       - name: Smoke-test installed wheel
         run: uv run --frozen python scripts/smoke_wheel.py .tmp/ci-dist-first
+      - name: Smoke-test optional installed audio wiring
+        if: steps.scope.outputs.substantive == 'true'
+        run: uv run --frozen python scripts/smoke_audio_wheel.py .tmp/ci-dist-first
       - name: Stage release candidate
         run: uv run --frozen python scripts/release_artifacts.py .tmp/ci-dist-first .tmp/ci-release
       - name: Smoke-test release candidate
@@ -158,6 +164,8 @@ jobs:
         run: uv sync --frozen --all-groups --extra graphics
       - name: Run CPython 3.12 graphics smoke
         run: uv run --frozen --extra graphics pytest -q tests/integration/test_wgpu_render.py
+      - name: Verify optional callback-free audio wiring
+        run: uv run --frozen --extra audio pytest -q tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py
       - name: Run graphics profiling contract smoke
         run: |
           uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 1 --include-wgpu --output .tmp/m7-profile-graphics.json

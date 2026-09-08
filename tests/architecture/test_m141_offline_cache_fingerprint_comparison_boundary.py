@@ -7,10 +7,10 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "src/ludoweave/assets/inventory.py": "5da1b6074bae2c09d2737a404ff10b0091b089a627615e2d0af755aed98017e8",
     "src/ludoweave/assets/fingerprint_verification.py": "f871de4856b3d4428c2a63c8c36797f38daf7beaef905c98c4b05dbdb27a18ad",
@@ -18,7 +18,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_comparison_wheel.py": "e40dd846d35ebfde36a6771778467b20ccced903aa702aefbbb2d76e90c6c4f1",
     "docs/rfcs/0123-add-path-free-cache-fingerprint-comparison.md": "d4a9450ec2df36239634acdb2b2218d88938b7dd9c05c5e63a59a98c5050d323",
-    "tests/architecture/test_m140_path_free_cache_fingerprint_comparison_boundary.py": "2cfeba68e437955b5b1a627634534e06281060a6c5afc4178b25ddd71dc2cc14",
+    "tests/architecture/test_m140_path_free_cache_fingerprint_comparison_boundary.py": "9ce50a6c3102dcf11d0ac0d8992fd70b17894bc89f036bde22e18b7a9b7ca68b",
 }
 
 

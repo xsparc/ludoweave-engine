@@ -68,7 +68,7 @@ def test_documentation_lane_retains_one_linux_quality_and_distribution_allocatio
         ("Lint", "Type check"),
         ("Build documentation", "Run documentation architecture tests"),
         ("Build sdist and wheel", "Smoke-test installed wheel"),
-        ("Smoke-test installed wheel", "Stage release candidate"),
+        ("Smoke-test installed wheel", "Smoke-test optional installed audio wiring"),
         ("Stage release candidate", "Smoke-test release candidate"),
         ("Smoke-test release candidate", "Run Ubuntu CPython 3.13 tests"),
     )
@@ -91,6 +91,8 @@ def test_substantive_lane_retains_every_m36_slice() -> None:
     workflow = _WORKFLOW.read_text(encoding="utf-8")
     linux = _job_block(workflow, "linux", "desktop")
     desktop = _job_block(workflow, "desktop")
+
+    assert "uv sync --frozen --all-groups --extra graphics --extra audio" in linux
 
     guarded_linux_steps = (
         "Install managed compatibility CPython versions",

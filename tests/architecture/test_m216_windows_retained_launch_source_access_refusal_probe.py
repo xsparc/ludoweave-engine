@@ -14,7 +14,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0199-probe-windows-retained-launch-source-access-refusal.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -25,9 +25,9 @@ _PROTECTED_FILES = {
     "docs/security/windows-cache-cleanup-retained-launch-source-binding-probe.md": (
         "fdc862ce0ad7ec89e4388f420ceee37232ed1daf5d00a82556be0ad87170db1f"
     ),
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m215_windows_retained_launch_source_binding_probe.py": (
-        "bc355dccabba1356a7d7486e64eedb8e423864a4fe09660cb3c29b7690764a58"
+        "2d4a79f7aed2e68c8c303876f9383e95ddb78f3a8f486c71b48b95518fcf1744"
     ),
     "tests/fixtures/windows_local_control_channel_participant.py": (
         "b3e33d4e70fef4fa3acc3fbb3e8526705c5625b7865344a2a63243415194f452"
@@ -35,13 +35,13 @@ _PROTECTED_FILES = {
     "tests/integration/test_windows_retained_launch_source_binding_probe.py": (
         "66e4037dd32f4d7516969c1233063cc35563fe93895905bfc5c8ccb9f12a7b82"
     ),
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
-    "examples": "af497a33b643d066314f3de8497aeaeeb028379cf0764ce769a8df15c15f8d30",
-    "scripts": "1473e489e474a863c379d66f5cb35930c2ffabed872deee4c6bad635d4befaa6",
-    "src/ludoweave": "a5165f5915dfb8d8eeeb4ee76c171d22d912300227f5eacd33c55435488cf6fb",
+    "examples": "8e8d3a618b8bb14c439d4c0809db345fe471dc7c07f1765b03c4bb507f8fc98a",
+    "scripts": "8833e1120f60e74f4b5024ef6a6049821a72afef44c0143bab3f7bbd9298e247",
+    "src/ludoweave": "1e7f21b3d5bb0a8021f47f9bf1089873a59cb3e798b02933569d3eee3c9a35c1",
 }
 
 

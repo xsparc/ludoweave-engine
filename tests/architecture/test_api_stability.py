@@ -12,6 +12,7 @@ _MODULES = {
     "ludoweave.app",
     "ludoweave.assets",
     "ludoweave.audio",
+    "ludoweave.audio.sounddevice",
     "ludoweave.collision",
     "ludoweave.core",
     "ludoweave.ecs",

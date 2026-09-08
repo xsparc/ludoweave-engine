@@ -5,11 +5,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
+import struct
 from collections.abc import Sequence
 from typing import cast
 
 from ludoweave import __version__
 from ludoweave.app import ActionBinding, ActionMap, InputSource, MappedInputSource
+from ludoweave.audio import AudioBackend, AudioClipDescriptor, AudioClipHandle, NullAudioBackend
+from ludoweave.audio.sounddevice import BlockingAudioBackend
 from ludoweave.platform import (
     CloseEvent,
     FocusEvent,
@@ -32,6 +36,7 @@ from ludoweave.render import (
     TextureUsage,
 )
 from ludoweave.samples import clockwork_input, create_clockwork_arena
+from ludoweave.samples.clockwork_arena import ARENA_STATE
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -39,6 +44,12 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--ticks", type=int, default=600)
     parser.add_argument("--stress", type=int, default=1)
     parser.add_argument("--renderer", choices=("null", "wgpu"), default="null")
+    parser.add_argument(
+        "--audio",
+        choices=("null", "device"),
+        default="null",
+        help="device enables audible, blocking 60-Hz presentation pacing",
+    )
     parser.add_argument("--window", action="store_true")
     parser.add_argument(
         "--interactive",
@@ -55,6 +66,30 @@ def _device(name: str) -> RenderDevice:
     from ludoweave.render.backends.wgpu import WgpuRenderDevice
 
     return WgpuRenderDevice()
+
+
+def _sound_clips(audio: AudioBackend) -> dict[str, AudioClipHandle]:
+    clips: dict[str, AudioClipHandle] = {}
+    for name, frequency in (
+        ("shots_fired", 880),
+        ("enemies_destroyed", 440),
+        ("damage_taken", 220),
+    ):
+        # Original synthesized assets: a short, quiet tone with a click-free envelope.
+        samples = 2205
+        pcm = b"".join(
+            struct.pack(
+                "<h",
+                round(
+                    3000
+                    * math.sin(2 * math.pi * frequency * index / 44100)
+                    * math.sin(math.pi * index / (samples - 1)) ** 2
+                ),
+            )
+            for index in range(samples)
+        )
+        clips[name] = audio.load_clip(AudioClipDescriptor(name, 0.05), pcm)
+    return clips
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -97,11 +132,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     arena = create_clockwork_arena(input_source, stress=arguments.stress)
     device = _device(arguments.renderer)
+    audio: AudioBackend = (
+        BlockingAudioBackend() if arguments.audio == "device" else NullAudioBackend()
+    )
     draw_calls = 0
     sprite_instances = 0
     capture_hash: str | None = None
     kind = SurfaceKind.WINDOW if arguments.window else SurfaceKind.OFFSCREEN
     try:
+        audio.initialize()
+        clips = _sound_clips(audio)
+        previous_audio = arena.session.resources.require(ARENA_STATE)
         surface = device.create_surface(
             SurfaceDescriptor(
                 960,
@@ -138,6 +179,17 @@ def main(argv: Sequence[str] | None = None) -> int:
                 if should_close:
                     break
             arena.tick()
+            current_audio = arena.session.resources.require(ARENA_STATE)
+            for counter, clip in clips.items():
+                if cast(int, getattr(current_audio, counter)) > cast(
+                    int, getattr(previous_audio, counter)
+                ):
+                    playback = audio.play(clip)
+                    if isinstance(audio, NullAudioBackend):
+                        audio.stop(playback)
+            previous_audio = current_audio
+            if isinstance(audio, BlockingAudioBackend):
+                audio.pump()
             if (index + 1) % arguments.render_every != 0 and index + 1 != arguments.ticks:
                 continue
             frame = arena.presentation(texture)
@@ -155,7 +207,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             capture = device.capture_surface(surface)
             capture_hash = hashlib.sha256(capture.pixels).hexdigest()
     finally:
-        device.close()
+        try:
+            audio.close()
+        finally:
+            device.close()
 
     payload = {
         "arena": arena.summary().as_dict(),

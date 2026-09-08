@@ -110,4 +110,7 @@ def test_m20_adds_no_dependency_or_optional_provider() -> None:
     project = cast(dict[str, object], document["project"])
 
     assert project["dependencies"] == []
-    assert project["optional-dependencies"] == {"graphics": _GRAPHICS_DEPENDENCIES}
+    assert project["optional-dependencies"] == {
+        "audio": ["sounddevice==0.5.6"],
+        "graphics": _GRAPHICS_DEPENDENCIES,
+    }

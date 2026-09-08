@@ -7,17 +7,17 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
     "src/ludoweave/__init__.py": "dc8ac74a439a1e190a976a6a87713612fa27ce3b8218f1c11695f2c52c65970e",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "scripts/release_artifacts.py": "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca",
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_inventory_wheel.py": "b3d70140b5468e1cfb448d33c05f159b4260d3271592fe333abbe31f9e4d7ce4",
     "docs/rfcs/0120-add-bounded-asset-cache-inventory.md": "8e8adaf89431111739148d710743768f6233c26b8a9fc4f28166b62df6df8b44",
-    "tests/architecture/test_m137_bounded_asset_cache_inventory_boundary.py": "589b89e7f301aa775e43817c7bc46cdcf432e8083e70c037d4cf933b55f79c82",
+    "tests/architecture/test_m137_bounded_asset_cache_inventory_boundary.py": "6442d3e065027ae255a8ea5cb010bec4f069037b27366dc6174ed92ce546b8b4",
 }
 
 

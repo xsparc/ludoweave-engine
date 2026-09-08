@@ -42,6 +42,14 @@ claims.
 
 ## Current boundary
 
+M238 is approved: optional callback-free real audio and Clockwork Arena effects,
+retaining default Null execution and three hosted CI jobs. ADR-0034 supersedes
+only ADR-0018's Null-only restriction. Adapter, sample, optional dependency,
+regressions, documentation and necessary existing-job steps are in scope.
+Historical protected hashes may be refreshed for reviewed changes without
+weakening assertions. No cleanup authority, world format, native project code,
+networking, merge or release. Subsequent boundaries below are historical.
+
 M237 is the approved focused follow-up to PR #252: enforce the existing direct
 scene/prefab count limits and normalize unencodable fingerprint/population text
 to existing structured cache errors. Only those four runtime modules and their

@@ -7,10 +7,10 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "258216325687f59fda44763f875000ef91a5790098ae8b92b2207436dab95946",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
-    "pyproject.toml": "42a7363b8b86a9fb875e48f4e07a071d90e8b1a7ce11865414b17b20adaa2ab1",
-    "uv.lock": "e2c7b4c801e59dba77a6c0cc6efc45e27d0baa466d17c2e5ed76c0dd27ea11ed",
+    "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
+    "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
     "src/ludoweave/__init__.py": "dc8ac74a439a1e190a976a6a87713612fa27ce3b8218f1c11695f2c52c65970e",
     "src/ludoweave/assets/cache.py": "bc0c253a46bd81735e15d5ba899d7e3b7cdcd7ecedde5b726f6c27dab410699f",
     "src/ludoweave/assets/execution.py": "251e48b1200e82e1fa9809b562f782ccb26ca6e30152e449b34cd1b25bfbf1ac",
@@ -23,7 +23,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_population_wheel.py": "c83ab1758321a63ec0e811b9bf17b12f2aa34dbae407b11a78283515514a4490",
     "docs/rfcs/0118-add-post-realization-cache-population.md": "47ef00c97d47ebfcb7e5b30cab0f5da89e87e6b634e81d039478d3b5fa4f9be8",
-    "tests/architecture/test_m135_post_realization_cache_population_boundary.py": "0f955e47c1843a1cd46bc4a1777c1349277ab7b95e074049b8a9381a3221885f",
+    "tests/architecture/test_m135_post_realization_cache_population_boundary.py": "3b147386bd37a992b9eedd3f257feeaa25dfd426729bfb4be96479bb4da76417",
 }
 
 
