@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -23,7 +23,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_population_wheel.py": "c83ab1758321a63ec0e811b9bf17b12f2aa34dbae407b11a78283515514a4490",
     "docs/rfcs/0118-add-post-realization-cache-population.md": "47ef00c97d47ebfcb7e5b30cab0f5da89e87e6b634e81d039478d3b5fa4f9be8",
-    "tests/architecture/test_m135_post_realization_cache_population_boundary.py": "8fd4f0db1574460b8c09d4f40583464ef3e2c7dc384be23dd6745ef5b3bc032b",
+    "tests/architecture/test_m135_post_realization_cache_population_boundary.py": "3b147386bd37a992b9eedd3f257feeaa25dfd426729bfb4be96479bb4da76417",
 }
 
 

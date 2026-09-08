@@ -18,7 +18,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0210-bind-git-signer-certificate-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m226_windows_source_commit_git_authenticode_trust_probe.py": (
-        "0aaa12337d722c89d2d0e9b746dfc81d686af4bc80125898768bf3f98dac9f9c"
+        "642668d8c1b5ae3618f7c1716d7e9048aeb87bde1d6a0c074da17013e90331f3"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_authenticode_trust_probe.py": (
         "1f5e02d67b8e7fc4a8f8c4c67960f386e36988a1ebe4510c7f232197f1dd5bb3"

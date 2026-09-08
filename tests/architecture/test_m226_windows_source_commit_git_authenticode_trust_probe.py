@@ -18,7 +18,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0209-verify-git-authenticode-trust-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m225_windows_source_commit_git_child_image_binding_probe.py": (
-        "ae8237a78ede6e34e7d0fcc1796dfb2410c403f832977be8d1c2a2e7a49f04ea"
+        "5e5e9c8f68bc5d1b7a1367f981097f4f5da01471adede401499fd7e9b4a7870d"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_child_image_binding_probe.py": (
         "2a71dd1a486e2ed117b02b90544ce71d292345ffacb62c8131632a16d5666535"

@@ -18,7 +18,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0211-bind-git-provider-chain-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m227_windows_source_commit_git_signer_certificate_binding_probe.py": (
-        "38f6fc52ee86729e08579755d7eb2c3c427cc045649937632b639fcfca720b15"
+        "8b000e65c2dcee5ef186830f5c0b1c6ef4ce979db3e91d7efd92425287b4cb89"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_signer_certificate_binding_probe.py": (
         "037bcc079c9aa6caf784d62fb194675166302f585d68d7f7c5a84ce48efa3770"

@@ -92,6 +92,8 @@ def test_substantive_lane_retains_every_m36_slice() -> None:
     linux = _job_block(workflow, "linux", "desktop")
     desktop = _job_block(workflow, "desktop")
 
+    assert "uv sync --frozen --all-groups --extra graphics --extra audio" in linux
+
     guarded_linux_steps = (
         "Install managed compatibility CPython versions",
         "Install Linux software-rendering runtime",

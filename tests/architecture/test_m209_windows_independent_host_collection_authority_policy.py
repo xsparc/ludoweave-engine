@@ -12,7 +12,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0192-adopt-windows-independent-host-collection-authority-policy.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -25,7 +25,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m208_windows_independent_host_evidence_validator.py": (
-        "c57c1c651c6f123b709f2511caa2d5796c22b786a48d6c53ffc26a8e47a13a95"
+        "7489ab54e1259da68b6879b96444c53861ea8a24fa14efdd5d9edbfaabe58317"
     ),
     "tests/fixtures/windows_cleanup_independent_host_evidence.json": (
         "ac326e940e5bc3250b44f5d26dbf1d7592b56edb53c563d374301c9bea3461f8"

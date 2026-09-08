@@ -15,7 +15,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0194-probe-windows-independent-host-process-containment.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m210_windows_independent_host_collection_plan_validator.py": (
-        "f7427e31e7ca5b0b09a2b42bd2e611b6178878445f583172ffc65321ac16c85e"
+        "9e9b4fd9664710a38172f7c95e98d7694a1d205f01783359ce3722b3ae5dc1d1"
     ),
     "tests/fixtures/windows_cleanup_independent_host_collection_plan.json": (
         "c9c8e2f082583d4458d6a7a0b56d34c5d373149d15e3e9ca9528a5bdc915e8c6"

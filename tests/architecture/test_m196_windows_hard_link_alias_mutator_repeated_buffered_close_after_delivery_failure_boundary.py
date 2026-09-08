@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
     ),
@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m195_windows_hard_link_alias_mutator_buffered_close_delivery_failure_after_invalid_settlement_boundary.py": (
-        "b613cf7e151827e02cd54af2c6446b1a18ad67ddeb520720c21bd11e027371f7"
+        "23ee46b2d52e1ed523689c13662991437d4eff346414f26ef9c28b55e001e837"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"

@@ -18,7 +18,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0206-bind-git-executable-selection-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -37,10 +37,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m221_windows_contained_source_access_source_commit_binding_probe.py": (
-        "80d9bd15c8ac716ca7503275a53ead14257d4deb379ac2d7f4d1444d8859795f"
+        "193a5ca9d8187184b77b4fe30fa508e496b0c65f7f3f1afbc1d28920c85cd2ff"
     ),
     "tests/architecture/test_m222_windows_source_commit_no_lazy_fetch_exclusion.py": (
-        "b66bc8ed0fce2431a5f0223f1230eb2ecdbb9871a1d0d9c58f6301360f73570c"
+        "d7168aa34a8a23ed7b4d13528037fd0316ef1897ac0d96ba373f18bf339f3a74"
     ),
     "tests/fixtures/windows_contained_source_access_bound_contender.py": (
         "fa01dae3119f817c62d0b27b0f575642c9837ad5259d79507bd2a1c09c41d2dd"

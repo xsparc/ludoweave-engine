@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
     ),
@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m157_windows_control_pipe_eof.py": (
-        "997c4bf52a6fb49dc2e0d94e8ffe31df9dcfe4ca20321e63fc5e9b0c3cc68bef"
+        "8af6421e381a6797bfd027561370e08aee3c5afee9721297d89e256f52a5fd69"
     ),
     "tests/integration/test_windows_cache_cleanup_control_pipe_eof_probe.py": (
         "cd4ae117e85badede79436d02d30ad9d8f619c3174ab817a0467aab6377398f7"

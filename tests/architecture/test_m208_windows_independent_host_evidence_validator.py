@@ -16,7 +16,7 @@ _DECISION = _ROOT / "docs/security/windows-cache-cleanup-independent-host-eviden
 _RFC = _ROOT / "docs/rfcs/0191-adopt-windows-independent-host-evidence-validator.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -29,7 +29,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m207_windows_independent_host_validation_contract.py": (
-        "6d26b50dd71cf8a7d0a2b23db557af5b3c5ba9709a75eea819ea4f00388b4b34"
+        "5f1e09a00b7ca8e622a9c2abf252fcd492fd2be83cae90eff8c2ab6edf09d6bd"
     ),
     "tests/fixtures/windows_cleanup_cross_principal_evidence.json": (
         "b1e20ff9518c52dab5e8251597e5c8344bbca18f81b4ad008c4ac7f5b41cbc9b"

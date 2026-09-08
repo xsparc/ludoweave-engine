@@ -66,7 +66,7 @@ jobs:
         run: uv lock --check
       - name: Install locked baseline and graphics environment
         if: steps.scope.outputs.substantive == 'true'
-        run: uv sync --frozen --all-groups --extra graphics
+        run: uv sync --frozen --all-groups --extra graphics --extra audio
       - name: Install locked documentation environment
         if: steps.scope.outputs.substantive != 'true'
         run: uv sync --frozen --all-groups

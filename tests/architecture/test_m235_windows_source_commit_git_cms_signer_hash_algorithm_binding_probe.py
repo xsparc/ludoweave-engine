@@ -19,7 +19,7 @@ _DECISION = _ROOT / "docs/security" / f"{_SLUG}.md"
 _RFC = _ROOT / "docs/rfcs/0218-bind-git-cms-signer-hash-algorithm-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m234_windows_source_commit_git_cms_signer_info_certificate_id_binding_probe.py": (
-        "5fd830b721ab4e91c300c6f271c858550246e48ea38bbe2ff82fe5a8b6c9c6eb"
+        "6f3e70f8380896396794cdd73c874bbbe226ad35bbfcebdeb1b90d573ebeebc2"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_cms_signer_info_certificate_id_binding_probe.py": (
         "60ec2ba3eb6da1b21bb7aa525e1fc6c7c44010e17986af01a8d4c95efee88110"

@@ -15,7 +15,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0203-probe-windows-contained-source-access-source-binding.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m219_windows_contained_source_access_image_binding_probe.py": (
-        "c93123c7d951fd7cacd0a4b90cc8f8bb49040790bf57f594a5973beca907f98b"
+        "daf28c2ffd898ab5177cf441903136a90cbbb184b984a3d8017601a99c2e0c67"
     ),
     "tests/integration/test_windows_contained_source_access_image_binding_probe.py": (
         "115e64cb45de12087869dcb73fb8f7387f1dddd99dc5c243572532a2f698b488"

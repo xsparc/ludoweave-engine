@@ -19,7 +19,7 @@ _DECISION = _ROOT / "docs/security" / f"{_SLUG}.md"
 _RFC = _ROOT / "docs/rfcs/0217-bind-git-cms-signer-info-certificate-id-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m233_windows_source_commit_git_message_signer_certificate_id_binding_probe.py": (
-        "22de83add526449495a3b6d578069da073ab8d92ce91278a6e26ed6f9060fbaa"
+        "525ef9b1235fa212f8a30c81d49eaa51f1b50e0da7a4d789b264a8a4ecaf303a"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_message_signer_certificate_id_binding_probe.py": (
         "9edf1dbd0a910d8b11b47d2ad718b623637d0e472d9c83bc9a069ab7afc6f843"

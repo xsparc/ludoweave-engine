@@ -15,7 +15,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0200-probe-windows-retained-launch-source-remote-debug-exclusion.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m216_windows_retained_launch_source_access_refusal_probe.py": (
-        "42f4c9dcc69d21a6c011b0a88307e866b2ede0fc3105bc46969582977ed9556b"
+        "9b807a2a5f48f7869bfa9ef728fae264681b197118c0cfa2625f5a2cb6865e95"
     ),
     "tests/fixtures/windows_local_control_channel_participant.py": (
         "b3e33d4e70fef4fa3acc3fbb3e8526705c5625b7865344a2a63243415194f452"

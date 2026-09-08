@@ -17,8 +17,11 @@ device tones, and canonical output matches Null exactly. Review is complete.
 The maintainer explicitly waived only the installed maintenance tool's unrelated
 overdue-registry warning and authorized commit, push and PR publication. Its
 static check passes; no failed repository gate is waived. Publication checks
-are in progress, with no hosted pass claimed. No new CI job, cleanup authority,
-merge or release is introduced.
+completed and PR #254 is open. First hosted run 34279607663 failed because
+Linux typing lacked the optional audio install. A one-step install correction
+and regression assertion pass local typing plus 2,499 architecture/audio checks
+(one skip); hosted correction qualification remains pending. No new CI job,
+cleanup authority, merge or release is introduced.
 
 ## M237 input-validation follow-up - approved, in validation
 

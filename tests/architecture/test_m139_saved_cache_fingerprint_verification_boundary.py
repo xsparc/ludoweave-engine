@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -17,7 +17,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_wheel.py": "afe0d9a3b55edf42ba4d187e5a59547f4767d26c2be587ad1d643a01ff0aa495",
     "docs/rfcs/0121-add-deterministic-cache-observation-fingerprint.md": "db537708a082e384ff8938b7e37382c79e37776c2dde5ed14f5bb6e201610689",
-    "tests/architecture/test_m138_cache_observation_fingerprint_boundary.py": "7b4ebd15f6a7cb8de34222fce06a072878b370caf4157d2a72d439850456ba97",
+    "tests/architecture/test_m138_cache_observation_fingerprint_boundary.py": "3b20ac1ba9d758ba674911787ac999e73d0e4e434db0b100b8c68b5a2afe9cac",
 }
 
 

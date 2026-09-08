@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
     ),
@@ -25,13 +25,13 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m156_windows_abrupt_blocker_termination.py": (
-        "770d7abed46584a9f34a8f2d934bf4b9411f3b91b4377a42d2c917302f180d89"
+        "b7b85ec5d0259afde60cb882913595e6825c36c2e1ab22266b8da8a5dc253bbe"
     ),
     "tests/architecture/test_m167_windows_concurrent_explicit_inheritance.py": (
-        "8e162ec88b2ea9681ca2643db65cbf161c0d4371391b8c553e57a789cf3b01d3"
+        "b9f0d81024c0fe47741a510fc4571e1084453668aac305012648d7043cfd1ace"
     ),
     "tests/architecture/test_m169_windows_concurrent_explicit_restore_failure.py": (
-        "a0d5efc04fe643a82a3baee0f90dd47c6e689bc3bd4b58ee128b939a35bc1046"
+        "00b9cf8b68dbc9f4848decb9879c8f38214e9ff55eec4a116efb04b3da728576"
     ),
     "tests/fixtures/windows_share_delete_inherited_blocker_child.py": (
         "2c695324c4f7fecbbe98b71a540a1b4000f0361e55ab6f469c52ccb8b4110a4c"

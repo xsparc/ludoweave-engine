@@ -18,7 +18,7 @@ _DECISION = (
 _RFC = _ROOT / "docs/rfcs/0212-bind-git-countersigner-chain-for-source-commit-probe.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m228_windows_source_commit_git_provider_chain_binding_probe.py": (
-        "da4a9584c9847c605d3e1a10fc1bb818997cb3e95f13b4afd5ba27f1997dd1c9"
+        "4b650127e50b17373e1c46f8715e7c9b3026c1251423d3b530e2fc5d243e62a7"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_provider_chain_binding_probe.py": (
         "e359ce52acc940402f0be136b754d1b47ab3e4e08c579c974bacd0383f3c1d41"

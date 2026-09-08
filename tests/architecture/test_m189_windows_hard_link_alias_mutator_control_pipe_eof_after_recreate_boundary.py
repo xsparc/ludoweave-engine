@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
     ),
@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m186_windows_independent_hard_link_alias_mutator_aba_boundary.py": (
-        "70339d54563689f80ef0e69486a08357fb9e3081b89268b425a47a4c4c383d98"
+        "4cd55cd48eee6e395fe98dcfbc19c713e852dcd2736666eb01575143c5ecfbd0"
     ),
     "tests/architecture/test_m188_windows_hard_link_alias_mutator_abrupt_loss_after_recreate_boundary.py": (
-        "e9448bdb73da30581286d4eee112b0b0a5816ba0fb81537354e37e08547c5745"
+        "5ec02102e99b2f68f012cd7beb12e15fc7c4bdad50393deba7d0d47b0c3b975f"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"

@@ -20,7 +20,10 @@
   Review is complete. The maintainer explicitly waived only the installed
   maintenance tool's unrelated overdue registry-review warning and authorized
   commit, push and PR publication. All repository gates remain required.
-  Final publication checks are in progress; hosted results are not yet claimed.
+  PR #254 is open. Its first Linux run failed because the typing environment
+  omitted the audio extra. The existing install step is corrected and guarded;
+  strict typing and 2,499 architecture/audio checks pass (one skip). Runtime is
+  unchanged. The correction will use the same PR and three-job CI topology.
 
 ## M237 approved PR #252 input-validation corrections
 

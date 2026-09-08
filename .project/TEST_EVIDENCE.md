@@ -4,6 +4,25 @@ Only commands actually executed in the current repository are recorded here.
 
 ## M238 final local qualification - 2026-09-09
 
+### Hosted setup correction
+
+PR #254 was published at DCO commit
+`b416c82f1db3c1f01351e4db0c25f844d8bd2974`. Run 34279607663 failed at
+Linux Pyright: sounddevice was absent because the earlier install selected
+only graphics. Desktop jobs were gated; no duplicate run was requested.
+
+The existing Linux install now selects `--extra audio` before typing, with a
+regression assertion and dependent protected hashes refreshed. Runtime,
+examples, package metadata and lock are unchanged by this correction.
+`uv sync --frozen --all-groups --extra graphics --extra audio` exited 0;
+`uv run --frozen pyright` exited 0 with zero errors/warnings.
+`uv run --frozen pytest -q tests/architecture tests/unit/test_blocking_audio.py tests/integration/test_audio_output.py --tb=short`
+exited 0: 2,499 passed, one skipped in 19.62 seconds. Formatting checked 670
+files, lint and `git diff --check` passed. The installed maintenance check
+still reports only the exact overdue-review warning already waived by the
+maintainer; no additional gate was waived. Hosted correction results remain
+pending and will be reported on the existing PR.
+
 All commands below exited 0. Durations are outer command wall times; pytest
 itself reported **4,971 passed, 19 skipped in 266.58 seconds**. This is local
 Windows CPython 3.12.13 evidence, not hosted or cross-platform qualification.

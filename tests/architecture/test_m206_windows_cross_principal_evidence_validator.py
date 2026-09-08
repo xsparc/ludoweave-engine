@@ -17,7 +17,7 @@ _DECISION = _ROOT / "docs/security/windows-cache-cleanup-cross-principal-evidenc
 _RFC = _ROOT / "docs/rfcs/0189-adopt-windows-cross-principal-evidence-validator.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -37,7 +37,7 @@ _PROTECTED_FILES = {
     ),
     "scripts/smoke_wheel.py": ("2727640d8696c9ff67c3f2a7a23af06b89a98d9edc40400696e4a9ed34ce464c"),
     "tests/architecture/test_m205_windows_cross_principal_validation_contract.py": (
-        "033da64fdc7772ff67ebe54100ba57dd09d6cca903f6182ec1b8444dd02aefed"
+        "30ab2a0a142d3a192809c9ee22f9332de9b07fb389170601e74e758c65da4a54"
     ),
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }

@@ -9,7 +9,7 @@ from pathlib import Path
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -22,7 +22,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"),
     "tests/architecture/test_m198_windows_hard_link_alias_mutator_closed_stream_write_after_delivery_failure_boundary.py": (
-        "6c320862e86486ec3fa2b3682e9d8e8ba05c8dbe8a4b6190ad5813825944c165"
+        "481a7f25966ecafa1b96b0bf0377a1153ad0755c6d89af49e3dce5ea5fc19109"
     ),
     "tests/integration/test_windows_cache_cleanup_hard_link_alias_mutator_closed_stream_write_after_delivery_failure_probe.py": (
         "246d0015e30b8ecd563b915d44ffadd30bf31009eb185c8cd73ece0f1b61c58b"

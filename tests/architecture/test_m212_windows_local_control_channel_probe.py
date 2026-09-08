@@ -13,7 +13,7 @@ _DECISION = _ROOT / "docs/security/windows-cache-cleanup-local-control-channel-p
 _RFC = _ROOT / "docs/rfcs/0195-probe-windows-local-control-channel.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -26,7 +26,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m211_windows_independent_host_process_containment_probe.py": (
-        "1362f314221450c17e5a456e980df3b4dc26e886df09bb90bbb6ee3e3863e915"
+        "5056e3b2244bed2f484bf401f0e797f83b366d7e685c0771ab08e5b6c11e5ce3"
     ),
     "tests/fixtures/windows_independent_host_process_tree_participant.py": (
         "218330d71df63277b2c9ab8edcbfbdfa4745675ab0cb2a7d017fbd845d01774a"

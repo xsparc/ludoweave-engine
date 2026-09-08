@@ -12,7 +12,7 @@ _DECISION = _ROOT / "docs/security/windows-cache-cleanup-local-control-token-bin
 _RFC = _ROOT / "docs/rfcs/0196-probe-windows-local-control-token-binding.md"
 _PROTECTED_FILES = {
     ".github/workflows/ci.yml": (
-        "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1"
+        "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
     ),
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
@@ -25,7 +25,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m212_windows_local_control_channel_probe.py": (
-        "dfda16d2e510ceb5eb77384a4d053a0c564757c222b096647a29dda7835c412c"
+        "7308618952459f305956d12d5feacc1b82962d065b0190a3398505df86de3273"
     ),
     "tests/fixtures/windows_local_control_channel_participant.py": (
         "b3e33d4e70fef4fa3acc3fbb3e8526705c5625b7865344a2a63243415194f452"

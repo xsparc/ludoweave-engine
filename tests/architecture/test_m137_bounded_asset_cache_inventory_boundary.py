@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "67fc471f84d7dde8b239bd9e92235a34f780cc3d3370b0dbf451e6a922a027f1",
+    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -18,7 +18,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_population_verification_wheel.py": "056af8032c21fcaf8ae068b92747304ff578a5bfc8bd383b3dac1bb7e7fcc5c7",
     "docs/rfcs/0119-add-saved-cache-population-verification.md": "bcc5b8bd0b9ebfa0ac56e4b425c3960ce8b51535fac4e5ebef541f47f472222c",
-    "tests/architecture/test_m136_saved_cache_population_verification_boundary.py": "e9302c07e6510e952ffedaa55c51e5ce8d5b952b404f0781ead4babe0c86d07b",
+    "tests/architecture/test_m136_saved_cache_population_verification_boundary.py": "2cb214b5c9046e2e879bf001ee98cebbaec3ac9001ec400a9452b275a4d54d5c",
 }
 
 
