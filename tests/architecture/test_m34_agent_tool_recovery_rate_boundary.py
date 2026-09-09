@@ -187,7 +187,7 @@ def test_source_wheel_and_release_smoke_explicitly_include_m34_evidence() -> Non
 
 def test_m34_public_contract_and_indices_are_registered() -> None:
     required = {
-        _ROOT / "README.md": (
+        _ROOT / "docs/readme-history.md": (
             "empty reviewed agent-tool call manifest",
             "no measured recovery-free completion rate",
         ),

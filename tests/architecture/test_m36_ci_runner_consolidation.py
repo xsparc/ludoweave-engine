@@ -111,7 +111,7 @@ def test_m36_changes_no_release_or_runtime_boundary() -> None:
 
 
 def test_m36_docs_state_three_allocations_and_preserved_slices() -> None:
-    readme = (_ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (_ROOT / "docs/readme-history.md").read_text(encoding="utf-8")
     architecture = (_ROOT / "docs" / "architecture.md").read_text(encoding="utf-8")
     rfc = (_ROOT / "docs" / "rfcs" / "0019-ci-runner-consolidation.md").read_text(encoding="utf-8")
 

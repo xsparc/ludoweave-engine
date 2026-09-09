@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m181_windows_expected_identity_guardian_admission.py": (
-        "18962c80bf2dc80086c79814c0d2f43ebdbb97be97d4d72b633967fbef305aff"
+        "2f8033b12a6e050be4c8bd3f1f52c228b58a2f2a911779d28d6b6c5ad2da745f"
     ),
     "tests/fixtures/windows_coordination_identity_guardian_child.py": (
         "c244b29a120d61c957faa2e6d6a16b7482f85da214879f61ae56fc5e92ef6007"
@@ -200,7 +200,7 @@ def test_m182_records_non_exclusion_not_root_ownership() -> None:
 def test_m182_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-hard-link-alias-non-exclusion-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

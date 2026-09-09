@@ -194,7 +194,7 @@ def test_m35_public_docs_fix_zero_result_and_noncertification_boundary() -> None
     guide = _GUIDE.read_text(encoding="utf-8")
     rfc = _RFC.read_text(encoding="utf-8")
     architecture = (_ROOT / "docs" / "architecture.md").read_text(encoding="utf-8")
-    readme = (_ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (_ROOT / "docs/readme-history.md").read_text(encoding="utf-8")
     roadmap = (_ROOT / "ROADMAP.md").read_text(encoding="utf-8")
 
     for text in (guide, rfc, architecture, readme, roadmap):

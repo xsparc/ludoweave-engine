@@ -21,7 +21,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m204_windows_cleanup_durable_recovery_policy.py": (
-        "5a27af538f46fe4b121db5d87e05c36b3247b7b903756b8f9a03772e0926419f"
+        "2787b184643a724561d475dd7e03a83b98047bc04698e4e7884e2b13edf17294"
     ),
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
@@ -322,7 +322,7 @@ def test_m205_rfc_is_accepted_and_direction_preserving() -> None:
 def test_m205_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-cross-principal-validation-contract"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

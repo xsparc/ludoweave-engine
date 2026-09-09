@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m184_windows_hard_link_alias_deletion_non_exclusion_boundary.py": (
-        "78e19d3519f231e92f63e0a66991e0d057051cfa082942ca5a36faacac2f9734"
+        "9487f7ee1925988fd286f5e0ab42ebcdfb4da740eb9f78ded337e5379c23968d"
     ),
     "tests/fixtures/windows_coordination_identity_guardian_child.py": (
         "c244b29a120d61c957faa2e6d6a16b7482f85da214879f61ae56fc5e92ef6007"
@@ -211,7 +211,7 @@ def test_m185_records_delete_recreate_aba_and_process_correction() -> None:
 def test_m185_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-hard-link-alias-delete-recreate-aba-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

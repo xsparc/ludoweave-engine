@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m180_windows_zero_owner_guardian_restart_boundary.py": (
-        "a9a112cb1b10e2ff33b7df4e5fbbd593b5bf6e89a0b50aa1be1fea6446342531"
+        "47de3f36a8e83a96a10f3cb83d86cb4505d6bcb148e02267143cb22e804d740f"
     ),
     "tests/fixtures/windows_coordination_guardian_child.py": (
         "89f0b520c1e8966a5b577f63b254385a61c23c2427fb39b4911680b4fe5549d9"
@@ -231,7 +231,7 @@ def test_m181_decision_records_admission_boundary_not_identity_authority() -> No
 def test_m181_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-expected-identity-guardian-admission-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

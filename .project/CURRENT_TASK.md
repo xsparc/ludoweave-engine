@@ -1,5 +1,22 @@
 # Current task
 
+## Approved README navigation cleanup
+
+- Approval: 2026-09-09, shorten the README, relocate historical detail and
+  update affected documentation tests; no runtime changes or new CI jobs.
+- Base: `89ca17cab106b21643ac2fc7147b599dab7112e7`, the verified M239 squash
+  integration. Its tree equals validated PR #255 head `a21f0c3`.
+- Branch: `docs/readme-cleanup`.
+- Implementation: short landing page, historical reference, quality guide,
+  contributor links, navigation guards and preserved historical assertions.
+- Architecture: 2,485 passed, one skip. All 22 local qualification commands
+  passed, including 5,012 tests (19 skips), strict docs/static checks,
+  reproducible builds and installed artifact/release smokes. Publication and
+  hosted validation are next; no cleanup commit or PR is published yet.
+- M239's corrected hosted run 34290673055 passed all three jobs; its obsolete
+  branch was removed after exact-tree preservation was verified. These facts
+  supersede M239 pending entries below. M240 remains unassigned.
+
 ## M239 replay-owned input history
 
 - Assignment: continuation requested after M238 squash integration.

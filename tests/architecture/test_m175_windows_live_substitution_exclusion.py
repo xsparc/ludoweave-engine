@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m174_windows_cooperative_lock_substitution.py": (
-        "008dc8f221b9041c8c7871274c0c233925a1bf3b0d57deb70b9e8de73e549dfe"
+        "706661ccf066187f6ddcb6de250c039ccff6d0a0c27269f1b23fe1b9684fc81c"
     ),
     "tests/fixtures/windows_coordination_lock_substitution_child.py": (
         "2aa89b4c4947eb7c84e478e4f1fd2ce498405e7b78262722b53796bffd01eee8"
@@ -192,7 +192,7 @@ def test_m175_decision_records_live_only_not_authoritative_boundary() -> None:
 def test_m175_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-cooperative-lock-live-substitution-exclusion-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

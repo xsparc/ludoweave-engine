@@ -22,7 +22,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"),
     "tests/architecture/test_m199_windows_cache_cleanup_readiness_refresh.py": (
-        "8a6a3fa32f046c6bd8eb845eff932d03fa715123120355dfbbe619c40d635925"
+        "f48fa3152118de095673c1b5b5786718bc68f4a1d82faecbd2db53ea1ff3f67e"
     ),
     "uv.lock": ("55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18"),
 }
@@ -148,7 +148,7 @@ def test_m200_rfc_is_accepted_and_direction_preserving() -> None:
 def test_m200_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-singleton-link-refusal-policy"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

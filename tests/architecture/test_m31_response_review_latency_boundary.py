@@ -144,7 +144,7 @@ def test_m31_adds_no_runtime_export_dependency_version_release_or_provider() -> 
 
 def test_public_contract_retains_empty_measurement_manifest_and_no_sla() -> None:
     expected = {
-        _ROOT / "README.md": (
+        _ROOT / "docs/readme-history.md": (
             "empty reviewed measurement manifest",
             "no response-time, review-time, or SLA claim",
         ),

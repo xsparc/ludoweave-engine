@@ -115,7 +115,7 @@ def test_m46_changes_no_ci_runtime_dependency_or_public_package_boundary() -> No
 
 def test_m46_docs_define_fresh_runner_rehearsal_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",

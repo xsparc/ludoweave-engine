@@ -307,7 +307,7 @@ def test_m108_changes_no_workflow_producer_runtime_dependency_or_package_boundar
 
 def test_m108_docs_define_exact_creation_version_profile_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "CHANGELOG.md",
         _ROOT / "ROADMAP.md",
         _ROOT / "SECURITY.md",

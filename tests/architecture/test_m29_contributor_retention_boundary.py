@@ -146,7 +146,7 @@ def test_m29_adds_no_runtime_export_dependency_version_release_or_provider() -> 
 
 def test_public_contract_retains_zero_retained_external_contributors() -> None:
     expected = {
-        _ROOT / "README.md": "empty reviewed contributor-retention manifest",
+        _ROOT / "docs/readme-history.md": "empty reviewed contributor-retention manifest",
         _ROOT / "ROADMAP.md": "M29 contributor-retention admission readiness",
         _ROOT / "docs" / "architecture.md": "M29 contributor-retention boundary",
         _ROOT / "docs" / "external-contributor-retention-readiness.md": (

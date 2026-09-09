@@ -78,7 +78,7 @@ def test_m39_changes_no_runtime_dependency_lock_or_version_boundary() -> None:
 
 
 def test_m39_docs_define_signature_authority_and_nonclaims() -> None:
-    readme = (_ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (_ROOT / "docs/readme-history.md").read_text(encoding="utf-8")
     architecture = (_ROOT / "docs" / "architecture.md").read_text(encoding="utf-8")
     release = (_ROOT / "docs" / "release-process.md").read_text(encoding="utf-8")
     security = (_ROOT / "SECURITY.md").read_text(encoding="utf-8")

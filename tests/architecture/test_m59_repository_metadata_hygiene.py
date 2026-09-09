@@ -124,7 +124,7 @@ def test_dangling_retired_root_symlink_is_not_considered_absent(
 
 def test_repository_metadata_hygiene_contract_is_documented() -> None:
     required = {
-        _ROOT / "README.md": ("tool-neutral repository metadata",),
+        _ROOT / "docs/readme-history.md": ("tool-neutral repository metadata",),
         _ROOT / "MAINTAINERS.md": (
             "M59 current-tree metadata hygiene",
             "does not rewrite Git history",

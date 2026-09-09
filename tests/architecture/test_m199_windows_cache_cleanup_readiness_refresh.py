@@ -22,7 +22,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"),
     "tests/architecture/test_m198_windows_hard_link_alias_mutator_closed_stream_write_after_delivery_failure_boundary.py": (
-        "d745eb96303977da5041fe3f1179646f23187235b5961119e8c5b680398272db"
+        "9bdc6bb6c9bea9ff3525a6bba3fab67d8b7cd748bf38c79dec23164e09aaf988"
     ),
     "tests/integration/test_windows_cache_cleanup_hard_link_alias_mutator_closed_stream_write_after_delivery_failure_probe.py": (
         "246d0015e30b8ecd563b915d44ffadd30bf31009eb185c8cd73ece0f1b61c58b"
@@ -151,7 +151,7 @@ def test_m199_rfc_is_accepted_and_direction_preserving() -> None:
 def test_m199_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-readiness-refresh"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

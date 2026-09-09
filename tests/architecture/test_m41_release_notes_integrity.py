@@ -55,7 +55,7 @@ def test_m41_changes_no_runtime_dependency_lock_or_version_boundary() -> None:
 
 def test_m41_docs_define_exact_source_body_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "SECURITY.md",
         _ROOT / "docs" / "architecture.md",
         _ROOT / "docs" / "release-process.md",

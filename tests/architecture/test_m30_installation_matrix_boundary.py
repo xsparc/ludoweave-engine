@@ -154,7 +154,7 @@ def test_m30_adds_no_runtime_export_dependency_version_release_or_provider() -> 
 
 def test_public_contract_retains_zero_installation_records() -> None:
     expected = {
-        _ROOT / "README.md": "empty reviewed installation-matrix manifest",
+        _ROOT / "docs/readme-history.md": "empty reviewed installation-matrix manifest",
         _ROOT / "ROADMAP.md": "M30 installation-matrix admission readiness",
         _ROOT / "docs" / "architecture.md": "M30 installation-matrix boundary",
         _ROOT / "docs" / "installation-matrix-readiness.md": (

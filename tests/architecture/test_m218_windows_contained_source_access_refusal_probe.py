@@ -26,7 +26,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m217_windows_remote_debug_exclusion_probe.py": (
-        "a13986287aff77233f6f5d75d171ea9ff946076bfaf7a1a11be2a28577621780"
+        "b28bdc1c8b86463ef1b26cee5830bcfde947d35f30b961c1528adcef97064be0"
     ),
     "tests/fixtures/windows_local_control_channel_participant.py": (
         "b3e33d4e70fef4fa3acc3fbb3e8526705c5625b7865344a2a63243415194f452"
@@ -244,7 +244,7 @@ def test_m218_rfc_is_accepted_direction_preserving_and_ci_neutral() -> None:
 def test_m218_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-contained-source-access-refusal-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

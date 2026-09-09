@@ -540,7 +540,7 @@ def test_m94_changes_no_workflow_producer_runtime_dependency_or_package_boundary
 
 def test_m94_docs_define_flag_rule_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "CHANGELOG.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
@@ -558,7 +558,7 @@ def test_m94_docs_define_flag_rule_and_nonclaims() -> None:
     assert "no inter-member layout validator" in combined
     assert "not a general archive sandbox" in combined
     assert "not a real public release observation" in combined
-    readme = (_ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (_ROOT / "docs/readme-history.md").read_text(encoding="utf-8")
     current = re.search(
         r"> Current validation: M0 through M(?P<milestone>\d+) are hosted-validated",
         readme,

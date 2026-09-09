@@ -1,5 +1,25 @@
 # Project State
 
+## README navigation cleanup - locally qualified
+
+M239 is squash-integrated at `89ca17cab106b21643ac2fc7147b599dab7112e7`;
+tree `53735b5d64469c0840f29d87f87802a1e620d959` equals its final validated
+PR head. Corrected run 34290673055 passed all three jobs. This supersedes
+earlier pending records; local main was fast-forwarded and the preserved
+milestone branch removed.
+
+The maintainer approved a documentation-and-test cleanup on 2026-09-09.
+The README now introduces the product, limits, quick start and examples.
+Former detailed prose remains intact in `docs/readme-history.md` except for
+rebased links, with a historical-status notice. Quality checks now have a
+dedicated guide. Historical test lookups move without weakening assertions;
+new navigation tests constrain README size and link validity. No runtime,
+example, script, workflow, dependency or CI job changes. All 22 qualification
+commands passed on `docs/readme-cleanup`, including 5,012 tests with 19 skips,
+reproducible builds and installed smokes. Publication/hosted checks remain
+pending. Interactive window/audio and benchmarks were not rerun for this
+documentation change. The already-waived unrelated registry warning persists.
+
 ## M239 replay-owned input history - review correction locally qualified
 
 Implementation `7ec1cbb9ef68f4c688787f8a6d953ec2aebee5c7` is published in

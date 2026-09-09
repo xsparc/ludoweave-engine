@@ -8,6 +8,8 @@ theme:
     - content.code.copy
 nav:
   - Home: index.md
+  - Quality checks: quality.md
+  - Historical README reference: readme-history.md
   - Community-alpha user guide: user-guide.md
   - Architecture: architecture.md
   - Adapter and extension guide: adapter-guide.md

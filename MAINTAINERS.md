@@ -31,7 +31,7 @@ Contracts and core code do not import application, tool, or concrete-backend mod
 - Keep one task in progress and map changes to acceptance criteria.
 - Preserve unrelated user changes and never use destructive Git commands to discard work.
 - Add focused tests and public documentation with behavior changes.
-- Run focused checks first, then every command in the README quality suite.
+- Run focused checks first, then the applicable checks in `docs/quality.md`.
 - Review the diff for scope growth, secrets, dependency violations, backend leakage, nondeterminism, packaging effects, and stale documentation.
 - Update `.project/PROJECT_STATE.md` and `.project/TEST_EVIDENCE.md` with reproducible facts only.
 
@@ -41,6 +41,12 @@ sign-off; do not rewrite historical evidence or make unsupported provenance
 claims.
 
 ## Current boundary
+
+The maintainer approved a README/documentation cleanup on 2026-09-09.
+Keep onboarding concise, preserve historical evidence in linked reference docs,
+and relocate affected documentation-test lookups without weakening assertions.
+No runtime, dependency or workflow changes; no new CI jobs. M240 gameplay
+recording remains unassigned. The prior milestone boundaries below are historical.
 
 M239 is assigned following M238 integration: bounded replay-owned input history
 and fresh-process/installed-wheel gameplay verification. Preserve legacy replay-v1

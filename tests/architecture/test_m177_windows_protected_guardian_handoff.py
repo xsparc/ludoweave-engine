@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m176_windows_cooperative_lock_abrupt_settlement.py": (
-        "41bf11e4005a49cdd589eaa46d2c5f58f0977382b0fbf5c204c673cd4408a80a"
+        "6748cf44779848aa9ec267fbfd7a0659dfe0577a3f2c45339c89230d5f03acbf"
     ),
     "tests/fixtures/windows_coordination_lock_protected_participant_child.py": (
         "bad17ab99ac177ed90af258a27a48a9f5e35a693d65659c95963bced8a4e2ab6"
@@ -180,7 +180,7 @@ def test_m177_decision_records_bridge_not_generation_or_cleanup_authority() -> N
 def test_m177_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-protected-guardian-handoff-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

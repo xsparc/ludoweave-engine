@@ -21,7 +21,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m206_windows_cross_principal_evidence_validator.py": (
-        "27576879ea48514b030d96008abec69321c37e9f2bc2489b7bff87535d6d0fe3"
+        "8c126fb9b091a0099515f47fc2ff76c0225544bdfbeacd52940c3943a03f4d47"
     ),
     "tests/fixtures/windows_cleanup_cross_principal_evidence.json": (
         "b1e20ff9518c52dab5e8251597e5c8344bbca18f81b4ad008c4ac7f5b41cbc9b"
@@ -214,7 +214,7 @@ def test_m207_rfc_is_accepted_and_direction_preserving() -> None:
 def test_m207_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-independent-host-validation-contract"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

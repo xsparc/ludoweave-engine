@@ -37,10 +37,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m221_windows_contained_source_access_source_commit_binding_probe.py": (
-        "64fab76bc0e4c1231fe7f2af4fe70c3eb3fe4f92e279f2848015ca3750262a8f"
+        "e4fb7b1f771cf6977b3426448f70718e6a8761177c08d3579297c4dafdadcbb1"
     ),
     "tests/architecture/test_m222_windows_source_commit_no_lazy_fetch_exclusion.py": (
-        "7ad015b47fea126f744f8222f05f1516cadd08192cff6aadfc4710ba4f0b8623"
+        "8a7c9fe60e650d40398a4792a5015c7f44d6f545c11a8a1245a3bb096aee9715"
     ),
     "tests/fixtures/windows_contained_source_access_bound_contender.py": (
         "fa01dae3119f817c62d0b27b0f575642c9837ad5259d79507bd2a1c09c41d2dd"
@@ -215,7 +215,7 @@ def test_m223_rfc_is_accepted_direction_preserving_and_ci_neutral() -> None:
 def test_m223_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-contained-source-access-source-commit-git-selection-binding-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m234_windows_source_commit_git_cms_signer_info_certificate_id_binding_probe.py": (
-        "09fce330746b53102fc2ff16b0cf2fffe7ef0cf9e0512fe593bcda22c8cd4743"
+        "108e57de997b6a4c80dd2931165e41f2230394169cbc47bc76bda7f7a4a92610"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_cms_signer_info_certificate_id_binding_probe.py": (
         "60ec2ba3eb6da1b21bb7aa525e1fc6c7c44010e17986af01a8d4c95efee88110"
@@ -234,7 +234,7 @@ def test_m235_rfc_is_accepted_direction_preserving_and_ci_neutral() -> None:
 
 def test_m235_public_boundary_is_registered_without_ci_expansion() -> None:
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

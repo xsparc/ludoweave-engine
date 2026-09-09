@@ -37,7 +37,7 @@ _PROTECTED_FILES = {
     ),
     "scripts/smoke_wheel.py": ("2727640d8696c9ff67c3f2a7a23af06b89a98d9edc40400696e4a9ed34ce464c"),
     "tests/architecture/test_m205_windows_cross_principal_validation_contract.py": (
-        "1476d48deac1ee236434f3083fa0378bb6b167c6d509ae4ffe61dcf64ced4d16"
+        "d4d75777d854e97aa630223e3f368856d389eb23331af681efb460084d10acb0"
     ),
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
@@ -294,7 +294,7 @@ def test_m206_rfc_is_accepted_direction_preserving_and_source_only() -> None:
 def test_m206_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-cross-principal-evidence-validator"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",
