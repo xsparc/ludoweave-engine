@@ -2,6 +2,12 @@
 
 ## Product boundary
 
+M240 wires the accepted input envelope into the Clockwork Arena example's actual
+play loop. The existing recorder applies world transactions; the input wrapper
+retains the immutable snapshots consumed by those ticks. No new runtime API,
+format, dependency direction or authority is introduced. See the
+[play-session guide](input-replay.md#record-a-play-session) for bounds and failures.
+
 M239's [replay-owned input envelope](adr/0035-replay-owned-input-history.md)
 belongs to the application layer. It composes immutable input snapshots with an
 unchanged world replay timeline; no upward world-to-application dependency is

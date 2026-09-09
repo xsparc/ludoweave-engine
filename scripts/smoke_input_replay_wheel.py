@@ -53,6 +53,29 @@ def main(argv: Sequence[str] | None = None) -> int:
             results.append(result.stdout.strip())
         if results[0] != results[1]:
             raise RuntimeError("fresh-process installed replay disagrees with recording")
+        play = work / "clockwork_arena.py"
+        shutil.copyfile(example.with_name("clockwork_arena.py"), play)
+        play_artifact = work / "play.json"
+        played = subprocess.run(
+            [str(python), "-I", str(play), "--ticks", "30", "--record", str(play_artifact)],
+            cwd=work,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=120,
+        )
+        replayed = subprocess.run(
+            [str(python), "-I", str(copied), "replay", str(play_artifact)],
+            cwd=work,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=120,
+        )
+        summary = json.loads(played.stdout)["arena"]
+        verified = json.loads(replayed.stdout)
+        if summary["ticks"] != verified["ticks"] or summary["state_hash"] != verified["state_hash"]:
+            raise RuntimeError("installed play-session recording diverged")
     print(json.dumps({"schema": "ludoweave.input-replay-wheel-smoke/1", "status": "pass"}))
     return 0
 

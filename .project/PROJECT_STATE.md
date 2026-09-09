@@ -1,5 +1,23 @@
 # Project State
 
+## M240 play-session recording — locally qualified
+
+README cleanup PR #256 is squash-integrated at
+`b3cb01fefd6ed0c71a39593fd22f1fe51ca70d98`; its preserved implementation tree
+matches PR head `2d53b7f5f81b5b6b6ccb018565b26f7395ed3922`. Hosted run
+34299939491 passed after one Windows-only retry of an unchanged Job Object
+settling fixture. Earlier pending records below are superseded.
+
+M240 is now explicitly approved: capture the actual play loop's consumed input
+and verify through M239's existing offline path. No new dependencies or CI jobs.
+The example now captures exactly consumed snapshots alongside existing recorded
+transactions, saves after successful cleanup, and verifies headlessly. All 22
+local qualification commands passed: 5,024 tests/19 skips, strict static/docs
+checks, reproducible builds and installed/release smokes. Fifty focused checks
+and 2,485 architecture checks passed (one architecture skip). Review is complete;
+publication and hosted validation are next. The installed maintenance registry
+warning remains separately waived; no repository gate is waived.
+
 ## README navigation cleanup - locally qualified
 
 M239 is squash-integrated at `89ca17cab106b21643ac2fc7147b599dab7112e7`;

@@ -1,5 +1,87 @@
 # Test Evidence
 
+## M240 full local qualification (2026-09-09)
+
+All 22 commands below executed and exited 0 on Windows CPython 3.12.13.
+Full suite: **5,024 passed, 19 skipped in 331.36s**. Whole-tree Pyright:
+zero errors and warnings. Builds compared byte-for-byte successfully; wheel,
+scene, audio, input/play replay and release-artifact smokes passed. These are
+local rehearsals, not hosted results or release publication.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m240-dist-first` | 0 |
+| `uv build --out-dir .tmp/m240-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m240-dist-first .tmp/m240-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m240-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m240-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m240-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m240-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m240-dist-first .tmp/m240-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m240-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+The installed play-loop smoke used a no-dependency wheel environment outside the
+checkout under `python -I`; 30 recorded ticks reproduced the exact final hash in
+a separate verification process. No optional physical graphics/audio observation
+or performance benchmark was rerun for this example wiring change.
+
+Review: no source-package, dependency/lock, workflow or README changes; no new
+public API, backend/provider leakage or world authority. The new example/test
+and smoke behavior is bounded by existing contracts. Output publication remains
+non-crash-atomic as documented. All 89 historical guard edits are verified digest
+literals only. The unrelated open draft README PR #257 remains untouched.
+Commit/push/PR and hosted validation are not claimed by this local record.
+
+## M240 focused qualification (2026-09-09)
+
+Base: `b3cb01fefd6ed0c71a39593fd22f1fe51ca70d98`, Windows managed
+CPython 3.12.13. These commands were executed; broader qualification is pending.
+
+| Command | Exit / observation |
+| --- | --- |
+| `uv run --frozen pytest -q tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py` | 0; 50 passed in 7.02s |
+| `uv run --frozen pytest -q tests/architecture` | 0; 2,485 passed, one skipped in 24.21s |
+| `uv run --frozen pyright tests/integration/test_play_session_recording.py examples/clockwork_arena.py` | 0; zero errors/warnings before the final additional rejection test; whole-tree gate follows |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 120 --record .tmp/m240-play.json` | 0; 120 ticks and 120 draw calls |
+| `uv run --frozen python examples/input_replay.py replay .tmp/m240-play.json` | 0; same final state hash, 121 checkpoints verified |
+
+Recorded/replayed state: `sha256:9d4b4f5e81ed1ac487f83ae742ce41cfb27f2a0da652a43c33c74e5571cd3026`.
+Artifact: `sha256:c97e24dc0a9897bde05457c30516415c44c26c7958ab4f59c3345b22990ddd54`.
+Early-close, zero-tick, stress-16, consumed keyboard/gamepad snapshots, refusal of
+existing/concurrent destinations, initialization/close failure and rejected ticks
+are covered. Interactive events use a Null fixture; no physical-device or human
+play observation is claimed. Initial focused run: one failed, ten passed (4.89s)
+because the test omitted existing dead-zone scaling. Correcting that expectation
+left runtime mapping untouched. Initial typing found untyped test lambdas, then
+a forward local annotation; both were corrected. The next 49-test run passed
+(4.56s), followed by the final 50-test run above.
+
+Historical guards: `uv run --frozen python .tmp/m240_refresh_pins.py` exited 0.
+Against the exact base, 89 architecture files changed only verified SHA-256
+literals for the changed examples/scripts and dependent test digests. Normalized
+AST equality was checked for every guard; assertions were not weakened.
+
+Engineering-tool checks executed with `uv run --offline --no-python-downloads
+--no-project python -B <installed-plugin>/scripts/check_project_governance.py
+--repository-root <installed-plugin>` where `<installed-plugin>` is the installed
+OpenSteward 0.18.0 package: exit 0, zero findings. The same command with
+`--as-of 2026-09-09 --strict` exited 1 with only `review.overdue` in that external
+registry. The maintainer's existing narrow waiver applies; this is not a repository
+gate pass or a new waiver. No repository governance registry is introduced here.
+
 ## README cleanup local qualification (2026-09-09)
 
 Base: verified M239 squash `89ca17cab106b21643ac2fc7147b599dab7112e7`.

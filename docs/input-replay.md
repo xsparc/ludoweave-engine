@@ -19,6 +19,36 @@ is not called during playback.
 
 ## Contract and ownership
 
+### Record a play session
+
+The Clockwork Arena play loop can capture the snapshots it actually consumes:
+
+```console
+uv run --frozen python examples/clockwork_arena.py --ticks 120 --record play.json
+uv run --frozen python examples/input_replay.py replay play.json
+```
+
+For keyboard/mouse or gamepad play, add `--renderer wgpu --window --interactive`
+to the recording command (requires the graphics extra). Optional `--audio device`
+does not enter the recording. Headless verification needs neither extra nor the
+original device. Compare its `state_hash` and `ticks` with the play summary's
+`arena` fields; all embedded checkpoints are checked.
+
+Recording is opt-in and limited to 3,600 requested ticks. Closing the interactive
+window early saves only completed ticks, including a valid zero-tick session.
+Inputs are sampled once by the tick executor, not polled again when saving.
+The sample uses the existing M239 envelope and unchanged world transactions;
+it adds no engine API or persistent protocol. Normal play output is unchanged.
+
+The destination must not exist. Publication uses exclusive creation after the
+loop and both device closes succeed; transaction, rendering, audio or close
+failure does not publish a successful recording. File write failures may leave
+a partial new file; saving is not crash-atomic and provides no hostile-filesystem
+isolation. Keep valuable recordings elsewhere before retrying. Recording retains
+bounded history in memory and adds serialization overhead; it is not a latency
+guarantee or streaming recorder. Simulated event tests are not evidence of human
+device provenance.
+
 The envelope protocol is `ludoweave.input-replay/1`; embedded replay-v1 bytes,
 checkpoints and hashes are unchanged. Every tick in `[initial_tick, final_tick)`
 must appear exactly once in order. Nonzero start ticks support independent branch
@@ -54,5 +84,6 @@ uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/dist-first
 ```
 
 This installs one built wheel with no dependencies into a temporary environment,
-copies the example outside the checkout, and compares separate recording/replay
-processes under Python isolated mode. It makes no physical-device claim.
+copies both examples outside the checkout, and compares separate recording/replay
+processes plus the actual Null play loop under Python isolated mode. It makes no
+physical-device claim and uses the existing CI smoke step without another job.
