@@ -2,6 +2,13 @@
 
 ## Product boundary
 
+M240 wires the accepted input envelope into the Clockwork Arena example's actual
+play loop. The existing transaction service applies world mutations; a bounded
+example-owned buffer retains committed batches, checkpoints and consumed immutable
+inputs. Complete timeline validation runs at save time. No new runtime API,
+format, dependency direction or authority is introduced. See the
+[play-session guide](input-replay.md#record-a-play-session) for bounds and failures.
+
 M239's [replay-owned input envelope](adr/0035-replay-owned-input-history.md)
 belongs to the application layer. It composes immutable input snapshots with an
 unchanged world replay timeline; no upward world-to-application dependency is

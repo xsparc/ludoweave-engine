@@ -1,5 +1,12 @@
 # Changelog
 
+## M240 play-session recording
+
+- Add opt-in Clockwork Arena `--record` with exact consumed input history,
+  early-close support and existing headless verification.
+- Extend the existing isolated wheel smoke without new CI jobs or dependencies.
+  Ordinary play output and persistent replay formats are unchanged.
+
 ## README navigation cleanup
 
 - Replace the milestone-heavy landing page with a short project overview,

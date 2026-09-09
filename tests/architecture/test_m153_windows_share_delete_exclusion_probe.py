@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m152_windows_cross_process_substitution_probe.py": (
-        "9ab10b0150a0ec8e41f3223b6dec42d6b209d75b5adc6eb3ceb87c790e614204"
+        "c73d880a08f671c2afbbfbda2b7fcf0c5ecc1518a0a1b26e6e5e566512d7db16"
     ),
     "tests/integration/test_windows_cache_cleanup_cross_process_probe.py": (
         "b0e98fe721fea539fdbf7a6f7567396ad04bdb3528d870a5f242a9b9b480d80e"
@@ -27,8 +27,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
-    "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
+    "examples": "960fe2064a3e28015dd4cf35735c226c733ee278f318e4cd4b11adfabfb2a9a5",
+    "scripts": "81d4e7faec9a60d3f0fe17b5950f508fae9f10dd55309e710d0e383c443f78f6",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

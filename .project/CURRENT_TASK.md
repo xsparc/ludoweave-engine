@@ -1,5 +1,31 @@
 # Current task
 
+## M240 play-session recording — locally qualified
+
+Review correction locally qualified: PR #258 head `01978e9` passed all three hosted
+jobs in run 34352166129, but review found quadratic full-history serialization
+in the play loop. The example now buffers bounded committed batches and validates
+the timeline at save time. Fifty-four focused tests and all 22 full correction
+qualification commands pass (5,028 tests/19 skips). A same-PR correction push
+and hosted qualification of its exact head are next.
+The original green run does not qualify this correction.
+
+- Approval: maintainer's yes to actual Clockwork Arena play-loop recording and
+  headless verification; automatic commit/push/PR after validation remains approved.
+- Base: clean main `b3cb01fefd6ed0c71a39593fd22f1fe51ca70d98` (README cleanup).
+- Branch: `feature/m240-play-session-recording`.
+- Acceptance: exact consumed inputs, early/zero close, unchanged ordinary results,
+  exclusive output, failure cleanup, fresh-process and installed-wheel replay.
+- Non-scope: dependencies, engine API/protocol, new CI jobs, merge or release.
+- Plan: wire recorder; add focused regressions and existing smoke coverage; run
+  quality/distribution gates; review digest-only historical guards; publish one PR.
+- Result: 50 focused checks pass; architecture 2,485 passed/one skipped. All 22
+  local qualification commands pass, including 5,024 tests/19 skips, strict docs,
+  typing, reproducible builds and installed play/replay. Diff review complete;
+  commit/push/PR and hosted results are next, not yet claimed here.
+- Earlier unassigned/pending records below are superseded by this approval and
+  PR #256 integration; they remain historical evidence, not current status.
+
 ## Approved README navigation cleanup
 
 - Approval: 2026-09-09, shorten the README, relocate historical detail and

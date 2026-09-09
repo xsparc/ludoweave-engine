@@ -42,6 +42,13 @@ claims.
 
 ## Current boundary
 
+M240 is approved: Clockwork Arena play-session recording and headless verification
+using the accepted M239 envelope. Scope is the example, focused regressions,
+existing installed-wheel smoke, docs and factual evidence. No new engine API,
+dependency, CI job, format, network authority, merge or release. Dependent
+historical digest literals may be refreshed mechanically without weakening tests.
+The README cleanup and earlier boundaries below are historical and superseded.
+
 The maintainer approved a README/documentation cleanup on 2026-09-09.
 Keep onboarding concise, preserve historical evidence in linked reference docs,
 and relocate affected documentation-test lookups without weakening assertions.
