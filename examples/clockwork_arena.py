@@ -43,9 +43,17 @@ from ludoweave.samples.clockwork_arena import (
     ARENA_PLATFORM_PROFILE,
     ARENA_PROJECT_SCHEMA,
     ARENA_STATE,
+    ClockworkArena,
     arena_tick_transaction,
 )
-from ludoweave.world import ReceiptStatus, ReplayRecorder
+from ludoweave.world import (
+    ReceiptStatus,
+    ReplayBatch,
+    ReplayCheckpoint,
+    ReplayRecorder,
+    ReplayTimeline,
+    TransactionService,
+)
 
 
 class _CapturedInput:
@@ -63,6 +71,55 @@ class _CapturedInput:
         snapshot = self._source.snapshot_for_tick(tick)
         self.snapshots.append(snapshot)
         return snapshot
+
+
+class _PlayRecorder:
+    """Buffer bounded committed batches; validate the complete history at save time."""
+
+    __slots__ = ("_batches", "_checkpoints", "_initial", "_service")
+
+    def __init__(self, arena: ClockworkArena) -> None:
+        self._initial = ReplayRecorder(
+            arena.session,
+            arena.codec,
+            timeline_id="clockwork-play-session",
+            project_schema=ARENA_PROJECT_SCHEMA,
+            dependency_lock_hash=ARENA_LOCK_HASH,
+            platform_profile=ARENA_PLATFORM_PROFILE,
+        ).timeline()
+        self._service = TransactionService(arena.session)
+        self._batches: list[ReplayBatch] = []
+        self._checkpoints = list(self._initial.checkpoints)
+
+    def record_tick(self) -> None:
+        if len(self._batches) >= 3600:
+            raise ValueError("play recording supports at most 3600 ticks")
+        transaction = arena_tick_transaction(self._service.session)
+        receipt = self._service.apply(transaction)
+        if receipt.status is not ReceiptStatus.COMMITTED:
+            raise RuntimeError("play recording transaction was rejected")
+        self._batches.append(
+            ReplayBatch(
+                len(self._batches),
+                receipt.completed_ticks_before,
+                receipt.completed_ticks_after,
+                receipt.pre_hash,
+                receipt.post_hash,
+                transaction,
+            )
+        )
+        self._checkpoints.append(
+            ReplayCheckpoint(len(self._batches), receipt.completed_ticks_after, receipt.post_hash)
+        )
+
+    def finish(self, snapshots: tuple[InputSnapshot, ...]) -> InputReplay:
+        timeline = ReplayTimeline(
+            self._initial.header,
+            self._initial.initial_snapshot,
+            tuple(self._batches),
+            tuple(self._checkpoints),
+        )
+        return InputReplay(timeline, snapshots)
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -167,18 +224,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     arena = create_clockwork_arena(
         input_source if captured is None else captured, stress=arguments.stress
     )
-    recorder = (
-        None
-        if captured is None
-        else ReplayRecorder(
-            arena.session,
-            arena.codec,
-            timeline_id="clockwork-play-session",
-            project_schema=ARENA_PROJECT_SCHEMA,
-            dependency_lock_hash=ARENA_LOCK_HASH,
-            platform_profile=ARENA_PLATFORM_PROFILE,
-        )
-    )
+    recorder = None if captured is None else _PlayRecorder(arena)
     device = _device(arguments.renderer)
     audio: AudioBackend = (
         BlockingAudioBackend() if arguments.audio == "device" else NullAudioBackend()
@@ -229,9 +275,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             if recorder is None:
                 arena.tick()
             else:
-                receipt = recorder.record(arena_tick_transaction(arena.session))
-                if receipt.status is not ReceiptStatus.COMMITTED:
-                    raise RuntimeError("play recording transaction was rejected")
+                recorder.record_tick()
             current_audio = arena.session.resources.require(ARENA_STATE)
             for counter, clip in clips.items():
                 if cast(int, getattr(current_audio, counter)) > cast(
@@ -266,7 +310,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             device.close()
 
     if recording_path is not None and captured is not None and recorder is not None:
-        artifact = InputReplay(recorder.timeline(), tuple(captured.snapshots))
+        artifact = recorder.finish(tuple(captured.snapshots))
         encoded = artifact.canonical_bytes()
         # Publish only after a successful loop and resource close. Exclusive creation
         # also refuses a destination created after the initial admission check.

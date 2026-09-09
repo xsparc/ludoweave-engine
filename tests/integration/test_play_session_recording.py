@@ -26,6 +26,14 @@ from ludoweave.platform import (
     PlatformEvent,
 )
 from ludoweave.render import NullRenderDevice, RenderDevice, SurfaceHandle
+from ludoweave.samples import create_clockwork_arena
+from ludoweave.samples.clockwork_arena import (
+    ARENA_LOCK_HASH,
+    ARENA_PLATFORM_PROFILE,
+    ARENA_PROJECT_SCHEMA,
+    arena_tick_transaction,
+)
+from ludoweave.world import ReplayRecorder, ReplayTimeline
 
 _ROOT = Path(__file__).resolve().parents[2]
 
@@ -240,3 +248,40 @@ def test_rejected_tick_does_not_publish_recording(
         _main(module, ["--ticks", "1", "--record", str(path)])
     assert device.closes == 1
     assert not path.exists()
+
+
+@pytest.mark.parametrize("ticks", [1, 12, 120])
+def test_play_loop_builds_nonempty_timeline_only_at_completion(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, ticks: int
+) -> None:
+    lengths: list[int] = []
+    original = ReplayTimeline.__post_init__
+
+    def observe(timeline: ReplayTimeline) -> None:
+        if timeline.batches:
+            lengths.append(len(timeline.batches))
+        original(timeline)
+
+    monkeypatch.setattr(ReplayTimeline, "__post_init__", observe)
+    path = tmp_path / "buffered.json"
+    assert _main(_example(), ["--ticks", str(ticks), "--record", str(path)]) == 0
+    assert lengths == [ticks]
+
+
+def test_buffered_play_artifact_matches_incremental_recorder_bytes(tmp_path: Path) -> None:
+    path = tmp_path / "equivalent.json"
+    assert _main(_example(), ["--ticks", "12", "--record", str(path)]) == 0
+    artifact = InputReplay.from_json(path.read_bytes())
+    arena = create_clockwork_arena(artifact)
+    reference = ReplayRecorder(
+        arena.session,
+        arena.codec,
+        timeline_id="clockwork-play-session",
+        project_schema=ARENA_PROJECT_SCHEMA,
+        dependency_lock_hash=ARENA_LOCK_HASH,
+        platform_profile=ARENA_PLATFORM_PROFILE,
+    )
+    for _ in range(12):
+        reference.record(arena_tick_transaction(reference.session))
+    expected = InputReplay(reference.timeline(), artifact.snapshots)
+    assert artifact.canonical_bytes() == expected.canonical_bytes()

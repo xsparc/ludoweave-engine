@@ -1,5 +1,90 @@
 # Test Evidence
 
+## M240 correction full local qualification (2026-09-09)
+
+All 22 correction qualification commands below executed and exited 0 on Windows
+CPython 3.12.13. Full suite: **5,028 passed, 19 skipped in 303.56s**. Strict
+typing, lint/format, docs, reproducible distributions, installed artifacts and
+release rehearsal pass. The correction remains unqualified by hosted CI until
+its new head is checked; prior hosted success binds only original head `01978e9`.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m240-correction-dist-first` | 0 |
+| `uv build --out-dir .tmp/m240-correction-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m240-correction-dist-first .tmp/m240-correction-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m240-correction-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m240-correction-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m240-correction-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m240-correction-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m240-correction-dist-first .tmp/m240-correction-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m240-correction-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Final review confirms only the scoped example correction, regression tests, docs,
+state/evidence and dependent digest literals changed. No engine source, workflow,
+dependency or public protocol change. The existing external-registry warning waiver
+remains narrow; no repository validation requirement is waived.
+
+## M240 review correction — focused evidence (2026-09-09)
+
+PR #258 head `01978e91564ea5ab0f67c8237e248ba70fe687a2` passed all three
+jobs in run 34352166129. Original hosted results: Linux 3.12 4,621 passed/411
+skipped (234.76s), Linux 3.13 4,620/413 (194.26s), Linux 3.14 4,620/413
+(203.22s), macOS 3.14 4,620/413 (257.89s), Windows 3.14 5,032/2 (381.70s).
+Each platform's graphics smoke passed ten tests and optional audio wiring passed
+17 tests. Installed replay smoke and release rehearsal passed on Linux. These
+results were read from the completed run/job logs, not inferred from local tests.
+
+Review comment 3968454653 identified quadratic growing-timeline serialization
+inside the actual play loop. The correction buffers only bounded committed
+batches/checkpoints and constructs the complete timeline at save time. World
+transactions, receipts, input ownership and final validation remain unchanged.
+
+Executed correction checks:
+
+- `uv run --frozen pytest -q tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py`:
+  exit 0, **54 passed in 6.07s**. New deterministic guards require exactly one
+  nonempty timeline construction for 1/12/120 ticks and byte identity with the
+  incremental recorder.
+- `uv run --frozen pyright examples/clockwork_arena.py tests/integration/test_play_session_recording.py`:
+  exit 0, zero errors/warnings; `uv run --frozen ruff check .`: exit 0.
+- `uv run --frozen python .tmp/m240_refresh_pins.py`: exit 0; 89 historical
+  files remain AST-identical except verified dependent SHA-256 literals.
+- `uv run --frozen python examples/input_replay.py replay .tmp/m240-after-3600.json`:
+  exit 0, 3,600 ticks, all 3,601 checkpoints verified, final state
+  `sha256:4243defe548ba6e36b6bec93b45f266d2ad48e74c24efc2856d3f7c6197a3b6e`.
+
+Local timing observation, managed CPython 3.12.13 on Windows: the same subprocess
+command `python examples/clockwork_arena.py --ticks N --render-every 10000`, with
+and without `--record .tmp/m240-{before|after}-N.json`, was timed once per case
+using `time.perf_counter()`. The ignored timing runner was invoked as
+`uv run --frozen python .tmp/m240_timing.py before` and then `after`, both exit 0.
+
+| Ticks | Original normal / recorded | Corrected normal / recorded |
+| --- | --- | --- |
+| 600 | 1.095s / 10.859s | 1.105s / 1.175s |
+| 3,600 | Not measured | 12.943s / 13.595s |
+
+`Get-FileHash -Algorithm SHA256 .tmp/m240-before-600.json,.tmp/m240-after-600.json`
+returned the same SHA-256 for both files:
+`1ac45edb65b9b02068cc836f9681857232e718c148a3c47ce9d14bdcafd09021`.
+These are single local observations, not latency guarantees or physical-play
+evidence. The original green hosted run does not qualify this correction;
+full correction qualification and publication are still pending.
+
 ## M240 full local qualification (2026-09-09)
 
 All 22 commands below executed and exited 0 on Windows CPython 3.12.13.

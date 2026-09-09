@@ -2,6 +2,15 @@
 
 ## M240 play-session recording — locally qualified
 
+PR #258 original head `01978e91564ea5ab0f67c8237e248ba70fe687a2` passed
+Linux, Windows and macOS in run 34352166129. A subsequent review finding identified
+quadratic growing-history serialization during play. The local correction uses
+bounded batch/checkpoint buffering and final timeline validation, preserving exact
+artifact bytes. Fifty-four focused tests and all 22 local correction qualification
+commands pass, including 5,028 tests/19 skips and rebuilt installed artifacts.
+Correction publication and hosted qualification remain pending.
+Do not interpret the earlier green run as qualification of the correction.
+
 README cleanup PR #256 is squash-integrated at
 `b3cb01fefd6ed0c71a39593fd22f1fe51ca70d98`; its preserved implementation tree
 matches PR head `2d53b7f5f81b5b6b6ccb018565b26f7395ed3922`. Hosted run

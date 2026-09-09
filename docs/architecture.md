@@ -3,8 +3,9 @@
 ## Product boundary
 
 M240 wires the accepted input envelope into the Clockwork Arena example's actual
-play loop. The existing recorder applies world transactions; the input wrapper
-retains the immutable snapshots consumed by those ticks. No new runtime API,
+play loop. The existing transaction service applies world mutations; a bounded
+example-owned buffer retains committed batches, checkpoints and consumed immutable
+inputs. Complete timeline validation runs at save time. No new runtime API,
 format, dependency direction or authority is introduced. See the
 [play-session guide](input-replay.md#record-a-play-session) for bounds and failures.
 

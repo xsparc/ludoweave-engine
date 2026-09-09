@@ -45,7 +45,8 @@ loop and both device closes succeed; transaction, rendering, audio or close
 failure does not publish a successful recording. File write failures may leave
 a partial new file; saving is not crash-atomic and provides no hostile-filesystem
 isolation. Keep valuable recordings elsewhere before retrying. Recording retains
-bounded history in memory and adds serialization overhead; it is not a latency
+bounded committed batches in memory; complete timeline validation and serialization
+run at save time, not over the growing history on every tick. It is not a latency
 guarantee or streaming recorder. Simulated event tests are not evidence of human
 device provenance.
 
