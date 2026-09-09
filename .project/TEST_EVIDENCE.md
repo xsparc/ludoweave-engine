@@ -1,5 +1,144 @@
 # Test Evidence
 
+## M239 review correction (2026-09-09)
+
+PR #255 implementation head `7ec1cbb9ef68f4c688787f8a6d953ec2aebee5c7`
+passed all three jobs in hosted run 34288945240. This precedes the correction.
+Review found nested unsupported engine/determinism versions were incorrectly
+wrapped as malformed input. Regression reproduction:
+`uv run --frozen pytest -q tests/unit/test_input_replay.py -k nested_replay_incompatibility --tb=short`
+exited 1: 2 failed, 36 deselected in 0.69s. After preserving the original
+exception, focused tests passed 38 in 3.80s. Windows CPython 3.12.13 correction
+qualification below actually ran; every command exited 0.
+
+| Command | Exit |
+| --- | --- |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m239-review-dist-first` | 0 |
+| `uv build --out-dir .tmp/m239-review-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m239-review-dist-first .tmp/m239-review-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m239-review-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m239-review-dist-first` | 0 |
+| `git diff --check` | 0 |
+
+Full suite: **5,009 passed, 19 skipped in 261.19s**. Reproducible builds before
+these evidence-only edits: wheel 373,321 bytes SHA-256
+`6c1e8df233766734cc4ad440f07130468858461e388f92a72bd9b7abd527c27d`;
+sdist 2,851,546 bytes SHA-256
+`6d79eb33d3edb66043bbd6f635b972a76241dbc3ef57556ebd70ff5234fc7bef`.
+These are not hashes of a later evidence-inclusive sdist. Historical dependent
+guard updates preserve assertions; only verified digest literals change.
+Correction hosted validation remains pending. No benchmark rerun or new CI job
+was needed for this exception-preservation fix.
+
+## M239 complete local qualification (2026-09-09)
+
+Environment: Windows, managed CPython 3.12.13. Base is exact M238 squash
+`f57790e1603a1a34085ca1485a6183cc48b3420e`. All commands below actually ran and
+exited 0. Full pytest: **5,007 passed, 19 skipped in 279.57 seconds**.
+Per-command results are recorded below; hosted results are not yet claimed.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m239-dist-first` | 0 |
+| `uv build --out-dir .tmp/m239-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m239-dist-first .tmp/m239-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m239-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m239-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m239-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m239-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m239-dist-first .tmp/m239-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m239-release-candidate` | 0 |
+| `uv run --frozen python benchmarks/benchmark_m1.py --samples 30 --seed 1 --json-out .tmp/m239-m1-benchmark.json` | 0 |
+| `uv run --frozen python benchmarks/validate_m1_results.py .tmp/m239-m1-benchmark.json` | 0 |
+| `uv run --frozen python benchmarks/benchmark_m2.py --samples 30 --seed 1 --json-out .tmp/m239-m2-benchmark.json` | 0 |
+| `uv run --frozen python benchmarks/validate_m2_results.py .tmp/m239-m2-benchmark.json` | 0 |
+| `uv run --frozen --extra graphics python benchmarks/benchmark_m3.py --samples 30 --output .tmp/m239-m3-benchmark.json` | 0 |
+| `uv run --frozen --extra graphics python benchmarks/validate_m3_results.py .tmp/m239-m3-benchmark.json` | 0 |
+| `uv run --frozen python benchmarks/benchmark_m4.py --samples 300 --warmups 60 --output .tmp/m239-m4-benchmark.json` | 0 |
+| `uv run --frozen python benchmarks/validate_m4_results.py .tmp/m239-m4-benchmark.json` | 0 |
+| `uv run --frozen python -m benchmarks.profile_m7 --repeats 5 --output .tmp/m239-m7-profile-base.json` | 0 |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m239-m7-profile-base.json` | 0 |
+| `uv run --frozen --extra graphics python -m benchmarks.profile_m7 --repeats 5 --include-wgpu --output .tmp/m239-m7-profile-graphics.json` | 0 |
+| `uv run --frozen python -m benchmarks.validate_m7_profile .tmp/m239-m7-profile-graphics.json` | 0 |
+| `git diff --check` | 0 |
+
+Both builds were byte-identical before these evidence-only closeout edits:
+wheel 373,299 bytes, SHA-256
+`8edef45a9729bc76fd74580938d4fadd256d96f47cd7fd6878c28137c072a805`;
+sdist 2,850,720 bytes, SHA-256
+`113f33c6d5c01ccf09066d627a17090152d10e27d178b7e91d3d230ef1514151`.
+These are not claimed as later evidence-inclusive sdist hashes.
+
+M1 and M3 each observed/met one of two informational targets. M4 observed its
+baseline target. M7 base/graphics profiles and validators passed. No performance
+improvement, cross-machine equivalence or native-code admission is claimed.
+
+The installed maintenance registry checker passed structurally (exit 0, no
+findings). Its dated `--as-of 2026-09-09 --strict` run exited 1 with only the
+previously waived `review.overdue` warning in that tool's registry. This is not
+a LudoWeave test failure or a waiver of any repository/hosted gate.
+
+## M239 initial implementation (2026-09-09)
+
+- Boundary expansion: 36 focused tests pass in 4.58 seconds, targeted Pyright
+  zero diagnostics. Aggregate input entries are capped before artifact encoding.
+- Initial full architecture run: 89 failed, 2,393 passed, 1 skipped in 19.60s;
+  inherited whole-tree digests did not include the approved new files.
+- Digest refresh initially stopped at a non-ASCII fixture because its verifier
+  used implicit text decoding. The partial-refresh architecture run reported
+  184 failed, 2,298 passed, 1 skipped. Explicit UTF-8 corrected the verifier.
+  The verified rewrite changes 196 historical guards only in SHA-256 literals;
+  normalized ASTs match exact M238 base for every guard.
+- Next architecture run: 1 failed, 2,481 passed, 1 skipped in 20.34s. The new
+  conditional smoke step lay inside the unconditional release-stage range.
+  Moving the step before that range preserved the original assertion.
+- `uv run --frozen pytest -q tests/architecture tests/unit/test_input_replay.py --tb=line`:
+  exit 0, 2,518 passed, 1 skipped in 22.35 seconds after correction.
+- `uv run --frozen mkdocs build --strict`: exit 0, built in 4.66 seconds.
+- `uv run --frozen ruff format --check .`: exit 0, 674 files already formatted.
+- `uv run --frozen ruff check .`: exit 0, all checks passed.
+- `uv run --frozen pyright`: exit 0, zero errors/warnings/informations.
+- `git diff --check`: exit 0. Full runtime/artifact qualification remains pending.
+
+- Expanded focus initially reported 4 failures / 23 passes: test composition
+  omitted the required input source, and attempted an unsupported executor
+  assignment. The tests were corrected to use explicit recorded sources.
+- `uv run --frozen pytest -q tests/unit/test_input_replay.py --tb=short`:
+  exit 0, 27 passed in 1.98 seconds after correction.
+- Targeted Pyright for source/test/example/wheel-smoke files: exit 0, no
+  errors/warnings/informations. Ruff format completed; lint's one import-order
+  finding was fixed with `ruff check --fix`, reporting zero remaining findings.
+- `uv build --out-dir .tmp/m239-dist-initial`: exit 0, sdist and pure wheel built.
+- `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m239-dist-initial`:
+  exit 0, `ludoweave.input-replay-wheel-smoke/1` status pass. One package installed
+  with `--no-deps`; separate isolated 120-tick record and replay processes outside
+  the checkout produced identical summaries. This is not final-artifact evidence.
+
+- GitHub PR #254 query: exit 0, MERGED at
+  `f57790e1603a1a34085ca1485a6183cc48b3420e`.
+- Quoted `git rev-parse` checks of base and PR head trees: exit 0, both
+  `606cf310c5e434f7790edb1e042c44d7ebdcd874`. An earlier unquoted PowerShell
+  tree-expression command failed; the equality claim uses the quoted retry.
+- `uv run --frozen pytest -q tests/unit/test_input_replay.py`: intentional red,
+  exit 1, one collection error for the missing application replay module.
+- Same command after implementation: exit 0, 2 passed in 0.37 seconds.
+- `uv run --frozen pyright src/ludoweave/app/replay.py tests/unit/test_input_replay.py`:
+  exit 0, zero errors/warnings/informations.
+- Full-suite, docs, architecture, installed-wheel and hosted M239 gates have
+  not run. This is interim evidence, not milestone completion.
+
 Only commands actually executed in the current repository are recorded here.
 
 ## M238 final local qualification - 2026-09-09

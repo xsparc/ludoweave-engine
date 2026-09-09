@@ -1,5 +1,34 @@
 # Project State
 
+## M239 replay-owned input history - review correction locally qualified
+
+Implementation `7ec1cbb9ef68f4c688787f8a6d953ec2aebee5c7` is published in
+PR #255. Run 34288945240 passed all three existing jobs. Review identified
+that the envelope obscured nested unsupported-version errors. The correction
+preserves `IncompatibleReplayError` unchanged, with two regression cases.
+All 11 correction qualification commands passed; full suite: 5,009 passed,
+19 skipped. Corrected artifacts are reproducible and isolated wheel/replay
+smokes pass. Correction publication and its hosted validation remain pending;
+the earlier green run is not evidence for the correction.
+
+M238 is squash-integrated at `f57790e1603a1a34085ca1485a6183cc48b3420e`;
+its tree equals validated PR #254 head. Run 34280027442 passed all three jobs.
+These facts supersede M238 pending entries below.
+
+M239 adds an application-level artifact around unchanged replay-v1 timelines.
+All 29 local qualification commands passed, including 5,007 tests (19 skips),
+strict typing/docs/lint/format, reproducible distributions, installed wheel,
+scene/audio/input-replay smokes, release rehearsal and benchmark/profile
+validators. Focus plus architecture passes 2,518 checks (one skip). Exact
+analog values, missing/malformed input refusal, budgets, nonzero-start branches,
+failure ordering and isolated fresh-process replay are covered. The 120-tick
+installed recording/replay summaries match exactly. M1/M3 each miss one of two
+informational timing targets; no speedup or native admission is claimed.
+196 inherited architecture guards changed only in verified digest literals;
+their normalized ASTs match the M238 base. One smoke step uses the existing
+Linux allocation. Publication status above supersedes the initial local record.
+No additional CI job, network or native code, merge or release is introduced.
+
 ## M238 optional audio - locally qualified, publication pending
 
 M237 is integrated as `960158196a3d69a14dc351c837cdb908f1eac9d4` through

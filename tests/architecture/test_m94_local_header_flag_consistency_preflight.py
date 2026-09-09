@@ -19,7 +19,7 @@ import pytest
 _ROOT = Path(__file__).parents[2]
 _SMOKE = _ROOT / "scripts" / "smoke_release.py"
 _STAGER = _ROOT / "scripts" / "release_artifacts.py"
-_CI_SHA256 = "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
+_CI_SHA256 = "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686"
 _RELEASE_SHA256 = "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
 _STAGER_SHA256 = "d6533cb45eac8d87e0ea47a59c0e03271e3e89bc38eea5c6db690785cfa131ca"
 _PYPROJECT_SHA256 = "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"

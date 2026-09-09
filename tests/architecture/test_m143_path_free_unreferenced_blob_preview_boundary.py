@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
+    ".github/workflows/ci.yml": "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -27,7 +27,7 @@ _PROTECTED = {
         "4c6c751c28d6dd30c9fa2ea0b2a82d0dd633e89192d648b1b26bce7590d8d83a"
     ),
     "tests/architecture/test_m142_saved_cache_fingerprint_comparison_verification_boundary.py": (
-        "be0412f9ab4e4894239789c2fb5ddce31e502e9478e63592a80271028190e693"
+        "5cb7eb07036190b8f9906a39994ff5181f532229f8ab7c1bf2ce4c0da16e8e64"
     ),
 }
 

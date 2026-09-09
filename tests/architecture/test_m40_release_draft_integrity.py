@@ -9,7 +9,7 @@ _ROOT = Path(__file__).parents[2]
 _CI = _ROOT / ".github" / "workflows" / "ci.yml"
 _RELEASE = _ROOT / ".github" / "workflows" / "release.yml"
 _VERIFY = "scripts/verify_release_draft.py"
-_CI_SHA256 = "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394"
+_CI_SHA256 = "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686"
 _PYPROJECT_SHA256 = "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"
 _LOCK_SHA256 = "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18"
 

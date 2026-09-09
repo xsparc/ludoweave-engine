@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED = {
-    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
+    ".github/workflows/ci.yml": "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686",
     ".github/workflows/release.yml": "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5",
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
@@ -18,7 +18,7 @@ _PROTECTED = {
     "scripts/smoke_release.py": "9f5a2c1d94255d24f6c5a63621c9bf2e08eea8b6117f0e691832322455f7c6be",
     "scripts/smoke_asset_cache_fingerprint_comparison_wheel.py": "e40dd846d35ebfde36a6771778467b20ccced903aa702aefbbb2d76e90c6c4f1",
     "docs/rfcs/0123-add-path-free-cache-fingerprint-comparison.md": "d4a9450ec2df36239634acdb2b2218d88938b7dd9c05c5e63a59a98c5050d323",
-    "tests/architecture/test_m140_path_free_cache_fingerprint_comparison_boundary.py": "9ce50a6c3102dcf11d0ac0d8992fd70b17894bc89f036bde22e18b7a9b7ca68b",
+    "tests/architecture/test_m140_path_free_cache_fingerprint_comparison_boundary.py": "5f04a5707098add5bf6c18d88029b305ea58f8e4356c6fea54e8eb4dcda8957b",
 }
 
 

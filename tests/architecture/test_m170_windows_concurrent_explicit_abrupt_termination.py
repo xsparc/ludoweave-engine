@@ -7,7 +7,7 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parents[2]
 _PROTECTED_FILES = {
-    ".github/workflows/ci.yml": "23f4cf86fdf46be2f56b38345f09bac61c7753ad15f05302874afb99d4a20394",
+    ".github/workflows/ci.yml": "883674592dd8cfc7f2c292f379591f863c797fdb0cd65f2c0c83a47e232db686",
     ".github/workflows/release.yml": (
         "c2eea00debc2cdd742ac34075f1223d33820bb103708ad986637b6f1eefb60a5"
     ),
@@ -25,13 +25,13 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m156_windows_abrupt_blocker_termination.py": (
-        "b7b85ec5d0259afde60cb882913595e6825c36c2e1ab22266b8da8a5dc253bbe"
+        "8f0728fff11808949dcb9d98d0e856cdddfa6a68f425e578eaad59747257c816"
     ),
     "tests/architecture/test_m167_windows_concurrent_explicit_inheritance.py": (
-        "b9f0d81024c0fe47741a510fc4571e1084453668aac305012648d7043cfd1ace"
+        "8780f47db9ae8f16a7e190fb747d7dcc631c4ca0af3b840978a6612fbb1b33e2"
     ),
     "tests/architecture/test_m169_windows_concurrent_explicit_restore_failure.py": (
-        "00b9cf8b68dbc9f4848decb9879c8f38214e9ff55eec4a116efb04b3da728576"
+        "c5f6f01bf485692b3e28a5ffb5ff4c04d302a0a6895637d2fefc8fa5a1a5eb63"
     ),
     "tests/fixtures/windows_share_delete_inherited_blocker_child.py": (
         "2c695324c4f7fecbbe98b71a540a1b4000f0361e55ab6f469c52ccb8b4110a4c"
@@ -51,9 +51,9 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "8e8d3a618b8bb14c439d4c0809db345fe471dc7c07f1765b03c4bb507f8fc98a",
-    "scripts": "8833e1120f60e74f4b5024ef6a6049821a72afef44c0143bab3f7bbd9298e247",
-    "src/ludoweave": "1e7f21b3d5bb0a8021f47f9bf1089873a59cb3e798b02933569d3eee3c9a35c1",
+    "examples": "f1774c37b8002dcd420b6aafe885c8289e2be44300e3d03f88cbcb03a43bc7a0",
+    "scripts": "a21166a0d275e9583c39d280c8ca77c016da2048e510970c2601f5250ddefdbf",
+    "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = (
     _ROOT

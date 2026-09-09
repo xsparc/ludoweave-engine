@@ -1,5 +1,27 @@
 # Current task
 
+## M239 replay-owned input history
+
+- Assignment: continuation requested after M238 squash integration.
+- Base: `f57790e1603a1a34085ca1485a6183cc48b3420e`; tree exactly matches
+  validated PR #254 head `26034523c71f0ed44b47bfa9610099f72d768fc9`.
+- Branch: `feature/m239-replay-input-history`.
+- Scope: versioned bounded input history, unchanged legacy replay bytes,
+  fresh-process and installed-wheel proof. No network/native code or new CI jobs.
+- Focused coverage is 36 tests; architecture plus focus passes
+  2,518 with one skip. Strict docs, whole-repository typing/lint/format pass.
+  All 29 local qualification commands pass, including 5,007 tests (19 skips),
+  reproducible builds, installed artifact/release checks and benchmark validators.
+  Implementation commit `7ec1cbb9ef68f4c688787f8a6d953ec2aebee5c7` is published
+  in PR #255; run 34288945240 passed all three existing jobs.
+  Review correction preserves nested replay incompatibility errors. Its 38
+  focused tests and full suite (5,009 passed, 19 skipped) pass, along with all
+  11 correction qualification commands. Correction publication/hosted CI is next.
+  One existing Linux smoke step was
+  added; historical guards changed only in verified dependent digest literals.
+- M238: all three jobs in run 34280027442 passed; PR #254 is squash-merged.
+  No merge or release is authorized here.
+
 ## M238 optional audible Clockwork Arena
 
 - Approval: 2026-09-09, optional real audio and sample integration; no new CI jobs.

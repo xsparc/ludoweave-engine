@@ -1,5 +1,10 @@
 # LudoWeave Engine
 
+Replay-owned input is available through experimental `ludoweave.app.replay.InputReplay`.
+See the [input replay guide](docs/input-replay.md) for separate-process recording
+and verification. The installed check is
+`uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/dist-first`.
+
 **Build worlds humans can play and agents can operate.**
 
 Optional audio: `uv run --frozen --extra audio python examples/clockwork_arena.py --ticks 180 --audio device`
