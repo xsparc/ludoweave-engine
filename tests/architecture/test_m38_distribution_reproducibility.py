@@ -84,7 +84,7 @@ def test_m38_changes_no_runtime_dependency_lock_or_version_boundary() -> None:
 
 
 def test_m38_docs_define_the_bounded_claim_and_nonclaims() -> None:
-    readme = (_ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (_ROOT / "docs/readme-history.md").read_text(encoding="utf-8")
     architecture = (_ROOT / "docs" / "architecture.md").read_text(encoding="utf-8")
     release = (_ROOT / "docs" / "release-process.md").read_text(encoding="utf-8")
     rfc = (_ROOT / "docs" / "rfcs" / "0021-enforce-distribution-reproducibility.md").read_text(

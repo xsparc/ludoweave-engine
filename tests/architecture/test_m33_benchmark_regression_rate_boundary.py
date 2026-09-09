@@ -186,7 +186,7 @@ def test_source_wheel_and_release_smoke_explicitly_include_m33_evidence() -> Non
 
 def test_m33_public_contract_and_indices_are_registered() -> None:
     required = {
-        _ROOT / "README.md": (
+        _ROOT / "docs/readme-history.md": (
             "empty reviewed comparison manifest",
             "no measured regression rate",
         ),

@@ -153,7 +153,7 @@ def test_evaluator_uses_the_runtime_replay_divergence_code() -> None:
 
 def test_public_contract_retains_empty_execution_manifest_and_no_rate_claim() -> None:
     expected = {
-        _ROOT / "README.md": (
+        _ROOT / "docs/readme-history.md": (
             "empty reviewed execution manifest",
             "no measured divergence rate",
         ),

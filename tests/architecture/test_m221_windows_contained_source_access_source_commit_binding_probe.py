@@ -30,7 +30,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m220_windows_contained_source_access_source_binding_probe.py": (
-        "ebb9298cddfb1162769ed56c26d345577ce0fa48e17acee9431b05e2a3daa0ef"
+        "97d12e3d370abe7736476603fa0f34e2e249a5b25ffe6e825058b0e31a83ca5d"
     ),
     "tests/fixtures/windows_contained_source_access_bound_contender.py": (
         "fa01dae3119f817c62d0b27b0f575642c9837ad5259d79507bd2a1c09c41d2dd"
@@ -294,7 +294,7 @@ def test_m221_rfc_is_accepted_direction_preserving_and_ci_neutral() -> None:
 def test_m221_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-contained-source-access-source-commit-binding-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

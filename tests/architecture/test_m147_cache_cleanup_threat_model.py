@@ -85,7 +85,7 @@ def test_m147_rfc_and_public_security_boundary_are_registered() -> None:
     assert "**Status:** Accepted" in rfc
     assert "cleanup remains unimplemented and unauthorized" in rfc.casefold()
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

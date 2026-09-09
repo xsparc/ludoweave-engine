@@ -304,7 +304,7 @@ def test_m60_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
 
 def test_m60_docs_define_exact_collision_and_nonclaim_boundary() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "CHANGELOG.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",

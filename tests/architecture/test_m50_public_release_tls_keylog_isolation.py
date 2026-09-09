@@ -339,7 +339,7 @@ def test_m50_changes_no_workflow_runtime_dependency_or_package_boundary() -> Non
 
 def test_m50_docs_define_keylog_boundary_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",

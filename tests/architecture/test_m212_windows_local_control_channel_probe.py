@@ -26,7 +26,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m211_windows_independent_host_process_containment_probe.py": (
-        "2975adb80646caadb7995b95de7c77a9105b5d61a8138d555724fb4400277fd5"
+        "ac0f8353be6aaf66ae75baa2fffa79aceb198fdf9f8cf164bfd47de98b2ba7f2"
     ),
     "tests/fixtures/windows_independent_host_process_tree_participant.py": (
         "218330d71df63277b2c9ab8edcbfbdfa4745675ab0cb2a7d017fbd845d01774a"
@@ -237,7 +237,7 @@ def test_m212_rfc_is_accepted_direction_preserving_and_non_authorizing() -> None
 def test_m212_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-local-control-channel-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

@@ -31,7 +31,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m224_windows_source_commit_git_file_retention_probe.py": (
-        "935769e24599af9c74d2390e81a22461a8d47c2a5fd29f34c300ad745bd81937"
+        "1f8d33dcb74ab88643f1cf1a6361429e6251b3a1709045a04d0db50f21c37620"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_file_retention_probe.py": (
         "c4ab1210d4e04d0d58aff66bc9fdaba305d63bb3e4d875f4006e68a1851e2208"
@@ -229,7 +229,7 @@ def test_m225_public_boundary_is_registered_without_ci_expansion() -> None:
         "windows-cache-cleanup-contained-source-access-source-commit-git-child-image-binding-probe"
     )
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

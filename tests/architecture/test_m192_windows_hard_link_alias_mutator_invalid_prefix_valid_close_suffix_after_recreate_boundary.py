@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m186_windows_independent_hard_link_alias_mutator_aba_boundary.py": (
-        "f54ec37f4df43548c75ce3a36b765fbfc93416c5920f3a2b9e6613d2c11fa844"
+        "e39f64f5e0554d5555665ad7955f783c581de9baca22ee9074b90b9b49b589ec"
     ),
     "tests/architecture/test_m191_windows_hard_link_alias_mutator_valid_close_prefix_trailing_byte_after_recreate_boundary.py": (
-        "7707040280c5373585fc65b7a2338a3df3f9a08e725dd542d59ce1ebb10ad00b"
+        "203cfee8f3944d599849511ad4319c53223dcb552360d3eb2e1d936ead4ade81"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -219,7 +219,7 @@ def test_m192_public_boundary_is_registered_without_ci_expansion() -> None:
         "valid-close-suffix-after-recreate-probe"
     )
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

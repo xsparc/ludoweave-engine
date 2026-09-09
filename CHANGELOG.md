@@ -1,5 +1,12 @@
 # Changelog
 
+## README navigation cleanup
+
+- Replace the milestone-heavy landing page with a short project overview,
+  quick start, playable example and guide links.
+- Preserve the detailed former README as a labeled historical reference and
+  add a dedicated contributor quality guide. Runtime and CI jobs are unchanged.
+
 ## M239 replay-owned input history
 
 - Add experimental `InputReplay`, binding bounded exact tick inputs and a legacy

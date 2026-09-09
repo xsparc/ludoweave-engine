@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m154_windows_native_sharing_violation_probe.py": (
-        "3407785d734babc975df12541f3e88cd7f7a79522bb68485e28ef6cd2400a01d"
+        "4b733820d8afb751631ecd829e2d3d373f65474c4963d2f64e6692a87cc3806c"
     ),
     "tests/fixtures/windows_share_delete_rename_child.py": (
         "aeee1be252fd3255e3769e6b75ba70d96ffebaa1cec8ef9aefb500b92160a057"
@@ -154,7 +154,7 @@ def test_m155_rfc_and_public_boundary_are_registered() -> None:
     assert "**Status:** Accepted" in rfc
     assert "windows is not admitted" in " ".join(rfc.casefold().split())
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

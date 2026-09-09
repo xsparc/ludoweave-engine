@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m150_windows_junction_refusal_probe.py": (
-        "3355b13dc892eeca5a2e43fde04cbb68e4aca2783e436541b42034637a7d58bc"
+        "d17ee99235c4505aca3c5c0a4942d664ef7c3b49089e9beba291af895c3dffb6"
     ),
     "tests/integration/test_windows_cache_cleanup_junction_probe.py": (
         "78d08aa892efa5e8c251615a65fc071adb1452661e944e8b19d4b6b667c5f8e9"
@@ -117,7 +117,7 @@ def test_m151_rfc_and_public_boundary_are_registered() -> None:
     assert "**Status:** Accepted" in rfc
     assert "windows is not admitted" in " ".join(rfc.casefold().split())
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

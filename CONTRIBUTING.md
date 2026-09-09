@@ -24,7 +24,7 @@ Install [uv](https://docs.astral.sh/uv/), then run:
 uv sync --frozen --all-groups --extra graphics
 ```
 
-Run the complete quality suite documented in [README.md](README.md) before requesting review. Include exact commands and results; do not report unexecuted checks as passing.
+Follow the [quality guide](docs/quality.md) before requesting review. Include exact commands and results; do not report unexecuted checks as passing.
 
 ## Developer Certificate of Origin
 

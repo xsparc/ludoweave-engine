@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m161_windows_acknowledged_release_timeout.py": (
-        "89c3ee38a09de7216593260e7fb0c832610ac6674368ff6cf83c583c61f8f00a"
+        "ffecc12a5ddfe8b2e0df4affbb2c54a1bea083c744e8c45515baa5ca7f58f36c"
     ),
     "tests/integration/test_windows_cache_cleanup_acknowledged_release_timeout_probe.py": (
         "653cc2e34cd4ddea922c82fe45df0405435f9181631022217759883deb90de4e"
@@ -168,7 +168,7 @@ def test_m162_rfc_and_public_boundary_are_registered() -> None:
     assert "**Status:** Accepted" in rfc
     assert "windows is not admitted" in " ".join(rfc.casefold().split())
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

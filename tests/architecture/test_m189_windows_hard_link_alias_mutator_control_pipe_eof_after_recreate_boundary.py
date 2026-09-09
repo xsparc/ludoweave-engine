@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m186_windows_independent_hard_link_alias_mutator_aba_boundary.py": (
-        "f54ec37f4df43548c75ce3a36b765fbfc93416c5920f3a2b9e6613d2c11fa844"
+        "e39f64f5e0554d5555665ad7955f783c581de9baca22ee9074b90b9b49b589ec"
     ),
     "tests/architecture/test_m188_windows_hard_link_alias_mutator_abrupt_loss_after_recreate_boundary.py": (
-        "b9301eed326bff1e484ea5edf7ba46eb8c5f664447cc78e4c3a8723075b24caa"
+        "cb98528397fefc51c145c79c0a17514226c3e7b61d189512a05f86a492cb606b"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -209,7 +209,7 @@ def test_m189_records_negative_rollback_and_three_process_limit() -> None:
 def test_m189_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-hard-link-alias-mutator-control-pipe-eof-after-recreate-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

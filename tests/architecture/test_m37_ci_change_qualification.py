@@ -151,7 +151,7 @@ def test_m37_changes_no_release_or_runtime_boundary() -> None:
 
 
 def test_m37_public_docs_state_policy_and_non_claims() -> None:
-    readme = (_ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (_ROOT / "docs/readme-history.md").read_text(encoding="utf-8")
     architecture = (_ROOT / "docs" / "architecture.md").read_text(encoding="utf-8")
     rfc = (_ROOT / "docs" / "rfcs" / "0020-ci-change-qualification.md").read_text(encoding="utf-8")
 

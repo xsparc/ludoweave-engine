@@ -116,7 +116,7 @@ def test_m42_changes_no_runtime_or_public_package_boundary() -> None:
 
 def test_m42_docs_define_postpublication_observation_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",

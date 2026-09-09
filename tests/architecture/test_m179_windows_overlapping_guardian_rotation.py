@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m178_windows_guardian_abrupt_handoff.py": (
-        "e6e10dd1c490f1908058c56908ea756ac0f8ef70f25f8ce2745cce6c7a1ae860"
+        "38af2663efdc30acd24d8b2b5adafbf0e3dc6e509d7b3fcf0eb32069f4d55961"
     ),
     "tests/fixtures/windows_coordination_guardian_child.py": (
         "89f0b520c1e8966a5b577f63b254385a61c23c2427fb39b4911680b4fe5549d9"
@@ -181,7 +181,7 @@ def test_m179_decision_records_rotation_not_restart_or_recovery() -> None:
 def test_m179_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "cache-cleanup-windows-overlapping-guardian-rotation-probe"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

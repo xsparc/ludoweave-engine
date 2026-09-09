@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m173_windows_cooperative_lock.py": (
-        "524c09d53e9cba69d6fbd6b3d86f7b04fcdf66edc9fcfd144118dd7fd0592b32"
+        "43773d46d353b3a151c26f78e6c16ff4dd7be875d5d9fb7fec25437b070d2fb7"
     ),
     "tests/fixtures/windows_coordination_lock_participant_child.py": (
         "edd544660138b0637c6fd66934f9f3458e76a2d3aa9c4ffd25924ee5a3768d84"
@@ -191,7 +191,7 @@ def test_m174_decision_records_negative_not_authoritative_boundary() -> None:
 
 def test_m174_public_boundary_is_registered_without_ci_expansion() -> None:
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

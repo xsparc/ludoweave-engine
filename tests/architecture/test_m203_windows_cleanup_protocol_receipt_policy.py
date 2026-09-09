@@ -21,7 +21,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"),
     "tests/architecture/test_m202_windows_use_time_revalidation_policy.py": (
-        "d4f403455e3189243b1e45ea97ca66af26def22be24b9de5e3d0c545980b2f9d"
+        "a3aaf2af9dfbf885e3c97c4b14efc3713a0e9ec4f72f89503e2e79ed85d1581a"
     ),
     "uv.lock": ("55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18"),
 }
@@ -216,7 +216,7 @@ def test_m203_rfc_is_accepted_and_direction_preserving() -> None:
 def test_m203_public_boundary_is_registered_without_ci_expansion() -> None:
     slug = "windows-cache-cleanup-protocol-receipt-policy"
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

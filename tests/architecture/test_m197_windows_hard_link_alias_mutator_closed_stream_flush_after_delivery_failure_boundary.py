@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m196_windows_hard_link_alias_mutator_repeated_buffered_close_after_delivery_failure_boundary.py": (
-        "b62717312693902551a677a480e95634a480d39d77a47ce19ee225facb45be0d"
+        "e3db81b181a0e97e5dcdceb80f91eee44ffe0096c27de4a2f12c6306b3c76f37"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -215,7 +215,7 @@ def test_m197_public_boundary_is_registered_without_ci_expansion() -> None:
         "after-delivery-failure-probe"
     )
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

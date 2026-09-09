@@ -329,7 +329,7 @@ def test_m104_changes_no_workflow_producer_runtime_dependency_or_package_boundar
 
 def test_m104_docs_define_empty_extra_field_profile_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "CHANGELOG.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",

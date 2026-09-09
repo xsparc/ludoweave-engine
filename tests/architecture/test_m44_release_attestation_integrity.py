@@ -140,7 +140,7 @@ def test_m44_changes_no_runtime_or_public_package_boundary() -> None:
 
 def test_m44_docs_define_attestation_identity_and_nonclaims() -> None:
     paths = (
-        _ROOT / "README.md",
+        _ROOT / "docs/readme-history.md",
         _ROOT / "SECURITY.md",
         _ROOT / "MAINTAINERS.md",
         _ROOT / "docs" / "architecture.md",

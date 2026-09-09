@@ -1,5 +1,60 @@
 # Test Evidence
 
+## README cleanup local qualification (2026-09-09)
+
+Base: verified M239 squash `89ca17cab106b21643ac2fc7147b599dab7112e7`.
+Environment: Windows, managed CPython 3.12.13. All 22 commands below ran and
+exited 0. Full suite: **5,012 passed, 19 skipped in 261.58s**.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/readme-dist-first` | 0 |
+| `uv build --out-dir .tmp/readme-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/readme-dist-first .tmp/readme-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/readme-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/readme-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/readme-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/readme-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/readme-dist-first .tmp/readme-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/readme-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Architecture-only sequence (`uv run --frozen pytest -q tests/architecture --tb=short`):
+initial 157 failed, 2,325 passed, one skipped (23.64s), identifying historical
+README lookups; second 2 failed, 2,480 passed, one skipped (20.32s), identifying
+two accidentally redirected example-README lookups; final **2,485 passed,
+one skipped (19.20s)** after restoring those example paths and adding three
+navigation checks. No assertion was removed or weakened. Verified dependent
+hash literals were refreshed with the path moves. Initial strict docs failed
+with 142 relocation-link warnings; normalized destinations passed strict build.
+
+The historical body was compared against the base README with only link
+rebasing allowed; it matched exactly. Runtime, examples, scripts and workflows
+are unchanged. Builds before these final evidence-only edits were identical:
+wheel 343,592 bytes, SHA-256
+`7438cf53f9b77e7023340e50c2e00394716e1d0021a05235995e2700905054a5`;
+sdist 2,826,117 bytes, SHA-256
+`95fba7202e1f11b35567d089a0baf619590f4e90f21184a65d9229cedd24eefb`.
+These are not hashes of later evidence-inclusive artifacts.
+
+The installed maintenance checker static invocation passed with zero findings;
+its dated strict invocation exited 1 with only `review.overdue` for its own
+registry, the same previously waived unrelated warning. No repository gate is
+waived. Interactive window/device listening and performance benchmarks were
+not repeated for this documentation-only change. Hosted checks are pending.
+
 ## M239 review correction (2026-09-09)
 
 PR #255 implementation head `7ec1cbb9ef68f4c688787f8a6d953ec2aebee5c7`

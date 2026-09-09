@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m171_windows_exclusive_root_acquisition.py": (
-        "631bdd39dd514e2cd61b011f67c3a3b46b200b96a7ec6a36b59ea422a42534d6"
+        "9448b3624c38f87e1410ba7c7cc3a6d5db2aacb72f5e396fb86bf167d2a98184"
     ),
     "tests/fixtures/windows_exclusive_directory_open_child.py": (
         "763bc2dbb558f244c4050fc1529c5158bdb5890c34f4d75185c65e32665c8e22"
@@ -175,7 +175,7 @@ def test_m172_decision_records_exact_negative_capability_boundary() -> None:
 
 def test_m172_public_boundary_is_registered_without_ci_expansion() -> None:
     for path in (
-        "README.md",
+        "docs/readme-history.md",
         "CHANGELOG.md",
         "ROADMAP.md",
         "SECURITY.md",

@@ -143,7 +143,7 @@ def test_m28_adds_no_runtime_export_dependency_version_release_or_provider() -> 
 
 def test_public_contract_retains_zero_external_sample_games() -> None:
     expected = {
-        _ROOT / "README.md": "empty reviewed sample-game manifest",
+        _ROOT / "docs/readme-history.md": "empty reviewed sample-game manifest",
         _ROOT / "ROADMAP.md": "M28 external sample-game adoption admission readiness",
         _ROOT / "docs/architecture.md": "M28 external sample-game adoption boundary",
         _ROOT / "docs/external-sample-game-adoption-readiness.md": (
