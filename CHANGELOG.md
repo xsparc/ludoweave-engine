@@ -1,5 +1,12 @@
 # Changelog
 
+## M242 replay presentation controls
+
+- Add opt-in window pause/resume and single-tick stepping, with paused startup,
+  repeat-key suppression, responsive redraw/close and rebased resume timing.
+- Preserve headless playback, recorded input authority, formats and dependencies;
+  no additional CI jobs.
+
 ## M241 visible recorded playback
 
 - Add a bounded Clockwork Arena recording viewer with Null/offscreen/window

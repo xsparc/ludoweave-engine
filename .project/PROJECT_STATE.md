@@ -1,5 +1,26 @@
 # Project State
 
+## M242 replay controls — locally qualified
+
+M241 PR #259 is squash-integrated at `f5185aef3912b619db32567a20417f5761e957cf`.
+Its tree exactly equals validated head `437072d40858a6cb34f791d8fee5e1d21e43f2cd`.
+Run 34674506688 passed Linux, macOS and Windows with no rerun; final review had
+no findings. Main was fast-forwarded and the preserved obsolete branch removed.
+
+The maintainer approved continuing with replay pause/resume and single-tick
+stepping. The existing viewer now has opt-in presentation-only controls, bounded
+paused polling and resume deadline rebasing. Focused record/replay tests pass
+(75 in 6.43s). All 22 repository qualification commands pass, including 5,049
+tests/19 skips, strict static/docs checks, reproducible builds and installed
+artifacts. Actual wgpu control-enabled playback completed 120 ticks with exact
+hashes; no human keyboard observation is claimed. Final diff review is complete.
+The external installed-registry checker initially required permission; the
+maintainer explicitly approved it. Static governance now passes; dated strict
+governance reports only the previously waived unrelated review.overdue warning.
+No repository gate is waived. Commit, push and exact-head hosted qualification
+are next. No engine contract, persistent format, dependency or CI job changes.
+No merge or release is authorized.
+
 ## M241 visible replay — locally qualified
 
 M240 PR #258 is squash-integrated at `63d54253a2ce15606e9d7f661f7843f1967397bd`.

@@ -2,6 +2,12 @@
 
 ## Product boundary
 
+M242 adds opt-in example-owned playback controls. Key edges pause, resume or
+permit one recorded tick; they never enter the recorded input source. Paused
+redraws leave canonical state unchanged, and resume rebases presentation timing
+without catching up elapsed pause time. Controlled playback requires one-tick
+batches before verification/device creation. Headless behavior is unchanged.
+
 M241 adds example-owned visible playback of verified Clockwork Arena recordings.
 Full existing headless replay precedes device construction. A second transaction
 pass checks each batch and checkpoint while extracting detached presentation;
