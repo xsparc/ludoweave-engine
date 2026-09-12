@@ -2,6 +2,13 @@
 
 ## Product boundary
 
+M241 adds example-owned visible playback of verified Clockwork Arena recordings.
+Full existing headless replay precedes device construction. A second transaction
+pass checks each batch and checkpoint while extracting detached presentation;
+window timing and live window events never supply world input. Early close is
+reported separately from complete preflight verification. No engine API, replay
+format, provider dependency or CI job is added.
+
 M240 wires the accepted input envelope into the Clockwork Arena example's actual
 play loop. The existing transaction service applies world mutations; a bounded
 example-owned buffer retains committed batches, checkpoints and consumed immutable

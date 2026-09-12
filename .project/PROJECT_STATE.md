@@ -1,5 +1,22 @@
 # Project State
 
+## M241 visible replay — locally qualified
+
+M240 PR #258 is squash-integrated at `63d54253a2ce15606e9d7f661f7843f1967397bd`.
+Tree `a55b9668d7d3f55ed9a24c8381cf5f5f3ea95366` matches its corrected tested head
+`fd000fe4fa81258331e434c5a565b00b1ac1ae8c`. Corrected run 34355423922 passed
+all three existing jobs and the review finding is resolved. These facts supersede
+earlier pending notes. Main was fast-forwarded and the preserved local branch removed.
+
+The maintainer approved continuing with visible playback on 2026-09-12. M241 uses
+existing verified replay and renderer contracts, without new dependencies or CI
+jobs. All 22 local qualification commands passed, including 5,040 tests/19 skips,
+reproducible builds and installed recorded-presentation smoke. Focused coverage
+is 66 passing tests; architecture is 2,485 passed/one skipped. Local actual wgpu
+offscreen/window playback matched verified hashes. Human visual inspection is
+not claimed. Diff review is complete; commit/PR and exact-head hosted validation
+are next. No merge or release is authorized by this closeout.
+
 ## M240 play-session recording — locally qualified
 
 PR #258 original head `01978e91564ea5ab0f67c8237e248ba70fe687a2` passed

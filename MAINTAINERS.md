@@ -42,6 +42,14 @@ claims.
 
 ## Current boundary
 
+M241 is approved following PR #258 integration: visible playback of recorded
+Clockwork Arena sessions, preserving headless verification. Scope is an example,
+focused tests, documentation/evidence and the existing installed replay smoke.
+Keep engine APIs, persistent formats, dependencies and CI job count unchanged.
+No live gameplay input during playback, audio replay, network, merge or release.
+Historical guard digests may be refreshed without weakening assertions. Earlier
+milestone boundaries below are historical.
+
 M240 is approved: Clockwork Arena play-session recording and headless verification
 using the accepted M239 envelope. Scope is the example, focused regressions,
 existing installed-wheel smoke, docs and factual evidence. No new engine API,

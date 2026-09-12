@@ -76,6 +76,25 @@ def main(argv: Sequence[str] | None = None) -> int:
         verified = json.loads(replayed.stdout)
         if summary["ticks"] != verified["ticks"] or summary["state_hash"] != verified["state_hash"]:
             raise RuntimeError("installed play-session recording diverged")
+        viewer = work / "play_input_replay.py"
+        shutil.copyfile(example.with_name("play_input_replay.py"), viewer)
+        displayed = subprocess.run(
+            [str(python), "-I", str(viewer), str(play_artifact)],
+            cwd=work,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=120,
+        )
+        playback = json.loads(displayed.stdout)
+        if (
+            playback["schema"] != "ludoweave.input-replay-playback/1"
+            or playback["verification"] != "pass"
+            or playback["playback"] != "complete"
+            or playback["frames"] != 31
+            or playback["arena"]["state_hash"] != verified["state_hash"]
+        ):
+            raise RuntimeError("installed recorded presentation diverged")
     print(json.dumps({"schema": "ludoweave.input-replay-wheel-smoke/1", "status": "pass"}))
     return 0
 
