@@ -1,5 +1,28 @@
 # Current task
 
+## M241 visible replay — locally qualified
+
+- Approval: maintainer's 2026-09-12 merge confirmation and continuation of the
+  offered visible-playback scope, preserving headless verification.
+- Base: `63d54253a2ce15606e9d7f661f7843f1967397bd`, PR #258 squash; its tree
+  exactly equals validated corrected head `fd000fe4fa81258331e434c5a565b00b1ac1ae8c`.
+- Branch: `feature/m241-visible-replay`. Obsolete local M240 branch removed only
+  after tree preservation was verified.
+- Acceptance: full headless verification before device creation; bounded second
+  playback pass using recorded transactions/inputs; hash/checkpoint checks; initial
+  frame, zero/nonzero starts, interrupted close, ignored live gameplay events,
+  60-Hz presentation-only pacing and orderly cleanup; installed no-dependency smoke.
+- Plan: example wiring and focused tests, docs, existing smoke, full qualification,
+  review and one signed-off commit/PR. No new API, format, dependency or CI job.
+- M240 corrected run 34355423922 passed all three jobs; its performance finding
+  was resolved. Earlier pending publication records below are superseded.
+- Result: 66 focused tests and 2,485 architecture tests pass (one architecture
+  skip). All 22 local qualification commands pass, including 5,040 tests/19 skips,
+  strict static/docs checks, reproducible builds and installed presentation smoke.
+  Actual local wgpu offscreen/window runs complete with exact verified hashes;
+  no human visual confirmation is claimed. Review is complete; commit/PR and
+  hosted validation are next. Existing external-registry warning waiver retained.
+
 ## M240 play-session recording — locally qualified
 
 Review correction locally qualified: PR #258 head `01978e9` passed all three hosted

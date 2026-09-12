@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m166_windows_concurrent_inheritance_leak.py": (
-        "83f4a4aacbf1cdcb5e5266f8096811ba4dc88c8a2660195ce797223b8adada8c"
+        "c6b546ea7bbf24603d04054e231632978d0f1ddf228b430cecc11089a119359f"
     ),
     "tests/fixtures/windows_share_delete_inherited_blocker_child.py": (
         "2c695324c4f7fecbbe98b71a540a1b4000f0361e55ab6f469c52ccb8b4110a4c"
@@ -33,8 +33,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "960fe2064a3e28015dd4cf35735c226c733ee278f318e4cd4b11adfabfb2a9a5",
-    "scripts": "81d4e7faec9a60d3f0fe17b5950f508fae9f10dd55309e710d0e383c443f78f6",
+    "examples": "7b74254b319b5ffc2c445ec1d080298d8f09a26d689b66c40f0aad551642caa7",
+    "scripts": "9e410ddc56b56dd0485172e97fa371d6773f7b74b11f8fc1ff230faf33b3abd9",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = (

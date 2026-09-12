@@ -1,5 +1,12 @@
 # Changelog
 
+## M241 visible recorded playback
+
+- Add a bounded Clockwork Arena recording viewer with Null/offscreen/window
+  rendering, preflight headless verification, checked presentation and early close.
+- Preserve replay formats, live-input isolation and engine APIs; extend the
+  existing installed replay smoke without new dependencies or CI jobs.
+
 ## M240 play-session recording
 
 - Add opt-in Clockwork Arena `--record` with exact consumed input history,

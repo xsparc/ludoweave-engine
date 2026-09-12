@@ -1,5 +1,84 @@
 # Test Evidence
 
+## M241 full local qualification (2026-09-12)
+
+All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.
+Full suite: **5,040 passed, 19 skipped in 291.39s**. Strict typing/docs, Ruff,
+byte-identical builds and installed wheel/scene/audio/input-replay/presentation
+smokes passed. Release-artifact rehearsal is local validation, not publication.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m241-dist-first` | 0 |
+| `uv build --out-dir .tmp/m241-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m241-dist-first .tmp/m241-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m241-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m241-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m241-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m241-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m241-dist-first .tmp/m241-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m241-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+The installed replay smoke copied the viewer outside the checkout and ran it
+under `python -I` with a no-dependency wheel installation. It verified complete
+playback, 31 frames and the exact recorded final world hash. A separate read-only
+`tarfile` check of the built sdist confirmed `examples/play_input_replay.py` is
+included. No physical-display inspection or screenshot-based claim is made.
+
+Final review: no engine source, dependency/lock, workflow or README change. The
+example owns presentation resources and never polls live gamepad input or maps
+keyboard actions. Full preflight and second-pass receipt/checkpoint checks stay
+enabled. Historical guard edits are verified dependent SHA-256 literals only.
+No new API, persistent format, audio replay, network, pause/seek controls, merge
+or release. Publication and hosted checks are next, not claimed by this record.
+
+## M241 focused and device evidence (2026-09-12)
+
+Base: verified M240 squash `63d54253a2ce15606e9d7f661f7843f1967397bd`,
+whose tree equals tested head `fd000fe4fa81258331e434c5a565b00b1ac1ae8c`.
+Windows, managed CPython 3.12.13. Full M241 qualification remains pending.
+
+| Executed command | Exit / result |
+| --- | --- |
+| `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py` | 0; initial nine cases passed in 4.71s |
+| `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py` | 0; 64 passed in 6.20s; expanded final run 66 passed in 6.65s |
+| `uv run --frozen pyright tests/integration/test_visible_input_replay.py examples/play_input_replay.py` | 0; zero errors/warnings; separate tool-version update notice is not a failure |
+| `uv run --frozen python .tmp/m241_refresh_pins.py` | 0; 89 historical files change only verified dependent SHA-256 literals against the exact base |
+| `uv run --frozen pytest -q tests/architecture` | 0; 2,485 passed, one skipped in 16.36s |
+| `uv run --frozen --extra graphics python examples/play_input_replay.py .tmp/m240-after-600.json --renderer wgpu` | 0; 600 batches, 601 frames, 601 verified checkpoints; complete offscreen playback |
+| `uv run --frozen --extra graphics python examples/play_input_replay.py .tmp/m240-play.json --renderer wgpu --window` | 0; 120 batches, 121 frames/checkpoints; complete paced window playback |
+
+The existing M240 fixtures are recorded artifacts, not regenerated live input.
+The 600-tick artifact hash is
+`sha256:1ac45edb65b9b02068cc836f9681857232e718c148a3c47ce9d14bdcafd09021`;
+its verified and displayed state hashes both equal
+`sha256:b7a77c7fa0f0bab668245723719a4e57c00f5f821b4df8cf013dcf9aaaf34c70`.
+The 120-tick artifact hash is
+`sha256:c97e24dc0a9897bde05457c30516415c44c26c7958ab4f59c3345b22990ddd54`;
+both state hashes equal
+`sha256:9d4b4f5e81ed1ac487f83ae742ce41cfb27f2a0da652a43c33c74e5571cd3026`.
+These are actual local wgpu execution results. No screenshot inspection or human
+visual confirmation is claimed. Early-close/live-input isolation and exact clock
+deadlines use Null-event/virtual-clock fixtures, separately from the device runs.
+
+The static installed OpenSteward 0.18.0 governance checker passed with zero findings;
+the same offline command with `--as-of 2026-09-12 --strict` exited 1 for only
+`review.overdue` in its external registry. The existing narrow maintainer waiver
+applies; no repository test or gate is waived. No dependency update was performed.
+
 ## M240 correction full local qualification (2026-09-09)
 
 All 22 correction qualification commands below executed and exited 0 on Windows

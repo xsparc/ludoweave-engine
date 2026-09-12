@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m153_windows_share_delete_exclusion_probe.py": (
-        "5fcc39e1536bbe7b273c76a784912b9fbb524cbc0f12953b3de22d5166640f3d"
+        "686e41ca73dad4a0ecc3c41410ab847f78813b4340f26835eb210ffe6c71de1e"
     ),
     "tests/integration/test_windows_cache_cleanup_share_delete_probe.py": (
         "41877f26d92168b802c0b7d712b2fccb524fd9c3dcee913fc9e254921b8f440c"
@@ -27,8 +27,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "960fe2064a3e28015dd4cf35735c226c733ee278f318e4cd4b11adfabfb2a9a5",
-    "scripts": "81d4e7faec9a60d3f0fe17b5950f508fae9f10dd55309e710d0e383c443f78f6",
+    "examples": "7b74254b319b5ffc2c445ec1d080298d8f09a26d689b66c40f0aad551642caa7",
+    "scripts": "9e410ddc56b56dd0485172e97fa371d6773f7b74b11f8fc1ff230faf33b3abd9",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

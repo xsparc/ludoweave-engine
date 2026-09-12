@@ -32,7 +32,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m234_windows_source_commit_git_cms_signer_info_certificate_id_binding_probe.py": (
-        "3878b5ef8c741fef1b854fcc3467c9feee53352711d73f192d3c0f61e15e9d10"
+        "ca4f8d157b737fc9f94dfcb5af3ca0c658266887833588bf9caad896f832f9b3"
     ),
     "tests/integration/test_windows_contained_source_access_source_commit_git_cms_signer_info_certificate_id_binding_probe.py": (
         "60ec2ba3eb6da1b21bb7aa525e1fc6c7c44010e17986af01a8d4c95efee88110"
@@ -41,8 +41,8 @@ _PROTECTED_FILES = {
 }
 _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
-    "examples": "960fe2064a3e28015dd4cf35735c226c733ee278f318e4cd4b11adfabfb2a9a5",
-    "scripts": "81d4e7faec9a60d3f0fe17b5950f508fae9f10dd55309e710d0e383c443f78f6",
+    "examples": "7b74254b319b5ffc2c445ec1d080298d8f09a26d689b66c40f0aad551642caa7",
+    "scripts": "9e410ddc56b56dd0485172e97fa371d6773f7b74b11f8fc1ff230faf33b3abd9",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

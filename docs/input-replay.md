@@ -80,11 +80,39 @@ See [ADR-0035](adr/0035-replay-owned-input-history.md).
 
 ## Installed verification
 
+### Display a verified recording
+
+```console
+uv run --frozen python examples/play_input_replay.py play.json
+uv run --frozen --extra graphics python examples/play_input_replay.py play.json --renderer wgpu --window
+```
+
+The default Null renderer exercises the same presentation path without a GPU or
+window. Omit `--window` for an unpaced offscreen wgpu run. Window playback uses
+60-Hz tick deadlines; presentation timing never changes canonical state.
+
+This bounded sample first verifies the entire artifact headlessly before opening
+any renderer. A second pass applies the same recorded transactions and checks
+their hashes, tick boundaries and checkpoints while drawing an initial frame and
+one frame per batch. No growing-prefix replay runs per frame. Limits are 3,600
+ticks and batches; initial snapshots preserve nonzero-start branches and stress
+settings. Live keyboard/gamepad input is ignored; only resize and close events
+affect presentation. Audio, seeking, pause controls and arbitrary game composition
+are not provided.
+
+The JSON summary uses `ludoweave.input-replay-playback/1`. `verification: pass`
+describes the full preflight; `playback: complete` or `interrupted` describes the
+display pass separately. Closing early reports only played batches and their
+current arena state; it does not claim the entire recording was displayed.
+Device errors still close owned resources and fail instead of printing success.
+The input file and persistent replay formats remain unchanged. Preflight adds
+startup work; this is not a hard real-time guarantee or a physical-play attestation.
+
 ```console
 uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/dist-first
 ```
 
 This installs one built wheel with no dependencies into a temporary environment,
-copies both examples outside the checkout, and compares separate recording/replay
-processes plus the actual Null play loop under Python isolated mode. It makes no
+copies the examples outside the checkout, and compares separate recording/replay
+processes plus the actual Null play and recorded-presentation loops under Python isolated mode. It makes no
 physical-device claim and uses the existing CI smoke step without another job.
