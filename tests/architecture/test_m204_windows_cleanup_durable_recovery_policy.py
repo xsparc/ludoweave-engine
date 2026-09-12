@@ -21,13 +21,13 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": ("f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d"),
     "tests/architecture/test_m203_windows_cleanup_protocol_receipt_policy.py": (
-        "ad3632ee1542f0cf8905d35f89272af83f5b92d181ea3c3afce68e7e1f87cfcb"
+        "dac391fec54342ccee32b095c0eb87f3f9cbfe07aa688c9d2e2a3a0d5748c26a"
     ),
     "uv.lock": ("55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18"),
 }
 _PROTECTED_TREES = {
-    "examples": "7b74254b319b5ffc2c445ec1d080298d8f09a26d689b66c40f0aad551642caa7",
-    "scripts": "9e410ddc56b56dd0485172e97fa371d6773f7b74b11f8fc1ff230faf33b3abd9",
+    "examples": "1921748b24fe4c1b696c7e10d452b6f3e4093384d237bca001dfe1c0b74900ac",
+    "scripts": "b0794063b12244ffb5d3845e710e50b1e7452964136fc0efd86e455ea5f83456",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _DECISION = _ROOT / "docs/security/windows-cache-cleanup-durable-recovery-policy.md"

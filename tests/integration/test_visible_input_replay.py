@@ -273,3 +273,156 @@ def test_second_pass_divergence_closes_without_success(
         _main(module, [str(path)])
     assert device.closes == 1
     assert capsys.readouterr().out == ""
+
+
+@pytest.mark.parametrize("mode", ["step_resume", "close", "resume", "zero", "pause_running"])
+def test_controls_pause_step_repeat_resume_and_close_preserve_recorded_state(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    mode: str,
+) -> None:
+    path = tmp_path / "controlled.json"
+    artifact = _record(path, 0 if mode == "zero" else 3)
+    module = _module("play_input_replay")
+    applied: list[int] = []
+    observed: list[tuple[int, int, int]] = []
+    clock = VirtualClock()
+
+    class Service(TransactionService):
+        def apply(self, transaction: CommandTransaction) -> TransactionReceipt:
+            receipt = super().apply(transaction)
+            applied.append(receipt.completed_ticks_after)
+            return receipt
+
+    class Device(_Device):
+        def drain_surface_events(self, handle: SurfaceHandle) -> tuple[PlatformEvent, ...]:
+            super().drain_surface_events(handle)
+            observed.append((self.polls, len(applied), clock.now_ns()))
+            assert self.polls < 20, "paused event loop did not consume the scheduled control"
+            if mode == "close" and self.polls == 5:
+                return (KeyEvent("ArrowRight", True), CloseEvent())
+            if mode == "resume" and self.polls == 10:
+                return (KeyEvent(" ", True),)
+            if mode == "pause_running":
+                if self.polls in (3, 4):
+                    return (KeyEvent("Space", True),)
+                if self.polls == 6:
+                    return (KeyEvent("Space", False), KeyEvent("Space", True))
+                if self.polls == 7:
+                    return (KeyEvent("ArrowRight", True),)
+            if mode == "step_resume":
+                if self.polls in (3, 4):
+                    return (KeyEvent("ArrowRight", True),)
+                if self.polls == 5:
+                    return (KeyEvent("ArrowRight", False), KeyEvent("ArrowRight", True))
+                if self.polls == 6:
+                    return (KeyEvent("Space", True),)
+            return (KeyEvent("r", True), ResizeEvent(800, 600))
+
+    device = Device()
+    monkeypatch.setattr(module, "TransactionService", Service)
+    monkeypatch.setattr(module, "_device", _provider(device))
+    monkeypatch.setattr(module, "MonotonicClock", lambda: clock)
+    arguments = [str(path), "--renderer", "wgpu", "--window", "--controls"]
+    if mode != "pause_running":
+        arguments.append("--paused")
+    assert _main(module, arguments) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert device.closes == 1
+    assert result["verification"] == "pass"
+    assert result["verified_state_hash"] == artifact.timeline.final_state_hash
+    assert path.read_bytes() == artifact.canonical_bytes()
+    if mode == "close":
+        assert applied == []
+        assert result["playback"] == "interrupted"
+        assert result["arena"]["ticks"] == 0
+    else:
+        assert result["playback"] == "complete"
+        assert result["arena"]["state_hash"] == artifact.timeline.final_state_hash
+        assert applied == ([] if mode == "zero" else [1, 2, 3])
+    if mode == "step_resume":
+        assert [(poll, ticks) for poll, ticks, _ in observed] == [
+            (1, 0),
+            (2, 0),
+            (3, 0),
+            (4, 1),
+            (5, 1),
+            (6, 2),
+        ]
+        # A held/repeated Right press did not step twice; resuming after steps
+        # schedules a fresh deadline instead of catching up on paused time.
+        assert clock.now_ns() - observed[-1][2] == 16_666_667
+    if mode == "resume":
+        assert all(ticks == 0 for poll, ticks, _ in observed if poll <= 10)
+        assert clock.now_ns() - observed[9][2] == 50_000_000
+    if mode == "pause_running":
+        assert [(poll, ticks) for poll, ticks, _ in observed] == [
+            (1, 0),
+            (2, 0),
+            (3, 1),
+            (4, 1),
+            (5, 1),
+            (6, 1),
+            (7, 2),
+        ]
+        assert clock.now_ns() - observed[5][2] == 33_333_334
+
+
+@pytest.mark.parametrize("args", [["--controls"], ["--paused"]])
+def test_control_flags_require_window_before_artifact_io(args: list[str]) -> None:
+    with pytest.raises(SystemExit) as error:
+        _main(_module("play_input_replay"), ["does-not-exist.json", *args])
+    assert error.value.code == 2
+
+
+def test_controls_refuse_multitick_batch_before_renderer(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = tmp_path / "multi.json"
+    artifact = _record(path, 2)
+    first, last = artifact.timeline.batches
+    grouped = replace(
+        first,
+        end_tick=2,
+        post_hash=last.post_hash,
+    )
+    timeline = replace(
+        artifact.timeline,
+        batches=(grouped,),
+        checkpoints=(
+            artifact.timeline.checkpoints[0],
+            replace(artifact.timeline.checkpoints[-1], after_batch=1),
+        ),
+    )
+    path.write_bytes(replace(artifact, timeline=timeline).canonical_bytes())
+    module = _module("play_input_replay")
+
+    def forbidden(name: str) -> RenderDevice:
+        pytest.fail("device created before single-tick admission")
+
+    monkeypatch.setattr(module, "_device", forbidden)
+    with pytest.raises(SystemExit) as error:
+        _main(module, [str(path), "--renderer", "wgpu", "--window", "--controls"])
+    assert error.value.code == 2
+
+
+def test_paused_render_failure_closes_without_success(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    path = tmp_path / "paused-failure.json"
+    _record(path, 1)
+    module = _module("play_input_replay")
+
+    class Device(_Device):
+        def poll(self) -> None:
+            super().poll()
+            if self.polls >= 2:
+                raise RuntimeError("injected paused redraw failure")
+
+    device = Device()
+    monkeypatch.setattr(module, "_device", _provider(device))
+    with pytest.raises(RuntimeError, match="paused redraw failure"):
+        _main(module, [str(path), "--renderer", "wgpu", "--window", "--controls", "--paused"])
+    assert device.closes == 1
+    assert capsys.readouterr().out == ""

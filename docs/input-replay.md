@@ -96,9 +96,31 @@ any renderer. A second pass applies the same recorded transactions and checks
 their hashes, tick boundaries and checkpoints while drawing an initial frame and
 one frame per batch. No growing-prefix replay runs per frame. Limits are 3,600
 ticks and batches; initial snapshots preserve nonzero-start branches and stress
-settings. Live keyboard/gamepad input is ignored; only resize and close events
-affect presentation. Audio, seeking, pause controls and arbitrary game composition
-are not provided.
+settings. Live gameplay input is ignored. Resize/close events affect presentation;
+optional playback keys below never supply world input. Audio, seeking and arbitrary
+game composition are not provided.
+
+### Pause and single-step playback
+
+```console
+uv run --frozen --extra graphics python examples/play_input_replay.py play.json --renderer wgpu --window --controls --paused
+```
+
+`--controls` opts into Space to pause/resume and Right Arrow to advance one tick
+while paused. Omit `--paused` to start playing. A held key does not repeat; release
+and press again for another step. Multiple step edges in one event drain coalesce
+into at most one tick, and Right Arrow while playing is ignored. Close takes
+priority over stepping. Gameplay keys and gamepads never alter recorded input.
+
+Controlled playback requires a window and exactly one tick per recorded batch,
+as produced by the sample recorder. Other batch spans are refused before replay
+or device creation rather than splitting atomic transactions. Ordinary playback
+and headless verification remain unchanged. Paused redraws keep resize/close
+responsive with bounded polling sleeps, while canonical world ticks remain fixed.
+Resume starts fresh 60-Hz presentation deadlines; paused time is not caught up.
+Redraws count toward `frames`, so controlled frame counts need not equal ticks
+plus one. Playback exits at the end, including an empty recording started paused;
+it does not hold the final frame open. Window focus is needed for keyboard input.
 
 The JSON summary uses `ludoweave.input-replay-playback/1`. `verification: pass`
 describes the full preflight; `playback: complete` or `interrupted` describes the

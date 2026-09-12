@@ -19,10 +19,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m165_windows_inherited_restore_failure.py": (
-        "f641e3f6cbc297bb7d41c11a70aaadb7e023343600b0e291694fef70f81a8460"
+        "45436e88584491c47db12202a0ad2a3239c53456c708878ec88ded7756fb6285"
     ),
     "tests/architecture/test_m168_windows_concurrent_explicit_launch_failure.py": (
-        "59cbdd9e5e75864f651bd2ea8c986452a82d891463227affdd36d70d09afb216"
+        "d1c75f456b06253cfb132e35f14cc05c2a36d200b3370dc1c40453d914c0ce1a"
     ),
     "tests/fixtures/windows_share_delete_inherited_blocker_child.py": (
         "2c695324c4f7fecbbe98b71a540a1b4000f0361e55ab6f469c52ccb8b4110a4c"
@@ -39,8 +39,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "7b74254b319b5ffc2c445ec1d080298d8f09a26d689b66c40f0aad551642caa7",
-    "scripts": "9e410ddc56b56dd0485172e97fa371d6773f7b74b11f8fc1ff230faf33b3abd9",
+    "examples": "1921748b24fe4c1b696c7e10d452b6f3e4093384d237bca001dfe1c0b74900ac",
+    "scripts": "b0794063b12244ffb5d3845e710e50b1e7452964136fc0efd86e455ea5f83456",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = (

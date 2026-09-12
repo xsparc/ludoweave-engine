@@ -8,7 +8,7 @@ from pathlib import Path
 from ludoweave.app import RecordedInputSource
 from ludoweave.app.replay import InputReplay
 from ludoweave.core.clock import MonotonicClock
-from ludoweave.platform import CloseEvent, ResizeEvent
+from ludoweave.platform import CloseEvent, KeyEvent, ResizeEvent
 from ludoweave.render import (
     NullRenderDevice,
     PipelineDescriptor,
@@ -41,14 +41,49 @@ def _device(name: str) -> RenderDevice:
     return WgpuRenderDevice()
 
 
-def _events(device: RenderDevice, surface: SurfaceHandle) -> bool:
-    """Only window management is live; recorded inputs remain authoritative."""
+class _PlaybackControls:
+    """Presentation-only key edges; never an input source for the world."""
+
+    __slots__ = ("held", "paused", "rebase", "step")
+
+    def __init__(self, *, paused: bool) -> None:
+        self.paused = paused
+        self.step = False
+        self.rebase = False
+        self.held: set[str] = set()
+
+    def key(self, event: KeyEvent) -> None:
+        key = event.key.lower()
+        if key == " ":
+            key = "space"
+        if key not in ("space", "arrowright"):
+            return
+        if not event.pressed:
+            self.held.discard(key)
+            return
+        if key in self.held:
+            return
+        self.held.add(key)
+        if key == "space":
+            self.paused = not self.paused
+            self.step = False
+            self.rebase = True
+        elif self.paused:
+            self.step = True
+
+
+def _events(
+    device: RenderDevice, surface: SurfaceHandle, controls: _PlaybackControls | None = None
+) -> bool:
+    """Only presentation management is live; recorded inputs remain authoritative."""
     closed = False
     for event in device.drain_surface_events(surface):
         if type(event) is CloseEvent:
             closed = True
         elif type(event) is ResizeEvent:
             device.resize_surface(surface, event.width, event.height)
+        elif type(event) is KeyEvent and controls is not None:
+            controls.key(event)
     return closed
 
 
@@ -57,14 +92,25 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("artifact", type=Path)
     parser.add_argument("--renderer", choices=("null", "wgpu"), default="null")
     parser.add_argument("--window", action="store_true", help="display at recorded 60-Hz tick pace")
+    parser.add_argument(
+        "--controls", action="store_true", help="Space: pause/resume; Right: one paused tick"
+    )
+    parser.add_argument("--paused", action="store_true", help="start controlled playback paused")
     args = parser.parse_args(argv)
     if args.window and args.renderer != "wgpu":
         parser.error("--window requires --renderer wgpu")
+    if args.controls and not args.window:
+        parser.error("--controls requires --window")
+    if args.paused and not args.controls:
+        parser.error("--paused requires --controls")
     with Path(args.artifact).open("rb") as source:
         artifact = InputReplay.from_json(source.read(67_108_865))
     timeline = artifact.timeline
     if len(timeline.batches) > 3600 or len(artifact.snapshots) > 3600:
         parser.error("visible playback supports at most 3600 batches and ticks")
+    if args.controls and any(batch.end_tick != batch.start_tick + 1 for batch in timeline.batches):
+        parser.error("controlled playback requires exactly one tick per recorded batch")
+    controls = _PlaybackControls(paused=bool(args.paused)) if args.controls else None
 
     composition = create_clockwork_arena(RecordedInputSource())
     runner = ReplayRunner(
@@ -122,13 +168,31 @@ def main(argv: Sequence[str] | None = None) -> int:
             device.poll()
             frames += 1
 
-        interrupted = bool(args.window and _events(device, surface))
+        interrupted = bool(args.window and _events(device, surface, controls))
         if not interrupted:
             draw()
         for batch in timeline.batches:
-            if interrupted or (args.window and _events(device, surface)):
+            if interrupted or (args.window and _events(device, surface, controls)):
                 interrupted = True
                 break
+            if controls is not None:
+                while controls.paused and not controls.step:
+                    # Keep the window responsive without advancing canonical time
+                    # or busy-spinning. Redraw permits resize while paused.
+                    draw()
+                    clock.wait_until_ns(clock.now_ns() + 1_000_000_000 // 60)
+                    if _events(device, surface, controls):
+                        interrupted = True
+                        break
+                if interrupted:
+                    break
+                if controls.rebase:
+                    start = (
+                        clock.now_ns()
+                        - (batch.start_tick - timeline.header.initial_tick) * 1_000_000_000 // 60
+                    )
+                    controls.rebase = False
+                controls.step = False
             receipt = service.apply(batch.transaction)
             if (
                 receipt.status is not ReceiptStatus.COMMITTED
@@ -145,7 +209,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 or checkpoint.state_hash != arena.session.state_hash
             ):
                 raise RuntimeError("visible playback checkpoint diverged")
-            if args.window:
+            if args.window and (controls is None or not controls.paused):
                 clock.wait_until_ns(
                     start + (batch.end_tick - timeline.header.initial_tick) * 1_000_000_000 // 60
                 )
