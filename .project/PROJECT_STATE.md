@@ -1,5 +1,23 @@
 # Project State
 
+## M243 recorded-tick seeking — locally qualified
+
+M242 PR #260 is squash-integrated at `e3d2e9eb432fb2fe37cc3e19e5ab92c61f7ad918`.
+Its tree exactly matches qualified head `fcae69b5faaba8b40de76358a0bd218637d12bcd`.
+Hosted run 34680238488 passed Linux, macOS and Windows; no review findings.
+These verified facts supersede older publication-pending records below.
+
+The maintainer explicitly approved M243 seeking and resume. The viewer now
+supports absolute start ticks and paused rewind/Home through verified replay
+prefix reconstruction. Focused record/replay coverage passes 89 tests in 9.39s.
+All 22 local qualification commands passed, including 5,063 tests/19 skips,
+strict static/docs checks, reproducible builds and installed seek/resume. Actual
+wgpu suffix playback matched the verified hash; no human keyboard observation.
+Final diff review is complete. Static governance passed; only the previously
+waived unrelated dated registry review warning remains. Engine source, persistent
+formats, dependencies, workflow and job allocation are unchanged. Commit, push
+and exact-head hosted qualification are next; no merge/release authority.
+
 ## M242 replay controls — locally qualified
 
 M241 PR #259 is squash-integrated at `f5185aef3912b619db32567a20417f5761e957cf`.

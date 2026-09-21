@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m174_windows_cooperative_lock_substitution.py": (
-        "67de37b4db0ce0eb370bea1d31798067d0790246e0bedb905026bd951d77c284"
+        "27869dd51e0b9232d0f46e881595c3b54377785d05a4c8ad889315859d8283f5"
     ),
     "tests/fixtures/windows_coordination_lock_substitution_child.py": (
         "2aa89b4c4947eb7c84e478e4f1fd2ce498405e7b78262722b53796bffd01eee8"
@@ -30,8 +30,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "1921748b24fe4c1b696c7e10d452b6f3e4093384d237bca001dfe1c0b74900ac",
-    "scripts": "b0794063b12244ffb5d3845e710e50b1e7452964136fc0efd86e455ea5f83456",
+    "examples": "b9d5b3ddfa2417f50ec88728402a9a7e2698b8bc4ef920498243540b401c90ed",
+    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = (

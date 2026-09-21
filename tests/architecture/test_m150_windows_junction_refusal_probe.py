@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m149_windows_cache_cleanup_capability_probe.py": (
-        "7587f23704dd541f0a378bec211960a54be3105625353440a58710db834740a2"
+        "bd98a8a07b3aa07847283b7fb3da2cbd1eedbe6c1351acd62bf9ee0fdb8ad99a"
     ),
     "tests/integration/test_windows_cache_cleanup_capability_probe.py": (
         "151c2e0a102c622fdb66d4d78ee803564b26081a0da34b76341e86596e11d973"
@@ -27,7 +27,7 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "scripts": "b0794063b12244ffb5d3845e710e50b1e7452964136fc0efd86e455ea5f83456",
+    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

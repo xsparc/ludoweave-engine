@@ -1,5 +1,27 @@
 # Current task
 
+## M243 recorded-tick seeking — locally qualified
+
+- Explicit maintainer approval for recorded-tick seeking and resume, preserving
+  verification without new dependencies or CI jobs (2026-09-21).
+- Base `e3d2e9eb432fb2fe37cc3e19e5ab92c61f7ad918`, verified PR #260 squash.
+  Tree `f847b3ae5644852c4b2be1d73ab1e75724503d2a` equals M242's qualified head
+  `fcae69b5faaba8b40de76358a0bd218637d12bcd`. Run 34680238488 passed all three
+  hosted jobs with no review threads. Local main synchronized; obsolete local
+  branch removed after verification, remote branch already absent.
+- Branch `feature/m243-replay-seeking`. Implement CLI exact tick selection,
+  paused rewind/Home, verified fresh-session reconstruction and resume pacing.
+- Acceptance: initial/final/nonzero boundaries; complete preflight; exact prefix
+  hashes; no live gameplay input; close priority/failure cleanup; unchanged bytes;
+  installed-wheel suffix playback. No new runtime API, protocol or CI job.
+- Focused record/replay tests: 89 passed in 9.39s. All 22 local qualification
+  commands passed, including 5,063 tests/19 skips, strict static/docs checks,
+  reproducible builds and installed seek/resume. Actual wgpu suffix playback
+  matched the verified hash; no human keypress claim. Final diff review complete.
+- Static governance passed; dated strict governance retains only the previously
+  waived unrelated registry review warning. Commit, push and exact-head hosted
+  qualification are next. No merge/release authority.
+
 ## M242 replay controls — locally qualified
 
 - Approved by the maintainer's merge confirmation and continuation after the

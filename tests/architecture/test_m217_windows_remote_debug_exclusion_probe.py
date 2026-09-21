@@ -28,7 +28,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m216_windows_retained_launch_source_access_refusal_probe.py": (
-        "790f1f7fa6cabd8173079d34ec8c1bb5c96c4bceac8537011949abb970b1e426"
+        "edf3dec7799d6ac47a6d2899319342ed827debbc228a06e03c440deda329b519"
     ),
     "tests/fixtures/windows_local_control_channel_participant.py": (
         "b3e33d4e70fef4fa3acc3fbb3e8526705c5625b7865344a2a63243415194f452"
@@ -40,8 +40,8 @@ _PROTECTED_FILES = {
 }
 _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
-    "examples": "1921748b24fe4c1b696c7e10d452b6f3e4093384d237bca001dfe1c0b74900ac",
-    "scripts": "b0794063b12244ffb5d3845e710e50b1e7452964136fc0efd86e455ea5f83456",
+    "examples": "b9d5b3ddfa2417f50ec88728402a9a7e2698b8bc4ef920498243540b401c90ed",
+    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

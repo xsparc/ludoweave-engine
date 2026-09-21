@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m160_windows_live_wait_timeout.py": (
-        "063be5f3b56b00fe4abc9427e58c0b39c976a683b673688825f2a8362dc8ad49"
+        "72709446a1d07b6ae9b4d1098807d5c6887eccb20481433e66116aa053099e84"
     ),
     "tests/integration/test_windows_cache_cleanup_live_wait_timeout_probe.py": (
         "cc63d5528ad538bcfa7497b5a2cfc31fd53fbeb8eb648af6ce97773123ce5f5f"
@@ -27,8 +27,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "1921748b24fe4c1b696c7e10d452b6f3e4093384d237bca001dfe1c0b74900ac",
-    "scripts": "b0794063b12244ffb5d3845e710e50b1e7452964136fc0efd86e455ea5f83456",
+    "examples": "b9d5b3ddfa2417f50ec88728402a9a7e2698b8bc4ef920498243540b401c90ed",
+    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

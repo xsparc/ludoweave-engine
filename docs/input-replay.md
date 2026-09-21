@@ -97,7 +97,7 @@ their hashes, tick boundaries and checkpoints while drawing an initial frame and
 one frame per batch. No growing-prefix replay runs per frame. Limits are 3,600
 ticks and batches; initial snapshots preserve nonzero-start branches and stress
 settings. Live gameplay input is ignored. Resize/close events affect presentation;
-optional playback keys below never supply world input. Audio, seeking and arbitrary
+optional playback keys below never supply world input. Audio and arbitrary
 game composition are not provided.
 
 ### Pause and single-step playback
@@ -121,6 +121,45 @@ Resume starts fresh 60-Hz presentation deadlines; paused time is not caught up.
 Redraws count toward `frames`, so controlled frame counts need not equal ticks
 plus one. Playback exits at the end, including an empty recording started paused;
 it does not hold the final frame open. Window focus is needed for keyboard input.
+
+### Seek and resume
+
+```console
+uv run --frozen python examples/play_input_replay.py play.json --seek-tick 60
+uv run --frozen --extra graphics python examples/play_input_replay.py play.json --seek-tick 60 --renderer wgpu --window --controls --paused
+```
+
+`--seek-tick` is an absolute recorded tick, including for nonzero-start branches.
+It must be an existing boundary between the initial and final ticks, inclusive;
+invalid targets fail before provider creation. The earliest batch boundary at
+that tick is selected if zero-tick transactions share a boundary. Full artifact
+verification is still performed, including history before and after the target.
+The chosen state is rebuilt using a verified replay prefix, drawn once, and then
+the suffix plays normally. For the sample's one-tick batches, seeking to the final
+tick displays that state and exits. Any zero-tick transactions after the selected
+boundary still play; an empty recording accepts only its initial tick.
+
+With `--controls`, paused Left Arrow rewinds one tick and Home returns to the
+artifact's initial tick. Both stay paused; Space resumes. Held key repeats are
+ignored, seeks at the initial boundary are no-ops, and close takes priority. A
+seek discards pending forward stepping. These keys do nothing while playing.
+Every actual seek reconstructs a fresh world session through existing verified
+replay, without changing the artifact or reversing world commands. The renderer
+stays owned by the viewer and closes on replay failure. Pacing is rebased on
+resume, so neither skipped history nor pause time creates a catch-up burst.
+
+Seeking is bounded by the viewer's 3,600 ticks/batches, but reconstruction is
+synchronous and may briefly delay window handling. It replays from the initial
+snapshot; hashes are not seekable state snapshots. No latency guarantee, saved
+seek cache or per-frame prefix replay is provided.
+
+When `--seek-tick` is supplied or a backward seek occurs, the existing JSON
+summary additionally includes `start_tick`, `seek_count` (successful in-window
+position changes only), and `position_batch` (current artifact cursor).
+`played_batches` counts transactions applied for playback, excluding reconstruction;
+rewatching history may make it exceed the artifact's batch count. `frames` includes
+seek-state and paused redraws. Default output fields remain unchanged when no
+seeking is requested or performed.
 
 The JSON summary uses `ludoweave.input-replay-playback/1`. `verification: pass`
 describes the full preflight; `playback: complete` or `interrupted` describes the

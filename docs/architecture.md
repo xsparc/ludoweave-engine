@@ -2,6 +2,12 @@
 
 ## Product boundary
 
+M243 keeps seeking in the viewer composition root. Full headless verification
+still precedes presentation; explicit seeks reconstruct a fresh session through
+the existing hash-checked replay prefix, then resume recorded transactions from
+that cursor. No reverse mutation, checkpoint-as-snapshot shortcut, world fork
+format or per-frame prefix replay is introduced. See the replay guide for bounds.
+
 M242 adds opt-in example-owned playback controls. Key edges pause, resume or
 permit one recorded tick; they never enter the recorded input source. Paused
 redraws leave canonical state unchanged, and resume rebases presentation timing
