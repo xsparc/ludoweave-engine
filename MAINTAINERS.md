@@ -42,6 +42,14 @@ claims.
 
 ## Current boundary
 
+M243 is approved: seek to a recorded tick and resume playback in the existing
+viewer. CLI seeks and paused backward/start controls must reconstruct verified
+recorded state, preserve full preflight and live-input isolation, and keep normal
+playback compatible. Scope is examples, focused tests, existing wheel smoke,
+docs/evidence and dependent digest-only guard refreshes. No engine API, format,
+dependency, extra CI job, audio replay, network, merge or release. Older milestone
+restrictions below are historical.
+
 M242 is approved following PR #259 integration: opt-in replay pause/resume and
 single-tick stepping in the existing viewer. Keep controls presentation-only,
 preserve complete headless verification and ordinary playback, and add focused

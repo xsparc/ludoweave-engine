@@ -105,6 +105,24 @@ def main(argv: Sequence[str] | None = None) -> int:
             or playback["arena"]["state_hash"] != verified["state_hash"]
         ):
             raise RuntimeError("installed recorded presentation diverged")
+        sought = subprocess.run(
+            [str(python), "-I", str(viewer), str(play_artifact), "--seek-tick", "15"],
+            cwd=work,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=120,
+        )
+        seek_summary = json.loads(sought.stdout)
+        if (
+            seek_summary["start_tick"] != 15
+            or seek_summary["played_batches"] != 15
+            or seek_summary["frames"] != 16
+            or seek_summary["position_batch"] != 30
+            or seek_summary["playback"] != "complete"
+            or seek_summary["arena"]["state_hash"] != verified["state_hash"]
+        ):
+            raise RuntimeError("installed seek and resume diverged")
     print(json.dumps({"schema": "ludoweave.input-replay-wheel-smoke/1", "status": "pass"}))
     return 0
 

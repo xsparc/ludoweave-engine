@@ -44,19 +44,20 @@ def _device(name: str) -> RenderDevice:
 class _PlaybackControls:
     """Presentation-only key edges; never an input source for the world."""
 
-    __slots__ = ("held", "paused", "rebase", "step")
+    __slots__ = ("held", "paused", "rebase", "seek", "step")
 
     def __init__(self, *, paused: bool) -> None:
         self.paused = paused
         self.step = False
         self.rebase = False
+        self.seek: str | None = None
         self.held: set[str] = set()
 
     def key(self, event: KeyEvent) -> None:
         key = event.key.lower()
         if key == " ":
             key = "space"
-        if key not in ("space", "arrowright"):
+        if key not in ("space", "arrowright", "arrowleft", "home"):
             return
         if not event.pressed:
             self.held.discard(key)
@@ -68,8 +69,11 @@ class _PlaybackControls:
             self.paused = not self.paused
             self.step = False
             self.rebase = True
-        elif self.paused:
+        elif self.paused and key == "arrowright":
             self.step = True
+        elif self.paused:
+            self.seek = key
+            self.step = False
 
 
 def _events(
@@ -96,6 +100,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--controls", action="store_true", help="Space: pause/resume; Right: one paused tick"
     )
     parser.add_argument("--paused", action="store_true", help="start controlled playback paused")
+    parser.add_argument("--seek-tick", type=int, help="start at an absolute recorded tick")
     args = parser.parse_args(argv)
     if args.window and args.renderer != "wgpu":
         parser.error("--window requires --renderer wgpu")
@@ -111,6 +116,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.controls and any(batch.end_tick != batch.start_tick + 1 for batch in timeline.batches):
         parser.error("controlled playback requires exactly one tick per recorded batch")
     controls = _PlaybackControls(paused=bool(args.paused)) if args.controls else None
+    positions = {timeline.header.initial_tick: 0}
+    for index, batch in enumerate(timeline.batches, 1):
+        positions.setdefault(batch.end_tick, index)
+    start_tick = timeline.header.initial_tick if args.seek_tick is None else args.seek_tick
+    if start_tick not in positions:
+        parser.error("--seek-tick must be a recorded tick boundary within the artifact")
+    position = positions[start_tick]
 
     composition = create_clockwork_arena(RecordedInputSource())
     runner = ReplayRunner(
@@ -122,13 +134,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     # Complete verification precedes optional provider construction. No unverified
     # recording is shown, and no renderer participates in the authoritative pass.
     verified = artifact.replay(runner, ArenaTickExecutor)
-    kernel = ArenaTickExecutor(artifact)
-    initial = runner.replay(timeline, tick_executor=kernel, max_batches=0)
-    arena = ClockworkArena(initial.session, composition.codec, kernel)
+
+    def restore(at: int) -> ClockworkArena:
+        kernel = ArenaTickExecutor(artifact)
+        restored = runner.replay(timeline, tick_executor=kernel, max_batches=at)
+        return ClockworkArena(restored.session, composition.codec, kernel)
+
+    arena = restore(position)
     service = TransactionService(arena.session)
     checkpoints = {item.after_batch: item for item in timeline.checkpoints}
     frames = 0
     completed = 0
+    seeks = 0
     interrupted = False
     device = _device(args.renderer)
     try:
@@ -154,7 +171,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         pipeline = device.create_pipeline(PipelineDescriptor(TextureFormat.RGBA8_UNORM))
         extractor = RenderExtractor()
         clock = MonotonicClock()
-        start = clock.now_ns()
+        start = clock.now_ns() - (start_tick - timeline.header.initial_tick) * 1_000_000_000 // 60
 
         def draw() -> None:
             nonlocal frames
@@ -171,12 +188,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         interrupted = bool(args.window and _events(device, surface, controls))
         if not interrupted:
             draw()
-        for batch in timeline.batches:
+        while position < len(timeline.batches):
             if interrupted or (args.window and _events(device, surface, controls)):
                 interrupted = True
                 break
             if controls is not None:
-                while controls.paused and not controls.step:
+                while controls.paused and not controls.step and controls.seek is None:
                     # Keep the window responsive without advancing canonical time
                     # or busy-spinning. Redraw permits resize while paused.
                     draw()
@@ -186,13 +203,31 @@ def main(argv: Sequence[str] | None = None) -> int:
                         break
                 if interrupted:
                     break
+                if controls.seek is not None:
+                    target = timeline.header.initial_tick
+                    if controls.seek == "arrowleft":
+                        target = max(target, arena.session.completed_ticks - 1)
+                    next_position = positions[target]
+                    if next_position != position:
+                        arena = restore(next_position)
+                        service = TransactionService(arena.session)
+                        position = next_position
+                        seeks += 1
+                    controls.seek = None
+                    controls.step = False
+                    controls.rebase = True
+                    draw()
+                    continue
                 if controls.rebase:
                     start = (
                         clock.now_ns()
-                        - (batch.start_tick - timeline.header.initial_tick) * 1_000_000_000 // 60
+                        - (arena.session.completed_ticks - timeline.header.initial_tick)
+                        * 1_000_000_000
+                        // 60
                     )
                     controls.rebase = False
                 controls.step = False
+            batch = timeline.batches[position]
             receipt = service.apply(batch.transaction)
             if (
                 receipt.status is not ReceiptStatus.COMMITTED
@@ -203,7 +238,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             ):
                 raise RuntimeError("visible playback diverged from verified recording")
             completed += 1
-            checkpoint = checkpoints.get(completed)
+            position += 1
+            checkpoint = checkpoints.get(position)
             if checkpoint is not None and (
                 checkpoint.tick != arena.session.completed_ticks
                 or checkpoint.state_hash != arena.session.state_hash
@@ -231,6 +267,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "frames": frames,
                 "arena": arena.summary().as_dict(),
                 "renderer": args.renderer,
+                **(
+                    {"start_tick": start_tick, "seek_count": seeks, "position_batch": position}
+                    if args.seek_tick is not None or seeks
+                    else {}
+                ),
             },
             sort_keys=True,
         )

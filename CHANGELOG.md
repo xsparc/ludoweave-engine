@@ -1,5 +1,12 @@
 # Changelog
 
+## M243 recorded-tick seeking
+
+- Add `--seek-tick` for verified start-position selection and suffix playback.
+- Add paused Left Arrow rewind and Home restart, rebuilding verified state and
+  resetting presentation pacing; preserve full replay verification and inputs.
+- Extend the existing installed replay smoke without new dependencies or CI jobs.
+
 ## M242 replay presentation controls
 
 - Add opt-in window pause/resume and single-tick stepping, with paused startup,

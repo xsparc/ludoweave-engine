@@ -1,5 +1,73 @@
 # Test Evidence
 
+## M243 full local qualification (2026-09-21)
+
+All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.
+Full suite: **5,063 passed, 19 skipped in 311.45s**. Ruff, strict typing/docs,
+reproducible builds and installed wheel/scene/audio/replay seeking passed. Release
+rehearsal is local validation, not publication. No additional hosted job was added.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m243-dist-first` | 0 |
+| `uv build --out-dir .tmp/m243-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m243-dist-first .tmp/m243-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m243-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m243-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m243-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m243-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m243-dist-first .tmp/m243-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m243-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Final diff review found no remaining actionable defect: state reconstruction uses
+existing verified replay; close/failure cleanup, recorded input isolation and
+presentation-only timing are preserved. No engine source/API, persistent format,
+dependency, workflow, credential or README change. Historical guard changes are
+89 verified dependent SHA-256-literal refreshes with unchanged assertions.
+The external registry's sole dated review warning remains explicitly waived;
+all repository gates pass. Commit, PR and exact-head hosted validation are next.
+
+## M243 development evidence (2026-09-21)
+
+- `uv run --frozen pyright examples/play_input_replay.py tests/integration/test_visible_input_replay.py scripts/smoke_input_replay_wheel.py`:
+  exit 0, zero errors/warnings; informational version notice only. Focused Ruff
+  formatting/checks also passed. Historical refresh verified 89 files with
+  unchanged ASTs except dependent SHA-256 literals against exact M242 main.
+- `uv run --frozen --extra graphics python examples/play_input_replay.py .tmp/m240-play.json --renderer wgpu --window --controls --seek-tick 60`:
+  exit 0, start tick 60, 60 played batches, 61 frames, 121 verified checkpoints,
+  final cursor 120 and complete playback. Final/verified hash both
+  `sha256:9d4b4f5e81ed1ac487f83ae742ce41cfb27f2a0da652a43c33c74e5571cd3026`.
+  Actual provider execution, not screenshot inspection or human keypress proof.
+- Approved external registry commands, using the installed OpenSteward 0.18.0
+  directory as `<plugin-root>`:
+  `uv run --offline --no-python-downloads --no-project python -B <plugin-root>/scripts/check_project_governance.py --repository-root <plugin-root>`
+  exited 0, status pass, zero findings. Adding `--as-of 2026-09-21 --strict`
+  exited 1, status warn, only review.overdue. The existing unrelated-registry
+  warning waiver remains applicable; no repository gate is waived.
+- PR #260 verified MERGED at `e3d2e9eb432fb2fe37cc3e19e5ab92c61f7ad918`.
+  Both quoted tree queries returned `f847b3ae5644852c4b2be1d73ab1e75724503d2a`.
+  `gh run view 34680238488` reported all three jobs successful; review threads
+  were empty. Main fast-forwarded; obsolete local M242 branch removed only after
+  preservation was proved; `git ls-remote` showed its remote branch absent.
+- `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py`:
+  initial seek implementation retained all 21 existing checks (6.81s); expanded
+  seek/rewind tests passed 32 (3.64s), both exit 0.
+- `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py`:
+  exit 0, 89 passed in 9.39s. Events/clocks are simulated, not human-device proof.
+
 ## M242 approved external-check closeout (2026-09-12)
 
 The maintainer explicitly approved running the previously blocked external

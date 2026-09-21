@@ -137,8 +137,9 @@ def test_window_pacing_close_and_live_input_isolation(
         assert result["arena"]["state_hash"] == artifact.timeline.final_state_hash
 
 
+@pytest.mark.parametrize("seek_tick", [None, 0, 1])
 def test_divergent_input_is_rejected_before_renderer_creation(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, seek_tick: int | None
 ) -> None:
     path = tmp_path / "corrupt.json"
     artifact = _record(path, 1)
@@ -150,8 +151,11 @@ def test_divergent_input_is_rejected_before_renderer_creation(
         pytest.fail("renderer constructed before complete verification")
 
     monkeypatch.setattr(module, "_device", forbidden)
+    arguments = [str(path), "--renderer", "wgpu", "--window"]
+    if seek_tick is not None:
+        arguments.extend(["--seek-tick", str(seek_tick)])
     with pytest.raises(ReplayDivergenceError):
-        _main(module, [str(path), "--renderer", "wgpu", "--window"])
+        _main(module, arguments)
 
 
 def test_renderer_failure_closes_owned_device(
@@ -198,8 +202,9 @@ def test_playback_uses_two_replay_passes_not_a_prefix_replay_per_frame(
     assert calls == [None, 0]
 
 
+@pytest.mark.parametrize("seek_tick", [None, 3, 4, 6])
 def test_nonzero_branch_plays_from_its_own_initial_snapshot(
-    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], seek_tick: int | None
 ) -> None:
     path = tmp_path / "branch.json"
     parent = _record(path, 6)
@@ -220,11 +225,15 @@ def test_nonzero_branch_plays_from_its_own_initial_snapshot(
         recorder.record(arena_tick_transaction(recorder.session))
     child = InputReplay(recorder.timeline(), parent.snapshots[3:])
     path.write_bytes(child.canonical_bytes())
-    assert _main(_module("play_input_replay"), [str(path)]) == 0
+    arguments = [str(path)]
+    if seek_tick is not None:
+        arguments.extend(["--seek-tick", str(seek_tick)])
+    assert _main(_module("play_input_replay"), arguments) == 0
     result = json.loads(capsys.readouterr().out)
     assert result["arena"]["ticks"] == 6
-    assert result["played_batches"] == 3
-    assert result["frames"] == 4
+    played = 6 - (3 if seek_tick is None else seek_tick)
+    assert result["played_batches"] == played
+    assert result["frames"] == played + 1
     assert result["arena"]["state_hash"] == child.timeline.final_state_hash
 
 
@@ -426,3 +435,160 @@ def test_paused_render_failure_closes_without_success(
         _main(module, [str(path), "--renderer", "wgpu", "--window", "--controls", "--paused"])
     assert device.closes == 1
     assert capsys.readouterr().out == ""
+
+
+@pytest.mark.parametrize("tick", [0, 2, 6])
+def test_start_at_recorded_tick_and_resume_to_verified_end(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], tick: int
+) -> None:
+    path = tmp_path / "seek.json"
+    artifact = _record(path, 6)
+    assert _main(_module("play_input_replay"), [str(path), "--seek-tick", str(tick)]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["start_tick"] == tick
+    assert result["position_batch"] == 6
+    assert result["seek_count"] == 0
+    assert result["played_batches"] == 6 - tick
+    assert result["frames"] == 7 - tick
+    assert result["arena"]["state_hash"] == artifact.timeline.final_state_hash
+    assert path.read_bytes() == artifact.canonical_bytes()
+
+
+@pytest.mark.parametrize("tick", [-1, 7])
+def test_invalid_seek_refuses_before_provider(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, tick: int
+) -> None:
+    path = tmp_path / "invalid-seek.json"
+    _record(path, 6)
+    module = _module("play_input_replay")
+
+    def forbidden(name: str) -> RenderDevice:
+        pytest.fail("invalid seek opened a renderer")
+
+    monkeypatch.setattr(module, "_device", forbidden)
+    with pytest.raises(SystemExit) as error:
+        _main(module, [str(path), "--seek-tick", str(tick)])
+    assert error.value.code == 2
+
+
+@pytest.mark.parametrize("mode", ["resume", "close", "failure"])
+def test_paused_rewind_home_and_resume_restore_verified_states(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    mode: str,
+) -> None:
+    path = tmp_path / "rewind.json"
+    artifact = _record(path, 6)
+    module = _module("play_input_replay")
+    calls: list[int | None] = []
+    restored: list[ReplayResult] = []
+    observations: list[int] = []
+    original = ReplayRunner.replay
+    clock = VirtualClock()
+
+    def replay(
+        self: ReplayRunner,
+        timeline: ReplayTimeline | str | bytes,
+        *,
+        tick_executor: TickExecutor | None = None,
+        verify_hashes: bool = True,
+        max_batches: int | None = None,
+    ) -> ReplayResult:
+        calls.append(max_batches)
+        assert verify_hashes
+        if mode == "failure" and max_batches == 2:
+            raise RuntimeError("injected seek failure")
+        result = original(
+            self,
+            timeline,
+            tick_executor=tick_executor,
+            verify_hashes=verify_hashes,
+            max_batches=max_batches,
+        )
+        restored.append(result)
+        return result
+
+    class Device(_Device):
+        def drain_surface_events(self, handle: SurfaceHandle) -> tuple[PlatformEvent, ...]:
+            super().drain_surface_events(handle)
+            session = restored[-1].session
+            observations.append(session.completed_ticks)
+            assert (
+                session.state_hash
+                == artifact.timeline.checkpoints[session.completed_ticks].state_hash
+            )
+            assert self.polls < 20
+            if self.polls in (2, 3):
+                if mode == "close":
+                    return (KeyEvent("ArrowLeft", True), CloseEvent())
+                return (KeyEvent("ArrowLeft", True),)
+            if self.polls == 4:
+                return (KeyEvent("ArrowLeft", False), KeyEvent("ArrowLeft", True))
+            if self.polls == 5:
+                return (KeyEvent("Home", True),)
+            if self.polls == 6:
+                return (KeyEvent("Space", True),)
+            return ()
+
+    device = Device()
+    monkeypatch.setattr(ReplayRunner, "replay", replay)
+    monkeypatch.setattr(module, "_device", _provider(device))
+    monkeypatch.setattr(module, "MonotonicClock", lambda: clock)
+    arguments = [
+        str(path),
+        "--renderer",
+        "wgpu",
+        "--window",
+        "--controls",
+        "--paused",
+        "--seek-tick",
+        "3",
+    ]
+    if mode == "failure":
+        with pytest.raises(RuntimeError, match="injected seek failure"):
+            _main(module, arguments)
+        assert calls == [None, 3, 2]
+        assert capsys.readouterr().out == ""
+    else:
+        assert _main(module, arguments) == 0
+        result = json.loads(capsys.readouterr().out)
+        assert result["verified_state_hash"] == artifact.timeline.final_state_hash
+        if mode == "close":
+            assert calls == [None, 3]
+            assert result["playback"] == "interrupted"
+            assert result["played_batches"] == 0
+            assert result["position_batch"] == 3
+        else:
+            assert calls == [None, 3, 2, 1, 0]
+            assert observations[:6] == [3, 3, 2, 2, 1, 0]
+            assert result["seek_count"] == 3
+            assert result["played_batches"] == 6
+            assert result["position_batch"] == 6
+            assert result["arena"]["state_hash"] == artifact.timeline.final_state_hash
+            assert clock.now_ns() == 16_666_666 + 100_000_000
+    assert device.closes == 1
+    assert path.read_bytes() == artifact.canonical_bytes()
+
+
+def test_seek_window_uses_suffix_deadlines_and_empty_seek_exits(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    path = tmp_path / "paced-seek.json"
+    _record(path, 6)
+    module = _module("play_input_replay")
+    device = _Device()
+    clock = VirtualClock()
+    monkeypatch.setattr(module, "_device", _provider(device))
+    monkeypatch.setattr(module, "MonotonicClock", lambda: clock)
+    assert _main(module, [str(path), "--renderer", "wgpu", "--window", "--seek-tick", "2"]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["played_batches"] == 4
+    assert result["frames"] == 5
+    assert clock.now_ns() == 66_666_667
+    _record(path, 0)
+    assert _main(_module("play_input_replay"), [str(path), "--seek-tick", "0"]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["playback"] == "complete"
+    assert result["frames"] == 1
+    assert result["position_batch"] == 0
