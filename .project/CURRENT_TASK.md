@@ -1,5 +1,29 @@
 # Current task
 
+## M242 replay controls — locally qualified
+
+- Approved by the maintainer's merge confirmation and continuation after the
+  offered pause/resume and single-tick stepping scope.
+- Base: `f5185aef3912b619db32567a20417f5761e957cf`, verified PR #259 squash.
+  Tree `f465b917f623f5f37c7c396a6e36592f529ad1ef` exactly preserves M241 head
+  `437072d40858a6cb34f791d8fee5e1d21e43f2cd`. Local main fast-forwarded; obsolete
+  local M241 branch removed after verification, remote branch already absent.
+- Branch: `feature/m242-replay-controls`. One bounded example/test/doc slice;
+  no engine API, format, dependency, workflow or extra CI job. No merge/release.
+- Acceptance: opt-in window controls, paused startup, repeat suppression, exact
+  tick stepping, canonical input isolation, responsive paused close/resize,
+  pause-adjusted presentation deadlines and existing full replay verification.
+- Focused record/replay tests: 75 passed in 6.43s. All 22 repository qualification
+  commands pass, including 5,049 tests/19 skips, reproducible builds and installed
+  artifact checks. Real wgpu playback completed 120 ticks with exact hashes;
+  human keyboard use is not claimed. Final diff review is complete.
+- The maintainer explicitly approved the external installed-registry checker
+  after its initial refusal. Static governance passed; dated strict governance
+  reported only the previously waived unrelated review.overdue warning. No
+  repository gate is waived. Commit, push and hosted qualification are next.
+- M241 hosted run 34674506688 passed all three jobs, without reruns or review
+  findings. Published PR evidence supersedes its earlier pending records below.
+
 ## M241 visible replay — locally qualified
 
 - Approval: maintainer's 2026-09-12 merge confirmation and continuation of the

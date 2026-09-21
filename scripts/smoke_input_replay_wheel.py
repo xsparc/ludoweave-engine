@@ -78,6 +78,16 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise RuntimeError("installed play-session recording diverged")
         viewer = work / "play_input_replay.py"
         shutil.copyfile(example.with_name("play_input_replay.py"), viewer)
+        refused = subprocess.run(
+            [str(python), "-I", str(viewer), str(play_artifact), "--controls"],
+            cwd=work,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=120,
+        )
+        if refused.returncode != 2 or "--controls requires --window" not in refused.stderr:
+            raise RuntimeError("installed playback control admission diverged")
         displayed = subprocess.run(
             [str(python), "-I", str(viewer), str(play_artifact)],
             cwd=work,

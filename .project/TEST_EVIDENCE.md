@@ -1,5 +1,102 @@
 # Test Evidence
 
+## M242 approved external-check closeout (2026-09-12)
+
+The maintainer explicitly approved running the previously blocked external
+installed-registry checker. The following commands actually executed, using
+`<plugin-root>` for the installed OpenSteward 0.18.0 package, not this repository:
+
+- `uv run --offline --no-python-downloads --no-project python -B <plugin-root>/scripts/check_project_governance.py --repository-root <plugin-root>`:
+  status pass, zero findings (3 objectives, 7 requirements, 4 work items).
+- The same command with `--as-of 2026-09-12 --strict`: exit 1, status warn,
+  exactly one review.overdue warning. The existing explicit waiver of that
+  unrelated registry warning remains applicable; no repository gate is waived.
+
+This supersedes the earlier permission-blocked status below without erasing
+that historical refusal. No bypass occurred. Final documentation-only evidence
+updates passed strict MkDocs and git diff --check before this closeout.
+
+## M242 repository qualification (2026-09-12)
+
+Windows managed CPython 3.12.13: all 22 repository commands below exited 0.
+Full suite: **5,049 passed, 19 skipped in 294.41s**. Strict typing/docs and Ruff
+pass. Both builds reproduce; installed wheel/scene/audio/replay and local release
+rehearsal pass. These are repository results, not a claim that the blocked external
+governance checker ran. No commit, push or PR has occurred for M242 yet.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m242-dist-first` | 0 |
+| `uv build --out-dir .tmp/m242-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m242-dist-first .tmp/m242-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m242-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m242-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m242-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m242-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m242-dist-first .tmp/m242-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m242-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Final review: source package, public APIs, dependencies, lockfile, workflow and
+README unchanged. Controller state is example-owned and presentation-only;
+recorded transaction/checkpoint verification remains enabled. Reviewed changes
+contain no credentials or new network/native authority. Historical guards retain
+the same assertions, with 89 dependent digest-only refreshes. Evidence updates
+after qualification are documentation-only; built artifacts are local rehearsals,
+not published releases.
+
+## M242 focused development (2026-09-12)
+
+- `uv run --frozen pytest -q tests/architecture`: exit 0, 2,485 passed and
+  one skipped in 16.04s. The 89 refreshed historical files were mechanically
+  checked for unchanged ASTs except dependent SHA-256 literals.
+- The first qualification stopped at `uv run --frozen ruff check .` (exit 1,
+  RUF023 slot-order requirement). Sorting the private controller slots fixed it;
+  the second run's formatting, lint and whole-repository Pyright exited 0.
+- `uv run --frozen --extra graphics python examples/play_input_replay.py .tmp/m240-play.json --renderer wgpu --window --controls`:
+  exit 0, 120 played batches, 121 frames/checkpoints, complete verification and
+  exact final hash `sha256:9d4b4f5e81ed1ac487f83ae742ce41cfb27f2a0da652a43c33c74e5571cd3026`.
+  Real provider execution is not human keyboard or screenshot confirmation.
+- The requested external OpenSteward static/dated strict checker invocation
+  was rejected by the environment before execution because it targets the
+  installed plugin registry outside this repository. Neither gate is claimed
+  executed or passing for M242. Explicit permission is needed for that external
+  check; the prior unrelated warning waiver does not bypass this restriction.
+- Verified PR #259 MERGED at `f5185aef3912b619db32567a20417f5761e957cf`.
+  Quoted `git rev-parse 'origin/main^{tree}'` and the equivalent M241-head query
+  returned identical tree `f465b917f623f5f37c7c396a6e36592f529ad1ef` (exit 0).
+  An initial unquoted PowerShell revision query failed; no equality was inferred
+  until the corrected quoted commands succeeded.
+- `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py`:
+  initial 19 passed in 3.90s. Expanded run: 20 passed / one failed in 2.33s;
+  the synthetic grouped fixture incorrectly assumed the existing world command
+  permits a two-tick operation. Removed that unsupported compatibility assertion;
+  retained explicit pre-device admission testing of the synthetic envelope.
+- `uv run --frozen pyright examples/play_input_replay.py tests/integration/test_visible_input_replay.py`:
+  exit 0, no errors/warnings; informational newer-version notice only.
+- `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py`:
+  exit 0, 75 passed in 6.43s. Simulated provider events and VirtualClock, not a
+  human keyboard observation. Full M242 qualification remains pending.
+
+M241 hosted closeout: run 34674506688 qualified exact head `437072d40858a6cb34f791d8fee5e1d21e43f2cd`.
+Linux: 3.12 4,637 passed/411 skipped (243.32s), 3.13 4,636/413 (203.49s),
+3.14 4,636/413 (211.44s), graphics 10 passed, audio 17 passed and installed replay
+smoke passed. macOS: 4,636/413 (165.79s), graphics 10/audio 17 passed. Windows:
+5,048/2 (373.27s), graphics 10/audio 17 passed. All three jobs succeeded without
+reruns. Exact results were published in PR #259, without an evidence-only push.
+
 ## M241 full local qualification (2026-09-12)
 
 All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.

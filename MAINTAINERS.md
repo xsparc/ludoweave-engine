@@ -42,6 +42,14 @@ claims.
 
 ## Current boundary
 
+M242 is approved following PR #259 integration: opt-in replay pause/resume and
+single-tick stepping in the existing viewer. Keep controls presentation-only,
+preserve complete headless verification and ordinary playback, and add focused
+tests, docs and evidence. No engine API, persistent format, dependency, extra CI
+job, audio replay, seek, network, merge or release. Dependent historical digest
+literals may be refreshed without changing their assertions. Earlier boundaries
+are historical.
+
 M241 is approved following PR #258 integration: visible playback of recorded
 Clockwork Arena sessions, preserving headless verification. Scope is an example,
 focused tests, documentation/evidence and the existing installed replay smoke.
