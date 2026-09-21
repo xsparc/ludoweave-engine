@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m196_windows_hard_link_alias_mutator_repeated_buffered_close_after_delivery_failure_boundary.py": (
-        "7ca78b19a110f710d5ae36126a93e7db38ed8befe7549d2eac3a75a209765933"
+        "291fbc91da116bb9b68b026b82422d3eac27e7e41fa08b27c1269efd9c8b12d7"
     ),
     "tests/fixtures/windows_hard_link_alias_mutator_child.py": (
         "19688156f08643aa31a05f53a8a6fc31ff1b60ec1f311e5c557d9fcd87ad2b0a"
@@ -30,8 +30,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "b9d5b3ddfa2417f50ec88728402a9a7e2698b8bc4ef920498243540b401c90ed",
-    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
+    "examples": "8ea46a667dd765fa61bfdd8a7e20bd95d1f86cf51fbf0ad2696a1b9be5b24a93",
+    "scripts": "d31a8fad25034053383e645c74725dec5744f474d86aa8b6c3936c51c19053e2",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PRIOR_PROBE = (

@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m161_windows_acknowledged_release_timeout.py": (
-        "7014ab9ffd0fc0118c43b8a6838f8caabe360a6e1e9ee53088c09a4c155f0013"
+        "a9a168113f3bcef60305f164548b312e680a35e7dfc6823ca5de8d9a568ad3a0"
     ),
     "tests/integration/test_windows_cache_cleanup_acknowledged_release_timeout_probe.py": (
         "653cc2e34cd4ddea922c82fe45df0405435f9181631022217759883deb90de4e"
@@ -27,8 +27,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "b9d5b3ddfa2417f50ec88728402a9a7e2698b8bc4ef920498243540b401c90ed",
-    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
+    "examples": "8ea46a667dd765fa61bfdd8a7e20bd95d1f86cf51fbf0ad2696a1b9be5b24a93",
+    "scripts": "d31a8fad25034053383e645c74725dec5744f474d86aa8b6c3936c51c19053e2",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

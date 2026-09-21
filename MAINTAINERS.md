@@ -42,6 +42,13 @@ claims.
 
 ## Current boundary
 
+M244 is approved: an on-screen replay status display showing current/final tick,
+playback state and contextual control hints. Use existing rendering contracts,
+keep it presentation-only and retain a hide option. Scope is viewer, focused
+tests, existing wheel smoke, documentation/evidence and dependent digest-only
+guard refreshes. No engine API, format, dependency, extra CI job, network, merge
+or release. Earlier milestone boundaries below are historical.
+
 M243 is approved: seek to a recorded tick and resume playback in the existing
 viewer. CLI seeks and paused backward/start controls must reconstruct verified
 recorded state, preserve full preflight and live-input isolation, and keep normal

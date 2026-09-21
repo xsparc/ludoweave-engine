@@ -1,5 +1,72 @@
 # Test Evidence
 
+## M244 full local qualification (2026-09-21)
+
+All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.
+Full suite: **5,068 passed, 19 skipped in 419.75s**. Strict static/docs checks,
+reproducible builds, installed artifacts and status-visibility equivalence pass.
+Release rehearsal is local validation, not publication. No CI job was added.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/m244-dist-first` | 0 |
+| `uv build --out-dir .tmp/m244-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/m244-dist-first .tmp/m244-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/m244-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/m244-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/m244-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/m244-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/m244-dist-first .tmp/m244-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/m244-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Final diff review found no remaining actionable defect: detached presentation
+preserves recorded-input isolation, preflight, seeking, cleanup and summary
+compatibility. No engine source/API, format, dependency, workflow, credential or
+README changes. The 89 historical guard edits are verified dependent SHA-256
+literal updates with unchanged assertions. Static governance passes; the sole
+external dated registry warning retains its explicit waiver. Commit, PR and
+exact-head hosted validation are next. Physical keyboard confirmation is not
+claimed; fixed layout can reduce legibility in very small windows.
+
+## M244 development (2026-09-21)
+
+- `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py`:
+  exit 0, 94 passed in 9.32s.
+- The first full qualification stopped at `uv run --frozen ruff check .`:
+  exit 1, one I001 import-order finding in the viewer. Ruff corrected that import
+  block; the verified dependent digest refresh was rerun before qualification.
+- External installed-registry static governance: exit 0, pass, zero findings.
+  The same command documented under M243 with `--as-of 2026-09-21 --strict`:
+  exit 1, warn, only review.overdue. The explicit unrelated-warning waiver
+  remains applicable; no repository gate is waived.
+- First `uv run --frozen pyright examples/play_input_replay.py` found omitted
+  required SpriteInstance transform/UV fields; the associated viewer test run
+  had 24 failures/11 passes (4.79s). Added the required explicit fields, without
+  altering the public contract. Corrected typing exited 0 and all 35 inherited
+  viewer tests passed in 3.18s.
+- Expanded `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py --tb=short`:
+  exit 0, 40 passed in 5.14s. Focused Pyright exited 0, no errors/warnings.
+- `uv run --frozen --extra graphics python .tmp/m244_capture.py`: exit 0. This
+  local harness runs the viewer at tick 60 with an actual wgpu offscreen surface,
+  captures the first paused frame through the public capture API, and closes via
+  a synthetic event. Capture `.tmp/m244-paused.png` visually inspected: status
+  and all hints legible at 960x540, aligned within a contrasting top panel.
+  It is renderer/readability evidence, not human keypress or physical-window proof.
+  Result: one frame, zero played batches, cursor 60, verified final hash unchanged.
+
 ## M243 full local qualification (2026-09-21)
 
 All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.

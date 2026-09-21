@@ -1,5 +1,25 @@
 # Current task
 
+## M244 replay status — locally qualified
+
+- Explicit approval for current tick, playback state and control hints, with no
+  new dependencies or CI jobs. Base `0cdd75d5c0f73e4cace610196bd9919f9597f4f4`.
+- M243 run 35582201905 passed all three jobs. Its squash tree exactly preserves
+  qualified head 8771ce814c9758eb4526236548fe1da2f187a10c; no review findings.
+  Main synchronized and obsolete branch removed after preservation verification.
+- Branch `feature/m244-replay-status`. Existing diagnostic text plus background
+  sprites use a separate screen-space camera; `--no-status` preserves old view.
+- Acceptance: contextual hints, pause/step/seek/end updates, world/input/summary
+  isolation, cleanup failures, installed visibility equivalence and actual render
+  inspection. No runtime API, protocol, font dependency, workflow or CI job.
+- Focused record/replay tests: 94 passed in 9.32s. Actual wgpu offscreen paused
+  capture inspected as legible at 960x540. All 22 local qualification commands
+  passed, including 5,068 tests/19 skips, strict static/docs checks, reproducible
+  builds and installed status-visibility equivalence. Final diff review complete.
+- External static governance passed; only the previously waived unrelated dated
+  registry review warning remains. Commit, push and exact-head hosted checks are
+  next. No engine API, dependency, new CI job, merge or release.
+
 ## M243 recorded-tick seeking — locally qualified
 
 - Explicit maintainer approval for recorded-tick seeking and resume, preserving

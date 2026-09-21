@@ -10,16 +10,24 @@ from ludoweave.app.replay import InputReplay
 from ludoweave.core.clock import MonotonicClock
 from ludoweave.platform import CloseEvent, KeyEvent, ResizeEvent
 from ludoweave.render import (
+    Camera2D,
+    Color,
+    CommandList,
+    DiagnosticTextCommand,
     NullRenderDevice,
     PipelineDescriptor,
+    PipelineHandle,
     RenderDevice,
     RenderExtractor,
+    SpriteBatchCommand,
+    SpriteInstance,
     SurfaceDescriptor,
     SurfaceHandle,
     SurfaceKind,
     TextureData,
     TextureDescriptor,
     TextureFormat,
+    TextureHandle,
     TextureUsage,
 )
 from ludoweave.samples import create_clockwork_arena
@@ -91,6 +99,54 @@ def _events(
     return closed
 
 
+def _status_commands(
+    *,
+    tick: int,
+    final_tick: int,
+    paused: bool,
+    controls: bool,
+    window: bool,
+    surface: SurfaceHandle,
+    pipeline: PipelineHandle,
+    texture: TextureHandle,
+) -> CommandList:
+    """Detached screen-space status; no world or input source is retained."""
+    state = "COMPLETE" if tick == final_tick else "PAUSED" if paused else "PLAYING"
+    lines = [f"REPLAY {state}  TICK {tick} TO {final_tick}"]
+    if controls:
+        lines.extend(["SPACE PAUSE OR RESUME", "WHILE PAUSED: RIGHT STEP  LEFT BACK  HOME START"])
+    elif window:
+        lines.append("CONTROLS OFF  CLOSE WINDOW TO EXIT")
+    else:
+        lines.append("OFFSCREEN REPLAY  CONTROLS OFF")
+    return CommandList(
+        "replay-status",
+        (
+            SpriteBatchCommand(
+                pipeline,
+                texture,
+                (
+                    SpriteInstance(
+                        x=0.0,
+                        y=114.0,
+                        width=464.0,
+                        height=40.0,
+                        rotation_radians=0.0,
+                        uv_left=0.0,
+                        uv_top=0.0,
+                        uv_right=1.0,
+                        uv_bottom=1.0,
+                        tint=Color(0.015, 0.025, 0.04, 1.0),
+                    ),
+                ),
+            ),
+            DiagnosticTextCommand("\n".join(lines), -228.0, 126.0, Color(0.9, 0.95, 1.0, 1.0)),
+        ),
+        surface,
+        Camera2D(viewport_width=480.0, viewport_height=270.0).orthographic_matrix(),
+    )
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("artifact", type=Path)
@@ -101,6 +157,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--paused", action="store_true", help="start controlled playback paused")
     parser.add_argument("--seek-tick", type=int, help="start at an absolute recorded tick")
+    parser.add_argument("--no-status", action="store_true", help="hide the replay status panel")
     args = parser.parse_args(argv)
     if args.window and args.renderer != "wgpu":
         parser.error("--window requires --renderer wgpu")
@@ -181,7 +238,21 @@ def main(argv: Sequence[str] | None = None) -> int:
                 pipeline=pipeline,
                 label=f"replay-frame-{frames}",
             )
-            device.submit((commands,))
+            presentation = [commands]
+            if not args.no_status:
+                presentation.append(
+                    _status_commands(
+                        tick=arena.session.completed_ticks,
+                        final_tick=timeline.final_tick,
+                        paused=controls is not None and controls.paused,
+                        controls=controls is not None,
+                        window=bool(args.window),
+                        surface=surface,
+                        pipeline=pipeline,
+                        texture=texture,
+                    )
+                )
+            device.submit(tuple(presentation))
             device.poll()
             frames += 1
 
