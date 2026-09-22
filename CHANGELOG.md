@@ -1,5 +1,12 @@
 # Changelog
 
+## M244 replay status display
+
+- Display current/final ticks, playback state and contextual controls using
+  existing screen-space diagnostic text; add `--no-status` to hide the panel.
+- Preserve replay summaries and world hashes; extend the existing installed
+  smoke without dependencies, external fonts or additional CI jobs.
+
 ## M243 recorded-tick seeking
 
 - Add `--seek-tick` for verified start-position selection and suffix playback.

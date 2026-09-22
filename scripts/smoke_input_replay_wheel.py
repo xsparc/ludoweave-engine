@@ -105,6 +105,16 @@ def main(argv: Sequence[str] | None = None) -> int:
             or playback["arena"]["state_hash"] != verified["state_hash"]
         ):
             raise RuntimeError("installed recorded presentation diverged")
+        hidden = subprocess.run(
+            [str(python), "-I", str(viewer), str(play_artifact), "--no-status"],
+            cwd=work,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=120,
+        )
+        if hidden.stdout != displayed.stdout:
+            raise RuntimeError("installed status visibility changed replay results")
         sought = subprocess.run(
             [str(python), "-I", str(viewer), str(play_artifact), "--seek-tick", "15"],
             cwd=work,

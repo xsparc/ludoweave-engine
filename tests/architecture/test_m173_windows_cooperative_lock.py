@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m172_windows_descendant_non_exclusion.py": (
-        "f645ae81e1d4981983aeee12ff275718fe98357897a865765f2f87dbc2444262"
+        "9739f4d98c74c4fe437f1385975c95dcc23a10c2bfd6a0a364e7fcd142d9e77a"
     ),
     "tests/fixtures/windows_descendant_file_holder_child.py": (
         "b0f2424104432eecac2cbfcb97ad61bf15f44c614367210733259d0179a6b091"
@@ -30,8 +30,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "b9d5b3ddfa2417f50ec88728402a9a7e2698b8bc4ef920498243540b401c90ed",
-    "scripts": "a71ced2308ffe412518ab7e35867185fdf260fe0f92d567c166964bfb0fb6787",
+    "examples": "8ea46a667dd765fa61bfdd8a7e20bd95d1f86cf51fbf0ad2696a1b9be5b24a93",
+    "scripts": "d31a8fad25034053383e645c74725dec5744f474d86aa8b6c3936c51c19053e2",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _PROBE = _ROOT / "tests/integration/test_windows_cache_cleanup_cooperative_lock_probe.py"

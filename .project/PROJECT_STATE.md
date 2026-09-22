@@ -1,5 +1,22 @@
 # Project State
 
+## M244 replay status — locally qualified
+
+M243 is integrated at `0cdd75d5c0f73e4cace610196bd9919f9597f4f4` with exact
+tree preservation. Run 35582201905 passed Linux, macOS and Windows without
+reruns; final review had no findings. Hosted results are published on PR #261
+and supersede older pending notes below.
+
+The maintainer approved the M244 replay status panel. Existing rendering
+contracts display detached ticks, state and contextual hints, with a hide option.
+Focused record/replay tests: 94 passed; actual offscreen wgpu capture is legible
+at 960x540. No human keyboard observation is claimed. All 22 local qualification
+commands passed, including 5,068 tests/19 skips, strict checks/docs, reproducible
+builds and installed status-visibility equivalence. Final diff review complete.
+No engine API, persistent format, dependency, workflow or CI-job changes. Static
+governance passed; only the previously waived unrelated dated registry review
+warning remains. Commit, push and exact-head hosted qualification are next.
+
 ## M243 recorded-tick seeking — locally qualified
 
 M242 PR #260 is squash-integrated at `e3d2e9eb432fb2fe37cc3e19e5ab92c61f7ad918`.

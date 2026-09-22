@@ -2,6 +2,11 @@
 
 ## Product boundary
 
+M244 adds a viewer-owned status command list after world presentation, using the
+existing diagnostic-text and sprite contracts with a separate screen-space
+camera. It reads detached tick/control values, retains no world authority and
+loads no external font. Visibility never changes replay input or canonical state.
+
 M243 keeps seeking in the viewer composition root. Full headless verification
 still precedes presentation; explicit seeks reconstruct a fresh session through
 the existing hash-checked replay prefix, then resume recorded transactions from

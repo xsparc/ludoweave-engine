@@ -14,7 +14,15 @@ from ludoweave.app import InputAction, InputSnapshot, RecordedInputSource
 from ludoweave.app.replay import InputReplay
 from ludoweave.core.clock import VirtualClock
 from ludoweave.platform import CloseEvent, KeyEvent, PlatformEvent, ResizeEvent
-from ludoweave.render import NullRenderDevice, RenderDevice, SurfaceDescriptor, SurfaceHandle
+from ludoweave.render import (
+    CommandList,
+    DiagnosticTextCommand,
+    NullRenderDevice,
+    RenderDevice,
+    Submission,
+    SurfaceDescriptor,
+    SurfaceHandle,
+)
 from ludoweave.samples import create_clockwork_arena
 from ludoweave.samples.clockwork_arena import (
     ARENA_LOCK_HASH,
@@ -72,6 +80,19 @@ class _Device(NullRenderDevice):
         self.polls = 0
         self.close_at = close_at
         self.fail = fail
+        self.status_texts: list[str] = []
+
+    def submit(self, command_lists: Sequence[CommandList]) -> Submission:
+        for command_list in command_lists:
+            if command_list.label == "replay-status":
+                assert command_list is command_lists[-1]
+                assert command_list.camera_matrix != command_lists[0].camera_matrix
+                self.status_texts.extend(
+                    command.text
+                    for command in command_list.commands
+                    if type(command) is DiagnosticTextCommand
+                )
+        return super().submit(command_lists)
 
     def create_surface(self, descriptor: SurfaceDescriptor) -> SurfaceHandle:
         if self.fail:
@@ -362,6 +383,9 @@ def test_controls_pause_step_repeat_resume_and_close_preserve_recorded_state(
         # A held/repeated Right press did not step twice; resuming after steps
         # schedules a fresh deadline instead of catching up on paused time.
         assert clock.now_ns() - observed[-1][2] == 16_666_667
+        assert "REPLAY PAUSED  TICK 0 TO 3" in device.status_texts[0]
+        assert any("REPLAY PAUSED  TICK 1 TO 3" in text for text in device.status_texts)
+        assert "REPLAY COMPLETE  TICK 3 TO 3" in device.status_texts[-1]
     if mode == "resume":
         assert all(ticks == 0 for poll, ticks, _ in observed if poll <= 10)
         assert clock.now_ns() - observed[9][2] == 50_000_000
@@ -561,6 +585,8 @@ def test_paused_rewind_home_and_resume_restore_verified_states(
             assert result["position_batch"] == 3
         else:
             assert calls == [None, 3, 2, 1, 0]
+            assert any("REPLAY PAUSED  TICK 2 TO 6" in text for text in device.status_texts)
+            assert "REPLAY COMPLETE  TICK 6 TO 6" in device.status_texts[-1]
             assert observations[:6] == [3, 3, 2, 2, 1, 0]
             assert result["seek_count"] == 3
             assert result["played_batches"] == 6
@@ -592,3 +618,60 @@ def test_seek_window_uses_suffix_deadlines_and_empty_seek_exits(
     assert result["playback"] == "complete"
     assert result["frames"] == 1
     assert result["position_batch"] == 0
+
+
+@pytest.mark.parametrize("hidden", [False, True])
+@pytest.mark.parametrize("window", [False, True])
+def test_status_is_contextual_and_does_not_change_replay_output(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    hidden: bool,
+    window: bool,
+) -> None:
+    path = tmp_path / "status.json"
+    artifact = _record(path, 2)
+    module = _module("play_input_replay")
+    device = _Device()
+    monkeypatch.setattr(module, "_device", _provider(device))
+    monkeypatch.setattr(module, "MonotonicClock", VirtualClock)
+    arguments = [str(path)]
+    if hidden:
+        arguments.append("--no-status")
+    if window:
+        arguments.extend(["--renderer", "wgpu", "--window"])
+    assert _main(module, arguments) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["frames"] == 3
+    assert result["played_batches"] == 2
+    assert result["arena"]["state_hash"] == artifact.timeline.final_state_hash
+    assert path.read_bytes() == artifact.canonical_bytes()
+    if hidden:
+        assert device.status_texts == []
+    else:
+        assert len(device.status_texts) == 3
+        assert "REPLAY PLAYING  TICK 0 TO 2" in device.status_texts[0]
+        assert "REPLAY COMPLETE  TICK 2 TO 2" in device.status_texts[-1]
+        assert all("CONTROLS OFF" in text for text in device.status_texts)
+        assert ("CLOSE WINDOW TO EXIT" in device.status_texts[0]) is window
+
+
+def test_status_failure_closes_without_success(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    path = tmp_path / "status-failure.json"
+    _record(path, 1)
+    module = _module("play_input_replay")
+
+    class Device(_Device):
+        def submit(self, command_lists: Sequence[CommandList]) -> Submission:
+            if any(item.label == "replay-status" for item in command_lists):
+                raise RuntimeError("injected status failure")
+            return super().submit(command_lists)
+
+    device = Device()
+    monkeypatch.setattr(module, "_device", _provider(device))
+    with pytest.raises(RuntimeError, match="injected status failure"):
+        _main(module, [str(path)])
+    assert device.closes == 1
+    assert capsys.readouterr().out == ""

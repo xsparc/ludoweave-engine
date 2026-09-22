@@ -102,6 +102,15 @@ game composition are not provided.
 
 ### Pause and single-step playback
 
+The viewer displays a high-contrast status panel by default: current and final
+tick, PLAYING/PAUSED/COMPLETE state, and hints for the enabled controls. It updates
+on every displayed or paused frame, including after seeks. `--no-status` hides
+the panel without changing replay summaries, frame counts, inputs or hashes.
+The panel uses built-in diagnostic glyphs, not a downloaded font. Its fixed
+logical screen layout scales with the surface; very small windows reduce text
+legibility. It overlays the top of the game view rather than reserving world space.
+The final COMPLETE frame does not change the existing automatic-exit behavior.
+
 ```console
 uv run --frozen --extra graphics python examples/play_input_replay.py play.json --renderer wgpu --window --controls --paused
 ```
