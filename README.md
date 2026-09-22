@@ -84,3 +84,9 @@ Contributions use DCO sign-off, not a CLA. Read the
 [code of conduct](CODE_OF_CONDUCT.md), [security policy](SECURITY.md),
 [governance model](GOVERNANCE.md) and [maintainer contract](MAINTAINERS.md).
 Licensed under [Apache-2.0](LICENSE).
+
+## Project overview
+
+For a concise explanation of this project's scope and engineering boundaries,
+see the [portfolio project profile](https://louijiecompo.com/work/ludoweave-engine/). This repository
+and its versioned documentation remain the source of truth for implementation details.
