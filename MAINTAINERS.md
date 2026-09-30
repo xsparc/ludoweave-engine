@@ -42,6 +42,10 @@ claims.
 
 ## Current boundary
 
+The 2026-09-30 assignment is a documentation-only draft PR proposing ten new
+features after M244 integration. No feature implementation or accepted ADR
+change is authorized by the proposal. Preserve the existing CI topology.
+
 M244 is approved: an on-screen replay status display showing current/final tick,
 playback state and contextual control hints. Use existing rendering contracts,
 keep it presentation-only and retain a hide option. Scope is viewer, focused

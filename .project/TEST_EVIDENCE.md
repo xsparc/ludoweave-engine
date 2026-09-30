@@ -1,5 +1,30 @@
 # Test Evidence
 
+## Ten-feature draft proposal (2026-09-30)
+
+- `gh pr view 262 --json state,mergeCommit,headRefOid,statusCheckRollup`:
+  exit 0, MERGED at `510c5f31ed752edebd19ce31ef7da8bf0454e0cc`; all three
+  hosted jobs succeeded in run 35586567583. No new runs were requested.
+- `git rev-parse 'b2b8986^{tree}' 'origin/main^{tree}'`: exit 0, both
+  `ec8e3dd7d01167a904392662e97465028e1cea53`. Exact squash preservation verified.
+- `uv run --frozen mkdocs build --strict`: exit 0, built in 4.49s. The proposal
+  is repository-root Markdown linked from ROADMAP.md, not a new MkDocs page.
+  Manual link-target check `Test-Path FEATURE_PROPOSALS.md` returned True;
+  `(Select-String -Path FEATURE_PROPOSALS.md -Pattern '^## F[0-9]{2} ').Count`
+  returned exactly 10. External reference pages were opened during the scan.
+- `uv run --frozen pytest -q tests/architecture`: exit 0, 2,485 passed,
+  1 skipped in 20.39s. `git diff --check`: exit 0.
+- Installed OpenSteward 0.18.0 check:
+  `uv run --offline --no-python-downloads --no-project python -B <plugin-root>/scripts/check_project_governance.py --repository-root <plugin-root>`:
+  exit 0, pass, zero findings. Adding `--as-of 2026-09-30 --strict` exited 1,
+  warn, only review.overdue; the existing explicit unrelated-warning waiver
+  applies. This checks the installed registry, not a repository registry.
+- Reviewed scope: six Markdown files only; ten advisory proposals, no accepted
+  ADR change, runtime edit, dependency, workflow or CI job. Source claims are
+  cited and uncertainty recorded. Full runtime tests, builds and GPU tests were
+  not rerun for this documentation-only draft. Feature acceptance tests are
+  proposed, not executed. Commit/push/draft publication follow validation.
+
 ## M244 full local qualification (2026-09-21)
 
 All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.

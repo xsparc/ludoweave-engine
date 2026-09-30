@@ -1,5 +1,8 @@
 # LudoWeave roadmap board
 
+The [ten post-M244 feature proposals](FEATURE_PROPOSALS.md) are a draft discussion
+backlog, not assigned milestones. Implementation requires separate approval.
+
 This repository-native board states outcomes and readiness; it is not a delivery-date
 promise. Accepted ADRs and milestone acceptance evidence override an older card. Public
 issues become the discussion and assignment record once a card is opened.
