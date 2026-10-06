@@ -1,5 +1,14 @@
 # Project State
 
+## Post-M244 proposal (2026-09-30)
+
+PR #262 is squash-integrated at `510c5f31ed752edebd19ce31ef7da8bf0454e0cc`.
+Its tree exactly matches validated head `b2b89869a6e99b683008b59ab0327a629598aafc`.
+All three existing hosted jobs passed in run 35586567583. This supersedes older
+pending publication notes below. Current assignment: ten-feature documentation
+proposal and draft PR. FEATURE_PROPOSALS.md is advisory, not implementation
+authority. No engine, format, dependency or CI changes are part of this task.
+
 ## M244 replay status — locally qualified
 
 M243 is integrated at `0cdd75d5c0f73e4cace610196bd9919f9597f4f4` with exact

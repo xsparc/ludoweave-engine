@@ -1,5 +1,20 @@
 # Current task
 
+## Ten-feature draft proposal (2026-09-30)
+
+- Approved scope: brainstorm ten features and publish a draft PR; no runtime work.
+- Base: `510c5f31ed752edebd19ce31ef7da8bf0454e0cc`, verified PR #262 squash.
+  Both trees equal `ec8e3dd7d01167a904392662e97465028e1cea53`; all three jobs
+  in run 35586567583 succeeded. Main synchronized; obsolete local M244 branch
+  removed after exact-tree preservation proof; remote branch was already absent.
+- Proposal has ten bounded outcomes, priorities, dependencies, acceptance gates,
+  risks and a dated advisory source scan. No assigned milestone or implementation.
+- Validate strict docs, architecture tests and documentation-only diff; retain
+  existing jobs. Publish as draft, without merge, release or new dependencies.
+- Local validation passed: strict docs; 2,485 architecture tests/1 skip; whitespace
+  and ten-proposal count. Only the previously waived external registry warning
+  remains. Full runtime qualification is not claimed for this documentation task.
+
 ## M244 replay status — locally qualified
 
 - Explicit approval for current tick, playback state and control hints, with no
