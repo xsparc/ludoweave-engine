@@ -7,6 +7,8 @@ layered-2D games. Humans and software agents operate the same world through
 typed, validated commands with receipts. Simulation state lives in the world
 store; rendering and audio are optional presentation layers.
 
+[Portfolio case study: architecture, evidence and current limitations](https://louijiecompo.com/work/ludoweave-engine/).
+
 ## What you can build
 
 - Deterministic fixed-tick worlds with entities, components and typed resources.
