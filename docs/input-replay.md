@@ -89,7 +89,29 @@ uv run --frozen --extra graphics python examples/play_input_replay.py play.json 
 
 The default Null renderer exercises the same presentation path without a GPU or
 window. Omit `--window` for an unpaced offscreen wgpu run. Window playback uses
-60-Hz tick deadlines; presentation timing never changes canonical state.
+60-Hz tick deadlines at the default speed; presentation timing never changes
+canonical state.
+
+### Playback speed
+
+```console
+uv run --frozen --extra graphics python examples/play_input_replay.py play.json --renderer wgpu --window --speed 2
+```
+
+`--speed` accepts exactly `0.25`, `0.5`, `1`, `2` or `4` (default `1`). The status
+panel shows the selected multiplier. Window deadlines scale the recorded 60-Hz
+timeline using integer ratios and absolute offsets, avoiding accumulated rounding
+drift. Every recorded batch is still applied and displayed in order. Ordinary
+completed playback preserves final hashes, receipts, frame counts and JSON
+summaries at every speed. In controlled or interrupted playback, counts and the
+current tick still reflect when playback keys or close events are received.
+Actual rendering may run slower than the requested pace on a busy device.
+
+Pause redraws keep their existing responsive polling cadence. Right Arrow still
+steps exactly one recorded tick. Resuming or seeking rebases scaled deadlines
+without catching up paused time. Null and offscreen runs remain unpaced; they
+accept the option and show its value but do not wait for speed deadlines.
+Unsupported values fail before artifact reads or device creation.
 
 This bounded sample first verifies the entire artifact headlessly before opening
 any renderer. A second pass applies the same recorded transactions and checks
@@ -126,7 +148,8 @@ as produced by the sample recorder. Other batch spans are refused before replay
 or device creation rather than splitting atomic transactions. Ordinary playback
 and headless verification remain unchanged. Paused redraws keep resize/close
 responsive with bounded polling sleeps, while canonical world ticks remain fixed.
-Resume starts fresh 60-Hz presentation deadlines; paused time is not caught up.
+Resume starts fresh presentation deadlines at the selected speed; paused time
+is not caught up.
 Redraws count toward `frames`, so controlled frame counts need not equal ticks
 plus one. Playback exits at the end, including an empty recording started paused;
 it does not hold the final frame open. Window focus is needed for keyboard input.

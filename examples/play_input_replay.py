@@ -106,6 +106,7 @@ def _status_commands(
     paused: bool,
     controls: bool,
     window: bool,
+    speed: str,
     surface: SurfaceHandle,
     pipeline: PipelineHandle,
     texture: TextureHandle,
@@ -114,11 +115,16 @@ def _status_commands(
     state = "COMPLETE" if tick == final_tick else "PAUSED" if paused else "PLAYING"
     lines = [f"REPLAY {state}  TICK {tick} TO {final_tick}"]
     if controls:
-        lines.extend(["SPACE PAUSE OR RESUME", "WHILE PAUSED: RIGHT STEP  LEFT BACK  HOME START"])
+        lines.extend(
+            [
+                f"SPEED {speed}X  SPACE PAUSE OR RESUME",
+                "WHILE PAUSED: RIGHT STEP  LEFT BACK  HOME START",
+            ]
+        )
     elif window:
-        lines.append("CONTROLS OFF  CLOSE WINDOW TO EXIT")
+        lines.append(f"SPEED {speed}X  CONTROLS OFF  CLOSE WINDOW TO EXIT")
     else:
-        lines.append("OFFSCREEN REPLAY  CONTROLS OFF")
+        lines.append(f"SPEED {speed}X  OFFSCREEN REPLAY  CONTROLS OFF")
     return CommandList(
         "replay-status",
         (
@@ -151,7 +157,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("artifact", type=Path)
     parser.add_argument("--renderer", choices=("null", "wgpu"), default="null")
-    parser.add_argument("--window", action="store_true", help="display at recorded 60-Hz tick pace")
+    parser.add_argument("--window", action="store_true", help="display at the selected replay pace")
+    parser.add_argument(
+        "--speed",
+        choices=("0.25", "0.5", "1", "2", "4"),
+        default="1",
+        help="presentation speed multiplier (default: 1)",
+    )
     parser.add_argument(
         "--controls", action="store_true", help="Space: pause/resume; Right: one paused tick"
     )
@@ -159,6 +171,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--seek-tick", type=int, help="start at an absolute recorded tick")
     parser.add_argument("--no-status", action="store_true", help="hide the replay status panel")
     args = parser.parse_args(argv)
+    numerator, denominator = {"0.25": (1, 4), "0.5": (1, 2), "1": (1, 1), "2": (2, 1), "4": (4, 1)}[
+        args.speed
+    ]
+
     if args.window and args.renderer != "wgpu":
         parser.error("--window requires --renderer wgpu")
     if args.controls and not args.window:
@@ -168,6 +184,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     with Path(args.artifact).open("rb") as source:
         artifact = InputReplay.from_json(source.read(67_108_865))
     timeline = artifact.timeline
+
+    def offset_ns(tick: int) -> int:
+        # Round absolute scaled offsets once, not each inter-frame duration.
+        return (
+            (tick - timeline.header.initial_tick) * 1_000_000_000 * denominator // (60 * numerator)
+        )
+
     if len(timeline.batches) > 3600 or len(artifact.snapshots) > 3600:
         parser.error("visible playback supports at most 3600 batches and ticks")
     if args.controls and any(batch.end_tick != batch.start_tick + 1 for batch in timeline.batches):
@@ -228,7 +251,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         pipeline = device.create_pipeline(PipelineDescriptor(TextureFormat.RGBA8_UNORM))
         extractor = RenderExtractor()
         clock = MonotonicClock()
-        start = clock.now_ns() - (start_tick - timeline.header.initial_tick) * 1_000_000_000 // 60
+        start = clock.now_ns() - offset_ns(start_tick)
 
         def draw() -> None:
             nonlocal frames
@@ -247,6 +270,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                         paused=controls is not None and controls.paused,
                         controls=controls is not None,
                         window=bool(args.window),
+                        speed=args.speed,
                         surface=surface,
                         pipeline=pipeline,
                         texture=texture,
@@ -290,12 +314,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     draw()
                     continue
                 if controls.rebase:
-                    start = (
-                        clock.now_ns()
-                        - (arena.session.completed_ticks - timeline.header.initial_tick)
-                        * 1_000_000_000
-                        // 60
-                    )
+                    start = clock.now_ns() - offset_ns(arena.session.completed_ticks)
                     controls.rebase = False
                 controls.step = False
             batch = timeline.batches[position]
@@ -317,9 +336,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             ):
                 raise RuntimeError("visible playback checkpoint diverged")
             if args.window and (controls is None or not controls.paused):
-                clock.wait_until_ns(
-                    start + (batch.end_tick - timeline.header.initial_tick) * 1_000_000_000 // 60
-                )
+                clock.wait_until_ns(start + offset_ns(batch.end_tick))
             draw()
         if not interrupted and arena.session.state_hash != verified.session.state_hash:
             raise RuntimeError("visible playback final state diverged")

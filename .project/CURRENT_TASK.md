@@ -1,5 +1,20 @@
 # Current task
 
+## F01 replay speed — locally qualified (2026-10-09)
+
+- Explicit maintainer approval: "Approve F01". Base:
+  `972c74fddfdc7c59abfd46fb1553655f7b7fe0a1`; clean main after PR #263/264.
+- Branch `feature/f01-replay-speed`. Implement five CLI speed presets and panel
+  text, absolute integer-ratio deadlines, pause/seek rebasing and installed smoke.
+- Acceptance: exact virtual deadlines, unchanged receipts/hashes/frames/bytes,
+  nonzero branch starts, invalid values refused before I/O, responsive pause and
+  single-step behavior. Existing jobs/dependencies retained. F02–F10 unassigned.
+- All 22 local qualification commands passed: 5,143 tests/19 skips, strict checks
+  and docs, reproducible builds and installed speed equivalence. Focused suite:
+  169 passed in 12.81s. Actual 0.25x label capture inspected at 960x540.
+- Final review complete. Static and dated external governance both pass with
+  zero findings. Commit/push/PR and hosted validation follow. No merge/release.
+
 ## Ten-feature draft proposal (2026-09-30)
 
 - Approved scope: brainstorm ten features and publish a draft PR; no runtime work.

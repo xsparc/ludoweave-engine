@@ -1,8 +1,9 @@
 # Ten feature proposals after M244
 
-Status: **draft for discussion, not an implementation commitment**.
+Status: **F01 approved for implementation on 2026-10-09; F02–F10 remain proposals**.
 Requested 2026-09-30. Baseline: `510c5f31ed752edebd19ce31ef7da8bf0454e0cc`.
-The maintainer authorized this proposal and its draft PR, not all ten features.
+The maintainer authorized this proposal and its draft PR, then approved F01
+individually. Approval of the proposal does not authorize all ten features.
 IDs F01–F10 are proposal identifiers, not assigned milestones or release promises.
 
 ## Recommended sequence

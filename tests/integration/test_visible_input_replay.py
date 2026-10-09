@@ -3,6 +3,7 @@
 import json
 from collections.abc import Callable, Sequence
 from dataclasses import replace
+from fractions import Fraction
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 from types import ModuleType
@@ -224,8 +225,13 @@ def test_playback_uses_two_replay_passes_not_a_prefix_replay_per_frame(
 
 
 @pytest.mark.parametrize("seek_tick", [None, 3, 4, 6])
+@pytest.mark.parametrize("speed", ["0.25", "0.5", "1", "2", "4"])
 def test_nonzero_branch_plays_from_its_own_initial_snapshot(
-    tmp_path: Path, capsys: pytest.CaptureFixture[str], seek_tick: int | None
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+    seek_tick: int | None,
+    speed: str,
 ) -> None:
     path = tmp_path / "branch.json"
     parent = _record(path, 6)
@@ -246,16 +252,24 @@ def test_nonzero_branch_plays_from_its_own_initial_snapshot(
         recorder.record(arena_tick_transaction(recorder.session))
     child = InputReplay(recorder.timeline(), parent.snapshots[3:])
     path.write_bytes(child.canonical_bytes())
-    arguments = [str(path)]
+    module = _module("play_input_replay")
+    clock = VirtualClock()
+    monkeypatch.setattr(module, "_device", _provider(_Device()))
+    monkeypatch.setattr(module, "MonotonicClock", lambda: clock)
+    arguments = [str(path), "--renderer", "wgpu", "--window", "--speed", speed]
     if seek_tick is not None:
         arguments.extend(["--seek-tick", str(seek_tick)])
-    assert _main(_module("play_input_replay"), arguments) == 0
+    assert _main(module, arguments) == 0
     result = json.loads(capsys.readouterr().out)
     assert result["arena"]["ticks"] == 6
     played = 6 - (3 if seek_tick is None else seek_tick)
     assert result["played_batches"] == played
     assert result["frames"] == played + 1
     assert result["arena"]["state_hash"] == child.timeline.final_state_hash
+    start = 3 if seek_tick is None else seek_tick
+    quantum = Fraction(1_000_000_000, 60) / Fraction(speed)
+    assert clock.now_ns() == int(3 * quantum) - int((start - 3) * quantum)
+    assert path.read_bytes() == child.canonical_bytes()
 
 
 def test_tick_budget_is_admitted_before_replay_or_renderer(
@@ -306,11 +320,13 @@ def test_second_pass_divergence_closes_without_success(
 
 
 @pytest.mark.parametrize("mode", ["step_resume", "close", "resume", "zero", "pause_running"])
+@pytest.mark.parametrize("speed", ["0.25", "0.5", "1", "2", "4"])
 def test_controls_pause_step_repeat_resume_and_close_preserve_recorded_state(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
     mode: str,
+    speed: str,
 ) -> None:
     path = tmp_path / "controlled.json"
     artifact = _record(path, 0 if mode == "zero" else 3)
@@ -354,7 +370,7 @@ def test_controls_pause_step_repeat_resume_and_close_preserve_recorded_state(
     monkeypatch.setattr(module, "TransactionService", Service)
     monkeypatch.setattr(module, "_device", _provider(device))
     monkeypatch.setattr(module, "MonotonicClock", lambda: clock)
-    arguments = [str(path), "--renderer", "wgpu", "--window", "--controls"]
+    arguments = [str(path), "--renderer", "wgpu", "--window", "--controls", "--speed", speed]
     if mode != "pause_running":
         arguments.append("--paused")
     assert _main(module, arguments) == 0
@@ -382,13 +398,14 @@ def test_controls_pause_step_repeat_resume_and_close_preserve_recorded_state(
         ]
         # A held/repeated Right press did not step twice; resuming after steps
         # schedules a fresh deadline instead of catching up on paused time.
-        assert clock.now_ns() - observed[-1][2] == 16_666_667
+        quantum = Fraction(1_000_000_000, 60) / Fraction(speed)
+        assert clock.now_ns() - observed[-1][2] == int(3 * quantum) - int(2 * quantum)
         assert "REPLAY PAUSED  TICK 0 TO 3" in device.status_texts[0]
         assert any("REPLAY PAUSED  TICK 1 TO 3" in text for text in device.status_texts)
         assert "REPLAY COMPLETE  TICK 3 TO 3" in device.status_texts[-1]
     if mode == "resume":
         assert all(ticks == 0 for poll, ticks, _ in observed if poll <= 10)
-        assert clock.now_ns() - observed[9][2] == 50_000_000
+        assert clock.now_ns() - observed[9][2] == int(Fraction(50_000_000) / Fraction(speed))
     if mode == "pause_running":
         assert [(poll, ticks) for poll, ticks, _ in observed] == [
             (1, 0),
@@ -399,7 +416,9 @@ def test_controls_pause_step_repeat_resume_and_close_preserve_recorded_state(
             (6, 1),
             (7, 2),
         ]
-        assert clock.now_ns() - observed[5][2] == 33_333_334
+        quantum = Fraction(1_000_000_000, 60) / Fraction(speed)
+        assert clock.now_ns() - observed[5][2] == int(3 * quantum) - int(quantum)
+    assert all(f"SPEED {speed}X" in text for text in device.status_texts)
 
 
 @pytest.mark.parametrize("args", [["--controls"], ["--paused"]])
@@ -496,11 +515,13 @@ def test_invalid_seek_refuses_before_provider(
 
 
 @pytest.mark.parametrize("mode", ["resume", "close", "failure"])
+@pytest.mark.parametrize("speed", ["0.25", "0.5", "1", "2", "4"])
 def test_paused_rewind_home_and_resume_restore_verified_states(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
     mode: str,
+    speed: str,
 ) -> None:
     path = tmp_path / "rewind.json"
     artifact = _record(path, 6)
@@ -568,6 +589,8 @@ def test_paused_rewind_home_and_resume_restore_verified_states(
         "--paused",
         "--seek-tick",
         "3",
+        "--speed",
+        speed,
     ]
     if mode == "failure":
         with pytest.raises(RuntimeError, match="injected seek failure"):
@@ -592,7 +615,7 @@ def test_paused_rewind_home_and_resume_restore_verified_states(
             assert result["played_batches"] == 6
             assert result["position_batch"] == 6
             assert result["arena"]["state_hash"] == artifact.timeline.final_state_hash
-            assert clock.now_ns() == 16_666_666 + 100_000_000
+            assert clock.now_ns() == 16_666_666 + int(Fraction(100_000_000) / Fraction(speed))
     assert device.closes == 1
     assert path.read_bytes() == artifact.canonical_bytes()
 
@@ -675,3 +698,64 @@ def test_status_failure_closes_without_success(
         _main(module, [str(path)])
     assert device.closes == 1
     assert capsys.readouterr().out == ""
+
+
+@pytest.mark.parametrize("speed", ["0.25", "0.5", "1", "2", "4"])
+@pytest.mark.parametrize("window", [False, True])
+@pytest.mark.parametrize("start_tick", [0, 2])
+def test_speed_preserves_output_and_uses_absolute_deadlines(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    speed: str,
+    window: bool,
+    start_tick: int,
+) -> None:
+    path = tmp_path / "speed.json"
+    artifact = _record(path, 7)
+    module = _module("play_input_replay")
+    deadlines: list[int] = []
+
+    class Clock(VirtualClock):
+        def wait_until_ns(self, deadline_ns: int) -> None:
+            deadlines.append(deadline_ns)
+            super().wait_until_ns(deadline_ns)
+
+    arguments = [str(path), "--seek-tick", str(start_tick)]
+    if window:
+        arguments.extend(["--renderer", "wgpu", "--window"])
+    monkeypatch.setattr(module, "_device", _provider(_Device()))
+    monkeypatch.setattr(module, "MonotonicClock", VirtualClock)
+    assert _main(module, arguments) == 0
+    baseline = capsys.readouterr().out
+    clock = Clock()
+    device = _Device()
+    monkeypatch.setattr(module, "_device", _provider(device))
+    monkeypatch.setattr(module, "MonotonicClock", lambda: clock)
+    assert _main(module, [*arguments, "--speed", speed]) == 0
+    assert capsys.readouterr().out == baseline
+    quantum = Fraction(1_000_000_000, 60) / Fraction(speed)
+    expected = [
+        int(tick * quantum) - int(start_tick * quantum) for tick in range(start_tick + 1, 8)
+    ]
+    assert deadlines == (expected if window else [])
+    assert clock.now_ns() == (expected[-1] if window else 0)
+    assert all(f"SPEED {speed}X" in text for text in device.status_texts)
+    assert path.read_bytes() == artifact.canonical_bytes()
+    assert device.closes == 1
+
+
+@pytest.mark.parametrize("speed", ["0", "-1", "3", "nan", "inf", "1.0", "1/4"])
+def test_invalid_speed_refuses_before_artifact_io_or_renderer(
+    monkeypatch: pytest.MonkeyPatch,
+    speed: str,
+) -> None:
+    module = _module("play_input_replay")
+
+    def forbidden(name: str) -> RenderDevice:
+        pytest.fail("invalid speed opened a renderer")
+
+    monkeypatch.setattr(module, "_device", forbidden)
+    with pytest.raises(SystemExit) as error:
+        _main(module, ["does-not-exist.json", f"--speed={speed}"])
+    assert error.value.code == 2

@@ -42,6 +42,13 @@ claims.
 
 ## Current boundary
 
+F01 is approved on 2026-10-09: replay speed presets 0.25, 0.5, 1, 2 and 4,
+shown in the viewer panel, using integer presentation deadlines. Cover pause,
+step, seek, resume, invalid input and installed replay equivalence. Scope is
+viewer, existing tests/smoke, docs/evidence and dependent digest-only refreshes.
+Keep current dependencies and CI jobs. Earlier planning-only boundaries below
+are historical; the other nine proposals still require individual approval.
+
 The 2026-09-30 assignment is a documentation-only draft PR proposing ten new
 features after M244 integration. No feature implementation or accepted ADR
 change is authorized by the proposal. Preserve the existing CI topology.
