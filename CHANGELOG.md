@@ -1,5 +1,11 @@
 # Changelog
 
+## F01 replay speed presets
+
+- Add `--speed` values 0.25, 0.5, 1, 2 and 4 to recorded playback and show the
+  multiplier in its status panel. Scale absolute presentation deadlines with
+  integer ratios; preserve pause, step, seek and replay results.
+
 ## M244 replay status display
 
 - Display current/final ticks, playback state and contextual controls using

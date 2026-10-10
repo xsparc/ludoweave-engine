@@ -1,5 +1,21 @@
 # Project State
 
+## F01 locally qualified (2026-10-09)
+
+PR #263 squash preserves proposal head `62c26040dc6bbf1aa463ad182d52993e1383999c`;
+both trees are `101d97117eb03b437e5ed446d99e35e68b145842`. Hosted run 36723601768
+passed its documentation path: 2,486 architecture tests in 14.52s, docs and
+installed artifacts passed; desktop jobs skipped. PR #264 adds a README link.
+Main is synchronized at `972c74fddfdc7c59abfd46fb1553655f7b7fe0a1`.
+
+The maintainer approved F01 individually. Five replay speed presets scale only
+presentation time and appear in the existing panel. All 22 local checks passed,
+including 5,143 tests/19 skips and installed equivalence across every preset.
+Focused suite: 169 passed; actual wgpu label capture inspected at 960x540.
+Final review complete; static and dated external governance pass with zero
+findings. Publication and hosted qualification follow. Other proposals remain
+unassigned. No new dependency or CI job, merge or release.
+
 ## Post-M244 proposal (2026-09-30)
 
 PR #262 is squash-integrated at `510c5f31ed752edebd19ce31ef7da8bf0454e0cc`.

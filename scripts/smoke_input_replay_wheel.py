@@ -115,6 +115,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         if hidden.stdout != displayed.stdout:
             raise RuntimeError("installed status visibility changed replay results")
+        for speed in ("0.25", "0.5", "1", "2", "4"):
+            sped = subprocess.run(
+                [str(python), "-I", str(viewer), str(play_artifact), "--speed", speed],
+                cwd=work,
+                capture_output=True,
+                text=True,
+                check=True,
+                timeout=120,
+            )
+            if sped.stdout != displayed.stdout:
+                raise RuntimeError("installed replay speed changed replay results")
         sought = subprocess.run(
             [str(python), "-I", str(viewer), str(play_artifact), "--seek-tick", "15"],
             cwd=work,

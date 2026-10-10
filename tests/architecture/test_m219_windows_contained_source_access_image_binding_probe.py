@@ -27,7 +27,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m218_windows_contained_source_access_refusal_probe.py": (
-        "0c8badc2067fa2ff8867202dadeaae33e1bca0a48ded2f35f6e893295027cae7"
+        "007d68429adffca818130d8ab068d2fa5b7db06674bc46b3c26fa404a483d604"
     ),
     "tests/fixtures/windows_contained_source_access_contender.py": (
         "76600561f6f3bf93dadf4b57175e78904c04d5d4815c92b409a84cb8e69192c0"
@@ -39,8 +39,8 @@ _PROTECTED_FILES = {
 }
 _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
-    "examples": "8ea46a667dd765fa61bfdd8a7e20bd95d1f86cf51fbf0ad2696a1b9be5b24a93",
-    "scripts": "d31a8fad25034053383e645c74725dec5744f474d86aa8b6c3936c51c19053e2",
+    "examples": "adc6349afdb2df5323887d2031a0e9cebd86e9417c7d317568b96e98a9db710e",
+    "scripts": "4f36f7d8affca0f461067f0ec551a912feba601fdd417021798a5792b1072011",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

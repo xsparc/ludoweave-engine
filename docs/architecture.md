@@ -2,6 +2,11 @@
 
 ## Product boundary
 
+F01 scales replay-viewer presentation deadlines using exact integer ratios.
+It reuses the same absolute-offset calculation for startup seeks and resume
+rebasing; recorded transactions and world tick frequency remain authoritative.
+No rate metadata enters canonical snapshots or the input envelope.
+
 M244 adds a viewer-owned status command list after world presentation, using the
 existing diagnostic-text and sprite contracts with a separate screen-space
 camera. It reads detached tick/control values, retains no world authority and

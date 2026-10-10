@@ -1,5 +1,71 @@
 # Test Evidence
 
+## F01 full local qualification (2026-10-09)
+
+All 22 commands executed and exited 0 on Windows managed CPython 3.12.13.
+Full suite: **5,143 passed, 19 skipped in 302.53s**. Strict static/docs checks,
+reproducible distributions, installed wheel/scene/audio/replay checks and local
+release rehearsal passed. Installed replay summaries match at all five presets.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/f01-dist-first` | 0 |
+| `uv build --out-dir .tmp/f01-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/f01-dist-first .tmp/f01-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/f01-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/f01-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/f01-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/f01-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/f01-dist-first .tmp/f01-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/f01-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Final review: presentation deadlines alone change; recorded transactions, input
+history, receipts and canonical hashes retain their existing authority. Default
+1x timing is identical. Unsupported presets fail before I/O; cleanup, pause and
+seek behavior remain covered. No engine source/API, format, dependency, workflow,
+README, credential or CI-job changes. The 89 historical guard edits are verified
+dependent digest literals only. Static and dated external governance passed
+with zero findings. Commit, publication and hosted validation are next.
+
+
+## F01 development (2026-10-09)
+
+- Approved scope: five replay speed presets, integer presentation deadlines,
+  status text, focused regressions and the existing installed replay smoke.
+- Focused formatting and Ruff checks exited 0. Focused Pyright over viewer,
+  integration tests and wheel smoke exited 0, zero errors/warnings (version notice
+  only). `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py --tb=short`:
+  exit 0, 115 passed in 11.08s.
+- `uv run --frozen pytest -q tests/integration/test_visible_input_replay.py tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py`:
+  exit 0, 169 passed in 12.81s. Exact rational oracle verifies every preset,
+  suffix rounding, nonzero branch starts, pause/step/resume and rewind behavior.
+- `uv run --frozen python .tmp/f01_refresh_pins.py`: exit 0, 89 dependent
+  historical guard files refreshed against base 972c74f; ASTs unchanged except
+  verified SHA-256 literals. No assertion weakened.
+- `uv run --frozen --extra graphics python .tmp/f01_capture.py`: exit 0.
+  Actual wgpu offscreen paused capture at tick 60 with speed 0.25, inspected at
+  960x540; multiplier and hints fit the panel. Synthetic close after one frame,
+  zero played batches, complete preflight verification. This is rendered-image
+  evidence, not physical-keypress or real-time-rate measurement.
+- Installed OpenSteward 0.18.0 static and dated strict commands documented under
+  the proposal section, now with `--as-of 2026-10-09 --strict`: both exit 0, pass,
+  zero findings. The installed registry has been updated since the earlier
+  warning; no warning waiver was needed in this run. Repository has no registry.
+- Full local qualification is still running; no full-suite success claim yet.
+
 ## Ten-feature draft proposal (2026-09-30)
 
 - `gh pr view 262 --json state,mergeCommit,headRefOid,statusCheckRollup`:
