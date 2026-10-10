@@ -2,6 +2,13 @@
 
 ## Product boundary
 
+F03 keeps comparison in a headless example composition root. Both artifacts
+undergo complete existing replay verification before a paired, fresh-session
+transaction walk reports the first observed difference. Canonical state remains
+in WorldSession; bounded output reuses the public semantic diff and exposes no
+backend. Labels alone do not imply gameplay divergence. No engine API, recording
+format, dependency or CI job changes. See [comparison semantics](input-replay.md#compare-recordings).
+
 F01 scales replay-viewer presentation deadlines using exact integer ratios.
 It reuses the same absolute-offset calculation for startup seeks and resume
 rebasing; recorded transactions and world tick frequency remain authoritative.

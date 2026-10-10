@@ -42,6 +42,15 @@ claims.
 
 ## Current boundary
 
+F03 is approved on 2026-10-10: headless replay comparison with complete
+independent verification, first observed input/transaction/checkpoint/state
+difference and bounded versioned JSON. Cover identical histories, unequal
+lengths, incompatible composition, invalid artifacts, nonzero starts and
+installed-wheel execution. Scope is one example, focused tests, existing replay
+smoke, docs/evidence and dependent digest-only refreshes. Keep engine APIs,
+persistent formats, dependencies and CI jobs unchanged. Other proposals remain
+individually approved; earlier boundaries below are historical.
+
 F01 is approved on 2026-10-09: replay speed presets 0.25, 0.5, 1, 2 and 4,
 shown in the viewer panel, using integer presentation deadlines. Cover pause,
 step, seek, resume, invalid input and installed replay equivalence. Scope is

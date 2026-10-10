@@ -1,5 +1,13 @@
 # Changelog
 
+## F03 replay divergence report
+
+- Add headless comparison of fully verified Clockwork Arena recordings, with
+  versioned, bounded JSON for input, transaction, checkpoint, canonical-state
+  and length differences. Separate invalid artifacts and incompatible sessions.
+- Reuse semantic diff and the existing isolated-wheel smoke; preserve recording
+  bytes, engine APIs, dependencies and CI job count.
+
 ## F01 replay speed presets
 
 - Add `--speed` values 0.25, 0.5, 1, 2 and 4 to recorded playback and show the

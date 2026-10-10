@@ -80,6 +80,55 @@ See [ADR-0035](adr/0035-replay-owned-input-history.md).
 
 ## Installed verification
 
+### Compare recordings
+
+```console
+uv run --frozen python examples/compare_input_replays.py before.json after.json
+```
+
+This headless Clockwork Arena example prints one JSON document with schema
+`ludoweave.input-replay-comparison/1`. Exit 0 means `identical`; exit 1 means
+`different` valid recordings; exit 2 means `invalid` or `incompatible`. Normal
+argument errors also use exit 2. No renderer, audio device or optional dependency
+is constructed. Input files are read only, with 64 MiB per file and at most 3,600
+ticks and batches per artifact. Read errors publish no paths or OS exception text.
+
+Each side includes a raw `content_hash`, canonical `artifact_hash` when decoding
+succeeds, verification status and a fixed error category. Oversized/unreadable
+files cannot supply a complete content digest. Neither digest authenticates an
+author. Canonical artifact identity excludes insignificant JSON whitespace, but
+includes timeline labels. Different labels or parent labels alone do not imply
+different gameplay history. Transaction envelopes, including their IDs, actors,
+expected hashes and arguments, are compared exactly.
+
+Both complete histories are independently checked by existing replay before
+comparison. A bad receipt/hash later in a file is `invalid`, even if the first
+inputs already differ. Incompatible schema, asset lock, platform, engine/profile
+or operation registry is `incompatible`, not a gameplay difference. Two otherwise
+verified histories must also share world identity and initial tick. Different
+initial canonical state (including seed/random streams) is a reportable `state`
+difference, not automatically an incompatible composition.
+
+The paired pass starts from fresh verified initial sessions and walks transactions
+once, stopping at its first observation. No repeatedly replayed growing prefixes
+or monotonic-divergence assumption is used. At a boundary the precedence is state,
+checkpoint coverage, length, upcoming transaction tick range, consumed input,
+then transaction content. `after_batch` counts completed paired batches;
+`left_tick`/`right_tick` are their current absolute ticks. `input_tick` additionally
+identifies the consumed snapshot. Zero-tick transactions consume no input.
+Checkpoint presence differences are reported even when state hashes match.
+Unequal lengths are localized at the end of the shared history. The initial
+boundary is `after_batch: 0`, including for nonzero-start branches.
+
+State detail reuses public `semantic_diff`, with explicit random-state comparison.
+Detail has a global 128-node budget and 128-character text/key limit; `truncated`
+signals omissions and the limits are included. This bounds serialized output,
+not total internal diff work or startup latency. JSON escapes non-ASCII text.
+The observation identifies a difference, not its root cause or a cross-version
+compatibility guarantee. Replay formats, receipts and viewer summaries are
+unchanged. The existing installed-wheel replay smoke exercises comparison outside
+the checkout under isolated Python, without an additional CI job.
+
 ### Display a verified recording
 
 ```console

@@ -1,5 +1,22 @@
 # Project State
 
+## F03 locally qualified (2026-10-10)
+
+F01 PR #265 is squash-integrated at `8f87ebae129d944325bbf19adca56552b9648e06`.
+All three existing hosted jobs passed in run 37919455511; its final tree equals
+qualified head `948ca1412a87e8a34f4be87c931d0d5a7e04d871`. Main was clean and
+synchronized before creating the F03 branch. This supersedes older F01 pending
+publication notes below.
+
+The maintainer approved the bounded F03 replay-divergence report. Complete
+independent preflight precedes a linear paired walk and bounded semantic detail.
+Focused tests pass 38 cases; architecture passes 2,485 cases/1 skip. All 22 local
+commands pass, including 5,181 tests/19 skips, strict checks/docs, reproducible
+builds and installed comparison. Final review and static/dated strict installed
+governance pass. No other proposal, engine API, recording format, dependency,
+additional CI job, merge or release is included. Publication and hosted checks
+remain; this supersedes in-progress development notes below.
+
 ## F01 locally qualified (2026-10-09)
 
 PR #263 squash preserves proposal head `62c26040dc6bbf1aa463ad182d52993e1383999c`;

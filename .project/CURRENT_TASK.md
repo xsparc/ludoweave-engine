@@ -1,5 +1,22 @@
 # Current task
 
+## F03 replay divergence report — locally qualified (2026-10-10)
+
+- Explicit approval: "I Approve F03". Base `8f87ebae129d944325bbf19adca56552b9648e06`;
+  branch `feature/f03-replay-divergence`. F01 PR #265 is squash-integrated.
+- Approved requirements: fully verify both recordings; distinguish identical,
+  different, incompatible and invalid; localize first observed boundary; reuse
+  public semantic diff with bounded detail; keep input bytes, APIs, formats,
+  dependencies and current three CI jobs unchanged.
+- Paths: comparison example, focused integration tests, existing wheel smoke,
+  replay guide, architecture and maintenance evidence; historical guard digest
+  literals only may refresh for these changes. No other proposal or release.
+- Focused tests pass 38 cases; architecture: 2,485 passed/1 skip. All 22 local
+  quality commands pass, including 5,181 tests/19 skips, strict checks/docs,
+  reproducible builds and installed comparison. Final diff review complete.
+- Static and dated strict installed governance pass, zero findings. Commit,
+  push/PR and exact-head hosted validation follow. No merge or release.
+
 ## F01 replay speed — locally qualified (2026-10-09)
 
 - Explicit maintainer approval: "Approve F01". Base:

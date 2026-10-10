@@ -25,7 +25,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m213_windows_local_control_token_binding_probe.py": (
-        "24bd9e87c4b15e7137a54e4c5d4d7f14ebb1f678a150198561a091d3bf6f81b1"
+        "f924412b310643833d4ccb5393001400739ad41c781ce1dbc0fdc5082a79731f"
     ),
     "tests/integration/test_windows_local_control_token_binding_probe.py": (
         "0f4c3e5d701b68b225adc9c6b9735efe4940c3d528caf05521c219128e1172ee"
@@ -33,8 +33,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "adc6349afdb2df5323887d2031a0e9cebd86e9417c7d317568b96e98a9db710e",
-    "scripts": "4f36f7d8affca0f461067f0ec551a912feba601fdd417021798a5792b1072011",
+    "examples": "4d354c586d9b918ab4a732b619b5037d0b769f7f74942f3abac99c6eaf7a7670",
+    "scripts": "7ef78a1d871ffd72e99cda411498345890605d0a9e68631d2e37038361a594fa",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 
