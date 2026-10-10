@@ -144,6 +144,28 @@ def main(argv: Sequence[str] | None = None) -> int:
             or seek_summary["arena"]["state_hash"] != verified["state_hash"]
         ):
             raise RuntimeError("installed seek and resume diverged")
+        comparison = work / "compare_input_replays.py"
+        shutil.copyfile(example.with_name("compare_input_replays.py"), comparison)
+        for left, right, expected, code in (
+            (artifact, artifact, "identical", 0),
+            (artifact, play_artifact, "different", 1),
+            (artifact, work / "absent.json", "invalid", 2),
+        ):
+            compared = subprocess.run(
+                [str(python), "-I", str(comparison), str(left), str(right)],
+                cwd=work,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=120,
+            )
+            report = json.loads(compared.stdout)
+            if (
+                compared.returncode != code
+                or report["schema"] != "ludoweave.input-replay-comparison/1"
+                or report["status"] != expected
+            ):
+                raise RuntimeError("installed replay comparison diverged")
     print(json.dumps({"schema": "ludoweave.input-replay-wheel-smoke/1", "status": "pass"}))
     return 0
 

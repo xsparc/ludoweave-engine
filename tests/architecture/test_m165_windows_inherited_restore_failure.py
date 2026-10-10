@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m164_windows_inherited_launch_failure.py": (
-        "b57b39ca9e2748ab04aa3660999a7a3e2abbfa5e7295f371c7b5c1a3d00ac54a"
+        "3c42682e3feccbedd5a85d385a0e42b896d638e6336386545e86ea29a0d7dc6c"
     ),
     "tests/integration/test_windows_cache_cleanup_inherited_launch_failure_probe.py": (
         "f3e811b8a1c319401e20434f10dfbd9e36095f95465c319eb42828c51db7c723"
@@ -27,8 +27,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "adc6349afdb2df5323887d2031a0e9cebd86e9417c7d317568b96e98a9db710e",
-    "scripts": "4f36f7d8affca0f461067f0ec551a912feba601fdd417021798a5792b1072011",
+    "examples": "4d354c586d9b918ab4a732b619b5037d0b769f7f74942f3abac99c6eaf7a7670",
+    "scripts": "7ef78a1d871ffd72e99cda411498345890605d0a9e68631d2e37038361a594fa",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

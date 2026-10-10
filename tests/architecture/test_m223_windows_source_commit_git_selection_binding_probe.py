@@ -37,10 +37,10 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m221_windows_contained_source_access_source_commit_binding_probe.py": (
-        "bd159f7c562c2788ef900a77746c0606edc802a347fbe4d3b4863cddea3af3c1"
+        "8e810004524866017b0c1c87eeabdfb700323eb11444d139a0783a45a95d6d3c"
     ),
     "tests/architecture/test_m222_windows_source_commit_no_lazy_fetch_exclusion.py": (
-        "0c84400153c79fa31fc6ce4d45be7451753410f7385e7e2189b10ca0cdf37ea3"
+        "050c4de85dc511a91010b5aa416e7ae403087e0cc6ad75f90bbc0be51585dde4"
     ),
     "tests/fixtures/windows_contained_source_access_bound_contender.py": (
         "fa01dae3119f817c62d0b27b0f575642c9837ad5259d79507bd2a1c09c41d2dd"
@@ -58,8 +58,8 @@ _PROTECTED_FILES = {
 }
 _PROTECTED_TREES = {
     "benchmarks": "d55f1c0d5da18cb4ed72bd94713525e5c76ee64738ff5110935ee389e6a4f771",
-    "examples": "adc6349afdb2df5323887d2031a0e9cebd86e9417c7d317568b96e98a9db710e",
-    "scripts": "4f36f7d8affca0f461067f0ec551a912feba601fdd417021798a5792b1072011",
+    "examples": "4d354c586d9b918ab4a732b619b5037d0b769f7f74942f3abac99c6eaf7a7670",
+    "scripts": "7ef78a1d871ffd72e99cda411498345890605d0a9e68631d2e37038361a594fa",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

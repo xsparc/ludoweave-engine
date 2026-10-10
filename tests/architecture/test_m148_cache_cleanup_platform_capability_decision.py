@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "scripts": "4f36f7d8affca0f461067f0ec551a912feba601fdd417021798a5792b1072011",
+    "scripts": "7ef78a1d871ffd72e99cda411498345890605d0a9e68631d2e37038361a594fa",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 

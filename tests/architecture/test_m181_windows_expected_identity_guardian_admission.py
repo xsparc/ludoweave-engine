@@ -19,7 +19,7 @@ _PROTECTED_FILES = {
     ),
     "pyproject.toml": "f64730d1e8083e294e21b12b2ed876cf32975dd2b5bbc62c5feb33fe3cb95e3d",
     "tests/architecture/test_m180_windows_zero_owner_guardian_restart_boundary.py": (
-        "188cadd069e856c02248f89fe03d58849b7894b96f9f68acb8a498782f89b4c7"
+        "7e106913722467c55b682397139780bb6f681dfc832851b4cd109f2d58515b38"
     ),
     "tests/fixtures/windows_coordination_guardian_child.py": (
         "89f0b520c1e8966a5b577f63b254385a61c23c2427fb39b4911680b4fe5549d9"
@@ -45,8 +45,8 @@ _PROTECTED_FILES = {
     "uv.lock": "55e1a195ecb088547bfeecb5ee85f60f23af98a16859f2a5d7b08438991f2c18",
 }
 _PROTECTED_TREES = {
-    "examples": "adc6349afdb2df5323887d2031a0e9cebd86e9417c7d317568b96e98a9db710e",
-    "scripts": "4f36f7d8affca0f461067f0ec551a912feba601fdd417021798a5792b1072011",
+    "examples": "4d354c586d9b918ab4a732b619b5037d0b769f7f74942f3abac99c6eaf7a7670",
+    "scripts": "7ef78a1d871ffd72e99cda411498345890605d0a9e68631d2e37038361a594fa",
     "src/ludoweave": "e6c951393b86b0673a25e0f6b1f4cf41224d3cb7807dd85c76aad482820cde36",
 }
 _FIXTURE = _ROOT / "tests/fixtures/windows_coordination_identity_guardian_child.py"

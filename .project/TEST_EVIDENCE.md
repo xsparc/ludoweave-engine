@@ -1,5 +1,103 @@
 # Test Evidence
 
+## F03 full local qualification (2026-10-10)
+
+All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.
+Full suite: **5,181 passed, 19 skipped in 321.19s**. Strict formatting/lint/type
+checks and docs, byte-identical wheel/sdist builds, installed wheel/scene/audio/
+replay checks and local release rehearsal passed. The installed replay smoke
+checks F03 identical/different/invalid outcomes outside the checkout with no
+dependencies. The source distribution includes the comparison example and tests.
+
+| Command | Exit |
+| --- | --- |
+| `uv lock --check` | 0 |
+| `uv sync --frozen --all-groups` | 0 |
+| `uv run --frozen ludoweave --version` | 0 |
+| `uv run --frozen ludoweave doctor` | 0 |
+| `uv run --frozen python examples/hello_headless.py --ticks 120` | 0 |
+| `uv run --frozen python examples/clockwork_arena.py --ticks 600` | 0 |
+| `uv sync --frozen --all-groups --extra graphics --extra audio` | 0 |
+| `uv run --frozen ruff format --check .` | 0 |
+| `uv run --frozen ruff check .` | 0 |
+| `uv run --frozen pyright` | 0 |
+| `uv run --frozen pytest -q` | 0 |
+| `uv run --frozen mkdocs build --strict` | 0 |
+| `uv build --out-dir .tmp/f03-dist-first` | 0 |
+| `uv build --out-dir .tmp/f03-dist-second` | 0 |
+| `uv run --frozen python scripts/verify_distribution_reproducibility.py .tmp/f03-dist-first .tmp/f03-dist-second` | 0 |
+| `uv run --frozen python scripts/smoke_wheel.py .tmp/f03-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_scene_wheel.py .tmp/f03-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_audio_wheel.py .tmp/f03-dist-first` | 0 |
+| `uv run --frozen python scripts/smoke_input_replay_wheel.py .tmp/f03-dist-first` | 0 |
+| `uv run --frozen python scripts/release_artifacts.py .tmp/f03-dist-first .tmp/f03-release-candidate` | 0 |
+| `uv run --frozen python scripts/smoke_release.py .tmp/f03-release-candidate` | 0 |
+| `git diff --check` | 0 |
+
+Qualification precedes closeout-only evidence updates. The local sdist pair
+therefore records that pre-closeout metadata snapshot; no exact identity with
+the final committed evidence text is claimed. Runtime/example/test/smoke files
+were unchanged after these gates. Exact published-head builds remain hosted CI's
+responsibility. Local release rehearsal is not a public release.
+
+Final review: one read-only headless composition example; full independent
+verification before differences; exact inputs/edges and command bytes; fresh
+linear paired boundaries; public semantic diff with global detail truncation;
+no renderer or environment/path leakage. 89 historical guard edits are verified
+SHA-256 literals only, with non-digest ASTs unchanged. No engine source/API,
+persistent format, dependency, lock, workflow, README or extra CI job changes.
+Static and current-date strict installed governance both passed, zero findings.
+Commit/push/PR and hosted qualification follow; no merge or release performed.
+
+Final closeout commands: `uv run --frozen python .tmp/f03_review.py` exited 0,
+100 approved files including 89 digest-only guards; checked unchanged non-digest
+ASTs, approved path set, credential patterns and no renderer/audio/native imports
+or disabled replay hashes in the comparison. `git diff --check` exited 0. Final
+`uv run --frozen mkdocs build --strict` exited 0, docs built in 4.30s; the pinned
+Material package emitted its informational future-MkDocs advisory, not a failed
+link or strict-docs gate.
+
+## F03 development (2026-10-10)
+
+- Documented CLI rehearsal: `uv run --frozen python examples/input_replay.py
+  record .tmp/f03-demo-left.json --ticks 12` and the same command for
+  `.tmp/f03-demo-right.json --ticks 6` both exited 0. `uv run --frozen python
+  examples/compare_input_replays.py .tmp/f03-demo-left.json .tmp/f03-demo-right.json`
+  exited the expected 1: `different`, `length`, after_batch 6, both ticks 6,
+  both independent verifications pass, untruncated detail. These are synthetic
+  local recordings, not physical-device input observations.
+
+- Final focused command `uv run --frozen pytest -q tests/integration/test_compare_input_replays.py --tb=short`:
+  exit 0, 38 passed in 4.32s. Matching focused Ruff and Pyright checks passed.
+  Two intermediate collection failures were caused by incorrect RandomStreams
+  fixture imports; corrected to the existing world.random module.
+- `uv run --frozen pytest -q tests/integration/test_compare_input_replays.py tests/integration/test_visible_input_replay.py tests/integration/test_play_session_recording.py tests/unit/test_input_replay.py`:
+  exit 0, 203 passed in 16.80s before four additional focused regressions.
+- `uv run --frozen python .tmp/f03_refresh_pins.py`: exit 0, 89 dependent guard
+  files refreshed; ASTs identical to base except verified SHA-256 literals.
+- `uv run --frozen pytest -q tests/architecture --tb=short`: exit 0,
+  2,485 passed/1 skipped in 18.44s.
+- Installed OpenSteward static and dated strict checks with `--as-of 2026-10-10
+  --strict`, using the same commands below and the installed plugin root: both
+  exited 0, pass, zero findings. This repository retains `.project` evidence;
+  it has no docs/governance registry. No unrelated registry was introduced.
+- Full local qualification is running; its completed formatting, lint and
+  strict type gates passed. No full-suite/build/installed/hosted pass is claimed.
+
+- `git fetch origin main`: exit 0; origin/main matches approved base
+  `8f87ebae129d944325bbf19adca56552b9648e06`. Clean tree before branch creation.
+- Initial focused Ruff/Pyright found unused imports and one test annotation
+  mismatch; initial pytest exited 1 with 3 failed/31 passed. Fixtures incorrectly
+  mutated a detached world, named an unused gameplay action and requested an
+  invalid zero-count tick. Corrected to receipted component mutation, `move.x`
+  and a valid zero-tick component transaction; no engine behavior changed.
+- `uv run --frozen ruff format examples/compare_input_replays.py tests/integration/test_compare_input_replays.py`:
+  exit 0. Matching `ruff check` and `pyright` commands: exit 0, zero errors or
+  warnings (informational Pyright update notice only).
+- `uv run --frozen pytest -q tests/integration/test_compare_input_replays.py --tb=short`:
+  exit 0, 34 passed in 4.53s. Later edits still require rerun. Full suite, builds,
+  installed artifact checks and hosted qualification have not yet run for F03.
+
 ## F01 full local qualification (2026-10-09)
 
 All 22 commands executed and exited 0 on Windows managed CPython 3.12.13.
