@@ -1,6 +1,6 @@
 # Ten feature proposals after M244
 
-Status: **F01 integrated; F03 approved on 2026-10-10; other features remain proposals**.
+Status: **F01 and F03 integrated; other features remain proposals**.
 Requested 2026-09-30. Baseline: `510c5f31ed752edebd19ce31ef7da8bf0454e0cc`.
 The maintainer authorized this proposal and its draft PR, then approved F01
 and F03 individually. Approval of the proposal does not authorize all ten features.

@@ -1,5 +1,28 @@
 # Current task
 
+## F03 integration and approval-wording correction (2026-10-11)
+
+- PR #266 was squash-merged on 2026-10-10 at
+  `4f7d98bc1f552c326649f37757fb954e9b543184`. Its tree exactly equals
+  validated head `26d94a0c19501f463ed266cb5c7c614714aff4b7`:
+  `e948004c56a7dce5e833ca8fd2f7ca6da8fb8491`.
+- All three existing hosted jobs passed in run 38046520468. Main synchronized;
+  obsolete local F03 branch removed only after exact-tree preservation proof;
+  the remote branch was already absent. Historical pending notes below are
+  superseded by this integration record.
+- Correct the F03 maintenance sentence from other proposals being approved to
+  requiring individual approval; mark F03 integrated in the proposal index.
+  This remains F03 documentation closeout, not authority for another feature.
+- Branch `docs/f03-approval-boundary`; only five Markdown documentation/evidence
+  files. No runtime, tests, dependency, workflow, extra CI job or release changes.
+- Validate formatting, lint, strict docs, architecture tests, whitespace and
+  static/current-date strict governance. Publish through existing documentation
+  classification after review; no automatic merge.
+- Local checks passed: 680 files format-clean, Ruff clean, strict docs built in
+  4.70s, architecture 2,485 passed/1 skipped in 19.70s, whitespace clean, both
+  governance modes pass with zero findings. Complete five-file diff reviewed;
+  commit/publication and exact-head hosted documentation checks follow.
+
 ## F03 replay divergence report — locally qualified (2026-10-10)
 
 - Explicit approval: "I Approve F03". Base `8f87ebae129d944325bbf19adca56552b9648e06`;
