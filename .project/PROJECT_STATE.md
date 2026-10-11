@@ -1,5 +1,21 @@
 # Project State
 
+## F03 integrated; documentation closeout (2026-10-11)
+
+PR #266 is squash-integrated at `4f7d98bc1f552c326649f37757fb954e9b543184`.
+Its tree exactly preserves qualified head `26d94a0c19501f463ed266cb5c7c614aff4b7`.
+All three jobs in hosted run 38046520468 passed with no reruns or review findings.
+Main was fast-forwarded; the obsolete local feature branch was removed after
+tree verification, and its remote branch was already absent.
+
+The approval sentence mistakenly said other proposals were individually approved.
+The correction says they require individual approval, matching the conversation
+and proposal contract. F01/F03 are integrated; F02 and F04–F10 remain unassigned.
+This five-Markdown-file follow-up updates only wording, integration status and
+evidence, using the existing documentation CI path. No implementation, API,
+format, dependency, workflow, extra job, merge or release is part of closeout.
+Older pending publication notes below are historical.
+
 ## F03 locally qualified (2026-10-10)
 
 F01 PR #265 is squash-integrated at `8f87ebae129d944325bbf19adca56552b9648e06`.

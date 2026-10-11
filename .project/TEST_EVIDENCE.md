@@ -1,5 +1,62 @@
 # Test Evidence
 
+## F03 documentation correction — local checks (2026-10-11)
+
+| Executed command | Exit / result |
+| --- | --- |
+| `uv run --frozen ruff format --check .` | 0; 680 files formatted |
+| `uv run --frozen ruff check .` | 0; all checks passed |
+| `uv run --frozen mkdocs build --strict` | 0; built in 4.70s |
+| `uv run --frozen pytest -q tests/architecture` | 0; 2,485 passed, 1 skipped in 19.70s |
+| `git diff --check` | 0 |
+
+Installed-registry commands, using the installed OpenSteward 0.18.0 root rather
+than this repository (which has no `docs/governance` registry):
+
+```text
+uv run --offline --no-python-downloads --no-project python -B <installed-plugin-root>/scripts/check_project_governance.py --repository-root <installed-plugin-root>
+uv run --offline --no-python-downloads --no-project python -B <installed-plugin-root>/scripts/check_project_governance.py --repository-root <installed-plugin-root> --as-of 2026-10-11 --strict
+```
+
+Both exited 0, status pass, zero findings. MkDocs emitted the pinned Material
+package's informational future-MkDocs advisory; no strict documentation gate
+failed. The architecture skip is retained, not counted as a pass. Final diff
+review found only five Markdown files, no runtime/backend/native/dependency,
+workflow or public API changes and no added private-machine or credential data.
+Full runtime tests, graphics, builds and installed-wheel checks were not rerun
+locally for this documentation-only correction; prior F03 results are separate.
+Hosted exact-head documentation qualification remains pending publication.
+
+## F03 hosted qualification and squash integration (2026-10-11)
+
+`gh pr view 266 --json state,mergedAt,mergeCommit,headRefOid,baseRefName,statusCheckRollup`
+exited 0: MERGED on 2026-10-10T11:33:45Z, squash
+`4f7d98bc1f552c326649f37757fb954e9b543184`, validated head
+`26d94a0c19501f463ed266cb5c7c614714aff4b7`, all three checks SUCCESS.
+Hosted run 38046520468 completed successfully on that exact feature head:
+
+| Job / suite | Passed | Skipped | Duration |
+| --- | ---: | ---: | --- |
+| Linux CPython 3.12 | 4,778 | 411 | 251.56s |
+| Linux CPython 3.13 | 4,777 | 413 | 210.16s |
+| Linux CPython 3.14 | 4,777 | 413 | 220.69s |
+| macOS CPython 3.14 | 4,777 | 413 | 209.98s |
+| Windows CPython 3.14 | 5,189 | 2 | 418.70s |
+
+Hosted graphics (10 cases on each platform), audio (17 cases on each), exact-head
+reproducible distributions, installed replay comparison and release rehearsal
+passed. No new job or rerun was added; review had no actionable findings.
+These results belong to F03, not the later documentation-only correction.
+
+`git fetch origin main`, both `git rev-parse '<commit>^{tree}'` checks for the
+feature and squash commits above, and `git ls-remote --heads origin
+feature/f03-replay-divergence` all exited 0. Both trees equal
+`e948004c56a7dce5e833ca8fd2f7ca6da8fb8491`; the remote branch is absent.
+`git switch main`, `git merge --ff-only origin/main`,
+`git branch -d feature/f03-replay-divergence` and
+`git switch -c docs/f03-approval-boundary` exited 0. Squash preservation, rather
+than ancestor identity, justified removing the redundant local branch.
+
 ## F03 full local qualification (2026-10-10)
 
 All 22 commands below executed and exited 0 on Windows managed CPython 3.12.13.
